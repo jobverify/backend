@@ -11,8 +11,8 @@ import { readSourceObservationEvidence } from '../../scraper-support/utils/sourc
 import { analyzePublishableJobs } from '../../scraper-support/utils/publishableJobMetrics.js'
 import { resolveZeroJobOutcome, buildCoverageGapResult } from '../../scraper-support/runner.js'
 import { replay } from './test-data/fixture.mjs'
-const override = JSON.parse(fs.readFileSync(new URL('../../scraper-support/providers/providerExtensions/zzzzzz-abacusai-native-observations-20261101.json', import.meta.url)))
-const overrideName = 'zzzzzz-abacusai-native-observations-20261101.json'
+const override = JSON.parse(fs.readFileSync(new URL('../../scraper-support/providers/providerExtensions/zz-128-abacusai-observations.json', import.meta.url)))
+const overrideName = 'zz-128-abacusai-observations.json'
 // Match the production loader's filename ordering, including files after this one.
 // The baseline omits this new file so the same test remains useful after installation.
 const extensionScenario = (includeOverride, extraFiles = new Map()) => {
@@ -85,7 +85,7 @@ test('Abacus extension uses actual filename precedence rather than append-after-
     }) : loadProviderExtensions())
   const withNative = extensionScenario(true), position = withNative.names.indexOf(overrideName)
   assert.ok(position >= 0 && position < withNative.names.length - 1, 'Existing later filenames must remain after the native override')
-  const earlier = 'zzzzz-abacusai-controlled-earlier.json', later = 'zzzzzzz-abacusai-controlled-later.json'
+  const earlier = overrideName.replace('abacusai', 'aaa-controlled-earlier'), later = overrideName.replace('abacusai', 'zzz-controlled-later')
   const controlled = platform => [{ source: 'abacusai', companyName: 'Abacus.AI', catalogOverride: true, atsPlatform: platform }]
   const early = extensionScenario(true, new Map([[earlier, controlled('controlled-earlier')]]))
   assert.ok(early.names.indexOf(earlier) < early.names.indexOf(overrideName))

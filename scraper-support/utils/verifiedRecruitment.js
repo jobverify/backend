@@ -19,6 +19,7 @@ import { declaredJibeSearch, readJibeRecruitment } from './recruitmentJibe.js'
 import { classifyScraperError } from './failureClassification.js'
 import { createRecruitmentObservationAccounting, isRecruitmentIntakeTitle } from './recruitmentObservationAccounting.js'
 import { isGreenhouseProspectPost } from './greenhouseProspects.js'
+import { readSourceObservationEvidence } from './sourceObservationEvidence.js'
 import { readBreezyEmptyState } from './recruitmentBreezyEmptyState.js'
 
 export const RECRUITMENT_OBSERVATIONS = Symbol.for('jobverify.verified-recruitment-observations')
@@ -318,6 +319,7 @@ export function createVerifiedRecruitmentScraper(config) {
     const observed = { source: config.source, observedAt: now, requestCount: 0, nativeRecords: 0, returnedIndiaJobs: 0,
       unresolved: [], exclusions: [], nativeInventoryReads: [], sourceScopeComplete: false, lifecycleCleanupAllowed: false, receipts, failures }
     const observationAccounting = createRecruitmentObservationAccounting(config.source)
+    const nativeBoards = []
     const observeNative = row => {
       if (!observationAccounting.observe(row)) observed.unresolved.push('native-observation-identity-unavailable')
     }
@@ -866,6 +868,9 @@ export function createVerifiedRecruitmentScraper(config) {
             }
             return payload
           } })
+          const nativeAudit = Object.getOwnPropertyDescriptor(native, 'nativeCollectionEvidence')?.value
+          if (nativeAudit) nativeBoards.push({ kind: board.kind, surface: board.url,
+            boardToken: board.token, region: board.region || 'global', ...nativeAudit })
           const nativeEvidence = readInventoryEvidence(native)
           observed.nativeInventoryReads.push({ kind: board.kind, surface: board.url, reportedTotal: nativeEvidence?.reportedTotal ?? null })
           if (/native-location|inner-source-listing|selected-role-description/.test(nativeEvidence?.reason || '')) {
@@ -1192,6 +1197,16 @@ export function createVerifiedRecruitmentScraper(config) {
       listingComplete: false, pagesFetched: receipts.length, reportedTotal: null, indiaFacetCount: null,
       verifiedAt: now, reason: 'runtime-first-party-recruitment;source-scope-unverified;cleanup-forbidden;failures=' + failures.length })
     Object.defineProperty(jobs, RECRUITMENT_OBSERVATIONS, { value: observed })
-    return observationAccounting.attach(jobs)
+    observationAccounting.attach(jobs)
+    // Accounting supplies the authoritative observation snapshot. Add the full
+    // successful ATS models afterwards so its summary fallback cannot erase
+    // foreign/unknown/intake rows or merge independent native board payloads.
+    if (nativeBoards.length) Object.defineProperty(jobs, 'nativeCollectionEvidence', {
+      value: { source: config.source, sourceScopeComplete: false,
+        companyGlobalTotal: null, companyIndiaTotal: null,
+        ...(readSourceObservationEvidence(jobs, config.source) || {}), nativeBoards },
+      configurable: true,
+    })
+    return jobs
   } }
 }

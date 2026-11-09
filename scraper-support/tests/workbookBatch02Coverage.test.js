@@ -5,7 +5,7 @@ import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 
 import workbookAliases from '../providers/companyAliasExtensions/zz-workbook-dedicated.json' with { type: 'json' }
-import dedicatedProviders from '../providers/providerExtensions/zz-dedicated-scraper-folder-backfill.json' with { type: 'json' }
+import dedicatedProviders from '../providers/providerExtensions/zz-002-dedicated-backfill.json' with { type: 'json' }
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog, hydrateProviderCatalogEntry } from '../providers/index.js'
 

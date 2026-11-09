@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {getScraperCatalog} from '../scraper-support/providers/index.js'
-const extension = () => JSON.parse(fs.readFileSync(new URL('../scraper-support/providers/providerExtensions/zzzzzzzzzzzz-verified-discovery-adapters-007.json',import.meta.url)))
+const extension = () => JSON.parse(fs.readFileSync(new URL('../scraper-support/providers/providerExtensions/zz-176-discovery-7.json',import.meta.url)))
 test('activates only the safe exact BlueCat binding and keeps discovery counts unknown',()=>{
   const entries=extension()
   assert.deepEqual(entries.map(e=>e.source),['bluecat'])

@@ -1,6 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import CURRENT_NATIVE_METADATA from '../../scraper-support/providers/providerExtensions/zzzz-bookmyshow-native-20261103.json' with { type: 'json' }
+import CURRENT_NATIVE_METADATA from '../../scraper-support/providers/providerExtensions/zz-052-bookmyshow.json' with { type: 'json' }
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 

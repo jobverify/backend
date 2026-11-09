@@ -6,7 +6,7 @@ import { readInventoryEvidence } from '../scraper-support/utils/inventoryEvidenc
 
 // Imports and calls only the selected source modules. Never opens MongoDB or runs global cleanup.
 export const trialPublishingGapRepairs = async ({ outputDirectory, sources, concurrency = 4, providerManifest } = {}) => {
-  const extension = JSON.parse(fs.readFileSync(providerManifest || new URL('../scraper-support/providers/providerExtensions/zzz-publishing-gap-repairs.json', import.meta.url)))
+  const extension = JSON.parse(fs.readFileSync(providerManifest || new URL('../scraper-support/providers/providerExtensions/zz-006-publishing-gap-repairs.json', import.meta.url)))
   const selected = sources?.length ? extension.filter((p) => sources.includes(p.source)) : extension
   if (sources?.some((source) => !selected.some((p) => p.source === source))) throw new Error('Requested source is not in the verified repair manifest')
   const catalog = getScraperCatalog()

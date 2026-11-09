@@ -10,7 +10,7 @@ import { buildScrapers, DEFAULT_PROVIDER_EXTENSION_DIR, getScraperCatalog } from
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const extensionPath = path.join(
   DEFAULT_PROVIDER_EXTENSION_DIR,
-  'live-uncovered-ashby-batch-01.json',
+  'live-ashby-01.json',
 )
 
 const providers = JSON.parse(readFileSync(extensionPath, 'utf8'))

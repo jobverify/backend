@@ -47,6 +47,7 @@ const officialGreenhouseBoardHtml = `
 `
 
 const greenhousePayload = {
+  meta: { total: 3 },
   jobs: [
     {
       id: 4649193006,

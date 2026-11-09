@@ -53,7 +53,7 @@ for(const [label,mutate]of[
 })
 for(const [label,mutate,reason]of[
  ['marketing posting location alternatives',(r,url)=>{if(url.endsWith('/api/job-ad')){const p=JSON.parse(r.body);p.jobAdDetails[0].postingLocations=[{country:'India',region:'',city:''}];r.body=JSON.stringify(p)}},/posting location alternatives/],
- ['new typed country',(r,url)=>{if(url.endsWith('/api/job-ad')){const p=JSON.parse(r.body);p.jobAdDetails[0].country='India';r.body=JSON.stringify(p)}},/complete native role criteria/],
+ ['new typed country',(r,url)=>{if(url.endsWith('/api/job-ad')){const p=JSON.parse(r.body);p.jobAdDetails[0].country='India';r.body=JSON.stringify(p)}},/role\/application identity conflict/],
  ['changed lazy location program',(r,url)=>{if(url.includes('/4520.'))r.body+='/* unreviewed */'},/declared native renderer\/style\/program changed/],
  ['changed closing application criteria',(r,url,calls)=>{if(url.endsWith('/application-form')&&calls.includes(url)){const p=JSON.parse(r.body);p.metadata.changed=true;r.body=JSON.stringify(p)}},/nested application metadata/],
  ['changed closing full feed',(r,url,calls)=>{if(url.endsWith('/api/job-ad')&&calls.filter(u=>u===url).length>=2){const p=JSON.parse(r.body);p.jobAdDetails[0].title+=' changed';r.body=JSON.stringify(p)}},/full raw closing cohort\/criteria changed/],

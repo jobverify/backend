@@ -13,7 +13,7 @@ test('generateDedicatedScraperFolderBackfill writes dedicated providers, aliases
   const aliasExtensionDir = path.join(backendDir, 'scraper-support', 'providers', 'companyAliasExtensions')
   const scraperBaseDir = path.join(backendDir, 'scraper')
   const coveragePath = path.join(repoDir, 'coverage.csv')
-  const outputManifestPath = path.join(providerExtensionDir, 'zz-dedicated-scraper-folder-backfill.json')
+  const outputManifestPath = path.join(providerExtensionDir, 'zz-002-dedicated-backfill.json')
   const outputAliasPath = path.join(aliasExtensionDir, 'zz-workbook-dedicated.json')
 
   mkdirSync(providerExtensionDir, { recursive: true })
@@ -35,7 +35,7 @@ test('generateDedicatedScraperFolderBackfill writes dedicated providers, aliases
     ], null, 2)}\n`,
     'utf8',
   )
-  writeFileSync(path.join(providerExtensionDir, 'zz-dedicated-scraper-folder-backfill.json'), '[]\n', 'utf8')
+  writeFileSync(path.join(providerExtensionDir, 'zz-002-dedicated-backfill.json'), '[]\n', 'utf8')
   writeFileSync(
     path.join(aliasExtensionDir, 'workbook-batch-07.json'),
     `${JSON.stringify({ 'Banyan Cloud Careers': 'banyancloud' }, null, 2)}\n`,

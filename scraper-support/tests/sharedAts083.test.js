@@ -22,7 +22,7 @@ assert.equal(Object.keys(fixtures).length, 22)
 // These unchanged one-response fixtures and their original descriptors exercise
 // the historical shared API contract. Current source readers require separate
 // corporate/board/role HTTP evidence; this suite does not qualify them as current.
-const legacyDescriptors = JSON.parse(fs.readFileSync(new URL('../providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-verified-discovery-adapters-00083.json', import.meta.url)))
+const legacyDescriptors = JSON.parse(fs.readFileSync(new URL('../providers/providerExtensions/zz-279-discovery-83.json', import.meta.url)))
 // Their original native captures use lowercase boards. Current providers bind
 // exact-case native canonical boards using separate current employer evidence.
 // Pin the original descriptors rather than rewriting either native HTTP body.

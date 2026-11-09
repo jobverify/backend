@@ -36,7 +36,7 @@ const jobs = await createCatalogScraper(provider).run({
 })
 const summary = { verificationKind: 'offline-replay-of-real-registered-live-HTTP-captures', replayedAt: new Date().toISOString(),
   codeSha256: sha(await fs.readFile(new URL('./script.js', import.meta.url))),
-  providerOverrideSha256: sha(await fs.readFile(new URL('../../scraper-support/providers/providerExtensions/zzzz-persistent-native-20261026.json', import.meta.url))),
+  providerOverrideSha256: sha(await fs.readFile(new URL('../../scraper-support/providers/providerExtensions/zz-091-persistent.json', import.meta.url))),
   atsPlatform: provider.atsPlatform, runtimePlatformValues: [...new Set(jobs.map(job => job.atsPlatform))], source: provider.source, adapter: provider.adapter,
   modulePath: provider.modulePath, records: jobs.length, fullDetails: jobs.filter(j => j.sourceDetailComplete).length,
   originalPublicationDates: jobs.filter(j => j.postingDate).length, inventoryEvidence: readInventoryEvidence(jobs),

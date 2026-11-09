@@ -18,7 +18,7 @@ const fixtures = JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/share
 const ids = ['bugcrowd', 'cymulate', 'datagrail']
 const unresolvedScopes = new Set(['bugcrowd', 'cymulate'])
 // The single-feed captures predate the current Cymulate and DataGrail readers.
-const legacyDescriptors = JSON.parse(fs.readFileSync(new URL('../providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-verified-discovery-adapters-00082.json', import.meta.url)))
+const legacyDescriptors = JSON.parse(fs.readFileSync(new URL('../providers/providerExtensions/zz-278-discovery-82.json', import.meta.url)))
 const legacyCatalog = new Map(legacyDescriptors.map(row => [row.source, hydrateProviderCatalogEntry(row)]))
 
 for (const source of ['esw', 'extrahop']) test(`${source}: registered native adapter replaces the historical guarded feed with current corporate and geography evidence`, async () => {

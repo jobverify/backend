@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url'
 import { getScraperCatalog } from '../providers/index.js'
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
-const manifest = JSON.parse(fs.readFileSync(new URL('../providers/providerExtensions/zzz-publishing-gap-repairs.json', import.meta.url)))
+const manifest = JSON.parse(fs.readFileSync(new URL('../providers/providerExtensions/zz-006-publishing-gap-repairs.json', import.meta.url)))
 const catalog = getScraperCatalog()
 
 test('historical repair release retains 50 distinct official bindings while current catalog migrations stay explicit', () => {

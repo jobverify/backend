@@ -12,7 +12,7 @@ export function createNativeTransport({fetchImpl=globalThis.fetch,signal,timeout
  const typed=Object.getPrototypeOf(Uint8Array.prototype),get=name=>Object.getOwnPropertyDescriptor(typed,name).get
  const byteLength=get('byteLength'),byteOffset=get('byteOffset'),arrayBuffer=get('buffer')
  const ignore=fn=>{try{Promise.resolve(fn()).catch(()=>{})}catch{}}
- return async(url,{advertised=[HOME,CAREERS],signal:readSignal}={})=>{
+ return async(url,{advertised=[HOME,CAREERS],signal:readSignal,headers:readHeaders={}}={})=>{
   validateURL(url,advertised)
   const caller=signal&&readSignal?AbortSignal.any([signal,readSignal]):signal??readSignal
   caller?.throwIfAborted()
@@ -22,7 +22,7 @@ export function createNativeTransport({fetchImpl=globalThis.fetch,signal,timeout
   const cancel=()=>{if(reader){ignore(()=>reader.cancel());release()}else ignore(()=>response?.body?.cancel())}
   try{return await boundedOperation(async(combined,check)=>{
    const requestedAt=new Date().toISOString()
-   response=await fetchImpl(url,{method:'GET',redirect:'manual',credentials:'omit',headers:{Accept:'text/html, application/json, text/markdown'},signal:combined})
+   response=await fetchImpl(url,{method:'GET',redirect:'manual',credentials:'omit',headers:{Accept:'text/html, application/json, text/markdown',...readHeaders},signal:combined})
    packet={requestedURL:url,url:response?.url??null,status:response?.status??null,headers:null,body:null,bodyComplete:false,requestedAt,completedAt:null,headersObservedAt:new Date().toISOString()}
    onReceipt?.(packet)
    if(response?.headers&&typeof response.headers.entries==='function')packet.headers=Object.fromEntries(response.headers.entries())

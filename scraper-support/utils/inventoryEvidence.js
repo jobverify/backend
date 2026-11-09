@@ -105,10 +105,25 @@ export const sourceLifecycleCleanupForbidden = jobs => Array.isArray(jobs) && (
   || readInventoryEvidence(jobs)?.lifecycleCleanupAllowed === false
 )
 
+// Carry only an own data audit; metadata accessors and unrelated properties
+// must not run or propagate when a wrapper creates a new result array.
+export const copyNativeCollectionEvidence = (sourceJobs, targetJobs) => {
+  if (!Array.isArray(sourceJobs) || !Array.isArray(targetJobs)
+    || Object.getOwnPropertyDescriptor(targetJobs, 'nativeCollectionEvidence')) return targetJobs
+  const descriptor = Object.getOwnPropertyDescriptor(sourceJobs, 'nativeCollectionEvidence')
+  if (descriptor && Object.hasOwn(descriptor, 'value') && descriptor.value
+    && typeof descriptor.value === 'object' && !Array.isArray(descriptor.value)) {
+    Object.defineProperty(targetJobs, 'nativeCollectionEvidence', {
+      value: descriptor.value, configurable: true,
+    })
+  }
+  return targetJobs
+}
+
 // Array.map drops non-enumerable inventory metadata. Company wrappers use this
 // when adding labels or timestamps to a shared adapter's validated results.
 export const mapJobsWithInventoryEvidence = (jobs, transform) => {
-  const mapped = jobs.map(transform)
+  const mapped = copyNativeCollectionEvidence(jobs, jobs.map(transform))
   const evidence = readInventoryEvidence(jobs)
   if (!evidence) return mapped
   const incomplete = mapped.some(job => job?.sourceListingComplete === false)

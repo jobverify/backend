@@ -8,6 +8,10 @@ import { createPhenomScraper } from '../scraper-support/phenom/engine.js'
 import { createNativeDetailRecovery, readNativeDetailReceipt, rememberNativeDetailReceipt } from '../scraper-support/utils/nativeDetailRecovery.js'
 
 const { cases, observedAt: detailCaptureObservedAt } = JSON.parse(gunzipSync(readFileSync(new URL('./test-data/scraperRun42395458143PhenomDetails.json.gz', import.meta.url))))
+// The immutable capture's expectedRepaired records the original November8 policy.
+// Only the actual Quest source now additionally binds these three native city
+// displays to its reviewed government publications (see continuation regressions).
+const continuedQuestOfficeRoles = new Set(['P-123546', 'P-104923', 'P-104924'])
 const wrappedSources = new Set(['bcg', 'collinsaerospace', 'juniper', 'nttdataservices'])
 const replay = async (fixture, html = fixture.html, override, options = {}) => {
   const scraper = override || (wrappedSources.has(fixture.source)
@@ -27,7 +31,8 @@ for (const fixture of cases) test('captured ' + fixture.source + ' role ' + fixt
   t.mock.method(globalThis, 'fetch', () => assert.fail('Uncaptured network request'))
   const [job] = await replay(fixture)
   assert.ok(job)
-  assert.equal(job.sourceDetailComplete, fixture.expectedRepaired)
+  const continuedQuestOffice = fixture.source === 'questglobal' && continuedQuestOfficeRoles.has(fixture.listing.jobId)
+  assert.equal(job.sourceDetailComplete, fixture.expectedRepaired || continuedQuestOffice)
   assert.equal(job.jobId, fixture.listing.jobId)
   assert.equal(job.country, 'India')
   if (fixture.source === 'opentext') {
@@ -35,6 +40,7 @@ for (const fixture of cases) test('captured ' + fixture.source + ' role ' + fixt
     assert.equal(job.sourceNativeDetailEvidence.jsonLdTitle, 'Premium Support Developer ( SMAX)')
   }
   if (fixture.expectedRepaired) assert.ok(job.jobDescription.length > 100)
+  else if (continuedQuestOffice) assert.ok(job.jobDescription.length > 60)
   else assert.equal(job.jobDescription, null)
 })
 

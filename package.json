@@ -14,6 +14,7 @@
     "test": "node --test --test-concurrency=4 \"test/**/*.test.js\" \"scraper/**/*.test.js\" \"scraper-support/**/*.test.js\"",
     "classify:jobs": "node scripts/classifySavedJobs.js",
     "scrape": "node --use-system-ca scraper-support/runner.js",
+    "scrape:validate": "node scripts/validateScraperRuntimeAssets.js",
     "scrape:dry": "node --use-system-ca scraper-support/runner.js --dry-run",
     "scrape:parallel": "node --use-system-ca scraper-support/runner.js --parallel",
     "scrape:parallel:dry": "node --use-system-ca scraper-support/runner.js --parallel --dry-run",

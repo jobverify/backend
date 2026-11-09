@@ -1,7 +1,7 @@
-import { readFileSync } from 'node:fs'
+import { loadRecruitmentBatchAsset } from './recruitmentBatchAssets.js'
 import { createVerifiedRecruitmentScraper } from './verifiedRecruitment.js'
 
-const providers = JSON.parse(readFileSync(new URL('../providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-runtime-recruitment-500-20261103.json', import.meta.url), 'utf8'))
+const providers = loadRecruitmentBatchAsset('runtime')
 const bySource = new Map(providers.map(provider => [provider.source, provider]))
 if (bySource.size !== 500 || providers.length !== 500) throw new Error('The recruitment repair batch must contain 500 unique source registrations')
 

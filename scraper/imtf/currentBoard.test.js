@@ -105,15 +105,35 @@ test('diagnostic closing own worksite changes remain incomplete',async()=>{
  const result=await diagnose({[own]:s=>{if(++reads===1)return s;const n=JSON.parse(s);n.location.region='Changed region';n.locations[0].region='Changed region';return JSON.stringify(n)}})
  held(result);assert.equal(reads,2)
 })
-test('selected catalog retains the Swiss city spelling fact and unresolved later roles without certifying archived board zero',async()=>{
- const calls=await sourceHeld({},'role-markdown');assert.equal(calls.length,6)
+test('archived catalog requires missing native-only HTML proof while retaining primary facts and literal quarantine',async()=>{
+ const calls=[]
+ await assert.rejects(createCatalogScraper(getScraperCatalog().find(p=>p.source==='imtf')).run({transport:async url=>{calls.push(url);return transport()(url)}}),e=>{
+  assert.equal(e.code,'IMTF_NATIVE_INCOMPLETE');assert.equal(e.nativeEvidence.failures[0].stage,'native-observations')
+  assert.equal(e.nativeEvidence.failures[0].message,'Unretained source response')
+  assert.equal(e.nativeEvidence.cleanupAllowed,false);assert.equal(e.nativeEvidence.verifiedZeroInventory,false)
+  return true
+ })
+ assert.equal(calls.length,24);assert.equal(calls.at(-1),'https://apply.workable.com/imtf/j/A2C3F4DE30')
  const result=await collect({transport:transport()})
- assert.equal(result.facts.length,1)
- assert.equal(result.facts[0].country,'Switzerland')
- assert.equal(result.facts[0].nativeCityRaw,'Z\u00fcrich')
- assert.equal(result.facts[0].listing.locationRaw,'Zurich')
+ const facts=result.primaryFacts
+ assert.equal(facts.length,6)
+ assert.equal(facts[0].country,'Switzerland')
+ assert.equal(facts[0].nativeCityRaw,'Z\u00fcrich')
+ assert.equal(facts[0].listing.locationRaw,'Zurich')
+ assert.equal(facts[1].country,'Germany')
+ assert.equal(facts[1].nativeCityRaw,'Bensheim')
+ assert.equal(facts[1].listing.locationRaw,'Bensheim or Berlin, Germany')
+ assert.equal(facts[2].departmentRaw,'PreSales')
+ assert.equal(facts[2].listingDepartmentRaw,'Sales and Marketing')
+ assert.equal(facts[5].title,'Project Manager (f/m/d)')
+ assert.equal(facts[5].departmentRaw,'Global Delivery')
+ assert.equal(facts[5].listingDepartmentRaw,'Professional Services')
+ assert.equal(result.alignmentGaps.length,5)
+ assert.equal(result.nativeObservations.length,4)
  assert.equal(result.jobs.length,0)
- assert.equal(result.failures[0].message,'Markdown title/employment/header mismatch')
+ assert.equal(result.recoveryTrigger.originalCorporateGuard.message,'Markdown title/employment/header mismatch')
+ assert.equal(result.recoveryTrigger.candidate.shortcode,'F92BA9812C')
+ assert.equal(result.failures[0].stage,'native-observations')
 })
 test('unreviewed corporate hiring carriers and malformed rows stop registered qualification',async()=>{
  for(const addition of ['<a href="https://apply.workable.com/other-company/j/ABCDEF1234/">Another role</a>','<a href="https://jobs.example.org/imtf/">Other IMTF vacancies</a>','<div class="imtf-careers-position"><a class="imtf-careers-position-1" href="https://apply.workable.com/imtf/j/ABCDEF1234/">Malformed role</a></div>'])

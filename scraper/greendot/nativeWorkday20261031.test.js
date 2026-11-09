@@ -259,7 +259,7 @@ test('typed observation and raw unknown roles survive real provider decoration w
 })
 
 const stagedProvider = () => {
-  const filename = path.resolve(directory, '../../scraper-support/providers/providerExtensions/zzzzzzzzzzzzzz-greendot-native-workday-20261101.json')
+  const filename = path.resolve(directory, '../../scraper-support/providers/providerExtensions/zz-181-greendot-workday.json')
   const overrides = JSON.parse(fs.readFileSync(filename))
   return getScraperCatalog({ providerExtensions: [...loadProviderExtensions(), ...overrides] }).find(provider => provider.source === 'greendot')
 }

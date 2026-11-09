@@ -476,6 +476,7 @@
     "companyCareerPage": "https://careers.adidas-group.com/",
     "officialHomepageUrl": "https://www.adidas-group.com/",
     "companyDomain": "www.adidas-group.com",
+    "requireNativeEmployerName": true,
     "remediationStatus": "official-surface-discovered",
     "officialBindingVerifiedAt": "2026-10-20T17:01:31.145Z",
     "verifiedOn": null,

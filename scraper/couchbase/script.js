@@ -3,6 +3,13 @@ import { fileURLToPath } from 'node:url'
 
 import { getValidIndiaCityForJob } from '../../src/utils/publicJobLocationScope.js'
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { readNativeDocument, extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
+import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
+import { attachGreenhouseSourceEvidence } from '../../scraper-support/utils/greenhouseSourceEvidence.js'
+import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { greenhouseCountryLabels } from '../../scraper-support/utils/greenhouseLocations.js'
+import { validatePublicPostingScope } from '../../scraper-support/utils/publishingGapAts.js'
+import { validateCouchbaseNativeInventory, withCurrentCouchbaseOfficeCountry } from './currentInventory.js'
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -12,10 +19,10 @@ export const COMPANY = 'Couchbase'
 export const CAREERS_URL = 'https://www.couchbase.com/careers/'
 export const GREENHOUSE_BOARD_URL = 'https://job-boards.greenhouse.io/couchbaseinc'
 export const GREENHOUSE_JOBS_API_URL = 'https://boards-api.greenhouse.io/v1/boards/couchbaseinc/jobs'
+export const GREENHOUSE_OFFICES_API_URL = 'https://boards-api.greenhouse.io/v1/boards/couchbaseinc/offices'
 export const OPEN_POSITIONS_BUCKET_ID = '4488138006'
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+const USER_AGENT = 'Mozilla/5.0'
 
 const normalizeWhitespace = (value) => {
   if (value == null) return null
@@ -136,13 +143,16 @@ const matchesVerifiedCompanyIdentity = (value) => {
 export const buildGreenhouseJobsApiUrl = () => `${GREENHOUSE_JOBS_API_URL}?content=true`
 
 export const hasOfficialCareersSignal = (html) => {
-  const page = String(html ?? '')
-
-  return /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/www\.couchbase\.com\/careers\/["']/i.test(page)
-    && /Join the Couchbase Team - Careers/i.test(page)
-    && /Explore Open Roles/i.test(page)
-    && /aria-label=["']Open Positions["']/i.test(page)
-    && extractGreenhouseJobsApiUrl(page) === GREENHOUSE_JOBS_API_URL
+  try {
+    const document = readNativeDocument(String(html ?? ''))
+    const titles = document.nodes(node => node.tag === 'title')
+    const canonicals = document.nodes(node => node.tag === 'link' && node.attrs.rel?.toLowerCase() === 'canonical')
+    const widgets = readVisibleNativeDocument(String(html ?? ''), { strict: true }).nodes(node => node.tag === 'section' && node.attrs['aria-label'] === 'Open Positions')
+    return titles.length === 1 && /^(?:Join the Couchbase Team - Careers|Careers at Couchbase \| [^<>]{1,160})$/i.test(titles[0].raw?.trim() || '')
+      && canonicals.length === 1 && canonicals[0].attrs.href === CAREERS_URL
+      && widgets.length === 1 && widgets[0].attrs['data-api-url'] === GREENHOUSE_JOBS_API_URL
+      && widgets[0].attrs['data-bucket-id'] === OPEN_POSITIONS_BUCKET_ID
+  } catch { return false }
 }
 
 export const hasOfficialGreenhouseBoardSignal = (html) => {
@@ -250,16 +260,38 @@ export const extractIndiaJobsFromGreenhousePayload = (
     })
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const exactTransport = async (url, options) => {
+  const response = await fetch(url, options)
+  const contentType = (response.headers.get('content-type') || '').split(';')[0].trim().toLowerCase()
+  const expected = new URL(url).hostname === 'boards-api.greenhouse.io'
+    ? contentType === 'application/json' : ['text/html', 'application/xhtml+xml'].includes(contentType)
+  if (response.ok && (response.url !== url || !expected)) {
+    await response.body?.cancel().catch(() => {})
+    const error = new Error('Couchbase response URL or content-type identity changed')
+    error.abortRetries = true
+    throw error
+  }
+  return response
+}
+
+const exactResponse = (response, url, field) => {
+  if (response?.status !== 200 || response.url !== url) throw new Error('Couchbase response URL identity changed')
+  return response[field]
+}
+
+const defaultFetchText = async (url, options = {}) => exactResponse(await fetchTextWithRetry(url, {
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
   },
+  signal: options.signal,
   label: SOURCE,
   timeoutMs: 15000,
-})
+  includeResponseMetadata: true,
+  fetchImpl: exactTransport,
+}), url, 'html')
 
-const defaultFetchJson = (url, options = {}) => fetchJsonWithRetry(url, {
+const defaultFetchJson = async (url, options = {}) => exactResponse(await fetchJsonWithRetry(url, {
   method: options.method,
   headers: {
     'User-Agent': USER_AGENT,
@@ -267,9 +299,12 @@ const defaultFetchJson = (url, options = {}) => fetchJsonWithRetry(url, {
     Referer: CAREERS_URL,
     ...(options.headers || {}),
   },
+  signal: options.signal,
   label: SOURCE,
   timeoutMs: 15000,
-})
+  includeResponseMetadata: true,
+  fetchImpl: exactTransport,
+}), url, 'payload')
 
 export const createCouchbaseScraper = ({
   maxJobs = null,
@@ -278,16 +313,22 @@ export const createCouchbaseScraper = ({
     fetchText = defaultFetchText,
     fetchJson = defaultFetchJson,
     now = () => new Date().toISOString(),
+    signal,
   } = {}) {
+    signal?.throwIfAborted()
+    const requestOptions = signal ? { signal } : {}
     let careersHtml = null
 
     try {
-      careersHtml = await fetchText(CAREERS_URL)
+      careersHtml = await fetchText(CAREERS_URL, requestOptions)
+      signal?.throwIfAborted()
     } catch {
+      signal?.throwIfAborted()
       careersHtml = null
     }
 
-    if (hasOfficialCareersSignal(careersHtml)) {
+    const firstPartyBound = hasOfficialCareersSignal(careersHtml)
+    if (firstPartyBound) {
       if (extractGreenhouseJobsApiUrl(careersHtml) !== GREENHOUSE_JOBS_API_URL) {
         throw new Error('Couchbase careers page no longer exposes the verified inline Greenhouse jobs API')
       }
@@ -296,19 +337,63 @@ export const createCouchbaseScraper = ({
         throw new Error('Couchbase careers page no longer exposes the verified open-positions widget contract')
       }
     } else {
-      const greenhouseBoardHtml = await fetchText(GREENHOUSE_BOARD_URL)
+      const greenhouseBoardHtml = await fetchText(GREENHOUSE_BOARD_URL, requestOptions)
+      signal?.throwIfAborted()
 
       if (!hasOfficialGreenhouseBoardSignal(greenhouseBoardHtml)) {
         throw new Error('Couchbase public Greenhouse board no longer matches the verified company hiring surface')
       }
     }
 
+    const payload = await fetchJson(buildGreenhouseJobsApiUrl(), { method: 'GET', ...requestOptions })
+    signal?.throwIfAborted()
+    validateCouchbaseNativeInventory(payload)
+    let validation = { payload, proof: null }, officeFailure = null
+    const source = { source: SOURCE, companyName: COMPANY, companyCareerPage: CAREERS_URL, boardToken: 'couchbaseinc' }
+    if (!payload.jobs.length || validatePublicPostingScope(payload.jobs, 'greenhouse', source).length) {
+      try {
+        const offices = await fetchJson(GREENHOUSE_OFFICES_API_URL, { method: 'GET', ...requestOptions })
+        signal?.throwIfAborted()
+        validation = withCurrentCouchbaseOfficeCountry(payload, offices)
+      } catch (error) { signal?.throwIfAborted(); officeFailure = error.message }
+    }
     const jobs = extractIndiaJobsFromGreenhousePayload(
-      await fetchJson(buildGreenhouseJobsApiUrl(), { method: 'GET' }),
+      payload,
       { scrapedAt: now() },
     )
-
-    return Number.isFinite(maxJobs) ? jobs.slice(0, maxJobs) : jobs
+    const nativeById = new Map(payload.jobs.map(record => [String(record.id), record]))
+    const unprovedIndiaIds = new Set(jobs.filter(job => {
+      const record = nativeById.get(String(job.jobId))
+      return ![record.location?.name, ...(record.offices || []).flatMap(office => [office.name, office.location]),
+        ...greenhouseCountryLabels(record)].some(label => typeof label === 'string' && /\bindia\b/i.test(label))
+    }).map(job => String(job.jobId)))
+    const selected = Number.isFinite(maxJobs) ? jobs.slice(0, maxJobs) : jobs
+    const evidenced = await attachGreenhouseSourceEvidence(selected, { ...source, payload: validation.payload, signal,
+      ...(firstPartyBound ? { officialHtml: careersHtml } : {}) })
+    signal?.throwIfAborted()
+    for (const job of evidenced) {
+      const original = nativeById.get(String(job.jobId))
+      job.sourceNativeLocation = structuredClone(original.location)
+      job.sourceNativeOffices = structuredClone(original.offices || [])
+      if (validation.proof) job.sourceNativeInventoryEvidence = structuredClone(validation.proof)
+      const content = extractActiveDescription(job.jobDescription)
+      job.sourceDetailComplete = Boolean(content && content.length >= 200 && content.split(/\s+/).length >= 30)
+      if (!job.sourceDetailComplete) { job.sourceDetailFailureKind = 'missing-content'; job.sourceListingComplete = false }
+      if (unprovedIndiaIds.has(String(job.jobId))) { job.country = null; job.sourceCountryComplete = false }
+      if (!firstPartyBound || officeFailure || unprovedIndiaIds.size) {
+        job.sourceScopeComplete = false; job.lifecycleCleanupAllowed = false; job.sourceListingComplete = false
+      }
+    }
+    const detailIncomplete = evidenced.some(job => job.sourceDetailComplete === false)
+    if (firstPartyBound && !officeFailure && !detailIncomplete && !unprovedIndiaIds.size) return evidenced
+    const evidence = readInventoryEvidence(evidenced)
+    return attachInventoryEvidence(evidenced, { ...evidence,
+      status: !firstPartyBound || officeFailure || unprovedIndiaIds.size ? 'coverage-gap' : 'discovery-only', listingComplete: false,
+      ...(!firstPartyBound || officeFailure || unprovedIndiaIds.size ? { indiaFacetCount: null, lifecycleCleanupAllowed: false } : {}),
+      reason: evidence.reason + (!firstPartyBound ? ':couchbase-current-company-handoff-unproved' : '')
+        + (officeFailure ? ':couchbase-office-index-unreconciled:' + officeFailure : '')
+        + (unprovedIndiaIds.size ? ':couchbase-country-not-explicitly-native:' + [...unprovedIndiaIds].join(',') : '')
+        + (detailIncomplete ? ':couchbase-selected-description-not-substantive' : '') })
   },
 })
 

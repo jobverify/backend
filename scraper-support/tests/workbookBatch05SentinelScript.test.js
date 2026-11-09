@@ -2,7 +2,7 @@ import { assertCurrentWorkbookRoute, installWorkbookOfflineGuard } from './helpe
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import dedicatedProviders from '../providers/providerExtensions/zz-dedicated-scraper-folder-backfill.json' with { type: 'json' }
+import dedicatedProviders from '../providers/providerExtensions/zz-002-dedicated-backfill.json' with { type: 'json' }
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 
 const EXPECTED_PROVIDER_SOURCES = [

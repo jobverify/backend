@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import path from 'node:path'
 import test from 'node:test'
 
-import dedicatedProviders from '../providers/providerExtensions/zz-dedicated-scraper-folder-backfill.json' with { type: 'json' }
+import dedicatedProviders from '../providers/providerExtensions/zz-002-dedicated-backfill.json' with { type: 'json' }
 import { generateCompanyCoverageReport, getCompanyAliasMap } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog, hydrateProviderCatalogEntry } from '../providers/index.js'
 

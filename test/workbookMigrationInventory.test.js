@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import dedicatedProviders from '../scraper-support/providers/providerExtensions/zz-dedicated-scraper-folder-backfill.json' with { type: 'json' }
+import dedicatedProviders from '../scraper-support/providers/providerExtensions/zz-002-dedicated-backfill.json' with { type: 'json' }
 import {
   buildCanonicalWorkbookInventory,
   loadWorkbookBatchAliases,

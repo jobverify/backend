@@ -107,7 +107,7 @@ for job in jobs:
 
 assert summary['atsPlatform'] == 'zwayam' and summary['runtimePlatformValues'] == ['zwayam']
 assert all(job['atsPlatform'] == 'zwayam' for job in jobs)
-assert summary['providerOverrideSha256'] == hashlib.sha256((ROOT / 'jobverify-backend/scraper-support/providers/providerExtensions/zzzz-persistent-native-20261026.json').read_bytes()).hexdigest()
+assert summary['providerOverrideSha256'] == hashlib.sha256((ROOT / 'jobverify-backend/scraper-support/providers/providerExtensions/zz-091-persistent.json').read_bytes()).hexdigest()
 assert summary['codeSha256'] == hashlib.sha256((ROOT / 'jobverify-backend/scraper/persistent/script.js').read_bytes()).hexdigest()
 assert summary['inventoryEvidence']['status'] == 'coverage-gap' and summary['proof']['closingStable'] is False
 assert summary['proof']['detailsUnattempted'] == 612 and summary['networkRequests'] == 0
