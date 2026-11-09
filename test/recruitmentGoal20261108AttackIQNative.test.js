@@ -154,18 +154,24 @@ test('AttackIQ reviewed unknown and non-country region labels stay unknown witho
 test('AttackIQ reviewed omission of optional OG URL metadata retains the exact canonical and own identity',async()=>{
  const r=replay(p=>{if(p.label==='detail-0'){withOwnCountry(p);mutateBody(p,h=>h.replace(/<meta\b(?=[^>]*\bproperty=["']og:url["'])[^>]*>/gi,''))}}),o=await observed(r,{countryFilter:'Global'});assert.equal(o.error,null);assert.equal(o.jobs.length,1);assert.equal(o.jobs[0].sourceNativeIdentityBound,true);assert.deepEqual(o.audit.details[0].head.canonicals,expected.detail.head.canonicals);assert.equal(r.requests.length,7)
 })
-const oracleRoot=fileURLToPath(new URL('../../reports/scraper-goal-remaining-2998-2026-11-04/attackiq-native-publication-20261108/',import.meta.url))
+const oracleRoot=fileURLToPath(new URL('./helpers/attackiqNativeOracle20261109.py',import.meta.url))
+const oracleFixture=fileURLToPath(new URL('./test-data/recruitmentGoal20261108/attackiq-original-native-models.json.gz',import.meta.url))
 const oracleCase=body=>{const code=`from pathlib import Path
-import sys,runpy,json,re
-r=Path(sys.argv[1]);ns=runpy.run_path(str(r/'independent-native-models.py'))
-s=(r/'declared-jazz-helper-original.js').read_bytes().decode('utf-8')
-original=ns['helper'](s);assert original==json.loads((r/'declared-jazz-helper-independent-full-model.json').read_bytes())
+import sys,runpy,json,re,gzip,base64,hashlib
+ns=runpy.run_path(sys.argv[1]);ns['configure_runtime'](sys.argv[3]);fixture=json.loads(gzip.decompress(Path(sys.argv[2]).read_bytes()))
+packets={packet['label']:packet for packet in fixture['packets']}
+def original_body(label):
+ packet=packets[label];raw=base64.b64decode(packet['bodyBase64']);assert hashlib.sha256(raw).hexdigest()==packet['bodySHA256'];return raw.decode('utf-8')
+s=original_body('declared-jazz-helper')
+original=ns['helper'](s);assert original==fixture['expected']['openingHelper']
+assert ns['primary'](original_body('current-primary'))==fixture['expected']['openingPrimary']
+assert ns['detail'](original_body('detail-0'),packets['detail-0']['requestedURL'])==fixture['expected']['detail']
 def rejects(reader,*args):
  try:reader(*args)
  except (AssertionError,ValueError):return True
  return False
 ${body}
-`;const result=spawnSync('python',['-X','utf8','-',oracleRoot],{input:code,encoding:'utf8',windowsHide:true});assert.equal(result.status,0,result.stderr||result.stdout)}
+`;const result=spawnSync('python',['-I','-B','-X','utf8','-',oracleRoot,oracleFixture,process.execPath],{input:code,encoding:'utf8',windowsHide:true,timeout:30000,maxBuffer:4*1024*1024});assert.equal(result.status,0,result.stderr||result.stdout)}
 test('AttackIQ reviewed independent oracle rejects dormant helper activation instead of asserting publication from identical models',()=>{
  oracleCase(`assert rejects(ns['helper'],s.replace('insertResumatorWrapper();','/* dormant */'))
 assert rejects(ns['helper'],'if(false){\\n'+s+'\\n}')`)
@@ -177,15 +183,62 @@ changed=s.replace(old['nativeJavaScript'],replacement)+'\\nfunction neverCalled(
 assert rejects(ns['helper'],changed)`)
 })
 test('AttackIQ reviewed independent oracle checks active primary head authority over original markup',()=>{
- oracleCase(`html=(r/'current-primary-original.html').read_bytes().decode('utf-8')
+ oracleCase(`html=original_body('current-primary')
 assert ns['primary'](html)
 changed=re.sub(r'<title\\b[^>]*>[\\s\\S]*?</title>',lambda m:'<template>'+m[0]+'</template>',html,flags=re.I)
 assert changed!=html
 assert rejects(ns['primary'],changed)`)
 })
 test('AttackIQ reviewed independent oracle rejects contradictory own body identities over original markup',()=>{
- oracleCase(`html=(r/'detail-0-original.html').read_bytes().decode('utf-8');url=json.loads((r/'detail-0-capture.json').read_bytes())['requestedURL']
+ oracleCase(`html=original_body('detail-0');url=packets['detail-0']['requestedURL']
 model=ns['detail'](html,url);old=model['nativeBodyClaims'][0]['attrs']['class'];changed=html.replace(old,old+' job-FOREIGN')
 assert changed!=html
 assert rejects(ns['detail'],changed,url)`)
+})
+
+test('AttackIQ portability oracle rejects additional root execution and activation cancellation',()=>{
+ oracleCase(`for suffix in ['insertResumatorWrapper();','window.onload = null;','throw new Error("changed activation");']:
+ assert rejects(ns['helper'],s+chr(10)+suffix)`)
+})
+test('AttackIQ portability oracle preserves meaningful bootstrap statement boundaries',()=>{
+ oracleCase(`changed=s.replace('contains(resumatorScript)) {','contains(resumatorScript)); {',1)
+assert changed!=s
+assert rejects(ns['helper'],changed)`)
+})
+
+test('AttackIQ portability oracle preserves original JavaScript spans after Unicode and CRLF comments',()=>{
+ oracleCase(`prefix='// Original transport '+chr(0x1f680)+chr(13)+chr(10)
+assert ns['helper'](prefix+s)==original`)
+})
+
+test('AttackIQ portability oracle rejects non-executing wrapper declarations and shadowed bootstrap globals',()=>{
+ oracleCase(`signature='function insertResumatorWrapper()'
+assert signature in s
+controls=[s.replace(signature,'function* insertResumatorWrapper()',1),s.replace(signature,'async function insertResumatorWrapper()',1),s.replace(signature,'function insertResumatorWrapper(unused = (window.onload = null))',1),s+chr(10)+'function document() {}']
+assert [rejects(ns['helper'],value) for value in controls]==[True,True,True,True]`)
+})
+test('AttackIQ portability oracle rejects hidden foreign and competing recruitment CTAs',()=>{
+ oracleCase(`insertion=next(v for v in original['nativeInsertions'] if 'id="resumator-widget"' in v['nativeHTMLLiteral'])
+html=insertion['nativeHTMLLiteral'];anchor=original['records'][0]['links'][0]['nativeHTML']
+foreign=anchor.replace('https://attackiq.applytojob.com','https://foreign.example')
+controls=[html.replace(anchor,anchor.replace('<a ','<a hidden ',1),1),html.replace(anchor,foreign,1),html.replace(anchor,anchor+foreign,1)]
+def changed_widget(value):return s.replace(insertion['nativeJavaScript'],'resumatorWrapper.insertAdjacentHTML("beforeend",'+json.dumps(value)+')',1)
+assert [rejects(ns['helper'],changed_widget(value)) for value in controls]==[True,True,True]`)
+})
+test('AttackIQ portability oracle retains unrelated informational links alongside the own detail CTA',()=>{
+ oracleCase(`insertion=next(v for v in original['nativeInsertions'] if 'id="resumator-widget"' in v['nativeHTMLLiteral'])
+html=insertion['nativeHTMLLiteral'];anchor=original['records'][0]['links'][0]['nativeHTML']
+changed=html.replace(anchor,anchor+'<a href="https://docs.example/">Documentation</a>',1)
+model=ns['helper'](s.replace(insertion['nativeJavaScript'],'resumatorWrapper.insertAdjacentHTML("beforeend",'+json.dumps(changed)+')',1))
+assert len(model['records'][0]['links'])==2
+assert 'Documentation' in model['records'][0]['nativeHTML']`)
+})
+test('AttackIQ portability oracle rejects meaningful inactive title metadata and description descendants',()=>{
+ oracleCase(`html=original_body('detail-0');url=packets['detail-0']['requestedURL'];model=ns['detail'](html,url)
+controls=[]
+for key in ['nativeTitleCarriers','nativeMetadataCarriers','nativeDescriptionCarriers']:
+ old=model[key][0]['nativeHTML'];new=old.replace('>','><span hidden>Required qualification</span>',1)
+ assert old in html and old!=new
+ controls.append(html.replace(old,new,1))
+assert [rejects(ns['detail'],value,url) for value in controls]==[True,True,True]`)
 })

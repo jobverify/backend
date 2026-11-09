@@ -20,7 +20,7 @@ const manifestPath = path.join(
   'scraper-support',
   'providers',
   'providerExtensions',
-  'zz-dedicated-scraper-folder-backfill.json',
+  'zz-002-dedicated-backfill.json',
 )
 const coverageArtifactPath = existsSync(path.join(repoDir, COVERAGE_ARTIFACT_BASENAME))
   ? path.join(repoDir, COVERAGE_ARTIFACT_BASENAME)

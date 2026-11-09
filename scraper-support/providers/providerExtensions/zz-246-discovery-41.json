@@ -58,7 +58,7 @@
       "metadataConsistencyRepair": {
         "id": "reviewed-recruitment-identity-precedence-041",
         "originalDeclaredIdentityExtension": {
-          "file": "scraper-support/providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-verified-discovery-adapters-00037.json",
+          "file": "scraper-support/providers/providerExtensions/zz-242-discovery-37.json",
           "relativeTo": "backend",
           "sha256": "9db74a513f88bde45438e17ac2f0b5ebaf70c688ce313f082198d60fb6eb7569"
         },
@@ -133,7 +133,7 @@
       "metadataConsistencyRepair": {
         "id": "reviewed-recruitment-identity-precedence-041",
         "originalDeclaredIdentityExtension": {
-          "file": "scraper-support/providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-verified-discovery-adapters-00038.json",
+          "file": "scraper-support/providers/providerExtensions/zz-243-discovery-38.json",
           "relativeTo": "backend",
           "sha256": "7cdd93af4c9bccbdb35e79e9c2d23856967e4b73fed6acb8f178f762b5a2a79a"
         },

@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readCurrentAccionRoles } from './currentNative.js'
-import CURRENT_NATIVE_METADATA from '../../scraper-support/providers/providerExtensions/zzzz-accionlabs-native-20261103.json' with { type: 'json' }
+import CURRENT_NATIVE_METADATA from '../../scraper-support/providers/providerExtensions/zz-013-accionlabs.json' with { type: 'json' }
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 

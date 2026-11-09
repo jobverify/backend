@@ -131,7 +131,7 @@
     "scraper/langchain/nativeInventory.js": "9c44c32488f1701a07dfdc461b40337862525d826d8113f1c382aea896dda700",
     "scraper/langchain/script.js": "3cef19e6b0548ebe92f6882de25e2f99e88dfc9769090f08fd5910f194a1be05",
     "scraper/langchain/catalog.js": "f0d8a10808f1cc5d96ea3f0fc856c267520fbe2e739ea82d3aafe669098b99a9",
-    "scraper-support/providers/providerExtensions/zzzzz-langchain-current-native-20261105.json": "cf302a7240eb19b7ecd300ec339049b91593a3ca95c9ad5341731642f26462f4"
+    "scraper-support/providers/providerExtensions/zz-125-langchain.json": "cf302a7240eb19b7ecd300ec339049b91593a3ca95c9ad5341731642f26462f4"
   },
   "completedAt": "2026-11-05T18:26:56.353Z",
   "aggregateBytes": 7355678,

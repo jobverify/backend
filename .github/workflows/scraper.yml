@@ -56,6 +56,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: 'package-lock.json'
       - run: npm ci
+      - name: Validate required scraper runtime assets
+        run: npm run scrape:validate
       - name: Claim pipeline stage
         id: register
         run: node scripts/pipelineGithub.js register

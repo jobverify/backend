@@ -69,8 +69,27 @@ export function parseHome(homeHTML){
  return {document,provenance,homeCareersHrefs,failures}
 }
 export function parseListing(homeHTML,careersHTML){const qualification=parseHome(homeHTML),careers=readHTML(careersHTML),candidates=[],failures=[...qualification.failures,...careers.issues.map(i=>({...i,document:'careers'}))];const {homeCareersHrefs}=qualification,provenance=qualification.provenance&&!careers.nodes.some(n=>n.tag==='base');if(qualification.provenance&&!provenance)failures.push({message:'Official home-to-careers provenance missing or ambiguous'});const rows=careers.nodes.filter(n=>n.tag==='div'&&classes(n).includes('imtf-careers-position')),accounted=new Set(),codes=new Set();for(const row of rows){const rawHTML=raw(careers,row);try{const anchors=careers.nodes.filter(n=>n.tag==='a'&&descendant(n,row)&&classes(n).includes('imtf-careers-position-1')),a=one(anchors,'official role anchor');accounted.add(a);if(a.ambiguous||!roleCode(a.attrs.href))fail('Unsafe/ambiguous advertised role href');const spans=careers.nodes.filter(n=>n.tag==='span'&&descendant(n,a)),title=plain(raw(careers,one(spans,'role title')));if(!title)fail('Empty role title');const fields=careers.nodes.filter(n=>n.tag==='div'&&descendant(n,row)&&classes(n).includes('imtf-careers-position-2')).map(n=>plain(raw(careers,n)));if(fields.length!==4||fields.some(v=>!v))fail('Missing/ambiguous role placement fields');const shortcode=roleCode(a.attrs.href);if(codes.has(shortcode))fail('Duplicate advertised role shortcode');codes.add(shortcode);candidates.push({title,url:a.attrs.href,shortcode,workplaceRaw:fields[0],locationRaw:fields[1],departmentRaw:fields[2],employmentRaw:fields[3],relativeAgeRaw:plain(raw(careers,a)).match(/Posted .+$/)?.[0]??null,rawHTML,rawHTMLSHA256:sha(rawHTML)})}catch(error){failures.push({message:error.message,rawHTML,rawHTMLSHA256:sha(rawHTML)})}}for(const n of careers.nodes)if(n.tag==='a'&&!accounted.has(n)&&(roleCode(n.attrs.href)||classes(n).includes('imtf-careers-position-1')))failures.push({message:'Unaccounted official role anchor',rawHTML:raw(careers,n)});failures.push(...unreviewedHiringSurfaces(careers,'careers',accounted));if(!rows.length)failures.push({message:'No native role rows; no verified empty contract'});return {provenance,homeCareersHrefs,candidates,observedListingCount:rows.length,failures,rawDocuments:{homeHTML,careersHTML}}}
-export function parseRoleHTML(html,candidate){const doc=readHTML(html);if(doc.issues.length)fail(doc.issues[0].message);if(doc.nodes.some(n=>n.tag==='base'))fail('Unexpected role base URL');const meta=name=>one(doc.nodes.filter(n=>n.tag==='meta'&&n.attrs.name===name),'native '+name).attrs.content;const numericJobId=meta('job'),accountId=meta('account');if(!/^[1-9]\d{0,31}$/.test(numericJobId??'')||!/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(accountId??'')||meta('subdomain')!=='imtf')fail('Invalid native job/account identity');const canonical=one(doc.nodes.filter(n=>n.tag==='link'&&(n.attrs.rel??'').split(/\s+/).includes('canonical')),'canonical role URL').attrs.href;if(roleCode(canonical)!==candidate.shortcode)fail('Role canonical identity mismatch');const alternate=one(doc.nodes.filter(n=>n.tag==='link'&&(n.attrs.rel??'').split(/\s+/).includes('alternate')&&(n.attrs.type??'').toLowerCase()==='text/markdown'),'advertised Markdown alternate').attrs.href;if(markdownCode(alternate)!==candidate.shortcode)fail('Markdown alternate tenant/role mismatch');return {nativeNumericJobId:numericJobId,nativeAccountId:accountId,nativePublicURLShortcode:candidate.shortcode,canonicalURL:canonical,markdownURL:alternate,rawRoleHTML:html,rawRoleHTMLSHA256:sha(html)}}
+export function parseRoleHTML(html,candidate){const doc=readHTML(html);if(doc.issues.length)fail(doc.issues[0].message);if(doc.nodes.some(n=>n.tag==='base'))fail('Unexpected role base URL');const meta=name=>one(doc.nodes.filter(n=>n.tag==='meta'&&n.attrs.name===name),'native '+name).attrs.content;const numericJobId=meta('job'),accountId=meta('account');if(!/^[1-9]\d{0,31}$/.test(numericJobId??'')||!/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(accountId??'')||meta('subdomain')!=='imtf')fail('Invalid native job/account identity');const canonical=one(doc.nodes.filter(n=>n.tag==='link'&&(n.attrs.rel??'').split(/\s+/).includes('canonical')),'canonical role URL').attrs.href;if(roleCode(canonical)!==candidate.shortcode)fail('Role canonical identity mismatch');const alternate=one(doc.nodes.filter(n=>n.tag==='link'&&(n.attrs.rel??'').split(/\s+/).includes('alternate')&&(n.attrs.type??'').toLowerCase()==='text/markdown'),'advertised Markdown alternate').attrs.href;if(markdownCode(alternate)!==candidate.shortcode)fail('Markdown alternate tenant/role mismatch');const titles=doc.nodes.filter(n=>n.tag==='meta'&&n.attrs.property==='og:title'),title=titles.length===1?titles[0].attrs.content:null,nativeRoleTitle=typeof title==='string'&&title.endsWith(' - IMTF')?title.slice(0,-7):null;return {nativeNumericJobId:numericJobId,nativeAccountId:accountId,nativePublicURLShortcode:candidate.shortcode,canonicalURL:canonical,markdownURL:alternate,nativeRoleTitle,rawRoleHTML:html,rawRoleHTMLSHA256:sha(html)}}
+// Only the observed gender-marker omissions are equivalent, and only when
+// the same-role Workable HTML independently corroborates the full title.
+// Parenthetical qualifications and other title differences remain substantive.
+const sameTitle=(listed,native,identity)=>native===listed||native===identity?.nativeRoleTitle&&(/^Working Student - \S/.test(listed)&&native===listed.replace(/^Working Student - /,'Working Student (m/w/d) - ')||native===listed+' (f/m/d)')
+// These reviewed same-role observations do not establish taxonomy equivalence.
+// Preserve the native department and record the corporate label as unresolved;
+// unreviewed pairs or a different native identity still stop the source.
+const reviewedDepartmentGaps=new Map([
+ ['BA09DED552',{numericJobId:'6224829',listingRaw:'Sales and Marketing',nativeRaw:'PreSales'}],
+ ['2B95A2C31A',{numericJobId:'4063708',listingRaw:'Professional Services',nativeRaw:'Global Delivery'}],
+])
+const retainedDepartmentGap=(department,candidate,identity,nativeTitle)=>{
+ if(department===candidate.departmentRaw)return null
+ const reviewed=reviewedDepartmentGaps.get(candidate.shortcode)
+ if(!reviewed||reviewed.numericJobId!==identity?.nativeNumericJobId||reviewed.listingRaw!==candidate.departmentRaw||reviewed.nativeRaw!==department||identity?.nativeAccountId!=='071d270e-7d0d-4d5e-8d48-1187c51ab6f6'||identity?.nativePublicURLShortcode!==candidate.shortcode||roleCode(identity?.canonicalURL)!==candidate.shortcode||markdownCode(identity?.markdownURL)!==candidate.shortcode||identity?.nativeRoleTitle!==nativeTitle)fail('Markdown/listing workplace or department mismatch')
+ return {field:'department',status:'unresolved',listingRaw:candidate.departmentRaw,nativeRaw:department}
+}
 const normalized=s=>s.toLowerCase().replace(/[\s-]+/g,'')
+// Workable's on-site enum has an underscore; retain the original literal field.
+const workplaceKey=value=>{const key=typeof value==='string'?normalized(value):null;return key==='on_site'?'onsite':['onsite','hybrid','remote'].includes(key)?key:null}
 // Recognize explicit country labels only; never infer a country from cities or
 // regions. Unrecognized final listing tokens can remain absent/ambiguous.
 const countryKey=value=>value.trim().replace(/\s+/g,' ').toLowerCase()
@@ -78,4 +97,67 @@ const countryNames=new Map(),displayNames=new Intl.DisplayNames(['en'],{type:'re
 for(let a=65;a<=90;a++)for(let b=65;b<=90;b++){const code=String.fromCharCode(a,b),name=displayNames.of(code);if(name!==code&&code!=='ZZ')countryNames.set(countryKey(name),name)}
 // The captured same-country spellings name one Swiss city; keep both raw labels.
 const sameCity=(listed,native,country)=>listed===native||country==='Switzerland'&&((listed==='Zurich'&&native==='Z\u00fcrich')||(listed==='Z\u00fcrich'&&native==='Zurich'))
-export function parseMarkdown(markdown,candidate,identity){if(typeof markdown!=='string'||Buffer.byteLength(markdown)>2*1024*1024||markdown.includes('\uFFFD'))fail('Invalid Markdown body');const header=/^# ([^\n]+)\n\n> IMTF · ([^\n]+) · ([^\n]+) · Posted (\d{4}-\d{2}-\d{2})\n\n/.exec(markdown);if(!header||header[1]!==candidate.title||normalized(header[3])!==normalized(candidate.employmentRaw))fail('Markdown title/employment/header mismatch');const placement=/^(.+),\s*([^,()]+)\s+\(([^()]+)\)$/.exec(header[2]);if(!placement)fail('Missing explicit Markdown location/country/workplace');const workplace=one([...markdown.matchAll(/^\*\*Workplace:\*\* ([^\n]+)$/gm)],'Markdown workplace')[1],department=one([...markdown.matchAll(/^\*\*Department:\*\* ([^\n]+)$/gm)],'Markdown department')[1];if(normalized(workplace)!==normalized(placement[3])||normalized(workplace)!==normalized(candidate.workplaceRaw)||department!==candidate.departmentRaw)fail('Markdown/listing workplace or department mismatch');const countryRaw=placement[2].trim(),cityRaw=placement[1].trim(),country=countryNames.get(countryKey(countryRaw))??null,listingCountry=countryNames.get(countryKey(candidate.locationRaw.split(',').at(-1)));if(!sameCity(candidate.locationRaw.split(',')[0].trim(),cityRaw,country)||listingCountry&&listingCountry!==country)fail('Conflicting listing/detail placement');const [year,month,day]=header[4].split('-').map(Number),leap=year%4===0&&(year%100!==0||year%400===0),days=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];if(month<1||month>12||day<1||day>days[month-1])fail('Invalid native publication day');const headings=[...markdown.matchAll(/^#{1,2} (.+)$/gm)];if(headings.length!==5||headings[0][1]!==candidate.title||headings.slice(1).map(h=>h[1]).join('|')!=='Description|Requirements|Benefits|Apply')fail('Unsupported/missing Markdown sections');const sections={};for(let i=1;i<4;i++){const text=markdown.slice(headings[i].index,headings[i+1].index);if(text.replace(/^##[^\n]+\n/,'').trim().length<40)fail('Missing full employer section');sections[headings[i][1]]=text}const applySection=markdown.slice(headings[4].index),applications=[...applySection.matchAll(/\[Apply at IMTF\]\(([^)]+)\)/g)];const applicationURL=one(applications,'native Apply link')[1];if(applicationURL!==`https://apply.workable.com/imtf/j/${candidate.shortcode}/apply`||!/^## Apply\n\n\[Apply at IMTF\]\([^)]+\)\n\n---\nPowered by \[Workable\]\(https:\/\/www\.workable\.com\)\n\s*$/.test(applySection))fail('Unsafe/unsupported Markdown application footer');const sourceDescriptionMarkdown=markdown.slice(headings[1].index,headings[4].index);return {...identity,title:candidate.title,listing:candidate,sourceURL:candidate.url,nativeApplicationURL:applicationURL,applicationVisited:false,nativeFullMarkdown:markdown,nativeFullMarkdownSHA256:sha(markdown),sourceDescriptionMarkdown,sourceDescriptionMarkdownSHA256:sha(sourceDescriptionMarkdown),nativeDescriptionSections:sections,nativeLocationRaw:header[2],nativeCityRaw:cityRaw,nativeCountryRaw:countryRaw,country,nativeCountryCode:null,workplaceRaw:workplace,departmentRaw:department,employmentRaw:header[3],nativePublicationRaw:header[4],publicationPrecision:'day',publicationTimezone:null,firstEverPublication:null,nativeRequisitionId:null,nativeClosingDate:null,explicitLifecycleStatus:null,nativeLegalEmployer:null}}
+// An explicit two-city "A or B, Country" card may name more alternatives than
+// the native role header. Match only one declared member in that same country;
+// the retained listing and published native city remain separate literal facts.
+const sameListingCity=(location,native,country,listingCountry)=>{
+ const parts=location.split(','),listed=parts[0].trim()
+ if(sameCity(listed,native,country))return true
+ if(!country||listingCountry!==country||parts.length!==2)return false
+ const alternatives=listed.split(' or ')
+ return alternatives.length===2&&alternatives.every(value=>/^[\p{L}\p{M}][\p{L}\p{M} .'-]*$/u.test(value)&&value===value.trim()&&!/\b(?:and|or)\b/i.test(value))&&!sameCity(alternatives[0],alternatives[1],country)&&alternatives.some(value=>sameCity(value,native,country))
+}
+// Native observations have their own content contract. Corporate field alignment
+// happens afterward and never supplies missing native facts.
+export const IMTF_ACCOUNT='071d270e-7d0d-4d5e-8d48-1187c51ab6f6'
+export function parseNativeMarkdown(markdown,identity){
+ if(typeof markdown!=='string'||Buffer.byteLength(markdown)>2*1024*1024||markdown.includes('\uFFFD'))fail('Invalid Markdown body')
+ const header=/^# ([^\n]+)\n\n> IMTF · ([^\n]+) · ([^\n]+) · Posted (\d{4}-\d{2}-\d{2})\n\n/.exec(markdown)
+ if(!header)fail('Markdown title/employment/header mismatch')
+ const code=identity?.nativePublicURLShortcode
+ if(!code||roleCode(identity.canonicalURL)!==code||markdownCode(identity.markdownURL)!==code||identity.nativeAccountId!==IMTF_ACCOUNT||!/^[1-9]\d{0,31}$/.test(identity.nativeNumericJobId??''))fail('Native Markdown identity or account mismatch')
+ if(identity.nativeRoleTitle!==header[1])fail('Native HTML/Markdown title identity mismatch')
+ if(!['Full-time','Part-time','Contract','Temporary','Internship','Volunteer','Other'].includes(header[3]))fail('Unsupported native Markdown employment')
+ const placement=/^(.+),\s*([^,()]+?)(?:\s+\(([^()]+)\))?$/.exec(header[2])
+ if(!placement)fail('Missing explicit Markdown location/country/workplace')
+ const workplace=one([...markdown.matchAll(/^\*\*Workplace:\*\* ([^\n]+)$/gm)],'Markdown workplace')[1]
+ const department=one([...markdown.matchAll(/^\*\*Department:\*\* ([^\n]+)$/gm)],'Markdown department')[1]
+ const worksite=workplaceKey(workplace)
+ if(!worksite||(placement[3]?worksite!==workplaceKey(placement[3]):worksite!=='onsite'))fail('Markdown/listing workplace or department mismatch')
+ const countryRaw=placement[2].trim(),cityRaw=placement[1].trim(),country=countryNames.get(countryKey(countryRaw))??null
+ if(!country)fail('Unrecognized explicit native country')
+ const [year,month,day]=header[4].split('-').map(Number),leap=year%4===0&&(year%100!==0||year%400===0),days=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31]
+ if(month<1||month>12||day<1||day>days[month-1])fail('Invalid native publication day')
+ const headings=[...markdown.matchAll(/^#{1,2} (.+)$/gm)]
+ if(headings.length!==5||headings[0][1]!==header[1]||headings.slice(1).map(h=>h[1]).join('|')!=='Description|Requirements|Benefits|Apply')fail('Unsupported/missing Markdown sections')
+ const sections={}
+ for(let i=1;i<4;i++){
+  const text=markdown.slice(headings[i].index,headings[i+1].index)
+  if(text.replace(/^##[^\n]+\n/,'').trim().length<40)fail('Missing full employer section')
+  sections[headings[i][1]]=text
+ }
+ const applySection=markdown.slice(headings[4].index),applications=[...applySection.matchAll(/\[Apply at IMTF\]\(([^)]+)\)/g)]
+ const applicationURL=one(applications,'native Apply link')[1]
+ if(applicationURL!=='https://apply.workable.com/imtf/j/'+code+'/apply'||!/^## Apply\n\n\[Apply at IMTF\]\([^)]+\)\n\n---\nPowered by \[Workable\]\(https:\/\/www\.workable\.com\)\n\s*$/.test(applySection))fail('Unsafe/unsupported Markdown application footer')
+ const sourceDescriptionMarkdown=markdown.slice(headings[1].index,headings[4].index)
+ return {...identity,title:header[1],listing:null,sourceURL:identity.canonicalURL,nativeApplicationURL:applicationURL,applicationVisited:false,nativeFullMarkdown:markdown,nativeFullMarkdownSHA256:sha(markdown),sourceDescriptionMarkdown,sourceDescriptionMarkdownSHA256:sha(sourceDescriptionMarkdown),nativeDescriptionSections:sections,nativeLocationRaw:header[2],nativeCityRaw:cityRaw,nativeCountryRaw:countryRaw,country,nativeCountryCode:null,workplaceRaw:workplace,departmentRaw:department,listingDepartmentRaw:null,departmentAlignmentGap:null,employmentRaw:header[3],nativePublicationRaw:header[4],publicationPrecision:'day',publicationTimezone:null,firstEverPublication:null,nativeRequisitionId:null,nativeClosingDate:null,explicitLifecycleStatus:null,nativeLegalEmployer:null}
+}
+export function corporateAlignment(fact,candidate,identity){
+ if(candidate.shortcode!==identity.nativePublicURLShortcode||roleCode(candidate.url)!==candidate.shortcode)fail('Corporate/native shortcode identity mismatch')
+ if(workplaceKey(fact.workplaceRaw)!==workplaceKey(candidate.workplaceRaw))fail('Markdown/listing workplace or department mismatch')
+ const listingCountry=countryNames.get(countryKey(candidate.locationRaw.split(',').at(-1)))
+ if(!sameListingCity(candidate.locationRaw,fact.nativeCityRaw,fact.country,listingCountry)||listingCountry&&listingCountry!==fact.country)fail('Conflicting listing/detail placement')
+ const gaps=[]
+ if(!sameTitle(candidate.title,fact.title,identity))gaps.push({field:'title',status:'unresolved',listingRaw:candidate.title,nativeRaw:fact.title})
+ if(normalized(fact.employmentRaw)!==normalized(candidate.employmentRaw))gaps.push({field:'employment',status:'unresolved',listingRaw:candidate.employmentRaw,nativeRaw:fact.employmentRaw})
+ if(fact.departmentRaw!==candidate.departmentRaw)gaps.push({field:'department',status:'unresolved',listingRaw:candidate.departmentRaw,nativeRaw:fact.departmentRaw})
+ return gaps
+}
+export function parseMarkdown(markdown,candidate,identity){
+ // Preserve the strict corporate entry point, including its title/type guard.
+ const header=typeof markdown==='string'&&/^# ([^\n]+)\n\n> IMTF · ([^\n]+) · ([^\n]+) · Posted (\d{4}-\d{2}-\d{2})\n\n/.exec(markdown)
+ if(!header||!sameTitle(candidate.title,header[1],identity)||normalized(header[3])!==normalized(candidate.employmentRaw))fail('Markdown title/employment/header mismatch')
+ const fact=parseNativeMarkdown(markdown,identity)
+ corporateAlignment(fact,candidate,identity)
+ return {...fact,listing:candidate,sourceURL:candidate.url,listingDepartmentRaw:candidate.departmentRaw,departmentAlignmentGap:retainedDepartmentGap(fact.departmentRaw,candidate,identity,fact.title)}
+}

@@ -5,7 +5,7 @@ import test from 'node:test'
 import { getScraperCatalog, createCatalogScraper } from '../scraper-support/providers/index.js'
 import { readInventoryEvidence } from '../scraper-support/utils/inventoryEvidence.js'
 
-const discoveryRows = JSON.parse(readFileSync(new URL('../scraper-support/providers/providerExtensions/zzzzz-verified-discovery-adapters.json', import.meta.url)))
+const discoveryRows = JSON.parse(readFileSync(new URL('../scraper-support/providers/providerExtensions/zz-127-discovery.json', import.meta.url)))
 const discoveryArchiveDir = new URL('../../artifacts/full-catalog/official-discovery/', import.meta.url)
 
 const boards = {

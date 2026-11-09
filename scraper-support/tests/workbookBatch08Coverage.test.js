@@ -4,7 +4,7 @@ import path from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 
-import dedicatedProviders from '../providers/providerExtensions/zz-dedicated-scraper-folder-backfill.json' with { type: 'json' }
+import dedicatedProviders from '../providers/providerExtensions/zz-002-dedicated-backfill.json' with { type: 'json' }
 import {
   buildScrapers,
   getScraperCatalog,

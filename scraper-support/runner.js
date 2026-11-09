@@ -8,6 +8,7 @@ import fs from 'fs'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
 import { summarizeScraperRun } from './utils/scraperRunSummary.js'
+import { validateRecruitmentBatchAssets } from './utils/recruitmentBatchAssets.js'
 import { jobIdentityHashes } from './utils/jobYield.js'
 import { finishScraperProcessing, inventoryCleanupOptions } from './utils/scraperOutcome.js'
 
@@ -1068,6 +1069,8 @@ export const retryAfterMongoQuotaRecovery = async (
 const NON_RETRIABLE_SOFT_FAILURE_KINDS = new Set([
   'blocked_or_access_denied',
   'surface_drift_or_fail_closed',
+  'upstream_response_pending',
+  'parser_or_contract_error',
 ])
 
 export const applyRetryPolicyToScraperError = (error) => {
@@ -1077,7 +1080,7 @@ export const applyRetryPolicyToScraperError = (error) => {
 
   const classification = classifyScraperError(error)
   if (classification.softFailure !== true) {
-    if (isProgrammingError(error)) error.abortRetries = true
+    if (isProgrammingError(error) || ['parser_or_contract_error', 'configuration_error'].includes(classification.failureKind)) error.abortRetries = true
     return error
   }
 
@@ -1790,6 +1793,7 @@ if (resolveExecutionPath(process.argv[1]) === directExecutionModulePath) {
     // Validate bounded dry-run selection before preparing the database runtime.
     if (String(process.env.SCRAPER_FIRST_N || '').trim()) selectScrapersForRun([], { dryRun: isDryRun })
     assertLiveMongoUriConfigured()
+    validateRecruitmentBatchAssets()
     preparedRun = prepareScraperRun()
     if (!isDryRun && !/^(?:0|false|no)$/i.test(String(process.env.SCRAPER_RUN_LEASE || '1'))) {
       runLease = await waitForMongoRunLease({

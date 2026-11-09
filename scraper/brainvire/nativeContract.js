@@ -19,8 +19,9 @@ const matchesExperience = (requirement, visible) => {
   if (!requirement || Array.isArray(requirement) || requirement['@type'] !== 'OccupationalExperienceRequirements'
     || !Number.isSafeInteger(requirement.monthsOfExperience) || requirement.monthsOfExperience < 0
     || Object.keys(requirement).some(key => !['@type','monthsOfExperience'].includes(key))) return false
-  const years = /^(\d+)\+\s+Years?$/i.exec(visible)
-  return Boolean(years) && Number(years[1]) * 12 === requirement.monthsOfExperience
+  const years = /^(\d+)(?:\+|\s*[-\u2013]\s*(\d+))\s+Years?$/i.exec(visible)
+  return Boolean(years) && (years[2] == null || Number(years[2]) >= Number(years[1]))
+    && Number(years[1]) * 12 === requirement.monthsOfExperience
 }
 const typedCountry = new Map(), display = new Intl.DisplayNames(['en'], {type:'region',fallback:'none'})
 for (let a=65;a<=90;a++) for (let b=65;b<=90;b++) {
@@ -116,7 +117,9 @@ export function inspectNativeInventory(html, {now = new Date().toISOString()} = 
     check(anchor.attrs.href === '#' && /^Application:\s*/.test(nativeLabel) && (positionLabel === title || positionLabel.startsWith(title+' (')),'native application role choice mismatch')
     check(!usedKeys.has(nativeLabel),'duplicate native application identity'); usedKeys.add(nativeLabel)
     const cardCountries=fields.location.split(/[,;/]/).map(country).filter(Boolean)
-    const locations=fields.location.replace(/\s*\/\s*Remote\s*$/i,'').split(/\s*[,;]\s*/).filter(label => !country(label))
+    const locations=fields.location.replace(/\s*\/\s*Remote\s*$/i,'')
+      .replace(/\s*\((?:Hybrid|On[- ]?site)\)\s*$/i,'')
+      .split(/\s*[,;]\s*/).filter(label => !country(label))
     const matches=models.filter(model => !usedModels.has(model) && clean(model.title) === title && matchesExperience(model.experienceRequirements,fields.experience) && sameSet((Array.isArray(model.jobLocation) ? model.jobLocation : [model.jobLocation]).map(place => clean(place?.address?.addressLocality)),locations))
     const model=one(matches,'role-owned matching structured record'); usedModels.add(model)
     check(model.customFields == null,'unreviewed native custom fields scope')
@@ -147,7 +150,7 @@ export function inspectNativeInventory(html, {now = new Date().toISOString()} = 
       applicationMethod:applicationBound ? 'native-company-modal;role-position-bound' : null,applicationIsJobSpecific:applicationBound,
       nativeApplicationLabel:nativeLabel,nativeApplicationPosition:positionLabel,
       employmentType:'Full-time',experienceRequired:fields.experience,numberOfOpenings:Number(fields.openings),
-      remoteStatus:remote ? 'Remote' : null,minimumQualification:null,preferredQualification:null,requiredSkills:[],
+      remoteStatus:remote ? 'Remote' : /\(Hybrid\)\s*$/i.test(fields.location) ? 'Hybrid' : null,minimumQualification:null,preferredQualification:null,requiredSkills:[],
       postingDate:nativeDate,postedAt:nativeDate,nativeReportedPostingDate:nativeDate,
       postingDatePrecision:nativeDate?.length === 10 ? 'date' : nativeDate ? 'timestamp' : null,
       sourcePostingDateIsExact:!!nativeDate && nativeDate.length > 10,postingDateStatus:nativeDate ? 'native-role-jobposting-datePosted' : 'unpublished',

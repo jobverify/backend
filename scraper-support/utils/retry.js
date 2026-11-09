@@ -13,6 +13,20 @@ const resolveAbortReason = (signal) => {
 
 const RETRY_METADATA = Symbol('jobverify.retryMetadata')
 
+const PERMANENT_LOCAL_ERROR_CODES = new Set([
+  'ENOENT', 'ENOTDIR', 'EACCES', 'ERR_MODULE_NOT_FOUND', 'MODULE_NOT_FOUND',
+  'SCRAPER_RUNTIME_ASSET_INVALID',
+])
+
+const isPermanentLocalError = error => {
+  const visited = new Set()
+  for (let current = error; current && !visited.has(current); current = current.cause) {
+    visited.add(current)
+    if (PERMANENT_LOCAL_ERROR_CODES.has(current.code)) return true
+  }
+  return false
+}
+
 const PERMANENT_CERTIFICATE_ERROR_CODES = new Set([
   'CERT_HAS_EXPIRED',
   'ERR_TLS_CERT_ALTNAME_INVALID',
@@ -224,7 +238,7 @@ const runRetryLoop = async (
       console.warn(`\n  [retry:${label}] Attempt ${attempt}/${attempts} failed`)
       console.warn(`  [retry:${label}] Error: ${describeError(err)}`)
 
-      if (err?.abortRetries === true || err?.failureKind === 'parser_or_contract_error' || isPermanentCertificateError(err)) {
+      if (err?.abortRetries === true || err?.failureKind === 'parser_or_contract_error' || isPermanentCertificateError(err) || isPermanentLocalError(err)) {
         throw buildRetryError(label, attempt, attempts, err, { aborted: true, retryDelayMs })
       }
 

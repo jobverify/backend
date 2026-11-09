@@ -2,7 +2,7 @@ import { createPublishingGapAtsScraper } from './publishingGapAts.js'
 import { identifyPublicAtsBoard } from './publicAtsIdentity.js'
 import { readNativeDocument, activeIframeSources } from './activeNativeHtml.js'
 import { fetchJsonWithRetry } from './fetch.js'
-import { attachInventoryEvidence, readInventoryEvidence } from './inventoryEvidence.js'
+import { attachInventoryEvidence, readInventoryEvidence, copyNativeCollectionEvidence } from './inventoryEvidence.js'
 import { greenhouseCountryLabels, greenhouseLocationLabels } from './greenhouseLocations.js'
 import { reconcileAshbyUsRemoteScope, verifyUnavailableAshbyRoles } from './ashbyScopeEvidence.js'
 import { reconcileGreenhouseOfficeCountries, greenhouseOfficeCountryForRole } from './greenhouseOfficeCountry.js'
@@ -214,6 +214,7 @@ export const createRuntimeVerifiedPublicAtsScraper = provider => ({
     let jobs = await nativeScraper.run({ signal,
       fetchJson: async (url, options) => { payload = await fetchJson(url, options); return payload },
     })
+    const originalNativeJobs = jobs
     let nativeCountryAudit = { proofs: [], failures: [], pagesFetched: 0 }
     if (policy.nativeRemoteCountryScope === 'US' && readInventoryEvidence(jobs)?.listingComplete !== true) {
       // The initial extraction validates the original envelope and role schema
@@ -252,7 +253,18 @@ export const createRuntimeVerifiedPublicAtsScraper = provider => ({
     const officeScope = provider.atsPlatform === 'greenhouse' ? reconcileGreenhouseOfficeCountries(records, provider) : null
     // A current employer binding does not disambiguate shared city names.
     // Require native country/India labels before returning an India vacancy.
-    const selectedJobs = jobs.filter(job => nativeIndiaScope(byId.get(String(job.jobId)), provider.atsPlatform, provider, officeScope))
+    const selectedJobs = copyNativeCollectionEvidence(originalNativeJobs,
+      jobs.filter(job => nativeIndiaScope(byId.get(String(job.jobId)), provider.atsPlatform, provider, officeScope)))
+    if (nativeCountryAudit.proofs.length) {
+      const originalAudit = Object.getOwnPropertyDescriptor(selectedJobs, 'nativeCollectionEvidence')?.value
+      const reconciledAudit = Object.getOwnPropertyDescriptor(jobs, 'nativeCollectionEvidence')?.value
+      if (originalAudit && reconciledAudit) Object.defineProperty(selectedJobs, 'nativeCollectionEvidence', {
+        value: { ...originalAudit, nativeCountryReconciliation: {
+          nativeRecords: reconciledAudit.nativeRecords, nativePayload: reconciledAudit.nativePayload,
+          proofs: structuredClone(nativeCountryAudit.proofs), failures: structuredClone(nativeCountryAudit.failures),
+        } }, configurable: true,
+      })
+    }
     if (selectedJobs.length !== jobs.length) reasons.push('native-location-scope-unresolved:india-country-evidence-unavailable')
     if (!evidence?.listingComplete) reasons.push(evidence?.reason || 'native-inventory-evidence-unavailable')
     const listingComplete = reasons.length === 0

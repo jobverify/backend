@@ -27,13 +27,13 @@ export function advertisedIndex(identity){
   requireShape(!link.ambiguous&&link.attrs.href===LLM_INDEX,'Native inventory alternate tenant mismatch')
   return link.attrs.href
 }
-function declaredCount(text){
+export function declaredCount(text){
   requireShape(text.startsWith('# IMTF Careers\n\n'),'Native inventory publisher mismatch')
   const n=unique([...text.matchAll(/^- All open roles \(GET `https:\/\/apply\.workable\.com\/imtf\/jobs\.md`\): (\d+) current openings$/gm)],'all-open-roles declaration')[1]
   requireShape(Number(n)>0&&Number(n)<=200,'Unsupported native inventory count')
   return Number(n)
 }
-function inventory(text,total){
+export function inventory(text,total){
   const lines=text.trimEnd().split('\n')
   requireShape(lines[0]==='# IMTF — All Open Positions'&&/^> Last updated: /.test(lines[2])&&date(lines[2].slice(16)),'Invalid native inventory header')
   requireShape(lines[4]==='| Title | Department | Location | Type | Salary | Posted | Details |'&&lines[5]==='|-------|-----------|----------|------|--------|--------|---------|','Native inventory table changed')
@@ -51,7 +51,7 @@ function inventory(text,total){
   requireShape(rows.length===total,'Native inventory count mismatch')
   return rows
 }
-const signature=rows=>JSON.stringify([...rows].sort((a,b)=>a.shortcode.localeCompare(b.shortcode)))
+export const signature=rows=>JSON.stringify([...rows].sort((a,b)=>a.shortcode.localeCompare(b.shortcode)))
 const compact=value=>decodeHTML(value).normalize('NFKC').replace(/[^\p{L}\p{N}]/gu,'').toLowerCase()
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value
 const criteriaFields=[['description','Description'],['requirements','Requirements'],['benefits','Benefits']]
@@ -71,7 +71,7 @@ function reconciledCriteria(n,fact,places){
   // They need a separate reviewed placement contract before foreign-only zero.
   requireShape(!/\b(?:based|located)\s+(?:in|at|from)\b|\b(?:work|working)\s+from\b|\boffices?\s+(?:in|at)\b|\b(?:locations?|offices?|worksites?|workplaces?)\s*:\s*\S|\b(?:remote|remotely)\s+(?:from|within|anywhere)\b|\b(?:resident|reside|living|live)\s+(?:in|within)\b|\b(?:role|position|job)\b[^.!?\n]{0,80}\b(?:be|work|performed)\s+(?:in|at|from)\b/i.test(fullText),'Unreviewed role-owned worksite text in full native criteria')
 }
-function detailCountry(markdown,row){
+export function detailCountry(markdown,row){
   const header=/^# ([^\n]+)\n\n> IMTF · ([^\n]+) · ([^\n]+) · Posted (\d{4}-\d{2}-\d{2})\n\n/.exec(markdown)
   requireShape(header&&header[1]===row.title&&header[2]===row.location&&header[3]===row.employment&&header[4]===row.posted,'Native board/detail title, placement, type or date conflict')
   const workplace=unique([...markdown.matchAll(/^\*\*Workplace:\*\* ([^\n]+)$/gm)],'detail workplace')[1]
@@ -90,7 +90,7 @@ function detailCountry(markdown,row){
   requireShape(apply.trimEnd()===`## Apply\n\n[Apply at IMTF](https://apply.workable.com/imtf/j/${row.shortcode}/apply)\n\n---\nPowered by [Workable](https://www.workable.com)`,'Native detail application identity mismatch')
   return {shortcode:row.shortcode,country:row.country,markdownSHA256:sha(markdown),criteriaSHA256:sha(JSON.stringify(criteria)),criteria}
 }
-function ownCountries(raw,row,identity,fact){
+export function ownCountries(raw,row,identity,fact){
   const n=JSON.parse(raw)
   requireShape(n&&n.accountUid===identity.nativeAccountId&&n.shortcode===row.shortcode&&Number.isSafeInteger(n.id)&&n.id>0,'Native own account/post identity mismatch')
   requireShape(Object.keys(n).every(key=>ownFields.has(key)),'Unreviewed native own criteria field')

@@ -2,6 +2,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { createPhenomScraper } from '../../scraper-support/phenom/engine.js'
+import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { createThermoFisherFetchText } from './nativeDetailTransport.js'
 import { reviewedPhenomTitleBindingsForSource } from '../../scraper-support/phenom/reviewedTitleBindings20261108.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -28,7 +30,13 @@ export const {
   extractJobDetail,
 } = scraper
 
-export const run = (options = {}) => scraper.run(options)
+export const run = (options = {}) => scraper.run({
+  ...options,
+  useWidgetApi: options.useWidgetApi ?? Boolean(options.fetchJson || !options.fetchText),
+  fetchText: options.fetchText || createThermoFisherFetchText({
+    fetchImpl: options.fetchImpl, sleep: options.nativeThrottleSleep, config: loadConfig(currentDir),
+  }),
+})
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

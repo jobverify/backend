@@ -63,7 +63,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
     console.log(JSON.stringify({ mode: 'plan-only', ...plan }, null, 2))
   } else {
     const extension = JSON.parse(fs.readFileSync(option('--provider-manifest')
-      ? path.resolve(option('--provider-manifest')) : new URL('../scraper-support/providers/providerExtensions/zzz-publishing-gap-repairs.json', import.meta.url)))
+      ? path.resolve(option('--provider-manifest')) : new URL('../scraper-support/providers/providerExtensions/zz-006-publishing-gap-repairs.json', import.meta.url)))
     if (trials.some(trial => !extension.some(provider => provider.source === trial.source && provider.bindingEvidence?.verified === true))) throw new Error('Official identity verification required for every selected source')
     if (!process.env.MONGO_URI) throw new Error('Database configuration is unavailable')
     const destination = path.resolve(option('--output') || '../artifacts/publishing-gap/rollout.json')

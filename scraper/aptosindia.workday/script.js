@@ -6,6 +6,7 @@ import { shouldContinueWorkdayJobsApiPagination } from '../../scraper-support/my
 import { fetchJsonWithRetry } from '../../scraper-support/utils/fetch.js'
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
 import APTOS_INDIA_CATALOG from './catalog.js'
+import { qualifyAptosInventory } from './nativeInventory.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -64,24 +65,26 @@ const createTimeoutSignal = (timeoutMs) => {
   return controller.signal
 }
 
-const defaultFetchPage = async (url) => {
+const defaultFetchPage = async (url, { signal } = {}) => {
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
     redirect: 'follow',
-    signal: createTimeoutSignal(15000),
+    signal: signal ? AbortSignal.any([signal, createTimeoutSignal(15000)]) : createTimeoutSignal(15000),
   })
 
   return {
     status: response.status,
     url: response.url,
     html: await response.text(),
+    contentType: response.headers.get('content-type'),
   }
 }
 
-const defaultFetchJson = (url, body) => fetchJsonWithRetry(url, {
+const defaultFetchJson = (url, body, { signal } = {}) => fetchJsonWithRetry(url, {
+  signal,
   method: 'POST',
   headers: {
     'User-Agent': USER_AGENT,
@@ -263,8 +266,15 @@ export const createAptosIndiaScraper = ({
     fetchPage = defaultFetchPage,
     fetchJson = defaultFetchJson,
     now = defaultNow,
+    fetchNativeJson,
+    signal,
   } = {}) {
-    const careersPage = await fetchPage(CAREERS_URL)
+    signal?.throwIfAborted()
+    const readPage = async url => {
+      try { return await fetchPage(url, { signal }) }
+      finally { signal?.throwIfAborted() }
+    }
+    const careersPage = await readPage(CAREERS_URL)
     if (
       careersPage.status !== 200
       || !sameUrl(careersPage.url, CAREERS_URL)
@@ -273,12 +283,14 @@ export const createAptosIndiaScraper = ({
       throw new Error('Aptos India verified official careers surface changed materially')
     }
 
+    signal?.throwIfAborted()
     const verifiedBoardUrl = extractVerifiedWorkdayBoardUrl(careersPage.html)
     if (!sameUrl(verifiedBoardUrl, WORKDAY_BOARD_URL)) {
       throw new Error('Aptos India verified Workday handoff changed materially')
     }
 
-    const workdayBoardPage = await fetchPage(WORKDAY_BOARD_URL)
+    const workdayBoardPage = await readPage(WORKDAY_BOARD_URL)
+    signal?.throwIfAborted()
     assertWorkdayPageAvailable(workdayBoardPage, { source: SOURCE, url: WORKDAY_BOARD_URL })
     if (
       workdayBoardPage.status !== 200
@@ -291,11 +303,16 @@ export const createAptosIndiaScraper = ({
     const unfilteredPayload = await fetchJson(
       JOBS_API_URL,
       buildUnfilteredJobsRequestBody({ offset: 0 }),
+      { signal },
     )
+    signal?.throwIfAborted()
     const locationFacetIds = extractIndiaLocationFacetIds(unfilteredPayload)
+    const filteredPayloads = []
+    const qualify = jobs => qualifyAptosInventory({ jobs, initialPayload: unfilteredPayload, filteredPayloads,
+      careersPage, fetchPage: readPage, fetchNativeJson, maxPages, now, signal })
 
     if (locationFacetIds.length === 0) {
-      return []
+      return qualify([])
     }
 
     const scrapedAt = now()
@@ -304,14 +321,18 @@ export const createAptosIndiaScraper = ({
     let offset = 0
 
     for (let page = 1; page <= maxPages; page += 1) {
+      signal?.throwIfAborted()
       const payload = await fetchJson(
         JOBS_API_URL,
         buildIndiaJobsRequestBody({ offset, locationFacetIds }),
+        { signal },
       )
+      signal?.throwIfAborted()
+      filteredPayloads.push(payload)
       const postings = Array.isArray(payload?.jobPostings) ? payload.jobPostings : []
 
       if (page === 1 && postings.length === 0) {
-        return []
+        return qualify([])
       }
 
       for (const posting of postings) {
@@ -340,7 +361,7 @@ export const createAptosIndiaScraper = ({
       }
     }
 
-    return jobs.sort((left, right) => left.title.localeCompare(right.title))
+    return qualify(jobs.sort((left, right) => left.title.localeCompare(right.title)))
   },
 })
 

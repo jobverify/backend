@@ -9,11 +9,11 @@ const loadOriginal = suffix => {
   assert.equal(files.length, 1)
   return JSON.parse(fs.readFileSync(path.join(DEFAULT_PROVIDER_EXTENSION_DIR, files[0])))[0]
 }
-const discovery = JSON.parse(fs.readFileSync(path.join(DEFAULT_PROVIDER_EXTENSION_DIR, 'zzzz-official-surface-discovery.json')))
+const discovery = JSON.parse(fs.readFileSync(path.join(DEFAULT_PROVIDER_EXTENSION_DIR, 'zz-087-official-surface-discovery.json')))
 const catalog = getScraperCatalog()
 const cases = [
-  ['crestdatasystems', '-verified-discovery-adapters-00037.json', 'https://www.crestdata.ai/careers/open-positions/', 'crestdata.ai', 'Crest Data Systems'],
-  ['credoai', '-verified-discovery-adapters-00038.json', 'https://www.credo.ai/company/jobs', 'credo.ai', 'Credo AI'],
+  ['crestdatasystems', 'zz-242-discovery-37.json', 'https://www.crestdata.ai/careers/open-positions/', 'crestdata.ai', 'Crest Data Systems'],
+  ['credoai', 'zz-243-discovery-38.json', 'https://www.credo.ai/company/jobs', 'credo.ai', 'Credo AI'],
 ]
 
 for (const [source, suffix, careerPage, domain, companyName] of cases) test(source + ' keeps reviewed recruitment identity after discovery override precedence', () => {

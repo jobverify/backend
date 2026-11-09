@@ -1,17 +1,20 @@
 import {setTimeout as delay} from 'node:timers/promises'
 import {CAREERS,JOBS,INDIA,isRoleURL,isClientURL,need,hash} from './nativeModels.js'
+const deadlineError=(message,timeoutMs,requestUrl)=>Object.assign(Error(message),{
+ name:'TimeoutError',code:'ETIMEDOUT',timeoutMs,...(requestUrl?{requestUrl}:{})
+})
 export function createAdidasPublicRead(options,receipts){
  const interval=options.minIntervalMs??1000
  need(Number.isSafeInteger(interval)&&interval>=0&&interval<=5000&&(interval>=1000||typeof options.fetchImpl==='function'),'invalid source pacing')
  const controller=new AbortController(),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
- const deadline=setTimeout(()=>controller.abort(Error('Adidas source deadline')),180000),fetchImpl=options.fetchImpl||globalThis.fetch
+ const deadline=setTimeout(()=>controller.abort(deadlineError('Adidas source deadline',180000)),180000),fetchImpl=options.fetchImpl||globalThis.fetch
  const allowed=new Set([CAREERS]),cancel=value=>{try{Promise.resolve(value?.cancel()).catch(()=>{})}catch{}}
  let total=0,last=0,stopped=false
  const read=async url=>{
   signal.throwIfAborted();need(!stopped&&allowed.has(url)&&receipts.length<64,'stopped source, unreviewed URL or request bound')
   const waiting=interval-(Date.now()-last);if(waiting>0)await delay(waiting,undefined,{signal});signal.throwIfAborted();last=Date.now()
   const local=new AbortController(),combined=AbortSignal.any([signal,local.signal]);let response,reader,listener
-  const timer=setTimeout(()=>local.abort(Error('Adidas request deadline')),20000)
+  const timer=setTimeout(()=>local.abort(deadlineError('Adidas request deadline',20000,url)),20000)
   const interrupted=new Promise((_,reject)=>{listener=()=>reject(combined.reason);combined.addEventListener('abort',listener,{once:true});if(combined.aborted)listener()})
   try{return await Promise.race([(async()=>{
    const js=isClientURL(url)

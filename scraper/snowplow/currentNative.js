@@ -9,12 +9,19 @@ import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNati
 import {extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
 import {NATIVE_CONFIG} from './catalog.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {reviewSnowplowCorporateChrome} from './corporateChrome20261109.js'
+import {validateSnowplowPostingLocations,validateSnowplowApplicationForm} from './nativeContent20261109.js'
 
 const reviewed = JSON.parse(fs.readFileSync(new URL('./reviewedNative.json', import.meta.url), 'utf8'))
 const reviewedCurrent = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261105.json', import.meta.url), 'utf8'))
 const reviewedNovember6 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261106.json', import.meta.url), 'utf8'))
 const reviewedNovember6Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261106Evening.json', import.meta.url), 'utf8'))
-const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening]
+const reviewedNovember9 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109.json', import.meta.url), 'utf8'))
+const reviewedNovember9Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109Evening.json', import.meta.url), 'utf8'))
+const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening]
+const applicationMetadataHashes = new Set(reviewedDeployments.flatMap(review => Object.values(review.forms).map(form => form.metadataSha256)))
+const applicationSupportingHashes = new Set(reviewedDeployments.flatMap(review => Object.values(review.forms).map(form => form.otherDataSha256)))
+const openingMetadataSha256 = '855ad3bfbcbe8284059b22003ca974281dfbaedb3cb58534bd3f0d6ae6d92fc6'
 const hash = text => createHash('sha256').update(text).digest('hex')
 const stable = value => {
   assertSafeNumbers(value)
@@ -26,7 +33,7 @@ const keysAre = (value, keys) => value && typeof value === 'object' && !Array.is
 const sections = ['description', 'responsibilities', 'requirements', 'benefits', 'payTransparencySalaryAdditionalInfo']
 const compensation = ['payTransparencyMinSalary', 'payTransparencyMaxSalary', 'payTransparencySalaryCurrency', 'payTransparencySalaryPayPeriod']
 const countries = new Map([['United Kingdom', 'GB'], ['United States', 'US'], ['India', 'IN']])
-const requireProof = (ok, message) => { if (!ok) throw new Error('Snowplow native proof: ' + message) }
+const requireProof = (ok, message) => { if (!ok) throw Object.assign(new Error('Snowplow native proof: ' + message),{failureKind:'parser_or_contract_error'}) }
 const assertSafeNumbers = value => {
   const pending = [value]
   while (pending.length) {
@@ -91,50 +98,68 @@ const visibleSection = value => {
   if (value == null || value === '') return null
   requireProof(typeof value === 'string', 'section scalar type changed')
   const document = readVisibleNativeDocument(value, {strict: true}), root = document.nodes(n => n.tag === 'root')[0]
+  const fullText = node => typeof node==='string'?node:[node.raw||'',...node.children.map(fullText)].join(' ')
+  const hiddenCriteria = node => typeof node!=='string'&&((node.inert&&/[\p{L}\p{N}]/u.test(fullText(node)))
+    ||Boolean(node.raw?.trim())||node.children.some(hiddenCriteria))
   const visible = root ? extractActiveDescription(document.text(root)) : null
-  requireProof(visible && visible === extractActiveDescription(value), 'hidden or incomplete role criteria')
+  requireProof(visible && !hiddenCriteria(root) && visible === extractActiveDescription(value), 'hidden or incomplete role criteria')
   return visible
 }
-const validateRow = (raw, review = reviewed) => {
-  if (review.version) requireProof(Array.isArray(raw.postingLocations) && raw.postingLocations.length === 0, 'unreviewed native posting location alternatives')
+const validateRow = (raw, review = reviewed, noteGap = () => {}) => {
   requireProof(keysAre(raw, Object.keys(review.observedRowFieldTypes)), 'native role fields changed')
   for (const [key, allowed] of Object.entries(review.observedRowFieldTypes)) {
     const type = raw[key] === null ? 'null' : Array.isArray(raw[key]) ? 'array' : typeof raw[key]
-    requireProof(allowed.includes(type), 'native field type changed: ' + key)
+    requireProof((sections.includes(key) ? ['null','string'] : allowed).includes(type), 'native field type changed: ' + key)
   }
+  requireProof(typeof raw.id==='string'&&/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(raw.id)
+    &&Number.isSafeInteger(raw.siteId)&&raw.siteId>0
+    &&['title','department','site','country','language','employmentType','workspaceType'].every(key=>typeof raw[key]==='string'&&raw[key].trim()),'native role identity missing or malformed')
+  if (review.version) validateSnowplowPostingLocations(raw.postingLocations)
   requireProof(keysAre(raw.sectionLabels, Object.keys(raw.sectionLabels)) && Object.keys(raw.sectionLabels).every(k => [...sections, 'payTransparencySalary'].includes(k) && typeof raw.sectionLabels[k] === 'string'), 'section label criteria changed')
   requireProof(countries.has(raw.country), 'unresolved typed native country')
   requireProof(!countries.has(raw.site) || countries.get(raw.site) === countries.get(raw.country), 'native site country conflict')
   requireProof(['publishedAt', 'validThrough', 'closingDate'].every(k => calendar(raw[k])), 'native calendar date invalid')
   const nativeSections = Object.fromEntries(sections.map(k => [k, visibleSection(raw[k])]))
   requireProof(nativeSections.description, 'full description missing')
-  // Country-only scalar validation cannot rule out new location alternatives
-  // embedded in employer criteria. Bind the entire reviewed original record;
-  // never remove description/date/geo fields to make a changed role qualify.
-  requireProof(review.forms[raw.id]?.fullRawRoleCriteriaSha256 === hash(stable(raw)), 'unreviewed complete native role criteria or location alternatives')
-  return {jobId: raw.id, countryCode: countries.get(raw.country), rawCountry: raw.country, rawSite: raw.site, nativeSections}
+  // Preserve valid changing criteria as observations. Full original record pins
+  // still decide qualification; a well-formed edit cannot borrow an old proof.
+  const reviewedCriteria = review.forms[raw.id]?.fullRawRoleCriteriaSha256 === hash(stable(raw))
+  if (!reviewedCriteria) noteGap('unreviewed-complete-native-role-criteria:' + raw.id)
+  const rawPostingLocations = review.version ? structuredClone(raw.postingLocations) : []
+  requireProof(rawPostingLocations.every(location => countries.has(location.country)), 'unresolved typed native posting country')
+  const countryCodes = [...new Set([countries.get(raw.country), ...rawPostingLocations.map(location => countries.get(location.country))])]
+  return {jobId: raw.id, countryCode: countries.get(raw.country), rawCountry: raw.country, rawSite: raw.site, nativeSections,
+    rawPostingLocations, countryCodes, countryDisagreement: countryCodes.length > 1, reviewedCriteria}
 }
-const validateForm = (payload, raw, row, review = reviewed) => {
+const validateForm = (payload, raw, row, review = reviewed, noteGap = () => {}) => {
   const pin = review.forms[raw.id], data = payload?.data, job = data?.jobAd
-  requireProof(pin && keysAre(payload, ['metadata', 'data']) && keysAre(data, ['jobAd', 'companyLists', 'agency', 'supportedFileTypes']), 'unreviewed role application schema')
-  requireProof(hash(stable(payload.metadata)) === pin.metadataSha256, 'unreviewed nested application metadata')
-  requireProof(hash(stable(Object.fromEntries(Object.entries(data).filter(([k]) => k !== 'jobAd')))) === pin.otherDataSha256, 'unreviewed application supporting criteria')
-  if (review.version) requireProof(Array.isArray(job?.postingLocations) && job.postingLocations.length === 0
+  requireProof(keysAre(payload, ['metadata', 'data']) && keysAre(data, ['jobAd', 'companyLists', 'agency', 'supportedFileTypes']), 'unreviewed role application schema')
+  const metadataHash=hash(stable(payload.metadata)),supportingHash=hash(stable(Object.fromEntries(Object.entries(data).filter(([k]) => k !== 'jobAd'))))
+  requireProof(applicationMetadataHashes.has(metadataHash), 'unreviewed nested application metadata')
+  requireProof(applicationSupportingHashes.has(supportingHash), 'unreviewed application supporting criteria')
+  if (review.version) requireProof(Array.isArray(job?.postingLocations)
     && stable(job.postingLocations) === stable(raw.postingLocations), 'unreviewed application posting location alternatives')
   requireProof(keysAre(job, ['applicationForm', 'jobDescription', 'type', 'title', 'site', 'languageCode', 'employmentType', 'workspaceType', ...(review.version ? ['postingLocations'] : [])]) && job.type === 'api'
     && job.title === raw.title && job.site === raw.site + ', ' + raw.country && job.languageCode === raw.language
     && job.employmentType === raw.employmentType && job.workspaceType === raw.workspaceType, 'native role/application identity conflict')
-  requireProof(hash(stable(job.applicationForm)) === pin.applicationFormSha256, 'unreviewed application mandatory fields/questions')
+  validateSnowplowApplicationForm(job.applicationForm)
+  let reviewedCriteria=Boolean(pin&&metadataHash===pin.metadataSha256&&supportingHash===pin.otherDataSha256
+    &&hash(stable(job.applicationForm))===pin.applicationFormSha256)
+  if(!reviewedCriteria)noteGap('unreviewed-application-mandatory-fields-questions:' + raw.id)
   const allowed = [...sections, ...compensation, 'sectionLabels'], prefix = '/jobAd/descriptionId./jobDescription/'
   requireProof(job.jobDescription && typeof job.jobDescription === 'object' && !Array.isArray(job.jobDescription)
     && Object.keys(job.jobDescription).every(k => allowed.some(a => k === prefix + a)), 'unknown nested role description criteria')
   for (const key of allowed) {
     const cell = job.jobDescription[prefix + key]
     requireProof(cell == null || keysAre(cell, ['value']), 'unknown nested criteria properties')
-    requireProof(stable(cell?.value ?? null) === stable(raw[key] ?? null), 'raw native detail criteria mismatch: ' + key)
-    if (sections.includes(key)) requireProof(visibleSection(cell?.value) === row.nativeSections[key], 'native visible detail criteria mismatch')
+    const value=cell?.value??null,type=value===null?'null':Array.isArray(value)?'array':typeof value
+    requireProof((sections.includes(key)?['null','string']:review.observedRowFieldTypes[key]||['object']).includes(type),'native detail field type changed: '+key)
+    if(key==='sectionLabels'&&value!==null)requireProof(keysAre(value,Object.keys(value))&&Object.keys(value).every(k=>[...sections,'payTransparencySalary'].includes(k)&&typeof value[k]==='string'),'section label criteria changed')
+    const matches=stable(value)===stable(raw[key]??null)
+    if(sections.includes(key))visibleSection(value)
+    if(!matches){reviewedCriteria=false;noteGap('raw-native-detail-criteria-mismatch:'+raw.id+':'+key)}
   }
-  return payload
+  return {payload,reviewedCriteria}
 }
 
 // The corporate redesign now publishes its own current role inventory. Its
@@ -171,6 +196,30 @@ const reconcileCorporateRoles = (html, rows) => {
 const legacyFeedScopeSha256 = 'a6d4b75f6d60faf5294c16ab8c8d62040435bc274fec06c8cb8dfd05b08607bb'
 const canonicalFeed = (feed, review) => stable(review.version
   ? {...feed, jobAdDetails: [...feed.jobAdDetails].sort((a, b) => a.id.localeCompare(b.id))} : feed)
+const validateFeedShape = (payload, review) => {
+  requireProof(keysAre(payload,review.version?['filterGroups','jobAdDetails','jobOpeningMetadata']:['filterGroups','jobAdDetails'])
+    &&Array.isArray(payload.jobAdDetails)&&payload.jobAdDetails.length<=2000,'unreviewed native feed envelope schema')
+  const groups=['departments','sites','jobTypes','workspaceTypes',...(review.version?['cities','regions','countries']:[])]
+  requireProof(keysAre(payload.filterGroups,groups),'unreviewed native filter/opening metadata or geographic scope')
+  for(const name of groups){
+    const group=payload.filterGroups[name],ids=new Set()
+    requireProof(Array.isArray(group)&&group.length<=2000&&group.every(item=>keysAre(item,['serverId','value'])
+      &&['string','number'].includes(typeof item.serverId)&&String(item.serverId).trim()&&typeof item.value==='string'&&item.value.trim()
+      &&!ids.has(String(item.serverId))&&Boolean(ids.add(String(item.serverId)))),'unknown nested filter identity/criteria')
+    if(name==='countries')requireProof(group.every(item=>countries.has(item.value)),'unresolved typed native filter country')
+  }
+  if(review.version)requireProof(hash(stable(payload.jobOpeningMetadata))===openingMetadataSha256,'unreviewed native filter/opening metadata or geographic scope')
+  requireProof(new Set(payload.jobAdDetails.map(row=>row?.id)).size===payload.jobAdDetails.length,'duplicate native role identity')
+}
+const inspectFeedContent = (payload, review, noteGap) => {
+  validateFeedShape(payload,review)
+  if(hash(stable(review.version?{filterGroups:payload.filterGroups,jobOpeningMetadata:payload.jobOpeningMetadata}:{filterGroups:payload.filterGroups}))
+    !==(review.version?review.feedScopeSha256:legacyFeedScopeSha256))noteGap('unreviewed-native-filter-values')
+  const rows=payload.jobAdDetails.map(raw=>validateRow(raw,review,noteGap))
+  if((review.feedCanonicalSha256&&hash(canonicalFeed(payload,review))!==review.feedCanonicalSha256)
+    ||stable(payload.jobAdDetails.map(raw=>raw.id).sort())!==stable(Object.keys(review.forms).sort()))noteGap('unreviewed-complete-native-feed-cohort')
+  return rows
+}
 
 // The original engine always receives the original responses. Archived proof
 // supplements only its obsolete-client guard. The current deployment separately
@@ -179,15 +228,17 @@ const canonicalFeed = (feed, review) => stable(review.version
 const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(options = {}) {
   const settings = {...defaults, ...options}, load = settings.fetchPage || defaultFetchPage, receipts = []
   let review = reviewed, employerDeployments = []
-  const corporateGaps = []
+  const gaps = []
+  const noteGap = reason => { if (!gaps.includes(reason)) gaps.push(reason) }
   const inspectCorporate = (html, rows, phase) => {
     try { return reconcileCorporateRoles(html, rows) }
     catch (error) {
-      // Only a mismatch already preserved in this exact reviewed deployment
-      // can continue as an observation. It remains an unresolved scope gap.
-      requireProof(review.preservedCorporateMismatch && error.message === 'Snowplow native proof: ' + review.preservedCorporateMismatch,
+      // Employer bytes stay pinned. A well-formed changing native vacancy may
+      // disagree with those stale corporate cards without changing ownership.
+      requireProof(['corporate/native inventory identity mismatch','corporate/native role identity mismatch','corporate/native role criteria or country mismatch']
+        .some(reason=>error.message==='Snowplow native proof: '+reason),
         'unreviewed corporate/native inventory disagreement: ' + error.message)
-      corporateGaps.push(phase + '-corporate-scope-unresolved:' + error.message)
+      noteGap(phase + '-corporate-scope-unresolved:' + error.message)
       return null
     }
   }
@@ -212,10 +263,11 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
       if(resource)requireProof(response.contentType===resource.contentType&&hash(response.body)===resource.sha256,'declared native renderer/style/program changed: '+url)
     }
     if (url === NATIVE_CONFIG.careers || url === NATIVE_CONFIG.board) {
+      const corporateDOM = url === NATIVE_CONFIG.careers ? reviewSnowplowCorporateChrome(response.body) : null
       // Selection binds one complete independently reviewed deployment; never
       // mix an archived employer page with a current native renderer/cohort.
       if (url === NATIVE_CONFIG.careers && receipts.length === 1 && typeof response?.body === 'string') {
-        employerDeployments = reviewedDeployments.filter(candidate => hash(response.body) === candidate.corporateBodySha256)
+        employerDeployments = reviewedDeployments.filter(candidate => (corporateDOM?.reviewedBodySha256 || hash(response.body)) === candidate.corporateBodySha256)
         review = employerDeployments[0] || reviewed
       }
       // One employer page can survive multiple native deployments. Select only
@@ -224,12 +276,14 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
         review = employerDeployments.find(candidate => hash(response.body) === candidate.boardBodySha256) || review
       }
       const expected = url === NATIVE_CONFIG.careers ? review.corporateBodySha256 : review.boardBodySha256
-      const accepted = response?.status === 200 && response.url === url && /^text\/html\b/i.test(response.contentType || '')
-        && typeof response.body === 'string' && hash(response.body) === expected
+      const readable = response?.status === 200 && response.url === url && /^text\/html\b/i.test(response.contentType || '')
+        && typeof response.body === 'string' && response.body.trim().length > 0
+      const accepted = readable && (corporateDOM?.reviewedBodySha256 || hash(response.body)) === expected
       if (!accepted) {
         const reason = 'unreviewed complete raw employer/native DOM or activation'
         throw Object.assign(Error('Snowplow native proof: ' + reason), {code:'SNOWPLOW_NATIVE_UNREVIEWED',
           abortRetries:true,failureKind:'incomplete_listing',source:'snowplow',sourceListingComplete:false,sourceScopeComplete:false,
+          ...(readable ? {softFailure:true,upstreamOutage:false} : {}),
           status:response?.status??null,requestUrl:url,finalUrl:response?.url??null,retainedNativeResponses:receipts,
           inventoryEvidence:normalizeInventoryEvidence({status:'coverage-gap',surface:url,firstParty:true,listingComplete:false,
             pagesFetched:receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:new Date().toISOString(),reason})})
@@ -237,6 +291,7 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
       if (url === NATIVE_CONFIG.careers) {
         const document = readVisibleNativeDocument(response.body, {strict: true})
         requireProof(document.nodes(n => n.tag === 'a' && n.attrs.href === NATIVE_CONFIG.board && document.text(n)).length > 0, 'visible first-party handoff missing')
+        if (corporateDOM) mode.onCorporateDOMEquivalent?.(corporateDOM)
         mode.onHome?.()
       }
     }
@@ -247,16 +302,25 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
       const payload=parseNativeJSON(response.body)
       requireProof(Array.isArray(payload?.jobAdDetails),'invalid native feed rows')
       requireProof(/^application\/json\b/i.test(response.contentType||''),'native feed MIME changed')
-      if(review.version)requireProof(keysAre(payload,['filterGroups','jobAdDetails','jobOpeningMetadata'])&&hash(stable({filterGroups:payload.filterGroups,jobOpeningMetadata:payload.jobOpeningMetadata}))===review.feedScopeSha256,'unreviewed native filter/opening metadata or geographic scope')
-      else requireProof(keysAre(payload,['filterGroups','jobAdDetails'])&&hash(stable({filterGroups:payload.filterGroups}))===legacyFeedScopeSha256,'unreviewed legacy native feed envelope or scope')
-      const rows=payload.jobAdDetails.map(raw=>validateRow(raw,review))
+      validateFeedShape(payload,review)
+      // One exact employer/board deployment can publish separately reviewed
+      // native cohorts. Select only on the first feed, with the already-bound
+      // site and full geographic/filter metadata; closing reads cannot switch.
+      if(review.version&&receipts.filter(item=>item.url===url).length===1){
+        const boardBodySha256=hash(receipts.find(item=>item.url===NATIVE_CONFIG.board).response.body)
+        const compatible=employerDeployments.filter(candidate=>candidate.boardBodySha256===boardBodySha256
+          &&candidate.siteCanonicalSha256===review.siteCanonicalSha256&&stable(candidate.resources)===stable(review.resources))
+        const matches=candidate=>payload.jobAdDetails.filter(raw=>candidate.forms[raw?.id]?.fullRawRoleCriteriaSha256===hash(stable(raw))).length
+        review=compatible.sort((a,b)=>matches(b)-matches(a))[0]||review
+      }
+      const rows=inspectFeedContent(payload,review,noteGap)
       mode.onFeed?.({payload,rows})
       if(review.version)inspectCorporate(receipts.find(r=>r.url===NATIVE_CONFIG.careers).response.body,payload.jobAdDetails,'native-read')
     }
     return response
   }
-  const jobs = await createHiBobNativeInventory(NATIVE_CONFIG, {...settings, fetchPage}).run()
-  const originalEngineEvidence = readInventoryEvidence(jobs), gaps = corporateGaps, detailProofs = [], countryProofs = []
+  let jobs = await createHiBobNativeInventory(NATIVE_CONFIG, {...settings, fetchPage}).run()
+  const originalEngineEvidence = readInventoryEvidence(jobs), detailProofs = [], countryProofs = []
   const audit = {originalEngineEvidence, nativeInventoryCount: null, canonicalCountryCounts: {}, countryProofs, detailProofs, gaps,
     rawOpeningFeed: null, rawClosingFeed: null, rawOpeningSite: null, rawClosingSite: null, receipts, sourceScopeComplete: false}
   const retainedNative = url => receipts.filter(r => r.url === url).map(r => JSON.parse(r.response.body))
@@ -278,48 +342,104 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
     // Preserve the originals in receipts/audit, then validate every original
     // engine JSON response before any supplemental type, hash or pin claims.
     for (const receipt of receipts) if (receipt.url.startsWith(NATIVE_CONFIG.board + 'api/')) parseNativeJSON(receipt.response.body)
-    const rawRows = audit.rawOpeningFeed.jobAdDetails
+    const engineFeeds = retainedNative(feedUrl)
+    for(const feed of engineFeeds)inspectFeedContent(feed,review,noteGap)
+    const observedRows = new Map(engineFeeds.flatMap(feed => feed.jobAdDetails).map(raw => [raw.id,raw]))
+    const rawRows = [...observedRows.values()]
     if (review.version) {
-      requireProof(keysAre(audit.rawOpeningFeed, ['filterGroups', 'jobAdDetails', 'jobOpeningMetadata'])
-        && hash(stable({filterGroups: audit.rawOpeningFeed.filterGroups, jobOpeningMetadata: audit.rawOpeningFeed.jobOpeningMetadata})) === review.feedScopeSha256, 'unreviewed native filter/opening metadata or geographic scope')
       reconcileCorporate(receipts.find(r => r.url === NATIVE_CONFIG.careers).response.body, rawRows, 'opening')
-      const expected = [...review.supplementedBaseEngineGaps, ...(review.preservedBaseEngineGaps || []), ...rawRows.map(raw => 'unverified-native-role-fields:' + raw.id)].sort()
+      const expected = [...review.supplementedBaseEngineGaps, ...rawRows.map(raw => 'unverified-native-role-fields:' + raw.id)]
+      const dynamic = ['closing-native-inventory-changed','closing-native-application-changed']
+      const allowed = new Set([...expected,...(review.preservedBaseEngineGaps||[]),...dynamic])
       const actual = originalEngineEvidence?.reason?.startsWith('hibob-native-incomplete:')
-        ? originalEngineEvidence.reason.slice('hibob-native-incomplete:'.length).split(';').sort() : null
-      requireProof(stable(actual) === stable(expected), 'original engine has additional unresolved guards: ' + originalEngineEvidence?.reason)
-      for (const reason of review.preservedBaseEngineGaps || []) gaps.push('base-engine-scope-unresolved:' + reason)
-    } else requireProof(originalEngineEvidence?.reason === 'hibob-native-incomplete:public-client-contract-changed', 'original engine has additional unresolved guards: ' + originalEngineEvidence?.reason)
+        ? originalEngineEvidence.reason.slice('hibob-native-incomplete:'.length).split(';') : null
+      requireProof(actual&&expected.every(reason=>actual.includes(reason))&&actual.every(reason=>allowed.has(reason)), 'original engine has additional unresolved guards: ' + originalEngineEvidence?.reason)
+      for(const reason of actual)if(dynamic.includes(reason)||(review.preservedBaseEngineGaps||[]).includes(reason))noteGap('base-engine-scope-unresolved:'+reason)
+    } else {
+      const actual=originalEngineEvidence?.reason?.slice('hibob-native-incomplete:'.length).split(';')
+      requireProof(originalEngineEvidence?.reason?.startsWith('hibob-native-incomplete:')&&actual.includes('public-client-contract-changed')
+        &&actual.every(reason=>['public-client-contract-changed','closing-native-inventory-changed','closing-native-application-changed','unreconciled-native-role-reference'].includes(reason)), 'original engine has additional unresolved guards: ' + originalEngineEvidence?.reason)
+      for(const reason of actual)if(reason!=='public-client-contract-changed')noteGap('base-engine-scope-unresolved:'+reason)
+    }
     for (const resource of review.resources) requireProof(hash(await get(resource.url, 'program', resource)) === resource.sha256, 'declared native renderer/style/program changed: ' + resource.url)
     // Retain every unresolved declaration from the reviewed deployment as a
     // gap. Data-only native inspection cannot certify this renderer or cleanup.
-    for (const resource of review.unresolvedResources) gaps.push('unreviewed-declared-stylesheet:' + resource.url)
+    for (const resource of review.unresolvedResources) noteGap('unreviewed-declared-stylesheet:' + resource.url)
     requireProof(hash(stable(audit.rawOpeningSite)) === review.siteCanonicalSha256, 'native employer configuration/side channels changed')
     for (const group of Object.values(audit.rawOpeningFeed.filterGroups)) requireProof(Array.isArray(group)
       && group.every(item => keysAre(item, ['serverId', 'value']) && ['string', 'number'].includes(typeof item.serverId)
         && typeof item.value === 'string'), 'unknown nested filter identity/criteria')
-    const rows = rawRows.map(raw => validateRow(raw, review))
+    const rows = rawRows.map(raw => validateRow(raw, review, noteGap))
     audit.nativeInventoryCount = rawRows.length
-    for (const row of rows) { countryProofs.push(row); audit.canonicalCountryCounts[row.countryCode] = (audit.canonicalCountryCounts[row.countryCode] || 0) + 1 }
-    for (const [index, raw] of rawRows.entries()) {
-      const url = NATIVE_CONFIG.board + 'api/job-ad/' + raw.id + '/application-form'
-      detailProofs.push({jobId: raw.id, url, rawOpening: validateForm(await get(url, 'json'), raw, rows[index], review), rawClosing: null})
+    audit.openingNativeInventoryCount = audit.rawOpeningFeed.jobAdDetails.length
+    audit.closingNativeInventoryCount = audit.rawClosingFeed.jobAdDetails.length
+    const proofFor = raw => {
+      let proof=detailProofs.find(item=>item.jobId===raw.id)
+      if(!proof){proof={jobId:raw.id,url:NATIVE_CONFIG.board+'api/job-ad/'+raw.id+'/application-form',rawOpening:null,rawClosing:null,rawOpeningRole:null,rawClosingRole:null,criteriaReviewed:false};detailProofs.push(proof)}
+      return proof
+    }
+    const readForm = async(raw,phase)=>{
+      try{return validateForm(await get(NATIVE_CONFIG.board+'api/job-ad/'+raw.id+'/application-form','json'),raw,validateRow(raw,review,noteGap),review,noteGap)}
+      catch(error){
+        if(error.code==='SNOWPLOW_HTTP_ERROR'&&error.status===404){noteGap('native-application-unavailable:'+raw.id+':'+phase);return null}
+        throw error
+      }
+    }
+    for (const row of rows) {
+      countryProofs.push(row)
+      audit.canonicalCountryCounts[row.countryCode] = (audit.canonicalCountryCounts[row.countryCode] || 0) + 1
+      // Retain both original geographies. A reviewed conflict is an observation
+      // with an explicit gap, never permission to choose one country or clean up.
+      if (row.countryDisagreement) noteGap('native-posting-country-disagreement:' + row.jobId)
+    }
+    const latestOpeningRows = engineFeeds.at(-1).jobAdDetails
+    for(const raw of rawRows)proofFor(raw)
+    for (const raw of latestOpeningRows) {
+      const proof=proofFor(raw),checked=await readForm(raw,'opening')
+      proof.rawOpeningRole=raw
+      proof.rawOpening=checked?.payload??null
+      proof.openingReviewed=Boolean(validateRow(raw,review,noteGap).reviewedCriteria&&checked?.reviewedCriteria)
     }
     await get(NATIVE_CONFIG.careers, 'html')
     await get(NATIVE_CONFIG.board, 'html')
     audit.rawClosingSite = await get(siteUrl, 'json')
     audit.rawClosingFeed = await get(feedUrl, 'json')
-    requireProof(stable(audit.rawOpeningSite) === stable(audit.rawClosingSite) && canonicalFeed(audit.rawOpeningFeed, review) === canonicalFeed(audit.rawClosingFeed, review), 'full raw closing cohort/criteria changed')
+    inspectFeedContent(audit.rawClosingFeed,review,noteGap)
+    requireProof(stable(audit.rawOpeningSite) === stable(audit.rawClosingSite), 'full raw closing employer configuration changed')
+    if(canonicalFeed(audit.rawOpeningFeed,review)!==canonicalFeed(audit.rawClosingFeed,review))noteGap('full raw closing cohort/criteria changed')
+    audit.closingNativeInventoryCount=audit.rawClosingFeed.jobAdDetails.length
+    audit.rawObservedFeeds=retainedNative(feedUrl)
     if (review.version) reconcileCorporate(receipts.filter(r => r.url === NATIVE_CONFIG.careers).at(-1).response.body, audit.rawClosingFeed.jobAdDetails, 'closing')
-    for (const [index, proof] of detailProofs.entries()) {
-      proof.rawClosing = validateForm(await get(proof.url, 'json'), rawRows[index], rows[index], review)
-      requireProof(stable(proof.rawOpening) === stable(proof.rawClosing), 'full raw closing application criteria changed')
+    for(const raw of audit.rawClosingFeed.jobAdDetails){
+      if(!observedRows.has(raw.id)){
+        observedRows.set(raw.id,raw)
+        const row=validateRow(raw,review,noteGap)
+        countryProofs.push(row)
+        audit.canonicalCountryCounts[row.countryCode]=(audit.canonicalCountryCounts[row.countryCode]||0)+1
+        if(row.countryDisagreement)noteGap('native-posting-country-disagreement:'+row.jobId)
+      }
+      const proof=proofFor(raw),checked=await readForm(raw,'closing')
+      proof.rawClosingRole=raw
+      proof.rawClosing=checked?.payload??null
+      proof.closingReviewed=Boolean(validateRow(raw,review,noteGap).reviewedCriteria&&checked?.reviewedCriteria)
     }
+    audit.nativeInventoryCount=observedRows.size
+    for(const proof of detailProofs){
+      if(!proof.rawOpeningRole||!proof.rawClosingRole)noteGap('native-role-not-present-in-both-passes:'+proof.jobId)
+      if(proof.rawOpening&&proof.rawClosing&&stable(proof.rawOpening)!==stable(proof.rawClosing))noteGap('full raw closing application criteria changed:'+proof.jobId)
+      proof.criteriaReviewed=Boolean(proof.openingReviewed&&proof.closingReviewed&&proof.rawOpening&&proof.rawClosing
+        &&stable(proof.rawOpeningRole)===stable(proof.rawClosingRole)&&stable(proof.rawOpening)===stable(proof.rawClosing))
+    }
+    audit.reviewedNativeRecordCount=detailProofs.filter(proof=>proof.criteriaReviewed).length
+    audit.unreviewedNativeRecordCount=audit.nativeInventoryCount-audit.reviewedNativeRecordCount
+    const qualified=new Set(detailProofs.filter(proof=>proof.criteriaReviewed&&!validateRow(proof.rawClosingRole,review).countryDisagreement).map(proof=>proof.jobId))
+    jobs=jobs.filter(job=>qualified.has(job.jobId))
     // Re-read the actual complete activated/reachable cohort, including the
     // unversioned typography alias. Version-looking URLs are not freshness proof.
     for (const resource of review.resources) requireProof(hash(await get(resource.url, 'program', resource)) === resource.sha256, 'closing declared native renderer/style/program changed: ' + resource.url)
     // Positive India jobs need the strongest engine's current application proof
     // plus a separately reviewed criteria projection before supplementing scope.
-    if (rows.some(row => row.countryCode === 'IN')) gaps.push('India-application-criteria-projection-unreviewed')
+    if (countryProofs.some(row => row.countryCodes.includes('IN'))) noteGap('India-application-criteria-projection-unreviewed')
   } catch (error) {
     settings.signal?.throwIfAborted()
     if(!mode.diagnostic)throw error
@@ -346,6 +466,7 @@ const inventory=(receipts,firstParty=false,reason='Snowplow native incomplete')=
 export const createCurrentSnowplowScraper=(defaults={})=>({async run(options={}){
  const settings=settingsFor(defaults,options),control=runtime(settings),receipts=[],attempts=[]
  let audit,result,firstError,failureObserved=false,feedFacts=null,homeQualified=false
+ const corporateDOMEquivalences=[]
  const fetchPage=async(url,init)=>{
   control.admit();attempts.push({url,method:'GET',redirect:'manual',credentials:'omit'})
   // One record per admitted GET. Native streaming updates this occurrence;
@@ -363,12 +484,12 @@ export const createCurrentSnowplowScraper=(defaults={})=>({async run(options={})
  }
  try{
   if(settings.maxJobs===0||settings.maxPages===0){audit={source:'snowplow',status:'skipped',nativeInventoryCount:null,receipts,attempts,gaps:[],sourceScopeComplete:false};result=attachInventoryEvidence([],inventory(receipts,false,'caller-zero-cap-no-source-observation'))}
-  else result=await createReviewedSnowplowScraper({...settings,fetchPage,signal:control.signal,onAudit:value=>{audit=value},now:()=>{control.check();const value=(settings.now??(()=>new Date().toISOString()))();control.check();return value}},{onFeed:value=>{feedFacts=value},onHome:()=>{homeQualified=true}}).run()
+  else result=await createReviewedSnowplowScraper({...settings,fetchPage,signal:control.signal,onAudit:value=>{audit=value},now:()=>{control.check();const value=(settings.now??(()=>new Date().toISOString()))();control.check();return value}},{onFeed:value=>{feedFacts=value},onHome:()=>{homeQualified=true},onCorporateDOMEquivalent:proof=>{corporateDOMEquivalences.push(proof)}}).run()
  }catch(error){firstError=error;failureObserved=true}
  try{
   settings.signal?.throwIfAborted()
   audit??={source:'snowplow',status:'partial',nativeInventoryCount:feedFacts?.rows.length??null,rawOpeningFeed:feedFacts?.payload??null,countryProofs:feedFacts?.rows??[],gaps:failureObserved?[safeFailure(firstError)]:[],receipts,attempts,sourceScopeComplete:false}
-  Object.assign(audit,{attempts,retainedNativeResponses:receipts,cleanupAllowed:false,sourceScopeComplete:false,requestCount:control.requests})
+  Object.assign(audit,{attempts,retainedNativeResponses:receipts,cleanupAllowed:false,sourceScopeComplete:false,requestCount:control.requests,corporateDOMEquivalences})
   if(settings.onAudit)try{await bounded(()=>settings.onAudit(structuredClone(audit)),{signal:control.signal,timeoutMs:settings.auditTimeoutMs,code:'SNOWPLOW_AUDIT_TIMEOUT'});control.check()}catch(error){settings.signal?.throwIfAborted();if(failureObserved)audit.auditSinkFailure=safeFailure(error);else{firstError=error;failureObserved=true}}
   if(failureObserved){
    const originalCode=errorValue(firstError,'code'),code=typeof originalCode==='string'&&originalCode.startsWith('SNOWPLOW_')&&originalCode!=='SNOWPLOW_NATIVE_UNREVIEWED'?originalCode:'SNOWPLOW_NATIVE_INCOMPLETE'

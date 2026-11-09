@@ -33,8 +33,8 @@ const aliasExtensionDir = path.join(
   'providers',
   'companyAliasExtensions',
 )
-const manifestPath = path.join(providerExtensionDir, 'zz-dedicated-scraper-folder-backfill.json')
-const legacyManifestPath = path.join(providerExtensionDir, 'dedicated-scraper-folder-backfill.json')
+const manifestPath = path.join(providerExtensionDir, 'zz-002-dedicated-backfill.json')
+const legacyManifestPath = path.join(providerExtensionDir, 'dedicated-backfill.json')
 const aliasOutputPath = path.join(aliasExtensionDir, 'zz-workbook-dedicated.json')
 const COVERAGE_ARTIFACT_BASENAME = 'company-scraper-check-india-hiring-400.csv'
 

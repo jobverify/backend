@@ -16,6 +16,7 @@
   },
   {
     "source": "affirm",
+    "scraperTimeoutMs": 930000,
     "catalogOverride": true,
     "adapter": "script",
     "atsPlatform": "greenhouse",

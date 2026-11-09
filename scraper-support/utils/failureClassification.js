@@ -1,5 +1,19 @@
 import { isMongoOperationalError } from '../../src/utils/mongoOperationalError.js'
 
+const CONFIGURATION_ERROR_CODES = new Set([
+  'ENOENT', 'ENOTDIR', 'EACCES', 'ERR_MODULE_NOT_FOUND', 'MODULE_NOT_FOUND',
+  'SCRAPER_RUNTIME_ASSET_INVALID',
+])
+
+const isConfigurationError = error => {
+  const seen = new Set()
+  for (let current = error; current && typeof current === 'object' && !seen.has(current) && seen.size < 8; current = current.cause) {
+    seen.add(current)
+    if (current.failureKind === 'configuration_error' || CONFIGURATION_ERROR_CODES.has(current.code)) return true
+  }
+  return false
+}
+
 const getErrorText = (error = {}) => {
   const parts = [], seen = new Set()
   for (let current = error; current && typeof current === 'object' && !seen.has(current) && seen.size < 8; current = current.cause) {
@@ -35,6 +49,12 @@ export const classifyScraperError = (error = {}) => {
     }
   }
 
+  // Structured local errors outrank words in source names (for example,
+  // Mindrift or TE Connectivity) and retry-wrapper messages.
+  if (isConfigurationError(error)) {
+    return { softFailure: false, upstreamOutage: false, failureKind: 'configuration_error' }
+  }
+
   if (error.softFailure === true) {
     return {
       softFailure: true,
@@ -59,6 +79,12 @@ export const classifyScraperError = (error = {}) => {
 
   const text = getErrorText(error)
 
+  // Public job pages sometimes return a pending/interstitial entity rather
+  // than the requested inventory. It cannot certify jobs or an empty result.
+  if (/http[\s_:-]*202\b/i.test(text)) {
+    return { softFailure: true, upstreamOutage: true, failureKind: 'upstream_response_pending' }
+  }
+
   if (BLOCKED_OR_ACCESS_DENIED_PATTERN.test(text)) {
     return {
       softFailure: true,
@@ -67,7 +93,7 @@ export const classifyScraperError = (error = {}) => {
     }
   }
 
-  if (NETWORK_OR_TIMEOUT_PATTERN.test(text)) {
+  if (NETWORK_OR_TIMEOUT_PATTERN.test(text) || /(?:read|body)[^\n]{0,40}deadline (?:exceeded|expired)/i.test(text)) {
     return {
       softFailure: true,
       upstreamOutage: true,

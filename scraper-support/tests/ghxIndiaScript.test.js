@@ -15,7 +15,10 @@ const careersHtml = `
         <div class="product-container">
           <h6>Customer Support Analyst II</h6>
           <button
-            data-bs-applyurl="https://job-boards.greenhouse.io/globalhealthcareexchangeinc/jobs/4717679005"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#greenModal"
+            data-bs-joburl="https://job-boards.greenhouse.io/globalhealthcareexchangeinc/jobs/4717679005"
             class="btn btn-outline-dark btn-lg"
           >
             Apply
@@ -28,6 +31,7 @@ const careersHtml = `
 `
 
 const greenhousePayload = {
+  meta: { total: 3 },
   jobs: [
     {
       id: 4717679005,

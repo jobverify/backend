@@ -18,7 +18,7 @@ const providerFor = source => getScraperCatalog().find(row => row.source === sou
 
 test('batch 003 retains four exact historical board bindings under current routes without duplication', () => {
   const catalog = getScraperCatalog()
-  const extension = JSON.parse(readFileSync(new URL('../scraper-support/providers/providerExtensions/zzzzzzzz-verified-discovery-adapters-003.json', import.meta.url)))
+  const extension = JSON.parse(readFileSync(new URL('../scraper-support/providers/providerExtensions/zz-161-discovery-3.json', import.meta.url)))
   for (const [source, [adapter, atsPlatform, identity]] of Object.entries(expected)) {
     const historical = extension.find(row => row.source === source)
     assert.equal(historical.adapter, adapter, source)

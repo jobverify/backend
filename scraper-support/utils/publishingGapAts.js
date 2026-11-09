@@ -233,6 +233,11 @@ export const createPublishingGapAtsScraper = (provider) => ({
     if (active.some((record) => !httpUrl(kind === 'greenhouse' ? record.absolute_url : record.applyUrl))) {
       throw new Error(`[${provider.source}] Invalid ${kind} application URL`)
     }
+    // Retain the complete producer response before mapping or country/prospect
+    // selection. These models are evidence, not a declared vacancy total.
+    const nativeCollectionEvidence = structuredClone({
+      source: provider.source, nativeRecords: records, nativePayload: payload,
+    })
     let mapped
     if (kind === 'ashby') {
       const nativeById = new Map(records.map(record => [record.id, record]))
@@ -298,6 +303,9 @@ export const createPublishingGapAtsScraper = (provider) => ({
       job.sourceScopeComplete = false
       job.lifecycleCleanupAllowed = false
     }
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', {
+      value: nativeCollectionEvidence, configurable: true,
+    })
     return attachInventoryEvidence(jobs, {
       status: listingComplete ? records.length === 0 ? 'verified-empty' : 'complete-inventory' : 'discovery-only',
       surface: url,

@@ -453,6 +453,7 @@ export const createPhenomScraper = ({
   nativeLocalitySuffixFormatting = false,
   nativeBoundUSStateCodeFormatting = false,
   nativeReviewedIndiaCityAliases = false,
+  nativeReviewedIndiaCityGroups = [],
   nativeCityDashCountryFormatting = false,
   nativeDeferredCountryScope = false,
   nativeCountryBeforePostalCode = false,
@@ -487,6 +488,60 @@ export const createPhenomScraper = ({
   })
   const reviewedTitlePolicyKey = nativeDetailReceiptKey('phenom-reviewed-title-policy-v1',
     nativeBoundModelTitlePreference === true, reviewedTitleBindings)
+  // Additional city names are source-owned, reviewed literal equivalences.
+  // They never provide a country/state or relax the redundant-office checks.
+  if (typeof nativeReviewedIndiaCityAliases !== 'boolean') {
+    throw new Error('Phenom reviewed India city alias opt-in must be a boolean')
+  }
+  if (!Array.isArray(nativeReviewedIndiaCityGroups) || nativeReviewedIndiaCityGroups.length > 8) {
+    throw new Error('Phenom reviewed India city groups require a bounded array')
+  }
+  const cityGroupTokens = (values, minimum, maximum) => {
+    if (!Array.isArray(values) || values.length < minimum || values.length > maximum
+      || new Set(values).size !== values.length || values.some(value => typeof value !== 'string'
+        || value.length > 80 || value !== value.normalize('NFC').toLowerCase()
+        || !/^[\p{L}\p{M}]+(?:[ -][\p{L}\p{M}]+)*$/u.test(value))) {
+      throw new Error('Phenom reviewed India city group has invalid literal names or states')
+    }
+    return [...values]
+  }
+  const reviewedIndiaCityGroups = nativeReviewedIndiaCityGroups.map(value => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)
+      || Object.keys(value).some(key => !['id', 'source', 'country', 'states', 'names', 'evidence'].includes(key))
+      || typeof value.id !== 'string' || !/^[a-z0-9-]{1,80}$/.test(value.id)
+      || value.source !== source || value.country !== 'IN') {
+      throw new Error('Phenom reviewed India city group has invalid source or country lineage')
+    }
+    const states = cityGroupTokens(value.states, 1, 4), names = cityGroupTokens(value.names, 2, 4)
+    if (names.some(name => knownCountries.has(name) || states.includes(name))
+      || !Array.isArray(value.evidence) || !value.evidence.length || value.evidence.length > 4) {
+      throw new Error('Phenom reviewed India city group has invalid names or provenance')
+    }
+    const evidence = value.evidence.map(entry => {
+      if (!entry || typeof entry !== 'object' || Array.isArray(entry)
+        || Object.keys(entry).some(key => !['url', 'snapshot', 'snapshotSha256', 'observedAt'].includes(key))
+        || typeof entry.url !== 'string' || entry.url.length > 2048
+        || typeof entry.snapshot !== 'string' || entry.snapshot.length > 512
+        || !/^(?:scraper|scraper-support|test)\/[a-zA-Z0-9_./-]+\.(?:json\.gz|html|pdf)$/.test(entry.snapshot)
+        || entry.snapshot.split('/').some(part => part === '.' || part === '..')
+        || typeof entry.snapshotSha256 !== 'string' || !/^[a-f\d]{64}$/.test(entry.snapshotSha256)
+        || typeof entry.observedAt !== 'string' || entry.observedAt.length > 40 || !Number.isFinite(Date.parse(entry.observedAt))) {
+        throw new Error('Phenom reviewed India city group has invalid provenance')
+      }
+      let url
+      try { url = new URL(entry.url) } catch { throw new Error('Phenom reviewed India city group has invalid provenance URL') }
+      if (url.protocol !== 'https:' || url.username || url.password || url.hash || url.port) {
+        throw new Error('Phenom reviewed India city group has invalid provenance URL')
+      }
+      return { url: entry.url, snapshot: entry.snapshot, snapshotSha256: entry.snapshotSha256, observedAt: entry.observedAt }
+    })
+    return { id: value.id, source, country: 'IN', states, names, evidence }
+  })
+  if (new Set(reviewedIndiaCityGroups.map(group => group.id)).size !== reviewedIndiaCityGroups.length) {
+    throw new Error('Phenom reviewed India city groups have duplicate identities')
+  }
+  const reviewedIndiaCityPolicyKey = nativeDetailReceiptKey('phenom-reviewed-india-city-policy-v1',
+    nativeReviewedIndiaCityAliases, REVIEWED_INDIA_CITY_NAMES, reviewedIndiaCityGroups)
   const config = loadConfig(scraperDir)
   // An opt-in names only observed locale/region pairs. Intl supplies the name;
   // source configuration cannot invent a country alias or replace another one.
@@ -754,13 +809,17 @@ export const createPhenomScraper = ({
       && fullPrefix.length === 2 && fullPrefix[0] === 'bengaluru' && fullPrefix[1] === 'karnataka'
       && shortPrefix.length === 2 && shortPrefix[0] === 'bangalore' && shortPrefix[1] === fullPrefix[1]
       && normalizeWhitespace(value.cityState) && normalizeWhitespace(value.cityCountry)
-    const reviewedIndiaCityAlias = nativeReviewedIndiaCityAliases && countryCode(country) === 'IN'
+    const matchingReviewedCityGroup = group => group.states.includes(fullPrefix[1])
+      && group.names.includes(fullPrefix[0]) && group.names.includes(shortPrefix[0])
+    const additionalReviewedCityGroup = reviewedIndiaCityGroups.find(matchingReviewedCityGroup)
+    const reviewedIndiaCityAlias = nativeReviewedIndiaCityAliases === true && countryCode(country) === 'IN'
       && fullCountry === 'IN' && shortCountry === 'IN' && city && state
       && fullPrefix.length === 2 && shortPrefix.length === 2 && shortPrefix[1] === fullPrefix[1]
       && state.normalize('NFC').toLowerCase() === fullPrefix[1]
       && normalizeWhitespace(value.cityState) && normalizeWhitespace(value.cityCountry)
-      && REVIEWED_INDIA_CITY_NAMES.some(group => group.states.includes(fullPrefix[1])
-        && group.names.includes(fullPrefix[0]) && group.names.includes(shortPrefix[0]))
+      && (REVIEWED_INDIA_CITY_NAMES.some(matchingReviewedCityGroup)
+        || additionalReviewedCityGroup && ['country', 'city', 'state', 'location', 'cityState', 'cityCountry', 'cityStateCountry', 'stateCountry']
+          .every(field => value[field] == null || value[field].length <= 512))
     // A longer native label may include a locality before the already bound
     // city/state/country, or before state/country when the native city is absent.
     // Preserve that prefix as text; it never fills an absent canonical city.
@@ -793,7 +852,9 @@ export const createPhenomScraper = ({
         && matches[0].standardisedStateCode.trim().toLowerCase() === shortPrefix[1]
     }
     const consistent=prefixAgrees(shortPrefix,fullPrefix) || Boolean(nativeBangaloreAlias || reviewedIndiaCityAlias || localitySuffix || boundUSStateCode)
-    return {consistent,target:consistent && fullCountry===countryCode(targetCountry)}
+    return {consistent,target:consistent && fullCountry===countryCode(targetCountry),
+      ...(reviewedIndiaCityAlias && additionalReviewedCityGroup && shortPrefix[0] !== fullPrefix[0]
+        ? { nativeReviewedCityAlias: additionalReviewedCityGroup } : {})}
   }
   const detailLocationHasTarget = (value, standardisedOffices) => resolveDetailLocation(value, standardisedOffices).target
   const resolveListingScope = raw => {
@@ -1235,7 +1296,7 @@ export const createPhenomScraper = ({
           const listing = selected[index]
           const deferredOffices = nativeDeferredOffices.get(listing)
           const receiptKey = nativeDetailReceiptKey('phenom', source, baseUrl, listing,
-            nativeListingSequences.get(listing), nativeListingCountries.get(listing), reviewedTitlePolicyKey,
+            nativeListingSequences.get(listing), nativeListingCountries.get(listing), reviewedTitlePolicyKey, reviewedIndiaCityPolicyKey,
             ...(deferredOffices ? [deferredOffices] : []))
           try {
             const cached = readNativeDetailReceipt(recovery, receiptKey)
@@ -1438,6 +1499,17 @@ export const createPhenomScraper = ({
                 ...enriched.sourceNativeCountryEvidence,
                 nativeOfficePostalCodeEvidence: {field:'zipCode',offices:usedZipOffices.map(office => structuredClone(office))},
               }
+            }
+            if (nativeReviewedIndiaCityAliases && reviewedIndiaCityGroups.length) {
+              const offices = detailLocations.map(office => ({ office, group: resolveDetailLocation(office, standardisedOffices).nativeReviewedCityAlias }))
+                .filter(entry => entry.group)
+              if (offices.length) enriched.sourceNativeCountryEvidence = { ...enriched.sourceNativeCountryEvidence,
+                nativeOfficeCityAliasEvidence: { format: 'source-reviewed-india-city-name',
+                  offices: offices.slice(0, 16).map(({ office, group }) => ({ group: structuredClone(group),
+                    nativeOffice: Object.fromEntries(['country', 'city', 'state', 'location', 'cityState', 'cityCountry', 'cityStateCountry', 'stateCountry']
+                      .filter(field => office[field] !== undefined).map(field => [field, office[field]])) })),
+                  ...(offices.length > 16 ? { additionalOfficeCount: offices.length - 16 } : {}),
+                } }
             }
             if (nativeModelPreferred) enriched.sourceNativeDetailEvidence = {
               reason: 'full-native-model-exact-role-sequence-title-and-canonical-identity',

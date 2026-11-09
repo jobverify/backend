@@ -1,8 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { isDeepStrictEqual } from 'node:util'
 import { document } from '../../scraper-support/shared/rmkNativePairHtml.js'
 import { composeAbortSignals } from '../../scraper-support/utils/fetch.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import { extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
 import { hasSourceDescription } from '../../src/utils/jobSourceContent.js'
 
@@ -149,7 +151,7 @@ const validateRecord = wrapper => {
   publication(data.posted_date)
   return { data, locations: located }
 }
-const pageUrl = page => `${JOBS_URL}?page=${page}&limit=${PAGE_SIZE}&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com`
+const pageUrl = page => `${JOBS_URL}?page=${page}&limit=${PAGE_SIZE}&sortBy=posted_date&descending=true&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com`
 
 export const createRivianScraper = () => ({
   async run({ fetchJson, fetchPage, fetchImpl = fetch, signal, timeoutMs = 120000, maxPages = 100, now = () => new Date().toISOString() } = {}) {
@@ -177,23 +179,40 @@ export const createRivianScraper = () => ({
           combined.throwIfAborted()
           validatePage(page, url)
         }
-        const records = [], ids = new Set()
-        let total, pagesFetched = 0
+        const records = [], byId = new Map()
+        let total, pagesFetched = 0, inventoryIssue = null
         do {
           combined.throwIfAborted()
           if (pagesFetched >= maxPages) fail('page limit leaves incomplete inventory')
           const payload = await transport(pageUrl(pagesFetched + 1), { signal: combined })
           combined.throwIfAborted()
           validateEnvelope(payload)
-          if (total != null && total !== payload.totalCount) fail('native total changed during enumeration')
-          total = payload.totalCount
-          if (payload.jobs.length !== Math.min(PAGE_SIZE, total - records.length)) fail('truncated or oversized native page')
-          for (const wrapper of payload.jobs) {
-            const record = validateRecord(wrapper)
-            if (ids.has(record.data.req_id)) fail('duplicate native job identity')
-            ids.add(record.data.req_id); records.push(record)
-          }
           pagesFetched++
+          const totalChanged = total != null && total !== payload.totalCount
+          if (totalChanged) {
+            inventoryIssue = 'native total changed during enumeration; observed records retained; cleanup forbidden'
+          }
+          total = payload.totalCount
+          if (payload.jobs.length > PAGE_SIZE || !totalChanged
+            && payload.jobs.length !== Math.min(PAGE_SIZE, total - records.length)) fail('truncated or oversized native page')
+          const pageRecords = payload.jobs.map(validateRecord), pageIds = new Set()
+          let overlap = false
+          for (const record of pageRecords) {
+            const id = record.data.req_id
+            if (pageIds.has(id)) fail('duplicate native job identity within one page')
+            pageIds.add(id)
+            if (byId.has(id)) {
+              if (!isDeepStrictEqual(byId.get(id).data, record.data)) fail('conflicting duplicate native job identity')
+              overlap = true
+            }
+          }
+          if (overlap) {
+            inventoryIssue = 'native pagination overlap; observed records retained; cleanup forbidden'
+          }
+          for (const record of pageRecords) if (!byId.has(record.data.req_id)) {
+            byId.set(record.data.req_id, record); records.push(record)
+          }
+          if (inventoryIssue) break
         } while (records.length < total)
         const checkedAt = now()
         if (typeof checkedAt !== 'string' || !Number.isFinite(Date.parse(checkedAt))) fail('invalid check time')
@@ -210,12 +229,16 @@ export const createRivianScraper = () => ({
             department: Array.isArray(data.categories) ? data.categories.map(item => item.name).join(' / ') || null : null, employmentType: data.employment_type || null,
             jobDescription: description, sourceDescription: description, postingDate: publication(data.posted_date), closingDate: null, scrapedAt: checkedAt }]
         })
-        const complete = jobs.every(hasSourceDescription)
-        if (!complete) for (const job of jobs) job.sourceListingComplete = false
+        const complete = !inventoryIssue && jobs.every(hasSourceDescription)
+        if (!complete) for (const job of jobs) Object.assign(job, {
+          sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+        })
+        attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows',
+          observedRecordCount: records.length, observedVacancyCount: records.length, sourceScopeComplete: complete })
         return attachInventoryEvidence(jobs, { status: complete ? total ? 'complete-inventory' : 'verified-empty' : 'discovery-only',
-          surface: JOBS_URL, firstParty: true, listingComplete: complete, pagesFetched, reportedTotal: total,
-          indiaFacetCount: jobs.length, verifiedAt: checkedAt,
-          reason: complete ? 'all-public-rivian-automotive-pages-native-totals-and-primary-secondary-countries-reconciled' : 'selected-role-description-unavailable' })
+          surface: JOBS_URL, firstParty: true, listingComplete: complete, pagesFetched, reportedTotal: inventoryIssue ? null : total,
+          indiaFacetCount: inventoryIssue ? null : jobs.length, verifiedAt: checkedAt,
+          reason: inventoryIssue || (complete ? 'all-public-rivian-automotive-pages-native-totals-and-primary-secondary-countries-reconciled' : 'selected-role-description-unavailable') })
       }
       return await Promise.race([collect(), aborted])
     } finally { clearTimeout(timer); combined.removeEventListener('abort', onAbort) }

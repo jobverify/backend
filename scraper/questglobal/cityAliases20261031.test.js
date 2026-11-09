@@ -69,8 +69,8 @@ test('three reviewed city aliases remain disabled for another Phenom adapter', a
   for (const [id] of cases) assert.equal((await replay(id, { operation: unopted.run })).sourceDetailComplete, false)
 })
 
-test('TVM abbreviation remains unresolved despite the native India/state fields', async () => {
-  const job = await replay('P-123546')
+test('TVM abbreviation remains unresolved without a source-owned reviewed city group', async () => {
+  const job = await replay('P-123546', { operation: unopted.run })
   assert.equal(job.sourceDetailComplete, false)
   assert.equal(job.sourceDetailFailureKind, 'identity-mismatch')
 })
