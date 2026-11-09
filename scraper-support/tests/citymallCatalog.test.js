@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+
+import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
+import {
+  buildScrapers,
+  getScraperCatalog,
+} from '../providers/index.js'
+
+test('getScraperCatalog includes Citymall as a verified Freshteam source', () => {
+  const provider = getScraperCatalog().find((item) => item.source === 'citymall')
+
+  assert.ok(provider)
+  assert.equal(provider.companyName, 'Citymall')
+  assert.equal(provider.adapter, 'script')
+  assert.equal(provider.atsPlatform, 'freshteam')
+  assert.equal(provider.companyCareerPage, 'https://citymall.freshteam.com/jobs')
+  assert.equal(provider.countryFilter, 'India')
+  assert.equal(provider.paginationStrategy, 'single-public-board')
+  assert.equal(provider.extractionStrategy, 'public-freshteam-board+detail-page-apply-surface')
+  assert.equal(provider.parser, 'custom-script')
+  assert.equal(provider.normalizationProfile, 'engineering-default')
+  assert.equal(provider.companyDomain, 'citymall.freshteam.com')
+  assert.match(provider.modulePath, /citymall[\\/]script\.js$/i)
+})
+
+test('buildScrapers and company coverage resolve Citymall rows', () => {
+  const scraper = buildScrapers().find((item) => item.name === 'citymall')
+
+  assert.ok(scraper)
+  assert.equal(typeof scraper.run, 'function')
+  assert.match(scraper.dryRunFile, /citymall[\\/]jobs\.json$/i)
+  assert.equal(scraper.provider.source, 'citymall')
+
+  const report = generateCompanyCoverageReport({
+    csvText: 'Citymall,\n',
+    catalog: getScraperCatalog(),
+  })
+
+  assert.equal(report.matchedCount, 1)
+  assert.equal(report.unmatchedCount, 0)
+  assert.deepEqual(
+    report.matched.map((item) => [item.companyName, item.source, item.provider?.companyName ?? null]),
+    [['Citymall', 'citymall', 'Citymall']],
+  )
+})

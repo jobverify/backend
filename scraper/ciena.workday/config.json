@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://ciena.wd5.myworkdayjobs.com/wday/cxs/ciena/Careers/jobs",
+  "detailUrlBase": "https://ciena.wd5.myworkdayjobs.com/Careers",
+  "countryFacetParameter": "Location_Country",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "searchText": "",
+  "workdayMaxPages": 100,
+  "detailEnrichmentBudgetMs": 90000,
+  "detailFetchConcurrency": 3
+}

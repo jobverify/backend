@@ -1,0 +1,9 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://ncr.wd1.myworkdayjobs.com/wday/cxs/ncr/ext_apac/jobs",
+  "detailUrlBase": "https://ncr.wd1.myworkdayjobs.com/ext_apac",
+  "locationPattern": "india|ind|bangalore|bengaluru|chennai|hyderabad|mumbai|pune|gurgaon|gurugram",
+  "maxPages": 5,
+  "locationCountry": null,
+  "searchText": "India"
+}

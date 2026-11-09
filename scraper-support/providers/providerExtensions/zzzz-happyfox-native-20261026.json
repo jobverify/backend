@@ -1,0 +1,26 @@
+[
+  {
+    "source": "happyfox",
+    "companyName": "HappyFox",
+    "officialBrandName": "HappyFox",
+    "adapter": "script",
+    "modulePath": "../happyfox/script.js",
+    "dryRunFile": "happyfox/jobs.json",
+    "companyCareerPage": "https://www.happyfox.com/jobs/",
+    "companyDomain": "happyfox.com",
+    "officialJobsHubUrl": "https://www.happyfox.com/jobs/",
+    "nativeJobsHost": "https://hiring.happyfox.co",
+    "trakstarJobsHost": null,
+    "legacyTrakstarJobsHost": "https://happyfox.hire.trakstar.com",
+    "atsPlatform": "first-party-astro-careers",
+    "countryFilter": "India",
+    "paginationStrategy": "regional-job-pages+verified-local-filters+closing-reconciliation",
+    "extractionStrategy": "explicit-corporate-country-scope+native-role-identity+full-current-detail-content",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current corporate India/USA entry routes and Astro city cards replace obsolete markup and the retired Trakstar runtime assumption. All native hiring.happyfox.co details, exact employer/title/city/department, original posting URLs and role-bound application forms are checked before closing regional/card reconciliation and output caps. Native publication dates are unavailable. Additional recruiting scopes, missing descriptions and changing inventories retain partial evidence. No country is filled solely from the requested filter or a familiar city name.",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,112 @@
+;
+      // A Vite manifest key: the entry's HTML filename relative to the build root.
+      // Single-entry apps leave entryHtml unset.
+      const ENTRY_KEY = "index.html";
+      fetch("https://cdn.ashbyprd.com/frontend_non_user/14c61a6af42192b9a5a9105f0cb01a41b7ac8c9b/.vite/manifest.json").then(function (res) { return res.json() }).then(function (manifest) {
+        const entryData = manifest[ENTRY_KEY];
+        if (entryData == null) {
+          throw new Error("Vite manifest is missing entry: " + ENTRY_KEY);
+        }
+    
+        // Walk the entry's static imports transitively. Both the CSS and the JS a
+        // page needs can sit on shared chunks rather than on the entry record, and
+        // the manifest lists only each chunk's direct imports -- so reading the
+        // entry alone silently drops stylesheets and preloads. Depth-first
+        // post-order puts a dependency's CSS ahead of its importer's, which is the
+        // cascade order Vite uses in the HTML it generates for the same entry.
+        const chunks = [];
+        const visited = {};
+        function collectChunks(key) {
+          if (visited[key] === true) {
+            return;
+          }
+          visited[key] = true;
+          const chunk = manifest[key];
+          if (chunk == null) {
+            return;
+          }
+          (chunk.imports ?? []).forEach(collectChunks);
+          chunks.push(chunk);
+        }
+        collectChunks(ENTRY_KEY);
+    
+        // css[] holds output paths, not digests, but every manifest record carries
+        // an integrity for its own file -- so a stylesheet Vite emitted as its own
+        // record can be matched by path. The entry's CSS has no record and loads
+        // unhashed.
+        const integrityByFile = {};
+        Object.keys(manifest).forEach(function (key) {
+          const record = manifest[key];
+          if (record != null && record.file != null && record.integrity != null) {
+            integrityByFile[record.file] = record.integrity;
+          }
+        });
+    
+        const sheets = [];
+        const seenSheets = {};
+        chunks.forEach(function (chunk) {
+          (chunk.css ?? []).forEach(function (sheet) {
+            if (seenSheets[sheet] === true) {
+              return;
+            }
+            seenSheets[sheet] = true;
+            sheets.push(sheet);
+          });
+        });
+    
+        let bundleLoaded = false;
+        function loadBundle() {
+          if (bundleLoaded === true) {
+            return;
+          }
+    
+          const el = document.createElement("script");
+          el.setAttribute("type", "module");
+          el.setAttribute("crossorigin", "");
+          el.setAttribute("integrity", entryData.integrity);
+          el.setAttribute("src", "https://cdn.ashbyprd.com/frontend_non_user/14c61a6af42192b9a5a9105f0cb01a41b7ac8c9b/" + entryData.file);
+          document.head.appendChild(el);
+          bundleLoaded = true;
+        }
+    
+        chunks.forEach(function (chunk) {
+          const preload = document.createElement("link");
+          preload.rel = "modulepreload";
+          preload.href = "https://cdn.ashbyprd.com/frontend_non_user/14c61a6af42192b9a5a9105f0cb01a41b7ac8c9b/" + chunk.file;
+          // Carry the SRI hash on the preload too: Chrome/Firefox reuse the
+          // preloaded bytes for the integrity-bearing script tag, so an integrity-less
+          // preload silently bypasses the SRI check. Without it here, SRI is never
+          // enforced on the code-split chunks (the bulk of the app), in any browser.
+          preload.setAttribute("integrity", chunk.integrity);
+          preload.setAttribute("crossorigin", "");
+          document.head.appendChild(preload);
+        });
+    
+        if (sheets.length > 0) {
+          const loadedSheets = [];
+          sheets.forEach(function (sheet) {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.type = "text/css";
+            link.href = "https://cdn.ashbyprd.com/frontend_non_user/14c61a6af42192b9a5a9105f0cb01a41b7ac8c9b/" + sheet;
+            link.media = "all";
+            const sheetIntegrity = integrityByFile[sheet];
+            if (sheetIntegrity != null) {
+              link.setAttribute("integrity", sheetIntegrity);
+              // SRI on a cross-origin stylesheet requires CORS mode; the CDN sends
+              // access-control-allow-origin: *.
+              link.setAttribute("crossorigin", "");
+            }
+            link.onload = function () {
+              loadedSheets.push(sheet);
+              if (loadedSheets.length === sheets.length) {
+                loadBundle();
+              }
+            };
+            link.onerror = loadBundle;
+            document.head.insertBefore(link, document.getElementById("vite-preload"));
+          });
+        } else {
+          loadBundle();
+        }
+      });

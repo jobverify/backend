@@ -1,0 +1,28 @@
+[
+  {
+    "source": "electrifex",
+    "companyName": "Electrifex",
+    "adapter": "script",
+    "modulePath": "../electrifex/script.js",
+    "officialHomepageUrl": "https://www.electrifex.com/",
+    "companyCareerPage": "https://talents.electrifex.com/",
+    "officialCareersHandoffUrl": "https://talents.electrifex.com/",
+    "companyDomain": "talents.electrifex.com",
+    "atsPlatform": "official-company-careers",
+    "countryFilter": "India",
+    "paginationStrategy": "paired-full-server-rendered-accordion-snapshots-with-all-reviewed-clients-and-styles",
+    "extractionStrategy": "full-native-sections-and-post-form-identity-with-unresolved-role-work-country-excluded",
+    "bindingStrategy": "current-corporate-react-careers-anchors-and-native-reciprocal-employer-link",
+    "backfillMode": "partial-native-extraction",
+    "zeroResultPolicy": "evidence-required",
+    "nativeExtractionVerified": true,
+    "nativeGlobalContentVerified": true,
+    "fullInventoryVerified": false,
+    "verifiedPublicJobCount": 3,
+    "verifiedIndiaJobCount": 0,
+    "verifiedOn": "2026-10-27",
+    "verifiedSurfaceSummary": "The current corporate React client explicitly links Careers to the public talents board. Three native registration containers (60, 59, 56) expose full Description, Requirements and Application Process sections through Bootstrap accordions/tabs and native POST registration forms. Registration IDs are not requisitions; campaign year is not publication. Work country is absent: interview/test offices in Kochi and corporate addresses do not establish role work location. All three global roles are extracted fully and retained in current evidence, while zero unconfirmed India roles are emitted. Paired full native snapshots and reviewed executable-client/style hashes guard current binding, closing stability and inventory contracts. Unknown country retains a coverage gap, never absence or cleanup authority.",
+    "dryRunFile": "electrifex/jobs.json",
+    "catalogOverride": true
+  }
+]

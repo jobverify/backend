@@ -1,0 +1,16 @@
+[
+  {
+    "source": "lyrahealth",
+    "atsPlatform": "lever-public-native",
+    "paginationStrategy": "bounded-50-record-native-pages-and-full-closing-models",
+    "extractionStrategy": "corporate-declared-account+own-full-JobPosting+visible-whole-role+native-ISO2-country+paired-models",
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": 482,
+    "verifiedIndiaJobCount": 7,
+    "verifiedSampleJobTitle": "Affiliate Psychologist - Bhubaneswar",
+    "verifiedSampleJobUrl": "https://jobs.lever.co/lyrahealth/ceeb0a25-4b30-4076-a2d2-58773663e720",
+    "verifiedSurfaceSummary": "Current corporate hiring context and an owned role bind the declared Lyra Health public Lever account. All ten 50-record pages preserve 482 original global records; seven own typed IN roles reconcile at opening and closing with full native DTOs, schemas and visible criteria across 42 original reads. Original publication precision and lists-only descriptions are retained. Four affiliate contracting-party disclosures name Lyra Clinical Associates separately from publisher Lyra Health. Unknown country or employer facts remain unknown. Complete company scope and lifecycle cleanup remain unqualified.",
+    "backfillMode": "current-native-public",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "source": "commonwealthbankofaustralia",
+    "companyName": "Commonwealth Bank of Australia",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/commonwealthbankofaustralia.workday/script.js",
+    "dryRunFile": "commonwealthbankofaustralia.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "strict-shared-native-Workday-with-source-local-final-all-pages-and-active-content-validation",
+    "companyDomain": "commbank.com.au",
+    "companyCareerPage": "https://www.commbank.com.au/about-us/careers/india.html?ei=india",
+    "officialHomepageUrl": "https://www.commbank.com.au/",
+    "jobsBoardUrl": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers?locationCountry=c4f78be1a8f14da0ab49ce1162348a5e",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T13:23:24.850Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-board-runtime-inventory-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-runtime-partial",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T13:23:24.850Z",
+      "officialURL": "https://www.commbank.com.au/about-us/careers/india.html?ei=india",
+      "matchedLinks": [
+        "https://cba.wd3.myworkdayjobs.com/CommBank_Careers?locationCountry=c4f78be1a8f14da0ab49ce1162348a5e"
+      ],
+      "bindingMethod": "actual-current-public-corporate-HTTP200-active-exact-native-India-link",
+      "proofFile": "../artifacts/full-catalog/workday-discovery-020-qualification-001/commonwealthbankofaustralia-official-india-004.json",
+      "proofSha256": "bf1c5df2746b3edfffa39ab0dde04e31efd39f078b19ba906beeebe168ffd990",
+      "bodySha256": "ffde0fecdee3c15c05af26d7904c971987a9e9ba167db577db978c6d0dfbf6c9",
+      "ordinaryCorporateHTTPStatus": 200,
+      "runtimeNativeCheckDoesNotRefreshCorporateObservation": true
+    },
+    "paginationStrategy": "every-native-India-country-facet-page-plus-stable-first-page-and-every-role-detail-and-final-all-pages-recheck",
+    "extractionStrategy": "exact-native-board-requisition-UID-country-legal-employer-full-active-content-original-dates-application-status",
+    "sourceScopeNotes": "Exact official cba/CommBank_Careers India country facet; every selected native record is validated. CBA Services Private Limited is retained as the actual per-role native legal employer. No whole-company or all-group inventory and no duplicate source alias is inferred. Native later-page total:0 sparse metadata never means an empty inventory.",
+    "verifiedSurfaceSummary": "The current official CommBank India page actively advertises the exact Workday India facet. Runtime replaces the historical sentinel with current full native details and final finite all-page reconciliation. Original publication and closing dates remain intact. Whole-company global and India totals, persistence and public visibility remain separate; no deployment or production writes."
+  }
+]

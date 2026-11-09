@@ -1,0 +1,6207 @@
+{
+  "source": "tenable",
+  "companyName": "Tenable, Inc.",
+  "officialUrl": "https://www.tenable.com/careers",
+  "searchUrl": "https://www.tenable.com/careers/search",
+  "apiUrl": "https://boards-api.greenhouse.io/v1/boards/tenableinc/jobs?content=true",
+  "firstPartyApiUrl": "https://www.tenable.com/evaluations/api/v1/jobs",
+  "officeUrl": "https://boards-api.greenhouse.io/v1/boards/tenableinc/offices",
+  "boardToken": "tenableinc",
+  "rendererUrl": "https://www.tenable.com/evaluations/api/v1/tenable/job-board/index.js",
+  "rendererSha256": "6c9f048ec6c597a1a5d38ae5a13f3fcd60a9ba22916acde0737664df9321311f",
+  "reviewedScopes": {
+    "https://www.tenable.com/careers": "4d4776b216660b576ab4fbcd8ea40a50972cc3cea275fd969fd0a3519fdcd3ea",
+    "https://www.tenable.com/careers/search": "f811674673ad9fffac2b50553daeedee4a2dd0f5bb6b76c82b568798f9c2ae20"
+  },
+  "recordSchema": {
+    "$": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "absolute_url",
+        "data_compliance",
+        "internal_job_id",
+        "location",
+        "metadata",
+        "id",
+        "updated_at",
+        "requisition_id",
+        "title",
+        "company_name",
+        "first_published",
+        "language",
+        "application_deadline",
+        "content",
+        "departments",
+        "offices",
+        "ai_disclaimer",
+        "include_ai_disclaimer",
+        "ai_opt_out_request_url",
+        "education"
+      ],
+      "requiredKeys": [
+        "absolute_url",
+        "data_compliance",
+        "internal_job_id",
+        "location",
+        "metadata",
+        "id",
+        "updated_at",
+        "requisition_id",
+        "title",
+        "company_name",
+        "first_published",
+        "language",
+        "application_deadline",
+        "content",
+        "departments",
+        "offices",
+        "ai_disclaimer",
+        "include_ai_disclaimer",
+        "ai_opt_out_request_url"
+      ]
+    },
+    "$.absolute_url": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "type",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "demographic_data_consent_applies"
+      ],
+      "requiredKeys": [
+        "type",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "demographic_data_consent_applies"
+      ]
+    },
+    "$.data_compliance[].type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].requires_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].requires_processing_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].requires_retention_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].retention_period": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].demographic_data_consent_applies": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.internal_job_id": {
+      "types": [
+        "number",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.location": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "name"
+      ],
+      "requiredKeys": [
+        "name"
+      ]
+    },
+    "$.location.name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ]
+    },
+    "$.metadata[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value": {
+      "types": [
+        "string",
+        "array",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value_type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value[]": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.updated_at": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.requisition_id": {
+      "types": [
+        "string",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.title": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.company_name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.first_published": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.language": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.application_deadline": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.content": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "child_ids",
+        "parent_id"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "child_ids",
+        "parent_id"
+      ]
+    },
+    "$.departments[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].parent_id": {
+      "types": [
+        "number",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "location",
+        "child_ids",
+        "parent_id"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "location",
+        "child_ids",
+        "parent_id"
+      ]
+    },
+    "$.offices[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].location": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].parent_id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.ai_disclaimer": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.include_ai_disclaimer": {
+      "types": [
+        "boolean",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.ai_opt_out_request_url": {
+      "types": [
+        "string",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].child_ids[]": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.education": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    }
+  },
+  "firstPartySchema": {
+    "$": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "url",
+        "title",
+        "content",
+        "id",
+        "_raw",
+        "category",
+        "location",
+        "country"
+      ],
+      "requiredKeys": [
+        "url",
+        "title",
+        "content",
+        "id",
+        "_raw",
+        "category",
+        "location",
+        "country"
+      ]
+    },
+    "$.url": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.title": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.content": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "absolute_url",
+        "data_compliance",
+        "internal_job_id",
+        "location",
+        "metadata",
+        "id",
+        "updated_at",
+        "requisition_id",
+        "title",
+        "company_name",
+        "first_published",
+        "language",
+        "application_deadline",
+        "content",
+        "departments",
+        "offices",
+        "ai_disclaimer",
+        "include_ai_disclaimer",
+        "ai_opt_out_request_url",
+        "education"
+      ],
+      "requiredKeys": [
+        "absolute_url",
+        "data_compliance",
+        "internal_job_id",
+        "location",
+        "metadata",
+        "id",
+        "updated_at",
+        "requisition_id",
+        "title",
+        "company_name",
+        "first_published",
+        "language",
+        "application_deadline",
+        "content",
+        "departments",
+        "offices",
+        "ai_disclaimer",
+        "include_ai_disclaimer",
+        "ai_opt_out_request_url"
+      ]
+    },
+    "$._raw.absolute_url": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "type",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "demographic_data_consent_applies"
+      ],
+      "requiredKeys": [
+        "type",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "demographic_data_consent_applies"
+      ]
+    },
+    "$._raw.data_compliance[].type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance[].requires_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance[].requires_processing_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance[].requires_retention_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance[].retention_period": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.data_compliance[].demographic_data_consent_applies": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.internal_job_id": {
+      "types": [
+        "number",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.location": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "name"
+      ],
+      "requiredKeys": [
+        "name"
+      ]
+    },
+    "$._raw.location.name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.metadata": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.metadata[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ]
+    },
+    "$._raw.metadata[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.metadata[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.metadata[].value": {
+      "types": [
+        "string",
+        "array",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.metadata[].value_type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.metadata[].value[]": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.updated_at": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.requisition_id": {
+      "types": [
+        "string",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.title": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.company_name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.first_published": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.language": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.application_deadline": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.content": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.departments": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.departments[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "child_ids",
+        "parent_id"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "child_ids",
+        "parent_id"
+      ]
+    },
+    "$._raw.departments[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.departments[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.departments[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.departments[].parent_id": {
+      "types": [
+        "number",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.offices": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.offices[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "location",
+        "child_ids",
+        "parent_id"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "location",
+        "child_ids",
+        "parent_id"
+      ]
+    },
+    "$._raw.offices[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.offices[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.offices[].location": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.offices[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.offices[].parent_id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.ai_disclaimer": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.include_ai_disclaimer": {
+      "types": [
+        "boolean",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.ai_opt_out_request_url": {
+      "types": [
+        "string",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.category": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "value",
+        "type"
+      ],
+      "requiredKeys": [
+        "value",
+        "type"
+      ]
+    },
+    "$.category.value": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.category.type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.location": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "value",
+        "type"
+      ],
+      "requiredKeys": [
+        "value",
+        "type"
+      ]
+    },
+    "$.location.value": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.location.value[]": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.location.type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.country": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "value",
+        "type"
+      ],
+      "requiredKeys": [
+        "value",
+        "type"
+      ]
+    },
+    "$.country.value": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.country.value[]": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.country.type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.departments[].child_ids[]": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$._raw.education": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    }
+  },
+  "officeSchema": {
+    "$": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "offices"
+      ],
+      "requiredKeys": [
+        "offices"
+      ]
+    },
+    "$.offices": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "location",
+        "parent_id",
+        "child_ids",
+        "departments"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "location",
+        "parent_id",
+        "child_ids",
+        "departments"
+      ]
+    },
+    "$.offices[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].location": {
+      "types": [
+        "null",
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].parent_id": {
+      "types": [
+        "number",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "parent_id",
+        "child_ids",
+        "jobs"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "parent_id",
+        "child_ids",
+        "jobs"
+      ]
+    },
+    "$.offices[].departments[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].parent_id": {
+      "types": [
+        "number",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].child_ids[]": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].child_ids[]": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "absolute_url",
+        "data_compliance",
+        "internal_job_id",
+        "location",
+        "metadata",
+        "id",
+        "updated_at",
+        "requisition_id",
+        "title",
+        "company_name",
+        "first_published",
+        "language",
+        "application_deadline"
+      ],
+      "requiredKeys": [
+        "absolute_url",
+        "data_compliance",
+        "internal_job_id",
+        "location",
+        "metadata",
+        "id",
+        "updated_at",
+        "requisition_id",
+        "title",
+        "company_name",
+        "first_published",
+        "language",
+        "application_deadline"
+      ]
+    },
+    "$.offices[].departments[].jobs[].absolute_url": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "type",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "demographic_data_consent_applies"
+      ],
+      "requiredKeys": [
+        "type",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "demographic_data_consent_applies"
+      ]
+    },
+    "$.offices[].departments[].jobs[].data_compliance[].type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance[].requires_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance[].requires_processing_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance[].requires_retention_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance[].retention_period": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].data_compliance[].demographic_data_consent_applies": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].internal_job_id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].location": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "name"
+      ],
+      "requiredKeys": [
+        "name"
+      ]
+    },
+    "$.offices[].departments[].jobs[].location.name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].metadata": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].metadata[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ]
+    },
+    "$.offices[].departments[].jobs[].metadata[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].metadata[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].metadata[].value": {
+      "types": [
+        "string",
+        "array",
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].metadata[].value_type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].metadata[].value[]": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].updated_at": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].requisition_id": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].title": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].company_name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].first_published": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].language": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].departments[].jobs[].application_deadline": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    }
+  },
+  "metadataDefinitions": [
+    {
+      "id": 4022485008,
+      "name": "Category (For Website Only)",
+      "value_type": "single_select"
+    },
+    {
+      "id": 4119035008,
+      "name": "Job Posting Location",
+      "value_type": "multi_select"
+    },
+    {
+      "id": 4174171008,
+      "name": "Country (For Website Only)",
+      "value_type": "multi_select"
+    }
+  ],
+  "officeDefinitionSha256": "d8b9320a4f6fc339a89a4931a23056307e90843ffde90508d39b0c0bc171c5cf",
+  "officeDefinitions": [
+    {
+      "id": 0,
+      "name": "No Office",
+      "location": null,
+      "parent_id": null,
+      "child_ids": []
+    },
+    {
+      "id": 4001621008,
+      "name": "LATAM",
+      "location": null,
+      "parent_id": null,
+      "child_ids": [
+        4001622008,
+        4002129008,
+        4004334008,
+        4001787008,
+        4001788008,
+        4001789008,
+        4001790008,
+        4001791008,
+        4001792008,
+        4001793008,
+        4001794008
+      ]
+    },
+    {
+      "id": 4001622008,
+      "name": "Argentina - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001787008,
+      "name": "Chile - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001788008,
+      "name": "Colombia - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001789008,
+      "name": "Costa Rica - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001790008,
+      "name": "Mexico - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001791008,
+      "name": "Paraguay - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001792008,
+      "name": "Peru - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001793008,
+      "name": "Uruguay - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001794008,
+      "name": "Venezuela - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4001860008,
+      "name": "AMER",
+      "location": null,
+      "parent_id": null,
+      "child_ids": [
+        4001861008,
+        4001862008,
+        4001865008,
+        4001866008,
+        4001867008,
+        4001868008,
+        4001864008,
+        4001869008,
+        4001870008,
+        4001871008,
+        4001872008,
+        4001873008,
+        4001874008,
+        4001875008,
+        4001876008,
+        4001877008,
+        4001878008,
+        4001879008,
+        4001880008,
+        4001881008,
+        4001882008,
+        4001883008,
+        4001884008,
+        4074889008,
+        4001885008,
+        4001863008,
+        4001886008,
+        4001887008,
+        4001888008,
+        4001889008,
+        4001890008,
+        4001891008,
+        4001892008,
+        4001893008,
+        4001894008,
+        4001895008,
+        4001896008,
+        4001897008,
+        4001898008,
+        4001899008,
+        4001900008,
+        4001901008,
+        4001902008,
+        4001903008,
+        4001904008,
+        4004335008,
+        4001905008,
+        4001906008,
+        4001907008,
+        4001908008,
+        4001909008,
+        4001910008,
+        4001911008,
+        4001912008,
+        4001913008,
+        4001914008,
+        4001915008,
+        4001916008
+      ]
+    },
+    {
+      "id": 4001861008,
+      "name": "Canada - Remote",
+      "location": null,
+      "parent_id": 4001860008,
+      "child_ids": []
+    },
+    {
+      "id": 4001862008,
+      "name": "USA",
+      "location": null,
+      "parent_id": 4001860008,
+      "child_ids": [
+        4001865008,
+        4001866008,
+        4001867008,
+        4001868008,
+        4001864008,
+        4001869008,
+        4001870008,
+        4001871008,
+        4001872008,
+        4001873008,
+        4001874008,
+        4001875008,
+        4001876008,
+        4001877008,
+        4001878008,
+        4001879008,
+        4001880008,
+        4001881008,
+        4001882008,
+        4001883008,
+        4001884008,
+        4074889008,
+        4001885008,
+        4001863008,
+        4001886008,
+        4001887008,
+        4001888008,
+        4001889008,
+        4001890008,
+        4001891008,
+        4001892008,
+        4001893008,
+        4001894008,
+        4001895008,
+        4001896008,
+        4001897008,
+        4001898008,
+        4001899008,
+        4001900008,
+        4001901008,
+        4001902008,
+        4001903008,
+        4001904008,
+        4004335008,
+        4001905008,
+        4001906008,
+        4001907008,
+        4001908008,
+        4001909008,
+        4001910008,
+        4001911008,
+        4001912008,
+        4001913008,
+        4001914008,
+        4001915008,
+        4001916008
+      ]
+    },
+    {
+      "id": 4001863008,
+      "name": "Maryland HQ",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001864008,
+      "name": "Boston Office",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001865008,
+      "name": "Alabama - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001866008,
+      "name": "Alaska - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001867008,
+      "name": "Arizona - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001868008,
+      "name": "Arkansas - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001869008,
+      "name": "California - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001870008,
+      "name": "California - Remote - Bay Area",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001871008,
+      "name": "Colorado - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001872008,
+      "name": "Connecticut - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001873008,
+      "name": "DC - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001874008,
+      "name": "Delaware - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001875008,
+      "name": "Florida - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001876008,
+      "name": "Georgia - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001877008,
+      "name": "Hawaii - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001878008,
+      "name": "Idaho - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001879008,
+      "name": "Illinois - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001880008,
+      "name": "Indiana - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001881008,
+      "name": "Iowa - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001882008,
+      "name": "Kansas - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001883008,
+      "name": "Kentucky - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001884008,
+      "name": "Louisiana - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001885008,
+      "name": "Maine - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001886008,
+      "name": "Maryland - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001887008,
+      "name": "Massachusetts - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001888008,
+      "name": "Michigan - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001889008,
+      "name": "Minnesota - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001890008,
+      "name": "Mississippi - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001891008,
+      "name": "Missouri - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001892008,
+      "name": "Montana - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001893008,
+      "name": "Nebraska - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001894008,
+      "name": "Nevada - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001895008,
+      "name": "New Hampshire - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001896008,
+      "name": "New Jersey - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001897008,
+      "name": "New Mexico - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001898008,
+      "name": "New York - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001899008,
+      "name": "North Carolina - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001900008,
+      "name": "North Dakota - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001901008,
+      "name": "Ohio - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001902008,
+      "name": "Oklahoma - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001903008,
+      "name": "Oregon - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001904008,
+      "name": "Pennsylvania - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001905008,
+      "name": "Rhode Island - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001906008,
+      "name": "South Carolina - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001907008,
+      "name": "South Dakota - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001908008,
+      "name": "Tennessee - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001909008,
+      "name": "Texas - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001910008,
+      "name": "Utah - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001911008,
+      "name": "Vermont - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001912008,
+      "name": "Virginia - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001913008,
+      "name": "Washington - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001914008,
+      "name": "West Virginia - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001915008,
+      "name": "Wisconsin - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001916008,
+      "name": "Wyoming - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4001917008,
+      "name": "EMEA",
+      "location": null,
+      "parent_id": null,
+      "child_ids": [
+        4001918008,
+        4001919008,
+        4001920008,
+        4001921008,
+        4001922008,
+        4002131008,
+        4001923008,
+        4001924008,
+        4001925008,
+        4001926008,
+        4002132008,
+        4001927008,
+        4002133008,
+        4001928008,
+        4001929008,
+        4001930008,
+        4001931008,
+        4003486008,
+        4001932008,
+        4001933008,
+        4001934008,
+        4001935008,
+        4001936008,
+        4001937008,
+        4001938008,
+        4001939008,
+        4001940008,
+        4002130008,
+        4001941008,
+        4002134008,
+        4001942008
+      ]
+    },
+    {
+      "id": 4001918008,
+      "name": "Austria - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001919008,
+      "name": "Belgium - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001920008,
+      "name": "Bulgaria - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001921008,
+      "name": "Czech Republic - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001922008,
+      "name": "Denmark - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001923008,
+      "name": "France - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001924008,
+      "name": "Germany - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001925008,
+      "name": "Greece - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001926008,
+      "name": "Hungary - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001927008,
+      "name": "Ireland - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001928008,
+      "name": "Israel - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001929008,
+      "name": "Italy - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001930008,
+      "name": "Latvia - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001931008,
+      "name": "Luxembourg - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001932008,
+      "name": "Poland - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001933008,
+      "name": "Qatar - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001934008,
+      "name": "Romania - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001935008,
+      "name": "Saudi Arabia - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001936008,
+      "name": "South Africa - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001937008,
+      "name": "Spain - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001938008,
+      "name": "Sweden - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001939008,
+      "name": "Switzerland - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001940008,
+      "name": "Turkey - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001941008,
+      "name": "United Arab Emirates - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001942008,
+      "name": "United Kingdom - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4001943008,
+      "name": "APAC",
+      "location": null,
+      "parent_id": null,
+      "child_ids": [
+        4001944008,
+        4002135008,
+        4001945008,
+        4008585008,
+        4008588008,
+        4008586008,
+        4008590008,
+        4008591008,
+        4008589008,
+        4008587008,
+        4004337008,
+        4050273008,
+        4001946008,
+        4048561008,
+        4002139008,
+        4001947008,
+        4001948008,
+        4001949008,
+        4001950008,
+        4001951008,
+        4001952008,
+        4001953008,
+        4001954008,
+        4002138008,
+        4001955008,
+        4001957008,
+        4001958008,
+        4001959008,
+        4002136008,
+        4001960008,
+        4001956008,
+        4001961008,
+        4004336008
+      ]
+    },
+    {
+      "id": 4001944008,
+      "name": "Australia - Office - Melbourne",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001945008,
+      "name": "Australia - Remote - Australian Capital Territory",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001946008,
+      "name": "China - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001947008,
+      "name": "Hong Kong - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001948008,
+      "name": "India - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001949008,
+      "name": "India - Remote - Bengaluru",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001950008,
+      "name": "India - Remote - Delhi",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001951008,
+      "name": "India - Remote - Hyderabad",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001952008,
+      "name": "India - Remote - Mumbai",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001953008,
+      "name": "India - Remote - Pune",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001954008,
+      "name": "Indonesia - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001955008,
+      "name": "Japan - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001956008,
+      "name": "South Korea - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001957008,
+      "name": "Malaysia - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001958008,
+      "name": "New Zealand - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001959008,
+      "name": "Philippines - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001960008,
+      "name": "Singapore - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4001961008,
+      "name": "Taiwan - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4002129008,
+      "name": "Brazil - Office - Sao Paolo",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4002130008,
+      "name": "United Arab Emirates - Office - Dubai",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4002131008,
+      "name": "France - Office - Paris",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4002132008,
+      "name": "Ireland - Office - Dublin",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4002133008,
+      "name": "Israel - Office - Tel-Aviv",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4002134008,
+      "name": "United Kingdom - Office - Staines-Upon-Thames",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4002135008,
+      "name": "Australia - Office - Sydney",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4002136008,
+      "name": "Singapore - Office",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4002138008,
+      "name": "Japan - Office - Tokyo",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4002139008,
+      "name": "Hong Kong - Office",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4003486008,
+      "name": "Netherlands - Remote",
+      "location": null,
+      "parent_id": 4001917008,
+      "child_ids": []
+    },
+    {
+      "id": 4004334008,
+      "name": "Brazil - Remote",
+      "location": null,
+      "parent_id": 4001621008,
+      "child_ids": []
+    },
+    {
+      "id": 4004335008,
+      "name": "Puerto Rico - Remote",
+      "location": null,
+      "parent_id": 4001862008,
+      "child_ids": []
+    },
+    {
+      "id": 4004336008,
+      "name": "Thailand - Remote",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4004337008,
+      "name": "China - Office - Beijing",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008585008,
+      "name": "Australia - Remote - New South Wales",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008586008,
+      "name": "Australia - Remote - Queensland",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008587008,
+      "name": "Australia - Remote - Western Australia",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008588008,
+      "name": "Australia - Remote - Northern Territory",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008589008,
+      "name": "Australia - Remote - Victoria",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008590008,
+      "name": "Australia - Remote - South Australia",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4008591008,
+      "name": "Australia - Remote - Tasmania",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4048561008,
+      "name": "China - Remote - Shanghai",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4050273008,
+      "name": "China - Office - Shanghai",
+      "location": null,
+      "parent_id": 4001943008,
+      "child_ids": []
+    },
+    {
+      "id": 4074889008,
+      "name": "MA - Boston - Office",
+      "location": "MA - Boston - Office",
+      "parent_id": 4001862008,
+      "child_ids": []
+    }
+  ],
+  "closedAdvertisedIds": [
+    "4019523008",
+    "4003451008"
+  ],
+  "countryAlias": {
+    "nativeLabel": "Korea, Republic of",
+    "countryCode": "KR",
+    "actualRendererVariable": "t$"
+  },
+  "declaredPrograms": [
+    {
+      "url": "https://play.vidyard.com/fGCE2CoVbisV3TZNtFKkJw.js?v=3.1.1&type=lightbox",
+      "programSha256": "1e7107f90f30dbc718950e80b8a9a85e997c667ac34470f84c868a02446ed42f",
+      "contentType": "text/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.tenable.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+      "programSha256": "2595496fe48df6fcf9b1bc57c29a744c121eb4dd11566466bc13d2e52e6bbcc8",
+      "contentType": "application/javascript"
+    },
+    {
+      "url": "https://www.tenable.com/sites/default/files/js/js_Dp7nnE51zwmafj8Wr4MXv-FQ1_c32mGvvnEyZHoSKKY.js?scope=footer&delta=0&language=en&theme=tenable&include=eJwrSc1LTMpJ1U9OLEpNLSrWKYHy03PykxJzdLMQIsXlmQWpRQDDExJx",
+      "programSha256": "1843bc662813c260ae6628e56f150322fdc262fe47afa8f4f3dc91518863e22c",
+      "contentType": "text/javascript"
+    },
+    {
+      "url": "https://info.tenable.com/js/forms2/js/forms2.min.js",
+      "programSha256": "df3ac4f7dae275e266c46f2e4e0b582f9f4e4b00e44a0783f4befb0c896e663e",
+      "contentType": "text/javascript"
+    },
+    {
+      "url": "https://munchkin.marketo.net/munchkin.js",
+      "programSha256": "bbdb0a56c8eb30d3b915526ca2bf873b4f73b05bb06be0ba790c9006abeb44fc",
+      "contentType": "application/x-javascript"
+    },
+    {
+      "url": "https://www.tenable.com/lp/cookie.js",
+      "programSha256": "b074036d027e968e0df2dd0a6fbc5fc2f80cebe555f67d4f8b99a031685251a0",
+      "contentType": "text/javascript"
+    },
+    {
+      "url": "https://www.tenable.com/evaluations/api/v1/tenable-evals.js",
+      "programSha256": "8e9a9236b736118c55f6c0eeda023b9c1bd386e03498587538851fcefa8f9b7d",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.tenable.com/evaluations/api/v1/tenable/evaluations/index.js",
+      "programSha256": "4896448a0570ec7c5be84769f228601a326be3f4a2205e44aea6d03e8547c219",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.tenable.com/themes/custom/tenable/js/buy.js",
+      "programSha256": "0ca25f639957bc8a30baad7c571e98595ef540179e8246310df73543e05bb183",
+      "contentType": "text/javascript"
+    },
+    {
+      "url": "https://www.tenable.com/evaluations/api/v1/tenable/job-board/index.js",
+      "programSha256": "6c9f048ec6c597a1a5d38ae5a13f3fcd60a9ba22916acde0737664df9321311f",
+      "contentType": "application/javascript; charset=utf-8"
+    },
+    {
+      "url": "https://www.tenable.com/sites/default/files/js/js_vJVRBHyp_D5lcGgVB1ForB4mP3xsysKQwZ6O9KNS4Hs.js?scope=footer&delta=0&language=en&theme=tenable&include=eJwrSc1LTMpJ1U_PyU9KzNHNKtYpgYrk5JeUZKbq5uQnpqQWAQAqKA7x",
+      "programSha256": "ba55ab1ea1000b599063437bc9492165fbc8de309ded4b7f05d56d75ac78edbd",
+      "contentType": "text/javascript"
+    },
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "programSha256": "637381256384554e1cc3309a62fb238a51b83e7f10b2a56d8ba15dbc73ca762e",
+      "contentType": "text/javascript;charset=UTF-8"
+    }
+  ],
+  "reviewedRoleGeography": {
+    "4019356008": {
+      "nativeLocationLabels": [
+        "Maryland HQ + Boston Office + California - Remote - Bay Area + Ireland - Office - Dublin + Israel - Office - Tel-Aviv"
+      ],
+      "nativeCountryLabels": [],
+      "officeIds": [],
+      "criteriaSha256": "fce08cc168d69b8e4f43dbbf7b3d8c61d94b329792811577eefafc5a284f559b"
+    },
+    "4019516008": {
+      "nativeLocationLabels": [
+        "US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [],
+      "officeIds": [],
+      "criteriaSha256": "acc95a12ebced5fbde925e4093c20a52de06899b280c0a528f4c73e1cf5327ea"
+    },
+    "5447341008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - Massachusetts , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "1617634d2bb44123d8643012eea1651f304f4d9c8be77450474cee29344fbe37"
+    },
+    "5418662008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "MA - Boston - Office , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "83583863bed1db3bd662fc85468eb0ea62a0c05dc9399024de59fb5a4fbb0a64"
+    },
+    "5419409008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Hybrid - Massachusetts - Boston, US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "923799e2965ea251c044c76bcadbf243c84dd53d2bab2041f035aeccf1d6e177"
+    },
+    "5431452008": {
+      "nativeLocationLabels": [
+        "Thailand - Remote",
+        "Thailand"
+      ],
+      "nativeCountryLabels": [
+        "Thailand"
+      ],
+      "officeIds": [
+        4004336008
+      ],
+      "criteriaSha256": "798f4fb4286d4eb95041e70eb667a0f7cdf4a875e7c1c463ef80493d730368c4"
+    },
+    "5455231008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "47cee587984e6821d2d10cdaad883739bb8c552aefae8c6eeacb98be2d7e67db"
+    },
+    "5425678008": {
+      "nativeLocationLabels": [
+        "Canada - Remote",
+        "Canada"
+      ],
+      "nativeCountryLabels": [
+        "Canada"
+      ],
+      "officeIds": [
+        4001861008
+      ],
+      "criteriaSha256": "8e11d746825248c1f1f17ffc913f9039640753c43358b56edf364b8c6b4616de"
+    },
+    "5418664008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "MA - Boston - Office , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "9fe51c945ee40f6c6fa264a695ec290146656caf2091cf78c1daad94a226bcbb"
+    },
+    "5454302008": {
+      "nativeLocationLabels": [
+        "Japan - Remote",
+        "Japan",
+        "Japan - Office - Tokyo"
+      ],
+      "nativeCountryLabels": [
+        "Japan"
+      ],
+      "officeIds": [
+        4001955008
+      ],
+      "criteriaSha256": "f81f8a71845f063f28435833e3ef718008851f834216dd6f6d9cdccfd62e65a4"
+    },
+    "5454288008": {
+      "nativeLocationLabels": [
+        "Australia - Remote - Queensland",
+        "Australia"
+      ],
+      "nativeCountryLabels": [
+        "Australia"
+      ],
+      "officeIds": [
+        4008586008
+      ],
+      "criteriaSha256": "bad4cafd1f282946df2193fb6f6bbbd9ad26066378f1a86d48382f1101e73a9f"
+    },
+    "5431434008": {
+      "nativeLocationLabels": [
+        "Singapore - Office",
+        "Singapore",
+        "Singapore - Office - Suntec City"
+      ],
+      "nativeCountryLabels": [
+        "Singapore"
+      ],
+      "officeIds": [
+        4002136008
+      ],
+      "criteriaSha256": "fef9f2eb8487def0ec177556d59024735595943d6d3f82f5d4a742315d210883"
+    },
+    "5467527008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - DC, US - Remote - Virginia , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "54b0d8fb8a5e6ee8e1fac62f16e230783ebf79a6f9fe6a9c9b74d2f12ce921e4"
+    },
+    "5413733008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - Massachusetts , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "deb224a3573036806a9489908b55b7fc92d31c72d6877caf8f45724e55c15f88"
+    },
+    "5460006008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "7c8da2804652012a614f13c05f1eb844e5ef647be5fe3887e5adb681a956a1a4"
+    },
+    "5454389008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "96bd1f6bb7830d25f312c259eb890d86f9449bad0a20593c31c61ffaf5aac769"
+    },
+    "5443602008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Hybrid - Massachusetts - Boston, US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "409966c5c86793e656928ca8a1d25c715e7da4eb5a0e49616911d95f8ec1b239"
+    },
+    "5288750008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - California - Bay Area, MA - Boston - Office , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "45be2c23622aaefb02c7a11f7c38023127b8786a501c95094e14142854f0b033"
+    },
+    "5375172008": {
+      "nativeLocationLabels": [
+        "France - Remote",
+        "France"
+      ],
+      "nativeCountryLabels": [
+        "France"
+      ],
+      "officeIds": [
+        4001923008
+      ],
+      "criteriaSha256": "736d5c23b0d9bc2a6f6cc6f5c58965b0b29f982d01b66583ef258f096e190c82"
+    },
+    "5463333008": {
+      "nativeLocationLabels": [
+        "United Kingdom - Office",
+        "United Kingdom",
+        "United Kingdom - Remote",
+        "UK - Office - London"
+      ],
+      "nativeCountryLabels": [
+        "United Kingdom"
+      ],
+      "officeIds": [
+        4001942008
+      ],
+      "criteriaSha256": "01da3a9b01ed2edf0551abea8cd239b0a99cb72ab5eb3b36c1849b878175f550"
+    },
+    "5451029008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "7aba0dbe90d3756766d7ca633c8237fa7e86cf6baceafed45008eabaf43d12e3"
+    },
+    "5107018008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "81a7e8442ff992e9778fc0b8992326c4f1b5df3f90d9f089f2c0f60c7b3ff29c"
+    },
+    "5434299008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - Massachusetts , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "0b65f3ac8f0571496acfe08fb0089890ecc0580b3b9a22c61e2bc3d59212007d"
+    },
+    "5440621008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - Massachusetts , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "252084265c1f43e23d900cfdc19d31fc343e5974232e32f016fbbedf8fd88ee3"
+    },
+    "5452804008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Remote - Illinois, US - Hybrid - Massachusetts - Boston, US - Remote - North Carolina, US - Remote - New York, US - Remote - Texas , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "e833ae162dd182fe35eed0ae3cda7e83b86bfee7ee71f549b3a28f3377729e06"
+    },
+    "5418655008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "MA - Boston - Office , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "7dec648020913987330220fd67c1038cb3ac5fdb3ae0bd65ee2f09bf90fcaf3f"
+    },
+    "5443596008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Hybrid - Massachusetts - Boston , US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "1160867131da775fedb922a9c8aee1a946e1ba285b28274d32ac63252d40fb24"
+    },
+    "5446550008": {
+      "nativeLocationLabels": [
+        "Israel - Office",
+        "Israel",
+        "Israel - Office - Tel-Aviv",
+        "Israel - Office - Tel Aviv"
+      ],
+      "nativeCountryLabels": [
+        "Israel"
+      ],
+      "officeIds": [
+        4002133008
+      ],
+      "criteriaSha256": "5958a0b85bb90ff08e4b13af43b069a44961d19235923316551c93746df21974"
+    },
+    "5463193008": {
+      "nativeLocationLabels": [
+        "Israel - Office",
+        "Israel",
+        "Israel - Office - Tel-Aviv",
+        "Israel - Office - Tel Aviv"
+      ],
+      "nativeCountryLabels": [
+        "Israel"
+      ],
+      "officeIds": [
+        4002133008
+      ],
+      "criteriaSha256": "7a0cc5ce14f90a631d2783146221bfb1df3251e74f132e2b2a59e011798dcded"
+    },
+    "5152278008": {
+      "nativeLocationLabels": [
+        "Israel - Office",
+        "Israel",
+        "Israel - Office - Tel-Aviv",
+        "Israel - Office - Tel Aviv"
+      ],
+      "nativeCountryLabels": [
+        "Israel"
+      ],
+      "officeIds": [
+        4002133008
+      ],
+      "criteriaSha256": "62036c93f519215edcc2c1c0c3ed486f772c4a83c6696fb67765db44bbec142b"
+    },
+    "5444707008": {
+      "nativeLocationLabels": [
+        "MD - Columbia - Headquarters",
+        "United States of America",
+        "Maryland HQ",
+        "US - Hybrid - Massachusetts - Boston, US - Headquarters - Maryland - Columbia"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001863008
+      ],
+      "criteriaSha256": "3b48a60207c192230ac4daeafe0a2b37f69ba97c29871c8b91ba51edf469ee7b"
+    },
+    "5150588008": {
+      "nativeLocationLabels": [
+        "Israel - Office",
+        "Israel",
+        "Israel - Office - Tel-Aviv",
+        "Israel - Office - Tel Aviv"
+      ],
+      "nativeCountryLabels": [
+        "Israel"
+      ],
+      "officeIds": [
+        4002133008
+      ],
+      "criteriaSha256": "ce0f642a6b3ad10a9affbfa4df221583c644632f60234e87bf5a3dd45d2bd03c"
+    },
+    "5419158008": {
+      "nativeLocationLabels": [
+        "Israel - Office",
+        "Israel",
+        "Israel - Office - Tel-Aviv",
+        "Israel - Office - Tel Aviv"
+      ],
+      "nativeCountryLabels": [
+        "Israel"
+      ],
+      "officeIds": [
+        4002133008
+      ],
+      "criteriaSha256": "1318b6ae4fe65a6c9e58ad35ab3ed09c840945cd45c1c1682c29ec16557d8502"
+    },
+    "5455233008": {
+      "nativeLocationLabels": [
+        "South Korea - Remote",
+        "Korea, Republic of",
+        "South Korea - Office"
+      ],
+      "nativeCountryLabels": [
+        "Korea, Republic of"
+      ],
+      "officeIds": [
+        4001956008
+      ],
+      "criteriaSha256": "2eb46188551fd71bf4c42ba53307bc3d42bbf3a4d69be9df725a6e6a12edfcfb"
+    },
+    "4805413008": {
+      "nativeLocationLabels": [
+        "US"
+      ],
+      "nativeCountryLabels": [],
+      "officeIds": [],
+      "criteriaSha256": "f7099915ab3ee5d2c85085a4dfe13a4b1d482c47bf5dff2b4da07d734da456ad"
+    },
+    "5447343008": {
+      "nativeLocationLabels": [
+        "Maryland - Remote",
+        "United States of America",
+        "US - Remote - DC, US - Remote - Virginia , US - Remote - Maryland"
+      ],
+      "nativeCountryLabels": [
+        "United States of America"
+      ],
+      "officeIds": [
+        4001886008
+      ],
+      "criteriaSha256": "660b658c4913d56cb4ddde2447ca20cd246c530bb18bed5824083249615d2384"
+    }
+  },
+  "reviewedFirstPartyFilterFields": [
+    "category",
+    "country",
+    "location"
+  ],
+  "reviewedFirstPartyProjection": {
+    "4019356008": "c8298847f040a37a0ab3a8e25a6a2239ea61403f308228cee4044c27ef00ba6e",
+    "4019516008": "591d74137d9411fee6546cfd91f4b82018a1ddf5a0d5e8112f935e5e53c5ee97",
+    "5447341008": "91c29d3cd5814c1715fa9fcceb0001136fc3b0c688af73a7da59cdf69962e963",
+    "5418662008": "95b7e8d5dc95d58f85243523ab9e8263743b631dfe89ab283d5db764f00536b5",
+    "5431452008": "2d9bf5f6c5e2880b6cc788398c6718d156b7231cbddf51c1c75f8c5f43ed7e3f",
+    "5455231008": "1a4b77c19c2ae8df6e14125de6be23fb5c36fa596826872395c91a2fba680a8f",
+    "5419409008": "c4408e4915b2b4055a547e6d8e4ec93761ab009f493e773e3f9fe8ae3a1774d2",
+    "5425678008": "217afa637e590a2eae232791b8c5295b2f663e7a177cf25e202b3fbb70f846e1",
+    "5418664008": "c11dbdab0e6cbd725520b5e40dac119cc222e0f2dc63aa220acaa8cc24d83d06",
+    "5454302008": "dc6c1379627e98948dffbbc450b77588aceb281b76b70c2be7298c0542dbabf0",
+    "5454288008": "77350c8f62285047659afaa1581048db47490607943379f19a4b7ac086398670",
+    "5431434008": "7874466d092fc2212b15882949e174a0a20da64bc857109eb23443b2be7ddead",
+    "5467527008": "0ca642c24a2bb4ef55340c1196a5d4f1af3be7305c3361e1d75fef3226f41ce0",
+    "5413733008": "79578f2d9e348bdb248e147d22be514e4e9603ba53a93b32f798b53d8d3ca46b",
+    "5460006008": "2ceea0c9fdf50e882988fe7ac873cf9939b7bfa0ab6168401652543eafd0a74a",
+    "5454389008": "8148c30780138e542a170411ce0fffe5fc6d98187b559f387b7ebb0c60b17872",
+    "5443602008": "a7905ed52c6a68fedd1b9a8a968f69d8aeec3fefb574624af9c7e1a9eb5887a5",
+    "5288750008": "0e9eeb07658f575f3828040f3a8c0b8694b62f5878b37ec2db147ee4a2d89962",
+    "5375172008": "d6ad57eb8585bfa4b6a344d1cdf56e1dfb64df92726f8d6a01caec1e5d2f8610",
+    "5451029008": "c05d8b8efc108d4697becc92d0a955ee8cd2212dd29a40195e152f1564c021ff",
+    "5463333008": "baee15d6c0174f0ce38047e10f79dddd47029e77be23527373d3370b25a4bb86",
+    "5107018008": "08b9729d96f11ff442fc5a27c1a91a95dfae30a5e783f7da05839ae645367f34",
+    "5434299008": "5700b9a37a3ce6f62cdc923802972442c12b4489274653aa54080112961e8d20",
+    "5440621008": "3e834bf24bbc75181e0ecea0aa2ae9de981eda1b9c0e975ebdaf32d2a498f23a",
+    "5452804008": "5558432bab59ab15c914a0c575fbc9251a3dee2463f9f43b7bd542cad8536f4e",
+    "5418655008": "3e23a39d6b612a8dddf7336dc1fb10576ed681b972a5be70a09c64e436e7c4df",
+    "5443596008": "5b943a505c2da0ce726057a2b7ffd650efd3150290f5a487037d553397889a14",
+    "5446550008": "e36949eedc1b1fa1582c4dfd1d29e56b3d64d3cbdc5eb632937fb89759c845ea",
+    "5463193008": "30b3dba28306c4a574ec10df5bec670eacefa7c696f88ad5d0d7ce6a8d3c5a91",
+    "5152278008": "01f09494c5cae2d7bac2fa5c43dff56a1b3657c8e32b7621c2b644220421095d",
+    "5444707008": "dac4a37ff382fa028dcbc69227bf10a86f00237d405b0b7687f4832627e5e677",
+    "5150588008": "c25eb376079a462bfcd3d8bfcb12d73544ee2a7864fb3caf09fafa60fcf17baf",
+    "5419158008": "5f6ad3980918a7278861d4c549946014b766128e2d3f822db2ee1c32fbd58fb8",
+    "5455233008": "dd935ee2d851600525726a382aea5c339a63331e6dff2899c9eb715867f71c47",
+    "4805413008": "0bdc52461d072303ec25c8f1d3053562719ee458d73ed53b27f0aa73f80b91b7",
+    "5447343008": "85dd1197e2b7100ab2591c31c0016cd1ee4865f08dddda206763c9de258e81ad"
+  },
+  "reviewedWholeScriptSurfaces": {
+    "https://www.tenable.com/careers": "966af40b1a28041789e523f6b35204a9d550a72e7a18db15c45f8ad37a3bb290",
+    "https://www.tenable.com/careers/search": "fc07c837388fd1a3085fb7524a2b061cac1e665fae3516e914b8c4642449d371"
+  },
+  "emailProjectionPolicy": {
+    "decoder": {
+      "url": "https://www.tenable.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+      "programSha256": "2595496fe48df6fcf9b1bc57c29a744c121eb4dd11566466bc13d2e52e6bbcc8",
+      "contentType": "application/javascript"
+    },
+    "expectedEmail": "SLCGP@tenable.com",
+    "pages": {
+      "https://www.tenable.com/careers": {
+        "fields": [
+          {
+            "path": [
+              3,
+              5,
+              9,
+              12,
+              21,
+              5,
+              2,
+              1
+            ],
+            "tag": "a",
+            "attribute": "href",
+            "prefix": "/cdn-cgi/l/email-protection#",
+            "otherAttributes": {
+              "rel": "noopener noreferrer",
+              "target": "_blank"
+            },
+            "ancestorContext": [
+              {
+                "tag": "root",
+                "attributes": {},
+                "inert": false
+              },
+              {
+                "tag": "html",
+                "attributes": {
+                  "class": "no-js html--no-js",
+                  "lang": "en"
+                },
+                "inert": false
+              },
+              {
+                "tag": "body",
+                "attributes": {
+                  "class": "path-careers"
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "dialog-off-canvas-main-canvas",
+                  "data-off-canvas-main-canvas": ""
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "u-hide form-loader",
+                  "style": "display: none;"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form form-panel__global-form  c-form--mkto js-mkto-no-css js-form-hanging-label c-form--hide-comments c-form--compact",
+                  "data-hide-comments": "true",
+                  "id": "slcgp-form-wrapper"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form__confirmation u-text-center u-text-reverse u-my--sm hidden slcgp-confirmform-modal"
+                },
+                "inert": true
+              },
+              {
+                "tag": "p",
+                "attributes": {},
+                "inert": true
+              }
+            ]
+          },
+          {
+            "path": [
+              3,
+              5,
+              9,
+              12,
+              21,
+              5,
+              2,
+              1,
+              0
+            ],
+            "tag": "span",
+            "attribute": "data-cfemail",
+            "prefix": "",
+            "otherAttributes": {
+              "class": "__cf_email__"
+            },
+            "ancestorContext": [
+              {
+                "tag": "root",
+                "attributes": {},
+                "inert": false
+              },
+              {
+                "tag": "html",
+                "attributes": {
+                  "class": "no-js html--no-js",
+                  "lang": "en"
+                },
+                "inert": false
+              },
+              {
+                "tag": "body",
+                "attributes": {
+                  "class": "path-careers"
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "dialog-off-canvas-main-canvas",
+                  "data-off-canvas-main-canvas": ""
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "u-hide form-loader",
+                  "style": "display: none;"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form form-panel__global-form  c-form--mkto js-mkto-no-css js-form-hanging-label c-form--hide-comments c-form--compact",
+                  "data-hide-comments": "true",
+                  "id": "slcgp-form-wrapper"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form__confirmation u-text-center u-text-reverse u-my--sm hidden slcgp-confirmform-modal"
+                },
+                "inert": true
+              },
+              {
+                "tag": "p",
+                "attributes": {},
+                "inert": true
+              },
+              {
+                "tag": "a",
+                "attributes": {
+                  "href": "reviewed-cloudflare-email-identity:SLCGP@tenable.com",
+                  "rel": "noopener noreferrer",
+                  "target": "_blank"
+                },
+                "inert": true
+              }
+            ]
+          }
+        ]
+      },
+      "https://www.tenable.com/careers/search": {
+        "fields": [
+          {
+            "path": [
+              3,
+              5,
+              9,
+              12,
+              21,
+              5,
+              2,
+              1
+            ],
+            "tag": "a",
+            "attribute": "href",
+            "prefix": "/cdn-cgi/l/email-protection#",
+            "otherAttributes": {
+              "rel": "noopener noreferrer",
+              "target": "_blank"
+            },
+            "ancestorContext": [
+              {
+                "tag": "root",
+                "attributes": {},
+                "inert": false
+              },
+              {
+                "tag": "html",
+                "attributes": {
+                  "class": "no-js html--no-js",
+                  "lang": "en"
+                },
+                "inert": false
+              },
+              {
+                "tag": "body",
+                "attributes": {
+                  "class": "path-careers"
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "dialog-off-canvas-main-canvas",
+                  "data-off-canvas-main-canvas": ""
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "u-hide form-loader",
+                  "style": "display: none;"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form form-panel__global-form  c-form--mkto js-mkto-no-css js-form-hanging-label c-form--hide-comments c-form--compact",
+                  "data-hide-comments": "true",
+                  "id": "slcgp-form-wrapper"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form__confirmation u-text-center u-text-reverse u-my--sm hidden slcgp-confirmform-modal"
+                },
+                "inert": true
+              },
+              {
+                "tag": "p",
+                "attributes": {},
+                "inert": true
+              }
+            ]
+          },
+          {
+            "path": [
+              3,
+              5,
+              9,
+              12,
+              21,
+              5,
+              2,
+              1,
+              0
+            ],
+            "tag": "span",
+            "attribute": "data-cfemail",
+            "prefix": "",
+            "otherAttributes": {
+              "class": "__cf_email__"
+            },
+            "ancestorContext": [
+              {
+                "tag": "root",
+                "attributes": {},
+                "inert": false
+              },
+              {
+                "tag": "html",
+                "attributes": {
+                  "class": "no-js html--no-js",
+                  "lang": "en"
+                },
+                "inert": false
+              },
+              {
+                "tag": "body",
+                "attributes": {
+                  "class": "path-careers"
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "dialog-off-canvas-main-canvas",
+                  "data-off-canvas-main-canvas": ""
+                },
+                "inert": false
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "u-hide form-loader",
+                  "style": "display: none;"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form form-panel__global-form  c-form--mkto js-mkto-no-css js-form-hanging-label c-form--hide-comments c-form--compact",
+                  "data-hide-comments": "true",
+                  "id": "slcgp-form-wrapper"
+                },
+                "inert": true
+              },
+              {
+                "tag": "div",
+                "attributes": {
+                  "class": "c-form__confirmation u-text-center u-text-reverse u-my--sm hidden slcgp-confirmform-modal"
+                },
+                "inert": true
+              },
+              {
+                "tag": "p",
+                "attributes": {},
+                "inert": true
+              },
+              {
+                "tag": "a",
+                "attributes": {
+                  "href": "reviewed-cloudflare-email-identity:SLCGP@tenable.com",
+                  "rel": "noopener noreferrer",
+                  "target": "_blank"
+                },
+                "inert": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "reviewedWholeDomSurfaces": {
+    "https://www.tenable.com/careers": "6b643f31460ef65e3a8bc75bd7fa5798d9751106b99d55c927cc7af61d0f81db",
+    "https://www.tenable.com/careers/search": "0a9e8e1be52fa83a3d13921368680b8d0a531450a1a6156c7eebe058fc5ecc57"
+  },
+  "declaredStylesheets": [
+    {
+      "url": "https://www.tenable.com/sites/default/files/css/css_oqdgmUiZhyIp6463d0WIl1IdV-_BpiOZRvJpt5qU7vc.css?delta=0&language=en&theme=tenable&include=eJwrriwuSc3VT0osTtUpSc1LTMpJ1U9JTUsszSnRTS4uhosVl2cWpBYBAKKnEdE",
+      "programSha256": "72781d5e5cd8115ad49852565a343f44e08d66db2f2c617c89b07d0365397e1d",
+      "contentType": "text/css"
+    },
+    {
+      "url": "https://www.tenable.com/sites/default/files/css/css__0QedaWgcgFKlo6bb8RptiFbz-ztQub5Qwone4023cw.css?delta=1&language=en&theme=tenable&include=eJwrriwuSc3VT0osTtUpSc1LTMpJ1U9JTUsszSnRTS4uhosVl2cWpBYBAKKnEdE",
+      "programSha256": "ad55072fa2ba51e9340ae89e85adbeee7378aa2d74074c1febdfc7a96e715e3c",
+      "contentType": "text/css; charset=UTF-8"
+    },
+    {
+      "url": "https://www.tenable.com/sites/default/files/css/css_oqdgmUiZhyIp6463d0WIl1IdV-_BpiOZRvJpt5qU7vc.css?delta=0&language=en&theme=tenable&include=eJwrriwuSc3VT0osTtUpSc1LTMpJ1U9JTUsszSnRTS4uBgDB4wwB",
+      "programSha256": "72781d5e5cd8115ad49852565a343f44e08d66db2f2c617c89b07d0365397e1d",
+      "contentType": "text/css"
+    },
+    {
+      "url": "https://www.tenable.com/sites/default/files/css/css_OCLethHn526IWNE2_cubQxkn6J-NFOv2dBnAGxO0M2Y.css?delta=1&language=en&theme=tenable&include=eJwrriwuSc3VT0osTtUpSc1LTMpJ1U9JTUsszSnRTS4uBgDB4wwB",
+      "programSha256": "1550fba3c3efed11addd17df8ec7b21cf98621c13beae42d2c5c5c901c41ba49",
+      "contentType": "text/css"
+    }
+  ],
+  "svgReferencePolicy": {
+    "origin": "https://www.tenable.com",
+    "unavailablePage": {
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Page not found | Tenable®",
+      "h1": "404 ERROR",
+      "h2": "This page does not exist"
+    },
+    "pages": {
+      "https://www.tenable.com/careers": {
+        "symbols": [
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-000",
+            "geometrySha256": "1f89c46c1ac814d0bedd43b405846c53db47c485ebd794ff75cf7a60772b2894"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              3,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              3,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-001",
+            "geometrySha256": "99ea1de7a757863b3a7826a475932739d3a1cafa5f5efc8abdbed436ff174e6c"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              5,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              5,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              5,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-002",
+            "geometrySha256": "cd5f8c592d481a09f2d4c4a04c9872a24a30883f4614c202d7911f8e714e53b9"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              7,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              7,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              7,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-003",
+            "geometrySha256": "1b64f9052a57fc85c263ae1bb6bf097856d19f0bbc321fd35e6aff6ea978fa37"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              5,
+              9,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              5,
+              9,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              5,
+              9,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-004",
+            "geometrySha256": "868b9e0e299d1406b5bacb241a54d6fd8de1bf7cceedb223f3de7c2150eea581"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              5,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              5,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              5,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-005",
+            "geometrySha256": "04957c307739163bd92e3ecff5567e61dd84a761119080086e77f2a2be4a22b5"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              7,
+              1,
+              5,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              7,
+              1,
+              5,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              7,
+              1,
+              5,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-006",
+            "geometrySha256": "c207f28b45a36ea0951d561f4386dd4faac5afa66dc6c701ee3a0e2b86b7fe5c"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              3,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              3,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-007",
+            "geometrySha256": "78e4823f53cf342adda99d460f1273fe206386320fd1d3720144716471973ed2"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              5,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              5,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              5,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-008",
+            "geometrySha256": "1fedefc4688919b9f102e5dbd4602008aea77e257694a628516c1507033603ce"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              7,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              7,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              7,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-009",
+            "geometrySha256": "2265f526903d3a11bf0ed07e311224ea001e84865438f3bf036e672d7f75482a"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              9,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              9,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              9,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-010",
+            "geometrySha256": "7a309d0335422a940ae7aff57d9165c3e3cea1aa3bacd869f6ab758fd5567233"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              21,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              21,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              21,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-011",
+            "geometrySha256": "c54967325bddd7a535db0cfaf29565ba489d0010000590bc07ae9e1ccd8e06d8"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-012",
+            "geometrySha256": "503d78e856dccba51c0bd0033c9578ab216fcd0c0c41f262be37c4abb6636cbd"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              7,
+              5,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              7,
+              5,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              7,
+              5,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-013",
+            "geometrySha256": "c551aa606ac10640846da92a12eafdc17044c094ae43a1f56e6cac77fc324b0b"
+          },
+          {
+            "kind": "unused-definition",
+            "svgPath": [
+              3,
+              5,
+              9,
+              7,
+              1,
+              1,
+              1,
+              23,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              7,
+              1,
+              1,
+              1,
+              23,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-014",
+            "geometrySha256": "e771a2aee14fc72ba0469fed2e8d5d5d6827237ef772c99d9cd5303525999197"
+          },
+          {
+            "kind": "invalid-external-graphic",
+            "svgPath": [
+              3,
+              5,
+              9,
+              7,
+              1,
+              1,
+              1,
+              23,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              7,
+              1,
+              1,
+              1,
+              23,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              7,
+              1,
+              1,
+              1,
+              23,
+              3,
+              3,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-015",
+            "geometrySha256": "8397f823ab403ef1fe1c6792227e4a4cabefa7ddcc01a5c395fb952691b66acb"
+          }
+        ],
+        "allDefinitionPaths": [
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            5,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            7,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            5,
+            9,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            5,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            7,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            5,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            7,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            9,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            21,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            7,
+            5,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            7,
+            1,
+            1,
+            1,
+            23,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            3,
+            5,
+            9,
+            7,
+            1,
+            1,
+            1,
+            23,
+            3,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "allReferencePaths": [
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            3,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            5,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            7,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            5,
+            9,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            5,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            7,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            3,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            5,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            7,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            9,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            21,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            7,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            7,
+            1,
+            1,
+            1,
+            23,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            3,
+            5,
+            9,
+            7,
+            1,
+            1,
+            1,
+            23,
+            3,
+            3,
+            1,
+            1,
+            1,
+            1,
+            0
+          ]
+        ],
+        "fixedFields": [
+          {
+            "path": [
+              3,
+              5,
+              9,
+              7,
+              1,
+              1,
+              1,
+              23,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ],
+            "tag": "g",
+            "attributes": {
+              "clip-path": "url()"
+            }
+          }
+        ]
+      },
+      "https://www.tenable.com/careers/search": {
+        "symbols": [
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-000",
+            "geometrySha256": "1f89c46c1ac814d0bedd43b405846c53db47c485ebd794ff75cf7a60772b2894"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              3,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              3,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-001",
+            "geometrySha256": "99ea1de7a757863b3a7826a475932739d3a1cafa5f5efc8abdbed436ff174e6c"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              5,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              5,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              5,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-002",
+            "geometrySha256": "cd5f8c592d481a09f2d4c4a04c9872a24a30883f4614c202d7911f8e714e53b9"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              7,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              7,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              3,
+              7,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-003",
+            "geometrySha256": "1b64f9052a57fc85c263ae1bb6bf097856d19f0bbc321fd35e6aff6ea978fa37"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              5,
+              9,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              5,
+              9,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              1,
+              1,
+              5,
+              9,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-004",
+            "geometrySha256": "868b9e0e299d1406b5bacb241a54d6fd8de1bf7cceedb223f3de7c2150eea581"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              5,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              5,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              5,
+              1,
+              3,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-005",
+            "geometrySha256": "04957c307739163bd92e3ecff5567e61dd84a761119080086e77f2a2be4a22b5"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              7,
+              1,
+              5,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              7,
+              1,
+              5,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              1,
+              3,
+              1,
+              7,
+              1,
+              5,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-006",
+            "geometrySha256": "c207f28b45a36ea0951d561f4386dd4faac5afa66dc6c701ee3a0e2b86b7fe5c"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              3,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              3,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-007",
+            "geometrySha256": "78e4823f53cf342adda99d460f1273fe206386320fd1d3720144716471973ed2"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              5,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              5,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              5,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-008",
+            "geometrySha256": "1fedefc4688919b9f102e5dbd4602008aea77e257694a628516c1507033603ce"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              7,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              7,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              7,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-009",
+            "geometrySha256": "2265f526903d3a11bf0ed07e311224ea001e84865438f3bf036e672d7f75482a"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              9,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              9,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              9,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-010",
+            "geometrySha256": "7a309d0335422a940ae7aff57d9165c3e3cea1aa3bacd869f6ab758fd5567233"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              21,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              21,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              1,
+              3,
+              21,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-011",
+            "geometrySha256": "c54967325bddd7a535db0cfaf29565ba489d0010000590bc07ae9e1ccd8e06d8"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-012",
+            "geometrySha256": "503d78e856dccba51c0bd0033c9578ab216fcd0c0c41f262be37c4abb6636cbd"
+          },
+          {
+            "kind": "closed-local-reference",
+            "svgPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              7,
+              5,
+              1,
+              1,
+              1,
+              1
+            ],
+            "definitionPath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              7,
+              5,
+              1,
+              1,
+              1,
+              1,
+              3,
+              1
+            ],
+            "referencePath": [
+              3,
+              5,
+              9,
+              3,
+              3,
+              1,
+              1,
+              3,
+              7,
+              5,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "canonicalId": "tenable-reviewed-svg-clip-013",
+            "geometrySha256": "c551aa606ac10640846da92a12eafdc17044c094ae43a1f56e6cac77fc324b0b"
+          }
+        ],
+        "allDefinitionPaths": [
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            5,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            7,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            5,
+            9,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            5,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            7,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            5,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            7,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            9,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            21,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            7,
+            5,
+            1,
+            1,
+            1,
+            1,
+            3,
+            1
+          ]
+        ],
+        "allReferencePaths": [
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            3,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            5,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            3,
+            7,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            1,
+            1,
+            5,
+            9,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            5,
+            1,
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            1,
+            3,
+            1,
+            7,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            3,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            5,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            7,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            9,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            1,
+            3,
+            21,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            3,
+            5,
+            9,
+            3,
+            3,
+            1,
+            1,
+            3,
+            7,
+            5,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ],
+        "fixedFields": []
+      }
+    }
+  }
+}

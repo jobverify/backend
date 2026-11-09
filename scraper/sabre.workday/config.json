@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://sabre.wd1.myworkdayjobs.com/wday/cxs/sabre/SabreJobs/jobs",
+  "detailUrlBase": "https://sabre.wd1.myworkdayjobs.com/en-US/SabreJobs",
+  "countryFacetParameter": "locationCountry",
+  "maxPages": 10
+}

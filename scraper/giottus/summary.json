@@ -1,0 +1,30 @@
+{
+  "source": "giottus",
+  "status": "coverage-gap",
+  "nativeObservedRecordCount": 1,
+  "nativeIndiaRecoveredCount": 0,
+  "observedEligibleCount": 0,
+  "firstParty": false,
+  "reportedTotal": null,
+  "indiaFacetCount": null,
+  "sourceListingComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "excludedNativeCandidates": [
+    {
+      "id": "7480196975502573570",
+      "title": "Customer Engagement Executives",
+      "datePublished": "2026-07-07T09:52:14.278Z",
+      "location": "Bengaluru (Work from Office)",
+      "country": null,
+      "applicationEmail": "hr@giottus.com",
+      "reason": "missing-explicit-job-country"
+    }
+  ],
+  "limitations": [
+    "Wellfound company/jobs HTTP403; no bypass or retry",
+    "LinkedIn no-match states cannot establish company-wide completeness",
+    "Known hiring post is old; no timestamp refreshed",
+    "Client bundle inspection found no careers/recruit/hiring/jobs route; browser network exposed no recruitment API"
+  ]
+}

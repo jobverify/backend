@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "kraken",
+  "companyName": "Kraken",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 87,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://www.kraken.com/careers",
+      "finalURL": "https://www.kraken.com/careers",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-03T08:27:29.6978527Z",
+      "completedAt": "2026-11-03T08:27:34.8865879Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 1022789,
+      "bodySHA256": "50034b7d598d94b471a4d0519aa7b77b35ab14a16b1ef1c93c3730b722109be2",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/kraken.com",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/kraken.com",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestedAt": "2026-11-03T08:31:34.6404990Z",
+      "completedAt": "2026-11-03T08:31:40.1259337Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 1371217,
+      "bodySHA256": "f1eb0dcce96fdbed932955b2680b83d82ca2ba601b69cdfeace27098d4b35375",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

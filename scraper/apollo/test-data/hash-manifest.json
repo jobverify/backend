@@ -1,0 +1,89 @@
+{
+  "source": "apollo",
+  "fixture": "native-20261103.json.gz",
+  "sha256": "ae16294204973a2bc6d0cc13e72045b57eff15c309adfb3bed24d5bb331af32f",
+  "captures": [
+    {
+      "source": "apollo",
+      "key": "home-client",
+      "url": "https://apollotyres.csod.com/player-career-site/1.25.6/pages/home.js",
+      "status": 200,
+      "finalUrl": "https://apollotyres.csod.com/player-career-site/1.25.6/pages/home.js",
+      "contentType": "application/javascript",
+      "file": "apollo-home-client-c893338bf058.body",
+      "bytes": 225267,
+      "sha256": "c893338bf0589e82c9f12af7575595543fe0b9f96fe43f3dd003b234eb620e8f",
+      "requestedAt": "2026-11-02T22:10:14.435Z",
+      "completedAt": "2026-11-02T22:10:16.015Z"
+    },
+    {
+      "source": "apollo",
+      "key": "careers",
+      "url": "https://apollotyres.csod.com/ux/ats/careersite/1/home?c=apollotyres",
+      "status": 200,
+      "finalUrl": "https://apollotyres.csod.com/ux/ats/careersite/1/home?c=apollotyres",
+      "contentType": "text/html; charset=utf-8",
+      "file": "apollo-careers-002d4eb521fe.body",
+      "bytes": 5366,
+      "sha256": "002d4eb521fec0cc7b0aca717f5a845fbef74348918947eb96d351f591d24fb4",
+      "requestedAt": "2026-11-02T22:10:14.393Z",
+      "completedAt": "2026-11-02T22:10:16.385Z"
+    },
+    {
+      "source": "apollo",
+      "key": "controls-client",
+      "url": "https://apollotyres.csod.com/player-career-site/1.25.6/pages/home.controls.js",
+      "status": 200,
+      "finalUrl": "https://apollotyres.csod.com/player-career-site/1.25.6/pages/home.controls.js",
+      "contentType": "application/javascript",
+      "file": "apollo-controls-client-24e96bb1928b.body",
+      "bytes": 1183949,
+      "sha256": "24e96bb1928bccb99b221c385577ddae7113c0fc688820ce48bc7c1a59252041",
+      "requestedAt": "2026-11-02T22:10:16.017Z",
+      "completedAt": "2026-11-02T22:10:17.161Z"
+    },
+    {
+      "source": "apollo",
+      "key": "corporate",
+      "url": "https://corporate.apollotyres.com/careers/",
+      "status": 200,
+      "finalUrl": "https://corporate.apollotyres.com/careers/",
+      "file": "apollo-corporate-a2dc37428ff8.body",
+      "bytes": 44663,
+      "sha256": "a2dc37428ff84f670a37d4fd685a8209a921923a1d11f626f4519dd4e0bc7fa3",
+      "method": "GET",
+      "requestedAt": "2026-11-02T22:20:11.234Z",
+      "completedAt": "2026-11-02T22:20:12.140Z"
+    },
+    {
+      "index": 0,
+      "url": "https://apollotyres.csod.com/ux/ats/careersite/1/home?c=apollotyres",
+      "method": "GET",
+      "status": 200,
+      "finalUrl": "https://apollotyres.csod.com/ux/ats/careersite/1/home?c=apollotyres",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 5366,
+      "sha256": "b7a5a658026f5e8fed1bc9d1a7b18321581716dd560aead106b78d85ccc7dfc6",
+      "file": "000-b7a5a658026f.body",
+      "requestedAt": "2026-11-02T22:13:25.668Z",
+      "completedAt": "2026-11-02T22:13:26.761Z",
+      "source": "apollo",
+      "key": "production-0"
+    },
+    {
+      "index": 1,
+      "url": "https://uk.api.csod.com/rec-job-search/external/jobs",
+      "method": "POST",
+      "status": 200,
+      "finalUrl": "https://uk.api.csod.com/rec-job-search/external/jobs",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 142,
+      "sha256": "36cf1808306bf994606b1de55e457284977228469522c5292d9eda704a10ce45",
+      "file": "001-36cf1808306b.body",
+      "requestedAt": "2026-11-02T22:13:26.772Z",
+      "completedAt": "2026-11-02T22:13:27.883Z",
+      "source": "apollo",
+      "key": "production-1"
+    }
+  ]
+}

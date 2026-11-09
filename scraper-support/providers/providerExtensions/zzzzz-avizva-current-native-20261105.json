@@ -1,0 +1,28 @@
+[
+  {
+    "source": "avizva",
+    "catalogOverride": true,
+    "companyName": "AVIZVA",
+    "officialBrandName": "AVIZVA",
+    "adapter": "script",
+    "modulePath": "../avizva/script.js",
+    "dryRunFile": "avizva/jobs.json",
+    "homepageUrl": "https://www.avizva.com/",
+    "companyCareerPage": "https://www.avizva.com/career",
+    "careersVendorHost": "avizva.keka.com",
+    "companyDomain": "avizva.com",
+    "atsPlatform": "keka",
+    "countryFilter": "India",
+    "paginationStrategy": "current-native-complete-active-array-plus-opening-and-closing-full-details",
+    "extractionStrategy": "current-active-corporate-handoffs+literal-native-tenant+reviewed-read-only-client+typed-countries+full-native-criteria+closing-reconciliation",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "sourceScope": "configured-public-board",
+    "companyGlobalTotal": null,
+    "companyIndiaTotal": null,
+    "verifiedSurfaceSummary": "Observed November 5, 2026: the active corporate AVIZVA careers page changed its SEO title. Four corporate Keka cards reconcile to three active native postings plus explicitly closed 157359. The current declared tenant/template/renderer supplies a complete native active array with full original descriptions and explicit IN/India and US/United States geography; matching opening and closing native role evidence is required. Completeness refers to the configured public board, while company-wide totals remain unknown. Historical Senior Engineer, Visual Product Design, Senior Python Engineer and Python Engineer cards cannot publish summary descriptions."
+  }
+]

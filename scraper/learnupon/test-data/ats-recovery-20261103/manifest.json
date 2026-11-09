@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "learnupon",
+  "companyName": "LearnUpon",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 15,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://careers.learnupon.com/",
+      "finalURL": "https://careers.learnupon.com/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "requestedAt": "2026-11-03T08:27:41.4910189Z",
+      "completedAt": "2026-11-03T08:27:48.1759638Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 557081,
+      "bodySHA256": "c2e3d489516b53addd25f5a355fe43b880e637f808a9295fb72bf1f7c3ca75f6",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://boards-api.greenhouse.io/v1/boards/learnupon/jobs?content=true",
+      "finalURL": "https://boards-api.greenhouse.io/v1/boards/learnupon/jobs?content=true",
+      "status": 200,
+      "contentType": "application/json",
+      "requestedAt": "2026-11-03T08:31:40.2228635Z",
+      "completedAt": "2026-11-03T08:31:41.0138268Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 161978,
+      "bodySHA256": "96f973052ef3c09211aeec975338883b13ce83f1f734ea4f20719a9e8390ba55",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

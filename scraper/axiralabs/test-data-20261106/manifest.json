@@ -1,0 +1,124 @@
+{
+  "profile": "current-public-2026-11-06",
+  "source": "axiralabs",
+  "kind": "unmodified actual public responses; no historical capture reconstruction",
+  "requests": [
+    {
+      "url": "https://achiralabs.com/careers",
+      "status": 200,
+      "finalURL": "https://achiralabs.com/careers",
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 82829,
+      "bodySHA256": "412372d1a3eca83887931fb04f5f57c6d740d81e03aa9e99674e3a40449ab6cf",
+      "startedAt": "2026-11-06T17:14:06.388Z",
+      "completedAt": "2026-11-06T17:14:07.916Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "contentType": "text/js",
+      "bodyBytes": 100640,
+      "bodySHA256": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b",
+      "startedAt": "2026-11-06T17:14:07.970Z",
+      "completedAt": "2026-11-06T17:14:08.359Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/organization/default/careerportalinfo",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/organization/default/careerportalinfo",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 461,
+      "bodySHA256": "08ae32add5cf029d633828e74d268fab00374fee406dd21f968e4cfea6d7aa3b",
+      "startedAt": "2026-11-06T17:14:08.362Z",
+      "completedAt": "2026-11-06T17:14:08.560Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/embedjobs/default/active/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/embedjobs/default/active/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 2,
+      "bodySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "startedAt": "2026-11-06T17:14:08.560Z",
+      "completedAt": "2026-11-06T17:14:08.723Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/embedjobs/grouplinkstatus/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/embedjobs/grouplinkstatus/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 23,
+      "bodySHA256": "e6df21daeeed53bbd52bd27f01cdde394a06139d1dfdd9cec5463752abda95b0",
+      "startedAt": "2026-11-06T17:14:08.724Z",
+      "completedAt": "2026-11-06T17:14:08.842Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/organization/grouplinkstatus",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/organization/grouplinkstatus",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 23,
+      "bodySHA256": "e6df21daeeed53bbd52bd27f01cdde394a06139d1dfdd9cec5463752abda95b0",
+      "startedAt": "2026-11-06T17:14:08.843Z",
+      "completedAt": "2026-11-06T17:14:08.928Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/jobs/default/active",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/jobs/default/active",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 2,
+      "bodySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "startedAt": "2026-11-06T17:14:08.928Z",
+      "completedAt": "2026-11-06T17:14:09.313Z"
+    },
+    {
+      "url": "https://achiralabs.com/careers",
+      "status": 200,
+      "finalURL": "https://achiralabs.com/careers",
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 82829,
+      "bodySHA256": "412372d1a3eca83887931fb04f5f57c6d740d81e03aa9e99674e3a40449ab6cf",
+      "startedAt": "2026-11-06T17:14:09.314Z",
+      "completedAt": "2026-11-06T17:14:09.876Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/embedjobs/default/active/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/embedjobs/default/active/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 2,
+      "bodySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "startedAt": "2026-11-06T17:14:09.889Z",
+      "completedAt": "2026-11-06T17:14:10.019Z"
+    },
+    {
+      "url": "https://achiralabs.keka.com/careers/api/jobs/default/active",
+      "status": 200,
+      "finalURL": "https://achiralabs.keka.com/careers/api/jobs/default/active",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 2,
+      "bodySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "startedAt": "2026-11-06T17:14:10.019Z",
+      "completedAt": "2026-11-06T17:14:10.136Z"
+    }
+  ],
+  "expectedNativeIds": [],
+  "actualResultBeforeScopeReview": {
+    "jobs": 0,
+    "ids": [],
+    "inventory": {
+      "status": "verified-empty",
+      "surface": "https://achiralabs.keka.com/careers/api/embedjobs/default/active/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "firstParty": true,
+      "listingComplete": true,
+      "pagesFetched": 1,
+      "reportedTotal": 0,
+      "indiaFacetCount": 0,
+      "verifiedAt": "2026-11-06T17:14:10.137Z",
+      "reason": "official-embedded-keka-full-array-both-group-APIs-board-closing-and-active-source-scope-reconciliation-native-details"
+    }
+  },
+  "historicalProfileReplayable": false
+}

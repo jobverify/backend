@@ -1,0 +1,96 @@
+{
+  "functions": {
+    "getUrlOriginPath": "2dbcb45b2dfa55f7e35fb27e46a4c53b705af650a502403557fb1bbd291e0fb4",
+    "JobPostCardContainer": "9359688490a2d01865af3ec17e6e3eb62eadac764943aed4dd804f2cd575f09f",
+    "JobPostCard": "e44ada07c2fe55e8f21f81c4ae3f16a5fb3ea0db089067ddf6d343de85673999",
+    "getPageJobPosts": "51bf1e2331a04aa2894707cca84aeff22f4a686c6c8b94992d7b25fa169c070f",
+    "JobPostsList": "5ab6e643ded8773f50c376108509478cde20bff1970478607c64640b12698301",
+    "filteredJobPosts": "ddbdb54d1376ac9221b2e7e32a88917d24f01e7ee7e0b176c70fde381249ca1c",
+    "getLocationOptions": "7386d74870240a837ff4877d760ef23cfd113315664a4a07df9a7a3916f516f3",
+    "getDepartmentOptions": "987d6d0e075e3bda48994de1e59e9f3d87832280bf0967e07057644be023c1ca",
+    "CareersPageBody": "1a33eebaec2708fa55e6990d5b490303807b20b2273fec1be48bb85ae619a370",
+    "CareersPage": "c2cd081ed1229590d82685d5a2c9158ee6c2769467bb6a1a244b0b3d794f59e2",
+    "OverviewTab2": "8cfd4e22b8f71dd63b43dcb109817bbf03bfb197fc6673cbdf85d07ab9de43a3",
+    "JobPostPage": "dd3e5153784555dde28b3c6c259c79e65af609c8919c2a380ad4180e74c58cc4"
+  },
+  "classes": {
+    "PluginManager": "17ec882bbb9fd23a24f1fb1be2276233b3ffe3bcce19a04d03a71f6e60b969a5",
+    "ReactPlugin": "37c34029ebdb601551e1650653927bec366489d9792e8506bf4314c5107a2ebf"
+  },
+  "registry": {
+    "name": "containers",
+    "component": "applicant_tracking/Careers/CareersPage",
+    "binding": "CareersPage"
+  },
+  "client": "https://app.screenloop.com/assets/application-5e922a38ff52b8a19d1cdbb8879a241d6557fb5f5c86b6b0b64806a5e98927ca.js",
+  "imports": {
+    "import_react1388": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1389": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1390": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1392": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1602": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1604": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1847": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_client3": "1fc161ad46d39bb4e518bd7c99786f19c25023f55f9940d6ae879e332fd382b3"
+  },
+  "detailRegistry": {
+    "component": "applicant_tracking/Jobs/JobPostPage",
+    "binding": "JobPostPage"
+  },
+  "corporateFrameCss": [
+    {
+      "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.b21433efd.min.css",
+      "sha256": "6b4bba34d2074a13de17fd62282417a729609181b4f0f5dada5d496b34ed8d91"
+    }
+  ],
+  "corporateInlineCss": [],
+  "corporateFramePath": [
+    {
+      "tag": "iframe",
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "iframe-wrapper"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "embed-form ef-styled w-embed w-iframe"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "container-full"
+      }
+    },
+    {
+      "tag": "section",
+      "attrs": {
+        "id": "explore-vacancies",
+        "class": "section-primary sp-pb-default bg-light"
+      }
+    },
+    {
+      "tag": "main",
+      "attrs": {
+        "class": "page-wrapper pw-relative"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {}
+    },
+    {
+      "tag": "root",
+      "attrs": {}
+    }
+  ]
+}

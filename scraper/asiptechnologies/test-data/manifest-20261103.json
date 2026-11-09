@@ -1,0 +1,45 @@
+{
+  "source": "asiptechnologies",
+  "files": [
+    {
+      "url": "https://asip-tech.com/careers/",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:27:24.381Z",
+      "file": "careers-20261103.html.gz",
+      "sha256": "1b6b3921ff8653de9eb45b978c813acdd0b6b2167f12a31a8af15ca885dea1f8",
+      "gzipSha256": "52c2ebc3c9ea747bb793ca08c387c4b54b427d1809363c4121471275d99f8f2a"
+    },
+    {
+      "url": "https://asip-tech.com/career/end-of-line-eol-manager/",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:52:37.864Z",
+      "file": "end-of-line-eol-manager-20261103.html.gz",
+      "sha256": "53237ac4d7cf73d4a8de8cb2b7f9d10b3d65543e219d975bc4d01dd326e919cc",
+      "gzipSha256": "93f61d7ab236390f456caf7750a20770a4059273bf6397a1bfc7367a40e0bd20"
+    },
+    {
+      "url": "https://asip-tech.com/career/front-of-line-fol-manager/",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:52:37.862Z",
+      "file": "front-of-line-fol-manager-20261103.html.gz",
+      "sha256": "195c2317208d71728019f84c80693592857bdaefd985df62b3ab9697961eff1c",
+      "gzipSha256": "e7a5cf016d602eaa443c19c336e3f4090c0b77d782fef43b77456c9a3fc4c597"
+    },
+    {
+      "url": "https://asip-tech.com/career/jr-package-design-engineer/",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:52:37.806Z",
+      "file": "jr-package-design-engineer-20261103.html.gz",
+      "sha256": "ffa7af9c7da4f299716c26ab5f782089a6147220bec1d2d560d4b9ae3be0ce81",
+      "gzipSha256": "88155d5aae92e0f6048d999e427cb23a5df1b248f09c0bf0901f421f2e1a5f42"
+    },
+    {
+      "url": "https://asip-tech.com/career/test/",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:52:37.820Z",
+      "file": "test-20261103.html.gz",
+      "sha256": "3c945ae0fcc019970b7c6fb0a7e5d6c196c333928ade6b8cf08ae02db88ecf20",
+      "gzipSha256": "2b904f45d2f1241522181a2aef56dd6bd350d39c7095cfe685869a3f16c54932"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "recordedAt": "2026-11-02T23:48:05.204Z",
+  "method": "read-only-public-native-http-no-db",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "1938f8d264953f8980a95fb5cfd99b993ac2689d8b13ac9d7917fba6c24b67e5",
+  "responses": [
+    {
+      "key": "aix-connect",
+      "url": "https://aixconnect.in/",
+      "finalUrl": "https://aixconnect.in/",
+      "status": 200,
+      "bytes": 2999,
+      "sha256": "71f2a1676977b997284a59df07ee4cf6d9e55ba9e3e79624cd0e67e0cb9e42c9",
+      "observedAt": "2026-11-02T23:05:38.989Z",
+      "originalCapture": "airasiaindia-aix-connect-71f2a1676977.body"
+    },
+    {
+      "key": "legacy-careers",
+      "url": "https://www.airasia.com/in/en/careers",
+      "finalUrl": "https://www.airasia.com/en/gb/",
+      "status": 200,
+      "bytes": 240604,
+      "sha256": "ae3d64054701da45e5da117b60d73b8e3a80cbc64e6cc289ea8d36e3839b87cb",
+      "observedAt": "2026-11-02T23:05:39.172Z",
+      "originalCapture": "airasiaindia-legacy-careers-ae3d64054701.body"
+    },
+    {
+      "key": "current-careers",
+      "url": "https://www.airindiaexpress.com/careers",
+      "finalUrl": "https://www.airindiaexpress.com/careers",
+      "status": 200,
+      "bytes": 7967,
+      "sha256": "d5af2688a3579d96abf211de163a042801564ed50f155d2ee5a1f0cbcdd76437",
+      "observedAt": "2026-11-02T23:05:39.899Z",
+      "originalCapture": "airasiaindia-current-careers-d5af2688a357.body"
+    },
+    {
+      "key": "declared-root-model",
+      "url": "https://www.airindiaexpress.com/content/airindiaexpress/en.model.json",
+      "finalUrl": "https://www.airindiaexpress.com/content/airindiaexpress/en.model.json",
+      "status": 200,
+      "bytes": 139177,
+      "sha256": "4467f23981cec82fc30d49602a932c309d92956796d86ed9188655d545b3b9b3",
+      "observedAt": "2026-11-02T23:17:58.628Z",
+      "originalCapture": "airasiaindia-declared-root-model-4467f23981ce.body"
+    },
+    {
+      "key": "current-page-model",
+      "url": "https://www.airindiaexpress.com/content/airindiaexpress/en/careers.model.json",
+      "finalUrl": "https://www.airindiaexpress.com/content/airindiaexpress/en/careers.model.json",
+      "status": 200,
+      "bytes": 52460,
+      "sha256": "c826ece5f177c4a1511b0dccd5de4449ef5144b0b9c8e4381ecf2c403ac7f818",
+      "observedAt": "2026-11-02T23:19:27.669Z",
+      "originalCapture": "airasiaindia-current-page-model-c826ece5f177.body"
+    },
+    {
+      "key": "declared-hiring-board",
+      "url": "https://careers.airindia.com/aix",
+      "finalUrl": "https://careers.airindia.com/aix",
+      "status": 200,
+      "bytes": 136400,
+      "sha256": "fc198547f2e790a2b3bbd72f6d21d5849b441de5fb092ae29f91eb4350316ce4",
+      "observedAt": "2026-11-02T23:20:51.146Z",
+      "originalCapture": "airasiaindia-declared-hiring-board-fc198547f2e7.body"
+    },
+    {
+      "key": "current-unfiltered-search",
+      "url": "https://careers.airindia.com/aix/search/?q=&locationsearch=",
+      "finalUrl": "https://careers.airindia.com/aix/search/?q=&locationsearch=",
+      "status": 200,
+      "bytes": 72275,
+      "sha256": "91418b75f00478a2d0b27a2c25ab7f803683f1f067189a069fed8251b7205d15",
+      "observedAt": "2026-11-02T23:22:56.522Z",
+      "originalCapture": "airasiaindia-current-unfiltered-search-91418b75f004.body"
+    },
+    {
+      "key": "legal-merger-pdf",
+      "url": "https://www.airindia.com/content/dam/air-india/newsroom/press-releases/pdf/Press%20Release_AIR_INDIA_EXPRESS_COMPLETES_MERGER_WITH_AIX_CONNECT.pdf",
+      "finalUrl": "https://www.airindia.com/content/dam/air-india/newsroom/press-releases/pdf/Press%20Release_AIR_INDIA_EXPRESS_COMPLETES_MERGER_WITH_AIX_CONNECT.pdf",
+      "status": 200,
+      "bytes": 528812,
+      "sha256": "5660e64ff0acf3d2f38f64b6e2255798a8fc172574a0c075aa5de481b0aa7820",
+      "observedAt": "2026-11-02T23:46:12.967Z",
+      "originalCapture": "airasiaindia-legal-merger-pdf-5660e64ff0ac.body"
+    }
+  ]
+}

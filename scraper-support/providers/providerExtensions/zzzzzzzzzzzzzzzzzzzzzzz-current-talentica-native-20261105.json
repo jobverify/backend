@@ -1,0 +1,11 @@
+[
+  {
+    "source": "talenticasoftware",
+    "catalogOverride": true,
+    "atsPlatform": "official-company-native-role-pages",
+    "paginationStrategy": "paired-current-index-and-declared-role-pages;company-scope-unqualified",
+    "extractionStrategy": "active-own-role-criteria+application-position-fields;native-country-unproven",
+    "verifiedOn": "2026-11-05",
+    "verifiedSurfaceSummary": "Current active Talentica cards bind their declared own role pages, whole published criteria containers and native application-position fields. Exact original opening/closing models and HTML are retained. Work-country, undisclosed requisitions and dates remain unknown; company scope, application activation and cleanup are unqualified. A failed public read stops the source without retries or verified-empty credit."
+  }
+]

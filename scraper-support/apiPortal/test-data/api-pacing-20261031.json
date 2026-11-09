@@ -1,0 +1,26 @@
+{
+  "fixtureKind": "Controlled API responses for scheduling and HTTP boundary regression tests",
+  "provider": {
+    "source": "api-pacing-regression",
+    "companyName": "API Pacing Regression",
+    "companyCareerPage": "https://careers.pacing.invalid/jobs",
+    "countryFilter": "India",
+    "adapter": "apiPortal",
+    "atsPlatform": "native-json",
+    "config": {
+      "discovery": { "listingApiUrl": "https://careers.pacing.invalid/api/jobs" },
+      "request": { "method": "GET" },
+      "pagination": { "strategy": "single-page", "resultsPath": "jobs", "totalCountPath": "total" },
+      "mapping": { "title": "title", "jobId": "id", "location": "location", "sourceUrl": "url", "applyUrl": "url", "jobDescription": "description" },
+      "detail": { "enabled": true, "required": true, "concurrency": 3, "urlTemplate": "https://careers.pacing.invalid/api/job/{{jobId}}", "mapping": { "jobDescription": "description" } }
+    }
+  },
+  "listing": {
+    "total": 3,
+    "jobs": [
+      { "id": "one", "title": "Software Engineer One", "location": "Bengaluru, India", "url": "https://careers.pacing.invalid/jobs/one", "description": "Build and maintain distributed software services. Work with the engineering team to design APIs, diagnose production issues, review changes, and improve automated verification." },
+      { "id": "two", "title": "Software Engineer Two", "location": "Hyderabad, India", "url": "https://careers.pacing.invalid/jobs/two", "description": "Develop reliable data systems. Collaborate with engineering teams to implement features, monitor services, improve performance, and maintain clear technical documentation." },
+      { "id": "three", "title": "Software Engineer Three", "location": "Pune, India", "url": "https://careers.pacing.invalid/jobs/three", "description": "Build application infrastructure. Maintain service integrations, investigate failures, review designs, and improve reliability through testing and operational improvements." }
+    ]
+  }
+}

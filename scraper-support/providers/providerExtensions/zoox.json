@@ -1,0 +1,23 @@
+{
+  "source": "zoox",
+  "companyName": "Zoox",
+  "officialBrandName": "Zoox",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../zoox/script.js",
+  "dryRunFile": "zoox/jobs.json",
+  "companyCareerPage": "https://zoox.com/careers",
+  "companyDomain": "zoox.com",
+  "atsPlatform": "lever",
+  "countryFilter": "India",
+  "paginationStrategy": "native-unfiltered-skip-limit-terminal-page+full-board-identity-reconciliation",
+  "extractionStrategy": "live-current-firstparty-careers-client-binding+lever-native-inventory",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 237,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "October 23, 2026 current Zoox careers client identifies the zoox Lever feed. Three unfiltered native API pages and the complete public board reconcile 237 roles (236 US, one UK), with no India roles. Each run verifies current employer/client binding, native board identity, countries and all locations. Missing core descriptions or unknown secondary scope retain incomplete evidence. Native creation timestamps are not treated as publication dates.",
+  "atsBoardToken": "zoox",
+  "inventoryVerificationPolicy": "live-parser-evidence-required"
+}

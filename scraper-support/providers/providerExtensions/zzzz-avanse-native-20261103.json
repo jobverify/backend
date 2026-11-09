@@ -1,0 +1,17 @@
+{
+  "source": "avanse",
+  "catalogOverride": true,
+  "atsPlatform": "official-public-careers-culture-page",
+  "paginationStrategy": "current-configured-public-careers-page+closing-scope-observations",
+  "extractionStrategy": "active-employer-culture-surface+inactive-commented-jobs-evidence+unknown-vacancy-scope",
+  "verifiedSurfaceSummary": "The configured public Avanse career page currently exposes employer culture content. In the current default HTTP200 capture its entire old Job Openings template and getAllJobs client are inside an HTML comment. They are inactive investigation evidence, not active job inventory or a current API handoff. A subsequent ordinary public browser navigation returnedHTTP403; no alternate route/client retry was attempted. Runtime does not probe the dormant API, customer loan applications, private sessions or guessed404 routes. Vacancy/work-country/company totals and cleanup remain unverified.",
+  "jobsApiActive": false,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "coverage-gap",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false
+}

@@ -1,0 +1,96 @@
+[
+  {
+    "companyName": "Fidelity Investments",
+    "officialBrandName": "Fidelity Investments",
+    "catalogOverride": true,
+    "adapter": "script",
+    "companyDomain": "fidelity.com",
+    "companyCareerPage": "https://jobs.fidelity.com/in/jobs/",
+    "officialHomepageUrl": "https://jobs.fidelity.com/in/",
+    "jobsBoardUrl": "https://jobs.fidelity.com/in/jobs/",
+    "jobsFeedUrl": "https://jobs.fidelity.com/in/jobs/xml/?rss=true",
+    "atsPlatform": "official-company-careers",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T02:36:20.684Z",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T02:36:20.684Z",
+      "officialURL": "https://jobs.fidelity.com/in/",
+      "matchedLinks": [
+        "https://jobs.fidelity.com/in/jobs/"
+      ],
+      "proofFile": "../artifacts/full-catalog/fidelity-native-001/browser-current-004/packet-001.json",
+      "proofSha256": "c235df44df7ddf648979a469ab53afbe3e716b03a7df39b2c71faeb13229e33e"
+    },
+    "sourceScopeNotes": "Current regional India board, XML and full role details reconcile; whole-company global/India totals remain unknown. Ordinary Node receives403 challenges and must fail unknown until current pages are readable; browser actual200 proof is separate. Application forms were never submitted.",
+    "verifiedSurfaceSummary": "Current Fidelity Investments/FMR India public identity, regional board/feed and exact full native details. Runtime counts are separate; challenge HTML never proves employer identity or verified zero.",
+    "backfillMode": "live-parser",
+    "parser": "custom-script",
+    "source": "fidelity",
+    "modulePath": "../../scraper/fidelity/script.js",
+    "remediationStatus": "implemented-native-partial-ordinary-node-transport-blocked",
+    "extractionStrategy": "current-FMR-India-identity+regional-board-feed+full-details+stable-final-reconciliation",
+    "paginationStrategy": "unfiltered-regional-native-count-and-stable-feed-reconciliation"
+  },
+  {
+    "companyName": "Fidelity Investments",
+    "officialBrandName": "Fidelity Investments",
+    "catalogOverride": true,
+    "adapter": "script",
+    "companyDomain": "fidelity.com",
+    "companyCareerPage": "https://jobs.fidelity.com/in/jobs/",
+    "officialHomepageUrl": "https://jobs.fidelity.com/in/",
+    "jobsBoardUrl": "https://jobs.fidelity.com/in/jobs/",
+    "jobsFeedUrl": "https://jobs.fidelity.com/in/jobs/xml/?rss=true",
+    "atsPlatform": "official-company-careers",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T02:36:20.684Z",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T02:36:20.684Z",
+      "officialURL": "https://jobs.fidelity.com/in/",
+      "matchedLinks": [
+        "https://jobs.fidelity.com/in/jobs/"
+      ],
+      "proofFile": "../artifacts/full-catalog/fidelity-native-001/browser-current-004/packet-001.json",
+      "proofSha256": "c235df44df7ddf648979a469ab53afbe3e716b03a7df39b2c71faeb13229e33e"
+    },
+    "sourceScopeNotes": "Current regional India board, XML and full role details reconcile; whole-company global/India totals remain unknown. Ordinary Node receives403 challenges and must fail unknown until current pages are readable; browser actual200 proof is separate. Application forms were never submitted.",
+    "verifiedSurfaceSummary": "Current Fidelity Investments/FMR India public identity, regional board/feed and exact full native details. Runtime counts are separate; challenge HTML never proves employer identity or verified zero.",
+    "backfillMode": "live-parser",
+    "parser": "custom-script",
+    "source": "fedilityinvestments",
+    "legacyCompanyName": "Fedility Investments",
+    "modulePath": "../../scraper/fedilityinvestments/script.js",
+    "aliasOfSource": "fidelity",
+    "canonicalSource": "fidelity",
+    "remediationStatus": "implemented-canonical-inventory-delegation",
+    "extractionStrategy": "delegate-guarded-native-fidelity-preserving-canonical-source-and-company",
+    "paginationStrategy": "canonical-fidelity-regional-board-and-feed",
+    "inventoryDelegation": {
+      "verified": true,
+      "verifiedAt": "2026-10-21T02:56:58.417Z",
+      "sources": [
+        "fidelity"
+      ],
+      "preservesChildSourceAndCompany": true,
+      "evidence": {
+        "url": "https://jobs.fidelity.com/in/",
+        "artifact": "../artifacts/full-catalog/fidelity-native-001/canonical-attribution-proof-026.json",
+        "sha256": "57c58985bb15a99baaf3e57c5ec1ffa53496f590d463cb661d7efdffcca59181"
+      }
+    }
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "source": "finix",
+    "companyName": "Finix",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../finix/script.js",
+    "companyDomain": "finix.com",
+    "officialHomepageUrl": "https://finix.com/",
+    "companyCareerPage": "https://finix.com/careers",
+    "jobsBoardUrl": "https://jobs.lever.co/finix",
+    "listingApiUrl": "https://api.lever.co/v0/postings/finix?mode=json",
+    "atsPlatform": "lever",
+    "boardToken": "finix",
+    "countryFilter": "India",
+    "parser": "source-local-native-scope-wrapper-with-existing-shared-publicAts-Lever-adapter",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "shared-unfiltered-Lever-complete-array-contract-reject-envelope-or-continuation-drift",
+    "extractionStrategy": "official-Lever-tenant-native-primary-and-secondary-location-with-full-source-sections",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-ordinary-audit-and-independent-review",
+    "runtimeQualification": "corrective-source055-003-awaiting-post-fix-ordinary-audit",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T19:52:31.493Z",
+      "officialURL": "https://finix.com/careers",
+      "matchedLinks": [
+        "https://jobs.lever.co/finix"
+      ],
+      "evidenceOrigin": "current-ordinary-anonymous-public-GET-research-not-runtime-extraction",
+      "nativeCaptureSeal": "artifacts/full-catalog/finix-native-001/research-summary-001.json",
+      "nativeCaptureSealSHA256": "46b2f85a413106425c68bb6355088cec42a31aabd7ae72a2f2465f46de93fda7",
+      "nativeCaptureOriginalObservedWindow": {
+        "earliest": "2026-10-21T19:52:27.060Z",
+        "latest": "2026-10-21T19:52:31.493Z",
+        "renewedByLocalSeal": false
+      },
+      "priorDiscoveryArtifact": "artifacts/full-catalog/official-discovery/batch-032.json",
+      "priorDiscoverySHA256": "9b53d8e628989203ae2fb131c95fb19eedef625308d5b0e8d1f87fe26a048a8b"
+    },
+    "nativeResearchObservation": {
+      "publicBoardJobCount": 24,
+      "explicitIndiaLocationJobCount": 0,
+      "ambiguousSecondaryRemoteJobCount": 4,
+      "indiaCapableJobCount": null,
+      "companyWideJobCount": null,
+      "runtimeEvidence": false
+    },
+    "sourceScopeNotes": "Native Lever published-only array and official tenant are verified. Native allLocations is inspected without treating top-level country as exclusion evidence for every secondary location. Generic secondary Remote and unknown geography retain partial evidence and cannot authorize destructive zero replacement. Complete source sections use the existing shared adapter. Exact tenant role/application identities required. createdAt retained only as native creation metadata. Supplied valid datePosted is preserved as original publication; malformed dates and unsupported publication contracts reject. Original publication is unknown when absent; legal employers remain unknown. Substantive active role content is required, label whitespace is normalized before scope checks, foreign geography contradictions and incompatible explicit lifecycle statuses reject. Current public board24, explicit India0, ambiguous Remote4 are research observations, not runtime qualification or company-wide counts. Existing one-calendar-month UTC-day eligibility policy unchanged.",
+    "verifiedSurfaceSummary": "Current official Finix payments careers page links exact Lever finix tenant; board and API share24 UUIDs. Source uses shared Lever adapter with native scope guards. Explicit India labels absent, four secondary Remote scopes unresolved; current India-capable total unknown. Runtime and independent review remain separate."
+  }
+]

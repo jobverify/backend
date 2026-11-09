@@ -1,0 +1,205 @@
+{
+  "kind": "Controlled SmartRecruiters-shaped module fixture; not a captured current native inventory",
+  "provenance": {
+    "origin": "scraper-support/tests/nagarroScript.test.js",
+    "originSha256": "5d4bb90ea8080a64ca75eaa5b90502abb84ba27d53f1932c8de7a5112564f95f",
+    "mutationBasis": "remaining-suite-triage/analyze-selected.mjs four Nagarro cases; no network"
+  },
+  "preflight": {
+    "https://www.nagarro.com/en/careers": "\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <title>Careers | Nagarro</title>\n  </head>\n  <body>\n    <main>\n      <h1>Thinking about becoming a Nagarrian?</h1>\n      <h2>Find more details and open positions on these locations</h2>\n      <p>China India Japan Philippines Singapore South Africa Sri Lanka Thailand</p>\n    </main>\n  </body>\n</html>\n",
+    "https://www.nagarro.com/en/careers/job-search": "\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <title>Job Search | Career opportunities with Nagarro | Explore now</title>\n  </head>\n  <body>\n    <main>\n      <h1>Your future starts here</h1>\n      <h2>Didn't find any open position?</h2>\n      <p>All hope is not lost. Feel free to send us your application anyway. You never know.</p>\n      <a\n        href=\"https://join.smartrecruiters.com/Nagarro1/338a6454-a0d3-4121-a6c2-51696acb91a3-website-applications\"\n      >\n        Apply\n      </a>\n    </main>\n  </body>\n</html>\n",
+    "https://careers.smartrecruiters.com/Nagarro1": "\n<!doctype html>\n<html lang=\"en\">\n  <head>\n    <title>Careers at Nagarro</title>\n  </head>\n  <body>\n    <a href=\"/\">Home Page</a>\n    <div>Search job openings, e.g. \"manager\"</div>\n    <a href=\"#\">Clear search results</a>\n    <h1>Jobs at Nagarro</h1>\n  </body>\n</html>\n"
+  },
+  "listing": {
+    "totalFound": 1,
+    "content": [
+      {
+        "id": "744000138066871",
+        "name": "Associate Principal Engineer, Dotnet Fullstack",
+        "refNumber": "REF-NAG-100",
+        "releasedDate": "2026-07-10T08:15:00.000Z",
+        "location": {
+          "city": "Chennai",
+          "region": "",
+          "country": "in",
+          "fullLocation": "Chennai, , India"
+        },
+        "company": {
+          "identifier": "Nagarro1",
+          "name": "Nagarro"
+        },
+        "department": {
+          "id": "engineering",
+          "label": "Engineering"
+        },
+        "typeOfEmployment": {
+          "id": "full-time",
+          "label": "Full-time"
+        },
+        "experienceLevel": {
+          "id": "not-applicable",
+          "label": "Not Applicable"
+        },
+        "ref": "https://api.smartrecruiters.com/v1/companies/Nagarro1/postings/744000138066871"
+      }
+    ]
+  },
+  "cases": {
+    "rich": {
+      "id": "744000138066871",
+      "name": "Associate Principal Engineer, Dotnet Fullstack",
+      "refNumber": "REF-NAG-100",
+      "releasedDate": "2026-07-10T08:15:00.000Z",
+      "postingUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack",
+      "applyUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack?oga=true",
+      "location": {
+        "city": "Chennai",
+        "region": "",
+        "country": "in",
+        "fullLocation": "Chennai, , India"
+      },
+      "department": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "full-time",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not-applicable",
+        "label": "Not Applicable"
+      },
+      "jobAd": {
+        "sections": {
+          "jobDescription": {
+            "text": "\n          <p>Build and maintain distributed backend services for enterprise clients.</p>\n        "
+          },
+          "qualifications": {
+            "text": "\n          <p>Strong experience with .NET, microservices, and modern cloud-native engineering.</p>\n        "
+          },
+          "additionalInformation": {
+            "text": "\n          <p>Experience collaborating with globally distributed engineering teams is preferred.</p>\n        "
+          }
+        }
+      }
+    },
+    "qualification-only": {
+      "id": "744000138066871",
+      "name": "Associate Principal Engineer, Dotnet Fullstack",
+      "refNumber": "REF-NAG-100",
+      "releasedDate": "2026-07-10T08:15:00.000Z",
+      "postingUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack",
+      "applyUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack?oga=true",
+      "location": {
+        "city": "Chennai",
+        "region": "",
+        "country": "in",
+        "fullLocation": "Chennai, , India"
+      },
+      "department": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "full-time",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not-applicable",
+        "label": "Not Applicable"
+      },
+      "jobAd": {
+        "sections": {
+          "jobDescription": {
+            "text": ""
+          },
+          "qualifications": {
+            "text": "\n          <p>Strong experience with .NET, microservices, and modern cloud-native engineering.</p>\n        "
+          },
+          "additionalInformation": {
+            "text": "<p><a href=\"https://www.nagarro.com/privacy.pdf\">Applicant Privacy Notice</a></p>"
+          }
+        }
+      }
+    },
+    "privacy-only": {
+      "id": "744000138066871",
+      "name": "Associate Principal Engineer, Dotnet Fullstack",
+      "refNumber": "REF-NAG-100",
+      "releasedDate": "2026-07-10T08:15:00.000Z",
+      "postingUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack",
+      "applyUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack?oga=true",
+      "location": {
+        "city": "Chennai",
+        "region": "",
+        "country": "in",
+        "fullLocation": "Chennai, , India"
+      },
+      "department": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "full-time",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not-applicable",
+        "label": "Not Applicable"
+      },
+      "jobAd": {
+        "sections": {
+          "jobDescription": {
+            "text": ""
+          },
+          "qualifications": {
+            "text": ""
+          },
+          "additionalInformation": {
+            "text": "<p><a href=\"https://www.nagarro.com/privacy.pdf\">Applicant Privacy Notice</a></p>"
+          }
+        }
+      }
+    },
+    "motivational-shell": {
+      "id": "744000138066871",
+      "name": "Associate Principal Engineer, Dotnet Fullstack",
+      "refNumber": "REF-NAG-100",
+      "releasedDate": "2026-07-10T08:15:00.000Z",
+      "postingUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack",
+      "applyUrl": "https://jobs.smartrecruiters.com/Nagarro1/744000138066871-associate-principal-engineer-dotnet-fullstack?oga=true",
+      "location": {
+        "city": "Chennai",
+        "region": "",
+        "country": "in",
+        "fullLocation": "Chennai, , India"
+      },
+      "department": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "full-time",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not-applicable",
+        "label": "Not Applicable"
+      },
+      "jobAd": {
+        "sections": {
+          "jobDescription": {
+            "text": "<p>Were you given the tools to go beyond solving for X? Can you help your teammates proceed in the right direction? You have begun to prove your worth in our industry.</p>"
+          },
+          "qualifications": {
+            "text": ""
+          },
+          "additionalInformation": {
+            "text": "<p><a href=\"https://www.nagarro.com/privacy.pdf\">Applicant Privacy Notice</a></p>"
+          }
+        }
+      }
+    }
+  }
+}

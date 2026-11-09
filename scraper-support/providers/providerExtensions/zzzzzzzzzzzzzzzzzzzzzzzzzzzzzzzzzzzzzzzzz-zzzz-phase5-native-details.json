@@ -1,0 +1,34 @@
+[
+  {
+    "source": "ironmountainindia",
+    "catalogOverride": true,
+    "adapter": "script",
+    "sourceScopeComplete": false,
+    "verifiedPublicPostingCount": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "parser": "bound-native-nlx-workday-details",
+    "extractionStrategy": "current-official-nlx-board+sitemap-guid+native-role-and-office-binding+official-workday-redirect+public-open-cxs-details+reconciled-start-date+verbatim-primary-description",
+    "verifiedOn": "2026-10-24",
+    "currentExtractionEvidence": "scraper/ironmountainindia/native-evidence.json",
+    "verifiedSurfaceSummary": "Browser-captured public receipts enumerate16 observed India sitemap routes. Native NLX GUID identity and exact Workday tenant/site/requisition/title/assigned India office validate14 original primary JDs. Two explicit native CXS403/S22 permissions failures are excluded without retry or listing fallback. NLX is_posted:false is not a closure signal when current primary CXS posted/canApply are true. CXS startDate agrees with NLX date_added; all14 captured CXS objects omit endDate. Optional supplied native endDate is validated and preserved with precision. Romania-primary J0107014 has an explicit additional Chennai India office and remains an India role with its September10 date. Whole-company coverage and ordinary Node HTTP availability remain unverified; all inventory totals stay null and cleanup is forbidden."
+  },
+  {
+    "source": "sharechat",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "mynexthire",
+    "sourceScopeComplete": false,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "parser": "bound-native-mynexthire-details-and-publication",
+    "extractionStrategy": "first-party-current-listing+reciprocal-native-tenant1109-website-binding+exact-role-id-title-open-status+role-assigned-office-and-existing-city-policy+native-publishedOn+verbatim-native-jdDisplay",
+    "verifiedOn": "2026-10-24",
+    "currentExtractionEvidence": "scraper/sharechat/native-evidence.json",
+    "verifiedSurfaceSummary": "Browser-captured first-party listing exposes11 observed roles and native tenant1109 identifies ShareChat with the official website and configured public JD/application routes. Eleven original JD HTML strings match exact requisition IDs/titles and native statusId3/requisitionPublished:true. Native publication-dates publishedOn is used; approval/create clocks are separate and never reset posting age. Per-role assigned Bangalore offices with exact Bengaluru/Karnataka560029 addresses and the Mumbai office/address use the existing trusted India-city policy with explicit inference provenance; absent raw native countries remain null. Six India-labelled roles retain unknown city. Whole-company scope and ordinary Node HTTP availability remain unverified; counts stay null and cleanup is forbidden."
+  }
+]

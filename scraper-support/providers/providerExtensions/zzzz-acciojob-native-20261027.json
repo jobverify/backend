@@ -1,0 +1,30 @@
+[
+  {
+    "source":"acciojob",
+    "companyName":"AccioJob",
+    "adapter":"script",
+    "modulePath":"../acciojob/script.js",
+    "catalogOverride":true,
+    "companyCareerPage":"https://acciojob.keka.com/careers",
+    "officialCompanyCareerPage":"https://acciojob.com/",
+    "companyDomain":"acciojob.com",
+    "atsPlatform":"keka-embed-api",
+    "countryFilter":"India",
+    "paginationStrategy":"all-unfiltered-native-records+all-public-details+closing-snapshot-before-cap",
+    "extractionStrategy":"employer-bound-corporate-delegation+reviewed-khConfig-client-css+full-public-details",
+    "parser":"custom-script",
+    "normalizationProfile":"engineering-default",
+    "zeroResultPolicy":"evidence-required",
+    "verifiedOn":"2026-10-27",
+    "verifiedPublicJobCount":0,
+    "verifiedIndiaJobCount":0,
+    "sourceObservedFullCriteriaEligibleIndiaRecords":0,
+    "sourceObservedPublicationPolicyEligibleIndiaRecords":0,
+    "sourceScopeComplete":false,
+    "lifecycleCleanupAllowed":false,
+    "verifiedInventoryStatus":"coverage-gap",
+    "sourceExtractionImplemented":true,
+    "sourceScopeNotes":"Current visible corporate delegation identifies the native default Keka portal. Reviewed current client uses unfiltered active inventory, and current group-link status is false. Both opening and closing snapshots return an empty array. The implementation contains and tests the complete nonempty active-feed to every public jobdetails path, actual public application-client link construction, full-description coherence, explicit native job country and visibility contracts. No live active detail exists to verify today. Empty delegated-board observations do not establish whole-company completeness or authorize lifecycle cleanup. No login, candidate action, application form fetch, submission, database or pipeline operation.",
+    "remediationStatus":"native-extraction-implemented;current-delegated-board-empty;whole-company-scope-partial"
+  }
+]

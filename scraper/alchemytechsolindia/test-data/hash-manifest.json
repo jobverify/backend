@@ -1,0 +1,60 @@
+{
+  "fixture": "native-20261103.json.gz",
+  "sha256": "bce92023798e4ebd6709829f447b654e95e6d58ec16b8b3578b24defbae4572b",
+  "captures": [
+    {
+      "source": "alchemytechsolindia",
+      "key": "filters-production-headers",
+      "url": "https://alchemytechsol.com/wp-content/plugins/wp-job-manager/assets/dist/js/ajax-filters.js?ver=5034ef7cbba3f4acb9df",
+      "status": 200,
+      "finalUrl": "https://alchemytechsol.com/wp-content/plugins/wp-job-manager/assets/dist/js/ajax-filters.js?ver=5034ef7cbba3f4acb9df",
+      "bytes": 7009,
+      "sha256": "e5dd05cb106436fb7991165acf6531e09ecd47304c9198f687242f02ef452308",
+      "file": "alchemytechsolindia-filters-production-headers-e5dd05cb1064.body",
+      "requestedAt": "2026-11-02T21:34:48.256Z",
+      "completedAt": "2026-11-02T21:34:49.259Z"
+    },
+    {
+      "source": "alchemytechsolindia",
+      "key": "rss",
+      "url": "https://alchemytechsol.com/?feed=job_feed",
+      "status": 200,
+      "finalUrl": "https://alchemytechsol.com/?feed=job_feed",
+      "bytes": 1127,
+      "sha256": "14eb8adf9c254879b837bfa4b4e5d4656833ddc4863ca8499eecfb6862a386b6",
+      "file": "alchemytechsolindia-rss-14eb8adf9c25.body",
+      "requestedAt": "2026-11-02T21:34:48.284Z",
+      "completedAt": "2026-11-02T21:34:52.687Z"
+    },
+    {
+      "index": 0,
+      "url": "https://alchemytechsol.com/career/",
+      "method": "GET",
+      "status": 200,
+      "finalUrl": "https://alchemytechsol.com/career/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 94152,
+      "sha256": "00b631b57bdbccba8d1fa6ffd1d8060659b743def9f229ec35235fe41d017b97",
+      "file": "000-00b631b57bdb.body",
+      "requestedAt": "2026-11-02T21:29:26.225Z",
+      "completedAt": "2026-11-02T21:29:30.670Z",
+      "source": "alchemytechsolindia",
+      "key": "production-careers"
+    },
+    {
+      "index": 1,
+      "url": "https://alchemytechsol.com/jm-ajax/get_listings/",
+      "method": "POST",
+      "status": 200,
+      "finalUrl": "https://alchemytechsol.com/jm-ajax/get_listings/",
+      "contentType": "application/json; charset=UTF-8",
+      "bytes": 380,
+      "sha256": "d5bb3cb13f1be2fb86de2ceb30de181d9f416564f33dc7cce123db2354420b2b",
+      "file": "001-d5bb3cb13f1b.body",
+      "requestedAt": "2026-11-02T21:29:30.673Z",
+      "completedAt": "2026-11-02T21:29:31.299Z",
+      "source": "alchemytechsolindia",
+      "key": "production-listing"
+    }
+  ]
+}

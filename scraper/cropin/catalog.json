@@ -1,0 +1,23 @@
+{
+  "source": "cropin",
+  "companyName": "CropIn",
+  "officialBrandName": "Cropin Technology Solutions Private Limited",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../cropin/script.js",
+  "dryRunFile": "cropin/jobs.json",
+  "companyCareerPage": "https://www.cropin.com/career/",
+  "companyDomain": "cropin.com",
+  "atsPlatform": "keka-official-bound-active-inventory",
+  "countryFilter": "India",
+  "paginationStrategy": "reviewed-native-client-single-unfiltered-active-array",
+  "extractionStrategy": "official-handoff+tenant-config+reviewed-client+portal-employer+group-status+native-active-empty-proof;nonempty-contract-coverage-gap",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://www.cropin.com/career/",
+  "officialCareersHandoffUrl": "https://cropinhrms.keka.com/careers/",
+  "verifiedSurfaceSummary": "Captured on October 23, 2026: Cropin's official careers page links its Keka careers portal. The tenant configuration, portal organization Cropin, non-group board, and reviewed native client bind the unfiltered active API, which returned HTTP 200 with []. This verifies the current empty public inventory. Any nonempty role response requires fresh verification of native role geography, descriptions and publication dates and fails as an explicit coverage gap until then."
+}

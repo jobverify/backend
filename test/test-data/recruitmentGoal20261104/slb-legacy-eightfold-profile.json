@@ -1,0 +1,117 @@
+{
+  "atsPlatform": "eightfold",
+  "countryFilter": "India",
+  "paginationStrategy": "offset-limit",
+  "extractionStrategy": "api+detail",
+  "parser": "api-portal",
+  "normalizationProfile": "engineering-default",
+  "source": "slb",
+  "companyName": "SLB",
+  "companyCareerPage": "https://careers.slb.com/job-listing",
+  "companyDomain": "slb.com",
+  "template": "eightfold",
+  "templateOptions": {
+    "host": "apply.slb.com",
+    "domain": "slb.com",
+    "location": "India",
+    "locationPath": "locations.0",
+    "locationPattern": "\\bIndia\\b"
+  },
+  "config": {
+    "request": {
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": "https://apply.slb.com/careers?domain=slb.com",
+        "Origin": "https://apply.slb.com"
+      },
+      "query": {
+        "domain": "slb.com",
+        "query": "",
+        "location": "India",
+        "sort_by": "timestamp"
+      }
+    },
+    "pagination": {
+      "strategy": "offset-limit",
+      "pageSize": 50,
+      "offsetParam": "start",
+      "limitParam": "limit",
+      "resultsPath": "data.positions",
+      "totalCountPath": "data.count"
+    },
+    "mapping": {
+      "title": "name",
+      "location": {
+        "strategy": "eightfold-location"
+      },
+      "jobId": "id",
+      "requisitionId": "displayJobId",
+      "sourceUrl": {
+        "path": "data",
+        "valuePath": "publicUrl",
+        "strategy": "template",
+        "template": "https://apply.slb.com/careers/job/{{jobId}}",
+        "values": {
+          "jobId": "id"
+        }
+      },
+      "applyUrl": {
+        "path": "data",
+        "valuePath": "publicUrl",
+        "strategy": "template",
+        "template": "https://apply.slb.com/careers/apply?pid={{jobId}}&domain=slb.com",
+        "values": {
+          "jobId": "id"
+        }
+      },
+      "department": "department",
+      "postingDate": "postedTs",
+      "country": {
+        "strategy": "eightfold-country"
+      }
+    },
+    "detail": {
+      "enabled": true,
+      "urlTemplate": "https://apply.slb.com/api/pcsx/position_details?position_id={{jobId}}&domain=slb.com&hl=en",
+      "method": "GET",
+      "headers": {
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.9",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "X-Requested-With": "XMLHttpRequest",
+        "Referer": "https://apply.slb.com/careers?domain=slb.com",
+        "Origin": "https://apply.slb.com"
+      },
+      "mapping": {
+        "jobDescription": "data.jobDescription"
+      },
+      "requireListingIdentity": true,
+      "concurrency": 1
+    },
+    "resultFilter": {
+      "include": [
+        {
+          "field": "country",
+          "pattern": "^India$"
+        }
+      ]
+    },
+    "discovery": {
+      "listingApiUrl": "https://apply.slb.com/api/pcsx/search"
+    },
+    "rateLimit": {
+      "minimumIntervalMs": 1000,
+      "maxRetries": 1,
+      "baseDelayMs": 5000,
+      "maxDelayMs": 30000
+    }
+  },
+  "adapter": "apiPortal",
+  "zeroResultPolicy": "evidence-required",
+  "catalogOverride": true,
+  "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+}

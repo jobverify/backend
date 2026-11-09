@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://huron.wd1.myworkdayjobs.com/wday/cxs/huron/huroncareers/jobs",
+  "detailUrlBase": "https://huron.wd1.myworkdayjobs.com/huroncareers",
+  "officialCareersUrl": "https://www.huronconsultinggroup.com/en-in/careers",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

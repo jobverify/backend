@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://riministreet.wd1.myworkdayjobs.com/wday/cxs/riministreet/RiminiStreet/jobs",
+  "detailUrlBase": "https://riministreet.wd1.myworkdayjobs.com/RiminiStreet",
+  "maxPages": 25
+}

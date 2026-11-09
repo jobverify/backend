@@ -1,0 +1,14 @@
+{
+  "catalogOverride": true,
+  "source": "excelacom",
+  "companyName": "Excelacom",
+  "adapter": "script",
+  "modulePath": "../excelacom/script.js",
+  "atsPlatform": "oracle-taleo",
+  "companyCareerPage": "https://www.excelacom.com/careers.html",
+  "companyDomain": "excelacom.com",
+  "countryFilter": "India",
+  "paginationStrategy": "advertised-native-next-links-with-terminal-count-and-closing-identity",
+  "extractionStrategy": "official-binding-native-full-details-job-owned-country-and-source-dates",
+  "zeroResultPolicy": "evidence-required"
+}

@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://alphawave.wd10.myworkdayjobs.com/wday/cxs/alphawave/Alphawave_External/jobs",
+  "detailUrlBase": "https://alphawave.wd10.myworkdayjobs.com/Alphawave_External",
+  "locationCountry": null,
+  "countryFacetParameter": "locationCountry"
+}

@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://tricentis.wd1.myworkdayjobs.com/wday/cxs/tricentis/Tricentis_Careers/jobs",
+  "detailUrlBase": "https://tricentis.wd1.myworkdayjobs.com/Tricentis_Careers",
+  "locationCountry": null,
+  "countryFacetParameter": "locationCountry"
+}

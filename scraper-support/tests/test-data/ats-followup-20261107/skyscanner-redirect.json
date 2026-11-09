@@ -1,0 +1,11 @@
+{
+  "requestUrl": "https://www.skyscanner.com/jobs/current-jobs",
+  "status": 307,
+  "url": "https://www.skyscanner.com/jobs/current-jobs",
+  "location": "/sttc/px/captcha-v2/index.html?url=L2pvYnMvY3VycmVudC1qb2JzPw==&uuid=5dd471cd-da75-11f1-832d-4f520e1d4d6b&vid=",
+  "contentType": "text/html",
+  "body": "<html>\r\n<head><title>307 Temporary Redirect</title></head>\r\n<body>\r\n<center><h1>307 Temporary Redirect</h1></center>\r\n<hr><center>openresty</center>\r\n</body>\r\n</html>\r\n",
+  "sha256": "d3ff999a093c94b71eed485b9391ad5e80033f0728aa285049a0f81d0042dba5",
+  "startedAt": "2026-11-07T06:34:39.416Z",
+  "finishedAt": "2026-11-07T06:34:40.746Z"
+}

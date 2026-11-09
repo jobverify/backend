@@ -1,0 +1,13 @@
+{
+  "capturedOn": "2026-11-06",
+  "file": "native-dom.json.gz",
+  "sha256": "c1735be38de467e145369b5c76b4f357022fbc01e20552901fa6ded4f3d8474b",
+  "listingAuthority": "https://careers.airindia.com/search/?q=&locationsearch=",
+  "nativeListingCount": 12,
+  "detailUrls": [
+    "https://careers.airindia.com/job/Gurugram-A320-Type-Rated-Co-Pilots-%28First-Officer-Senior-First-Officer%29-Guru/52901044/",
+    "https://careers.airindia.com/job/Gurugram-A320-Type-Rated-Captains-%28PIC%29-Guru/56097544/"
+  ],
+  "liveIndiaEvidence": false,
+  "notes": "Unmodified native global Air India positive listing and two AIX-explicit global JobPosting details. Global listing is not the branded AIX inventory. Actual addressCountry values No and HO do not establish India. Positive India and branded listing variants exist only as controlled unit-test mutations, never as live captures."
+}

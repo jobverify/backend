@@ -1,0 +1,169 @@
+[
+  {
+    "jobId": null,
+    "title": "Lead Engineer - IT",
+    "company": "Guardian",
+    "department": null,
+    "location": "Chennai",
+    "city": "Chennai",
+    "locations": [
+      "Chennai"
+    ],
+    "link": "https://guardianlife.wd5.myworkdayjobs.com/Guardian-Life-Careers/job/Chennai/Lead-Engineer---IT_R000109783-2",
+    "source": "guardian",
+    "postedAt": "2026-07-29T00:00:00.000Z",
+    "closingDate": null,
+    "jobDescription": "Job Description: Java Full Stack Developer (5–8 Years Experience) We are seeking a highly skilled Java Full Stack Developer with strong expertise in Spring Boot, Microservices, and solid Core Java fundamentals. The ideal candidate will have hands-on experience in developing scalable, high‑performance applications, along with proficiency in relational databases, CI/CD pipelines, and testing frameworks. Familiarity with AWS and modern Dev Ops practices will be an added advantage. Experience with event-driven architecture while working with platforms such as Kafka, SNS/SQS is also valuable. In addition, front-end development experience is required, with a preference for React JS or Angular JS. The candidate will be expected to contribute to front-end development as a core part of their role. Key Responsibilities Design, develop, and maintain Java-based applications using Spring Boot and Microservices architecture. Build and implement RESTful APIs, ensuring efficient communication and integration across services. Develop, optimize, and maintain database schemas and queries for My SQL and Postgre SQL. Apply object-oriented principles and design patterns to deliver clean, modular, and maintainable code. Develop and maintain front-end applications using React JS or Angular JS, working closely with UI/UX designers to deliver seamless user experiences. Build and maintain CI/CD pipelines using tools like Jenkins, Git, and Maven/Gradle. Write, execute, and maintain unit and integration tests using frameworks such as JUnit and Mockito. Collaborate with QA, Dev Ops, Product Management, and other cross-functional teams. Participate in code reviews, troubleshooting issues, and perform application performance tuning. Stay up to date with emerging technologies and contribute to continuous improvement initiatives. Ability to debug, analytical skills, prod support. Required Skills &amp; Qualifications 5–8 years of professional development experience in Java &amp; front-end technologies. Strong proficiency in Core Java (Collections, Multithreading, Exception Handling, Streams, etc.). Hands-on experience with Spring Boot, Spring Cloud, and Microservices architecture. Solid understanding of RESTful services and API design principles. Experience working with My SQL and Postgre SQL databases. Experience with front-end development using React JS or Angular JS. The candidate must be able to contribute to front-end coding, troubleshooting, and collaboration with UI/UX teams. Strong knowledge of CI/CD pipelines (Jenkins, Git, Maven/Gradle). Proficiency in unit testing frameworks (JUnit, Mockito). Good understanding of software design principles and common design patterns. Strong analytical and problem‑solving skills. Familiarity with AWS services (ECS, EKS, EC2, S3, RDS, Lambda) is a plus. Leveraging AI productivity tools such as Github Co-pilot. Excellent communication and collaboration skills. Location: This position can be based in any of the following locations: Chennai Current Guardian Colleagues: Please apply through the internal Jobs Hub in Workday Every day, Guardian helps our 29 million customers realize their dreams through a range of insurance and financial products and services. Our Purpose, to inspire well-being, guides our dedication to the colleagues, consumers, and communities we serve. We know that people count, and we go above and beyond to prepare them for the life they want to live, focusing on their overall well-being — mind, body, and wallet. As one of the largest mutual insurance companies, we put our customers first. Behind every bright future is a Guardian TM. Learn more about Guardian at guardianlife.com. Visa Sponsorship: Guardian Life is not currently or in the foreseeable future sponsoring employment-based visas (e.g., such as an H-1B). In order to be a successful applicant, you must be legally authorized to work in the United States, without the need for employer sponsorship/support now or at any time in the future.",
+    "minimumQualification": null,
+    "preferredQualification": null,
+    "requiredSkills": [],
+    "experienceRequired": "5-8 Years",
+    "requisitionId": "R000109783",
+    "scrapedAt": "2026-08-01T05:33:00.969Z",
+    "country": "India",
+    "companyCareerPage": "https://www.guardianlife.com/careers/corporate",
+    "companyDomain": "guardianlife.com",
+    "atsPlatform": "workday",
+    "applyUrl": "https://guardianlife.wd5.myworkdayjobs.com/Guardian-Life-Careers/job/Chennai/Lead-Engineer---IT_R000109783-2",
+    "sourceUrl": "https://guardianlife.wd5.myworkdayjobs.com/Guardian-Life-Careers/job/Chennai/Lead-Engineer---IT_R000109783-2",
+    "originalTitle": "Lead Engineer - IT",
+    "normalizedTitle": "Lead Engineer - IT",
+    "jobCategory": "Lead Engineer - IT",
+    "engineeringDomain": "DevOps",
+    "employmentType": "Full-time",
+    "experienceLevel": "Senior Level",
+    "jobType": "Full-time Experienced",
+    "state": null,
+    "remoteStatus": "On-site",
+    "salary": null,
+    "postingDate": "2026-07-29T00:00:00.000Z",
+    "scrapedTimestamp": "2026-08-01T05:33:00.969Z",
+    "skillIds": [
+      "java",
+      "spring-boot",
+      "aws",
+      "kafka",
+      "angular",
+      "sql",
+      "postgresql",
+      "jenkins"
+    ],
+    "requiredSkillIds": [],
+    "preferredSkillIds": [],
+    "jobSkills": [
+      {
+        "skillId": "java",
+        "canonicalName": "Java",
+        "category": "Programming Languages",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "Java"
+      },
+      {
+        "skillId": "spring-boot",
+        "canonicalName": "Spring Boot",
+        "category": "Frameworks & Libraries",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "Spring Boot"
+      },
+      {
+        "skillId": "aws",
+        "canonicalName": "AWS",
+        "category": "Cloud Platforms",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "AWS"
+      },
+      {
+        "skillId": "kafka",
+        "canonicalName": "Kafka",
+        "category": "Databases & Data Systems",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "Kafka"
+      },
+      {
+        "skillId": "angular",
+        "canonicalName": "Angular",
+        "category": "Frameworks & Libraries",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "Angular"
+      },
+      {
+        "skillId": "sql",
+        "canonicalName": "SQL",
+        "category": "Programming Languages",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "SQL"
+      },
+      {
+        "skillId": "postgresql",
+        "canonicalName": "PostgreSQL",
+        "category": "Databases & Data Systems",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "Postgre SQL"
+      },
+      {
+        "skillId": "jenkins",
+        "canonicalName": "Jenkins",
+        "category": "DevOps & Infrastructure",
+        "required": false,
+        "preferred": false,
+        "confidence": "medium",
+        "extractionSource": "description",
+        "matchedPhrase": "Jenkins"
+      }
+    ],
+    "experienceBucket": "3-5",
+    "experienceProfile": {
+      "rawText": "5-8 Years",
+      "minimumYears": 5,
+      "maximumYears": 8,
+      "isOpenEnded": false,
+      "preferredMinimumYears": null,
+      "hasExplicitExperience": true,
+      "confidence": "high",
+      "evidence": "5-8 Years",
+      "experienceBucket": "3-5"
+    },
+    "experienceYears": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "seniority": "Lead",
+    "primaryRoleDomain": "Backend Engineering",
+    "secondaryRoleDomains": [],
+    "workArrangement": "On-site",
+    "filterSignals": {
+      "confidence": {
+        "experience": "high",
+        "seniority": "high",
+        "roleDomain": "high",
+        "workArrangement": "high"
+      }
+    },
+    "taxonomyVersion": "2026-07-16-v1",
+    "extractionVersion": "2026-07-16-v1",
+    "extractedAt": "2026-08-01T05:33:00.984Z"
+  }
+]

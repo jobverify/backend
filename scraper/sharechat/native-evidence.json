@@ -1,0 +1,17 @@
+{
+  "capturedAt": "2026-10-24T18:38:55.294Z",
+  "captureMethod": "isolated browser cookie-free native API receipts plus one origin setup",
+  "ordinaryHttpAvailabilityVerified": false,
+  "wholeCompanyCoverageVerified": false,
+  "observedListingRoles": 11,
+  "verifiedNativeDescriptions": 11,
+  "tenant": { "shortName": "sharechat", "clientId": 1109, "clientName": "ShareChat", "companyWebsite": "https://sharechat.com/" },
+  "description": "Original reqDetailsBO.jdDisplay HTML; exact requisition ID/title plus statusId3 and requisitionPublished:true required.",
+  "publicationDateBasis": "careersJobPostingDatesList.publishedOn from native POST publication-dates/list; listing approvedDate and createdDate retained separately. Future publishedOn is rejected against the run clock.",
+  "locationBasis": "Exact per-role locationList office/name/address joined to first-party listing offices. Bangalore detailed Bengaluru/Karnataka560029 address and Mumbai office/address use existing trusted India-city policy; explicit India office/address is country-level only. Missing raw country remains null and inference provenance is retained. No headquarters substitution or global geography policy change.",
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "fixtures": "scraper-support/tests/fixtures/sharechat/native-20261024/manifest.json"
+}

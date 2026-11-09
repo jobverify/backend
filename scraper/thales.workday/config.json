@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://thales.wd3.myworkdayjobs.com/wday/cxs/thales/Careers/jobs",
+  "detailUrlBase": "https://thales.wd3.myworkdayjobs.com/Careers",
+  "countryFacetParameter": "locationCountry"
+}

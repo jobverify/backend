@@ -1,0 +1,78 @@
+{
+  "provenance": {
+    "capturedAt": "2026-11-06T20:43:38.858Z",
+    "corporateBodySha256": "168e38366a0353f2a93f4d7ef8ea9b53c66daab7abeb3ff2dde7eb339e361fdf",
+    "fixtureSha256": "87461e17c2dd1b236a069f0de4057d37880b887846ee92f69fdc80179ccd9390",
+    "binding": "Finite exact current first-party responsive SSR declarations, currently declared main/preload program bytes and independently reconciled native GitBook organization/full role models. Corporate renderer execution/full CMS and company scope unverified; partial only. Remote is not a country.",
+    "drift": "Against genuine Nov05: identical active hiring text/links/forms/frames/interactions; exactly ten changed element attributes. One style changes the generated root class plus mobile(max-width809.98px) root padding80px to60px; all other style bytes unchanged. Native bootstrap differs only in four exact uniform CDN release-path literals. No runtime normalization; all current scope/program bytes remain exact and whole-company/renderer visibility unverified.",
+    "additionalNativeCapture": {
+      "fixture": "fixtures/current-http-20261107-default.json.gz",
+      "fixtureSha256": "7787a42b7048d9aa665355577355bdce4fc4c6bc3a628ad231f8cf97c9f555bd",
+      "review": "Exact second genuine full bootstrap; only four AST literal CDN release paths differ. No runtime release normalization. Original default run before this review correctly held two models incomplete; it is not evidence of final-version three-model success."
+    }
+  },
+  "scopeSha256": "3324c1434f05623e92e5ee49f5661e88ed91b16d14ef83819e8e61379ac782c7",
+  "nativeAppBootstrap": {
+    "sha256": "735d27f029768d84e9447e506dca9e2f65da1661e47f62344e7a176bdc197fbf",
+    "additionalReviewedSha256": [
+      "c6e2a80b299a3d79d3aa47ca2b3b70f2d1b23a966b720751017963bdb1a32f7e"
+    ]
+  },
+  "corporateRoleIds": [
+    "531ab2e2-af70-4b26-805e-1b4554184fd6",
+    "5d3d7b3d-0a50-4728-a9cc-18cfd8b14adb",
+    "cfd51d34-61c7-47c6-af41-04818008fea2"
+  ],
+  "declaredPrograms": [
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/script_main.zoIqlaE2.mjs",
+      "sha256": "758af99a4f68ee2143c6f8feb573d6e2108d364ce46b703c208c2e0dbb6e801b",
+      "bytes": 17340
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/rolldown-runtime.CNOWq4Kh.mjs",
+      "sha256": "2d8d100f1a8f491dcf0b1adcd5d5f59a48dfd1683b8123c97785039b0e72e99d",
+      "bytes": 817
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/react.BQDVJODu.mjs",
+      "sha256": "266968918640b6d01091345f7cc03f3e40e394c10a38c688714c77a3459bd1c5",
+      "bytes": 145074
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/framer.C3YnPYgl.mjs",
+      "sha256": "6f61036dc8544b539b03f06a548a594d9f6a702469518095c4e13d0cb2cbe87f",
+      "bytes": 449372
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/motion.BfBj0Vkg.mjs",
+      "sha256": "6ded36067afe40332797f0b7eeb608263f8a8b293067d971e1c8b23629af82d6",
+      "bytes": 155658
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/toplevel-deps.AkkARife.mjs",
+      "sha256": "def3ff43f28e052d92177c49189f4131d13d69c879504a40fe19c4fcdcb4d92e",
+      "bytes": 411850
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/1VjPohRBK3whC-mmINQUjs2HeHP3TAuQki5KCKQqfkA.CqsTLgpu.mjs",
+      "sha256": "dfa5eaa3b8f60e29d74fa1b44159b3ab2c423fd4a450c8cd3f2df17d3275fc8d",
+      "bytes": 99686
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/shared.CIF94v_4.mjs",
+      "sha256": "efd024320c5312069dc95ff502abe7ae4c4011b2e2f0ef616fdff1fe7bf9d9fc",
+      "bytes": 636253
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/tVXXlDnVX.V1BdVfxB.mjs",
+      "sha256": "0de1ccd774f19dfc457a2dfe8124c0acc08b3bcb22d1d47606287c1d014b6d3b",
+      "bytes": 11689
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/N0GdP398w.Cmay8RJy.mjs",
+      "sha256": "39910c461c665e4096bb1da7798e8c88f4c5425a58b606558e01980023056a19",
+      "bytes": 928
+    }
+  ]
+}

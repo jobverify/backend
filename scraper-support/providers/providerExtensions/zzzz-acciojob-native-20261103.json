@@ -1,0 +1,17 @@
+{
+  "source": "acciojob",
+  "catalogOverride": true,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "coverage-gap",
+  "remediationStatus": "employee-board-scope-repaired;declared-Keka-board-complete-empty;own-paid-mentor-scope-partial",
+  "sourceScopeNotes": "The current declared employee Keka board is fully reconciled and empty. Corporate student placement drives belong to third-party hiring partners and do not gate employee-board completion. The real separately advertised paid own-mentor hiring signal retains full public role/eligibility copy, unresolved work country and unknown vacancy scope. No company-wide zero or lifecycle cleanup is authorized.",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "paginationStrategy": "declared-employee-Keka-board+both-group-APIs+full-native-detail-and-closing-inventory",
+  "extractionStrategy": "active-corporate-employee-Careers-handoff+native-employer-identity+separate-placement-product-and-own-mentor-scope",
+  "verifiedSurfaceSummary": "AccioJob's current corporate Careers link declares its exact AccioJob Keka employee board. Runtime retains the strict native renderer/configuration/employer checks, both group APIs, full embedded and board arrays, every native public detail and closing arrays. Corporate /jobs explicitly serves500+ third-party hiring partners and students; unrelated placement marketing hashes or private student login do not gate this public employee board. The separately advertised paid own-mentor recruitment page retains its full public criteria with unresolved work country and vacancy scope, so a complete empty Keka board is not company-wide absence or cleanup permission."
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "review": "Twelve rendered original pages: page backgrounds, company watermarks and email-link pills only. Text is extracted separately. Changed non-text drawing programs require review; graphics hashes do not establish country.",
+  "qualityFixtureSHA256": "f51317ba8d33a9af271acfd123fd9495c9b7868aa5b55d685410654576297a35",
+  "reviewedDocuments": 6,
+  "reviewedPages": 12,
+  "allowedGraphicsSHA256": [
+    "80947fb968b02c1da3fc08828545a5628f7948dbcad9680410c9e5339eac7206",
+    "1dbd0dc69faf58dedba5c251ffb59b538ac076e96a73321fe8460f520a695647",
+    "4a51ba1d43666329e6e3b89f0bbd81a7495148361a4ed90dbca952e67ca316f6",
+    "33fac0607511183b5145353bdab9292a3a7e727c205ebb0dfff210e2eabb4f44",
+    "320366aa075a6a4d07023b8f47c5a8dabe90b511f9d170ce2f20cbb6336a3480",
+    "4637c1c276c1e07e50dff7b76958795ac0d6d171c3cc363d463ac81083915720",
+    "bbf8228878b0b593c8bbf0c2c3fd8275a28cbdcd0c51fe91e530cc491972df63",
+    "483979412e30e2b1d588566b5411b1efe2926bb54579d5fa78944cbe0abbf4b0",
+    "526541c563ba7a9cc92beb1c1a95f8c43ac81da391840001133519e73302a3b2",
+    "b56ebfb4acdfba73377dcd98a7fad61ce63070f9eb23417940684f3d23136a5b",
+    "3692288da632b6eedacc37f435ecee43a86f6a5c67ee0f559f76ab2aefe536a2",
+    "d99d3623d4d61c71bb8689ce26f686346e623224fdafffa24c03536c7ac55898"
+  ]
+}

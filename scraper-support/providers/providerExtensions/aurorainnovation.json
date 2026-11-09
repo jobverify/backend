@@ -1,0 +1,22 @@
+{
+  "source": "aurorainnovation",
+  "companyName": "Aurora Innovation",
+  "officialBrandName": "Aurora Innovation, Inc.",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../aurorainnovation/script.js",
+  "dryRunFile": "aurorainnovation/jobs.json",
+  "companyCareerPage": "https://aurora.tech/careers/",
+  "companyDomain": "aurora.tech",
+  "atsPlatform": "official-jobs-index",
+  "countryFilter": "India",
+  "paginationStrategy": "single-native-jobs-index-reconciled-with-search-index",
+  "extractionStrategy": "live-official-jobs-index-with-identity-count-and-location-validation",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 98,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://aurora.tech/careers/",
+  "verifiedSurfaceSummary": "Rechecked 2026-10-23: official Aurora client fetches /api/jobs-index once then filters client-side. Native 98-job response reconciles with embedded search-index identities; no explicit India locations in observed inventory. Each run validates current native response; no historical empty assertion is reused. Captures retained under scraper/aurorainnovation/fixtures."
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "source": "bluebinaries",
+    "companyName": "Blue Binaries",
+    "adapter": "script",
+    "modulePath": "../bluebinaries/script.js",
+    "homepageUrl": "https://www.bluebinaries.com/",
+    "companyCareerPage": "https://www.bluebinaries.com/become-a-bluebee/",
+    "jobListingsUrl": "https://www.bluebinaries.com/become-a-bluebee/",
+    "officialWorksitesUrl": "https://www.bluebinaries.com/connect-to-us/",
+    "companyDomain": "bluebinaries.com",
+    "atsPlatform": "wordpress-native-accordion",
+    "countryFilter": "India",
+    "paginationStrategy": "active-native-static-accordion+opening-and-closing-identity-and-criteria-reconciliation",
+    "extractionStrategy": "full-visible-native-criteria+exact-native-id+explicit-role-country-or-unique-current-employer-worksite",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-10-27",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "The official homepage delegates to Become A BlueBee. Enumerate active native accordion postings, preserving exact data-attribute IDs separately from formal requisitions and full nested visible criteria. Commented, inert and hidden content is excluded; HTML text leaves decode once. A role-owned exact Troy MI location can resolve through the unique current declared USA/Michigan/Troy MI employer worksite, reconciled on closing. Missing or duplicate native IDs, uncertain criteria, country conflicts, additional channels or changed closing inventory keep counts unavailable and disable cleanup. Native Posted on labels supply original job publication dates; page CMS and SEO dates never do. Preserve only published application anchors.",
+    "dryRunFile": "bluebinaries/jobs.json",
+    "catalogOverride": true
+  }
+]

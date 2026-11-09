@@ -1,0 +1,272 @@
+{
+  "reviewedAt": "2026-10-26T21:30:18.734Z",
+  "sourceCapture": "artifacts/scraper-log-review-1b360f27/current-native/latest-byteridge-native-capture.json",
+  "corporate": {
+    "inlineExecutableSHA256": [
+      "18cf9bcbee084b33585433b824d4f179815e0b148044e5179b06c5640cfff2ba",
+      "332ade88a5570932db8d137c2d204067bc1751ee00c31d76def75eb18a3dec5b",
+      "3fb22f8e0ff85c2a9a1717d483b5e5ec1212969ccc94dc40833e817b51f7e5ef",
+      "4336860c257f08911e4b206d74a75478d51ac09b4fe22170ce83aa09a67780b2",
+      "626aa90e1e25e9a66e39e8ada1f65826c0240192fc871923e2b478e6ab03ea88",
+      "626aa90e1e25e9a66e39e8ada1f65826c0240192fc871923e2b478e6ab03ea88",
+      "6826cb4c89f86a1f89182e0538676ab0290d4c95a4e338c1f2ab9e85ac88ffff",
+      "6e2ede311203a16a1b39a997f761152c5c72a5a0476d0d37d80ec756e6c91f7b",
+      "7396ff75aa389aadaf1be546f86be2f6b64f79b5bd7f0e3d682c4e19d246f60e",
+      "88bfa5325b282f97f6d0c29a8db5b9b9f19ee17d06f6f8d08871449313e26b42",
+      "89a4f4fa6a9f36ad7ca2dbc2d152196d2d576c037cc3f463bb78942a67952505",
+      "986ded480777c96c561a8af8a71adb94086e9924244cf292c370396b511a47fc",
+      "9f39cd608d3fcf3bfc27d62a012292f7cee52d7430508ccf1aded05e58acde7f",
+      "bb78dc5ca6209d096328da40a7aaf706b74e0b2c279c554586903d8252269cb3",
+      "bca7236785b96e484d427b45d31dd67b39a817c0e0fc6edb6b2c389c7f68007b",
+      "c2ff6df28bea9c7e1ac95692e3a2eb68b33be87031c45f96ebe5319876d9ea82",
+      "cc37f3ed8e5d0c85349a99c4ab3d6d2c302e8d9368fa1e39d55fce6d52aef820",
+      "cfb0bd1ed91adb5bcbad0eb05dc7a1bfc25d8fcce802fc82a9dde85df551ae47",
+      "f378126c83d0d63b09ed8ba2cbf9d5a663218fa4ea3e22821793e871e2729f56",
+      "f8515148038553c347533833d43ab84dec0fbf60351524de0e3c74eb8d1abb85"
+    ],
+    "inlineStyleSHA256": [
+      "09a5c0819e33983bcf6f4a0ced70a7fd5a5dbda5eecdf1d38877f2d365e8b2df",
+      "217a2f065574671d1b06bf3414a8ac82e90fd043f873b738369e8532ed82bf59",
+      "67d74d38f5e143a7c654e95140727deb44783af81dc7f73e2026369e9e79706e",
+      "688d164e51bcaf3f52b80d86eff4cdee6a00650a3c34fb512a6464190dfc8b0c",
+      "6b4b7dd4d92a7142387f1fc76b2484da65a22304a8062e04f46d81767fc9b972",
+      "ab27bae3ee005d98a419c9ea9aa1423b1e792e4e1f6bd1e79313563662930793",
+      "aeb820fc710a35b521c6bd647632d3ac70c03d51509d1cd04b1b3fd316343ab2",
+      "bb30c393cf6568d2b6f27fe621805573d9976bdb20e597ceff6b467c77c6b67f",
+      "d73384295b6c71dd7a1df44e5f841eb081a548f7fc61e4001f807db2adb6f688",
+      "f56a3253a4975dc863cfa09bd347eb0e804533b6949c46ca0713abb8af4e99cf"
+    ],
+    "stylesheets": [
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/conditionals/popup.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-loop-carousel.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-loop-common.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-nested-carousel.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-search.min.css?ver=4.3.2",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-video.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-float.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.min.css?ver=4.3.5",
+      "https://byteridge.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+      "https://byteridge.com/wp-content/themes/Byteridge/style.css?ver=1.0.0",
+      "https://byteridge.com/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=3.5.1",
+      "https://byteridge.com/wp-content/themes/hello-elementor/assets/css/theme.css?ver=3.5.1",
+      "https://byteridge.com/wp-content/themes/hello-elementor/style.css?ver=7.1.3",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-apple-webkit.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-frontend.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-pro-widget-mega-menu.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-icon-box.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-icon-list.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-image-box.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-nested-tabs.min.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-15708.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-16122.css?ver=1792751290",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-245.css?ver=1792751290",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-486.css?ver=1792752554",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-5156.css?ver=1792751293",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-8683.css?ver=1792751286",
+      "https://byteridge.com/wp-content/uploads/elementor/css/post-9596.css?ver=1792751290",
+      "https://byteridge.com/wp-includes/js/mediaelement/mediaelementplayer-legacy.min.css?ver=4.2.17",
+      "https://byteridge.com/wp-includes/js/mediaelement/wp-mediaelement.min.css?ver=7.1.3",
+      "https://fonts.googleapis.com/css?family=Inter:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+    ]
+  },
+  "native": {
+    "inlineExecutableSHA256": [
+      "988c48ac5ace12cc4df1f6a8e60d051e7d7d446167f90c93916e8c5439a83738",
+      "a6f28dc86db77300570ab8bdceb0c5afb8479d776c51f8e124435476a4c55baf",
+      "c7ac27b0884ea5a24cf30845d0d7c80153b338e455d2d1213226a9f636018f73"
+    ],
+    "inlineStyleSHA256": [],
+    "stylesheets": [
+      "https://byteridge.turbohire.co/static/css/18.82f66c09.chunk.css",
+      "https://byteridge.turbohire.co/static/css/main.a21a9906.chunk.css",
+      "https://fonts.googleapis.com/css?family=Inter:300,400,500,700",
+      "https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900",
+      "https://fonts.googleapis.com/icon?family=Material+Icons"
+    ]
+  },
+  "corporateInlineConfigurations": {
+    "elementor-frontend-js-before": {
+      "variable": "elementorFrontendConfig",
+      "noncePaths": [
+        "nonces.floatingButtonsClickTracking",
+        "nonces.atomicFormsSendForm"
+      ],
+      "semanticSHA256": "20ed94eb24caf7c9b3e72a24628d4e849d1595ef8d5f2a124483cf67ab33a54f",
+      "reviewedSHA256": "4336860c257f08911e4b206d74a75478d51ac09b4fe22170ce83aa09a67780b2"
+    },
+    "elementor-pro-frontend-js-before": {
+      "variable": "ElementorProFrontendConfig",
+      "noncePaths": [
+        "nonce"
+      ],
+      "semanticSHA256": "3846544dcdecc98a2e0990569097390f422e236877e577c070fd0bce1bcf4470",
+      "reviewedSHA256": "bb78dc5ca6209d096328da40a7aaf706b74e0b2c279c554586903d8252269cb3"
+    }
+  },
+  "corporateStyleVersions": [
+    {
+      "reviewedAt": "2026-10-31T05:12:21.642Z",
+      "sourceCapture": "scraper/byteridge/test-inputs/corporate-20261031.json.gz",
+      "reviewSummary": "WordPress cache revisions and removal of media-player assets. Inline CSS and careers iframe ancestor markup are unchanged; captured CSS and browser computed visibility preserve the official handoff. Only the two reviewed Elementor JSON nonce configurations rotate.",
+      "inlineStyleSHA256": [
+        "09a5c0819e33983bcf6f4a0ced70a7fd5a5dbda5eecdf1d38877f2d365e8b2df",
+        "217a2f065574671d1b06bf3414a8ac82e90fd043f873b738369e8532ed82bf59",
+        "67d74d38f5e143a7c654e95140727deb44783af81dc7f73e2026369e9e79706e",
+        "688d164e51bcaf3f52b80d86eff4cdee6a00650a3c34fb512a6464190dfc8b0c",
+        "6b4b7dd4d92a7142387f1fc76b2484da65a22304a8062e04f46d81767fc9b972",
+        "ab27bae3ee005d98a419c9ea9aa1423b1e792e4e1f6bd1e79313563662930793",
+        "aeb820fc710a35b521c6bd647632d3ac70c03d51509d1cd04b1b3fd316343ab2",
+        "bb30c393cf6568d2b6f27fe621805573d9976bdb20e597ceff6b467c77c6b67f",
+        "d73384295b6c71dd7a1df44e5f841eb081a548f7fc61e4001f807db2adb6f688",
+        "f56a3253a4975dc863cfa09bd347eb0e804533b6949c46ca0713abb8af4e99cf"
+      ],
+      "stylesheets": [
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/conditionals/popup.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/modules/sticky.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-form.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-loop-carousel.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-loop-common.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-nested-carousel.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor-pro/assets/css/widget-search.min.css?ver=4.3.2",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-spacer.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/css/widget-video.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-float.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeIn.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInUp.min.css?ver=4.3.5",
+        "https://byteridge.com/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css?ver=8.4.5",
+        "https://byteridge.com/wp-content/themes/Byteridge/style.css?ver=1.0.0",
+        "https://byteridge.com/wp-content/themes/hello-elementor/assets/css/header-footer.css?ver=3.5.1",
+        "https://byteridge.com/wp-content/themes/hello-elementor/assets/css/theme.css?ver=3.5.1",
+        "https://byteridge.com/wp-content/themes/hello-elementor/style.css?ver=7.1.4",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-apple-webkit.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-frontend.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-pro-widget-mega-menu.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-icon-box.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-icon-list.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-image-box.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/custom-widget-nested-tabs.min.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-15708.css?ver=1793196645",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-16122.css?ver=1793196649",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-245.css?ver=1793196649",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-486.css?ver=1793196811",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-5156.css?ver=1793196651",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-8683.css?ver=1793196644",
+        "https://byteridge.com/wp-content/uploads/elementor/css/post-9596.css?ver=1793196648",
+        "https://fonts.googleapis.com/css?family=Inter:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&display=swap"
+      ],
+      "inlineExecutableSHA256": [
+        "18cf9bcbee084b33585433b824d4f179815e0b148044e5179b06c5640cfff2ba",
+        "332ade88a5570932db8d137c2d204067bc1751ee00c31d76def75eb18a3dec5b",
+        "3fb22f8e0ff85c2a9a1717d483b5e5ec1212969ccc94dc40833e817b51f7e5ef",
+        "4336860c257f08911e4b206d74a75478d51ac09b4fe22170ce83aa09a67780b2",
+        "626aa90e1e25e9a66e39e8ada1f65826c0240192fc871923e2b478e6ab03ea88",
+        "626aa90e1e25e9a66e39e8ada1f65826c0240192fc871923e2b478e6ab03ea88",
+        "6826cb4c89f86a1f89182e0538676ab0290d4c95a4e338c1f2ab9e85ac88ffff",
+        "6e2ede311203a16a1b39a997f761152c5c72a5a0476d0d37d80ec756e6c91f7b",
+        "7396ff75aa389aadaf1be546f86be2f6b64f79b5bd7f0e3d682c4e19d246f60e",
+        "88bfa5325b282f97f6d0c29a8db5b9b9f19ee17d06f6f8d08871449313e26b42",
+        "89a4f4fa6a9f36ad7ca2dbc2d152196d2d576c037cc3f463bb78942a67952505",
+        "9f39cd608d3fcf3bfc27d62a012292f7cee52d7430508ccf1aded05e58acde7f",
+        "bb78dc5ca6209d096328da40a7aaf706b74e0b2c279c554586903d8252269cb3",
+        "bca7236785b96e484d427b45d31dd67b39a817c0e0fc6edb6b2c389c7f68007b",
+        "c2ff6df28bea9c7e1ac95692e3a2eb68b33be87031c45f96ebe5319876d9ea82",
+        "cc37f3ed8e5d0c85349a99c4ab3d6d2c302e8d9368fa1e39d55fce6d52aef820",
+        "cfb0bd1ed91adb5bcbad0eb05dc7a1bfc25d8fcce802fc82a9dde85df551ae47",
+        "f378126c83d0d63b09ed8ba2cbf9d5a663218fa4ea3e22821793e871e2729f56"
+      ]
+    }
+  ],
+  "nativeClientVersions": [
+    {
+      "reviewedAt": "2026-10-31T05:35:29.986Z",
+      "reviewSummary": "Seven public API/session methods (including API origins, token/noauth, organization lookup/detail, filtered listing and public role detail) are byte-for-byte unchanged. Public filtered-list and application-template call sites in the lazy client are unchanged. Native CSS, executable inline clients and active root/schema checks remain pinned.",
+      "publicMethodSHA256": {
+        "getUnauthenticatedAccessToken": "d50db8d34d43d41eca8fc2f1403cec1661391d41d6dde960d7d1baec9be7f857",
+        "constructor": "9a47aeb91fb9ee7bd685848c37ffaadc054ff843ea96a6451fd9a612d52becb1",
+        "getUnAuthenticatedAccessToken": "75b78c537edf926ce6a024e37ccd9b587641b2c1698b5fb3dac6619c513142d0",
+        "getOrgDetailsFromAccountName": "22e61ca681921aa255ce15df19193ec4e4ab97bbe4f718f37863b001bf68c1a8",
+        "getPublicOrgInfo": "c930e4bc62256d242ac81f814296659ed963f86331fdf8ce82a183e796f54e50",
+        "getPublicJobRefsForOrgFiltered": "b9a164010d28e4ef3cc9fdb9f4a65c4dcec9e6b1b16e6f0ffb1533dc666cd7bc",
+        "getJobInfo": "15c91e4a0a8ddcd940e6df83f4c249a7ab945bfbecfa1b6e8edadef13f6bb5df"
+      },
+      "sourceCapture": "scraper/byteridge/test-inputs/native-shell-20261031.json.gz",
+      "scriptURLs": [
+        "https://byteridge.turbohire.co/runtime-main.9522a0a57370b3c3a0b4.js",
+        "https://byteridge.turbohire.co/18.686c2629fe7c78598547.chunk.js",
+        "https://byteridge.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://byteridge.turbohire.co/main.83be12cc773959e07faa.chunk.js"
+      ]
+    },
+    {
+      "scriptURLs": [
+        "https://byteridge.turbohire.co/runtime-main.2aa688f3291c2c0748bb.js",
+        "https://byteridge.turbohire.co/18.686c2629fe7c78598547.chunk.js",
+        "https://byteridge.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://byteridge.turbohire.co/main.b92aa5cb7a0a7499e689.chunk.js"
+      ],
+      "clientURLs": [
+        "https://byteridge.turbohire.co/runtime-main.2aa688f3291c2c0748bb.js",
+        "https://byteridge.turbohire.co/18.686c2629fe7c78598547.chunk.js",
+        "https://byteridge.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://byteridge.turbohire.co/main.b92aa5cb7a0a7499e689.chunk.js",
+        "https://byteridge.turbohire.co/24.52ad9596a317e0433e77.chunk.js",
+        "https://byteridge.turbohire.co/40.b1d2ab512b5de0fe4ca6.chunk.js"
+      ],
+      "companyScopeUnqualified": true
+    },
+    {
+      "reviewedAt": "2026-11-06T05:02:17.518065+00:00",
+      "sourceCapture": "scraper-support/tests/fixtures/turboHireBuild20261106/capture.json.gz",
+      "reviewSummary": "Static original-program review: seven public/session method bodies, nine complete listing/detail/application caller bodies and two default-filter objects match the genuine October31 release. Lazy24 changes only three paired module-number digits. Whole-entity hashes and coherent script set are pinned per tenant. This review qualifies compatibility only; current company inventory remains unqualified.",
+      "publicMethodSHA256": {
+        "getUnauthenticatedAccessToken": "d50db8d34d43d41eca8fc2f1403cec1661391d41d6dde960d7d1baec9be7f857",
+        "constructor": "9a47aeb91fb9ee7bd685848c37ffaadc054ff843ea96a6451fd9a612d52becb1",
+        "getUnAuthenticatedAccessToken": "75b78c537edf926ce6a024e37ccd9b587641b2c1698b5fb3dac6619c513142d0",
+        "getOrgDetailsFromAccountName": "22e61ca681921aa255ce15df19193ec4e4ab97bbe4f718f37863b001bf68c1a8",
+        "getPublicOrgInfo": "c930e4bc62256d242ac81f814296659ed963f86331fdf8ce82a183e796f54e50",
+        "getPublicJobRefsForOrgFiltered": "b9a164010d28e4ef3cc9fdb9f4a65c4dcec9e6b1b16e6f0ffb1533dc666cd7bc",
+        "getJobInfo": "15c91e4a0a8ddcd940e6df83f4c249a7ab945bfbecfa1b6e8edadef13f6bb5df"
+      },
+      "protocolReviewSHA256": "d3861184751f3d52748019d605d76890649e4d01845789931bd93b99937b7ab7",
+      "scriptURLs": [
+        "https://byteridge.turbohire.co/runtime-main.a3801c5ec8c75a558b86.js",
+        "https://byteridge.turbohire.co/18.0a0a3f53b49041744779.chunk.js",
+        "https://byteridge.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://byteridge.turbohire.co/main.bc8f2fdf0fa9e74f4468.chunk.js"
+      ],
+      "clientURLs": [
+        "https://byteridge.turbohire.co/runtime-main.a3801c5ec8c75a558b86.js",
+        "https://byteridge.turbohire.co/18.0a0a3f53b49041744779.chunk.js",
+        "https://byteridge.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://byteridge.turbohire.co/main.bc8f2fdf0fa9e74f4468.chunk.js",
+        "https://byteridge.turbohire.co/24.52ad9596a317e0433e77.chunk.js",
+        "https://byteridge.turbohire.co/40.3ec75e9eb87caff145b7.chunk.js"
+      ],
+      "companyScopeUnqualified": true
+    }
+  ],
+  "clientSHA256": {
+    "https://byteridge.turbohire.co/runtime-main.2aa688f3291c2c0748bb.js": "e26b68ad533d6a72bfbfb0cd364dd538d0ad1d20aa10dbf4996c58fc624e4525",
+    "https://byteridge.turbohire.co/18.686c2629fe7c78598547.chunk.js": "f55534162eaa5bead6075e1fd43daee27afa923b4190f20617357849655f4c22",
+    "https://byteridge.turbohire.co/30.812b9abed47cf2099f54.chunk.js": "562f337b1298c5f56db392bd54e8c2a9e0e32d79275a627d9f90a4ed05c8352a",
+    "https://byteridge.turbohire.co/main.b92aa5cb7a0a7499e689.chunk.js": "e29cb0673262b14c959241384c5f2e03b94a3417f9f82303f5807344279d4d66",
+    "https://byteridge.turbohire.co/24.52ad9596a317e0433e77.chunk.js": "947f1d46af7076821bd671d0049574fa109d04a97ca093b59bba0adc2e1ad926",
+    "https://byteridge.turbohire.co/40.b1d2ab512b5de0fe4ca6.chunk.js": "9cd324b8b66a659f683b8b503350d4be321a57acbfdfe146ecb8e3ff33381090",
+    "https://byteridge.turbohire.co/runtime-main.a3801c5ec8c75a558b86.js": "7503ade1cb27613358ce98f6084210ce621d12c49d561ba3c9dca6ffe18a1e95",
+    "https://byteridge.turbohire.co/18.0a0a3f53b49041744779.chunk.js": "abcaa7c62f5eba8def6e1e5e1b28b412d5ef629eed81a0630617ec891a29175d",
+    "https://byteridge.turbohire.co/main.bc8f2fdf0fa9e74f4468.chunk.js": "4d56acc5efbcfba0f97c383dace482b51288ce727e03d22296e0c25d7e27d085",
+    "https://byteridge.turbohire.co/40.3ec75e9eb87caff145b7.chunk.js": "37422a4a8d2f7c78a4f9fc5fa6b0d7d951cb950e165ccc80e9d9d537ce5cbc94"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "phase": 5,
+  "source": "abra",
+  "companyName": "ABRA",
+  "recordedAt": "2026-10-24T17:59:12.114Z",
+  "outcome": "employer-identity-unresolved-native-extraction-blocked",
+  "sourceImplementationChanged": false,
+  "sourceIdentityResolved": false,
+  "nativeInventoryComplete": false,
+  "verifiedIndiaJobCount": null,
+  "verifiedPublicJobCount": null,
+  "zeroIndiaClaim": false,
+  "registryOrHistoricalNotesRewritten": false,
+  "evidenceMethod": "Bounded unauthenticated MCP Playwright navigation in isolated pages on2026-10-24; status/finalURL/title/visible-body and career/ATS anchor inspection. No login, application submission, runtime browser fallback, database or full pipeline.",
+  "priorCatalogContext": {
+    "path": "artifacts/full-catalog/report/companies.csv",
+    "discoveryOutcome": "identity-ambiguous",
+    "discoveryAt": "2026-10-20T16:53:11.504Z",
+    "evidence": {
+      "officialURL": null,
+      "careersURL": null,
+      "matchedLinks": [],
+      "aliases": [],
+      "proofFiles": [
+        "proof/search3.json",
+        "proof/search6.json",
+        "proof/abra-candidate-fintech.metadata.json",
+        "proof/abra-candidate-auto.metadata.json",
+        "proof/abra-candidate-auto.html"
+      ],
+      "observedIndiaRoles": [],
+      "origin": "public-official-web-discovery-not-extraction",
+      "artifact": "official-discovery/batch-001.json"
+    }
+  },
+  "observations": [
+    {
+      "candidateEmployer": "Abra digital-asset wealth management; not selected as canonical source identity",
+      "requestedUrl": "https://www.abra.com/",
+      "status": 200,
+      "finalUrl": "https://www.abra.com/",
+      "careersOrAtsLinksObserved": []
+    },
+    {
+      "requestedUrl": "https://www.abra.com/jobs",
+      "status": 200,
+      "finalUrl": "https://www.abra.com/company/about",
+      "title": "About | Abra",
+      "careersOrAtsLinksObserved": []
+    }
+  ],
+  "limitations": [
+    "The source has only an exact display name and lacks an authoritative domain, legal entity or verified board owner. Same-name candidate employers cannot be substituted to obtain a working feed.",
+    "No unbound ATS tenant was guessed or queried. Current native inventory and India eligibility remain unknown; absent career links are not an exhaustive zero inventory proof.",
+    "Certificate or navigation failures describe this observation only, not an employer outage. Historical discovery ambiguity is retained as context and not relabeled as current extraction proof."
+  ],
+  "nextRequiredEvidence": "Recover original workbook employer URL, legal identity or independently corroborated ATS ownership. Then validate current first-party career delegation and native complete inventory/details before implementing. Do not consolidate Adept/Adept AI without alias evidence."
+}

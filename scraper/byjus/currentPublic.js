@@ -1,0 +1,23 @@
+import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
+import {withCurrentPublicProbe} from '../aurobindopharma/publicProbe.js'
+const C='https://byjus.com/careers-at-byjus/',origin='https://byjus.com'
+const canonicalURL=value=>{if(typeof value!=='string'||!value.trim())return null;try{const url=new URL(value,C);return url.origin===origin&&!url.username&&!url.password&&!url.hash&&!url.search?url.href:null}catch{return null}}
+const classify=page=>{
+ const doc=readNativeDocument(page.body),text=doc.text(doc.nodes(n=>n.tag==='root')[0]),isApply=page.url===origin+'/apply/',end=isApply?text.indexOf('What does a BDA do'):text.indexOf('Fill in the details below'),publicCriteria=end<0?'':text.slice(0,end).trim(),nativeDocumentDates=[]
+ for(const node of doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json')){try{const value=JSON.parse(node.raw),entries=Array.isArray(value['@graph'])?value['@graph']:[value];for(const entry of entries)if(['Article','WebPage'].includes(entry['@type']))nativeDocumentDates.push({nativeType:entry['@type'],datePublished:entry.datePublished??null,dateModified:entry.dateModified??null})}catch{}}
+ return{url:page.url,kind:'unclassified-role-or-hiring-campaign',nativeJobTitle:null,nativeRequisitionId:null,publicCriteria:publicCriteria||null,nativePublishedTextObservation:text,
+  sourceDescriptionComplete:false,criteriaCompleteness:'unqualified-campaign-text-subset;full-native-text-and-original-entity-retained;not-a-publishable-job-description',countryScope:/\bRoles Across India\b/.test(publicCriteria)?'India':null,countryProvenance:/\bRoles Across India\b/.test(publicCriteria)?'exact-publisher-role-campaign-work-country-statement':null,heldReasons:isApply?['no-unambiguous-native-job-title-or-reference','your-city-and-Indian-education-market-do-not-establish-work-country']:['generic-Sales-campaign-without-unambiguous-active-native-job-title-or-reference'],nativeVacancyQualified:false,publicationDate:null,nativeDocumentDates,publicationDateProvenance:'Article/document dates are not native job publication dates',hiddenThankYouStateUsed:false}
+}
+export const runCurrentByjus=options=>withCurrentPublicProbe('byjus',options,async context=>{
+ const first=await context.read(C),doc=readNativeDocument(first.body)
+ const canonicals=doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'),nativeBody=doc.nodes(n=>n.tag==='body')
+ if(first.status!==200||canonicals.length!==1||canonicals[0].attrs.href!==C||nativeBody.length!==1||!(nativeBody[0].attrs.class||'').split(/\s+/).includes('slug-careers-at-byjus')||!doc.nodes(n=>n.tag==='h1').some(n=>doc.text(n)==='Join the Learning Tribe, Time to Grow and Thrive'))throw context.unavailable('BYJUS current employer careers identity unavailable',first.status)
+ const advertised=[...new Set(doc.nodes(n=>n.tag==='a'&&n.attrs.href).map(n=>canonicalURL(n.attrs.href)).filter(Boolean))],categories=advertised.filter(url=>/^https:\/\/byjus\.com\/careers\/all-openings\/job-category\/[a-z_-]+\/$/.test(url)),intake=new Set(advertised.filter(url=>url===origin+'/apply/'))
+ if(!categories.length||categories.length>80)throw context.unavailable('BYJUS current declared hiring route model unavailable')
+ const snapshots=[],observations=[]
+ for(const url of categories){const page=await context.read(url),target=canonicalURL(page.headers.location);snapshots.push({url,status:page.status,declaredRedirect:target,bodySHA256:context.receipts.at(-1).sha256});if(page.status>=300&&page.status<400&&target===origin+'/sales-apply/')intake.add(target)}
+ for(const url of intake){const page=await context.read(url);if(page.status===200)observations.push(classify(page));else snapshots.push({url,status:page.status})}
+ const closing=await context.read(C),closingDoc=readNativeDocument(closing.body),closingRoutes=[...new Set(closingDoc.nodes(n=>n.tag==='a'&&n.attrs.href).map(n=>canonicalURL(n.attrs.href)).filter(url=>url&&/^https:\/\/byjus\.com\/careers\/all-openings\/job-category\/[a-z_-]+\/$/.test(url)))],stable=closing.status===200&&JSON.stringify(categories)===JSON.stringify(closingRoutes)
+ await context.audit({configuredSource:C,advertisedCategories:categories,categoryObservations:snapshots,publicHiringObservations:observations,closingAdvertisedRoutesStable:stable,nativeInventoryComplete:false,nativeVacancyTotal:null,qualification:'current-declared-category-and-public-hiring-content-observations;broken/misdirected-routes-do-not-prove-zero;generic-campaigns-not-vacancy-rows'})
+ throw context.unavailable('BYJUS current advertised hiring categories do not provide a complete qualified vacancy inventory; public role/campaign country/title scope remains unresolved')
+})

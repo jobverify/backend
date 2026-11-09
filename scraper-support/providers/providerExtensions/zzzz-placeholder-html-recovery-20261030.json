@@ -1,0 +1,24 @@
+[
+  {
+    "source": "colliers",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../colliers.workday/script.js",
+    "atsPlatform": "first-party-attrax",
+    "backfillMode": "live-parser",
+    "parser": "current-regional-careers-native-html",
+    "companyCareerPage": "https://careers.colliers.com/jobs?options=705&page=1",
+    "officialCareersPageUrl": "https://careers.colliers.com/jobs?options=705&page=1",
+    "officialCorporateCareersUrl": "https://www.colliers.com/en-in/careers",
+    "paginationStrategy": "native-first-party-numbered-india-pages",
+    "extractionStrategy": "native-list-detail-country-employer-content-dates-application-and-closing-list-reconciliation",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "sourceScopeComplete": false,
+    "remediationStatus": "live-native-extraction-validated-regional-scope",
+    "currentExtractionEvidence": "scraper/colliers.workday/fixtures/current-20261029/manifest.json",
+    "sourceScopeLimitation": "Selected India regional careers portal only; other boards, company-wide scope, successful application access, persistence and publication remain unverified."
+  }
+]

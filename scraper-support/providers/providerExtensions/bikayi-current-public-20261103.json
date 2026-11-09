@@ -1,0 +1,9 @@
+{
+ "source":"bikayi","catalogOverride":true,"companyName":"BIK","legacyCompanyName":"Bikayi","officialBrandName":"BIK",
+ "adapter":"script","modulePath":"../bikayi/script.js","companyCareerPage":"https://bik.ai/careers","companyDomain":"bik.ai",
+ "atsPlatform":"keka-public-careers","countryFilter":"India","paginationStrategy":"published-current-client-complete-active-array+closing-native-models-and-full-public-pages",
+ "extractionStrategy":"current-BIK-Bikayi-public-terms-continuity+declared-Keka-tenant+same-ID-full-criteria-and-original-dates+explicit-workplace-country",
+ "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",
+ "sourceCompanyWideScopeComplete":false,"lifecycleCleanupAllowed":false,
+ "verifiedSurfaceSummary":"Current BIK public terms identify Bikayi, Inc. as the platform owner. The current careers client declares its Keka active-job API and exact public role URLs. Runtime reconciles the complete active array and every current full public role description/date, then repeats binding/inventory/public details at closing. Typed worksites and explicit labelled role Location country qualify India; customer territories, company India references, INR and city guesses do not. Healthy full India records are retained while unknown countries and conflicts remain partial. Private application sessions/actions are outside collection."
+}

@@ -1,0 +1,128 @@
+{
+  "recordedAt": "2026-11-02T23:48:05.233Z",
+  "method": "read-only-public-native-http-no-db",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "a802a97ed1a8bba2212d39095c55d5ef5598cffa8a9762ea4b334d6700a343fb",
+  "responses": [
+    {
+      "key": "legacy-corporate",
+      "url": "https://www.bsil.com/",
+      "finalUrl": "https://www.bsil.com/",
+      "status": 200,
+      "bytes": 114,
+      "sha256": "6dc9c7fc93bb488bb0520a6c780a8d3c0fb5486a4711aca49b4c53fac7393023",
+      "observedAt": "2026-11-02T23:05:41.008Z",
+      "originalCapture": "bluestarinfotech-legacy-corporate-6dc9c7fc93bb.body"
+    },
+    {
+      "key": "legacy-careers",
+      "url": "https://www.bsil.com/careers",
+      "finalUrl": "https://www.bsil.com/careers",
+      "status": 200,
+      "bytes": 114,
+      "sha256": "6dc9c7fc93bb488bb0520a6c780a8d3c0fb5486a4711aca49b4c53fac7393023",
+      "observedAt": "2026-11-02T23:05:41.910Z",
+      "originalCapture": "bluestarinfotech-legacy-careers-6dc9c7fc93bb.body"
+    },
+    {
+      "key": "legacy-lander",
+      "url": "https://www.bsil.com/lander",
+      "finalUrl": "https://forsale.godaddy.com/forsale/www.bsil.com?utm_source=TDFS_DASLNC&utm_medium=parkedpages&utm_campaign=x_corp_tdfs-daslnc_base&traffic_type=TDFS_DASLNC&traffic_id=daslnc&",
+      "status": 403,
+      "bytes": 410,
+      "sha256": "bbd1a0d3002b6ed1f52494b5b528560fb7c288b6f9a227591aca43b7ce80c276",
+      "observedAt": "2026-11-02T23:05:42.892Z",
+      "originalCapture": "bluestarinfotech-legacy-lander-bbd1a0d3002b.body"
+    },
+    {
+      "key": "candidate-continuity-company",
+      "url": "https://www.infogain.com/",
+      "finalUrl": "https://www.tenarai.com/",
+      "status": 200,
+      "bytes": 85769,
+      "sha256": "03bf386aa187e20aeb5b5ca9164f34b54d8a673e8b4b1fa8857cc9c49deb9473",
+      "observedAt": "2026-11-02T23:05:44.571Z",
+      "originalCapture": "bluestarinfotech-candidate-continuity-company-03bf386aa187.body"
+    },
+    {
+      "key": "legal-business-transfer",
+      "url": "https://www.cci.gov.in/uploads/filemanager/catalog/faqs/C-2015-10-334order.pdf",
+      "finalUrl": "https://www.cci.gov.in/uploads/filemanager/catalog/faqs/C-2015-10-334order.pdf",
+      "status": 200,
+      "bytes": 252421,
+      "sha256": "f80209383d249b66f1959ebd165936c4ec03b20f952f22837fa0e9cf49d3fca2",
+      "observedAt": "2026-11-02T23:12:23.641Z",
+      "originalCapture": "bluestarinfotech-legal-business-transfer-f80209383d24.body"
+    },
+    {
+      "key": "current-careers-candidate",
+      "url": "https://www.tenarai.com/careers",
+      "finalUrl": "https://www.tenarai.com/careers-1",
+      "status": 200,
+      "bytes": 67014,
+      "sha256": "b40efb065032dfe68db8ff95e0c6bf5c3a3a9599ef25392b663b2662ba20f977",
+      "observedAt": "2026-11-02T23:12:24.103Z",
+      "originalCapture": "bluestarinfotech-current-careers-candidate-b40efb065032.body"
+    },
+    {
+      "key": "completed-business-transfer",
+      "url": "https://www.bluestarindia.com/media/110937/blue-star-investor-update-q4fy17.pdf",
+      "finalUrl": "https://www.bluestarindia.com/media/110937/blue-star-investor-update-q4fy17.pdf",
+      "status": 404,
+      "bytes": 3437,
+      "sha256": "38eb7c7ccaa90167f9b98c6d9ab5104afcffe0980a1576fed88adcfe05176332",
+      "observedAt": "2026-11-02T23:12:24.933Z",
+      "originalCapture": "bluestarinfotech-completed-business-transfer-38eb7c7ccaa9.body"
+    },
+    {
+      "key": "current-declared-board",
+      "url": "https://career.tenarai.com/",
+      "finalUrl": "https://career.tenarai.com/",
+      "status": 200,
+      "bytes": 17237,
+      "sha256": "1d9f8a08c6767f7d8d2cdb8a0e8a620da7828d60b481d41f8e5f5d0184e2d2f0",
+      "observedAt": "2026-11-02T23:16:44.496Z",
+      "originalCapture": "bluestarinfotech-current-declared-board-1d9f8a08c676.body"
+    },
+    {
+      "key": "current-board-client",
+      "url": "https://career.tenarai.com/main-U5FZ3RA6.js",
+      "finalUrl": "https://career.tenarai.com/main-U5FZ3RA6.js",
+      "status": 200,
+      "bytes": 90993,
+      "sha256": "283563187c33cc6fa2f18d3a1d09d89122439745c2b011891e01cde1dab2bb20",
+      "observedAt": "2026-11-02T23:17:58.965Z",
+      "originalCapture": "bluestarinfotech-current-board-client-283563187c33.body"
+    },
+    {
+      "key": "current-board-jobs-client",
+      "url": "https://career.tenarai.com/chunk-SWRUMEWY.js",
+      "finalUrl": "https://career.tenarai.com/chunk-SWRUMEWY.js",
+      "status": 200,
+      "bytes": 83267,
+      "sha256": "388ec4852fba5ff1900a17ce11b45f4420ef98e38e07d51b9f8fddd3669adda2",
+      "observedAt": "2026-11-02T23:19:28.078Z",
+      "originalCapture": "bluestarinfotech-current-board-jobs-client-388ec4852fba.body"
+    },
+    {
+      "key": "current-board-environment-client",
+      "url": "https://career.tenarai.com/chunk-HC6LDHUV.js",
+      "finalUrl": "https://career.tenarai.com/chunk-HC6LDHUV.js",
+      "status": 200,
+      "bytes": 310,
+      "sha256": "ecf2b96b219f4985ea83ebc76fe7c2159ec31646b7e4a7c52ac5c0e689d0e7cf",
+      "observedAt": "2026-11-02T23:19:28.184Z",
+      "originalCapture": "bluestarinfotech-current-board-environment-client-ecf2b96b219f.body"
+    },
+    {
+      "key": "current-board-services-client",
+      "url": "https://career.tenarai.com/chunk-6NFR6CMF.js",
+      "finalUrl": "https://career.tenarai.com/chunk-6NFR6CMF.js",
+      "status": 200,
+      "bytes": 317458,
+      "sha256": "6ff52d74b1540574e3db6b6594d6651d96b8b479ceca4a28f025c4a194a89ba4",
+      "observedAt": "2026-11-02T23:22:57.149Z",
+      "originalCapture": "bluestarinfotech-current-board-services-client-6ff52d74b154.body"
+    }
+  ]
+}

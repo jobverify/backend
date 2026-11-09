@@ -1,0 +1,36 @@
+[
+  {
+    "source": "dittoinsurance",
+    "companyName": "Ditto Insurance",
+    "adapter": "script",
+    "modulePath": "../dittoinsurance/script.js",
+    "companyCareerPage": "https://ditto.zappyhire.com/",
+    "companyDomain": "joinditto.in",
+    "atsPlatform": "zappyhire",
+    "countryFilter": "India",
+    "paginationStrategy": "native-exact-total-all-pages-and-closing-reconciliation",
+    "extractionStrategy": "current-employer-and-bundle-tenant+native-listings+identity-bound-details",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current official Ditto Insurance site delegates careers to ditto.zappyhire.com. Its executable bundle identifies the dittoinsurance API tenant; native configuration reciprocally identifies Ditto Insurance and joinditto.in. Extraction reads all native listings and details, preserves source dates/descriptions/apply URLs, and retains unknown remote scope as partial.",
+    "catalogOverride": true
+  },
+  {
+    "source": "skyscanner",
+    "companyName": "Skyscanner",
+    "adapter": "script",
+    "modulePath": "../skyscanner/script.js",
+    "companyCareerPage": "https://www.skyscanner.com/jobs/current-jobs",
+    "companyDomain": "skyscanner.net",
+    "atsPlatform": "ashby",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-ashby-single-response",
+    "extractionStrategy": "current-employer-executable-bundle-contract+validated-ashby-inventory+native-india-location",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Skyscanner careers page loads its JobsApp bundle from js.skyscnr.com. The executable fetch contract binds the native Ashby board eb485598-6bf3-40a5-8560-d70150131305. Every run validates the current handoff, native schema/role URLs and India geography before assigning inventory evidence.",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,131 @@
+{
+  "name": "jobverify-backend",
+  "version": "1.0.0",
+  "description": "Jobverify API, account access, billing, and job collection services.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "e2e:local-stack": "node scripts/startLocalE2EStack.js",
+    "clean:workspace": "node scripts/cleanWorkspace.js",
+    "lint": "node scripts/lintSyntax.js",
+    "seo:keyword": "node scripts/checkIndexedKeyword.js",
+    "audit:dependencies": "node scripts/auditDependencies.js",
+    "test": "node --test --test-concurrency=4 \"test/**/*.test.js\" \"scraper/**/*.test.js\" \"scraper-support/**/*.test.js\"",
+    "classify:jobs": "node scripts/classifySavedJobs.js",
+    "scrape": "node --use-system-ca scraper-support/runner.js",
+    "scrape:dry": "node --use-system-ca scraper-support/runner.js --dry-run",
+    "scrape:parallel": "node --use-system-ca scraper-support/runner.js --parallel",
+    "scrape:parallel:dry": "node --use-system-ca scraper-support/runner.js --parallel --dry-run",
+    "scrape:parallel:dry:monitored": "node --use-system-ca scripts/startMonitoredLocalScrapeRun.js --parallel --dry-run",
+    "scrape:parallel:live:resilient": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/startResilientMongoScrape.ps1 -Live",
+    "scrape:parallel:dry:resilient": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/startResilientMongoScrape.ps1 -DryRun",
+    "scrape:resilient:stop": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/stopResilientMongoScrape.ps1 -Live",
+    "scrape:backfill-missing:dry": "node --use-system-ca scripts/backfillMissingDryRunArtifacts.js",
+    "scrape:csv": "node --use-system-ca scripts/scrapeCompaniesFromCsv.js",
+    "validate:live-uncovered-500": "node scripts/validateLiveUncovered500Manifest.js",
+    "coverage:companies": "node scripts/reportCompanyCoverage.js",
+    "coverage:companies:regenerate": "node scripts/regenerateCompanyCoverageReport.js",
+    "coverage:companies:sync": "node scripts/syncCompanyCoverageReportsFromScraper.js",
+    "coverage:companies:catalog-topology": "node scripts/reportScriptCatalogTopology.js",
+    "coverage:publishing": "node scripts/analyzeCoverageJobGaps.js --publishing",
+    "coverage:publishing:snapshot": "node scripts/collectPublishingGapSnapshot.js",
+    "coverage:publishing:validate": "node scripts/validatePublishingGapPersistence.js",
+    "coverage:publishing:rollout": "node scripts/publishPublishingGapRepairs.js",
+    "backfill:job-filters": "node scripts/backfillJobFilterSignals.js",
+    "backfill:job-posted-at": "node scripts/backfillMissingPostedAt.js",
+    "backfill:job-search-keys": "node scripts/backfillJobSearchKeys.js",
+    "backfill:job-types": "node scripts/backfillJobTypes.js",
+    "db:clear": "node scripts/clearJobs.js",
+    "db:purge-retired-companies": "node scripts/purgeRetiredCompanyJobs.js",
+    "db:repair-unspecified-job-types": "node scripts/repairUnspecifiedPublicJobTypes.js",
+    "db:purge-expired": "node scripts/purgeExpiredJobs.js",
+    "db:clean-non-india": "node scripts/removeNonIndiaJobs.js",
+    "db:delete-user": "node scripts/sweepDeleteUser.js",
+    "jobs:audit:apply-links": "node scripts/auditJobApplyLinks.js",
+    "jobs:audit:apply-links:local": "node scripts/auditLocalScrapedApplyLinks.js",
+    "jobs:audit:engineering-domains:local": "node --use-system-ca scripts/auditLocalEngineeringDomains.js",
+    "jobs:audit:retry-ambiguous": "node scripts/retryApplyLinkAuditFromReport.js",
+    "jobs:remove-dead": "node scripts/removeDeadJobsFromAudit.js",
+    "jobs:audit:apply-links:settled": "node scripts/waitForSettledApplyLinkAudit.js",
+    "db:indexes:plan": "node scripts/indexes.js plan",
+    "db:indexes:apply": "node scripts/indexes.js apply",
+    "db:migrate:plan-purchase-indexes": "node scripts/migratePlanPurchaseRazorpayIndexes.js",
+    "db:remove-referrals": "node scripts/removeReferralSystemData.js",
+    "db:verify-indexes": "npm run db:indexes:plan",
+    "jobs:profile": "node scripts/profileJobQueries.js",
+    "jobs:profile:local": "node scripts/profileLocalJobQueries.js",
+    "test:api": "node --test --test-concurrency=4 \"test/**/*.test.js\"",
+    "test:scraper": "node --test --test-concurrency=4 \"scraper/**/*.test.js\" \"scraper-support/**/*.test.js\"",
+    "check": "npm run lint && npm run test:api",
+    "test:integration": "node --test test/integration/*.integration.js",
+    "test:provision-mongo": "node scripts/provisionTestMongo.js",
+    "resume:setup": "node scripts/setupResumeRuntime.js",
+    "resume:benchmark": "node scripts/benchmarkAiResumes.js",
+    "descriptions:preview": "node scripts/rewriteJobDescriptions.js",
+    "descriptions:rewrite": "node scripts/rewriteJobDescriptions.js --apply",
+    "descriptions:benchmark": "node scripts/benchmarkJobDescriptions.js",
+    "descriptions:latency": "node scripts/benchmarkDescriptionLatency.js",
+    "descriptions:evaluate:dry": "node --use-system-ca scripts/evaluateDryRunDescriptions.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LitenTechnologies/Jobverify-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/LitenTechnologies/Jobverify-backend/issues"
+  },
+  "homepage": "https://github.com/LitenTechnologies/Jobverify-backend#readme",
+  "dependencies": {
+    "acorn": "^8.19.0",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "entities": "9.0.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "express-validator": "^7.3.1",
+    "fontkit": "^2.0.4",
+    "google-auth-library": "^11.0.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "jszip": "^3.10.2",
+    "mammoth": "^1.13.0",
+    "mongoose": "8.24.4",
+    "nodemailer": "^10.3.1",
+    "pdfjs-dist": "^6.2.108",
+    "pdfkit": "^0.20.2",
+    "playwright": "1.60.0",
+    "razorpay": "^2.9.8",
+    "tesseract.js": "^7.0.0",
+    "undici": "^7.30.1",
+    "word-extractor": "^1.0.4"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.2.0",
+    "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "nodemon": {
+      "minimatch": "^11.0.1"
+    }
+  },
+  "private": true,
+  "config": {
+    "mongodbMemoryServer": {
+      "downloadDir": ".cache/mongodb-binaries",
+      "runtimeDownload": false
+    }
+  },
+  "allowScripts": {
+    "mongodb-memory-server": false,
+    "tesseract.js": false
+  },
+  "engines": {
+    "node": ">=24.14.0 <25"
+  }
+}

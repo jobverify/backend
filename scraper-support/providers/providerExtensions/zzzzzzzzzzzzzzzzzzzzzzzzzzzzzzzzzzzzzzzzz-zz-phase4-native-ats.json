@@ -1,0 +1,48 @@
+[
+  {
+    "source": "accellor",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "gem",
+    "backfillMode": "live-parser",
+    "parser": "verified-native-gem-graphql",
+    "paginationStrategy": "complete-native-list-and-department-count-final-recheck",
+    "extractionStrategy": "current-official-proxy-binding+exact-gem-native-employer-posting-and-location-identities+explicit-india-details+final-native-inventory-recheck",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "remediationStatus": "native-india-extractor-current-source-trial-validated",
+    "currentExtractionEvidence": "scraper/accellor/phase4-evidence.json"
+  },
+  {
+    "source": "affirm",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "greenhouse",
+    "backfillMode": "live-parser",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "current-official-greenhouse-binding+exact-native-employer-and-role-identity+every-native-country-scope-resolved+explicit-india-description-extraction",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "remediationStatus": "native-extractor-current-complete-zero-india-feed-trial-validated",
+    "currentExtractionEvidence": "scraper/affirm/phase4-evidence.json"
+  },
+  {
+    "source": "aembit",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "bamboohr",
+    "backfillMode": "native-empty-monitor",
+    "parser": "bound-native-empty-inventory-reader",
+    "paginationStrategy": "native-total-and-versioned-embed-crosscheck",
+    "extractionStrategy": "current-official-bamboohr-embed-binding+native-list-and-embed-explicit-empty-check+positive-extraction-remains-unverified",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "remediationStatus": "current-native-empty-verified-positive-extractor-backlog-open",
+    "positiveExtractionStatus": "unverified-open-backlog",
+    "currentExtractionEvidence": "scraper/aembit/phase4-evidence.json"
+  }
+]

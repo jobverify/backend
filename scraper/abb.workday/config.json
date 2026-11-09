@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://abb.wd3.myworkdayjobs.com/wday/cxs/abb/External_Career_Page/jobs",
+  "detailUrlBase": "https://abb.wd3.myworkdayjobs.com/External_Career_Page",
+  "countryFacetParameter": "locationCountry",
+  "locationPattern": "india|bangalore|bengaluru|hyderabad|pune|mumbai|vadodara|chennai|gurgaon|gurugram"
+}

@@ -1,0 +1,16 @@
+{
+  "reviewedAt": "2026-11-05",
+  "sources": {
+    "keyence": "https://keyence.darwinbox.in",
+    "perfios": "https://perfios.darwinbox.in",
+    "stanplus": "https://redhealth.darwinbox.in",
+    "datapatterns": "https://datapatterns.darwinbox.in"
+  },
+  "clientPath": "/ms/candidatev2/main.819c4120b20f8091.js",
+  "clientSha256": "ee0926eab1aaa71ffd022d8a0b2898f90b058543b857491c889648cd0ca10b5d",
+  "rendererSha256": "f7407527dde48b65875a103038251af5ff7b5da89f2c64ffbff6d6479f5c0625",
+  "runtimePath": "/ms/candidatev2/runtime.aef58315a4bbce97.js",
+  "observedRuntimeSha256": "b8eae8b2458b71aea3a04df441bf9d2407a26dcfcbb3e35677188354398fed30",
+  "runtimeValidation": "The exact full-shell digest pins the runtime declaration. Runtime bytes are retained review evidence; the scraper continues to fetch and hash only the main client.",
+  "evidence": "test/test-data/darwinbox-current-client-20261105.json.gz"
+}

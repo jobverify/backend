@@ -1,0 +1,62 @@
+{
+  "phase": 5,
+  "source": "agenda",
+  "companyName": "Agenda",
+  "recordedAt": "2026-10-24T17:59:12.115Z",
+  "outcome": "employer-identity-unresolved-native-extraction-blocked",
+  "sourceImplementationChanged": false,
+  "sourceIdentityResolved": false,
+  "nativeInventoryComplete": false,
+  "verifiedIndiaJobCount": null,
+  "verifiedPublicJobCount": null,
+  "zeroIndiaClaim": false,
+  "registryOrHistoricalNotesRewritten": false,
+  "evidenceMethod": "Bounded unauthenticated MCP Playwright navigation in isolated pages on2026-10-24; status/finalURL/title/visible-body and career/ATS anchor inspection. No login, application submission, runtime browser fallback, database or full pipeline.",
+  "priorCatalogContext": {
+    "path": "artifacts/full-catalog/report/companies.csv",
+    "discoveryOutcome": "identity-ambiguous-do-not-bind",
+    "discoveryAt": "2026-10-20T17:26:09.912Z",
+    "evidence": {
+      "officialURL": null,
+      "careersURL": null,
+      "matchedLinks": [],
+      "aliases": [],
+      "notes": [
+        "Do not choose a company or ATS tenant solely from the name Agenda. No India role verified."
+      ],
+      "proofFiles": [
+        "proof/batch-003-search-01.json",
+        "proof/batch-003-search-25.json",
+        "proof/batch-003-search-40.json"
+      ],
+      "observedIndiaRoles": [],
+      "origin": "public-official-web-discovery-not-extraction",
+      "artifact": "official-discovery/batch-003.json"
+    }
+  },
+  "observations": [
+    {
+      "candidateEmployer": "Agenda note application, not selected as canonical source identity",
+      "requestedUrl": "https://agenda.com/",
+      "status": 200,
+      "finalUrl": "https://agenda.com/",
+      "title": "Agenda - Notes meets Calendar",
+      "careersOrAtsLinksObserved": []
+    },
+    {
+      "requestedUrl": "https://agenda.com/about/",
+      "status": 200,
+      "finalUrl": "https://agenda.com/about/",
+      "title": "About Agenda",
+      "nativeCompanyLabel": "Momenta B.V.",
+      "nativeJurisdiction": "The Netherlands",
+      "careersOrAtsLinksObserved": []
+    }
+  ],
+  "limitations": [
+    "The source has only an exact display name and lacks an authoritative domain, legal entity or verified board owner. Same-name candidate employers cannot be substituted to obtain a working feed.",
+    "No unbound ATS tenant was guessed or queried. Current native inventory and India eligibility remain unknown; absent career links are not an exhaustive zero inventory proof.",
+    "Certificate or navigation failures describe this observation only, not an employer outage. Historical discovery ambiguity is retained as context and not relabeled as current extraction proof."
+  ],
+  "nextRequiredEvidence": "Recover original workbook employer URL, legal identity or independently corroborated ATS ownership. Then validate current first-party career delegation and native complete inventory/details before implementing. Do not consolidate Adept/Adept AI without alias evidence."
+}

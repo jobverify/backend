@@ -1,0 +1,641 @@
+{
+  "assets": [
+    {
+      "url": "https://olacareers.turbohire.co/runtime-main.26de4c73d472a7dfb350.js",
+      "sha256": "b6fb8ee53fdfa84c2004a32fa46ac9268433286b09f91d14d33db7e9a03191e3",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/18.e089596f1af8d9726838.chunk.js",
+      "sha256": "f0a935a39203340867d57c23decffa9292ebff06022617c153eaa9f54ac9cadf",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+      "sha256": "562f337b1298c5f56db392bd54e8c2a9e0e32d79275a627d9f90a4ed05c8352a",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/main.a1c3fd4c0aa3133cad6a.chunk.js",
+      "sha256": "0b323eda7fa473340d67a7a18cb49b8e35a06086808b1b0bb4d28dad9b45fe12",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/17.488e759fd969d160ed4f.chunk.js",
+      "sha256": "319d1e8c9f0b53aacae0b6187298d81b355cf3d4325be4e7de7a408672b109f0",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/14.3aace67eb90aa13563c4.chunk.js",
+      "sha256": "4154c501d69c37ba4a2de4f8952dd9087f8d6c2729602bd3198b8f81d97a63f1",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/25.a81c7aa22cdf21fe8e9c.chunk.js",
+      "sha256": "fd9e6b8e8b4dbf0941cf9b9f82e494be6b3a3087ec8b261f63df5e348145e262",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/38.9d4ee655ff7f4e0e7f02.chunk.js",
+      "sha256": "e6d14ade54c1c62450de9223a87ea117b1c4d790fe11f517fe2979a0faad2e83",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/40.035ee7afe6b04b314bd1.chunk.js",
+      "sha256": "2e7a7c95d6c7bc6abbebab0819bfc2fc735cbd41c1d25096146d5fd7f38d146f",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/64.38a1df185108466ca3b4.chunk.js",
+      "sha256": "ba29afccd5d0de721555b5a40b326be4c6004f9b22b7c45e476215f1862897d5",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/static/css/38.55d0db99.chunk.css",
+      "sha256": "4918fcc52a7fa16af721ce1e5c693df54fe21e34d672e469c405cdc595afd6d1",
+      "kind": "css"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/static/css/40.6cae9cc9.chunk.css",
+      "sha256": "789e5972d6ea23069294655313f37e373ec2ab3dfa7fa3c7fee37e0c1dcc7302",
+      "kind": "css"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/static/css/64.6cae9cc9.chunk.css",
+      "sha256": "789e5972d6ea23069294655313f37e373ec2ab3dfa7fa3c7fee37e0c1dcc7302",
+      "kind": "css"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/static/css/18.82f66c09.chunk.css",
+      "sha256": "a04ff0e976569de6650692c8e9b263624cc4ff6157c96852e7a143939fcfe1a3",
+      "kind": "css"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/static/css/main.a21a9906.chunk.css",
+      "sha256": "30b5217aa01554c535911e8bbf1eae6f0d745c05186aaee059c26ae1f324aaee",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/mage/calendar.css",
+      "sha256": "d4b8db13792cf460f5098b91622ad8eb73959f24be7283f7fd0e8c5e4ecdb5db",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/styles-m.css",
+      "sha256": "c4690559defb9634c20fc71505b554348e6163d80655268a859eacca001b94a3",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/custom.css",
+      "sha256": "bf8582f0b1df1b922f83bee1e8e8e7d93f27aecaceec35160bc389528d900bae",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/jquery/uppy/dist/uppy-custom.css",
+      "sha256": "1c6eab04492d5d576edc5cafa028127a3390dac6e80ac487713927a0d1492cfc",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/styles.css",
+      "sha256": "30333969fac28acf5f5cd8bcec3321329a43c0956a5b055d145e61184b68aeb6",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/owlcarousel/owl.carousel.min.css",
+      "sha256": "7a4dd2afcdf9d4157032d373bff3ae69ac6228288453c10d7a3eaf848e316321",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/animate.css",
+      "sha256": "e89c81987c5cbc157097eaa6657d6a594abf030cc89bb63f0d2154d8383e9fab",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/fontawesome5.css",
+      "sha256": "6c586f3b745966538b352279ac9f93b3901daed27e4779785e5136ec5156ed1b",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/mgz_font.css",
+      "sha256": "f8adbbbba245259e3968b48a4d53557dc6eb61ded2fcb2f6a0b0db0d34c1db47",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/mgz_bootstrap.css",
+      "sha256": "81fda254e5ed61e53b59a8e5faaecbb1566533842d7271a8edce5dc6b9a36bdb",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Builder/css/openiconic.min.css",
+      "sha256": "19969078e96cb20e061d324c218934437fce3c3b709d955a07cc979c83c0d8dd",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Builder/css/styles.css",
+      "sha256": "395a2597e169ca7067c086a24e64a9650f45b0b24341f2f012fd78155cf56e97",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Builder/css/common.css",
+      "sha256": "efee804ee66c503cd3d5f327d311c19ae7a8c900c327471e6113ded2aa11bf0f",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Newsletter/css/styles.css",
+      "sha256": "5c76fa581d28a6e32fcb47cc0b89c0f691fea07f78b920e5fa0cf5e67e36a385",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/magnific.css",
+      "sha256": "5aea4e1687d3c790460513533118f1ccd89e8ffc6513ecd7fd70ddad18bcf62f",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/css/styles.css",
+      "sha256": "8632178ab16fda322fab38d25afdfcb9aec8e598945b249fb21b543e641b5d17",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/vendor/photoswipe/photoswipe.css",
+      "sha256": "4812d4e2fbfa080ea51ec6755f24dd8728c9c428cf89ffd34648e7b321801a71",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/vendor/photoswipe/default-skin/default-skin.css",
+      "sha256": "734b9c920ca443dbf993e22a56264e64a738ec99fb2908a5e3f30fdf2480dc5f",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/vendor/blueimp/css/blueimp-gallery.min.css",
+      "sha256": "a7502443165deaf8873c72c07d57495b413c88f731d18e42a64f14c6d4c47f6a",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilderIconBox/css/styles.css",
+      "sha256": "1624889447c9d182e87be869b4ec27d8466dd89f2569969f89b1324886274783",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/styles-l.css",
+      "sha256": "0b8e76f60477cfc7ae3832a6d77b484a67c9c00b022efe3b9aa5d73b06ea7935",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/print.css",
+      "sha256": "d8e44cacee4b6636c0e19c6356b50e5f49949a82d420278d79ca54fad858a5d1",
+      "kind": "css"
+    },
+    {
+      "url": "https://www.olaelectric.com/static/_cache/merged/175d834e4511513f235afe074baa9e4d.min.css",
+      "sha256": "3ff8e1a232b4e055c2b09ec3465a71032c3da41eb3b3c45db9fdaeabdbd8f99f",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/support_faq_v1.min.css",
+      "sha256": "d8c2879c12c3bbaf0d6f1c639f436b57fa283503ce39f2838b4ea520afcf5623",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/common_admin_css_file_v4.min.css",
+      "sha256": "9e3ee8bfe29087fd4c0a9efbc13d357fa92b2674c7b18cc0adbb87c14b164e50",
+      "kind": "css"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/runtime-main.1f1316b384bd2bc2fa19.js",
+      "sha256": "fa5ba92286ad64755446e92260e89a0e572bac1b9e3b6db65d43dbfcc21a0006",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/18.2893381b2be19e018202.chunk.js",
+      "sha256": "1fd079b04688e02344b6e04f41305fee71ec9d930962ce669da4c531058538ab",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/main.b0d6157f22b18da4e1b4.chunk.js",
+      "sha256": "31de8df68e5fb40dfe8a509e42a2b672a2b48adb7b46cac891e7d45fbfc0c754",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/17.97c60a1ea795d275c3d7.chunk.js",
+      "sha256": "21d1422d281fb1c90e0f6f0a0ec32aac51ddae8abde132dd738257770e22bf95",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/14.93f6687f97962b8289ec.chunk.js",
+      "sha256": "fbd5d5604f6ad918133f9847967adb83f01a0508eb52290b8d411bb7b1f3a7c9",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/25.bcf51dcc75bf1c3f4dc0.chunk.js",
+      "sha256": "be01113269f238a8d5de3e6ee36e5acb035afa4e7d465d0b6b4dde54b2046b7e",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/38.fd875f34fad3e1170ec0.chunk.js",
+      "sha256": "9ab14f0253d7fb1ba89f42c9b7047ac76a0cad43b90c7b48f5ec527e3fcae729",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/64.b3a35e72c0970daa52b0.chunk.js",
+      "sha256": "3246beffec8c0ee133151714f0a5ad767356d51602f6b261b7fd29fd4f58d2c8",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/40.af6f3fea93b66903cffa.chunk.js",
+      "sha256": "1af370bc110964da619732727ac269bfac916af5bf85d4d1386ff462e17c25b9",
+      "kind": "js"
+    },
+    {
+      "url": "https://www.olaelectric.com/static/_cache/merged/ba425f4b503867d814bcd6848d8bb896.min.css",
+      "sha256": "3ff8e1a232b4e055c2b09ec3465a71032c3da41eb3b3c45db9fdaeabdbd8f99f",
+      "kind": "css"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/runtime-main.cc269a2ba9b4f63486fe.js",
+      "sha256": "a96e4b83693a88d158b88ec88df1104977f63eec1b7b663c884151e5265518e8",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/18.17ccae4c2aa7bdb570a5.chunk.js",
+      "sha256": "9070f95b57b2a2425c41e40f33dfcc58f662be544f049cbbcd8489454b1d5cc8",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/main.45efdce08826b8ea55d7.chunk.js",
+      "sha256": "7cf3236a2c58e2a64869f4a07516d4c9eeb5972214d8b1f554248fd47d7ef3c0",
+      "kind": "js"
+    },
+    {
+      "url": "https://olacareers.turbohire.co/40.1af7bfd47915c32dfaf3.chunk.js",
+      "sha256": "e48ec3a5e9c59c7711126b6ca2bd33fbd8d37b04c5e692945118d1da9d2e7f41",
+      "kind": "js"
+    }
+  ],
+  "surfaces": {
+    "ola": {
+      "stylesheets": [
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/mage/calendar.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/styles-m.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/custom.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/jquery/uppy/dist/uppy-custom.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/styles.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/owlcarousel/owl.carousel.min.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/animate.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/fontawesome5.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/mgz_font.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/mgz_bootstrap.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Builder/css/openiconic.min.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Builder/css/styles.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Builder/css/common.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Newsletter/css/styles.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_Core/css/magnific.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/css/styles.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/vendor/photoswipe/photoswipe.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/vendor/photoswipe/default-skin/default-skin.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilder/vendor/blueimp/css/blueimp-gallery.min.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/Magezon_PageBuilderIconBox/css/styles.css",
+          "media": "all"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/styles-l.css",
+          "media": "screen and (min-width: 768px)"
+        },
+        {
+          "url": "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/css/print.css",
+          "media": "print"
+        }
+      ],
+      "externalScripts": [
+        "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/requirejs/require.js",
+        "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/mage/requirejs/mixins.js",
+        "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/requirejs-config.js",
+        "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/js/custom.js",
+        "https://www.olacabs.com/static/frontend/Ola/Cabs/en_US/js/newrelic.js",
+        "https://www.googletagmanager.com/gtag/js?id=UA-20199135-12"
+      ],
+      "inlineExecutableSHA256": [
+        "14113174b2e86a1564f8bc4d93e2481d6f0883efa73f85693ea0351c792fe97a",
+        "db1f2e8132a7fb8160ecbd755690b5ee27128ec89b7dbee2f750647e4b8f17c1",
+        "81f9808b222e47a6fd78dbb662f669966e088d86a1c4edbd2a7c70f8df02c9cb",
+        "a9858ca24754bd8310a048dccae08ed92b2dc023d421271694e45e9e0bf30277",
+        "ec4758e64e8545cd0b46084b73da4ebfc733be9d29fb10a1eceef4eca205e678",
+        "d0afd7b02ef3242cfbf45d8d1b6642950cd75fae710be6d3781ae4c358a92f40",
+        "e3cb1be097bb5e84e526298eee99bff9fc17a3904123aa14e15722f90a8adbf2",
+        "9147485a26ad511c8079ad5b84bc735b926024b15c6cf03e1dec0e9762c83382",
+        "a5cb4b15c7d268c96ffddecf3b7f97496e434f0c1e67e09236823d5698bf4810",
+        "7024c3a8b8a056fcfcfa3cdecc9e06b6dd7029ff4fb0c3783474c4763c95c387",
+        "d83c648c09f3be1256036dfad2a5755829f946737073f39106d54652b7383504",
+        "bcca5de6c9d3e434b984e7a6fc34ba20f7c8caec86ad48cf90ee8036157c7590",
+        "5e645094b14fed0352936f2931dd15da5c273895b9f052e39ca36ca3da15e1d7",
+        "4803653eb368a15e7a14e9fbe087d4eb53f7c7e3c5620f812f775e6bf481abe0"
+      ],
+      "inlineStyleSHA256": [
+        "db82b9ba503130b2ed629987706f0ff33fa06febd7953c7f1d035e1fe5f78b04",
+        "ee8c767a509c7536d2f5600abdd87938ac2e9e1841fe247badc8cb77dc003f13",
+        "a8a6795198f1d25522f9f4df0b60efdc920f861e26e407cab3c3cfecaf555df6"
+      ]
+    },
+    "olaelectric": {
+      "stylesheets": [
+        {
+          "url": "https://www.olaelectric.com/static/_cache/merged/175d834e4511513f235afe074baa9e4d.min.css",
+          "media": "all"
+        },
+        {
+          "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/support_faq_v1.min.css",
+          "media": "all"
+        },
+        {
+          "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/common_admin_css_file_v4.min.css",
+          "media": "all"
+        }
+      ],
+      "externalScripts": [
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/requirejs/require.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/requirejs-min-resolver.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle0.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle1.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle2.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle3.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle4.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle5.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bundle/bundle6.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/mage/requirejs/static.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/mage/requirejs/mixins.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/requirejs-config.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/bridge.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/constantNdefinitions_v2.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/pop_up.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/validation_v22.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/common_v25.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/templates/homepage_exp_center_v43.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/templates/s1_homepage_v8.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/templates/toggle_card_slider_v1.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/templates/conversion_api_v1.min.js",
+        "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_GB/js/templates/cubeapm_magento.min.js",
+        "https://www.google.com/recaptcha/api.js"
+      ],
+      "inlineExecutableSHA256": [
+        "527d9ef00dc013e2bd9c648fa7d13e3f21659461e7c26a3e0bab3a77e22d2b4e",
+        "cf51fc3942f28eb0d641e45c80cd1e759327e6accc6a614c558c05f66a9bc607",
+        "d9c8bc23319a84b4c6cb4b46865357b6506e3b1e0409a8e4c8609630bae7818b",
+        "199b8b335a7a0ae596b21c12da48c93a4d5f1d339d33c2e080707c7577b20768",
+        "288bc598194d334ffa4f43963136e8b9068a9d459502642c51f31ab7ad8d60d1",
+        "76b6b09b66b3667a14a774d4a9cac2eeaa2c654d08e4ed063fef8a6dad919ad0",
+        "e3cb1be097bb5e84e526298eee99bff9fc17a3904123aa14e15722f90a8adbf2",
+        "b1cfcd7561f19df9b0d25c49020b40fae7fc96c6d1010fe5389ec42df7142548",
+        "ce666a2ba23a320bf3a2af1029a1d8c06240432b6cf0ab3ad1751bccb79830f4",
+        "a5cb4b15c7d268c96ffddecf3b7f97496e434f0c1e67e09236823d5698bf4810",
+        "a719ba43be3ad55a04cd169d4d9875f67f8563f3cb6fd15828f8c32d708597b5",
+        "d83c648c09f3be1256036dfad2a5755829f946737073f39106d54652b7383504",
+        "f9d53756c9cbb762507cd7ed6b9961b6a347b9991873d1379ddf1f988f60095d",
+        "0753cbf9b77e231aa0a2d90e519d6742aace0d62b6818128599f3abaebc51e65",
+        "20d6c2e2b5d88621b61602e6788c962078836ad9833e854574d2e1f77d47b5cc",
+        "d1c6f14514fca22f4b2673e506235475b76ed9eabaca48d2a97af60f5aaefd25",
+        "8816caee9d75c8fc896ec600ee152837b8d0d06d51174926f111e63beb62609d",
+        "4634768bf325047a707cd875ad3571aae5b494a167bdb38511e4017b1ae76de0",
+        "68e8cc7228995c2c6d2b51994246ffc05855756b1b2dbb41fd3760db5bae8414",
+        "8f64cfdd734f21555d9a123213707c983c0dc86d4d82339f1951ccfcd7b14b34",
+        "6478c1211601f2694da51c84380fd07d97123c67ebb1fc365033a59b54987a4f",
+        "5c0e16d346dff9f4909317f9fcf66691a6c23345d5a51ab2221e71e31f9df656",
+        "fd1abb44a29c6404f8e15c00ab1b82d94a3ce1d56a610fd01dd8f4a08c015baf",
+        "3b8bfdfce3cbdb2ab0290dee14e9fd933fa4ce43775d5d69ad1e57cc2e2f3fa4",
+        "1041db98786abbf36cb377e9c689fc97e542c439b3f663cef6cd2e18e87f2bee",
+        "19316e5fd988e73c22e92961ac795033d633b83c9f81d85096e87f2a47f0cbe7",
+        "f48ae025b402c45845207270590ce9135d9f10e6bc39f5a9971f743083e31b37",
+        "0945e68cd9e37456b60d3b3df00ddd162b2fcc58310cee89efe116ca01aadfde",
+        "c43c466b6bdd04f7bbc1d4e59818becf21029bc186691329e00fa6c08a416a0e",
+        "5e645094b14fed0352936f2931dd15da5c273895b9f052e39ca36ca3da15e1d7",
+        "4803653eb368a15e7a14e9fbe087d4eb53f7c7e3c5620f812f775e6bf481abe0",
+        "d2bab080863f9d8c4be07a21a332350d09e45ddb3d3ec68be1fd70ad796da00c"
+      ],
+      "inlineStyleSHA256": [
+        "a67d924902c6f60b5ac263602c3b1686492b49588839acbe2ffd30f75da8336c",
+        "e06074d2f0b85bdaaac5f7c16cd872f90abd67c58b7503a0f509b2e2bf207b14",
+        "5475dff1b6f89053eeb72e071edca5892a5a83b02cbef03bcb0a6d09902a4f78",
+        "7f5af4ea4a4ebcf7466bfa42431a04503a7b38c0e6d2be6b3519b80d9e2dab70",
+        "8a59f0fa2ffb0b6d9868fb363ef5e113dbf857af60f83ef4ea5189982e5024bb",
+        "e9c8fc652f2b62abb49743628fc420db7b94aef3b075ab348a8dc6fff2de4a37",
+        "56a412ebdf34e6b92604577fb3927a3d7a45bde83fa756b0d1e1a9d58c9cadb9"
+      ]
+    },
+    "native": {
+      "stylesheets": [
+        {
+          "url": "https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900",
+          "media": null
+        },
+        {
+          "url": "https://fonts.googleapis.com/css?family=Inter:300,400,500,700",
+          "media": null
+        },
+        {
+          "url": "https://fonts.googleapis.com/icon?family=Material+Icons",
+          "media": null
+        },
+        {
+          "url": "https://olacareers.turbohire.co/static/css/18.82f66c09.chunk.css",
+          "media": null
+        },
+        {
+          "url": "https://olacareers.turbohire.co/static/css/main.a21a9906.chunk.css",
+          "media": null
+        }
+      ],
+      "externalScripts": [
+        "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM",
+        "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+        "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+        "https://checkout.razorpay.com/v1/checkout.js",
+        "https://vjs.zencdn.net/7.3.0/video.min.js",
+        "https://www.webrtc-experiment.com/EBML.js",
+        "https://apis.google.com/js/platform.js",
+        "https://fast.wistia.com/assets/external/E-v1.js",
+        "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+        "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+        "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+        "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+        "https://turbohire.statuspage.io/embed/script.js",
+        "https://olacareers.turbohire.co/runtime-main.26de4c73d472a7dfb350.js",
+        "https://olacareers.turbohire.co/18.e089596f1af8d9726838.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.a1c3fd4c0aa3133cad6a.chunk.js"
+      ],
+      "inlineExecutableSHA256": [
+        "c7ac27b0884ea5a24cf30845d0d7c80153b338e455d2d1213226a9f636018f73",
+        "a6f28dc86db77300570ab8bdceb0c5afb8479d776c51f8e124435476a4c55baf",
+        "988c48ac5ace12cc4df1f6a8e60d051e7d7d446167f90c93916e8c5439a83738"
+      ],
+      "inlineStyleSHA256": []
+    }
+  },
+  "nativeClientVersions": [
+    {
+      "scriptURLs": [
+        "https://olacareers.turbohire.co/runtime-main.1f1316b384bd2bc2fa19.js",
+        "https://olacareers.turbohire.co/18.2893381b2be19e018202.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.b0d6157f22b18da4e1b4.chunk.js"
+      ],
+      "externalScripts": [
+        "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM",
+        "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+        "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+        "https://checkout.razorpay.com/v1/checkout.js",
+        "https://vjs.zencdn.net/7.3.0/video.min.js",
+        "https://www.webrtc-experiment.com/EBML.js",
+        "https://apis.google.com/js/platform.js",
+        "https://fast.wistia.com/assets/external/E-v1.js",
+        "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+        "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+        "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+        "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+        "https://turbohire.statuspage.io/embed/script.js",
+        "https://olacareers.turbohire.co/runtime-main.1f1316b384bd2bc2fa19.js",
+        "https://olacareers.turbohire.co/18.2893381b2be19e018202.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.b0d6157f22b18da4e1b4.chunk.js"
+      ],
+      "assetURLs": [
+        "https://olacareers.turbohire.co/runtime-main.1f1316b384bd2bc2fa19.js",
+        "https://olacareers.turbohire.co/18.2893381b2be19e018202.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.b0d6157f22b18da4e1b4.chunk.js",
+        "https://olacareers.turbohire.co/17.97c60a1ea795d275c3d7.chunk.js",
+        "https://olacareers.turbohire.co/14.93f6687f97962b8289ec.chunk.js",
+        "https://olacareers.turbohire.co/25.bcf51dcc75bf1c3f4dc0.chunk.js",
+        "https://olacareers.turbohire.co/38.fd875f34fad3e1170ec0.chunk.js",
+        "https://olacareers.turbohire.co/64.b3a35e72c0970daa52b0.chunk.js",
+        "https://olacareers.turbohire.co/40.af6f3fea93b66903cffa.chunk.js"
+      ],
+      "companyScopeUnqualified": true
+    },
+    {
+      "scriptURLs": [
+        "https://olacareers.turbohire.co/runtime-main.cc269a2ba9b4f63486fe.js",
+        "https://olacareers.turbohire.co/18.17ccae4c2aa7bdb570a5.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.45efdce08826b8ea55d7.chunk.js"
+      ],
+      "externalScripts": [
+        "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM",
+        "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+        "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+        "https://checkout.razorpay.com/v1/checkout.js",
+        "https://vjs.zencdn.net/7.3.0/video.min.js",
+        "https://www.webrtc-experiment.com/EBML.js",
+        "https://apis.google.com/js/platform.js",
+        "https://fast.wistia.com/assets/external/E-v1.js",
+        "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+        "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+        "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+        "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+        "https://turbohire.statuspage.io/embed/script.js",
+        "https://olacareers.turbohire.co/runtime-main.cc269a2ba9b4f63486fe.js",
+        "https://olacareers.turbohire.co/18.17ccae4c2aa7bdb570a5.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.45efdce08826b8ea55d7.chunk.js"
+      ],
+      "assetURLs": [
+        "https://olacareers.turbohire.co/runtime-main.cc269a2ba9b4f63486fe.js",
+        "https://olacareers.turbohire.co/18.17ccae4c2aa7bdb570a5.chunk.js",
+        "https://olacareers.turbohire.co/30.812b9abed47cf2099f54.chunk.js",
+        "https://olacareers.turbohire.co/main.45efdce08826b8ea55d7.chunk.js",
+        "https://olacareers.turbohire.co/17.97c60a1ea795d275c3d7.chunk.js",
+        "https://olacareers.turbohire.co/14.93f6687f97962b8289ec.chunk.js",
+        "https://olacareers.turbohire.co/25.bcf51dcc75bf1c3f4dc0.chunk.js",
+        "https://olacareers.turbohire.co/38.fd875f34fad3e1170ec0.chunk.js",
+        "https://olacareers.turbohire.co/64.b3a35e72c0970daa52b0.chunk.js",
+        "https://olacareers.turbohire.co/40.1af7bfd47915c32dfaf3.chunk.js"
+      ],
+      "companyScopeUnqualified": true
+    }
+  ],
+  "corporateStyleVersions": {
+    "olaelectric": [
+      {
+        "stylesheets": [
+          {
+            "url": "https://www.olaelectric.com/static/_cache/merged/ba425f4b503867d814bcd6848d8bb896.min.css",
+            "media": "all"
+          },
+          {
+            "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/support_faq_v1.min.css",
+            "media": "all"
+          },
+          {
+            "url": "https://cdn.olaelectric.com/ev-discovery-static-assets/static/frontend/Ola/Electric/en_US/css/templates/common_admin_css_file_v4.min.css",
+            "media": "all"
+          }
+        ],
+        "inlineStyleSHA256": [
+          "2e450ddcb53a2d676ee72e9279fbf3c8e7e3baf8349242643b857279f9061b19",
+          "e06074d2f0b85bdaaac5f7c16cd872f90abd67c58b7503a0f509b2e2bf207b14",
+          "9a5b1e36749952f00354461d60c437fda812b79065313f8cd0b1e64d28ac2499",
+          "7f5af4ea4a4ebcf7466bfa42431a04503a7b38c0e6d2be6b3519b80d9e2dab70",
+          "8a59f0fa2ffb0b6d9868fb363ef5e113dbf857af60f83ef4ea5189982e5024bb",
+          "e9c8fc652f2b62abb49743628fc420db7b94aef3b075ab348a8dc6fff2de4a37",
+          "56a412ebdf34e6b92604577fb3927a3d7a45bde83fa756b0d1e1a9d58c9cadb9"
+        ]
+      }
+    ]
+  }
+}

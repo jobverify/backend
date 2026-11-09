@@ -1,0 +1,8 @@
+{
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "locationPattern": "India|Bangalore|Bengaluru",
+  "maxPages": 10,
+  "pageLoadDelayMs": 2000,
+  "jobListingTimeoutMs": 15000,
+  "cookieBannerTimeoutMs": 2000
+}

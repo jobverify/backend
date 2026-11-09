@@ -1,0 +1,33 @@
+[
+  {
+    "source": "aosmith",
+    "companyName": "A. O. Smith",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../aosmith/script.js",
+    "companyDomain": "aosmith.com",
+    "companyCareerPage": "https://jobs.aosmith.com/search/",
+    "officialHomepageUrl": "https://www.aosmith.com/",
+    "atsPlatform": "successfactors-public-native-get",
+    "countryFilter": "India",
+    "paginationStrategy": "published-public-tile-client-unfiltered-offsets-two-detail-passes-and-final-traversal",
+    "extractionStrategy": "current-declared-native-board-stable-full-public-criteria-country-and-final-after-details",
+    "parser": "aosmith-native-public-get",
+    "backfillMode": "discovery-only",
+    "zeroResultPolicy": "evidence-required",
+    "runtimeInventoryVerification": true,
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "boardIdentityVerified": false,
+    "bindingEvidence": null,
+    "scraperTimeoutMs": 400000,
+    "sourceLifecycleTimeoutMs": 450000,
+    "verificationDisposition": "runtime-configured-board-inventory-evidence-required",
+    "verifiedSurfaceSummary": "Current corporate/native handoffs, unfiltered native pagination, typed work-country addresses and two complete own-criteria passes must reconcile with a final native listing after all closing details. Counts are runtime evidence; company-wide recruiting scope and cleanup remain unverified."
+  }
+]

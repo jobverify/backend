@@ -1,0 +1,147 @@
+{
+  "source": "astronics",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "8da4fcc1c460210b2ebf53e92c49c183b6e07c5d9210bf0021318035aaea2ba8",
+  "responses": [
+    {
+      "url": "https://www.diagnosys.com/",
+      "status": 406,
+      "bytes": 226,
+      "sha256": "80a265bed528211aa708dcd58f7a95db36eeb7f873c6fe4ddab0b3a1dc0973a4",
+      "originalCapture": "astronics-legacy-employer-bridge-80a265bed528.body"
+    },
+    {
+      "url": "https://www.astronics.com/careers",
+      "status": 200,
+      "bytes": 64535,
+      "sha256": "831d88826cc1285942b006f8bd21a21a73c9d32ac80dc55b92369b82f6a97b67",
+      "originalCapture": "astronics-careers-831d88826cc1.body"
+    },
+    {
+      "url": "https://www.astronics.com/us-jobs",
+      "status": 200,
+      "bytes": 43108,
+      "sha256": "211265e980a890547cd4624ad0a5ea7ea11d2edf5b201f53a3c2a79389813f91",
+      "originalCapture": "astronics-declared-us-board-211265e980a8.body"
+    },
+    {
+      "url": "https://www.astronics.com/canada-jobs",
+      "status": 200,
+      "bytes": 45021,
+      "sha256": "34f0224439798cf4cf3c45bda1757fde18a437831871ec989baa4a96856cbd13",
+      "originalCapture": "astronics-declared-canada-board-34f022443979.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com",
+      "status": 200,
+      "bytes": 64435,
+      "sha256": "17f3e39ebfafa139b318a2f51e862def262e6ae32381b1274175711863a589e3",
+      "originalCapture": "astronics-declared-france-board-17f3e39ebfaf.body"
+    },
+    {
+      "url": "https://boards.greenhouse.io/embed/job_board/js?for=astronicscorporation",
+      "status": 200,
+      "bytes": 12872,
+      "sha256": "315694d27c7c157c90d2e62590d72fa16a8d197e20231944d13f0bf4df7c0413",
+      "originalCapture": "astronics-declared-greenhouse-client-315694d27c7c.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/liste-toutes-offres.aspx?all=1&mode=layer#ancrecontenu",
+      "status": 200,
+      "bytes": 69783,
+      "sha256": "665441aac1c45e7a20b135ed2b0c031d248586cd43d5d9b5a52ee4ead647084a",
+      "originalCapture": "astronics-france-all-offers-665441aac1c4.body"
+    },
+    {
+      "url": "https://www.astronics.com/test-systems",
+      "status": 200,
+      "bytes": 137983,
+      "sha256": "aabdaa46f4e4845bf93ce874992b75c845217b3b3898b06aa67604b5d7b15327",
+      "originalCapture": "astronics-current-test-systems-aabdaa46f4e4.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/emploi-ingenieur-qualite-logiciel-electronique-h-f_432.aspx",
+      "status": 200,
+      "bytes": 63673,
+      "sha256": "040b529c3f4176d6d88a596b704c0bfdbcf71943d0093f4550e9d3534cffbdc3",
+      "originalCapture": "astronics-france-native-role-432-040b529c3f41.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/emploi-responsable-programmes-h-f_567.aspx",
+      "status": 200,
+      "bytes": 62959,
+      "sha256": "092bc0b370e66fb9aaf6ad93cefeed3de7aedcdf8a68aad0222564010ecffe1a",
+      "originalCapture": "astronics-france-native-role-567-092bc0b370e6.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/emploi-responsable-qualite-projet-logiciel-et-electronique-h-f_631.aspx",
+      "status": 200,
+      "bytes": 63974,
+      "sha256": "96f4edc1dfa4fe6d2c8106371e793f2e19f05f4b6025907422698a65da3cbfd0",
+      "originalCapture": "astronics-france-native-role-631-96f4edc1dfa4.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/emploi-vie-ingenieur-integration-logiciel-h-f_629.aspx",
+      "status": 200,
+      "bytes": 60086,
+      "sha256": "a6eac8f6e41c1e814acb087011574c383c11bf33c4c6101412f5a1e4107b6abf",
+      "originalCapture": "astronics-france-native-role-629-a6eac8f6e41c.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/emploi-responsable-approvisionnements-h-f_590.aspx",
+      "status": 200,
+      "bytes": 61046,
+      "sha256": "a088d1759393597136a4bf5ed57ce8f5209b3ab14a06171d29ed3887c70a58e3",
+      "originalCapture": "astronics-france-native-role-590-a088d1759393.body"
+    },
+    {
+      "url": "https://francejobs.astronics.com/offre-de-emploi/emploi-responsable-service-programmes-h-f_563.aspx",
+      "status": 200,
+      "bytes": 64570,
+      "sha256": "570833b5ed07676292b644b10f53c2347fff946e65780f6035a1daf29e72c5dc",
+      "originalCapture": "astronics-france-native-role-563-570833b5ed07.body"
+    },
+    {
+      "url": "https://job-boards.cdn.greenhouse.io/assets/embed.job_board-DUKQffsu.js",
+      "status": 200,
+      "bytes": 1760,
+      "sha256": "20bcd37397b0f23eadf145292b1c8a2ca6620fdf734483678db673b885b5ba58",
+      "originalCapture": "astronics-public-greenhouse-client-20bcd37397b0.body"
+    },
+    {
+      "url": "https://job-boards.cdn.greenhouse.io/assets/entry.client-C2IOVNfH.js",
+      "status": 200,
+      "bytes": 163075,
+      "sha256": "a7e2d38ee080a0e27a2bc60eb23e5ae962ec9f2ca199114f192290aca77b6e00",
+      "originalCapture": "astronics-public-pagination-a7e2d38ee080.body"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/embed/job_board?for=astronicscorporation",
+      "status": 200,
+      "bytes": 80121,
+      "sha256": "00d6dafee5b20ff53cc0db3fcc9fca7c22cc7af397545ba82f962a3e8e96cb80",
+      "originalCapture": "astronics-current-opening-page1-00d6dafee5b2.body"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/embed/job_board?for=astronicscorporation&page=2",
+      "status": 200,
+      "bytes": 68903,
+      "sha256": "80813a3545919b52ac7862ad2b0e47da371e1089baa59352555b2fc8b59be4d0",
+      "originalCapture": "astronics-current-opening-page2-80813a354591.body"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/embed/job_board?for=astronicscorporation",
+      "status": 200,
+      "bytes": 80121,
+      "sha256": "00d6dafee5b20ff53cc0db3fcc9fca7c22cc7af397545ba82f962a3e8e96cb80",
+      "originalCapture": "astronics-current-closing-page1-00d6dafee5b2.body"
+    },
+    {
+      "url": "https://job-boards.greenhouse.io/embed/job_board?for=astronicscorporation&page=2",
+      "status": 200,
+      "bytes": 68903,
+      "sha256": "80813a3545919b52ac7862ad2b0e47da371e1089baa59352555b2fc8b59be4d0",
+      "originalCapture": "astronics-current-closing-page2-80813a354591.body"
+    }
+  ]
+}

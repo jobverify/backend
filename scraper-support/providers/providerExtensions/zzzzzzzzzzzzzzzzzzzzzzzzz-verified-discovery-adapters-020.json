@@ -1,0 +1,44 @@
+[
+  {
+    "source": "castrolindia",
+    "companyName": "Castrol India",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/castrolindia/script.js",
+    "dryRunFile": "castrolindia/jobs.json",
+    "atsPlatform": "greenhouse",
+    "parser": "custom-script",
+    "boardToken": "castrol",
+    "companyDomain": "castrol.com",
+    "companyCareerPage": "https://www.castrol.com/en_in/india/home/about-castrol/careers.html",
+    "officialHomepageUrl": "https://www.castrol.com/en_in/india/home.html",
+    "jobsBoardUrl": "https://job-boards.eu.greenhouse.io/castrol",
+    "handoffBoardUrl": "https://job-boards.eu.greenhouse.io/castrol",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T01:36:52.685Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T01:36:52.685Z",
+      "officialURL": "https://www.castrol.com/en_in/india/home/about-castrol/careers.html",
+      "matchedLinks": [
+        "https://job-boards.eu.greenhouse.io/castrol"
+      ],
+      "proofFile": "../artifacts/full-catalog/ranked-positive-remediation-003/castrol-full-native-004/001.json",
+      "proofSha256": "357812a65e7340d6a557aff6ebea760b19c8083a46d7259d8cd5693b8ae5a8b5"
+    },
+    "extractionStrategy": "current-official-EU-Greenhouse-handoff+complete-public-GH-API+native-office-hierarchy+full-native-role-content+unchanged-shared-GH-mapping",
+    "paginationStrategy": "native-public-GH-meta.total-reconciled-with-unfiltered-board-total+stable-final-full-feed",
+    "sourceScopeNotes": "Preserve explicit secondary India locations and original complete global labels/offices. Native bare London and region-level Americas administrative office remain unresolved scope; no inferred foreign zero or complete India count. Full native jobPost.content excludes company introduction/conclusion. Actual application form/native submit path/role ID agree; no form submission.",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "verifiedSurfaceSummary": "Current Castrol India corporate careers page links exact Castrol EU Greenhouse board. Runtime validates the complete public API against visible board identity/counts and every selected public native role description, employer, application ID, office and dates. Current inventory counts are not stored in metadata."
+  }
+]

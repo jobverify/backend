@@ -1,0 +1,66 @@
+{
+  "phase": 4,
+  "verifiedOn": "2026-10-24",
+  "historicalMetadataRewritten": false,
+  "registryVerifiedPublicationCounts": null,
+  "productionDatabaseTouched": false,
+  "fullPipelineExecuted": false,
+  "productionBrowserFallbackAdded": false,
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "outcome": "implemented-native-empty-monitor-positive-extractor-open",
+  "sourceImplementationChanged": true,
+  "officialUrl": "https://aembit.io/careers/",
+  "binding": "The exact active first-party div id BambooHR has data-domain aembit.bamboohr.com. Hidden, textarea and xmp examples cannot bind it.",
+  "nativeUrls": [
+    "https://aembit.bamboohr.com/careers/list",
+    "https://aembit.bamboohr.com/jobs/embed2.php?version=1.0.0&format=json"
+  ],
+  "observedContract": "Native careers/list reports meta.totalCount0 and result[]. Native version1.0.0 embed independently reports success, departments[] and the exact current no-open-positions label.",
+  "positiveExtractionStatus": "unverified-open-backlog",
+  "positiveContractReview": "Existing cfi/datacoresystems/exeevo public BambooHR implementations were inspected; none supplies current Aembit positive identity/country/full-description evidence. No positive record was fabricated or inferred from this empty feed.",
+  "currentSourceTrial": {
+    "performedAt": "2026-10-24T17:30:14.199Z",
+    "method": "Actual source code over bounded fresh public browser response transport; no production browser runtime added; default Node transport not verified in this restricted environment.",
+    "requests": 3,
+    "rawJobs": 0,
+    "eligibleJobs": 0,
+    "filterCounts": {
+      "nonIndia": 0,
+      "old": 0,
+      "closed": 0,
+      "invalidUrl": 0,
+      "nonJob": 0,
+      "emptyDescription": 0
+    },
+    "inventoryEvidence": {
+      "status": "verified-empty",
+      "surface": "https://aembit.bamboohr.com/careers/list",
+      "firstParty": true,
+      "listingComplete": true,
+      "pagesFetched": 2,
+      "reportedTotal": 0,
+      "indiaFacetCount": 0,
+      "verifiedAt": "2026-10-24T17:30:14.198Z",
+      "reason": "current-official-bamboohr-binding-native-list-and-embed-explicitly-empty-positive-extraction-pending"
+    }
+  },
+  "limits": [
+    "This is deliberately empty-only support and does not complete the positive extraction backlog. A nonempty, failed or contradictory native response rejects.",
+    "No production persistence. Runtime remains HTTP-only; fresh trial used browser response transport in this restricted environment."
+  ],
+  "focusedVerification": {
+    "command": "node --test scraper/accellor/script.test.js scraper/affirm/script.test.js scraper/aembit/script.test.js scraper/accellor/catalogRepair.test.js scraper-support/tests/publishingGapAts.test.js scraper-support/tests/providerExtensions.test.js",
+    "passed": 56,
+    "failed": 0,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-ats/guards-final-green.log",
+    "scope": "Only owned changed source contracts plus effective registry and shared ATS compatibility checks; unchanged blocked-source extraction was not promoted."
+  },
+  "sharedCompatibilityVerification": {
+    "passed": 232,
+    "failed": 0,
+    "files": 14,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-shared-independent-cohort-final.log",
+    "scope": "Focused shared/API/native-fixture/source/discovery contracts; no full repository suite or production pipeline."
+  }
+}

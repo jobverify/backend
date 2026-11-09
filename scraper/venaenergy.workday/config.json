@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://venaenergy.wd102.myworkdayjobs.com/wday/cxs/venaenergy/External/jobs",
+  "detailUrlBase": "https://venaenergy.wd102.myworkdayjobs.com/External",
+  "locationCountry": "",
+  "searchText": "India",
+  "locationPattern": "india|karnataka|mumbai|pune|bangalore|bengaluru|hyderabad|gurgaon|gurugram"
+}

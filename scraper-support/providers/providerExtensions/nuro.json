@@ -1,0 +1,23 @@
+{
+  "source": "nuro",
+  "companyName": "Nuro",
+  "officialBrandName": "Nuro",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../nuro/script.js",
+  "dryRunFile": "nuro/jobs.json",
+  "companyCareerPage": "https://www.nuro.ai/careers",
+  "companyDomain": "nuro.ai",
+  "atsPlatform": "greenhouse",
+  "countryFilter": "India",
+  "paginationStrategy": "native-greenhouse-complete-single-response",
+  "extractionStrategy": "live-official-nuxt-client-handoff-and-full-greenhouse-inventory",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 101,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://www.nuro.ai/careers",
+  "verifiedSurfaceSummary": "Rechecked 2026-10-23: official Nuro careers client calls the nuro Greenhouse posting API. The observed complete 101-role response has explicit California work locations and no India roles. Each run verifies current official client binding and native response; it never substitutes a historical empty assertion. Captures retained under scraper/nuro/fixtures.",
+  "boardToken": "nuro"
+}

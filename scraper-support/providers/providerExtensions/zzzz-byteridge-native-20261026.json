@@ -1,0 +1,29 @@
+[
+  {
+    "source": "byteridge",
+    "companyName": "Byteridge",
+    "adapter": "script",
+    "modulePath": "../byteridge/script.js",
+    "catalogOverride": true,
+    "companyCareerPage": "https://byteridge.com/careers/",
+    "companyDomain": "byteridge.com",
+    "atsPlatform": "turbohire",
+    "countryFilter": "India",
+    "paginationStrategy": "native-all-jobs-total-and-unique-identities+all-public-details+corporate-and-native-closing-snapshots-before-cap",
+    "extractionStrategy": "visible-official-iframe+reviewed-angular-and-native-client+public-organization-binding+full-public-job-dto+matching-jobposting",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedAt": "2026-10-26T21:43:35.704Z",
+    "verifiedOn": "2026-10-26",
+    "verifiedPublicJobCount": 7,
+    "verifiedIndiaJobCount": 7,
+    "sourceScopeNotes": "The current official careers iframe delegates each source UUID to the employer-bound public TurboHire client. Two full global native All Jobs snapshots and every public role DTO/JobPosting are reconciled with corporate proxy IDs, full criteria, explicit work country, CAREERPAGE publication and expiry, native application context and employer binding before caller caps. FilteredJobs Total must equal the unique returned set; unreviewed continuation metadata or corporate/native gaps retain partial status. Remote placeholders require an explicit role-owned India Location label and matching native country schema. General/CAREERPAGE dates remain distinct; source midnight expiry without timezone retains day precision. Zero requisition GUIDs remain null and JobCode stays separate. Anonymous public reader credentials remain only in memory. Only the reviewed public listing POSTs are used; no login, candidate/application action, private API, database or pipeline invocation.",
+    "remediationStatus": "current-native-seven-role-public-inventory-implemented-and-registered-verified;five-current-publication-policy-eligible",
+    "sourceObservedFullCriteriaEligibleIndiaRecords": 7,
+    "sourceObservedPublicationPolicyEligibleIndiaRecords": 5,
+    "sourceScopeComplete": true,
+    "lifecycleCleanupAllowed": true,
+    "verifiedInventoryStatus": "complete-inventory"
+  }
+]

@@ -1,0 +1,10 @@
+{
+ "source":"astronics","catalogOverride":true,"companyName":"Astronics Test Systems","adapter":"script","modulePath":"../astronics/script.js",
+ "companyCareerPage":"https://www.astronics.com/careers","companyDomain":"astronics.com","officialHomepageUrl":"https://www.astronics.com/test-systems",
+ "atsPlatform":"current-declared-greenhouse-and-talentsoft-public-boards","countryFilter":"India",
+ "paginationStrategy":"complete-current-native-Greenhouse-pages+France-all-offers+Canada-explicit-empty+final-inventories-after-closing-details",
+ "extractionStrategy":"current-Test-Systems-employer-bridge+declared-shared-boards+all-native-country-alternatives+full-France-criteria+closing",
+ "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",
+ "sourceCompanyWideScopeComplete":false,"lifecycleCleanupAllowed":false,
+ "verifiedSurfaceSummary":"Current first-party Test Systems page states its Diagnosys history and declares Astronics careers. Runtime follows the currently declared public US Greenhouse, Canada and France channels, enumerates complete unique native identities, preserves explicit role-bound countries and reconciles final inventories after closing full France public criteria. Current all-foreign exclusions do not assign other subsidiaries' jobs to Test Systems or assert exact global full-description reconciliation. Unknown countries, additional native branches/filters, potential India and changed membership remain partial; no country inference from company offices, city, title, market or institutional text."
+}

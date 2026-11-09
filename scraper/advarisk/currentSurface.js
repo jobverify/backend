@@ -1,0 +1,1 @@
+export const CURRENT_SURFACE={source:"advarisk",companyName:"AdvaRisk",homepageUrl:null,careersUrl:"https://advarisk.com/careers/",brand:/AdvaRisk/i,careersHeading:/careers at advarisk/i,intakeKind:"unresolved-public-careers-controls",intakeEmail:null}

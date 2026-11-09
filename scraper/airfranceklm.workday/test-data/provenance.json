@@ -1,0 +1,70 @@
+{
+  "sanitizedDerivedFixtures": true,
+  "receipts": [
+    {
+      "file": "homepage.html",
+      "derivedFrom": {
+        "folder": "airfranceklm-careers",
+        "manifestSHA256": "d761a94fa21a502e6b4b572f9d5ebd93920aa02d1b448d8b43262cf09890716d",
+        "originalBodySHA256": "1949f8e27ad96aec476bd5be06a8cfb7f49f01980a9472623919b11e21faeb7d",
+        "originalBytes": 143456,
+        "url": "https://recrutement.airfrance.com/accueil.aspx?lcid=2057"
+      },
+      "fixtureSHA256": "071c48079cb4abef21b1c1197d8cff75082cb54b1a3bc39ef05f0f3c21f853c6",
+      "fixtureBytes": 37158,
+      "derivation": "Sanitized original native title/role/detail content. Full content-details text/criteria retained without truncation; publisher programs, forms, controls, media and resource URLs removed. Listing navigation/role anchors copied literally. Not original response bytes, HTTP status or fresh acquisition evidence."
+    },
+    {
+      "file": "listing.html",
+      "derivedFrom": {
+        "folder": "airfranceklm-declared-vacancies",
+        "manifestSHA256": "03206a83e891bcc7a8d0b346cd626c89544ceee8395c953818313fa9c80f2d26",
+        "originalBodySHA256": "6f44eb8aedfa669f720207973410f58d6aef59cd95f85c806261f3d716934db7",
+        "originalBytes": 161769,
+        "url": "https://recrutement.airfrance.com/job/list-of-all-jobs.aspx?all=1&mode=list"
+      },
+      "fixtureSHA256": "3cb987bda3956eda083a5a4cfc9c6ab7e1ea42a1a9a77ac7c211ea2687874951",
+      "fixtureBytes": 38559,
+      "derivation": "Sanitized original native title/role/detail content. Full content-details text/criteria retained without truncation; publisher programs, forms, controls, media and resource URLs removed. Listing navigation/role anchors copied literally. Not original response bytes, HTTP status or fresh acquisition evidence."
+    },
+    {
+      "file": "25698.html",
+      "derivedFrom": {
+        "folder": "airfranceklm-declared-roles",
+        "manifestSHA256": "0914cc5302ac56498c3dccf2869e455fe0ff59350cf3dfb6255e1c1e4164f4b9",
+        "originalBodySHA256": "1d373e225f35116ea3a4816cb177b9c017aa2cafa7c26abcfcba8d6fd9efe337",
+        "originalBytes": 61863,
+        "url": "https://recrutement.airfrance.com/offre-de-emploi/emploi-business-architect-finance-achats-f-h_25698.aspx"
+      },
+      "fixtureSHA256": "c60d94b74a339c94dcc0cd5b291d0e0bd42ba0319d8597c42c32769a648c3c51",
+      "fixtureBytes": 11210,
+      "derivation": "Sanitized original native title/role/detail content. Full content-details text/criteria retained without truncation; publisher programs, forms, controls, media and resource URLs removed. Listing navigation/role anchors copied literally. Not original response bytes, HTTP status or fresh acquisition evidence."
+    },
+    {
+      "file": "25699.html",
+      "derivedFrom": {
+        "folder": "airfranceklm-declared-roles",
+        "manifestSHA256": "0914cc5302ac56498c3dccf2869e455fe0ff59350cf3dfb6255e1c1e4164f4b9",
+        "originalBodySHA256": "bbab7396dedac764f3e87f8f5509ba5c0e6fb57efffc463154c67df44cef3b73",
+        "originalBytes": 61956,
+        "url": "https://recrutement.airfrance.com/offre-de-emploi/emploi-business-architect-data-f-h_25699.aspx"
+      },
+      "fixtureSHA256": "f53f6bfdf025c9a69559701b8b5938fe56c5cbb552fc9a7a43b27c7a3505c90f",
+      "fixtureBytes": 11477,
+      "derivation": "Sanitized original native title/role/detail content. Full content-details text/criteria retained without truncation; publisher programs, forms, controls, media and resource URLs removed. Listing navigation/role anchors copied literally. Not original response bytes, HTTP status or fresh acquisition evidence."
+    },
+    {
+      "file": "23769.html",
+      "derivedFrom": {
+        "folder": "airfranceklm-declared-roles",
+        "manifestSHA256": "0914cc5302ac56498c3dccf2869e455fe0ff59350cf3dfb6255e1c1e4164f4b9",
+        "originalBodySHA256": "83ac41bfba8ff5aab2d2718acf3dfa20c9d2f18395aa8ba3f58a3c1ac251c63a",
+        "originalBytes": 56432,
+        "url": "https://recrutement.airfrance.com/offre-de-emploi/emploi-mecanicienne-mecanicien-cabine-toulouse-f-h_23769.aspx"
+      },
+      "fixtureSHA256": "2f6de1de742cc9bf5f8aad651a4039493358da014c8eac5a7ccf469524953119",
+      "fixtureBytes": 6693,
+      "derivation": "Sanitized original native title/role/detail content. Full content-details text/criteria retained without truncation; publisher programs, forms, controls, media and resource URLs removed. Listing navigation/role anchors copied literally. Not original response bytes, HTTP status or fresh acquisition evidence."
+    }
+  ]
+}

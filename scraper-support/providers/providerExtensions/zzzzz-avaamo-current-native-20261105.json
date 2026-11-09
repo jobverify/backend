@@ -1,0 +1,19 @@
+[
+  {
+    "source": "avaamo",
+    "catalogOverride": true,
+    "companyName": "Avaamo",
+    "adapter": "script",
+    "modulePath": "../avaamo/script.js",
+    "dryRunFile": "avaamo/jobs.json",
+    "companyCareerPage": "https://avaamo.ai/career",
+    "companyDomain": "avaamo.ai",
+    "countryFilter": "India",
+    "paginationStrategy": "current-first-party-cards-plus-stable-opening-closing-inventory",
+    "extractionStrategy": "current-first-party-framer-cards+canonical-role-content+explicit-country-observations",
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Observed on November 5, 2026 that https://avaamo.ai/career publishes 12 canonical Framer role cards with matching opening and closing records and matching detail titles and metadata. Eleven details contain authored role criteria; the Forward Deployed Engineer detail contains only location and company prose. Four locations explicitly say United States and eight have unresolved city-only countries. Counts are native observations, not reported company totals or proof of zero India hiring. Full authored HTML, plain text and native documents are retained; lifecycle cleanup remains disabled."
+  }
+]

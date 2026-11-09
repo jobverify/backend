@@ -1,0 +1,5 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://telstra.wd3.myworkdayjobs.com/wday/cxs/telstra/Telstra_Careers/jobs",
+  "detailUrlBase": "https://telstra.wd3.myworkdayjobs.com/en-US/Telstra_Careers"
+}

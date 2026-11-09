@@ -1,0 +1,27 @@
+export const VERIFIED_SURFACE_SUMMARY="Current first-party careers declares the Join Us page as a general ANAND Group hiring entry. No authoritative current native vacancy total, full public role criteria or role-bound countries is established. Both historical source rows retain their original coverage identity, keep totals unknown and do not claim company-wide absence, subsidiary employer scope, complete role-feed delegation or lifecycle cleanup. Private application controls and historical missing guessed routes are outside inventory qualification."
+export const ANAND_GROUP_CATALOG={
+  "source": "anandgroup",
+  "companyName": "Anand Group",
+  "officialBrandName": "ANAND Group",
+  "adapter": "script",
+  "modulePath": "../../scraper/anandgroup/script.js",
+  "companyCareerPage": "https://www.anandgroupindia.com/careers-at-anand/",
+  "joinUsPageUrl": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/",
+  "companyDomain": "anandgroupindia.com",
+  "atsPlatform": "first-party-general-group-hiring-entry-unresolved-native-inventory",
+  "countryFilter": "India",
+  "paginationStrategy": "current-declared-careers-and-general-join-us-entry-with-closing-read",
+  "extractionStrategy": "bounded-public-entry-observations-with-unknown-native-role-and-country-inventory",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "zeroResultPolicy": "evidence-required",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceScopeComplete": false,
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedSurfaceSummary": "Current first-party careers declares the Join Us page as a general ANAND Group hiring entry. No authoritative current native vacancy total, full public role criteria or role-bound countries is established. Both historical source rows retain their original coverage identity, keep totals unknown and do not claim company-wide absence, subsidiary employer scope, complete role-feed delegation or lifecycle cleanup. Private application controls and historical missing guessed routes are outside inventory qualification."
+}
+export default ANAND_GROUP_CATALOG

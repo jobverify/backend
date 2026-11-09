@@ -1,0 +1,44 @@
+[
+  {
+    "source": "aspentechnology",
+    "companyName": "Aspen Technology",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "custom-script",
+    "nativeEmployerNames": [
+      "AspenTech",
+      "OSI Energy Automation India Private Limited"
+    ],
+    "extractionStrategy": "current-company-handoff+published-native-India-office-facets+full-original-role-and-employer-model+closing-publisher-listing-role-context",
+    "sourceScopeNotes": "The current AspenTech careers page publishes the exact aspentech native account. Native locations ending in India select candidates; every full role still requires explicit matching native India countries, active public availability, exact requisition, original legal employer and full criteria. OSI Energy Automation India Private Limited is retained as the native employer, supported by Aspen Technology subsidiary disclosure and its current account. Native calendar dates and conflicting posting/requisition city labels are preserved, with public city unknown. Closing full roles, selected pages and current company handoff are rechecked. Company-wide scope and lifecycle cleanup remain unqualified. When the structured organization is blank, only the exact reviewed own first-paragraph AspenTech employment introduction can establish the posting employer brand. The original blank structured field is retained and legal employer stays null.",
+    "nativeWorkdayLegalEmployerNames": [
+      "OSI Energy Automation India Private Limited"
+    ],
+    "nativeWorkdayEmployerDeclaration": {
+      "name": "AspenTech",
+      "kind": "first-paragraph-employment-introduction",
+      "prefix": "The driving force behind our success has always been the people of AspenTech."
+    }
+  },
+  {
+    "source": "telstra",
+    "companyName": "Telstra",
+    "catalogOverride": true,
+    "extractionStrategy": "current-company-handoff+current-native-country-facet-parameter+full-original-public-role-model+closing-publisher-listing-role-context",
+    "sourceScopeNotes": "Current native country facet identity and descriptor select India roles; the advertised Location_Country parameter replaces a hardcoded lowercase parameter and a mixed-country text-search fallback. Each full native role must independently prove country, employer, active publication and exact requisition. Original role/requisition/secondary locations and calendar dates are retained; city stays unknown where native fields differ. Current company handoff, all selected listing pages and each full role are rechecked. Other company recruitment channels and lifecycle cleanup remain unqualified. A blank structured employer requires the exact reviewed Telstra employer statement in that full native role. Its legal employer remains null; names from sibling roles are never copied.",
+    "nativeEmployerNames": [
+      "Telstra Telecommunications Private Limited",
+      "Telstra Global Business Services LLP."
+    ],
+    "nativeWorkdayEmployerDeclaration": {
+      "name": "Telstra",
+      "kind": "name-leading-statement",
+      "prefix": "Telstra is Australia’s leading telecommunications and technology company"
+    },
+    "nativeWorkdayLegalEmployerNames": [
+      "Telstra Telecommunications Private Limited",
+      "Telstra Global Business Services LLP."
+    ]
+  }
+]

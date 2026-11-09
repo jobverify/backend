@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://sifive.wd1.myworkdayjobs.com/wday/cxs/sifive/sifivecareers/jobs",
+  "detailUrlBase": "https://sifive.wd1.myworkdayjobs.com/en-US/sifivecareers",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "countryFacetParameter": "locationCountry",
+  "locationPattern": "india|ind-|bangalore|bengaluru"
+}

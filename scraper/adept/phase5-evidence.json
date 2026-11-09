@@ -1,0 +1,66 @@
+{
+  "phase": 5,
+  "source": "adept",
+  "companyName": "Adept",
+  "recordedAt": "2026-10-24T17:59:12.115Z",
+  "outcome": "employer-identity-unresolved-native-extraction-blocked",
+  "sourceImplementationChanged": false,
+  "sourceIdentityResolved": false,
+  "nativeInventoryComplete": false,
+  "verifiedIndiaJobCount": null,
+  "verifiedPublicJobCount": null,
+  "zeroIndiaClaim": false,
+  "registryOrHistoricalNotesRewritten": false,
+  "evidenceMethod": "Bounded unauthenticated MCP Playwright navigation in isolated pages on2026-10-24; status/finalURL/title/visible-body and career/ATS anchor inspection. No login, application submission, runtime browser fallback, database or full pipeline.",
+  "priorCatalogContext": {
+    "path": "artifacts/full-catalog/report/companies.csv",
+    "discoveryOutcome": "identity-ambiguous",
+    "discoveryAt": "2026-10-20T17:01:31.145Z",
+    "evidence": {
+      "officialURL": null,
+      "careersURL": null,
+      "matchedLinks": [],
+      "aliases": [
+        {
+          "source": "adeptai",
+          "kind": "possible-alias-unconfirmed",
+          "action": "do-not-consolidate",
+          "evidence": "Adept is the brand of the AI lab, but multiple unrelated Adept employers exist and catalog has no identity context."
+        }
+      ],
+      "proofFiles": [
+        "proof/batch-002-search-01.json",
+        "proof/batch-002-search-05.json",
+        "proof/batch-002-open-01.json",
+        "proof/batch-002-open-07.json",
+        "proof/batch-002-open-08.json"
+      ],
+      "observedIndiaRoles": [],
+      "origin": "public-official-web-discovery-not-extraction",
+      "artifact": "official-discovery/batch-002.json"
+    }
+  },
+  "observations": [
+    {
+      "candidateEmployer": "Adept AI lab; possible alias not consolidated",
+      "requestedUrl": "https://www.adept.ai/",
+      "status": 200,
+      "finalUrl": "https://www.adept.ai/blog/",
+      "title": "Blog",
+      "careersOrAtsLinksObserved": []
+    },
+    {
+      "requestedUrl": "https://www.adept.ai/careers",
+      "status": 200,
+      "finalUrl": "https://www.adept.ai/blog/",
+      "title": "Blog",
+      "careersOrAtsLinksObserved": []
+    }
+  ],
+  "limitations": [
+    "The source has only an exact display name and lacks an authoritative domain, legal entity or verified board owner. Same-name candidate employers cannot be substituted to obtain a working feed.",
+    "No unbound ATS tenant was guessed or queried. Current native inventory and India eligibility remain unknown; absent career links are not an exhaustive zero inventory proof.",
+    "Certificate or navigation failures describe this observation only, not an employer outage. Historical discovery ambiguity is retained as context and not relabeled as current extraction proof."
+  ],
+  "nextRequiredEvidence": "Recover original workbook employer URL, legal identity or independently corroborated ATS ownership. Then validate current first-party career delegation and native complete inventory/details before implementing. Do not consolidate Adept/Adept AI without alias evidence."
+}

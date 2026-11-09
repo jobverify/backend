@@ -1,0 +1,65 @@
+{
+  "pathai": {
+    "source": "pathai",
+    "companyName": "PathAI",
+    "publisherName": "PathAI",
+    "platform": "greenhouse",
+    "countryFilter": "India",
+    "primaryURL": "https://www.pathai.com/careers",
+    "primaryTitleSignals": [
+      "Careers"
+    ],
+    "boardToken": "pathai",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/pathai",
+    "publicAPIURL": "https://boards-api.greenhouse.io/v1/boards/pathai/jobs?content=true",
+    "postURIProfile": "pathai-first-party-gh-jid",
+    "publicDepartmentIndexURL": "https://boards-api.greenhouse.io/v1/boards/pathai/departments",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://www.pathai.com/hubfs/hub_generated/module_assets/1/191733693339/1761853751143/module_filtered-resouces-slider.min.js",
+      "scriptSpecifier": "https://www.pathai.com/hubfs/hub_generated/module_assets/1/191733693339/1761853751143/module_filtered-resouces-slider.min.js",
+      "scriptSHA256": "e0352e58bd1c998d4a0ad819159412ee7dad5fe6bd9c325c67dc45a48b651917"
+    },
+    "ownRoute": {
+      "kind": "pathai-declared-native-template",
+      "expectedHeadTitle": "Careers - Job Post",
+      "scriptURL": "https://www.pathai.com/hubfs/hub_generated/module_assets/1/196954438686/1762189876230/module_greenhouse-job-post-local.min.js",
+      "scriptSHA256": "5af8bc49b844f9704d38c3828b1a3e8897f29ea4e914485e99128f616e2e4dba"
+    },
+    "primaryStructure": {
+      "kind": "pathai-current-department-grid",
+      "rootId": "OpenPositions",
+      "gridId": "resourceGrid"
+    }
+  },
+  "lyft": {
+    "source": "lyft",
+    "companyName": "Lyft",
+    "publisherName": "Lyft",
+    "platform": "greenhouse",
+    "countryFilter": "India",
+    "primaryURL": "https://www.lyft.com/careers",
+    "primaryTitleSignals": [
+      "Lyft Careers"
+    ],
+    "boardToken": "lyft",
+    "publicAPIBase": "https://api.greenhouse.io/v1/boards/lyft",
+    "publicAPIURL": "https://api.greenhouse.io/v1/boards/lyft/jobs?content=true",
+    "postURIProfile": "lyft-careerpuck-gh-jid",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://cdn.lyft.com/lyftcomfe/_next/static/chunks/8659-fc53fd2fd183d607.js",
+      "scriptSpecifier": "https://cdn.lyft.com/lyftcomfe/_next/static/chunks/8659-fc53fd2fd183d607.js",
+      "scriptSHA256": "512a551cfc1d0f101987ec932f5642896acb4d09dee55d04ee510550b9197faa"
+    },
+    "ownRoute": {
+      "kind": "careerpuck-published-role-shell",
+      "titlePrefix": "Lyft ",
+      "assetHost": "static.careerpuck.com"
+    },
+    "primaryStructure": {
+      "kind": "lyft-current-careers-search",
+      "referenceId": "openings"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://ah.wd108.myworkdayjobs.com/wday/cxs/ah/AvenHospitalityJobs/jobs",
+  "detailUrlBase": "https://ah.wd108.myworkdayjobs.com/en-US/AvenHospitalityJobs",
+  "countryFacetParameter": "locationCountry",
+  "maxPages": 10
+}

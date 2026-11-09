@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-10-29T18:16:04.793Z",
+  "reason": "Current client-derived routes returned exact first-party localized Not Found renderer; hashes bind full active markup including hiring links, never country or whole-company zero inference",
+  "routes": {
+    "https://www.checkout.com/ja-jp/careers": "08c86bbb40c29c9010347958d01a84b0ee70c7debd64f30709c1b717da309ea1",
+    "https://www.checkout.com/de-de/jobs": "bfe084f122ac129c61ad412b76d228a1a8dfa16fa222aa72716279c4c405bd24",
+    "https://www.checkout.com/ar-ae/jobs": "b87f73787f47386a9fcb047923f964029dcde27baccc0d5374c683a2ad8ea821",
+    "https://www.checkout.com/es-es/jobs": "98ab0439ff6e655195ed182f2a2420a301622abb9851261bcb5d2eae3b0c6a67",
+    "https://www.checkout.com/it-it/jobs": "af43e1b0117148df3598e5b3b1d1cfb7500975c33b2bc6be830969d13ba969a5",
+    "https://www.checkout.com/fr-fr/jobs": "d84e1e885feabf1d267502f27957340e0c93179984ce1b938babae8350638d2a",
+    "https://www.checkout.com/ja-jp/jobs": "08c86bbb40c29c9010347958d01a84b0ee70c7debd64f30709c1b717da309ea1",
+    "https://www.checkout.com/pt-pt/jobs": "5b8549f4f415a3da852b615921ac6ba31fe12453c1447a60f1bf57e19f366cb6",
+    "https://www.checkout.com/zh-cn/jobs": "ce993419ac091222599c299637e6c94d332c24b60cdc5b0c4d7084ceba172209",
+    "https://www.checkout.com/de-de/early-careers": "bfe084f122ac129c61ad412b76d228a1a8dfa16fa222aa72716279c4c405bd24",
+    "https://www.checkout.com/ar-ae/early-careers": "b87f73787f47386a9fcb047923f964029dcde27baccc0d5374c683a2ad8ea821",
+    "https://www.checkout.com/fr-fr/early-careers": "d84e1e885feabf1d267502f27957340e0c93179984ce1b938babae8350638d2a",
+    "https://www.checkout.com/es-es/early-careers": "98ab0439ff6e655195ed182f2a2420a301622abb9851261bcb5d2eae3b0c6a67",
+    "https://www.checkout.com/it-it/early-careers": "af43e1b0117148df3598e5b3b1d1cfb7500975c33b2bc6be830969d13ba969a5",
+    "https://www.checkout.com/ja-jp/early-careers": "08c86bbb40c29c9010347958d01a84b0ee70c7debd64f30709c1b717da309ea1",
+    "https://www.checkout.com/zh-cn/early-careers": "ce993419ac091222599c299637e6c94d332c24b60cdc5b0c4d7084ceba172209",
+    "https://www.checkout.com/pt-pt/early-careers": "5b8549f4f415a3da852b615921ac6ba31fe12453c1447a60f1bf57e19f366cb6"
+  }
+}

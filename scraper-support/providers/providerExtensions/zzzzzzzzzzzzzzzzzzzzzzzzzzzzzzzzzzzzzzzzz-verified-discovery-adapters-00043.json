@@ -1,0 +1,60 @@
+[
+  {
+    "source": "dovercorporation",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "source-local-exact-native-India-office-facets-full-details",
+    "modulePath": "../dovercorporation.workday/script.js",
+    "originalModulePath": null,
+    "backfillMode": "live-parser",
+    "jobsBoardUrl": "https://dover.wd103.myworkdayjobs.com/Dover",
+    "paginationStrategy": "four-explicit-native-India-office-facets-all-pages-final-reconciliation",
+    "extractionStrategy": "native-full-role-country-legal-employer-original-startDate-and-exact-advertised-role-URL",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "officialBindingVerifiedAt": "2026-10-21T15:53:06.882Z",
+    "remediationStatus": "implemented-ordinary-positive-regional-awaiting-independent-review",
+    "runtimeQualification": "ordinary-positive-regional-extraction-company-scope-incomplete",
+    "verificationDisposition": "official-discovery-identity-retained-ordinary-regional-extraction-partial",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "coverage-gap",
+    "bindingEvidence": {
+      "verified": false,
+      "checkedAt": "2026-10-21T15:53:06.882Z",
+      "officialURL": "https://www.dovercorporation.com/about-us/careers/",
+      "matchedLinks": [
+        "https://dover.wd103.myworkdayjobs.com/Dover"
+      ],
+      "evidenceOrigin": "original-sealed-official-discovery-identity-only-unrenewed",
+      "proofFiles": [
+        "proof/batch-026-handoff-validation-022.json",
+        "proof/batch-026-registered-identity-context-008.json",
+        "proof/batch-026-web-find-019.json",
+        "proof/batch-026-web-follow-009.json",
+        "proof/batch-026-web-open-007.json",
+        "proof/batch-026-web-search-002.json"
+      ],
+      "batchArtifact": "artifacts/full-catalog/official-discovery/batch-026.json",
+      "batchSha256": "040e365dad562bee90dd21779fca70343a54a12ef17619b1b737790905ba5ceb",
+      "independentReviewArtifact": "artifacts/full-catalog/official-discovery/batch-026-independent-review-001.json",
+      "independentReviewSha256": "6906cf84f1f693b25b37a50ee97c6da5f8d789ea979d78ec43ed33909050af43",
+      "nativeResearchProof": {
+        "file": "artifacts/full-catalog/dover-native-001/native-capture-handoff-014.json",
+        "sha256": "be81a51f328230a747b494b13ff86f3946a5fc4f36bcee37700444565f0f1d96",
+        "companyScopeComplete": false,
+        "runtimeInventoryQualified": false
+      },
+      "latestCorporatePreflight": {
+        "status": 403,
+        "file": "artifacts/full-catalog/dover-native-001/preflight-001/failure.json",
+        "renewsBinding": false
+      }
+    },
+    "sourceScopeNotes": "Only four exact current native India office IDs: two distinct Bangalore facets, Karoli and Navi Mumbai. Selected regional pages and all original full roles are reconciled twice. Whole-company global/India coverage remains unknown. Original startDate governs publication age; relative postedOn, scrape and migration clocks cannot renew it. Exact active role URLs serve as advertised application entry links; no invented /apply or application landing-page qualification. Current corporate preflight403 is retained and never renews the original identity timestamp. Native browser research and offline replay never establish ordinary API runtime health.",
+    "verifiedSurfaceSummary": "Exact native Workday board and advertised CDN client with four India office facets, original full role descriptions, legal employers, country/date/active flags and exact role URLs. Ordinary API extraction produced regional roles with company inventory incomplete; verified company counts remain null. Offline research never renews original corporate identity clocks."
+  }
+]

@@ -1,0 +1,135 @@
+{
+  "source": "bataindia",
+  "files": [
+    {
+      "url": "https://bata.sensehq.com/careers",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:31:48.001Z",
+      "file": "9f5c9b76b1432f.html.gz",
+      "bodyBytes": 192271,
+      "bodySha256": "21314a956e2c9b1a58ac611fda37538d3d67eb9a7be0eb8349acc3d87f461c47",
+      "compressedSha256": "fc0f7815b1e203519d1c5d7de608e5758eb4e6d558fde0241493bf6b0dd097bd",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/465",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:33:44.244Z",
+      "file": "63c0c528ac2707.html.gz",
+      "bodyBytes": 96407,
+      "bodySha256": "4c2d93453df708c447292fef03b0b8cd1283dc4862c1c3d464c904c04a4496c9",
+      "compressedSha256": "5a35fe8a83d3f7be59df796c22868b484468b3e9f59a1c8fcb34969b8ae92b53",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/iframe/jobs?page=1&isIframe=true",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:33:44.291Z",
+      "file": "0002560c73be9e.html.gz",
+      "bodyBytes": 81672,
+      "bodySha256": "49996faa7db1732a7391e9efbee9c7177fcc83718ab94cd30a89afeee11c1d7a",
+      "compressedSha256": "44d3cb8ff282a20097170304711a034063a9ff8f4da7c705dfcbdf96a385c77a",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/403",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:35:56.811Z",
+      "file": "92a19c4d8d8dd5.html.gz",
+      "bodyBytes": 111546,
+      "bodySha256": "744d61a695c20c5353b796bd31b4d965ee2d66cebda04449dd3eb9bde60a943c",
+      "compressedSha256": "7c73d7ab570a1ddcc6ffc77c08990932c24aae889111a4ae8eaa0c4afb519986",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/342",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.275Z",
+      "file": "6bfe58e4de1513.html.gz",
+      "bodyBytes": 108189,
+      "bodySha256": "1a4c6ac86eb757dce0c116fa220ff9d955b14e77f58aa73d1809f0274b2efce0",
+      "compressedSha256": "91dbed1b2a315f5ecade036d379d931cbc0e82b3fba6271e330030438a44fcea",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/373",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.292Z",
+      "file": "c9b6be19202c33.html.gz",
+      "bodyBytes": 113222,
+      "bodySha256": "0b7a86fd8c7697c2a4be49da2099e1dc42e836b0cbab3c8a2bfacdf3da13feea",
+      "compressedSha256": "f8c9b78f2230ac0c03f348f0055c4a6ed231c1cdfe01b3e75796c5212f235d78",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/357",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.293Z",
+      "file": "ccbb6697283956.html.gz",
+      "bodyBytes": 107568,
+      "bodySha256": "b48a300128052c0f53b3b81c14b7fa122fcf30bdb422e266ca64084d67ce7ea4",
+      "compressedSha256": "b3046c95e849aa8dfc05f70c3d7e06b9262493d98e83e409e67994a9e8d418ff",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/343",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.404Z",
+      "file": "58eaa2c9f8b0e5.html.gz",
+      "bodyBytes": 108261,
+      "bodySha256": "9297629e0dfd76a7df44a0599384c0a74197fee0f1081da3a138fb470a9fdb97",
+      "compressedSha256": "62ce9828c06951462a518886df84545cc6640f44972466cdd17ffb191ebf6479",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/308",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.737Z",
+      "file": "a5acbfe4b7a560.html.gz",
+      "bodyBytes": 114563,
+      "bodySha256": "1c6297d10421bae977e4184fd2780e32ba3e1d457b29d3b3914df739a02f50a5",
+      "compressedSha256": "0315106c857396856ade96c21753c34f4e657b5e3e0d12e131d0c3ca0dea66fc",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/272",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.917Z",
+      "file": "56ed76cfbf9ae5.html.gz",
+      "bodyBytes": 108190,
+      "bodySha256": "46b8f77fa5095adc68ea0e0736d742cd87b4db4572b471ab47d98047eb4bd804",
+      "compressedSha256": "c6a9e3eb69cb58c085a93aca11c340b0f84a1a8ba01b1a24a4391749535e69fb",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/235",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:01.932Z",
+      "file": "e616bb30e5ceef.html.gz",
+      "bodyBytes": 120783,
+      "bodySha256": "d0ef74cd9960c1e0f4f1dd48dd078b4daedbcb9bef7bec4d29d07e99851d4a92",
+      "compressedSha256": "f6bf33107b0e8875fd107080a95ced322247227b9ee6b3a7e1a3dd188cdb7325",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/234",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:02.082Z",
+      "file": "bf91c0a5d0a9cf.html.gz",
+      "bodyBytes": 96378,
+      "bodySha256": "b4f7f2bb732e2db974bf3a8a7576e81216e38645eb2b31d5f3c4d783ff647a8e",
+      "compressedSha256": "dd5342b68a0ad4d8499770e1c74f8ec58df45b71b5695084b8ae7915d7a3d9aa",
+      "originalBytesUnmodified": true
+    },
+    {
+      "url": "https://bata.sensehq.com/careers/jobs/5",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:38:02.137Z",
+      "file": "d79b2619acf57e.html.gz",
+      "bodyBytes": 111333,
+      "bodySha256": "2db8a5ddabad530b927708c0dec9bb5bf37d217a543f7337b0e854e0fae82090",
+      "compressedSha256": "6cbd9245a51137e03974b97258e408a1b86782605f76a9499851a8c76ffdb072",
+      "originalBytesUnmodified": true
+    }
+  ]
+}

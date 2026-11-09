@@ -1,0 +1,111 @@
+[
+  {
+    "source": "bifrostai",
+    "companyName": "Bifrost AI",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "ashby",
+    "boardToken": "bifrost",
+    "companyCareerPage": "https://www.bifrost.ai/company/",
+    "companyDomain": "bifrost.ai",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:33:54.020Z",
+      "officialURL": "https://www.bifrost.ai/company/",
+      "matchedLinks": [
+        "https://jobs.ashbyhq.com/bifrost"
+      ],
+      "httpProofFile": "../artifacts/full-catalog/bifrost-native-001/corporate.json",
+      "httpProofSha256": "93b34137bd705c621d7977a749a0ff545d18a5f91abf441f76cd3d38ab916533",
+      "discoveryBatch": "batch-011"
+    },
+    "verifiedSurfaceSummary": "Current official corporate Company page links the exact lowercase Ashby tenant. The documented single-response public posting API is checked at runtime; empty or non-India inventory is evidence scoped to this board, not a historical claim that the company has no openings."
+  },
+  {
+    "source": "bluealtair",
+    "companyName": "Blue Altair",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../bluealtair/script.js",
+    "atsPlatform": "workable-native-api",
+    "parser": "validated-workable-public-api",
+    "companyCareerPage": "https://www.bluealtair.com/careers",
+    "companyDomain": "bluealtair.com",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "stable-unfiltered-total-cursor-unique-identities-with-full-India-details",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:45:23.321Z",
+      "officialURL": "https://www.bluealtair.com/careers",
+      "matchedLinks": [
+        "https://apply.workable.com/blue-altair/"
+      ],
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "nativeProofArtifact": "bluealtair-native-001/official-binding-proof-001.json",
+      "nativeProofSha256": "90f86b0cffdb53425e333bf4c3c2beeee1b9611295f3008e14a3f533518caee6",
+      "independentReview": "bluealtair-native-001/root-independent-review-001.json"
+    },
+    "verifiedSurfaceSummary": "Current active corporate handoff and exact native account verified. Full native description, requirements and benefits are fetched for every India role after reconciling the complete unfiltered cursor inventory. Original publication dates are preserved; runtime counts remain separate."
+  },
+  {
+    "source": "biorad",
+    "companyName": "Bio-Rad",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../biorad.workday/script.js",
+    "atsPlatform": "clinch-first-party",
+    "parser": "validated-clinch-country-listing-and-full-native-details",
+    "companyCareerPage": "https://careers.bio-rad.com/india",
+    "companyDomain": "bio-rad.com",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "native-country-filter-stable-total-range-terminal-unique-identities",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "remediationStatus": "implemented-upstream-incomplete",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:04:00.055Z",
+      "officialURL": "https://careers.bio-rad.com/india",
+      "matchedLinks": [
+        "https://careers.bio-rad.com/jobs/trade-compliance-spec-iii-chennai-india",
+        "https://careers.bio-rad.com/pages/ad08b3d5a83317f03b094d26123debab/blocks/72408af64f36557e51f43296eb5b6b81?job_uid=275fb691cf68c95f9e58b2a827e56447&postfix=3_0"
+      ],
+      "nativeCompanyUid": "8d672184bb3335c103499c3f4bd5a671",
+      "discoveryBatch": "batch-011",
+      "discoverySha256": "57767ddf212dc84b0a99dd239dbb97ab0234b2ffcbd118d42c86efaa0250a192",
+      "proofFiles": [
+        "proof/batch-011-search-05.json",
+        "proof/batch-011-open-05.json",
+        "proof/batch-011-click-01.json",
+        "proof/batch-011-followup-01.json",
+        "proof/batch-011-followup-02.json",
+        "proof/batch-011-followup-03.json",
+        "proof/batch-011-http-biorad.json",
+        "proof/batch-011-http-biorad-detail.json",
+        "proof/batch-011-http-biorad-apply-config.json",
+        "proof/batch-011-http-biorad-native-apply-frame.json"
+      ],
+      "independentReview": "biorad-independent-review-001/seal-recheck-002.json",
+      "independentReviewSha256": "5ccbf47f59050a963015ec98bf099417009853b934a08227ab37bc8211b80526"
+    },
+    "verifiedSurfaceSummary": "Current first-party Clinch India list, native tenant and role/application identities verified. Full visible and structured descriptions must agree. Future publication and invalid timestamps reject. Runtime detail challenges and failed attempts remain partial or unknown; the source is not qualified for complete publication until a fresh healthy run."
+  }
+]

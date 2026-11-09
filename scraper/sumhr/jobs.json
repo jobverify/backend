@@ -1,0 +1,27 @@
+[
+  {
+    "source": "sumhr",
+    "company": "SumHR",
+    "title": "Sr. Software Developer (LAMP)",
+    "jobId": "fk03ii",
+    "location": "Mumbai, MH, India",
+    "country": "India",
+    "sourceUrl": "https://sumhr.hire.trakstar.com/jobs/fk03ii/",
+    "applyUrl": "https://sumhr.hire.trakstar.com/jobs/fk03ii/",
+    "link": "https://sumhr.hire.trakstar.com/jobs/fk03ii/",
+    "postingDate": null,
+    "jobDescription": "What’s it like to work with us: A fast paced environment where ideas are always welcome Do whatever it takes to meet your goals/deadlines. Less meetings + less structures + less policies = More Work! For anything you do, the buck stops with you Dress up the way you want. Shorts, flip-flops, anything at all that enhances your creativity and productivity A young and dynamic environment with the average age of employees below 23 Lots of parties, pizzas, movies, outings Position : Sr. Software Developer(LAMP)@ sumHR Role & Responsibilities As a Sr. Software Developer, you will play a key role in developing world class products, based on cloud-computing technologies. You will be involved in the entire lifecycle of a project, including strategy, vision, design, UX, coding, architecture, deployment etc, and will be chiefly expected to deliver clean, testable and well-designed code for the same. Responsibilities : Coding new features, functionalities Enhancing existing features Thorough testing of developed code Checking for cross-browser compatibility Managing development cycle using SVN or any other appropriate Version Control Software Skills and Knowledge Required: 2+ years of total software development Web development using PHP (with OOP - objective oriented programming) Working knowledge of the MVC architecture Working knowledge of Apache and mySQL Plus Points if candidate has Experience building large scale, high performance cloud-computing systems Confidence to manage teams and drive them towards a common goal Personal Attributes: High energy level Excellent team work Ability to deliver on deadlines Experience : 2-5 yrs Compensation : Best in the industry Location : Mumbai(Andheri west)",
+    "sourceListingComplete": false,
+    "sourceScopeComplete": false,
+    "sourceFirstParty": false,
+    "sourceDetailComplete": true,
+    "sourceEmployerIdentityEvidence": {
+      "nativeTenant": "sumhr",
+      "reviewedClientId": "u0mr5",
+      "nativeConfiguredContact": "sid@sumhr.com",
+      "officialContactDomain": "sumhr.com",
+      "corporateOutboundAtsAuthorizationVerified": false
+    },
+    "scrapedAt": "2026-10-23T06:42:09.520Z"
+  }
+]

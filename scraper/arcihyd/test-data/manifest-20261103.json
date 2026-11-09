@@ -1,0 +1,79 @@
+{
+  "source": "arcihyd",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "9c7e004013fdc2fa621a4771e6fbb32fc3a0ed4884dd15e69a65cf0e3042acbf",
+  "responses": [
+    {
+      "url": "https://www.arci.res.in/offerings/careers",
+      "finalUrl": "https://arci.res.in/offerings/careers",
+      "status": 200,
+      "sha256": "44f47107bb0bef42bc8912ccf6eaa9d037af873dfb153670dfc866365680711b",
+      "bytes": 40874,
+      "originalCapture": "arcihyd-careers-44f47107bb0b.body"
+    },
+    {
+      "url": "https://www.arci.res.in/careers/vacancies",
+      "finalUrl": "https://arci.res.in/careers/vacancies",
+      "status": 200,
+      "sha256": "7aba99d98aacc120cb4088dc7a902944fb3449eadf3c5c12b8e5ff4ed586741e",
+      "bytes": 40621,
+      "originalCapture": "arcihyd-vacancies-7aba99d98aac.body"
+    },
+    {
+      "url": "https://arci.res.in/careers/vacancies/engagement-science-communicator-and-designer-contract-basis",
+      "finalUrl": "https://arci.res.in/careers/vacancies/engagement-science-communicator-and-designer-contract-basis",
+      "status": 200,
+      "sha256": "7587cb6082b644125c547200b209146d4592226eaa6067f0858ab6e65c66c257",
+      "bytes": 38810,
+      "originalCapture": "arcihyd-advert-engagement-science-communicator-and-designer-contract-basis-7587cb6082b6.body"
+    },
+    {
+      "url": "https://arci.res.in/careers/vacancies/recruitment-scientific-technical-administrative-and-support-staff",
+      "finalUrl": "https://arci.res.in/careers/vacancies/recruitment-scientific-technical-administrative-and-support-staff",
+      "status": 200,
+      "sha256": "f46f9028fc552dd0b706dc79a6a7708ba72bcabe9c392ec1ac1af3c0cfe09277",
+      "bytes": 52526,
+      "originalCapture": "arcihyd-advert-recruitment-scientific-technical-administrative-and-support-staff-f46f9028fc55.body"
+    },
+    {
+      "url": "https://arci.res.in/sites/default/files/2026-10/Science%20Communicator%20and%20%20Designer%20Detailed%20Advt%20for%20Website%202026%20%281%29_0.pdf",
+      "finalUrl": "https://arci.res.in/sites/default/files/2026-10/Science%20Communicator%20and%20%20Designer%20Detailed%20Advt%20for%20Website%202026%20%281%29_0.pdf",
+      "status": 200,
+      "sha256": "b1a3448d725a334f6878b88715ece864dec05117e96ba5057952806ea511f6d1",
+      "bytes": 57400,
+      "originalCapture": "arcihyd-public-pdf-3-b1a3448d725a.body"
+    },
+    {
+      "url": "https://arci.res.in/sites/default/files/2026-10/Rect_1_2026.pdf",
+      "finalUrl": "https://arci.res.in/sites/default/files/2026-10/Rect_1_2026.pdf",
+      "status": 200,
+      "sha256": "2bc8126411627c8c0251223f548289fc5d6423d1e9a66b58f1e1fac586efdc03",
+      "bytes": 1016792,
+      "originalCapture": "arcihyd-public-pdf-4-2bc812641162.body"
+    },
+    {
+      "url": "https://arci.res.in/sites/default/files/2026-10/General%20Terms%20and%20Conditions%20Final.pdf",
+      "finalUrl": "https://arci.res.in/sites/default/files/2026-10/General%20Terms%20and%20Conditions%20Final.pdf",
+      "status": 200,
+      "sha256": "d00a571e92a0339b3d211c91f38ff68aa426cfa05a7d0fba3819af0cdd75c95f",
+      "bytes": 636902,
+      "originalCapture": "arcihyd-public-pdf-5-d00a571e92a0.body"
+    },
+    {
+      "url": "https://arci.res.in/organization/locations-hyderabad",
+      "finalUrl": "https://arci.res.in/organization/locations-hyderabad",
+      "status": 200,
+      "sha256": "9666de860e02e981b8b98672899c993dcb9c098642532b93fbd8ee2ecee7f4eb",
+      "bytes": 47442,
+      "originalCapture": "arcihyd-public-worksites-9666de860e02.body"
+    },
+    {
+      "url": "https://arci.res.in/connect/contact_us",
+      "finalUrl": "https://arci.res.in/connect/contact_us",
+      "status": 200,
+      "sha256": "0351c4cfa9a22b7db2ec07592354871abcf62db2c4c6181a800c50a386f03e9a",
+      "bytes": 37379,
+      "originalCapture": "arcihyd-public-worksites-0351c4cfa9a2.body"
+    }
+  ]
+}

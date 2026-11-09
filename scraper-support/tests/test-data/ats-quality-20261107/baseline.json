@@ -1,0 +1,826 @@
+{
+  "livspace": {
+    "packetSha256": "195acc612a940b68ec37464168551ad6eed54919b2f64869b04140bae64d2dda",
+    "rawJobs": 89,
+    "roles": [
+      {
+        "jobId": "12480",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-design-vadodara-gujarat-202602131848152",
+        "descriptionSha256": "4acb4d0de1947a8df8c27e0f04530dd652f453c7dfa5e5c9673dbafc7eb5f89c"
+      },
+      {
+        "jobId": "11884",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-kolkata-west-bengal-2025120518304010",
+        "descriptionSha256": "3a4e985af1d733a06f27150a80f84cbe751310e78a8faeedbac5db5f2ad84218"
+      },
+      {
+        "jobId": "11982",
+        "title": "Sales Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/sales-lead-mumbai-maharashtra-2025121516183317",
+        "descriptionSha256": "7b4bf303166e01bfab0c55283d2e04d8cb89e017b129f18b5aa8c09bc4039607"
+      },
+      {
+        "jobId": "12509",
+        "title": "Senior Recruitment Specialist",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/recruitment-specialist-ahmedabad-gujarat-2026021814192715",
+        "descriptionSha256": "07ddd5654c3bbc550c9915f846ac833b97d65d5e6ddd07708539ba273d281db9"
+      },
+      {
+        "jobId": "13079",
+        "title": "Sales Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/sales-lead-ahmedabad-gujarat-2026041015081291",
+        "descriptionSha256": "322525a62c48500391710587c2732c023871efe3839ba0dcc84992e8fb7b2d3c"
+      },
+      {
+        "jobId": "12951",
+        "title": "Sales Lead - Hyderabad",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/sales-lead-hyderabad-hyderabad-telangana-2026033117270223",
+        "descriptionSha256": "6a702f6260ded7009ad80e87eed058a2b18b1233c9570c4a2d39bdda7fe70358"
+      },
+      {
+        "jobId": "12842",
+        "title": "Interior Designer - Vesta - Hitech",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-vesta-hitech-hyderabad-telangana-2026032015282690",
+        "descriptionSha256": "e6c4f9572f1e26ea2ba39a6c59a881b29ca1f76f6efbbe4c6559d273ab7a2f8c"
+      },
+      {
+        "jobId": "12670",
+        "title": "Associate Business Manager - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/associate-business-manager-sales-surat-gujarat-2026030321410362",
+        "descriptionSha256": "ecc8d967f154001bfcf012d668973abc8e28535580f8fec5e91c32ee91786d8e"
+      },
+      {
+        "jobId": "12259",
+        "title": "Interior Designer - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-sales-chennai-tamil-nadu-2026012319272775",
+        "descriptionSha256": "bc4a0967c264037ad583383478501c64050deee9633e6283f19797a091bc009d"
+      },
+      {
+        "jobId": "11278",
+        "title": "Interior Designer - vesta",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-chennai-tamil-nadu-2025101316154132",
+        "descriptionSha256": "c45cd78bbcce60c15512e764c442c0251b6766c9a7b5c01d82a21fa5bc0a4ec5"
+      },
+      {
+        "jobId": "10798",
+        "title": "Senior General Manager - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-general-manager-design-kolkata-west-bengal-2025090216055477",
+        "descriptionSha256": "6d702b8b216e09ecd5c326dd0ae624f8e3e74d882c562fff8f50f05b43bfeb55"
+      },
+      {
+        "jobId": "11015",
+        "title": "Regional Head",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/regional-head-mumbai-maharashtra-2025091719324677",
+        "descriptionSha256": "1c7837cffb072ed320984a0e19c12015ae4fbb24d3a4552afd6311cdcf18ba84"
+      },
+      {
+        "jobId": "10221",
+        "title": "Regional Head",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/regional-head-bangalore-karnataka-2025080513165878",
+        "descriptionSha256": "0913111561e671775e4c08c678c73e2fce6cb58019d1e238fee9293c4b586936"
+      },
+      {
+        "jobId": "10285",
+        "title": "General Manager - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/associate-general-manager-sales-hyderabad-telangana-2025080620202412",
+        "descriptionSha256": "252b292cd9fd45f72500fbf499e120731b8a281d0677573f9115a4605b9ed7c5"
+      },
+      {
+        "jobId": "10284",
+        "title": "Associate General Manager - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/associate-general-manager-design-hyderabad-telangana-202508062020513",
+        "descriptionSha256": "56bfb9732f231b278eace5fd5e559828d84cb67b20f0d0bfaac2e92d24fb3ff1"
+      },
+      {
+        "jobId": "15123",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-pune-maharashtra-2026092612390750",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "15122",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-pune-maharashtra-2026092612394288",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "15175",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-bangalore-karnataka-2026092918295549",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "15051",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-bangalore-karnataka-202609211700553",
+        "descriptionSha256": "e6c4f9572f1e26ea2ba39a6c59a881b29ca1f76f6efbbe4c6559d273ab7a2f8c"
+      },
+      {
+        "jobId": "14513",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-mumbai-maharashtra-2026073117030142",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "15145",
+        "title": "Senior Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-interior-designer-bangalore-karnataka-2026092816170145",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "15124",
+        "title": "Senior Sales Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-sales-lead-pune-maharashtra-202609261239247",
+        "descriptionSha256": "6a286be28f27c19ac05f5eb5b63d276234543a4054ef0cf13b2e5cf5797b7ee0"
+      },
+      {
+        "jobId": "14784",
+        "title": "Senior Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-chandigarh-2026082612334075",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "14982",
+        "title": "Sales Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/sales-lead-mumbai-maharashtra-2026091611074353",
+        "descriptionSha256": "6a286be28f27c19ac05f5eb5b63d276234543a4054ef0cf13b2e5cf5797b7ee0"
+      },
+      {
+        "jobId": "15207",
+        "title": "Experience Centre - Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/experience-centre-manager-mumbai-maharashtra-2026100711410134",
+        "descriptionSha256": null
+      },
+      {
+        "jobId": "14406",
+        "title": "Experience Centre - Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/experience-centre-manager-ahmedabad-gujarat-2026072712361515",
+        "descriptionSha256": "07730cb05c8387b4a87c39b6342a827569f937b4ba7bb75a79d3419a519954c0"
+      },
+      {
+        "jobId": "14945",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-lucknow-uttar-pradesh-2026091112342674",
+        "descriptionSha256": "57f78bec18d6fcc4b39474f1d97a7ec112f90ac811dd1947cf407e1f0eab67e6"
+      },
+      {
+        "jobId": "15168",
+        "title": "Junior Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/junior-interior-designer-bangalore-karnataka-2026092911595850",
+        "descriptionSha256": "df0cc1939adfa8309f2b523151a6ae1fb41c6b90e2dc794ece0f3918a7ed801f"
+      },
+      {
+        "jobId": "10985",
+        "title": "Validation Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/validation-lead-services-ahmedabad-gujarat-2025091716270217",
+        "descriptionSha256": "6c128ed039033875475508477f21f1afd083f57dbe83b54fd6883a2343d60325"
+      },
+      {
+        "jobId": "14594",
+        "title": "Lead - Facilities & Admin",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/lead-facilities-admin-mumbai-maharashtra-2026081119585382",
+        "descriptionSha256": null
+      },
+      {
+        "jobId": "14939",
+        "title": "Senior Interior Designer Vesta - Hyderabad - FTE",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-interior-designer-vesta-hyderabad-fte-hyderabad-telangana-2026091019150879",
+        "descriptionSha256": "e6c4f9572f1e26ea2ba39a6c59a881b29ca1f76f6efbbe4c6559d273ab7a2f8c"
+      },
+      {
+        "jobId": "12855",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-sales-pune-maharashtra-2026032020531550",
+        "descriptionSha256": "ab85109a37dae3382749e16dfd9b0b046df45566a49aaa6b211e826752c09361"
+      },
+      {
+        "jobId": "14688",
+        "title": "Customer Delivery Manager - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/general-manager-design-kolkata-west-bengal-2026081815353036",
+        "descriptionSha256": null
+      },
+      {
+        "jobId": "14775",
+        "title": "Interior Designer - Select - Hyd - FTE",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-select-hyd-fte-hyderabad-telangana-202608251642196",
+        "descriptionSha256": "e6c4f9572f1e26ea2ba39a6c59a881b29ca1f76f6efbbe4c6559d273ab7a2f8c"
+      },
+      {
+        "jobId": "14527",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-coimbatore-tamil-nadu-2026080415445247",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "14785",
+        "title": "Senior Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-interior-designer-mumbai-maharashtra-2026082612490871",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "14140",
+        "title": "Draftsman",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/draftsman-pune-maharashtra-2026070814062633",
+        "descriptionSha256": "f52d9723102b37bd07453e30a56329a76e25dc70c951072d57b9bdce71c8dfd3"
+      },
+      {
+        "jobId": "14555",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-bangalore-karnataka-2026080713420681",
+        "descriptionSha256": null
+      },
+      {
+        "jobId": "14565",
+        "title": "Experience Centre - Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/experience-centre-manager-pune-maharashtra-2026081012295746",
+        "descriptionSha256": null
+      },
+      {
+        "jobId": "14714",
+        "title": "Business Manager-Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/business-manager-sales-mumbai-maharashtra-2026081918384320",
+        "descriptionSha256": "82432afcfd8f5648faaeb33f3dff96b17e023980e5a6438ddf3e0c6bf2a035a0"
+      },
+      {
+        "jobId": "14295",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-pune-maharashtra-2026071712133880",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "13712",
+        "title": "Lead - Facilities & Admin",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/lead-facilities-admin-delhi-2026060514334336",
+        "descriptionSha256": null
+      },
+      {
+        "jobId": "14236",
+        "title": "Sales Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/sales-lead-patna-bihar-2026071316401962",
+        "descriptionSha256": "7b4bf303166e01bfab0c55283d2e04d8cb89e017b129f18b5aa8c09bc4039607"
+      },
+      {
+        "jobId": "13958",
+        "title": "Senior Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-interior-designer-mumbai-maharashtra-2026062214404818",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "13953",
+        "title": "Design Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/design-lead-mumbai-maharashtra-2026062213253280",
+        "descriptionSha256": "844f79e66f0c3418143d167a2b4f446784e53a747d7042012f5785179f273cd2"
+      },
+      {
+        "jobId": "13622",
+        "title": "Senior Interior Designer - Bangalore - JPN - Reno+",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-interior-designer-bangalore-jpn-reno--bangalore-karnataka-2026052720321520",
+        "descriptionSha256": "e6c4f9572f1e26ea2ba39a6c59a881b29ca1f76f6efbbe4c6559d273ab7a2f8c"
+      },
+      {
+        "jobId": "13656",
+        "title": "Associate Business Manager - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/senior-interior-designer-mrt-bangalore-karnataka-2026053013065629",
+        "descriptionSha256": "e6c4f9572f1e26ea2ba39a6c59a881b29ca1f76f6efbbe4c6559d273ab7a2f8c"
+      },
+      {
+        "jobId": "13014",
+        "title": "Executive - Experience Centre",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/executive-experience-centre-gurgaon-haryana-2026040618081522",
+        "descriptionSha256": "07730cb05c8387b4a87c39b6342a827569f937b4ba7bb75a79d3419a519954c0"
+      },
+      {
+        "jobId": "13099",
+        "title": "Operations Lead - Bangalore",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/operations-lead-bangalore-bangalore-karnataka-202604111631449",
+        "descriptionSha256": "719588c33b53cb41950a71d414d10861ad602ebff82c3463d52f5ce3eb7a1bb1"
+      },
+      {
+        "jobId": "12949",
+        "title": "Operations Lead - Bangalore",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/operations-lead-bangalore-bangalore-karnataka-2026033117272394",
+        "descriptionSha256": "719588c33b53cb41950a71d414d10861ad602ebff82c3463d52f5ce3eb7a1bb1"
+      },
+      {
+        "jobId": "12634",
+        "title": "Operations Lead - Bangalore",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/operations-lead-bangalore-bangalore-karnataka-2026022813282570",
+        "descriptionSha256": "719588c33b53cb41950a71d414d10861ad602ebff82c3463d52f5ce3eb7a1bb1"
+      },
+      {
+        "jobId": "11813",
+        "title": "Recruitment Specialist",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/recruitment-specialist-indore-madhya-pradesh-2025121014443249",
+        "descriptionSha256": "c97802a844544487a083dd0ef6f07baa2a2acff20e022d8994b994f5b0ff9252"
+      },
+      {
+        "jobId": "12422",
+        "title": "Business Manager - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/business-manager-design-pune-maharashtra-2026021016250046",
+        "descriptionSha256": "c855dc029afc8c791c373680eef9ac27ffdc1401bb756e636d652c69f907cd47"
+      },
+      {
+        "jobId": "12133",
+        "title": "Interior Designer - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-design-mumbai-maharashtra-2026010720132236",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "12096",
+        "title": "Design Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/design-lead-bhopal-madhya-pradesh-2025122912222346",
+        "descriptionSha256": "c855dc029afc8c791c373680eef9ac27ffdc1401bb756e636d652c69f907cd47"
+      },
+      {
+        "jobId": "10207",
+        "title": "Interior Designer - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-sales-pune-maharashtra-2025080416450547",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "11964",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-ahmedabad-gujarat-2025121313113387",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "10226",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-pune-maharashtra-2025080513573342",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "10278",
+        "title": "Operations Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/operations-lead-surat-gujarat-2025081210374545",
+        "descriptionSha256": "004123446cd9cefb8afa836014eeaefdbbf1ca9470ef69f879b62e4b8104c8f4"
+      },
+      {
+        "jobId": "11213",
+        "title": "City Head",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/city-head-pune-maharashtra-2025100718324450",
+        "descriptionSha256": "073e376a6a179aae3fb75351c0f5dc09c0d4154006af742194691b70b6287275"
+      },
+      {
+        "jobId": "10377",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-mumbai-maharashtra-2025080816352171",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "10549",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-pune-maharashtra-2025081719312594",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "10412",
+        "title": "Manager - Production Planning & Control",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/manager-production-planning-control-bangalore-karnataka-2025081116205389",
+        "descriptionSha256": "93666677983715909bd384fd42e7421adf075121327e8d58fd7ef689142c9ff6"
+      },
+      {
+        "jobId": "10404",
+        "title": "Interior Designer - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-sales-pune-maharashtra-2025081117293130",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "10710",
+        "title": "General Manager - Governance",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/general-manager-governance-vadodara-gujarat-202508261401355",
+        "descriptionSha256": "fef23fba1ba4e53f63adc9813fc35442b049210eb6ef35ee1ba442e0f352014e"
+      },
+      {
+        "jobId": "10246",
+        "title": "Interior Designer - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-design-mumbai-maharashtra-2025080518552677",
+        "descriptionSha256": "46fc9bdb595673bf8f22791b38a723c2eadc4fa0cfc455dabfd833ffed69260d"
+      },
+      {
+        "jobId": "10839",
+        "title": "Area General Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/area-general-manager-pune-maharashtra-2025090321262842",
+        "descriptionSha256": "64764bca9a80aef45bf83456a9d0d42a96800353041890c9a7daefc6d513622d"
+      },
+      {
+        "jobId": "10840",
+        "title": "Area General Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/area-general-manager-mumbai-maharashtra-2025090321261027",
+        "descriptionSha256": "64764bca9a80aef45bf83456a9d0d42a96800353041890c9a7daefc6d513622d"
+      },
+      {
+        "jobId": "10842",
+        "title": "Area General Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/area-general-manager-surat-gujarat-2025090321250943",
+        "descriptionSha256": "64764bca9a80aef45bf83456a9d0d42a96800353041890c9a7daefc6d513622d"
+      },
+      {
+        "jobId": "10841",
+        "title": "Area General Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/area-general-manager-ahmedabad-gujarat-2025090321254984",
+        "descriptionSha256": "64764bca9a80aef45bf83456a9d0d42a96800353041890c9a7daefc6d513622d"
+      },
+      {
+        "jobId": "10843",
+        "title": "Area General Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/area-general-manager-vadodara-gujarat-2025090321244616",
+        "descriptionSha256": "64764bca9a80aef45bf83456a9d0d42a96800353041890c9a7daefc6d513622d"
+      },
+      {
+        "jobId": "10139",
+        "title": "Business Development Specialist",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/business-development-specialist-chandigarh-2025080412530354",
+        "descriptionSha256": "07650aca87aa283712aaec5e1d65eab76ea694e42ff0f6c640c38f705358695d"
+      },
+      {
+        "jobId": "10195",
+        "title": "Business Development Specialist",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/business-development-specialist-chennai-tamil-nadu-2025080416085817",
+        "descriptionSha256": "07650aca87aa283712aaec5e1d65eab76ea694e42ff0f6c640c38f705358695d"
+      },
+      {
+        "jobId": "10205",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-goa-2025080416421063",
+        "descriptionSha256": "57f78bec18d6fcc4b39474f1d97a7ec112f90ac811dd1947cf407e1f0eab67e6"
+      },
+      {
+        "jobId": "10302",
+        "title": "Business Manager - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/business-manager-sales-goa-202508071829496",
+        "descriptionSha256": "cd9fa0dc6419dc5f846aa5f3d05149594c26cbc3179c257eff2e29bc630a8c1a"
+      },
+      {
+        "jobId": "10330",
+        "title": "Operations Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/operations-lead-ahmedabad-gujarat-2025080812483812",
+        "descriptionSha256": "004123446cd9cefb8afa836014eeaefdbbf1ca9470ef69f879b62e4b8104c8f4"
+      },
+      {
+        "jobId": "10036",
+        "title": "Interior Designer - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-sales-mumbai-maharashtra-2025072817452795",
+        "descriptionSha256": "95cdda6a1dcd0eed585e04d33cb3b1684e410ca084667054e570c723dc750a8a"
+      },
+      {
+        "jobId": "10324",
+        "title": "Project Planner",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/project-planner-ahmedabad-gujarat-2025080718173064",
+        "descriptionSha256": "8cbfb57468327691f23d0a618eb2006f05aee98018034144559c63a5e1d8176c"
+      },
+      {
+        "jobId": "10334",
+        "title": "Lead- Category Export",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/lead-category-export-ahmedabad-gujarat-2025080812481362",
+        "descriptionSha256": "0daa1be2586328c65be4fd38a6ac917a9192b92b0d850914ce5e3dac4c4d2780"
+      },
+      {
+        "jobId": "10388",
+        "title": "Operations Lead",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/operations-lead-ahmedabad-gujarat-2025080820454775",
+        "descriptionSha256": "004123446cd9cefb8afa836014eeaefdbbf1ca9470ef69f879b62e4b8104c8f4"
+      },
+      {
+        "jobId": "10037",
+        "title": "Junior Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/junior-interior-designer-surat-gujarat-2025072817462070",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "10020",
+        "title": "Interior Designer - Design",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-mumbai-maharashtra-2025072817485921",
+        "descriptionSha256": "33104912ab90552f033b604d5f3c8d1fd567b9608b1723427b06133fc9e2c05d"
+      },
+      {
+        "jobId": "10202",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-nashik-maharashtra-2025080416465772",
+        "descriptionSha256": "57f78bec18d6fcc4b39474f1d97a7ec112f90ac811dd1947cf407e1f0eab67e6"
+      },
+      {
+        "jobId": "10203",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-indore-madhya-pradesh-202508041646213",
+        "descriptionSha256": "57f78bec18d6fcc4b39474f1d97a7ec112f90ac811dd1947cf407e1f0eab67e6"
+      },
+      {
+        "jobId": "10204",
+        "title": "Interior Designer",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-bhopal-madhya-pradesh-2025080416453896",
+        "descriptionSha256": "57f78bec18d6fcc4b39474f1d97a7ec112f90ac811dd1947cf407e1f0eab67e6"
+      },
+      {
+        "jobId": "10052",
+        "title": "Business Manager Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/business-manager-sales-vijayawada-andhra-pradesh-2025080617104186",
+        "descriptionSha256": "d4ca353199578d84ef7f96df5ea08c39eae6984ff4ce8a1027388fd4bdd91b73"
+      },
+      {
+        "jobId": "10260",
+        "title": "Interior Designer - Sales",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/interior-designer-sales-ahmedabad-gujarat-2025080519533622",
+        "descriptionSha256": "151b07f752a6e55f88676ea559f3dfd6b6bb91d1f57f5c79c69aa9d7e45b2bf8"
+      },
+      {
+        "jobId": "10218",
+        "title": "Project Executive",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/project-executive-surat-gujarat-2025080514310514",
+        "descriptionSha256": "69508bd05a394cf3362c91248b680b0e611abb27757215494e6d9c49cd2f8909"
+      },
+      {
+        "jobId": "10209",
+        "title": "Territory Manager - Last Mile Operations",
+        "country": "India",
+        "sourceUrl": "https://careers.livspace.com/livspace/jobview/territory-manager-last-mile-operations-ahmedabad-gujarat-2025080418140694",
+        "descriptionSha256": "efaf1a21ff2cc2fdc45ff0c68e72609bfde3cdb25a6c68f09b388975e6ddfda9"
+      }
+    ],
+    "heldIds": [
+      "15207",
+      "14594",
+      "14688",
+      "14555",
+      "14565",
+      "13712",
+      "10260"
+    ]
+  },
+  "rocketindia": {
+    "packetSha256": "6f435a585a614e5c5fc8f898ed0dfc3e00381ef1d4c1232588db9b5ba04bed48",
+    "rawJobs": 25,
+    "roles": [
+      {
+        "jobId": "R-084510",
+        "title": "Software Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084510/Software-Engineer-II",
+        "descriptionSha256": "4ffab652cca7ca35490dc318e9d2cf685ee3fa7f6c40cac5dab68afd2a10151e"
+      },
+      {
+        "jobId": "R-084508",
+        "title": "Senior Software Engineer",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084508/Senior-Software-Engineer",
+        "descriptionSha256": "e72515acbfd3bc1e23aa0173ab7bed718e4a81d666a97fb5d8083215d79cbcf9"
+      },
+      {
+        "jobId": "R-085161",
+        "title": "Process Associate",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-085161/Process-Associate",
+        "descriptionSha256": "041729f7a1ae314c5e0493a054952e31fff11a96a5d75ab3e7ebf42c0769a4c4"
+      },
+      {
+        "jobId": "R-084509",
+        "title": "Principal Software Development I",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084509/Principal-Software-Development-I",
+        "descriptionSha256": "6bf9cd30da41fde42003f7538b381a5dfdbaf920856823f7ca1b463f56db6753"
+      },
+      {
+        "jobId": "R-084717",
+        "title": "Senior Software Engineer",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084717/Senior-Software-Engineer",
+        "descriptionSha256": "92ee583d2d58555db976b7df2e6d0b63ad1111a0b9d49d8316801c29e78a1222"
+      },
+      {
+        "jobId": "R-084718",
+        "title": "Software Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084718/Software-Engineer-II",
+        "descriptionSha256": "0df4415250c7736a9dccf34b1ea8b49e484dfec41a2ba536bfde7d69bc8699a3"
+      },
+      {
+        "jobId": "R-084965",
+        "title": "Senior Helpdesk Engineer",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084965/Senior-Helpdesk-Engineer",
+        "descriptionSha256": "313b4b7e450303f8296f525c797e3b2cf27c0c7ed0ff48da1d0ce2292d19a365"
+      },
+      {
+        "jobId": "R-084937",
+        "title": "Process Associate - Trainee",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084937/Process-Associate-Trainee",
+        "descriptionSha256": "96ed6d160fc120b2f775ae4ad043791393f9d3db9be5530ea6be14461fe94734"
+      },
+      {
+        "jobId": "R-085088",
+        "title": "Intern - Investor Services",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-085088/Intern-Investor-Services",
+        "descriptionSha256": "cfff9875ac4bd168bf38dcbee8dcfb9f3ead783891686b6d761177e9ce9a93df"
+      },
+      {
+        "jobId": "R-085082",
+        "title": "AVP - Engineering",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-085082/AVP-Engineering",
+        "descriptionSha256": "e51c9acd4f6cc0eaeaf803213036f9350d3b8152bcbdb57bcc1546ef56dcef2f"
+      },
+      {
+        "jobId": "R-085083",
+        "title": "Lead Software Development Engineer",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-085083/Lead-Software-Development-Engineer",
+        "descriptionSha256": "6ab0d97a04549487b77d4b36f1e6b45f71f85d2ee29dd7ad78e94567cc29c950"
+      },
+      {
+        "jobId": "R-085081",
+        "title": "Software Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-085081/Software-Engineer-II",
+        "descriptionSha256": "1f8a65b7aeaf1ecc758be545766d61a8bc4047d49e4f86ec91def870bd84e972"
+      },
+      {
+        "jobId": "R-084966",
+        "title": "Helpdesk Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084966/Helpdesk-Engineer-II",
+        "descriptionSha256": "0ba1990f8197092e3bcd761674a3909bcc027fcded2795a0956c2bf7fc689d06"
+      },
+      {
+        "jobId": "R-084917",
+        "title": "Manager IT Infrastructure",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084917/Manager-IT-Infrastructure",
+        "descriptionSha256": "0cd5f2d60143885193b34d9e8a39a591daed6c7ab54fd3993c944c4ad2e32dd6"
+      },
+      {
+        "jobId": "R-084723",
+        "title": "Software Development Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084723/Software-Development-Engineer-II",
+        "descriptionSha256": "b90350e92c50b50ebfa2b390815370c10c33e48ef544efcbf7fa85dad7e376b1"
+      },
+      {
+        "jobId": "R-084929",
+        "title": "Program Management - AI Governance",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084929/Program-Management-AI-Governance",
+        "descriptionSha256": "2998102ae12553cbf7f270a6350d2470d8cc2ca4b05027541513a5562378496b"
+      },
+      {
+        "jobId": "R-084740",
+        "title": "Principal Dot Net Engineer",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084740/Principal-Dot-Net-Engineer",
+        "descriptionSha256": "ae557971088f867a3fb11cb4c5cd71827832146565f58889789384ce9dab5fc0"
+      },
+      {
+        "jobId": "R-084632",
+        "title": "Senior Data Engineer",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084632/Senior-Data-Engineer",
+        "descriptionSha256": "852d1d680a5f31e43e442d6e962e57f8f07e8544832944f853ce825d11ddd607"
+      },
+      {
+        "jobId": "R-084543",
+        "title": "Principal Engineer - Progress 4GL",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084543/Principal-Engineer-Progress-4GL",
+        "descriptionSha256": "739750992ad882251dda0326a6a50bbdeab2f785d1c27ce83d60af9ab4c4166b"
+      },
+      {
+        "jobId": "R-083979",
+        "title": "Data Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-083979/Data-Engineer-II",
+        "descriptionSha256": "d2cd1e7f8810f6cb3349ac9e030f9ce8fc2b35846d9f1253ce59642df69dc9f2"
+      },
+      {
+        "jobId": "R-084382",
+        "title": "Senior Information Security Analyst",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084382/Senior-Information-Security-Analyst",
+        "descriptionSha256": "b17ae62ba9f1c62a8a33e4d09ec7a2075cafba26dbf7653edc20eb6e9443f544"
+      },
+      {
+        "jobId": "R-084401",
+        "title": "Team lead-Operations",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-084401/Team-lead-Operations",
+        "descriptionSha256": "6474d6405d8be45e308c343c3769f64d239ca4db68de5425bf527f71df8e87c5"
+      },
+      {
+        "jobId": "R-083980",
+        "title": "Data Engineer II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-083980/Data-Engineer-II",
+        "descriptionSha256": "1e184a2d8558bc2582d4a548f32d972dd2f94f0a0587e7a7cb8322f5f6ebed90"
+      },
+      {
+        "jobId": "R-083828",
+        "title": "Associate Product Manager",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-083828/Associate-Product-Manager",
+        "descriptionSha256": "a591e31bb2505f65e322b1fdaae7a9494194fe1b1180bafbc4b035152468d9f3"
+      },
+      {
+        "jobId": "R-083838",
+        "title": "Process Associate II",
+        "country": "India",
+        "sourceUrl": "https://careers.rocket.com/in/en/job/R-083838/Process-Associate-II",
+        "descriptionSha256": "7e7fb785f3fe0d5976c3c1a5be625ceea19796417f765b867a632e61e928d2ad"
+      }
+    ],
+    "heldIds": [
+      "R-085161",
+      "R-084937",
+      "R-083838"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "https://achiralabs.com/careers": {
+    "activeTextSha256": "b564538d8b9d50845626620446a62845b2f6bb015f651fcc1f6dd324aba197ce",
+    "activeElementAttributesSha256": "85232961fe541e839f56673cf18d6ccf76269b50f025bbf533b9c93023f95840",
+    "links": [
+      "https://achiralabs.com/",
+      "https://achiralabs.com/about",
+      "https://achiralabs.com/about/board",
+      "https://achiralabs.com/about/team",
+      "https://achiralabs.com/business",
+      "https://achiralabs.com/careers",
+      "https://achiralabs.com/contact",
+      "https://achiralabs.com/privacy",
+      "https://achiralabs.com/products/microfluidics",
+      "https://achiralabs.com/products/quantalfa",
+      "https://achiralabs.com/products/uselect",
+      "https://achiralabs.com/solutions/lateral-flow",
+      "https://achiralabs.com/solutions/microfluidics",
+      "https://achiralabs.com/terms"
+    ],
+    "forms": [
+      "{\"action\":\"https://achiralabs.com/careers\",\"method\":\"get\",\"fields\":[[\"input\",\"areaofinterest\",\"text\"],[\"input\",\"cvFile\",\"file\"],[\"input\",\"doc_product_context\",\"hidden\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"email\",\"email\"],[\"input\",\"email\",\"email\"],[\"input\",\"email\",\"email\"],[\"input\",\"kit_catalog\",\"hidden\"],[\"input\",\"kit_tests\",\"hidden\"],[\"input\",\"kit_variant\",\"hidden\"],[\"input\",\"kit_variant_label\",\"hidden\"],[\"input\",\"name\",\"text\"],[\"input\",\"name\",\"text\"],[\"input\",\"org\",\"text\"],[\"input\",\"phone\",\"tel\"],[\"input\",\"product_key\",\"hidden\"],[\"input\",\"product_title\",\"hidden\"],[\"select\",\"catno\",\"\"],[\"select\",\"kitvariant\",\"\"]]}"
+    ],
+    "frames": [],
+    "scripts": [
+      "inline:application/ld+json:fe56b42be308d04301669e3e210111f2d09ba102bbcb95f4e36ec0236d30e65d",
+      "inline:javascript:53136eb80d73cdf103ec05b7fd9ed6e1d34f52270d08b51977de314e5ce7ace5",
+      "inline:javascript:d8868cece4136a1de4d0075fa9e689fcacb7dd613c9427805d3233f1aebf23d5",
+      "src:https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364",
+      "src:https://cdn.jsdelivr.net/npm/chart.js",
+      "src:https://www.google.com/recaptcha/api.js?onload=renderRecaptchas&render=explicit"
+    ],
+    "interactions": [
+      "{\"onchange\":\"renderKitContents()\"}",
+      "{\"onchange\":\"updateKitCatalogOptions()\"}",
+      "{\"onclick\":\"closeDocModal()\"}",
+      "{\"onclick\":\"closeInlineCvForm(this)\"}",
+      "{\"onclick\":\"closeModal()\"}",
+      "{\"onclick\":\"event.stopPropagation()\"}",
+      "{\"onclick\":\"scrollCarousel(this, -1)\"}",
+      "{\"onclick\":\"scrollCarousel(this, 1)\"}",
+      "{\"onclick\":\"toggleAccordion(this)\"}",
+      "{\"onclick\":\"toggleDropdown('about-menu')\"}",
+      "{\"onclick\":\"toggleDropdown('products-menu')\"}",
+      "{\"onclick\":\"toggleDropdown('solutions-menu')\"}",
+      "{\"onclick\":\"toggleInlineCvForm(this)\"}",
+      "{\"onclick\":\"toggleKitEnquiryForm()\"}",
+      "{\"onclick\":\"toggleKitEnquiryForm(false)\"}",
+      "{\"onclick\":\"toggleMobileMenu()\"}",
+      "{\"onsubmit\":\"event.preventDefault(); alert('CV submitted successfully!');\"}",
+      "{\"onsubmit\":\"submitForm(event, 'docs')\"}",
+      "{\"onsubmit\":\"submitForm(event, 'kit_enquiry')\"}"
+    ],
+    "styles": []
+  },
+  "$renderers": {
+    "https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b"
+  }
+}

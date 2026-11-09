@@ -1,0 +1,29 @@
+{
+  "source": "katalon",
+  "companyName": "Katalon",
+  "officialBrandName": "Katalon, Inc.",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../katalon/script.js",
+  "dryRunFile": "katalon/jobs.json",
+  "companyCareerPage": "https://katalon.com/careers/all-jobs",
+  "companyDomain": "katalon.com",
+  "atsPlatform": "teamtailor",
+  "countryFilter": "India",
+  "paginationStrategy": "native-complete-jobs-page-and-rss-identity-reconciliation",
+  "extractionStrategy": "verified-first-party-teamtailor-listings-and-native-jobposting-details",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 14,
+  "officialCareersPageUrl": "https://katalon.com/careers",
+  "officialAtsPageUrl": "https://careers.katalon.com/",
+  "verifiedSurfaceSummary": "Rechecked 2026-10-23: official Katalon careers handoff to careers.katalon.com/jobs. Complete native listing and RSS reconcile 14 entries. Two native India/Bengaluru recruiting locations require relocation to Vietnam; source titles/content and geographic conflict are preserved. They do not establish India-based work or complete India coverage. Captures retained under scraper/katalon/fixtures.",
+  "verifiedIndiaRecruitingLocationCount": 2,
+  "sourceListingComplete": false,
+  "verificationDisposition": "complete-native-enumeration-unresolved-vietnam-relocation",
+  "unresolvedJobIds": [
+    "8464989",
+    "8557097"
+  ]
+}

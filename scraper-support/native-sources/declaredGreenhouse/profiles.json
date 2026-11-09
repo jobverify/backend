@@ -1,0 +1,166 @@
+{
+  "banyansoftware": {
+    "source": "banyansoftware",
+    "companyName": "Banyan Software",
+    "primaryURL": "https://banyansoftware.com/careers",
+    "boardToken": "banyansoftware",
+    "publisherName": "Banyan Software",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/banyansoftware",
+    "primaryTitleSignals": [
+      "Banyan Software"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-native-frame"
+    }
+  },
+  "doximity": {
+    "source": "doximity",
+    "companyName": "Doximity",
+    "primaryURL": "https://work.doximity.com/positions/",
+    "boardToken": "doximity",
+    "publisherName": "Doximity",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/doximity",
+    "primaryTitleSignals": [
+      "Doximity"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-native-embed-script",
+      "scriptURL": "https://boards.greenhouse.io/embed/job_board/js?for=doximity"
+    }
+  },
+  "elationhealth": {
+    "source": "elationhealth",
+    "companyName": "Elation Health",
+    "primaryURL": "https://www.elationhealth.com/about-us/careers/",
+    "boardToken": "elationhealth",
+    "publisherName": "Elation Health",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/elationhealth",
+    "primaryTitleSignals": [
+      "Elation Health"
+    ],
+    "postURIProfile": "same-company-gh-jid",
+    "declaration": {
+      "kind": "active-native-embed-script",
+      "scriptURL": "https://boards.greenhouse.io/embed/job_board/js?for=elationhealth"
+    }
+  },
+  "eqtcorporation": {
+    "source": "eqtcorporation",
+    "companyName": "EQT Corporation",
+    "primaryURL": "https://www.eqt.com/careers",
+    "boardToken": "eqtcorporation",
+    "publisherName": "EQT Corporation",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/eqtcorporation",
+    "primaryTitleSignals": [
+      "EQT"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-native-embed-script",
+      "scriptURL": "https://boards.greenhouse.io/embed/job_board/js?for=eqtcorporation"
+    }
+  },
+  "buildkite": {
+    "source": "buildkite",
+    "companyName": "Buildkite",
+    "primaryURL": "https://buildkite.com/about/careers/",
+    "boardToken": "buildkite",
+    "publisherName": "Buildkite",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/buildkite",
+    "primaryTitleSignals": [
+      "Buildkite"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "visible-published-native-GET-example",
+      "publicURL": "https://boards-api.greenhouse.io/v1/boards/buildkite/jobs"
+    }
+  },
+  "tripadvisor": {
+    "source": "tripadvisor",
+    "companyName": "Tripadvisor",
+    "primaryURL": "https://careers.tripadvisor.com/",
+    "boardToken": "tripadvisor",
+    "publisherName": "Tripadvisor",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/tripadvisor",
+    "primaryTitleSignals": [
+      "Tripadvisor"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-literal-native-inline-profile",
+      "scriptSHA256": "f4500b678fd9da00d4e139de289551451d74e0e67608da816489d1dbc5ab5759",
+      "literalPublicURI": "https://boards-api.greenhouse.io/v1/boards/tripadvisor/jobs?content=true"
+    }
+  },
+  "prophecy": {
+    "source": "prophecy",
+    "companyName": "Prophecy",
+    "primaryURL": "https://www.prophecy.ai/careers",
+    "boardToken": "prophecysimpledatalabs",
+    "publisherName": "Prophecy",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/prophecysimpledatalabs",
+    "primaryTitleSignals": [
+      "Prophecy"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-literal-native-inline-profile",
+      "scriptSHA256": "de5ae708ae071cb50f567d5d9202e92ba0c1f1cc8d9369cc1cd62a5ae8478ad4",
+      "literalPublicURI": "https://boards-api.greenhouse.io/v1/boards/prophecysimpledatalabs/departments"
+    }
+  },
+  "dutchie": {
+    "source": "dutchie",
+    "companyName": "Dutchie",
+    "primaryURL": "https://dutchie.com/business/careers",
+    "boardToken": "thedutchie",
+    "publisherName": "Dutchie",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/thedutchie",
+    "primaryTitleSignals": [
+      "Dutchie"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-literal-native-inline-profile",
+      "scriptSHA256": "e086e4960aaeba065c1dcf80d440aa4e6a28218976fdf68f3cde5a1c2cdddec9",
+      "literalPublicURI": "https://api.greenhouse.io/v1/boards/thedutchie/departments?content=true"
+    }
+  },
+  "biofourmis": {
+    "source": "biofourmis",
+    "companyName": "Biofourmis",
+    "primaryURL": "https://biofourmis.com/about/job-openings",
+    "boardToken": "biofourmis",
+    "publisherName": "Biofourmis",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/biofourmis",
+    "primaryTitleSignals": [
+      "Job Openings"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://c27rhq.csb.app/get-jobs.js",
+      "scriptSHA256": "cadd78c6e28f5a0795a15c9f1da6b25dd26845b21191e5d5d5d4c8ee7fe7d798"
+    }
+  },
+  "financialtimes": {
+    "source": "financialtimes",
+    "companyName": "Financial Times",
+    "primaryURL": "https://aboutus.ft.com/careers/",
+    "boardToken": "financialtimes33",
+    "publisherName": "Financial Times",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/financialtimes33",
+    "primaryTitleSignals": [
+      "FT",
+      "Financial Times"
+    ],
+    "postURIProfile": "native-hosted-board",
+    "declaration": {
+      "kind": "active-native-board-link",
+      "boardURL": "https://boards.eu.greenhouse.io/financialtimes33/"
+    }
+  }
+}

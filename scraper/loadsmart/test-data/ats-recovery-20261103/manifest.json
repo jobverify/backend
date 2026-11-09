@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "loadsmart",
+  "companyName": "Loadsmart",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 11,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://loadsmart.com/careers/",
+      "finalURL": "https://loadsmart.com/careers/",
+      "status": 200,
+      "contentType": "text/html",
+      "requestedAt": "2026-11-03T08:27:48.6800694Z",
+      "completedAt": "2026-11-03T08:27:50.3071999Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 129280,
+      "bodySHA256": "b3186c84581f72f9aaf0f81b7f4485c9ca3b710ba9275370573f2c753c89ef71",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://api.lever.co/v0/postings/loadsmart?mode=json",
+      "finalURL": "https://api.lever.co/v0/postings/loadsmart?mode=json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestedAt": "2026-11-03T08:31:41.0310264Z",
+      "completedAt": "2026-11-03T08:31:43.8332286Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 131001,
+      "bodySHA256": "ba6c7c9a071e20908a57a16a71b400b01acf9d2197d9bc9559446cf57866b2da",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

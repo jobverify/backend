@@ -1,0 +1,34 @@
+[
+  {
+    "source": "zeeentertainmententerprises",
+    "companyName": "Zee Entertainment Enterprises Limited",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../zeeentertainmententerprises/script.js",
+    "atsPlatform": "sensehq",
+    "parser": "custom-script",
+    "companyDomain": "zee.com",
+    "companyCareerPage": "https://www.zee.com/careers/",
+    "countryFilter": "India",
+    "paginationStrategy": "zero-based-page-query+stable-native-total+unique-IDs",
+    "extractionStrategy": "current-corporate-handoff+identity-bound-native-details+separate-description-health",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:42:24.948Z",
+      "officialURL": "https://www.zee.com/careers/",
+      "matchedLinks": [
+        "https://zee.sensehq.com/careers"
+      ],
+      "httpProofFile": "../artifacts/full-catalog/zee-native-001/default-capture-005/http-002.json",
+      "httpProofSha256": "973fb6edfbd9e183e5fd9743b868ea302e0eba43aaa0f93b31a51d45022f35f5"
+    },
+    "verifiedSurfaceSummary": "Current official corporate careers anchor binds the exact Zee SenseHQ tenant and native organization5045. Runtime traverses the zero-based public Next.js inventory, reconciles stable totals and unique IDs, then checks native full role details, publication status, country, role identity and original posting timestamps. Complete listing enumeration remains separate from missing native descriptions; a failed or partial check cannot establish healthy extraction or permit stale-job cleanup."
+  }
+]

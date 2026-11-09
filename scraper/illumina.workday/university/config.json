@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://illumina.wd1.myworkdayjobs.com/wday/cxs/illumina/illumina-universityrecruiting/jobs",
+  "detailUrlBase": "https://illumina.wd1.myworkdayjobs.com/illumina-universityrecruiting",
+  "officialCareersUrl": "https://www.illumina.com/company/careers.html",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

@@ -1,0 +1,71 @@
+{
+  "profile": "historical-2026-10-29-unavailable",
+  "replayable": false,
+  "reason": "Original external keka-next-sources packet set absent; not recovered from retained113ZIPs/priorcompressed audit. November6 bodies are different current observations, never relabeled historical.",
+  "expectedFacts": {
+    "raw": 0,
+    "retainedIndiaJobs": 0
+  },
+  "originalScope": {
+    "https://achiralabs.com/careers": {
+      "activeTextSha256": "b564538d8b9d50845626620446a62845b2f6bb015f651fcc1f6dd324aba197ce",
+      "activeElementAttributesSha256": "85232961fe541e839f56673cf18d6ccf76269b50f025bbf533b9c93023f95840",
+      "links": [
+        "https://achiralabs.com/",
+        "https://achiralabs.com/about",
+        "https://achiralabs.com/about/board",
+        "https://achiralabs.com/about/team",
+        "https://achiralabs.com/business",
+        "https://achiralabs.com/careers",
+        "https://achiralabs.com/contact",
+        "https://achiralabs.com/privacy",
+        "https://achiralabs.com/products/microfluidics",
+        "https://achiralabs.com/products/quantalfa",
+        "https://achiralabs.com/products/uselect",
+        "https://achiralabs.com/solutions/lateral-flow",
+        "https://achiralabs.com/solutions/microfluidics",
+        "https://achiralabs.com/terms"
+      ],
+      "forms": [
+        "{\"action\":\"https://achiralabs.com/careers\",\"method\":\"get\",\"fields\":[[\"input\",\"areaofinterest\",\"text\"],[\"input\",\"cvFile\",\"file\"],[\"input\",\"doc_product_context\",\"hidden\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"docs[]\",\"checkbox\"],[\"input\",\"email\",\"email\"],[\"input\",\"email\",\"email\"],[\"input\",\"email\",\"email\"],[\"input\",\"kit_catalog\",\"hidden\"],[\"input\",\"kit_tests\",\"hidden\"],[\"input\",\"kit_variant\",\"hidden\"],[\"input\",\"kit_variant_label\",\"hidden\"],[\"input\",\"name\",\"text\"],[\"input\",\"name\",\"text\"],[\"input\",\"org\",\"text\"],[\"input\",\"phone\",\"tel\"],[\"input\",\"product_key\",\"hidden\"],[\"input\",\"product_title\",\"hidden\"],[\"select\",\"catno\",\"\"],[\"select\",\"kitvariant\",\"\"]]}"
+      ],
+      "frames": [],
+      "scripts": [
+        "inline:application/ld+json:fe56b42be308d04301669e3e210111f2d09ba102bbcb95f4e36ec0236d30e65d",
+        "inline:javascript:53136eb80d73cdf103ec05b7fd9ed6e1d34f52270d08b51977de314e5ce7ace5",
+        "inline:javascript:d8868cece4136a1de4d0075fa9e689fcacb7dd613c9427805d3233f1aebf23d5",
+        "src:https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364",
+        "src:https://cdn.jsdelivr.net/npm/chart.js",
+        "src:https://www.google.com/recaptcha/api.js?onload=renderRecaptchas&render=explicit"
+      ],
+      "interactions": [
+        "{\"onchange\":\"renderKitContents()\"}",
+        "{\"onchange\":\"updateKitCatalogOptions()\"}",
+        "{\"onclick\":\"closeDocModal()\"}",
+        "{\"onclick\":\"closeInlineCvForm(this)\"}",
+        "{\"onclick\":\"closeModal()\"}",
+        "{\"onclick\":\"event.stopPropagation()\"}",
+        "{\"onclick\":\"scrollCarousel(this, -1)\"}",
+        "{\"onclick\":\"scrollCarousel(this, 1)\"}",
+        "{\"onclick\":\"toggleAccordion(this)\"}",
+        "{\"onclick\":\"toggleDropdown('about-menu')\"}",
+        "{\"onclick\":\"toggleDropdown('products-menu')\"}",
+        "{\"onclick\":\"toggleDropdown('solutions-menu')\"}",
+        "{\"onclick\":\"toggleInlineCvForm(this)\"}",
+        "{\"onclick\":\"toggleKitEnquiryForm()\"}",
+        "{\"onclick\":\"toggleKitEnquiryForm(false)\"}",
+        "{\"onclick\":\"toggleMobileMenu()\"}",
+        "{\"onsubmit\":\"event.preventDefault(); alert('CV submitted successfully!');\"}",
+        "{\"onsubmit\":\"submitForm(event, 'docs')\"}",
+        "{\"onsubmit\":\"submitForm(event, 'kit_enquiry')\"}"
+      ],
+      "styles": []
+    },
+    "$renderers": {
+      "https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b"
+    }
+  },
+  "oldFixtureHelper": "import test from 'node:test'\nimport assert from 'node:assert/strict'\nimport {readFileSync} from 'node:fs'\nimport {createAxiraLabsScraper} from './script.js'\nimport {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'\nconst artifact=new URL('../../../artifacts/scraper-coverage-repairs-2026-10-29/keka-next-sources/',import.meta.url)\nconst fixture=name=>readFileSync(new URL(name,artifact),'utf8')\nconst root='https://achiralabs.keka.com/careers/'\nconst id='cb843558-f2a1-40ac-8f36-6f76990f5364'\nconst official='https://achiralabs.com/careers'\nexport function transport(change){const bodies=new Map([[official,fixture('1793299930189-2.txt')],[`${root}api/embedjobs/js/${id}`,fixture('1793299928660-3.txt')],[`${root}api/organization/default/careerportalinfo`,fixture('1793299997244-0.txt')],[`${root}api/embedjobs/default/active/${id}`,'[]'],[`${root}api/jobs/default/active`,'[]'],[`${root}api/embedjobs/grouplinkstatus/${id}`,'{\"isGroupLinked\":false}'],[`${root}api/organization/grouplinkstatus`,'{\"isGroupLinked\":false}']]);let active=0;return async url=>{assert.ok(bodies.has(url),`unexpected URL ${url}`);let body=bodies.get(url);if(url.includes('/active/'))active++;body=change?.(url,body,active)??body;return {status:200,url,text:async()=>body}}}\n",
+  "oldNativeTests": "import test from 'node:test'\nimport assert from 'node:assert/strict'\nimport {createAxiraLabsScraper} from './script.js'\nimport {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'\nimport {transport} from './native.fixture.js'\nconst official='https://achiralabs.com/careers'\n\ntest('current embedded Achira board earns verified-empty evidence only after full feed reconciliation',async()=>{const jobs=await createAxiraLabsScraper().run({fetchImpl:transport()});assert.deepEqual(jobs,[]);assert.equal(readInventoryEvidence(jobs)?.status,'verified-empty');assert.equal(readInventoryEvidence(jobs)?.reportedTotal,0)})\ntest('Achira rejects a group-linked board instead of asserting single-company completeness',async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url.includes('grouplinkstatus')?'{\"isGroupLinked\":true}':body)}),/group/i)})\ntest('Achira rejects changed inventory during closing reconciliation',async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body,n)=>url.includes('/active/')&&n===2?'[{\"id\":1}]':body)}),/changed|disagree/i)})\ntest('Achira cannot establish ownership from template-only embedded configuration',async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?`<template>${body}</template>`:body)}),/active|configuration/i)})\ntest('Achira rejects inert valid config paired with an active nonobject decoy',async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?`<template>${body}</template><script>window.khConfig = invalid;</script><script src=\"https://achiralabs.keka.com/careers/api/embedjobs/js/cb843558-f2a1-40ac-8f36-6f76990f5364\"></script>`:body)}),/active|configuration/i)})\ntest('Achira cannot prove empty after an additional ATS appears under neutral link text',async()=>{const jobs=await createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?body+'<a href=\"https://jobs.ashbyhq.com/achira\">Opportunities</a>':body)});assert.equal(readInventoryEvidence(jobs)?.listingComplete,false);assert.equal(readInventoryEvidence(jobs)?.reportedTotal,null);assert.notEqual(readInventoryEvidence(jobs)?.status,'verified-empty')})\ntest('Achira rejects commented valid configuration followed by an active invalid assignment',async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?body.replace(/window\\.khConfig\\s*=\\s*\\{[\\s\\S]*?\\}\\s*;/,'/* $& */ window.khConfig = invalid;'):body)}),/active|configuration/i)})\nfor(const[name,added]of [['frame','<iframe src=\"/opportunities\"></iframe>'],['form','<form action=\"/applications\"><input name=\"candidate\"></form>'],['script','<script src=\"/opportunities.js\"></script>'],['inline-role','<article><h2>Mechanical Engineer</h2><p>Requirements: five years of experience.</p></article>'],['JobPosting','<script type=\"application/ld+json\">{\"@type\":\"JobPosting\",\"title\":\"Engineer\"}</script>']])test(`Achira retains unknown source totals when an unreviewed active ${name} appears`,async()=>{const jobs=await createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?body+added:body)});assert.equal(readInventoryEvidence(jobs)?.listingComplete,false);assert.equal(readInventoryEvidence(jobs)?.reportedTotal,null);assert.notEqual(readInventoryEvidence(jobs)?.status,'verified-empty')})\ntest('Achira ignores inert template job channels when proving the actual active inventory',async()=>{const jobs=await createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?body+'<template><a href=\"https://jobs.ashbyhq.com/achira\">Opportunities</a><form action=\"/apply\"></form><script src=\"/jobs.js\"></script></template>':body)});assert.equal(readInventoryEvidence(jobs)?.status,'verified-empty')})\nfor(const[name,replacement]of [['string',match=>`const example=${JSON.stringify(match)}; window.khConfig=invalid;`],['template',match=>'const example=`'+match+'`; window.khConfig=invalid;'],['conditional',match=>'if(false){'+match+'} window.khConfig=invalid;']])test(`Achira cannot establish literal configuration from a ${name} decoy`,async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?body.replace(/window\\.khConfig\\s*=\\s*\\{[\\s\\S]*?\\}\\s*;/,replacement):body)}),/active|configuration/i)})\ntest('Achira rejects disagreement from the observed organization group endpoint',async()=>{await assert.rejects(createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url.endsWith('/api/organization/grouplinkstatus')?'{\"isGroupLinked\":true}':body)}),/group/i)})\ntest('Achira retains unknown source totals for a new data-configured hiring widget',async()=>{const jobs=await createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url===official?body+'<div data-hiring-url=\"https://custom.example/opportunities\"></div>':body)});assert.equal(readInventoryEvidence(jobs)?.listingComplete,false);assert.equal(readInventoryEvidence(jobs)?.reportedTotal,null)})\ntest('Achira cannot certify empty after the fetched Keka renderer introduces another hiring channel',async()=>{const jobs=await createAxiraLabsScraper().run({fetchImpl:transport((url,body)=>url.includes('/api/embedjobs/js/')?body+`;document.body.insertAdjacentHTML('beforeend','<a href=\"https://jobs.ashbyhq.com/achira\">More roles</a>');`:body)});assert.deepEqual(jobs,[]);assert.equal(readInventoryEvidence(jobs)?.listingComplete,false);assert.equal(readInventoryEvidence(jobs)?.reportedTotal,null);assert.match(readInventoryEvidence(jobs)?.reason,/renderer/);assert.notEqual(readInventoryEvidence(jobs)?.status,'verified-empty')})\n",
+  "oldScopeSHA256": "649aa7abe073f279a9a0a93ebc3cf84af94cfcf7825e3df11674300779cd91cb"
+}

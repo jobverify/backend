@@ -1,0 +1,78 @@
+{
+  "https://gameberrylabs.com/": {
+    "activeTextSha256": "4eb04e40668453226af4d87ea28ef9637ef11c1d5b724c0bcdaefc5565da5922",
+    "activeElementAttributesSha256": "6647784d8b29f2c3dd33f08a7e6deac677c1042b158d0a2ca0638d10c1a03f77",
+    "links": [
+      "http://blog.gameberrylabs.com/",
+      "https://gameberrylabs.com/",
+      "https://gameberrylabs.com/#",
+      "https://gameberrylabs.com/audio-policy",
+      "https://gameberrylabs.com/games/backgammon",
+      "https://gameberrylabs.com/games/ludo-titan",
+      "https://gameberrylabs.com/games/ludostar",
+      "https://gameberrylabs.com/games/parchisistar",
+      "https://gameberrylabs.com/jobs",
+      "https://gameberrylabs.com/privacy",
+      "https://gameberrylabs.com/story",
+      "https://gameberrylabs.com/team",
+      "https://gameberrylabs.com/tos",
+      "https://twitter.com/GameberryHQ",
+      "https://www.facebook.com/gameberrylabs",
+      "https://www.instagram.com/artofgameberry/",
+      "https://www.linkedin.com/company/gameberry-labs/",
+      "mailto:contact@gameberrylabs.com",
+      "mailto:support@gameberrylabs.com"
+    ],
+    "forms": [],
+    "frames": [],
+    "scripts": [
+      "inline:javascript:4d5f05ea836275cc906803037796dcdd68f34f224d8ec21d1c857ca6daeff766",
+      "inline:javascript:5306b753de7f81f32fee983508164e508aa8879c8e34218ec9333c772b1f88ab",
+      "src:https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js",
+      "src:https://code.jquery.com/jquery-3.6.0.min.js",
+      "src:https://gameberrylabs.com/javascripts/gb-site.js"
+    ],
+    "interactions": [],
+    "styles": []
+  },
+  "https://gameberry.keka.com/careers": {
+    "activeTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "activeElementAttributesSha256": "920dd53387d5b2936505694e2412860d27394bf64d3ed4c8ceda051efba6e15b",
+    "links": [],
+    "forms": [],
+    "frames": [],
+    "scripts": [
+      "inline:javascript:44c66993013385d0baf5fe6b9aad37deb31c4cddd7298c77e6b2e7ed0f43bbfc",
+      "inline:javascript:b057d1668549e8d0b730e7686190e6dbded05ea8f48b3db5659190228717f632"
+    ],
+    "interactions": [],
+    "styles": []
+  },
+  "https://gameberry.keka.com/ats/documents/c69cfb2f-b876-4b10-bba3-a2f6411cd7f5/careerportal/13fbe6501ce545e3810697881257d27a.html": {
+    "activeTextSha256": "c13f369176cd4fcbe787f73143a82c773d2de1edc13020df46eeea57c7e7332f",
+    "activeElementAttributesSha256": "aa8e4bade7f5b7957f345df2776a2fe205326bbf59d2fccffc2f0121aaba4eec",
+    "links": [],
+    "forms": [],
+    "frames": [],
+    "scripts": [
+      "inline:javascript:45d274b6cd549c34ae5a740344d2e736c799b105003ce29421e494e8ba549691",
+      "inline:javascript:6d7e33a58860c1bb9e28ac9840808b69b19edfc880d1c3213ad447a4a4c73769",
+      "src:https://gameberry.keka.com/careers/api/embedjobs/js/c69cfb2f-b876-4b10-bba3-a2f6411cd7f5"
+    ],
+    "interactions": [
+      "{\"onclick\":\"document.getElementById('kh-jobs-section').scrollIntoView({ behavior: 'smooth' })\"}"
+    ],
+    "styles": [
+      {
+        "position": 12,
+        "inertContext": false,
+        "attributes": {},
+        "raw": "\n                    * { box-sizing: border-box; } body {margin: 0;}body{--font-family:Montserrat;--brand-color:#ec65b4;--heading-color:#101828;--description-color:#667085;--background-color:#FFFFFF;--button-label-color:#FFFFFF !important;}#iacp{background-color:#ffffff;}\n                    .kch-w-170 {\n                        width: 170px;\n                    }\n                ",
+        "sha256": "1d737bfa51fe5aaaa1080175bee4aaa209a7ed5105660a1d23f925d84e5212bd"
+      }
+    ]
+  },
+  "$renderers": {
+    "https://gameberry.keka.com/careers/api/embedjobs/js/c69cfb2f-b876-4b10-bba3-a2f6411cd7f5": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b"
+  }
+}

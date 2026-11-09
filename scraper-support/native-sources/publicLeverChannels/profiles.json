@@ -1,0 +1,105 @@
+{
+  "netomi": {
+    "source": "netomi",
+    "companyName": "Netomi",
+    "publisherName": "Netomi",
+    "platform": "lever",
+    "countryFilter": "Global",
+    "primaryURL": "https://www.netomi.com/careers",
+    "primaryPages": [
+      "https://www.netomi.com/careers",
+      "https://www.netomi.com/"
+    ],
+    "primaryTitleSignals": [
+      "Netomi"
+    ],
+    "boardSlug": "netomi",
+    "boardURL": "https://jobs.lever.co/netomi",
+    "publicAPIURL": "https://api.lever.co/v0/postings/netomi?mode=json&skip=0&limit=100",
+    "declaration": {
+      "kind": "active-native-board-link"
+    },
+    "expectedPublisherBinding": "unresolved-until-current-primary-native-handoff"
+  },
+  "ionic": {
+    "source": "ionic",
+    "companyName": "Ionic",
+    "publisherName": "Ionic",
+    "platform": "lever",
+    "countryFilter": "Global",
+    "primaryURL": "https://ionic.io/about/jobs",
+    "primaryPages": [
+      "https://ionic.io/about/jobs"
+    ],
+    "primaryTitleSignals": [
+      "Jobs"
+    ],
+    "boardSlug": "Ionic",
+    "boardURL": "https://jobs.lever.co/Ionic",
+    "publicAPIURL": "https://ionic.io/api/lever",
+    "nativeProxyURL": "https://ionic.io/api/lever",
+    "allowMissingNativeBoard": true,
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptSpecifier": "/_next/static/chunks/pages/about/jobs-b72b1f1583639192.js",
+      "scriptURL": "https://ionic.io/_next/static/chunks/pages/about/jobs-b72b1f1583639192.js",
+      "scriptSHA256": "dd1c2103bd8c23cf622fa4eb73c389b34277ce7df599071224fcd419d45d67a1"
+    },
+    "literalCachedRoleReferences": [
+      "https://jobs.lever.co/Ionic/2a683b82-b096-4e73-8ec2-c2098120ce27",
+      "https://jobs.lever.co/Ionic/66e27322-2e44-4595-82de-047bc47bcc6d",
+      "https://jobs.lever.co/Ionic/b83ced20-7d2c-4c04-bed2-390d81ee1984",
+      "https://jobs.lever.co/Ionic/d87c2a14-fa42-4ab8-97fd-0508d58fea6f"
+    ]
+  },
+  "verygoodsecurityindia": {
+    "source": "verygoodsecurityindia",
+    "companyName": "Very Good Security India",
+    "publisherName": "VGS",
+    "platform": "lever",
+    "countryFilter": "India",
+    "primaryURL": "https://www.verygoodsecurity.com/careers",
+    "primaryPages": [
+      "https://www.verygoodsecurity.com/careers",
+      "https://www.verygoodsecurity.com/careers/engineering"
+    ],
+    "primaryTitleSignals": [
+      "Careers | VGS"
+    ],
+    "boardSlug": "verygoodsecurity",
+    "boardURL": "https://jobs.lever.co/verygoodsecurity",
+    "publicAPIURL": "https://api.lever.co/v0/postings/verygoodsecurity?mode=json&skip=0&limit=100",
+    "publicGroupedAPIURL": "https://api.lever.co/v0/postings/verygoodsecurity?group=team&mode=json",
+    "declaration": {
+      "kind": "active-current-nuxt-route-chain",
+      "router": {
+        "scriptSpecifier": "/_nuxt/BNmRpqa-.js",
+        "scriptURL": "https://www.verygoodsecurity.com/_nuxt/BNmRpqa-.js",
+        "scriptSHA256": "e401094ea539d1962374d5d418563759d2f664760b620dca6cfe359274f4b25a"
+      },
+      "routes": [
+        {
+          "path": "/careers",
+          "name": "careers",
+          "componentSpecifier": "/_nuxt/DdHMcQpB.js",
+          "scriptURL": "https://www.verygoodsecurity.com/_nuxt/DdHMcQpB.js",
+          "scriptSHA256": "caa3eceea39b5e5499e92fe86117a9913a537b64307ad63fed287e85215070f3"
+        },
+        {
+          "path": "/careers/engineering",
+          "name": "careers-engineering",
+          "componentSpecifier": "/_nuxt/uAW6Mn-0.js",
+          "scriptURL": "https://www.verygoodsecurity.com/_nuxt/uAW6Mn-0.js",
+          "scriptSHA256": "c40db873a221e4a828d747735df1bc930e6551c35d2d6372ceeeec16abeb386b"
+        }
+      ],
+      "targetId": "lever-jobs-container",
+      "accountName": "verygoodsecurity",
+      "embed": {
+        "scriptURL": "https://andreasmb.github.io/lever-jobs-embed/index.js",
+        "scriptSHA256": "109f5cdda38ffc9ff61d1f8ab47e458ab97ff261547d0af43dac9993bc211d4e"
+      }
+    },
+    "nativeLocationCountryCorroboration": "exact-nonplaceholder-label-current-own-models"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "source": "capillarytechnologies",
+  "requestedUrl": "https://www.capillarytech.com/careers/",
+  "finalUrl": "https://www.capillarytech.com/careers/",
+  "status": 403,
+  "capturedAt": "2026-11-03T02:19:01.630Z",
+  "bodyFile": "careers-denied.html.gz",
+  "originalBodyFile": "C:/Users/mohv/release/artifacts/scraper-source-repairs-2026-11-02/root-captures/capillarytechnologies-careers-current-1793672341612-dc3bc49b91df.body",
+  "bodySha256": "073d67c97065640b83f4ef8f63f609ab852c06c1e7c81ac36357295a6bf92f4f",
+  "compressedSha256": "41f34ddf9e8e1a2b1306d90dfecc612ede66555d4a814d4e2ea1a25b87444498",
+  "bytes": 1395,
+  "requestCredentialsRetained": false
+}

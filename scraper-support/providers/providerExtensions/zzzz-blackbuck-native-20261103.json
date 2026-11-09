@@ -1,0 +1,16 @@
+{
+  "source": "blackbuck",
+  "catalogOverride": true,
+  "atsPlatform": "official-public-email-hiring-contact",
+  "paginationStrategy": "current-configured-team-page+public-email-hiring-signal+closing",
+  "extractionStrategy": "current-visible-corporate-mailto-recruiting-contact+unknown-vacancy-country-and-company-scope",
+  "verifiedSurfaceSummary": "The configured current BlackBuck team page publicly exposes Join Now and careers@blackbuck.com email contacts. Runtime verifies the exact employer page and contact twice and retains a generic hiring signal with unknown vacancy count/work country. Email contact is not an enumerable native inventory. Broken guessed alternate routes and private application/session data are not prerequisites. No company-wide vacancy zero or lifecycle cleanup is authorized.",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "coverage-gap",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false
+}

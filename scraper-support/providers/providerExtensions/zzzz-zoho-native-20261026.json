@@ -1,0 +1,53 @@
+[
+  {
+    "source": "agilisium",
+    "companyName": "Agilisium",
+    "adapter": "script",
+    "modulePath": "../agilisium/script.js",
+    "companyCareerPage": "https://www.agilisium.com/people-and-careers",
+    "companyDomain": "agilisium.com",
+    "atsPlatform": "zohorecruit",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-board-api-full-array-and-closing-reconciliation",
+    "extractionStrategy": "current-employer-handoff+exact-native-organization+full-record-descriptions",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current official Agilisium careers handoff binds its exact Zoho organization/page. Runtime reconciles native embedded/API inventories, reads full native records and application URLs, preserves original public dates and retains additional recruiting scope as partial.",
+    "catalogOverride": true
+  },
+  {
+    "source": "npci",
+    "companyName": "National Payments Corporation of India",
+    "adapter": "script",
+    "modulePath": "../npci/script.js",
+    "companyCareerPage": "https://careers.npci.org.in/jobs/Careers",
+    "companyDomain": "npci.org.in",
+    "atsPlatform": "zohorecruit",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-board-api-full-array-and-closing-reconciliation",
+    "extractionStrategy": "exact-first-party-organization+native-NPCI-entity+india-city-state+full-record-descriptions",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "NPCI first-party careers board binds its exact native organization/page. Full records identify the legal Entity and native city/state. Only proven NPCI India roles are returned; subsidiary/unknown entities are not attributed to NPCI. Full descriptions, application URLs, dates and closing inventory reconciliation are retained.",
+    "catalogOverride": true
+  },
+  {
+    "source": "fasal",
+    "companyName": "Fasal",
+    "adapter": "script",
+    "modulePath": "../fasal/script.js",
+    "companyCareerPage": "https://www.fasal.co/life-at-fasal",
+    "companyDomain": "fasal.co",
+    "atsPlatform": "zohorecruit",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-board-api-full-array-and-closing-reconciliation",
+    "extractionStrategy": "current-employer-handoff+exact-Wolkus-Fasal-native-organization+full-record-descriptions",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Fasal careers page links jobs.fasal.co. Native organization identifies Wolkus Technology Solutions Private Limited and reciprocally links fasal.co. Board/API inventories and full details are reconciled with a closing snapshot before complete or empty evidence is assigned.",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "source": "yellowmessenger",
+    "companyName": "Yellow Messenger",
+    "adapter": "script",
+    "modulePath": "../yellowmessenger/script.js",
+    "companyCareerPage": "https://yellow.ai/career/",
+    "companyDomain": "yellow.ai",
+    "atsPlatform": "verified-rebrand-careers-surface-plus-public-zohorecruit-board",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-board-api-full-array-and-closing-reconciliation",
+    "extractionStrategy": "current-active-exact-embed+first-party-native-organization+full-record-details",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Yellow.ai native embed binds its exact first-party careers organization/page. Runtime reconciles the native board/API and closing state, reads full active details and preserves India/employer identity. Blank native website is accepted only with a fresh corporate binding to the exact first-party board.",
+    "catalogOverride": true
+  },
+  {
+    "source": "centilytics",
+    "companyName": "Centilytics",
+    "adapter": "script",
+    "modulePath": "../centilytics/script.js",
+    "companyCareerPage": "https://jobs.centilytics.com/jobs/Careers",
+    "companyDomain": "centilytics.com",
+    "atsPlatform": "zoho-recruit",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-board-api-full-array-and-closing-reconciliation",
+    "extractionStrategy": "exact-first-party-staffing-organization+native-employer-client+full-record-details",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "The first-party Centilytics board identifies its exact staffing organization/page and reciprocal company website. Runtime reconciles complete native arrays/details and closing state; active roles require a typed exact Centilytics client/employer. Unknown staffing clients remain unresolved and cannot certify India absence.",
+    "catalogOverride": true
+  }
+]

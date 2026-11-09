@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://elemica.wd501.myworkdayjobs.com/wday/cxs/elemica/Elemica_Careers/jobs",
+  "detailUrlBase": "https://elemica.wd501.myworkdayjobs.com/en-US/Elemica_Careers",
+  "maxPages": 20
+}

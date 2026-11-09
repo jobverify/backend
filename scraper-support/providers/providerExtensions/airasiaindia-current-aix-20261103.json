@@ -1,0 +1,11 @@
+{
+ "source":"airasiaindia","catalogOverride":true,"companyName":"Air India Express","legacyCompanyName":"AirAsia India","officialBrandName":"Air India Express",
+ "adapter":"script","modulePath":"../airasiaindia/script.js","companyCareerPage":"https://www.airindiaexpress.com/careers","companyDomain":"airindiaexpress.com",
+ "atsPlatform":"successfactors-aix-public-brand","countryFilter":"India","currentHiringBrand":"aix","relatedRegisteredSource":"airindia",
+ "paginationStrategy":"corporate-AEM-model+declared-AIX-brand+unfiltered-native-zero+closing",
+ "extractionStrategy":"verified-legal-successor+current-corporate-declared-AIX-brand+two-explicit-native-zero-reads",
+ "historicalContinuityURL":"https://www.airindia.com/in/en/newsroom/press-release/air-india-express-aix-connect-merger.html","historicalContinuityPublishedOn":"2024-10-01",
+ "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",
+ "sourceCompanyWideScopeComplete":false,"lifecycleCleanupAllowed":false,
+ "verifiedSurfaceSummary":"The official legal-merger statement binds AIX Connect (erstwhile AirAsia India) to Air India Express; original linked3-page official PDF retained and extracted. Current corporate AEM careers model publishes the exact AIX SuccessFactors brand board. Runtime repeats current corporate/model/brand/unfiltered-empty native checks: blank keyword/workplace query, explicit no-open-positions sentence and0fallback count, no active public role links or continuation. Scope is only this declared AIX board; company-wide/lifecycle cleanup remain unproved. Air India remains a separate registered airline source. Future positive input is held until full native role extraction is qualified."
+}

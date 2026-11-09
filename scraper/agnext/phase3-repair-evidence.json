@@ -1,0 +1,18 @@
+{
+  "source": "agnext",
+  "evidenceManifest": "fixtures/phase3-20261024/manifest.json",
+  "currentOfficialBindingObserved": true,
+  "officialPage": "https://www.agnext.com/",
+  "observedBoard": "https://agnext.keka.com/careers",
+  "observedFinalBoardUrl": "https://agnext.keka.com/careers/Content/403.html",
+  "observedHttpStatus": 200,
+  "observedPageTitle": "Forbidden Access",
+  "productionRepair": "Preserve response status, request/final URLs and source stage; blocked responses are non-retriable soft failures and never become an empty inventory.",
+  "sourceRuntimeRecovered": false,
+  "completeInventoryVerified": false,
+  "verifiedIndiaJobCount": null,
+  "verifiedPublicJobCount": null,
+  "remainingBlocker": "The current employer-bound Keka board denies anonymous access. No native listing contract or current role descriptions were recovered. Do not guess another tenant, reuse a historical payload, or interpret the denial as zero openings.",
+  "productionWrites": false,
+  "fullSourceScrape": false
+}

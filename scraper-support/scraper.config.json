@@ -1,0 +1,8 @@
+{
+  "maxPages": 10,
+  "pageLoadDelayMs": 2000,
+  "jobListingTimeoutMs": 10000,
+  "cookieBannerTimeoutMs": 2000,
+  "retryAttempts": 3,
+  "retryBaseDelayMs": 2000
+}

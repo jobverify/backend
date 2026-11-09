@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://wd5.myworkdaysite.com/wday/cxs/microchiphr/External/jobs",
+  "detailUrlBase": "https://wd5.myworkdaysite.com/recruiting/microchiphr/External",
+  "countryFacetParameter": "locationCountry"
+}

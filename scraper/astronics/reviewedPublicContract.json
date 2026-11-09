@@ -1,0 +1,23 @@
+{
+  "embedUrl": "https://boards.greenhouse.io/embed/job_board/js?for=astronicscorporation",
+  "entryClientUrl": "https://job-boards.cdn.greenhouse.io/assets/entry.client-C2IOVNfH.js",
+  "publicEntryVariables": {
+    "mi": "3a71c76c59284956cfc2f0e6ca80d84331e0db3a3e011e3ad8ea12ee7f7e7806",
+    "Fi": "e602197a599504b92c88718bc28c1bc225c508ce8f8ea192c32a900504cc8615"
+  },
+  "publicBoardExport": "Fi",
+  "nativePageSizeSignature": "8097c706bffc699894fa78a385aeec2a6e54a5b5b63d38a586bce7dc8a43366b",
+  "nativePageSizeSource": "window.ENV.MAX_POSTS_PER_PAGE",
+  "routeClientUrl": "https://job-boards.cdn.greenhouse.io/assets/embed.job_board-DUKQffsu.js",
+  "routeProgramSignature": "a8e51f76c5769fb8fe4af31f85edf0b04e66d7998eed1a326ea2f1cb6fc7fe7b",
+  "embedAssignments": {
+    "Grnhse.Iframe": "d63fe1034d5c6066918928d215aa97fa4b289f3c0f32833718749ec070b4b7dc",
+    "Grnhse.Iframe.load": "d204fcb464678b4b5ef07c53661c1474400cb00e8cd6e7aa862050bd151f14b1",
+    "Grnhse.Iframe.autoLoad": "9cb701df073d27800c7c2da2432b8b1b7ba7158d8be412f455da691c51f04999",
+    "Grnhse.Iframe.prototype.boardUrl": "28491ed0d1dc26867ee8ad62168d73cc304f5e843a643c6b25396afd3378842f",
+    "Grnhse.Iframe.prototype.build": "43ed7bdd64b55f9371316bec167348f6f2b9440f8edff6ab79e67f0314f0d386",
+    "Grnhse.Iframe.prototype.render": "b46c6a6e4c50be0f94e3c8f0d55886aa21ba0b6bd612b7780e4016127b9971b2"
+  },
+  "prototypeMethods": {},
+  "embedAutoloadSignature": "926a4dd2fd6544952a99b13628ba5c053f18d5ba9820df2d0f965f0524c9fe7d"
+}

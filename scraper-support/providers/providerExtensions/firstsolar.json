@@ -1,0 +1,21 @@
+{
+  "source": "firstsolar",
+  "companyName": "First Solar",
+  "officialBrandName": "First Solar",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../firstsolar/script.js",
+  "dryRunFile": "firstsolar/jobs.json",
+  "companyCareerPage": "https://www.firstsolar.com/en/Careers",
+  "companyDomain": "firstsolar.com",
+  "atsPlatform": "oracle-cloud",
+  "countryFilter": "India",
+  "paginationStrategy": "offset-query",
+  "extractionStrategy": "verified-first-party-careers-page+oracle-candidate-experience+india-finder+detail-api",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-26",
+  "officialCareersPageUrl": "https://www.firstsolar.com/en/Careers",
+  "officialCandidateExperienceUrl": "https://fa-esbv-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2001",
+  "verifiedSurfaceSummary": "Verified on July 26, 2026 that First Solar's official careers page links India openings to the First Solar India Oracle Candidate Experience board at CX_2001. The public India finder returned live First Solar requisitions. The scraper validates both exact first-party identities and fails closed if either surface changes."
+}

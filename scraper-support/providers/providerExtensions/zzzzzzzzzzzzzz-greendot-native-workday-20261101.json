@@ -1,0 +1,24 @@
+[
+  {
+    "source": "greendot",
+    "companyName": "Green Dot",
+    "companyDomain": "greendot.com",
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "workday",
+    "modulePath": "../../scraper/greendot.workday/script.js",
+    "baseUrl": "https://greendotcorp.wd1.myworkdayjobs.com/gdc",
+    "companyCareerPage": "https://www.greendot.com/working-here",
+    "catalogOverride": true,
+    "completeSourceScope": false,
+    "sourceScopeComplete": false,
+    "remediationStatus": "native-source-local-partial-company-scope",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedCompanyJobCount": null,
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "Source-local exact native API/canonical checks; company scope and authoritative counts remain unknown."
+  }
+]

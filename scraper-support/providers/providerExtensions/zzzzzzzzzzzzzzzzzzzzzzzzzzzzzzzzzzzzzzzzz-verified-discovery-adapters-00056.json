@@ -1,0 +1,41 @@
+[
+  {
+    "source": "fis",
+    "companyName": "FIS",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../fis.workday/script.js",
+    "atsPlatform": "phenom-native-fis-company-facet",
+    "companyCareerPage": "https://www.fisglobal.com/careers",
+    "companyDomain": "fisglobal.com",
+    "officialHomepageUrl": "https://www.fisglobal.com/",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "FIS-company-facet-all-country-offsets-total-unique-identities",
+    "extractionStrategy": "official-FIGLUS-bootstrap+FIS-filter-echo+native-India-detail+typed-office-corroboration",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "originalModulePath": null,
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "remediationStatus": "native-source-implemented-awaiting-targeted-runtime-review",
+    "verificationDisposition": "native-runtime-validation-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T20:15:30.901Z",
+      "officialURL": "https://www.fisglobal.com/careers",
+      "matchedLinks": [
+        "https://careers.fisglobal.com/us/en"
+      ],
+      "bindingMethod": "official-corporate-anchor+anonymous-native-FIGLUS+explicit-FIS-company-facet",
+      "evidenceOrigin": "public-official-GET-and-read-only-advertised-listing-POST",
+      "nativeProofArtifact": "artifacts/full-catalog/fis-native-001/inventory-002.json",
+      "discoveryBatch": "batch-032"
+    },
+    "verifiedSurfaceSummary": "Official FIS corporate careers handoff to FIGLUS Phenom. Enumerate FIS companyValue only across all countries; reconcile native filter echo, totals and unique identities. Every India detail requires OPEN status, exact application/canonical identity, FIS employer evidence and typed city/state/postal/country corroboration. Preserve exact native descriptions and publication fields; original publication provenance and legal employer unverified. No static extracted or eligible count claimed."
+  }
+]

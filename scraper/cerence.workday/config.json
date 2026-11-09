@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://cerence.wd5.myworkdayjobs.com/wday/cxs/cerence/Cerence/jobs",
+  "detailUrlBase": "https://cerence.wd5.myworkdayjobs.com/Cerence",
+  "countryFacetParameter": "locationCountry",
+  "locationPattern": "india|hinjewadi|pune",
+  "maxPages": 25
+}

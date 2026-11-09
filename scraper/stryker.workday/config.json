@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://stryker.wd1.myworkdayjobs.com/wday/cxs/stryker/StrykerCareers/jobs",
+  "detailUrlBase": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers",
+  "countryFacetParameter": "Location_Country"
+}

@@ -1,0 +1,29 @@
+{
+  "source": "letstransport",
+  "companyName": "LetsTransport",
+  "officialBrandName": "LetsTransport",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../letstransport/script.js",
+  "dryRunFile": "letstransport/jobs.json",
+  "companyCareerPage": "https://letstransport.in/we-are-hiring/",
+  "companyDomain": "letstransport.in",
+  "atsPlatform": "linkedin-employer-internship-subset",
+  "countryFilter": "India",
+  "paginationStrategy": "exact-eight-card-native-terminal+all-detail-traversal+listing-recheck+partial-employer-scope",
+  "extractionStrategy": "official-exact-profile-handoff+reciprocal-domain+native-active-india-internships+bounded-fetch-and-body",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "officialCareersPageUrl": "https://letstransport.in/we-are-hiring/",
+  "candidateNativeSurfaces": [
+    "https://hire.auzmor.com/letstransport/careers",
+    "https://letstransport.freshteam.com/jobs",
+    "https://www.linkedin.com/company/letstransport"
+  ],
+  "observedNativeLinkedInCards": 8,
+  "verifiedPartialIndiaInternships": 2,
+  "verifiedSurfaceSummary": "Browser captures on 2026-10-23 prove the official recruitment page links the exact LetsTransport LinkedIn company profile, which reciprocally identifies letstransport.in and employer ID 6472988. All eight current native worldwide cards and all eight native details were traversed. Two India internships (4475899742 Chennai; 4475888982 Bengaluru) have substantive descriptions, enabled native Apply buttons and exact-role account handoffs; their native public dates are 2026-10-06 and expiry is unknown. The scope deliberately excludes six older external roles conflicting with original Auzmor application pages. Auzmor shows 24 OPEN/PUBLISHED cards, but all 24 captured detail schemas date to 2021 and expire in 2021/2022; republished LinkedIn dates do not revive these requisitions. Runtime returns only the partial native India internship subset with incomplete inventory evidence, unknown global/India counts and no lifecycle cleanup. New schemas or geography changes fail closed. Raw browser captures, gzip copies and SHA256 manifest are retained."
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "source": "capillarytechnologies",
+    "companyName": "Capillary Technologies",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../capillarytechnologies/script.js",
+    "companyCareerPage": "https://www.capillarytech.com/careers/",
+    "companyDomain": "capillarytech.com",
+    "countryFilter": "India",
+    "atsPlatform": "official-company-careers",
+    "parser": "custom-script",
+    "extractionStrategy": "bounded-current-public-response-status-and-closing-pending-entry-evidence",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "runtimeInventoryVerification": true,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "scraperTimeoutMs": 90000,
+    "sourceLifecycleTimeoutMs": 120000,
+    "verifiedSurfaceSummary": "Current HTTP access denials remain typed source failures. A pending public hiring page provides no authoritative vacancy or India zero. Counts require current native evidence; historical blocked-page dates are not verification."
+  }
+]

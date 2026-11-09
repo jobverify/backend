@@ -1,0 +1,144 @@
+{
+  "source": "appsecure",
+  "verifiedOn": "2026-10-23",
+  "evidenceMode": "actual browser response envelopes replayed through exported production run with real Response streams",
+  "eligibleJobs": 0,
+  "nativeHiringInvitationCount": 1,
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "reportedTotal": null,
+  "indiaFacetCount": null,
+  "inventoryEvidence": {
+    "status": "discovery-only",
+    "surface": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+    "firstParty": true,
+    "listingComplete": false,
+    "pagesFetched": 6,
+    "reportedTotal": null,
+    "indiaFacetCount": null,
+    "verifiedAt": "2026-10-23T10:00:00.000Z",
+    "reason": "Corporate footer binds exact AppSecure Security native employer; generic careers email and independently published founder hiring invitation recovered. Founder native publication is 2026-08-10, older than 30 days, and active requisition unverified. Exact employer India and Worldwide scoped searches show no matching cards; they do not prove complete company inventory. Totals unknown; cleanup disabled."
+  },
+  "nativeCollectionEvidence": {
+    "jobs": [],
+    "firstParty": true,
+    "observations": {
+      "nativeEmployer": {
+        "organizationID": "13392021",
+        "corporateHandoff": "active footer social link; generic careers email"
+      },
+      "searches": [
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+          "location": "India",
+          "observedCards": 0,
+          "wholeCompanyComplete": false
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+          "location": "Worldwide",
+          "observedCards": 0,
+          "wholeCompanyComplete": false
+        }
+      ]
+    },
+    "exclusions": [
+      {
+        "id": "7492483018570235905",
+        "nativeRecordType": "SocialMediaPosting",
+        "sourceUrl": "https://www.linkedin.com/posts/sandeephodkasia_bugbounty-hiring-pentesting-activity-7492483018570235905-l4xZ",
+        "title": "We are hiring bug bounty hunters in our pentesting team at Appsecure Security.",
+        "nativePublicationDate": {
+          "raw": "2026-08-10T07:32:35.202Z",
+          "iso": "2026-08-10T07:32:35.202Z",
+          "precision": "millisecond",
+          "exact": true
+        },
+        "nativeCountries": [
+          "India",
+          "Singapore"
+        ],
+        "nativeLocationText": "Fully remote, work from anywhere within India or Singapore",
+        "nativeApplicationInstruction": "careers@appsecure.security",
+        "nativeDescription": "We are hiring bug bounty hunters in our pentesting team at Appsecure Security. I'd rather have three people who chase the bug nobody else found than ten who run a scanner and file the output. So this is a research role, not a checklist role. Who we're looking for: → 2–3 years as a security engineer or pentester → Someone who goes deep on complex security research, not surface-level findings → 1000+ reputation on HackerOne or Bugcrowd → OSCP or CRT certified What we're offering: → Fully remote, work from anywhere within India or Singapore → Very fast-paced & competitive learning env → Pay above market standard → Best-in-class health insurance for you → Real engagements, and the freedom to go deep on the targets that interest you How to apply: email me at careers@appsecure.security with 2–3 pieces of the best research you've done — write-ups, disclosed reports, CVEs, a blog post, whatever shows how you think. Skip the generic resume drop. I read the research first. Know someone who'd be a fit? Tag them below. #bugbounty #hiring #pentesting #cybersecurity #infosec #appsec",
+        "firstParty": false,
+        "sourceDetailComplete": true,
+        "activeRequisitionVerified": false,
+        "exclusionReason": "native-publication-older-than-30-days;active-requisition-unverified"
+      }
+    ],
+    "reason": "Corporate footer binds exact AppSecure Security native employer; generic careers email and independently published founder hiring invitation recovered. Founder native publication is 2026-08-10, older than 30 days, and active requisition unverified. Exact employer India and Worldwide scoped searches show no matching cards; they do not prove complete company inventory. Totals unknown; cleanup disabled.",
+    "lifecycleCleanupAllowed": false
+  },
+  "retainedResponses": [
+    {
+      "url": "https://www.appsecure.security/",
+      "finalUrl": "https://www.appsecure.security/",
+      "status": 200,
+      "capturedAt": "2026-10-23T10:00:00.000Z",
+      "bodySHA256": "cdac12ee1bb5c004a770f2ec13d9c0120e9705a54f9dfc4eece7b91ceab8a594",
+      "bodyBytes": 372078
+    },
+    {
+      "url": "https://www.appsecure.security/about",
+      "finalUrl": "https://www.appsecure.security/about",
+      "status": 200,
+      "capturedAt": "2026-10-23T10:00:00.000Z",
+      "bodySHA256": "8466754d629534768ddc9a4bb3fb0c629fccc48345f2d8a7b3c1236a2546fe41",
+      "bodyBytes": 278500
+    },
+    {
+      "url": "https://www.linkedin.com/company/appsecure-security",
+      "finalUrl": "https://www.linkedin.com/company/appsecure-security",
+      "status": 200,
+      "capturedAt": "2026-10-23T10:00:00.000Z",
+      "bodySHA256": "7e2bcefd7031c90392574720096a031c08f959867caba12a5e6c79e2048a631c",
+      "bodyBytes": 341890
+    },
+    {
+      "url": "https://www.linkedin.com/posts/sandeephodkasia_bugbounty-hiring-pentesting-activity-7492483018570235905-l4xZ",
+      "finalUrl": "https://www.linkedin.com/posts/sandeephodkasia_bugbounty-hiring-pentesting-activity-7492483018570235905-l4xZ",
+      "status": 200,
+      "capturedAt": "2026-10-23T10:00:00.000Z",
+      "bodySHA256": "f4305d8df7177b2764271122e4effdbe2fe137aa488ae021bd37e6faf27af43d",
+      "bodyBytes": 180766
+    },
+    {
+      "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+      "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+      "status": 200,
+      "capturedAt": "2026-10-23T10:00:00.000Z",
+      "bodySHA256": "05d1d642aadcea5144a1198b31e47d4efd0e25e8534f0b897808147246ed37fa",
+      "bodyBytes": 89346
+    },
+    {
+      "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+      "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+      "status": 200,
+      "capturedAt": "2026-10-23T10:00:00.000Z",
+      "bodySHA256": "ba57fc75423d363be59a94033e9a26de67b168a26c75dd0c76d4b34850e75429",
+      "bodyBytes": 89401
+    }
+  ],
+  "nonRoleRedirectObservation": {
+    "url": "https://www.linkedin.com/jobs/view/4468771843",
+    "finalUrl": "https://www.linkedin.com/jobs/general-manager-customer-service-jobs?trk=expired_jd_redirect",
+    "status": 200,
+    "roleFactsRecovered": false
+  },
+  "tests": {
+    "command": "node --test test/appSecureNative.test.js test/appSecureCoverage.test.js",
+    "passed": 14,
+    "failed": 0,
+    "redBeforeImplementation": "Six meaningful transport/stream/deadline/caller-abort tests failed original stub with missing rejection",
+    "reviewFix": "Red test reproduced ignored active JobPosting/schema/microdata date-country-expiry drift; guards across corporate, employer, post and scoped search now reject changed job evidence. Added 38 actual-response replay mutations; unchanged captures preserved."
+  },
+  "limitations": [
+    "Founder post is independently published firstParty:false even though native employer has corporate footer binding.",
+    "Founder hiring invitation is older than 30 days and does not prove an active requisition.",
+    "India/Worldwide exact employer searches establish scoped observations only; totals remain unknown.",
+    "Known CSM short role URL redirects to unrelated expired-job search; its cards are never parsed as AppSecure jobs.",
+    "No database, deployment, push or production visibility verification."
+  ]
+}

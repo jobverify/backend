@@ -1,0 +1,9 @@
+{
+ "source":"bounteous","catalogOverride":true,"companyName":"Bounteous","adapter":"script","modulePath":"../bounteous/script.js",
+ "companyCareerPage":"https://www.bounteous.com/careers/search-results","companyDomain":"bounteous.com","countryFilter":"India","atsPlatform":"lever+turbohire",
+ "paginationStrategy":"current-declared-client-complete-public-arrays+closing-full-native-models",
+ "extractionStrategy":"bound-bounteous-current-client+both-native-json-feeds+same-ID-full-public-criteria+explicit-native-worksites",
+ "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",
+ "sourceCompanyWideScopeComplete":false,"lifecycleCleanupAllowed":false,
+ "verifiedSurfaceSummary":"The current published Bounteous client merges all Lever and TurboHire records. Runtime enumerates both unfiltered native JSON arrays, validates explicit role-bound country alternatives, binds each India full-detail response by ID and complete original native model, and reconciles closing complete arrays and current client. Full Lever HTML/list criteria replace incomplete plain summaries. Opaque IDs are not formal requisition numbers; absent native dates remain unknown. All-explicit-foreign multi-country alternatives can exclude India without inventing exact foreign associations. Scope is this declared careers board; other company channels/lifecycle cleanup remain unknown."
+}

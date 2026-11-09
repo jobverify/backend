@@ -1,0 +1,25 @@
+[
+  {
+    "source": "biofourmis",
+    "catalogOverride": true,
+    "publicInventoryVerification": {
+      "policy": "biofourmis-current-advertised-public-source",
+      "corporateHomepage": "https://biofourmis.com/",
+      "advertisedCareersPages": [
+        "https://biofourmis.com/about/job-openings",
+        "https://biofourmis.com/about/clinical-job-openings"
+      ],
+      "nativeBoard": "https://job-boards.greenhouse.io/biofourmis",
+      "nativeDepartmentInventory": "https://boards-api.greenhouse.io/v1/boards/biofourmis/departments/",
+      "originalNativePreservation": "all-published-original-post-models-and-complete-criteria-before-prospect-country-selection",
+      "runtimeCompletion": "current-employer-binding+reviewed-unfiltered-loader+all-advertised-surfaces-accounted+native-feed-office-department-and-hosted-board-reconciliation+all-country-partition+full-India-criteria-and-public-application-form+stable-closing+original-fresh-receipts",
+      "currentDisposition": "coverage-gap",
+      "currentPublicScopeGap": "The current corporate homepage and general careers page advertise a clinical careers page that returns HTTP 404. The loader returned an explicit CodeSandbox Preview trust interstitial (HTTP 400) during the registered current read; its earlier HTTP 200 JavaScript capture is preserved separately. The biofourmis Greenhouse account's native feed, advertised departments and hosted board are globally empty; this account zero does not prove complete current public employer scope.",
+      "captureDirectory": "scraper/biofourmis/native-captures",
+      "legalEmployer": null,
+      "wholeCompanyScope": null,
+      "companyGlobalTotal": null,
+      "companyIndiaTotal": null
+    }
+  }
+]

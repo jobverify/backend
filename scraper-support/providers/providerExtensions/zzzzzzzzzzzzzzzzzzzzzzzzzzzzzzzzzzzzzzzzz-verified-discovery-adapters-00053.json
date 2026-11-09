@@ -1,0 +1,51 @@
+[
+  {
+    "source": "eptura",
+    "companyName": "Eptura",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../eptura/script.js",
+    "companyDomain": "eptura.com",
+    "officialHomepageUrl": "https://eptura.com/",
+    "companyCareerPage": "https://eptura.com/careers/",
+    "jobsBoardUrl": "https://eptura.pinpointhq.com/",
+    "listingApiUrl": "https://eptura.pinpointhq.com/postings.json",
+    "atsPlatform": "pinpoint-public-postings-json-and-native-JobPosting",
+    "countryFilter": "India",
+    "parser": "source-local-native-contract-with-shared-activeNativeHtml-and-inventoryEvidence",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "current-advertised-nonpaginated-data-only-feed-and-full-stable-recheck",
+    "extractionStrategy": "current-official-delegation-native-tenant-typed-country-city-full-JD-original-JobPosting-dates-advertised-application-entry",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "coverage-gap",
+    "remediationStatus": "implemented-awaiting-ordinary-audit-and-independent-review",
+    "runtimeQualification": "unqualified-offline-evidence-only-until-ordinary-audit",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T19:10:14.115Z",
+      "officialURL": "https://eptura.com/careers/",
+      "matchedLinks": [
+        "https://eptura.pinpointhq.com/",
+        "https://eptura.pinpointhq.com/postings.json"
+      ],
+      "evidenceOrigin": "current-ordinary-anonymous-public-GET-research-not-runtime-extraction",
+      "nativeCaptureSeal": "artifacts/full-catalog/eptura-native-001/research-summary-001.json",
+      "nativeCaptureSealSHA256": "43ad4454b06f527b9b9c18a8436322dd2d756a09a4bab503df270ffc042dde11",
+      "nativeCaptureOriginalObservedWindow": {
+        "earliest": "2026-10-21T19:09:52.200Z",
+        "latest": "2026-10-21T19:16:55.974Z",
+        "renewedByLocalSeal": false
+      },
+      "priorDiscoveryArtifact": "artifacts/full-catalog/official-discovery/batch-029.json",
+      "priorDiscoverySHA256": "ebfd712994364a3501a292e76726abc8d5acfcef81a5153618e8b8230970bc0a"
+    },
+    "sourceScopeNotes": "Only the exact currently advertised public Eptura Pinpoint tenant feed is enumerated and rechecked. Whole-company/global/India counts and typed legal employers remain unknown. Current role JobPosting datePosted values are authoritative original native dates, separately preserved from earlier discovery unknowns and all capture clocks. Config currently advertises showPagination:false, pageSize:null and no exclusion filters; the advertised lazy jobs-client asset returned403 without retry, so no complete-company assertion is made. Full core descriptions are mandatory; optional empty requirements/benefits do not discard valid core JDs. Exact advertised application entries are anonymously fetched for identity only, with no form interaction, submission or consent. Failures, unknown empty surfaces, pagination changes, drift or contradictions throw and cannot authorize prior-job deletion. The one-calendar-month visibility policy is unchanged.",
+    "verifiedSurfaceSummary": "Current ordinary-public research captures official delegation, full Gurugram India JDs, native dates and exact advertised application-entry access. Runtime and independent review observations remain separate; all stored verification counts remain unknown."
+  }
+]

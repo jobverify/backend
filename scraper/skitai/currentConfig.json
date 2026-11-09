@@ -1,0 +1,35 @@
+{
+  "companyName": "Skit.ai",
+  "host": "skit",
+  "identifier": "e19d0982-9c9d-4bf6-8908-d71528107801",
+  "officialUrl": "https://skit.ai/careers/",
+  "additionalPages": [
+    "https://skit.ai/in/careers/"
+  ],
+  "mode": "delayed",
+  "source": "skitai",
+  "root": "https://skit.keka.com/careers/",
+  "portalIdentity": {
+    "name": "Skit.ai",
+    "shortName": "Skit.ai",
+    "domain": "skit.keka.com"
+  },
+  "expectedFinalUrls": {},
+  "equivalentInlinePrograms": {
+    "https://skit.ai/careers/": [
+      {
+        "canonicalSha256": "e75efaadfd89692c2a09cb39e152c531c147aaa3c0eb7b3f7cd353e81e0240ea",
+        "originalBodySha256": "7dac62c3e15a020bffca5fc8bbc4e09d88c3ff55a7b03aae9bdfc4dbfd437b5e",
+        "kind": "reviewed-public-response-program-ray-and-decimal-timestamp-only"
+      }
+    ],
+    "https://skit.ai/in/careers/": [
+      {
+        "canonicalSha256": "e75efaadfd89692c2a09cb39e152c531c147aaa3c0eb7b3f7cd353e81e0240ea",
+        "originalBodySha256": "30ae822d5f9005a8cf92bfa9b31f42d54be5d81c68af7ca5204fbfc487d6ba20",
+        "kind": "reviewed-public-response-program-ray-and-decimal-timestamp-only"
+      }
+    ]
+  },
+  "delayedLoaderSha256": "43f9fe149d3f8399c8e3f2216463542667bd4b385a694261b8e44a2170d6d07d"
+}

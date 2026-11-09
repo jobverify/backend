@@ -1,0 +1,12 @@
+[
+  {
+    "source": "industrybuying",
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": 5,
+    "verifiedIndiaJobCount": null,
+    "verifiedSampleJobTitle": "Senior Manager HR",
+    "verifiedSampleJobUrl": "https://jobs.industrybuying.com/jobs/detail?id=job_1790074749288",
+    "verifiedSurfaceSummary": "Observed on November 5, 2026: the official IndustryBuying homepage links https://jobs.industrybuying.com/ and the public https://careers.industrybuying.com/api/career/jobs inventory and own-org detail models expose five roles, including Senior Manager HR and Online Sales Executive. Full original role criteria and requisition identities are retained. The native location fields contain office labels such as Delhi HO and New Delhi without an explicit work country. All five countries remain unknown; no India count, complete company inventory or lifecycle cleanup is qualified.",
+    "catalogOverride": true
+  }
+]

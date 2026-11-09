@@ -1,0 +1,378 @@
+{
+  "scope": "Static review of candidate company/group/listing/detail reads and rendered role fields; raw old/current method bodies retained. API success is separately evidenced by fresh native receipts.",
+  "shell": {
+    "onlyTwoAssetFilenamesChanged": true,
+    "oldSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+    "currentSha256": "f7407527dde48b65875a103038251af5ff7b5da89f2c64ffbff6d6479f5c0625"
+  },
+  "summary": [
+    {
+      "name": "getGroupCompanyStatus",
+      "normalizedEqual": true,
+      "oldBytes": 70,
+      "currentBytes": 70,
+      "matchCount": 1
+    },
+    {
+      "name": "getCompanyInfo",
+      "normalizedEqual": true,
+      "oldBytes": 554,
+      "currentBytes": 554,
+      "matchCount": 1
+    },
+    {
+      "name": "transformCompanyInfo",
+      "normalizedEqual": true,
+      "oldBytes": 3627,
+      "currentBytes": 3627,
+      "matchCount": 1
+    },
+    {
+      "name": "getJobDetailsAndSimilarJobs",
+      "normalizedEqual": false,
+      "oldBytes": 322,
+      "currentBytes": 370,
+      "matchCount": 1
+    },
+    {
+      "name": "transformJob",
+      "normalizedEqual": true,
+      "oldBytes": 1068,
+      "currentBytes": 1068,
+      "matchCount": 1
+    },
+    {
+      "name": "loadAllJobs",
+      "normalizedEqual": true,
+      "oldBytes": 465,
+      "currentBytes": 465,
+      "matchCount": 2
+    },
+    {
+      "name": "transformJobs",
+      "normalizedEqual": true,
+      "oldBytes": 2294,
+      "currentBytes": 2294,
+      "matchCount": 1
+    },
+    {
+      "name": "loadAllJobs",
+      "normalizedEqual": true,
+      "oldBytes": 165,
+      "currentBytes": 165,
+      "matchCount": 2
+    }
+  ],
+  "results": [
+    {
+      "label": "reviewed",
+      "methods": [
+        {
+          "name": "getGroupCompanyStatus",
+          "bytes": 70,
+          "normalizedSha256": "e3daf67cd91e0e040727e0c65ffae0904ed743120f551e4b5bed2966b0b19e95",
+          "body": "getGroupCompanyStatus(){return this.apiService.get(i.vZ.groupCompany)}"
+        },
+        {
+          "name": "getCompanyInfo",
+          "bytes": 554,
+          "normalizedSha256": "e621b37d64beff07564e3f85ed41eba3633b096068e91dc2c44b37c6816e2608",
+          "body": "getCompanyInfo(X,Q){return this.apiService.get(i.vZ.companyInfo,{params:{is_preview:Q,companyId:X}}).pipe((0,h.T)(Me=>this.transformer.transformCompanyInfo(Me,X)),(0,B.M)(Me=>{document.documentElement.style.setProperty(\"--primary\",Me.dynamicColor),document.documentElement.style.setProperty(\"--lightPrimary\",`rgba(${this.hexToRgba(Me.dynamicColor)}, 0.1)`),document.documentElement.style.setProperty(\"--primaryHover\",this.darkenHex(Me.dynamicColor,-20)),document.documentElement.style.setProperty(\"--primaryActive\",this.darkenHex(Me.dynamicColor,20))}))}"
+        },
+        {
+          "name": "transformCompanyInfo",
+          "bytes": 3627,
+          "normalizedSha256": "2a59c4c2c26ac19235842cd3ab748a1f5be8496841f26383bb9106e4c9c15682",
+          "body": "transformCompanyInfo(X,Q){X=X.message.company;const Me=[];Me.push({key:\"en\",label:\"English\",subLabel:\"English\"},...Object.keys(X?.languages||{}).map(re=>({key:re,label:X.languages[re],subLabel:ee[re]??re})));const Te={showPostedDate:X?.job_detail_permissions?.showPostedDate||!1,showJobId:X?.job_detail_permissions?.showJobId||!1,showDepartment:X?.job_detail_permissions?.showDepartment||!1,showLocation:X?.job_detail_permissions?.showLocation||!1,showExperienceRange:X?.job_detail_permissions?.showExperienceRange||!1,showEmployeeType:X?.job_detail_permissions?.showEmployeeType||!1,showEmployeeSubType:X?.job_detail_permissions?.showEmployeeSubType||!1,showSalaryRange:X?.job_detail_permissions?.salaryRange||!1,showLegalEntities:X?.job_detail_permissions?.legalEntities||!1},Pe={showPostedDate:X?.job_tile_permissions?.showPostedDate||!1,showJobId:X?.job_tile_permissions?.showJobId||!1,showDepartment:X?.job_tile_permissions?.showDepartment||!1,showLocation:X?.job_tile_permissions?.showLocation||!1,showExperienceRange:X?.job_tile_permissions?.showExperienceRange||!1,showEmployeeType:X?.job_tile_permissions?.showEmployeeType||!1,showEmployeeSubType:X?.job_tile_permissions?.showEmployeeSubType||!1,showSalaryRange:X?.job_tile_permissions?.salaryRange||!1,showLegalEntities:X?.job_tile_permissions?.legalEntities||!1},Ee=Object.keys(X?.careers_filters||{}).filter(re=>\"1\"===X.careers_filters[re]);return{companyId:Q,isNewCareers:X?.new_careers||!1,logo:X?.logo||\"\",companyName:X?.company_name||\"\",banners:X?.banner_images||[],termsUrl:X?.terms_url||\"\",url:X?.url||\"\",customTermsUrl:X?.terms_url_custom||\"\",dynamicColor:X?.dynamic_color||!1,dynamicColorTop:X?.dynamic_color_top||\"\",dynamicBackground:X?.dynamic_background||!1,fontColorCareerPage:X?.font_color_career_page||\"\",languages:Me||[],isPendoEnableCareers:1===parseInt(X?.is_pendo_enable_careers)||!1,aliases:{department:X?.aliases.department||\"\",employeeType:X?.aliases.emp_type||\"\",designation:X?.aliases.designation||\"\",capability:X?.aliases.capability||\"\",functionalArea:X?.aliases.functional_area||\"\",jobTags:X?.aliases.job_tags||\"\",offerProposal:X?.aliases.offer_proposal||\"\",employeeSubType:X?.aliases.emp_sub_type||\"\",locations:X?.aliases.locations||\"\",country:X?.aliases.country||\"\",shortlisting:X?.aliases.shortlisting||\"\",screening:X?.aliases.screening||\"\",preOffer:X?.aliases.pre_offer||\"\",legalEntities:X?.aliases.legal_entities||\"\"},filterOrder:Ee,isOtpBased:1===parseInt(X?.loginwithotp)||!1,careerFilters:Ee,jobDetailsPermisions:Te,jobTilePermisions:Pe,allJobsBannerText:X?.all_jobs_banner_text||\"\",allJobsBannerImage:X?.all_jobs_header_image||\"\",bannerText:X?.banner_text||\"Thank you for choosing us for your next chapter!\",allJobsCount:X?.allJobsCount,employerBenefitSection:this.sanitizer.bypassSecurityTrustHtml(X?.employer_benefit_section.replace(/\\\\\"/g,'\"')),socialMediaUrls:X?.social_media_urls,logoRedirectionLink:X?.group_company_site||\"\",showEmployeeBenefitSectionInJobDetails:X?.show_employer_benefits_jobdetailed||!1,showCountryOfResidence:X?.is_country_of_residence||!1,helpEmail:X?.help_email||\"\",faqAlias:X?.custom_weblink_alias||\"\",faqLink:X?.custom_weblink||\"\",isPreview:X?.is_preview||!1,dateFormat:X?.date_time_format?.dateFormat||\"\",timeFormat:\"24\"==X?.date_time_format?.timeFormat?\"HH:mm\":\"hh:mm A\",enableCVBasedJobRecommendation:X?.enableCvBasedJobRecommendations||!1,subdomain:X?.subdomain||\"\",tenantId:X?.tenant_id||\"\",onboardingEnabled:X?.onboarding_enabled||!1,recruitmentEnabled:X?.recruitment_enabled||!1,isOnboardingOnlyEnabled:!X?.recruitment_enabled&&X?.onboarding_enabled,timezone:X?.date_time_format?.timezone||\"\"}}"
+        },
+        {
+          "name": "getJobDetailsAndSimilarJobs",
+          "bytes": 322,
+          "normalizedSha256": "d7b328d36d561c843b12fcfeb56574bf71f85334ead403eb9c4fc6594bdfd155",
+          "body": "getJobDetailsAndSimilarJobs(Fe,qe){let ht=this.store.selectSnapshot(te.D.getCompanyId);return this.apiService.get(k.vZ.jobDetails.concat(`${Fe}`),{params:qe}).pipe((0,W.T)(Vt=>this.transformJobService.transformJob(Vt)),(0,R.W)(Vt=>(422===Vt?.status&&this.router.navigate([ht,\"error-page\",\"not-allowed\"]),(0,I.of)(null))))}"
+        },
+        {
+          "name": "transformJob",
+          "bytes": 1068,
+          "normalizedSha256": "d5a77ecced1a4e12c2175b0f97ae4fe2a6dc14ba450c660ec29e342022846138",
+          "body": "transformJob(Fe){const qe=this.store.selectSnapshot(Q.V.getAppliedJobIds),ht=this.store.selectSnapshot(Q.V.getSavedJobIds),Vt=this.store.selectSnapshot(Q.V.getDraftedJobIds),St=this.store.selectSnapshot(te.D.getTimeZone);let zt=Fe.message.job[0];return{id:zt.id||\"\",jobId:zt.internal_job_code||\"\",title:zt.title||\"\",experience:zt.experience||\"\",postedOn:zt?.posted_on?this.dateTimePipe.transform(Me.unix(zt.posted_on).tz(St),\"date\"):zt?.created_on?this.dateTimePipe.transform(Me(zt.created_on).tz(St),\"date\"):\"\",location:zt.officelocation_show_arr||\"\",department:zt.department||\"\",departmentId:zt.department_id||\"\",employeeType:zt.emp_type||\"\",employeeSubType:zt.emp_sub_type_name||\"\",functionalArea:zt.functional_area||\"\",functionalAreaId:zt.functional_area_id||\"\",description:zt.jd||\"\",isSaved:ht?.includes(zt.id),jobTags:zt?.job_tags||[],role:\"\",salary:zt?.salary_range||\"\",locationToolTip:zt?.tool_tip_locations||\"\",isApplied:qe?.includes(zt.id)||!1,isDrafted:Vt?.includes(zt.id),isRemoteJob:zt?.is_remote??!1,legalEntitiesTooltip:zt?.tool_tip_legal_entities||[]}}"
+        },
+        {
+          "name": "loadAllJobs",
+          "bytes": 465,
+          "normalizedSha256": "f78106bf0c994a76ec08910720390409015b97db485f7b4fa607ab8509f5694e",
+          "body": "loadAllJobs(le,{payload:Se,emptyJobs:je}){le.setState((0,I.F6)({isAllJobsLoading:!0})),le.setState((0,I.F6)({allJobs:je?[]:le.getState().allJobs}));const Ge=(0,te.YC)(Ee,null),Fe=(0,te.YC)(Pe,[]);return Fe.length&&Ge?.id&&(Se.recommended_jobs=Fe),this.jobApiService.loadAllJobs(Se).pipe((0,R.M)(qe=>{le.setState((0,I.F6)((Se.page??1)>1?{allJobs:(0,I.BC)(qe.jobs),jobsCount:qe.count,isAllJobsLoading:!1}:{allJobs:qe.jobs,jobsCount:qe.count,isAllJobsLoading:!1}))}))}"
+        },
+        {
+          "name": "transformJobs",
+          "bytes": 2294,
+          "normalizedSha256": "aae9c69b2b07c91b3b381ebebd6df805635a571c1e06bff25b9d4e8cfce89f19",
+          "body": "transformJobs(te,X){const Q=this.store.selectSnapshot(h.D.getDateForamt),Me=this.store.selectSnapshot(h.D.getTimeForamt),Oe=this.store.selectSnapshot(h.D.getTimeZone),Te=this.store.selectSnapshot(i.V.getSavedJobIds),Pe=this.store.selectSnapshot(i.V.getAppliedJobIds),Ee=this.store.selectSnapshot(i.V.getDraftedJobIds),ue=this.store.selectSnapshot(h.D.getIsPreview);return te?.map(G=>{const D={id:G?.id||\"\",jobId:G?.internal_job_code||\"\",type:X,postedOn:G?.posted_on?this.dateTimePipe.transform(B.unix(G.posted_on).tz(Oe),\"date\"):G?.created_on?this.dateTimePipe.transform(B(G.created_on).tz(Oe),\"date\"):\"\",title:G?.designation_display_name?G.designation_display_name:G?.title?G.title:G?.designation_name?G.designation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\",functionalAreaId:G?.functional_area||\"\",jobTags:G?.job_tags?.map(le=>({name:le.name||\"\",description:le.description?le.description:le.candidate_description||\"\"}))||[],isSaved:Te?.includes(G.id??\"\")&&!ue,isDrafted:Ee?.includes(G.id??\"\")&&!ue,applicantId:G?.applicant_id||\"\",appliedOn:G?.applied_on?this.dateTimePipe.transform(B(new Date(G.applied_on)).tz(Oe),\"date\"):void 0,phoneNumber:G?.complete_phone||\"\",email:G?.email||\"\",timeZone:Oe,showWithdrawButton:!!G?.show_withdraw_button,locationToolTip:G?.tool_tip_locations||\"\",legalEntitiesTooltip:G?.tool_tip_legal_entities||[],employeeSubType:G?.emp_sub_type_name||\"\",isApplied:Pe?.includes(G.id??\"\")&&!ue,offerId:G?.offer_details?.id||\"\",customFlowStage:21==G?.status?\"onboarding_stage\":\"offer_stage\",matchScore:this.getMatch(G.semantic_similarity_score??0),isPurged:G?.is_purged??!1,isRemoteJob:G?.is_remote??!1};if(\"applied\"==X){let le=this.transformStageData(G?.stage_data,Q||\"DD-MM-YYYY\",Me||\"HH:mm\",Oe);D.cta=this.transformCTA(G?.cta_data),D.interviewData=this.transformInterviewData(G?.interviews_data,Q||\"DD-MM-YYYY\",Me||\"HH:mm\",Oe),D.selfSchedulingData=this.transformSelfSchedulingData(G?.self_scheduling_stages),D.stageData=le.stages,D.offerReleased=le?.offerReleased}return D})??[]}"
+        },
+        {
+          "name": "loadAllJobs",
+          "bytes": 165,
+          "normalizedSha256": "b1fc90e1f8e46d7a620e0ab70e7e1123e8c6882028a9485ee03f3f12d008195a",
+          "body": "loadAllJobs(Ee){return this.apiService.post(i.vZ.allJobs,Ee).pipe((0,se.T)(ue=>({jobs:this.jobsTransformer.transformJobs(ue?.data,\"all\"),count:ue?.job_counts??0})))}"
+        }
+      ],
+      "contexts": [
+        {
+          "property": "locations",
+          "text": "this.invalidStringToken(this.pos-1-w.length,l?\"Octal literal in template string\":\"Octal literal in strict mode\"),String.fromCharCode(Y)}return je(p)?(this.options.locations&&(this.lineStart=this.pos,++this.curLine),\"\"):String.fromCharCode(p)}},cr.readHexChar=function(l){var p=this.pos,y=this.readInt(16,l);return null===y&&this.invalidStringToken(p,\"Bad character escape sequence\"),y},cr.readWord1=function(){this.contain"
+        },
+        {
+          "property": "locations",
+          "text": "ase 116:return\"\\t\";case 98:return\"\\b\";case 118:return\"\\v\";case 102:return\"\\f\";case 13:10===this.input.charCodeAt(this.pos)&&++this.pos;case 10:return this.options.locations&&(this.lineStart=this.pos,++this.curLine),\"\";case 56:case 57:this.strict&&this.invalidStringToken(this.pos-1,\"Invalid escape sequence\"),l&&this.invalidStringToken(this.pos-1,\"Invalid escape sequence in template string\");default:if(p>=48&&p<=55){var "
+        },
+        {
+          "property": "locations",
+          "text": "nput.slice(p,this.pos),++this.pos,y){case 13:10===this.input.charCodeAt(this.pos)&&++this.pos;case 10:l+=\"\\n\";break;default:l+=String.fromCharCode(y)}this.options.locations&&(++this.curLine,this.lineStart=this.pos),p=this.pos}else++this.pos}},cr.readInvalidTemplateToken=function(){for(;this.pos<this.input.length;this.pos++)switch(this.input[this.pos]){case\"\\\\\":++this.pos;break;case\"$\":if(\"{\"!==this.input[this.pos+1])br"
+        },
+        {
+          "property": "locations",
+          "text": "his.readEscapedChar(!1),y=this.pos):8232===w||8233===w?(this.options.ecmaVersion<10&&this.raise(this.start,\"Unterminated string constant\"),++this.pos,this.options.locations&&(this.curLine++,this.lineStart=this.pos)):(je(w)&&this.raise(this.start,\"Unterminated string constant\"),++this.pos)}return p+=this.input.slice(y,this.pos++),this.finishToken(D.string,p)};var Bi={};cr.tryReadTemplateToken=function(){this.inTemplateE"
+        },
+        {
+          "property": "locations",
+          "text": ":break e}break;default:if(!(l>8&&l<14||l>=5760&&Fe.test(String.fromCharCode(l))))break e;++this.pos}}},cr.finishToken=function(l,p){this.end=this.pos,this.options.locations&&(this.endLoc=this.curPosition());var y=this.type;this.type=l,this.value=p,this.updateContext(y)},cr.readToken_dot=function(){var l=this.input.charCodeAt(this.pos+1);if(l>=48&&l<=57)return this.readNumber(!0);var p=this.input.charCodeAt(this.pos+2);"
+        },
+        {
+          "property": "locations",
+          "text": "is.pos);switch(l){case 32:case 160:++this.pos;break;case 13:10===this.input.charCodeAt(this.pos+1)&&++this.pos;case 10:case 8232:case 8233:++this.pos,this.options.locations&&(++this.curLine,this.lineStart=this.pos);break;case 47:switch(this.input.charCodeAt(this.pos+1)){case 42:this.skipBlockComment();break;case 47:this.skipLineComment(2);break;default:break e}break;default:if(!(l>8&&l<14||l>=5760&&Fe.test(String.fromC"
+        },
+        {
+          "property": "locations",
+          "text": "onComment&&this.curPosition(),p=this.pos,y=this.input.indexOf(\"*/\",this.pos+=2);if(-1===y&&this.raise(this.pos-2,\"Unterminated comment\"),this.pos=y+2,this.options.locations)for(var w=void 0,Y=p;(w=Ge(this.input,Y,this.pos))>-1;)++this.curLine,Y=this.lineStart=w;this.options.onComment&&this.options.onComment(!0,this.input.slice(p+2,y),p,this.pos,l,this.curPosition())},cr.skipLineComment=function(l){for(var p=this.pos,y="
+        },
+        {
+          "property": "locations",
+          "text": "n{done:p.type===D.eof,value:p}}}}),cr.nextToken=function(){var l=this.curContext();return(!l||!l.preserveSpace)&&this.skipSpace(),this.start=this.pos,this.options.locations&&(this.startLoc=this.curPosition()),this.pos>=this.input.length?this.finishToken(D.eof):l.override?l.override(this):void this.readToken(this.fullCharCodeAtPos())},cr.readToken=function(l){return Me(l,this.options.ecmaVersion>=6)||92===l?this.readWor"
+        },
+        {
+          "property": "locations",
+          "text": "l.lastIntValue=16*l.lastIntValue+is(Y),l.advance()}return!0};var $s=function(p){this.type=p.type,this.value=p.value,this.start=p.start,this.end=p.end,p.options.locations&&(this.loc=new Ct(p,p.startLoc,p.endLoc)),p.options.ranges&&(this.range=[p.start,p.end])},cr=sn.prototype;function Fi(l){return\"function\"!=typeof BigInt?null:BigInt(l.replace(/_/g,\"\"))}cr.next=function(l){!l&&this.type.keyword&&this.containsEsc&&thi"
+        },
+        {
+          "property": "locations",
+          "text": "File&&(this.sourceFile=p.options.directSourceFile),p.options.ranges&&(this.range=[y,0])},ki=sn.prototype;function os(l,p,y,w){return l.type=p,l.end=y,this.options.locations&&(l.loc.end=w),this.options.ranges&&(l.range[1]=y),l}ki.startNode=function(){return new Hi(this,this.start,this.startLoc)},ki.startNodeAt=function(l,p){return new Hi(this,l,p)},ki.finishNode=function(l,p){return os.call(this,l,p,this.lastTokEnd,this"
+        },
+        {
+          "property": "locations",
+          "text": "opeStack.length-1;;l--){var p=this.scopeStack[l];if(771&p.flags&&!(16&p.flags))return p}};var Hi=function(p,y,w){this.type=\"\",this.start=y,this.end=0,p.options.locations&&(this.loc=new Ct(p,w)),p.options.directSourceFile&&(this.sourceFile=p.options.directSourceFile),p.options.ranges&&(this.range=[y,0])},ki=sn.prototype;function os(l,p,y,w){return l.type=p,l.end=y,this.options.locations&&(l.loc.end=w),this.options.ra"
+        },
+        {
+          "property": "locations",
+          "text": "in \"+this.sourceFile);var w=new SyntaxError(p);throw w.pos=l,w.loc=y,w.raisedAt=this.pos,w},Vi.raiseRecoverable=Vi.raise,Vi.curPosition=function(){if(this.options.locations)return new Dt(this.curLine,this.pos-this.lineStart)};var hi=sn.prototype,vi=function(p){this.flags=p,this.var=[],this.lexical=[],this.functions=[]};hi.enterScope=function(l){this.scopeStack.push(new vi(l))},hi.exitScope=function(){this.scopeStack.po"
+        },
+        {
+          "property": "locations",
+          "text": "rn w.push(Y)}}if(jt(p.onComment)&&(p.onComment=function Xt(l,p){return function(y,w,Y,ge,ke,Xe){var ot={type:y?\"Block\":\"Line\",value:w,start:Y,end:ge};l.locations&&(ot.loc=new Ct(this,ke,Xe)),l.ranges&&(ot.range=[Y,ge]),p.push(ot)}}(p,p.onComment)),\"commonjs\"===p.sourceType&&p.allowAwaitOutsideFunction)throw new Error(\"Cannot use allowAwaitOutsideFunction with sourceType: commonjs\");return p}(p),this.sourceFi"
+        },
+        {
+          "property": "allJobsCount",
+          "text": "t pe=window.screen.width+\"x\"+window.screen.height;$.initialize({visitor:{id:\"\",screen_resolution:pe},account:{id:T.subdomain+\"_\"+T.tenantId,job_count:T.allJobsCount,subdomain:T.subdomain,company_name:T.companyName}})}initializePreAuth(T){const $=this.getCompanyIdentity(T);if(!$)return console.warn(\"[Usertour] Skipped: missing subdomain or tenantId in company config.\"),ha.w;if(this.initStarted&&this.lastCompanyK"
+        },
+        {
+          "property": "groupCompany",
+          "text": "),16),Me=parseInt(X.substring(2,4),16),Oe=parseInt(X.substring(4,6),16)}return`${Q}, ${Me}, ${Oe}`}getGroupCompanyStatus(){return this.apiService.get(i.vZ.groupCompany)}darkenHex(X,Q){if(!X||!/^#[0-9A-F]{6}$/i.test(X))return\"\";const Me=parseInt(X.slice(1),16);let Oe=(Me>>16)+Math.round(2.55*-Q),Te=(Me>>8&255)+Math.round(2.55*-Q),Pe=(255&Me)+Math.round(2.55*-Q);return Oe=Math.max(0,Math.min(255,Oe)),Te=Math.max(0,M"
+        },
+        {
+          "property": "companyInfo",
+          "text": "9452);let R=(()=>{var I;class k{constructor(X,Q,Me){this.apiService=X,this.transformer=Q,this.store=Me}getCompanyInfo(X,Q){return this.apiService.get(i.vZ.companyInfo,{params:{is_preview:Q,companyId:X}}).pipe((0,h.T)(Me=>this.transformer.transformCompanyInfo(Me,X)),(0,B.M)(Me=>{document.documentElement.style.setProperty(\"--primary\",Me.dynamicColor),document.documentElement.style.setProperty(\"--lightPrimary\",`rgba"
+        },
+        {
+          "property": "allJobsCount",
+          "text": "r_text||\"\",allJobsBannerImage:X?.all_jobs_header_image||\"\",bannerText:X?.banner_text||\"Thank you for choosing us for your next chapter!\",allJobsCount:X?.allJobsCount,employerBenefitSection:this.sanitizer.bypassSecurityTrustHtml(X?.employer_benefit_section.replace(/\\\\\"/g,'\"')),socialMediaUrls:X?.social_media_urls,logoRedirectionLink:X?.group_company_site||\"\",showEmployeeBenefitSectionInJobDetails:X?.show_employer"
+        },
+        {
+          "property": "locations",
+          "text": "functional_area||\"\",jobTags:X?.aliases.job_tags||\"\",offerProposal:X?.aliases.offer_proposal||\"\",employeeSubType:X?.aliases.emp_sub_type||\"\",locations:X?.aliases.locations||\"\",country:X?.aliases.country||\"\",shortlisting:X?.aliases.shortlisting||\"\",screening:X?.aliases.screening||\"\",preOffer:X?.aliases.pre_offer||\"\",legalEntities:X?.aliases.legal_entities||\"\"},filterOrder:Ee,isOtpBased:1===parseInt(X?.loginwithotp)||!1"
+        },
+        {
+          "property": "jobDetails",
+          "text": "his.router=Vt,this.transformJobs=St}getJobDetailsAndSimilarJobs(Fe,qe){let ht=this.store.selectSnapshot(te.D.getCompanyId);return this.apiService.get(k.vZ.jobDetails.concat(`${Fe}`),{params:qe}).pipe((0,W.T)(Vt=>this.transformJobService.transformJob(Vt)),(0,R.W)(Vt=>(422===Vt?.status&&this.router.navigate([ht,\"error-page\",\"not-allowed\"]),(0,I.of)(null))))}getSimilarJobs(Fe){return this.apiService.post(k.vZ.simil"
+        },
+        {
+          "property": "tool_tip_locations",
+          "text": "functional_area_id||\"\",description:zt.jd||\"\",isSaved:ht?.includes(zt.id),jobTags:zt?.job_tags||[],role:\"\",salary:zt?.salary_range||\"\",locationToolTip:zt?.tool_tip_locations||\"\",isApplied:qe?.includes(zt.id)||!1,isDrafted:Vt?.includes(zt.id),isRemoteJob:zt?.is_remote??!1,legalEntitiesTooltip:zt?.tool_tip_legal_entities||[]}}static#e=Se=()=>(this.\\u0275fac=function(qe){return new(qe||je)(ne.KVO(h.il),ne.KVO(Oe.l),ne.KVO("
+        },
+        {
+          "property": "jd",
+          "text": "zt.emp_type||\"\",employeeSubType:zt.emp_sub_type_name||\"\",functionalArea:zt.functional_area||\"\",functionalAreaId:zt.functional_area_id||\"\",description:zt.jd||\"\",isSaved:ht?.includes(zt.id),jobTags:zt?.job_tags||[],role:\"\",salary:zt?.salary_range||\"\",locationToolTip:zt?.tool_tip_locations||\"\",isApplied:qe?.includes(zt.id)||!1,isDrafted:Vt?.includes(zt.id),isRemoteJob:zt?.is_remote??!1,legalEntitiesToolti"
+        },
+        {
+          "property": "tool_tip_locations",
+          "text": ").tz(Oe),\"date\"):void 0,phoneNumber:G?.complete_phone||\"\",email:G?.email||\"\",timeZone:Oe,showWithdrawButton:!!G?.show_withdraw_button,locationToolTip:G?.tool_tip_locations||\"\",legalEntitiesTooltip:G?.tool_tip_legal_entities||[],employeeSubType:G?.emp_sub_type_name||\"\",isApplied:Pe?.includes(G.id??\"\")&&!ue,offerId:G?.offer_details?.id||\"\",customFlowStage:21==G?.status?\"onboarding_stage\":\"offer_stage\",matchScore:this.ge"
+        },
+        {
+          "property": "locations",
+          "text": "signation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\",functionalAreaId:G?.functional_area||\"\",jobTags:G?.job_tags?.map(le"
+        },
+        {
+          "property": "locations",
+          "text": "ion_name?G.designation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\",functionalAreaId:G?.functional_area||\"\",jobTags:G?.job"
+        },
+        {
+          "property": "jd",
+          "text": "nation_display_name:G?.title?G.title:G?.designation_name?G.designation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\""
+        }
+      ]
+    },
+    {
+      "label": "current",
+      "methods": [
+        {
+          "name": "getGroupCompanyStatus",
+          "bytes": 70,
+          "normalizedSha256": "e3daf67cd91e0e040727e0c65ffae0904ed743120f551e4b5bed2966b0b19e95",
+          "body": "getGroupCompanyStatus(){return this.apiService.get(i.vZ.groupCompany)}"
+        },
+        {
+          "name": "getCompanyInfo",
+          "bytes": 554,
+          "normalizedSha256": "e621b37d64beff07564e3f85ed41eba3633b096068e91dc2c44b37c6816e2608",
+          "body": "getCompanyInfo(X,J){return this.apiService.get(i.vZ.companyInfo,{params:{is_preview:J,companyId:X}}).pipe((0,h.T)(Ce=>this.transformer.transformCompanyInfo(Ce,X)),(0,B.M)(Ce=>{document.documentElement.style.setProperty(\"--primary\",Ce.dynamicColor),document.documentElement.style.setProperty(\"--lightPrimary\",`rgba(${this.hexToRgba(Ce.dynamicColor)}, 0.1)`),document.documentElement.style.setProperty(\"--primaryHover\",this.darkenHex(Ce.dynamicColor,-20)),document.documentElement.style.setProperty(\"--primaryActive\",this.darkenHex(Ce.dynamicColor,20))}))}"
+        },
+        {
+          "name": "transformCompanyInfo",
+          "bytes": 3627,
+          "normalizedSha256": "2a59c4c2c26ac19235842cd3ab748a1f5be8496841f26383bb9106e4c9c15682",
+          "body": "transformCompanyInfo(X,J){X=X.message.company;const Ce=[];Ce.push({key:\"en\",label:\"English\",subLabel:\"English\"},...Object.keys(X?.languages||{}).map(re=>({key:re,label:X.languages[re],subLabel:ee[re]??re})));const Se={showPostedDate:X?.job_detail_permissions?.showPostedDate||!1,showJobId:X?.job_detail_permissions?.showJobId||!1,showDepartment:X?.job_detail_permissions?.showDepartment||!1,showLocation:X?.job_detail_permissions?.showLocation||!1,showExperienceRange:X?.job_detail_permissions?.showExperienceRange||!1,showEmployeeType:X?.job_detail_permissions?.showEmployeeType||!1,showEmployeeSubType:X?.job_detail_permissions?.showEmployeeSubType||!1,showSalaryRange:X?.job_detail_permissions?.salaryRange||!1,showLegalEntities:X?.job_detail_permissions?.legalEntities||!1},Pe={showPostedDate:X?.job_tile_permissions?.showPostedDate||!1,showJobId:X?.job_tile_permissions?.showJobId||!1,showDepartment:X?.job_tile_permissions?.showDepartment||!1,showLocation:X?.job_tile_permissions?.showLocation||!1,showExperienceRange:X?.job_tile_permissions?.showExperienceRange||!1,showEmployeeType:X?.job_tile_permissions?.showEmployeeType||!1,showEmployeeSubType:X?.job_tile_permissions?.showEmployeeSubType||!1,showSalaryRange:X?.job_tile_permissions?.salaryRange||!1,showLegalEntities:X?.job_tile_permissions?.legalEntities||!1},Ee=Object.keys(X?.careers_filters||{}).filter(re=>\"1\"===X.careers_filters[re]);return{companyId:J,isNewCareers:X?.new_careers||!1,logo:X?.logo||\"\",companyName:X?.company_name||\"\",banners:X?.banner_images||[],termsUrl:X?.terms_url||\"\",url:X?.url||\"\",customTermsUrl:X?.terms_url_custom||\"\",dynamicColor:X?.dynamic_color||!1,dynamicColorTop:X?.dynamic_color_top||\"\",dynamicBackground:X?.dynamic_background||!1,fontColorCareerPage:X?.font_color_career_page||\"\",languages:Ce||[],isPendoEnableCareers:1===parseInt(X?.is_pendo_enable_careers)||!1,aliases:{department:X?.aliases.department||\"\",employeeType:X?.aliases.emp_type||\"\",designation:X?.aliases.designation||\"\",capability:X?.aliases.capability||\"\",functionalArea:X?.aliases.functional_area||\"\",jobTags:X?.aliases.job_tags||\"\",offerProposal:X?.aliases.offer_proposal||\"\",employeeSubType:X?.aliases.emp_sub_type||\"\",locations:X?.aliases.locations||\"\",country:X?.aliases.country||\"\",shortlisting:X?.aliases.shortlisting||\"\",screening:X?.aliases.screening||\"\",preOffer:X?.aliases.pre_offer||\"\",legalEntities:X?.aliases.legal_entities||\"\"},filterOrder:Ee,isOtpBased:1===parseInt(X?.loginwithotp)||!1,careerFilters:Ee,jobDetailsPermisions:Se,jobTilePermisions:Pe,allJobsBannerText:X?.all_jobs_banner_text||\"\",allJobsBannerImage:X?.all_jobs_header_image||\"\",bannerText:X?.banner_text||\"Thank you for choosing us for your next chapter!\",allJobsCount:X?.allJobsCount,employerBenefitSection:this.sanitizer.bypassSecurityTrustHtml(X?.employer_benefit_section.replace(/\\\\\"/g,'\"')),socialMediaUrls:X?.social_media_urls,logoRedirectionLink:X?.group_company_site||\"\",showEmployeeBenefitSectionInJobDetails:X?.show_employer_benefits_jobdetailed||!1,showCountryOfResidence:X?.is_country_of_residence||!1,helpEmail:X?.help_email||\"\",faqAlias:X?.custom_weblink_alias||\"\",faqLink:X?.custom_weblink||\"\",isPreview:X?.is_preview||!1,dateFormat:X?.date_time_format?.dateFormat||\"\",timeFormat:\"24\"==X?.date_time_format?.timeFormat?\"HH:mm\":\"hh:mm A\",enableCVBasedJobRecommendation:X?.enableCvBasedJobRecommendations||!1,subdomain:X?.subdomain||\"\",tenantId:X?.tenant_id||\"\",onboardingEnabled:X?.onboarding_enabled||!1,recruitmentEnabled:X?.recruitment_enabled||!1,isOnboardingOnlyEnabled:!X?.recruitment_enabled&&X?.onboarding_enabled,timezone:X?.date_time_format?.timezone||\"\"}}"
+        },
+        {
+          "name": "getJobDetailsAndSimilarJobs",
+          "bytes": 370,
+          "normalizedSha256": "dc7fbb7af75c37e7b2013bd226a86f7f61e55b09512771fc26c4e9d2989f46cf",
+          "body": "getJobDetailsAndSimilarJobs(Ne,qe){let ht=this.store.selectSnapshot(te.D.getCompanyId);return this.apiService.get(k.vZ.jobDetails.concat(`${Ne}`),{params:qe}).pipe((0,W.T)(Bt=>this.transformJobService.transformJob(Bt)),(0,R.W)(Bt=>(422===Bt?.status&&this.router.navigate([ht,\"error-page\",\"not-allowed\"],{state:Bt?.message?{message:Bt.message}:void 0}),(0,I.of)(null))))}"
+        },
+        {
+          "name": "transformJob",
+          "bytes": 1068,
+          "normalizedSha256": "d5a77ecced1a4e12c2175b0f97ae4fe2a6dc14ba450c660ec29e342022846138",
+          "body": "transformJob(Ne){const qe=this.store.selectSnapshot(J.V.getAppliedJobIds),ht=this.store.selectSnapshot(J.V.getSavedJobIds),Bt=this.store.selectSnapshot(J.V.getDraftedJobIds),St=this.store.selectSnapshot(te.D.getTimeZone);let zt=Ne.message.job[0];return{id:zt.id||\"\",jobId:zt.internal_job_code||\"\",title:zt.title||\"\",experience:zt.experience||\"\",postedOn:zt?.posted_on?this.dateTimePipe.transform(Ce.unix(zt.posted_on).tz(St),\"date\"):zt?.created_on?this.dateTimePipe.transform(Ce(zt.created_on).tz(St),\"date\"):\"\",location:zt.officelocation_show_arr||\"\",department:zt.department||\"\",departmentId:zt.department_id||\"\",employeeType:zt.emp_type||\"\",employeeSubType:zt.emp_sub_type_name||\"\",functionalArea:zt.functional_area||\"\",functionalAreaId:zt.functional_area_id||\"\",description:zt.jd||\"\",isSaved:ht?.includes(zt.id),jobTags:zt?.job_tags||[],role:\"\",salary:zt?.salary_range||\"\",locationToolTip:zt?.tool_tip_locations||\"\",isApplied:qe?.includes(zt.id)||!1,isDrafted:Bt?.includes(zt.id),isRemoteJob:zt?.is_remote??!1,legalEntitiesTooltip:zt?.tool_tip_legal_entities||[]}}"
+        },
+        {
+          "name": "loadAllJobs",
+          "bytes": 465,
+          "normalizedSha256": "f78106bf0c994a76ec08910720390409015b97db485f7b4fa607ab8509f5694e",
+          "body": "loadAllJobs(ce,{payload:Me,emptyJobs:Be}){ce.setState((0,I.F6)({isAllJobsLoading:!0})),ce.setState((0,I.F6)({allJobs:Be?[]:ce.getState().allJobs}));const Ge=(0,te.YC)(Ee,null),Ne=(0,te.YC)(Pe,[]);return Ne.length&&Ge?.id&&(Me.recommended_jobs=Ne),this.jobApiService.loadAllJobs(Me).pipe((0,R.M)(qe=>{ce.setState((0,I.F6)((Me.page??1)>1?{allJobs:(0,I.BC)(qe.jobs),jobsCount:qe.count,isAllJobsLoading:!1}:{allJobs:qe.jobs,jobsCount:qe.count,isAllJobsLoading:!1}))}))}"
+        },
+        {
+          "name": "transformJobs",
+          "bytes": 2294,
+          "normalizedSha256": "aae9c69b2b07c91b3b381ebebd6df805635a571c1e06bff25b9d4e8cfce89f19",
+          "body": "transformJobs(te,X){const J=this.store.selectSnapshot(h.D.getDateForamt),Ce=this.store.selectSnapshot(h.D.getTimeForamt),Oe=this.store.selectSnapshot(h.D.getTimeZone),Se=this.store.selectSnapshot(i.V.getSavedJobIds),Pe=this.store.selectSnapshot(i.V.getAppliedJobIds),Ee=this.store.selectSnapshot(i.V.getDraftedJobIds),ue=this.store.selectSnapshot(h.D.getIsPreview);return te?.map(G=>{const D={id:G?.id||\"\",jobId:G?.internal_job_code||\"\",type:X,postedOn:G?.posted_on?this.dateTimePipe.transform(B.unix(G.posted_on).tz(Oe),\"date\"):G?.created_on?this.dateTimePipe.transform(B(G.created_on).tz(Oe),\"date\"):\"\",title:G?.designation_display_name?G.designation_display_name:G?.title?G.title:G?.designation_name?G.designation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\",functionalAreaId:G?.functional_area||\"\",jobTags:G?.job_tags?.map(ce=>({name:ce.name||\"\",description:ce.description?ce.description:ce.candidate_description||\"\"}))||[],isSaved:Se?.includes(G.id??\"\")&&!ue,isDrafted:Ee?.includes(G.id??\"\")&&!ue,applicantId:G?.applicant_id||\"\",appliedOn:G?.applied_on?this.dateTimePipe.transform(B(new Date(G.applied_on)).tz(Oe),\"date\"):void 0,phoneNumber:G?.complete_phone||\"\",email:G?.email||\"\",timeZone:Oe,showWithdrawButton:!!G?.show_withdraw_button,locationToolTip:G?.tool_tip_locations||\"\",legalEntitiesTooltip:G?.tool_tip_legal_entities||[],employeeSubType:G?.emp_sub_type_name||\"\",isApplied:Pe?.includes(G.id??\"\")&&!ue,offerId:G?.offer_details?.id||\"\",customFlowStage:21==G?.status?\"onboarding_stage\":\"offer_stage\",matchScore:this.getMatch(G.semantic_similarity_score??0),isPurged:G?.is_purged??!1,isRemoteJob:G?.is_remote??!1};if(\"applied\"==X){let ce=this.transformStageData(G?.stage_data,J||\"DD-MM-YYYY\",Ce||\"HH:mm\",Oe);D.cta=this.transformCTA(G?.cta_data),D.interviewData=this.transformInterviewData(G?.interviews_data,J||\"DD-MM-YYYY\",Ce||\"HH:mm\",Oe),D.selfSchedulingData=this.transformSelfSchedulingData(G?.self_scheduling_stages),D.stageData=ce.stages,D.offerReleased=ce?.offerReleased}return D})??[]}"
+        },
+        {
+          "name": "loadAllJobs",
+          "bytes": 165,
+          "normalizedSha256": "b1fc90e1f8e46d7a620e0ab70e7e1123e8c6882028a9485ee03f3f12d008195a",
+          "body": "loadAllJobs(Ee){return this.apiService.post(i.vZ.allJobs,Ee).pipe((0,se.T)(ue=>({jobs:this.jobsTransformer.transformJobs(ue?.data,\"all\"),count:ue?.job_counts??0})))}"
+        }
+      ],
+      "contexts": [
+        {
+          "property": "locations",
+          "text": "this.invalidStringToken(this.pos-1-w.length,l?\"Octal literal in template string\":\"Octal literal in strict mode\"),String.fromCharCode(Y)}return Be(p)?(this.options.locations&&(this.lineStart=this.pos,++this.curLine),\"\"):String.fromCharCode(p)}},cr.readHexChar=function(l){var p=this.pos,y=this.readInt(16,l);return null===y&&this.invalidStringToken(p,\"Bad character escape sequence\"),y},cr.readWord1=function(){this.contain"
+        },
+        {
+          "property": "locations",
+          "text": "ase 116:return\"\\t\";case 98:return\"\\b\";case 118:return\"\\v\";case 102:return\"\\f\";case 13:10===this.input.charCodeAt(this.pos)&&++this.pos;case 10:return this.options.locations&&(this.lineStart=this.pos,++this.curLine),\"\";case 56:case 57:this.strict&&this.invalidStringToken(this.pos-1,\"Invalid escape sequence\"),l&&this.invalidStringToken(this.pos-1,\"Invalid escape sequence in template string\");default:if(p>=48&&p<=55){var "
+        },
+        {
+          "property": "locations",
+          "text": "nput.slice(p,this.pos),++this.pos,y){case 13:10===this.input.charCodeAt(this.pos)&&++this.pos;case 10:l+=\"\\n\";break;default:l+=String.fromCharCode(y)}this.options.locations&&(++this.curLine,this.lineStart=this.pos),p=this.pos}else++this.pos}},cr.readInvalidTemplateToken=function(){for(;this.pos<this.input.length;this.pos++)switch(this.input[this.pos]){case\"\\\\\":++this.pos;break;case\"$\":if(\"{\"!==this.input[this.pos+1])br"
+        },
+        {
+          "property": "locations",
+          "text": "his.readEscapedChar(!1),y=this.pos):8232===w||8233===w?(this.options.ecmaVersion<10&&this.raise(this.start,\"Unterminated string constant\"),++this.pos,this.options.locations&&(this.curLine++,this.lineStart=this.pos)):(Be(w)&&this.raise(this.start,\"Unterminated string constant\"),++this.pos)}return p+=this.input.slice(y,this.pos++),this.finishToken(D.string,p)};var Bi={};cr.tryReadTemplateToken=function(){this.inTemplateE"
+        },
+        {
+          "property": "locations",
+          "text": ":break e}break;default:if(!(l>8&&l<14||l>=5760&&Ne.test(String.fromCharCode(l))))break e;++this.pos}}},cr.finishToken=function(l,p){this.end=this.pos,this.options.locations&&(this.endLoc=this.curPosition());var y=this.type;this.type=l,this.value=p,this.updateContext(y)},cr.readToken_dot=function(){var l=this.input.charCodeAt(this.pos+1);if(l>=48&&l<=57)return this.readNumber(!0);var p=this.input.charCodeAt(this.pos+2);"
+        },
+        {
+          "property": "locations",
+          "text": "is.pos);switch(l){case 32:case 160:++this.pos;break;case 13:10===this.input.charCodeAt(this.pos+1)&&++this.pos;case 10:case 8232:case 8233:++this.pos,this.options.locations&&(++this.curLine,this.lineStart=this.pos);break;case 47:switch(this.input.charCodeAt(this.pos+1)){case 42:this.skipBlockComment();break;case 47:this.skipLineComment(2);break;default:break e}break;default:if(!(l>8&&l<14||l>=5760&&Ne.test(String.fromC"
+        },
+        {
+          "property": "locations",
+          "text": "onComment&&this.curPosition(),p=this.pos,y=this.input.indexOf(\"*/\",this.pos+=2);if(-1===y&&this.raise(this.pos-2,\"Unterminated comment\"),this.pos=y+2,this.options.locations)for(var w=void 0,Y=p;(w=Ge(this.input,Y,this.pos))>-1;)++this.curLine,Y=this.lineStart=w;this.options.onComment&&this.options.onComment(!0,this.input.slice(p+2,y),p,this.pos,l,this.curPosition())},cr.skipLineComment=function(l){for(var p=this.pos,y="
+        },
+        {
+          "property": "locations",
+          "text": "n{done:p.type===D.eof,value:p}}}}),cr.nextToken=function(){var l=this.curContext();return(!l||!l.preserveSpace)&&this.skipSpace(),this.start=this.pos,this.options.locations&&(this.startLoc=this.curPosition()),this.pos>=this.input.length?this.finishToken(D.eof):l.override?l.override(this):void this.readToken(this.fullCharCodeAtPos())},cr.readToken=function(l){return Ce(l,this.options.ecmaVersion>=6)||92===l?this.readWor"
+        },
+        {
+          "property": "locations",
+          "text": "l.lastIntValue=16*l.lastIntValue+is(Y),l.advance()}return!0};var $s=function(p){this.type=p.type,this.value=p.value,this.start=p.start,this.end=p.end,p.options.locations&&(this.loc=new Ct(p,p.startLoc,p.endLoc)),p.options.ranges&&(this.range=[p.start,p.end])},cr=sn.prototype;function Fi(l){return\"function\"!=typeof BigInt?null:BigInt(l.replace(/_/g,\"\"))}cr.next=function(l){!l&&this.type.keyword&&this.containsEsc&&thi"
+        },
+        {
+          "property": "locations",
+          "text": "File&&(this.sourceFile=p.options.directSourceFile),p.options.ranges&&(this.range=[y,0])},ki=sn.prototype;function os(l,p,y,w){return l.type=p,l.end=y,this.options.locations&&(l.loc.end=w),this.options.ranges&&(l.range[1]=y),l}ki.startNode=function(){return new Hi(this,this.start,this.startLoc)},ki.startNodeAt=function(l,p){return new Hi(this,l,p)},ki.finishNode=function(l,p){return os.call(this,l,p,this.lastTokEnd,this"
+        },
+        {
+          "property": "locations",
+          "text": "opeStack.length-1;;l--){var p=this.scopeStack[l];if(771&p.flags&&!(16&p.flags))return p}};var Hi=function(p,y,w){this.type=\"\",this.start=y,this.end=0,p.options.locations&&(this.loc=new Ct(p,w)),p.options.directSourceFile&&(this.sourceFile=p.options.directSourceFile),p.options.ranges&&(this.range=[y,0])},ki=sn.prototype;function os(l,p,y,w){return l.type=p,l.end=y,this.options.locations&&(l.loc.end=w),this.options.ra"
+        },
+        {
+          "property": "locations",
+          "text": "in \"+this.sourceFile);var w=new SyntaxError(p);throw w.pos=l,w.loc=y,w.raisedAt=this.pos,w},Vi.raiseRecoverable=Vi.raise,Vi.curPosition=function(){if(this.options.locations)return new Dt(this.curLine,this.pos-this.lineStart)};var hi=sn.prototype,vi=function(p){this.flags=p,this.var=[],this.lexical=[],this.functions=[]};hi.enterScope=function(l){this.scopeStack.push(new vi(l))},hi.exitScope=function(){this.scopeStack.po"
+        },
+        {
+          "property": "locations",
+          "text": "rn w.push(Y)}}if(Ut(p.onComment)&&(p.onComment=function Xt(l,p){return function(y,w,Y,ge,ke,Xe){var ot={type:y?\"Block\":\"Line\",value:w,start:Y,end:ge};l.locations&&(ot.loc=new Ct(this,ke,Xe)),l.ranges&&(ot.range=[Y,ge]),p.push(ot)}}(p,p.onComment)),\"commonjs\"===p.sourceType&&p.allowAwaitOutsideFunction)throw new Error(\"Cannot use allowAwaitOutsideFunction with sourceType: commonjs\");return p}(p),this.sourceFi"
+        },
+        {
+          "property": "allJobsCount",
+          "text": "t pe=window.screen.width+\"x\"+window.screen.height;$.initialize({visitor:{id:\"\",screen_resolution:pe},account:{id:T.subdomain+\"_\"+T.tenantId,job_count:T.allJobsCount,subdomain:T.subdomain,company_name:T.companyName}})}initializePreAuth(T){const $=this.getCompanyIdentity(T);if(!$)return console.warn(\"[Usertour] Skipped: missing subdomain or tenantId in company config.\"),ha.w;if(this.initStarted&&this.lastCompanyK"
+        },
+        {
+          "property": "groupCompany",
+          "text": "),16),Ce=parseInt(X.substring(2,4),16),Oe=parseInt(X.substring(4,6),16)}return`${J}, ${Ce}, ${Oe}`}getGroupCompanyStatus(){return this.apiService.get(i.vZ.groupCompany)}darkenHex(X,J){if(!X||!/^#[0-9A-F]{6}$/i.test(X))return\"\";const Ce=parseInt(X.slice(1),16);let Oe=(Ce>>16)+Math.round(2.55*-J),Se=(Ce>>8&255)+Math.round(2.55*-J),Pe=(255&Ce)+Math.round(2.55*-J);return Oe=Math.max(0,Math.min(255,Oe)),Se=Math.max(0,M"
+        },
+        {
+          "property": "companyInfo",
+          "text": "9452);let R=(()=>{var I;class k{constructor(X,J,Ce){this.apiService=X,this.transformer=J,this.store=Ce}getCompanyInfo(X,J){return this.apiService.get(i.vZ.companyInfo,{params:{is_preview:J,companyId:X}}).pipe((0,h.T)(Ce=>this.transformer.transformCompanyInfo(Ce,X)),(0,B.M)(Ce=>{document.documentElement.style.setProperty(\"--primary\",Ce.dynamicColor),document.documentElement.style.setProperty(\"--lightPrimary\",`rgba"
+        },
+        {
+          "property": "allJobsCount",
+          "text": "r_text||\"\",allJobsBannerImage:X?.all_jobs_header_image||\"\",bannerText:X?.banner_text||\"Thank you for choosing us for your next chapter!\",allJobsCount:X?.allJobsCount,employerBenefitSection:this.sanitizer.bypassSecurityTrustHtml(X?.employer_benefit_section.replace(/\\\\\"/g,'\"')),socialMediaUrls:X?.social_media_urls,logoRedirectionLink:X?.group_company_site||\"\",showEmployeeBenefitSectionInJobDetails:X?.show_employer"
+        },
+        {
+          "property": "locations",
+          "text": "functional_area||\"\",jobTags:X?.aliases.job_tags||\"\",offerProposal:X?.aliases.offer_proposal||\"\",employeeSubType:X?.aliases.emp_sub_type||\"\",locations:X?.aliases.locations||\"\",country:X?.aliases.country||\"\",shortlisting:X?.aliases.shortlisting||\"\",screening:X?.aliases.screening||\"\",preOffer:X?.aliases.pre_offer||\"\",legalEntities:X?.aliases.legal_entities||\"\"},filterOrder:Ee,isOtpBased:1===parseInt(X?.loginwithotp)||!1"
+        },
+        {
+          "property": "jobDetails",
+          "text": "his.router=Bt,this.transformJobs=St}getJobDetailsAndSimilarJobs(Ne,qe){let ht=this.store.selectSnapshot(te.D.getCompanyId);return this.apiService.get(k.vZ.jobDetails.concat(`${Ne}`),{params:qe}).pipe((0,W.T)(Bt=>this.transformJobService.transformJob(Bt)),(0,R.W)(Bt=>(422===Bt?.status&&this.router.navigate([ht,\"error-page\",\"not-allowed\"],{state:Bt?.message?{message:Bt.message}:void 0}),(0,I.of)(null))))}getSimila"
+        },
+        {
+          "property": "tool_tip_locations",
+          "text": "functional_area_id||\"\",description:zt.jd||\"\",isSaved:ht?.includes(zt.id),jobTags:zt?.job_tags||[],role:\"\",salary:zt?.salary_range||\"\",locationToolTip:zt?.tool_tip_locations||\"\",isApplied:qe?.includes(zt.id)||!1,isDrafted:Bt?.includes(zt.id),isRemoteJob:zt?.is_remote??!1,legalEntitiesTooltip:zt?.tool_tip_legal_entities||[]}}static#e=Me=()=>(this.\\u0275fac=function(qe){return new(qe||Be)(ne.KVO(h.il),ne.KVO(Oe.l),ne.KVO("
+        },
+        {
+          "property": "jd",
+          "text": "zt.emp_type||\"\",employeeSubType:zt.emp_sub_type_name||\"\",functionalArea:zt.functional_area||\"\",functionalAreaId:zt.functional_area_id||\"\",description:zt.jd||\"\",isSaved:ht?.includes(zt.id),jobTags:zt?.job_tags||[],role:\"\",salary:zt?.salary_range||\"\",locationToolTip:zt?.tool_tip_locations||\"\",isApplied:qe?.includes(zt.id)||!1,isDrafted:Bt?.includes(zt.id),isRemoteJob:zt?.is_remote??!1,legalEntitiesToolti"
+        },
+        {
+          "property": "tool_tip_locations",
+          "text": ").tz(Oe),\"date\"):void 0,phoneNumber:G?.complete_phone||\"\",email:G?.email||\"\",timeZone:Oe,showWithdrawButton:!!G?.show_withdraw_button,locationToolTip:G?.tool_tip_locations||\"\",legalEntitiesTooltip:G?.tool_tip_legal_entities||[],employeeSubType:G?.emp_sub_type_name||\"\",isApplied:Pe?.includes(G.id??\"\")&&!ue,offerId:G?.offer_details?.id||\"\",customFlowStage:21==G?.status?\"onboarding_stage\":\"offer_stage\",matchScore:this.ge"
+        },
+        {
+          "property": "locations",
+          "text": "signation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\",functionalAreaId:G?.functional_area||\"\",jobTags:G?.job_tags?.map(ce"
+        },
+        {
+          "property": "locations",
+          "text": "ion_name?G.designation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\",functionalAreaId:G?.functional_area||\"\",jobTags:G?.job"
+        },
+        {
+          "property": "jd",
+          "text": "nation_display_name:G?.title?G.title:G?.designation_name?G.designation_name:\"\",workMode:G?.emp_type_name?G?.emp_type_name:G?.emp_type||\"\",description:G?.jd||\"\",jobSummary:G?.jd_summary||\"\",location:G?.locations?G?.locations:G?.officelocation_show_arr_list?.[0]||\"\",experience:G?.experience||\"\",role:\"\",salary:G?.salary_range||\"\",department:G?.department_name||\"\",functionalArea:G?.functional_area_name||\"\""
+        }
+      ]
+    }
+  ]
+}

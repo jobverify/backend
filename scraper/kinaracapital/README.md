@@ -1,0 +1,9 @@
+The official careers page currently links `https://careers.kinaracapital.com/` through its APPLY NOW button. On 2026-10-23 the native destination failed browser transport/TLS; no native HTTP body or status was captured. A historical Openings.co platform association found through search is a discovery hint, not proof of an authorized replacement tenant or API.
+
+The official footer also links Kinara Capital's LinkedIn company. The captured public company page identifies organization `2688667`, and the exact company-filtered India jobs search returned no matching roles. The corresponding guest endpoint returned 26 whitespace characters. These observations do not prove that the unavailable primary board has zero jobs.
+
+The scraper now checks the active official APPLY NOW handoff and its exact native destination within a single aggregate deadline covering fetch and body reads. Caller cancellation preserves the caller's exact reason. Transport failures, redirects, body failures, changed handoffs and unrecognized native markup throw `KINARACAPITAL_COVERAGE_GAP` with incomplete evidence and null counts. No rows are manufactured and no lifecycle cleanup is authorized. A future native parser needs captured inventory, pagination, geography, public date and selected role contracts before enabling extraction.
+
+`fixtures/manifest.json` records source URLs, capture timestamps, raw capture and compressed SHA-256 checksums, and per-response body hashes. `native-board.json` records a transport failure and must never be interpreted as an HTTP response. `catalog-candidate.json` proposes the shared registry correction; the old `jobs.json` is not current inventory evidence.
+
+Scoped verification: `node --test scraper/kinaracapital/native.test.js test/kinaraCapitalCoverage.test.js` and `node --check scraper/kinaracapital/script.js`.

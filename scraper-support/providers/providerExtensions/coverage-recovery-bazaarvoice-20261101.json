@@ -1,0 +1,20 @@
+[
+  {
+    "source": "bazaarvoice",
+    "catalogOverride": true,
+    "adapter": "script",
+    "parser": "custom-script",
+    "modulePath": "../../scraper/bazaarvoice/script.js",
+    "atsPlatform": "lever",
+    "companyCareerPage": "https://www.bazaarvoice.com/company/careers/",
+    "companyDomain": "bazaarvoice.com",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "current-unfiltered-array-with-independent-native-offset-termination-and-closing-reconciliation",
+    "extractionStrategy": "current-employer-controller+native-account-role-and-location-identities+full-visible-details+enabled-native-applications",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Runtime verification is limited to the current employer-advertised public Bazaarvoice Lever inventory. The current active executable and unfiltered component, complete listing and empty native offset termination, every role and application account, per-location country evidence, all selected descriptions, no additional advertised recruiting surface, and stable closing listing must pass together. Bare secondary city labels require an independently typed primary country on the same native application location UUID. Changed or missing evidence preserves independent positive roles and disables inventory cleanup. Counts and freshness are determined by each current observation; no private-channel, legal-employer or whole-company universality claim is made."
+  }
+]

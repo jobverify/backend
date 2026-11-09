@@ -1,0 +1,24 @@
+[
+  {
+    "source": "careem",
+    "companyName": "Careem",
+    "catalogOverride": true,
+    "companyCareerPage": "https://www.careem.com/en-ae/careers/",
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": 11,
+    "verifiedIndiaJobCount": 0,
+    "extractionStrategy": "current-canonical-corporate-handoff+reviewed-owned-client+two-complete-native-greenhouse-snapshots",
+    "verifiedSurfaceSummary": "The original /en-AE/ careers URL publishes a same-origin 301 to /en-ae/. The current canonical corporate page advertises the unchanged owned jobs portal and exact reviewed client. Two complete current native snapshots contain 11 full roles outside India. No complete empty company inventory is claimed. Zero caps and cancellation make no requests, and production reads retain per-origin pacing.",
+    "sourceScopeNotes": "Native full role inventory and current corporate/client binding are reconciled twice. Company-wide scope and legal employer remain unqualified, so lifecycle cleanup remains forbidden. A native board with no selected India records does not establish a complete empty company inventory."
+  },
+  {
+    "source": "auvik",
+    "companyName": "Auvik",
+    "catalogOverride": true,
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": 12,
+    "verifiedIndiaJobCount": 0,
+    "verifiedSurfaceSummary": "The current first-party native loader registration and complete public Greenhouse inventory reconcile twice. Twelve full native roles return no verified India records; some native location scope remains unresolved. The shared reader honors zero caps and production per-origin pacing. Company inventory scope and lifecycle cleanup remain unqualified.",
+    "sourceScopeNotes": "Retain unresolved native worksite countries and full criteria. Zero result caps make no requests and leave native totals unknown. Foreign or unresolved native roles cannot become India through company defaults or city names."
+  }
+]

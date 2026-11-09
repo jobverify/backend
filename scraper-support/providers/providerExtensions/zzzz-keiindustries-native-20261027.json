@@ -1,0 +1,30 @@
+[
+  {
+    "source": "keiindustries",
+    "companyName": "KEI Industries",
+    "adapter": "script",
+    "modulePath": "../keiindustries/script.js",
+    "homepageUrl": "https://www.kei-ind.com/",
+    "companyCareerPage": "https://keihrms.myadrenalin.com/CandidateMAX/#/?CompanyID=KEIIND#new_tab",
+    "officialCareerPageUrl": "https://www.kei-ind.com/career-at-kei/life-at-kei/",
+    "jobListingsUrl": "https://keihrms.myadrenalin.com/CandidateMAX/#/?CompanyID=KEIIND#new_tab",
+    "additionalPublicRecruitmentChannels": [
+      "https://maxhr.myadrenalin.com/CandidateMAX/#/?CompanyID=KEIIND#new_tab"
+    ],
+    "publicCompanyId": "KEIIND",
+    "companyDomain": "kei-ind.com",
+    "atsPlatform": "adrenalin-candidatemax",
+    "countryFilter": "India",
+    "paginationStrategy": "frontend-proven-complete-anonymous-feed+client-pagination+closing-reconciliation",
+    "extractionStrategy": "official-employer-handoffs+no-token-native-vacancies+full-visible-criteria+explicit-role-country",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-10-27",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "Current official homepage and Life at KEI handoffs advertise both KEIIND CandidateMAX channels. Prove each current public frontend/config and employer landing identity before anonymous no-token vacancy/label reads. Capture the entire client-paged native VacancyInformation feed, full description/responsibilities and every rendered dynamic field; preserve JOB_REQUEST_CODE as posting identity rather than inventing a formal requisition. Use role-owned explicit country and original POSTED_ON/expiry fields, then reconcile closing feed, labels, employer binding and advertised channels before caps. The old WordPress jobs archive is general content. Unresolved secondary channels keep whole-company counts null and cleanup disabled.",
+    "dryRunFile": "keiindustries/jobs.json",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "source": "coinbase",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/coinbase/script.js",
+    "atsPlatform": "greenhouse-native-public-api",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "native-complete-envelope-count-reconciliation",
+    "extractionStrategy": "documented-first-party-native-handoff+native-employer-and-role-identity+explicit-primary-india-label+full-native-content-and-original-publication",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "The advertised first-party Coinbase role 8333273 names Greenhouse tenant coinbase. Its public API independently returns Coinbase employer records, matching first-party role URLs/IDs and full original descriptions. Node first-party listing/detail reads were challenged on 2026-11-01 and are not retried. Runtime records scoped native observations; company-wide completeness, unknown worksite scope and lifecycle cleanup remain unverified."
+  }
+]

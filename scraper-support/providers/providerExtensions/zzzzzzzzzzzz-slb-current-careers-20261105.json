@@ -1,0 +1,25 @@
+[
+  {
+    "source": "slb",
+    "companyName": "SLB",
+    "catalogOverride": true,
+    "adapter": "apiPortal",
+    "atsPlatform": "slb-current-company-careers",
+    "companyCareerPage": "https://careers.slb.com/job-listing",
+    "template": null,
+    "templateOptions": null,
+    "nativeCurrentCareerSurface": "slb-current-public-coveo",
+    "paginationStrategy": "bounded-current-company-country-search-with-closing-role-reconciliation",
+    "extractionStrategy": "current-published-search-client+own-active-role-header-country-and-full-criteria+native-published-application-anchor+closing-reconciliation+incomplete-company-scope",
+    "config": {
+      "nativeCurrentCareerSurface": "slb-current-public-coveo",
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 0,
+        "baseDelayMs": 0,
+        "maxDelayMs": 0
+      }
+    },
+    "sourceScopeNotes": "Current company search includes both Eightfold and Workday vacancies. Search filters alone do not establish country. Each own visible role country, native listing identity and closing record must reconcile. Inactive and malformed structured data do not supply criteria, employer or publication facts. Company-wide inventory and cleanup remain unqualified."
+  }
+]

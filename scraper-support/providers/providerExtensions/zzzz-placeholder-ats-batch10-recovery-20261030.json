@@ -1,0 +1,25 @@
+[
+  {
+    "source": "hightouch",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../hightouch/script.js",
+    "atsPlatform": "ashby",
+    "backfillMode": "live-parser",
+    "parser": "current-first-party-Next-JobPosting-bound-native-Ashby-inventory",
+    "companyCareerPage": "https://hightouch.com/careers",
+    "officialCareersPageUrl": "https://hightouch.com/careers",
+    "companyDomain": "hightouch.com",
+    "paginationStrategy": "unfiltered-native-public-feed-matched-to-all-primary-role-summaries-and-closing-snapshot",
+    "extractionStrategy": "current-active-primary-role-cards+Next-JobPosting-and-application-account+native-brand-and-full-public-feed",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "sourceScopeComplete": false,
+    "remediationStatus": "native-extraction-implemented-company-coverage-unverified",
+    "currentExtractionEvidence": "scraper/hightouch/fixtures/current-20261030/manifest.json",
+    "verifiedSurfaceSummary": "Current first-party role summaries, selected canonical JobPosting identities, current application account and native public Ashby feed are revalidated and reconciled in two snapshots. Full native descriptions, compensation and original native publication dates retained. Remote country scope and whole-company inventory remain unverified.",
+    "sourceScopeLimitation": "Only the current primary-bound native Ashby account is extracted. Missing country evidence is retained as unknown; zero selected India roles does not prove company India emptiness. Other channels, legal employer, eligibility, persistence and public visibility remain unverified."
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "source": "cmegroup",
+    "companyName": "CME Group",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/cmegroup.workday/script.js",
+    "dryRunFile": "cmegroup.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "strict-shared-native-Workday-with-source-local-active-content",
+    "companyDomain": "cmegroup.com",
+    "companyCareerPage": "https://www.cmegroup.com/careers.html",
+    "officialHomepageUrl": "https://www.cmegroup.com/",
+    "jobsBoardUrl": "https://cmegroup.wd1.myworkdayjobs.com/en-US/cme_careers",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T12:56:52.193Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-board-runtime-inventory-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-runtime-partial",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T12:56:52.193Z",
+      "officialURL": "https://www.cmegroup.com/careers.html",
+      "matchedLinks": [
+        "https://cmegroup.wd1.myworkdayjobs.com/en-US/cme_careers"
+      ],
+      "bindingMethod": "actual-current-public-corporate-HTTP200-active-exact-native-link",
+      "proofFile": "../artifacts/full-catalog/workday-positive-preflight-001/cmegroup-official-careers-004.json",
+      "proofSha256": "1db8d0b6bf0836199c15486e86cd052b8428944c0862ab433f1415f53033db05",
+      "bodySha256": "958ec60bea25ce8c977ea1cecfdb00dd79569811a66acc0e520e766d5aacb18b",
+      "ordinaryCorporateHTTPStatus": 200,
+      "runtimeNativeCheckDoesNotRefreshCorporateObservation": true
+    },
+    "paginationStrategy": "all-advertised-Bangalore-native-location-facet-pages-and-stable-first-page-detail-rechecks",
+    "extractionStrategy": "exact-current-native-requisition-board-India-country-legal-employer-full-content-original-dates-public-application-status",
+    "sourceScopeNotes": "The current native Bangalore - Bagmane Tridib location facet is a verified subset. No current native country facet is advertised. Whole-company global and India totals remain unknown. Native INTEC CME India Pvt Ltd and CME Chicago Mercantile Exchange Inc. legal employers remain separate per role. No company verified zero from an empty location subset.",
+    "verifiedSurfaceSummary": "The current official CME Group careers page actively identifies the exact cmegroup/cme_careers Workday board. Ordinary native HTTP extraction validates the actual Bangalore location facet and each selected full native India detail. Extraction, persistence and visibility remain separate. No deployment or production writes."
+  }
+]

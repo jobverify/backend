@@ -1,0 +1,11 @@
+{
+  "artifact": "current-native-20261105.html.gz",
+  "sourceUrl": "https://abacus.ai/jobs",
+  "responseStatus": 200,
+  "contentType": "text/html; charset=utf-8",
+  "capturedAt": "2026-11-05T02:42:18.042Z",
+  "uncompressedBytes": 123963,
+  "uncompressedSHA256": "0a79826c78635d0c9ed93d73b321612378da620b666f0f88e8d6a0b541b2816b",
+  "sourceArtifact": "reports/scraper-2026-11-05-41887979507/live-rechecks/abacusai/response-2.html",
+  "purpose": "Regression fixture for authored criteria moved into nested v2-job__body containers. This capture does not establish India eligibility, publication dates or complete company inventory."
+}

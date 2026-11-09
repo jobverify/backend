@@ -1,0 +1,52 @@
+[
+  {
+    "source": "huggingface",
+    "companyName": "Hugging Face",
+    "tenant": "huggingface",
+    "accountId": 514327,
+    "accountUid": "940cf17f-c078-40ac-95e8-07704e754048",
+    "domain": "huggingface.co",
+    "primaryURLs": [
+      "https://huggingface.co/"
+    ],
+    "primaryTitles": [
+      "Hugging Face"
+    ],
+    "countryFilter": "India",
+    "markdownURL": null
+  },
+  {
+    "source": "seeq",
+    "companyName": "Seeq",
+    "tenant": "seeq",
+    "accountId": 629826,
+    "accountUid": "55c96070-dc05-4efb-baf3-3a71fbc4e6ee",
+    "domain": "seeq.com",
+    "primaryURLs": [
+      "https://www.seeq.com/careers/",
+      "https://www.seeq.com/company/careers/"
+    ],
+    "primaryTitles": [
+      "Careers: Join our Team | Seeq"
+    ],
+    "countryFilter": "India",
+    "markdownURL": "https://apply.workable.com/seeq/jobs.md"
+  },
+  {
+    "source": "travisci",
+    "companyName": "Travis CI",
+    "tenant": "travisci",
+    "accountId": 11901,
+    "accountUid": "64222f82-abf0-45da-ac7b-be4d8c462dfc",
+    "domain": "travis-ci.com",
+    "primaryURLs": [
+      "https://www.travis-ci.com/",
+      "https://www.travis-ci.com/about-us/"
+    ],
+    "primaryTitles": [
+      "Travis CI"
+    ],
+    "countryFilter": "India",
+    "markdownURL": "https://apply.workable.com/travisci/jobs.md"
+  }
+]

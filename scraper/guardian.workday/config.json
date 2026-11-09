@@ -1,0 +1,13 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://guardianlife.wd5.myworkdayjobs.com/wday/cxs/guardianlife/Guardian-Life-Careers/jobs",
+  "detailUrlBase": "https://guardianlife.wd5.myworkdayjobs.com/en-US/Guardian-Life-Careers",
+  "locationCountry": null,
+  "locationPattern": "india|chennai|gurgaon|gurugram",
+  "inventoryScope": "complete-board-country-proof",
+  "officialCareersUrl": "https://www.guardianlife.com/careers/corporate",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "workdayMaxPages": 20,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 180000
+}

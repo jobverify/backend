@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://cba.wd3.myworkdayjobs.com/wday/cxs/cba/CommBank_Careers/jobs",
+  "detailUrlBase": "https://cba.wd3.myworkdayjobs.com/CommBank_Careers",
+  "countryFacetParameter": "locationCountry",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "searchText": "",
+  "maxJobs": null,
+  "workdayMaxPages": 100,
+  "detailEnrichmentBudgetMs": 120000,
+  "detailFetchConcurrency": 3
+}

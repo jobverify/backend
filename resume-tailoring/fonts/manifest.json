@@ -1,0 +1,28 @@
+[
+  {
+    "file": "DejaVuSans.ttf",
+    "weight": 400,
+    "package": "dejavu-fonts-ttf@2.37.3",
+    "sha256": "7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954"
+  },
+  {
+    "file": "DejaVuSans-Bold.ttf",
+    "weight": 700,
+    "package": "dejavu-fonts-ttf@2.37.3",
+    "sha256": "e6476c1b80502924294eed40894c5b18e06c181444ca953e5334262df9c27724"
+  },
+  {
+    "file": "NotoSansSymbols2-Regular.ttf",
+    "weight": 400,
+    "package": "google/fonts@8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5",
+    "source": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notosanssymbols2/NotoSansSymbols2-Regular.ttf",
+    "sha256": "7d5fb73b7ca67a6798101741f5d280a3d016a56a197afcd4199dbb57b4b82a21"
+  },
+  {
+    "file": "NotoEmoji.ttf",
+    "weight": 400,
+    "package": "google/fonts@8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5",
+    "source": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notoemoji/NotoEmoji%5Bwght%5D.ttf",
+    "sha256": "de6c18832938afc99caf132b39d6a30a19bac7f2e812e28db2535b4608d27551"
+  }
+]

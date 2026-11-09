@@ -1,0 +1,23 @@
+{
+  "source": "boat",
+  "companyName": "boAt Lifestyle",
+  "officialBrandName": "boAt Lifestyle",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../boat/script.js",
+  "companyCareerPage": "https://www.boat-lifestyle.com/pages/boat-careers",
+  "companyDomain": "boat-lifestyle.com",
+  "atsPlatform": "officially-linked-linkedin-employer-search",
+  "countryFilter": "India",
+  "paginationStrategy": "bounded-native-employer-filtered-worldwide-search",
+  "extractionStrategy": "fresh-official-handoff+native-organization-and-website+reconciled-employer-cards+canonical-role-details+partial-company-scope",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedSurfaceSummary": "October 23 2026 native captures: official boAt careers delegates to LinkedIn boAt Lifestyle employer, organization13356517 with reciprocal boat-lifestyle.com website. Employer-selected worldwide search reports four cards and all four exact native detail pages are captured, each explicitly Gurugram, Haryana, India. Canonical role URL/title, native hiring employer and all structured country locations must agree. Current roles retain full visible description prose, native employment type and precise expiry. Earliest card/schema publication is preserved separately from original schema date. Hidden or heading-only description stays null/partial; no JSON-LD prose fallback. Guest search whitespace cannot establish whole-company coverage or verified zero. Source scope remains incomplete, lifecycle cleanup disabled and global/India totals unknown. Changed total/pagination, identity, transport or all-expired inventory produces typed BOAT_COVERAGE_GAP. Review hardening: native structured locality and optional region must reconcile with exact listing and visible topcard geography. Future publication fails closed; absent native dates preserve the known earlier date or null. Positive enabled native Apply controls and same-role canonical sign-in redirect are required for readable detail acceptance."
+}

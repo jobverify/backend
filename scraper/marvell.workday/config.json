@@ -1,0 +1,9 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://marvell.wd1.myworkdayjobs.com/wday/cxs/marvell/MarvellCareers/jobs",
+  "detailUrlBase": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers",
+  "locationCountry": null,
+  "searchText": "India",
+  "locationPattern": "india|bengaluru|bangalore|pune|hyderabad|noida|gandhinagar",
+  "maxPages": 40
+}

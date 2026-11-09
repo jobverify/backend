@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "langchain",
+  "companyName": "LangChain",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 102,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://www.langchain.com/careers",
+      "finalURL": "https://www.langchain.com/careers",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-03T08:25:18.7780641Z",
+      "completedAt": "2026-11-03T08:25:19.6096544Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 111618,
+      "bodySHA256": "7b0c0122720636761d135edf8bb00aa3f89b6ba487d1919caf64d23dc2e468b4",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/langchain",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/langchain",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestedAt": "2026-11-03T08:27:56.1201789Z",
+      "completedAt": "2026-11-03T08:27:59.4711358Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 1379643,
+      "bodySHA256": "aefbb507c56b667f9e9188e547be16f47e1b318f1160ab4582864d7cd02bc36c",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

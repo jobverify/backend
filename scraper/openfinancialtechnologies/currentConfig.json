@@ -1,0 +1,26 @@
+{
+  "companyName": "Open Financial Technologies Private Limited",
+  "host": "openfinancial",
+  "identifier": "161570d3-d2be-4e8c-b233-d006f70cd371",
+  "officialUrl": "https://open.money/company/careers",
+  "shellUrl": "https://openfinancial.keka.com/careers/",
+  "documentUrl": "https://openfinancial.keka.com/ats/documents/161570d3-d2be-4e8c-b233-d006f70cd371/careerportal/ad813284387e414ba9c8c20b9615b368.html",
+  "mode": "portal-link",
+  "source": "openfinancialtechnologies",
+  "root": "https://openfinancial.keka.com/careers/",
+  "portalIdentity": {
+    "name": "Open Financial Technologies",
+    "shortName": "Open Financial Technologies",
+    "domain": "openfinancial.keka.com"
+  },
+  "expectedFinalUrls": {},
+  "equivalentInlinePrograms": {
+    "https://open.money/company/careers": [
+      {
+        "canonicalSha256": "e75efaadfd89692c2a09cb39e152c531c147aaa3c0eb7b3f7cd353e81e0240ea",
+        "originalBodySha256": "a72d21c9089348753c35e9e9faa2a64c9ecf0b0ec2d13699e08463bf8c294133",
+        "kind": "reviewed-public-response-program-ray-and-decimal-timestamp-only"
+      }
+    ]
+  }
+}

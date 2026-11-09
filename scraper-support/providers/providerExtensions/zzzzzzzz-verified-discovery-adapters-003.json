@@ -1,0 +1,265 @@
+[
+  {
+    "source": "ataccama",
+    "companyName": "Ataccama",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "lever",
+    "boardToken": "ataccama",
+    "companyCareerPage": "https://jobs.ataccama.com/",
+    "officialHomepageUrl": "https://www.ataccama.com/",
+    "companyDomain": "www.ataccama.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T20:21:34.405Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T20:21:34.405Z",
+      "officialURL": "https://jobs.ataccama.com/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.lever.co/ataccama/3178d5dc-d3a3-4d13-9bc8-d14b23b162c1/apply"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-008",
+      "discoveryFile": "../artifacts/full-catalog/official-discovery/batch-008.json",
+      "discoverySha256": "3eca7bf849754ba8224366954a425145cbd29d4235ffb5ebd0330fdff1134548",
+      "proofFiles": [
+        "proof/batch-008-search-01.json",
+        "proof/batch-008-open-02.json",
+        "proof/batch-008-click-13.json",
+        "proof/batch-008-click-16.json"
+      ],
+      "httpProofs": [
+        {
+          "file": "scraper-support/providers/evidence/verified-discovery-adapters-003/ataccama-official-http-1.json",
+          "sha256": "9afd5d3f47fd060c969805edc89121f4b570b15ff4e8fd0f41ff617f56a26d8c",
+          "checkedAt": "2026-10-20T20:21:34.108Z"
+        },
+        {
+          "file": "scraper-support/providers/evidence/verified-discovery-adapters-003/ataccama-official-http-2.json",
+          "sha256": "df58897d9fe5b9a7bc6a1319de2b0f6821279b987ad9cc980ab72617657f310b",
+          "checkedAt": "2026-10-20T20:21:34.405Z"
+        }
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://jobs.ataccama.com/",
+          "to": "https://jobs.ataccama.com/3178d5dc-d3a3-4d13-9bc8-d14b23b162c1/prague/customer-success/",
+          "evidence": "Current Customer Success Manager link8 clicked, turn501view0."
+        },
+        {
+          "from": "https://jobs.ataccama.com/3178d5dc-d3a3-4d13-9bc8-d14b23b162c1/prague/customer-success/",
+          "to": "https://jobs.lever.co/ataccama/3178d5dc-d3a3-4d13-9bc8-d14b23b162c1/apply",
+          "evidence": "Apply now link1 opens exact Lever tenant/application, turn510view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact observed official ATS binding implemented through existing shared adapter; runtime qualification remains separate. The observed role is Prague, Czechia. No India role was independently verified; generic global culture language is not India eligibility.",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "aurecon",
+    "companyName": "Aurecon",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://aurecongroup.wd3.myworkdayjobs.com/en-US/aurecon",
+    "boardIdentityVerified": true,
+    "locationCountry": null,
+    "companyCareerPage": "https://www.aurecongroup.com/careers/experienced-professionals",
+    "officialHomepageUrl": "https://www.aurecongroup.com/",
+    "companyDomain": "www.aurecongroup.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T20:21:34.776Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T20:21:34.776Z",
+      "officialURL": "https://www.aurecongroup.com/careers/experienced-professionals",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://aurecongroup.wd3.myworkdayjobs.com/aurecon"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "corporate-navigation-data-and-reviewed-clicked-link",
+      "discoveryBatch": "batch-008",
+      "discoveryFile": "../artifacts/full-catalog/official-discovery/batch-008.json",
+      "discoverySha256": "3eca7bf849754ba8224366954a425145cbd29d4235ffb5ebd0330fdff1134548",
+      "proofFiles": [
+        "proof/batch-008-search-03.json",
+        "proof/batch-008-search-15.json",
+        "proof/batch-008-open-06.json",
+        "proof/batch-008-click-01.json"
+      ],
+      "httpProofs": [
+        {
+          "file": "scraper-support/providers/evidence/verified-discovery-adapters-003/aurecon-official-http-1.json",
+          "sha256": "284b6c28cad71b58daa1145f106d69832a8064cbf5f92a5c191085620a92c572",
+          "checkedAt": "2026-10-20T20:21:34.776Z"
+        }
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.aurecongroup.com/careers/experienced-professionals",
+          "to": "https://aurecongroup.wd3.myworkdayjobs.com/aurecon",
+          "evidence": "Current See all jobs link32 clicked, turn497view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact observed official ATS binding implemented through existing shared adapter; runtime qualification remains separate. Exact tenant/site observed from corporate page. Native board is a zero-text shell in this client; no India opening or zero verified.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "automox",
+    "companyName": "Automox",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "greenhouse",
+    "boardToken": "automox",
+    "companyCareerPage": "https://www.automox.com/careers",
+    "officialHomepageUrl": "https://www.automox.com/",
+    "companyDomain": "www.automox.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T20:21:33.654Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T20:21:33.654Z",
+      "officialURL": "https://www.automox.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://job-boards.greenhouse.io/automox/jobs/5440188008"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-008",
+      "discoveryFile": "../artifacts/full-catalog/official-discovery/batch-008.json",
+      "discoverySha256": "3eca7bf849754ba8224366954a425145cbd29d4235ffb5ebd0330fdff1134548",
+      "proofFiles": [
+        "proof/batch-008-search-03.json",
+        "proof/batch-008-open-07.json",
+        "proof/batch-008-click-07.json"
+      ],
+      "httpProofs": [
+        {
+          "file": "scraper-support/providers/evidence/verified-discovery-adapters-003/automox-official-http-1.json",
+          "sha256": "92ac36d9eedd00416d6d262cc1b6930c8c62a129a17c64bf81329c4797ef34b3",
+          "checkedAt": "2026-10-20T20:21:33.654Z"
+        }
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.automox.com/careers",
+          "to": "https://job-boards.greenhouse.io/automox/jobs/5440188008",
+          "evidence": "Current Full-Stack Software Engineer link9 clicked, turn496view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact observed official ATS binding implemented through existing shared adapter; runtime qualification remains separate. The observed role explicitly limits remote work to the US. Global/remote culture language does not prove India eligibility. A TrinetHire automox-inc search board is not substituted for the current official Greenhouse handoff.",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "avisbudgetgroup",
+    "companyName": "Avis Budget Group",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://avisbudget.wd1.myworkdayjobs.com/en-US/ABG_Careers",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.avisbudgetgroup.jobs/jobs",
+    "officialHomepageUrl": "https://www.avisbudgetgroup.com/",
+    "companyDomain": "www.avisbudgetgroup.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T20:21:37.819Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T20:21:37.819Z",
+      "officialURL": "https://www.avisbudgetgroup.jobs/jobs",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://avisbudget.wd1.myworkdayjobs.com/ABG_Careers/job/ITA---Bologna---Via-della-Torretta-9/Addetto-alla-Manutenzione_R0187954/apply"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-008",
+      "discoveryFile": "../artifacts/full-catalog/official-discovery/batch-008.json",
+      "discoverySha256": "3eca7bf849754ba8224366954a425145cbd29d4235ffb5ebd0330fdff1134548",
+      "proofFiles": [
+        "proof/batch-008-search-05.json",
+        "proof/batch-008-open-16.json",
+        "proof/batch-008-click-20.json",
+        "proof/batch-008-click-21.json"
+      ],
+      "httpProofs": [
+        {
+          "file": "scraper-support/providers/evidence/verified-discovery-adapters-003/avisbudgetgroup-official-http-1.json",
+          "sha256": "7bc17bd2756abd7be05fc6be072b06327af324a96d921d66b5daea9483f0bb69",
+          "checkedAt": "2026-10-20T20:21:35.718Z"
+        },
+        {
+          "file": "scraper-support/providers/evidence/verified-discovery-adapters-003/avisbudgetgroup-official-http-2.json",
+          "sha256": "98530b7376f106a45e77f07fd438d2e7ce4ad1f632920e988cc102b65dedf3b9",
+          "checkedAt": "2026-10-20T20:21:37.819Z"
+        }
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.avisbudgetgroup.jobs/jobs",
+          "to": "https://www.avisbudgetgroup.jobs/it/addetto-a-alla-manutenzione/job/P1-5200481-2",
+          "evidence": "Current listed Apply Now link6 opens the employer-owned role, turn508view0."
+        },
+        {
+          "from": "https://www.avisbudgetgroup.jobs/it/addetto-a-alla-manutenzione/job/P1-5200481-2",
+          "to": "https://avisbudget.wd1.myworkdayjobs.com/ABG_Careers/job/ITA---Bologna---Via-della-Torretta-9/Addetto-alla-Manutenzione_R0187954/apply",
+          "evidence": "Manual application link8 exposes exact Workday tenant/site and requisition; target Cache miss, turn522view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact observed official ATS binding implemented through existing shared adapter; runtime qualification remains separate. Employer-owned career site identifies Paradox presentation/chat and a separate manual Workday application. Only exact observed Workday scope is recorded. No current India role or franchisee inventory was verified; no parent/global or India count is qualified.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  }
+]

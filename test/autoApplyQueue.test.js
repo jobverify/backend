@@ -1,0 +1,85 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import mongoose from 'mongoose';
+import { fileURLToPath } from 'node:url';
+import { MongoMemoryReplSet } from 'mongodb-memory-server';
+import User from '../src/models/User.js';
+import Application from '../src/models/Application.js';
+import ApplicationEvent from '../src/models/ApplicationEvent.js';
+const service = await import('../src/services/autoApplyService.js').catch(() => ({}));
+
+test('reviewed submissions bind the PDF, answers and owner, and never retry uncertain sends', { timeout: 90000 }, async t => {
+  assert.equal(typeof service.createAutoApplyAttempt, 'function', 'A durable reviewed submission queue must exist');
+  process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
+  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 }, binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
+  t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
+  await mongoose.connect(mongo.getUri());
+  const { default: Attempt } = await import('../src/models/AutoApplyAttempt.js');
+  await Promise.all([Attempt.init(), Application.init(), ApplicationEvent.init()]);
+  const user = { _id: new mongoose.Types.ObjectId(), email: 'candidate@example.test', sessionVersion: 0 };
+  await User.collection.insertOne(user);
+  const jobId = new mongoose.Types.ObjectId();
+  let pdf = Buffer.from('%PDF-reviewed-fixture');
+  const loadSource = async (_user, id) => ({ job: { _id: id, title: 'Engineer', company: 'Example', applicationUrl: 'https://jobs.lever.co/example/12345678-1234-1234-1234-123456789abc' },
+    pdf, generationId: 'generation-1', jobHash: 'job-hash', profile: { email: user.email, name: 'Candidate' } });
+  const manifest = { fields: [{ key: 'field_0', label: 'Email', kind: 'email', required: true, options: [] }, { key: 'field_1', label: 'Resume', kind: 'file', required: true, options: [] }], action: 'https://jobs.lever.co/example/apply', method: 'post' };
+  let sends = 0; let outcome = 'applied';
+  const browser = {
+    inspect: async () => ({ manifest }),
+    submit: async ({ beforeSubmit }) => { await beforeSubmit(); sends++; return { status: outcome, confirmation: outcome === 'applied' ? 'application received' : '', reason: 'No acknowledgement observed.' }; },
+  };
+  const options = { enabled: true, loadSource, browser };
+  const row = await service.createAutoApplyAttempt(user, String(jobId), options);
+  assert.equal(row.status, 'queued_inspection');
+  assert.equal((await Application.findOne({ user: user._id, job: jobId })).status, 'opened');
+  await service.processAutoApplyQueue(options);
+  const review = await service.getAutoApplyAttempt(user._id, String(jobId), { enabled: true });
+  assert.equal(review.attempt.status, 'review');
+  await assert.rejects(service.approveAutoApplyAttempt(user, row.id, { reviewToken: 'wrong', answers: {}, confirm: true }, options));
+  await assert.rejects(service.approveAutoApplyAttempt(user, row.id, { reviewToken: review.attempt.reviewToken, answers: {}, confirm: true }, options));
+  const approval = { reviewToken: review.attempt.reviewToken, answers: { field_0: 'candidate@example.test' }, confirm: true };
+  pdf = Buffer.from('%PDF-changed-fixture');
+  await assert.rejects(service.approveAutoApplyAttempt(user, row.id, approval, options), /changed/i);
+  pdf = Buffer.from('%PDF-reviewed-fixture');
+  await assert.rejects(service.approveAutoApplyAttempt({ ...user, _id: new mongoose.Types.ObjectId() }, row.id, approval, options));
+  await service.approveAutoApplyAttempt(user, row.id, approval, options);
+  await Promise.all([service.processAutoApplyQueue(options), service.processAutoApplyQueue(options)]);
+  assert.equal(sends, 1);
+  const applied = await Application.findOne({ user: user._id, job: jobId }).lean();
+  assert.equal(applied.status, 'applied'); assert.equal(applied.confirmationSource, 'auto_apply');
+  const secondId = new mongoose.Types.ObjectId();
+  const second = await service.createAutoApplyAttempt(user, String(secondId), options);
+  await service.processAutoApplyQueue(options);
+  const secondReview = (await service.getAutoApplyAttempt(user._id, String(secondId), { enabled: true })).attempt;
+  await service.approveAutoApplyAttempt(user, second.id, { ...approval, reviewToken: secondReview.reviewToken }, options);
+  outcome = 'unconfirmed'; await service.processAutoApplyQueue(options); await service.processAutoApplyQueue(options);
+  assert.equal(sends, 2);
+  assert.equal((await Attempt.findById(second.id)).status, 'unconfirmed');
+  assert.equal((await Application.findOne({ user: user._id, job: secondId })).status, 'opened');
+  await assert.rejects(service.createAutoApplyAttempt(user, String(secondId), options), /confirm|check/i);
+  await Attempt.updateOne({ _id: second.id }, { $set: { status: 'submitting', submitStartedAt: new Date(), leaseUntil: new Date(0) } });
+  await service.processAutoApplyQueue(options);
+  assert.equal((await Attempt.findById(second.id)).status, 'unconfirmed'); assert.equal(sends, 2);
+  const thirdId = new mongoose.Types.ObjectId();
+  const third = await service.createAutoApplyAttempt(user, String(thirdId), options);
+  await service.processAutoApplyQueue(options);
+  const thirdReview = (await service.getAutoApplyAttempt(user._id, String(thirdId), { enabled: true })).attempt;
+  await service.approveAutoApplyAttempt(user, third.id, { ...approval, reviewToken: thirdReview.reviewToken }, options);
+  outcome = 'blocked'; await service.processAutoApplyQueue(options);
+  assert.equal((await Attempt.findById(third.id)).status, 'unconfirmed', 'An error after sending cannot prove the employer did not receive the application');
+  const deletedJob = new mongoose.Types.ObjectId();
+  assert.equal(typeof service.cleanupInactiveAutoApplyData, 'function');
+  assert.equal(await service.cleanupInactiveAutoApplyData(user._id), false, 'An active candidate keeps their history');
+  assert.ok(await ApplicationEvent.countDocuments({ user: user._id }));
+  await assert.rejects(service.createAutoApplyAttempt(user, String(deletedJob), { ...options, loadSource: async (...args) => {
+    const source = await loadSource(...args);
+    await User.deleteOne({ _id: user._id });
+    await Application.deleteMany({ user: user._id });
+    await Attempt.deleteMany({ user: user._id });
+    return source;
+  } }));
+  assert.equal(await Attempt.countDocuments({ user: user._id }), 0, 'A preparation cannot restore a deleted account request');
+  assert.equal(await Application.countDocuments({ user: user._id }), 0, 'A preparation cannot restore deleted application history');
+  assert.equal(await service.cleanupInactiveAutoApplyData(user._id), true);
+  assert.equal(await ApplicationEvent.countDocuments({ user: user._id }), 0, 'Inactive-account cleanup removes event history as well as application rows');
+});

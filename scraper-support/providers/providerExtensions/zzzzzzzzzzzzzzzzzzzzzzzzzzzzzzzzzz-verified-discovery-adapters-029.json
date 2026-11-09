@@ -1,0 +1,45 @@
+[
+  {
+    "source": "ciena",
+    "companyName": "Ciena",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/ciena.workday/script.js",
+    "dryRunFile": "ciena.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "strict-shared-native-Workday-with-source-local-active-content",
+    "companyDomain": "ciena.com",
+    "companyCareerPage": "https://www.ciena.com/careers/working-at-ciena",
+    "officialHomepageUrl": "https://www.ciena.com/",
+    "jobsBoardUrl": "https://ciena.wd5.myworkdayjobs.com/Careers",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T03:18:17.666Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-board-runtime-inventory-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-local-independent-review-pending",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T03:18:17.666Z",
+      "officialURL": "https://www.ciena.com/careers/working-at-ciena",
+      "matchedLinks": [
+        "https://ciena.wd5.myworkdayjobs.com/Careers"
+      ],
+      "bindingMethod": "current-primary-official-active-link-follow",
+      "proofFile": "../artifacts/full-catalog/official-discovery/proof/batch-018-web-follow-009.json",
+      "proofSha256": "6de76cf5698fed6c3021e4376ad080aa5a8ff172da53df1ab5bca3dd917da997",
+      "ordinaryCorporateHTTPStatus": 403,
+      "runtimeNativeCheckDoesNotRefreshCorporateObservation": true
+    },
+    "paginationStrategy": "all-native-India-facet-pages-plus-stable-first-page-and-every-role-detail-recheck",
+    "extractionStrategy": "strict-native-identity-country-legal-employer-description-date-and-application-status",
+    "sourceScopeNotes": "Exact official Ciena Careers native India country facet, without claiming every subsidiary/recruitment surface. Native legal employers and office labels stay intact; unknown company global and India totals stay null.",
+    "verifiedSurfaceSummary": "Verified official primary-web handoff to the exact native board. Runtime extraction, publishing eligibility, persistence and visibility remain separate. No deployment or production publication."
+  }
+]

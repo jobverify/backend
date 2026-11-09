@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://q2ebanking.wd5.myworkdayjobs.com/wday/cxs/q2ebanking/Q2/jobs",
+  "detailUrlBase": "https://q2ebanking.wd5.myworkdayjobs.com/Q2",
+  "locationCountry": null,
+  "searchText": "India",
+  "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|chennai|gurugram|gurgaon|noida|delhi|remote india"
+}

@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://analogdevices.wd1.myworkdayjobs.com/wday/cxs/analogdevices/External/jobs",
+  "detailUrlBase": "https://analogdevices.wd1.myworkdayjobs.com/External",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "countryFacetParameter": "locationCountry",
+  "locationPattern": "india|ind-|bangalore|bengaluru|gandhinagar|hyderabad|pune|mumbai|gurgaon|gurugram|noida"
+}

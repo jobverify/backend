@@ -1,0 +1,9 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://csgi.wd5.myworkdayjobs.com/wday/cxs/csgi/CSGCareers/jobs",
+  "detailUrlBase": "https://csgi.wd5.myworkdayjobs.com/en-US/CSGCareers",
+  "locationCountry": null,
+  "searchText": "",
+  "inventoryScope": "complete-board-country-proof",
+  "officialCareersUrl": "https://www.csgi.com/careers"
+}

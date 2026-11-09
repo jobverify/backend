@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://pfizer.wd1.myworkdayjobs.com/wday/cxs/pfizer/PfizerCareers/jobs",
+  "detailUrlBase": "https://pfizer.wd1.myworkdayjobs.com/en-US/PfizerCareers",
+  "countryFacetParameter": "Location_Country"
+}

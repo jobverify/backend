@@ -1,0 +1,285 @@
+[
+  {
+    "source": "bestexresearch",
+    "companyName": "BestEx Research",
+    "adapter": "script",
+    "modulePath": "../bestexresearch/script.js",
+    "dryRunFile": "bestexresearch/jobs.json",
+    "companyCareerPage": "https://www.bestexresearch.com/careers",
+    "companyDomain": "bestexresearch.com",
+    "officialHomepageUrl": "https://www.bestexresearch.com/",
+    "atsPlatform": "workable-native-api",
+    "boardToken": "bestex-research",
+    "accountUid": "15159d62-62e0-4df7-a2f4-f3d7d33855e5",
+    "countryFilter": "India",
+    "paginationStrategy": "native-workable-stable-total-and-terminal-cursor-reconciliation",
+    "extractionStrategy": "official-widget-account540348-and-native-canonical-binding+complete-workable-inventory+full-india-job-details",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "The current corporate careers page embeds Workable account540348. The exact linked native shortcode3B47AFBD68 declares canonical tenant bestex-research and API account UUID15159d62-62e0-4df7-a2f4-f3d7d33855e5. That role has full unified description with empty separate requirements/benefits; other roles retain their provided nonempty sections. Current runtime counts remain in extraction and persistence evidence.",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:04:00.055Z",
+      "officialURL": "https://www.bestexresearch.com/careers",
+      "evidenceOrigin": "official-linked-workable-embed-and-native-canonical-shortcode",
+      "matchedLinks": [
+        "https://www.workable.com/assets/embed.js",
+        "https://apply.workable.com/j/3B47AFBD68",
+        "https://apply.workable.com/bestex-research/j/3B47AFBD68"
+      ],
+      "discoveryArtifact": "../artifacts/full-catalog/official-discovery/batch-011.json",
+      "discoverySha256": "57767ddf212dc84b0a99dd239dbb97ab0234b2ffcbd118d42c86efaa0250a192"
+    },
+    "backfillMode": "live-parser",
+    "catalogOverride": true
+  },
+  {
+    "source": "acko",
+    "companyName": "ACKO",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../acko/script.js",
+    "companyCareerPage": "https://www.acko.com/careers/jobs/",
+    "companyDomain": "acko.com",
+    "atsPlatform": "kula-public-api",
+    "parser": "validated-kula-public-api",
+    "countryFilter": "India",
+    "paginationStrategy": "native-public-api-stable-total-all-pages-and-unique-identities",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:00:10.439Z",
+      "officialURL": "https://www.acko.com/careers/jobs/",
+      "matchedLinks": [
+        "https://careers.kula.ai/acko?jobs=true"
+      ],
+      "evidenceOrigin": "fresh-corporate-anchor-or-iframe-and-fixed-native-public-account",
+      "httpProofFile": "../artifacts/full-catalog/kula-public-api-002/acko-01.json",
+      "httpProofSha256": "0133e8ea17bbacdf7e475a1368b162732166dad337cc2601e60105636eaa5b08",
+      "nativeTrialArtifact": "../artifacts/full-catalog/kula-public-api-002/frozen-catalog-trials/acko.json",
+      "nativeTrialSha256": "5c9e727eb79b72cd09239af12dabd6179be85dcfa89a3325ff491e06d8c22bec"
+    },
+    "verifiedSurfaceSummary": "Corporate handoff, native public account and complete paginated API were checked with exact HTTP evidence. Current global, India and publishable counts remain in runtime trial records; a checked board with no India roles is not a globally empty inventory."
+  },
+  {
+    "source": "plumhq",
+    "companyName": "Plum HQ",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../plumhq/script.js",
+    "companyCareerPage": "https://www.plumhq.com/careers",
+    "companyDomain": "plumhq.com",
+    "atsPlatform": "kula-public-api",
+    "parser": "validated-kula-public-api",
+    "countryFilter": "India",
+    "paginationStrategy": "native-public-api-stable-total-all-pages-and-unique-identities",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:00:15.102Z",
+      "officialURL": "https://www.plumhq.com/careers",
+      "matchedLinks": [
+        "https://careers.kula.ai/plumhq?jobs=true"
+      ],
+      "evidenceOrigin": "fresh-corporate-anchor-or-iframe-and-fixed-native-public-account",
+      "httpProofFile": "../artifacts/full-catalog/kula-public-api-002/plumhq-01.json",
+      "httpProofSha256": "ae47875dfe6b125c37a225392c483542cdac01d846f6c2627412df8ba1f607db",
+      "nativeTrialArtifact": "../artifacts/full-catalog/kula-public-api-002/frozen-catalog-trials/plumhq.json",
+      "nativeTrialSha256": "3ca8ab6a13c7b64ba19f20e10c570d98206c3ae6eebb87aba8fb7ced600ca501"
+    },
+    "verifiedSurfaceSummary": "Corporate handoff, native public account and complete paginated API were checked with exact HTTP evidence. Current global, India and publishable counts remain in runtime trial records; a checked board with no India roles is not a globally empty inventory."
+  },
+  {
+    "source": "goodera",
+    "companyName": "Goodera",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../goodera/script.js",
+    "companyCareerPage": "https://www.goodera.com/about/contact-us",
+    "companyDomain": "goodera.com",
+    "atsPlatform": "kula-public-api",
+    "parser": "validated-kula-public-api",
+    "countryFilter": "India",
+    "paginationStrategy": "native-public-api-stable-total-all-pages-and-unique-identities",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:00:17.636Z",
+      "officialURL": "https://www.goodera.com/about/contact-us",
+      "matchedLinks": [
+        "https://careers.kula.ai/goodera?jobs=true"
+      ],
+      "evidenceOrigin": "fresh-corporate-anchor-or-iframe-and-fixed-native-public-account",
+      "httpProofFile": "../artifacts/full-catalog/kula-public-api-002/goodera-01.json",
+      "httpProofSha256": "487e39ee61e823dac5f491f68b7da67572ea76b91180ba64a563a4b122f7acd0",
+      "nativeTrialArtifact": "../artifacts/full-catalog/kula-public-api-002/frozen-catalog-trials/goodera.json",
+      "nativeTrialSha256": "0eeb02812e00b8ee7af1aca3e9d81b723beb3c8eff5546e054313a8b1678666d"
+    },
+    "verifiedSurfaceSummary": "Corporate handoff, native public account and complete paginated API were checked with exact HTTP evidence. Current global, India and publishable counts remain in runtime trial records; a checked board with no India roles is not a globally empty inventory."
+  },
+  {
+    "source": "clevertap",
+    "companyName": "CleverTap",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../clevertap/script.js",
+    "companyCareerPage": "https://clevertap.com/current-openings/",
+    "companyDomain": "clevertap.com",
+    "atsPlatform": "kula-public-api",
+    "parser": "validated-kula-public-api",
+    "countryFilter": "India",
+    "paginationStrategy": "native-public-api-stable-total-all-pages-and-unique-identities",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:00:20.105Z",
+      "officialURL": "https://clevertap.com/current-openings/",
+      "matchedLinks": [
+        "https://careers.kula.ai/clevertap?jobs=true"
+      ],
+      "evidenceOrigin": "fresh-corporate-anchor-or-iframe-and-fixed-native-public-account",
+      "httpProofFile": "../artifacts/full-catalog/kula-public-api-002/clevertap-01.json",
+      "httpProofSha256": "0a404f90030056a99186197b670399d4d324dd5729c8287bf9a3f1c1d35715a5",
+      "nativeTrialArtifact": "../artifacts/full-catalog/kula-public-api-002/frozen-catalog-trials/clevertap.json",
+      "nativeTrialSha256": "11d0d3ff325930ff372d6596007fa6f099d0a700a165d2f0b9ce103b58d425b1"
+    },
+    "verifiedSurfaceSummary": "Corporate handoff, native public account and complete paginated API were checked with exact HTTP evidence. Current global, India and publishable counts remain in runtime trial records; a checked board with no India roles is not a globally empty inventory."
+  },
+  {
+    "source": "avoma",
+    "companyName": "Avoma",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../avoma/script.js",
+    "companyCareerPage": "https://www.avoma.com/careers",
+    "companyDomain": "avoma.com",
+    "atsPlatform": "kula-public-api",
+    "parser": "validated-kula-public-api",
+    "countryFilter": "India",
+    "paginationStrategy": "native-public-api-stable-total-all-pages-and-unique-identities",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:00:22.175Z",
+      "officialURL": "https://www.avoma.com/careers",
+      "matchedLinks": [
+        "https://careers.kula.ai/avoma?jobs=true"
+      ],
+      "evidenceOrigin": "fresh-corporate-anchor-or-iframe-and-fixed-native-public-account",
+      "httpProofFile": "../artifacts/full-catalog/kula-public-api-002/avoma-01.json",
+      "httpProofSha256": "6fd0b19b32b7992ea8663da2dd80225d2241a610fc9fba6934fd816ff1e58280",
+      "nativeTrialArtifact": "../artifacts/full-catalog/kula-public-api-002/frozen-catalog-trials/avoma.json",
+      "nativeTrialSha256": "1ddfdf88fcfd37c979f8a2d94f8ed97c4e60c26f03508b49111aec46ecc06bea"
+    },
+    "verifiedSurfaceSummary": "Corporate handoff, native public account and complete paginated API were checked with exact HTTP evidence. Current global, India and publishable counts remain in runtime trial records; a checked board with no India roles is not a globally empty inventory."
+  },
+  {
+    "source": "lionsbot",
+    "companyName": "Lionsbot",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../lionsbot/script.js",
+    "companyCareerPage": "https://www.lionsbot.com/careers",
+    "companyDomain": "lionsbot.com",
+    "atsPlatform": "kula-public-api",
+    "parser": "validated-kula-public-api",
+    "countryFilter": "India",
+    "paginationStrategy": "native-public-api-stable-total-all-pages-and-unique-identities",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:00:25.042Z",
+      "officialURL": "https://www.lionsbot.com/careers",
+      "matchedLinks": [
+        "https://careers.kula.ai/lionsbot?jobs=true"
+      ],
+      "evidenceOrigin": "fresh-corporate-anchor-or-iframe-and-fixed-native-public-account",
+      "httpProofFile": "../artifacts/full-catalog/kula-public-api-002/lionsbot-01.json",
+      "httpProofSha256": "07649a72ae25195c1eae301762cd8b1d6720ce9c78884b9f13aab4253ca465fb",
+      "nativeTrialArtifact": "../artifacts/full-catalog/kula-public-api-002/frozen-catalog-trials/lionsbot.json",
+      "nativeTrialSha256": "e731e26419297bc79c1ec1df5eed911d47dc786937d25ecc0608db27b164d168"
+    },
+    "verifiedSurfaceSummary": "Corporate handoff, native public account and complete paginated API were checked with exact HTTP evidence. Current global, India and publishable counts remain in runtime trial records; a checked board with no India roles is not a globally empty inventory."
+  },
+  {
+    "source": "rocketindia",
+    "companyName": "Rocket Companies",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../rocketindia/script.js",
+    "companyCareerPage": "https://careers.rocket.com/in/en/search-results",
+    "companyDomain": "rocket.com",
+    "atsPlatform": "phenom",
+    "parser": "validated-phenom-full-native-details",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "detailConcurrency": 2,
+    "detailEnrichmentBudgetMs": 30000,
+    "paginationStrategy": "phenom-native-stable-total-unique-identities-and-country-scope",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:17:36.077Z",
+      "officialURL": "https://rocket.com/careers",
+      "matchedLinks": [
+        "https://careers.rocket.com/us/en/search-results",
+        "https://careers.rocket.com/in/en",
+        "https://careers.rocket.com/in/en/search-results"
+      ],
+      "evidenceOrigin": "current-corporate-career-origin-and-first-party-india-regional-board",
+      "nativeProof": {
+        "artifact": "phenom-health-001/rocket-default-native-final-003/manifest.json",
+        "sha256": "15fcc552c895a4323df16eacad65af0a34466c9915dde458f4204b458b239416"
+      },
+      "independentReview": "phenom-health-001/independent-rocket-review-final-004.json",
+      "groupIdentityEvidence": {
+        "artifact": "phenom-health-001/rocket-group-binding-001/reviewed-binding-002.json",
+        "sha256": "0542450832172e486139bfa70931b2cd05c044e024d484a54de6f4696104b468",
+        "checkedAt": "2026-10-20T21:30:24.783Z",
+        "directCorporateToIndiaLinkObserved": false,
+        "nativeLegalEntities": [
+          "NSM Services Private Limited",
+          "Xome Services Private Limited"
+        ]
+      }
+    },
+    "verifiedSurfaceSummary": "Current India regional Phenom board and native rocket_india apply identities validated. Full native role descriptions are fetched within the unchanged 30-second budget with source-local concurrency two; current runtime counts remain in native evidence."
+  }
+]

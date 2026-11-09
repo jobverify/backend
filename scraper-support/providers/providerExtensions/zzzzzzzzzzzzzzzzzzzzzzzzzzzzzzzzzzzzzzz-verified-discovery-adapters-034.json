@@ -1,0 +1,49 @@
+[
+  {
+    "source": "colgatepalmolive",
+    "companyName": "Colgate-Palmolive",
+    "adapter": "script",
+    "atsPlatform": "successfactors-rmk-public-widget",
+    "parser": "source-local-advertised-SAP-react-public-client",
+    "companyDomain": "colgatepalmolive.co.in",
+    "companyCareerPage": "https://jobs.colgate.com/search/",
+    "officialHomepageUrl": "https://www.colgatepalmolive.co.in/",
+    "jobsBoardUrl": "https://jobs.colgate.com/search/",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T13:22:46.287Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-local-independent-review",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "countryFilter": "India",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "advertised-public-widget-date-sort-10-row-pages-and-final-all-page-recheck",
+    "extractionStrategy": "current-corporate-active-handoff+current-advertised-client-pins+anonymous-public-session+full-native-role-detail",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T13:22:46.287Z",
+      "officialURL": "https://www.colgatepalmolive.co.in/",
+      "matchedLinks": [
+        "https://jobs.colgate.com/"
+      ],
+      "bindingMethod": "actual-current-active-corporate-anchor",
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/colgate-native-001/preflight-001.json",
+          "sha256": "50f4afca750c51a35c0f0fb890144d4f252db32f731f1d3c0704d77206baac16"
+        }
+      ]
+    },
+    "sourceScopeNotes": "Observed native India country facet only. Group brand is Colgate-Palmolive; individual legal employers are not supplied. Whole-company and other recruiting surfaces remain unresolved. Only the explicitly current Mumbai/Maharashtra/IND office contract qualifies; new or ambiguous native locations fail closed. Raw original dates are retained; eligibility uses current workspace policy, not capture age renewal.",
+    "verifiedSurfaceSummary": "Current corporate active link to the exact public SAP site; current advertised React client is pinned and all India pages/details/recheck must reconcile. Metadata contains no runtime counts.",
+    "catalogOverride": true,
+    "modulePath": "../../scraper/colgatepalmolive.workday/script.js",
+    "dryRunFile": "colgatepalmolive.workday/jobs.json"
+  }
+]

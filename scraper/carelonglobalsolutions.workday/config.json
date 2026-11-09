@@ -1,0 +1,10 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://elevancehealth.wd1.myworkdayjobs.com/wday/cxs/elevancehealth/carelonglobal_in/jobs",
+  "detailUrlBase": "https://elevancehealth.wd1.myworkdayjobs.com/carelonglobal_in",
+  "locationCountry": null,
+  "searchText": "",
+  "workdayMaxPages": 100,
+  "detailEnrichmentBudgetMs": 90000,
+  "detailFetchConcurrency": 3
+}

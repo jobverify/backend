@@ -1,0 +1,14 @@
+[
+  {
+    "source": "applexus",
+    "adapter": "script",
+    "modulePath": "../applexus/script.js",
+    "atsPlatform": "official-company-careers",
+    "paginationStrategy": "published-native-limit-offset-pagination+closing-reconciliation",
+    "extractionStrategy": "current-first-party-client+full-public-SSR-criteria+closing-models",
+    "zeroResultPolicy": "evidence-required",
+    "lifecycleCleanupAllowed": false,
+    "nativeRoleCount": null,
+    "nativeIndiaRoleCount": null
+  }
+]

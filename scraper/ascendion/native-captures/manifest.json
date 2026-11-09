@@ -1,0 +1,22 @@
+{
+  "kind": "genuine-unchanged-public-GET-capture-archive",
+  "archiveFile": "ascendion-2026-11-05.json.gz",
+  "archiveBytes": 1604920,
+  "archiveSHA256": "44a09f34e4c41c7ae26d35cad71bf000d363bc598ad3f88cca632a260a34ea1d",
+  "decodedArchiveBytes": 8471074,
+  "bodyCount": 320,
+  "bodyRepresentation": "base64 of complete unchanged original response bytes",
+  "originalBodyPathMapping": "archive.bodies keys preserve collection and original receipt bodyFile; archive.collections contains exact original manifest bytes and parsed original receipts",
+  "collections": [
+    {
+      "collection": "2026-11-05",
+      "bodies": 5,
+      "originalManifestSHA256": "304877c3cae62c6bb32fbe982cfcca134099a8fd2f4fb1a68dcb52d769475d4b"
+    },
+    {
+      "collection": "2026-11-05-full",
+      "bodies": 315,
+      "originalManifestSHA256": "af6a9412dd468ad3d4241f865190ce58a170da16c62bda3964c0faccf6516ee5"
+    }
+  ]
+}

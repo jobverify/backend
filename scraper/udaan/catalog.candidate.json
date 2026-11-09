@@ -1,0 +1,21 @@
+{
+  "source": "udaan",
+  "companyName": "Udaan",
+  "adapter": "script",
+  "atsPlatform": "linkedin-employer-public-board",
+  "countryFilter": "India",
+  "companyCareerPage": "https://udaan.com/",
+  "employerHandoff": "https://www.linkedin.com/company/udaan/",
+  "employerId": "10838271",
+  "paginationStrategy": "employer-filtered India search; no-match is coverage-gap, changed listings require pagination/detail verification",
+  "extractionStrategy": "fresh-official-commerce-identity-and-outgoing-link+native-employer-profile+employer-filtered-public-search",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedSurfaceSummary": "Current udaan.com commerce homepage links the exact udaan LinkedIn employer profile. Its native organization 10838271 identifies udaan.com and links back to udaan.com. The employer-filtered India search returns a public no-match response; the guest endpoint returns an empty body. Official /careers and careers.udaan.com requests timed out. No roles were recovered and whole-company inventory remains unverified. Runtime throws typed UDAAN_COVERAGE_GAP, never a verified empty inventory.",
+  "zeroResultPolicy": "coverage-gap",
+  "inventoryCompleteness": "coverage-gap",
+  "lifecycleCleanupAllowed": false,
+  "sourceListingComplete": false,
+  "fixtureManifest": "scraper/udaan/fixtures/manifest.json"
+}

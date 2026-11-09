@@ -1,0 +1,1352 @@
+{
+  "version": 1,
+  "official": "https://www.baseten.co/resources/careers/",
+  "feed": "https://api.ashbyhq.com/posting-api/job-board/baseten",
+  "board": "https://jobs.ashbyhq.com/baseten",
+  "publisher": {
+    "domSha256": "e346a8f56968d08386d8bae8684f32facfebd7b78ccde336dbac4ee96513d55d",
+    "streamSha256": "a472bc68223abc7e9fb41293303eebe3f329dadaf6e5e77359bb19a070056d66",
+    "departmentsSha256": "8479bee03869eab50b1efa06a64bacc1453430d07d00b3561191410b8e638f6b",
+    "rawHtmlSha256": "cfc5d7d68c4dc79963bb2518a790f721ae754e7da828d7c13e422da945576885",
+    "declarations": [
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/75e3f2fdd99f66d9.css",
+        "path": [
+          0,
+          0,
+          8
+        ],
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/75e3f2fdd99f66d9.css",
+          "data-precedence": "next"
+        },
+        "inert": false
+      },
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/0f041f2cae6d6ac2.css",
+        "path": [
+          0,
+          0,
+          9
+        ],
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/0f041f2cae6d6ac2.css",
+          "data-precedence": "next"
+        },
+        "inert": false
+      },
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/3f611c6be6f58721.css",
+        "path": [
+          0,
+          0,
+          10
+        ],
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/3f611c6be6f58721.css",
+          "data-precedence": "next"
+        },
+        "inert": false
+      },
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/734bc25898615c74.css",
+        "path": [
+          0,
+          0,
+          11
+        ],
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/734bc25898615c74.css",
+          "data-precedence": "next"
+        },
+        "inert": false
+      },
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/d234d951b3fe51d2.css",
+        "path": [
+          0,
+          0,
+          12
+        ],
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/d234d951b3fe51d2.css",
+          "data-precedence": "next"
+        },
+        "inert": false
+      },
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/31a7fa5c41642557.css",
+        "path": [
+          0,
+          0,
+          13
+        ],
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/31a7fa5c41642557.css",
+          "data-precedence": "next"
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/3c437706-a9ea41ddbd17f8df.js",
+        "path": [
+          0,
+          0,
+          15
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/3c437706-a9ea41ddbd17f8df.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/8455-f80c2f7537e90735.js",
+        "path": [
+          0,
+          0,
+          16
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/8455-f80c2f7537e90735.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/main-app-31f8397db6f51f20.js",
+        "path": [
+          0,
+          0,
+          17
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/main-app-31f8397db6f51f20.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/310a133d-3ef9f472d3362844.js",
+        "path": [
+          0,
+          0,
+          18
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/310a133d-3ef9f472d3362844.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/5153-380c257f986c76b7.js",
+        "path": [
+          0,
+          0,
+          19
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/5153-380c257f986c76b7.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/133-81a575bf03b2a95a.js",
+        "path": [
+          0,
+          0,
+          20
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/133-81a575bf03b2a95a.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/3461-23c0214c4a87512b.js",
+        "path": [
+          0,
+          0,
+          21
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/3461-23c0214c4a87512b.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/2963-5f59f9fb91de1519.js",
+        "path": [
+          0,
+          0,
+          22
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/2963-5f59f9fb91de1519.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/591-efcb462455be0937.js",
+        "path": [
+          0,
+          0,
+          23
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/591-efcb462455be0937.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/global-error-970876ec0010f288.js",
+        "path": [
+          0,
+          0,
+          24
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/global-error-970876ec0010f288.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/1403-2ca6443079c7e324.js",
+        "path": [
+          0,
+          0,
+          25
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/1403-2ca6443079c7e324.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/7890-43507a117a5b5a02.js",
+        "path": [
+          0,
+          0,
+          26
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/7890-43507a117a5b5a02.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/5736-2971ce809f02451b.js",
+        "path": [
+          0,
+          0,
+          27
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/5736-2971ce809f02451b.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/4745-52f10260a6b6762c.js",
+        "path": [
+          0,
+          0,
+          28
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/4745-52f10260a6b6762c.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/(collection)/page-ed4fe11ef99d9e9b.js",
+        "path": [
+          0,
+          0,
+          29
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/(base)/resources/(collection)/page-ed4fe11ef99d9e9b.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/6890-dba801e23a10acf1.js",
+        "path": [
+          0,
+          0,
+          30
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/6890-dba801e23a10acf1.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/7-397893be09413f2d.js",
+        "path": [
+          0,
+          0,
+          31
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/7-397893be09413f2d.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/4932-aa15c87ece4ca0d7.js",
+        "path": [
+          0,
+          0,
+          32
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/4932-aa15c87ece4ca0d7.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/careers/page-8dae8e2967833509.js",
+        "path": [
+          0,
+          0,
+          33
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/(base)/resources/careers/page-8dae8e2967833509.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/b9cd5459-57e6be943ce808f6.js",
+        "path": [
+          0,
+          0,
+          34
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/b9cd5459-57e6be943ce808f6.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/0b0944fb-950696fa48a39940.js",
+        "path": [
+          0,
+          0,
+          35
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/0b0944fb-950696fa48a39940.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/13067ef6-db7b637046b62d25.js",
+        "path": [
+          0,
+          0,
+          36
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/13067ef6-db7b637046b62d25.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/ed0497c6-f2fbae40e8872e04.js",
+        "path": [
+          0,
+          0,
+          37
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/ed0497c6-f2fbae40e8872e04.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/5104-42cb4c5080cbef45.js",
+        "path": [
+          0,
+          0,
+          38
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/5104-42cb4c5080cbef45.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/3705-63353617a93c41c2.js",
+        "path": [
+          0,
+          0,
+          39
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/3705-63353617a93c41c2.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/3466-36c2cc777f885ef1.js",
+        "path": [
+          0,
+          0,
+          40
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/3466-36c2cc777f885ef1.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/7661-f67c3f5d08b0aa7f.js",
+        "path": [
+          0,
+          0,
+          41
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/7661-f67c3f5d08b0aa7f.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/300-38ebc0513610c065.js",
+        "path": [
+          0,
+          0,
+          42
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/300-38ebc0513610c065.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/1766-5f97b9b564630ee5.js",
+        "path": [
+          0,
+          0,
+          43
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/1766-5f97b9b564630ee5.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/499-bf12983c2ca3a0fe.js",
+        "path": [
+          0,
+          0,
+          44
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/499-bf12983c2ca3a0fe.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/8074-80ca09e89fd07ad8.js",
+        "path": [
+          0,
+          0,
+          45
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/8074-80ca09e89fd07ad8.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/521-c1081d307881f7ec.js",
+        "path": [
+          0,
+          0,
+          46
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/521-c1081d307881f7ec.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/(collection)/layout-7f995f9a37663745.js",
+        "path": [
+          0,
+          0,
+          47
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/(base)/resources/(collection)/layout-7f995f9a37663745.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/533550d7-bae9005463256b80.js",
+        "path": [
+          0,
+          0,
+          48
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/533550d7-bae9005463256b80.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/8562-04944f988375b3c0.js",
+        "path": [
+          0,
+          0,
+          49
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/8562-04944f988375b3c0.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/9458-1c6dbc54799014b8.js",
+        "path": [
+          0,
+          0,
+          50
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/9458-1c6dbc54799014b8.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/(base)/layout-56f4f70f4400963a.js",
+        "path": [
+          0,
+          0,
+          51
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/(base)/layout-56f4f70f4400963a.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/9966-813c5d630c0fe020.js",
+        "path": [
+          0,
+          0,
+          52
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/9966-813c5d630c0fe020.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/layout-631f71780294110b.js",
+        "path": [
+          0,
+          0,
+          53
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/layout-631f71780294110b.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/app/error-f0b0146a59317e9e.js",
+        "path": [
+          0,
+          0,
+          54
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/app/error-f0b0146a59317e9e.js",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/polyfills-42372ed130431b0a.js",
+        "path": [
+          0,
+          0,
+          83
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+          "nomodule": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "script",
+        "url": "https://www.baseten.co/_next/static/chunks/webpack-51bf57824314528a.js",
+        "path": [
+          0,
+          1,
+          9
+        ],
+        "attrs": {
+          "src": "/_next/static/chunks/webpack-51bf57824314528a.js",
+          "id": "_R_",
+          "async": ""
+        },
+        "inert": false
+      },
+      {
+        "kind": "stylesheet",
+        "url": "https://www.baseten.co/_next/static/css/d234d951b3fe51d2.css",
+        "flight": true,
+        "attrs": {
+          "rel": "stylesheet",
+          "href": "/_next/static/css/d234d951b3fe51d2.css",
+          "precedence": "next",
+          "crossOrigin": "$undefined",
+          "nonce": "$undefined"
+        }
+      }
+    ],
+    "reviewedWholeFlight": {
+      "file": "complete-flight-triage.json",
+      "sha256": "2574a93fee591f4a762d06119d4e020253c7fbb8e769689c911b4ce96e9ff6dd",
+      "bytes": 140651,
+      "records": 110,
+      "activeRoute": "0 -> $L7 -> $L5b -> $L5e join-our-team -> $L60(module71768 Departments)",
+      "lineDiagnosticNotCompleteWireParser": true,
+      "allOpaqueWireBytesRemainFingerprintBound": true
+    }
+  },
+  "modules": [
+    {
+      "id": 71768,
+      "sha256": "41938fe9b10f73b018754871c25f3d0604ddbc8934ab0e8a9de9d851e16d641e",
+      "program": "(e,s,r)=>{\"use strict\";r.d(s,{Departments:()=>L});var n=r(83573),i=r(47953),o=r(57700),t=r(3461),l=r(33631),d=r(71769);let m={name:\"all\"},h=e=>{let{selected:s,item:r,onChange:i}=e,{ref:o,mouseEnter:l,mouseLeave:m}=(0,d.hG)();return(0,n.jsxs)(\"button\",{onMouseEnter:l,onMouseLeave:m,className:(0,t.cn)(\"relative overflow-hidden shrink-0 font-mono uppercase text-xs/[30px] md:text-sm/[30px] font-medium px-4 py-1.5\",s===r.name?\"bg-b-bgreen-500\":\"\"),onClick:()=>i(r.name),suppressHydrationWarning:!0,children:[(0,n.jsx)(d.YO,{ref:o,shouldAnimate:!0,theme:s===r.name?\"primary\":\"secondary\"}),(0,n.jsx)(\"span\",{className:\"relative z-10\",children:r.name})]})},v=e=>{let{items:s,selected:r,onChange:i,className:d}=e;return(0,n.jsxs)(\"div\",{className:(0,t.cn)(\"relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4 px-1.5\",d),children:[(0,n.jsx)(o.HorizontalDashedBox,{}),(0,n.jsxs)(l.A,{className:\"items-start justify-start gap-1 lg:gap-3 outline-b-fills-800/15 whitespace-nowrap py-1.5\",children:[(0,n.jsx)(h,{selected:r,item:m,onChange:i}),s.map(e=>(0,n.jsx)(h,{selected:r,item:e,onChange:i},e.name))]})]})},b=e=>e.jobs.length>0;var P=r(84381);let a=()=>(0,n.jsx)(P.Typography,{style:{color:\"#676e64\"},variant:\"label\",className:\"py-8 text-center uppercase\",children:\"No matching positions found\"});var c=r(30133),u=r.n(c),x=r(99175),f=r(15458);let p=e=>{let{department:s,jobs:r}=e;return(0,n.jsx)(\"div\",{className:\"flex flex-col\",children:(0,n.jsx)(\"div\",{className:\"flex flex-col\",children:r.map((e,s)=>(0,n.jsxs)(\"div\",{className:\"relative flex justify-between max-w-full gap-4 py-4 pl-4 pr-4 lg:px-8 lg:py-6 group/job hover:bg-b-fills-200 transition-colors\",children:[(0,n.jsx)(o.TopDashedBox,{}),(0,n.jsx)(o.BottomDashedBox,{className:\"hidden group-last/job:block\"}),(0,n.jsxs)(\"div\",{className:\"flex flex-col lg:flex-row gap-1 lg:gap-4 lg:items-center\",children:[(0,n.jsx)(\"p\",{className:\"flex items-center justify-between w-full lg:justify-start text-sm font-semibold\",children:e.title}),e.team&&(0,n.jsx)(P.Typography,{variant:\"ps\",className:\"text-sm text-b-neutral-700 shrink-0\",children:e.team.name}),(0,n.jsx)(\"span\",{className:\"text-b-neutral-700 md:hidden text-xs\",children:e.shortDescription})]}),(0,n.jsxs)(\"div\",{className:\"max-lg:flex flex-col text-xs/5 lg:text-sm space-x-1.5 items-end lg:space-x-4\",children:[(0,n.jsx)(\"span\",{className:\"text-b-neutral-700 max-md:hidden max-lg:order-1\",children:e.shortDescription}),(0,n.jsxs)(u(),{href:(0,f.Yn)(e),target:\"_blank\",rel:\"noopener noreferrer\",className:\"font-semibold inline-flex items-center gap-1 after:absolute after:inset-0 hover:underline group whitespace-nowrap\",children:[\"Apply now\",(0,n.jsx)(x.FiArrowUpRight,{className:\"size-4 group-hover:translate-x-[1px] group-hover:translate-y-[-1px] transition-transform\"})]})]})]},\"\".concat(e.title,\"-\").concat(s)))})},s.name)},g=e=>(e.shortDescription||\"\").split(\"/\").map(e=>e.trim()).filter(Boolean).map(e=>({id:e.toLowerCase(),name:e})),j=e=>{let{department:s}=e,[r,o]=(0,i.useState)(\"all\"),[t,l]=(0,i.useState)(\"all\"),d=Array.from(s.jobs.reduce((e,s)=>(s.team&&e.set(s.team.name,s.team),e),new Map).values()),m=s.jobs.filter(e=>{var s;return\"all\"===r||r===(null==(s=e.team)?void 0:s.id)}),h=Array.from(m.flatMap(g).reduce((e,s)=>(e.set(s.id,s),e),new Map).values()).sort((e,s)=>e.name.localeCompare(s.name));(0,i.useEffect)(()=>{\"all\"===t||h.some(e=>e.id===t)||l(\"all\")},[h,t]);let v=m.filter(e=>\"all\"===t||g(e).some(e=>e.id===t)),b=\"teams-\".concat(s.id),a=\"locations-\".concat(s.id);return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(\"div\",{className:\"bg-b-fills-200 flex items-center justify-between gap-6 px-4 py-2 md:px-8 md:py-6\",children:[(0,n.jsx)(P.Typography,{variant:\"p1\",weight:\"semibold\",children:s.name}),(d.length>1||h.length>1)&&(0,n.jsxs)(\"div\",{className:\"flex flex-wrap justify-end gap-3 text-sm items-center\",children:[d.length>1&&(0,n.jsxs)(\"div\",{className:\"inline-flex gap-2 items-center\",children:[(0,n.jsx)(\"label\",{htmlFor:b,className:\"font-medium max-md:hidden\",children:\"Filter by team\"}),(0,n.jsxs)(\"div\",{className:\"inline-grid grid-cols-1\",children:[(0,n.jsxs)(\"select\",{id:b,onChange:e=>o(e.target.value),className:\"text-b-neutral-800 border border-black/15 px-4 py-2 pr-10 bg-white appearance-none col-start-1 row-start-1\",children:[(0,n.jsx)(\"option\",{value:\"all\",children:\"All teams\"}),d.map(e=>(0,n.jsx)(\"option\",{value:e.id,children:e.name},e.id))]}),(0,n.jsx)(x.FiChevronDown,{\"aria-hidden\":\"true\",className:\"pointer-events-none col-start-1 row-start-1 mr-4 size-5 self-center justify-self-end text-gray-500 sm:size-4\"})]})]}),h.length>1&&(0,n.jsxs)(\"div\",{className:\"inline-flex gap-2 items-center\",children:[(0,n.jsx)(\"label\",{htmlFor:a,className:\"font-medium max-md:hidden\",children:\"Filter by location\"}),(0,n.jsxs)(\"div\",{className:\"inline-grid grid-cols-1\",children:[(0,n.jsxs)(\"select\",{id:a,onChange:e=>l(e.target.value),className:\"text-b-neutral-800 border border-black/15 px-4 py-2 pr-10 bg-white appearance-none col-start-1 row-start-1\",children:[(0,n.jsx)(\"option\",{value:\"all\",children:\"All locations\"}),h.map(e=>(0,n.jsx)(\"option\",{value:e.id,children:e.name},e.id))]}),(0,n.jsx)(x.FiChevronDown,{\"aria-hidden\":\"true\",className:\"pointer-events-none col-start-1 row-start-1 mr-4 size-5 self-center justify-self-end text-gray-500 sm:size-4\"})]})]})]})]}),(0,n.jsx)(p,{department:s,jobs:v})]})};var w=r(80678),y=r(56092);let N=function(e,s){let r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:[\"title\",\"shortDescription\"],n=arguments.length>3&&void 0!==arguments[3]?arguments[3]:.3;return s?new y.A(e,{keys:r,threshold:n}).search(s).map(e=>e.item):e};var k=r(3012);let E=e=>{let{searchQuery:s,onSearchChange:r,className:i}=e;return(0,n.jsx)(\"div\",{className:(0,t.cn)(\"relative hidden lg:block w-full max-w-[240px]\",i),children:(0,n.jsxs)(\"div\",{className:\"flex bg-b-fills-100 items-center px-2 py-1.5 border border-black gap-3 group\",children:[(0,n.jsx)(k.default,{strokeWidth:2,className:\"pointer-events-none size-5 text-b-neutral-800 group-focus-within:text-black transition-colors\"}),(0,n.jsx)(\"input\",{type:\"text\",placeholder:\"Find a role\",className:\"w-full h-full bg-transparent outline-none text-sm/[30px] placeholder:text-b-neutral-800 text-b-neutral-900\",\"aria-label\":\"Find a role\",spellCheck:\"false\",autoComplete:\"off\",value:s,onChange:r})]})})},L=e=>{let{departments:s}=e,{selectedDepartment:r,setSelectedDepartment:l}=function(e){let s=(0,w.useSearchParams)(),r=(0,w.usePathname)();return{selectedDepartment:(e=>{let s=(0,w.useSearchParams)().get(\"department\");if(!s)return\"all\";let r=e.find(e=>(0,t.Yv)(e.name)===s);return(null==r?void 0:r.name)||\"all\"})(e),setSelectedDepartment:e=>{let n=new URLSearchParams(s.toString());n.set(\"department\",(0,t.Yv)(e)),\"all\"===e&&n.delete(\"department\");let i=n.size>0?\"?\".concat(n.toString()):\"\",o=\"\".concat(r).concat(i,\"#join-our-team\");window.history.replaceState(null,\"\",o)}}}(s),[d,m]=(0,i.useState)(\"\");(0,i.useEffect)(()=>{var e;\"#join-our-team\"===window.location.hash&&(null==(e=document.getElementById(\"join-our-team\"))||e.scrollIntoView({behavior:\"smooth\"}))},[]);let h=(0,i.useMemo)(()=>s.filter(e=>((e,s)=>\"all\"===s||e.name===s)(e,r)).map(e=>({...e,jobs:N(e.jobs,d)})).filter(b),[r,d]);return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsxs)(\"div\",{className:\"flex justify-between items-center p-8\",children:[(0,n.jsx)(P.Heading,{as:\"h2\",variant:\"subheading-2\",className:\"text-center\",children:\"Open roles\"}),(0,n.jsx)(E,{searchQuery:d,onSearchChange:e=>m(e.target.value),className:\"max-w-[500px]\"})]}),(0,n.jsx)(v,{items:s,selected:r,onChange:l,className:\"mb-8\"}),h.length>0?(0,n.jsxs)(\"div\",{className:\"relative flex flex-col\",children:[(0,n.jsx)(o.TopDashedBox,{disableAnimation:!0}),h.map(e=>(0,n.jsx)(j,{department:e},e.name))]}):(0,n.jsx)(a,{})]})}}",
+      "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/careers/page-8dae8e2967833509.js",
+      "reviewedDataflow": "Flight Departments export maps unfiltered departments/jobs through imported15458.Yn into Apply now links; all initial filters all/empty."
+    },
+    {
+      "id": 15458,
+      "sha256": "ab69a484c94346801aa8fe7a5f00a30588fec0490fc356f37fce8d6d803478da",
+      "program": "(e,t,r)=>{\"use strict\";r.d(t,{VF:()=>a.VF,xo:()=>a.xo,JC:()=>a.JC,Ko:()=>d,kx:()=>a.kx,hi:()=>a.hi,Eo:()=>a.Eo,bl:()=>a.bl,C4:()=>a.C4,MF:()=>a.MF,W1:()=>a.W1,q7:()=>a.q7,A6:()=>a.A6,mT:()=>a.mT,Tz:()=>a.Tz,Xj:()=>a.Xj,NE:()=>a.NE,g3:()=>a.g3,cR:()=>a.cR,Yn:()=>c,ID:()=>u});var o=r(81186),n=r.n(o);function l(e){return!!e&&RegExp(\"^(?:[a-z+]+:)?//\",\"i\").test(e)}var a=r(21129);let i={ArticleRecord:e=>{let{slug:t}=e;return\"\".concat(a.Yx).concat(t,\"/\")},BlogPostRecord:e=>{let{slug:t,category:r}=e;return(null==r?void 0:r.slug)===a.kz?\"\".concat(a.Yx).concat(t,\"/\"):\"\".concat(a.xo).concat(t,\"/\")},CategoryRecord:e=>{let{slug:t}=e;return\"\".concat(a.xo,\"category/\").concat(t,\"/\")},AuthorRecord:e=>{let{slug:t}=e;return\"/author/\".concat(t,\"/\")},CustomerStoryRecord:e=>{let{slug:t}=e;return\"\".concat(a.C4).concat(t,\"/\")},ChangelogRecord:e=>{let{slug:t}=e;return\"\".concat(a.bl).concat(t,\"/\")},JobRecord:e=>{let{applicationId:t}=e;return\"https://jobs.ashbyhq.com/baseten/\".concat(t,\"/\")},MiscRecord:e=>{let{slug:t}=e;return\"/\".concat(t,\"/\")},GeneralPageRecord:e=>{let{slug:t}=e;return\"/\".concat(t,\"/\")},LinkCollectionRecord:e=>{let{url:t}=e;return t},LibraryModelRecord:e=>{let{slug:t}=e;return\"\".concat(a.mT).concat(t,\"/\")},ModelPublisherRecord:e=>{let{slug:t}=e;return\"\".concat(a.mT,\"publisher/\").concat(t,\"/\")},ModelTagRecord:e=>{let{slug:t}=e;return\"\".concat(a.mT,\"tag/\").concat(t,\"/\")},ModelFamilyRecord:e=>{let{slug:t}=e;return\"\".concat(a.mT,\"family/\").concat(t,\"/\")},ModelHardwareRecord:e=>{let{slug:t}=e;return\"\".concat(a.mT,\"hardware/\").concat(t,\"/\")},ModelOptimizationRecord:e=>{let{slug:t}=e;return\"\".concat(a.mT,\"optimization/\").concat(t,\"/\")},CompetitorRecord:e=>{let{slug:t}=e;return\"/compare/\".concat(t,\"/\")},DeploymentRecord:e=>{let{slug:t}=e;return\"/deployments/\".concat(t,\"/\")},SolutionRecord:e=>{let{slug:t}=e;return\"/solutions/\".concat(t,\"/\")},ProductRecord:e=>{let{slug:t}=e;return\"/products/\".concat(t,\"/\")},PlatformRecord:e=>{let{slug:t}=e;return\"/platform/\".concat(t,\"/\")},PlatformModelRecord:e=>{let{slug:t}=e;return\"/platform/model/\".concat(t,\"/\")},GuideRecord:e=>{let{slug:t}=e;return\"\".concat(a.ye,\"guide/\").concat(t,\"/\")},BookRecord:e=>{let{destinationUrl:t}=e;return t},WebinarRecord:e=>{let{slug:t}=e;return\"\".concat(a.ye,\"webinar/\").concat(t,\"/\")},EventRecord:e=>{let{slug:t}=e;return\"\".concat(a.ye,\"event/\").concat(t,\"/\")},ResearchPostRecord:e=>{let{slug:t}=e;return\"\".concat(a.xo).concat(t,\"/\")},TalkToRecord:e=>{let{slug:t}=e;return\"\".concat(a.g3).concat(t,\"/\")}},s={AnnouncementBannerRecord:\"/\",CustomerPageRecord:a.C4,CareersPageRecord:a.Eo,ExploreLibraryModelRecord:a.mT,BlogPageRecord:a.xo,PricingPageRecord:a.Xj,AboutUsPageRecord:\"/about-us/\",StartupProgramRecord:\"/startup-program/\",TrustRecord:\"/trust/\"},c=function(e){var t;let{allowNotFound:r=!1}=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},o=null==e?void 0:e.__typename;return(null==(t=i[o])?void 0:t.call(i,e))||s[o]||(r?null:\"/\")},d=\"https://ny2vcqfthujcm8md.public.blob.vercel-storage.com/Baseten_Media_Kit.zip\";function u(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;e&&\"/\"!==e||(e=\"\");let t=e&&!l(e),r=l(e)&&e,o=t&&e;return r||n().getBaseUrl()+o}}",
+      "url": "https://www.baseten.co/_next/static/chunks/591-efcb462455be0937.js",
+      "reviewedDataflow": "Export Yn resolves __typename JobRecord using original applicationId into exact https://jobs.ashbyhq.com/baseten/<id>/."
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://www.baseten.co/_next/static/css/75e3f2fdd99f66d9.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/0f041f2cae6d6ac2.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/3f611c6be6f58721.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/734bc25898615c74.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/d234d951b3fe51d2.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/31a7fa5c41642557.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/3c437706-a9ea41ddbd17f8df.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/8455-f80c2f7537e90735.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/main-app-31f8397db6f51f20.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/310a133d-3ef9f472d3362844.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/5153-380c257f986c76b7.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/133-81a575bf03b2a95a.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/3461-23c0214c4a87512b.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/2963-5f59f9fb91de1519.js",
+      "kind": "script",
+      "sha256": "cf89a55ea8c875368c0d2566dfc4e2ebdac6a8f9cd0309904e1437a871c43d7f",
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 8875
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/591-efcb462455be0937.js",
+      "kind": "script",
+      "sha256": "e5e1c4e1e46edf1fe561005983f0d93cba61cff83e6a6f7a4d27e7c1529e5649",
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 28488
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/global-error-970876ec0010f288.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/1403-2ca6443079c7e324.js",
+      "kind": "script",
+      "sha256": "7a47ed5f3deadf2c1b19508fa4bd06b367cea3994ecfad7a86fdf6cdc0b3bdd4",
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 26681
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/7890-43507a117a5b5a02.js",
+      "kind": "script",
+      "sha256": "c8b0ed8395778d3c92a44865de3369e8069f960feb57b456a0cee4e218966fe4",
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 2298242
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/5736-2971ce809f02451b.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/4745-52f10260a6b6762c.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/(collection)/page-ed4fe11ef99d9e9b.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/6890-dba801e23a10acf1.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/7-397893be09413f2d.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/4932-aa15c87ece4ca0d7.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/careers/page-8dae8e2967833509.js",
+      "kind": "script",
+      "sha256": "3e983b63a519e8df354c23793131b0300eb290b7781e9010487010093b4968c5",
+      "contentType": "application/javascript; charset=utf-8",
+      "bytes": 86557
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/b9cd5459-57e6be943ce808f6.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/0b0944fb-950696fa48a39940.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/13067ef6-db7b637046b62d25.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/ed0497c6-f2fbae40e8872e04.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/5104-42cb4c5080cbef45.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/3705-63353617a93c41c2.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/3466-36c2cc777f885ef1.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/7661-f67c3f5d08b0aa7f.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/300-38ebc0513610c065.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/1766-5f97b9b564630ee5.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/499-bf12983c2ca3a0fe.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/8074-80ca09e89fd07ad8.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/521-c1081d307881f7ec.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/(base)/resources/(collection)/layout-7f995f9a37663745.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/533550d7-bae9005463256b80.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/8562-04944f988375b3c0.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/9458-1c6dbc54799014b8.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/(base)/layout-56f4f70f4400963a.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/9966-813c5d630c0fe020.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/layout-631f71780294110b.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/app/error-f0b0146a59317e9e.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/chunks/webpack-51bf57824314528a.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/f05de8d841450967.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/1d1ba297e5a2f5b8.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://www.baseten.co/_next/static/css/985eb87c26909c20.css",
+      "kind": "stylesheet",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null
+    },
+    {
+      "url": "https://bzrcdn.openai.com/sdk/oaiq.min.js",
+      "kind": "script",
+      "sha256": null,
+      "contentType": null,
+      "bytes": null,
+      "declaredBy": "actual-first-inline-unconditional-script-creation",
+      "reviewStatus": "not-fetched-or-reviewed"
+    }
+  ],
+  "nativePayloadSha256": "45146ed6e4afe87799aa04273b5548a48c0de51e320a9e148a9002fc6d1b1c1b",
+  "nativeBoardAppSha256": "803abba09ced3d595370b1e4e3aa5783e6cd55d3bdb4b03d50c7a16912fdd950",
+  "roleHashes": {
+    "fc6e5f2e-eb2d-4a6c-8a51-8422e8662bde": "a789da9ee56692d02ac042256da47ab23eafed00b25d29ed281f48d79abcb856",
+    "df2f0ebb-a84a-45c2-bc74-dc9589fcc1ae": "c7761287cc0dfdb250020658a9ab90e8e408df1dfd37da1f504801a557a00449",
+    "84c1801c-1a65-49fb-aaaa-beeafd530e7e": "6c180f67d15ccf0a8e8dbb4efda0357af9f872adffb6f7f1c8f63d6afe1ebff0",
+    "ff008b8e-b38d-4941-b24f-9a48c970e7fb": "ed9e5f2df4b6c3e7a83a8b87a34356a45a71ab006be1463a91cce941efa05331",
+    "916e9d62-492a-4562-971f-3e97e3868392": "acd7fb0720999bc4516b1248e881dbe2623bdb49a069e3b52481a38fb60bc11e",
+    "fdbbf773-0857-4771-8b90-f3dfa1d8683f": "1d8c82328983c954c5d558ca06e2741bb4c2260782e326a1dddb99dea2336221",
+    "c2f8fe4f-07c1-4d43-ae5c-05f057842e57": "aa84c81bdaa9e5536f06bc4c05b82dba838a9519f3254960798033c64858bbed",
+    "c6e86fec-9412-4d47-b23c-19da03003364": "1847430d9a253a4ced56913eca77794cfc206e3ec73e23fc641b9f94080a5113",
+    "b85e4b1d-6531-46b5-bc8a-238f3761a50e": "4d0ee052c76857c4730f465429ae8308426572346376eea41a99501b7139cdd5",
+    "ca54940e-83a0-458c-a384-b57cb4b7f888": "8edd15004b9c8de757949e27b4231a207ff32f5e9092e95616dea89ee88a8065",
+    "ae64d1d4-7b0a-4be4-8d77-7f5ce63849a7": "542634ccac1d9868bd9e08aa66c382ba7f85ccc8c9c8f60ee516a6a1209cb053",
+    "0d1f68d4-ee6c-4b5f-9ef9-21a2dabbc152": "2e3f96484f986b461aa294950268cb72692dc52e41867022921b23d9255c5d5b",
+    "8608bdbc-1b8b-4b69-a433-83864f151375": "bd38961a56b57f951d06e4f172f6b1edb344b5d62233304ae92e0ffec18db7ed",
+    "1261fe76-f577-4b3d-aac8-df65846ae445": "15a4b7e4c0784c826f0a8c0d7fc41f81622ec28c39424bbabf37e6f1e613795a",
+    "3622a1ee-50a9-4c45-af6e-aa12bd5de22f": "f8038436ea2fa077ad892a26b071de76d662daccad32b2cdaed78258e6bf6ccf",
+    "b6dc9f81-ba0c-4c6a-9844-97be9f5c9e69": "887cd2a55f8c8a9f20b2ae54896b829af3bce88bb0968ff65c74b3069f504b87",
+    "ddb5bc98-6116-49a2-802e-1c05398663f1": "badad1e56057974e2e489479b5321777d58c28ff4b8100e2f29e8341415dd41a",
+    "4e507a15-c9bb-4877-b422-f3eb462a3732": "4b8672c42e1e46ec941c7c788252907171c31b1d7ef962b347d11bacd491a225",
+    "6f947409-2bc0-491a-81b3-507cdc95df85": "6dc8402a6e4b0aee513cc2505b0db0173a9a13a6f347cab98bb57f7392ea3279",
+    "132295d6-eeb4-4655-9847-a7e9a586d273": "2a200adbd9236d81d8eb29aca5b07d597fcd9f6f4eb206ed03c6af812e6e756c",
+    "3027e0bc-731f-4fef-b081-2031590766fd": "e0ad1994ba44188a3d9f4ad19aeda822e7042b441c4ee31efe94ddf3d02051d2",
+    "126d54b4-a7bc-4456-bf4d-5d224e4f5d63": "df887cc5647f06a73136b19cbfb598451aeb532aea11e1709d2eb9d06278fd10",
+    "b1b5ab31-f90c-41f9-b9f2-13408b1c072b": "eeba261f76f63976ef976885d6d6971e6d01fbbdf988058837c1ab952a0b1ee0",
+    "75d7beac-0298-40fa-b206-2e0c0c08a64f": "354de76f5d49d5994fb17b806ed1c7afd1b26f490af0a31c6dcc2bf0597a58e3",
+    "c64515f9-a8f7-4633-9340-17cda56b1ef0": "87ae8c1b4b3d9e5ef5a0002611974c906c5c9498e47dd0bfbdac439a403564d4",
+    "1f7d7fda-5540-4205-890b-cdbf774f0814": "03ae15385fa6a21589d6db699b689dbc63567d2387deeedcf708b2f5851c427c",
+    "ddbd38d0-1914-4bac-9381-75a72f5023ca": "54b22fc29279105ea4910fb9adb45da278634764753ebe5af2c953434a4397e1",
+    "a615d797-44a4-4831-9ab9-49b4130bda7c": "7ebcd6caa316132ee4c6c538548ba6188732b03ea86ef5497e1a87876c5af72f",
+    "8ac0d29a-caa2-49b0-9abb-75073df32c7f": "87a1c68672501b1d1ffac4410e280a71d6af108cb672df4aabe706db8dbb865a",
+    "7c9d2bb0-ac03-4a3c-86c3-cf720cd314e8": "2e54fe30db2ac241c8cf838b16d05cf677a1f2b237ff68f023c12536672abd76",
+    "c2ba6c50-d282-4478-98e9-668f94facde8": "c522f9b4938543623e8f2d2c8eeffc37c54e6540b5977eeda67e960acb3e0d8f",
+    "2d18b2aa-b6fc-4f1c-8936-33b03255a090": "bd8b773abafb7ad6d970c83214a8bfcdfe3cf371fa772d23e122a95dc6df9267",
+    "223f44cf-c7b8-416c-b694-e265579aa1c2": "647f1dd6e4f0877d62592142d15f2236dd0f6b57cde69bd4bd0e0a76a7e5a8cf",
+    "68328a94-f785-463b-a3d7-b0dfc11839b5": "b2471311c9863fb22a1d48de8c452aa7688f66bb0530d5569586355d2cf47e13",
+    "c07eb44f-b5fa-4808-90b7-03b265d97836": "e76e84e03a1dfd2bdf89535e9aa93bef285da36fd2b3e9c6fbce8d12dbf96672",
+    "6e396eb7-acb3-436a-89ec-05e755c477f2": "11f6b7b5bbd200132dcc43afa39232f22fd0c8e752c68863c3014ceb3e812d7d",
+    "81d573b6-741c-4140-a36b-6892456eca73": "7bdbe811b1dba6666c76d8436987b254983233fb98ce18eb274b266397e184f7",
+    "2ae59494-97a5-4344-ae34-ffa3fab364be": "e6ff5d3469e4249cb73c95b4ab3fc07cd3942b2679ac29917159a3948cf8a710",
+    "0870ed34-7365-4b9f-a50a-481783b8c266": "ba1fac60c2bb0b7ecf171a7593a42d410b3d30789d4bdd6451c6b94234fc5d83",
+    "7d9d5a1f-3834-434e-b22f-4bd62317be3c": "7c1a399a7a00f5a90a2086493898d1df86ae5824d7ca92b773401861b749ed41",
+    "2d78fdcf-53e1-45d3-a047-2aefb5ad3153": "9968e6c81f0ec6e40eb3a2b81821f3636c9be13f6f04480bec97c22d72953ca3",
+    "5a1c6228-3906-4ccc-9988-d9bd67383b9d": "b18af6b5dbc8b8282e20b14a42f34c1b961b1336c1b9ac8c898a989999e00e45",
+    "49aaa88c-75b5-4d4e-b726-28bfecd4300e": "2894565f12aa83cce7a54694bb32067fb9dcc6bb4691453322f643a02e569bf0",
+    "58d7d8e6-86ee-43a1-baec-3dddcb661d51": "4a2924a9372f4f1421351c5cb0ce6185d90a128f16844c89400d5234d5966d77",
+    "75d81d67-465a-4d65-9745-d1c06b0c7aec": "4dd2be45c6b6fe054507fbc663a9b402481eaf7ce4eb7e0941e542095c8bf9b3",
+    "7a999a4e-5e04-4432-a7fe-86ad1151e061": "3305f38244a21d06654cb61b34a8bd67407541825c9930462f5f8569b74ce210",
+    "c29da145-0f53-4842-9f52-32b93a5b2f43": "54bdb07985f7f04923d75ed14fc39d617e3895e29466e61d754c685f9cbbdd3d",
+    "db6477fc-111a-4340-bf00-525fe023e6f3": "5cdbdfa6c5abed731fd13870e8a988fe1dbf6221dd2843e62d9d6d61946adf8d",
+    "bb48bf03-ca61-4d18-b2e3-d3997a9b0a0a": "334f14d24109edb26409208569050708bb4867dafe51fd2a61800ff076afc652",
+    "5fdfe98f-c926-4af8-891a-79610b52ff96": "822bcf6e67f9872faa9ac8207bc89980b60aa59e4272aecd529cb320d6b8658b",
+    "3e925ab1-2089-4a79-989e-50479b546eda": "687e2047ecf21bb700001f8d55279bf1e63300800325f0462aef7232d0c6226e",
+    "fb886b59-fdc3-4315-a9b3-c49808bcd2ce": "f3245e89c541e47c944432d68aef69e6b4c753cdca63b72c8a697aa492a72ef6",
+    "78028a72-2431-4373-aaec-d6e2c9a1cc7d": "b6f267602271b0b05a3bddfa12a15e62c364c970c7f44d2eb83d4e4e13e366e0",
+    "e71e97a8-6367-4050-b6a9-42ce62ec78f1": "d97c85c2400637ed8134935e65a65fd841c8d47e81c55b94eabbc25d5a1beed2",
+    "11ab2593-6648-4943-ab4a-284fe7e89720": "88f3b0753829511c6150eb5750f58d8c2ccbb1d9a7bc3a72f7c56957076a8075",
+    "9ed34cdb-7ee6-4060-baff-b3b610221d23": "20768f889cbcf47fcb9c77db03390cb9c03e7ace02a0873e66ccb682fb354c7a",
+    "b13ec426-d09d-4122-8112-cf25adbd7d60": "94bf8d50d9016db1d507d959627a1c6d821cb5a845716f4c7601df76379c6bcd",
+    "9eb05eb7-75a8-415c-8370-a10005c0d2cc": "2118776d761ba7ba30aeaffcb1a9435615aaac43467f10f4d54c655d56533aac",
+    "e5ea31d5-a61f-4b91-957b-b2ddb1454bfb": "47c8dc2a8bfb6f672c53dbfd2b0ccc10f1bdeb9573d74db89f80a3b93d22ffc9",
+    "5cd2f489-b9ee-428b-b252-94e83d55f107": "eb5f05995b3487aac792c89f6f8d5866481c71ec147172e6accd1e6c0e082de7",
+    "f9ccf52d-b45a-4890-828e-be8e6945deb3": "c2275ee337e668233084b1e2a6b0e6ade52044eb5cc79937281868ab683fefe3",
+    "382978bd-7eef-4657-a229-3381a1057b4e": "83b3e369a4d9eeb9b19d4bea13eb0ad4542d23e464525c53ef2892b817da245f",
+    "40bce839-10ad-4274-a988-7cee8e0f795e": "a1c4baf34a4ebab7e5bc88237c206edf962e644772e1ea8b3047afcce58cc0f5",
+    "b7fad264-bfe7-4d90-a8c7-493e7896c5c7": "90c11a82beb11b39ff2ad602489bfc169e663a05ba74942f47c8c820668cec33",
+    "c9e18247-d145-486b-8ac4-3b3e3db53f10": "be2d2f77f4c83c27597da6cd351fb9aa9189b93d12831a18cda33823e890aeae",
+    "f160637f-b6bf-4f69-a8bd-862a3a3a8b0d": "4887ae96d5a9a2430b071d9509a3b5c0eebee57de18e55fd1af25f6ed4f940f3",
+    "28291849-b57f-4813-a7e0-66b1050b2d1b": "591ac344135ae0f755479c7a85153eaaa5f7cc7276d7714021ec769112633a07",
+    "90917db5-8555-4a69-91c2-3b5ddbdbdd56": "c91c031f8b1c50091994448d67ab9cee380d8a705a644dcab8a5a89302ce3f19",
+    "64181d8a-960d-4aa4-8d98-3cb22b1e0616": "06bb55b480c3a443195645f6ae59c2805d3dc118f29d183e7b7fb4b2e25577e4",
+    "768bca5d-287f-405a-b677-605317607178": "3f599625016845c6ed21c20bf19c0b672f171598cc563868205f85ad09bbbe3f",
+    "122f0319-3410-4492-9d2a-953c9c13d7ea": "a0869fff65cca73f83086953ae6d98999af890229546a458e4f52fde77bdfb4d",
+    "e0fa6f6c-fddb-4447-9636-43e9d5646aa6": "075ecd0d422f20dec10a9de4ad10d7d13abbd36777e0c8192c561c6278864139",
+    "fc0f0182-5084-4e94-a6ac-49179ba26140": "5878c86a5f5680759f731e8c26c443640983a1b5e6029bb5f63f34ccbf464920",
+    "4d91f30b-8c06-48c2-a56e-f48fc34968d4": "45eae780ad1d27e42e8ca6b7c96f416f1900edac12ed6b86bbfe1048baae8e4d",
+    "55de4d92-fd47-4a92-a3f5-fab2624f6015": "a0e00f3fbbe98e1026ede6ef4f13cb1d740b0fb6bee5d55a16868a2e6879836d",
+    "f3636826-2c87-4380-bf99-d35f3d22720d": "ea6a120e329d4cc2aea59f366c60986ccd838d028f23d2874ac287a8c03447db",
+    "5bf99d98-8df7-4d8e-b040-42a66c28cd67": "d46ccc195eae30e95bcf41d98fca854f2a2de1f29dcda2af2c7490b7ac5067eb",
+    "5a1a7b6c-646b-495c-911a-8fa435c78b6f": "58cbdac1714842798943d1f285d84cbff3c4b3f970085d528d0df05a09506e3d",
+    "91048864-210d-497c-8b4d-440769bf8660": "bca1d5fb8878f6a6040764dca23e72216250a31f03e71072b3fef62d98b4202b",
+    "5368c7ea-17d0-4927-9fa7-320feec2e836": "0c771053f54f5f7ac29c3cd4f60356c9af4c8f6decaa42ac49c782b59a30372e",
+    "f736f253-7b2d-4a4f-82d6-3f4ebf14c7c6": "afc5fed4c0888bfb0e6f0cac47bd9e9ad770231d08b798ecfd6c92e13903c403",
+    "2c7a4042-6c6b-4059-bfdb-7fa987326edb": "9c247afe688c32dc1f31bcf6e0a0489eeb5acaa7bfd32e52eadef58888608c0c",
+    "4dcdf587-38f3-4363-8033-a453f54b38b0": "ac814dbc16498e1d30aa3acb0233717e8b4a93497991ccc889e90b7aa723eef7",
+    "7428d7cc-36d7-4d02-b19a-bd558fba6751": "75e049b106b6aa339b8583b56f48cb41036dae0d8859a7e7ba3ecde150a3365f",
+    "0626d5fa-86eb-4441-8e11-01bf8d2cab68": "f93801011fe90ee10e231c25a05ea5fe8e012b2c83d6534d723a6eb1e6849e01",
+    "d04877d0-4360-4adb-879b-0ceb02f08c76": "dd153eb5e46a40c67a3f03c86dcbfec25799b3923126053ff40df3d06b7f1709",
+    "ee4db226-f1bb-4128-b0de-c6917b93b7b4": "86d74a8de7ac75984e0281fe5658e7216f580427f4b9d2b2b3cd29ac0a145058",
+    "976f89ef-1065-45a7-8b51-31fecd1ef1e6": "07629a22aad09c87487c8be501072d225acc953c9cdc5a320831a41196567d0d",
+    "7cb19a05-8e5b-44cf-b3e7-19949e2eff04": "4ea65aba7dc796c8fd48d0c9875cb5dff3de78d9c473339ccee49fbdeab5f9ff",
+    "14c4a663-0b1f-4c11-93ff-1359741ee456": "edebde7d41337b31f40571e551a46c949bd3bbdb08b44863b0dc9ad6363890f4",
+    "6b105131-d5d6-4d41-96ce-7fe71ff87769": "460412131ccb0c018489cdafde32ee40c41602778b1d1f131f106f4e01278a9f",
+    "b6ef1aed-8e71-4b31-9cfe-e95d793c8604": "4ace494a2300523ca7db712787e55f417973015161c0e270c2dc884cf9517b2e",
+    "e3677df5-97b8-4a90-8ed8-135742c675f6": "c0eb436a06ff7d3a241642eda12cfda0f403398e3f9747a411935aed059c0765",
+    "64bdba5c-8cf6-473f-814c-1e86c8c66681": "fc9eb4703af7335dab0c9a239bfc50aeceda098af42a1608db6a27af5fa0f0a2",
+    "86331c05-a6b0-4a9f-991d-b46091b696b5": "e6577b7787103e58769c0cce80ef6995d938a66887dfe2fbade478f372ed660e",
+    "34fd4416-49f3-4ef7-b9f8-5883f8d0710c": "cecef5ed7be5c444304549c0a3e87e584cac940b5ea04a1e7239163ec9d51803",
+    "08bededd-d362-453e-b014-384a2003cbf1": "66a407d02aa06b81fb09e9b57803c71dad4f2b3744750583147c6436d172f582",
+    "26af6cd9-6ef1-4d6b-b5f6-77a581e45dc4": "f0b0ef53668f4733d50cec5d4914e16ef81b207f093eb360adbf2f78a094e4c6",
+    "544aff7b-d88e-4e30-9a72-9d9c611c784e": "ab018b6dfe8ca715b0b277d4e45d2a2863219b4988dbe8e4ed2964710b8ee4db",
+    "84b48db9-4b3b-48f7-9ccd-ce6322d3cbf6": "b9c51231a06ec9ea764a3dd8c926a97a876de753f4e1f84642abbfbd12c5b255",
+    "7c0ba27d-2f09-42f2-9277-1b756076b00b": "f1659dc7c3ab056dcbeacfd60f0984a7649a84387bd8bec2503ef48da7e58cce",
+    "d7e9ee32-dee8-459f-9d8a-538d65df51ae": "bef249cc58fbcf99d5a6f51780df78ae5cbadf34c0bd6bedf3b6177608eb1ed3",
+    "ed8ab178-e7a4-4524-8714-7ef55d574c7d": "e6a839703d4ba890b6f2dcf76247017b50a10141a576e39b1767ebdcf757a7a3",
+    "1e0cdfba-8271-4e95-ac86-02bc7d8d3cca": "94a98b80f9853c9117edbd9b11026a0de80b98149902ec0af1ea7385909ed11d"
+  },
+  "cmsOnly": [
+    {
+      "id": "74b4fde1-d4e9-4080-be05-48adf2b84f6a",
+      "records": [
+        {
+          "__typename": "JobRecord",
+          "id": "WEcJOux4QtGAkwWDVX_NpA",
+          "title": "Capacity Manager, Programs",
+          "shortDescription": "San Francisco",
+          "applicationId": "74b4fde1-d4e9-4080-be05-48adf2b84f6a",
+          "_firstPublishedAt": "2026-09-05T02:07:02+01:00",
+          "team": null
+        }
+      ]
+    },
+    {
+      "id": "43b6c299-d5df-4cf4-a816-142ba3014a9d",
+      "records": [
+        {
+          "__typename": "JobRecord",
+          "id": "Fbg8r8ABRV2tirbXs9WB7g",
+          "title": "Marketing Technology & Operations Lead",
+          "shortDescription": "San Francisco / New York",
+          "applicationId": "43b6c299-d5df-4cf4-a816-142ba3014a9d",
+          "_firstPublishedAt": "2026-08-15T02:05:10+01:00",
+          "team": null
+        }
+      ]
+    }
+  ],
+  "titleAliases": [
+    {
+      "id": "c07eb44f-b5fa-4808-90b7-03b265d97836",
+      "cmsTitle": "IT Support / Operations Engineer (SF)",
+      "nativeTitle": "IT Support / Operations Engineer"
+    },
+    {
+      "id": "1261fe76-f577-4b3d-aac8-df65846ae445",
+      "cmsTitle": "Account Executive - AI Native (New York) ",
+      "nativeTitle": "Account Executive - AI Native"
+    },
+    {
+      "id": "df2f0ebb-a84a-45c2-bc74-dc9589fcc1ae",
+      "cmsTitle": "Account Executive - AI Native (San Francisco)",
+      "nativeTitle": "Account Executive - AI Native"
+    },
+    {
+      "id": "223f44cf-c7b8-416c-b694-e265579aa1c2",
+      "cmsTitle": "Account Executive - Enterprise (New York)",
+      "nativeTitle": "Account Executive - Enterprise"
+    },
+    {
+      "id": "75d81d67-465a-4d65-9745-d1c06b0c7aec",
+      "cmsTitle": "Account Executive - Enterprise (San Francisco)",
+      "nativeTitle": "Account Executive - Enterprise"
+    },
+    {
+      "id": "c9e18247-d145-486b-8ac4-3b3e3db53f10",
+      "cmsTitle": "Account Executive - Strategic (London)",
+      "nativeTitle": "Account Executive - Strategic"
+    },
+    {
+      "id": "8608bdbc-1b8b-4b69-a433-83864f151375",
+      "cmsTitle": "Account Executive - Strategic (New York)",
+      "nativeTitle": "Account Executive - Strategic"
+    },
+    {
+      "id": "0d1f68d4-ee6c-4b5f-9ef9-21a2dabbc152",
+      "cmsTitle": "Account Executive - Strategic (San Francisco)",
+      "nativeTitle": "Account Executive - Strategic"
+    },
+    {
+      "id": "f3636826-2c87-4380-bf99-d35f3d22720d",
+      "cmsTitle": "Sales Manager - Enterprise (London)",
+      "nativeTitle": "Sales Manager - Enterprise"
+    },
+    {
+      "id": "7c9d2bb0-ac03-4a3c-86c3-cf720cd314e8",
+      "cmsTitle": "Post-Training Researcher",
+      "nativeTitle": "Base Labs Research Scientist"
+    },
+    {
+      "id": "c6e86fec-9412-4d47-b23c-19da03003364",
+      "cmsTitle": "Field Marketing Manager (NY)",
+      "nativeTitle": "Field Marketing Manager"
+    }
+  ],
+  "nativeOnly": [
+    {
+      "id": "4e507a15-c9bb-4877-b422-f3eb462a3732",
+      "title": "Manager, Strategic Sales"
+    },
+    {
+      "id": "db6477fc-111a-4340-bf00-525fe023e6f3",
+      "title": "AI Inference Engineer"
+    }
+  ],
+  "provenance": {
+    "actualPublisher": "artifacts/scraper-coverage-repairs-2026-10-29/baseten-fifth-wave/research-2026-10-30T03-32-45-269Z/001.body",
+    "actualNative": "artifacts/scraper-coverage-repairs-2026-10-29/baseten-fifth-wave/research-2026-10-30T03-32-45-269Z/002.body",
+    "noProgramsExecuted": true,
+    "allChangesRequireReview": true,
+    "unknownAssetCount": 47
+  },
+  "nativeAppBootstrap": {
+    "sha256": "44425d66b6110915dfac2e8933e09588cd8aea069cf48aee5d6479e5202cf859",
+    "attrs": {
+      "nonce": "HTZIF6g25Jxnu9j5yGkMJ99jYaeT8fsyZiazm3bGMws"
+    }
+  },
+  "unavailableAppBootstrap": {
+    "sha256": "44425d66b6110915dfac2e8933e09588cd8aea069cf48aee5d6479e5202cf859",
+    "attrs": {
+      "nonce": "GYug4MbKR6nrrM-o39YE-a9gZjtPibDCzvjJdmLnIaU"
+    }
+  },
+  "unavailableNativeAppSha256": "29d35048e2eed903125c50c51e00b2e2d9e1e3cb705ba107cf3837fea8461b42",
+  "roleOwnedDescriptionLocationGaps": [
+    {
+      "jobId": "4dcdf587-38f3-4363-8033-a453f54b38b0",
+      "issue": "Structured New York only, but actual role-owned JD explicitly on-site based in San Francisco.",
+      "assignedNativeJDParagraphs": [
+        "This is an on-site role based in San Francisco."
+      ],
+      "rawRoleSha256": "ac814dbc16498e1d30aa3acb0233717e8b4a93497991ccc889e90b7aa723eef7",
+      "provenance": "actual retained role-owned description; city names do not establish countries for additional or conflicting worksites"
+    },
+    {
+      "jobId": "4e507a15-c9bb-4877-b422-f3eb462a3732",
+      "issue": "Structured San Francisco only, but Requirements explicitly based in San Francisco or New York.",
+      "assignedNativeJDParagraphs": [
+        " - Based in San Francisco or New York and open to coming in office at least 3 days per week (Tuesday-Thursday)."
+      ],
+      "rawRoleSha256": "4b8672c42e1e46ec941c7c788252907171c31b1d7ef962b347d11bacd491a225",
+      "provenance": "actual retained role-owned description; city names do not establish countries for additional or conflicting worksites"
+    },
+    {
+      "jobId": "b1b5ab31-f90c-41f9-b9f2-13408b1c072b",
+      "issue": "Structured San Francisco only, but Requirements explicitly based in San Francisco or New York City.",
+      "assignedNativeJDParagraphs": [
+        " - Based in San Francisco or New York City and open to coming in office at least 3 days per week (Tuesday-Thursday)."
+      ],
+      "rawRoleSha256": "eeba261f76f63976ef976885d6d6971e6d01fbbdf988058837c1ab952a0b1ee0",
+      "provenance": "actual retained role-owned description; city names do not establish countries for additional or conflicting worksites"
+    }
+  ]
+}

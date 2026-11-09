@@ -1,0 +1,9 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://entegris.wd1.myworkdayjobs.com/wday/cxs/entegris/EntegrisCareers/jobs",
+  "detailUrlBase": "https://entegris.wd1.myworkdayjobs.com/EntegrisCareers",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 180000
+}

@@ -1,0 +1,15 @@
+﻿{
+  "source": "cutshort",
+  "companyName": "CutShort",
+  "adapter": "script",
+  "modulePath": "../../scraper/cutshort/script.js",
+  "companyCareerPage": "https://cutshort.io/company/cutshort-zFdWQxlN",
+  "atsPlatform": "cutshort-first-party-company-page",
+  "countryFilter": "India",
+  "paginationStrategy": "homepage-plus-about-plus-first-party-company-page",
+  "extractionStrategy": "verified-homepage+verified-about+official-cutshort-company-page-next-data-jobs",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "cutshort.io"
+}
+

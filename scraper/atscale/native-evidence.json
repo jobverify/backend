@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-10-25T04:22:38.925Z",
+  "captureWindow": { "first": "2026-10-25T04:16:51.544Z", "last": "2026-10-25T04:22:38.925Z" },
+  "transport": "actual public anonymous browser document GET receipts",
+  "ordinaryHttpAvailabilityVerified": false,
+  "scope": "current sole official unfiltered global public jobs board",
+  "scopeEvidence": "Careers at AtScale describes global teams and advertises one active AtScale Rippling iframe/widget. No alternate hiring surface, country filter or origin override is present. Native query country/state/city empty, departments empty; filtersConfig arrays empty.",
+  "nativeBoard": { "slug": "atscale", "title": "AtScale", "companyName": "AtScale, Inc.", "isTest": false },
+  "observedNativeInventory": { "uniqueRoles": 15, "totalItems": 15, "totalPages": 1, "page": 0, "pageSize": 20, "typedCountries": ["US", "GB", "ES"], "indiaRoles": 0, "finalRecheckIdsStable": true },
+  "foreignDetailSample": { "uuid": "446309b8-c86a-43a3-8fc2-87be757ac377", "companyDescriptionCharacters": 203, "roleDescriptionCharacters": 9289, "unlistedFromSearch": false, "nativeRequiredApplicationConfiguration": true, "enabledApplyControl": true, "createdOn": "2026-07-30T12:40:24.520000-07:00", "jsonLd": null, "publicationDate": null },
+  "positiveIndiaTest": "Coherent synthetic native role-assigned country/office field mutations only; not an actual India availability claim.",
+  "publicationPolicy": "Creation remains distinct from unknown publication. Original company and role HTML sections retained verbatim in order.",
+  "staticVerifiedPublicJobCount": null,
+  "staticVerifiedIndiaJobCount": null,
+  "lifecyclePolicy": "Only fresh dynamic complete runtime evidence can support the existing runner's lifecycle paths. Current complete-inventory15/India0 maps to fetched-zero and does not independently authorize authoritative-empty cleanup.",
+  "fixture": "scraper/atscale/fixtures/current-native-20261025.json.gz",
+  "wireContentTypeHeadersRetained": false,
+  "fixtureMimeNote": "Replay declares text/html from the captured complete HTML documents. This is not a retained wire content-type header. Status, final URL, clock and body SHA256 are actual capture fields."
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "source": "easyecom",
+    "companyName": "EasyEcom",
+    "adapter": "script",
+    "modulePath": "../easyecom/script.js",
+    "dryRunFile": "easyecom/jobs.json",
+    "companyCareerPage": "https://www.easyecom.io/careers",
+    "companyDomain": "easyecom.io",
+    "atsPlatform": "official-company-careers",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-role-list+client-scripts+closing-reconciliation",
+    "extractionStrategy": "active-native-role-cards+explicit-hiring-hub-country-mapping+shared-application-discovery",
+    "detailsStrategy": "native-full-description-and-role-identity-unavailable",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "backfillMode": "discovery-only",
+    "zeroResultPolicy": "evidence-required",
+    "nativeExtractionVerified": true,
+    "fullInventoryVerified": false,
+    "verifiedNativeCandidateCount": 11,
+    "verifiedConfirmedIndiaCandidateCount": 7,
+    "verifiedConfirmedForeignCandidateCount": 2,
+    "verifiedUnknownCountryCandidateCount": 2,
+    "verifiedHealthyJobCount": 0,
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current first-party Next careers HTML exposes 11 active role cards. The exact native hiring FAQ maps Bengaluru and Delhi hubs to India, Atlanta to the United States and Dubai to the UAE: 7 exact nonremote India candidates, 2 foreign candidates and 2 ambiguous Bengaluru / Remote candidates. Native role IDs, requisitions, original publication dates and full descriptions are absent. Every card points to #apply, the shared general-interest open-application email, without role binding. Advertised careers client and source scripts contain filtering and presentation only. Runtime parses every candidate and reconciles opening/closing native inventory plus client script hashes; it emits no unhealthy rows and always disables absence cleanup. This is an implemented native discovery parser with partial details and eligibility, not proof of no India vacancies.",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "source": "dovercorporation",
+    "companyName": "Dover Corporation",
+    "catalogOverride": true,
+    "extractionStrategy": "current-first-party-handoff+Workday-typed-current-India-office-facets+complete-native-role-model+closing-publisher-listing-detail-reconciliation",
+    "sourceScopeNotes": "The current company careers page delegates its available opportunities to the Dover native account. Current typed India office facets are discovered from native models rather than a frozen set of location IDs. Full active native records must agree on requisition, title, work country and location ID; the explicit legal employers Dover India Pvt.,Ltd., Markem-Imaje India Private LTD and Tokheim India Private Ltd remain attached to their own records. Publication retains the original calendar date. Closing publisher, selected listing and full role models are rechecked. Whole-company recruitment scope and lifecycle cleanup remain unqualified."
+  },
+  {
+    "source": "entegris",
+    "companyName": "Entegris",
+    "catalogOverride": true,
+    "extractionStrategy": "current-company-careers+active-official-redirect+native-India-country-facet+full-original-public-role-model+closing-publisher-listing-detail-reconciliation",
+    "sourceScopeNotes": "The current first-party careers page and its Job Opportunities redirect must bind the exact EntegrisCareers native account at opening and closing. The India country facet selects candidates; complete native role models retain their own structured country, exact requisition, original hiring organization, full criteria and calendar publication date. Other company recruitment channels remain unverified and lifecycle cleanup is disabled."
+  },
+  {
+    "source": "datacoresystems",
+    "companyName": "Data-Core Systems",
+    "catalogOverride": true,
+    "extractionStrategy": "current-company-handoff-required+native-bamboohr-list-candidates-only+country-and-full-description-unresolved",
+    "sourceScopeNotes": "The current first-party company careers page must publish an active exact native account link before any BambooHR read. Current HTTP403 stops the run without retries or a stored-account fallback. LCA/notice-of-filing pages are not vacancies. Native list entries without country retain unknown public geography; city/state labels cannot establish country. List entries have no full native descriptions and do not qualify extraction. Historical catalog counts and verification clocks are not renewed."
+  },
+  {
+    "source": "utopusinsights",
+    "companyName": "Utopus Insights",
+    "catalogOverride": true,
+    "extractionStrategy": "current-first-party-HTML-or-Duda-page-model+declared-BambooHR-widget-client+declared-JSON-inventory-contract-unresolved",
+    "sourceScopeNotes": "Current first-party HTML and Duda page models are parsed as their native representations. The active published widget and exact reviewed public client establish the format=json response contract. A blank HTTP200 body is an unresolved native inventory failure, never verified empty. Nonempty models still require complete role, employer and country qualification. Company completeness and lifecycle cleanup remain unqualified."
+  }
+]

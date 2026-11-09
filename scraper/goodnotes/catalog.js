@@ -1,0 +1,7 @@
+export const GOODNOTES_CATALOG={source:'goodnotes',companyName:'Goodnotes',adapter:'script',modulePath:'../../scraper/goodnotes/script.js',companyCareerPage:'https://www.goodnotes.com/careers',companyDomain:'goodnotes.com',
+ officialCareersHandoffUrl:'https://job-boards.greenhouse.io/goodnotes',atsPlatform:'greenhouse-original-ssr',countryFilter:'India and unresolved native country observations',
+ paginationStrategy:'current-unfiltered-native-SSR-board-and-all-role-pages;paired-closing;company-scope-unqualified',extractionStrategy:'corporate-declared-greenhouse-original-data-and-rendered-full-criteria',parser:'custom-script',normalizationProfile:'engineering-default',
+ verifiedOn:null,verifiedPublicJobCount:null,verifiedIndiaJobCount:null,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,
+ verifiedSurfaceSummary:'Current Goodnotes corporate careers declares its Goodnotes Greenhouse board. Read owned literal SSR data and exact native role pages without executing programs, inspect every current role before projection, preserve full rendered criteria, native requisition_id and published_at, and reconcile closing records/criteria and corporate binding. Explicit foreign countries are observations; London alone stays unknown. Application form choices are not role countries. Company totals, complete scope, legal employer, activation and cleanup remain unqualified.'}
+export const PROVIDER_METADATA=GOODNOTES_CATALOG
+export default GOODNOTES_CATALOG

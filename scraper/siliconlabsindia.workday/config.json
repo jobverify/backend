@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://silabs.wd1.myworkdayjobs.com/wday/cxs/silabs/SiliconlabsCareers/jobs",
+  "detailUrlBase": "https://silabs.wd1.myworkdayjobs.com/SiliconlabsCareers",
+  "countryFacetParameter": "locationCountry",
+  "maxPages": 20
+}

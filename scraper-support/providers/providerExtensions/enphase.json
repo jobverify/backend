@@ -1,0 +1,22 @@
+{
+  "source": "enphase",
+  "companyName": "Enphase",
+  "officialBrandName": "Enphase Energy",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../enphase/script.js",
+  "dryRunFile": "enphase/jobs.json",
+  "companyCareerPage": "https://enphase.com/en-in/node/9",
+  "officialCareersHandoffUrl": "https://jobs.jobvite.com/enphase-energy/jobs",
+  "companyDomain": "enphase.com",
+  "atsPlatform": "jobvite",
+  "countryFilter": "India",
+  "paginationStrategy": "single-jobvite-current-openings-board",
+  "extractionStrategy": "verified-first-party-careers-page+jobvite-open-positions-board+india-detail-pages",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-26",
+  "verifiedPublicJobCount": 91,
+  "verifiedIndiaJobCount": 39,
+  "verifiedSurfaceSummary": "Verified on Sunday, July 26, 2026 that Enphase's first-party careers page at https://enphase.com/en-in/node/9 links to the public Jobvite board at https://jobs.jobvite.com/enphase-energy/jobs. The board is Enphase Energy branded, exposes current openings with stable detail links, and includes Bangalore, India roles."
+}

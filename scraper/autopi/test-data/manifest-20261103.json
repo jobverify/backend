@@ -1,0 +1,17 @@
+{
+  "source": "autopi",
+  "captureMode": "ordinary-public-HTTPS-GET",
+  "files": [
+    {
+      "url": "https://www.autopi.io/careers/",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:27:27.837Z",
+      "file": "careers-empty-20261103.html.gz",
+      "originalSha256": "d8f30043e161b4f8dfc9482d6a184f88f078ea5a38185d9191af19f9731804aa",
+      "fixtureSha256": "802d8dd6f82beff280efc5a9c9abdcc2d6e18b8a6b059e15665e0cc2d639ced7",
+      "gzipSha256": "5518f478e2aa5ae6b6d9c6d4e2da2146f6161ca7a347e565919128322a970fe9",
+      "publicFormTokenRedactions": 2,
+      "redactionPurpose": "Unsubmitted anonymous contact-form token is irrelevant to public careers inventory."
+    }
+  ]
+}

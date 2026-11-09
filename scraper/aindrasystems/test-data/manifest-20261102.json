@@ -1,0 +1,14 @@
+[
+  {
+    "file": "homepage-20261102.html.gz",
+    "sourceCapture": "aindrasystems-d9d49f1a188c.body",
+    "bytes": 20215,
+    "sha256": "e12c2ea21af272e5044feede0b20cdd733b3d428aa83c245b61846f4bb704cef"
+  },
+  {
+    "file": "client-20261102.js.gz",
+    "sourceCapture": "aindrasystems-f08794e30364.body",
+    "bytes": 542812,
+    "sha256": "01e6dac51bee6d9097e695b2e0d2d7f248b006ca04ac40800b50d54e7c69dbf6"
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "source": "cochlear",
+    "companyName": "Cochlear",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/cochlear.workday/script.js",
+    "dryRunFile": "cochlear.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "strict-shared-native-Workday-with-source-local-final-listing-and-active-content-validation",
+    "companyDomain": "cochlear.com",
+    "officialHomepageUrl": "https://www.cochlear.com/",
+    "companyCareerPage": "https://www.cochlear.com/in/en/corporate/careers/jobs-at-cochlear",
+    "jobsBoardUrl": "https://cochlear.wd3.myworkdayjobs.com/Cochlear_Careers",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T13:41:35.782Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-board-runtime-inventory-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-runtime-partial",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T13:41:35.782Z",
+      "officialURL": "https://www.cochlear.com/in/en/corporate/careers/jobs-at-cochlear",
+      "matchedLinks": [
+        "https://cochlear.wd3.myworkdayjobs.com/Cochlear_Careers"
+      ],
+      "bindingMethod": "actual-current-public-corporate-HTTP200-active-exact-native-link",
+      "proofFile": "../artifacts/full-catalog/cochlear-native-001/official-jobs-001.json",
+      "proofSha256": "ee690ddb21dc49ef4e140f149f3862ca60070aabc3de93298f295853165a957f",
+      "bodySha256": "f8479c06bbd6f57064f4497f707eb9fd098611e9d57bebd2273494cd1c507b38",
+      "ordinaryCorporateHTTPStatus": 200,
+      "runtimeNativeCheckDoesNotRefreshCorporateObservation": true
+    },
+    "paginationStrategy": "all-four-advertised-native-India-location-filters-plus-every-role-detail-and-final-all-pages-recheck",
+    "extractionStrategy": "exact-native-board-requisition-UID-India-country-legal-employer-original-dates-full-content-public-application-status",
+    "sourceScopeNotes": "Four current native locations explicitly labelled Bangalore India, Mumbai India, New Delhi India and IN New Delhi form the checked subset. No native country facet is assumed. C71 Cochlear Medical Device Company India Private Limited (India) is retained per role. Native office labels are preserved, with role territories in the full title and JD; they are not silently derived as replacement cities. Whole-company global and India totals remain unknown.",
+    "verifiedSurfaceSummary": "Current actual official HTTP200 binds the exact cochlear/Cochlear_Careers board. Runtime replaces the sentinel with the finite India-location union and full current native India details, preserving original publication and closing dates. Extraction, persistence, visibility and company-wide coverage remain separate. No deployment or production writes."
+  }
+]

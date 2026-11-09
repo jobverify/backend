@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://solera.wd5.myworkdayjobs.com/wday/cxs/solera/Global_Career_Site/jobs",
+  "detailUrlBase": "https://solera.wd5.myworkdayjobs.com/Global_Career_Site",
+  "officialCareersUrl": "https://www.solera.com/careers/",
+  "inventoryScope": "complete-board-country-proof",
+  "locationCountry": null,
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "workdayMaxPages": 500,
+  "requestTimeoutMs": 25000,
+  "detailEnrichmentBudgetMs": 180000
+}

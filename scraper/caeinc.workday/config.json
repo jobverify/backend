@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://cae.wd3.myworkdayjobs.com/wday/cxs/cae/career/jobs",
+  "detailUrlBase": "https://cae.wd3.myworkdayjobs.com/career",
+  "officialCareersUrl": "https://www.cae.com/careers/",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

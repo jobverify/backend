@@ -1,0 +1,56 @@
+[
+  {
+    "source": "carrier",
+    "companyName": "Carrier",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/carrier.workday/script.js",
+    "dryRunFile": "carrier.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "current-official-binding-and-native-country-validated-workday-cxs",
+    "companyDomain": "carrier.com",
+    "companyCareerPage": "https://www.carrier.com/us/en/careers/",
+    "officialHomepageUrl": "https://www.carrier.com/",
+    "jobsBoardUrl": "https://carrier.wd5.myworkdayjobs.com/jobs",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T12:32:03.275Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-local-independent-review",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T12:32:03.275Z",
+      "officialURL": "https://www.carrier.com/us/en/careers/",
+      "matchedLinks": [
+        "https://jobs.carrier.com/en",
+        "https://carrier.wd5.myworkdayjobs.com/jobs/login"
+      ],
+      "bindingMethod": "current-active-corporate-careers-and-public-role-native-application",
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/carrier-native-001/source-native-018/001.json",
+          "sha256": "cb8173df0f72e416f12735c142c71ade132a85ce2e968d1cf0dd565215484313"
+        },
+        {
+          "file": "../artifacts/full-catalog/carrier-native-001/source-native-018/002.json",
+          "sha256": "7c7da686e82ba5e6049819db13d693253cf8a751186705b2d38f8e1405070736"
+        },
+        {
+          "file": "../artifacts/full-catalog/carrier-native-001/source-native-018/003.json",
+          "sha256": "e480caeb52e008093855e8ccbec038bf586ae2a9778dbdadb7c91821759c5582"
+        }
+      ]
+    },
+    "paginationStrategy": "exact-observed-location_Country-India-facet-all-pages-and-complete-final-recheck",
+    "extractionStrategy": "current-official-handoff+shared-native-Workday-detail-extraction+source-local-identity-country-employer-fullJD-date-guards",
+    "sourceScopeNotes": "Only the observed native India country facet is enumerated, not whole-company or all recruiting surfaces. Every role retains its exact legal employer. Primary and structured India countries must agree; city remains null, raw office labels and any native office discrepancy remain explicit. Secondary labels without country require exact matching current typed India primary-office evidence. The current public-role binding sentinel must still be active; closure fails the run until a new handoff is verified. CarrierGlobal registration remains untouched; no second shared-board inventory is produced.",
+    "verifiedSurfaceSummary": "Current official Carrier corporate careers links the public board, which advertises the exact native board. A currently active public role binds its exact native application and selected requisition. All native pages are reconciled twice and every full native detail is validated. Whole-company totals and runtime metadata counts remain unknown."
+  }
+]

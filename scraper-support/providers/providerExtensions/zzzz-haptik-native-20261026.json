@@ -1,0 +1,19 @@
+[
+  {
+    "source": "haptik",
+    "companyName": "Haptik",
+    "adapter": "script",
+    "modulePath": "../haptik/script.js",
+    "companyCareerPage": "https://www.haptik.ai/careers",
+    "companyDomain": "haptik.ai",
+    "atsPlatform": "freshteam",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-full-board-exact-count-and-closing-role-identity-reconciliation",
+    "extractionStrategy": "current-corporate-handoff+native-job-employer-country+visible-full-details-and-application",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Haptik careers page links its exact Freshteam board. Runtime reconciles advertised counts and closing role identities, reads every native detail, checks Jio Haptik hiring organization and India scope, preserves original publication dates and full visible descriptions, and validates current application forms. Unknown or conflicting geography remains partial.",
+    "catalogOverride": true
+  }
+]

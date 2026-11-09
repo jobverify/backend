@@ -1,0 +1,165 @@
+[
+  {
+    "source": "crestdatasystems",
+    "catalogOverride": true,
+    "officialBindingVerifiedAt": "2026-10-21T14:23:38.854Z",
+    "remediationStatus": "implemented-local-offline-reviewed-ordinary-http-failed",
+    "runtimeQualification": "ordinary-http-failed-no-current-runtime-qualification",
+    "verificationDisposition": "reviewed-recruitment-identity-restored-runtime-inventory-remains-unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T14:23:38.854Z",
+      "officialURL": "https://www.crestdata.ai/",
+      "matchedLinks": [
+        "https://www.crestdata.ai/careers/",
+        "https://www.crestdata.ai/careers/open-positions/"
+      ],
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/crestdata-native-001/browser-native-002/qualification-manifest-002.json",
+          "sha256": "9364ba6592d8fec6de3d116e5667f27ba2aa9416a1ba63840a0ec0719cdc4fc7"
+        }
+      ],
+      "bindingMethod": "current-owned-research-browser-raw-HTTP-active-corporate-handoffs-and-explicit-rebrand",
+      "evidenceOrigin": "reviewed-recruitment-identity-only-not-runtime-inventory",
+      "runtimeInventoryQualified": false,
+      "scope": "Recruitment identity only. Reviewed offline native evidence does not establish successful ordinary execution or complete company inventory.",
+      "discoveryEvidence": {
+        "verified": false,
+        "checkedAt": "2026-10-21T13:42:23.515Z",
+        "officialURL": "https://www.crestdata.ai/careers/open-positions/",
+        "matchedLinks": [
+          "https://www.crestdata.ai/careers/",
+          "https://www.crestdata.ai/careers/open-positions/",
+          "https://www.crestdata.ai/wp-json/wp/v2/job_career?per_page=100&_fields=id,date,link,title,content,team,job_location",
+          "https://www.crestdata.ai/wp-json/wp/v2/job_location?per_page=100&hide_empty=true&_fields=id,name,slug",
+          "https://www.crestdata.ai/wp-json/wp/v2/team?per_page=100&hide_empty=true&_fields=id,name,slug",
+          "https://www.crestdata.ai/jobs/observability-lead/"
+        ],
+        "evidenceOrigin": "public-official-web-discovery-not-extraction",
+        "proofFiles": [
+          "proof/batch-022-extracted-evidence-001.json",
+          "proof/batch-022-http-001-crestdatasystems.json",
+          "proof/batch-022-http-002-crestdatasystems.json",
+          "proof/batch-022-http-003-crestdatasystems-rebrand.json",
+          "proof/batch-022-http-003-crestdatasystems.json",
+          "proof/batch-022-http-004-crestdatasystems-locations.json",
+          "proof/batch-022-http-004-crestdatasystems-teams.json",
+          "proof/batch-022-http-004-crestdatasystems.json",
+          "proof/batch-022-http-005-crestdatasystems-contact.json",
+          "proof/batch-022-http-005-crestdatasystems.json",
+          "proof/batch-022-web-follow-014.json",
+          "proof/batch-022-web-search-006.json",
+          "proof/batch-022-web-search-011.json"
+        ],
+        "batchArtifact": "artifacts/full-catalog/official-discovery/batch-022.json",
+        "batchSha256": "7c5d294b6d3340b01a75eefb373502f182e3cc250189579ec773f8aedd0def7c"
+      },
+      "metadataConsistencyRepair": {
+        "id": "reviewed-recruitment-identity-precedence-041",
+        "originalDeclaredIdentityExtension": {
+          "file": "scraper-support/providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-verified-discovery-adapters-00037.json",
+          "relativeTo": "backend",
+          "sha256": "9db74a513f88bde45438e17ac2f0b5ebaf70c688ce313f082198d60fb6eb7569"
+        },
+        "independentSourceReview": {
+          "file": "../artifacts/full-catalog/crestdata-native-001/crestdata-independent-review-003/receipt.json",
+          "relativeTo": "backend",
+          "sha256": "adcbfe4fa41410f88ca61d0f02881caca611e9e1015a9823c154d94ab65fd1b7"
+        },
+        "ordinaryRuntimeEvidence": {
+          "file": "../artifacts/full-catalog/crestdata-native-001/ordinary-node-010/sources/crestdatasystems.json",
+          "relativeTo": "backend",
+          "sha256": "18d5d888de378652f4032f9b12bab158cf7cf2dfdaf91f9c70d68746287c7220",
+          "attemptedAt": "2026-10-21T14:33:16.692Z",
+          "completedAt": "2026-10-21T14:33:27.391Z",
+          "outcome": "extraction-failed",
+          "rawJobs": null,
+          "indiaJobs": null,
+          "eligibleJobs": null,
+          "inventoryEvidence": null
+        },
+        "newNativeObservation": false,
+        "additionalSourceIntegrations": 0,
+        "additionalNativeAttempts": 0,
+        "additionalPublicJobs": 0
+      }
+    },
+    "verifiedSurfaceSummary": "Reviewed recruitment identity is restored without replacing the original discovery provenance or current company/career/job metadata. Local offline source review is complete; the latest genuine ordinary HTTP attempt failed and runtime inventory counts remain unknown. Whole-company scope and public persistence are not qualified by this metadata repair."
+  },
+  {
+    "source": "credoai",
+    "catalogOverride": true,
+    "officialBindingVerifiedAt": "2026-10-21T14:58:28.715Z",
+    "remediationStatus": "implemented-local-offline-reviewed-ordinary-http-failed",
+    "runtimeQualification": "ordinary-http-failed-no-current-runtime-qualification",
+    "verificationDisposition": "reviewed-recruitment-identity-restored-runtime-inventory-remains-unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T14:58:28.715Z",
+      "officialURL": "https://www.credo.ai/",
+      "matchedLinks": [
+        "https://www.credo.ai/company/jobs",
+        "https://jobs.ashbyhq.com/credo.ai/embed"
+      ],
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/credoai-native-001/browser-native-001/manifest.json",
+          "sha256": "c215f494998b1b0cb43aaae360d449011f525086f0c295183355a7fd2b096c55"
+        }
+      ],
+      "bindingMethod": "actual-current-active-corporate-anchor-and-executable-native-embed",
+      "evidenceOrigin": "reviewed-recruitment-identity-only-not-runtime-inventory",
+      "runtimeInventoryQualified": false,
+      "scope": "Recruitment identity only. Reviewed offline native evidence does not establish successful ordinary execution or complete company inventory.",
+      "discoveryEvidence": {
+        "verified": false,
+        "checkedAt": "2026-10-21T13:38:05.488Z",
+        "officialURL": "https://www.credo.ai/company/jobs",
+        "matchedLinks": [
+          "https://www.credo.ai/company/jobs",
+          "https://jobs.ashbyhq.com/credo.ai/embed"
+        ],
+        "evidenceOrigin": "public-official-web-discovery-not-extraction",
+        "proofFiles": [
+          "proof/batch-022-extracted-evidence-001.json",
+          "proof/batch-022-http-001-credoai.json",
+          "proof/batch-022-http-002-credoai.json",
+          "proof/batch-022-http-003-credoai.json"
+        ],
+        "batchArtifact": "artifacts/full-catalog/official-discovery/batch-022.json",
+        "batchSha256": "7c5d294b6d3340b01a75eefb373502f182e3cc250189579ec773f8aedd0def7c"
+      },
+      "metadataConsistencyRepair": {
+        "id": "reviewed-recruitment-identity-precedence-041",
+        "originalDeclaredIdentityExtension": {
+          "file": "scraper-support/providers/providerExtensions/zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz-verified-discovery-adapters-00038.json",
+          "relativeTo": "backend",
+          "sha256": "7cdd93af4c9bccbdb35e79e9c2d23856967e4b73fed6acb8f178f762b5a2a79a"
+        },
+        "independentSourceReview": {
+          "file": "../artifacts/full-catalog/credoai-native-001/credoai-independent-review-002/receipt.json",
+          "relativeTo": "backend",
+          "sha256": "1b7f102fc8ddda2576286f233cc236a4ed46cc7fd4add4b0321a51f88cdfe487"
+        },
+        "ordinaryRuntimeEvidence": {
+          "file": "../artifacts/full-catalog/credoai-native-001/ordinary-node-009/sources/credoai.json",
+          "relativeTo": "backend",
+          "sha256": "2a1af6a2f329f74920d4419c85bf9cbca3b5e10bb84c241a1c2998a3cda2b87e",
+          "attemptedAt": "2026-10-21T15:03:49.246Z",
+          "completedAt": "2026-10-21T15:03:59.867Z",
+          "outcome": "extraction-failed",
+          "rawJobs": null,
+          "indiaJobs": null,
+          "eligibleJobs": null,
+          "inventoryEvidence": null
+        },
+        "newNativeObservation": false,
+        "additionalSourceIntegrations": 0,
+        "additionalNativeAttempts": 0,
+        "additionalPublicJobs": 0
+      }
+    },
+    "verifiedSurfaceSummary": "Reviewed recruitment identity is restored without replacing the original discovery provenance or current company/career/job metadata. Local offline source review is complete; the latest genuine ordinary HTTP attempt failed and runtime inventory counts remain unknown. Whole-company scope and public persistence are not qualified by this metadata repair."
+  }
+]

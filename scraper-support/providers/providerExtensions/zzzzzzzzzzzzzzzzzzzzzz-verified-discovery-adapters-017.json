@@ -1,0 +1,41 @@
+[
+  {
+    "source": "experiontechnologies",
+    "companyName": "Experion Technologies",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/experiontechnologies/script.js",
+    "dryRunFile": "experiontechnologies/jobs.json",
+    "atsPlatform": "custom",
+    "parser": "custom-script",
+    "companyDomain": "experionglobal.com",
+    "companyCareerPage": "https://experionglobal.com/job-openings/",
+    "officialHomepageUrl": "https://experionglobal.com/",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T00:16:51.971Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T00:16:51.971Z",
+      "officialURL": "https://experionglobal.com/",
+      "matchedLinks": [
+        "https://experionglobal.com/job-openings/"
+      ],
+      "proofFile": "../artifacts/full-catalog/ranked-positive-remediation-001/experion-full-native-003/001.json",
+      "proofSha256": "0fd1f84983d7cc1e8b1f0188def0aca8e1a1b71fc702e724d2980ff29f6910c2"
+    },
+    "extractionStrategy": "current-active-corporate-handoff+reviewed-native-client-pagination+all-full-role-pages+identity-location-apply-form-and-native-page-dates",
+    "paginationStrategy": "all-server-rendered-cards-native-client-side-load-more-contract+stable-final-listing",
+    "sourceScopeNotes": "Explicit known India offices retain country evidence. Any additional unbounded Remote location keeps all source rows listing-incomplete. Native WebPage publication dates are retained, never replaced by scrape time. Unknown office labels or client contract changes fail closed.",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "verifiedSurfaceSummary": "Current active corporate careers handoff, complete native client-side listing contract, exact role page/application identity and full descriptions verified independently of runtime counts. Unbounded remote country scope remains partial; current counts belong to frozen trials only."
+  }
+]

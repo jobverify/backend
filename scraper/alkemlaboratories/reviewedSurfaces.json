@@ -1,0 +1,244 @@
+{
+  "reviewedAt": "2026-11-03T01:22:51.637Z",
+  "corporateClient": {
+    "url": "https://www.alkemlabs.com/_next/static/chunks/0t0u76_jp6cfa.js",
+    "sha256": "686d19b3a8c144a7b915b54d1b778816eb0d1c19e2d09b640da54b02a1413cbe",
+    "bytes": 49795
+  },
+  "nativeCoreURLs": [
+    "https://alkem.turbohire.co/runtime-main.e09cefd11ea23aea1e4f.js",
+    "https://alkem.turbohire.co/18.3db18834fc82a463b4ff.chunk.js",
+    "https://alkem.turbohire.co/30.a2505dee214ead51b786.chunk.js",
+    "https://alkem.turbohire.co/main.7e7da7778c91318d8d82.chunk.js"
+  ],
+  "corporateStylesheets": [
+    {
+      "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
+      "sha256": "7633b7c0c97d19e682feee8afa2738523fcb2a14544a550572caeecd2eefe66b",
+      "bytes": 155845
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/3xl98r5-cdipo.css",
+      "sha256": "dab7b04cdec4c7445dc00d1a34779eabae475c8b25312dcbd8078b19aa4fc541",
+      "bytes": 91824
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/0zo1plfldjwle.css",
+      "sha256": "fb3ba31d56aadaa7f482fe1ffe2b5721717b06e146489f7790eca76fdb8d2221",
+      "bytes": 3474
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/1paqq00y6zw2j.css",
+      "sha256": "027af9159b422773761cabeab6b0745027d60cd29238d4697ad17a0daceb0c94",
+      "bytes": 6254
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/2e-v47isi6lq6.css",
+      "sha256": "da9d11ed9f2a3e365291b50aef6af50fa99c9772e3ef852daea3eca07750d7ea",
+      "bytes": 5322
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/0yjg8jfqn8at8.css",
+      "sha256": "e4eb66dba4a8447d616eff666e111add1e1536c68b5e8fd304871a9cd40ffc51",
+      "bytes": 1055
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/0u_05tjiy-gpf.css",
+      "sha256": "cc711b3c4b2e0d4d6ea1e6ad75dcad6cf727dc76f4a650843d76732590145d42",
+      "bytes": 289318
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/2nr20jli0ut0h.css",
+      "sha256": "b8a58601398a601aa73657d9a04baa0f3626bae9a787c6f25b777c67c35ddc57",
+      "bytes": 25933
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/3-hihdg8wl28x.css",
+      "sha256": "5815b2ce8fca938563cb3b4285cbd2ab55eb4845ff35813c05c3f70e8b690c24",
+      "bytes": 1504
+    },
+    {
+      "url": "https://www.alkemlabs.com/_next/static/chunks/44m2yegxp2-7j.css",
+      "sha256": "0af2fa7e57f7812ad730d1c9fd80a5cb7fd85efa8c3db6a5e89282ddebd66745",
+      "bytes": 24479
+    }
+  ],
+  "corporateInlineStyleSHA256": [],
+  "corporateHandoffPath": [
+    {
+      "tag": "button",
+      "attrs": {
+        "class": "btn"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "col-12 text-center"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "container"
+      }
+    },
+    {
+      "tag": "section",
+      "attrs": {
+        "class": "service-section work-with-us",
+        "id": "work_with_us"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "main-wrapper"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "innerpage outer-wrapper career"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "id": "__next"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {}
+    },
+    {
+      "tag": "root",
+      "attrs": {}
+    }
+  ],
+  "corporatePublicContract": {
+    "publicHandoffSHA256": "91cd2c8308023e947532e1b3956ae59d0dfdf96860bd979b34e953df6750e0af",
+    "ssrStyles": {
+      "active": true,
+      "blocked": [],
+      "referenceViewport": {
+        "type": "screen",
+        "width": 1280,
+        "height": 900
+      },
+      "modelSHA256": "387ed6feb85d87ad982fa4a4e5de4dea2711fb4212229136c44c8b2ba5ae26a2",
+      "matchedRules": 32,
+      "referencedVariables": [
+        "--bs-gutter-x"
+      ]
+    },
+    "clientStyles": {
+      "active": true,
+      "blocked": [],
+      "referenceViewport": {
+        "type": "screen",
+        "width": 1280,
+        "height": 900
+      },
+      "modelSHA256": "387ed6feb85d87ad982fa4a4e5de4dea2711fb4212229136c44c8b2ba5ae26a2",
+      "matchedRules": 32,
+      "referencedVariables": [
+        "--bs-gutter-x"
+      ]
+    }
+  },
+  "publicClientContract": {
+    "main": {
+      "apiBase": "https://thapi-stage2.azurewebsites.net",
+      "apiServiceModule": "18",
+      "publicMethods": {
+        "getUnAuthenticatedAccessToken": "46c9a7b2bca109debc2db933496a4b1a2b6b7a3cb387755f6705467787b1ac5d",
+        "getOrgDetailsFromAccountName": "7ab9c3d9217353c33e3a0ec0bb90794b847743df2154fd4a304b85d787c7c0d3",
+        "getPublicOrgInfo": "3c07e8e956b3395d1836fc56376bd0e6d9cf7b37d7a096e494b3c9173c930284",
+        "getPublicJobRefsForOrgFiltered": "38294f1377bf6c902ce0570e97bed19164ff2e262abbfd3ff736c0c517c4d0c1"
+      },
+      "publicServiceBindings": [
+        "0aab1b227b266d308df4f271e623940d770881ce9ee3884ff32f302f589cad4a"
+      ],
+      "entryId": 1896,
+      "rootRender": "a099195307b40c65478c5faa3b55a654c2ac3f6ad9367409ec911165fc4368f1",
+      "publicLazyBootstrap": "227c60172a0480d00b0db6a42dcee1c54c0898a2f2cf5b1fb640819535b9d5e9",
+      "publicChunkIds": [
+        13,
+        17,
+        25,
+        38,
+        40
+      ]
+    },
+    "inventory": {
+      "stores": [
+        {
+          "moduleId": "2444",
+          "methods": {
+            "onInitStore": "35735a425143949f802b4a5ccebc23c2c929f9bd343aaee7edb776ee19690d7e",
+            "getPublicJobs": "f57c167c8da8be1ffe47a247d4e2ac11407e1a05856d1ff2d2530d730617222b",
+            "getActiveCareerPage": "600fc195f815103f346d13c249e7ac52da08cf226bbecce86ca39606c99b8430"
+          }
+        },
+        {
+          "moduleId": "2485",
+          "methods": {
+            "onInitStore": "a819deac4ed04b27e6503c665df021fbaac82ecb9d788f74c384fc35ec647032",
+            "getPublicJobs": "ccb62c659e2f9b1fa66967f9b2cf3568ba330df05ce842fa9de45adfc72613e9",
+            "getActiveCareerPage": "600fc195f815103f346d13c249e7ac52da08cf226bbecce86ca39606c99b8430"
+          }
+        }
+      ],
+      "defaults": [
+        {
+          "moduleId": "2444",
+          "keys": [
+            "BunitIds",
+            "Experience",
+            "JobTypes",
+            "Locations",
+            "CreatedDate",
+            "Compensation",
+            "Skills",
+            "Keyword",
+            "ClientIds",
+            "Department",
+            "SortByV2"
+          ],
+          "fingerprint": "8cfeb0c429818a991c106ce2ed4d875d69a7b0bbfe594d786fcf63a0728fef9d"
+        },
+        {
+          "moduleId": "2485",
+          "keys": [
+            "SortByV2",
+            "BunitIds",
+            "Experience",
+            "JobTypes",
+            "JobTypeV2",
+            "Locations",
+            "CreatedDate",
+            "Compensation",
+            "Skills",
+            "Keyword",
+            "ClientIds",
+            "Department",
+            "CustomFields"
+          ],
+          "fingerprint": "9b200522e6ead7276e9488abbd2780f2ace485cc3c4f5b68efa9975a6769fc13"
+        }
+      ]
+    }
+  },
+  "nativeCoreShapes": [
+    "runtime-main",
+    "18",
+    "30",
+    "main"
+  ]
+}

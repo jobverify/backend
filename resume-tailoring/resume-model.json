@@ -1,0 +1,13 @@
+{
+  "modelId": "unsloth/Qwen3-4B-Instruct-2507-GGUF",
+  "revision": "a06e946bb6b655725eafa393f4a9745d460374c9",
+  "file": "Qwen3-4B-Instruct-2507-Q4_K_M.gguf",
+  "sha256": "3605803b982cb64aead44f6c1b2ae36e3acdb41d8e46c8a94c6533bc4c67e597",
+  "runtimeTag": "b11146",
+  "runtimeFile": "llama-b11146-bin-ubuntu-x64.tar.gz",
+  "runtimeSha256": "c150306eb16b5ab696f76a8bdf810c35fd98a24e82158742e6fa28f420ff8410",
+  "contextTokens": 16384,
+  "maxOutputTokens": 6144,
+  "comparisonOutputTokens": 1536,
+  "styleVersion": "latex-ats-v2"
+}

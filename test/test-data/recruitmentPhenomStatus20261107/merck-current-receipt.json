@@ -1,0 +1,566 @@
+{
+  "source": "merckkgaa",
+  "heldJobId": "305492",
+  "observedAt": "2026-11-07T15:12:42.750Z",
+  "retainedAuditFinishedAt": "2026-11-07T15:13:06.454Z",
+  "sourcePackets": {
+    "file": "reports/scraper-coverage-2289-repairs-20261107/expanded-recruitment-current/current/merckkgaa/packets.json.gz",
+    "sha256": "6bd029148df5a6b39af50c208b40380654bdff0c7a0070a0049499560ba8d2a6"
+  },
+  "sourceJobs": {
+    "file": "reports/scraper-coverage-2289-repairs-20261107/expanded-recruitment-current/current/merckkgaa/jobs.json.gz",
+    "sha256": "bc26fc82f67ac39ba88b741b1a95cf7caee57c3ec6e00f8de1adb3fab21ef153"
+  },
+  "fixture": {
+    "file": "merck-current-packets.json.gz",
+    "sha256": "6bd029148df5a6b39af50c208b40380654bdff0c7a0070a0049499560ba8d2a6"
+  },
+  "expectedJobs": [
+    {
+      "jobId": "301616",
+      "title": "Associate - Flow Distillation",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/301616/Associate%20-%20Flow%20Distillation",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/301616/Associate%20-%20Flow%20Distillation",
+      "postingDate": "2026-07-24T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "125931613cfd57cd545f64820f6a8cfac5b277a8f1135a99201128b5e6c4fa47",
+      "nativeSourceRecordSHA256": "fedcb3b178675ce4634d20aa5d0127e20c0906ac04f3072e4522e2f66b82b4f6",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305486",
+      "title": "Field Service Engineer, Biomonitoring India(Pune/ Hyderabad/Ahmedabad/ Vizaq)",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305486/Field%20Service%20Engineer%2C%20Biomonitoring%20India(Pune%2F%20Hyderabad%2FAhmedabad%2F%20Vizaq)",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305486/Field%20Service%20Engineer%2C%20Biomonitoring%20India(Pune%2F%20Hyderabad%2FAhmedabad%2F%20Vizaq)",
+      "postingDate": "2026-11-06T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Life Science Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "ba26f347b9177ab4d3ff183de970a20ef7bcc7e35e30d5fa777ef4fd0ea4ee99",
+      "nativeSourceRecordSHA256": "284bdef7112057c53493a0964c27cec3424c6aaa8855535d6c548414a7944a55",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305552",
+      "title": "Key Suppliers Sourcing",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305552/Key%20Suppliers%20Sourcing",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305552/Key%20Suppliers%20Sourcing",
+      "postingDate": "2026-11-06T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Life Science Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "ba5ea1489920efa849defe68713c100b9e1403af7645c382f019821ec250bc7c",
+      "nativeSourceRecordSHA256": "55b42b9cbb315a86a713ae54b68b43d61db5089940c2646dad81298290193d97",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "304600",
+      "title": "Senior Analyst",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/304600/Senior%20Analyst",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/304600/Senior%20Analyst",
+      "postingDate": "2026-11-06T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "9fb1dcbdaaa1fd1865346e02ce033d51acfbe6bbb6096e747bd807276e049c15",
+      "nativeSourceRecordSHA256": "ea658ca23a3385b25a44095491fd077ebb29597cacbf2b86bc4d3ae8fd380f7e",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305406",
+      "title": "Senior Analyst",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305406/Senior%20Analyst",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305406/Senior%20Analyst",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "b939f10b893fd8ff224ef87f12f1a360af211ca3030e56d89ffd78caa22757ba",
+      "nativeSourceRecordSHA256": "5d62228148fcfe9b16ba9401e75f9379a847810779939f0d2a9ed12cb1c58ad2",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305623",
+      "title": "Analyst - Credit Collections",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305623/Analyst%20-%20Credit%20Collections",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305623/Analyst%20-%20Credit%20Collections",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "9d35f4eeb7ea4dda4eac1512c737d08f634cd3c4c5c38dde1441f3f49a949ed1",
+      "nativeSourceRecordSHA256": "b53afb0b5903000cde96536ba80b5557ee620fdf3b31b90d172f9d49114863c3",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305567",
+      "title": "FP&A Lead Analyst",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305567/FP%26A%20Lead%20Analyst",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305567/FP%26A%20Lead%20Analyst",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "51ec44434f5b6d8cf9330fad0d1fa586cee8889c267ede9d98e7d648ddd3d275",
+      "nativeSourceRecordSHA256": "323f3795768b97b5fb19165fa88475c7e428c0ccc335025384962ab833e0aae2",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305485",
+      "title": "Field Service Engineer, Biomonitoring India(Pune/ Hyderabad/Ahmedabad/ Vizaq)",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305485/Field%20Service%20Engineer%2C%20Biomonitoring%20India(Pune%2F%20Hyderabad%2FAhmedabad%2F%20Vizaq)",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305485/Field%20Service%20Engineer%2C%20Biomonitoring%20India(Pune%2F%20Hyderabad%2FAhmedabad%2F%20Vizaq)",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Life Science Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "d318b892ba8ab238d249183cb75c496144736b60a761ff39cb1a588446bef429",
+      "nativeSourceRecordSHA256": "7b55fd4d7b456e12be5755349d0c4d3a462c18f9c02e88040fe26c53a0b3a027",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "304933",
+      "title": "Analyst - Global HR Business Data Steward",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/304933/Analyst%20-%20Global%20HR%20Business%20Data%20Steward",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/304933/Analyst%20-%20Global%20HR%20Business%20Data%20Steward",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "291a886683811110eed2edc4de149db1c75e8d60bf1d811f25de3cd0cbca93a4",
+      "nativeSourceRecordSHA256": "b52c17913d4aa5e29cfd6a22650a71ae2e1e38fc1eab0b8642fc3baf0cdc10d3",
+      "nativeStatusFields": {
+        "atsStatus": "Updated",
+        "jobStatus": "Approved",
+        "postingStatus": "Updated",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305492",
+      "title": "Associate Architect-Veeva Vault RIM",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305492/Associate%20Architect-Veeva%20Vault%20RIM",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305492/Associate%20Architect-Veeva%20Vault%20RIM",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "d55de90d1af4584f2c4bb35974a42ee74c68ff35a67625a692e4d7988b33667c",
+      "nativeSourceRecordSHA256": "6ec0224e956ae37db60236d87c687a12f73e2f2d015d97835f67b7b5c1f89f8e",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "On Hold"
+      }
+    },
+    {
+      "jobId": "305480",
+      "title": "Senior Analyst Palantir Foundry",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305480/Senior%20Analyst%20Palantir%20Foundry",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305480/Senior%20Analyst%20Palantir%20Foundry",
+      "postingDate": "2026-11-05T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "769a00dca9cde883ea755d3882b318a9a55ab31e10c183ccd084acbcd3bc624b",
+      "nativeSourceRecordSHA256": "d62eb5d6f109564c7643c233b8b105b244c63482b99144afd686eabc978fa630",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305432",
+      "title": "Senior Specialist - Information Management and Data Quality",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305432/Senior%20Specialist%20-%20Information%20Management%20and%20Data%20Quality",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305432/Senior%20Specialist%20-%20Information%20Management%20and%20Data%20Quality",
+      "postingDate": "2026-11-04T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Specialities Pvt. Ltd."
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "19b96d38b6eee7f0562b4f82f145bfb1f9a5ed4498fd9b500eaeb9a362f4213b",
+      "nativeSourceRecordSHA256": "84191e1c7b311540cefc9e51e49c739a990f60b1b2784cf6c17e4015c2ddfb26",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305279",
+      "title": "Associate Manager - Marketing",
+      "country": "India",
+      "location": "Mumbai, Maharashtra, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305279/Associate%20Manager%20-%20Marketing",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305279/Associate%20Manager%20-%20Marketing",
+      "postingDate": "2026-11-04T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Specialities Pvt. Ltd."
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "86a53a62dc61711ffdbd10664b107123d305c2600be104eb769824debe86cf75",
+      "nativeSourceRecordSHA256": "af198d57f7b57fc8fc8e37f4573203e5a450f48b9a0f78ae8c5cad4c2df3a17f",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305483",
+      "title": "Service Manager, Biomonitoring India",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305483/Service%20Manager%2C%20Biomonitoring%20India",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305483/Service%20Manager%2C%20Biomonitoring%20India",
+      "postingDate": "2026-11-04T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Life Science Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "c03c8462818c6ac72535fdafc73e35c7de498fc8fddf36e8d63a4c6bc5795e57",
+      "nativeSourceRecordSHA256": "944da1be01b3383d89be56e27632a8a30d9bbd94ce36b89d7cbee3eb41010b9f",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305551",
+      "title": "IT Solution Expert - Patient Services APAC 1",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305551/IT%20Solution%20Expert%20-%20Patient%20Services%20APAC%201",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305551/IT%20Solution%20Expert%20-%20Patient%20Services%20APAC%201",
+      "postingDate": "2026-11-04T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "317173207d581c065e659c850eda42de5022ab8500136642f1c5ee9c855a6165",
+      "nativeSourceRecordSHA256": "52cb4132793dd1a1288f06f886a5d9df593d34d54e2d380c485e600ccd4d666e",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "299467",
+      "title": "Chemist",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/299467/Chemist",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/299467/Chemist",
+      "postingDate": "2026-11-03T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Life Science Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "8d466cbcca7d8ab9c84b72849ba5f61202040a6aa3e098ab2c51ec7490c1627e",
+      "nativeSourceRecordSHA256": "eb51d33decf2acbf9f0e0946d046df994da0418095c7e46194e71a88b175a4cb",
+      "nativeStatusFields": {
+        "atsStatus": "Updated",
+        "jobStatus": "Approved",
+        "postingStatus": "Updated",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305387",
+      "title": "Specialist Taxation",
+      "country": "India",
+      "location": "Mumbai, Maharashtra, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305387/Specialist%20Taxation",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305387/Specialist%20Taxation",
+      "postingDate": "2026-11-03T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Merck Life Science Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "7aad57918c0f6572b5e7e9f6980cd8d62939b627e81802578023796f48942cc2",
+      "nativeSourceRecordSHA256": "d9cd479f902dfb1b8769e60c931580f0ced3d08cf8434ca79115fabf315c8e89",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305382",
+      "title": "Software Engineer",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305382/Software%20Engineer",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305382/Software%20Engineer",
+      "postingDate": "2026-11-03T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "3687ec395f9df8b4c5e2e3e6d0814e3ce1d7edefaf11751df72fe5710064adb4",
+      "nativeSourceRecordSHA256": "0309408f23663609d089df076b705988ebdf94cc8bb640e667f05f479968c17e",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "305207",
+      "title": "Senior Analyst - Storage",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/305207/Senior%20Analyst%20-%20Storage",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/305207/Senior%20Analyst%20-%20Storage",
+      "postingDate": "2026-10-30T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "dcdb983ca6e5ef1b3a5ca503a68dcf4550c5ddf8334dc108fccbfac419102570",
+      "nativeSourceRecordSHA256": "368538dc11d6ef03841eab181669e5abee68a618a514862ca913625ac30187e5",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "304480",
+      "title": "Junior Accounting Business Partner",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/304480/Junior%20Accounting%20Business%20Partner",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/304480/Junior%20Accounting%20Business%20Partner",
+      "postingDate": "2026-10-29T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "4da6097dd6794509876622675a3da0da1e260ccff3e74efaa4c43817371909ab",
+      "nativeSourceRecordSHA256": "d20b0b116ff86e964a4b36a494fb4784b472f5614c1c36b9070122c1721b2e4c",
+      "nativeStatusFields": {
+        "atsStatus": "Success",
+        "jobStatus": "Approved",
+        "postingStatus": "Success",
+        "successFactorsStatus": "Open"
+      }
+    },
+    {
+      "jobId": "303594",
+      "title": "Analyst",
+      "country": "India",
+      "location": "Bangalore, Karnataka, India",
+      "sourceUrl": "https://careers.merckgroup.com/global/en/job/303594/Analyst",
+      "applyUrl": "https://careers.merckgroup.com/global/en/job/303594/Analyst",
+      "postingDate": "2026-10-29T00:00:00.000+0000",
+      "closingDate": null,
+      "employmentType": "Full-time",
+      "nativeHiringOrganization": {
+        "name": "Sigma-Aldrich Chemicals Private Limited"
+      },
+      "sourceDetailComplete": true,
+      "sourceScopeComplete": false,
+      "sourceListingComplete": false,
+      "lifecycleCleanupAllowed": false,
+      "descriptionSHA256": "19b92c7c4abf11a2abc20da72b31c41890745d67c0277f6aeff18072c6da577c",
+      "nativeSourceRecordSHA256": "63402d63dcd382b48dbd1f4cfff279e62b19c4590944ccb55355339e5eaf7dec",
+      "nativeStatusFields": {
+        "atsStatus": "Updated",
+        "jobStatus": "Approved",
+        "postingStatus": "Updated",
+        "successFactorsStatus": "Open"
+      }
+    }
+  ]
+}

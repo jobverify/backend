@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://bpinternational.wd3.myworkdayjobs.com/wday/cxs/bpinternational/bpCareers/jobs",
+  "detailUrlBase": "https://bpinternational.wd3.myworkdayjobs.com/bpCareers",
+  "officialCareersUrl": "https://careers.bp.com/",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

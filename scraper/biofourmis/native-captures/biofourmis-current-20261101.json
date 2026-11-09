@@ -1,0 +1,28 @@
+{
+  "url": "https://biofourmis.com/about/job-openings",
+  "status": 200,
+  "headers": {
+    "alt-svc": "clear",
+    "cache-control": "no-cache, must-revalidate, max-age=0, no-store, private",
+    "connection": "keep-alive",
+    "content-encoding": "br",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Sun, 01 Nov 2026 00:41:09 GMT",
+    "expires": "Wed, 11 Jan 1984 05:00:00 GMT",
+    "host-header": "WordPress.com",
+    "last-modified": "Sun, 01 Nov 2026 00:41:09 GMT",
+    "server": "nginx",
+    "server-timing": "a8c-cdn, dc;desc=sin, cache;desc=MISS;dur=717.0",
+    "strict-transport-security": "max-age=31536000",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding, accept, content-type, cookie",
+    "x-ac": "20.sin _atomic_bur MISS",
+    "x-hacker": "Want root?  Visit join.a8c.com and mention this header.",
+    "x-nananana": "Batcache-Set",
+    "x-remembering": "Eric Binnion <https://friendsofericbinnion.wordpress.com/>"
+  },
+  "requestedAt": "2026-11-01T00:40:58.494Z",
+  "completedAt": "2026-11-01T00:40:59.944Z",
+  "bytes": 28205,
+  "sha256": "2bbcab9123d264ce6605a1baacac6949e872c15492b1b021a56bdde9b60441ef"
+}

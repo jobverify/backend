@@ -1,0 +1,1242 @@
+{
+  "capturedOn": "2026-11-03",
+  "transport": "anonymous public HTTP, no browser execution",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "sources": [
+    {
+      "source": "ashlandglobal",
+      "observedAt": "2026-11-03T09:33:56.981Z",
+      "indiaJobs": 10,
+      "nativeRecords": 80,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.ashland.com/about/careers",
+          "finalURL": "https://www.ashland.com/about/careers",
+          "status": 200,
+          "contentType": "text/html;charset=UTF-8",
+          "bodySHA256": "426d57c090dbc5fdba1b48f373f2e816d3b89f327febca7ad2977911c1c623d4",
+          "filename": "eb36ae202c24e906a6d6ee75a01050951261744e606a8a8ba6a7573598f21787.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.ashland.com/about/careers/the-ashland-way",
+          "finalURL": "https://www.ashland.com/about/careers/the-ashland-way",
+          "status": 200,
+          "contentType": "text/html;charset=UTF-8",
+          "bodySHA256": "f5857b3e7365c9e728d7fe01afd5035c78fc86eb48ab572514d64418335f6690",
+          "filename": "1cb4218d7188475fda36d7899d1e74e3896554f78850544550605a5211e0f0c7.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}",
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "524da908374c2868b61a595812b6abe303bfd330accde757f544a67bd17927fb",
+          "filename": "a7be2cecb7ba00271ad1756373c64ea57903ccbffe61ede914dee18bfbbdab48.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/PL-VIRTUAL-LOCATION/Business-Development-Manager--Diagnostic-Films---EMEA_2026-0616",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/PL-VIRTUAL-LOCATION/Business-Development-Manager--Diagnostic-Films---EMEA_2026-0616",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "e8f83d11dd5921d9e31fb256450805d14a769be0933578e097c2f62f3f9df6ff",
+          "filename": "61207936b6f6d5085bdd1943404d0377e6606e6bfe6f3eb1abcf066119615cbb.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Production-Operator_2026-0584",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Production-Operator_2026-0584",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "ddc86161a58a7ceba3cfbc4af42d114b8afa4fda303f9d35d6dbc598ade4e4da",
+          "filename": "6b4ac21e5c865685c68e24176bf55cab81cead936b710c3abc9cf135c5fd9354.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"\"}",
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "f1bcf95b5c03efeb8580a3794ce1738b4fdab1bdc404546a38080ba8c6f29e69",
+          "filename": "fd3901809dd63ea50760f98633dc04e19b7c2878a9af8b12e957de1329d018b0.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-HYDERABAD-DIVYASHREE/Sr-Financial-Analyst_2026-0610",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-HYDERABAD-DIVYASHREE/Sr-Financial-Analyst_2026-0610",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "2c9cf70455462fd2e38a381dc79cabfe3720695fe6808193e70714819a58b5fe",
+          "filename": "5c71cc2e5166da08d5135f722f0c5d367d12874966a1f3a9053e3b2b372be176.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Assistant-Production-Manager_2026-0565",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Assistant-Production-Manager_2026-0565",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "612a02f7e7a97b1bd3982c9c2157f0e7445f4032263b8814b9630a9ac5a50d91",
+          "filename": "1596b48dd83db9b95743ae1e9b44f2421c6ef9e001657a53441035376b53f83e.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Production-supervisor-Sr_2026-0566",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Production-supervisor-Sr_2026-0566",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "2fd7fa0a1f8fedbbcd16cdc4868a17c1852cc042be085ee16ca3c8e02367f0ec",
+          "filename": "0e30a8e0b136e308d895e659027a6d7ca8e0126660d8083044da743571239ffc.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Warehouse-Operator_2026-0589",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Warehouse-Operator_2026-0589",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "71469bcd4f088c97ba1b665fd52c20a9dd6d5b01ba6620289362992d6a86a599",
+          "filename": "4f686cceb6591a2ad653c5222e43d02ea7da5773a79d6fa82d7c162d9a8523d1.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Manager-Product-Safety-and-Regulatory-Affairs--South-Asia-_2026-0581",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Manager-Product-Safety-and-Regulatory-Affairs--South-Asia-_2026-0581",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "d8657365e5d0886edafed9eeef5195fabbe3c18d0526c4563d72cc51c2b65fc9",
+          "filename": "c2f2efe3b03ca529cfe418222ded965c84dd39b4036aa08355cbcf1aa78592d8.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/QA-specialist_2026-0595-1",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/QA-specialist_2026-0595-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "93e257e18f2ef6889cfbac9845c4fe4c9c0050161b0e3a74fc131f5889b7dd3c",
+          "filename": "0310d5e7b1645a6c5df8ca9b05bbfd9a863da6b181dba48b596e6214f62161fe.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/QC-Laboratory-Technician_2026-0596",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/QC-Laboratory-Technician_2026-0596",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "2931f9e9d83778303206fdceb29e111103b629d328014eaa27454a42cc755213",
+          "filename": "aac684e38dcfd9c041fc58f65a3c30bea871ceddbd7235b87aad83592410fe85.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Maintenance---Executive_2026-0604-1",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Maintenance---Executive_2026-0604-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "9de14584c46b40e30dfcc68c52871a3ba80dcfff5dfa1135da8a2b04f6f520b9",
+          "filename": "f81e76b54745cc2f37f09af4fd466f6070af5c9c1944a56c4bafa63de27e7880.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Logistic-supervisor_2026-0585",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Logistic-supervisor_2026-0585",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "2efa421630510c318c4f64f8b3231ab1850551a2b65ac5ff8b1da17dd6a52543",
+          "filename": "2f2cb016c0f5cc2b357df0ded97a6e7708e672b4b9a083366323a5c5f68e288e.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Warehouse-supervisor_2026-0586",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Warehouse-supervisor_2026-0586",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "24cbd1c95cb93553e221adca79998e8cc3cb3fe673d0dd08bce0614d4d1fec54",
+          "filename": "d4caa10e8f9dbc1446d79bcec2c65310cc35b057cfb684ba2ff4e5003521ca87.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"\"}",
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "fcfde25ebfb4668e36422ed49a6cda1e7d3950657ad25c24f69daeff0c2db062",
+          "filename": "29dda271967146dd4f3ce0dc0d55de0e27f236ab035fcfe45d52c759eaf2e137.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"\"}",
+          "requestedURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "finalURL": "https://ashland.wd12.myworkdayjobs.com/wday/cxs/ashland/AshlandCareers1/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "b06874dcbe49442eaa5a53ddcf9b777c99dfeeb912057b9c35613639243beb22",
+          "filename": "7efaf013b59e07151e47902e587759848acfd4f8e98d230c4f50c313c64a1f6f.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "2026 - 0584",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Production-Operator_2026-0584",
+          "postingDate": "2026-10-19",
+          "title": "Production Operator",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "84e84c9a6cbc6ef559ca700829b4b69a72f5d1157b341de94614b3690226c897"
+        },
+        {
+          "jobId": "2026 - 0565",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Assistant-Production-Manager_2026-0565",
+          "postingDate": "2026-10-19",
+          "title": "Assistant Production Manager",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "55837aabe559bafee2f85544f3f2f003fe3bae39d405ab5b2a36fa8526444522"
+        },
+        {
+          "jobId": "2026 - 0566",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Production-supervisor-Sr_2026-0566",
+          "postingDate": "2026-10-16",
+          "title": "Production supervisor Sr.",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "e09ed8a54b1c5f2aac7aed8c655e38c90588c6deaacd302a0b5f7733c3039065"
+        },
+        {
+          "jobId": "2026 - 0589",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Warehouse-Operator_2026-0589",
+          "postingDate": "2026-10-08",
+          "title": "Warehouse Operator",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "94b4238e68356e4368c387c6cda7d166fd6105a9a3aa0e83794ca61e36d581c7"
+        },
+        {
+          "jobId": "2026 - 0581",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Manager-Product-Safety-and-Regulatory-Affairs--South-Asia-_2026-0581",
+          "postingDate": "2026-10-08",
+          "title": "Manager Product Safety and Regulatory Affairs (South Asia)",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "7cb4fc306ad826a6e99df2c69b4cacbb2e7a77cc16172857ba530e7d30952a6d"
+        },
+        {
+          "jobId": "2026 - 0595",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/QA-specialist_2026-0595-1",
+          "postingDate": "2026-10-07",
+          "title": "QA specialist",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "52803b4e55bba7990088bde1df08a61b1ad52894a50d307346f8c691b5127854"
+        },
+        {
+          "jobId": "2026 - 0596",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/QC-Laboratory-Technician_2026-0596",
+          "postingDate": "2026-10-07",
+          "title": "QC Laboratory Technician",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "94e4bfa5a02b775cd2c0dee24c2417429519d9e9e479a50af49ef8c2b185cc4e"
+        },
+        {
+          "jobId": "2026 - 0604",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Maintenance---Executive_2026-0604-1",
+          "postingDate": "2026-10-07",
+          "title": "Maintenance - Executive",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "5bed6cec96d2a13820d20c3e78bb3edaf58bf30a30fe8cd86a5be9b6aab2f454"
+        },
+        {
+          "jobId": "2026 - 0585",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Logistic-supervisor_2026-0585",
+          "postingDate": "2026-10-07",
+          "title": "Logistic supervisor",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "f836e94d0e4ff8bb9a5963367ed76a60f917b61944fbe9881f885b85f724ba34"
+        },
+        {
+          "jobId": "2026 - 0586",
+          "applyUrl": "https://ashland.wd12.myworkdayjobs.com/AshlandCareers1/job/IN-MUMBAI-GHATKOPAR/Warehouse-supervisor_2026-0586",
+          "postingDate": "2026-10-07",
+          "title": "Warehouse supervisor",
+          "nativeHiringOrganization": {
+            "name": "Ashland India Private Ltd",
+            "url": ""
+          },
+          "descriptionSHA256": "0c5a8855ab8579adf6257334fdebb23573988eccb7a6d1bd0134694bb7c6586d"
+        }
+      ]
+    },
+    {
+      "source": "amadeusitgroup",
+      "observedAt": "2026-11-03T09:33:56.763Z",
+      "indiaJobs": 8,
+      "nativeRecords": 160,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.com/en/careers/overview",
+          "finalURL": "https://amadeus.com/en/careers/overview",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "bodySHA256": "7353d17cbcc8a70c96b1201e91787de5fbef1d8e055c62f04d8c13f1e275526c",
+          "filename": "ed9f8ef4417941df29a7c94154878b2dbe7b2f0f533303d41093055c483107e4.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.com/en/careers/locations",
+          "finalURL": "https://amadeus.com/en/careers/locations",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "bodySHA256": "4a24727f80a180e14fb64c05ccf681e709219ef9f20a5d3736f6c28e26612235",
+          "filename": "0cb2f5fe633648cb1398f3805fb1036b2c64465c20020f22109b0e102954b6ce.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "dec6861deb28e70cb685ba90790c05e1741abea63f2dbac1b64448b647a48187",
+          "filename": "b264cfb7af5cc8cc70dcda524ffc429f2e2010875ed041ef966c6cbd3f15dc15.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Software-Development-Engineer-3_R38277-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Software-Development-Engineer-3_R38277-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "f37da5392dfc3714e800d61468de3f4c3d112b8d57c03ab8ab3dc4f57fb97ecb",
+          "filename": "43d572ee73dbb0087b5b367259aad48ffe4135048a375878d0c89f2c288ec322.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/QA-Engineer-2_R37963",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/QA-Engineer-2_R37963",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "adb2588451df3fc3262c407467e28085a1bc73e94d245f182214fdfe265484ca",
+          "filename": "356c194da5d22b0cb39978f091d3d71467a1312f286d5ea883e67ab2539d7cf2.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Specialist--DevOps-Engineer_R36161-2",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Specialist--DevOps-Engineer_R36161-2",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "1f919066d5eac0c34a71587546ad410a77c760459bed96a9f353ea3595129359",
+          "filename": "0b633ed79b531f755f716c67928ed6c3b6ad2142088ea88ccfffd0f4d04e2dbb.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Lisbon---Carnaxide/Senior-Research-Engineer_R37970",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Lisbon---Carnaxide/Senior-Research-Engineer_R37970",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "f8fc215a5e4eb34cd48383005e8d1b62f4c17dddf7cdcf017f244109a8693cdd",
+          "filename": "6c3efd576609ead078003b15be2e86fe1ecb1d6589fb21da574733b50f959621.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Lisbon/Serralheiro--Fbrica---Abboda-_R38081",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Lisbon/Serralheiro--Fbrica---Abboda-_R38081",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "f0f78b0848ab6963c18000c186b463708a4ac2f1fbf1f3e74d882d016d2798cb",
+          "filename": "4b188fd51b56ddaa2cc3ccbc3f107827f59da81c28378e582188d062299e6307.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Miami-Florida/Sales---Account-Manager-Senior-Representative_R35257-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Miami-Florida/Sales---Account-Manager-Senior-Representative_R35257-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "5876723685c966c3e08b52f1d210ab9c33d6cf4606a8150d852ca02d208a078b",
+          "filename": "e8895c8814c312600b3ced5a3e47aa061cae82186a0f1b5f4f9582b1d598752f.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Principal-Specialist--DevSecOps-Engineer_R37952-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Principal-Specialist--DevSecOps-Engineer_R37952-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "602d0013332b8f283a7804c044b87ceeb70a9373b77f1f4fb13a782df5ce1cce",
+          "filename": "27d3d4c60b4bcbaccf9eb0c09146097a6e87329837463973b7a8025b1053cdfa.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Principal-Engineer_R38065-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Principal-Engineer_R38065-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "2dfc56fab13d091a4f5d2d564f10ea7600a948b18b061ac7396829538352a765",
+          "filename": "6f42dbab19040d74add87997930a7282a4d75a0bd223db94008197bdaa22300f.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Lead-UX-Research_R37953-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Lead-UX-Research_R37953-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "4d8196ebf8a3257b023afde4d9532aed81ae642919c66cd33cd770affc95739a",
+          "filename": "5c4f881b64d4d1505a7d74737438887942a3bef44bb6ea64d184a696a7b50af6.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Data-Product-Manager_R38033-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Data-Product-Manager_R38033-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "45a0f216af229908b1ce2f0a51ef172287e65bec1b8d4435a9e7f77d4b65ad04",
+          "filename": "7751680c3b274c4036ae9e8a553f3bc4f31d3eeb1c74db13f8c7cc19a5481410.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "92e9ab1cc210fc36854da6e8b5bad017ca35db47c6897f1a00fb6a9e515be834",
+          "filename": "465850f645dcf9128e73cee1307f52879b4f861d82847b2a55ed4669a9102619.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Travel-Distribution-AI--Engineering-Manager_R36614-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Bangalore/Travel-Distribution-AI--Engineering-Manager_R36614-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "7a34bc3c5c75e0663eb0d2100036e13383418afa88a1e3997b66bedce2cf007e",
+          "filename": "1c133fa64025ecbd904c8cbc336cb812bf236872db3d8e7c0ce5340bff4dbff7.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Mexico-City/Sales-Principal-Specialist_R35594-1",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/job/Mexico-City/Sales-Principal-Specialist_R35594-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "a3ed0dd3074a28cc4b8ad3fe45a0da5561234893048ba93cf199480c9c84e739",
+          "filename": "0be97970f1651689cfe828e84e2c80eaec2a3db0a16b0157da241c9817282ba6.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "80ce3ac4cdb24d2b46a7752c901575a364616c299672388bd4e0d9234d5e7c55",
+          "filename": "ce6fb8fef07c7c06b52bd8caf62837cc9ce3738ea85347d2b1a9280c63c2faa1.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "7129c38e913310a4559750b410fe5abaa8a3632088a94579e41583fbc12de1d9",
+          "filename": "366fa295d2146a4e857df24c17d8dacf86a6979c383cc436cc155d0b4148b37b.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":80,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "417fd055a98646a9bb32ffba175e5cc44c6b7377bdff5cb928405df1e22daf16",
+          "filename": "6b1e3f959bcc3d47a0944b99c9bc589b79f609e904fad0937f3b118b3d84daf3.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":100,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "041057ed4a4567129074d6fcc0a2db7b5629280cc2ff049c9be4821048c7a9c8",
+          "filename": "28e13b1be3f9f7e900d5e424095cc874af5e0152b0f5570e7f784ab2c053d1e2.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":120,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "59bead8ac8d04fe6bd97ea2702f6bc946d301d9bbcee1c0525299dcc495f5099",
+          "filename": "007485c62167070a56fab569cdb43db20ae95ee81c1a6ac25b85515c40b38f16.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":140,\"searchText\":\"\"}",
+          "requestedURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "finalURL": "https://amadeus.wd502.myworkdayjobs.com/wday/cxs/amadeus/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "ccc04aa33f010fdda6b1f1ef8e850d37407517ce74d16f183f3fef92400126b2",
+          "filename": "709577e5664515890f62486d3cf1853dce75c0293109bfe9a19854532260f0a4.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "R38277",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Software-Development-Engineer-3_R38277-1",
+          "postingDate": "2026-11-03",
+          "title": "Software Development Engineer 3",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "29c46fbc51b6268259fc9956bc0a032291f75d714346b248fd6a7a5dab086b12"
+        },
+        {
+          "jobId": "R37963",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/QA-Engineer-2_R37963",
+          "postingDate": "2026-11-03",
+          "title": "QA Engineer 2",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "0523a068cb7bd00c91bb13c02fb2c957452ec7a6c5fcd2766c514f2785cb2418"
+        },
+        {
+          "jobId": "R36161",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Specialist--DevOps-Engineer_R36161-2",
+          "postingDate": "2026-11-03",
+          "title": "Specialist, DevOps Engineer",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "da4cb17ba7add9ef98acc33ecfd61fe09f4cb6edd755fe5b005d13962c1b596d"
+        },
+        {
+          "jobId": "R37952",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Principal-Specialist--DevSecOps-Engineer_R37952-1",
+          "postingDate": "2026-11-02",
+          "title": "Principal Specialist, DevSecOps Engineer",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "e088118e860d656cfdd1d28a624f9c7e6b0c943abdb8f4460edf93c6d21b3608"
+        },
+        {
+          "jobId": "R38065",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Principal-Engineer_R38065-1",
+          "postingDate": "2026-11-02",
+          "title": "Principal Engineer",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "85b1cac09efe36e9701e09b92930d2e99d2d4de1b40842e8b23a202ba0aebfe5"
+        },
+        {
+          "jobId": "R37953",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Lead-UX-Research_R37953-1",
+          "postingDate": "2026-11-02",
+          "title": "Lead UX Research",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "d89d55f2eb519bceeb6007189a3771be4edfceab938ef1651b0b426ff3ea10bb"
+        },
+        {
+          "jobId": "R38033",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Data-Product-Manager_R38033-1",
+          "postingDate": "2026-11-02",
+          "title": "Data Product Manager",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "2f2d10a32918c95e2a8762d08382f522d74d522e363eeafd63a78b2d6d1c638a"
+        },
+        {
+          "jobId": "R36614",
+          "applyUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs/job/Bangalore/Travel-Distribution-AI--Engineering-Manager_R36614-1",
+          "postingDate": "2026-11-02",
+          "title": "Travel Distribution AI, Engineering Manager",
+          "nativeHiringOrganization": {
+            "name": "1127 Amadeus Software Labs India Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "9c6a6ed004447bf9075233015ac3b3e98d814b7c4117c5e74519d5239337bb38"
+        }
+      ]
+    },
+    {
+      "source": "chevron",
+      "observedAt": "2026-11-03T09:34:03.308Z",
+      "indiaJobs": 12,
+      "nativeRecords": 134,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://careers.chevron.com/",
+          "finalURL": "https://careers.chevron.com/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "115c35d099792ecf346a7e36644032c5e812770d8224e4b0acbcc2fc4a9148e2",
+          "filename": "6ee9b5e62eb5ada791ea2e0f17c42cd73b033cb5adb6c8b1e099b297418e12e1.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://careers.chevron.com/search-jobs",
+          "finalURL": "https://careers.chevron.com/search-jobs",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "fc0c93558ff74545cc9c3623a411622325059e34df700440f7c0289c7e7d9ccd",
+          "filename": "dc8d6d3a729b5241e364d88ea556f88e4552b3a4acc2bdbcfc2194aa67819712.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://careers.chevron.com/early-career",
+          "finalURL": "https://careers.chevron.com/early-career",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "7c4222fce3bb468c76d40b1ed8f17b51b224c6ec6431b14de2d890a7b79e0877",
+          "filename": "c0ce0faec7c96d6e8fca2c35158daa098c2b15fdcda818fed348b3c57a9f3327.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://careers.chevron.com/job/makati-city/associate-medical-coordinator-direct-hire-contractor/38138/101646214784",
+          "finalURL": "https://careers.chevron.com/job/makati-city/associate-medical-coordinator-direct-hire-contractor/38138/101646214784",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "5d9adfc601e575e814bb561ffc6e7ce4a1db5abe9b60b7c2d72b138e8ac18a25",
+          "filename": "5aa841bbc74f89b0c501ef84b5a86cebd41cab0be307ebf21855c95fd1c91fe4.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "fba1f4ad4c28e484ed662d4206bb7e3e8745b50046a56a3fa398a78721b40ede",
+          "filename": "70a52bf54178211315539740d968f32f89faad8c6c625e4e37832e818774a948.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Decision-Analysis-Consultant_R000072522-1",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Decision-Analysis-Consultant_R000072522-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "378cde50f4695cc3ba2e29b376268cf8e9f9088e5643d91f8c4a810891c48f21",
+          "filename": "415d5e387e0952e6506383c670720390aaa73dc94b45f086fdb5f9441827f273.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Machinery-Engineer_R000074867",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Machinery-Engineer_R000074867",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "42611e3f3e7dde4fc7aa34166a6186b27a9446ec1646518df09b7d042a299087",
+          "filename": "573a2cab3616c0b9f3be195e30a15126b38398bade8097376ff359223be6478d.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Machinery-Diagnostics---Condition-Monitoring-Engineer_R000074865",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Machinery-Diagnostics---Condition-Monitoring-Engineer_R000074865",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "1cb1be16a1d7c89a81f6e8d16ca215adfc622473db52d249bfc727fb13f38fbf",
+          "filename": "d4dcb69d5991c93f6b5c596cd2e41b38c7049b5ab423342f5494e96541668247.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Machinery-Monitoring-Engineer_R000074864",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Machinery-Monitoring-Engineer_R000074864",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "c7fc3f6d38d031e1375ba707a0715a8ea3cefea78ca047a755807ddf6dddf0ef",
+          "filename": "8ca6aa192398c6690e37f06339bbc29b0d22d889223497cdb43c346aed54bfcf.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/CMMS-Engineer_R000074863",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/CMMS-Engineer_R000074863",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "8c06a7f14c44ba639ba0dadc9ee77b83c73397f45a9208a9a3727c31d4a583f4",
+          "filename": "e57dbbd8f024b9b4c5b86fde01f23d4a4a402576b2ae6def15d387388c16e5ca.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "f3848f45d53778632d4d3d656c9f5e9fce3acb13e78dd144f32b148aeb3a8ebd",
+          "filename": "3f19a0f55a8c5e50a67c1b0444369479da5c3e1b6ef1db1513bfdc6058630fdf.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Earth-Scientist--Asset-Business-Delivery_R000068890",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Earth-Scientist--Asset-Business-Delivery_R000068890",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "ac585987a1b3d41d09b3779ec75c43fd87e7ae22ccfca7266fbd75b1add9e44a",
+          "filename": "0783d9a4786a8cc0f1a3f58c825d5c92d07afc6008cf75d274de820f7321e351.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Technical-Lead--Benchmarking-and-Performance_R000073436",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Technical-Lead--Benchmarking-and-Performance_R000073436",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "e111e78e66b93dfedbcc3d3e91510bfe4f1827be75ca63fae55b7df1ae3dbdee",
+          "filename": "94ef0ee657fe156bfcdc50a74a20d4cb2db3decd41fb882145a3b5f13b27b6f4.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Digital-Core-Asset-Management-Delivery-Coordinator_R000073437",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Digital-Core-Asset-Management-Delivery-Coordinator_R000073437",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "b64b06b1ad24bf9c91ebab090eaad91921ca249c2d03952f2e0abeb86dd16e99",
+          "filename": "0bb3acfbbf44cf5d076eef2c871a4f524b3d83949fdec10201a3eb04b3330019.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Reservoir-Engineer-Asset-Business-Delivery_R000074321-1",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Reservoir-Engineer-Asset-Business-Delivery_R000074321-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "7975711789be48922e32e39983d2a5bac473ca37a1340aa9edffe26d0b05cbcf",
+          "filename": "f69b28362cbe425765a673093f30676b479c4e41e370a223d5a55a17063c3b72.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Wells-Engineer_R000072668",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Wells-Engineer_R000072668",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "e558d3e3983fbdabd1ddc1a786bad392306353ea33e80f647f30ac55984fdac1",
+          "filename": "5ea3e0e44b9be3d19a30cbfa76e1eb103cd53f770010287273c2d26c227fa886.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Toxicologist_R000074764",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Toxicologist_R000074764",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "7575cdb5ceb579fa2f6e032fd5da7ab2fe35d4e14fe3ea0c9c621151a9a3e416",
+          "filename": "bd6accda9962b12d98b92e3e85f8f181173e4f4f22def1999d8279003acb8e28.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "38cd353f9c7925ea0489f3ed15bc15e930495f07b0b06d543314f57f953514be",
+          "filename": "efc8a8caf8ed24cb04e98df8ed48e4ce03d575e5b1972d206b62e1a855cbe58b.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Organizational-Learning-and-Investigation-Support-Coordinator_R000074763",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/job/Bengaluru-Karnataka-India/Organizational-Learning-and-Investigation-Support-Coordinator_R000074763",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "30a474f04d31e99d6167bf144ccf5a0007ffcde753704749b731e5febdbd1084",
+          "filename": "5c33f97335d7e76badeefa4d45803ee014bedb6e54810f49c185f26f3c1e53b9.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "07efb828465d34d6a5f621299a6319895e4df90c98c4a46d8ae0a2b2c6fcba31",
+          "filename": "b91bf5fa567f91727eef6282bfe53773ed7b5ebb25213dd97a948bbf2a908f89.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":80,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "d8666bca2b8c2f9ba3cc44ab21f17a07cf1ba1918bc64c34b07827bff115383e",
+          "filename": "e5677abb802aec6307a56d539590488bf59d2960ff45f22a63a9ee19e7cceb58.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":100,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "0550fbdfb4a5a2ade258b0252740c750f9f4dedd9556e5a8f3a1fa3b5d5b3812",
+          "filename": "53183439d6635bec4c418ef39ee42d627b184ef7a9daae32ce466dff23daee6c.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":120,\"searchText\":\"\"}",
+          "requestedURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "finalURL": "https://chevron.wd5.myworkdayjobs.com/wday/cxs/chevron/jobs/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "d1239db963a7f915e156d2677296c22b89667d6d6c19a7f2496a1defb153d772",
+          "filename": "506563194cb67a4a98e0620eb5db8a4124db9332fff7fc75ffe979173ff09f9e.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "R000072522",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Decision-Analysis-Consultant_R000072522-1",
+          "postingDate": "2026-11-02",
+          "title": "Decision Analysis Consultant",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "eaecf07fd2fd710bbfd8f200cb9162c05041439f26abd575fb3c23bb67c66ae5"
+        },
+        {
+          "jobId": "R000074867",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Machinery-Engineer_R000074867",
+          "postingDate": "2026-11-03",
+          "title": "Senior Machinery Engineer",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "3cc4e15ef7ed4f3671aa33ca6d873d7a73210d92558c98dc78f9b8d14dc32703"
+        },
+        {
+          "jobId": "R000074865",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Machinery-Diagnostics---Condition-Monitoring-Engineer_R000074865",
+          "postingDate": "2026-11-03",
+          "title": "Machinery Diagnostics & Condition Monitoring Engineer",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "9c6e1b1c0e4c318476bf328421c58bf1444ffeb798637494353c18eaf02f3b9b"
+        },
+        {
+          "jobId": "R000074864",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Machinery-Monitoring-Engineer_R000074864",
+          "postingDate": "2026-11-03",
+          "title": "Machinery Monitoring Engineer",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "7907b6fbf76e56dfc683e387e77716bd3003628ba39ddf62961f3ba8a0052d07"
+        },
+        {
+          "jobId": "R000074863",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/CMMS-Engineer_R000074863",
+          "postingDate": "2026-11-03",
+          "title": "CMMS Engineer",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "396facf892f8cca785fff66a34b80eef2abb9690471c77660aef969f8b2964ab"
+        },
+        {
+          "jobId": "R000068890",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Earth-Scientist--Asset-Business-Delivery_R000068890",
+          "postingDate": "2026-11-02",
+          "title": "Earth Scientist, Asset Business Delivery",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "14091dfb148acc24d189055d2504733150da242ff3ae1e6e148134b2c7834666"
+        },
+        {
+          "jobId": "R000073436",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Technical-Lead--Benchmarking-and-Performance_R000073436",
+          "postingDate": "2026-11-02",
+          "title": "Technical Lead: Benchmarking and Performance",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "5aa9f2ae3141f33f1b3e2c3aad862d82808c5028f316397ab2e56eb95b3abc9f"
+        },
+        {
+          "jobId": "R000073437",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Digital-Core-Asset-Management-Delivery-Coordinator_R000073437",
+          "postingDate": "2026-10-31",
+          "title": "Digital Core Asset Management Delivery Coordinator",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "57c6fa801d461cfdf9a1c86a2310abd7844b88b757e9ff59a9d6c3873976ddf2"
+        },
+        {
+          "jobId": "R000074321",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Reservoir-Engineer-Asset-Business-Delivery_R000074321-1",
+          "postingDate": "2026-10-30",
+          "title": "Reservoir Engineer Asset Business Delivery",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "835418b57872b7f36b4ca39fb7cbde4b7870bb203045ed3b0ad61b6f8862bd25"
+        },
+        {
+          "jobId": "R000072668",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Wells-Engineer_R000072668",
+          "postingDate": "2026-10-30",
+          "title": "Wells Engineer",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "5405283012c88c83c702763aad5d64ce28c3a3cd7d7e1af43cdffbe135f9b79f"
+        },
+        {
+          "jobId": "R000074764",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Toxicologist_R000074764",
+          "postingDate": "2026-10-29",
+          "title": "Toxicologist",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "504104b79fed31ad218e8ce80ff336c83310d09c768f37f7ed4562308cb6cab8"
+        },
+        {
+          "jobId": "R000074763",
+          "applyUrl": "https://chevron.wd5.myworkdayjobs.com/jobs/job/Bengaluru-Karnataka-India/Organizational-Learning-and-Investigation-Support-Coordinator_R000074763",
+          "postingDate": "2026-10-29",
+          "title": "Organizational Learning and Investigation Support Coordinator",
+          "nativeHiringOrganization": {
+            "name": "7120 Chevron Global Technology and Services Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "d91e784b2c45670d8c6c9a08ffe50fd717d75f4e0d4dcf6cc4360ec909ac0e90"
+        }
+      ]
+    },
+    {
+      "source": "goodyear",
+      "observedAt": "2026-11-03T09:50:04.901Z",
+      "indiaJobs": 5,
+      "nativeRecords": 84,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://corporate.goodyear.com/us/en/company/working-at-goodyear.html",
+          "finalURL": "https://corporate.goodyear.com/us/en/company/working-at-goodyear.html",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "bodySHA256": "848e0cdf5f26a2248f7ef600662193b6382bea2e56a7d9163177994c42751dc6",
+          "filename": "e2c427623db2ccc87ad65f4a08e6666320706cd6826234a5ac1f7a4c035a80e4.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://corporate.goodyear.com/",
+          "finalURL": "https://corporate.goodyear.com/us/en.html",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "bodySHA256": "0d22640610d92e85c5f395640670b19b7eef4d658764ba1018dd8c80b723bb9d",
+          "filename": "37163045776c1b72cab4148447118a6bafb08b3c9ef5b8f9542fb21cf07ee941.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}",
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "8fcaab3f2bf74908b77863ba3a084a393ec22159956adf93cd6b225a3c117402",
+          "filename": "1118ee4203311176c5deccdb0043b9ffc6f169a3ad5ae6430d3b6477cedbadf0.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"\"}",
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "556c642f8cb4e282fd492b27781039c8474edf4f66b97155da7fd7649839f519",
+          "filename": "de61c0a4ab18f5060546e4e695c1cef06adb46d0539443f39c2f6557b315fc8d.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Company-Secretary_JR-40113768",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Company-Secretary_JR-40113768",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "46e0e44b0dc2ec261311eb5e2d2c8893f022c93e627a0711bd80d898ae02b0ff",
+          "filename": "a58f6b376db61e9fc5eeb69b2bf25194a330ddc12b81423b92320f7575c8bf81.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-Mumbai/Area-Sales-Manager--Thane--Cons-Repl-Sales_JR-40113455",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-Mumbai/Area-Sales-Manager--Thane--Cons-Repl-Sales_JR-40113455",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "e843f33e3e7b56b634e8dde8271abe47367fa03c47c21f0ff010892b2f207321",
+          "filename": "8e6fe066f63caec70061f7702c477f6fd6882b8cf798171aa07e655840f789a8.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"\"}",
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "6b4f5461f7413e3569a0695d44c7e8dff00472bd38f1da1f2e531f387a6776ed",
+          "filename": "eebc1af14c18d037eb3e4639a65d2b8b14579bcccbbd6b546148e2b17bfefc42.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Manager-Credit--Consumer-PBU_JR-40113528-1",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Manager-Credit--Consumer-PBU_JR-40113528-1",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "911e96a5f11a724f7424f7ae0936288003b76d65c51162dbd999a30c559c6e7c",
+          "filename": "49957202d3093f2751f2eb32d3fd65648327d370b41e7ee49b626991fd57859c.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Finance-Business-Partner--Consumer-PBU-_JR-40113823",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Finance-Business-Partner--Consumer-PBU-_JR-40113823",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "11b379046528cee66eb8f07bbb6e0d07d7a43d2a4bae9f8fe4daad3aeccc3012",
+          "filename": "59750e598807f924d684dee2219276ca426782bb89f036392f223e4dade9d08a.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"\"}",
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "b18e58720a67f8177d8c9717a0b5d23cc4f80d0bc10652abc5136d965f2bfc93",
+          "filename": "301d0cb57e371cd36b9f620348505adb594b089b383b38f773bb8d3970a88c71.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/BR-Americana-Plt/Analista-Fiscal-Jnior_JR-40113398",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/BR-Americana-Plt/Analista-Fiscal-Jnior_JR-40113398",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "187c8f60ea4337102d945063350afea9e9b1d91b11558efe4de65e7f22ab5b3a",
+          "filename": "3e7185f0c6d3a3f2d7a818a334a008411816b1da2b01e08f090845db53bbf557.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/TH-Pathumthani-Non-Plant/Regional-Key-Account-Executive---Upper-South_JR-40113081",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/TH-Pathumthani-Non-Plant/Regional-Key-Account-Executive---Upper-South_JR-40113081",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "dbfae31de04eaed3df9bc3044edff3a872d69d2dc552149ad5fab250704428a2",
+          "filename": "dec6c5d3e35df55d17087e0d1113f178f184745ef96cfa11505f42d7f1faacde.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":80,\"searchText\":\"\"}",
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "a2abb5d208e2de77a3a60f8e0733bdaba77578b1de7b2406ab1a72398716a266",
+          "filename": "1ba74f271e26630e6525219ca202da0acf09d096de50ab2b3af550167d1cee48.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Regional-Security-Advisor--Asia-Pacific_JR-40112839",
+          "finalURL": "https://goodyear.wd1.myworkdayjobs.com/wday/cxs/goodyear/GoodyearCareers/job/IN-HO-Gurgaon/Regional-Security-Advisor--Asia-Pacific_JR-40112839",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "895c369eba4370401109c446b7a4874bf5b78dd20b779414607c6ed8530763ba",
+          "filename": "a9d027c0b88ac53b119cbf7aca65cc416e26d9255b0d899964129ebff1a69e65.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "JR-40113768",
+          "applyUrl": "https://goodyear.wd1.myworkdayjobs.com/GoodyearCareers/job/IN-HO-Gurgaon/Company-Secretary_JR-40113768",
+          "postingDate": "2026-10-23",
+          "title": "Company Secretary",
+          "nativeHiringOrganization": {
+            "name": "A350-Goodyear SouthAsia TyresP",
+            "url": ""
+          },
+          "descriptionSHA256": "90c2fb7f43717078546cb4a6f102905bd2f3c2b81623115cc4b7cdd1ea69c1cd"
+        },
+        {
+          "jobId": "JR-40113455",
+          "applyUrl": "https://goodyear.wd1.myworkdayjobs.com/GoodyearCareers/job/IN-Mumbai/Area-Sales-Manager--Thane--Cons-Repl-Sales_JR-40113455",
+          "postingDate": "2026-10-23",
+          "title": "Area Sales Manager, Thane, Consumer Replacement Sales",
+          "nativeHiringOrganization": {
+            "name": "A300-Good Year India Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "d5b69657b38cf809b208dc13c867471d43df571bc6b0b2f2ae81cca8879fb4e1"
+        },
+        {
+          "jobId": "JR-40113528",
+          "applyUrl": "https://goodyear.wd1.myworkdayjobs.com/GoodyearCareers/job/IN-HO-Gurgaon/Manager-Credit--Consumer-PBU_JR-40113528-1",
+          "postingDate": "2026-10-22",
+          "title": "Manager Credit, Consumer PBU",
+          "nativeHiringOrganization": {
+            "name": "A300-Good Year India Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "9cfa57994b2d72555094eab6558e28ea8b8e375faaf8ea10b7cc048a830d9915"
+        },
+        {
+          "jobId": "JR-40113823",
+          "applyUrl": "https://goodyear.wd1.myworkdayjobs.com/GoodyearCareers/job/IN-HO-Gurgaon/Finance-Business-Partner--Consumer-PBU-_JR-40113823",
+          "postingDate": "2026-10-22",
+          "title": "Finance Business Partner (Consumer PBU)",
+          "nativeHiringOrganization": {
+            "name": "A300-Good Year India Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "e06ff5f5402c42e0488b9d6b1edf990c5b9cbb22f8d5a56690fe6233481daa31"
+        },
+        {
+          "jobId": "JR-40112839",
+          "applyUrl": "https://goodyear.wd1.myworkdayjobs.com/GoodyearCareers/job/IN-HO-Gurgaon/Regional-Security-Advisor--Asia-Pacific_JR-40112839",
+          "postingDate": "2026-09-28",
+          "title": "Regional Security Advisor, Asia Pacific",
+          "nativeHiringOrganization": {
+            "name": "A300-Good Year India Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "b309b65588ab005d49df3735634a5d0ce1efb5590d927ba6200e0b3b28a74358"
+        }
+      ]
+    },
+    {
+      "source": "inflectionai",
+      "observedAt": "2026-11-03T09:34:26.851Z",
+      "indiaJobs": 0,
+      "nativeRecords": 4,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://inflection.ai/about#careers",
+          "finalURL": "https://inflection.ai/about",
+          "status": 200,
+          "contentType": "text/html",
+          "bodySHA256": "f23d8d30c73a11bd38f62c50e988f7135499cdc1abfd8a144dfd9b8fed84c860",
+          "filename": "6fa85aae172fc19a240a35aea0817f0185a82b65a5ae82de35ad53bec8ad87bb.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://inflection.ai/about",
+          "finalURL": "https://inflection.ai/about",
+          "status": 200,
+          "contentType": "text/html",
+          "bodySHA256": "f23d8d30c73a11bd38f62c50e988f7135499cdc1abfd8a144dfd9b8fed84c860",
+          "filename": "0a36fd8401bf0b5cfd4729138277582ef89948d13ff21e6b78cfac5940fc18da.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://boards-api.greenhouse.io/v1/boards/inflectionai/jobs?content=true",
+          "finalURL": "https://boards-api.greenhouse.io/v1/boards/inflectionai/jobs?content=true",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "233c38ffb36105d92480d4456416e2c0f58980bc05d10b94a85895dc8f1c4c8d",
+          "filename": "19e9c12d697f92697b104c45ce82de4595af5d52c3a761b671cacdbd4c81f7d8.txt.gz"
+        }
+      ],
+      "expectedJobs": []
+    }
+  ]
+}

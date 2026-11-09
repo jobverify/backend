@@ -1,0 +1,25 @@
+﻿export const BATTRE_ELECTRIC_CATALOG = {
+  source: 'battreelectric',
+  companyName: 'BattRE Electric',
+  officialBrandName: 'Batt:RE Electric Mobility',
+  adapter: 'script',
+  modulePath: '../../scraper/battreelectric/script.js',
+  dryRunFile: 'battreelectric/jobs.json',
+  homepageUrl: 'https://battre.in/',
+  companyCareerPage: 'https://battre.in/',
+  companyDomain: 'battre.in',
+  exactCompanyMatchOnly: true,
+  atsPlatform: 'official-first-party-homepage-no-public-careers',
+  countryFilter: 'India',
+  paginationStrategy: 'single-first-party-homepage-validation',
+  extractionStrategy: 'verified-first-party-homepage-without-public-careers-or-ats-handoff+return-empty',
+  parser: 'custom-script',
+  normalizationProfile: 'engineering-default',
+  verifiedOn: '2026-07-26',
+  verifiedPublicPostingCount: 0,
+  verifiedSurfaceSummary:
+    'Verified on Sunday, July 26, 2026 that https://battre.in/ is the official Batt:RE Electric Mobility domain. No trustworthy public careers page, official ATS handoff, or enumerable jobs feed was verified from this surface. This exact-name provider intentionally fails closed and returns no jobs until BattRE publishes a verifiable first-party openings surface.',
+}
+
+export default BATTRE_ELECTRIC_CATALOG
+

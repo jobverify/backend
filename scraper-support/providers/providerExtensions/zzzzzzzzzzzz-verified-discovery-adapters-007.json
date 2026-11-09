@@ -1,0 +1,50 @@
+[
+  {
+    "source": "bluecat",
+    "companyName": "BlueCat",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "lever",
+    "boardToken": "bluecatnetworks",
+    "companyCareerPage": "https://bluecatnetworks.com/careers/",
+    "officialHomepageUrl": "https://bluecatnetworks.com/",
+    "companyDomain": "bluecatnetworks.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T21:50:10.932Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:50:10.932Z",
+      "officialURL": "https://bluecatnetworks.com/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.lever.co/bluecatnetworks/"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-012",
+      "discoveryFile": "../artifacts/full-catalog/official-discovery/batch-012.json",
+      "discoverySha256": "84d794fa440c68e4ef3bdeecf5469199031fd36fd1fb9a8ea1c281868a13e4ec",
+      "httpProofs": [
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-006/bluecat-corporate-001.json",
+          "sha256": "4a89122a2aefd95a87f208a812e4eacde04b7ba266d4636d3f0bd7c2ba047a25",
+          "bodySha256": "bb0f5b7c4638cdd7b0ba11a8c591fb3b98e22527e023f64968256d6ba27fa768",
+          "checkedAt": "2026-10-20T21:50:10.932Z"
+        }
+      ]
+    },
+    "parser": "source-validated-lever-public-ats",
+    "paginationStrategy": "complete-public-all-postings-response",
+    "extractionStrategy": "verified-official-binding+all-native-location-scope+full-role-body",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedSurfaceSummary": "Exact official bluecatnetworks Lever handoff. Source-local validation checks all primary/secondary native scope and complete role bodies before shared extraction. Runtime counts remain separate; Boatsetter is not activated by this extension."
+  }
+]

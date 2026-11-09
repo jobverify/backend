@@ -1,0 +1,23 @@
+﻿{
+  "source": "affle",
+  "companyName": "Affle",
+  "adapter": "script",
+  "modulePath": "../../scraper/affle/script.js",
+  "companyCareerPage": "https://affle.com/career",
+  "officialSiteUrl": "https://affle.com/",
+  "officialCareersHandoffUrl": "https://affle.darwinbox.in/ms/candidate/careers",
+  "darwinboxOrigin": "https://affle.darwinbox.in",
+  "darwinboxCompanyId": "main",
+  "publicAllJobsUrl": "https://affle.darwinbox.in/ms/candidatev2/main/careers/allJobs",
+  "atsPlatform": "darwinbox",
+  "countryFilter": "India",
+  "paginationStrategy": "browser-session-darwinbox-pagination",
+  "extractionStrategy": "verified-first-party-careers-page+official-darwinbox-handoff+darwinbox-listing-api+india-location-filter",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "affle.com",
+  "verifiedOn": "2026-07-19",
+  "verifiedSurfaceSummary": "Verified on Sunday, July 19, 2026 that https://affle.com/career is the live Affle first-party careers page, that it exposes the Check Our Current Openings call-to-action, and that the CTA hands candidates to the public Affle Darwinbox careers surface at https://affle.darwinbox.in/ms/candidate/careers. A live browser-session Darwinbox dry check returned public India openings including Assistant Manager - Client Success, Newton; Executive - ASO, Newton; and Assistant Manager, Data Operations.",
+  "dryRunFile": "affle/jobs.json"
+}
+

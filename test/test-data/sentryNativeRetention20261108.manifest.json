@@ -1,0 +1,192 @@
+{
+  "purpose": "Portable independent original-response hash oracle for Sentry empty-selection retention regression.",
+  "evidenceQualification": "Saved November 2 responses replayed offline; replayed closing responses are reused originals, not new publisher observations or current inventory proof.",
+  "fixtureRelativePath": "scraper/sentry/test-data/native-current-20261102.json.gz",
+  "fixtureSHA256": "65e4b95ac65f358444fd0ef164f6f10ed1b38e7d0cab044bd3dd9b23f9ba69b8",
+  "corporateResponse": {
+    "bytes": 671964,
+    "sha256": "7ca823986e14162ec547c25debe96eb9aa1cf89c8c663dff881d8e6a585f9463"
+  },
+  "nativeResponse": {
+    "bytes": 589088,
+    "sha256": "10c9486179b8be3e3ad1780b12a6c420991c0c31165ca2dd247559d7e6429fea"
+  },
+  "independentExtractor": {
+    "language": "Python HTMLParser and JSON, no production parser imports",
+    "path": "C:\\Users\\mohv\\release\\reports\\scraper-2026-11-05-41887979507\\c52-native-ats-selection-stage\\inspect_authority.py",
+    "bytes": 7198,
+    "sha256": "89a2d1bc2506106753b7468243fe4bdbf29c1357b3a3e5d255b560d00b4c44d7"
+  },
+  "corporatePropsSHA256": "27155912a305fc94e2737a355147c1a1f7d15826f003f0547b4823d7891029b2",
+  "corporateRoles": [
+    {
+      "id": "1b63fc5e-ee6e-42b4-924c-a48836722cba",
+      "descriptionHTMLSHA256": "b72285504fe21eee14de51b2bf36e0ca3b25ccab28dfcacde57d85e3153ec373"
+    },
+    {
+      "id": "1c34ea48-ab62-4b71-a7d7-d0ac9eb07bba",
+      "descriptionHTMLSHA256": "e9e08ebf85f72cba20671d361b7a754fe62f44bc58ff89f852e0f6fb766cd3fb"
+    },
+    {
+      "id": "26c3535f-fcaa-4419-8272-43faa00582f1",
+      "descriptionHTMLSHA256": "f8d3bd260684074563c312512f0361f2b1ade7b428cbc1061ae88b62bbaa8bba"
+    },
+    {
+      "id": "278476b1-87c5-461f-ad7e-950cd31e5f31",
+      "descriptionHTMLSHA256": "422cfafde703ea497f4d41277515a9cf37f949b82e1de6c8b92b32f38bfeae23"
+    },
+    {
+      "id": "2b5e1ac5-9709-4280-9ceb-51bff95328e3",
+      "descriptionHTMLSHA256": "232e47ae3afe175eaa66e0cd8e1b282af16083758f44720d40f5241a9aa5c332"
+    },
+    {
+      "id": "2cdc2ba7-8406-452a-b84f-d94d8e7a09bb",
+      "descriptionHTMLSHA256": "d4403cfad400bc3df4153e680ce7b353ec4df934f8e15f98800e180750d1ab7c"
+    },
+    {
+      "id": "35193bfb-bb6b-4479-85be-0945e5b94a3e",
+      "descriptionHTMLSHA256": "a3ca64b8bd5f6e927998971fe3c97abf6725468a287ab177f036950f526a8f4c"
+    },
+    {
+      "id": "4067f08e-5229-4af4-9028-a7c69d3791d0",
+      "descriptionHTMLSHA256": "9ba7b016f5378dc6043b708e5506b40cd89be1603a4378c112e2f8ceaf98c9d3"
+    },
+    {
+      "id": "67f20449-6b01-4cfa-92ca-bace58c10684",
+      "descriptionHTMLSHA256": "211f520883f500847fe89a3aedf5925996931a4499be996d8cec521bb17b7a93"
+    },
+    {
+      "id": "68757804-a892-40ed-8ea7-f2d13500f29c",
+      "descriptionHTMLSHA256": "51b225d733c407e92cd4aa227ffe3986f37c8c99884b9a7f1d611df691f68cb4"
+    },
+    {
+      "id": "68b3897c-bbb0-4f90-aa9a-57981323e26b",
+      "descriptionHTMLSHA256": "d7f12f575971483c7ba3646d870f5a9546b91936bb5c04639496da107d54ce93"
+    },
+    {
+      "id": "6a973e19-6736-4973-8a87-043fcbcd553e",
+      "descriptionHTMLSHA256": "ccd9d824326b9468429d5a4bbf7cd12d6373416c640c935c350aa0cb82c1a0bd"
+    },
+    {
+      "id": "6ce36964-7052-4c18-9497-68dd42c29cba",
+      "descriptionHTMLSHA256": "bb7554d90294e4893983b1557a5c99bb29c2a8efc3fa4517a22f7932e36da5fb"
+    },
+    {
+      "id": "6eb8d5f2-977e-4ff4-bdbe-fccb8747b5d7",
+      "descriptionHTMLSHA256": "43eb6a37add799fc765062aafa9f74e7d855b4534c46ce938e8483778720db34"
+    },
+    {
+      "id": "75ef5e93-cc2e-4e3e-b031-d7d0c3ffdd5d",
+      "descriptionHTMLSHA256": "eb262b985cba7c48323806e230e0b93985c6d8ddaae74a843f44a7e59e9b2ee3"
+    },
+    {
+      "id": "7ed2b263-3873-44c6-a730-2ca96100c58f",
+      "descriptionHTMLSHA256": "d8568b264f29883c6ee4c7f70b6729557e002f5ff0a106373d240d52cda2da5f"
+    },
+    {
+      "id": "81f09568-da7d-4ed1-8283-614f846c9b00",
+      "descriptionHTMLSHA256": "cff26628fe677396d153598be5c37b99e404ff48bbe370f614f437cc7bedbbaf"
+    },
+    {
+      "id": "889f98a2-07dd-4e7c-9682-3f137c57dc88",
+      "descriptionHTMLSHA256": "c057db9d2705f0dff85609d59b9aae5c700c536905e9e8484de1783ced04c90d"
+    },
+    {
+      "id": "8ecd25a9-3f0d-4225-8452-60a3b855c771",
+      "descriptionHTMLSHA256": "7c2c0d8759d6305d9ca420478462a693122c483081bbbb74a7edfc48a736ecd8"
+    },
+    {
+      "id": "92f30f40-9596-4b66-9fd0-7ca5203f629d",
+      "descriptionHTMLSHA256": "71bda6a362e9b0f81062ac5117becdedddadb585fa257ea31333690019b293c6"
+    },
+    {
+      "id": "9405b1d7-9a4e-424d-b5b2-4bc3cb2ba5cb",
+      "descriptionHTMLSHA256": "8a8d91457fbf14579e4f748dc0aeb5d64d7f287f8dfbc8720399015a9695853a"
+    },
+    {
+      "id": "960b966a-849f-421f-8c75-72924f28293e",
+      "descriptionHTMLSHA256": "a9a653b74f1e96febb75e08edf7d18ce7069a0a068db38972b42aea795f39bd5"
+    },
+    {
+      "id": "9b7ba790-75d1-404c-bf9f-c3776179f7f2",
+      "descriptionHTMLSHA256": "90a0da4c1da1cd5b33f0a63b9e0929eda920e03e3f4e1f7230c5ca5b9323b7b8"
+    },
+    {
+      "id": "ac1cb3c4-5408-4912-8591-eea2a84480b7",
+      "descriptionHTMLSHA256": "feb2bf44f53ed77a28079969124cef0eaafa965028cc7de48fe3770a8f6b4eef"
+    },
+    {
+      "id": "ac8fd540-f3a2-4306-b52c-195fdbd2b998",
+      "descriptionHTMLSHA256": "f57a2e377bcd403949246fe880a2e251db423ef7db406f307f2583c6282c293e"
+    },
+    {
+      "id": "af7fab29-5d68-4041-9794-de4de3f41953",
+      "descriptionHTMLSHA256": "88f00562466eaceca0db2ba502868948633e19a0509e7c1d72636dc02a1f62bd"
+    },
+    {
+      "id": "b7c17591-c9f1-449a-b0c1-39f2d6ff650e",
+      "descriptionHTMLSHA256": "c006c1f9c0c39b01d28699bcb01f71b46f3026003b637dd7f8a90f256eedfa8e"
+    },
+    {
+      "id": "bc431cdf-7f32-4b9f-ac3e-9b0f660e6eb2",
+      "descriptionHTMLSHA256": "ad445bfc23a9717e14f4b647a7c819f9858b56aee9f75353bca4f540f4dcda41"
+    },
+    {
+      "id": "bf150464-a7bc-4357-beb7-341535538370",
+      "descriptionHTMLSHA256": "33d966d6fe367d7b695ad6bd97a53527b1b9a558a180536aad8d797e95c8f481"
+    },
+    {
+      "id": "c1479d26-cf69-48ff-8424-c42ce05a8698",
+      "descriptionHTMLSHA256": "e8a2275faef7b5184a889eeac4bb8ef5884ff58ee120b4b4feba04e625e62eba"
+    },
+    {
+      "id": "c3ed6481-f031-4fe9-a456-775b7b3d2eda",
+      "descriptionHTMLSHA256": "51b225d733c407e92cd4aa227ffe3986f37c8c99884b9a7f1d611df691f68cb4"
+    },
+    {
+      "id": "c736c27c-406d-43eb-8f88-bc7defb7ff32",
+      "descriptionHTMLSHA256": "a9ade78d521622c25555a90ed13845aba10fed90321aeb0b9dfc5b692594d0d2"
+    },
+    {
+      "id": "ccbee884-5fc1-492e-ba18-df568587ccc2",
+      "descriptionHTMLSHA256": "f10019c80f6532dc4ac411a2429d3f2ac8b3b3a5ec0325a368a9aa2e7120eac5"
+    },
+    {
+      "id": "dc1e73a4-3cb8-4269-82b5-fdc6495b7e83",
+      "descriptionHTMLSHA256": "6578c8a68ee97134a68fe1526c5419eb4cf3abc1e6ef15393a290250a72575cf"
+    },
+    {
+      "id": "ee7542d4-f478-4aa0-8da9-3583845d8269",
+      "descriptionHTMLSHA256": "08fc9f8ff641221928b7a2ffd8618eb4af64619c4579b730f697472d5e9e2895"
+    },
+    {
+      "id": "f345b525-b2e9-4dc1-bec1-85fb4c3b3cf2",
+      "descriptionHTMLSHA256": "351522ba8d6dedf21cf203a8442b2a8b7acec4a2c9392e0bb391a24fa08a7d25"
+    },
+    {
+      "id": "f34d1bfd-4b09-4436-976a-79fd6648cf7b",
+      "descriptionHTMLSHA256": "b70a626b5a3981e0b510d10ce101c4fb58f0920aef7981065b4bfe24da77a13d"
+    },
+    {
+      "id": "f7b4f37b-4293-433d-910e-9033bf10d6d4",
+      "descriptionHTMLSHA256": "b6cac813075065b12e947c388fe2894d297b4a9a5d13874bbb6e275ff203cc2c"
+    },
+    {
+      "id": "f9f3c913-26ef-45a2-a77f-79ae473c1a85",
+      "descriptionHTMLSHA256": "f491e5e51f500bc7f667956585f9ff9c9ab76fba4ae415138c5228c2c6b3aa74"
+    },
+    {
+      "id": "fa522ac5-fc9f-4ce1-a191-842496a235a2",
+      "descriptionHTMLSHA256": "3a260540a95e4fc62b4639d97ae71c5bc14a8d0d3ed3184b8a8c26b2a66ad37f"
+    }
+  ],
+  "nativeRoleCount": 40,
+  "countryCounts": {
+    "United States": 26,
+    "Canada": 8,
+    "Netherlands": 1,
+    "Austria": 4,
+    "unresolved": 1
+  },
+  "unresolvedCountryRoleId": "960b966a-849f-421f-8c75-72924f28293e"
+}

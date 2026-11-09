@@ -1,0 +1,43 @@
+[
+  {
+    "source": "tripcom",
+    "companyName": "Trip.com",
+    "officialBrandName": "Trip.com",
+    "nativeTenantName": "Trip.com Group",
+    "adapter": "script",
+    "modulePath": "../tripcom/script.js",
+    "dryRunFile": "tripcom/jobs.json",
+    "companyCareerPage": "https://careers.trip.com/",
+    "companyDomain": "trip.com",
+    "officialJobsSurfaceUrl": "https://careers.trip.com/#/jobList",
+    "jobsApiUrl": "https://careers.trip.com/api/oversea/getOverseaJobAd",
+    "atsPlatform": "first-party-careers-api",
+    "countryFilter": "India",
+    "paginationStrategy": "unfiltered-current-client-20-row-pages+all-native-details+closing-taxonomy-and-details",
+    "extractionStrategy": "current-public-client-contract+explicit-job-location-hierarchy+complete-native-criteria+role-employer-attribution",
+    "backfillMode": "discovery-only",
+    "zeroResultPolicy": "evidence-required",
+    "sourceExtractionImplemented": true,
+    "nativeExtractionVerified": true,
+    "fullInventoryVerified": false,
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-10-27",
+    "verifiedPublicJobCount": null,
+    "verifiedNativeBoardJobCount": 181,
+    "verifiedNativeFullDetailCount": 181,
+    "verifiedIndiaJobCount": null,
+    "nativeIndiaFacetCount": 0,
+    "verifiedForeignJobCount": 128,
+    "countryUnknownJobCount": 53,
+    "roleEmployerUnknownJobCount": 181,
+    "wholeEmployerGlobalJobCount": null,
+    "wholeEmployerIndiaJobCount": null,
+    "additionalNativeScopeObservations": [
+      {"surface": "https://careers.ctrip.com/", "nativeCategory": 1, "observedRecords": 479, "nativeIndiaFacetCount": 0, "workCountryUnresolvedRecords": 479},
+      {"surface": "https://careers.ctrip.com/", "nativeCategory": 2, "observedRecords": 54, "nativeIndiaFacetCount": 0, "workCountryUnresolvedRecords": 54}
+    ],
+    "verifiedSurfaceSummary": "Current anonymous first-party client and readonly listing/detail POST verified on 2026-10-27. The overseas group board returned 181 unfiltered records and 181 full native descriptions, stable through a complete closing enumeration and detail recheck. All native fields and visible criteria were independently audited against raw responses and local Edge rendering. Its public country/location masters prove 128 foreign roles; 53 roles have missing or unmatched native location identities. The India facet returned 0, which cannot certify absence while countries remain unresolved. Role-specific employer attribution remains unknown for the 181 shared-group records; group boilerplate never becomes Trip.com employer proof. The current map also delegates China hiring to careers.ctrip.com; that distinct scope is tracked separately and is not silently counted as complete. Native fromId, application jobId and ATS type are preserved distinctly; no formal requisition or missing dates are fabricated. The implemented extractor retains a coverage gap and disallows lifecycle cleanup or verified zero until all relevant native scopes and role evidence reconcile.",
+    "catalogOverride": true
+  }
+]

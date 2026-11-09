@@ -1,0 +1,122 @@
+name: Jobverify Scraper Cron
+run-name: 'Scraper #${{ github.run_number }}'
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_id:
+        description: Internal pipeline ID (leave empty for the default chain)
+        type: string
+      dispatch_token:
+        description: Internal dispatch identity
+        type: string
+      pipeline_sha:
+        description: Internal source revision
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: jobverify-production-scraper
+  cancel-in-progress: false
+jobs:
+  scrape:
+    name: Scrape company job openings
+    permissions:
+      contents: read
+      actions: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    env:
+      POST_SCRAPE_CLASSIFICATION_MODE: 'policy'
+      JOB_DESCRIPTION_REWRITE_MODE: 'publish'
+      PIPELINE_STAGE: scraper
+      PIPELINE_ID: ${{ inputs.pipeline_id }}
+      PIPELINE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      PIPELINE_SUMMARY_FILE: '.cache/scraper-actions/pipeline-scraper-summary.json'
+    steps:
+      - name: Mask pipeline dispatch identity
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as event_file:
+              token = json.load(event_file).get("inputs", {}).get("dispatch_token", "")
+          if token:
+              token = token.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              print("::add-mask::" + token)
+          PY
+      - name: ${{ inputs.dispatch_token && format('Scraper [dispatch:{0}]', inputs.dispatch_token) || 'Scraper' }}
+        run: echo 'Pipeline dispatch identity recorded'
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - run: npm ci
+      - name: Claim pipeline stage
+        id: register
+        run: node scripts/pipelineGithub.js register
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PIPELINE_DISPATCH_TOKEN: ${{ inputs.dispatch_token }}
+      - name: Restore source checkpoint on rerun
+        if: steps.register.outputs.should_run == 'true'
+        uses: actions/cache/restore@v6
+        with:
+          path: .cache/scraper-actions/run-state.json
+          key: scraper-state-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            scraper-state-${{ github.run_id }}-
+      - name: Run Scraper
+        if: steps.register.outputs.should_run == 'true'
+        id: scraper_run
+        run: timeout --signal=TERM --kill-after=60s 310m node --use-system-ca scraper-support/runner.js --parallel
+        env:
+          NODE_ENV: production
+          NODE_OPTIONS: '--use-system-ca'
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          TELEGRAM_ENABLED: ${{ vars.TELEGRAM_ENABLED }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          SCRAPER_CONCURRENCY: ${{ vars.SCRAPER_CONCURRENCY }}
+          SCRAPER_CHECKPOINT_FILE: '.cache/scraper-actions/run-state.json'
+          SCRAPER_SOURCE_LIFECYCLE_TIMEOUT_MS: '1800000'
+          SCRAPER_NATIVE_DETAIL_RECOVERY: '1'
+          PUBLIC_EXPERIENCE_FETCH_TIMEOUT_MS: '15000'
+          PDF_TEXT_EXTRACTION_TIMEOUT_MS: '30000'
+          WORKDAY_SCRAPER_TIMEOUT_MS: '210000'
+          # Use the engine's bounded adaptive detail budget and paced shard workers.
+          WORKDAY_REQUEST_TIMEOUT_MS: '20000'
+      - name: Save resumable source checkpoint
+        if: always() && steps.scraper_run.outcome != 'skipped'
+        uses: actions/cache/save@v6
+        with:
+          path: .cache/scraper-actions/run-state.json
+          key: scraper-state-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Report publishing coverage
+        if: always() && steps.scraper_run.outcome != 'skipped'
+        run: |
+          if [ -f .cache/scraper-actions/run-state.json ]; then
+            node scripts/analyzeCoverageJobGaps.js --publishing --mongo --run-state .cache/scraper-actions/run-state.json --output .cache/scraper-actions/publishing-coverage
+          else
+            node scripts/analyzeCoverageJobGaps.js --publishing --mongo --output .cache/scraper-actions/publishing-coverage
+          fi
+      - name: Upload scraper diagnostics
+        if: always() && steps.register.outputs.should_run == 'true'
+        uses: actions/upload-artifact@v7
+        with:
+          name: scraper-run-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cache/scraper-actions/run-state.json
+            .cache/scraper-actions/pipeline-scraper-summary.json
+            .cache/scraper-actions/publishing-coverage/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Record stage outcome
+        if: always() && steps.register.outputs.should_run == 'true'
+        run: node scripts/pipelineGithub.js report
+        env:
+          PIPELINE_JOB_RESULT: ${{ job.status }}

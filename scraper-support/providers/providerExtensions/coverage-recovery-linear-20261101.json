@@ -1,0 +1,20 @@
+[
+  {
+    "source": "linear",
+    "catalogOverride": true,
+    "adapter": "script",
+    "parser": "custom-script",
+    "modulePath": "../../scraper/linear/script.js",
+    "atsPlatform": "ashby-via-bound-first-party-careers-data",
+    "companyCareerPage": "https://linear.app/careers",
+    "companyDomain": "linear.app",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "bound-first-party-role-groups-and-reconciled-native-posting-response",
+    "extractionStrategy": "active-bound-careers-model+native-role-identity+typed-geography+validated-native-india-details",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "The current careers component binds grouped native Ashby role identities and public application URLs. The checked public board and native geography are reconciled at runtime. Whole-company scope and lifecycle cleanup remain unverified; a checked-board zero is not company-wide absence."
+  }
+]

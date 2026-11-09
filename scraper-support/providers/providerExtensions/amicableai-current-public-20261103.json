@@ -1,0 +1,9 @@
+{
+ "source":"amicableai","catalogOverride":true,"companyName":"Amicable AI","officialBrandName":"amicable",
+ "adapter":"script","modulePath":"../amicableai/script.js","companyCareerPage":"https://amicable.io/careers","companyDomain":"amicable.io",
+ "atsPlatform":"screenloop-public-careers","countryFilter":"India","paginationStrategy":"declared-complete-jobPosts-local-pagination+final-inventory-after-closing-details",
+ "extractionStrategy":"current-corporate-handoff+bound-public-components+same-ID-full-criteria+native-countries+closing",
+ "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",
+ "sourceCompanyWideScopeComplete":false,"lifecycleCleanupAllowed":false,
+ "verifiedSurfaceSummary":"Current configured amicable.io careers page declares an active Screenloop amicable board. Runtime reconciles native employer474, complete public jobPosts/client pagination, all same-ID full public criteria/countries and final membership after closing details. The native employer remains amicable; historical Amicable AI labeling does not prove a separate legal entity. Unpublished role dates stay null; location.updatedAt is not a posting date. Private application fields/actions are outside extraction."
+}

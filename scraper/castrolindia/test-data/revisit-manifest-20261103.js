@@ -1,0 +1,320 @@
+export default {
+  "source": "castrolindia",
+  "generatedAt": "2026-11-03T04:13:12.137Z",
+  "fixtureArchive": "revisit-20261103.json.gz",
+  "fixtureSha256": "0609740427896bbf8acc31bf948bcaf7ac1d90337e91784d6b222db55edac098",
+  "packets": 28,
+  "originalPublicGetPacketsUnmodified": true,
+  "rows": [
+    {
+      "requestedUrl": "https://www.castrol.com/en_in/india/home/about-castrol/careers.html",
+      "url": "https://www.castrol.com/en_in/india/home/about-castrol/careers.html",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:05:47.905Z",
+      "contentType": "text/html; charset=UTF-8",
+      "publicHeaders": {},
+      "bytes": 142222,
+      "sha256": "3cb242039ea2707117c6531114ffdcb01f01d0c54b1058f96b6e9e07f05c4e85",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol",
+      "url": "https://job-boards.eu.greenhouse.io/castrol",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:05:48.428Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 79847,
+      "sha256": "4c414881753e69025d359fe9f75cf2c639a329b4956035cf085c6b528443fbdd",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://boards-api.greenhouse.io/v1/boards/castrol/jobs?content=true",
+      "url": "https://boards-api.greenhouse.io/v1/boards/castrol/jobs?content=true",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:05:48.439Z",
+      "contentType": "application/json",
+      "publicHeaders": {
+        "etag": "W/\"1542308e2e0fed3efa304576119813bf\""
+      },
+      "bytes": 1435058,
+      "sha256": "1542308e2e0fed3efa304576119813bfc2e9c1dd358f0568157647212989ddaa",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4983338101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4983338101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:07:56.166Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 57644,
+      "sha256": "2a6250931bd3ac901dde41218fd9379fd2f03a1e11d8943776925fa13848037e",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5005834101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5005834101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:18.450Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 98979,
+      "sha256": "8b927d0863cd631fdc7b16fed0d79b60cc708bcbc32ab30defec546f34288322",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4976456101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4976456101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:18.452Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 68434,
+      "sha256": "7a781a37d6a82e4a33742008f83a04b6ab36f85fff720b3d06477e0948f9cc7a",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4987312101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4987312101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:18.451Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 69944,
+      "sha256": "c53fb6919c284cfe4e2362e0762f44c70654b75fa9d64fb46c602d7480da46fc",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5004182101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5004182101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:18.425Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 71436,
+      "sha256": "e60240e52fdba44cce8f0e373e31e0ea352489aab1244a494a32497c1c97fc55",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4977385101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4977385101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.356Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 70460,
+      "sha256": "57dcffefb7b68d2e5515d94792f159bb2dffae034a2f8cc7f21f7403e72b55e5",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986579101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986579101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:18.451Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 69220,
+      "sha256": "0ba8b80e97190486d69e7d7ca06de672e60ff93a42b0f6e8d7e886a01db3f6e5",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4970503101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4970503101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:18.450Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 60025,
+      "sha256": "789b4de07aaadd3c788cedb51963bf442b7fe4ab617efad177fd417623946bcd",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5018984101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5018984101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.435Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 61483,
+      "sha256": "1949cbd846a7858f82a6ca09c00f997cd0c3ba2205a45f76dc4a8e1f282a25ca",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5006551101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5006551101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.609Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 62646,
+      "sha256": "7ea6e53057e3847d5fcbb6362e7aeec3b21699521389b1a7e52c49a29f26ea3f",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5002867101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5002867101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.805Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 77959,
+      "sha256": "8d99b3f978d152bd04f1c78a971cb5bf1aea5b3e378d3602f508e4a76fdaefdc",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4982548101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4982548101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.857Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 67458,
+      "sha256": "8a973e2fbb9bd03ad3ab0a51152481ffdd95663bd645a964a417aca781be0199",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4991067101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4991067101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.868Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 68014,
+      "sha256": "e61a28b4d48a658e158ca06c5909cbbdc5060c4bfcffea0d95695582a7aa4ae5",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4968051101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4968051101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.263Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 63778,
+      "sha256": "abd4af5a4aa7aa294797b6c4ffd9225e28b3367dd41966bbd7ab74b60ac80b2f",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4965793101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4965793101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.918Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 56895,
+      "sha256": "630abf12b7e6bdfb2ef9dacc3285645daefdfb9b368420f584c4756aef19cf86",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4977282101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4977282101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.818Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 100485,
+      "sha256": "3e11a1c72c29e1179ac756fa337c1432f157eb1e0f39b2e46488013844daebc5",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986528101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986528101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.304Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 68804,
+      "sha256": "c833afa9774b280858d3edafd57e54ceef5cf1b43971e88c71727570d52ba914",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5000406101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5000406101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.251Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 63256,
+      "sha256": "311124dcbe42a74395ff37157e703e595a02e4338ead70f30ab8fffe849020b1",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986532101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986532101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:19.978Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 68475,
+      "sha256": "7a716604e7c2cd8df623cd98db7cb066f62c9e4f7329dc09c15c9ef6f3cf50c6",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986536101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986536101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.741Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 64511,
+      "sha256": "fc19702b06412ad9cd3f61bd5a0db08af9ce436b234a28baffa094f41a047691",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4977323101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4977323101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.792Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 67599,
+      "sha256": "5bdab5d1fdba02d2665223e38c01680ad7b302fe27426ad20346ab5f1100ad79",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4969779101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4969779101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.814Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 66329,
+      "sha256": "1cf94f63ec0e842db4a39b7dcdaa856d14bc91cf1e569fe915e469d8e0bbb6fe",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5006163101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5006163101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.803Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 63384,
+      "sha256": "4a60f9646dfbe9049f49bc082f85045b503bccf9babee5e74c9e1424c318fb4f",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986498101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/4986498101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.780Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 69432,
+      "sha256": "e31f06beb7ebbe48d5764c129d436c10ae514121efbdd6383a955b2f5c7dd5f2",
+      "originalBytesUnmodified": true
+    },
+    {
+      "requestedUrl": "https://job-boards.eu.greenhouse.io/castrol/jobs/5001365101",
+      "url": "https://job-boards.eu.greenhouse.io/castrol/jobs/5001365101",
+      "status": 200,
+      "capturedAt": "2026-11-03T04:12:20.901Z",
+      "contentType": "text/html; charset=utf-8",
+      "publicHeaders": {},
+      "bytes": 63829,
+      "sha256": "1569d92f5f27e22ebed01012a5ae42c1575c0026ab4066053c514cdfde2a9431",
+      "originalBytesUnmodified": true
+    }
+  ]
+}

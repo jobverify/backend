@@ -1,0 +1,8 @@
+!fixtures/
+!fixtures/declared-research-20261107.json.gz
+!fixtures/fresh-context-document-20261107.html.gz
+!fixtures/current-default-20261107.json.gz
+!fixtures/initial-default-held-20261107.json.gz
+
+# Keep saved fixtures local; exclude them from Git and deployment.
+/fixtures/

@@ -1,0 +1,89 @@
+[
+  {
+    "source": "franklinresources",
+    "nativeEmployers": [
+      {
+        "name": "F3328 FTIS (India) Pvt Ltd, FT Park Hyd Branch",
+        "url": "https://careers.franklintempleton.com/us/en/job/870078/Accountant",
+        "bodySHA256": "02523b20d7bb598d61a5a366aae0f821e7220eaf0c47889b00674a596f54436c",
+        "capturedAt": "2026-11-04T04:40:28.865Z",
+        "jobId": "870078",
+        "country": "India",
+        "field": "phApp.ddo.jobDetail.data.job.company"
+      },
+      {
+        "name": "F3354 FTS (India) Pvt Ltd, Hyderabad Branch",
+        "url": "https://careers.franklintempleton.com/us/en/job/869792/Senior%20%2F%20Research%20Scientist",
+        "bodySHA256": "6edc160b15b7e20b6b3bf617ed2fa4162b912052ebde4bfa5410e8a673d30670",
+        "capturedAt": "2026-11-04T04:40:30.960Z",
+        "jobId": "869792",
+        "country": "India",
+        "field": "phApp.ddo.jobDetail.data.job.company"
+      },
+      {
+        "name": "F3330 FTIS (India) Pvt Ltd, Chennai Branch",
+        "url": "https://careers.franklintempleton.com/us/en/job/869385/Lead%20Business%20Systems%20Analyst%20-%20FTS",
+        "bodySHA256": "6f372e1c287ef978f6bd96de5ad111e5045f0452e516ccbb166e521ed1a2077d",
+        "capturedAt": "2026-11-04T04:40:45.713Z",
+        "jobId": "869385",
+        "country": "India",
+        "field": "phApp.ddo.jobDetail.data.job.company"
+      }
+    ]
+  },
+  {
+    "source": "merckkgaa",
+    "nativeEmployers": [
+      {
+        "name": "Sigma-Aldrich Chemicals Private Limited",
+        "url": "https://careers.merckgroup.com/global/en/job/301616/Associate%20-%20Flow%20Distillation",
+        "bodySHA256": "bb82b8ecccb83a2f5ef00257d6d48edb3040563f76d7d8f1461e85b1457c9afa",
+        "capturedAt": "2026-11-04T04:40:28.127Z",
+        "jobId": "301616",
+        "country": "India",
+        "field": "JobPosting.hiringOrganization.name"
+      },
+      {
+        "name": "Merck Life Science Private Limited",
+        "url": "https://careers.merckgroup.com/global/en/job/305387/Specialist%20Taxation",
+        "bodySHA256": "9e1ccd089f60f40f0a8cb4cfadfe68c80868eb3b6424ab7baba5a436239c2676",
+        "capturedAt": "2026-11-04T04:40:38.580Z",
+        "jobId": "305387",
+        "country": "India",
+        "field": "JobPosting.hiringOrganization.name"
+      },
+      {
+        "name": "Merck Specialities Pvt. Ltd.",
+        "url": "https://careers.merckgroup.com/global/en/job/305231/Head%20of%20Data%20Standards%20%26%20CRF%20Design",
+        "bodySHA256": "9bf241ac51567e838a37937b3796a4544c33722a23b1bd4e90a4cf1cd0a4aa2e",
+        "capturedAt": "2026-11-04T04:40:52.056Z",
+        "jobId": "305231",
+        "country": "India",
+        "field": "JobPosting.hiringOrganization.name"
+      }
+    ]
+  },
+  {
+    "source": "zimmerbiomet",
+    "nativeEmployers": [
+      {
+        "name": "ZB Global Services India Pvt Ltd",
+        "url": "https://careers.zimmerbiomet.com/us/en/job/13321/Senior%20Data%20Engineer",
+        "bodySHA256": "bdf759bd9e0114f795dd3711ecaccb98d7a6e06f559ecff4e5724bf76aec67ee",
+        "capturedAt": "2026-11-04T04:40:58.461Z",
+        "jobId": "13321",
+        "country": "India",
+        "field": "phApp.ddo.jobDetail.data.job.companyName"
+      },
+      {
+        "name": "Zimmer India Private Limited",
+        "url": "https://careers.zimmerbiomet.com/us/en/job/12370/Service%20Engineer%2C%20Delhi%20NCR",
+        "bodySHA256": "843d4c91b26cce479ffcd61e048b2e5c1c21f55db70b8706a0559d3cadda8b3d",
+        "capturedAt": "2026-11-04T04:41:32.160Z",
+        "jobId": "12370",
+        "country": "India",
+        "field": "phApp.ddo.jobDetail.data.job.companyName"
+      }
+    ]
+  }
+]

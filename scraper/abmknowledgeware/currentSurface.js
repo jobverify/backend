@@ -1,0 +1,1 @@
+export const CURRENT_SURFACE={source:"abmknowledgeware",companyName:"ABM Knowledgeware",homepageUrl:"https://www.abmindia.com/",careersUrl:"https://abmindia.com/home/abm_career",brand:/ABM\s+KNOWLEDGEWARE/i,careersHeading:/why join abm knowledgeware/i,intakeKind:"general-cv-email-intake",intakeEmail:"careers@abmindia.com"}

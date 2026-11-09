@@ -1,0 +1,19 @@
+{
+  "source": "nseit",
+  "companyName": "NSEIT",
+  "companyCareerPage": "https://www.nseit.com/careers",
+  "careersSurface": "https://www.dexitglobal.com/careers/",
+  "legalSuccessor": "DEXIT Global Limited",
+  "disposition": "live-parser",
+  "verifiedIndiaJobCount": null,
+  "observedNativeListingCount": 1,
+  "inventoryStatus": "coverage-gap",
+  "listingComplete": false,
+  "indiaFacetCount": null,
+  "reason": "Live public DEXIT Global Limited (formerly NSEIT Limited) native listing and detail agree on Mumbai. Existing public city policy returns one Helpdesk Executive with country null, full native description and original September 2, 2025 posting date; the age gate excludes it. Unknown-country fallback requires all native addresses to agree with the whole listing city; foreign, unsupported-country, unexplained-region and composite labels cannot use it. Company inventory remains uncertified: historical page-size20 is not total, page2 repeated first page, REST types401. Unknown India total and cleanup disabled.",
+  "verificationDate": "2026-10-23",
+  "firstKnownPublicPosting": "2025-09-02T20:32:29+05:30",
+  "lifecycleCleanupAllowed": false,
+  "observedPublicCityScopeJobCount": 1,
+  "observedEligibleCityScopeJobCount": 0
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "source": "eulermotors",
+    "companyName": "Euler Motors",
+    "officialBrandName": "Euler Motors",
+    "exactCompanyMatchOnly": true,
+    "adapter": "script",
+    "modulePath": "../eulermotors/script.js",
+    "dryRunFile": "eulermotors/jobs.json",
+    "companyCareerPage": "https://jobs.pyjamahr.com/euler-motors",
+    "companyDomain": "eulermotors.com",
+    "atsPlatform": "pyjamahr",
+    "countryFilter": "India",
+    "paginationStrategy": "page-query-public-api-plus-detail-pages",
+    "extractionStrategy": "verified-public-pyjamahr-board+exact-company-context+public-api+detail-pages",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-07-26",
+    "officialCareersPageUrl": "https://jobs.pyjamahr.com/euler-motors",
+    "verifiedSurfaceSummary": "Verified on Sunday, July 26, 2026 that https://jobs.pyjamahr.com/euler-motors is Euler Motors' public PyjamaHR board: its structured company context identifies the exact company name Euler Motors, the official contact URL https://www.eulermotors.com, slug euler-motors, and company UUID AD8D0AD806. This provider uses only that official ATS-backed board and its public API, and fails closed if any exact-company identity signal changes."
+  }
+]

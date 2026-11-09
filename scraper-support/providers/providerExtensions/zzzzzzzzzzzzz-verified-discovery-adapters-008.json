@@ -1,0 +1,36 @@
+[
+  {
+    "source": "bmcsoftware",
+    "companyName": "BMC Software",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../bmcsoftware/script.js",
+    "atsPlatform": "avature",
+    "parser": "validated-bmc-first-party-India-html",
+    "companyDomain": "bmc.com",
+    "companyCareerPage": "https://www.bmc.com/careers/careers.html",
+    "countryFilter": "India",
+    "paginationStrategy": "official-India-filter-native-range-continuation-and-unique-role-reconciliation",
+    "extractionStrategy": "current-corporate-India-handoff+same-portal-pages+identity-bound-native-full-details",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T21:57:44.302Z",
+      "officialURL": "https://www.bmc.com/careers/careers.html?vu=careers",
+      "matchedLinks": [
+        "https://jobs.bmc.com/Careers",
+        "https://jobs.bmc.com/Careers/SearchJobs/?listFilterMode=1&1274=9406&1274_format=1347&intcmp=JobsByCountry"
+      ],
+      "httpProofFile": "../artifacts/full-catalog/bmc-native-001/corporate-careers-http.json",
+      "httpProofSha256": "d05bdaddef7fe1d14dafb85f19a27769f4c30b2cf81073f2412c5c2ad3935141",
+      "discoveryBatch": "batch-012"
+    },
+    "verifiedSurfaceSummary": "Current corporate BMC Software careers page links its first-party Avature portal and exact India country filter. Runtime reconciles native page ranges and unique role identities, then checks full descriptions against public display title, native Job ID, canonical, application, country, city and original publication date. Inventory evidence is scoped to the official India filter; global employer counts remain unknown. The returnship-only bmcrecruit tenant and BMC Helix are not substituted or merged."
+  }
+]

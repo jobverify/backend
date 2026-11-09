@@ -1,0 +1,51 @@
+[
+  {
+    "source": "everstage",
+    "companyName": "Everstage",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../everstage/script.js",
+    "companyDomain": "everstage.com",
+    "officialHomepageUrl": "https://www.everstage.com/",
+    "companyCareerPage": "https://www.everstage.com/careers",
+    "jobsBoardUrl": "https://ats.rippling.com/everstage/jobs",
+    "listingApiUrl": "https://ats.rippling.com/embed/everstage/jobs?s=https%3A%2F%2Fwww.everstage.com%2Fcareers",
+    "atsPlatform": "rippling-public-native-Next-tenant-board",
+    "countryFilter": "India",
+    "parser": "source-local-native-contract-with-shared-activeNativeHtml-and-inventoryEvidence",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "current-one-page-terminal-native-envelope-and-stable-recheck-fail-on-pagination-activation",
+    "extractionStrategy": "current-official-widget-native-tenant-typed-India-full-JD-and-advertised-native-application-config",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "coverage-gap",
+    "remediationStatus": "implemented-awaiting-ordinary-audit-and-independent-review",
+    "runtimeQualification": "unqualified-offline-evidence-only-until-ordinary-audit",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T19:38:33.702Z",
+      "officialURL": "https://www.everstage.com/careers",
+      "matchedLinks": [
+        "https://static-assets.ripplingcdn.com/ats/embeds/job-board.v1.js",
+        "https://ats.rippling.com/embed/everstage/jobs?s=https%3A%2F%2Fwww.everstage.com%2Fcareers"
+      ],
+      "evidenceOrigin": "current-ordinary-anonymous-public-GET-research-not-runtime-extraction",
+      "nativeCaptureSeal": "artifacts/full-catalog/everstage-native-001/research-summary-001.json",
+      "nativeCaptureSealSHA256": "43076bb07842f984385fecbdee76bb46609473502655aff60a03aaa0e3d5d58c",
+      "nativeCaptureOriginalObservedWindow": {
+        "earliest": "2026-10-21T19:31:47.658Z",
+        "latest": "2026-10-21T19:38:33.702Z",
+        "renewedByLocalSeal": false
+      },
+      "priorDiscoveryArtifact": "artifacts/full-catalog/official-discovery/batch-030.json",
+      "priorDiscoverySHA256": "f0d8625cac3a9d4a20cf77850110e5ea56deb600544fae1225df87e7d208a2eb"
+    },
+    "sourceScopeNotes": "Only current official-advertised public Everstage Rippling board is enumerated/rechecked. Whole-company/global/India totals and typed legal employer remain unknown. Five location rows represent four distinct UUIDs; aggregate exact Hyderabad/Chennai typed locations. Full role descriptions mandatory; optional genuinely absent company sections supported. createdOn retained only as native creation metadata; no synthetic original publication date. Exact role canonical locale-less path and advertised locale role/application route are reconciled. Native public application configuration and advertised executable clients qualify the entry; no form interaction/submission/challenge bypass. Unknown empty/pagination/asset drift/identity or geography contradiction throws and cannot authorize deletion. Existing visibility policy unchanged.",
+    "verifiedSurfaceSummary": "Current ordinary-public research captures official widget, terminal native board, full India JDs, active native application configuration and advertised executable identity. Original publication and company totals unknown; runtime and independent review separate."
+  }
+]

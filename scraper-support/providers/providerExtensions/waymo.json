@@ -1,0 +1,22 @@
+{
+  "source": "waymo",
+  "companyName": "Waymo",
+  "officialBrandName": "Waymo",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../waymo/script.js",
+  "dryRunFile": "waymo/jobs.json",
+  "companyCareerPage": "https://careers.withwaymo.com/jobs/search",
+  "companyDomain": "waymo.com",
+  "atsPlatform": "clinch-first-party-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "country-filtered-server-rendered-search-page",
+  "extractionStrategy": "server-rendered-html-cards+complete-inventory-evidence",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-09-14",
+  "verifiedPublicJobCount": 5,
+  "verifiedIndiaJobCount": 5,
+  "officialCareersPageUrl": "https://careers.withwaymo.com/jobs/search",
+  "verifiedSurfaceSummary": "Verified on Monday, September 14, 2026 that https://careers.withwaymo.com/jobs/search?country_codes%5B%5D=IN is Waymo's first-party Clinch careers search filtered to India and server-renders five India job cards across Bengaluru and Hyderabad. The scraper parses the server-rendered cards and attaches complete-inventory evidence for the filtered India surface."
+}

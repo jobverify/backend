@@ -1,0 +1,66 @@
+version: "1"
+services:
+  - type: web
+    name: jobverify-backend
+    runtime: node
+    repo: https://github.com/jobverify/jobverify-backend
+    region: oregon
+    plan: free
+    branch: main
+    autoDeployTrigger: checksPass
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /ready
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_OPTIONS
+        value: --openssl-legacy-provider
+      - key: TRUST_PROXY
+        value: "1"
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JOBVERIFY_PUBLISHING_TOKEN
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_SECURE
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: GITHUB_PAT
+        sync: false
+      - key: GITHUB_REPO
+        sync: false
+      - key: SCRAPER_CONCURRENCY
+        sync: false
+      - key: WORKDAY_DETAIL_FETCH_CONCURRENCY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: TURNSTILE_SECRET_KEY
+        sync: false
+      - key: TURNSTILE_ALLOWED_HOSTNAMES
+        sync: false
+      - key: TURNSTILE_EXPECTED_ACTION
+        sync: false
+      - key: TELEGRAM_BOT_USERNAME
+        value: jobverify_alert_bot
+      - key: TELEGRAM_ENABLED
+        value: "true"
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_WEBHOOK_SECRET
+        sync: false

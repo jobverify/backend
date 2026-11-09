@@ -1,0 +1,18 @@
+{
+  "source": "aplazo",
+  "observedAt": "2026-10-24T15:52:35Z",
+  "repairStatus": "blocked-current-official-ats-binding-unverified",
+  "existingCandidate": "https://jobs.ashbyhq.com/aplazo",
+  "officialRoot": "https://www.aplazo.mx/",
+  "officialRootObservation": "The public web tool rendered a shell without a current Ashby careers anchor. Default and separately escalated direct Node probes did not recover the root or native Ashby API.",
+  "competingCareersCandidate": "https://www.aplazocareers.mx/en",
+  "competingCareersAnchor": "https://aplazo.bamboohr.com/careers",
+  "bindingAmbiguity": "The current Aplazo-branded careers candidate links BambooHR rather than Ashby. Delegation from the official aplazo.mx root to this separate careers domain was not observed. Neither tenant is promoted on branding or historical discovery alone.",
+  "nativeResponseRecovered": false,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "liveExtractionVerified": false,
+  "publicationVerified": false,
+  "sourceImplementationChanged": false,
+  "remainingWork": "Recover a current employer-controlled binding to the active ATS, resolve the Ashby/BambooHR ambiguity, and validate complete native inventory plus explicit India location and description evidence. Mexico, Latin America and generic remote labels cannot establish India eligibility."
+}

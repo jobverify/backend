@@ -1,0 +1,1 @@
+export const CURRENT_SURFACE={source:"avendata",companyName:"AvenDATA",homepageUrl:"https://avendata.com/",careersUrl:"https://avendata.com/careers",brand:/AvenDATA/i,careersHeading:/careers at avendata/i,intakeKind:"general-resume-form",intakeEmail:null}

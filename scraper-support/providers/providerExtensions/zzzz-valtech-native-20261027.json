@@ -1,0 +1,30 @@
+[
+  {
+    "source": "valtechindiasystems",
+    "companyName": "Valtech India Systems",
+    "officialBrandName": "Valtech",
+    "adapter": "script",
+    "modulePath": "../valtechindiasystems/script.js",
+    "homepageUrl": "https://www.valtech.com/en-in/career/",
+    "companyCareerPage": "https://www.valtech.com/en-in/career/jobs/",
+    "jobListingsUrl": "https://www.valtech.com/en-in/career/jobs/",
+    "jobsApiUrl": "https://www.valtech.com/joblist/getjsonresult?id=1571&language=en-IN&limit=100",
+    "indiaCountryTag": "india",
+    "atsPlatform": "greenhouse-eu+first-party-joblist",
+    "nativeBoardUrl": "https://job-boards.eu.greenhouse.io/valtech",
+    "nativeBoardId": 4003061101,
+    "countryFilter": "India",
+    "paginationStrategy": "unfiltered-corporate-100-row-and-native-50-row-pages+full-details+closing-reconciliation",
+    "extractionStrategy": "corporate-delegation+native-office-country-ancestry+full-native-visible-role-and-criteria+original-publication+application-context",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "companyDomain": "valtech.com",
+    "verifiedOn": "2026-10-27",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "Current Valtech employer brand and EU board 4003061101 are bound through active first-party Apply links. Double-encoded corporate JSON uses country india; enumerate full 100-row corporate and 50-row native pages, all public role content, native country office ancestry, original publication, true requisitions and public application context before closing reconciliation and output caps. Additional India Teamtailor and foreign Greenhouse scopes remain partial. careers.india.valtech.com currently fails certificate validation in Node and Edge with TLS intact. The backlog name does not establish a legal employer. Current counts belong to runtime receipts.",
+    "dryRunFile": "valtechindiasystems/jobs.json",
+    "catalogOverride": true
+  }
+]

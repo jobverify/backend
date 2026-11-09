@@ -1,0 +1,20 @@
+{
+  "url": "https://candere.jobsoid.com/",
+  "finalUrl": "https://candere.jobsoid.com/",
+  "status": 200,
+  "capturedAt": "2026-10-23T02:41:35.203Z",
+  "captureMethod": "browser same-origin fetch; native response body preserved in careers-response.json",
+  "bodyBytes": 16151,
+  "bodySha256": "90e5f61fefec203c5168926e71ede39988cbf9a96cb0797199f8ebee3c3a2094",
+  "observedContract": {
+    "identity": "candere - Careers; candere.com footer",
+    "listing": "section#list > section#sectionContainer.current-openings",
+    "heading": "Current Openings",
+    "emptyHeading": "No Current Openings",
+    "openingRowsObserved": 0
+  },
+  "limitations": [
+    "No active vacancy records observed; new opening schemas fail closed until verified.",
+    "Direct Node/curl networking could not connect in this environment; raw HTTP 200 was captured through browser network."
+  ]
+}

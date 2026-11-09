@@ -1,0 +1,10 @@
+import fs from 'node:fs'
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {gunzipSync} from 'node:zlib'
+import catalog from '../../scraper/holcimglobalhubbusinessservices/catalog.js'
+import {createHolcimGlobalHubBusinessServicesScraper,CATEGORY_URL} from '../../scraper/holcimglobalhubbusinessservices/script.js'
+const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/holcim.workday/fixtures/native-20261023.json.gz',import.meta.url)))),index=new Map(fixture.requests.map(r=>[r.url,r])),transport=async url=>{const r=index.get(url);assert.ok(r,url);return{...r,body:Buffer.from(r.rawBodyBase64,'base64')}}
+test('GHBS catalog retains child source/company/category identity while historical verification stays unknown',()=>{assert.equal(catalog.source,'holcimglobalhubbusinessservices');assert.equal(catalog.companyName,'Holcim Global Hub Business Services');assert.equal(catalog.jobsCategoryUrl,CATEGORY_URL);assert.equal(catalog.atsPlatform,'successfactors-rmk');assert.equal(catalog.sourceScopeComplete,false);assert.equal(catalog.verifiedPublicJobCount,null)})
+test('the public GHBS factory returns complete native source content and publication dates',async()=>{const jobs=await createHolcimGlobalHubBusinessServicesScraper().run({transport});assert.equal(jobs.length,15);assert.ok(jobs.every(j=>j.nativeDescriptionHTML===j.sourceDescription&&j.nativeDatePosted&&j.postingDate));assert.ok(jobs.every(j=>j.requisitionId&&j.jobId!==j.requisitionId));assert.ok(jobs.every(j=>j.sourceListingComplete===false&&j.lifecycleCleanupAllowed===false))})
+test('native entity escaping in a role URL is decoded before the detail request',async()=>{const requests=[],jobs=await createHolcimGlobalHubBusinessServicesScraper().run({transport:async u=>{requests.push(u);return transport(u)}});const job=jobs.find(j=>j.jobId==='1349098657');assert.ok(job);assert.ok(requests.includes(job.sourceUrl));assert.ok(job.sourceUrl.includes('T&E'));assert.ok(requests.every(u=>!u.includes('&amp;')&&!u.includes('/talentcommunity/')))})

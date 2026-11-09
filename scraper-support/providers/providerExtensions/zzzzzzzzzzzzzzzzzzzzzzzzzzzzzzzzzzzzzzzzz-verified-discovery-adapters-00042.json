@@ -1,0 +1,78 @@
+[
+  {
+    "source": "disney",
+    "companyName": "Disney",
+    "adapter": "script",
+    "atsPlatform": "radancy",
+    "parser": "source-local-advertised-India-pagination-and-full-original-role-details",
+    "catalogOverride": true,
+    "companyDomain": "thewaltdisneycompany.com",
+    "officialHomepageUrl": "https://thewaltdisneycompany.com/",
+    "companyCareerPage": "https://join.disneycareers.com/global/en/home",
+    "jobsBoardUrl": "https://www.disneycareers.com/en/search-jobs",
+    "countryFilter": "India",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "current-native-GET-India-facet-all-pages-with-final-reconciliation",
+    "extractionStrategy": "original-Radancy-full-roles-dates-legal-employers-and-exact-mixed-native-apply-links",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "officialBindingVerifiedAt": "2026-10-21T16:09:03.278Z",
+    "verificationDisposition": "verified-official-native-careers-identity-runtime-separate",
+    "remediationStatus": "implemented-awaiting-runtime-qualification",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "coverage-gap",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T16:09:03.278Z",
+      "officialURL": "https://www.disneycareers.com/en/search-jobs",
+      "matchedLinks": [
+        "https://join.disneycareers.com/global/en/home"
+      ],
+      "bindingMethod": "current-first-party-Disney-careers-search-and-active-current-careers-migration-handoff",
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/disney-native-001/research-full-radancy-008/001.json",
+          "sha256": "d720c6cb023074e2c91d3ad3ceb70e0eb7627600d2105f2e196071ede3306d3a"
+        }
+      ],
+      "originalDiscoveryEvidence": {
+        "verified": false,
+        "checkedAt": "2026-10-21T15:14:34.402Z",
+        "officialURL": "https://join.disneycareers.com/global/en/home",
+        "matchedLinks": [
+          "https://disney.wd5.myworkdayjobs.com/en-US/disneycareer/job/Mumbai-India/Generalist-Artist-Mid-Senior--DMP-Specialized-_10152359/apply",
+          "https://join.disneycareers.com/global/en/apply?jobSeqNo=TWNTWDUS10163368EXTERNALENGLOBAL&utm_source=RADANCY_FEED&utm_medium=phenom-feeds",
+          "https://join.disneycareers.com/global/en/home"
+        ],
+        "evidenceOrigin": "public-official-web-discovery-not-extraction",
+        "proofFiles": [
+          "proof/batch-025-browser-022-disney-search.json",
+          "proof/batch-025-browser-022-disney.json",
+          "proof/batch-025-browser-025-disney.json",
+          "proof/batch-025-browser-integrity-028.json",
+          "proof/batch-025-handoff-validation-029.json",
+          "proof/batch-025-registered-identity-context-015.json",
+          "proof/batch-025-web-follow-011.json",
+          "proof/batch-025-web-follow-019.json",
+          "proof/batch-025-web-follow-024.json",
+          "proof/batch-025-web-open-009.json",
+          "proof/batch-025-web-open-021.json",
+          "proof/batch-025-web-search-003.json",
+          "proof/batch-025-web-search-020.json"
+        ],
+        "batchArtifact": "artifacts/full-catalog/official-discovery/batch-025.json",
+        "batchSha256": "cf2bc78e7996ca6523e04bf322a8f2f8c0d18292e445b1766862f59f61e4065f",
+        "independentReviewArtifact": "artifacts/full-catalog/official-discovery/batch-025-independent-review-001.json",
+        "independentReviewSha256": "a86916eb5b55576396cc02fba3e541414220eda3f2ac0b1318287a7613276198",
+        "provenanceClarificationArtifact": "artifacts/full-catalog/official-discovery/batch-025-provenance-clarification-031.json",
+        "provenanceClarificationSha256": "1bbe536e763a1601b724424ec186a1e8080772913b51d7b10f0d9928d9bed21a"
+      }
+    },
+    "sourceScopeNotes": "Enumerates only the current explicitly selected Radancy India facet and reconciles every full role plus final listing pages. Whole-company and other career surfaces remain unqualified. Literal native legal employers and posting brands are retained per role. Mixed Workday/Phenom apply routes remain exact native links; no shared-board equivalence claimed. Original Radancy publication dates govern age; newer Phenom migration/feed dates never renew them. Browser is isolated research capture only, never an API runtime fallback. Ordinary runtime qualification is separate; any failed attempt retains null counts.",
+    "verifiedSurfaceSummary": "Current first-party Radancy search, explicit India country facet, active full roles, native exact application links and current Phenom migration handoff captured. Offline parser evidence and ordinary runtime health are separate; no production publication."
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "source": "infoedge",
+    "companyName": "InfoEdge",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/infoedge/script.js",
+    "dryRunFile": "infoedge/jobs.json",
+    "atsPlatform": "zwayam",
+    "parser": "custom-script",
+    "companyCareerPage": "https://careers.infoedge.com/infoedge/jobslist",
+    "companyDomain": "careers.infoedge.com",
+    "officialHomepageUrl": "https://www.infoedgeindia.com/",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-20T22:30:29.401Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedPublicListingRowCount": null,
+    "verifiedIndiaListingRowCount": null,
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:30:29.401Z",
+      "officialURL": "https://www.infoedgeindia.com/",
+      "matchedLinks": [
+        "http://careers.infoedge.com/"
+      ],
+      "observedRedirect": "https://careers.infoedge.com/infoedge/",
+      "proofFile": "../artifacts/full-catalog/infoedge-native-001/official-binding-proof-001.json",
+      "proofSha256": "2c93d1be2247866414d047b1c53144e88d627e5f4834ace6da15dd7986c072d6"
+    },
+    "verifiedSurfaceSummary": "Current corporate active careers link and publisher JavaScript bind InfoEdge to Zwayam company15578. A complete counted listing traversal was captured before detail extraction failed; later native search and independent default trial return HTTP403. Counts remain unknown for current runtime qualification. Full native descriptions, typed geography, native dates and identity are validated; missing content remains partial."
+  }
+]

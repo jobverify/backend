@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://michelinhr.wd3.myworkdayjobs.com/wday/cxs/michelinhr/Michelin/jobs",
+  "detailUrlBase": "https://michelinhr.wd3.myworkdayjobs.com/fr-FR/Michelin",
+  "countryFacetParameter": "Location_Country"
+}

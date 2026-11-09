@@ -1,0 +1,22 @@
+{
+  "source": "rattle",
+  "companyName": "Rattle",
+  "officialBrandName": "Rattle",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../rattle/script.js",
+  "dryRunFile": "rattle/jobs.json",
+  "companyCareerPage": "https://job-boards.greenhouse.io/rattle",
+  "companyDomain": "gorattle.com",
+  "atsPlatform": "greenhouse",
+  "countryFilter": "India",
+  "paginationStrategy": "greenhouse-public-jobs-api",
+  "extractionStrategy": "official-greenhouse-board+exact-company-identity+india-location-only",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "officialCareersPageUrl": "https://job-boards.greenhouse.io/rattle",
+  "greenhouseBoardToken": "rattle",
+  "greenhouseJobsApiUrl": "https://boards-api.greenhouse.io/v1/boards/rattle/jobs",
+  "verifiedSurfaceSummary": "Verified on July 25, 2026 that Rattle's official Greenhouse board is https://job-boards.greenhouse.io/rattle. This exact-name provider accepts only Rattle-branded jobs on that board, validates the canonical board detail URL, and returns only India locations. It fails closed if the Greenhouse company identity or board route changes."
+}

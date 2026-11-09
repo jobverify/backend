@@ -1,0 +1,1486 @@
+[
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "qualcomm",
+    "companyName": "Qualcomm",
+    "companyCareerPage": "https://careers.qualcomm.com/careers",
+    "dryRunEnrichPublicExperience": false,
+    "scraperTimeoutMs": 900000,
+    "config": {
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 2,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      },
+      "discovery": {
+        "careerPageUrl": "https://careers.qualcomm.com/careers",
+        "listingApiUrl": "https://careers.qualcomm.com/api/pcsx/search"
+      },
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.qualcomm.com/careers?domain=qualcomm.com",
+          "Origin": "https://careers.qualcomm.com"
+        },
+        "query": {
+          "domain": "qualcomm.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "traversalMode": "staged-snapshot",
+        "pageSize": 10,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "country": {
+          "strategy": "eightfold-country"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": "positionUrl",
+        "applyUrl": "positionUrl",
+        "department": "department",
+        "postingDate": "postedTs"
+      },
+      "detail": {
+        "enabled": true,
+        "requireListingIdentity": true,
+        "concurrency": 2,
+        "urlTemplate": "https://careers.qualcomm.com/api/pcsx/position_details?position_id={{jobId}}&domain=qualcomm.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.qualcomm.com/careers?domain=qualcomm.com",
+          "Origin": "https://careers.qualcomm.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        }
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "careers.qualcomm.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "ericsson",
+    "companyName": "Ericsson",
+    "companyCareerPage": "https://jobs.ericsson.com/careers",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.ericsson.com",
+      "domain": "ericsson.com",
+      "locationPath": "locations.0",
+      "locationPattern": "india|bengaluru|bangalore|chennai|hyderabad|gurgaon|gurugram|noida|pune|kolkata|mumbai"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://jobs.ericsson.com/careers?domain=ericsson.com",
+          "Origin": "https://jobs.ericsson.com"
+        },
+        "query": {
+          "domain": "ericsson.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://jobs.ericsson.com/api/pcsx/position_details?position_id={{jobId}}&domain=ericsson.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://jobs.ericsson.com/careers?domain=ericsson.com",
+          "Origin": "https://jobs.ericsson.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://jobs.ericsson.com/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "jobs.ericsson.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "eaton",
+    "companyName": "Eaton Corporation",
+    "companyCareerPage": "https://jobs.eaton.com/jobs",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "eaton.eightfold.ai",
+      "domain": "eaton.com",
+      "locationPath": [
+        "standardizedLocations.0",
+        "locations.0"
+      ],
+      "locationPattern": "india|hyderabad|pune|pondicherry|ahilyanagar"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://eaton.eightfold.ai/careers?domain=eaton.com",
+          "Origin": "https://eaton.eightfold.ai"
+        },
+        "query": {
+          "domain": "eaton.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://eaton.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=eaton.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://eaton.eightfold.ai/careers?domain=eaton.com",
+          "Origin": "https://eaton.eightfold.ai"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://eaton.eightfold.ai/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "jobs.eaton.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "eightfoldai",
+    "companyName": "Eightfold AI",
+    "companyCareerPage": "https://eightfold.ai/company/careers/",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "app.eightfold.ai",
+      "domain": "volkscience.com",
+      "locationPattern": "india|bengaluru|bangalore|noida|hyderabad|pune|chennai|mumbai|remote"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://app.eightfold.ai/careers?domain=volkscience.com",
+          "Origin": "https://app.eightfold.ai"
+        },
+        "query": {
+          "domain": "volkscience.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://app.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=volkscience.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://app.eightfold.ai/careers?domain=volkscience.com",
+          "Origin": "https://app.eightfold.ai"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://app.eightfold.ai/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "eightfold.ai",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "fluke",
+    "companyName": "Fluke",
+    "companyCareerPage": "https://fortive.eightfold.ai/careers?Operating+Company=Fluke&domain=fortive.com&location=India&sort_by=relevance",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "fortive.eightfold.ai",
+      "domain": "fortive.com"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://fortive.eightfold.ai/careers?domain=fortive.com",
+          "Origin": "https://fortive.eightfold.ai"
+        },
+        "query": {
+          "domain": "fortive.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "relevance",
+          "filter_operating_company": "fluke"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://fortive.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=fortive.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://fortive.eightfold.ai/careers?domain=fortive.com",
+          "Origin": "https://fortive.eightfold.ai"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ],
+        "exclude": []
+      },
+      "discovery": {
+        "listingApiUrl": "https://fortive.eightfold.ai/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "fortive.eightfold.ai",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "lamresearch",
+    "companyName": "Lam Research",
+    "companyCareerPage": "https://www.lamresearch.com/careers/careers-overview/",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "lamresearch.eightfold.ai",
+      "domain": "lamresearch.com",
+      "locationPattern": "india|bengaluru|bangalore|chennai|mumbai|hyderabad|pune|remote"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://lamresearch.eightfold.ai/careers?domain=lamresearch.com",
+          "Origin": "https://lamresearch.eightfold.ai"
+        },
+        "query": {
+          "domain": "lamresearch.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://lamresearch.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=lamresearch.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://lamresearch.eightfold.ai/careers?domain=lamresearch.com",
+          "Origin": "https://lamresearch.eightfold.ai"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://lamresearch.eightfold.ai/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "lamresearch.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "infineon",
+    "companyName": "Infineon",
+    "companyCareerPage": "https://jobs.infineon.com/careers",
+    "companyDomain": "infineon.com",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.infineon.com",
+      "domain": "infineon.com",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|noida|gurgaon|gurugram|chennai|kolkata"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://jobs.infineon.com/careers?domain=infineon.com",
+          "Origin": "https://jobs.infineon.com"
+        },
+        "query": {
+          "domain": "infineon.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://jobs.infineon.com/api/pcsx/position_details?position_id={{jobId}}&domain=infineon.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://jobs.infineon.com/careers?domain=infineon.com",
+          "Origin": "https://jobs.infineon.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://jobs.infineon.com/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "hsbctechnologyindia",
+    "companyName": "HSBC Technology India",
+    "companyCareerPage": "https://portal.careers.hsbc.com/careers?location=India",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "hsbc.eightfold.ai",
+      "domain": "hsbc.com",
+      "location": "India",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|chennai|mumbai|gurugram|gurgaon|kolkata|thiruvananthapuram"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://hsbc.eightfold.ai/careers?domain=hsbc.com",
+          "Origin": "https://hsbc.eightfold.ai"
+        },
+        "query": {
+          "domain": "hsbc.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://hsbc.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=hsbc.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://hsbc.eightfold.ai/careers?domain=hsbc.com",
+          "Origin": "https://hsbc.eightfold.ai"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://hsbc.eightfold.ai/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "portal.careers.hsbc.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "slb",
+    "companyName": "SLB",
+    "companyCareerPage": "https://careers.slb.com/job-listing",
+    "companyDomain": "slb.com",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "apply.slb.com",
+      "domain": "slb.com",
+      "location": "India",
+      "locationPath": "locations.0",
+      "locationPattern": "\\bIndia\\b"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://apply.slb.com/careers?domain=slb.com",
+          "Origin": "https://apply.slb.com"
+        },
+        "query": {
+          "domain": "slb.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl",
+          "strategy": "template",
+          "template": "https://apply.slb.com/careers/job/{{jobId}}",
+          "values": {
+            "jobId": "id"
+          }
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl",
+          "strategy": "template",
+          "template": "https://apply.slb.com/careers/apply?pid={{jobId}}&domain=slb.com",
+          "values": {
+            "jobId": "id"
+          }
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://apply.slb.com/api/pcsx/position_details?position_id={{jobId}}&domain=slb.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://apply.slb.com/careers?domain=slb.com",
+          "Origin": "https://apply.slb.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://apply.slb.com/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "stmicroelectronics",
+    "companyName": "STMicroelectronics",
+    "companyCareerPage": "https://www.st.com/content/st_com/en/about/careers.html",
+    "companyDomain": "stmicroelectronics.com",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "stmicroelectronics.eightfold.ai",
+      "domain": "stmicroelectronics.com",
+      "location": "India",
+      "locationPattern": "\\bIndia\\b"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://stmicroelectronics.eightfold.ai/careers?domain=stmicroelectronics.com",
+          "Origin": "https://stmicroelectronics.eightfold.ai"
+        },
+        "query": {
+          "domain": "stmicroelectronics.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://stmicroelectronics.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=stmicroelectronics.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://stmicroelectronics.eightfold.ai/careers?domain=stmicroelectronics.com",
+          "Origin": "https://stmicroelectronics.eightfold.ai"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://stmicroelectronics.eightfold.ai/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "tektronix",
+    "companyName": "Tektronix",
+    "companyCareerPage": "https://www.tek.com/en/careers",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://careers.ralliant.com/tektronix/",
+        "listingApiUrl": "https://ralliant.eightfold.ai/api/pcsx/search"
+      },
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.ralliant.com/tektronix/",
+          "Origin": "https://careers.ralliant.com"
+        },
+        "query": {
+          "domain": "ralliant.com",
+          "sort_by": "relevance",
+          "filter_efcustom_text_operatingcompany": "tektronix"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 10,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "positionUserActions.applyAction.applyUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://ralliant.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=ralliant.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.ralliant.com/tektronix/",
+          "Origin": "https://careers.ralliant.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "tek.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "worley",
+    "companyName": "Worley",
+    "companyCareerPage": "https://www.worley.com/en/careers",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.worley.com",
+      "domain": "worley.com",
+      "location": "India",
+      "locationPath": [
+        "standardizedLocations.0",
+        "locations.0"
+      ]
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://jobs.worley.com/careers?domain=worley.com",
+          "Origin": "https://jobs.worley.com"
+        },
+        "query": {
+          "domain": "worley.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://jobs.worley.com/api/pcsx/position_details?position_id={{jobId}}&domain=worley.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://jobs.worley.com/careers?domain=worley.com",
+          "Origin": "https://jobs.worley.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ],
+        "exclude": []
+      },
+      "discovery": {
+        "listingApiUrl": "https://jobs.worley.com/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "worley.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "johndeereindia",
+    "companyName": "John Deere India",
+    "companyCareerPage": "https://careers.deere.com/careers?location=India",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "careers.deere.com",
+      "domain": "johndeere.com",
+      "location": "India",
+      "locationPattern": "\\bIndia\\b|pune|bangalore|bengaluru|hyderabad|gurgaon|gurugram|noida|delhi|chennai|mumbai|remote"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.deere.com/careers?domain=johndeere.com",
+          "Origin": "https://careers.deere.com"
+        },
+        "query": {
+          "domain": "johndeere.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://careers.deere.com/api/pcsx/position_details?position_id={{jobId}}&domain=johndeere.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.deere.com/careers?domain=johndeere.com",
+          "Origin": "https://careers.deere.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://careers.deere.com/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "companyDomain": "careers.deere.com",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  },
+  {
+    "atsPlatform": "eightfold",
+    "countryFilter": "India",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "source": "trimble",
+    "companyName": "Trimble Inc",
+    "companyCareerPage": "https://www.trimble.com/en/careers",
+    "companyDomain": "trimble.com",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "trimblecareers.trimble.com",
+      "domain": "trimble.com",
+      "location": "India",
+      "locationPath": "locations.0",
+      "locationPattern": "india|remote|chennai|pune|navi mumbai|mumbai|gurgaon|gurugram|hyderabad|bangalore|bengaluru|noida"
+    },
+    "config": {
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://trimblecareers.trimble.com/careers?domain=trimble.com",
+          "Origin": "https://trimblecareers.trimble.com"
+        },
+        "query": {
+          "domain": "trimble.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 50,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": {
+          "strategy": "eightfold-location"
+        },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs",
+        "country": {
+          "strategy": "eightfold-country"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://trimblecareers.trimble.com/api/pcsx/position_details?position_id={{jobId}}&domain=trimble.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://trimblecareers.trimble.com/careers?domain=trimble.com",
+          "Origin": "https://trimblecareers.trimble.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        },
+        "requireListingIdentity": true,
+        "concurrency": 1
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://trimblecareers.trimble.com/api/pcsx/search"
+      },
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 1,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      }
+    },
+    "adapter": "apiPortal",
+    "zeroResultPolicy": "evidence-required",
+    "catalogOverride": true,
+    "publicAccessPolicy": "preserve-verified-stop-denied-origin"
+  }
+]

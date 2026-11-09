@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://biibhr.wd3.myworkdayjobs.com/wday/cxs/biibhr/external/jobs",
+  "detailUrlBase": "https://biibhr.wd3.myworkdayjobs.com/external",
+  "officialCareersUrl": "https://www.biogen.com/careers.html",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

@@ -1,0 +1,22 @@
+{
+  "model": "knowledgator/gliclass-edge-v3.0",
+  "revision": "df03993a2ed98e5e4a0d2dd7efbbd105abe874cf",
+  "runtimeVersion": "jobverify-gliclass-v1",
+  "windowTokens": 512,
+  "overlapTokens": 64,
+  "batchSize": 4,
+  "labels": [
+    "Full-time Experienced",
+    "Full-time Fresher",
+    "Intern",
+    "Contract"
+  ],
+  "sha256": {
+    "model.safetensors": "ed2600439be991eaab06d831b259e99057a69242acf3a26a61b053695b1b979c",
+    "config.json": "82c73012fe4ce7f286e5615e17e53360f6f18129bc6d912719e0656e040d9deb",
+    "tokenizer.json": "7c1979be5ac04a6681dbfbb98a2b01b176883a298f2a7240c93048b244118a01",
+    "tokenizer_config.json": "998e030cf9cefbf6e58cbc5b9b2218e8052eb31449c2d08a2f21f60addb79787",
+    "special_tokens_map.json": "ea97ecdbcc73713039d8d64dbb05e3689495c96657fbd9a18f5bed381be81049"
+  },
+  "maxInputBytes": 262144
+}

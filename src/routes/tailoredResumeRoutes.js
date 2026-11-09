@@ -1,0 +1,20 @@
+import express from 'express';
+import { protect } from '../middleware/authMiddleware.js';
+import { loadSiteSettings } from '../middleware/siteSettings.js';
+import { createRateLimiter } from '../utils/rateLimit.js';
+import { read, create, download, preview } from '../controllers/tailoredResumeController.js';
+import * as revisions from '../controllers/cvRevisionController.js';
+const router = express.Router();
+router.use((_req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
+router.use(protect, loadSiteSettings);
+const limit = createRateLimiter({ windowMs: 900000, limit: 20, keyGenerator: req => String(req.user._id), standardHeaders: true, legacyHeaders: false,
+  message: { success: false, message: 'Too many generation requests. Please try again later.' } });
+router.get('/:jobId/revisions', revisions.list);
+router.get('/:jobId/revisions/compare', revisions.compare);
+router.get('/:jobId/revisions/:revisionId/download', revisions.download);
+router.post('/:jobId/revisions/:revisionId/restore', limit, revisions.restore);
+router.get('/:jobId/download', download);
+router.get('/:jobId/pdf', preview);
+router.get('/:jobId', read);
+router.post('/:jobId', limit, create);
+export default router;

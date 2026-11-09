@@ -1,0 +1,109 @@
+{
+  "inputs": [
+    {
+      "source": "blockchaincom",
+      "companyName": "Blockchain.com",
+      "companyCareerPage": "https://www.blockchain.com/en/careers",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/blockchain/jobs?content=true",
+      "boardToken": "blockchain",
+      "filename": "blockchaincom-8b532d42a5574d7a5974bc6dbd57ccfe4df91eeb4e8aaee404cd2116e8d23490.json.gz",
+      "bodySHA256": "8b532d42a5574d7a5974bc6dbd57ccfe4df91eeb4e8aaee404cd2116e8d23490",
+      "bodyBytes": 392153,
+      "originalEvidence": "blockchain-next-live/sources/blockchaincom.json",
+      "originalReceipt": "blockchain-next-live/captures/blockchaincom/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "censys",
+      "companyName": "Censys",
+      "companyCareerPage": "https://censys.com/careers/",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/censys/jobs?content=true",
+      "boardToken": "censys",
+      "filename": "censys-b34760c2d04892d3f5346feaa50a595897dab3514584bbc9d6de265d7f10ba6c.json.gz",
+      "bodySHA256": "b34760c2d04892d3f5346feaa50a595897dab3514584bbc9d6de265d7f10ba6c",
+      "bodyBytes": 313234,
+      "originalEvidence": "native-ats-batch4-live-censys-v2/validation.json",
+      "originalReceipt": "native-ats-batch4-live-censys-v2/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "cloverhealth",
+      "companyName": "Clover Health",
+      "companyCareerPage": "https://www.cloverhealth.com/about-us/careers",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/cloverhealth/jobs?content=true",
+      "boardToken": "cloverhealth",
+      "filename": "cloverhealth-262afb3727aec30ac0c98cc01ca20c0ede1d349a038989ad8b1f7ff6e788e78d.json.gz",
+      "bodySHA256": "262afb3727aec30ac0c98cc01ca20c0ede1d349a038989ad8b1f7ff6e788e78d",
+      "bodyBytes": 757501,
+      "originalEvidence": "registered-ats-batch2-live/sources/cloverhealth.json",
+      "originalReceipt": "registered-ats-batch2-live/captures/cloverhealth/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "duda",
+      "companyName": "Duda",
+      "companyCareerPage": "https://www.duda.co/careers",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/duda/jobs?content=true",
+      "boardToken": "duda",
+      "filename": "duda-85a164dafc47f8cb50095545e0d7b5481f48b58f9e09b6c117061d98c7a67964.json.gz",
+      "bodySHA256": "85a164dafc47f8cb50095545e0d7b5481f48b58f9e09b6c117061d98c7a67964",
+      "bodyBytes": 52088,
+      "originalEvidence": "registered-ats-batch2-live/sources/duda.json",
+      "originalReceipt": "registered-ats-batch2-live/captures/duda/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "flatironhealth",
+      "companyName": "Flatiron Health",
+      "companyCareerPage": "https://flatiron.com/careers",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/flatironhealth/jobs?content=true",
+      "boardToken": "flatironhealth",
+      "filename": "flatironhealth-893d5e7eba9a25cad8bee8ddf18fefbfc732f482dbe132384363dfeeb1d59ea9.json.gz",
+      "bodySHA256": "893d5e7eba9a25cad8bee8ddf18fefbfc732f482dbe132384363dfeeb1d59ea9",
+      "bodyBytes": 222620,
+      "originalEvidence": "registered-ats-batch2-live/sources/flatironhealth.json",
+      "originalReceipt": "registered-ats-batch2-live/captures/flatironhealth/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "goodnotes",
+      "companyName": "Goodnotes",
+      "companyCareerPage": "https://www.goodnotes.com/careers",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/goodnotes/jobs?content=true",
+      "boardToken": "goodnotes",
+      "filename": "goodnotes-42a7e592447d3a5c2aff99e7f5a814ae415e576cab17d548d55be98512dc97f6.json.gz",
+      "bodySHA256": "42a7e592447d3a5c2aff99e7f5a814ae415e576cab17d548d55be98512dc97f6",
+      "bodyBytes": 82705,
+      "originalEvidence": "registered-ats-batch2-live/sources/goodnotes.json",
+      "originalReceipt": "registered-ats-batch2-live/captures/goodnotes/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "housecallpro",
+      "companyName": "Housecall Pro",
+      "companyCareerPage": "https://www.housecallpro.com/careers/",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/housecall/jobs?content=true",
+      "boardToken": "housecall",
+      "filename": "housecallpro-1264e727d634090c6be1cdbb6d2faeb88cfc2be10beb8647a95bead910ec092c.json.gz",
+      "bodySHA256": "1264e727d634090c6be1cdbb6d2faeb88cfc2be10beb8647a95bead910ec092c",
+      "bodyBytes": 674791,
+      "originalEvidence": "registered-ats-batch2-live/sources/housecallpro.json",
+      "originalReceipt": "registered-ats-batch2-live/captures/housecallpro/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    },
+    {
+      "source": "huntress",
+      "companyName": "Huntress",
+      "companyCareerPage": "https://www.huntress.com/company/careers",
+      "apiURL": "https://boards-api.greenhouse.io/v1/boards/huntress/jobs?content=true",
+      "boardToken": "huntress",
+      "filename": "huntress-6ceacfa9ebcd5a9dea054af46a54282f747fac2f301a606f09c5a3c1175aa7d6.json.gz",
+      "bodySHA256": "6ceacfa9ebcd5a9dea054af46a54282f747fac2f301a606f09c5a3c1175aa7d6",
+      "bodyBytes": 432687,
+      "originalEvidence": "registered-ats-batch3-live/sources/huntress.json",
+      "originalReceipt": "registered-ats-batch3-live/captures/huntress/receipts.json",
+      "provenance": "Complete saved anonymous native API response; regression replay only, not new live validation."
+    }
+  ],
+  "purpose": "Complete original native responses for description display regression. Synthetic India locations in tests do not represent live India jobs."
+}

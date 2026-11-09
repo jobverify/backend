@@ -1,0 +1,24 @@
+[
+  {
+    "source": "finzly",
+    "companyName": "Finzly",
+    "officialBrandName": "Finzly",
+    "adapter": "script",
+    "modulePath": "../finzly/script.js",
+    "dryRunFile": "finzly/jobs.json",
+    "homepageUrl": "https://finzly.com/",
+    "companyCareerPage": "https://finzly.com/careers/",
+    "companyDomain": "finzly.com",
+    "atsPlatform": "first-party-wordpress-careers",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "current-local-filter-client+all-advertised-details+closing-card-reconciliation",
+    "extractionStrategy": "current-first-party-card-set+published-native-page-identities+full-visible-role-content",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current first-party Finzly role cards and full details replace the retired Workable feed. Exact page identities, full visible role-owned content, India locations and role-specific application email are checked against closing cards and paginated native page states. Unadvertised published pages remain distinct from active vacancies; document dates are not job posting dates and unresolved inventory/lifecycle scope stays partial.",
+    "catalogOverride": true
+  }
+]

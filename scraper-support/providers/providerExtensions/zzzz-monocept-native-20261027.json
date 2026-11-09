@@ -1,0 +1,29 @@
+[
+  {
+    "source": "monocept",
+    "companyName": "Monocept",
+    "adapter": "script",
+    "modulePath": "../monocept/script.js",
+    "catalogOverride": true,
+    "companyCareerPage": "https://www.monocept.com/careers",
+    "companyDomain": "monocept.com",
+    "atsPlatform": "turbohire",
+    "countryFilter": "India",
+    "paginationStrategy": "native-total-and-unique-identities+all-public-details+closing-snapshots-before-cap",
+    "extractionStrategy": "visible-first-party-handoff+reviewed-public-client+full-public-job-dto+matching-jobposting",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedAt": "2026-10-26T22:08:54.857Z",
+    "verifiedOn": "2026-10-26",
+    "verifiedPublicJobCount": 7,
+    "verifiedIndiaJobCount": 7,
+    "sourceObservedFullCriteriaEligibleIndiaRecords": 7,
+    "sourceObservedPublicationPolicyEligibleIndiaRecords": 0,
+    "sourceScopeComplete": true,
+    "lifecycleCleanupAllowed": true,
+    "verifiedInventoryStatus": "complete-inventory",
+    "sourceScopeNotes": "The current first-party careers handoff identifies the employer-bound public native client. Normal anonymous All Jobs filteredjobs POST (pageType=0, all filters null) returns Total7 and seven unique IDs; every full public DTO is fetched with the normal fieldVisibility=CareerPage query and matched to its public JobPosting and closing snapshot before caller caps. The old advertised careerpage has a misleading vacancy-free view. Explicit native job work countries establish India. All source CAREERPAGE dates remain August 6; no source expiry is advertised. Source dates, general publication, native experience, skills, zero requisition GUID as null, and actual application template IDs remain distinct. Current client/CSS hashes and visual/executable inventories reject unreviewed changes. No login, application action, candidate/private API, database or pipeline invocation.",
+    "remediationStatus": "current-native-seven-role-public-inventory-implemented;zero-current-publication-policy-eligible"
+  }
+]

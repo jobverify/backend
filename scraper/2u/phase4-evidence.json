@@ -1,0 +1,30 @@
+{
+  "phase": 4,
+  "verifiedOn": "2026-10-24",
+  "historicalMetadataRewritten": false,
+  "registryVerifiedPublicationCounts": null,
+  "productionDatabaseTouched": false,
+  "fullPipelineExecuted": false,
+  "productionBrowserFallbackAdded": false,
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "outcome": "unsupported-native-application-and-inventory-contract-remains-blocked",
+  "sourceImplementationChanged": false,
+  "officialUrl": "https://2u.com/careers/jobs/",
+  "observations": [
+    "Current official Gatsby page shows two roles with ids8871017002 and8902861002.",
+    "Official Gatsby static query1843004117 contains both full HTML-escaped descriptions, alternative_id and native office IDs. The captured office dictionary resolves both roles to USRemote, with CrystalCity additionally on one.",
+    "The role-page APPLY NOW anchor has no href, and its JobPosting JSON includes absolute_url as the literal undefined. The static query has no proven current ATS board/application URL or authoritative upstream total."
+  ],
+  "blocker": "No current exact ATS binding or functioning role-specific application contract; the two visible Gatsby records cannot establish a complete current upstream inventory or an India zero claim.",
+  "inventoryComplete": false,
+  "indiaJobCount": null,
+  "sourceCaptureCount": 5,
+  "focusedVerification": {
+    "command": "node --test scraper/accellor/script.test.js scraper/affirm/script.test.js scraper/aembit/script.test.js scraper/accellor/catalogRepair.test.js scraper-support/tests/publishingGapAts.test.js scraper-support/tests/providerExtensions.test.js",
+    "passed": 56,
+    "failed": 0,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-ats/guards-final-green.log",
+    "scope": "Only owned changed source contracts plus effective registry and shared ATS compatibility checks; unchanged blocked-source extraction was not promoted."
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "source": "watchguard",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/watchguard/script.js",
+    "atsPlatform": "lever",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "zeroResultPolicy": "evidence-required",
+    "parser": "custom-script",
+    "paginationStrategy": "original-native-array-with-full-record-closing-reconciliation",
+    "extractionStrategy": "original-lever-records+bound-native-role-schema+date-only-publication+raw-employer-and-criteria-provenance",
+    "verificationStatus": "offline-reader-tested-current-live-and-company-scope-unverified",
+    "verifiedSurfaceSummary": "Source-local reader preserves original Lever arrays and full native criteria, and binds publisher date-only publication values to matching native role schemas while retaining creation milliseconds separately. Corporate activation, all recruiting channels and country alternatives remain unverified; authoritative company and India totals remain unknown and cleanup is disabled. This registration is not current live or full-source qualification."
+  }
+]

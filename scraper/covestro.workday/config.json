@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://covestro.wd3.myworkdayjobs.com/wday/cxs/covestro/cov_external/jobs",
+  "detailUrlBase": "https://covestro.wd3.myworkdayjobs.com/cov_external",
+  "officialCareersUrl": "https://www.covestro.com/en/career",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

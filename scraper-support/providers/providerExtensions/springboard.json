@@ -1,0 +1,23 @@
+{
+  "source": "springboard",
+  "companyName": "Springboard",
+  "officialBrandName": "Springboard",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../springboard/script.js",
+  "dryRunFile": "springboard/jobs.json",
+  "companyCareerPage": "https://www.springboard.com/join-us/",
+  "greenhouseBoardUrl": "https://job-boards.greenhouse.io/springboard",
+  "greenhouseJobsApiUrl": "https://boards-api.greenhouse.io/v1/boards/springboard/jobs",
+  "companyDomain": "springboard.com",
+  "atsPlatform": "greenhouse",
+  "countryFilter": "India",
+  "paginationStrategy": "official-careers-page-plus-single-greenhouse-jobs-api",
+  "extractionStrategy": "verified-official-careers-handoff+greenhouse-jobs-api+strict-company-identity+india-location-filter",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "verifiedPublicJobCount": 9,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.springboard.com/join-us/ is Springboard's first-party careers page and identifies the company as an education provider with offices in Bengaluru. That page links candidates to Springboard's public Greenhouse board at https://job-boards.greenhouse.io/springboard. The verified public Greenhouse feed exposed nine roles under the exact board identity Springboard Roles, all in United States or unspecified Remote locations. Because Springboard's first-party page returns HTTP 403 to this scraper, the runtime uses only the official Greenhouse API and fails closed if its company identity, payload shape, or canonical detail URLs change."
+}

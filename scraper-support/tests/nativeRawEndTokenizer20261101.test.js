@@ -1,0 +1,11 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {pathToFileURL} from 'node:url'
+const backend=process.cwd(),native=await import(pathToFileURL(backend+'/scraper-support/utils/activeNativeHtml.js')),visible=await import(pathToFileURL(backend+'/scraper-support/utils/visibleNativeHtml.js'))
+for(const delimiter of ['\u00a0','\u000b','\u2003']){
+ for(const [label,read]of [['native',native.readNativeDocument],['visible',html=>visible.readVisibleNativeDocument(html,{strict:true})]])test(label+' non-ASCII raw close cannot activate script-string anchor '+JSON.stringify(delimiter),()=>{const doc=read('<script>const data="</script'+delimiter+'><a href=\'https://employer.example/ghost\'>Apply</a>";</script><a href="https://employer.example/real">Apply</a>');assert.deepEqual(doc.nodes(node=>node.tag==='a').map(node=>node.attrs.href),['https://employer.example/real'])})
+ test('non-ASCII script close cannot synthesize native metadata '+JSON.stringify(delimiter),()=>assert.deepEqual(native.activeHead('<script>const data="</script'+delimiter+'><meta property=\'og:url\' content=\'https://foreign.example\'>";</script><meta property="og:url" content="https://employer.example">').metas,[{property:'og:url',content:'https://employer.example'}]))
+ test('non-ASCII iframe close cannot delegate fallback child '+JSON.stringify(delimiter),()=>assert.deepEqual(native.activeIframeSources('<iframe src="https://employer.example/real"></iframe'+delimiter+'><iframe src="https://foreign.example/ghost"></iframe></iframe>'),['https://employer.example/real']))
+}
+for(const delimiter of ['', ' ', '\t', '\n', '\f', '\r\n'])test('supported raw end preserves real native sibling '+JSON.stringify(delimiter),()=>{const html='<script>const data="raw";</script'+delimiter+'><a href="https://employer.example/real">Apply</a>';assert.deepEqual(native.readNativeDocument(html).nodes(node=>node.tag==='a').map(node=>node.attrs.href),['https://employer.example/real'])})
+test('plaintext retains its entire raw body including apparent closing tags',()=>assert.equal(native.readNativeDocument('<plaintext>Raw</plaintext><a href="https://foreign.example">Apply</a>').nodes(node=>node.tag==='a').length,0))

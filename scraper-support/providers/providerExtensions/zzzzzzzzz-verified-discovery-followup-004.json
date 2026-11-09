@@ -1,0 +1,93 @@
+[
+  {
+    "source": "avaloq",
+    "companyName": "Avaloq",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "smartrecruiters",
+    "modulePath": "../avaloq.workday/script.js",
+    "companyCareerPage": "https://www.avaloq.com/careers",
+    "companyDomain": "www.avaloq.com",
+    "officialHomepageUrl": "https://www.avaloq.com/",
+    "backfillMode": "live-parser",
+    "parser": "verified-smartrecruiters-native",
+    "paginationStrategy": "stable-total-offset-unique-id-reconciliation",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "officialBindingVerifiedAt": "2026-10-20T20:26:42.413Z",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T20:26:42.413Z",
+      "officialURL": "https://www.avaloq.com/careers/job-openings/software-test-specialist-pune-744000152645906?isComingFromApp=true",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.smartrecruiters.com/Avaloq1/744000152645906-software-test-specialist?oga=true"
+      ],
+      "evidenceOrigin": "direct-first-party-http-html",
+      "httpProofFile": "../artifacts/full-catalog/verified-discovery-followup-004/avaloq-official-http.json",
+      "httpProofSha256": "09de8d03c0ab6df2bb22779be6d3b0b7009f6be14e56abc756fc3eefd346a06a",
+      "discoveryBatch": "batch-008",
+      "discoverySha256": "3eca7bf849754ba8224366954a425145cbd29d4235ffb5ebd0330fdff1134548",
+      "proofFiles": [
+        "proof/batch-008-search-04.json",
+        "proof/batch-008-search-13.json",
+        "proof/batch-008-open-13.json",
+        "proof/batch-008-open-29.json",
+        "proof/batch-008-click-03.json",
+        "proof/batch-008-click-24.json",
+        "proof/batch-008-click-25.json"
+      ]
+    },
+    "verifiedSurfaceSummary": "Current exact official native binding implemented; runtime counts remain separate. The main job widget returns placeholders, while a specific first-party role detail exposes full Pune content. Placeholder results are not a zero. The corporate Login page is for clients/partners, not candidates, and is not treated as recruiting evidence."
+  },
+  {
+    "source": "avoma",
+    "companyName": "Avoma",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "kula",
+    "modulePath": "../avoma/script.js",
+    "companyCareerPage": "https://www.avoma.com/careers",
+    "companyDomain": "www.avoma.com",
+    "officialHomepageUrl": "https://www.avoma.com/",
+    "backfillMode": "live-parser",
+    "parser": "verified-kula-flight-native",
+    "paginationStrategy": "observed-native-page-completeness-unverified",
+    "countryFilter": "India",
+    "zeroResultPolicy": "coverage-gap",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "officialBindingVerifiedAt": "2026-10-20T20:26:41.571Z",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T20:26:41.571Z",
+      "officialURL": "https://www.avoma.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://careers.kula.ai/avoma?jobs=true"
+      ],
+      "evidenceOrigin": "direct-first-party-http-html",
+      "httpProofFile": "../artifacts/full-catalog/verified-discovery-followup-004/avoma-official-http.json",
+      "httpProofSha256": "5ea9a884ef229f485d9eb6dc2308c14289ac920a89d96ab2baeea193dd2011d7",
+      "discoveryBatch": "batch-008",
+      "discoverySha256": "3eca7bf849754ba8224366954a425145cbd29d4235ffb5ebd0330fdff1134548",
+      "proofFiles": [
+        "proof/batch-008-search-05.json",
+        "proof/batch-008-open-17.json",
+        "proof/batch-008-click-02.json",
+        "proof/batch-008-click-15.json"
+      ]
+    },
+    "verifiedSurfaceSummary": "Current exact official native binding implemented; runtime counts remain separate. Current official Kula listing exposes multiple Pune roles. No displayed total or count of cards is promoted to a native runtime count. Exact Kula token is observed from the corporate iframe rather than guessed."
+  }
+]

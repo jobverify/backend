@@ -1,0 +1,716 @@
+{
+  "opening": {
+    "total": 57,
+    "jobPostings": [
+      {
+        "title": "Payroll Specialist",
+        "externalPath": "/job/Valencia-Spain/Payroll-Specialist_JR-1052",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 11 Days Ago",
+        "bulletFields": [
+          "JR-1052"
+        ]
+      },
+      {
+        "title": "Global Benefits Specialist",
+        "externalPath": "/job/Valencia-Spain/Global-Benefits-Specialist_JR-1043",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1043"
+        ]
+      },
+      {
+        "title": "Principal Product Manager - Payments Platform",
+        "externalPath": "/job/Valencia-Spain/Principal-Product-Manager_JR-1034",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1034"
+        ]
+      },
+      {
+        "title": "IT Cloud Engineer II",
+        "externalPath": "/job/Valencia-Spain/IT-Cloud-Engineer-II_JR-1055",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1055"
+        ]
+      },
+      {
+        "title": "Collections Specialist",
+        "externalPath": "/job/Valencia-Spain/Collections-Specialist_JR-1053",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1053"
+        ]
+      },
+      {
+        "title": "Deal Ops Analyst",
+        "externalPath": "/job/Valencia-Spain/Deal-Ops-Analyst_JR-1093",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 15 Days Ago",
+        "bulletFields": [
+          "JR-1093"
+        ]
+      },
+      {
+        "title": "Salesforce Dev Ops Engineer",
+        "externalPath": "/job/Valencia-Spain/Salesforce-Dev-Ops-Engineer_JR-1038",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 15 Days Ago",
+        "bulletFields": [
+          "JR-1038"
+        ]
+      },
+      {
+        "title": "Senior Data Engineer I",
+        "externalPath": "/job/Valencia-Spain/Senior-Data-Engineer-I_JR-1039",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 16 Days Ago",
+        "bulletFields": [
+          "JR-1039"
+        ]
+      },
+      {
+        "title": "IT Engineer II, Client Platform Engineer (CPE)",
+        "externalPath": "/job/Valencia-Spain/IT-Engineer-II--Client-Platform-Engineer--CPE-_JR-1057",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 16 Days Ago",
+        "bulletFields": [
+          "JR-1057"
+        ]
+      },
+      {
+        "title": "Implementation Consultant",
+        "externalPath": "/job/London/Senior-Implementation-Consultant_JR-1037",
+        "locationsText": "London",
+        "postedOn": "Posted 2 Days Ago",
+        "bulletFields": [
+          "JR-1037"
+        ]
+      },
+      {
+        "title": "Site Reliability Engineer II",
+        "externalPath": "/job/Cluj-Napoca-Romania/Site-Reliability-Engineer-II_JR-1042",
+        "locationsText": "Cluj-Napoca, Romania",
+        "postedOn": "Posted 2 Days Ago",
+        "bulletFields": [
+          "JR-1042"
+        ]
+      },
+      {
+        "title": "Senior Technical Implementation Manager",
+        "externalPath": "/job/US-Remote-TX/Senior-Technical-Implementation-Manager_JR-1023",
+        "locationsText": "US, Remote TX",
+        "postedOn": "Posted 3 Days Ago",
+        "bulletFields": [
+          "JR-1023"
+        ]
+      },
+      {
+        "title": "Technical Support Engineer II",
+        "externalPath": "/job/Chicago-IL/Technical-Support-Engineer_JR-1032",
+        "locationsText": "Chicago, IL",
+        "postedOn": "Posted 3 Days Ago",
+        "bulletFields": [
+          "JR-1032"
+        ]
+      },
+      {
+        "title": "Security Engineer II (Offensive)",
+        "externalPath": "/job/Bangalore-India/Security-Engineer-II--Offensive-_JR-1079",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1079"
+        ]
+      },
+      {
+        "title": "Security Engineer II (Offensive)",
+        "externalPath": "/job/Bangalore-India/Security-Engineer-II--Offensive-_JR-1089",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1089"
+        ]
+      },
+      {
+        "title": "Security Engineer II (Offensive)",
+        "externalPath": "/job/Bangalore-India/Security-Engineer-II--Offensive-_JR-1069",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1069"
+        ]
+      },
+      {
+        "title": "Senior Security Engineer (Offensive)",
+        "externalPath": "/job/Bangalore-India/Senior-Security-Engineer--Offensive-_JR-1088",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1088"
+        ]
+      },
+      {
+        "title": "Senior Payment Operations Specialist, Infrastructure & Network Enablement",
+        "externalPath": "/job/Boston-MA/Senior-Payment-Operations-Specialist--Infrastructure---Network-Enablement_JR-1022",
+        "locationsText": "Boston, MA",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1022"
+        ]
+      },
+      {
+        "title": "Senior Security Engineer (Offensive)",
+        "externalPath": "/job/Bangalore-India/Senior-Security-Engineer--Offensive-_JR-1072",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1072"
+        ]
+      },
+      {
+        "title": "Technical Sales Manager",
+        "externalPath": "/job/Australia-Remote/Technical-Sales-Manager_JR-1094-1",
+        "locationsText": "Australia, Remote",
+        "postedOn": "Posted 6 Days Ago",
+        "bulletFields": [
+          "JR-1094"
+        ]
+      }
+    ],
+    "facets": [
+      {
+        "facetParameter": "jobFamilyGroup",
+        "descriptor": "Job Category",
+        "values": [
+          {
+            "descriptor": "Risk & Security (JFG)",
+            "id": "fdf1c907f65d10018df0925e3d720000",
+            "count": 12
+          },
+          {
+            "descriptor": "Information Technology (JFG)",
+            "id": "fdf1c907f65d10018df08b2b5a740000",
+            "count": 10
+          },
+          {
+            "descriptor": "Engineering",
+            "id": "fdf1c907f65d10018df0835ec5110000",
+            "count": 7
+          },
+          {
+            "descriptor": "Sales",
+            "id": "fdf1c907f65d10018df0912b24b70000",
+            "count": 6
+          },
+          {
+            "descriptor": "Implementation",
+            "id": "fdf1c907f65d10018df0895e9f640000",
+            "count": 3
+          },
+          {
+            "descriptor": "Commercial",
+            "id": "fdf1c907f65d10018df07e90961a0000",
+            "count": 3
+          },
+          {
+            "descriptor": "Finance",
+            "id": "fdf1c907f65d10018df086f8176d0000",
+            "count": 2
+          },
+          {
+            "descriptor": "People",
+            "id": "fdf1c907f65d10018df085c4d17b0000",
+            "count": 2
+          },
+          {
+            "descriptor": "Data & Analytics (JFG)",
+            "id": "fdf1c907f65d10018df08491975b0000",
+            "count": 2
+          },
+          {
+            "descriptor": "Customer Support",
+            "id": "fdf1c907f65d10018df07fc41a400000",
+            "count": 2
+          },
+          {
+            "descriptor": "Product",
+            "id": "fdf1c907f65d10018df090918da50000",
+            "count": 2
+          },
+          {
+            "descriptor": "Payments",
+            "id": "fdf1c907f65d10018df08f5e80380000",
+            "count": 2
+          },
+          {
+            "descriptor": "Marketing",
+            "id": "fdf1c907f65d10018df08e2b534b0000",
+            "count": 2
+          },
+          {
+            "descriptor": "Project/Program Management (JFG)",
+            "id": "fdf1c907f65d10018df08cf811930000",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "facetParameter": "workerSubType",
+        "descriptor": "Job Type",
+        "values": [
+          {
+            "descriptor": "Regular",
+            "id": "fdf1c907f65d1000e8a5890a694b0000",
+            "count": 57
+          }
+        ]
+      },
+      {
+        "facetParameter": "timeType",
+        "descriptor": "Time Type",
+        "values": [
+          {
+            "descriptor": "Full time",
+            "id": "fdf1c907f65d10005760fa3aa69f0000",
+            "count": 57
+          }
+        ]
+      },
+      {
+        "facetParameter": "locationMainGroup",
+        "values": [
+          {
+            "facetParameter": "locations",
+            "descriptor": "Locations",
+            "values": [
+              {
+                "descriptor": "Adelaide, Australia",
+                "id": "fdf1c907f65d1000e7ee02ff90000000",
+                "count": 2
+              },
+              {
+                "descriptor": "Australia, Remote",
+                "id": "fdf1c907f65d1000e7ee4fc5ee920000",
+                "count": 1
+              },
+              {
+                "descriptor": "Bangalore",
+                "id": "fdf1c907f65d1000e7ed0417e6e70000",
+                "count": 1
+              },
+              {
+                "descriptor": "Bangalore, India",
+                "id": "fdf1c907f65d1000e7edf66793d60000",
+                "count": 16
+              },
+              {
+                "descriptor": "Boston, MA",
+                "id": "fdf1c907f65d1000e7ee535f1ecb0000",
+                "count": 17
+              },
+              {
+                "descriptor": "Chicago, IL",
+                "id": "fdf1c907f65d1000e7ee56f862e90000",
+                "count": 4
+              },
+              {
+                "descriptor": "Cluj-Napoca, Romania",
+                "id": "fdf1c907f65d1000e7edb6d42c170000",
+                "count": 1
+              },
+              {
+                "descriptor": "London",
+                "id": "fdf1c907f65d1000e7edd09ed0ea0000",
+                "count": 2
+              },
+              {
+                "descriptor": "Mexico City, Mexico",
+                "id": "fdf1c907f65d1000e7ee5a9197930000",
+                "count": 1
+              },
+              {
+                "descriptor": "Singapore, Sinagpore",
+                "id": "fdf1c907f65d1000e7ee1f2fb6f40000",
+                "count": 2
+              },
+              {
+                "descriptor": "US, Remote TX",
+                "id": "fdf1c907f65d1000e7eebb2102860000",
+                "count": 1
+              },
+              {
+                "descriptor": "Valencia, Spain",
+                "id": "fdf1c907f65d1000e7ede46969300000",
+                "count": 10
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "userAuthenticated": false
+  },
+  "closing": {
+    "total": 57,
+    "jobPostings": [
+      {
+        "title": "Payroll Specialist",
+        "externalPath": "/job/Valencia-Spain/Payroll-Specialist_JR-1052",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 11 Days Ago",
+        "bulletFields": [
+          "JR-1052"
+        ]
+      },
+      {
+        "title": "Global Benefits Specialist",
+        "externalPath": "/job/Valencia-Spain/Global-Benefits-Specialist_JR-1043",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1043"
+        ]
+      },
+      {
+        "title": "Principal Product Manager - Payments Platform",
+        "externalPath": "/job/Valencia-Spain/Principal-Product-Manager_JR-1034",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1034"
+        ]
+      },
+      {
+        "title": "IT Cloud Engineer II",
+        "externalPath": "/job/Valencia-Spain/IT-Cloud-Engineer-II_JR-1055",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1055"
+        ]
+      },
+      {
+        "title": "Collections Specialist",
+        "externalPath": "/job/Valencia-Spain/Collections-Specialist_JR-1053",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 14 Days Ago",
+        "bulletFields": [
+          "JR-1053"
+        ]
+      },
+      {
+        "title": "Deal Ops Analyst",
+        "externalPath": "/job/Valencia-Spain/Deal-Ops-Analyst_JR-1093",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 15 Days Ago",
+        "bulletFields": [
+          "JR-1093"
+        ]
+      },
+      {
+        "title": "Salesforce Dev Ops Engineer",
+        "externalPath": "/job/Valencia-Spain/Salesforce-Dev-Ops-Engineer_JR-1038",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 15 Days Ago",
+        "bulletFields": [
+          "JR-1038"
+        ]
+      },
+      {
+        "title": "Senior Data Engineer I",
+        "externalPath": "/job/Valencia-Spain/Senior-Data-Engineer-I_JR-1039",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 16 Days Ago",
+        "bulletFields": [
+          "JR-1039"
+        ]
+      },
+      {
+        "title": "IT Engineer II, Client Platform Engineer (CPE)",
+        "externalPath": "/job/Valencia-Spain/IT-Engineer-II--Client-Platform-Engineer--CPE-_JR-1057",
+        "locationsText": "Valencia, Spain",
+        "postedOn": "Posted 16 Days Ago",
+        "bulletFields": [
+          "JR-1057"
+        ]
+      },
+      {
+        "title": "Implementation Consultant",
+        "externalPath": "/job/London/Senior-Implementation-Consultant_JR-1037",
+        "locationsText": "London",
+        "postedOn": "Posted 2 Days Ago",
+        "bulletFields": [
+          "JR-1037"
+        ]
+      },
+      {
+        "title": "Site Reliability Engineer II",
+        "externalPath": "/job/Cluj-Napoca-Romania/Site-Reliability-Engineer-II_JR-1042",
+        "locationsText": "Cluj-Napoca, Romania",
+        "postedOn": "Posted 2 Days Ago",
+        "bulletFields": [
+          "JR-1042"
+        ]
+      },
+      {
+        "title": "Senior Technical Implementation Manager",
+        "externalPath": "/job/US-Remote-TX/Senior-Technical-Implementation-Manager_JR-1023",
+        "locationsText": "US, Remote TX",
+        "postedOn": "Posted 3 Days Ago",
+        "bulletFields": [
+          "JR-1023"
+        ]
+      },
+      {
+        "title": "Technical Support Engineer II",
+        "externalPath": "/job/Chicago-IL/Technical-Support-Engineer_JR-1032",
+        "locationsText": "Chicago, IL",
+        "postedOn": "Posted 3 Days Ago",
+        "bulletFields": [
+          "JR-1032"
+        ]
+      },
+      {
+        "title": "Security Engineer II (Offensive)",
+        "externalPath": "/job/Bangalore-India/Security-Engineer-II--Offensive-_JR-1079",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1079"
+        ]
+      },
+      {
+        "title": "Security Engineer II (Offensive)",
+        "externalPath": "/job/Bangalore-India/Security-Engineer-II--Offensive-_JR-1089",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1089"
+        ]
+      },
+      {
+        "title": "Security Engineer II (Offensive)",
+        "externalPath": "/job/Bangalore-India/Security-Engineer-II--Offensive-_JR-1069",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1069"
+        ]
+      },
+      {
+        "title": "Senior Security Engineer (Offensive)",
+        "externalPath": "/job/Bangalore-India/Senior-Security-Engineer--Offensive-_JR-1088",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1088"
+        ]
+      },
+      {
+        "title": "Senior Payment Operations Specialist, Infrastructure & Network Enablement",
+        "externalPath": "/job/Boston-MA/Senior-Payment-Operations-Specialist--Infrastructure---Network-Enablement_JR-1022",
+        "locationsText": "Boston, MA",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1022"
+        ]
+      },
+      {
+        "title": "Senior Security Engineer (Offensive)",
+        "externalPath": "/job/Bangalore-India/Senior-Security-Engineer--Offensive-_JR-1072",
+        "locationsText": "Bangalore, India",
+        "postedOn": "Posted 4 Days Ago",
+        "bulletFields": [
+          "JR-1072"
+        ]
+      },
+      {
+        "title": "Technical Sales Manager",
+        "externalPath": "/job/Australia-Remote/Technical-Sales-Manager_JR-1094-1",
+        "locationsText": "Australia, Remote",
+        "postedOn": "Posted 6 Days Ago",
+        "bulletFields": [
+          "JR-1094"
+        ]
+      }
+    ],
+    "facets": [
+      {
+        "facetParameter": "jobFamilyGroup",
+        "descriptor": "Job Category",
+        "values": [
+          {
+            "descriptor": "Risk & Security (JFG)",
+            "id": "fdf1c907f65d10018df0925e3d720000",
+            "count": 12
+          },
+          {
+            "descriptor": "Information Technology (JFG)",
+            "id": "fdf1c907f65d10018df08b2b5a740000",
+            "count": 10
+          },
+          {
+            "descriptor": "Engineering",
+            "id": "fdf1c907f65d10018df0835ec5110000",
+            "count": 7
+          },
+          {
+            "descriptor": "Sales",
+            "id": "fdf1c907f65d10018df0912b24b70000",
+            "count": 6
+          },
+          {
+            "descriptor": "Implementation",
+            "id": "fdf1c907f65d10018df0895e9f640000",
+            "count": 3
+          },
+          {
+            "descriptor": "Commercial",
+            "id": "fdf1c907f65d10018df07e90961a0000",
+            "count": 3
+          },
+          {
+            "descriptor": "Payments",
+            "id": "fdf1c907f65d10018df08f5e80380000",
+            "count": 2
+          },
+          {
+            "descriptor": "Marketing",
+            "id": "fdf1c907f65d10018df08e2b534b0000",
+            "count": 2
+          },
+          {
+            "descriptor": "Project/Program Management (JFG)",
+            "id": "fdf1c907f65d10018df08cf811930000",
+            "count": 2
+          },
+          {
+            "descriptor": "Finance",
+            "id": "fdf1c907f65d10018df086f8176d0000",
+            "count": 2
+          },
+          {
+            "descriptor": "People",
+            "id": "fdf1c907f65d10018df085c4d17b0000",
+            "count": 2
+          },
+          {
+            "descriptor": "Data & Analytics (JFG)",
+            "id": "fdf1c907f65d10018df08491975b0000",
+            "count": 2
+          },
+          {
+            "descriptor": "Customer Support",
+            "id": "fdf1c907f65d10018df07fc41a400000",
+            "count": 2
+          },
+          {
+            "descriptor": "Product",
+            "id": "fdf1c907f65d10018df090918da50000",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "facetParameter": "workerSubType",
+        "descriptor": "Job Type",
+        "values": [
+          {
+            "descriptor": "Regular",
+            "id": "fdf1c907f65d1000e8a5890a694b0000",
+            "count": 57
+          }
+        ]
+      },
+      {
+        "facetParameter": "timeType",
+        "descriptor": "Time Type",
+        "values": [
+          {
+            "descriptor": "Full time",
+            "id": "fdf1c907f65d10005760fa3aa69f0000",
+            "count": 57
+          }
+        ]
+      },
+      {
+        "facetParameter": "locationMainGroup",
+        "values": [
+          {
+            "facetParameter": "locations",
+            "descriptor": "Locations",
+            "values": [
+              {
+                "descriptor": "Adelaide, Australia",
+                "id": "fdf1c907f65d1000e7ee02ff90000000",
+                "count": 2
+              },
+              {
+                "descriptor": "Australia, Remote",
+                "id": "fdf1c907f65d1000e7ee4fc5ee920000",
+                "count": 1
+              },
+              {
+                "descriptor": "Bangalore",
+                "id": "fdf1c907f65d1000e7ed0417e6e70000",
+                "count": 1
+              },
+              {
+                "descriptor": "Bangalore, India",
+                "id": "fdf1c907f65d1000e7edf66793d60000",
+                "count": 16
+              },
+              {
+                "descriptor": "Boston, MA",
+                "id": "fdf1c907f65d1000e7ee535f1ecb0000",
+                "count": 17
+              },
+              {
+                "descriptor": "Chicago, IL",
+                "id": "fdf1c907f65d1000e7ee56f862e90000",
+                "count": 4
+              },
+              {
+                "descriptor": "Cluj-Napoca, Romania",
+                "id": "fdf1c907f65d1000e7edb6d42c170000",
+                "count": 1
+              },
+              {
+                "descriptor": "London",
+                "id": "fdf1c907f65d1000e7edd09ed0ea0000",
+                "count": 2
+              },
+              {
+                "descriptor": "Mexico City, Mexico",
+                "id": "fdf1c907f65d1000e7ee5a9197930000",
+                "count": 1
+              },
+              {
+                "descriptor": "Singapore, Sinagpore",
+                "id": "fdf1c907f65d1000e7ee1f2fb6f40000",
+                "count": 2
+              },
+              {
+                "descriptor": "US, Remote TX",
+                "id": "fdf1c907f65d1000e7eebb2102860000",
+                "count": 1
+              },
+              {
+                "descriptor": "Valencia, Spain",
+                "id": "fdf1c907f65d1000e7ede46969300000",
+                "count": 10
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "userAuthenticated": false
+  }
+}

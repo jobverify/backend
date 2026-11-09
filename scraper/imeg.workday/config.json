@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://wd1.myworkdaysite.com/wday/cxs/imeg/Imeg_Careers/jobs",
+  "detailUrlBase": "https://wd1.myworkdaysite.com/en-US/recruiting/imeg/Imeg_Careers",
+  "countryFacetParameter": "locationCountry"
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "source": "carelonglobalsolutions",
+    "companyName": "Carelon Global Solutions",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/carelonglobalsolutions.workday/script.js",
+    "dryRunFile": "carelonglobalsolutions.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "current-regional-corporate-binding-and-strict-shared-workday-union",
+    "companyDomain": "carelonglobal.in",
+    "companyCareerPage": "https://www.carelonglobal.in/careers",
+    "officialHomepageUrl": "https://www.carelonglobal.in/",
+    "jobsBoardUrl": "https://elevancehealth.wd1.myworkdayjobs.com/en-US/carelonglobal_in",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T03:15:03.796Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-regional-binding-runtime-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-local-independent-review",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T03:15:03.796Z",
+      "officialURL": "https://www.carelonglobal.in/",
+      "matchedLinks": [
+        "https://www.carelonglobal.in/careers",
+        "https://elevancehealth.wd1.myworkdayjobs.com/en-US/carelonglobal_in"
+      ],
+      "bindingMethod": "current-active-corporate-careers-and-regional-native-board",
+      "proofFile": "../artifacts/full-catalog/ranked-workday-native-001/carelon-source-native-008/001.json",
+      "proofSha256": "8822a62d0e27ff2723bc88500d14f4c5d83687cc5e0f4bee476cf3e64b6bde7d",
+      "careersProofFile": "../artifacts/full-catalog/ranked-workday-native-001/carelon-source-native-008/002.json",
+      "careersProofSha256": "ec9e5d3ade6f97ec36ab90fb93999674b35da8790eaec983484d0b65adc81857"
+    },
+    "paginationStrategy": "all-current-regional-native-pages-plus-stable-first-page-and-every-detail-recheck",
+    "extractionStrategy": "current-India-corporate-handoff+strict-shared-Workday-identity-country-employer-fullJD+source-local-active-content",
+    "sourceScopeNotes": "Exact India-regional carelonglobal_in board, not the whole Elevance or Carelon group. Every selected role must name Carelon Global Solutions India LLP and explicit India native country. All jobs stay company-scope partial; whole-company global/India counts unknown. No new employer or alias invented.",
+    "verifiedSurfaceSummary": "Current official India corporate and careers pages actively link the exact native board. The unchanged strict shared Workday adapter validates listing, identity, full native content, status, country, employer and dates; source-local active-content guard and regional coverage flags are retained. Runtime counts are separate."
+  }
+]

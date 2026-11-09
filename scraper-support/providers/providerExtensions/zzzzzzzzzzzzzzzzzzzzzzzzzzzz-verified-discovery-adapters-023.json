@@ -1,0 +1,45 @@
+[
+  {
+    "source": "cargill",
+    "companyName": "Cargill",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/cargill.workday/script.js",
+    "dryRunFile": "cargill.workday/jobs.json",
+    "atsPlatform": "successfactors-rmk",
+    "parser": "official-talentbrew-country-filter-to-shared-rmk-detail",
+    "companyDomain": "cargill.com",
+    "companyCareerPage": "https://careers.cargill.com/en/search-jobs",
+    "officialHomepageUrl": "https://www.cargill.com/",
+    "jobsBoardUrl": "https://careers.cargill.com/en/search-jobs",
+    "nativeDetailOrigin": "https://jobs.cargill.com",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T02:46:17.661Z",
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T02:46:17.661Z",
+      "officialURL": "https://www.cargill.com/",
+      "matchedLinks": [
+        "https://careers.cargill.com/",
+        "https://careers.cargill.com/en/search-jobs"
+      ],
+      "bindingMethod": "current-corporate-careers-search-to-per-role-exact-SAP-company-requisition-and-RMK-detail",
+      "proofFile": "../artifacts/full-catalog/cargill-native-001/source-native-016/001.json",
+      "proofSha256": "6722d569cc6fdd0e89b5701862ede86de56903c07cc2ae5f443f594401fe6be5"
+    },
+    "paginationStrategy": "native-public-India-country-facet-all-pages-and-complete-stable-recheck",
+    "extractionStrategy": "current-corporate+native-public-query-client+typed-pagination+role-JSONLD+exact-SAP-handoff+shared-RMK-full-role-description",
+    "sourceScopeNotes": "Complete enumeration of the current public India country filter only; whole-company coverage remains unknown. Every role is explicitly partial. Public and RMK offices/dates remain separate when they differ; a foreign RMK primary is retained only with explicit matching corporate secondary India office. Earliest observed native publication date is preserved. No absence or upstream error establishes verified zero.",
+    "verifiedSurfaceSummary": "Current official Cargill corporate handoff, advertised public Talentbrew query client, all India-filter pages, native role identity and SAP/RMK full descriptions are checked per run. Runtime counts are not stored in metadata."
+  }
+]

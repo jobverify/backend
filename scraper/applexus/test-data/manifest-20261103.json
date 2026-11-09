@@ -1,0 +1,315 @@
+{
+  "source": "applexus",
+  "captureMode": "ordinary anonymous public-site navigation, public read-only listing responses, and public HTTPS role pages",
+  "headersOrCookiesRetainedFromBrowser": false,
+  "files": [
+    {
+      "url": "https://www.applexus.com/careers",
+      "file": "careers-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:27:22.804Z",
+      "originalSha256": "dd0839844a87cff9de4d09dd7397a1d02db0543479b5724d466cfc6ae3535d03",
+      "fixtureSha256": "dd0839844a87cff9de4d09dd7397a1d02db0543479b5724d466cfc6ae3535d03",
+      "gzipSha256": "49a927453f4e6fd6a2470f101022b0e72098c8cd53ed6740c9b0591a3689842e",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/_next/static/chunks/3836-56e872105780e69a.js",
+      "file": "careers-widget-redacted-20261103.js.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:10:49.829Z",
+      "originalSha256": "86aff8f731f5cad23564f6d50ebfef49ed8f19f323f7c05e0e7f4cd1fa925484",
+      "fixtureSha256": "f8a54a223fcf03e2d854dcd20f8718c7be31267f4c54e8a6638b86426f95bc29",
+      "gzipSha256": "31910b61f73a89ed0801370cc43400a19d08f04d0b2155ad6d0dbfb25e5f370c",
+      "redactions": [
+        "Public frontend request-configuration credential literal; protocol and program structure retained."
+      ]
+    },
+    {
+      "url": "https://www.applexus.com/careers/associate-director-ai-ml",
+      "file": "associate-director-ai-ml-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.042Z",
+      "originalSha256": "5fc208e98faf4fa69127fbcace68555eb386309fc8e603940ff5ac48dad87263",
+      "fixtureSha256": "5fc208e98faf4fa69127fbcace68555eb386309fc8e603940ff5ac48dad87263",
+      "gzipSha256": "77ffbc7aa81593f1f1858211c945cf7f972ea25ff4e8e2b77d8e1e93ad0bed55",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/associate-director-bw_20250311",
+      "file": "associate-director-bw_20250311-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.816Z",
+      "originalSha256": "dfad06ac3f818199c059c7f7acb99697783e85d29bb36648581cb55627574184",
+      "fixtureSha256": "dfad06ac3f818199c059c7f7acb99697783e85d29bb36648581cb55627574184",
+      "gzipSha256": "cafb8dfc134b6b56485f0a4fe008f63f8eed944e5ebe2bb7f78037bfcd8bc3fc",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/associate-director-sap-integration",
+      "file": "associate-director-sap-integration-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.317Z",
+      "originalSha256": "e2d89db3bea75b9e5ad9ab47f9f84f375aac8862432bd5c0a69facca4938f1e8",
+      "fixtureSha256": "e2d89db3bea75b9e5ad9ab47f9f84f375aac8862432bd5c0a69facca4938f1e8",
+      "gzipSha256": "47616d74894fd7a52ffd0a9be972b1bebe89aa3fa67017fb4e1886fca295d742",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/client-partner-technology",
+      "file": "client-partner-technology-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.250Z",
+      "originalSha256": "fac029b4a70439c3c8675159bb61ca869889779a4795ddbeee76339412b7de32",
+      "fixtureSha256": "fac029b4a70439c3c8675159bb61ca869889779a4795ddbeee76339412b7de32",
+      "gzipSha256": "241614e513fcc62c7eddbcdf75a958cd4aac9a1088ca97f10db017229233241c",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consultant-ai-ml",
+      "file": "consultant-ai-ml-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:29.270Z",
+      "originalSha256": "8c3f8305c7b1c5cd2399d76e9e467957d31811f6f4ea6b3faebe272713882150",
+      "fixtureSha256": "8c3f8305c7b1c5cd2399d76e9e467957d31811f6f4ea6b3faebe272713882150",
+      "gzipSha256": "799d2d9cb0605f7343afd060c8e2814999a8c99167e0c237c737d0a689153b9f",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-ai-ml",
+      "file": "consulting-lead-ai-ml-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:29.393Z",
+      "originalSha256": "22c1103f55e3d2c98f7a1f766929d77815b0b92f64b282c42e091c24b295877c",
+      "fixtureSha256": "22c1103f55e3d2c98f7a1f766929d77815b0b92f64b282c42e091c24b295877c",
+      "gzipSha256": "ed1aec357bdcf0fbca1b4a36c7654ccfacc9619d6476b32b38fc61d6fb58638f",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-bw4hana",
+      "file": "consulting-lead-bw4hana-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.248Z",
+      "originalSha256": "e6b1b5e11d9ab07590e9366d771599ee3271fcc6429c8875e605c7507c85ffdd",
+      "fixtureSha256": "e6b1b5e11d9ab07590e9366d771599ee3271fcc6429c8875e605c7507c85ffdd",
+      "gzipSha256": "f5094a22fac0f73e6bc271a8a7c7493606566b92846616d4179cc7470d7757ca",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-databricks",
+      "file": "consulting-lead-databricks-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.740Z",
+      "originalSha256": "2e0ddfd5c732d16c7cccf2c3f91fb4d0daba28d165a8ab9cfb13ac03223876f5",
+      "fixtureSha256": "2e0ddfd5c732d16c7cccf2c3f91fb4d0daba28d165a8ab9cfb13ac03223876f5",
+      "gzipSha256": "e94c6c167d070b313c9ee73a0e0e9c5f26a5ab40860898836a27604da7a11620",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-sap-abap",
+      "file": "consulting-lead-sap-abap-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.869Z",
+      "originalSha256": "4648b4f0207753acd18f1a63197e42d88636933cc7d8c470f9e67c5116d13fe9",
+      "fixtureSha256": "4648b4f0207753acd18f1a63197e42d88636933cc7d8c470f9e67c5116d13fe9",
+      "gzipSha256": "912c811d1e63bea7cfeda8de80268c80e3758f6da4a9a90f4748035b27bf0150",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-sap-fico",
+      "file": "consulting-lead-sap-fico-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.801Z",
+      "originalSha256": "f7149b38cc7be0b0dfcf647c48da62e7da05c4b292bbede6f7836c92663106c8",
+      "fixtureSha256": "f7149b38cc7be0b0dfcf647c48da62e7da05c4b292bbede6f7836c92663106c8",
+      "gzipSha256": "72af72455361deb8c48f17ed40d005525ff9038f974168c648b5647771d55931",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-sap-finance-and-group-reporting-canada",
+      "file": "consulting-lead-sap-finance-and-group-reporting-canada-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.734Z",
+      "originalSha256": "6effd389ec2f39d895bb7c2138db69f26017244b04a39789d97ec668d344150c",
+      "fixtureSha256": "6effd389ec2f39d895bb7c2138db69f26017244b04a39789d97ec668d344150c",
+      "gzipSha256": "64b9b6e9924caad49cff44c5ef844d1099acf69c6251570cdd7eb032c74d0748",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-sap-finance-and-group-reporting-usa",
+      "file": "consulting-lead-sap-finance-and-group-reporting-usa-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.212Z",
+      "originalSha256": "7ddc2b10d1430549f22db532232dd24596aa7eeb320397c13f7b58233d5dbb64",
+      "fixtureSha256": "7ddc2b10d1430549f22db532232dd24596aa7eeb320397c13f7b58233d5dbb64",
+      "gzipSha256": "4e15de9a9653d5048f8efd0f40a7a27244513b2689a29c2e1e84ac091ae0ef55",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/consulting-lead-sap-security",
+      "file": "consulting-lead-sap-security-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.318Z",
+      "originalSha256": "f1f5c7a62054accd7165ea925b8b443333597a51f6f13bb2d9c78f8f9a3f9940",
+      "fixtureSha256": "f1f5c7a62054accd7165ea925b8b443333597a51f6f13bb2d9c78f8f9a3f9940",
+      "gzipSha256": "371d6b4ed34e0cebb0654e244910ff4d161380b86693c8fb540c9b1984795b58",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/databricks-architect-usa",
+      "file": "databricks-architect-usa-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.687Z",
+      "originalSha256": "2bd886febe71f3f65867da0bd6a3259016d6414d40aebf124675fef163865261",
+      "fixtureSha256": "2bd886febe71f3f65867da0bd6a3259016d6414d40aebf124675fef163865261",
+      "gzipSha256": "73aa00624b8cac5a028e9f10e361cfb83580ec9340e59d7c86f0c70153372911",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/director-fico",
+      "file": "director-fico-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:31.288Z",
+      "originalSha256": "bec62832f349b11b7b9f1483a8ac31a9b4d90650df61f96e7a84c0355eab8b31",
+      "fixtureSha256": "bec62832f349b11b7b9f1483a8ac31a9b4d90650df61f96e7a84c0355eab8b31",
+      "gzipSha256": "a4b174a31b90795a8f4fe38c109e2e14737fdcdb66d5c8bd42427c6fe7e74e68",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/director-fico-uk-onsite",
+      "file": "director-fico-uk-onsite-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.017Z",
+      "originalSha256": "cafc0c0044425146fd469621fac1f67c3865a439d5ed5751aec40b7ea1b91b6b",
+      "fixtureSha256": "cafc0c0044425146fd469621fac1f67c3865a439d5ed5751aec40b7ea1b91b6b",
+      "gzipSha256": "430bceb9146522e94f45b5a7a805457dcce14687c41d78ecd2f7ba446c1897d1",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/director-scm-uk-onsite",
+      "file": "director-scm-uk-onsite-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:29.987Z",
+      "originalSha256": "bead9ee6b256c981ce828c16bb239898ccca0f1620bcf4a2e0eed3ffc80f72b6",
+      "fixtureSha256": "bead9ee6b256c981ce828c16bb239898ccca0f1620bcf4a2e0eed3ffc80f72b6",
+      "gzipSha256": "545da4115d9c000c7d9c958fbeb74bdf0632a2395533109ca4a957795e408217",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/hyperscaler-architect-delivery-leader-20240925",
+      "file": "hyperscaler-architect-delivery-leader-20240925-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.736Z",
+      "originalSha256": "cf30f279ba976d1adb357a05c671299a6f8ed8aa96c30d7aaac04cca4d0203a1",
+      "fixtureSha256": "cf30f279ba976d1adb357a05c671299a6f8ed8aa96c30d7aaac04cca4d0203a1",
+      "gzipSha256": "29538d2c3e66d3046568201cc021cec176b4f107b64da679a12bfcb617d9b218",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/offshore-recruitment-head",
+      "file": "offshore-recruitment-head-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:29.269Z",
+      "originalSha256": "909701497fd2c2fb5ca9d2fe9ca829a7e45b81aac8510c7109bf83aa9833871c",
+      "fixtureSha256": "909701497fd2c2fb5ca9d2fe9ca829a7e45b81aac8510c7109bf83aa9833871c",
+      "gzipSha256": "72852a821a402e64fbc719269e596ea24b7eefe1a3a5bb517406eca4df7cf19d",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/partner-oil-and-gas-practice-us",
+      "file": "partner-oil-and-gas-practice-us-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.714Z",
+      "originalSha256": "443bb673e65e44199ffa131d411c5b200a78a2e92ca39cf78e10e442e5fb155f",
+      "fixtureSha256": "443bb673e65e44199ffa131d411c5b200a78a2e92ca39cf78e10e442e5fb155f",
+      "gzipSha256": "65cac2580a4f9b48c6fbd94cd4aeb1b3bca4c0a82589905984906d811e8d7c5c",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/partnership-executive",
+      "file": "partnership-executive-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:29.290Z",
+      "originalSha256": "5c26fe8df66be7f6e58a8db0d04c02f0d6fbc63f1334aa1f51fd75ebc1fcc4ec",
+      "fixtureSha256": "5c26fe8df66be7f6e58a8db0d04c02f0d6fbc63f1334aa1f51fd75ebc1fcc4ec",
+      "gzipSha256": "64baf34bc89d30c97080a01e135533fa1ec17f1bf4c5fe4923a7853d9a1e0d39",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/sap-sales-executive",
+      "file": "sap-sales-executive-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.061Z",
+      "originalSha256": "4759ec7dedcd7ad783d4482ceef0df74ebee9e7ec712695875e77db98a656322",
+      "fixtureSha256": "4759ec7dedcd7ad783d4482ceef0df74ebee9e7ec712695875e77db98a656322",
+      "gzipSha256": "004f9ac9a1070a8b9a8b8188a61f0c2f3a4d35c6e59dc3ea0a18f0b69bd2ee27",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/senior-consultant-abap",
+      "file": "senior-consultant-abap-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.367Z",
+      "originalSha256": "e2a715722341d7dd2a86f94bef196e79f18a1c60e401e650e28926f6498f577f",
+      "fixtureSha256": "e2a715722341d7dd2a86f94bef196e79f18a1c60e401e650e28926f6498f577f",
+      "gzipSha256": "41e8ce7ba71c8f74c83ab705a435a7007fb337d50e7c0ed2d9f49848689a2727",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/senior-consultant-fico",
+      "file": "senior-consultant-fico-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:32.578Z",
+      "originalSha256": "30a1c35caf6fa04b9e5d94ea076776cfc56c40de25cbd87f82415b8349c47938",
+      "fixtureSha256": "30a1c35caf6fa04b9e5d94ea076776cfc56c40de25cbd87f82415b8349c47938",
+      "gzipSha256": "83834fdd2a8045c447ad1841469c85e8320222a8847c700bc18175bc371b8a03",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/senior-data-scientist-usa",
+      "file": "senior-data-scientist-usa-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.170Z",
+      "originalSha256": "df940eca59dbe6900fe2ef93ee9a985871da9136c1747e684c4bc829c23b9b5c",
+      "fixtureSha256": "df940eca59dbe6900fe2ef93ee9a985871da9136c1747e684c4bc829c23b9b5c",
+      "gzipSha256": "647ad9885bf4ac3ee82a7565f8f89105d3c3ded44597813eaa175a452f3cee70",
+      "redactions": []
+    },
+    {
+      "url": "https://www.applexus.com/careers/trainee-consultant-data-science-11032026",
+      "file": "trainee-consultant-data-science-11032026-20261103.html.gz",
+      "status": 200,
+      "capturedAt": "2026-11-02T20:18:30.788Z",
+      "originalSha256": "38b29267580157c3f9069e2377c3b6d80d00f846b7530e29b0ca0395e64428da",
+      "fixtureSha256": "38b29267580157c3f9069e2377c3b6d80d00f846b7530e29b0ca0395e64428da",
+      "gzipSha256": "da0b4001ceefd90f9ba9c42ca0433c300d613287f4dcf490ae1176a7976b99c1",
+      "redactions": []
+    }
+  ],
+  "listingFiles": [
+    {
+      "url": "https://admin.applexus.com/api/careers_list?limit=9&location=0&offset=0",
+      "file": "listing-offset-0-20261103.json.gz",
+      "offset": 0,
+      "status": 200,
+      "fixtureSha256": "9a61c7c7b6c50e8978d12f0f7b9a0f2cef522248e9b3e66756e9100c5dcda4b0",
+      "gzipSha256": "882a47405a96c63f4d3fa00da1fa83abd5c074b06492684777f9e7ae3808d4a5"
+    },
+    {
+      "url": "https://admin.applexus.com/api/careers_list?limit=9&location=0&offset=9",
+      "file": "listing-offset-9-20261103.json.gz",
+      "offset": 9,
+      "status": 200,
+      "fixtureSha256": "7c010e60c046053c2fdfae2e8a2c37e5f975f2f51f7c743f9eb84e714cecdefc",
+      "gzipSha256": "67fc5a842049098871b5274eebcd02863d593a5202b1591eae798b778a8236c0"
+    },
+    {
+      "url": "https://admin.applexus.com/api/careers_list?limit=9&location=0&offset=18",
+      "file": "listing-offset-18-20261103.json.gz",
+      "offset": 18,
+      "status": 200,
+      "fixtureSha256": "627e1169bf1a7d0ba6c2c53085d3e74a941cf41eba3fa80b4a3d3f5bdd36c1b7",
+      "gzipSha256": "7478d11852b53421cdc06b7d812d10824edc462327c7099d33b47bdf47419ea3"
+    }
+  ]
+}

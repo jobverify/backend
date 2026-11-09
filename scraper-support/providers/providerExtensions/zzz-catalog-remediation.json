@@ -1,0 +1,137 @@
+[
+  {
+    "source": "five9india",
+    "companyName": "Five9 India",
+    "adapter": "publicAts",
+    "atsPlatform": "greenhouse",
+    "boardToken": "five9",
+    "companyCareerPage": "https://www.five9.com/about/careers/jobs",
+    "companyDomain": "www.five9.com",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+validated-public-ats-inventory+explicit-india-location+role-descriptions",
+    "parser": "validated-public-ats",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:16:28.737Z",
+      "officialURL": "https://www.five9.com/about/careers/jobs",
+      "evidenceURL": "https://www.five9.com/about/careers/jobs",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://boards.greenhouse.io/embed/job_board/js?for=five9"
+      ],
+      "bindingMethod": "official-careers-embedded-board"
+    },
+    "verifiedAt": "2026-10-19T19:16:29.310Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 92,
+    "verifiedIndiaJobCount": 27,
+    "verificationNotes": "Official recruitment link and complete public ATS inventory verified. Runtime inventory evidence is produced anew on every extraction."
+  },
+  {
+    "source": "gainsight",
+    "companyName": "Gainsight",
+    "adapter": "publicAts",
+    "atsPlatform": "ashby",
+    "boardToken": "gainsight",
+    "companyCareerPage": "https://www.gainsight.com/company/careers/?gsfrom=staircase",
+    "companyDomain": "www.gainsight.com",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+validated-public-ats-inventory+explicit-india-location+role-descriptions",
+    "parser": "validated-public-ats",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:19:29.586Z",
+      "officialURL": "https://www.gainsight.com/company/careers/?gsfrom=staircase",
+      "evidenceURL": "https://www.gainsight.com/company/careers/?gsfrom=staircase",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.ashbyhq.com/gainsight"
+      ],
+      "bindingMethod": "official-careers-embedded-board"
+    },
+    "verifiedAt": "2026-10-19T19:19:30.101Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 17,
+    "verifiedIndiaJobCount": 4,
+    "verificationNotes": "Official recruitment link and complete public ATS inventory verified. Runtime inventory evidence is produced anew on every extraction."
+  },
+  {
+    "source": "quizizz",
+    "companyName": "Wayground",
+    "companyAliases": [
+      "Quizizz"
+    ],
+    "adapter": "publicAts",
+    "atsPlatform": "lever",
+    "boardToken": "Wayground",
+    "companyCareerPage": "https://wayground.com/home/careers?lng=en",
+    "companyDomain": "wayground.com",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+validated-public-ats-inventory+explicit-india-location+role-descriptions",
+    "parser": "validated-public-ats",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:16:31.171Z",
+      "officialURL": "https://wayground.com/home/careers?lng=en",
+      "evidenceURL": "https://wayground.com/home/careers?lng=en",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.lever.co/Wayground"
+      ],
+      "bindingMethod": "official-careers-embedded-board"
+    },
+    "verifiedAt": "2026-10-19T19:16:31.477Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 8,
+    "verifiedIndiaJobCount": 3,
+    "verificationNotes": "Official recruitment link and complete public ATS inventory verified. Runtime inventory evidence is produced anew on every extraction."
+  },
+  {
+    "source": "spotify",
+    "companyName": "Spotify",
+    "adapter": "publicAts",
+    "atsPlatform": "lever",
+    "boardToken": "spotify",
+    "companyCareerPage": "https://lifeatspotify.com/jobs/research-scientist-personalization",
+    "companyDomain": "lifeatspotify.com",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+validated-public-ats-inventory+explicit-india-location+role-descriptions",
+    "parser": "validated-public-ats",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:23:21.193Z",
+      "officialURL": "https://lifeatspotify.com/jobs/research-scientist-personalization",
+      "evidenceURL": "https://lifeatspotify.com/jobs/research-scientist-personalization",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.lever.co/spotify/9e3bdb48-67eb-49d9-ae0b-a337ba69a05f/apply"
+      ],
+      "bindingMethod": "official-careers-embedded-board"
+    },
+    "verifiedAt": "2026-10-19T19:23:23.989Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 82,
+    "verifiedIndiaJobCount": 1,
+    "verificationNotes": "Official recruitment link and complete public ATS inventory verified. Runtime inventory evidence is produced anew on every extraction."
+  }
+]

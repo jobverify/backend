@@ -1,0 +1,113 @@
+{
+  "source": "amicableai",
+  "capturedAt": "2026-11-03T00:55:22.203Z",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "b210dcdf5c18a0bb0e75ead50bfd15059ad84b78061a4dfec87f560a9b6832fd",
+  "responses": [
+    {
+      "url": "https://amicable.io/",
+      "status": 200,
+      "bytes": 61986,
+      "sha256": "64c7420f4add457f2ba8f15ede08fe99c2e69a4027898e35e2da5073bd9429d4",
+      "originalCapture": "amicableai-home-64c7420f4add.body"
+    },
+    {
+      "url": "https://amicable.io/careers",
+      "status": 200,
+      "bytes": 97947,
+      "sha256": "4080ec11e27e2a2b5d0ab221aa54c8ac052bef6ed81a3e664f6768c53fd37df2",
+      "originalCapture": "amicableai-careers-4080ec11e27e.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable",
+      "status": 200,
+      "bytes": 92280,
+      "sha256": "d9df38a2b856c3076230616000687c759bf20c4466457ad80235ffae8a5e2589",
+      "originalCapture": "amicableai-declared-board-d9df38a2b856.body"
+    },
+    {
+      "url": "https://app.screenloop.com/assets/white_background-3212ae576ac079bb282a463ab8839eb4057711f94284781fc059a7d8b9989019.js",
+      "status": 200,
+      "bytes": 13,
+      "sha256": "b779e7863059873de107db2ff79ce9fe2a80558cb5c0dfaf1a08ee6467597c0a",
+      "originalCapture": "amicableai-declared-public-client-1-b779e7863059.body"
+    },
+    {
+      "url": "https://app.screenloop.com/assets/application-5e922a38ff52b8a19d1cdbb8879a241d6557fb5f5c86b6b0b64806a5e98927ca.js",
+      "status": 200,
+      "bytes": 11843466,
+      "sha256": "8502a97e44b5813a9481ea0f1830fcb3b38cf853eb36bef53482fb2d4eae2cde",
+      "originalCapture": "amicableai-declared-public-client-0-8502a97e44b5.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/9025?tab=overview",
+      "status": 200,
+      "bytes": 116884,
+      "sha256": "c191581605ba1d13812c670f86cec7a3c12feb6842f58df963ad096561d5a3fe",
+      "originalCapture": "amicableai-public-role-9025-c191581605ba.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/8921?tab=overview",
+      "status": 200,
+      "bytes": 112764,
+      "sha256": "02963084e5fb86ffd3eeb489471df33708f216a923b394fb4658fd0a0966cc1b",
+      "originalCapture": "amicableai-public-role-8921-02963084e5fb.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/8783?tab=overview",
+      "status": 200,
+      "bytes": 98058,
+      "sha256": "b49477fc26a5040cdd6d68849dc1496481f3c0bf5e282d13d1ab04302b2f6993",
+      "originalCapture": "amicableai-public-role-8783-b49477fc26a5.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/8822?tab=overview",
+      "status": 200,
+      "bytes": 115135,
+      "sha256": "b1be10d7acfac861effae9ff4cba55a9f836d7d357de25574582bbe3ad1cba95",
+      "originalCapture": "amicableai-public-role-8822-b1be10d7acfa.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/3483?tab=overview",
+      "status": 200,
+      "bytes": 90621,
+      "sha256": "be6213a4d3cd002b4d9ba0b0a51f31a1f54d5ffe43922967d14195f113504e94",
+      "originalCapture": "amicableai-public-role-3483-be6213a4d3cd.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/8833?tab=overview",
+      "status": 200,
+      "bytes": 126093,
+      "sha256": "a9a775720074b99c5f21eb892a64b2e76cd666c01f56bc8d62aa2d0bf9561cdf",
+      "originalCapture": "amicableai-public-role-8833-a9a775720074.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/8823?tab=overview",
+      "status": 200,
+      "bytes": 115970,
+      "sha256": "2791b314d917bcbf1de641085ad17275a54d4bde1adc7e42aa52bf0ca2b245e2",
+      "originalCapture": "amicableai-public-role-8823-2791b314d917.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/9035?tab=overview",
+      "status": 200,
+      "bytes": 118759,
+      "sha256": "cf8943c1afefd482688c307273f027311aaa6d123dcffff6074fc6c7793261b4",
+      "originalCapture": "amicableai-public-role-9035-cf8943c1afef.body"
+    },
+    {
+      "url": "https://app.screenloop.com/careers/amicable/job_posts/9026?tab=overview",
+      "status": 200,
+      "bytes": 119664,
+      "sha256": "344c9e5d848c5ce23c9246f2c7eb631266492aa57a82f9e4efc1337089744170",
+      "originalCapture": "amicableai-public-role-9026-344c9e5d848c.body"
+    },
+    {
+      "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.b21433efd.min.css",
+      "status": 200,
+      "bytes": 286925,
+      "sha256": "6b4bba34d2074a13de17fd62282417a729609181b4f0f5dada5d496b34ed8d91",
+      "originalCapture": "amicableai-declared-css-6b4bba34d207.body"
+    }
+  ]
+}

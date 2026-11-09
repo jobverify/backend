@@ -1,0 +1,41 @@
+{
+  "source": "aryaai",
+  "files": [
+    {
+      "label": "home",
+      "file": "home.html.gz",
+      "url": "https://arya.ai/",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:11:05.041Z",
+      "bytes": 114836,
+      "bodySha256": "3a5f2b0c93cd50df48abed5e1e673978547089270267e3c6e6c8a399f4f8cfb9",
+      "compressedSha256": "206de51d689ac9fe3431cd5513fffc7d6b35a93180fd18cbc89171e8789ac0ea",
+      "originalBytesUnmodified": true,
+      "synthetic": false
+    },
+    {
+      "label": "careers",
+      "file": "careers.html.gz",
+      "url": "https://arya.ai/careers",
+      "status": 200,
+      "capturedAt": "2026-11-03T03:11:04.857Z",
+      "bytes": 43339,
+      "bodySha256": "7a73ec6d7691b4ef0993b752a8ce4ef5bb4ce8842a1f75770bdb29b88d07cced",
+      "compressedSha256": "133a6523ef02132e1d4cb1201286a22c73450ea1f1c8aba2788dc51dccdf994f",
+      "originalBytesUnmodified": true,
+      "synthetic": false
+    },
+    {
+      "label": "declared-role",
+      "file": "declared-role.html.gz",
+      "url": "https://wellfound.com/jobs/3542202-senior-data-scientist",
+      "status": 410,
+      "capturedAt": "2026-11-03T03:12:36.860Z",
+      "bytes": 34926,
+      "bodySha256": "9a6c52e9d8b9595f20a4d29370272f4a838ac81403a7b2540e193eb3a8d425b1",
+      "compressedSha256": "6f4ae86347841a6c100daa311da5f4838d8110e3ae9f44026cf2d3ceb150fbd9",
+      "originalBytesUnmodified": true,
+      "synthetic": false
+    }
+  ]
+}

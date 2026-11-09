@@ -1,0 +1,137 @@
+{
+  "reviewedSource": "Current exact Conde Nast careers HTML and declared app/page/style originals; data/code inspection only",
+  "primaryBodySHA256": "494cf5907ee51754c8f4ef30fb15b3127b42eb7b6c47174334f538fe004d84d7",
+  "declaredScripts": [
+    {
+      "defer": "",
+      "nomodule": "",
+      "src": "/_next/static/chunks/polyfills-42372ed130431b0a.js"
+    },
+    {
+      "defer": "",
+      "src": "/_next/static/chunks/6074.1e311afc7e412bcf.js"
+    },
+    {
+      "defer": "",
+      "src": "/_next/static/chunks/3239.fa31ec9e6b15eabf.js"
+    },
+    {
+      "src": "/_next/static/chunks/webpack-2da4ac9d33ac27ae.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/framework-e6a24f004388438d.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/main-9fe49c61f47db799.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/pages/_app-8980c1e2daf41426.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/2533-8ea8ad8b74a258b9.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/1470-8ad7bc3e36b13449.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/pages/careers-8504f5719bd45b77.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/GsX66587wjWgfbYB6r5OQ/_buildManifest.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/GsX66587wjWgfbYB6r5OQ/_ssgManifest.js",
+      "defer": ""
+    }
+  ],
+  "declaredStylesheets": [
+    {
+      "rel": "stylesheet",
+      "href": "/_next/static/css/7983c30399e0f3f4.css",
+      "data-n-g": ""
+    }
+  ],
+  "inlineScriptCount": 2,
+  "inlineScripts": [
+    {
+      "type": "application/json",
+      "data-cms-component-manifest": "true"
+    },
+    {
+      "id": "__NEXT_DATA__",
+      "type": "application/json"
+    }
+  ],
+  "componentManifest": {
+    "version": 1,
+    "expectedCount": 8,
+    "valid": true,
+    "issues": [],
+    "components": [
+      {
+        "index": 0,
+        "type": "cn-components.block-large-text",
+        "id": 480,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 1,
+        "type": "cn-components.block-nav-with-media",
+        "id": 57,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 2,
+        "type": "cn-components.block-two-column",
+        "id": 395,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 3,
+        "type": "cn-components.block-media-text",
+        "id": 1383,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 4,
+        "type": "cn-components.block-media-text",
+        "id": 1382,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 5,
+        "type": "cn-components.block-two-column",
+        "id": 396,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 6,
+        "type": "cn-components.block-media",
+        "id": 364,
+        "valid": true,
+        "issues": []
+      },
+      {
+        "index": 7,
+        "type": "cn-components.block-large-text",
+        "id": 481,
+        "valid": true,
+        "issues": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "source": "asterdmhealthcare",
+    "scraperTimeoutMs": 600000
+  },
+  {
+    "source": "cadence",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "mastercard",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "nvidia",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "nxp",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "northerntrust",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "paloalto",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "salesforce",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "target",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "valeo",
+    "scraperTimeoutMs": 1200000
+  },
+  {
+    "source": "visa",
+    "scraperTimeoutMs": 1200000
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "source": "agribazaar",
+  "companyName": "Agribazaar",
+  "adapter": "script",
+  "modulePath": "../agribazaar/script.js",
+  "companyCareerPage": "https://m.agribazaar.com/careers-opportunities.html",
+  "atsPlatform": "official-company-site-no-structured-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "official-opportunities-page-plus-official-job-openings-page",
+  "extractionStrategy": "verified-opportunities-page+verified-current-openings-page+fail-closed-on-structured-listings",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "agribazaar.com",
+  "exactCompanyMatchOnly": true,
+  "verifiedOn": "2026-07-26",
+  "verifiedSurfaceSummary": "Verified https://m.agribazaar.com/careers-opportunities.html and its linked https://blog.agribazaar.com/job-openings/ page on July 26, 2026. The official opportunities page directs applicants to upload a resume; the linked first-party job-openings endpoint returned HTTP 404 during the live dry run, so the scraper returns no inferred jobs and fails closed on any non-404 change or structured listing."
+}

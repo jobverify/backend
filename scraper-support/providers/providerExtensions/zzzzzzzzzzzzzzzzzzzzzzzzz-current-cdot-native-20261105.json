@@ -1,0 +1,12 @@
+[
+ {
+  "source":"cdot",
+  "catalogOverride":true,
+  "paginationStrategy":"paired-current-official-table-and-declared-PDFs;company-scope-unqualified",
+  "extractionStrategy":"whole-original-bilingual-PDF-models+primary-English-criteria+advertisement-national-deployment-country-binding",
+  "verifiedOn":"2026-11-05",
+  "verifiedPublicJobCount":null,
+  "verifiedIndiaJobCount":null,
+  "verifiedSurfaceSummary":"Current official listing declares one native advertisement role with five positions. Both original listing/PDF observations and all 17 PDF page models are retained; the complete seven-page primary English version supplies criteria. The native Delhi assignment binds to India through this advertisement’s selected-candidate national deployment clause and its explicit India referent; literal table country and exact campus remain undisclosed. Missing or unreviewed deployment scope stays partial. Application opening and closing labels remain separate from unknown publication and timezone, and the application advertisement ID is separate from an undisclosed requisition. Company totals, listing/company completeness, application activation and lifecycle cleanup remain unqualified."
+ }
+]

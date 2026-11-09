@@ -1,0 +1,70 @@
+{
+  "source": "langchain",
+  "fixtureProvenance": {
+    "freshWorkflow": false,
+    "partialDiscoveryOnly": true,
+    "notes": "Original two registered failing reads plus separately declared manifest/SRI entry; public posting API not yet observed in this phase."
+  },
+  "records": [
+    {
+      "requestedUrl": "https://www.langchain.com/careers",
+      "finalUrl": "https://www.langchain.com/careers",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "bytes": 112597,
+      "sha256": "35395d8e48def62080d97b9ee3c0f1baec0573b759d04b5e75628d9416d3c0b3",
+      "bodyFile": "1-35395d8e48def62080d97b9ee3c0f1baec0573b759d04b5e75628d9416d3c0b3.gz",
+      "sourceRequestedAt": "2026-11-07T00:40:47.608Z",
+      "sourceCompletedAt": "2026-11-07T00:40:48.028Z",
+      "originalReceipt": "registered-readonly/receipts.json",
+      "acquisition": "ordinary anonymous GET; source default identity; strict TLS; no publisher JavaScript execution"
+    },
+    {
+      "requestedUrl": "https://jobs.ashbyhq.com/langchain",
+      "finalUrl": "https://jobs.ashbyhq.com/langchain",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "bytes": 55943,
+      "sha256": "66d8ba588dd6291c9bd69254df406f3e4fc4d26df2dbccf2bfde977a75d18df0",
+      "bodyFile": "2-66d8ba588dd6291c9bd69254df406f3e4fc4d26df2dbccf2bfde977a75d18df0.gz",
+      "sourceRequestedAt": "2026-11-07T00:40:48.046Z",
+      "sourceCompletedAt": "2026-11-07T00:40:48.572Z",
+      "originalReceipt": "registered-readonly/receipts.json",
+      "acquisition": "ordinary anonymous GET; source default identity; strict TLS; no publisher JavaScript execution"
+    },
+    {
+      "requestedUrl": "https://cdn.ashbyprd.com/frontend_non_user/9a61009d0135a9b1d820849e25de8c916f4233b0/.vite/manifest.json",
+      "finalUrl": "https://cdn.ashbyprd.com/frontend_non_user/9a61009d0135a9b1d820849e25de8c916f4233b0/.vite/manifest.json",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "bytes": 1562,
+      "sha256": "4581d3bfbf2e3059d0b682c803c8f4dfd6a3e90e2f0323eb4b45c43c532e8d1e",
+      "bodyFile": "3-4581d3bfbf2e3059d0b682c803c8f4dfd6a3e90e2f0323eb4b45c43c532e8d1e.gz",
+      "sourceRequestedAt": "2026-11-07T00:43:52.915Z",
+      "sourceCompletedAt": "2026-11-07T00:43:53.618Z",
+      "originalReceipt": "current-declared-client/receipts.json",
+      "acquisition": "ordinary anonymous GET; source default identity; strict TLS; no publisher JavaScript execution"
+    },
+    {
+      "requestedUrl": "https://cdn.ashbyprd.com/frontend_non_user/9a61009d0135a9b1d820849e25de8c916f4233b0/assets/index-DeV_C57G.js",
+      "finalUrl": "https://cdn.ashbyprd.com/frontend_non_user/9a61009d0135a9b1d820849e25de8c916f4233b0/assets/index-DeV_C57G.js",
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript"
+      },
+      "bytes": 4273392,
+      "sha256": "ed52c10df54c7e176b700a371d76d2530283f5f2452fa986eca98599dfeb5803",
+      "bodyFile": "4-ed52c10df54c7e176b700a371d76d2530283f5f2452fa986eca98599dfeb5803.gz",
+      "sourceRequestedAt": "2026-11-07T00:43:53.625Z",
+      "sourceCompletedAt": "2026-11-07T00:43:54.199Z",
+      "originalReceipt": "current-declared-client/receipts.json",
+      "acquisition": "ordinary anonymous GET; source default identity; strict TLS; no publisher JavaScript execution"
+    }
+  ]
+}

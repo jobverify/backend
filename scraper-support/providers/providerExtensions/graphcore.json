@@ -1,0 +1,23 @@
+{
+  "source": "graphcore",
+  "companyName": "Graphcore",
+  "officialBrandName": "Graphcore",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../graphcore/script.js",
+  "dryRunFile": "graphcore/jobs.json",
+  "companyCareerPage": "https://www.graphcore.ai/careers",
+  "officialCareersPageUrl": "https://www.graphcore.ai/jobs",
+  "officialSiteUrl": "https://www.graphcore.ai/",
+  "companyDomain": "graphcore.ai",
+  "atsPlatform": "official-first-party-jobs-page-no-openings",
+  "countryFilter": "India",
+  "paginationStrategy": "official-first-party-jobs-page-sentinel",
+  "extractionStrategy": "verified-first-party-jobs-page+return-empty-when-no-openings",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that Graphcore's first-party careers pages are https://www.graphcore.ai/careers and https://www.graphcore.ai/jobs. The official jobs page currently states that no vacancies are open, so this exact-name provider returns no jobs rather than inventing or substituting listings from third-party sources."
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "source": "capitalone",
+    "companyName": "Capital One",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/capitalone.workday/script.js",
+    "dryRunFile": "capitalone.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "verified-shared-workday-location-subset",
+    "companyCareerPage": "https://www.capitalonecareers.com/",
+    "companyDomain": "capitalone.com",
+    "officialHomepageUrl": "https://www.capitalone.com/",
+    "jobsBoardUrl": "https://capitalone.wd12.myworkdayjobs.com/Capital_One",
+    "nativeSubsetUrl": "https://capitalone.wd12.myworkdayjobs.com/Capital_One?locations=0f0572524957105948f71e0c0ba44c1d",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T01:34:02.205Z",
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T01:34:02.205Z",
+      "officialURL": "https://www.capitalone.com/",
+      "matchedLinks": [
+        "https://www.capitalonecareers.com/",
+        "https://www.capitalonecareers.com/india",
+        "https://www.capitalonecareers.com/job/bengaluru/principal-associate-software-engineering/1732/102201125168",
+        "https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/Bangalore-In/Principal-Associate--Software-Engineering_R1004124-1/apply"
+      ],
+      "bindingMethod": "current-corporate-careers-India-active-role-to-public-Workday-application",
+      "proofFiles": [
+        "proof/batch-015-extracted-evidence-003.json",
+        "proof/batch-015-http-capitalone-careers.json",
+        "proof/batch-015-http-capitalone-corporate.json",
+        "proof/batch-015-http-capitalone-india-current-role.json",
+        "proof/batch-015-http-capitalone-india.json",
+        "proof/batch-015-web-search-003.json"
+      ],
+      "artifact": "artifacts/full-catalog/official-discovery/batch-015.json",
+      "artifactSha256": "0cc09ad97abb01be3250dd887201180bd9629141bbd31d4921a91b63c7e4a019"
+    },
+    "paginationStrategy": "complete-configured-native-Bangalore-location-subset-plus-stable-first-page-recheck",
+    "extractionStrategy": "current-active-official-handoff+shared-Workday-listing-and-native-details+country-and-canonical-reconciliation",
+    "verifiedSurfaceSummary": "Current Capital One corporate, careers, India and advertised role pages establish the exact Capital_One Workday application. The shared Workday engine enumerates the observed Bangalore location subset and independently checks full native details, identity, country, status and dates. This is partial company coverage; whole-company global/India totals remain unknown. Blank native legal-employer values remain null. Metadata does not establish runtime extraction or publishing."
+  }
+]

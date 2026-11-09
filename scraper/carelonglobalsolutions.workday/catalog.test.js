@@ -1,0 +1,4 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {getScraperCatalog} from '../../scraper-support/providers/index.js'
+test('Carelon regional replacement retains its registered identity and null runtime counts without a second board alias',()=>{const all=getScraperCatalog(),p=all.find(p=>p.source==='carelonglobalsolutions');assert.equal(all.filter(row=>row.source==='carelonglobalsolutions').length,1);assert.equal(p.adapter,'script');assert.equal(p.atsPlatform,'workday');assert.equal(p.jobsBoardUrl,'https://elevancehealth.wd1.myworkdayjobs.com/en-US/carelonglobal_in');assert.equal(p.verifiedPublicJobCount,null);assert.equal(p.verifiedIndiaJobCount,null);assert.equal(p.verifiedOn,null);assert.equal(all.filter(p=>p.jobsBoardUrl==='https://elevancehealth.wd1.myworkdayjobs.com/en-US/carelonglobal_in').length,1)})

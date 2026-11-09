@@ -1,0 +1,9 @@
+{
+  "listingStrategy": "jobs-api",
+  "inventoryScope": "complete-board-country-proof",
+  "officialCareersUrl": "https://www.cognex.com/en/company/careers",
+  "jobsApiUrl": "https://cognex.wd1.myworkdayjobs.com/wday/cxs/cognex/External_Career_Site/jobs",
+  "detailUrlBase": "https://cognex.wd1.myworkdayjobs.com/External_Career_Site",
+  "locationCountry": null,
+  "searchText": ""
+}

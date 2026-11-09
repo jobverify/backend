@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://accelya.wd103.myworkdayjobs.com/wday/cxs/accelya/Careers/jobs",
+  "detailUrlBase": "https://accelya.wd103.myworkdayjobs.com/Careers",
+  "officialCareersUrl": "https://w3.accelya.com/careers/",
+  "inventoryScope": "complete-board-country-proof",
+  "locationCountry": null,
+  "workdayMaxPages": 25,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

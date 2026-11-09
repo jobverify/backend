@@ -1,0 +1,16 @@
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
+const currentDir=path.dirname(fileURLToPath(import.meta.url))
+
+export const ALAAN_CATALOG={
+  source:'alaan',companyName:'Alaan',adapter:'script',modulePath:path.join(currentDir,'script.js'),
+  dryRunFile:path.join(currentDir,'jobs.json'),companyCareerPage:'https://www.alaan.com/careers',companyDomain:'alaan.com',
+  countryFilter:'India',atsPlatform:'unqualified-first-party-hiring-context',paginationStrategy:'configured-document-only',
+  extractionStrategy:'original-public-response-and-non-vacancy-hiring-loading-context',parser:'custom-script',
+  normalizationProfile:'engineering-default',zeroResultPolicy:'coverage-gap',
+  verifiedOn:null,verifiedAt:null,verifiedPublicJobCount:null,verifiedIndiaJobCount:null,backfillMode:null,
+  runtimeInventoryVerification:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+  verifiedSurfaceSummary:'Current anonymous configured careers document exposes Open positions and a loading state. Publisher scripts remain inert and their credential-required API is unqualified. Native, company and India vacancy totals remain unknown; inventory is incomplete and lifecycle cleanup is forbidden.'
+}
+export const PROVIDER_METADATA=ALAAN_CATALOG
+export default ALAAN_CATALOG

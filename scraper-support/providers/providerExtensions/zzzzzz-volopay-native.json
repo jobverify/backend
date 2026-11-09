@@ -1,0 +1,19 @@
+{
+  "source": "volopay",
+  "companyName": "Volopay",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../volopay/script.js",
+  "dryRunFile": "volopay/jobs.json",
+  "companyDomain": "volopay.com",
+  "companyCareerPage": "https://app.dover.io/dover/careers/ebed3959-fa8a-4719-b143-0730e1223ec8",
+  "officialHomepageUrl": "https://www.volopay.com/",
+  "atsPlatform": "dover",
+  "countryFilter": "India",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "paginationStrategy": "native-count-and-final-inventory-reconciliation",
+  "extractionStrategy": "active-official-handoff+exact-native-client-role-country+employer-description-html",
+  "scraperTimeoutMs": 150000,
+  "verifiedSurfaceSummary": "Official active Careers link delegates to the exact Dover client via the observed io-to-com redirect. Source validates anonymous native client/listing/detail JSON receipts and all explicit India locations, preserves employer user_provided_description HTML, and uses the native JobPosting client's UTC created calendar day as datePosted while retaining the original timestamp as source date evidence. No generated expiry or fresh publication timestamp is invented; runtime completeness is established only by reconciled current inventory and every India role detail."
+}

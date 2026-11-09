@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/wday/cxs/rockwellautomation/External_Rockwell_Automation/jobs",
+  "detailUrlBase": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation",
+  "countryFacetParameter": "locationCountry"
+}

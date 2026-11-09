@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://dataminr.wd12.myworkdayjobs.com/wday/cxs/dataminr/Dataminr/jobs",
+  "detailUrlBase": "https://dataminr.wd12.myworkdayjobs.com/Dataminr",
+  "officialCareersUrl": "https://www.dataminr.com/company/careers/",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

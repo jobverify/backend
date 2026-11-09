@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://bbinsurance.wd1.myworkdayjobs.com/wday/cxs/bbinsurance/Careers/jobs",
+  "detailUrlBase": "https://bbinsurance.wd1.myworkdayjobs.com/Careers",
+  "officialCareersUrl": "https://us.bbrown.com/careers/",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

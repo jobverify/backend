@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://lseg.wd3.myworkdayjobs.com/wday/cxs/lseg/Careers/jobs",
+  "detailUrlBase": "https://lseg.wd3.myworkdayjobs.com/Careers",
+  "countryFacetParameter": "locationCountry"
+}

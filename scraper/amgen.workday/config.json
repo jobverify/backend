@@ -1,0 +1,4 @@
+{
+  "countryFacetParameter": "LocationCountry",
+  "detailEnrichmentBudgetMs": 300000
+}

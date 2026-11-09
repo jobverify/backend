@@ -1,0 +1,30 @@
+[
+  {
+    "source": "brainvire",
+    "companyName": "Brainvire",
+    "adapter": "script",
+    "modulePath": "../brainvire/script.js",
+    "catalogOverride": true,
+    "companyCareerPage": "https://www.brainvire.com/careers/",
+    "companyDomain": "brainvire.com",
+    "atsPlatform": "official-company-careers",
+    "countryFilter": "India",
+    "paginationStrategy": "all-native-country-cards+role-model-reconciliation+full-closing-snapshot-before-cap",
+    "extractionStrategy": "current-visible-native-role-cards+matching-jobposting+native-application-label+role-summary-and-shared-benefits",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedInventoryStatus": "coverage-gap",
+    "zeroResultPolicy": "coverage-gap",
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "sourceObservedNativeGlobalRecords": 6,
+    "sourceObservedConfirmedIndiaCandidates": 4,
+    "sourceObservedFullCriteriaEligibleIndiaRecords": 0,
+    "sourceScopeNotes": "Current official page publishes six native role cards and six matching role-owned JobPosting records. Four have explicit India country metadata reconciled with their displayed Ahmedabad/Mumbai locations; Dubai/AE and Plano/US remain distinct foreign roles. Actual native application labels are retained as posting keys with key type native-application-label; no formal posting or requisition ID is invented. The reviewed inline modal client binds each native label to the application position field; no form is submitted. Role-owned datePosted 2026-09-16 is preserved with date-only precision and provenance. Only compact role briefs are public on this page; full criteria are unavailable, so all candidates have sourceDetailComplete false. Eight employer benefits are preserved separately as shared content. Opening and full closing snapshots reconcile every global identity, location, content, date and application choice before caller caps. Additional hiring paths/frames/loading and unprocessed external clients preserve partial status. No whole-company counts, India absence or cleanup are certified.",
+    "remediationStatus": "current-native-six-role-inventory-implemented;four-confirmed-India-briefs;full-criteria-coverage-partial"
+  }
+]

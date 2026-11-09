@@ -1,0 +1,48 @@
+[
+  {
+    "source": "einfochips",
+    "companyName": "eInfochips",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/einfochips.workday/script.js",
+    "dryRunFile": "einfochips.workday/jobs.json",
+    "atsPlatform": "workday",
+    "parser": "custom-script",
+    "companyDomain": "einfochips.com",
+    "companyCareerPage": "https://www.einfochips.com/careers/",
+    "officialHomepageUrl": "https://www.einfochips.com/",
+    "handoffBoardUrl": "https://arrow.wd1.myworkdayjobs.com/AC",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-20T23:45:53.498Z",
+    "verificationDisposition": "verified-official-keyword-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T23:45:53.498Z",
+      "officialURL": "https://www.einfochips.com/careers/",
+      "matchedLinks": [
+        "https://careers.arrow.com/us/en/search-results?keywords=einfochips"
+      ],
+      "proofFile": "../artifacts/full-catalog/ranked-positive-remediation-001/einfochips-careers-001.json",
+      "proofSha256": "79039fd810546ba0b02dd2ff631e69257633de2109657ea63c3acfcc709a5aa3",
+      "nativeArrowRoleApplyProof": {
+        "proofFile": "../artifacts/full-catalog/ranked-positive-remediation-001/einfochips-arrow-001.json",
+        "proofSha256": "d96c7ca80deb195d561492ec6b03cc5b216515230bc463716bcf2213773ab00d",
+        "kind": "active-inline-public-Arrow-model-role-apply-links",
+        "board": "https://arrow.wd1.myworkdayjobs.com/AC"
+      }
+    },
+    "extractionStrategy": "current-corporate-keyword-handoff+native-Arrow-apply-identity+shared-Workday+strict-source-native-description-sections-employer-offices-dates",
+    "paginationStrategy": "native-India-keyword-total-uniqueIDs-exact-page-sizes-and-stable-first-page-recheck",
+    "sourceScopeNotes": "Keyword scope is not proven complete eInfochips company scope. Every row remains sourceListingComplete:false. Missing native Job Description sections remain incomplete even when surrounding Position and Location metadata exists. No count inheritance.",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "verifiedSurfaceSummary": "Current official corporate handoff and public Arrow native role apply links establish the exact Workday namespace. Full keyword India enumeration and native descriptions are validated separately; company scope remains a coverage gap. Runtime counts belong to trials, never metadata."
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "source": "knolskape",
+  "companyName": "Knolskape",
+  "officialBrandName": "KNOLSKAPE",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../knolskape/script.js",
+  "dryRunFile": "knolskape/jobs.json",
+  "companyCareerPage": "https://knolskape.com/careers/",
+  "companyDomain": "knolskape.com",
+  "atsPlatform": "keka-official-company-branded-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "official-careers-page-plus-keka-active-jobs-api",
+  "extractionStrategy": "verified-first-party-careers-page+verified-keka-tenant-identity+active-jobs-api+india-filter",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-26",
+  "officialCareersPageUrl": "https://knolskape.com/careers/",
+  "officialKekaCareersUrl": "https://knolskape.keka.com/careers/",
+  "officialActiveJobsFeedUrl": "https://knolskape.keka.com/careers/api/jobs/default/active",
+  "verifiedSurfaceSummary": "Verified on Sunday, July 26, 2026 that Knolskape's first-party careers page at https://knolskape.com/careers/ publicly enumerates openings and sends Read More and Apply Now candidates to the company-branded https://knolskape.keka.com Keka tenant. This exact-name provider validates both the official careers handoff and the KNOLSKAPE Keka portal identity, then keeps only India openings from the tenant's official active-jobs API. It fails closed if either identity signal changes."
+}

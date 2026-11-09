@@ -1,0 +1,33 @@
+[
+  {
+    "source": "brillio",
+    "catalogOverride": true,
+    "companyName": "Brillio",
+    "adapter": "script",
+    "modulePath": "../brillio/script.js",
+    "companyCareerPage": "https://www.brillio.com/careers/",
+    "jobsBoardUrl": "https://careers.brillio.com/job-listing/",
+    "companyDomain": "brillio.com",
+    "atsPlatform": "wordpress-native-search-post",
+    "countryFilter": "India",
+    "paginationStrategy": "client-proven-unfiltered-search-post-all-advertised-pages-and-closing-snapshot-before-cap",
+    "extractionStrategy": "native-role-scope-visible-criteria-and-role-owned-country-with-exact-application-posting-identity",
+    "sourceScopeComplete": true,
+    "lifecycleCleanupAllowed": true,
+    "verifiedInventoryStatus": "complete-inventory",
+    "zeroResultPolicy": "coverage-gap",
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": {
+      "verified": true,
+      "corporateUrl": "https://www.brillio.com/",
+      "careersUrl": "https://www.brillio.com/careers/",
+      "jobsBoardUrl": "https://careers.brillio.com/job-listing/",
+      "verifiedOn": "2026-10-27"
+    },
+    "sourceScopeNotes": "Current corporate careers page declares the native Brillio board. Its reviewed anonymous filter_jobs client posts unfiltered search values to the public WordPress AJAX search, replacing obsolete guessed path pagination and card/detail delimiters. All advertised pages and a second complete inventory precede any cap. Both finite 22-page snapshots reconcile 219 unique native IDs:160 explicit India with full details and59 foreign. Two city-only headers resolve from complete role-owned worksite clauses:Minneapolis Minnesota and the full Madison NJ/Manhattan/Greater Boston/South Florida/Greater Seattle WA alternative list, corroborated by preserved current US government geography references. Bare city, headquarters, client and currency mentions remain insufficient; any unverified or conflicting worksite alternative keeps country unknown. Numeric posting ID and title-owned requisition remain distinct. Full visible criteria and exact native privacy-notice application identity are required for detail completeness. LTR is retained without inventing employment or work arrangement; WordPress document dates are kept separately from unknown role publication/expiry. The search exposes no Total or India facet count; finite pagination proves the observed inventory while reportedTotal remains null. Runtime binding,pagination,identity,detail,country,closing-snapshot and cap checks determine each attempt's completeness; unresolved attempts disable cleanup.",
+    "remediationStatus": "current-native-search-and-full-role-details-implemented;observed-india-inventory-complete-with-contextual-government-geography"
+  }
+]

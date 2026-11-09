@@ -1,0 +1,55 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {runCurrentAccelyaInventory} from './native.js'
+import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+const native=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261029.json.gz',import.meta.url))))
+const consumers=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/corporate-consumers-20261030.json.gz',import.meta.url))))
+const official='https://w3.accelya.com/careers/'
+const api='https://accelya.wd103.myworkdayjobs.com/wday/cxs/accelya/Careers/jobs'
+const scheduler={acquire:async()=>()=>{},recordRateLimit:()=>{}}
+async function execute(t,change=()=>{}){
+ const responses={...structuredClone(native.responses),...structuredClone(consumers.consumerResponses),['GET '+official]:structuredClone(consumers.corporate)},state={calls:[],listings:0,counts:new Map()}
+ t.mock.method(globalThis,'fetch',async(input,init={})=>{const url=String(input),method=init.method||'GET';init.signal?.throwIfAborted();const row=responses[method+' '+url];assert.ok(row,'Unexpected fixtureHTTP '+method+' '+url);if(url===api)state.listings++;const n=(state.counts.get(url)||0)+1;state.counts.set(url,n);state.calls.push({url,method});const current=structuredClone(row);change(current,url,state,n);const r=new Response(current.body,{status:current.status,headers:{'content-type':current.contentType}});Object.defineProperty(r,'url',{value:current.url});return r})
+ let audit;const jobs=await runCurrentAccelyaInventory({requestScheduler:scheduler,retryBaseDelayMs:0,requestTimeoutMs:1000,now:()=> '2026-10-30T00:00:00.000Z',onAudit:value=>audit=value});return{jobs,evidence:readInventoryEvidence(jobs),audit,calls:state.calls}
+}
+test('actual current Accelya appBk localization change preserves all nine proven India roles and reconciled complete source scope',async t=>{const {jobs,evidence}=await execute(t);assert.equal(jobs.length,9);assert.ok(jobs.every(j=>j.sourceDetailComplete));assert.equal(evidence.listingComplete,true);assert.equal(evidence.indiaFacetCount,9)})
+const consumerUrls=Object.keys(consumers.consumerResponses).map(key=>key.slice(4))
+const theme=consumerUrls.find(url=>url.includes('/themes/accelya/assets/js/common.js'))
+for(const [label,change]of [
+ ['declared consumer program',row=>{row.body+=';window.currentHiringBoard="https://jobs.ashbyhq.com/other";'}],
+ ['consumer HTTP failure',row=>{row.status=503;row.body='Unavailable'}],
+ ['consumer response URL',row=>{row.url='https://unexpected.example/program.js'}],
+ ['consumer MIME type',row=>{row.contentType='text/html'}]
+])test(`Accelya ${label} uncertainty preserves native jobs while revoking complete source scope`,async t=>{const {jobs,evidence}=await execute(t,(row,url)=>{if(url===theme)change(row)});assert.equal(jobs.length,9);assert.ok(jobs.every(j=>j.sourceDetailComplete));assert.equal(evidence.listingComplete,false);assert.equal(evidence.indiaFacetCount,null);assert.match(evidence.reason,/consumer/);assert.ok(jobs.every(j=>j.lifecycleCleanupAllowed===false))})
+test('Accelya all nine actual declared consumer programs are checked before and after native hydration with raw receipts',async t=>{const {audit,calls}=await execute(t);assert.equal(calls.filter(call=>consumerUrls.includes(call.url)).length,18);for(const snapshot of [audit.openingCorporate,audit.closingCorporate]){assert.equal(snapshot.consumerProof.receipts.length,9);for(const row of snapshot.consumerProof.receipts){assert.equal(row.status,200);assert.equal(row.url,row.responseUrl);assert.equal(row.programSha256,consumers.consumerResponses['GET '+row.url].programSha256);assert.equal(row.sha256,consumers.consumerResponses['GET '+row.url].sha256);assert.ok(row.rawBodyBase64.length>100)}}})
+test('Accelya closing-only consumer program drift cannot leave complete source scope',async t=>{const {jobs,evidence}=await execute(t,(row,url,state,n)=>{if(url===theme&&n===2)row.body+=';window.newHiringCriteria="Professional license";'});assert.equal(jobs.length,9);assert.equal(evidence.listingComplete,false);assert.match(evidence.reason,/consumer/)})
+test('Accelya a consumer fetch rejection retains nine native roles with source uncertainty',async t=>{const {jobs,evidence}=await execute(t,(row,url)=>{if(url===theme)throw Error('Observed public consumer request unavailable')});assert.equal(jobs.length,9);assert.equal(evidence.listingComplete,false);assert.match(evidence.reason,/consumer/)})
+for(const [label,change]of [
+ ['new consumer URL',body=>body.replace(theme,'https://w3.accelya.com/unknown-hiring.js')],
+ ['inert consumer type',body=>body.replace('id="bk-main-js"','id="bk-main-js" type="text/plain"')],
+ ['new hiring attribute',body=>body.replace('id="bk-main-js-extra"','id="bk-main-js-extra" data-hiring-country="India"')],
+ ['missing consumer',body=>body.replace(new RegExp('<script[^>]*id="bk-main-js"[^>]*></script>'),'')]
+])test(`Accelya ${label} cannot inherit reviewed consumer coverage`,async t=>{const {jobs,evidence,calls}=await execute(t,(row,url)=>{if(url===official){const changed=change(row.body);assert.notEqual(changed,row.body);row.body=changed}});assert.equal(jobs.length,9);assert.equal(evidence.listingComplete,false);assert.equal(evidence.indiaFacetCount,null);assert.ok(!calls.some(call=>call.url==='https://w3.accelya.com/unknown-hiring.js'))})
+for(const [label,replacement]of [
+ ['invalid nonce','var appBk = {"bk":"not-ten-hex"};'],
+ ['uppercase nonce','var appBk = {"bk":"ABCDEF0123"};'],
+ ['extra localization key','var appBk = {"bk":"0123456789","country":"India"};'],
+ ['duplicate key','var appBk = {"bk":"0123456789","bk":"abcdef1234"};'],
+ ['extra statement','var appBk = {"bk":"0123456789"}; window.extraHiring="https://jobs.ashbyhq.com/another";']
+])test(`Accelya ${label} is never normalized as the exact unused localization literal`,async t=>{const {jobs,evidence}=await execute(t,(row,url)=>{if(url===official)row.body=row.body.replace(/var appBk = \{"bk":"[a-f0-9]{10}"\};/,replacement)});assert.equal(jobs.length,9);assert.equal(evidence.listingComplete,false);assert.equal(evidence.indiaFacetCount,null)})
+test('another validated lowerhex localization value alone can vary without changing coverage',async t=>{const {evidence}=await execute(t,(row,url)=>{if(url===official)row.body=row.body.replace(/var appBk = \{"bk":"[a-f0-9]{10}"\};/,'var appBk = {"bk":"0123456789"};')});assert.equal(evidence.listingComplete,true)})
+test('a changed localization sourceURL directive cannot be normalized',async t=>{const {evidence}=await execute(t,(row,url)=>{if(url===official)row.body=row.body.replace('//# sourceURL=bk-main-js-extra','//# sourceURL=other-unused-localization')});assert.equal(evidence.listingComplete,false)})
+test('the unused localization exception cannot mask closing native mandatory criteria drift',async t=>{const {jobs,evidence}=await execute(t,(row,url,state)=>{if(url.includes('/job/India-Mumbai/Engineer-II---Quality-Assurance_JRS0076')&&state.listings===5){const p=JSON.parse(row.body);p.jobPostingInfo.jobDescription+='<p>A mandatory professional license is required.</p>';row.body=JSON.stringify(p)}});assert.equal(jobs.find(j=>j.jobId==='JRS0076').sourceDetailComplete,false);assert.equal(evidence.listingComplete,false)})
+test('the unused localization exception cannot mask native country conflict',async t=>{const {jobs,evidence}=await execute(t,(row,url,state)=>{if(url.includes('/job/India-Mumbai/Engineer-II---Quality-Assurance_JRS0076')&&[1,5].includes(state.listings)){const p=JSON.parse(row.body);p.jobPostingInfo.country={descriptor:'United States of America',id:'bc33aa3152ec42d4995f4791a106ed09'};row.body=JSON.stringify(p)}});assert.equal(jobs.find(j=>j.jobId==='JRS0076').sourceDetailComplete,false);assert.equal(evidence.listingComplete,false)})
+test('CSS-only advertised vacancies in an existing corporate style cannot retain complete source scope',async t=>{const {jobs,evidence}=await execute(t,(row,url)=>{if(url===official){const altered=row.body.replace(/(<style\b[^>]*>)([\s\S]*?)(<\/style>)/i,(_,open,css,close)=>open+css+'\nbody::after{content:"Additional vacancies at https://jobs.ashbyhq.com/another";display:block}\n'+close);assert.notEqual(altered,row.body);row.body=altered}});assert.equal(jobs.length,9);assert.ok(jobs.every(j=>j.sourceDetailComplete));assert.equal(evidence.listingComplete,false);assert.equal(evidence.indiaFacetCount,null);assert.match(evidence.reason,/style/)})
+for(const [label,alter]of [
+ ['style attributes',html=>html.replace(/<style\b/,'<style media="print"')],
+ ['style DOM position',html=>html.replace(/<style\b/,'<meta><style')],
+ ['style inert context',html=>html.replace(/<style\b[^>]*>[\s\S]*?<\/style>/,block=>'<template>'+block+'</template>')],
+ ['an unknown inert style',html=>html+'<template><style data-unreviewed="true">@unreviewed-syntax{new-hiring-channel:additional}</style></template>'],
+ ['unknown CSS syntax',html=>html.replace(/(<style\b[^>]*>)([\s\S]*?)(<\/style>)/,(_,open,css,close)=>open+css+'\n@unknown-custom-rule(foo){.new-vacancies{content:"https://jobs.ashbyhq.com/another"}}\n'+close)]
+])test(`Accelya changed ${label} remains source-partial with all known India jobs`,async t=>{const {jobs,evidence}=await execute(t,(row,url)=>{if(url===official){const changed=alter(row.body);assert.notEqual(changed,row.body);row.body=changed}});assert.equal(jobs.length,9);assert.ok(jobs.every(j=>j.sourceDetailComplete));assert.equal(evidence.listingComplete,false);assert.equal(evidence.indiaFacetCount,null);assert.match(evidence.reason,/style/);assert.ok(jobs.every(j=>j.lifecycleCleanupAllowed===false))})
+test('Accelya reordered existing style programs cannot inherit their previous scope fingerprint',async t=>{const {jobs,evidence}=await execute(t,(row,url)=>{if(url===official){const blocks=[...row.body.matchAll(/<style\b[^>]*>[\s\S]*?<\/style>/g)].map(m=>m[0]);assert.ok(blocks.length>=2);row.body=row.body.replace(blocks[0],'__REVIEW_FIRST_STYLE__').replace(blocks[1],blocks[0]).replace('__REVIEW_FIRST_STYLE__',blocks[1])}});assert.equal(jobs.length,9);assert.equal(evidence.listingComplete,false);assert.match(evidence.reason,/style/)})
+test('Accelya closing-only style changes revoke complete source scope and retain the full raw program',async t=>{const addition='\nbody::after{content:"Additional vacancies at https://jobs.ashbyhq.com/another";display:block;}';const {jobs,evidence,audit}=await execute(t,(row,url,state,n)=>{if(url===official&&n===3)row.body=row.body.replace(/(<style\b[^>]*>)([\s\S]*?)(<\/style>)/,(_,start,css,end)=>start+css+addition+end)});assert.equal(jobs.length,9);assert.equal(evidence.listingComplete,false);assert.equal(audit.openingCorporate.inlineStyles.length,11);assert.equal(audit.closingCorporate.inlineStyles.length,11);assert.ok(audit.closingCorporate.inlineStyles.some(style=>style.raw.includes(addition)));assert.notEqual(audit.openingCorporate.inlineStyleSignature,audit.closingCorporate.inlineStyleSignature);assert.match(evidence.reason,/style|scope-changed/)})

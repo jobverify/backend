@@ -1,0 +1,10 @@
+{
+  "listingStrategy": "jobs-api",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "officialCareersUrl": "https://careers.conocophillips.com/",
+  "jobsApiUrl": "https://conocophillips.wd1.myworkdayjobs.com/wday/cxs/conocophillips/External/jobs",
+  "detailUrlBase": "https://conocophillips.wd1.myworkdayjobs.com/External/",
+  "locationCountry": null,
+  "searchText": ""
+}

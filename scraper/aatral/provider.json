@@ -1,0 +1,17 @@
+﻿{
+  "source": "aatral",
+  "companyName": "Aatral",
+  "adapter": "script",
+  "modulePath": "../../scraper/aatral/script.js",
+  "companyCareerPage": "https://aatral.io/careers/",
+  "atsPlatform": "official-company-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "single-page-listings-plus-detail-pages",
+  "extractionStrategy": "verified-official-homepage+verified-careers-listings-page+verified-first-party-opportunity-pages",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "aatral.io",
+  "verifiedOn": "2026-07-14",
+  "verifiedSurfaceSummary": "Verified https://aatral.io/, https://aatral.io/careers/, and https://aatral.io/careers/general-application/ on July 14, 2026. Aatral exposes a public first-party careers surface on aatral.io with a Chennai, India general-application opportunity and a dedicated first-party detail page. The alternate aatral.in host was not used because it returned a Cloudflare Tunnel error instead of a trustworthy careers surface."
+}
+

@@ -1,0 +1,63 @@
+{
+  "phase": 4,
+  "verifiedOn": "2026-10-24",
+  "historicalMetadataRewritten": false,
+  "registryVerifiedPublicationCounts": null,
+  "productionDatabaseTouched": false,
+  "fullPipelineExecuted": false,
+  "productionBrowserFallbackAdded": false,
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "outcome": "implemented-native-india-extractor",
+  "sourceImplementationChanged": true,
+  "officialUrl": "https://www.accellor.com/who-we-are/careers",
+  "binding": "Active first-party inline code fetches the exact public gem-jobs proxy. All proxy role URLs and titles reconcile to the Accellor Gem board native posting identities.",
+  "nativeUrl": "https://jobs.gem.com/api/public/graphql/batch",
+  "observedContract": "Native JobBoardList returns all18 current postings, matching department-filter counts. Eleven explicit IND postings receive native ExternalJobPosting full details. Exact employer, posting/job identity, active application flags and complete location sets are checked; a second native listing must match the first.",
+  "scope": "All18 native scopes validated. Only native IND locations retained; seven USA-only roles excluded. Unobserved ISO country/schema shapes fail closed pending evidence. Caller caps cannot certify inventory.",
+  "descriptionAndDates": "Full native intro/main/outro HTML retained with plain text and original firstPublishedTsSec; no scrape-date replacement.",
+  "currentSourceTrial": {
+    "performedAt": "2026-10-24T17:30:05.658Z",
+    "method": "Actual source code over bounded fresh public browser response transport; no production browser runtime added; default Node transport not verified in this restricted environment.",
+    "requests": 15,
+    "rawJobs": 11,
+    "eligibleJobs": 10,
+    "filterCounts": {
+      "nonIndia": 0,
+      "old": 1,
+      "closed": 0,
+      "invalidUrl": 0,
+      "nonJob": 0,
+      "emptyDescription": 0
+    },
+    "inventoryEvidence": {
+      "status": "complete-inventory",
+      "surface": "https://jobs.gem.com/accellor",
+      "firstParty": true,
+      "listingComplete": true,
+      "pagesFetched": 2,
+      "reportedTotal": 18,
+      "indiaFacetCount": 11,
+      "verifiedAt": "2026-10-24T17:29:57.679Z",
+      "reason": "current-official-proxy-bound-gem-native-department-total-and-final-inventory-reconciled"
+    }
+  },
+  "limits": [
+    "No production persistence or visibility query. Current source trial runs actual source code over fresh browser response transport; default Node transport cannot be verified in this environment.",
+    "The source uses the complete native unpaginated list; count mismatch, unknown location scope, role conflict or final inventory drift aborts certification."
+  ],
+  "focusedVerification": {
+    "command": "node --test scraper/accellor/script.test.js scraper/affirm/script.test.js scraper/aembit/script.test.js scraper/accellor/catalogRepair.test.js scraper-support/tests/publishingGapAts.test.js scraper-support/tests/providerExtensions.test.js",
+    "passed": 56,
+    "failed": 0,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-ats/guards-final-green.log",
+    "scope": "Only owned changed source contracts plus effective registry and shared ATS compatibility checks; unchanged blocked-source extraction was not promoted."
+  },
+  "sharedCompatibilityVerification": {
+    "passed": 232,
+    "failed": 0,
+    "files": 14,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-shared-independent-cohort-final.log",
+    "scope": "Focused shared/API/native-fixture/source/discovery contracts; no full repository suite or production pipeline."
+  }
+}

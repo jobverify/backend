@@ -1,0 +1,22 @@
+[
+  {
+    "source": "licious",
+    "companyName": "Licious",
+    "adapter": "script",
+    "modulePath": "../licious/script.js",
+    "companyCareerPage": "https://www.licious.in/careers",
+    "officialCareersHandoffUrl": "https://www.licious.in/careers/jobs",
+    "publicPortalUrl": "https://licious.mynexthire.com/employer/jobs/careers",
+    "nativeListingApiUrl": "https://licious.mynexthire.com/employer/careers/reqlist/get",
+    "companyDomain": "licious.in",
+    "atsPlatform": "mynexthire",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "full-unfiltered-native-array-and-closing-reconciliation",
+    "extractionStrategy": "current-corporate-client+reciprocal-native-tenant+full-published-details-and-date-history",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current corporate jobs client binds the Licious MyNextHire tenant and configured corporate application routes. Runtime reads every native full detail, original publication history and assigned office, then reconciles closing inventory. Ambiguous geography or business identity remains partial.",
+    "catalogOverride": true
+  }
+]

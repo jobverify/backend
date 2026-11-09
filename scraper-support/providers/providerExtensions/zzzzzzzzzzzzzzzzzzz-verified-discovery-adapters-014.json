@@ -1,0 +1,42 @@
+[
+  {
+    "source": "bostonscientific",
+    "companyName": "Boston Scientific",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/bostonscientific/script.js",
+    "dryRunFile": "bostonscientific/jobs.json",
+    "atsPlatform": "eightfold",
+    "parser": "custom-script",
+    "companyDomain": "bostonscientific.com",
+    "companyCareerPage": "https://www.bostonscientific.com/en-IN/careers.html",
+    "officialHomepageUrl": "https://www.bostonscientific.com/",
+    "handoffBoardUrl": "https://bostonscientific.eightfold.ai/careers",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-20T23:28:18.009Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T23:28:18.009Z",
+      "officialURL": "https://www.bostonscientific.com/en-IN/careers.html",
+      "matchedLinks": [
+        "https://bostonscientific.eightfold.ai/careers"
+      ],
+      "proofFile": "../artifacts/full-catalog/bostonscientific-native-001/corporate-001.json",
+      "proofSha256": "8de26481e82276ec1eb7e384f841c6ac413a1a06ff529ca2e3aaacfb1e076db2"
+    },
+    "extractionStrategy": "current-official-native-identity+all-global-pages+country-facet-reconciliation+full-native-India-details+strict-source-local-guards+shared-eightfold-mapping",
+    "paginationStrategy": "observed-fixed10rows-total-uniqueIDs-terminal-and-final-first-page-reconciliation",
+    "sourceScopeNotes": "Unknown or contradictory primary/secondary native geography keeps all extracted jobs incomplete. Runtime counts remain separate; no synthetic roles or source boilerplate fallback. Legacy SAP search snippets are not the binding.",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "verifiedSurfaceSummary": "Current active corporate India careers handoff and native Eightfold company identity verified. Source enumerates fixed10-row native pages, checks the India facet and full role details, and retains partial health for any unresolved country or secondary location scope. Current counts belong to frozen trials, not metadata."
+  }
+]

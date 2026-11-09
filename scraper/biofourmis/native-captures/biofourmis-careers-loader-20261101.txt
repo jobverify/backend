@@ -1,0 +1,245 @@
+// Global variables defined here
+const ghSlug = "biofourmis";
+const departmentNames = [{ id: "0", name: "View All" }];
+const root = document.getElementById("root");
+const loading = document.getElementById("loading");
+const jobDepartmentsFilter = document.querySelector(
+  "[jobs-filters='departments']"
+);
+
+const officeLocationsFilter = document.querySelector(
+  "[jobs-filters='locations']"
+);
+const noJobsFoundNode = document.querySelector(
+  "[fd-custom-code='no-jobs-found']"
+);
+let allJobs = [];
+const errorWrapper = document.getElementById("errwrapper");
+const errorText = document.getElementById("errtext");
+const jobsWrapper = document.querySelector("[pd-jobs='wrapper']");
+let selectedDepartment = "View All";
+
+let selectedOfficeLocation = "All Offices";
+const locationNames = ["All Offices"];
+const loadingText = document.querySelector("[pd-custom-code='loading-text']");
+
+// Filtering function for select element
+
+// Triggers when the DOM is ready
+window.addEventListener("DOMContentLoaded", (event) => {
+  const handleError = (response) => {
+    if (!response.ok) {
+      throw Error(` ${response.status} ${response.statusText}`);
+    } else {
+      return response.json();
+    }
+  };
+  fetch(
+    "https://boards-api.greenhouse.io/v1/boards/" + ghSlug + "/departments/"
+  )
+    .then(handleError)
+    .then((data) => {
+      data.departments.forEach((department) => {
+        if (department.jobs.length > 0) {
+          departmentNames.push({
+            name: department.name,
+            id: department.id
+          });
+
+          allJobs.push(department);
+        }
+      });
+      jobDepartmentsFilter.innerHTML = "";
+      departmentNames.forEach((department) => {
+        // setting departments
+        renderDepartment(department);
+      });
+      addListenertoDepartmentFilter();
+    })
+    .catch(function writeError(err) {
+      console.error(err);
+    })
+    .finally(() => {
+      console.log("all jobs ", allJobs);
+      let allLocations = [];
+      allJobs.forEach((job) => {
+        job.jobs.forEach((item) => {
+          allLocations.push(item.location.name);
+        });
+      });
+
+      allLocations = Array.from(new Set(allLocations));
+      allLocations.forEach((loc) => locationNames.push(loc));
+
+      officeLocationsFilter.innerHTML = "";
+      locationNames.forEach((loc) => renderOfficeLocations(loc));
+      addListenerToOfficeFilters();
+      writeJobs(allJobs);
+      if (!allJobs.length) {
+        noJobsFoundNode.style.display = "block";
+      }
+    });
+
+  // the office locations -
+  // fetch("https://boards-api.greenhouse.io/v1/boards/" + ghSlug + "/offices/")
+  //   .then(handleError)
+  //   .then((data) => {
+  //     const offices = data.offices;
+
+  //     officeLocationsFilter.innerHTML = "";
+  //     offices.forEach((office) => {
+  //       renderOfficeLocations(office);
+  //     });
+  //   })
+  //   .then(() => addListenerToOfficeFilters());
+});
+const handleError = (response) => {
+  if (!response.ok) {
+    throw Error(` ${response.status} ${response.statusText}`);
+  } else {
+    return response.json();
+  }
+};
+
+// Triggered in finally above
+async function writeJobs(jobs) {
+  loadingText.style.display = "block";
+  jobsWrapper.innerHTML = "";
+  jobs.forEach((job) => {
+    renderJobs(job.name, job.jobs);
+  });
+  loadingText.style.display = "none";
+}
+
+function renderJobs(departmentName, jobs) {
+  const jobWrapperNode = document.createElement("div");
+  jobWrapperNode.classList.add("job-department");
+  // jobWra
+  jobWrapperNode.innerHTML = `<div class="margin-bottom margin-small">
+            <h3>${departmentName}</h3>
+          </div>`;
+  jobs.forEach((job) => {
+    const jobNode = document.createElement("a");
+    jobNode.href = `${job.absolute_url}`;
+    jobNode.setAttribute("job-location", job.location.name.trim());
+    jobNode.className = "job-box w-inline-block";
+    // jobNode.classList.add("job-box w-inline-block");
+    jobNode.innerHTML = `<div class="margin-bottom margin-small">
+              <div style="display:none;" class="text-size-small text-weight-semibold is-gray">
+                ${departmentName}
+              </div>
+            </div>
+            <div class="margin-bottom margin-small">
+              <h4>${job.title}</h4>
+            </div>
+            <div class="job-location-text text-color-grey">${job.location.name}</div>`;
+
+    jobWrapperNode.append(jobNode);
+  });
+  jobsWrapper.appendChild(jobWrapperNode);
+}
+
+function renderDepartment(department) {
+  let departmentNode = document.createElement("option");
+  departmentNode.innerText = department.name;
+  departmentNode.value = department.name;
+  jobDepartmentsFilter.appendChild(departmentNode);
+}
+
+function addListenertoDepartmentFilter() {
+  let allFiltersNode = document.querySelector("[jobs-filters='departments']");
+  allFiltersNode.addEventListener("change", async (e) => {
+    selectedDepartment = e.target.value;
+    const jobsFound = filterJobs(
+      allJobs,
+      selectedDepartment,
+      selectedOfficeLocation
+    );
+
+    if (jobsFound.length > 0) {
+      noJobsFoundNode.style.display = "none";
+      await writeJobs(jobsFound);
+      if (selectedOfficeLocation !== "All Offices") {
+        const jobsNodes = jobsWrapper.querySelectorAll("a");
+        jobsNodes.forEach((jobNode) => {
+          if (jobNode.getAttribute("job-location") !== selectedOfficeLocation) {
+            jobNode.style.display = "none";
+          }
+        });
+      }
+    } else {
+      jobsWrapper.innerHTML = "";
+      // no jobs found
+      noJobsFoundNode.style.display = "block";
+    }
+  });
+}
+
+function renderOfficeLocations(office) {
+  let officeNode = document.createElement("option");
+  officeNode.innerText = office;
+  officeLocationsFilter.appendChild(officeNode);
+}
+
+function addListenerToOfficeFilters() {
+  let allFiltersNode = document.querySelector("[jobs-filters='locations']");
+  allFiltersNode.addEventListener("change", async (e) => {
+    selectedOfficeLocation = e.target.value;
+
+    let jobsFound = filterJobs(
+      allJobs,
+      selectedDepartment,
+      selectedOfficeLocation
+    );
+
+    if (jobsFound.length > 0) {
+      noJobsFoundNode.style.display = "none";
+      await writeJobs(jobsFound, selectedOfficeLocation, selectedDepartment);
+      if (selectedOfficeLocation !== "All Offices") {
+        const jobsNodes = jobsWrapper.querySelectorAll("a");
+        jobsNodes.forEach((jobNode) => {
+          if (jobNode.getAttribute("job-location") !== selectedOfficeLocation) {
+            jobNode.style.display = "none";
+          }
+        });
+      }
+    } else {
+      jobsWrapper.innerHTML = "";
+      // no jobs found
+      noJobsFoundNode.style.display = "block";
+    }
+  });
+}
+
+function filterJobs(array, selected_department, selected_location) {
+  if (
+    selected_department === "View All" &&
+    selected_location === "All Offices"
+  ) {
+    // Case 1: Both selected_department and selected_location are "ALL"
+    return array;
+  } else if (
+    selected_department !== "View All" &&
+    selected_location === "All Offices"
+  ) {
+    // Case 2: Only selected_department has a value
+    return array.filter(
+      (dept) => dept.name.trim() === selected_department.trim()
+    );
+  } else if (
+    selected_location !== "All Offices" &&
+    selected_department === "View All"
+  ) {
+    // Case 3: Only selected_location has a value
+    return array.filter((obj) =>
+      obj.jobs.some((job) => job.location.name.includes(selected_location))
+    );
+  } else {
+    // Case 4: Both selected_department and selected_location have values
+    return array.filter(
+      (obj) =>
+        obj.name === selected_department &&
+        obj.jobs.some((job) => job.location.name.includes(selected_location))
+    );
+  }
+}

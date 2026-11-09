@@ -1,0 +1,48 @@
+{
+  "recordedAt": "2026-11-02T23:48:05.285Z",
+  "method": "read-only-public-native-http-no-db",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "343cc477873372ebcba1713693a6e3ba3e8721ed070178074de5be46e21d89ec",
+  "responses": [
+    {
+      "key": "current-company",
+      "url": "https://www.bounteous.com/about/company-news",
+      "finalUrl": "https://www.bounteous.com/about/company-news",
+      "status": 200,
+      "bytes": 1119171,
+      "sha256": "b096475ca8a78cec1fd2c91590b37013ee3de5666900b7a5f8c099eecfb16878",
+      "observedAt": "2026-11-02T23:05:37.412Z",
+      "originalCapture": "accolitedigital-current-company-b096475ca8a7.body"
+    },
+    {
+      "key": "merger-statement",
+      "url": "https://www.bounteous.com/insights/2024/02/01/press-release-bounteous-and-accolite-join-forces-forming-global-leader-digital/",
+      "finalUrl": "https://www.bounteous.com/insights/2024/02/01/press-release-bounteous-and-accolite-join-forces-forming-global-leader-digital/",
+      "status": 200,
+      "bytes": 39649,
+      "sha256": "362879587ebb687034141dd2c8878778f635a657813dc08929efd76c61051663",
+      "observedAt": "2026-11-02T23:05:37.621Z",
+      "originalCapture": "accolitedigital-merger-statement-362879587ebb.body"
+    },
+    {
+      "key": "current-careers",
+      "url": "https://www.bounteous.com/careers/search-results",
+      "finalUrl": "https://www.bounteous.com/careers/search-results",
+      "status": 200,
+      "bytes": 1092564,
+      "sha256": "b75f2df6a9e6c7cf17b25a29f67ddba76292de3ff21837927eb419207b4b67b5",
+      "observedAt": "2026-11-02T23:05:37.787Z",
+      "originalCapture": "accolitedigital-current-careers-b75f2df6a9e6.body"
+    },
+    {
+      "key": "turbohire-feed",
+      "url": "https://www.bounteous.com/turbohire/api/",
+      "finalUrl": "https://www.bounteous.com/turbohire/api",
+      "status": 200,
+      "bytes": 668678,
+      "sha256": "0369e0ef7ee14880481960ff85844d901e04bb9c0c22d7383da92a6a5d50e5c5",
+      "observedAt": "2026-11-02T23:05:38.255Z",
+      "originalCapture": "accolitedigital-turbohire-feed-0369e0ef7ee1.body"
+    }
+  ]
+}

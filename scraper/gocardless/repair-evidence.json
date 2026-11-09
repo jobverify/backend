@@ -1,0 +1,19 @@
+{
+  "source": "gocardless",
+  "observedAt": "2026-10-24T15:52:35Z",
+  "repairStatus": "runtime-binding-guarded-shared-extractor-live-validation-pending",
+  "officialPage": "https://gocardless.com/about/careers",
+  "observedCareersAnchor": "https://boards.greenhouse.io/gocardless",
+  "observedBoardRedirect": "https://job-boards.greenhouse.io/gocardless",
+  "observationMethod": "Current public web extraction of the official careers page and its Search Jobs anchor.",
+  "nativeApi": "https://boards-api.greenhouse.io/v1/boards/gocardless/jobs?content=true",
+  "nativeResponseRecovered": false,
+  "transportEvidence": "Default Node probes timed out with network disabled in the sandbox. The separately escalated public read-only probe also returned UND_ERR_CONNECT_TIMEOUT. The web tool could read the HTML board but could not read the native API. These observations do not establish an employer outage.",
+  "inventoryEvidenceLimits": "The current HTML board displayed 26 jobs with non-India labels. A rendered UI total is not a validated native inventory, does not establish complete India coverage and does not prove zero India openings.",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "liveExtractionVerified": false,
+  "publicationVerified": false,
+  "contractTests": "Synthetic payloads verify runtime binding, shared native extraction, explicit India filtering, description and completeness guards. They are not captured live openings.",
+  "remainingWork": "Run a bounded source trial from a network that can read the official page and native API; validate complete inventory, real descriptions, eligible India roles and local persistence/public visibility before rollout."
+}

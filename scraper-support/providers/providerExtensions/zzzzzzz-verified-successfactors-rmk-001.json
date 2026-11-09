@@ -1,0 +1,62 @@
+[
+  {
+    "source": "astellaspharma",
+    "companyName": "Astellas Pharma",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "successfactors-rmk",
+    "modulePath": "../astellaspharma/script.js",
+    "backfillMode": "live-parser",
+    "parser": "verified-successfactors-rmk",
+    "paginationStrategy": "native-range-total-offset-unique-id-reconciliation",
+    "extractionStrategy": "official-native-html+full-pagination+detail-identity+explicit-country",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "scraperTimeoutMs": 540000,
+    "sourceLifecycleTimeoutMs": 600000,
+    "companyCareerPage": "https://www.astellas.com/en/careers",
+    "officialHomepageUrl": "https://www.astellas.com/en",
+    "companyDomain": "www.astellas.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "current-official-native-binding-awaiting-runtime-qualification",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T19:35:48.537Z",
+      "officialURL": "https://www.astellas.com/en/careers",
+      "matchedLinks": [
+        "https://careers.astellas.com/"
+      ],
+      "bindingMethod": "official-employer-career-surface-and-native-company-configuration",
+      "evidenceOrigin": "first-party-http-html",
+      "nativeCompanyToken": "astellasT5",
+      "nativeOrigin": "https://career8.successfactors.com",
+      "tokenProofFile": "../artifacts/full-catalog/verified-discovery-adapters-002/astellaspharma-board-http.json",
+      "tokenProofSha256": "91d0c3c2d1e331a763e01035ce33fb3ac6dda8c620311c57588e75c650a8ca08",
+      "proofFiles": [
+        "proof/batch-007-search-06.json",
+        "proof/batch-007-search-10.json",
+        "proof/batch-007-open-16.json",
+        "proof/batch-007-open-25.json",
+        "proof/batch-007-click-18.json",
+        "proof/batch-007-open-35.json",
+        "proof/batch-007-click-29.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://careers.astellas.com/job/Mumbai-Head,-Market-Access-&-Government-Affairs,-India-MH-400069/1433303100/",
+          "to": "https://careers.astellas.com/talentcommunity/apply/1433303100/?locale=en_GB",
+          "evidence": "Current role Apply now link4 clicked; Cache miss, turn442view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact first-party SAP RMK tenant proven by current native HTML ssoCompanyId and career8 session redirect to employer domain. Runtime counts remain unknown until native complete trial. Corporate careers page explicitly separates India Bengaluru from Asia including India Mumbai. Do not assume they share one native board or count all regions together. The first-party careers.astellas.com role is independently observed; the corporate country selector is not exposed as an inspectable href in web text. Current first-party career root explicitly loads SuccessFactors CDN content, turn462view0. Vendor is observed; company token is not inferred. Native search locale is significant: en_GB is the observed India-role language; default en_US is a different inventory and must not certify employer-wide India zero.",
+    "nativeInventoryScope": "English-GB regional recruitment on careers.astellas.com; separate Bengaluru route and English-US board are not covered",
+    "nativeSearchUrl": "https://careers.astellas.com/search?locale=en_GB"
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "source": "rephraseai",
+    "companyName": "Rephrase.ai",
+    "officialBrandName": "Rephrase AI",
+    "adapter": "script",
+    "dryRunFile": "rephraseai/jobs.json",
+    "officialHomepageUrl": "https://www.rephraseai.com/",
+    "aboutPageUrl": "https://www.rephraseai.com/about",
+    "companyCareerPage": "https://www.rephraseai.com/careers",
+    "jobsPageUrl": "https://www.rephraseai.com/jobs",
+    "companyDomain": "rephraseai.com",
+    "atsPlatform": "official-company-site-no-public-careers",
+    "countryFilter": "India",
+    "paginationStrategy": "browser-verified-homepage-plus-common-careers-routes",
+    "extractionStrategy": "verified-homepage-without-careers-links+verified-about-careers-jobs-404-routes+return-empty",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-07-17",
+    "verifiedSurfaceSummary": "Verified on Friday, July 17, 2026 that the exact-name first-party homepage at https://www.rephraseai.com/ renders the live Rephrase AI marketing site for AI writing and rewriting tools and exposes no public careers, jobs, apply, or ATS links. Verified that the common first-party routes https://www.rephraseai.com/about, https://www.rephraseai.com/careers, and https://www.rephraseai.com/jobs each render a 404-style page with no trustworthy public jobs surface, so this provider must fail closed and return an empty array until an official public hiring surface appears."
+  },
+  {
+    "source": "remunanceservicespvtltd",
+    "companyName": "Remunance Services Pvt. Ltd.",
+    "officialBrandName": "Remunance Services Pvt Ltd",
+    "adapter": "script",
+    "dryRunFile": "remunanceservicespvtltd/jobs.json",
+    "homepageUrl": "https://remunance.com/",
+    "companyCareerPage": "https://remunance.com/careers/",
+    "companyDomain": "remunance.com",
+    "atsPlatform": "elfsight-job-board",
+    "countryFilter": "India",
+    "paginationStrategy": "single-complete-elfsight-job-board-settings-inventory",
+    "extractionStrategy": "verified-first-party-careers+exact-elfsight-widget+visible-roles+explicit-india-locations+incomplete-scope-protection",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-09-13",
+    "verifiedSurfaceSummary": "Verified on Sunday, September 13, 2026 that the official homepage links https://remunance.com/careers/ and its Current Openings section embeds Elfsight widget 40bef639-b4af-4953-bb78-5de275c4b2d5. The publicly loaded widget bootstrap exposes 29 visible roles: 22 explicit India roles and 7 Remote roles without country evidence. Full public descriptions and role-prefilled Google application forms are retained. Every published India role carries sourceListingComplete:false while the seven locations remain unresolved, preventing missing-job expiration. The shared application form is explicitly marked generic with stable widget role identifiers."
+  }
+]

@@ -1,0 +1,12 @@
+[
+ {
+  "source":"cyfuture",
+  "catalogOverride":true,
+  "paginationStrategy":"paired-native-location-tabs-and-declared-office-role-pages;company-scope-unqualified",
+  "extractionStrategy":"whole-native-role-criteria+same-publisher-office-country-group-binding+paired-closing-models",
+  "verifiedOn":"2026-11-05",
+  "verifiedPublicJobCount":null,
+  "verifiedIndiaJobCount":null,
+  "verifiedSurfaceSummary":"The current first-party current-opportunities.html page declares ten role pages and its global office surface. Complete native criteria, role IDs, application handoffs and all office-country groups are retained and reconciled. Native job locations bind only to matching offices in the explicitly declared country group, with no city gazetteer, company-country default or exact campus claim. Requisitions, publication and legal employer remain unknown; truncated listing qualification previews do not supply full qualification. Anonymous bounded reads stop on first failure. Complete company/listing inventory, totals, application activity and cleanup remain unqualified."
+ }
+]

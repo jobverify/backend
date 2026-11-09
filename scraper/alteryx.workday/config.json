@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://alteryx.wd108.myworkdayjobs.com/wday/cxs/alteryx/AlteryxCareers/jobs",
+  "detailUrlBase": "https://alteryx.wd108.myworkdayjobs.com/en-US/AlteryxCareers",
+  "countryFacetParameter": "locationCountry"
+}

@@ -1,0 +1,10 @@
+{
+  "listingStrategy": "jobs-api",
+  "inventoryScope": "complete-board-country-proof",
+  "officialCareersUrl": "https://www.greendot.com/working-here",
+  "jobsApiUrl": "https://greendotcorp.wd1.myworkdayjobs.com/wday/cxs/greendotcorp/gdc/jobs",
+  "detailUrlBase": "https://greendotcorp.wd1.myworkdayjobs.com/gdc",
+  "locationCountry": null,
+  "searchText": "",
+  "detailEnrichmentBudgetMs": 0
+}

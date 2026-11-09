@@ -1,0 +1,22 @@
+{
+  "source": "cams",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../cams/script.js",
+  "companyName": "CAMS",
+  "companyCareerPage": "https://www.camsonline.com/about-cams/careers",
+  "companyDomain": "camsonline.com",
+  "atsPlatform": "first-party-client-rendered-careers-entry-unresolved-native-inventory",
+  "countryFilter": "India",
+  "zeroResultPolicy": "evidence-required",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceScopeComplete": false,
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "scraperTimeoutMs": 90000,
+  "sourceLifecycleTimeoutMs": 120000,
+  "verifiedSurfaceSummary": "Current public careers HTML is an unresolved Angular app-root shell, not a no-openings result. Runtime observes that exact public entry twice and keeps native vacancy/country totals unknown. Current discovery separately retained the published client/configuration handoff, its HTTP proxy-gateway receipt and strict HTTPS certificate-chain failure. The entry boundary does not claim successful native-board extraction or silently use private application/investor endpoints, inferred countries, weakened TLS or historical empty counts."
+}

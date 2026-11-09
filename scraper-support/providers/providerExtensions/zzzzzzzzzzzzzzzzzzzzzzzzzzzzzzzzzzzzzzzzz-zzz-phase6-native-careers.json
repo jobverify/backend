@@ -1,0 +1,35 @@
+[
+  {
+    "source": "abansholdings",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "keka",
+    "backfillMode": "live-parser",
+    "parser": "bound-native-keka-active-group-feed",
+    "paginationStrategy": "observed-unpaginated-native-renderer-contract-and-final-active-recheck",
+    "extractionStrategy": "current-corporate-career-delegation-chain+reciprocal-native-publisher-identity+native-explicit-india-locations-and-full-descriptions+unreconciled-holdings-only-scope-remains-partial",
+    "sourceScopeComplete": false,
+    "currentNativePublisher": "ABANS GROUP",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "native-india-reader-group-legal-scope-and-unmapped-geography-remain-partial",
+    "currentExtractionEvidence": "scraper/abansholdings.workday/phase6-evidence.json"
+  },
+  {
+    "source": "aavasfinanciers",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "first-party-native-careers",
+    "backfillMode": "live-parser",
+    "parser": "bound-first-party-profile-and-workplace-state-reader",
+    "paginationStrategy": "all-current-native-profile-controls-and-final-listing-recheck",
+    "extractionStrategy": "current-official-career-delegation+observed-native-selector-client+exact-profile-canonical-title-city-identity+role-workplace-state-and-branch-country-schema-proof+full-native-descriptions",
+    "sourceScopeComplete": false,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "native-india-profile-reader-publication-dates-and-independent-whole-company-total-remain-unknown",
+    "currentExtractionEvidence": "scraper/aavasfinanciers.workday/phase6-evidence.json"
+  }
+]

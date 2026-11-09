@@ -1,0 +1,66 @@
+name: Jobverify Tailored Resumes
+run-name: 'Tailored Resumes #${{ github.run_number }}'
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: jobverify-tailored-resumes
+  cancel-in-progress: false
+jobs:
+  tailor:
+    name: Prepare and tailor requested resumes
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NODE_OPTIONS: '--use-system-ca'
+    steps:
+      - name: Record worker budget start
+        run: printf 'TAILORED_RESUME_WORKFLOW_STARTED_AT=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /package.json
+            /package-lock.json
+            /scripts/runTailoredResumes.js
+            /src/
+            /resume-tailoring/
+            /scraper-support/utils/cityNormalizer.js
+            /scraper-support/utils/cities.js
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Install document worker dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Restore pinned model, runtime, and compiler dependencies
+        id: resume-dependencies
+        uses: actions/cache/restore@v6
+        with:
+          path: |
+            .cache/resume-models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+            .cache/resume-runtime/b11146/llama-b11146-bin-ubuntu-x64.tar.gz
+            .cache/resume-compiler/image.tar
+          key: resume-qwen4b-3605803b-runtime-c150306e-${{ hashFiles('resume-tailoring/compiler/**') }}
+      - name: Prepare or tailor one requested resume
+        timeout-minutes: 28
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+        run: node scripts/runTailoredResumes.js
+      - name: Check immutable dependency cache completeness
+        id: complete-cache
+        if: ${{ !cancelled() && steps.resume-dependencies.outputs.cache-hit != 'true' }}
+        run: |
+          if test -f .cache/resume-models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf && test -f .cache/resume-runtime/b11146/llama-b11146-bin-ubuntu-x64.tar.gz && test -f .cache/resume-compiler/image.tar; then
+            printf 'ready=true\n' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Save immutable dependencies after document processing
+        if: ${{ !cancelled() && steps.complete-cache.outputs.ready == 'true' }}
+        uses: actions/cache/save@v6
+        with:
+          path: |
+            .cache/resume-models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
+            .cache/resume-runtime/b11146/llama-b11146-bin-ubuntu-x64.tar.gz
+            .cache/resume-compiler/image.tar
+          key: ${{ steps.resume-dependencies.outputs.cache-primary-key }}

@@ -1,0 +1,19 @@
+{
+  "source": "atscale",
+  "catalogOverride": true,
+  "adapter": "script",
+  "companyName": "AtScale",
+  "companyCareerPage": "https://www.atscale.com/careers/",
+  "companyDomain": "atscale.com",
+  "atsPlatform": "rippling",
+  "parser": "current-official-global-rippling-native-inventory-and-details",
+  "backfillMode": "live-parser",
+  "inventoryScope": "current-official-global-public-board",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "zeroResultPolicy": "evidence-required",
+  "verifiedOn": "2026-10-25",
+  "currentExtractionEvidence": "scraper/atscale/native-evidence.json",
+  "extractionStrategy": "sole-current-official-active-iframe+native-board-employer-and-unfiltered-terminal-total+typed-country-inventory+full-original-native-india-details+final-inventory-and-official-recheck",
+  "verifiedSurfaceSummary": "Current official global careers page delegates to one unfiltered AtScale Rippling public board. Native board slug atscale, title AtScale and employer AtScale, Inc. reconcile15 unique roles over one page; typed US/GB/ES locations contain0India roles and the final listing is stable. Dynamic completeness is scoped to the current sole official global public board. Static catalog counts remain unknown; no catalog snapshot authorizes empty cleanup. A real foreign detail verifies the full native company/role HTML, listed state, enabled Apply action and native application configuration. Future India positive mapping is tested through clearly synthetic native field changes; no actual current India job is claimed. Native createdOn is retained separately and is not asserted as publication; postingDate remains unknown. Captures use anonymous browser receipts and do not establish ordinary Node HTTP availability."
+}

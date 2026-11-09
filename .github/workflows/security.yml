@@ -1,0 +1,113 @@
+name: Backend security
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 5 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Syntax and isolated API regression tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24.14.0'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Install Chromium for browser regression tests
+        run: npx --no-install playwright install --with-deps chromium
+      - uses: actions/cache@v6
+        with:
+          path: .cache/mongodb-binaries
+          key: mongodb-8.2.6-${{ runner.os }}-${{ runner.arch }}
+      - name: Provision isolated test database binary
+        run: npm run test:provision-mongo
+      - run: npm run lint
+      - run: npm run test:api
+      - name: Run isolated database and payment integration tests
+        run: npm run test:integration
+
+  secrets:
+    name: Redacted current tree and all-history secret scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24.14.0'
+      - name: Verify secret scan filtering
+        run: node --test test/filterSecretScan.test.js
+      - name: Install checksum-verified official Gitleaks binary
+        id: gitleaks
+        shell: bash
+        env:
+          GITLEAKS_VERSION: '8.30.1'
+        run: |
+          set -euo pipefail
+          install_dir="$RUNNER_TEMP/gitleaks-bin"
+          mkdir -p "$install_dir" "$RUNNER_TEMP/security-reports" "$RUNNER_TEMP/gitleaks-current"
+          cd "$install_dir"
+          archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          release="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --tlsv1.2 --connect-timeout 15 --max-time 120 "$release/$archive" --output "$archive"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --tlsv1.2 --connect-timeout 15 --max-time 120 "$release/gitleaks_${GITLEAKS_VERSION}_checksums.txt" --output checksums.txt
+          awk -v file="$archive" '$2 == file { print }' checksums.txt > selected-checksum.txt
+          test "$(wc -l < selected-checksum.txt)" -eq 1
+          sha256sum --check --strict selected-checksum.txt
+          tar -xzf "$archive" gitleaks
+          test "$(./gitleaks version)" = "$GITLEAKS_VERSION"
+          echo "$install_dir" >> "$GITHUB_PATH"
+      - name: Scan current tracked files
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/gitleaks-current"
+          raw_report="$RUNNER_TEMP/gitleaks-current-raw.json"
+          trap 'rm -f "$raw_report"' EXIT
+          set +e
+          # Exact-value review needs the raw value locally. Suppress scanner
+          # output; only the filter's metadata-only report can be uploaded.
+          gitleaks dir "$RUNNER_TEMP/gitleaks-current" --no-banner --log-level error --ignore-gitleaks-allow --report-format json --report-path "$raw_report" >/dev/null 2>&1
+          scan_exit=$?
+          set -e
+          node scripts/filterSecretScan.js "$raw_report" .github/secret-scan-exceptions.json "$RUNNER_TEMP/security-reports/gitleaks-current.json" "$RUNNER_TEMP/gitleaks-current" "$scan_exit"
+      - name: Scan all fetched refs and complete history
+        if: ${{ !cancelled() && steps.gitleaks.outcome == 'success' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          raw_report="$RUNNER_TEMP/gitleaks-history-raw.json"
+          trap 'rm -f "$raw_report"' EXIT
+          set +e
+          gitleaks git . --log-opts="--all --full-history" --no-banner --log-level error --ignore-gitleaks-allow --report-format json --report-path "$raw_report" >/dev/null 2>&1
+          scan_exit=$?
+          set -e
+          node scripts/filterSecretScan.js "$raw_report" .github/secret-scan-exceptions.json "$RUNNER_TEMP/security-reports/gitleaks-history.json" - "$scan_exit"
+      - name: Preserve redacted secret scan reports
+        if: ${{ !cancelled() && steps.gitleaks.outcome == 'success' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: backend-secret-scan-redacted
+          path: ${{ runner.temp }}/security-reports/*.json
+          if-no-files-found: error
+          retention-days: 7

@@ -1,0 +1,18 @@
+{
+  "source": "insulet",
+  "observedAt": "2026-10-24T15:52:35Z",
+  "repairStatus": "runtime-binding-guarded-shared-extractor-live-validation-pending",
+  "officialPage": "https://www.insulet.com/",
+  "observedCareersAnchor": "https://insulet.wd5.myworkdayjobs.com/insuletcareers",
+  "observationMethod": "Current public web extraction of the official homepage and its View Our Career Opportunities anchor.",
+  "nativeApi": "https://insulet.wd5.myworkdayjobs.com/wday/cxs/insulet/insuletcareers/jobs",
+  "nativeResponseRecovered": false,
+  "transportEvidence": "Default Node public probes timed out with network disabled in the sandbox. The separately escalated official-page probe returned UND_ERR_CONNECT_TIMEOUT. The web tool returned a blank board shell and could not read the native API. These results do not establish an employer outage.",
+  "inventoryEvidenceLimits": "The corporate identity and exact Workday link are observable. No current complete native inventory or real India role detail payload was recovered in this repair.",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "liveExtractionVerified": false,
+  "publicationVerified": false,
+  "contractTests": "A synthetic native listing/detail fixture verifies the exact runtime-bound wrapper reaches the existing shared Workday extractor and preserves its inventory evidence. It is not a captured live opening.",
+  "remainingWork": "Run a bounded real Workday listing/detail trial, confirm the current India facet and complete native enumeration, then validate eligible jobs and local persistence/public visibility before rollout."
+}

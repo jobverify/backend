@@ -1,0 +1,28 @@
+{
+  "requestedUrl": "https://biofourmis.com/",
+  "finalUrl": "https://biofourmis.com/",
+  "status": 200,
+  "headers": {
+    "alt-svc": "clear",
+    "cache-control": "max-age=182, must-revalidate",
+    "connection": "keep-alive",
+    "content-encoding": "br",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Sun, 01 Nov 2026 01:09:26 GMT",
+    "host-header": "WordPress.com",
+    "last-modified": "Fri, 30 Oct 2026 20:40:50 GMT",
+    "server": "nginx",
+    "server-timing": "a8c-cdn, dc;desc=sin, cache;desc=STALE;dur=3.0",
+    "strict-transport-security": "max-age=31536000",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding, accept, content-type, cookie",
+    "x-ac": "23.sin _atomic_bur STALE",
+    "x-hacker": "Want root?  Visit join.a8c.com and mention this header.",
+    "x-nananana": "Batcache-Hit",
+    "x-remembering": "Eric Binnion <https://friendsofericbinnion.wordpress.com/>"
+  },
+  "requestedAt": "2026-11-01T01:09:16.343Z",
+  "completedAt": "2026-11-01T01:09:16.772Z",
+  "bytes": 84436,
+  "sha256": "6d8bdc2d506f88328e88a395d68be807f6146afe6c4db4e41c36f80e2d01c865"
+}

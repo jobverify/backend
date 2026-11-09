@@ -1,0 +1,18 @@
+﻿{
+  "source": "solartistechnologyservices",
+  "companyName": "Solartis Technology Services",
+  "officialBrandName": "Solartis",
+  "adapter": "script",
+  "modulePath": "../../scraper/solartistechnologyservices/script.js",
+  "companyCareerPage": "https://www.solartis.com/about/careers/",
+  "atsPlatform": "official-company-site-no-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "single-public-page",
+  "extractionStrategy": "verified-careers-contact-page+no-public-job-listings-or-structured-openings",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "solartis.com",
+  "verifiedOn": "2026-07-18",
+  "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://www.solartis.com/about/careers/ remained the first-party Solartis careers page. The verified page marketed Solartis careers with the headline 'We are growing fast! Do you have what it takes to be a Solartian?', listed Chennai and Madurai, India plus the contact address careers-india@solartis.com, and exposed a Get Started contact CTA, but it did not expose any structured public job listings, searchable openings, or trustworthy first-party job cards. There is no trustworthy public jobs surface, so the provider remains fail-closed until public listings appear."
+}
+

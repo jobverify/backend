@@ -1,0 +1,21 @@
+{
+  "source": "waycool",
+  "companyName": "WayCool",
+  "adapter": "script",
+  "atsPlatform": "official-native-inventory-inaccessible",
+  "companyCareerPage": "https://waycool.in/career",
+  "officialCareersPageUrl": "https://waycool.in/career",
+  "employerHandoff": "https://www.waycool.in/job-opportunities.php",
+  "countryFilter": "India",
+  "paginationStrategy": "unverified-native-inventory-typed-coverage-gap",
+  "extractionStrategy": "bounded-current-official-career-identity-and-Join-Us-handoff-revalidation",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedSurfaceSummary": "Native browser checks on 2026-10-23 found www.waycool.in/career HTTP 404, while waycool.in/career, both host homepages and www.waycool.in/job-opportunities.php failed transport. Search-index career discovery still shows Join Us to the legacy endpoint; no current accessible employer-bound native inventory was recovered. Public LinkedIn employer discovery exposes no See jobs handoff; WayCool Labs is a separate employer. Job counts, countries, dates and role contracts remain unknown. The collector retries the www career variant and legacy endpoint, raises a typed coverage gap and disallows cleanup.",
+  "zeroResultPolicy": "coverage-gap",
+  "inventoryCompleteness": "coverage-gap",
+  "lifecycleCleanupAllowed": false,
+  "sourceListingComplete": false,
+  "fixtureManifest": "scraper/waycool/fixtures/manifest.json"
+}

@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://valeo.wd3.myworkdayjobs.com/wday/cxs/valeo/valeo_jobs/jobs",
+  "detailUrlBase": "https://valeo.wd3.myworkdayjobs.com/en-US/valeo_jobs",
+  "countryFacetParameter": "locationCountry"
+}

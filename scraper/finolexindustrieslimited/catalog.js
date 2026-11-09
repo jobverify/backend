@@ -1,0 +1,7 @@
+export const FINOLEX_CATALOG={source:'finolexindustrieslimited',companyName:'Finolex Industries Limited',adapter:'script',modulePath:'../../scraper/finolexindustrieslimited/script.js',
+ companyCareerPage:'https://www.finolexpipes.com/career/',companyDomain:'finolexpipes.com',officialCareersEmail:'career@finolexind.com',
+ atsPlatform:'first-party-declared-vacancy-query',countryFilter:'India and unresolved native country observations',
+ paginationStrategy:'paired-original-unfiltered-vacancy-list;company-scope-unqualified',extractionStrategy:'current-owned-corporate-and-declared-read-only-native-query',parser:'custom-script',normalizationProfile:'engineering-default',
+ verifiedOn:null,verifiedPublicJobCount:null,verifiedIndiaJobCount:null,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,
+ verifiedSurfaceSummary:'Read the current owned Finolex corporate careers page, its reviewed original vacancy client and only its read-only POST Activity=joblist. Empty HTML containers are not inventory. Preserve full native summaries, distinct IDs, location/state and native display dates. Country, formal requisitions, first-publication meaning, company totals and per-role application URLs remain unqualified. Reconcile the closing native list and corporate/client binding; application/upload and enquiry operations are excluded.'}
+export default FINOLEX_CATALOG

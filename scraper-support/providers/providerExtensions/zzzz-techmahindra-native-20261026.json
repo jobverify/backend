@@ -1,0 +1,25 @@
+[
+  {
+    "source": "techmahindra",
+    "companyName": "Tech Mahindra",
+    "officialBrandName": "Tech Mahindra",
+    "adapter": "script",
+    "modulePath": "../techmahindra/script.js",
+    "companyCareerPage": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+    "companyDomain": "careers.techmahindra.com",
+    "atsPlatform": "official-company-careers",
+    "countryFilter": "India",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-ASP.NET-sequential-postbacks+session-state+IT-and-BPS-closing-scope",
+    "extractionStrategy": "current-numeric-native-card-discovery+explicit-employer-identity+safe-public-detail-route-required",
+    "applicationStrategy": "never-submit-Apply-or-Shortlist-for-detail-discovery",
+    "verifiedOn": "2026-10-26",
+    "verifiedPublicPostingCount": null,
+    "verifiedIndiaRoleCount": null,
+    "verifiedSurfaceSummary": "The current anonymous IT listing exposes numeric HdnJobCode cards and Apply/Shortlist submit controls, rather than the old public JobDetails anchors. Read-only country search and sequential pager postbacks preserve native form controls and anonymous cookies. Filter selection and city names do not establish role-owned India country. Submit controls are never invoked to discover details because they may record interest; missing public detail identity/content/date remains a partial coverage gap. BPS is checked separately with its explicit native empty declaration and closing check. Empty or repeated later IT pages, missing identity, ignored filters, unsafe redirects, additional frames, safety caps, and unstable closing scope never authorize cleanup. Original publication dates, role references, employment type and descriptions are not invented.",
+    "dryRunFile": "techmahindra/jobs.json",
+    "catalogOverride": true
+  }
+]

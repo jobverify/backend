@@ -1,0 +1,11 @@
+{
+  "referenceUrl": "https://pe.usps.com/text/pub28/pub28apb.htm",
+  "referenceTitle": "USPS Publication 28, Appendix B: Two-Letter State and Possession Abbreviations",
+  "referenceCapturedAt": "2026-10-27T10:35:07.091Z",
+  "referenceSha256": "0ba863b726007dc640f6f25b849830119a80f5d3056e4e5e472ce4793b2f997b",
+  "qualification": "Independent official postal-state evidence, not a native structured country field. Used only with these exact role-owned city plus state labels, consistently reconciled across the Vanta feed, board and native role. Future labels or conflicting native geography remain unresolved.",
+  "validatedWorksites": [
+    { "label": "Denver, CO", "city": "Denver", "stateCode": "CO", "stateName": "Colorado", "country": "United States" },
+    { "label": "Austin, TX", "city": "Austin", "stateCode": "TX", "stateName": "Texas", "country": "United States" }
+  ]
+}

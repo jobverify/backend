@@ -1,0 +1,768 @@
+{
+  "recordedAt": "2026-11-02T23:48:05.134Z",
+  "method": "read-only-public-native-http-no-db",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "d7f0311a2bcfaf49000205b3b2c78d3dc687da1b9a45f065e56c9ce1d7e592dd",
+  "responses": [
+    {
+      "key": "current-careers",
+      "url": "https://www.bounteous.com/careers/search-results",
+      "finalUrl": "https://www.bounteous.com/careers/search-results",
+      "status": 200,
+      "bytes": 1092564,
+      "sha256": "b75f2df6a9e6c7cf17b25a29f67ddba76292de3ff21837927eb419207b4b67b5",
+      "observedAt": "2026-11-02T23:05:37.787Z",
+      "originalCapture": "accolitedigital-current-careers-b75f2df6a9e6.body"
+    },
+    {
+      "key": "turbohire-feed",
+      "url": "https://www.bounteous.com/turbohire/api/",
+      "finalUrl": "https://www.bounteous.com/turbohire/api",
+      "status": 200,
+      "bytes": 668678,
+      "sha256": "0369e0ef7ee14880481960ff85844d901e04bb9c0c22d7383da92a6a5d50e5c5",
+      "observedAt": "2026-11-02T23:05:38.255Z",
+      "originalCapture": "accolitedigital-turbohire-feed-0369e0ef7ee1.body"
+    },
+    {
+      "key": "production-lever-json",
+      "url": "https://api.lever.co/v0/postings/bounteous/",
+      "finalUrl": "https://api.lever.co/v0/postings/bounteous/",
+      "status": 200,
+      "bytes": 583861,
+      "sha256": "0a5501e9f71e88b0fa9625bdcee932650a036e1000c3c0beac032902674750d8",
+      "observedAt": "2026-11-02T23:12:27.107Z",
+      "originalCapture": "bounteous-production-lever-json-0a5501e9f71e.body"
+    },
+    {
+      "key": "india-role",
+      "url": "https://www.bounteous.com/careers/job/t__19a9e4bc-6821-41e3-8135-197c46bb0a23",
+      "finalUrl": "https://www.bounteous.com/careers/job/t__19a9e4bc-6821-41e3-8135-197c46bb0a23",
+      "status": 200,
+      "bytes": 1070373,
+      "sha256": "bbda26d51a32767c92de69045472473a66bf2a6faa391f0cd9c1980b979b4e15",
+      "observedAt": "2026-11-02T23:16:46.674Z",
+      "originalCapture": "bounteous-india-role-bbda26d51a32.body"
+    },
+    {
+      "key": "job-client",
+      "url": "https://www.bounteous.com/public/component---src-pages-careers-job-job-id-js-241f27621d9380b517ac.js",
+      "finalUrl": "https://www.bounteous.com/public/component---src-pages-careers-job-job-id-js-241f27621d9380b517ac.js",
+      "status": 200,
+      "bytes": 2556,
+      "sha256": "732b5fb29dec39086ba652a5dd72fc6a9d507ed14b2781a57544cf4cb8ae21dc",
+      "observedAt": "2026-11-02T23:17:57.807Z",
+      "originalCapture": "bounteous-job-client-732b5fb29dec.body"
+    },
+    {
+      "key": "job-renderer",
+      "url": "https://www.bounteous.com/public/components-JobDescription-JobDescription-fcbe4863a5ad2129d79d.js",
+      "finalUrl": "https://www.bounteous.com/public/components-JobDescription-JobDescription-fcbe4863a5ad2129d79d.js",
+      "status": 200,
+      "bytes": 41800,
+      "sha256": "97e9ce63df2dda4867a59b9e45881ec27ada0f4ef30e8d6152727062aeb1b926",
+      "observedAt": "2026-11-02T23:17:58.346Z",
+      "originalCapture": "bounteous-job-renderer-97e9ce63df2d.body"
+    },
+    {
+      "key": "detail-t__19a9e4bc-6821-41e3-8135-197c46bb0a23",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__19a9e4bc-6821-41e3-8135-197c46bb0a23",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__19a9e4bc-6821-41e3-8135-197c46bb0a23",
+      "status": 200,
+      "bytes": 5300,
+      "sha256": "d4cb14af7c5c0cbc2d59e949fc5ef7b25a189fbcfb33088bf5393d06b1cf6c6c",
+      "observedAt": "2026-11-02T23:20:51.269Z",
+      "originalCapture": "bounteous-detail-t__19a9e4bc-6821-41e3-8135-197c46bb0a23-d4cb14af7c5c.body"
+    },
+    {
+      "key": "detail-t__ed48a25e-640e-41f7-9092-81ded9ef5a15",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__ed48a25e-640e-41f7-9092-81ded9ef5a15",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__ed48a25e-640e-41f7-9092-81ded9ef5a15",
+      "status": 200,
+      "bytes": 11665,
+      "sha256": "8b0949713723b6ffc84058cbbd13c3492b15814594e01ce316453e1d921556df",
+      "observedAt": "2026-11-02T23:20:51.241Z",
+      "originalCapture": "bounteous-detail-t__ed48a25e-640e-41f7-9092-81ded9ef5a15-8b0949713723.body"
+    },
+    {
+      "key": "detail-t__d55fd346-dd89-4f4d-babb-3855cb101704",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__d55fd346-dd89-4f4d-babb-3855cb101704",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__d55fd346-dd89-4f4d-babb-3855cb101704",
+      "status": 200,
+      "bytes": 10892,
+      "sha256": "8750bf1c335447913485a9d43bdcfd5c5124bcb1c38d39df107a19e65787e6bd",
+      "observedAt": "2026-11-02T23:20:51.884Z",
+      "originalCapture": "bounteous-detail-t__d55fd346-dd89-4f4d-babb-3855cb101704-8750bf1c3354.body"
+    },
+    {
+      "key": "detail-t__eb856c76-9183-4c9e-880d-badf52de9a36",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__eb856c76-9183-4c9e-880d-badf52de9a36",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__eb856c76-9183-4c9e-880d-badf52de9a36",
+      "status": 200,
+      "bytes": 12023,
+      "sha256": "73a7541e163de71fc4c4d38870790e5950db25abb52636c795cf628f8dff0708",
+      "observedAt": "2026-11-02T23:20:51.895Z",
+      "originalCapture": "bounteous-detail-t__eb856c76-9183-4c9e-880d-badf52de9a36-73a7541e163d.body"
+    },
+    {
+      "key": "detail-t__819f4af8-a2e2-46d9-8936-c13e6f8eaead",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__819f4af8-a2e2-46d9-8936-c13e6f8eaead",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__819f4af8-a2e2-46d9-8936-c13e6f8eaead",
+      "status": 200,
+      "bytes": 9334,
+      "sha256": "8a3bec2f073045e5b75700cb7e25cbdc76ac4f49d3e62678d901fff1cc074657",
+      "observedAt": "2026-11-02T23:20:52.364Z",
+      "originalCapture": "bounteous-detail-t__819f4af8-a2e2-46d9-8936-c13e6f8eaead-8a3bec2f0730.body"
+    },
+    {
+      "key": "detail-t__3cb1876d-cbf6-489a-8b1b-db56c4867604",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__3cb1876d-cbf6-489a-8b1b-db56c4867604",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__3cb1876d-cbf6-489a-8b1b-db56c4867604",
+      "status": 200,
+      "bytes": 16111,
+      "sha256": "607b094bb4c90c5135d8c38e6a5eaa7bbf010bfa60730c43e2ea602e12d843c7",
+      "observedAt": "2026-11-02T23:20:52.562Z",
+      "originalCapture": "bounteous-detail-t__3cb1876d-cbf6-489a-8b1b-db56c4867604-607b094bb4c9.body"
+    },
+    {
+      "key": "detail-t__29be1856-ac03-43b0-8124-26fceacdbcf1",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__29be1856-ac03-43b0-8124-26fceacdbcf1",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__29be1856-ac03-43b0-8124-26fceacdbcf1",
+      "status": 200,
+      "bytes": 13742,
+      "sha256": "c47810c4a0041a3cb4a11cb480a679c58f710d45c7f0a4a7a4758053220ac005",
+      "observedAt": "2026-11-02T23:20:52.981Z",
+      "originalCapture": "bounteous-detail-t__29be1856-ac03-43b0-8124-26fceacdbcf1-c47810c4a004.body"
+    },
+    {
+      "key": "detail-t__55ec5fa8-0fc2-49ce-b8a3-c44f2d705e97",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__55ec5fa8-0fc2-49ce-b8a3-c44f2d705e97",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__55ec5fa8-0fc2-49ce-b8a3-c44f2d705e97",
+      "status": 200,
+      "bytes": 26661,
+      "sha256": "d83ac620bc1b337cafdf678c92041eb30a7a4515f34396ad6d55ca54835136f5",
+      "observedAt": "2026-11-02T23:20:53.206Z",
+      "originalCapture": "bounteous-detail-t__55ec5fa8-0fc2-49ce-b8a3-c44f2d705e97-d83ac620bc1b.body"
+    },
+    {
+      "key": "detail-t__354a2003-b8d7-4eb7-a008-aefba2b60bb7",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__354a2003-b8d7-4eb7-a008-aefba2b60bb7",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__354a2003-b8d7-4eb7-a008-aefba2b60bb7",
+      "status": 200,
+      "bytes": 9898,
+      "sha256": "0ae4cb79ec564a1741bcf48eb8d04f084953283867def11daadfd601bf06a1cd",
+      "observedAt": "2026-11-02T23:21:00.904Z",
+      "originalCapture": "bounteous-detail-t__354a2003-b8d7-4eb7-a008-aefba2b60bb7-0ae4cb79ec56.body"
+    },
+    {
+      "key": "detail-t__714321f8-9a3e-482d-8e6b-31d028a51399",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__714321f8-9a3e-482d-8e6b-31d028a51399",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__714321f8-9a3e-482d-8e6b-31d028a51399",
+      "status": 200,
+      "bytes": 12678,
+      "sha256": "ac85fa48378ff97e098c107951f95005875e4226fb34ea9fa70735b185bcb7db",
+      "observedAt": "2026-11-02T23:21:01.623Z",
+      "originalCapture": "bounteous-detail-t__714321f8-9a3e-482d-8e6b-31d028a51399-ac85fa48378f.body"
+    },
+    {
+      "key": "detail-t__2adfaf1d-7c78-4ac5-bafe-1b8dbbd51f9f",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__2adfaf1d-7c78-4ac5-bafe-1b8dbbd51f9f",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__2adfaf1d-7c78-4ac5-bafe-1b8dbbd51f9f",
+      "status": 200,
+      "bytes": 5290,
+      "sha256": "2d50ad73f245d92de406558a0a6e43c38abccfe79375c3f35942f76892612135",
+      "observedAt": "2026-11-02T23:21:02.143Z",
+      "originalCapture": "bounteous-detail-t__2adfaf1d-7c78-4ac5-bafe-1b8dbbd51f9f-2d50ad73f245.body"
+    },
+    {
+      "key": "detail-t__2cb8a5c6-3366-42fb-83f9-77001049e9fa",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__2cb8a5c6-3366-42fb-83f9-77001049e9fa",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__2cb8a5c6-3366-42fb-83f9-77001049e9fa",
+      "status": 200,
+      "bytes": 3467,
+      "sha256": "c6a5093193b85ca2d23b77b5600a338590d06933a32e4f7e65a3b0c0352c416c",
+      "observedAt": "2026-11-02T23:21:02.485Z",
+      "originalCapture": "bounteous-detail-t__2cb8a5c6-3366-42fb-83f9-77001049e9fa-c6a5093193b8.body"
+    },
+    {
+      "key": "detail-t__7768203a-f55e-44e3-9766-19b377b62cfe",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__7768203a-f55e-44e3-9766-19b377b62cfe",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__7768203a-f55e-44e3-9766-19b377b62cfe",
+      "status": 200,
+      "bytes": 7742,
+      "sha256": "f95d6ba49d89340631d8b6668c756951ac2d3e573252530c166d460bb379235e",
+      "observedAt": "2026-11-02T23:21:02.723Z",
+      "originalCapture": "bounteous-detail-t__7768203a-f55e-44e3-9766-19b377b62cfe-f95d6ba49d89.body"
+    },
+    {
+      "key": "detail-t__d0048bb1-71ea-43f8-a56c-d5c768f3a0e0",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__d0048bb1-71ea-43f8-a56c-d5c768f3a0e0",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__d0048bb1-71ea-43f8-a56c-d5c768f3a0e0",
+      "status": 200,
+      "bytes": 6319,
+      "sha256": "1251cb584e706b12c0068018993db1bb3f84517613a703b05de4c4c859008b11",
+      "observedAt": "2026-11-02T23:21:03.344Z",
+      "originalCapture": "bounteous-detail-t__d0048bb1-71ea-43f8-a56c-d5c768f3a0e0-1251cb584e70.body"
+    },
+    {
+      "key": "detail-t__cf81604c-3c69-429a-8f5f-0869abce0729",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__cf81604c-3c69-429a-8f5f-0869abce0729",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__cf81604c-3c69-429a-8f5f-0869abce0729",
+      "status": 200,
+      "bytes": 8185,
+      "sha256": "e7514ce68fa5be4d4f391b18c048457165e4c2d07cabfa78deaacf88195982b0",
+      "observedAt": "2026-11-02T23:21:03.713Z",
+      "originalCapture": "bounteous-detail-t__cf81604c-3c69-429a-8f5f-0869abce0729-e7514ce68fa5.body"
+    },
+    {
+      "key": "detail-t__097523ab-8133-493d-8ffc-9930470f1813",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__097523ab-8133-493d-8ffc-9930470f1813",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__097523ab-8133-493d-8ffc-9930470f1813",
+      "status": 200,
+      "bytes": 5604,
+      "sha256": "4be52730df79a24fe4d2e5635665bcfc1189d2d2454a951fc65d7c1c0cf2f2f3",
+      "observedAt": "2026-11-02T23:21:04.004Z",
+      "originalCapture": "bounteous-detail-t__097523ab-8133-493d-8ffc-9930470f1813-4be52730df79.body"
+    },
+    {
+      "key": "detail-t__8713400b-66d1-4e50-b698-16967dbc132b",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__8713400b-66d1-4e50-b698-16967dbc132b",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__8713400b-66d1-4e50-b698-16967dbc132b",
+      "status": 200,
+      "bytes": 14654,
+      "sha256": "8078a8b566b9251e01ef2b050a3a9aa2ef4202285a89cc484f03807df4534676",
+      "observedAt": "2026-11-02T23:21:04.339Z",
+      "originalCapture": "bounteous-detail-t__8713400b-66d1-4e50-b698-16967dbc132b-8078a8b566b9.body"
+    },
+    {
+      "key": "detail-t__b715517e-6abd-45b9-91a9-7293de6df161",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__b715517e-6abd-45b9-91a9-7293de6df161",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__b715517e-6abd-45b9-91a9-7293de6df161",
+      "status": 200,
+      "bytes": 6283,
+      "sha256": "b062d8ed8968c234cabf45f48fe28525cd435071116d671baecbf27d9957067c",
+      "observedAt": "2026-11-02T23:21:05.154Z",
+      "originalCapture": "bounteous-detail-t__b715517e-6abd-45b9-91a9-7293de6df161-b062d8ed8968.body"
+    },
+    {
+      "key": "detail-t__f8e7c171-e315-440b-9a41-4bdc375b3c66",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__f8e7c171-e315-440b-9a41-4bdc375b3c66",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__f8e7c171-e315-440b-9a41-4bdc375b3c66",
+      "status": 200,
+      "bytes": 4770,
+      "sha256": "cbd02f33ad4477e1f6dc1aa97aa21d039be476ee9a3150ec4b2c5d9ff6ef5ea2",
+      "observedAt": "2026-11-02T23:21:05.792Z",
+      "originalCapture": "bounteous-detail-t__f8e7c171-e315-440b-9a41-4bdc375b3c66-cbd02f33ad44.body"
+    },
+    {
+      "key": "detail-t__b347167b-84d7-4927-8e57-8456a02eaa40",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__b347167b-84d7-4927-8e57-8456a02eaa40",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__b347167b-84d7-4927-8e57-8456a02eaa40",
+      "status": 200,
+      "bytes": 6135,
+      "sha256": "83374d506f267fe8d8db5641de8e432c9ca0e1b0ec60e5aeb77b1aa3f1b0efed",
+      "observedAt": "2026-11-02T23:21:06.421Z",
+      "originalCapture": "bounteous-detail-t__b347167b-84d7-4927-8e57-8456a02eaa40-83374d506f26.body"
+    },
+    {
+      "key": "detail-t__777fc176-594f-416a-8631-decbd0790628",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__777fc176-594f-416a-8631-decbd0790628",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__777fc176-594f-416a-8631-decbd0790628",
+      "status": 200,
+      "bytes": 17594,
+      "sha256": "c223d5a2ceb032f0f3e90086f2ff17ff58774ee66392e1285c24e7e4aaec65d0",
+      "observedAt": "2026-11-02T23:21:07.053Z",
+      "originalCapture": "bounteous-detail-t__777fc176-594f-416a-8631-decbd0790628-c223d5a2ceb0.body"
+    },
+    {
+      "key": "detail-t__86e5cd77-62da-41e1-bdc0-350dedca8491",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__86e5cd77-62da-41e1-bdc0-350dedca8491",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__86e5cd77-62da-41e1-bdc0-350dedca8491",
+      "status": 200,
+      "bytes": 3053,
+      "sha256": "5e2d3132e137ead30c2c52bd8d2c858953edc9e7b502d9d0d1abca46572e0ad2",
+      "observedAt": "2026-11-02T23:21:07.869Z",
+      "originalCapture": "bounteous-detail-t__86e5cd77-62da-41e1-bdc0-350dedca8491-5e2d3132e137.body"
+    },
+    {
+      "key": "detail-t__bab72349-75ec-41ef-ad9e-6adfd952f44f",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__bab72349-75ec-41ef-ad9e-6adfd952f44f",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__bab72349-75ec-41ef-ad9e-6adfd952f44f",
+      "status": 200,
+      "bytes": 10683,
+      "sha256": "1342b1bad5e5df0424f944a2dec914a3d06d178ca9719b62e02815b5f06704f1",
+      "observedAt": "2026-11-02T23:21:10.656Z",
+      "originalCapture": "bounteous-detail-t__bab72349-75ec-41ef-ad9e-6adfd952f44f-1342b1bad5e5.body"
+    },
+    {
+      "key": "detail-t__c66c5d46-11a6-47f4-afa7-aa9ec8c5919a",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__c66c5d46-11a6-47f4-afa7-aa9ec8c5919a",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__c66c5d46-11a6-47f4-afa7-aa9ec8c5919a",
+      "status": 200,
+      "bytes": 3949,
+      "sha256": "aa62cb65898432d7b224f410ebcd2e6ec4356ee776639e1b7136f5a507e05e3f",
+      "observedAt": "2026-11-02T23:21:11.389Z",
+      "originalCapture": "bounteous-detail-t__c66c5d46-11a6-47f4-afa7-aa9ec8c5919a-aa62cb658984.body"
+    },
+    {
+      "key": "detail-t__1bcd4fbd-b791-4e25-863d-dd228782c597",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__1bcd4fbd-b791-4e25-863d-dd228782c597",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__1bcd4fbd-b791-4e25-863d-dd228782c597",
+      "status": 200,
+      "bytes": 6331,
+      "sha256": "bbca8a2b3c753c45796d7f499774755edfdb5d87da3c2c8f089beaa0e98ea603",
+      "observedAt": "2026-11-02T23:21:12.190Z",
+      "originalCapture": "bounteous-detail-t__1bcd4fbd-b791-4e25-863d-dd228782c597-bbca8a2b3c75.body"
+    },
+    {
+      "key": "detail-t__1d45f5d5-c5bc-4e85-a4b3-bca497c2c135",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__1d45f5d5-c5bc-4e85-a4b3-bca497c2c135",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__1d45f5d5-c5bc-4e85-a4b3-bca497c2c135",
+      "status": 200,
+      "bytes": 12311,
+      "sha256": "22f6220bd94d0f10ba03f34e2e0bb2ca4ee9a23635781ac15c22e0d9b18092b3",
+      "observedAt": "2026-11-02T23:21:14.870Z",
+      "originalCapture": "bounteous-detail-t__1d45f5d5-c5bc-4e85-a4b3-bca497c2c135-22f6220bd94d.body"
+    },
+    {
+      "key": "detail-t__cffac4b3-3967-4ba0-9bd9-39dad074e810",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__cffac4b3-3967-4ba0-9bd9-39dad074e810",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__cffac4b3-3967-4ba0-9bd9-39dad074e810",
+      "status": 200,
+      "bytes": 5668,
+      "sha256": "58b6b406640e38b0363975a1f130ebd6af0bd88752fad93f0e89015a32319302",
+      "observedAt": "2026-11-02T23:21:16.137Z",
+      "originalCapture": "bounteous-detail-t__cffac4b3-3967-4ba0-9bd9-39dad074e810-58b6b406640e.body"
+    },
+    {
+      "key": "detail-t__4ed58f21-1847-4cd4-9b5d-293cf0747c03",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__4ed58f21-1847-4cd4-9b5d-293cf0747c03",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__4ed58f21-1847-4cd4-9b5d-293cf0747c03",
+      "status": 200,
+      "bytes": 3935,
+      "sha256": "8a87f8d9a614b520c11bcbce5489875f92a68943e0ccf50b997ca91e9289df71",
+      "observedAt": "2026-11-02T23:21:16.776Z",
+      "originalCapture": "bounteous-detail-t__4ed58f21-1847-4cd4-9b5d-293cf0747c03-8a87f8d9a614.body"
+    },
+    {
+      "key": "detail-t__9a56ed65-0fad-463b-9e06-054d2a695e10",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__9a56ed65-0fad-463b-9e06-054d2a695e10",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__9a56ed65-0fad-463b-9e06-054d2a695e10",
+      "status": 200,
+      "bytes": 2147,
+      "sha256": "0ef4b3540b984e853bce13adfc994876adcdc8f45440c041f343fd32e190618c",
+      "observedAt": "2026-11-02T23:21:17.399Z",
+      "originalCapture": "bounteous-detail-t__9a56ed65-0fad-463b-9e06-054d2a695e10-0ef4b3540b98.body"
+    },
+    {
+      "key": "detail-t__caefb0e4-daac-4138-a78a-c769dcf6e611",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__caefb0e4-daac-4138-a78a-c769dcf6e611",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__caefb0e4-daac-4138-a78a-c769dcf6e611",
+      "status": 200,
+      "bytes": 8196,
+      "sha256": "9ed73266606e0bf8d890f5ddc39990ecd1656f70d478eee7518745ce3ad65bef",
+      "observedAt": "2026-11-02T23:21:18.071Z",
+      "originalCapture": "bounteous-detail-t__caefb0e4-daac-4138-a78a-c769dcf6e611-9ed73266606e.body"
+    },
+    {
+      "key": "detail-t__42137ddb-2cd7-4614-a864-74f40f9706f8",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__42137ddb-2cd7-4614-a864-74f40f9706f8",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__42137ddb-2cd7-4614-a864-74f40f9706f8",
+      "status": 200,
+      "bytes": 6111,
+      "sha256": "122f0cc8df8941ba444b82bea80ee77aab50ca3089c52eecd80c35088e01eee5",
+      "observedAt": "2026-11-02T23:21:18.672Z",
+      "originalCapture": "bounteous-detail-t__42137ddb-2cd7-4614-a864-74f40f9706f8-122f0cc8df89.body"
+    },
+    {
+      "key": "detail-t__5b2a28e6-07f7-4e7d-a260-95aefc6f60d6",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__5b2a28e6-07f7-4e7d-a260-95aefc6f60d6",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__5b2a28e6-07f7-4e7d-a260-95aefc6f60d6",
+      "status": 200,
+      "bytes": 5103,
+      "sha256": "8d47f4a6b987a74ee94a8573368f9e232d0b943f898f1139b6f67641d9bdc479",
+      "observedAt": "2026-11-02T23:21:19.308Z",
+      "originalCapture": "bounteous-detail-t__5b2a28e6-07f7-4e7d-a260-95aefc6f60d6-8d47f4a6b987.body"
+    },
+    {
+      "key": "detail-t__7af7dccd-bbbf-42ef-ae93-4592d95442eb",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__7af7dccd-bbbf-42ef-ae93-4592d95442eb",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__7af7dccd-bbbf-42ef-ae93-4592d95442eb",
+      "status": 200,
+      "bytes": 6437,
+      "sha256": "9ae0355eaca3c7236ad0e6f5de5f308b31b3d846ef4a32dad7b93c2af5216b07",
+      "observedAt": "2026-11-02T23:21:21.437Z",
+      "originalCapture": "bounteous-detail-t__7af7dccd-bbbf-42ef-ae93-4592d95442eb-9ae0355eaca3.body"
+    },
+    {
+      "key": "detail-t__8bf66cb9-fef6-4b81-a30f-ad25ceee9f5e",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__8bf66cb9-fef6-4b81-a30f-ad25ceee9f5e",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__8bf66cb9-fef6-4b81-a30f-ad25ceee9f5e",
+      "status": 200,
+      "bytes": 2862,
+      "sha256": "86a2774f272aec6d7ef81bb2d92bf2df6add059908463fbf4b382f6c915de097",
+      "observedAt": "2026-11-02T23:21:22.107Z",
+      "originalCapture": "bounteous-detail-t__8bf66cb9-fef6-4b81-a30f-ad25ceee9f5e-86a2774f272a.body"
+    },
+    {
+      "key": "detail-t__88acf2a5-7069-4d8e-b830-60ab337cdd5a",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__88acf2a5-7069-4d8e-b830-60ab337cdd5a",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__88acf2a5-7069-4d8e-b830-60ab337cdd5a",
+      "status": 200,
+      "bytes": 2678,
+      "sha256": "04418a4d31eb91d3906d976b5a1eeccd261bbb2d9d5ffd00af4f6cc232203cd1",
+      "observedAt": "2026-11-02T23:21:22.309Z",
+      "originalCapture": "bounteous-detail-t__88acf2a5-7069-4d8e-b830-60ab337cdd5a-04418a4d31eb.body"
+    },
+    {
+      "key": "detail-t__59bed84b-d3f1-495c-801b-f3b3b2f6374f",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__59bed84b-d3f1-495c-801b-f3b3b2f6374f",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__59bed84b-d3f1-495c-801b-f3b3b2f6374f",
+      "status": 200,
+      "bytes": 3911,
+      "sha256": "bee82488811d83d094dbdcc2cc5823d7ec1397a553174e95922c34db77dd9972",
+      "observedAt": "2026-11-02T23:21:22.929Z",
+      "originalCapture": "bounteous-detail-t__59bed84b-d3f1-495c-801b-f3b3b2f6374f-bee82488811d.body"
+    },
+    {
+      "key": "detail-t__ba73a59e-eb75-4644-aba8-e1e65ff9e4ab",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__ba73a59e-eb75-4644-aba8-e1e65ff9e4ab",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__ba73a59e-eb75-4644-aba8-e1e65ff9e4ab",
+      "status": 200,
+      "bytes": 5462,
+      "sha256": "5d7917d95486b3526ecff6401e59b572f5f6d957517690c112107853b204e443",
+      "observedAt": "2026-11-02T23:21:23.551Z",
+      "originalCapture": "bounteous-detail-t__ba73a59e-eb75-4644-aba8-e1e65ff9e4ab-5d7917d95486.body"
+    },
+    {
+      "key": "detail-t__e99079e4-0fa1-4726-ad55-71c627316e07",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__e99079e4-0fa1-4726-ad55-71c627316e07",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__e99079e4-0fa1-4726-ad55-71c627316e07",
+      "status": 200,
+      "bytes": 5095,
+      "sha256": "31c7243886414938c7fb06cac941a51a09ffc104bdf789bcf2e9581c89869c21",
+      "observedAt": "2026-11-02T23:21:24.188Z",
+      "originalCapture": "bounteous-detail-t__e99079e4-0fa1-4726-ad55-71c627316e07-31c724388641.body"
+    },
+    {
+      "key": "detail-t__bda6ebb9-ddb8-4729-b8e8-09f517fb206c",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__bda6ebb9-ddb8-4729-b8e8-09f517fb206c",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__bda6ebb9-ddb8-4729-b8e8-09f517fb206c",
+      "status": 200,
+      "bytes": 7966,
+      "sha256": "654577ce12fc7a9b8c798c44292c63c6dca681d3c89f557605a9090402064c85",
+      "observedAt": "2026-11-02T23:21:24.842Z",
+      "originalCapture": "bounteous-detail-t__bda6ebb9-ddb8-4729-b8e8-09f517fb206c-654577ce12fc.body"
+    },
+    {
+      "key": "detail-t__997246f4-1518-4050-8ebb-c6bcc54626c5",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__997246f4-1518-4050-8ebb-c6bcc54626c5",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__997246f4-1518-4050-8ebb-c6bcc54626c5",
+      "status": 200,
+      "bytes": 7818,
+      "sha256": "8e6ba8ee0bf432c50565d904a470f26c19c258f17ae487d7e08ccf765a57bc8f",
+      "observedAt": "2026-11-02T23:21:25.442Z",
+      "originalCapture": "bounteous-detail-t__997246f4-1518-4050-8ebb-c6bcc54626c5-8e6ba8ee0bf4.body"
+    },
+    {
+      "key": "detail-t__080c5aad-e903-4f13-98a4-c31108bc2d24",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__080c5aad-e903-4f13-98a4-c31108bc2d24",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__080c5aad-e903-4f13-98a4-c31108bc2d24",
+      "status": 200,
+      "bytes": 5250,
+      "sha256": "3a158f2fab9dc93dd66e5c712b9042bc2df9d50e8c3bf6d381be1ffec49d9c41",
+      "observedAt": "2026-11-02T23:21:26.070Z",
+      "originalCapture": "bounteous-detail-t__080c5aad-e903-4f13-98a4-c31108bc2d24-3a158f2fab9d.body"
+    },
+    {
+      "key": "detail-t__3953b230-1550-49ef-a077-be9ab0c0ad65",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__3953b230-1550-49ef-a077-be9ab0c0ad65",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__3953b230-1550-49ef-a077-be9ab0c0ad65",
+      "status": 200,
+      "bytes": 8675,
+      "sha256": "2a5594990f0603137e18e4ec22a4fdb4206a9f4702a91bc25284a8335e63c31d",
+      "observedAt": "2026-11-02T23:21:27.643Z",
+      "originalCapture": "bounteous-detail-t__3953b230-1550-49ef-a077-be9ab0c0ad65-2a5594990f06.body"
+    },
+    {
+      "key": "detail-t__ee223564-92b2-4c21-bb9f-1e4da7f682ec",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__ee223564-92b2-4c21-bb9f-1e4da7f682ec",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__ee223564-92b2-4c21-bb9f-1e4da7f682ec",
+      "status": 200,
+      "bytes": 3257,
+      "sha256": "9e1302add88b026f2803b8e24c7a91dc0258198b41608f21833527e623b5dcd7",
+      "observedAt": "2026-11-02T23:21:29.339Z",
+      "originalCapture": "bounteous-detail-t__ee223564-92b2-4c21-bb9f-1e4da7f682ec-9e1302add88b.body"
+    },
+    {
+      "key": "detail-t__f84c5529-2b7e-4e5d-b9bc-c0c907e9eab1",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__f84c5529-2b7e-4e5d-b9bc-c0c907e9eab1",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__f84c5529-2b7e-4e5d-b9bc-c0c907e9eab1",
+      "status": 200,
+      "bytes": 3646,
+      "sha256": "9cab1f034d78f11cde93903f06fd5650764e4a2fc90823cab0e94cb2fd6f0c69",
+      "observedAt": "2026-11-02T23:21:32.033Z",
+      "originalCapture": "bounteous-detail-t__f84c5529-2b7e-4e5d-b9bc-c0c907e9eab1-9cab1f034d78.body"
+    },
+    {
+      "key": "detail-t__ce8f613c-fed3-4150-a6dc-6d0b3edb5675",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__ce8f613c-fed3-4150-a6dc-6d0b3edb5675",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__ce8f613c-fed3-4150-a6dc-6d0b3edb5675",
+      "status": 200,
+      "bytes": 6338,
+      "sha256": "d2d5c8b645488330e19701ed222212bc39bca0cd38d664fd0808313069491190",
+      "observedAt": "2026-11-02T23:21:36.612Z",
+      "originalCapture": "bounteous-detail-t__ce8f613c-fed3-4150-a6dc-6d0b3edb5675-d2d5c8b64548.body"
+    },
+    {
+      "key": "detail-t__5070fe09-144c-429e-bb9d-e4c01e70ea22",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__5070fe09-144c-429e-bb9d-e4c01e70ea22",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__5070fe09-144c-429e-bb9d-e4c01e70ea22",
+      "status": 200,
+      "bytes": 4101,
+      "sha256": "1f6d10c7402b0eb3357274ecc5abc4dcd92762c027ff459bedca65b6279b5d8d",
+      "observedAt": "2026-11-02T23:21:37.343Z",
+      "originalCapture": "bounteous-detail-t__5070fe09-144c-429e-bb9d-e4c01e70ea22-1f6d10c7402b.body"
+    },
+    {
+      "key": "detail-t__4744cbf8-ad0a-4b16-b32e-536a5e21ffb4",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__4744cbf8-ad0a-4b16-b32e-536a5e21ffb4",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__4744cbf8-ad0a-4b16-b32e-536a5e21ffb4",
+      "status": 200,
+      "bytes": 3899,
+      "sha256": "d570e272e82b27779ad945608c5238844abe6071cbfcb1829ac27b9b8adbddec",
+      "observedAt": "2026-11-02T23:21:37.897Z",
+      "originalCapture": "bounteous-detail-t__4744cbf8-ad0a-4b16-b32e-536a5e21ffb4-d570e272e82b.body"
+    },
+    {
+      "key": "detail-t__d3180c75-d7dd-46cc-aa2b-e4768d6a5d72",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__d3180c75-d7dd-46cc-aa2b-e4768d6a5d72",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__d3180c75-d7dd-46cc-aa2b-e4768d6a5d72",
+      "status": 200,
+      "bytes": 4099,
+      "sha256": "4f210ea93691ebf8e24af615ec4e1369479608167d16251ceec1a595d959effc",
+      "observedAt": "2026-11-02T23:21:37.962Z",
+      "originalCapture": "bounteous-detail-t__d3180c75-d7dd-46cc-aa2b-e4768d6a5d72-4f210ea93691.body"
+    },
+    {
+      "key": "detail-t__abfa6601-f41f-4b0c-b8af-83f41cfac570",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__abfa6601-f41f-4b0c-b8af-83f41cfac570",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__abfa6601-f41f-4b0c-b8af-83f41cfac570",
+      "status": 200,
+      "bytes": 4009,
+      "sha256": "dedca12c43daf870558210972f5782acd252f071c0ff7fc158554ea38d4183e0",
+      "observedAt": "2026-11-02T23:21:39.105Z",
+      "originalCapture": "bounteous-detail-t__abfa6601-f41f-4b0c-b8af-83f41cfac570-dedca12c43da.body"
+    },
+    {
+      "key": "detail-t__ad6f4882-bd6f-4ff4-8d66-1a5cc27559b2",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__ad6f4882-bd6f-4ff4-8d66-1a5cc27559b2",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__ad6f4882-bd6f-4ff4-8d66-1a5cc27559b2",
+      "status": 200,
+      "bytes": 6677,
+      "sha256": "6a230aea8e5259a388d9144ef7b5a1346141cb3aa335d52ea6eabc2cf75ab9fc",
+      "observedAt": "2026-11-02T23:21:39.770Z",
+      "originalCapture": "bounteous-detail-t__ad6f4882-bd6f-4ff4-8d66-1a5cc27559b2-6a230aea8e52.body"
+    },
+    {
+      "key": "detail-t__b24883b2-7974-48e4-8855-04b75b7a1d66",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__b24883b2-7974-48e4-8855-04b75b7a1d66",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__b24883b2-7974-48e4-8855-04b75b7a1d66",
+      "status": 200,
+      "bytes": 4019,
+      "sha256": "aef21e2caa77d1b420ec244de3a4419992b29714ea0649f5eff68fc411a26cfa",
+      "observedAt": "2026-11-02T23:21:41.631Z",
+      "originalCapture": "bounteous-detail-t__b24883b2-7974-48e4-8855-04b75b7a1d66-aef21e2caa77.body"
+    },
+    {
+      "key": "detail-t__4d80f713-c5f0-4be8-bc53-b8fc77ddb8d4",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__4d80f713-c5f0-4be8-bc53-b8fc77ddb8d4",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__4d80f713-c5f0-4be8-bc53-b8fc77ddb8d4",
+      "status": 200,
+      "bytes": 6012,
+      "sha256": "41d88a6a8feaaf9706d51126538620f77d583c839a1e29402bdb8b3548fe7c53",
+      "observedAt": "2026-11-02T23:21:42.276Z",
+      "originalCapture": "bounteous-detail-t__4d80f713-c5f0-4be8-bc53-b8fc77ddb8d4-41d88a6a8fea.body"
+    },
+    {
+      "key": "detail-t__35a79b69-2833-4a61-ba20-8e7885ee1d03",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__35a79b69-2833-4a61-ba20-8e7885ee1d03",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__35a79b69-2833-4a61-ba20-8e7885ee1d03",
+      "status": 200,
+      "bytes": 7371,
+      "sha256": "063da16a06b1cde7d131233a6daa7a1ce38052c5c2fcf1b194fe0c4ca921cfcb",
+      "observedAt": "2026-11-02T23:21:42.934Z",
+      "originalCapture": "bounteous-detail-t__35a79b69-2833-4a61-ba20-8e7885ee1d03-063da16a06b1.body"
+    },
+    {
+      "key": "detail-t__8d5c9f40-6891-42a2-9c54-72005fd807f8",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__8d5c9f40-6891-42a2-9c54-72005fd807f8",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__8d5c9f40-6891-42a2-9c54-72005fd807f8",
+      "status": 200,
+      "bytes": 7709,
+      "sha256": "5130a9f08662139d1a632e7155b8d5517c6a96103011ed5d365211b15bd4ff4e",
+      "observedAt": "2026-11-02T23:21:43.586Z",
+      "originalCapture": "bounteous-detail-t__8d5c9f40-6891-42a2-9c54-72005fd807f8-5130a9f08662.body"
+    },
+    {
+      "key": "detail-t__2d7b0ed5-c315-44fa-865f-90cb5e558cab",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__2d7b0ed5-c315-44fa-865f-90cb5e558cab",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__2d7b0ed5-c315-44fa-865f-90cb5e558cab",
+      "status": 200,
+      "bytes": 4256,
+      "sha256": "bbc786e2f09ab701f3eef5ac8a70b55f154bcfe5f6aa674e8fb935cf975a0288",
+      "observedAt": "2026-11-02T23:21:47.471Z",
+      "originalCapture": "bounteous-detail-t__2d7b0ed5-c315-44fa-865f-90cb5e558cab-bbc786e2f09a.body"
+    },
+    {
+      "key": "detail-t__f3da2387-cc46-46c0-a886-4a331b9e0962",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__f3da2387-cc46-46c0-a886-4a331b9e0962",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__f3da2387-cc46-46c0-a886-4a331b9e0962",
+      "status": 200,
+      "bytes": 3774,
+      "sha256": "e10d9b8ec472944c0852ca865c1b72cde702218b85525bed02e9af90b8f66176",
+      "observedAt": "2026-11-02T23:21:47.668Z",
+      "originalCapture": "bounteous-detail-t__f3da2387-cc46-46c0-a886-4a331b9e0962-e10d9b8ec472.body"
+    },
+    {
+      "key": "detail-t__df7581df-00f4-4488-8159-c8e899c830f5",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__df7581df-00f4-4488-8159-c8e899c830f5",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__df7581df-00f4-4488-8159-c8e899c830f5",
+      "status": 200,
+      "bytes": 8567,
+      "sha256": "22c33280ed635dba6caab7b07ba0e6beee15af786a66b0989ab5bf9a4b10f4b2",
+      "observedAt": "2026-11-02T23:21:48.130Z",
+      "originalCapture": "bounteous-detail-t__df7581df-00f4-4488-8159-c8e899c830f5-22c33280ed63.body"
+    },
+    {
+      "key": "detail-t__a97f45d6-1781-408f-a3d0-f795211c7de6",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__a97f45d6-1781-408f-a3d0-f795211c7de6",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__a97f45d6-1781-408f-a3d0-f795211c7de6",
+      "status": 200,
+      "bytes": 20345,
+      "sha256": "e4deaee76c2a076e63ed771c3a32be2eebb6a38870ab3c641d90bd15b3af4fea",
+      "observedAt": "2026-11-02T23:21:49.355Z",
+      "originalCapture": "bounteous-detail-t__a97f45d6-1781-408f-a3d0-f795211c7de6-e4deaee76c2a.body"
+    },
+    {
+      "key": "detail-t__aee725d8-29b0-4bd8-8908-43fc6303bee0",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__aee725d8-29b0-4bd8-8908-43fc6303bee0",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__aee725d8-29b0-4bd8-8908-43fc6303bee0",
+      "status": 200,
+      "bytes": 7216,
+      "sha256": "46dc301d70e791517a00af3d39221ad43632c7589d3e8f2fa26a90e9b0f31d3a",
+      "observedAt": "2026-11-02T23:21:53.472Z",
+      "originalCapture": "bounteous-detail-t__aee725d8-29b0-4bd8-8908-43fc6303bee0-46dc301d70e7.body"
+    },
+    {
+      "key": "detail-t__1f918573-dee2-42e4-8990-43fe4530602c",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__1f918573-dee2-42e4-8990-43fe4530602c",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__1f918573-dee2-42e4-8990-43fe4530602c",
+      "status": 200,
+      "bytes": 7552,
+      "sha256": "cf166f1a1fa310c3aa9276cfb6a1005fc3b69f48d730263285dfd945e0b6d5c5",
+      "observedAt": "2026-11-02T23:21:58.473Z",
+      "originalCapture": "bounteous-detail-t__1f918573-dee2-42e4-8990-43fe4530602c-cf166f1a1fa3.body"
+    },
+    {
+      "key": "detail-t__096cad8e-24ef-408b-94ff-10b0a45d9617",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__096cad8e-24ef-408b-94ff-10b0a45d9617",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__096cad8e-24ef-408b-94ff-10b0a45d9617",
+      "status": 200,
+      "bytes": 7569,
+      "sha256": "8822756ceb1e0d5b73b449722d520a9725de558e5a19c1c2827cad4ea751ee18",
+      "observedAt": "2026-11-02T23:21:59.710Z",
+      "originalCapture": "bounteous-detail-t__096cad8e-24ef-408b-94ff-10b0a45d9617-8822756ceb1e.body"
+    },
+    {
+      "key": "detail-t__71e145c5-b85e-4af1-8d46-d206fbfe674d",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__71e145c5-b85e-4af1-8d46-d206fbfe674d",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__71e145c5-b85e-4af1-8d46-d206fbfe674d",
+      "status": 200,
+      "bytes": 3305,
+      "sha256": "0c6501ecaad61913c92f48c1869dea158cfff3f4746cfd78621fe99a76292552",
+      "observedAt": "2026-11-02T23:22:00.021Z",
+      "originalCapture": "bounteous-detail-t__71e145c5-b85e-4af1-8d46-d206fbfe674d-0c6501ecaad6.body"
+    },
+    {
+      "key": "detail-t__e2112678-f761-44fd-a5ad-c9484d6283fc",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__e2112678-f761-44fd-a5ad-c9484d6283fc",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__e2112678-f761-44fd-a5ad-c9484d6283fc",
+      "status": 200,
+      "bytes": 5824,
+      "sha256": "bd3575131f752a3325ee180049fe62686da2c98e384f4a62c69c66ad4b817b58",
+      "observedAt": "2026-11-02T23:22:00.685Z",
+      "originalCapture": "bounteous-detail-t__e2112678-f761-44fd-a5ad-c9484d6283fc-bd3575131f75.body"
+    },
+    {
+      "key": "detail-t__26216fc4-dd60-479d-a94f-432d5106ebb4",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__26216fc4-dd60-479d-a94f-432d5106ebb4",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__26216fc4-dd60-479d-a94f-432d5106ebb4",
+      "status": 200,
+      "bytes": 13969,
+      "sha256": "b6f6d2cf979925e2010fd588bcababb3fd4335769fd280b6488277c5190430ba",
+      "observedAt": "2026-11-02T23:22:01.118Z",
+      "originalCapture": "bounteous-detail-t__26216fc4-dd60-479d-a94f-432d5106ebb4-b6f6d2cf9799.body"
+    },
+    {
+      "key": "detail-t__6cc871e8-b2ac-4942-9c0f-d57b62933a69",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__6cc871e8-b2ac-4942-9c0f-d57b62933a69",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__6cc871e8-b2ac-4942-9c0f-d57b62933a69",
+      "status": 200,
+      "bytes": 5462,
+      "sha256": "f5431fc7eb31978cd0a38646aafcaffb646a43c9c882eef4706ac1ea50b2961c",
+      "observedAt": "2026-11-02T23:22:01.321Z",
+      "originalCapture": "bounteous-detail-t__6cc871e8-b2ac-4942-9c0f-d57b62933a69-f5431fc7eb31.body"
+    },
+    {
+      "key": "detail-t__954fb033-5db3-48d1-9487-8182e634f4c6",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__954fb033-5db3-48d1-9487-8182e634f4c6",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__954fb033-5db3-48d1-9487-8182e634f4c6",
+      "status": 200,
+      "bytes": 5362,
+      "sha256": "7e93684b8eaa5fd2ccd398fb2ddab0b23f1f0f57f098527b69b0914f4a78a276",
+      "observedAt": "2026-11-02T23:22:04.101Z",
+      "originalCapture": "bounteous-detail-t__954fb033-5db3-48d1-9487-8182e634f4c6-7e93684b8eaa.body"
+    },
+    {
+      "key": "detail-t__8a9e4e4f-ef78-4512-a26e-f377fbc0d222",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__8a9e4e4f-ef78-4512-a26e-f377fbc0d222",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__8a9e4e4f-ef78-4512-a26e-f377fbc0d222",
+      "status": 200,
+      "bytes": 10715,
+      "sha256": "4a1ea4e00161f3ca4037b2950ad57b243238a737d692d39c122d19df500eb8ed",
+      "observedAt": "2026-11-02T23:22:09.657Z",
+      "originalCapture": "bounteous-detail-t__8a9e4e4f-ef78-4512-a26e-f377fbc0d222-4a1ea4e00161.body"
+    },
+    {
+      "key": "detail-t__8c09ae89-3ed3-415c-813c-2dc983c48e4a",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__8c09ae89-3ed3-415c-813c-2dc983c48e4a",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__8c09ae89-3ed3-415c-813c-2dc983c48e4a",
+      "status": 200,
+      "bytes": 7855,
+      "sha256": "0d385fa32ae0697d71d8b81b2bb021abfbe2efa01532ca1901525af451393a32",
+      "observedAt": "2026-11-02T23:22:10.948Z",
+      "originalCapture": "bounteous-detail-t__8c09ae89-3ed3-415c-813c-2dc983c48e4a-0d385fa32ae0.body"
+    },
+    {
+      "key": "detail-t__9e96f674-f739-4994-b22a-56d32ff432cf",
+      "url": "https://www.bounteous.com/turbohire/api/?id=t__9e96f674-f739-4994-b22a-56d32ff432cf",
+      "finalUrl": "https://www.bounteous.com/turbohire/api?id=t__9e96f674-f739-4994-b22a-56d32ff432cf",
+      "status": 200,
+      "bytes": 15745,
+      "sha256": "4503cd9096d8977fa9a6316d68d685811437fd2c9dd2ef5a66a47240734ea689",
+      "observedAt": "2026-11-02T23:22:12.307Z",
+      "originalCapture": "bounteous-detail-t__9e96f674-f739-4994-b22a-56d32ff432cf-4503cd9096d8.body"
+    },
+    {
+      "key": "careers-client",
+      "url": "https://www.bounteous.com/public/components-CareersHero-CareersHero-a4e31f521a474f2b4b3c.js",
+      "finalUrl": "https://www.bounteous.com/public/components-CareersHero-CareersHero-a4e31f521a474f2b4b3c.js",
+      "status": 200,
+      "bytes": 5718,
+      "sha256": "21a660dbb5ca7ef5ebf7a08b6b6fb8fdec26c451c9961c942ea8759aa8d37f84",
+      "observedAt": "2026-11-02T23:22:56.411Z",
+      "originalCapture": "bounteous-careers-client-21a660dbb5ca.body"
+    }
+  ]
+}

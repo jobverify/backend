@@ -1,0 +1,29 @@
+[
+  {
+    "source": "dataiku",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/dataiku/currentNative.js",
+    "atsPlatform": "greenhouse",
+    "boardToken": "dataiku",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "complete-native-array-opening-and-closing-reconciliation",
+    "extractionStrategy": "current-visible-employer-handoff+all-native-role-details+raw-opening-closing-reconciliation+partial-country-scope",
+    "verifiedOn": "2026-10-30",
+    "verifiedSurfaceSummary": "Reviewed on 2026-10-30: the registered Dataiku native snapshot contained 15 role identities with their full native details and reconciled opening/closing envelopes. Current native geography and corporate executable/style scope remain unresolved. This is a partial source recovery; authoritative India coverage and source totals remain unknown, with lifecycle cleanup disabled."
+  },
+  {
+    "source": "assemblyai",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/assemblyai/currentNative.js",
+    "companyCareerPage": "https://www.assemblyai.com/careers",
+    "atsPlatform": "greenhouse",
+    "boardToken": "assemblyai",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "complete-native-array-opening-and-closing-reconciliation",
+    "extractionStrategy": "current-visible-employer-handoff+all-native-role-details+raw-opening-closing-reconciliation+partial-country-scope",
+    "verifiedOn": "2026-10-30",
+    "verifiedSurfaceSummary": "Reviewed on 2026-10-30: the registered AssemblyAI native snapshot contained 18 role identities with their full native details and reconciled opening/closing envelopes. Remote, regional and assigned-office geography remains unresolved, and complete corporate-source scope is not certified. This is a partial source recovery; authoritative India coverage and source totals remain unknown, with lifecycle cleanup disabled."
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "jasper",
+  "companyName": "Jasper",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 8,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://www.jasper.ai/careers",
+      "finalURL": "https://www.jasper.ai/careers",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-03T08:25:21.2309498Z",
+      "completedAt": "2026-11-03T08:25:22.4883287Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 373685,
+      "bodySHA256": "b29fb68e9144bea09e24146f2ec749137c79ea066ef8a1cf02f1e8dd3fc03862",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/Jasper%20AI",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/Jasper%20AI",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestedAt": "2026-11-03T08:27:59.5562687Z",
+      "completedAt": "2026-11-03T08:28:00.1893080Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 122448,
+      "bodySHA256": "10d0c2e13955e8c2ad5d3ce1894aca5d349f670f4544562500c05796f9dcebd7",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "sources": [
+    "anandgroup",
+    "anandgroupindia"
+  ],
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "dd26b372ef76f12ed081ffaa6342bab62533ee54fbccc743867b2e4307931db8",
+  "purpose": "The same original current declared first-party careers/JoinUs observations are shared by the two historical source IDs. General intake is not a native vacancy zero or complete delegation.",
+  "responses": [
+    {
+      "source": "anandgroup",
+      "key": "careers",
+      "url": "https://www.anandgroupindia.com/careers-at-anand/",
+      "status": 200,
+      "finalUrl": "https://www.anandgroupindia.com/careers-at-anand/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 102396,
+      "sha256": "0b93e71181a59c472aa9a1e29f052e3bc51a80c9250abd530c89258a6552122e",
+      "file": "anandgroup-careers-0b93e71181a5.body",
+      "requestedAt": "2026-11-03T02:35:37.453Z",
+      "completedAt": "2026-11-03T02:35:39.305Z",
+      "discovery": {
+        "scripts": [],
+        "careerLinks": [
+          {
+            "text": "Careers at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Automotive",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "WHO WE ARE",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "Careers at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "Overview",
+            "href": "https://www.anandgroupindia.com/career-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Our Companies",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "CSR",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "News & Media",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "Learn More About ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#"
+          },
+          {
+            "text": "Careers At ANAND",
+            "href": "https://www.anandgroupindia.com/career-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Read more",
+            "href": "https://www.anandgroupindia.com/career-at-anand/diversity-inclusion/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#carouselExampleControls"
+          },
+          {
+            "text": "",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/#carouselExampleControls"
+          },
+          {
+            "text": "Careers at ANAND",
+            "href": "https://www.anandgroupindia.com/career-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Privacy Policy",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/privacy-policy"
+          }
+        ]
+      },
+      "originalCapture": "anandgroup-careers-0b93e71181a5.body"
+    },
+    {
+      "source": "anandgroup",
+      "key": "join-us",
+      "url": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/",
+      "status": 200,
+      "finalUrl": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 117596,
+      "sha256": "d8b95c1e2df93b816debeeb011a71966593514d72dad03664e95e257cc63ea08",
+      "file": "anandgroup-join-us-d8b95c1e2df9.body",
+      "requestedAt": "2026-11-03T02:35:39.321Z",
+      "completedAt": "2026-11-03T02:35:40.200Z",
+      "discovery": {
+        "scripts": [],
+        "careerLinks": [
+          {
+            "text": "Careers at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Automotive",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "WHO WE ARE",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "Careers at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "Overview",
+            "href": "https://www.anandgroupindia.com/career-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Our Companies",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "CSR",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "News & Media",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "Learn More About ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "Careers At ANAND",
+            "href": "https://www.anandgroupindia.com/career-at-anand/"
+          },
+          {
+            "text": "CLICK TO JOIN",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "Culture At ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop Floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Watch video",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/#"
+          },
+          {
+            "text": "Careers at ANAND",
+            "href": "https://www.anandgroupindia.com/career-at-anand/"
+          },
+          {
+            "text": "Culture at ANAND",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/culture-at-anand/"
+          },
+          {
+            "text": "Shop floor Excellence",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/shopfloor-excellence/"
+          },
+          {
+            "text": "People Development",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/people-development/"
+          },
+          {
+            "text": "Join Us",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/"
+          },
+          {
+            "text": "Privacy Policy",
+            "href": "https://www.anandgroupindia.com/careers-at-anand/join-usnew/privacy-policy"
+          }
+        ]
+      },
+      "originalCapture": "anandgroup-join-us-d8b95c1e2df9.body"
+    }
+  ]
+}

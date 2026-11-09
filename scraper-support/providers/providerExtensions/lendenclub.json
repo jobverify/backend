@@ -1,0 +1,21 @@
+{
+  "source": "lendenclub",
+  "companyName": "LenDenClub",
+  "officialBrandName": "LenDenClub",
+  "adapter": "script",
+  "modulePath": "../lendenclub/script.js",
+  "dryRunFile": "lendenclub/jobs.json",
+  "companyCareerPage": "https://www.lendenclub.com/careers/",
+  "officialCareersHandoffUrl": "https://lendenclub.keka.com/careers/",
+  "kekaActiveJobsApiUrl": "https://lendenclub.keka.com/careers/api/jobs/default/active",
+  "companyDomain": "lendenclub.com",
+  "atsPlatform": "keka",
+  "countryFilter": "India",
+  "paginationStrategy": "first-party-careers-page-plus-keka-active-jobs-api",
+  "extractionStrategy": "verified-first-party-careers-shell+official-keka-active-jobs-api+india-filter",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "officialCareersPageUrl": "https://www.lendenclub.com/careers/",
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.lendenclub.com/careers/ was LenDenClub's live first-party careers page, that it handed candidates to the first-party apply page at https://www.lendenclub.com/careers/apply-now/, and that the apply page embedded the official public Keka board at https://lendenclub.keka.com/careers/ plus the active-jobs API at https://lendenclub.keka.com/careers/api/jobs/default/active, which exposed India openings on the verified date."
+}

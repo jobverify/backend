@@ -1,0 +1,97 @@
+{
+  "listingPayloadFields": [
+    "facets",
+    "jobPostings",
+    "total",
+    "userAuthenticated"
+  ],
+  "listingFields": [
+    "bulletFields",
+    "externalPath",
+    "locationsText",
+    "postedOn",
+    "title"
+  ],
+  "detailPayloadFields": [
+    "hiringOrganization",
+    "jobPostingInfo",
+    "similarJobs",
+    "userAuthenticated"
+  ],
+  "detailFields": [
+    "canApply",
+    "country",
+    "endDate",
+    "externalUrl",
+    "id",
+    "includeResumeParsing",
+    "jobDescription",
+    "jobPostingEndDateAsText",
+    "jobPostingId",
+    "jobPostingSiteId",
+    "jobReqId",
+    "jobRequisitionLocation",
+    "location",
+    "logoImage",
+    "posted",
+    "postedOn",
+    "questionnaireId",
+    "remoteType",
+    "secondaryQuestionnaireId",
+    "startDate",
+    "timeLeftToApply",
+    "timeType",
+    "title"
+  ],
+  "corporateExecutableSignature": "0a0406e8f0af6040dcd7e81fa868b6d150209664fa7d36a300deb08b9a479f74",
+  "provenance": {
+    "corporateExecutableSignature": "Computed from actual Lexmark HTTP fixture native-20261029.json; reviewed scripts and forms only. Any drift retains unresolved scope.",
+    "listingPayloadFields": "Observed current Lexmark empty CXS response.",
+    "roleSchema": "Field names reviewed against current Accelya CXS native captures and shared Workday contract. Lexmark current inventory is empty: no Lexmark role, employer or country values inferred or fabricated.",
+    "detailNestedFields": "Recursively observed object key names from 13 captured Accelya native detail responses in scraper/accelyasolutionsindialimited/fixtures/native-20261029.json.gz. No role, country or employer values copied."
+  },
+  "detailNestedFields": {
+    "$": [
+      "canApply",
+      "country",
+      "endDate",
+      "externalUrl",
+      "id",
+      "includeResumeParsing",
+      "jobDescription",
+      "jobPostingEndDateAsText",
+      "jobPostingId",
+      "jobPostingSiteId",
+      "jobReqId",
+      "jobRequisitionLocation",
+      "location",
+      "logoImage",
+      "posted",
+      "postedOn",
+      "questionnaireId",
+      "remoteType",
+      "secondaryQuestionnaireId",
+      "startDate",
+      "timeLeftToApply",
+      "timeType",
+      "title"
+    ],
+    "$.country": [
+      "descriptor",
+      "id"
+    ],
+    "$.jobRequisitionLocation": [
+      "country",
+      "descriptor"
+    ],
+    "$.jobRequisitionLocation.country": [
+      "alpha2Code",
+      "descriptor",
+      "id"
+    ],
+    "$.logoImage": [
+      "alt",
+      "src"
+    ]
+  }
+}

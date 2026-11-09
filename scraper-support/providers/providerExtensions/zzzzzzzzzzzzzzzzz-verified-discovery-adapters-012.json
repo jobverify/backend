@@ -1,0 +1,40 @@
+[
+  {
+    "source": "navi",
+    "companyName": "Navi",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/navi/script.js",
+    "dryRunFile": "navi/jobs.json",
+    "atsPlatform": "turbohire",
+    "parser": "custom-script",
+    "companyCareerPage": "https://navi.com/careers",
+    "companyDomain": "navi.com",
+    "officialHomepageUrl": "https://navi.com/",
+    "handoffBoardUrl": "https://navi.turbohire.co/dashboardv2?orgId=3e818601-0baa-429c-b6f8-4b21903ae0e6&type=0",
+    "turboHireOrgId": "3e818601-0baa-429c-b6f8-4b21903ae0e6",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-20T22:40:54.618Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:40:54.618Z",
+      "officialURL": "https://navi.com/careers",
+      "matchedLinks": [
+        "https://navi.turbohire.co/dashboardv2?orgId=3e818601-0baa-429c-b6f8-4b21903ae0e6&type=0"
+      ],
+      "proofFile": "../artifacts/full-catalog/navi-native-001/official-binding-proof-001.json",
+      "proofSha256": "1d9800bab0f439557eefbbf5763081b41b96c8968d4b34705cbebb37f3f88604"
+    },
+    "extractionStrategy": "official-active-handoff+native-public-full-inventory+matching-full-detail+strict-country-dates-and-detail-health",
+    "paginationStrategy": "public-client-full-list-total-and-final-snapshot-reconciliation",
+    "verifiedSurfaceSummary": "Current official Navi careers page links exact TurboHire org3e818601-0baa-429c-b6f8-4b21903ae0e6. Full native detail responses replace listing previews; all explicit locations are reconciled without appending a country. Inventory completeness and missing-description health remain separate. Current counts belong to immutable trials, not metadata."
+  }
+]

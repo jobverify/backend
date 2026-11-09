@@ -1,0 +1,19 @@
+{
+  "capturedAt": "2026-10-24T18:32:54.996Z",
+  "captureMethod": "isolated headless browser public GET receipts",
+  "ordinaryHttpAvailabilityVerified": false,
+  "wholeCompanyCoverageVerified": false,
+  "observedIndiaSitemapRoutes": 16,
+  "verifiedPrimaryDescriptions": 14,
+  "permissionDenied": { "status": 403, "errorCode": "S22", "requisitions": ["J0108836", "J0105176"], "retried": false },
+  "publicationDateBasis": "Native CXS startDate must equal the calendar day of NLX date_added; sitemap lastmod and NLX date_new/date_updated remain separate.",
+  "nativeEndDatePresentInCapturedSuccessfulDetails": 0,
+  "nativeEndDatePolicy": "Missing remains null; a supplied native endDate must be a valid calendar date or offset timestamp and retains its raw literal and precision.",
+  "legalScope": "Observed official Iron Mountain group board legal employer names retained per role; full legal employer scope is unverified.",
+  "multiCountryRole": { "requisition": "J0107014", "primaryCountry": "Romania", "assignedIndiaOffice": "Chennai", "postingDate": "2026-09-10" },
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "fixtures": "scraper-support/tests/fixtures/ironmountainindia/manifest.json"
+}

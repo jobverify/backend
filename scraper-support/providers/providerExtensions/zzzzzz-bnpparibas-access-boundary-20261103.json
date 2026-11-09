@@ -1,0 +1,23 @@
+{
+  "source": "bnpparibas",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../../scraper/bnpparibas/script.js",
+  "companyName": "BNP Paribas",
+  "companyCareerPage": "https://group.bnpparibas/en/careers/all-job-offers/bnp-paribas-india-solutions",
+  "companyDomain": "group.bnpparibas",
+  "atsPlatform": "official-company-careers",
+  "countryFilter": "India",
+  "zeroResultPolicy": "evidence-required",
+  "sourceScopeComplete": false,
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedInventoryStatus": "unverified",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceBoundaryReviewedOn": "2026-11-03",
+  "scraperTimeoutMs": 90000,
+  "verifiedSurfaceSummary": "Current first-party BNP Paribas India and India Solutions pages retain group careers handoffs, but the configured public inventory remains unavailable. The source forwards run options, bounds readers and preserves native HTTP status/retry evidence. Full current inventory/country/criteria and company totals remain unknown."
+}

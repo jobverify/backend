@@ -1,0 +1,14 @@
+{
+  "source": "questt", "companyName": "Questt", "officialBrandName": "Questt AI",
+  "adapter": "script", "modulePath": "../questt/script.js", "dryRunFile": "questt/jobs.json",
+  "companyCareerPage": "https://questt.com/", "officialCareersPageUrl": "https://questt.com/", "companyDomain": "questt.com",
+  "atsPlatform": "native-exact-employer-linkedin-incomplete", "countryFilter": "India",
+  "paginationStrategy": "bounded-native-exact-employer-India-and-Worldwide;incomplete",
+  "extractionStrategy": "official-current-brand+native-exact-employer+checked-scope-no-match-observations",
+  "parser": "custom-script", "normalizationProfile": "engineering-default", "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": null, "verifiedIndiaJobCount": null, "sourceScopeComplete": false,
+  "sourceListingComplete": false, "lifecycleCleanupAllowed": false, "firstParty": false, "exactCompanyMatchOnly": true,
+  "nativeEmployerOrganizationId": "69658946", "nativeObservedRecordCount": 0, "observedEligibleCount": 0,
+  "fixtureManifest": "scraper/questt/fixtures/capture-manifest.json",
+  "verifiedSurfaceSummary": "Actual Questt corporate home identifies current Questt AI Intelligence Warehouse. Exact native Questt AI organization 69658946 reciprocates questt.ai; both checked India and Worldwide native searches expose no-match states. These are scoped observations, not proof of company emptiness. Historical FDE apply shortener navigates to expired-job unrelated search; historical Notion and AI-host transports unavailable. No current native role with eligible country, publication and same-role application recovered. Totals unknown and cleanup prohibited."
+}

@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://fox.wd1.myworkdayjobs.com/wday/cxs/fox/Domestic/jobs",
+  "detailUrlBase": "https://fox.wd1.myworkdayjobs.com/en-US/Domestic",
+  "locationCountry": null,
+  "searchText": "India"
+}

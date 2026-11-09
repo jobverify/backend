@@ -1,0 +1,158 @@
+[
+  {
+    "source": "epifi",
+    "companyName": "Epifi",
+    "adapter": "publicAts",
+    "catalogOverride": true,
+    "companyDomain": "fi.money",
+    "companyCareerPage": "https://fi.money/careers",
+    "atsPlatform": "lever",
+    "boardToken": "epifi",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "current-first-party-handoff-and-full-native-public-feed",
+    "extractionStrategy": "runtime-employer-binding-native-role-identity-country-and-description-verification",
+    "parser": "public-ats-runtime-verified",
+    "verifiedOn": "2026-11-03",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-11-03T08:20:05.643Z",
+      "officialURL": "https://fi.money/careers",
+      "evidenceURL": "https://fi.money/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.lever.co/epifi"
+      ],
+      "bindingMethod": "official-careers-link"
+    },
+    "runtimeInventoryVerification": {
+      "mode": "board-handoff",
+      "boardUrl": "https://jobs.lever.co/epifi"
+    },
+    "verificationDisposition": "current-native-feed-revalidated-each-run;historical-snapshots-do-not-prove-future-inventory"
+  },
+  {
+    "source": "sahajai",
+    "companyName": "Sahaj AI",
+    "adapter": "publicAts",
+    "catalogOverride": true,
+    "companyDomain": "sahaj.ai",
+    "companyCareerPage": "https://sahaj.ai/careers/",
+    "atsPlatform": "greenhouse",
+    "boardToken": "sahajsoftware",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "current-first-party-handoff-and-full-native-public-feed",
+    "extractionStrategy": "runtime-employer-binding-native-role-identity-country-and-description-verification",
+    "parser": "public-ats-runtime-verified",
+    "verifiedOn": "2026-11-03",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-11-03T08:20:10.072Z",
+      "officialURL": "https://sahaj.ai/careers/",
+      "evidenceURL": "https://sahaj.ai/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://job-boards.eu.greenhouse.io/sahajsoftware/jobs/5020317101"
+      ],
+      "bindingMethod": "official-careers-native-posting-link"
+    },
+    "runtimeInventoryVerification": {
+      "mode": "role-links-exact",
+      "boardUrl": "https://job-boards.eu.greenhouse.io/sahajsoftware"
+    },
+    "verificationDisposition": "current-native-feed-revalidated-each-run;historical-snapshots-do-not-prove-future-inventory"
+  },
+  {
+    "source": "snyk",
+    "companyName": "Snyk",
+    "adapter": "publicAts",
+    "catalogOverride": true,
+    "companyDomain": "snyk.io",
+    "companyCareerPage": "https://snyk.io/careers/all-jobs/",
+    "atsPlatform": "ashby",
+    "boardToken": "Snyk",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "current-first-party-handoff-and-full-native-public-feed",
+    "extractionStrategy": "runtime-employer-binding-native-role-identity-country-and-description-verification",
+    "parser": "public-ats-runtime-verified",
+    "verifiedOn": "2026-11-03",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-11-03T08:20:10.632Z",
+      "officialURL": "https://snyk.io/careers/all-jobs/",
+      "evidenceURL": "https://snyk.io/careers/all-jobs/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.ashbyhq.com/Snyk/62b7431d-586c-4c8f-b0f2-28e1ee81400c"
+      ],
+      "bindingMethod": "official-careers-native-posting-link"
+    },
+    "runtimeInventoryVerification": {
+      "mode": "role-links-exact",
+      "boardUrl": "https://jobs.ashbyhq.com/Snyk"
+    },
+    "verificationDisposition": "current-native-feed-revalidated-each-run;historical-snapshots-do-not-prove-future-inventory"
+  },
+  {
+    "source": "dialpad",
+    "companyName": "Dialpad",
+    "adapter": "publicAts",
+    "catalogOverride": true,
+    "companyDomain": "dialpad.com",
+    "companyCareerPage": "https://www.dialpad.com/careers/",
+    "atsPlatform": "greenhouse",
+    "boardToken": "dialpad",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "current-first-party-handoff-and-full-native-public-feed",
+    "extractionStrategy": "runtime-employer-binding-native-role-identity-country-and-description-verification",
+    "parser": "public-ats-runtime-verified",
+    "verifiedOn": "2026-11-03",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-11-03T08:34:18.548Z",
+      "officialURL": "https://www.dialpad.com/careers/open-opportunities/apply/?id=8590367002&title=Corporate-Counsel-Telecommunications-&-Regulatory&officeId=4017292002&location=Bay-Area-US",
+      "evidenceURL": "https://www.dialpad.com/careers/open-opportunities/apply/?id=8590367002&title=Corporate-Counsel-Telecommunications-&-Regulatory&officeId=4017292002&location=Bay-Area-US",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://boards.greenhouse.io/dialpad/jobs/8590367002"
+      ],
+      "bindingMethod": "official-careers-native-posting-link"
+    },
+    "runtimeInventoryVerification": {
+      "mode": "role-links-exact",
+      "boardUrl": "https://boards.greenhouse.io/dialpad",
+      "employerHandoffPages": [
+        "https://www.dialpad.com/careers/open-opportunities/"
+      ],
+      "employerRoleLinks": {
+        "pathname": "/careers/open-opportunities/apply/",
+        "idParameter": "id"
+      }
+    },
+    "verificationDisposition": "current-native-feed-revalidated-each-run;historical-snapshots-do-not-prove-future-inventory"
+  },
+  {
+    "source": "moengage",
+    "companyName": "MoEngage",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../moengage/script.js",
+    "companyCareerPage": "https://www.moengage.com/careers/",
+    "companyDomain": "moengage.com",
+    "atsPlatform": "kula-public-careers",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-11-03",
+    "paginationStrategy": "full-public-kula-api-pages-and-closing-native-models",
+    "extractionStrategy": "current-corporate-handoff-account1553-rendered-and-api-role-identities-full-criteria-and-explicit-worksite-country",
+    "parser": "custom-script",
+    "verifiedSurfaceSummary": "Current MoEngage careers page advertises the public Kula account1553. Captured board and anonymous API agree on 37 role identities. Runtime revalidates full criteria, native public flags, typed worksite countries, exact advertised public role URLs, and closing native models; country or inventory gaps retain partial evidence and prohibit cleanup."
+  }
+]

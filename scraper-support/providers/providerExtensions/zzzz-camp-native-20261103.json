@@ -1,0 +1,14 @@
+[
+  {
+    "source": "campsystemsinternationalinc",
+    "adapter": "script",
+    "modulePath": "../campsystemsinternationalinc/script.js",
+    "atsPlatform": "ukg-pro",
+    "paginationStrategy": "native-unfiltered-search+offset+closing-membership",
+    "extractionStrategy": "current-corporate-handoff+anonymous-public-ukg-search+full-bound-role-models",
+    "zeroResultPolicy": "evidence-required",
+    "lifecycleCleanupAllowed": false,
+    "nativeRoleCount": null,
+    "nativeIndiaRoleCount": null
+  }
+]

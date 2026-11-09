@@ -1,0 +1,11 @@
+{
+ "source":"accolitedigital","catalogOverride":true,"companyName":"Bounteous","legacyCompanyName":"Accolite Digital","officialBrandName":"Bounteous",
+ "canonicalSource":"bounteous","aliasOfSource":"bounteous","adapter":"script","modulePath":"../accolitedigital/script.js",
+ "companyCareerPage":"https://www.bounteous.com/careers/search-results","companyDomain":"bounteous.com","countryFilter":"India",
+ "atsPlatform":"bounteous-canonical-delegation","paginationStrategy":"canonical-complete-lever-and-turbohire-arrays+closing-full-models",
+ "extractionStrategy":"current-official-merger-continuity+canonical-bounteous-collector-preserving-native-employer-source-and-identities",
+ "inventoryDelegation":{"verified":true,"sources":["bounteous"],"preservesChildSourceAndCompany":true,"evidence":{"url":"https://www.bounteous.com/about/company-news","method":"official-current-bounteous-merger-canonical-delegation"}},
+ "verifiedOn":null,"verifiedAt":null,"verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"zeroResultPolicy":"evidence-required",
+ "sourceCompanyWideScopeComplete":false,"lifecycleCleanupAllowed":false,
+ "verifiedSurfaceSummary":"Historical Accolite Digital delegates the current combined Bounteous brand's declared native careers inventory after fresh current official continuity and original merger statements. Both original source rows remain; canonical Bounteous jobs retain source/company/identity and persistence fingerprints. Runtime current corporate/board/feed body receipts qualify delegation; no separate Accolite legal-employer label is invented. Complete India scope requires stable complete two-feed arrays and bound full current public India criteria. Native absent dates remain unknown; whole-company coverage and lifecycle cleanup are unproved."
+}

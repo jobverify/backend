@@ -1,0 +1,22 @@
+[
+  {
+    "source": "cocacola",
+    "companyName": "Coca-Cola",
+    "catalogOverride": true,
+    "nativeEmployerNames": [
+      "1251 Coca-Cola Beverages (Shanghai) Company Limited",
+      "1158 Coca-Cola India Private Limited",
+      "1940 International Refreshments (India) Private Limited",
+      "1648 Coca-Cola Far East Limited - Philippines Branch"
+    ],
+    "extractionStrategy": "current-company-visible-link+exact-native-301+literal-Workday-account+complete-unfiltered-board-reconciliation+full-original-role-and-native-employer+explicit-India-primary-or-secondary-worksites",
+    "sourceScopeNotes": "The current company careers page, exact advertised vanity301 and native board bootstrap remain mandatory. All native listing pages are reconciled at closing. Each accepted role retains its original full native model, active publication, exact requisition and legal hiring organization. Explicit India secondary worksites can qualify a role whose primary country is foreign; only those India labels enter public location fields, while all original foreign locations remain in nativeLocationEvidence/nativeSourceRecord. Full native additional-location strings can prove written foreign country prefixes and unambiguous US en-dash labels; cities and ambiguous state codes remain unknown. Unresolved locations never discard proven India records and never authorize company completeness, India zero or cleanup. Historical August1 verification is not renewed."
+  },
+  {
+    "source": "conocophillips",
+    "companyName": "ConocoPhillips",
+    "catalogOverride": true,
+    "extractionStrategy": "current-corporate-visible-Workday-handoff+complete-native-board-reconciliation+full-role-country-models+unresolved-secondary-worksite-scope-retained",
+    "sourceScopeNotes": "The exact source profile and current company-published board remain mandatory. Native whole-board identities reconcile at closing; missing secondary-worksite countries are retained as coverage gaps instead of aborting all observations. City/state labels cannot establish a work country. Zero qualified India records with unresolved countries is not verified empty. No unrelated board, provider country default, complete-company claim or lifecycle cleanup is permitted."
+  }
+]

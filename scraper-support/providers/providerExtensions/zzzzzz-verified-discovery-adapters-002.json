@@ -1,0 +1,170 @@
+[
+  {
+    "source": "aspentechnology",
+    "companyName": "Aspen Technology",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://aspentech.wd5.myworkdayjobs.com/en-US/aspentech",
+    "boardIdentityVerified": true,
+    "locationCountry": null,
+    "companyCareerPage": "https://www.aspentech.com/en/careers",
+    "officialHomepageUrl": "https://www.aspentech.com/",
+    "companyDomain": "www.aspentech.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T19:33:54.422Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T19:33:54.422Z",
+      "officialURL": "https://www.aspentech.com/en/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://aspentech.wd5.myworkdayjobs.com/aspentech"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-007",
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-search-12.json",
+        "proof/batch-007-search-14.json",
+        "proof/batch-007-search-16.json",
+        "proof/batch-007-open-12.json",
+        "proof/batch-007-open-33.json",
+        "proof/batch-007-click-06.json"
+      ],
+      "httpProofFile": "scraper-support/providers/evidence/verified-discovery-adapters-002/aspentechnology-official-http.json",
+      "httpProofSha256": "dd06e441e898d19ca3960ce0c17da7ce98ab5421d5ff798063d0ded1448ce7e8",
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.aspentech.com/en/careers",
+          "to": "https://aspentech.wd5.myworkdayjobs.com/aspentech",
+          "evidence": "Join Us link105 clicked, turn414view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact official ATS handoff implemented through an existing shared adapter. Runtime qualification remains separate from binding evidence. Exclude unrelated aspentech.in and aspentechaz.net companies from this identity. Pune role is a candidate for a native audit, not a verified successful extraction.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "assembled",
+    "companyName": "Assembled",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "ashby",
+    "boardToken": "assembledhq",
+    "companyCareerPage": "https://www.assembled.com/careers-at-assembled",
+    "officialHomepageUrl": "https://www.assembled.com/",
+    "companyDomain": "www.assembled.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T19:33:54.623Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T19:33:54.623Z",
+      "officialURL": "https://www.assembled.com/careers-at-assembled",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://jobs.ashbyhq.com/assembledhq"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-007",
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-open-13.json",
+        "proof/batch-007-click-07.json",
+        "proof/batch-007-click-11.json"
+      ],
+      "httpProofFile": "scraper-support/providers/evidence/verified-discovery-adapters-002/assembled-official-http.json",
+      "httpProofSha256": "d813b05e5896dd309568c545e5582f591470b89323feaae14a089f3620c07d48",
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.assembled.com/",
+          "to": "https://www.assembled.com/careers-at-assembled",
+          "evidence": "Current company Careers link26 clicked, turn415view0."
+        },
+        {
+          "from": "https://www.assembled.com/careers-at-assembled",
+          "to": "https://jobs.ashbyhq.com/assembledhq",
+          "evidence": "See all roles link55 clicked, turn420view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact official ATS handoff implemented through an existing shared adapter. Runtime qualification remains separate from binding evidence. Exact Ashby token is assembledhq, observed through corporate navigation rather than guessed from the source name. Ashby renders a JavaScript-required message in this client. No current India eligibility or job count inferred. Do not merge unrelated Assembly, AssemblyAI or Assured employers.",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "assemblyai",
+    "companyName": "AssemblyAI",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "greenhouse",
+    "boardToken": "assemblyai",
+    "companyCareerPage": "https://www.assemblyai.com/careers",
+    "officialHomepageUrl": "https://www.assemblyai.com/",
+    "companyDomain": "www.assemblyai.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T19:33:54.950Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T19:33:54.950Z",
+      "officialURL": "https://www.assemblyai.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://job-boards.greenhouse.io/assemblyai"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "direct-first-party-http-html",
+      "discoveryBatch": "batch-007",
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-open-14.json",
+        "proof/batch-007-click-08.json"
+      ],
+      "httpProofFile": "scraper-support/providers/evidence/verified-discovery-adapters-002/assemblyai-official-http.json",
+      "httpProofSha256": "183decce2a238ce1cac85e72494d8899ae8634c397c4d9a0ea7fe745425e20fc",
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.assemblyai.com/careers",
+          "to": "https://job-boards.greenhouse.io/assemblyai",
+          "evidence": "View all roles on Greenhouse link86 clicked, turn416view0."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Exact official ATS handoff implemented through an existing shared adapter. Runtime qualification remains separate from binding evidence. Official career page and board show location-limited and some generically Remote positions. A remote-first company statement does not establish that a specific role accepts India. No current India-specific vacancy was independently verified; this is unknown, not a verified zero.",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  }
+]

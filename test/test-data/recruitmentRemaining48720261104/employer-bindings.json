@@ -1,0 +1,537 @@
+[
+  {
+    "source": "alimentationcouchetard",
+    "names": [
+      "Circle K"
+    ],
+    "evidence": [
+      {
+        "url": "https://workwithus.circlek.com/global/en/job/R590766/Lead%20Analyst%20-%20Global%20Procurement%20Analytics%20and%20Performance",
+        "bodySHA256": "935473ae4221a4b7e0ee8ce8d522901aa93866992da8c148f199436d19819795",
+        "kind": "phenom",
+        "id": "R590766",
+        "title": "Lead Analyst - Global Procurement Analytics and Performance",
+        "country": "India",
+        "employer": {
+          "name": "Circle K"
+        }
+      },
+      {
+        "url": "https://workwithus.circlek.com/global/en/job/R632763/Analytics%20Engineer",
+        "bodySHA256": "db1a72a134ddb1a9432122066cf03b0a2362a47e924751920796515346434a15",
+        "kind": "phenom",
+        "id": "R632763",
+        "title": "Analytics Engineer",
+        "country": "India",
+        "employer": {
+          "name": "Circle K"
+        }
+      },
+      {
+        "url": "https://workwithus.circlek.com/global/en/job/R627224/Lead%20Specialist%20-%20Contract%20Lifecycle%20%20Management",
+        "bodySHA256": "142c40d263928660dd8836d5904ae38719cdb7052e8d5265a5df595db92b5af6",
+        "kind": "phenom",
+        "id": "R627224",
+        "title": "Lead Specialist - Contract Lifecycle  Management",
+        "country": "India",
+        "employer": {
+          "name": "Circle K"
+        }
+      }
+    ]
+  },
+  {
+    "source": "cigna",
+    "names": [
+      "The Cigna Group"
+    ],
+    "evidence": [
+      {
+        "url": "https://jobs.thecignagroup.com/us/en/job/26013474/Automation%20Engineer%20Associate%20Analysts%20-%20Cigna%20Healthcare",
+        "bodySHA256": "e3a81f1e0663dcb42b6bebf421205827d6a15b6350d616bd17ef518de3ba5255",
+        "kind": "phenom",
+        "id": "26013474",
+        "title": "Automation Engineer Associate Analysts - Cigna Healthcare",
+        "country": "India",
+        "employer": {
+          "name": "The Cigna Group"
+        }
+      },
+      {
+        "url": "https://jobs.thecignagroup.com/us/en/job/26012810/Data%20Engineering%20Analyst%20-%20HIH%20-%20Evernorth",
+        "bodySHA256": "0afaa3996f90c94214b9e2ad31ec2a9479e1d54bf8f4d183f486096de450c025",
+        "kind": "phenom",
+        "id": "26012810",
+        "title": "Data Engineering Analyst - HIH - Evernorth",
+        "country": "India",
+        "employer": {
+          "name": "The Cigna Group"
+        }
+      },
+      {
+        "url": "https://jobs.thecignagroup.com/us/en/job/26013237/Automation%20Engineer%20Associate%20Analyst%20-%20Cigna%20Healthcare",
+        "bodySHA256": "cda4522e52b3526667af5e5bd56a642cef84bad08abae7e5f0eece446e85e0c1",
+        "kind": "phenom",
+        "id": "26013237",
+        "title": "Automation Engineer Associate Analyst - Cigna Healthcare",
+        "country": "India",
+        "employer": {
+          "name": "The Cigna Group"
+        }
+      }
+    ]
+  },
+  {
+    "source": "deutscheboerse",
+    "names": [
+      "ISSINDIA",
+      "STOXX India Private Ltd"
+    ],
+    "evidence": [
+      {
+        "url": "https://issgovernance.wd1.myworkdayjobs.com/wday/cxs/issgovernance/ISScareers/job/Mumbai-India/Business-Development-Representative---APAC_JR_10423",
+        "bodySHA256": "7e2fcc88a5f9deb584cc5af4806955d1b612c693b6268e02e91638576091c8aa",
+        "kind": "workday",
+        "title": "Business Development Representative - APAC",
+        "id": "JR_10423",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "ISSINDIA",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://issgovernance.wd1.myworkdayjobs.com/wday/cxs/issgovernance/ISScareers/job/Gurgaon-India/Data-Distribution-Engineer_JR_9838",
+        "bodySHA256": "5f1cfcc817d50fdf07b1dd77ea40c37c6a86c64b99fb4d649c75a094abeb21c9",
+        "kind": "workday",
+        "title": "Senior Software Engineer",
+        "id": "JR_9838",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "STOXX India Private Ltd",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://issgovernance.wd1.myworkdayjobs.com/wday/cxs/issgovernance/ISScareers/job/Mumbai-India/Software-Development-Lead_JR_7932",
+        "bodySHA256": "19c6e189d8be90d2e5fba7308d34a3983c74d2bd016447cff170cd34f9fe9500",
+        "kind": "workday",
+        "title": "Senior Frontend Engineer in React",
+        "id": "JR_7932",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "ISSINDIA",
+          "url": ""
+        }
+      }
+    ]
+  },
+  {
+    "source": "dssmith",
+    "names": [
+      "Total Marketing Support Limited",
+      "Total Marketing Support India Private Limited"
+    ],
+    "evidence": [
+      {
+        "url": "https://dssmith.wd3.myworkdayjobs.com/wday/cxs/dssmith/careers/job/Mumbai/Account-Manager_R-14551-1",
+        "bodySHA256": "3ed6b68a28564a974d6b12487621f3124d05f05c31c3132714942e43d388841b",
+        "kind": "workday",
+        "title": "Account Manager",
+        "id": "R-14551",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Total Marketing Support Limited",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://dssmith.wd3.myworkdayjobs.com/wday/cxs/dssmith/careers/job/Pune/Quality-Manager---Packaging_R-14648",
+        "bodySHA256": "170c3798fce2f26cd7565e38df0339eac9676f9b2410ab3aae3cba0c120598cc",
+        "kind": "workday",
+        "title": "Quality Manager - Packaging",
+        "id": "R-14648",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Total Marketing Support India Private Limited",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://dssmith.wd3.myworkdayjobs.com/wday/cxs/dssmith/careers/job/Gurugram/Data-Technician-1_R-14443",
+        "bodySHA256": "cadea7a2f47f4230a3f5a6325dd7aaf00371900b2c83092b02c51247f6e0a473",
+        "kind": "workday",
+        "title": "Specification Data Technician",
+        "id": "R-14443",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Total Marketing Support Limited",
+          "url": ""
+        }
+      }
+    ]
+  },
+  {
+    "source": "internationalpaper",
+    "names": [
+      "Total Marketing Support Limited",
+      "Total Marketing Support India Private Limited"
+    ],
+    "evidence": [
+      {
+        "url": "https://dssmith.wd3.myworkdayjobs.com/wday/cxs/dssmith/careers/job/Mumbai/Account-Manager_R-14551-1",
+        "bodySHA256": "3ed6b68a28564a974d6b12487621f3124d05f05c31c3132714942e43d388841b",
+        "kind": "workday",
+        "title": "Account Manager",
+        "id": "R-14551",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Total Marketing Support Limited",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://dssmith.wd3.myworkdayjobs.com/wday/cxs/dssmith/careers/job/Pune/Quality-Manager---Packaging_R-14648",
+        "bodySHA256": "170c3798fce2f26cd7565e38df0339eac9676f9b2410ab3aae3cba0c120598cc",
+        "kind": "workday",
+        "title": "Quality Manager - Packaging",
+        "id": "R-14648",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Total Marketing Support India Private Limited",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://dssmith.wd3.myworkdayjobs.com/wday/cxs/dssmith/careers/job/Gurugram/Data-Technician-1_R-14443",
+        "bodySHA256": "cadea7a2f47f4230a3f5a6325dd7aaf00371900b2c83092b02c51247f6e0a473",
+        "kind": "workday",
+        "title": "Specification Data Technician",
+        "id": "R-14443",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Total Marketing Support Limited",
+          "url": ""
+        }
+      }
+    ]
+  },
+  {
+    "source": "lowes",
+    "names": [
+      "Lowe's Company India"
+    ],
+    "evidence": [
+      {
+        "url": "https://lowes.wd5.myworkdayjobs.com/wday/cxs/lowes/LWS_External_CS/job/Bengaluru/IND-Analyst-Marketplace-Catalog-Management_JR-02697083",
+        "bodySHA256": "ee36b9e9b683c44d9396ed79fa142ffd269b9e19d89a37edf3ab5bae93eedd40",
+        "kind": "workday",
+        "title": "IND-Analyst_Marketplace Catalog Management",
+        "id": "JR-02697083",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Lowe's Company India",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://lowes.wd5.myworkdayjobs.com/wday/cxs/lowes/LWS_External_CS/job/Bengaluru/Analyst--Content-Strategy---Governance_JR-02696904",
+        "bodySHA256": "0b52cf3556496de5e71df3db41035e8d1d971d672a926465d562228e574cc837",
+        "kind": "workday",
+        "title": "Analyst- Content Strategy & Governance",
+        "id": "JR-02696904",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Lowe's Company India",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://lowes.wd5.myworkdayjobs.com/wday/cxs/lowes/LWS_External_CS/job/Bengaluru/IND-Senior-Analyst-Digital-Brand-Advocate_JR-02650075",
+        "bodySHA256": "eab5d3f91cac4679c91eb0260326e595220e6fd2bab01f5987253fa5808467c9",
+        "kind": "workday",
+        "title": "IND Senior Analyst Digital Brand Advocate",
+        "id": "JR-02650075",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Lowe's Company India",
+          "url": ""
+        }
+      }
+    ]
+  },
+  {
+    "source": "lowescompanies",
+    "names": [
+      "Lowe's Company India"
+    ],
+    "evidence": [
+      {
+        "url": "https://lowes.wd5.myworkdayjobs.com/wday/cxs/lowes/LWS_External_CS/job/Bengaluru/IND-Analyst-Marketplace-Catalog-Management_JR-02697083",
+        "bodySHA256": "ee36b9e9b683c44d9396ed79fa142ffd269b9e19d89a37edf3ab5bae93eedd40",
+        "kind": "workday",
+        "title": "IND-Analyst_Marketplace Catalog Management",
+        "id": "JR-02697083",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Lowe's Company India",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://lowes.wd5.myworkdayjobs.com/wday/cxs/lowes/LWS_External_CS/job/Bengaluru/Analyst--Content-Strategy---Governance_JR-02696904",
+        "bodySHA256": "0b52cf3556496de5e71df3db41035e8d1d971d672a926465d562228e574cc837",
+        "kind": "workday",
+        "title": "Analyst- Content Strategy & Governance",
+        "id": "JR-02696904",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Lowe's Company India",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://lowes.wd5.myworkdayjobs.com/wday/cxs/lowes/LWS_External_CS/job/Bengaluru/IND-Senior-Analyst-Digital-Brand-Advocate_JR-02650075",
+        "bodySHA256": "eab5d3f91cac4679c91eb0260326e595220e6fd2bab01f5987253fa5808467c9",
+        "kind": "workday",
+        "title": "IND Senior Analyst Digital Brand Advocate",
+        "id": "JR-02650075",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "Lowe's Company India",
+          "url": ""
+        }
+      }
+    ]
+  },
+  {
+    "source": "usbank",
+    "names": [
+      "U.S. Bank National Association"
+    ],
+    "evidence": [
+      {
+        "url": "https://careers.usbank.com/global/en/job/2026-0017048/Software%20Engineer%20-%20Pega",
+        "bodySHA256": "bf938a88e86f97d0174167f502a7358f766ed7c878195390fe90141fa885767a",
+        "kind": "phenom",
+        "id": "2026-0017048",
+        "title": "Software Engineer - Pega",
+        "country": "India",
+        "employer": {
+          "name": "U.S. Bank National Association"
+        }
+      },
+      {
+        "url": "https://careers.usbank.com/global/en/job/2026-0017132/Senior%20Software%20Engineer%20-%20API",
+        "bodySHA256": "458ed48873e7235a0fb805f8a4f74574f7b3ba9707c41a05f73e966d755f9cc2",
+        "kind": "phenom",
+        "id": "2026-0017132",
+        "title": "Senior Software Engineer - API",
+        "country": "India",
+        "employer": {
+          "name": "U.S. Bank National Association"
+        }
+      },
+      {
+        "url": "https://careers.usbank.com/global/en/job/2026-0016987/Senior%20Software%20Engineer",
+        "bodySHA256": "2fd61f10eceaaf551a1dc9632688276f14c8232420b5c5d916c4a22a20940ecd",
+        "kind": "phenom",
+        "id": "2026-0016987",
+        "title": "Senior Software Engineer",
+        "country": "India",
+        "employer": {
+          "name": "U.S. Bank National Association"
+        }
+      }
+    ]
+  },
+  {
+    "source": "airarabia",
+    "names": [
+      "Coreops Services Private Limited",
+      "Information Systems Associates Private Limited"
+    ],
+    "evidence": [
+      {
+        "url": "https://www.airarabiagroupcareers.com/gb/en/job/17463/SMS%20(Safety%20Management%20System)%20Specialist%20-%20CoreOps%20(India)%20-%20Pune",
+        "bodySHA256": "be248be51e8cefa2102d7df25d156d5811119a44b28f6365254d4f383306c0a0",
+        "kind": "phenom",
+        "id": "17463",
+        "title": "SMS (Safety Management System) Specialist - CoreOps (India) - Pune",
+        "country": "India",
+        "employer": {
+          "name": "Coreops Services Private Limited"
+        }
+      },
+      {
+        "url": "https://www.airarabiagroupcareers.com/gb/en/job/17327/Cargo%20Operations%20%26%20Capacity%20Planning%20Executive",
+        "bodySHA256": "e491329835d6362d5d658095f57f5b1b753e5a5ae11087830749f93d3060f432",
+        "kind": "phenom",
+        "id": "17327",
+        "title": "Cargo Operations & Capacity Planning Executive",
+        "country": "India",
+        "employer": {
+          "name": "Coreops Services Private Limited"
+        }
+      },
+      {
+        "url": "https://www.airarabiagroupcareers.com/gb/en/job/17294/Oracle%20Technical%20Lead",
+        "bodySHA256": "c01b2e3c50d46f0a1f99a18006146dea400f1b226b5748ae1e64fbb2f1c5fd4e",
+        "kind": "phenom",
+        "id": "17294",
+        "title": "Oracle Technical Lead",
+        "country": "India",
+        "employer": {
+          "name": "Information Systems Associates Private Limited"
+        }
+      }
+    ],
+    "officialReferences": [
+      "https://www.airarabia.com/sites/airarabia/files/gallery/AA_IntegratedReport_2024_EN.pdf",
+      "https://jobs.airarabiagroupcareers.com/ISA/content/Grow-with-ISA/?locale=en_GB"
+    ]
+  },
+  {
+    "source": "bouygues",
+    "names": [
+      "Equans"
+    ],
+    "statement": {
+      "name": "Equans",
+      "prefix": "Equans has established a global ERP Shared Line of Service (SLS),"
+    },
+    "evidence": [
+      {
+        "url": "https://joining.bouygues.com/global/en/job/33158/SLS%20ERP%20Security%20%26%20Authorisations%20Analyst",
+        "bodySHA256": "30cdc31ef7816e79133af7cd0fd06c83baa12a29af1ab276b09149467e634dbd",
+        "kind": "phenom",
+        "id": "33158",
+        "title": "SLS ERP Security & Authorisations Analyst",
+        "country": "India",
+        "employer": null
+      }
+    ],
+    "officialReferences": [
+      "https://www.equans.it/en/about-us",
+      "https://www.equans.fr/en/about-us/our-news/press-releases/the-Grand-Est-is-a-strategic-region"
+    ]
+  },
+  {
+    "source": "citibank",
+    "names": [
+      "12542 Citicorp Services India Private Limited"
+    ],
+    "evidence": [
+      {
+        "url": "https://citi.wd5.myworkdayjobs.com/wday/cxs/citi/2/job/Chennai-Tamil-Nadu-India/Python-Software-Engineer_26998717",
+        "bodySHA256": "0dd57421dd8e4feb8330c5963fd3d52d1f736efda49c01b040d346a7923b5fb9",
+        "kind": "workday",
+        "title": "Python Software Engineer",
+        "id": "26998717",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "12542 Citicorp Services India Private Limited",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://citi.wd5.myworkdayjobs.com/wday/cxs/citi/2/job/Mumbai-Maharashtra-India/Project-Manager--VP--Hybrid-_26989244",
+        "bodySHA256": "0da0fbb211115d321f987c279fbed10f49888d93f2be9efc1d97c88255848599",
+        "kind": "workday",
+        "title": "Project Manager, VP (Hybrid)",
+        "id": "26989244",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "12542 Citicorp Services India Private Limited",
+          "url": ""
+        }
+      },
+      {
+        "url": "https://citi.wd5.myworkdayjobs.com/wday/cxs/citi/2/job/Mumbai-Maharashtra-India/Project-Senior-Analyst--AVP--Hybrid-_26995233",
+        "bodySHA256": "f45b0ebb32fe7a0ba754e384d1a234e7ee88c1846dc2278b16bb5ff0c665996d",
+        "kind": "workday",
+        "title": "Project Senior Analyst, AVP (Hybrid)",
+        "id": "26995233",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "employer": {
+          "name": "12542 Citicorp Services India Private Limited",
+          "url": ""
+        }
+      }
+    ],
+    "officialReferences": [
+      "https://www.fdic.gov/resolutions/citigroup-2025-165d-resolution-plan-public-section.pdf"
+    ],
+    "scope": "Exact CSIPL is a non-bank subsidiary of Citibank N.A.; other Citigroup employers remain excluded."
+  },
+  {
+    "source": "basf",
+    "names": [
+      "BASF Global Business Services Private Limited",
+      "BASF India Limited",
+      "BASF Digital Solutions Private Limited"
+    ],
+    "evidence": [
+      {
+        "kind": "native-public-search",
+        "field": "jobSearchResult.response.legalEntity_obj",
+        "url": "https://basf.jobs/services/recruiting/v1/jobs",
+        "scope": "BASF legal names on their own current public role records; Surventis excluded."
+      }
+    ]
+  }
+]

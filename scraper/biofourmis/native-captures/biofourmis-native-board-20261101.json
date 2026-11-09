@@ -1,0 +1,42 @@
+{
+  "url": "https://job-boards.greenhouse.io/biofourmis",
+  "status": 200,
+  "headers": {
+    "cache-control": "no-cache, no-store",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-security-policy": "default-src 'self'; img-src * data: blob:; media-src * data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' accounts.google.com apis.google.com maps.gstatic.com *.appcast.io platform.linkedin.com tagmanager.google.com www.googletagmanager.com www.dropbox.com/static/api/2/dropins.js www.google.com/js/ www.google.com/recaptcha/ www.gstatic.com/recaptcha/ www.gstatic.cn/recaptcha/ www.recaptcha.net www.linkedin.com safari-extension://* *.googleapis.com www.googletagmanager.com/gtm.js *.recruitics.com www.careerarc.com www.google.com www.tiktok.com www.criteo.com dynamic.criteo.com cdn01.basis.net basis.com www.facebook.com www.redditstatic.com adserver.cluep.com bat.bing.com bing.com snapchat.com sc-static.net ads.nextdoor.com flask.nextdoor.com s.pinimg.com ct.pinterest.com ads.x.com platform.twitter.com/oct.js platform.twitter.com/uwt.js static.ads-twitter.com/oct.js static.ads-twitter.com/uwt.js googleads.g.doubleclick.net www.googleadservices.com/pagead/conversion/ connect.facebook.net apply.grsc.io job-boards.cdn.greenhouse.io; style-src 'self' 'unsafe-inline' tagmanager.google.com/ *.googleapis.com https://*.cdn.greenhouse.io job-boards.cdn.greenhouse.io; font-src 'self' data: fonts.gstatic.com safari-extension://* https://*.cdn.greenhouse.io https://job-boards.cdn.greenhouse.io; frame-src 'self' accounts.google.com apis.google.com app.jamyr.com docs.google.com/picker player.vimeo.com www.google.com www.linkedin.com www.youtube.com www.google.com/recaptcha/ www.gstatic.com/recaptcha/ www.gstatic.cn/recaptcha/ www.recaptcha.net *.googleapis.com *.recruitics.com www.facebook.com googletagmanager.com; connect-src 'self' docs.google.com/feeds/download/documents/export/Export *.amazonaws.com *.googleapis.com *.googleusercontent.com api.rollbar.com api.geocode.earth https://api-geocode-earth-proxy.greenhouse.io/ *.dropboxusercontent.com *.dropbox.com *.dropboxapi.com www.google.com auth.seek.com apply-api.gograyscale.com wss://apply-api-realtime.gograyscale.com apply.grsc.io https://prod-jben-internal.prod-usw2-0.gh.internal boards.greenhouse.io job-boards.cdn.greenhouse.io email-address-validator.us.greenhouse.io https://my.greenhouse.io c.spl.greenhouse.io",
+    "content-type": "text/html; charset=utf-8",
+    "date": "Sun, 01 Nov 2026 01:05:50 GMT",
+    "server": "istio-envoy",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "transfer-encoding": "chunked",
+    "vary": "Origin, Accept-Encoding",
+    "via": "1.1 94986b83e071fcce0c0003c6ea656778.cloudfront.net (CloudFront)",
+    "x-amz-cf-id": "_ymMdxLvh31jegmzw1Np0Qwb4wEoIh7fL9eowd0rN4yOxiUF8ef0Hw==",
+    "x-amz-cf-pop": "HYD57-P3",
+    "x-cache": "Miss from cloudfront",
+    "x-content-type-options": "nosniff",
+    "x-envoy-upstream-service-time": "47",
+    "x-permitted-cross-domain-policies": "none",
+    "x-request-id": "38e18ade-a2e5-45f2-9c82-80c473d23e6b",
+    "x-sigsci-request-id": "6ae6906eafc40a13a5fa9d73",
+    "x-xss-protection": "1;mode=block"
+  },
+  "requestedAt": "2026-11-01T01:05:40.020Z",
+  "completedAt": "2026-11-01T01:05:40.725Z",
+  "bytes": 16579,
+  "sha256": "4cadcc2a737fcb20a4b96908496807f079dbf5e9c433386464042f50a6a286d3",
+  "redactions": [
+    {
+      "field": "GOOGLE_PICKER_DEVELOPER_KEY",
+      "replacement": "REDACTED_TEST_VALUE",
+      "occurrences": 2,
+      "originalBytes": 16601,
+      "originalSha256": "f294a7af891fb33cb3fbef94890cbcffc16235996b6a17cd4edf98c80fdf8af9",
+      "inertScript": "window.ENV",
+      "scriptType": "text/plain",
+      "note": "The sanitized auxiliary client configuration is retained as inert fixture data; the job model and other scripts are unchanged."
+    }
+  ]
+}

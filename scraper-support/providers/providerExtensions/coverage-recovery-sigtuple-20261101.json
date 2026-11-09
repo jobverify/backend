@@ -1,0 +1,17 @@
+[
+  {
+    "source": "sigtuple",
+    "catalogOverride": true,
+    "companyName": "SigTuple",
+    "companyCareerPage": "https://sigtuple.com/",
+    "companyDomain": "sigtuple.com",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "current-employer-bound-native-cursors-and-closing-reconciliation",
+    "extractionStrategy": "current-first-party-handoff-required+reciprocal-native-account+typed-india-country+full-original-native-details",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Current SigTuple home/about/contact pages expose no recruiting handoff. The legacy Workable board reports zero openings but is not current company inventory proof. Runtime fails closed without a current employer-selected board; whole-company scope remains unresolved and cleanup is forbidden."
+  }
+]

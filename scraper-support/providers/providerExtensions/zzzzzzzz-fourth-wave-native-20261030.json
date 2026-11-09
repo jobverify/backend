@@ -1,0 +1,23 @@
+[
+  {
+    "source": "signzy",
+    "catalogOverride": true,
+    "atsPlatform": "keka",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "complete-native-board-and-embed-opening-closing-reconciliation",
+    "extractionStrategy": "actual-next-client-employer-binding+native-keka-full-records+all-visible-details+explicit-country-evidence+partial-source-scope",
+    "verifiedBrokenJobsCtaUrl": null,
+    "verifiedOn": "2026-10-30",
+    "verifiedSurfaceSummary": "The current registered implementation validates the actual careers route, default client component, NextScript activation, matching native configuration and container before reading the unfiltered Keka inventories and every role detail. Original records, description-owned country evidence and unresolved secondary locations are retained. Missing country evidence and description-versus-structured-location discrepancies keep this a partial recovery with unknown India coverage and lifecycle cleanup disabled."
+  },
+  {
+    "source": "kidvento",
+    "catalogOverride": true,
+    "atsPlatform": "keka",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "complete-native-board-and-embed-opening-closing-reconciliation",
+    "extractionStrategy": "actual-google-sites-controller-frame-binding+native-keka-full-records+all-visible-details+explicit-country-evidence+partial-source-scope",
+    "verifiedOn": "2026-10-30",
+    "verifiedSurfaceSummary": "The current registered implementation validates the active official Google Sites embed and its actual controller/frame bridge to the branded Keka portal, without executing publisher JavaScript. Original board and embedded inventories, role details and all location alternatives are reconciled. Missing geography, legitimately absent native location IDs and description-versus-structured-location discrepancies are preserved. This remains a partial source recovery with unknown India coverage and lifecycle cleanup disabled."
+  }
+]

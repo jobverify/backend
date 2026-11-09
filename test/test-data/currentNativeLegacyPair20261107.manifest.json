@@ -1,0 +1,147 @@
+{
+  "fixture": {
+    "path": "test/test-data/currentNativeLegacyPair20261107.json.gz",
+    "bytes": 206433,
+    "sha256": "682391e06f44b2da5832566d6edda53e3d5283dfcf6b5e29a8d8d964fc153775"
+  },
+  "decodedFixtureBytes": 879850,
+  "profile": "saved-first-party-original-native-unit-inputs",
+  "limitations": [
+    "Historical C38 captures replayed offline, without a current acquisition.",
+    "No independently captured closing response; no source or India completeness claim.",
+    "Air France has five saved entities and two literal detail reads lack an entity.",
+    "Existing source-local fixtures are sanitized/derived; this fixture retains original decoded entity bytes."
+  ],
+  "originalCaptures": [
+    {
+      "source": "ai21labs",
+      "requestedUrl": "https://www.ai21.com/careers/",
+      "manifest": "continuation-38/ai21labs-careers/manifest.json",
+      "manifestSHA256": "ce3129fd3ca3f83e4e3ab69a18a152be86fcc9411970ec1f0341d59cf0bdf994",
+      "bodyFile": "0001.body.gz",
+      "compressedBodySHA256": "b64fa17c592223769fca3715357830e8b4e397e80854097a6d1d40b6ba2d4430",
+      "originalBodySHA256": "d717f73730e2fdd68097fc2385bcb794021e79fbfd29f279c46075a2a73f6dfc",
+      "originalBodyBytes": 38443,
+      "sourceRequestedAt": "2026-11-07T07:34:38.632Z",
+      "sourceCompletedAt": "2026-11-07T07:34:50.279Z"
+    },
+    {
+      "source": "ai21labs",
+      "requestedUrl": "https://www.ai21.com/careers/deep-learning-engineer/CC.372/",
+      "manifest": "continuation-38/ai21labs-declared-roles/manifest.json",
+      "manifestSHA256": "f526e930154fb5a702bff4505bdc836182994b2f6e4829c9dd7af7706e079478",
+      "bodyFile": "0001.body.gz",
+      "compressedBodySHA256": "89a5d9e31d030572a5d2d41d4a5e5de49ca3c2dbc7af38342336c1f60528951a",
+      "originalBodySHA256": "79efd81283446738e845c55d7fc4ef5daddb70c2ebf9afe073501d6934109f7f",
+      "originalBodyBytes": 41246,
+      "sourceRequestedAt": "2026-11-07T07:51:02.821Z",
+      "sourceCompletedAt": "2026-11-07T07:51:14.193Z"
+    },
+    {
+      "source": "ai21labs",
+      "requestedUrl": "https://www.ai21.com/careers/technical-project-manager-post-training/95.47D/",
+      "manifest": "continuation-38/ai21labs-declared-roles/manifest.json",
+      "manifestSHA256": "f526e930154fb5a702bff4505bdc836182994b2f6e4829c9dd7af7706e079478",
+      "bodyFile": "0002.body.gz",
+      "compressedBodySHA256": "26f27061b5f9e2264aade8951557199fb94a0afcd7f2b20205e2553c9ec480b5",
+      "originalBodySHA256": "88e7a41c087249ec00db3b73132231b2488f8c7a83772c0a047ca1055ddc0fb3",
+      "originalBodyBytes": 42657,
+      "sourceRequestedAt": "2026-11-07T07:51:14.202Z",
+      "sourceCompletedAt": "2026-11-07T07:51:25.471Z"
+    },
+    {
+      "source": "ai21labs",
+      "requestedUrl": "https://www.ai21.com/careers/senior-marketing-designer/95.47C/",
+      "manifest": "continuation-38/ai21labs-declared-roles/manifest.json",
+      "manifestSHA256": "f526e930154fb5a702bff4505bdc836182994b2f6e4829c9dd7af7706e079478",
+      "bodyFile": "0003.body.gz",
+      "compressedBodySHA256": "0101769155044177bfaf3c491db479ffbb37f155e3a4a23e35722c7298ceca3b",
+      "originalBodySHA256": "516d398c2327fa0f0cac8b988c14a3e4fbbac9aad588006453ef7d38598736bf",
+      "originalBodyBytes": 40767,
+      "sourceRequestedAt": "2026-11-07T07:51:25.476Z",
+      "sourceCompletedAt": "2026-11-07T07:51:35.851Z"
+    },
+    {
+      "source": "airfranceklm",
+      "requestedUrl": "https://recrutement.airfrance.com/accueil.aspx?lcid=2057",
+      "manifest": "continuation-38/airfranceklm-careers/manifest.json",
+      "manifestSHA256": "d761a94fa21a502e6b4b572f9d5ebd93920aa02d1b448d8b43262cf09890716d",
+      "bodyFile": "0001.body.gz",
+      "compressedBodySHA256": "b652928a3423be3ab49615e0d07aa6645e7146781315c2b51e166212d254d4da",
+      "originalBodySHA256": "1949f8e27ad96aec476bd5be06a8cfb7f49f01980a9472623919b11e21faeb7d",
+      "originalBodyBytes": 143456,
+      "sourceRequestedAt": "2026-11-07T07:36:38.215Z",
+      "sourceCompletedAt": "2026-11-07T07:36:50.024Z"
+    },
+    {
+      "source": "airfranceklm",
+      "requestedUrl": "https://recrutement.airfrance.com/job/list-of-all-jobs.aspx?all=1&mode=list",
+      "manifest": "continuation-38/airfranceklm-declared-vacancies/manifest.json",
+      "manifestSHA256": "03206a83e891bcc7a8d0b346cd626c89544ceee8395c953818313fa9c80f2d26",
+      "bodyFile": "0001.body.gz",
+      "compressedBodySHA256": "2ef6e896fab17010f8dfdd7e705b9adb10aabcc13ff7b0e0d6fde239061f590a",
+      "originalBodySHA256": "6f44eb8aedfa669f720207973410f58d6aef59cd95f85c806261f3d716934db7",
+      "originalBodyBytes": 161769,
+      "sourceRequestedAt": "2026-11-07T07:51:39.853Z",
+      "sourceCompletedAt": "2026-11-07T07:51:51.676Z"
+    },
+    {
+      "source": "airfranceklm",
+      "requestedUrl": "https://recrutement.airfrance.com/offre-de-emploi/emploi-business-architect-finance-achats-f-h_25698.aspx",
+      "manifest": "continuation-38/airfranceklm-declared-roles/manifest.json",
+      "manifestSHA256": "0914cc5302ac56498c3dccf2869e455fe0ff59350cf3dfb6255e1c1e4164f4b9",
+      "bodyFile": "0001.body.gz",
+      "compressedBodySHA256": "e7e2951047504a3101cc77677676144d9934b15895c4d5a0c4d3315449e0149b",
+      "originalBodySHA256": "1d373e225f35116ea3a4816cb177b9c017aa2cafa7c26abcfcba8d6fd9efe337",
+      "originalBodyBytes": 61863,
+      "sourceRequestedAt": "2026-11-07T08:06:56.089Z",
+      "sourceCompletedAt": "2026-11-07T08:07:07.956Z"
+    },
+    {
+      "source": "airfranceklm",
+      "requestedUrl": "https://recrutement.airfrance.com/offre-de-emploi/emploi-business-architect-data-f-h_25699.aspx",
+      "manifest": "continuation-38/airfranceklm-declared-roles/manifest.json",
+      "manifestSHA256": "0914cc5302ac56498c3dccf2869e455fe0ff59350cf3dfb6255e1c1e4164f4b9",
+      "bodyFile": "0002.body.gz",
+      "compressedBodySHA256": "b6b6c09d760bfc01bf81899616df581e871dce7beb1a8a7cb227ed5220ebb7b4",
+      "originalBodySHA256": "bbab7396dedac764f3e87f8f5509ba5c0e6fb57efffc463154c67df44cef3b73",
+      "originalBodyBytes": 61956,
+      "sourceRequestedAt": "2026-11-07T08:07:07.963Z",
+      "sourceCompletedAt": "2026-11-07T08:07:19.114Z"
+    },
+    {
+      "source": "airfranceklm",
+      "requestedUrl": "https://recrutement.airfrance.com/offre-de-emploi/emploi-mecanicienne-mecanicien-cabine-toulouse-f-h_23769.aspx",
+      "manifest": "continuation-38/airfranceklm-declared-roles/manifest.json",
+      "manifestSHA256": "0914cc5302ac56498c3dccf2869e455fe0ff59350cf3dfb6255e1c1e4164f4b9",
+      "bodyFile": "0003.body.gz",
+      "compressedBodySHA256": "5124a48b99d7ea4caeac91c93340ad48bca6861e82b66eb763c121caa489fdc3",
+      "originalBodySHA256": "83ac41bfba8ff5aab2d2718acf3dfa20c9d2f18395aa8ba3f58a3c1ac251c63a",
+      "originalBodyBytes": 56432,
+      "sourceRequestedAt": "2026-11-07T08:07:19.120Z",
+      "sourceCompletedAt": "2026-11-07T08:07:30.304Z"
+    }
+  ],
+  "independentFullOracle": {
+    "path": "test/test-data/currentNativeLegacyPair20261107.expected.json.gz",
+    "bytes": 19103,
+    "sha256": "fc747c3318e509f7503b5cf522b3230d90e9a683136ededabccf86f4042c20f0",
+    "generator": "prepare_v2.py",
+    "generatorSHA256": "bd961aff0ff338c81edfe49645c9e149d2d7b6bc9c827b447820f352757869bc",
+    "productionModulesImported": false,
+    "fullModels": {
+      "ai21labs": 3,
+      "airfranceklmRecords": 50,
+      "airfranceklmDetails": 3
+    },
+    "fullCriteria": {
+      "ai21labsSections": 12,
+      "airfranceklmFields": [
+        20,
+        20,
+        15
+      ]
+    },
+    "oracleGap": "Earlier C38 detail-facts exports use production shared readNativeDocument; excluded as independent expectations."
+  }
+}

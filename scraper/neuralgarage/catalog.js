@@ -1,0 +1,33 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+
+const PROVIDER_METADATA = {
+  "source": "neuralgarage",
+  "companyName": "NeuralGarage",
+  "officialBrandName": "NeuralGarage",
+  "adapter": "script",
+  "companyCareerPage": "https://visualdub.ai/",
+  "companyDomain": "visualdub.ai",
+  "atsPlatform": "verified-exact-name-public-surface-fail-closed",
+  "countryFilter": "India",
+  "paginationStrategy": "fail-closed-sentinel",
+  "extractionStrategy": "verified-exact-name-public-company-surface+company-specific-fail-closed-wrapper",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://visualdub.ai/ was the live public surface reviewed for NeuralGarage. Local repo evidence only pins the exact workbook company name to that verified surface and does not establish a stable enumerable public jobs contract, so this company-specific scraper remains fail-closed and returns no jobs until a trustworthy public openings flow is verified.",
+  "dryRunFile": path.join(currentDir, 'jobs.json'),
+  "modulePath": path.join(currentDir, 'script.js'),
+  "backfillMode": "live-copy",
+  "originalAdapter": "script",
+  "originalAtsPlatform": "verified-exact-name-public-surface-fail-closed",
+  "originalModulePath": "../workbookbatch04/neuralgarage.js",
+  "originalDryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_Release_26.07.04\\jobverify-backend\\scraper\\neuralgarage\\jobs.json"
+}
+
+export default PROVIDER_METADATA
+export { PROVIDER_METADATA }

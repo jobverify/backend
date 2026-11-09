@@ -1,0 +1,53 @@
+[
+  {
+    "source": "bharatx",
+    "companyName": "BharatX",
+    "adapter": "script",
+    "modulePath": "../bharatx/script.js",
+    "companyCareerPage": "https://bharatx.tech/careers/",
+    "companyDomain": "bharatx.tech",
+    "atsPlatform": "workable",
+    "countryFilter": "India",
+    "paginationStrategy": "unfiltered-native-cursor-exact-total",
+    "extractionStrategy": "current-employer-handoff+reciprocal-native-account+complete-india-details",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current BharatX careers page actively links the bharatx Workable board. Reciprocal native account UID, tenant, company and company domain are checked on each run; exact totals, every cursor and complete India details are validated. Hidden locations retain unresolved scope.",
+    "catalogOverride": true
+  },
+  {
+    "source": "seeq",
+    "companyName": "Seeq",
+    "adapter": "script",
+    "modulePath": "../seeq/script.js",
+    "companyCareerPage": "https://www.seeq.com/careers/",
+    "companyDomain": "seeq.com",
+    "atsPlatform": "workable",
+    "countryFilter": "India",
+    "paginationStrategy": "unfiltered-native-cursor-exact-total",
+    "extractionStrategy": "current-employer-handoff+reciprocal-native-account+complete-india-details",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Seeq careers page redirects to its canonical company/careers page and actively links the seeq Workable board. Runtime validates reciprocal account identity, exact total, all cursors and India details. Hidden locations retain unresolved scope.",
+    "catalogOverride": true
+  },
+  {
+    "source": "huggingface",
+    "companyName": "Hugging Face",
+    "adapter": "script",
+    "modulePath": "../huggingface/script.js",
+    "companyCareerPage": "https://huggingface.co/",
+    "companyDomain": "huggingface.co",
+    "atsPlatform": "workable",
+    "countryFilter": "India",
+    "paginationStrategy": "unfiltered-native-cursor-exact-total",
+    "extractionStrategy": "current-employer-handoff+reciprocal-native-account+complete-india-details",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Hugging Face homepage actively links the huggingface Workable board. Runtime validates reciprocal account identity, exact total, all cursors and India details. Hidden locations retain unresolved scope and do not establish India absence.",
+    "catalogOverride": true
+  }
+]

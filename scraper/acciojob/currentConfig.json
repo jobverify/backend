@@ -1,0 +1,27 @@
+{
+  "companyName": "AccioJob",
+  "host": "acciojob",
+  "identifier": "7d86eeef-8f44-46cd-bc3a-2155e3ff042c",
+  "officialUrl": "https://acciojob.com/",
+  "shellUrl": "https://acciojob.keka.com/careers",
+  "documentUrl": "https://acciojob.keka.com/ats/documents/7d86eeef-8f44-46cd-bc3a-2155e3ff042c/careerportal/6aa32e2eecac4c51b41b0792c4cc1039.html",
+  "mode": "portal-link",
+  "additionalPages": [
+    "https://acciojob.com/jobs",
+    "https://acciojob.com/jobs.html",
+    "https://placement.acciojob.com/jobs/?filter=ALL"
+  ],
+  "source": "acciojob",
+  "scopeLimitations": [
+    "unreconciled-advertised-student-placement-job-feeds"
+  ],
+  "root": "https://acciojob.keka.com/careers/",
+  "portalIdentity": {
+    "name": "ACCIOJOB PRIVATE LIMITED",
+    "shortName": "ACCIOJOB PRIVATE LIMITED",
+    "domain": "acciojob.keka.com"
+  },
+  "expectedFinalUrls": {
+    "https://acciojob.com/jobs.html": "https://acciojob.com/jobs"
+  }
+}

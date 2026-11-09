@@ -1,0 +1,23 @@
+{
+  "source": "kinaracapital",
+  "companyName": "Kinara Capital",
+  "officialBrandName": "Kinara Capital",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../kinaracapital/script.js",
+  "dryRunFile": "kinaracapital/jobs.json",
+  "companyCareerPage": "https://kinaracapital.com/careers/",
+  "officialCareersHandoffUrl": "https://careers.kinaracapital.com/",
+  "companyDomain": "kinaracapital.com",
+  "atsPlatform": "official-native-careers-unavailable",
+  "countryFilter": "India",
+  "paginationStrategy": "unverified-no-enumerable-native-contract",
+  "extractionStrategy": "bounded-official-handoff-validation+typed-coverage-gap",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "officialCareersPageUrl": "https://kinaracapital.com/careers/",
+  "verifiedSurfaceSummary": "On 2026-10-23 the official careers page returned HTTP 200 and retained APPLY NOW to careers.kinaracapital.com. The native board failed browser transport/TLS and supplied no HTTP inventory. The official footer links Kinara Capital's LinkedIn company; that page identifies organization 2688667. Its company-filtered India jobs search returned no matching roles and its guest endpoint returned only whitespace. This alternate scoped observation does not prove the unavailable primary board empty. Runtime validates the exact active official handoff, bounds fetch plus body by one deadline, and throws KINARACAPITAL_COVERAGE_GAP with incomplete evidence and unknown counts. No exhaustive pagination, public dates, descriptions or cleanup eligibility are claimed."
+}

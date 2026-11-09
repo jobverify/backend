@@ -1,0 +1,64 @@
+{
+  "source": "alphadesigntechnologies",
+  "purpose": "Original current first-party discovery only; generic email/intake page is not verified empty and declares no public vacancy read.",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "10033317ff1efa24c3e740fe2952046a4ebc8ecc584b7a1d374f6660e282857a",
+  "responses": [
+    {
+      "source": "alphadesigntechnologies",
+      "key": "home",
+      "url": "https://www.adtl.co.in/",
+      "status": 200,
+      "finalUrl": "https://www.adtl.co.in/",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 59046,
+      "sha256": "216a4dd27fb9d62ade0b1c7dc2eb30b4897a8ca6ee7c037237a43bd007700629",
+      "file": "alphadesigntechnologies-home-216a4dd27fb9.body",
+      "requestedAt": "2026-11-03T00:11:47.950Z",
+      "completedAt": "2026-11-03T00:11:49.069Z",
+      "originalCapture": "alphadesigntechnologies-home-216a4dd27fb9.body"
+    },
+    {
+      "source": "alphadesigntechnologies",
+      "key": "careers",
+      "url": "https://www.adtl.co.in/careers",
+      "status": 200,
+      "finalUrl": "https://www.adtl.co.in/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 29193,
+      "sha256": "afe9168334383c0b7976b25fdafa0653a177a1ff599ad51be99c8501758e575c",
+      "file": "alphadesigntechnologies-careers-afe916833438.body",
+      "requestedAt": "2026-11-03T00:11:48.582Z",
+      "completedAt": "2026-11-03T00:11:49.530Z",
+      "originalCapture": "alphadesigntechnologies-careers-afe916833438.body"
+    },
+    {
+      "source": "alphadesigntechnologies",
+      "key": "declared-client-14",
+      "url": "https://www.adtl.co.in/js/clientscript.js?v=c4240ccef3",
+      "status": 200,
+      "finalUrl": "https://www.adtl.co.in/js/clientscript.js?v=c4240ccef3",
+      "contentType": "application/javascript",
+      "bytes": 57501,
+      "sha256": "631fd8ac52e5e7e85c2103cd6fd4ed85f7b232a7f5de602757d6be006ecbb3c3",
+      "file": "alphadesigntechnologies-declared-client-14-631fd8ac52e5.body",
+      "requestedAt": "2026-11-03T00:11:49.531Z",
+      "completedAt": "2026-11-03T00:11:49.900Z",
+      "originalCapture": "alphadesigntechnologies-declared-client-14-631fd8ac52e5.body"
+    },
+    {
+      "source": "alphadesigntechnologies",
+      "key": "declared-client-15",
+      "url": "https://www.adtl.co.in/form/js/form.js?v=c4240ccef3",
+      "status": 200,
+      "finalUrl": "https://www.adtl.co.in/form/js/form.js?v=c4240ccef3",
+      "contentType": "application/javascript",
+      "bytes": 266680,
+      "sha256": "333bb7a1bf3add1dd8c772dd8287f82b41685ff50f27bf4306af1a1b2775ee0e",
+      "file": "alphadesigntechnologies-declared-client-15-333bb7a1bf3a.body",
+      "requestedAt": "2026-11-03T00:11:49.901Z",
+      "completedAt": "2026-11-03T00:11:50.750Z",
+      "originalCapture": "alphadesigntechnologies-declared-client-15-333bb7a1bf3a.body"
+    }
+  ]
+}

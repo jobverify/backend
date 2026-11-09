@@ -1,0 +1,10 @@
+{
+ "source":"fittr","companyName":"Fittr","adapter":"script","modulePath":"../fittr/script.js","dryRunFile":"fittr/jobs.json",
+ "companyCareerPage":"https://www.fittr.com/become-a-coach/","companyDomain":"fittr.com","officialCareersPageUrl":"https://www.fittr.com/become-a-coach/",
+ "atsPlatform":"native-employer-linkedin+official-coach-onboarding","countryFilter":"India","paginationStrategy":"exact-employer-India-and-worldwide-native-search+bounded-public-social-posts;incomplete",
+ "extractionStrategy":"exact-native-employer+explicit-country+earliest-public-date+active-application","parser":"custom-script","normalizationProfile":"engineering-default","verifiedOn":"2026-10-23",
+ "verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"sourceScopeComplete":false,"sourceListingComplete":false,"lifecycleCleanupAllowed":false,"firstParty":false,"exactCompanyMatchOnly":true,
+ "nativeObservedRecordCount":2,"nativeIndiaRecoveredCount":0,"nativeCountryUnprovenCount":2,"observedEligibleCount":0,
+ "verifiedSurfaceSummary":"Official pages associate exact native FITTR employer 2970058 with reciprocal fittr.com website. Employer-filtered India and Worldwide no-match observations do not establish company emptiness. Two employer-authored social vacancies have native publication 2026-01-07 and 2026-04-27, city-only Pune or no location, and no proven active application; excluded without country inference or date refresh. Coach onboarding is not an enumerable vacancy feed. firstParty false: no recruiting handoff proven. Whole-company inventory unknown; cleanup disabled.",
+ "fixtureManifest":"scraper/fittr/fixtures/capture-manifest.json"
+}

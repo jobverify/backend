@@ -1,0 +1,30 @@
+[
+  {
+    "source": "classplus",
+    "catalogOverride": true,
+    "companyName": "Classplus",
+    "officialBrandName": "Classplus",
+    "adapter": "script",
+    "modulePath": "../classplus/script.js",
+    "companyCareerPage": "https://classplusapp.com/careers/open-role",
+    "companyDomain": "classplusapp.com",
+    "atsPlatform": "official-first-party-public-jobs-api",
+    "countryFilter": "India",
+    "paginationStrategy": "single-public-api-response",
+    "extractionStrategy": "official-careers-page+public-jobs-api",
+    "parser": "custom-script",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-27",
+    "verifiedPublicPostingCount": 0,
+    "verifiedNativeBoardJobCount": 0,
+    "verifiedNativeBoardIndiaJobCount": 0,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "remediationStatus": "implemented-current-native-client-whole-employer-scope-unverified",
+    "runtimeQualification": "registered-source-only-native-board-empty-whole-source-partial",
+    "verificationDisposition": "current-public-client-and-native-board-verified-whole-employer-universe-unverified",
+    "verifiedSurfaceSummary": "2026-10-27 registered source-only run: current Classplus page and executable main/lazy modules verified before public jobs GETs. Identical initial/closing unfiltered Jobs=[]: native global0 India0 full0 eligible0 unknown-country0. Native board complete; whole-employer universe remains unverified because current corporate SPA has no careers handoff and VIDU hierarchy is unknown. Source partial; cleanup false. Nonempty extraction is synthetic-tested, not live detail qualified. Runtime always requires fresh client and API evidence.",
+    "verificationArtifact": "../artifacts/scraper-log-review-1b360f27/classplus-native-20261027/offline-replay-result.json",
+    "dryRunFile": "classplus/jobs.json"
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "observedAt": "2026-11-05T08:12:10Z",
+  "dataOnly": true,
+  "jsonNegotiation": "Published native Backbone client protocol: Accept application/json, text/javascript, */*; q=0.01 and X-Requested-With XMLHttpRequest",
+  "capturedResponseMetadata": "../../../../../../reports/scraper-2026-11-05-41887979507/continuation-5/ripplehire/json-protocol/receipts.json",
+  "captures": [
+    {
+      "path": "altimetrik-search.json",
+      "sha256": "099d1c66bb81cdff3b832f7ff167c5354918ba310cb6e50533d6ee74057db5c6",
+      "bytes": 14350,
+      "genuineUnchangedCapture": true
+    },
+    {
+      "path": "altimetrik-detail.json",
+      "sha256": "410dd72374d5c9ed717471813da047365a0b864e5a3027fcfc882a3c5dc9d1de",
+      "bytes": 5720,
+      "genuineUnchangedCapture": true
+    },
+    {
+      "path": "altimetrik-detail-error-bearing.xml",
+      "sha256": "f7b662c1dfee3ab457135e61558b76ce1e32838b711ae52692d25f8d3dee46a4",
+      "bytes": 5374,
+      "genuineUnchangedCapture": true
+    },
+    {
+      "path": "tredence-search.json",
+      "sha256": "395af14a2a01bc11119713a544fc6982d7da45d1dee8650bd7392fb0062c0536",
+      "bytes": 14169,
+      "genuineUnchangedCapture": true
+    },
+    {
+      "path": "tredence-detail.json",
+      "sha256": "1017fd11f0213a41a616f53503dd54b3fa12c4b77a62a77d8de5b958058f35dd",
+      "bytes": 6005,
+      "genuineUnchangedCapture": true
+    },
+    {
+      "path": "tredence-detail-error-bearing.xml",
+      "sha256": "1f6aa67caf3176566f16f7448bdc0a3fda6dda1abcd86b62e25ae6b140233e05",
+      "bytes": 29531,
+      "genuineUnchangedCapture": true
+    }
+  ]
+}

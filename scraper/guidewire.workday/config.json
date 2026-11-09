@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://wd5.myworkdaysite.com/wday/cxs/guidewire/external/jobs",
+  "detailUrlBase": "https://wd5.myworkdaysite.com/recruiting/guidewire/external",
+  "countryFacetParameter": "locationCountry"
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "source": "entain",
+    "companyName": "Entain",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../entain.workday/script.js",
+    "originalModulePath": null,
+    "companyDomain": "entaingroup.com",
+    "officialHomepageUrl": "https://www.entaingroup.com/",
+    "companyCareerPage": "https://entaincareers.com/",
+    "jobsBoardUrl": "https://api.smartrecruiters.com/v1/companies/Entain/postings?destination=PUBLIC&country=in",
+    "atsPlatform": "smartrecruiters-public-postings",
+    "countryFilter": "India",
+    "parser": "shared-apiPortal-and-smartRecruitersDetail-with-source-local-contract-validation",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "bounded-public-India-offset-limit-native-total-terminal-and-full-final-recheck",
+    "extractionStrategy": "explicit-native-country-India-active-PUBLIC-full-details-release-dates-and-exact-native-URLs",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "coverage-gap",
+    "remediationStatus": "implemented-awaiting-ordinary-audit-and-independent-review",
+    "runtimeQualification": "unqualified-offline-evidence-only-until-ordinary-audit",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T17:36:05.621Z",
+      "officialURL": "https://www.entaingroup.com/",
+      "matchedLinks": [
+        "https://careers.smartrecruiters.com/Entain"
+      ],
+      "evidenceOrigin": "reviewed-batch029-identity-original-clock-plus-separate-native001-observations",
+      "batchArtifact": "artifacts/full-catalog/official-discovery/batch-029.json",
+      "batchSha256": "ebfd712994364a3501a292e76726abc8d5acfcef81a5153618e8b8230970bc0a",
+      "nativeCaptureSeal": "artifacts/full-catalog/entain-native-001/research-seal-001.json",
+      "nativeCaptureSealSHA256": "8a819eb30257d168c9216f6d977363ca5d4aa1db635d1242586940d4c4a66088",
+      "nativeCaptureOriginalObservedWindow": {
+        "earliest": "2026-10-21T18:44:26.541Z",
+        "latest": "2026-10-21T18:46:00.371Z",
+        "renewedByLocalSeal": false
+      }
+    },
+    "sourceScopeNotes": "Only the documented Entain native public country=in tenant surface is exhausted and rechecked. Whole-group/global/India counts and typed role legal employers remain unknown. Corporate CMS276 surface differs and contains no India entries; its dates never substitute for native releasedDate. Native UTC releasedDate is retained as posting release, while first-ever job publication/creation and native modified/closing dates remain unknown. Active/PUBLIC detail status and full substantive native descriptions must agree with every listing. Exact configured application URLs are retained without claiming application access or eligibility. Any failed, incomplete, drifting, unknown-country or conflicting run throws and cannot authorize prior-job deletion; scoped empty remains a group coverage gap.",
+    "verifiedSurfaceSummary": "Two sealed ordinary-public native India full JDs support implementation; genuine runtime observations and independent review remain separate. All stored provider verification counts are unknown."
+  }
+]

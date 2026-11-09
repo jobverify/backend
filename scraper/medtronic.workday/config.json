@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://medtronic.wd1.myworkdayjobs.com/wday/cxs/medtronic/MedtronicCareers/jobs",
+  "detailUrlBase": "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers",
+  "countryFacetParameter": "locationCountry"
+}

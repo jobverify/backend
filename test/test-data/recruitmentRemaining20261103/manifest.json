@@ -1,0 +1,2147 @@
+{
+  "capturedOn": "2026-11-03",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "transport": "Anonymous public company pages and native inventory/detail HTTP responses; no application submission.",
+  "sources": [
+    {
+      "source": "labelbox",
+      "observedAt": "2026-11-03T11:08:46.575Z",
+      "indiaJobs": 1,
+      "nativeRecords": 10,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://labelbox.com/",
+          "finalURL": "https://labelbox.com/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "0e4711491be5c6295ea2719b6ee62b513a8063d17946eeb2c9aff19f639c3d7d",
+          "filename": "267a0c1d95d8dd6330993f38e850755597756e9fce84864426b4ce519b58427b.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://labelbox.com/sales",
+          "finalURL": "https://labelbox.com/sales/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "982b03d8c9ae2f10615876913b385e68a9ced0786923d112e42a9cc48ed6187f",
+          "filename": "37b51a732fec23e39f8ecd69a06def62e1c92dab4cd2abe8bdebc3f4050062ba.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://labelbox.com/company/careers/",
+          "finalURL": "https://labelbox.com/company/careers/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "4e6d2c128e44cabc66578df3d7cf2f128ab6d598e2dd91e79f45b99e35b1bac2",
+          "filename": "7c578dc71c6c247694dfe985a51d87e27779dac9ee3c1fa83913c8ad93210a63.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://labelbox.com/company/jobs/",
+          "finalURL": "https://labelbox.com/company/jobs/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "7c9044f06ad7f66fe7e5413e962bb4490b907c678307361865547c856649a966",
+          "filename": "b6d1fe73aae2d5e52cbf3f0bb2614fed9a6a1451e9638cd9eeffec71ee404414.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://boards-api.greenhouse.io/v1/boards/labelbox/jobs?content=true",
+          "finalURL": "https://boards-api.greenhouse.io/v1/boards/labelbox/jobs?content=true",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "c9af0f62cf3a142368416f58eeb73810650e2e6770498a5350b2c68c7301fe52",
+          "filename": "be73c8ccb5e541d0083afe0979ca44273311913c86e002d99533af8a9071e1d0.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "5275455007",
+          "title": "Senior Accounts Receivable Analyst  ",
+          "applyUrl": "https://job-boards.greenhouse.io/labelbox/jobs/5275455007",
+          "postingDate": "2026-10-26T15:49:37-04:00",
+          "nativeHiringOrganization": null,
+          "descriptionSHA256": "b7a47a2ddc5d521e89b59ccb94d9a5f9fe1b93c68d81e88955e85340b48a11c5"
+        }
+      ]
+    },
+    {
+      "source": "westerndigital",
+      "observedAt": "2026-11-03T11:09:06.902Z",
+      "indiaJobs": 2,
+      "nativeRecords": 346,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.westerndigital.com/",
+          "finalURL": "https://www.westerndigital.com/",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "bodySHA256": "b395bfe9b85fc7a1149c2aba3c7fc979f2518474f45fe4eee51c8070bc170d71",
+          "filename": "19a7bc74bd938329af3b249a46af79731b9012a06d9719c001a6c86739717245.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.westerndigital.com/careers",
+          "finalURL": "https://www.westerndigital.com/careers",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "bodySHA256": "5fab7e74869c4de6730fb7276a01e84d9f3e27c7d5ceba99b6dc8cd7d99009df",
+          "filename": "b9b2eb3b71ad6c4d16ac0b9e03fbc2541681100818197e494b76203508c27794.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=0&limit=100",
+          "finalURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=0&limit=100",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "d95a06ce502b7325d9bf28523969c248660bc7b72380e2e0e93abefa91494242",
+          "filename": "c9bfb56cbf0a0cfb20a8a398bb7ebd396b9d0bd86ab4720a972a86d4f5cff0ca.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings/744000157507719",
+          "finalURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings/744000157507719",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "30eaee140c81edb8f056a77cbaed9fe49ccc65a78e79249ed2d35511d2f63ad4",
+          "filename": "7d63c21156b73318f223dd4312078424098888eac97ee23207d0ee3d95729927.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings/744000157502119",
+          "finalURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings/744000157502119",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "d954c40b90d815c433e8938d74c3167b9bf18b99a8f4c661c0964cdbb9c4f3eb",
+          "filename": "d89e52ecf677e0fcb5acb3a1efe05707ac0b25e4d1d5192c828af3b5a14c27c4.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=100&limit=100",
+          "finalURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=100&limit=100",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "d643d0c3bd444d22d4dbdefce093212ee9d6d599a995fe1ed60ad458e76b88fd",
+          "filename": "3fd75fd4c54784fdb552265930db59d0fc68404ac1bf82da49d97df681050cfc.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=200&limit=100",
+          "finalURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=200&limit=100",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "deb618e6d2926bd42ab7cee5d9bbf5e4853a7ebc0948bafddd64e9c982c284ee",
+          "filename": "bda26570e0ea570b335fe8797ae71baad352497a0f4e253335da07d3f2c9c527.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=300&limit=100",
+          "finalURL": "https://api.smartrecruiters.com/v1/companies/WesternDigital/postings?offset=300&limit=100",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "64ffd905253163b2595bcc03553a24aad1b7309f0582e42edf86437a618c4554",
+          "filename": "7a414d61f57d5d870cf435ff8e41ea6c9200831a4f9da78fe3bd97d7e787bb32.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "744000157507719",
+          "title": "India Site [  Strategy & Operations Program Manager  ]  MBA, 8+ Years Experience",
+          "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000157507719-india-site-strategy-operations-program-manager-mba-8-years-experience?oga=true",
+          "postingDate": "2026-10-23T15:01:56.056Z",
+          "nativeHiringOrganization": {
+            "name": "Western Digital",
+            "identifier": "WesternDigital"
+          },
+          "descriptionSHA256": "584bddb29c0a1d7a1e1fd49fedbf7e62f8cb47a5454411d696d0d8d40ee343da"
+        },
+        {
+          "jobId": "744000157502119",
+          "title": "Principal Engineer, Data Analytics Engineering  [ 8+ years ] (Java/Python | Kafka | Kubernetes)",
+          "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000157502119-principal-engineer-data-analytics-engineering-8-years-java-python-kafka-kubernetes-?oga=true",
+          "postingDate": "2026-10-23T14:43:54.077Z",
+          "nativeHiringOrganization": {
+            "name": "Western Digital",
+            "identifier": "WesternDigital"
+          },
+          "descriptionSHA256": "b7d41449901471db81059862d85a52bc31bb0a1f58991489f0ae99d15b6abde6"
+        }
+      ]
+    },
+    {
+      "source": "kyndryl",
+      "observedAt": "2026-11-03T12:38:34.595Z",
+      "indiaJobs": 23,
+      "nativeRecords": 167,
+      "limits": {
+        "maxRequests": 40,
+        "maxDetails": 16,
+        "maxPages": 8
+      },
+      "requests": [
+        {
+          "requestedURL": "https://www.kyndryl.com/",
+          "method": "GET",
+          "finalURL": "https://www.kyndryl.com/in/en",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "startedAt": "2026-11-03T12:38:34.597Z",
+          "completedAt": "2026-11-03T12:38:36.082Z",
+          "bodyBytes": 361062,
+          "bodySHA256": "67a3600e3c68a55ddbde229a649aae61b724d61b3ca10d5f8b65e92d04e119b3",
+          "filename": "80b09ce16a2082aa604890d0bbb1322eadb0527c1b8330241b18bb7e311714d2.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://www.kyndryl.com/in/en/careers",
+          "method": "GET",
+          "finalURL": "https://www.kyndryl.com/in/en/careers",
+          "status": 200,
+          "contentType": "text/html;charset=utf-8",
+          "startedAt": "2026-11-03T12:38:36.143Z",
+          "completedAt": "2026-11-03T12:38:36.360Z",
+          "bodyBytes": 379849,
+          "bodySHA256": "3f1cf17fdf6fff2db76343c73cdd741093389a798d123056552b6fac1f600d65",
+          "filename": "a3afcd663d77bdd06a33d5a9693e227a6591189ae7878d5adf1f9fb312a7e3c6.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:36.413Z",
+          "completedAt": "2026-11-03T12:38:39.178Z",
+          "bodyBytes": 26520,
+          "bodySHA256": "11a2db3f15fa57bcc14c1898eb221b51c4b7740596e29441595f8a84522e10b2",
+          "filename": "2e46daf7d54c13da6a1ad510eae3a894fb82b1eb4792ea86bea296503243c682.txt.gz",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:39.187Z",
+          "completedAt": "2026-11-03T12:38:40.478Z",
+          "bodyBytes": 12861,
+          "bodySHA256": "c2e12b9e190624871d7879b0f17a9aad47f285a3a673c2bd1b721d0b797675e2",
+          "filename": "09bfbf502c6710a4279955b975edb9d859fc5dee8ba2ee78edc1333dc5c5048a.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":0,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Infrastructure-Specialist_R-70077-1",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Infrastructure-Specialist_R-70077-1",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:40.491Z",
+          "completedAt": "2026-11-03T12:38:41.176Z",
+          "bodyBytes": 10619,
+          "bodySHA256": "76cc0940211ab2778b17d556f1a479e8820c20572e06afdde7eb01884add3e75",
+          "filename": "830e5b93db10aff8f5a10eb0929241ab9d5f4092b044faf21539074923470247.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Hyderabad-Telangana-India/Systems-Administration_R-71036",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Hyderabad-Telangana-India/Systems-Administration_R-71036",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:41.187Z",
+          "completedAt": "2026-11-03T12:38:42.015Z",
+          "bodyBytes": 14904,
+          "bodySHA256": "df6dd73e08c9e66b51848bb3038368fcce35c9ea1e5b3b1749940c510f1d198b",
+          "filename": "330a9819a9d0e7ac2cbee500d10d49be04bf6a17cead37819cae5876b9edaf98.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/KIN51618-Pune-KIN51618-Regus/Network-Technical-Lead_R-71214-1",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/KIN51618-Pune-KIN51618-Regus/Network-Technical-Lead_R-71214-1",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:42.028Z",
+          "completedAt": "2026-11-03T12:38:42.653Z",
+          "bodyBytes": 7650,
+          "bodySHA256": "a37784e22bbe490b974aa185b3646ee43557e6b77d8d260cc1e6451a3792241c",
+          "filename": "0a81a7486101cf6cc15630957cbd5b6b5c8571c4d713c451687e86073ed151eb.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70957",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70957",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:42.666Z",
+          "completedAt": "2026-11-03T12:38:43.310Z",
+          "bodyBytes": 8436,
+          "bodySHA256": "18877ccbeb03b5eddcf29b83658dfbcf5ce3f947d14e4b17a047cef09baa7375",
+          "filename": "0abc124be35d3fa366f9e08d54824de47356b1d8c31e840422b476900995f551.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70958",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70958",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:43.316Z",
+          "completedAt": "2026-11-03T12:38:43.978Z",
+          "bodyBytes": 8521,
+          "bodySHA256": "b82400d6c48c75db1bcec314b46405470fba57c17f221e1c583c97988a975b4b",
+          "filename": "a38415beb54adcdaa7db357ef92c7d3605fc97575fb9dd824b5435edfb2cc1c2.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70955",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70955",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:43.990Z",
+          "completedAt": "2026-11-03T12:38:44.965Z",
+          "bodyBytes": 7848,
+          "bodySHA256": "c09b848a9e16ea270e07994e35d4bd1260db23a13cacf0706e14914bf80680a6",
+          "filename": "f95ec425df48917b6d433027c68b3d0de0006939baef1d499637aa6e51783284.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/Network-Services_R-71376",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/Network-Services_R-71376",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:44.976Z",
+          "completedAt": "2026-11-03T12:38:45.624Z",
+          "bodyBytes": 10205,
+          "bodySHA256": "92743114856923299a55d54d3c46d380d29485aa5032fdeb321cbcd3d8c714b2",
+          "filename": "2cdf3cd9fbe79e672e8b6b2b04779824cca48d7d70067ba9113d0413d637e9c3.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Mainframe-Batch---Console-Operator_R-71199",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Mainframe-Batch---Console-Operator_R-71199",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:45.631Z",
+          "completedAt": "2026-11-03T12:38:46.285Z",
+          "bodyBytes": 9114,
+          "bodySHA256": "060ceb0d98c259d70c534ea4ebe9da1fd7a28766fff0465ad92f85f9f314a54e",
+          "filename": "43a56bd5cc447b380689e56117ba5c559687e3ed4bb3d667ce183b3dce0bb4ea.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Mainframe-Technical-Tower-Support-Cost_R-70628-1",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Mainframe-Technical-Tower-Support-Cost_R-70628-1",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:46.294Z",
+          "completedAt": "2026-11-03T12:38:46.914Z",
+          "bodyBytes": 9019,
+          "bodySHA256": "753034106533b01b53f2908329b6ffc3d0a2827a1dd4b948ef4180b2f9b9f9a0",
+          "filename": "c374b9847fda0a39024a9d4ab4350bbec657a8dc77468f88a084b15466555c4e.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Azure-Platform-Engineer_R-70289",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Azure-Platform-Engineer_R-70289",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:46.926Z",
+          "completedAt": "2026-11-03T12:38:47.587Z",
+          "bodyBytes": 10234,
+          "bodySHA256": "a7e4dc569e95277eb2dcc577493dcc517ca6e90677498fb014b822f89511fbb1",
+          "filename": "10d929036a17cc4d823fc87caf466a72f3899cf0a46556cb4b1fb5a3331fd1c4.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/Network-Services_R-71389",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/Network-Services_R-71389",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:47.595Z",
+          "completedAt": "2026-11-03T12:38:48.244Z",
+          "bodyBytes": 10205,
+          "bodySHA256": "16cd1b825015b1fbb77a704214b9f28a1c3a218fc7c1a5a33ad5ba0859141cf8",
+          "filename": "a8e08ffe2a030f0a2f87ddaa29e728cb0e6bf841fbb09b542ff12f575e41fecf.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Mumbai-Maharashtra-India/SME---Banking-Industry_R-70672",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Mumbai-Maharashtra-India/SME---Banking-Industry_R-70672",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:48.257Z",
+          "completedAt": "2026-11-03T12:38:48.878Z",
+          "bodyBytes": 8409,
+          "bodySHA256": "e17cd9956e99d55b7bd60d338558a97eb96c87df76330ce691477acc23c3452d",
+          "filename": "ab277d3ee329eeb70e6ae607cc50502e01220e85e0f4a5f4347a0958f9e7c713.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Technical-Consultant---Migration-Engineer--Shared-Data-ODSP-Tenant-Migration-_R-66962",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Technical-Consultant---Migration-Engineer--Shared-Data-ODSP-Tenant-Migration-_R-66962",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:48.891Z",
+          "completedAt": "2026-11-03T12:38:49.573Z",
+          "bodyBytes": 13649,
+          "bodySHA256": "6493ad2bdaba61fdbbd4f1a98008f2792f383246a612675cf9fa7739bfb2dfbe",
+          "filename": "8784057fba7adad4e1bfd9bc3514841fe4e963c0e0efea5f2c599fab5e208196.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Incident-Management_R-71381",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Incident-Management_R-71381",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:49.586Z",
+          "completedAt": "2026-11-03T12:38:50.192Z",
+          "bodyBytes": 7085,
+          "bodySHA256": "b46ba783e04651fee6a6b23ee7dffd0b7e828894feb923533a5f3941b5ba4f5a",
+          "filename": "6c95d6d57824559f035d8ce3a4e65e568a61cccf7394a5b1102be0afe9547613.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Network-Services_R-71379",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Network-Services_R-71379",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:50.200Z",
+          "completedAt": "2026-11-03T12:38:50.918Z",
+          "bodyBytes": 10219,
+          "bodySHA256": "795c91c6e153cf86c6054bff0e497036ffae5b4aea8b3588155017fd7345a842",
+          "filename": "1f7527f32676cd661ee6360ad7fb76f731d9b2153d7ba34c7da64c98a005ce98.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Network-Services_R-71380",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Network-Services_R-71380",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:50.928Z",
+          "completedAt": "2026-11-03T12:38:51.557Z",
+          "bodyBytes": 10219,
+          "bodySHA256": "06c1799bed3f0f4d95e0dbcf98cba899e4b8959066307fe13b51cb105650e855",
+          "filename": "e8736fe9cefc41c737771bdd554b90532ce0c5d858ef741143e58188be0f568c.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:51.568Z",
+          "completedAt": "2026-11-03T12:38:52.481Z",
+          "bodyBytes": 5347,
+          "bodySHA256": "7d122f59a2e55a1452ad5d8e02fb91ac62592dc73c98417f87981ca39bc4ae0e",
+          "filename": "807fcb7c1a6ab3cd3eda3d00a3d95b2f7c3f792c1969bb8d0e2aa2721380fb37.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":20,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:52.493Z",
+          "completedAt": "2026-11-03T12:38:53.365Z",
+          "bodyBytes": 5442,
+          "bodySHA256": "cb54a8b894cc6bf19677c3fca7e050380c716cedf5751405893196279b9c6715",
+          "filename": "f835d12e9c8ad94e55402631860fa486c1e9d226cebe9ddf54054a02894a7583.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":40,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:53.375Z",
+          "completedAt": "2026-11-03T12:38:54.453Z",
+          "bodyBytes": 5577,
+          "bodySHA256": "bdc8899b016fb4c933849d08fd5c60e7900fe431f6fc3d3a1872657f304a2f7d",
+          "filename": "466626cca120555ffdea8d11604b69f2f02ad2ea132ba3ade27ddb88022c3736.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":60,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:54.464Z",
+          "completedAt": "2026-11-03T12:38:55.675Z",
+          "bodyBytes": 5435,
+          "bodySHA256": "c42f42dab33003d585279e3ee90f1292a517eed81748ef1336f29b703965d19c",
+          "filename": "f0fef00d8119a681bbcceb1e6b330c586d03d3aea81b61cd838dffa43a1d6e51.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":80,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:55.684Z",
+          "completedAt": "2026-11-03T12:38:56.643Z",
+          "bodyBytes": 5287,
+          "bodySHA256": "cb819427735bcee7584a3d07e3ab431d9ef84f8f1e8761b8e255c2dfe0483452",
+          "filename": "ba2a91cd2ee67bb77052576c50f6b41e0e96000c1017a1ccb9b80d9ca6302431.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":100,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:56.655Z",
+          "completedAt": "2026-11-03T12:38:57.613Z",
+          "bodyBytes": 5202,
+          "bodySHA256": "4fccbf798b920413f98e9b7dd12d9dffcfe689d363a2cdcecfb7cf397a439053",
+          "filename": "e8a09796e4ae601c7ac3e24f0ce75a1e86c32e3543d15ff82a2f2e741e09090a.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":120,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylProfessionalCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:57.625Z",
+          "completedAt": "2026-11-03T12:38:58.554Z",
+          "bodyBytes": 5319,
+          "bodySHA256": "fa46e4f0e7006c3e34452bfdb44406350c07406aaf93855f499308f07d5a52f6",
+          "filename": "d3d63344f2635f2c45e64fc58f5966dde216b9e7f633af4261e812c01c01f157.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":140,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:58.558Z",
+          "completedAt": "2026-11-03T12:38:59.680Z",
+          "bodyBytes": 10551,
+          "bodySHA256": "4c679ee035a2868d5d71c79728e322137a7d51e141b39a8cda798c467ce18a39",
+          "filename": "40861f3ec2d4dc7272929d43e06b257b6b8d8e526bb6bc654b6d9a7547e67bc1.txt.gz",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/jobs",
+          "method": "POST",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:38:59.685Z",
+          "completedAt": "2026-11-03T12:39:00.739Z",
+          "bodyBytes": 4659,
+          "bodySHA256": "5cde51d86ee0d4e37641c6a33a9fc53439410202d44bff57ec31375c5f5fa5a1",
+          "filename": "ef620311fb759d3096f2061dc25a3e05590884b0a6bb8431c41b7d7dce80c5f3.txt.gz",
+          "requestBody": "{\"appliedFacets\":{\"locationCountry\":[\"c4f78be1a8f14da0ab49ce1162348a5e\"]},\"limit\":20,\"offset\":0,\"searchText\":\"\"}"
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/RMZ-TITANIUM/Secretarial---Compliance-Management-Trainee_R-67135",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/RMZ-TITANIUM/Secretarial---Compliance-Management-Trainee_R-67135",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:00.745Z",
+          "completedAt": "2026-11-03T12:39:01.453Z",
+          "bodyBytes": 7277,
+          "bodySHA256": "ae06b70ceb569d9d507a7e3fecb04de3155a6bc8a0e856c93e8f6a1a2073ef03",
+          "filename": "e41be7cd4b5f7a730b780462f28b78c31ac763738fdb4231c6fb561e790dba34.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Technical-Support-Specialist_R-68289",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Technical-Support-Specialist_R-68289",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:01.462Z",
+          "completedAt": "2026-11-03T12:39:02.063Z",
+          "bodyBytes": 7708,
+          "bodySHA256": "85b194ab578ab937bb685887205aa3eb040aa08fdce69443bbd79f514711b26c",
+          "filename": "a53dec16ddd879ba7b1f4eb9bab76c0ed46511f8b2bd15c2aea6514bab25a3d6.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Hyderabad-Telangana-India/Infrastructure-Specialist_R-66948-1",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Hyderabad-Telangana-India/Infrastructure-Specialist_R-66948-1",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:02.070Z",
+          "completedAt": "2026-11-03T12:39:02.717Z",
+          "bodyBytes": 7483,
+          "bodySHA256": "a22e6416739c37f6753f53c982807be4690b74ff593cecb8ba3b051bd12a0645",
+          "filename": "c00ed72a34222f217b1bef7dbc6d1d662c9225b2c1b649e3ca287e96e229d036.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Hyderabad-Telangana-India/Technical-Support-Specialist_R-66949",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Hyderabad-Telangana-India/Technical-Support-Specialist_R-66949",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:02.722Z",
+          "completedAt": "2026-11-03T12:39:03.378Z",
+          "bodyBytes": 9119,
+          "bodySHA256": "89f3bad37b6ea39fac3c262bddc97c30da2d26b7c1c4c5150273409172a5fb1e",
+          "filename": "2276de0adce72ec1b629c97fb2c6cd23148181bf265ff5d6489fd50381f9a745.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Technical-Support-Specialist_R-63980",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Technical-Support-Specialist_R-63980",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:03.390Z",
+          "completedAt": "2026-11-03T12:39:04.052Z",
+          "bodyBytes": 7708,
+          "bodySHA256": "f26a71269046a8854c1a694ba4bead9db782bf5487dcf0bed3ea921a36e1b24d",
+          "filename": "55eb02c6636cd69d21d872fca62afe11249987b10bc9392193627ddece949ac5.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Mumbai-Maharashtra-India/Apprenticeship---Technical-Support_R-64180",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Mumbai-Maharashtra-India/Apprenticeship---Technical-Support_R-64180",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:04.062Z",
+          "completedAt": "2026-11-03T12:39:04.698Z",
+          "bodyBytes": 7015,
+          "bodySHA256": "59a11357969fef5c015827be198923ba63c06ea50dc541ec79995ca719bdc95e",
+          "filename": "bf619547b161210e70f1a0d52963f8e6609d419ec2c2604ae8b542e67936ed91.txt.gz",
+          "requestBody": null
+        },
+        {
+          "requestedURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Cloud-Operations-Centre---NetSec-Engineer_R-58578-2",
+          "method": "GET",
+          "finalURL": "https://kyndryl.wd5.myworkdayjobs.com/wday/cxs/kyndryl/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Cloud-Operations-Centre---NetSec-Engineer_R-58578-2",
+          "status": 200,
+          "contentType": "application/json",
+          "startedAt": "2026-11-03T12:39:04.709Z",
+          "completedAt": "2026-11-03T12:39:05.371Z",
+          "bodyBytes": 12870,
+          "bodySHA256": "a42a7ce75e63f3cdb9adc922f0dd13d94a8c837e5717a87121e54752aa57795b",
+          "filename": "44e1b684ae0405280e21fda20dc117613c435b71ef02c9901638535e02773e37.txt.gz",
+          "requestBody": null
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "R-70077",
+          "title": "Senior Lead, Infrastructure Specialist",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Infrastructure-Specialist_R-70077-1",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "941f6e224be27f7a6fab38f3933ca1bce012780bbdd5eecc279cb551d808bab3"
+        },
+        {
+          "jobId": "R-71036",
+          "title": "Systems Administration",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Hyderabad-Telangana-India/Systems-Administration_R-71036",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "482d9637378b887957f8646ab18d5b1cd7a3b0de0108c74df33ccb0b5f9a3e56"
+        },
+        {
+          "jobId": "R-71214",
+          "title": "Network Technical Lead",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/KIN51618-Pune-KIN51618-Regus/Network-Technical-Lead_R-71214-1",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "314ba254ac4786898c75f029d0daf7a146692372e5b78d4365b906a9ad6dab4c"
+        },
+        {
+          "jobId": "R-70957",
+          "title": "Network Operations Center Analyst",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70957",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "f69f33962a40bb9535dc70dba22ef555f610d62ad8a93d1bdd76dde233917e27"
+        },
+        {
+          "jobId": "R-70958",
+          "title": "Network Operations Center Analyst",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70958",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "ca85333adf180af8618b12868e6d63361849cb18459f336181c6c48c7dcb4842"
+        },
+        {
+          "jobId": "R-70955",
+          "title": "Network Operations Center Analyst",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Network-Operations-Center-Analyst_R-70955",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "d473b17c2877171ffba1d299bb1bc21d5e8240d95c2d21499faf76e98189dc12"
+        },
+        {
+          "jobId": "R-71376",
+          "title": "Network Services",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/Network-Services_R-71376",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "c8de84d27b26fbfae374d2c406a7836845d62097a9383ff2dda01288c038322f"
+        },
+        {
+          "jobId": "R-71199",
+          "title": "Mainframe Batch & Console Operator",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Mainframe-Batch---Console-Operator_R-71199",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "a4212729ead5f1ba2b9bcdf6486c5e95dd2dfeb43b0cca7894077962df0513e2"
+        },
+        {
+          "jobId": "R-70628",
+          "title": "Mainframe Technical Tower Support Cost",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Mainframe-Technical-Tower-Support-Cost_R-70628-1",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "4cdac916faa72fb210ffecdf74ffa0cc1351480ae52c715748f203b9e57b79c7"
+        },
+        {
+          "jobId": "R-70289",
+          "title": "Azure Platform Engineer",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Azure-Platform-Engineer_R-70289",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "8a0e582f7499363ba981c7ddb70a1e7616ce10c513782622e139fafc0ac69414"
+        },
+        {
+          "jobId": "R-71389",
+          "title": "Network Services",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/Network-Services_R-71389",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "c8de84d27b26fbfae374d2c406a7836845d62097a9383ff2dda01288c038322f"
+        },
+        {
+          "jobId": "R-70672",
+          "title": "Subject Matter Expert - Banking Industry",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Mumbai-Maharashtra-India/SME---Banking-Industry_R-70672",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "38468a5acfa2462a4a7b12c3565b4725ce9ebbb65c35bfee59d3df275fe20794"
+        },
+        {
+          "jobId": "R-66962",
+          "title": "Technical Consultant – Migration Engineer (Shared Data/ODSP Tenant Migration)",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Bangalore-Karnataka-India/Technical-Consultant---Migration-Engineer--Shared-Data-ODSP-Tenant-Migration-_R-66962",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "c3e37c72a4142d5b5b2da6ebee7d447d4f5c56d1f7d7b60f9fa5492ec2214771"
+        },
+        {
+          "jobId": "R-71381",
+          "title": "05P - Incident Management",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Incident-Management_R-71381",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "abe1e9180f73d8d0d74125423a4d6c7ad86f43cb31c1c001636df4d3deac9913"
+        },
+        {
+          "jobId": "R-71379",
+          "title": "05P - Network Services",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Network-Services_R-71379",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "c8de84d27b26fbfae374d2c406a7836845d62097a9383ff2dda01288c038322f"
+        },
+        {
+          "jobId": "R-71380",
+          "title": "05P - Network Services",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylProfessionalCareers/job/Ahmedabad-Gujarat-India/XMLNAME-05P---Network-Services_R-71380",
+          "postingDate": "2026-11-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "c8de84d27b26fbfae374d2c406a7836845d62097a9383ff2dda01288c038322f"
+        },
+        {
+          "jobId": "R-67135",
+          "title": "Secretarial & Compliance Management Trainee",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/RMZ-TITANIUM/Secretarial---Compliance-Management-Trainee_R-67135",
+          "postingDate": "2026-09-07",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "180b5982621bbfdba9ce3e458c879d0309d25dd524338f59a40eece431f55f5f"
+        },
+        {
+          "jobId": "R-68289",
+          "title": "Technical Support Specialist",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Technical-Support-Specialist_R-68289",
+          "postingDate": "2026-09-03",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "318792feff21579d455cb234e00a701531ed9e54f6a114135af4989a3d0f6833"
+        },
+        {
+          "jobId": "R-66948",
+          "title": "Infrastructure Specialist Spanish Language & Technology",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/Hyderabad-Telangana-India/Infrastructure-Specialist_R-66948-1",
+          "postingDate": "2026-09-02",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "1b8d83333534bcc3a34d2fa7c719200fac52e239235902650f814e62bde0f8ea"
+        },
+        {
+          "jobId": "R-66949",
+          "title": "Technical Support Specialist Spanish Language & Technology",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/Hyderabad-Telangana-India/Technical-Support-Specialist_R-66949",
+          "postingDate": "2026-09-02",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "4ea1fcec28b44d0a55874a520b2395d99ef1f095fd29f5eb509af0a8b8390be6"
+        },
+        {
+          "jobId": "R-63980",
+          "title": "Technical Support Specialist",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Technical-Support-Specialist_R-63980",
+          "postingDate": "2026-08-04",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "318792feff21579d455cb234e00a701531ed9e54f6a114135af4989a3d0f6833"
+        },
+        {
+          "jobId": "R-64180",
+          "title": "Apprenticeship – Technical Support",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/Mumbai-Maharashtra-India/Apprenticeship---Technical-Support_R-64180",
+          "postingDate": "2026-07-31",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "0e0c5252d9264cbee5157710197d6aea157d88dc1b67c45f90ddb55ab765c96a"
+        },
+        {
+          "jobId": "R-58578",
+          "title": "Cloud Operations Centre – NetSec Engineer",
+          "applyUrl": "https://kyndryl.wd5.myworkdayjobs.com/KyndrylEarlyCareers/job/Bangalore-Karnataka-India/Cloud-Operations-Centre---NetSec-Engineer_R-58578-2",
+          "postingDate": "2026-06-26",
+          "nativeHiringOrganization": {
+            "name": "5100 Kyndryl Solutions Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "8ce57285516ab73e46713c24bec36bb2c15eaf895ba4b2041bb47f566d55f519"
+        }
+      ]
+    },
+    {
+      "source": "nasdaq",
+      "observedAt": "2026-11-03T11:09:18.701Z",
+      "indiaJobs": 7,
+      "nativeRecords": 155,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.nasdaq.com/",
+          "finalURL": "https://www.nasdaq.com/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bodySHA256": "eaaf44d16b608852d817a20f2cbf02ac4035a353a7c227031e7de159e4a16185",
+          "filename": "cf7f8a10271309f0a21a517b2f06cd33b93ce6c7ca7760ae9ac7765de523d1a3.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.nasdaq.com/about/careers",
+          "finalURL": "https://www.nasdaq.com/about/careers",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bodySHA256": "40559200a3270a8364dd77a5f028c0d165f1dea72b5f33b7ed9952a91f987ee9",
+          "filename": "5fc689f972af7aa9cc58005915eb0b115d0b7efc91f12920755ae5af79885f9e.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "cb9baaad505988c11bebbd25711e20f52b6ab804c4749f9e1a10a9f73d0a8aae",
+          "filename": "ef7c537f698e55aa4736990f5007b3cc460266f9444596809add070e4ea114d8.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/Analyst---Business-Development_R0027090",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/Analyst---Business-Development_R0027090",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "6f43e3d4f4303812a0b91f6870f566b0c64047e510a6052ab990390d3e2dc381",
+          "filename": "cf9457372ae2db9b2383738131370a913c51ffc3ede74732329ef9426f6a8d94.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/SW-Specialist_R0027129",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/SW-Specialist_R0027129",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "48aa93e49b085675255eed6751b26027b805cd438dff1d36b8dfec8dce2d0d60",
+          "filename": "639b5619def62e327bc183f6f70de016c06d348b2ea6e2fd748ffcff96d9b931.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Observability-Engineer_R0026402",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Observability-Engineer_R0026402",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "d3c2dd1bd64185d382498ea3ba6369e2decf591c35db6034e8640cebf17ce5b0",
+          "filename": "c64c9dd6e45a9e302288baea2d59385dfa409dfaf8c7cee5a4f76b0a91521e5e.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Internal-Audit-Operations---Professional-Practices-Senior-Analyst_R0027130",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Internal-Audit-Operations---Professional-Practices-Senior-Analyst_R0027130",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "b506ac0c819dd73ec625c5f44cfb74fdac691299244e457b59413ede465ce89f",
+          "filename": "096908aa9e49537ad0a86bcb66f75edbcbc0cba2b1924d3f8a786cf877b6b0df.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Philadelphia---Pennsylvania/Investment-Research-Analyst_R0027199",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Philadelphia---Pennsylvania/Investment-Research-Analyst_R0027199",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "9f06322d031186c686ebc71d28cdd993c635488e16d61d4edd0cd2aabbb78cee",
+          "filename": "977c5a9e1f1cadbc62cee112788e056cbae9b3d5733b5d2ca7a5a1ec03746f79.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/Quality-Engineering---Specialist_R0027141",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/Quality-Engineering---Specialist_R0027141",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "173a53057b584de0f712559ccfdd3086ae22ba8d4f10da8fdf971c9e2bc64221",
+          "filename": "0cabf7ff31bb5563e09d781fdb66486a66599da07f65cd13ae5e66402e8287bc.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "2d8d13696f25c5750bd6fe6e32ab6ac932f6377437678d8f841e3386038bf0ea",
+          "filename": "b594b2065a43ead168933b6e48ec10bd5ccd73b7f24d2b54744f047e9f5411d4.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/DevOps-Engineer---Specialist_R0027175",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/DevOps-Engineer---Specialist_R0027175",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "212145876f39f090210fdf3c43dd2c123efa057b76ff0fa93f704f4b565ccd4b",
+          "filename": "7d0ef06ec95a4ae3303dac2c1658dafc4b05a84c3f8e5a8d689a32f95336b8bc.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Richmond---Virginia/Nasdaq-Dorsey-Wright---Internal-Sales-Representative_R0026978",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Richmond---Virginia/Nasdaq-Dorsey-Wright---Internal-Sales-Representative_R0026978",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "bb74d591f41d091ab641ca56bfd6ed0cbb73e5df49c5689ad75f76cbf21579b4",
+          "filename": "d4f82baaa7f66a4a85205b30b9c1980f99a89fc0a2e6d6c56041c3a9392cd007.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Specialist--AI-Engineering-and-Automation_R0026900",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Specialist--AI-Engineering-and-Automation_R0026900",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "d5cb8ad7471809960c556dd8fc6c101b9d038fae6906a32452f7761cee2d01a7",
+          "filename": "431ce16146b046a7431fd97fb6e78c01d52284fcfbde4ca8b77819b61971e0c9.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Software-Specialist_R0027065",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Software-Specialist_R0027065",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "46b0afc3d7e981d446d3d012be1d6973a8d71f7ee4517acc0f74833b85958fc3",
+          "filename": "d4d18965dcae14f5822940f1c9bd979fe4e3b840e0a963ad0eb884f68c906978.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Sr-Manager--Strategic-Sourcing---Global-T-E_R0027064",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Sr-Manager--Strategic-Sourcing---Global-T-E_R0027064",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "4f38784efa24238b02c38144325dddb8e595ac6e83d7a9790b1505ae75661b70",
+          "filename": "7837161717f755fc3db3d85008da0778b513c3529e5271a10c639a13a0d8b854.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Philadelphia---Pennsylvania/Senior-Specialist--Enterprise-Risk-Management---North-American-Markets_R0027004",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Philadelphia---Pennsylvania/Senior-Specialist--Enterprise-Risk-Management---North-American-Markets_R0027004",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "413e6e26b30f2c8b259591e0851281920a7d434e8e2f3de80c8b5a37a28143db",
+          "filename": "7d71149fccfe491da590221d347b63a6eb9d06fbe5ccc6d40f1b1ad947d8eb43.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---New-York-City---New-York/National-Accounts-Associate_R0026463",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---New-York-City---New-York/National-Accounts-Associate_R0026463",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "e9b8db801f9836580fedf5d23b3e8210a0e9dd9446eb2609b479fc7d15c77c9e",
+          "filename": "d930dcbb0c53e7dd5b84e1585fcb3865f95127599e7fed76ddd60c32a1880740.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "fe0a832fe8f7ac2272c4069ca7eeba3cb7d8c0cb729abbde8f38b4e1ecc66121",
+          "filename": "1c64f005d60415f3ae54d57ad75505ce126f9353c0132133df97df9bd7ddec68.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Washington---DC/Associate-General-Counsel--Litigation_R0027133",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/USA---Washington---DC/Associate-General-Counsel--Litigation_R0027133",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "03d0d5540dbaaf5011c5077d7b81a34c6f37118aabd872483be400a251af833f",
+          "filename": "78dee2c0479898c47733611642340ade13bb24104734f3d0ef082173d9daa1ed.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Product-Owner---Specialist_R0026853",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Bangalore---Karnataka/Product-Owner---Specialist_R0026853",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "09246de2e69a8eeab0db5ec64e975d3ae24389dc5f69a61070f9a12e4fde0662",
+          "filename": "76130e386b7d456912a36cdddd3d9072b5f640e6343f6ae904b7c60ba8251087.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "440d8ad07d5698918d1cd3a95f7f7d50cf7b8b367f4a33f318fc16db505c6f5d",
+          "filename": "b99080d4526ace48f52cd26739234ea559eee5fd8d5388f542dd7b4d02f73571.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/Specialist---Client-Managed-Services---Rebase-Services_R0027027",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/job/India---Mumbai---Maharashtra/Specialist---Client-Managed-Services---Rebase-Services_R0027027",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "ebe99007946db1f37b621909f1f3a5d918041b8e21834cd55b260b4a376e36dd",
+          "filename": "5cc8e9187b45d75cef10cb5b4ac807a691b1e89d9659e573b1a3b89c51706c12.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":80,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "84cf38b0fb724b3a7fe8a3f6e9998925a59293b2761c052decafc6ff04224a09",
+          "filename": "a76ba7688234b1a43ac176c2084399f6d4dffed6b28a9de43af6490eef3b2eb5.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":100,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "dc266918b5c486dc4531d404cf9af4783c03c9d643c7ab6818bc3532d0e26b00",
+          "filename": "f072056aedff284e4b7010246d8b97cd4c6a63d4ef4789ec03f7b448e26702f7.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":120,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "01bb423a8f68c30179f3d45bcc721f596cc667f3c3fbb3404301dda0813b3453",
+          "filename": "0d313bef79e42c7d90c5ba07bc4d7701bb0e58ab2ea4762129ca2eeb927479f9.txt.gz"
+        },
+        {
+          "method": "POST",
+          "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":140,\"searchText\":\"\"}",
+          "requestedURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "finalURL": "https://nasdaq.wd1.myworkdayjobs.com/wday/cxs/nasdaq/Global_External_Site/jobs",
+          "status": 200,
+          "contentType": "application/json",
+          "bodySHA256": "83b43e4f4bde8f857df16291888d2f134ee6592ffb888cda0d80fba3822057ef",
+          "filename": "1f4cb8f8629d6d54db3a96cd5c03b89c5fc09467237174fba89dfee02cfe8392.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "R0027129",
+          "title": "Specialist - Java Developer",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/SW-Specialist_R0027129",
+          "postingDate": "2026-10-30",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "e3826ad2ee1ec37fffc300543b757af506cad50328f8de10ad86cd688071992c"
+        },
+        {
+          "jobId": "R0026402",
+          "title": "Observability Engineer",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/Observability-Engineer_R0026402",
+          "postingDate": "2026-10-29",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "059b6d0886cf1ab3573fd9ad2af04eb0d45a2b191ad50161e3e4d28a7b19bec7"
+        },
+        {
+          "jobId": "R0027130",
+          "title": "Internal Audit Operations & Professional Practices Senior Analyst",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/Internal-Audit-Operations---Professional-Practices-Senior-Analyst_R0027130",
+          "postingDate": "2026-10-27",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "cd7bb0d45aa6f7dd60d7962ef1f939e574f9c338213c2c4ab986957a5eb0b147"
+        },
+        {
+          "jobId": "R0026900",
+          "title": "Specialist- AI Engineering and Automation",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/Specialist--AI-Engineering-and-Automation_R0026900",
+          "postingDate": "2026-10-22",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "d36079b77c427c982d6488f48704e485e9b2ceafea486ec3ab3f18fd47898e80"
+        },
+        {
+          "jobId": "R0027065",
+          "title": "Specialist - Software Engineering",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/Software-Specialist_R0027065",
+          "postingDate": "2026-10-22",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "acad5c0a67bb0c67fc0ee0b2e860b9937a4024160494024980c011269dec51fe"
+        },
+        {
+          "jobId": "R0027064",
+          "title": "Sr. Manager, Strategic Sourcing – Global T&E",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/Sr-Manager--Strategic-Sourcing---Global-T-E_R0027064",
+          "postingDate": "2026-10-22",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "ef9013e56f2b85acc601752319f1c1efdb80fa11e8def40bf3c4c1f57710477d"
+        },
+        {
+          "jobId": "R0026853",
+          "title": "Product Owner - Specialist",
+          "applyUrl": "https://nasdaq.wd1.myworkdayjobs.com/Global_External_Site/job/India---Bangalore---Karnataka/Product-Owner---Specialist_R0026853",
+          "postingDate": "2026-10-14",
+          "nativeHiringOrganization": {
+            "name": "NOIP Nasdaq Corporate Solutions (India) Private Limited",
+            "url": ""
+          },
+          "descriptionSHA256": "cd5fae5076ce53e98dbf1550ae0eb9f0a70813a588b6351daf290488be650383"
+        }
+      ]
+    },
+    {
+      "source": "kaufmanrossin",
+      "observedAt": "2026-11-03T11:21:52.047Z",
+      "indiaJobs": 16,
+      "nativeRecords": 50,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://kaufmanrossin.com/",
+          "finalURL": "https://kaufmanrossin.com/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bodySHA256": "1513c336e71f3c5b08261e0f987aea58dd4faaf0bdebd555257c4a411f97e169",
+          "filename": "1895a30647d8c29698254de18b17e16c7470658c9e1ebea5d9ad87d900256f0c.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://kaufmanrossin.com/careers/",
+          "finalURL": "https://kaufmanrossin.com/careers/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bodySHA256": "5140111af9f7c4f9bf2167166a282fbd261d489bfddb0325bdd845cb29aa2fd0",
+          "filename": "dbcc5d0c32c0ba7b1479905492e95c4d54f6a58c886c51700be699141e2cd90d.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v1/accounts/kaufmanrossin",
+          "finalURL": "https://apply.workable.com/api/v1/accounts/kaufmanrossin",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "08bb6fcc7b32609a279742404d2483f5b56329faca1ed7687b81ace870fc2438",
+          "filename": "25b73457dc2573be2314d8fe147385a1c6ebce264da0d69b42e30a4cf9b67ac9.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v1/widget/accounts/kaufmanrossin",
+          "finalURL": "https://apply.workable.com/api/v1/widget/accounts/kaufmanrossin",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "ef51f0a65efd52303be83ba0ce654f309494acb88fc0ea06a0533f7d5aa3b776",
+          "filename": "ff04aef9e0aa0e48793f1def415217117d8b3d7c06530db3a4b73d84b1442bef.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/0C0E74E858",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/0C0E74E858",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "6beb6f5f9750e0af69174c9638dc12d8f5380e203ff558551cc43c30ace51598",
+          "filename": "6f8cb3599280267162b707cac2ccdf4560b2b07cc3396a6fbb9ebd224c96f95b.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/23873751C6",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/23873751C6",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "412a7e3db668d66aa89d103847b47a37c22c99591b5ed2c7edcb04947033dcd0",
+          "filename": "f73ec30ff08e3fe2f11443eafb9ce9f2ba57e1a50cf1bb497b6dd9d3a978ccac.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/BED0EF796E",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/BED0EF796E",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "a7f90cecad78369bcf3a3a7257ecf8e1e934715defa5ecb78b4fedeffc31979f",
+          "filename": "11a40db401420ecfe858db860029ee98fab4c1667a7dca36fce19ec76b1de088.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/040C54C557",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/040C54C557",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "8b9269122dd18ba5816a28e5b0a67a409ccb71eaaa5f9d15c86e494c610693af",
+          "filename": "acf6ee446db15f3b1146774817c028a44288afd45fe7054c9db6345dd6035d30.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/1FE710D731",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/1FE710D731",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "22a7b8394d0674ea24e568dfde39de2890546fc254fbd8090c08d243b71639fe",
+          "filename": "20a0b8bec0366f50dd1615722d5834138703901566fcd48d45487059fc6a0802.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/3A92FC216E",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/3A92FC216E",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "607e6d2427ccff6fd0ca9aa58f196e9c8725f2026869d9b8bc9634f230502eb0",
+          "filename": "8d6ea68452f29f1d663ccb7ad4470ad87151ea8dc68356f893464c69d1856085.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/A61C7A68CF",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/A61C7A68CF",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "f83c3a1e493967594648c17090d112f27795ad064870125a20dc1e47beb84111",
+          "filename": "e3319aa47eea15b71a6a1410035267bf2b5e5193ca8d27ce7537d743ea0df577.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/A033D40BE0",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/A033D40BE0",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "e7205dafe076bdc2829baf9d2837fbccbb3b2ac0ba3f6b393c5138516d3177f7",
+          "filename": "2037bddd3bcec1e338a7359ff13c964ff9818512863584389e8d74f4367ae8c2.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/E3345D5251",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/E3345D5251",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "e531b1632da98b38f479dc91eee541cae27f018e2c87760ff02f3f59ff900b62",
+          "filename": "260797b5bbabd172e5f58ac93873572a000187c6a4d7b7f616333f4c728689ed.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/F1C771209B",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/F1C771209B",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "adbfe5da93606120ecdf6b7a5dc65c3296d48457252037094f37ffeb511b5b32",
+          "filename": "656ae9e7ef06601e0d003b357d5b6f5d4dd9b862840e409769b83d377a58faff.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/F72825A3B7",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/F72825A3B7",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "3845f7aa0b1ad65613e8d00201ac80cf2ae05f04a7175bb973781d91804bd0b3",
+          "filename": "303d4390d7f847504b55c10b74d16c9fa02180a737457cbd2338572047f6453b.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/647E84BCC9",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/647E84BCC9",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "76480d3ef0b208f9c1dae779706d07d9f008f64bbdc2d991a38424a5270afb88",
+          "filename": "2dc6d8d5c205c23867452261265d0d830cb5c908fe0c23d70f94d2385d9ec7a0.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/459131AD79",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/459131AD79",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "082669fc95a09261a17727a74c2570df58d426e4dd88f7b4f83ea000157016ac",
+          "filename": "b363eb420eab6debba35141e37b43d220045ed3e60cf22c6699b65b47c58c28c.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/87A55DCA4D",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/87A55DCA4D",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "c0102f3fe9f91272ae8ebed48ea2dced690635dc0ed4896a8fc48fdc679a31f0",
+          "filename": "c89c32ee9e1b0ab14f998820e3a926b1660709317f8648f1b05bae11372a5554.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/ACE3B1101A",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/ACE3B1101A",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "ba55a6e5f13a3dee59613656402b22642485082cebb6bfa5ef7f4bd465b66fbf",
+          "filename": "c54554426b8cf1d9d1f598fc42a5ba7af55ca817980c97315edc7db90c84b5b4.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/5A5489B112",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/kaufmanrossin/jobs/5A5489B112",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "e5bdbbe430afe097e8b8ed7ad4c3d425aedea1d43957e287f202c869e4bee9c0",
+          "filename": "3d16f8677ffcfa40fc6c24f69e7c31adeea135b48ad7afd440e2d859597e0af9.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "6044399",
+          "title": "AI Solutions & Risk Specialist",
+          "applyUrl": "https://apply.workable.com/j/0C0E74E858",
+          "postingDate": "2026-08-20T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "8d27af1638f13f7ee6bf4c2e5e8e5f4575b120762ba50a9b193b82d7f921d064"
+        },
+        {
+          "jobId": "6106450",
+          "title": "Application Administrator",
+          "applyUrl": "https://apply.workable.com/j/23873751C6",
+          "postingDate": "2026-09-17T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "3422155fd88f1a6da8a830dfb637c8be379bf45a62f06a60695d92dd92df79f5"
+        },
+        {
+          "jobId": "6034400",
+          "title": "Artificial Intelligence Developer",
+          "applyUrl": "https://apply.workable.com/j/BED0EF796E",
+          "postingDate": "2026-08-20T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "2a8e9e8cc80fb2a2dc5ab2158671f53a1c890bdac87ecf7a34603f6ee89f1339"
+        },
+        {
+          "jobId": "6049293",
+          "title": "Audit Senior",
+          "applyUrl": "https://apply.workable.com/j/040C54C557",
+          "postingDate": "2026-08-24T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "4a4a034ae7686bf2732fc69bb33588c4fc1677d66c7f4bb37af2a90a01685be4"
+        },
+        {
+          "jobId": "6237258",
+          "title": "AVD Consultant - Contractual",
+          "applyUrl": "https://apply.workable.com/j/1FE710D731",
+          "postingDate": "2026-10-30T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "822dcbac68ac054c2c296358e10734c81600d8b2838bad9241ab47a07f850431"
+        },
+        {
+          "jobId": "6034444",
+          "title": "DevOps Engineer",
+          "applyUrl": "https://apply.workable.com/j/3A92FC216E",
+          "postingDate": "2026-08-19T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "c88ff62a5b44926700167cb8d8af7afb7dcfe40ff65aa1f240f1cfd34ba6417c"
+        },
+        {
+          "jobId": "6049661",
+          "title": "Fund Accountant Staff",
+          "applyUrl": "https://apply.workable.com/j/A61C7A68CF",
+          "postingDate": "2026-08-24T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "341d64631eff82e8ae8995e8b17b880d6ca33c3fe249eaf56e1fe64d5a94e22d"
+        },
+        {
+          "jobId": "5839180",
+          "title": "Fund Accountant Staff - Senior",
+          "applyUrl": "https://apply.workable.com/j/A033D40BE0",
+          "postingDate": "2026-09-28T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "c21e9ebbbde41c952c6476e32a19d9083069340fbdad33b68db072bef30824dc"
+        },
+        {
+          "jobId": "6207657",
+          "title": "Hedge Fund Tax Staff",
+          "applyUrl": "https://apply.workable.com/j/E3345D5251",
+          "postingDate": "2026-10-18T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "0f848acc047597019dffdabf1a5fb422839134d08bae498d8aa74fe25baa6d82"
+        },
+        {
+          "jobId": "6034503",
+          "title": "Hybrid Scrum Master & Product Owner",
+          "applyUrl": "https://apply.workable.com/j/F1C771209B",
+          "postingDate": "2026-08-20T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "b42f98339d1da473d638b05a530a4a8ae844ad7d1fbe5715daf7fe1585ce5216"
+        },
+        {
+          "jobId": "6034523",
+          "title": "ITSM Engineer",
+          "applyUrl": "https://apply.workable.com/j/F72825A3B7",
+          "postingDate": "2026-08-19T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "9d37a71286eb73426edf5b25445ba989d317bc594e4415e9b52062edac2a1b86"
+        },
+        {
+          "jobId": "6034592",
+          "title": "Jr Application Administrator",
+          "applyUrl": "https://apply.workable.com/j/647E84BCC9",
+          "postingDate": "2026-08-20T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "df30ded80d54d3f6312625a4eb08263df58bf9d36a4c2827f90b659ee7bd496d"
+        },
+        {
+          "jobId": "6034614",
+          "title": "M365 Developer",
+          "applyUrl": "https://apply.workable.com/j/459131AD79",
+          "postingDate": "2026-08-20T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "8b2ec9df299644bc2f859cedcce0a165f964111e39138c9f5edd1a7df16202ba"
+        },
+        {
+          "jobId": "5994831",
+          "title": "RE Tax Manager",
+          "applyUrl": "https://apply.workable.com/j/87A55DCA4D",
+          "postingDate": "2026-07-29T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "77b1cedbb0f3ec4f35c75e321fc79d34d09ab2983ae9072bb4766223dd06791e"
+        },
+        {
+          "jobId": "5751224",
+          "title": "Revenue Intelligence Analyst",
+          "applyUrl": "https://apply.workable.com/j/ACE3B1101A",
+          "postingDate": "2026-07-06T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "29b30add76ba84f0fd160b96919b6d8d8a0154ff85f2baa1a7d12c1ddd660b22"
+        },
+        {
+          "jobId": "6103388",
+          "title": "Salesforce Developer - Senior",
+          "applyUrl": "https://apply.workable.com/j/5A5489B112",
+          "postingDate": "2026-09-16T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Kaufman Rossin",
+            "url": "https://kaufmanrossin.com/"
+          },
+          "descriptionSHA256": "cfe2477063e51b0e21c9bef5577d481048089f2cf3761801672087695f1402d4"
+        }
+      ]
+    },
+    {
+      "source": "sapfioneer",
+      "observedAt": "2026-11-03T11:21:52.938Z",
+      "indiaJobs": 15,
+      "nativeRecords": 101,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.fioneer.com/",
+          "finalURL": "https://www.sapfioneer.com/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bodySHA256": "d6b0187af837eac53669e6a25f05ca535a58df8499d646a2847bcdf5846a1c69",
+          "filename": "24b9bc38451df2191186d4faecafddc669a4ebaaf4e7e790a187a9c3ddcfc447.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.sapfioneer.com/careers/",
+          "finalURL": "https://www.sapfioneer.com/careers/",
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "bodySHA256": "66d63371e32a138d33b2c15f609f6cce891b9f9018744e38f102d9c689d45cc6",
+          "filename": "b74037a62afeecdd6192833e5a40869f53853530fb9d1be3021a137e89381a92.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v1/accounts/fioneer",
+          "finalURL": "https://apply.workable.com/api/v1/accounts/fioneer",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "d7eb7a87069216a02d6bda20eb43f22243d35e67fe0ac7b992c85561309a8176",
+          "filename": "a6f8681115cb2ca3ffdd80ebab6fc9dcd15fd82336eb82d3ed4c2a4c68f09ee3.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v1/widget/accounts/fioneer",
+          "finalURL": "https://apply.workable.com/api/v1/widget/accounts/fioneer",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "9b74ecd54c912bd8bc1828a6615fb1a98238451165ad6d3b01c8566c8a232d75",
+          "filename": "7e2251de8ea6c849f5b48b71a819a7726cf7cc690d8176ddf0ebc27de16821bf.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/F5C9C19082",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/F5C9C19082",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "6e1999e8fe4e4f2f8c6b90abbafbaea77feb90fe50b99eda64ac432984384f5d",
+          "filename": "462a8708cd0d43aa1c512a8a6930df5a39d8b7a7e3ac18d1cad85dd410c3bd08.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/BB3F40F4F1",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/BB3F40F4F1",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "81b181c1eecd2293eba60b1e56c110afdfe340c395c27ce09fd78b5e3d11195d",
+          "filename": "fe250bb5fc88edb0a0114bc2e94df495084d0554e354406cc214eb76a0b6727a.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/F2DBABA906",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/F2DBABA906",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "db9d511dabd2e1a34a48f74a3e6dd064d96e77f769bea4fe880948c6fd590510",
+          "filename": "d14a1a07d9573d9f6b5e5703381d73a675bb97b6b2010bf21c3b70978697acf6.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/A409833CE7",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/A409833CE7",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "64aedc36f025d21d8640d5307d482c6cea1cb5491c75e50e4186d5a726fc2626",
+          "filename": "fa4cf17989a10257707cc07efb8a7679087ddf1e7d34cb25766b1448ab376c71.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/969FF41C4F",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/969FF41C4F",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "c6fee1d8c6a4417258c3efcfd6b5d94b36e774d1ca8aed1e3e99ee7521f5b08d",
+          "filename": "c00443bef1ae6fca846e918837f136b9e85a44802bf2ece6d67b58d3a4ff2006.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/4884F9FC2A",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/4884F9FC2A",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "7b807c3f24d3b6396c60a53f502f6dda7d0e77287f6b970a498237f8a4cb12d8",
+          "filename": "1221adf3694458d3fbd66fa3e66f35392d77a5243642179d88344c1af6b0b07c.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/B6B3F19BD8",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/B6B3F19BD8",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "71d0c75e6f9843449973dceb2e305afafb4178c75003f4f4601576f1e57bc3fc",
+          "filename": "615cc3b3ec5a8b953ff95814634868b292247fdca822f9911300793bc6ddbbfd.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/731FA5C177",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/731FA5C177",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "d15b8dcc5a8ba213615d399a35e42821423d2b768afb934242b99d1a4ee01edd",
+          "filename": "470f0a16437ab86667cb7de6495d4cb9d0f47a8a84818110954928418f4e7253.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/FF69443127",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/FF69443127",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "640be6fe3e235b8befc53fba107ab8440afd076e432da696f267528dcfa6804c",
+          "filename": "f56cd92fb6ad999736a4334fb3197204d368129c0be5f48c74d6597e284d05ed.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/EEBC00D8ED",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/EEBC00D8ED",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "07ad90893ab2b7c0497c76f2934fe981de29ac0597fdb0da1f751773bbcd2daf",
+          "filename": "75635db0a45372ce2def8ad852b61ed2920144e5c382b7e43480ec02052afc0b.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/469E1424F1",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/469E1424F1",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "53cd01ad2f26a2ee9bef4765e95ed066ac3dfe8bdaa52c4c9a5e18af1483fdec",
+          "filename": "26d3f8fbd3d49be705bfe0d1a047e568e46e4d0986e348808950d8be6a678278.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/7CFDE9F1AF",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/7CFDE9F1AF",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "e0a22d15316d5249f31e80f8dfed066b87493960a7e798c6d397e46a4a5cf09b",
+          "filename": "2ce710feb6728c541a29c0d30e7e676a400c3a7d832d23a2a6d6ad56ddbf9678.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/00487183BB",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/00487183BB",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "8a0ab2ad7b5501d402cd9f07c04afdaf4bf0da235b0bc6ef4a10efc1f459a6ce",
+          "filename": "ab862e523d2793edad674847a3a06c1e7e4e16a77339201bfe6c41f9aa7e7bcf.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/62F9B95E15",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/62F9B95E15",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "1be23154ecb0a9674b63aff0587f7a1e6fbd41050459ae255448712303f122af",
+          "filename": "7b69d1b365f3f98bddc969c15f4beae5e29c914b125653b3d42ae4a22ba00a64.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/B30F9187A2",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/fioneer/jobs/B30F9187A2",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "722c9557596eca8c7a1cae22a6eafae18ba45aa129e6470c15b3500c7048ff37",
+          "filename": "4e39296b9032d336338cf7bed8429fc1c7ef35ee94d96ff33f0dd4f9462de46d.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "6218958",
+          "title": "ABAP Engineer - AI Integration & Banking Solutions",
+          "applyUrl": "https://apply.workable.com/j/F5C9C19082",
+          "postingDate": "2026-10-28T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "391043345e7e8958f0d47f1027c2f4407194189e5c16010e21e062d9974e2691"
+        },
+        {
+          "jobId": "5936589",
+          "title": "Accounts Payable (AP) Accountant - Finance Shared Service Center (India)",
+          "applyUrl": "https://apply.workable.com/j/BB3F40F4F1",
+          "postingDate": "2026-09-01T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "5571a85b3b753cf6e498475044cd80676a55ce278197d963d2dc2a535e509634"
+        },
+        {
+          "jobId": "6242223",
+          "title": "Business Module Expert - Banking Functional Consultant-Bangalore, India",
+          "applyUrl": "https://apply.workable.com/j/F2DBABA906",
+          "postingDate": "2026-11-03T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "ae6d4d143baf43c9651013fdde629a2be0b48635d3632989ef660773d730f1bd"
+        },
+        {
+          "jobId": "3864521",
+          "title": "Business process Consultant-SAP Payment Central/Payment Engine",
+          "applyUrl": "https://apply.workable.com/j/A409833CE7",
+          "postingDate": "2026-10-23T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "60dae958d1d43a440a4e0a862e0bb3ce0dae749c864d4d9213216d6256da148a"
+        },
+        {
+          "jobId": "5218403",
+          "title": "Cloud Native Full stack Java Developer",
+          "applyUrl": "https://apply.workable.com/j/969FF41C4F",
+          "postingDate": "2026-10-28T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "91a087eb3f3d27723a75a892b69fbf05eea725357367ce838b49f5710192a990"
+        },
+        {
+          "jobId": "5425582",
+          "title": "Cloud Native Kotlin/Java Full stack Developer",
+          "applyUrl": "https://apply.workable.com/j/4884F9FC2A",
+          "postingDate": "2026-06-26T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "fc29b50a7174e53e35a98b09413e50d1cacc7fe8a098205de8bb955d0f6844f0"
+        },
+        {
+          "jobId": "5936607",
+          "title": "General Ledger (GL) Accountant - Finance Shared Service",
+          "applyUrl": "https://apply.workable.com/j/B6B3F19BD8",
+          "postingDate": "2026-10-27T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "3dd5ecc5ea742d3e48a20e7035f33e83a957b24efb367f32252f1bf922357dda"
+        },
+        {
+          "jobId": "6227077",
+          "title": "Human Resource Operation Specialist",
+          "applyUrl": "https://apply.workable.com/j/731FA5C177",
+          "postingDate": "2026-10-29T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "f74352010c3f8ba7a7398850a1b6e7e42c12d21c169441705932173c6c368f4c"
+        },
+        {
+          "jobId": "6227068",
+          "title": "Lead AI Engineer",
+          "applyUrl": "https://apply.workable.com/j/FF69443127",
+          "postingDate": "2026-10-27T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "8b9ee1ad57d1864dd4aed24fb34da2e27cd298aa785e80527eafbdc3c3796fe2"
+        },
+        {
+          "jobId": "5805109",
+          "title": "SAP Basis Support Specialist",
+          "applyUrl": "https://apply.workable.com/j/EEBC00D8ED",
+          "postingDate": "2026-09-25T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "0dc6b8f23cc04c62d19715180eb2715247dea4d1a912e4a82eff136c9aedcbcf"
+        },
+        {
+          "jobId": "6020872",
+          "title": "SAP FPSL Product Support Specialist",
+          "applyUrl": "https://apply.workable.com/j/469E1424F1",
+          "postingDate": "2026-08-10T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "0fcac9736687ae8cd0ca6dc4871307242ed28c36e72e973271a9833b35deae5c"
+        },
+        {
+          "jobId": "5805120",
+          "title": "SAP Payments Functional Consultant",
+          "applyUrl": "https://apply.workable.com/j/7CFDE9F1AF",
+          "postingDate": "2026-09-18T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "b621d10f8bfaa3da802085a56fd6067dc1994e9ab46fa6dbe7dc3b433f1ad7e9"
+        },
+        {
+          "jobId": "5672008",
+          "title": "Senior ABAP Developer",
+          "applyUrl": "https://apply.workable.com/j/00487183BB",
+          "postingDate": "2026-09-23T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "f601bdb4c99252643ce83a93641be0ef6fb75585db98e4efbcfb2e04359c480b"
+        },
+        {
+          "jobId": "6227026",
+          "title": "Senior Cloud Modernization Java Full stack engineer",
+          "applyUrl": "https://apply.workable.com/j/62F9B95E15",
+          "postingDate": "2026-10-27T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "fc6118a0eabe39029788ab939a7b87335ba177cfea8618adeaa917af452d0e0a"
+        },
+        {
+          "jobId": "5218461",
+          "title": "Senior Product Quality Analyst - Retail and Corporate Banking",
+          "applyUrl": "https://apply.workable.com/j/B30F9187A2",
+          "postingDate": "2026-10-29T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "SAP Fioneer",
+            "url": "http://www.fioneer.com"
+          },
+          "descriptionSHA256": "82012a7c9b6f0259fc9405620c79eb6b49f47ece1d5fdac6fd93f5a27ebf7850"
+        }
+      ]
+    },
+    {
+      "source": "lucidya",
+      "observedAt": "2026-11-03T11:21:52.048Z",
+      "indiaJobs": 1,
+      "nativeRecords": 31,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.lucidya.com/",
+          "finalURL": "https://www.lucidya.com/",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "4d8593fba609587d8d99bed2c4dd15d3e674d1935b06e82aa6028e9bf0bfa0e2",
+          "filename": "975489132f397f573368724b0252687be05ea715bdda3b95cda3f8af4fb3cbeb.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.lucidya.com/our-company/partners",
+          "finalURL": "https://www.lucidya.com/our-company/partners",
+          "status": 200,
+          "contentType": "text/html; charset=utf-8",
+          "bodySHA256": "db4de7f1c73da002f994a72d0d650101847d6637403e628f3fedc62b13ecb6f1",
+          "filename": "88ac25bc0f2d21fae9e1dc957e79f0f870afaf49c540c78687ca746a21caade7.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v1/accounts/lucidya",
+          "finalURL": "https://apply.workable.com/api/v1/accounts/lucidya",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "11f819e310fd9aac82b4a261d2b79877dfda519909bf04249c2c1a104d1f9fdb",
+          "filename": "f41550d1b69dd0427a402bf985fe746c11054559da286f907ef9a90949ccda84.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v1/widget/accounts/lucidya",
+          "finalURL": "https://apply.workable.com/api/v1/widget/accounts/lucidya",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "21a10bacc22c4bd1512f8df87a5337b00b220c44878688d5ab1d04fc9c618bc2",
+          "filename": "c59bc4598bbe828e8cabba8478b29ed477980eabee3dc902023d770d36759483.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://apply.workable.com/api/v2/accounts/lucidya/jobs/06519EADD5",
+          "finalURL": "https://apply.workable.com/api/v2/accounts/lucidya/jobs/06519EADD5",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "2af39600d0b87c5bae382c21dbbdb62310f91ee810d83f67131025b9ab15219b",
+          "filename": "058b5dafa00c5850b072bd38d49149a71242431b29358dc50f7b90638f877e93.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "6242725",
+          "title": "FP&A Manager",
+          "applyUrl": "https://apply.workable.com/j/06519EADD5",
+          "postingDate": "2026-11-03T00:00:00.000Z",
+          "nativeHiringOrganization": {
+            "name": "Lucidya",
+            "url": "http://www.lucidya.com"
+          },
+          "descriptionSHA256": "72622f3ca8d8e79ec3e7ede9782a00f31f6752148bf389823216ba35a81ccfc0"
+        }
+      ]
+    },
+    {
+      "source": "noon",
+      "observedAt": "2026-11-03T11:10:04.558Z",
+      "indiaJobs": 3,
+      "nativeRecords": 6,
+      "requests": [
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://www.noon.careers/",
+          "finalURL": "https://www.noon.careers/",
+          "status": 200,
+          "contentType": "text/html",
+          "bodySHA256": "fdc5421b57617bdc112c5cbc36389642ef3288d76e1f2d97fd40e1fb00b2e5fb",
+          "filename": "91bc46da160110c1c61e45ad483cc5983a0bbb02d6aa0e7650d388d10aed0c13.txt.gz"
+        },
+        {
+          "method": "GET",
+          "requestBody": null,
+          "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/noon-design",
+          "finalURL": "https://api.ashbyhq.com/posting-api/job-board/noon-design",
+          "status": 200,
+          "contentType": "application/json; charset=utf-8",
+          "bodySHA256": "18bac5c0c88dfa5c506246675262e76735b5fef6f53b8ec8259a80b578a2f1ac",
+          "filename": "de843483d2bb0ac427beeaa45511097865ea464fb128e000f11d672732acf18e.txt.gz"
+        }
+      ],
+      "expectedJobs": [
+        {
+          "jobId": "a053db73-e49d-4540-8176-9966f0016f72",
+          "title": "Fullstack Staff Frontend Engineer",
+          "applyUrl": "https://jobs.ashbyhq.com/noon-design/a053db73-e49d-4540-8176-9966f0016f72/application",
+          "postingDate": "2026-08-07T15:46:47.266+00:00",
+          "nativeHiringOrganization": null,
+          "descriptionSHA256": "fa3d4d88aeaec85727113bfbf6deb1980106e0be2aae2ba1e0a1c74058f58549"
+        },
+        {
+          "jobId": "13521591-54f6-4f27-94cb-7b76810065c1",
+          "title": "Lead QA Engineer",
+          "applyUrl": "https://jobs.ashbyhq.com/noon-design/13521591-54f6-4f27-94cb-7b76810065c1/application",
+          "postingDate": "2026-08-17T04:41:06.290+00:00",
+          "nativeHiringOrganization": null,
+          "descriptionSHA256": "bd5e18f035c033d505553b37813b4a2997d7e850c64cdcfd02d83d207bd817a8"
+        },
+        {
+          "jobId": "295cc9d8-6807-4720-9ee6-ecefd2b7fdf6",
+          "title": "Fullstack Frontend Architect",
+          "applyUrl": "https://jobs.ashbyhq.com/noon-design/295cc9d8-6807-4720-9ee6-ecefd2b7fdf6/application",
+          "postingDate": "2026-07-03T13:22:26.841+00:00",
+          "nativeHiringOrganization": null,
+          "descriptionSHA256": "57eb36ccb7e780a02bd3edcca0f408220cb8c92e11416a4c10f5e9f5dea93c3e"
+        }
+      ]
+    }
+  ]
+}

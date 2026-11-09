@@ -1,0 +1,44 @@
+[
+  {
+    "source": "britannia",
+    "companyName": "Britannia Industries",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "turbohire",
+    "extractionStrategy": "official-careers-page+turbohire-board+noauth-token+filteredjobs-api+full-native-public-role+CareerPage-publication+closing-reconciliation",
+    "sourceScopeNotes": "Current corporate handoff and native organization must agree with the full public role. Only Active public CareerPage vacancies with full descriptions and explicit native country can be returned. Listing previews, Offered roles and missing descriptions cannot establish extraction. Company inventory completeness and lifecycle cleanup remain unqualified."
+  },
+  {
+    "source": "navi",
+    "companyName": "Navi",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "turbohire",
+    "extractionStrategy": "official-active-handoff+native-public-full-inventory+matching-full-detail+strict-country-dates-and-detail-health+full-native-public-role+CareerPage-publication+closing-reconciliation",
+    "sourceScopeNotes": "Current corporate handoff and native organization must agree with the full public role. Only Active public CareerPage vacancies with full descriptions and explicit native country can be returned. Listing previews, Offered roles and missing descriptions cannot establish extraction. Company inventory completeness and lifecycle cleanup remain unqualified."
+  },
+  {
+    "source": "monocept",
+    "companyName": "Monocept",
+    "catalogOverride": true,
+    "sourceScopeNotes": "The current first-party careers handoff identifies the employer-bound public native client. Normal anonymous All Jobs filteredjobs POST (pageType=0, all filters null) returns Total7 and seven unique IDs; every full public DTO is fetched with the normal fieldVisibility=CareerPage query and matched to its public JobPosting and closing snapshot before caller caps. The old advertised careerpage has a misleading vacancy-free view. Explicit native job work countries establish India. All source CAREERPAGE dates remain August 6; no source expiry is advertised. Source dates, general publication, native experience, skills, zero requisition GUID as null, and actual application template IDs remain distinct. Current client/CSS hashes and visual/executable inventories reject unreviewed changes. No login, application action, candidate/private API, database or pipeline invocation. The current declared TurboHire bootstrap and public route clients are supported with exact byte hashes. Corporate publisher, native employer, country, full description and closing role context still require validation. A current zero board or a complete declared board cannot certify company-wide inventory or enable lifecycle cleanup."
+  },
+  {
+    "source": "byteridge",
+    "companyName": "Byteridge",
+    "catalogOverride": true,
+    "sourceScopeNotes": "The current official careers iframe delegates each source UUID to the employer-bound public TurboHire client. Two full global native All Jobs snapshots and every public role DTO/JobPosting are reconciled with corporate proxy IDs, full criteria, explicit work country, CAREERPAGE publication and expiry, native application context and employer binding before caller caps. FilteredJobs Total must equal the unique returned set; unreviewed continuation metadata or corporate/native gaps retain partial status. Remote placeholders require an explicit role-owned India Location label and matching native country schema. General/CAREERPAGE dates remain distinct; source midnight expiry without timezone retains day precision. Zero requisition GUIDs remain null and JobCode stays separate. Anonymous public reader credentials remain only in memory. Only the reviewed public listing POSTs are used; no login, candidate/application action, private API, database or pipeline invocation. The current declared TurboHire bootstrap and public route clients are supported with exact byte hashes. Corporate publisher, native employer, country, full description and closing role context still require validation. A current zero board or a complete declared board cannot certify company-wide inventory or enable lifecycle cleanup."
+  },
+  {
+    "source": "ola",
+    "companyName": "Ola",
+    "catalogOverride": true,
+    "sourceScopeNotes": "Each registration validates its own corporate page and the current public TurboHire client; two unfiltered native global snapshots reconcile Total and unique IDs, every full public role DTO and JobPosting, role-owned work country and exact employer, CAREERPAGE publication/expiry, public application identity and closing criteria before any caller cap. The observed shared native board contains zero jobs. This does not establish whole-company India absence: native organization ANI Technologies Pvt Ltd, Ola Electric URL/banner, and differing corporate legal notices leave the two brand/employer scopes unresolved. Roles are assigned only through their own exact hiringOrganization and website, never by the wrapper company label. Unknown hierarchy, fields, country, continuation, hidden/inert proof or changed/closed roles retain partial coverage. No login, private endpoints, candidate/application actions, database or pipeline invocation. Anonymous session credentials remain only in memory. The current declared TurboHire bootstrap and public route clients are supported with exact byte hashes. Corporate publisher, native employer, country, full description and closing role context still require validation. A current zero board or a complete declared board cannot certify company-wide inventory or enable lifecycle cleanup."
+  },
+  {
+    "source": "olaelectric",
+    "companyName": "Ola Electric",
+    "catalogOverride": true,
+    "sourceScopeNotes": "Each registration validates its own corporate page and the current public TurboHire client; two unfiltered native global snapshots reconcile Total and unique IDs, every full public role DTO and JobPosting, role-owned work country and exact employer, CAREERPAGE publication/expiry, public application identity and closing criteria before any caller cap. The observed shared native board contains zero jobs. This does not establish whole-company India absence: native organization ANI Technologies Pvt Ltd, Ola Electric URL/banner, and differing corporate legal notices leave the two brand/employer scopes unresolved. Roles are assigned only through their own exact hiringOrganization and website, never by the wrapper company label. Unknown hierarchy, fields, country, continuation, hidden/inert proof or changed/closed roles retain partial coverage. No login, private endpoints, candidate/application actions, database or pipeline invocation. Anonymous session credentials remain only in memory. The current declared TurboHire bootstrap and public route clients are supported with exact byte hashes. Corporate publisher, native employer, country, full description and closing role context still require validation. A current zero board or a complete declared board cannot certify company-wide inventory or enable lifecycle cleanup."
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "source": "arcihyd",
+  "catalogOverride": true,
+  "companyName": "ARCI Hyderabad",
+  "adapter": "script",
+  "modulePath": "../arcihyd/script.js",
+  "companyCareerPage": "https://arci.res.in/careers/vacancies",
+  "companyDomain": "arci.res.in",
+  "officialHomepageUrl": "https://arci.res.in/offerings/careers",
+  "atsPlatform": "first-party-public-advertisement-pdf",
+  "countryFilter": "India",
+  "paginationStrategy": "current-native-advertisement-post-type-tables+full-published-PDFs+final-inventory-after-closing-details",
+  "extractionStrategy": "original-public-full-role-criteria+explicit-native-post-placement-to-current-named-office-country+closing",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "zeroResultPolicy": "evidence-required",
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedSurfaceSummary": "Current first-party portal exposes two advertisements and seven post types. The collector preserves original public advertisement, selection, schedule and general criteria plus native date-only publication and closing fields. Only an explicit post placement joined to its exact current named-office country can qualify an India workplace. Institutional country, nationality, headquarters and examination city cannot replace role geography. Other post countries, exact expiry instants and whole-employer/lifecycle coverage remain unproved. Restricted workers without installed renderer platform primitives retain the native PDF environment limitation and current candidate counts; no browser/member/application fallback."
+}

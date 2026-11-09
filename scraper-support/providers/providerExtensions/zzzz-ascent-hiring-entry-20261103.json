@@ -1,0 +1,12 @@
+[
+  {
+    "source": "ascenthealth",
+    "extractionStrategy": "current-first-party-resume-entry+closing-comparison+unknown-vacancy-inventory",
+    "paginationStrategy": "current-corporate-careers-and-closing-hiring-entry",
+    "zeroResultPolicy": "evidence-required",
+    "lifecycleCleanupAllowed": false,
+    "nativeRoleCount": null,
+    "nativeIndiaRoleCount": null,
+    "verifiedOn": null
+  }
+]

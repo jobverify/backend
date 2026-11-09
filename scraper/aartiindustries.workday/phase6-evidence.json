@@ -1,0 +1,59 @@
+{
+  "phase": 6,
+  "source": "aartiindustries",
+  "outcome": "current-native-binding-proven-inventory-access-blocked",
+  "sourceImplementationChanged": false,
+  "officialUrl": "https://www.aarti-industries.com/career-opportunities",
+  "officialStatus": 200,
+  "officialCapturedAt": "2026-10-24T18:00:42.134Z",
+  "nativeUrl": "https://aartiindustries.darwinbox.in/ms/candidate/careers",
+  "nativeBoardStatus": 200,
+  "nativeBoardTitle": "Aarti Industries Limited",
+  "binding": "Three current active first-party career CTAs link to the exact aartiindustries.darwinbox.in tenant. Native page identifies Aarti Industries Limited but contains employer metadata only, with no job inventory.",
+  "nativeReceipts": [
+    {
+      "stage": "company",
+      "status": 403,
+      "finalUrl": "https://aartiindustries.darwinbox.in/ms/candidateapi/getCompanyConfig?is_preview=false&companyId=main",
+      "capturedAt": "2026-10-24T18:02:52.609Z",
+      "responseBodySha256": "11cd16e4847cc6719d32a74d9d168e60c9a593b51273f9dc3e81958f0ed133a2",
+      "responseTitle": "Attention Required! | Cloudflare",
+      "requestBody": null
+    },
+    {
+      "stage": "filters",
+      "status": 403,
+      "finalUrl": "https://aartiindustries.darwinbox.in/ms/candidateapi/job/newfilters?companyId=main",
+      "capturedAt": "2026-10-24T18:02:52.689Z",
+      "responseBodySha256": "ff9e4e1eedbdd36ede03e97422736fb6465bcd4745dbf64b3f72db86c71241c2",
+      "responseTitle": "Attention Required! | Cloudflare",
+      "requestBody": {
+        "companyId": "main",
+        "id": []
+      }
+    },
+    {
+      "stage": "list",
+      "status": 403,
+      "finalUrl": "https://aartiindustries.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "capturedAt": "2026-10-24T18:02:52.758Z",
+      "responseBodySha256": "a6f9663e7757ec65612cb41420362ea1b9a526ab275ce75e107f5938deea7c4f",
+      "responseTitle": "Attention Required! | Cloudflare",
+      "requestBody": {
+        "companyId": "main",
+        "page": 1,
+        "sort_option": "new",
+        "limit": 10
+      }
+    }
+  ],
+  "positiveExtractionProven": false,
+  "indiaInventoryComplete": false,
+  "indiaJobCount": null,
+  "publicationCount": null,
+  "zeroIndiaClaim": false,
+  "blocker": "Known public Darwinbox company/filter/active-list requests returned HTTP403 Attention Required Cloudflare after unauthenticated public board navigation. No bypass or authenticated access attempted.",
+  "nextRequiredEvidence": "A usable current public native inventory response and employer/detail/country proof, or a newly delegated public recruitment surface.",
+  "fixture": "fixtures/phase6-current-binding-20261024.json.gz",
+  "limits": "These are transport/access observations in this environment, not an employer outage or native zero. Native endpoint paths follow the existing public Darwinbox contract; no ATS tenant was guessed. No production source/registry/database changes."
+}

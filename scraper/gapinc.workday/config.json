@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://gapinc.wd1.myworkdayjobs.com/wday/cxs/gapinc/GAPINC/jobs",
+  "detailUrlBase": "https://gapinc.wd1.myworkdayjobs.com/en-US/GAPINC",
+  "countryFacetParameter": "locationCountry",
+  "maxPages": 10
+}

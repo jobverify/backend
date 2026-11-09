@@ -1,0 +1,47 @@
+{
+  "source": "aeon",
+  "captureMode": "ordinary-public-HTTPS-GET",
+  "applicationActionsTaken": false,
+  "files": [
+    {
+      "file": "careers-hub-20261103.html.gz",
+      "url": "https://www.aeoncredit.co.in/careers",
+      "status": 200,
+      "capturedAt": "2026-11-02T19:27:10.022Z",
+      "originalSha256": "fc6626ed367ac432bc3f523c5359ae6eeae057b6705f00720af7a9a0712b3903",
+      "fixtureSha256": "fc6626ed367ac432bc3f523c5359ae6eeae057b6705f00720af7a9a0712b3903",
+      "gzipSha256": "4a78009a7920a7f4d74a4bacb9adcdeb5a1f4b0158a0a8b098d45fad7c8b1f72",
+      "publicFormTokenRedactions": 0
+    },
+    {
+      "file": "join-us-20261103.html.gz",
+      "url": "https://www.aeoncredit.co.in/careers/join-us",
+      "status": 200,
+      "capturedAt": "2026-11-02T21:42:47.955Z",
+      "originalSha256": "c74d15e915194cb04c1264c67d9e3ca74a0d7e398d7dec9b8c102f5d77b1866a",
+      "fixtureSha256": "c74d15e915194cb04c1264c67d9e3ca74a0d7e398d7dec9b8c102f5d77b1866a",
+      "gzipSha256": "bfb4fe7278c5959b259a419ceed735463ffcba4498930fdfd0c21bf062308e92",
+      "publicFormTokenRedactions": 0
+    },
+    {
+      "file": "join-us-client-20261103.js.gz",
+      "url": "https://www.aeoncredit.co.in/Content/Custom/joinus.js",
+      "status": 200,
+      "capturedAt": "2026-11-02T21:46:46.949Z",
+      "originalSha256": "2e354dad1ec3be9768a7a9aca7ed2b9f80ca8b04f1544e676a185e8738da5faf",
+      "fixtureSha256": "2e354dad1ec3be9768a7a9aca7ed2b9f80ca8b04f1544e676a185e8738da5faf",
+      "gzipSha256": "5e8a220499b61a9c06e752c3a1052a5dc074f30ab6efb5e642bb59dc11de39c8",
+      "publicFormTokenRedactions": 0
+    },
+    {
+      "file": "declared-ats-403-20261103.html.gz",
+      "url": "https://careers-aeoncredit.peoplestrong.com/portal/home",
+      "status": 403,
+      "capturedAt": "2026-11-02T21:46:46.359Z",
+      "originalSha256": "0d3e98ca727fc1201b436170af5a63f23348aaf146a3ac6234f6c4da283e8b34",
+      "fixtureSha256": "0d3e98ca727fc1201b436170af5a63f23348aaf146a3ac6234f6c4da283e8b34",
+      "gzipSha256": "fe0ea53710858b155400cc251141066878c4aa8b97899d8902cd29f47a687c68",
+      "publicFormTokenRedactions": 0
+    }
+  ]
+}

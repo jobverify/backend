@@ -1,0 +1,30 @@
+{
+  "modelId": "LiquidAI/LFM2.5-1.2B-Instruct-GGUF",
+  "revision": "430bea1a9fa4d973ce789c15f15e9ed214846f4f",
+  "file": "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf",
+  "sha256": "bb741ebb106d543e9de114b843a3d3d73d51c74b5801e69da2abde821a0cb3e1",
+  "bytes": 695755488,
+  "runtimeTag": "b11146",
+  "runtimeAssets": {
+    "linux": {
+      "file": "llama-b11146-bin-ubuntu-x64.tar.gz",
+      "sha256": "c150306eb16b5ab696f76a8bdf810c35fd98a24e82158742e6fa28f420ff8410"
+    },
+    "win32": {
+      "file": "llama-b11146-bin-win-cpu-x64.zip",
+      "sha256": "14cf1303ca9ac3abd94816850532f9f9a69ac66fbaca3776fc6f9061c2fac1d1"
+    }
+  },
+  "policyVersion": "job-description-prose-v29",
+  "outputFormat": "prose",
+  "maxModelEdits": 2,
+  "maxPromptCandidates": 6,
+  "maxEditCharacters": 160,
+  "maxPromptSourceCharacters": 320,
+  "enableThinking": false,
+  "cpuThreads": 4,
+  "contextTokens": 8192,
+  "maxOutputTokens": 768,
+  "maxRetryOutputTokens": 1536,
+  "requestSeconds": 180
+}

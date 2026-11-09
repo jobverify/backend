@@ -1,0 +1,22 @@
+{
+  "source": "chargepoint",
+  "companyName": "ChargePoint",
+  "officialBrandName": "ChargePoint, Inc.",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../chargepoint/script.js",
+  "dryRunFile": "chargepoint/jobs.json",
+  "companyCareerPage": "https://www.chargepoint.com/about/opportunities",
+  "companyDomain": "chargepoint.com",
+  "atsPlatform": "exact-name-fail-closed-sentinel",
+  "countryFilter": "India",
+  "paginationStrategy": "official-client-rendered-opportunities-without-verified-enumeration-sentinel",
+  "extractionStrategy": "official-first-party-careers-page-without-stable-public-listing-feed+return-empty",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-26",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://www.chargepoint.com/about/opportunities",
+  "verifiedSurfaceSummary": "Verified on Sunday, July 26, 2026 that https://www.chargepoint.com/about/opportunities is ChargePoint's first-party careers page. Its Opportunities section is client-rendered and no stable, verified public listing feed or India enumeration surface was confirmed. This exact-name provider therefore fails closed and returns no jobs rather than relying on third-party listings or individual detail-page search results."
+}

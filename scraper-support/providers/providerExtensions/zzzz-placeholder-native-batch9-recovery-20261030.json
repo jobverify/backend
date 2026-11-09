@@ -1,0 +1,25 @@
+[
+  {
+    "source": "evidation",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../evidation/script.js",
+    "atsPlatform": "rippling",
+    "backfillMode": "live-parser",
+    "parser": "current-corporate-widget-native-rippling-paginated-SSR-and-full-role-details",
+    "companyCareerPage": "https://evidation.com/open-positions",
+    "officialCareersPageUrl": "https://evidation.com/open-positions",
+    "companyDomain": "evidation.com",
+    "paginationStrategy": "unfiltered-native-Next-query-pages-with-terminal-page-and-closing-snapshot",
+    "extractionStrategy": "current-visible-corporate-widget+current-loader-and-pagination-client+native-employer-and-country+full-role-details",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "sourceScopeComplete": false,
+    "remediationStatus": "native-extraction-implemented-company-coverage-unverified",
+    "currentExtractionEvidence": "scraper/evidation/fixtures/current-20261030/manifest.json",
+    "verifiedSurfaceSummary": "Current native Rippling extraction revalidates the visible corporate widget, advertised loader/client, complete unfiltered pagination, all role descriptions and closing snapshot. Native creation metadata is retained separately from unavailable publication dates. Whole-company coverage remains unverified.",
+    "sourceScopeLimitation": "Only the current corporate-bound native Rippling account is extracted. Employer brand is retained; legal employer, other recruitment channels, whole-company India availability, eligibility, persistence and public visibility remain unverified."
+  }
+]

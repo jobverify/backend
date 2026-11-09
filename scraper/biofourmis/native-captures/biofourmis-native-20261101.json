@@ -1,0 +1,33 @@
+{
+  "source": "biofourmis",
+  "url": "https://boards-api.greenhouse.io/v1/boards/biofourmis/jobs?content=true",
+  "finalURL": "https://boards-api.greenhouse.io/v1/boards/biofourmis/jobs?content=true",
+  "status": 200,
+  "headers": {
+    "cache-control": "max-age=0, private, must-revalidate",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "date": "Sun, 01 Nov 2026 00:45:08 GMT",
+    "etag": "W/\"09aefc0c2d96e9c065aab057f04eaa35\"",
+    "server": "istio-envoy",
+    "strict-transport-security": "max-age=31536000; includeSubDomains",
+    "transfer-encoding": "chunked",
+    "vary": "Origin, Accept-Encoding",
+    "via": "1.1 4f294f796e0a8d5fea0a2d176c7ce4c0.cloudfront.net (CloudFront)",
+    "x-amz-cf-id": "e8MGXwNxpzpQZpjvSfg1_kXZW6As1NtaYsjM9lWpEjlOgPbiZrCDDA==",
+    "x-amz-cf-pop": "HYD57-P5",
+    "x-cache": "Miss from cloudfront",
+    "x-download-options": "noopen",
+    "x-envoy-upstream-service-time": "14",
+    "x-farm-id": "us",
+    "x-request-id": "127c739c-8471-4e71-be3b-cff051e83eac",
+    "x-runtime": "0.013284",
+    "x-sigsci-request-id": "6ae68b94b3c98d673277f1f9",
+    "x-xss-protection": "1; mode=block"
+  },
+  "requestedAt": "2026-11-01T00:44:58.486Z",
+  "completedAt": "2026-11-01T00:44:58.985Z",
+  "bytes": 30,
+  "sha256": "09aefc0c2d96e9c065aab057f04eaa352d63f19114f01783cfa12c890427f7f8"
+}

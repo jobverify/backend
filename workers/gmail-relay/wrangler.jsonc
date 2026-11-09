@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jobverify-gmail-relay",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  // FRONTEND_ORIGIN must be the exact HTTPS origin of the deployed frontend.
+  "vars": { "FRONTEND_ORIGIN": "https://www.jobverify.in" },
+  "ratelimits": [
+    {
+      "name": "GLOBAL_LIMITER",
+      "namespace_id": "1001",
+      "simple": { "limit": 20, "period": 60 }
+    },
+    {
+      "name": "RECIPIENT_LIMITER",
+      "namespace_id": "1002",
+      "simple": { "limit": 1, "period": 60 }
+    }
+  ],
+  "observability": { "enabled": true }
+}

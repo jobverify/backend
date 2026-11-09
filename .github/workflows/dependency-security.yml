@@ -1,0 +1,35 @@
+name: Dependency security
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * 1'
+  pull_request:
+    paths:
+      - package.json
+      - package-lock.json
+      - scripts/auditDependencies.js
+      - .github/workflows/dependency-security.yml
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24.14.0'
+      - name: Audit the complete lockfile
+        run: npm run audit:dependencies -- --output dependency-audit.json
+      - name: Retain findings and registry failure diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dependency-audit
+          path: dependency-audit.json
+          if-no-files-found: error
+          retention-days: 14

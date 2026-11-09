@@ -1,0 +1,26 @@
+<CandidateJobVO><companyVO><companyMstrSeq>616</companyMstrSeq><parentCompanyMstrSeq>264</parentCompanyMstrSeq><companyCd>ALTIMETRIKIND</companyCd><companyName>Altimetrik</companyName><logoImage>Altlogoo-kUIAL.png</logoImage><secondaryLogo></secondaryLogo><emailHeaderColour>#030302</emailHeaderColour><empLogoImage>Altlogoo-YP7m5.png</empLogoImage><socialMediaLogoImage>altlogoonb-oiwas.png</socialMediaLogoImage><domainName>altimetrik.ripplehire.com</domainName><pointOfContact>Your Company</pointOfContact><primaryPhone/><secondaryPhone>987654321</secondaryPhone><primaryEmail>admin@altimetrikind.com</primaryEmail><secondaryEmail>demo@salesdemo.com</secondaryEmail><probationPeriod>6</probationPeriod><candidatePage>N</candidatePage><showAllJobs>Y</showAllJobs><jobRewardConfig>Y</jobRewardConfig><twitterHandle>Test</twitterHandle><advanceSearch>Y</advanceSearch><defaultBanner>ERBG-BckuH.png</defaultBanner><defaultPassword/><isSSOEnabled>Y</isSSOEnabled><mobileSsoUrl/><currencySymbol>Rs.</currencySymbol><parserCode>PRODTEST</parserCode><companyRefCd>43KkAdXVZweIOfHi</companyRefCd><companyRefId>512 </companyRefId><parentCompanySeq>617</parentCompanySeq><multiCompanyName>IND</multiCompanyName><currencyCode>inr</currencyCode><parentCode>ALTIMETRIKIND</parentCode><headerMainColour>#030302</headerMainColour><headerSubColour/><headerTextColour/><additionalDomainName>altimetrik-app.ripplehire.com</additionalDomainName><loginlogoImageName/><mobileLogoImageName/><typeOfLogin/><companyCdLowerCase>altimetrikind</companyCdLowerCase></companyVO><jobVO><jobSeq>914744</jobSeq><jobTitle>Senior Staff Engineer - Data Engineering</jobTitle><jobDesc>&lt;p>&lt;strong>About the Role&lt;/strong>&lt;
+&lt;p>&lt;strong>Customer runs four production SQL Server environments carrying a large, complex transactional data estate. This role inherits an environment where deletion policies were not historically enforced, data volumes have accumulated significantly, and the estate is a live source for CDC-based ingestion into Redshift. Stabilising, governing, and evolving this estate is the primary mission.&lt;/strong>&lt;
+&lt;p>&lt;strong>Data Environment&lt;/strong>&lt;
+&lt;p>&lt;strong>4 x production SQL Server environments. SQL Server CDC → Confluent/RedPanda → Redshift via DBT. EC2 compute. DynamoDB for specific workloads. CyberArk for privileged access management.&lt;/strong>&lt;
+&lt;p>&lt;strong>Key Responsibilities&lt;/strong>&lt;
+&lt;p>&lt;strong>● Own all four production SQL Server environments — performance, availability, security, and compliance&lt;/strong>&lt;
+&lt;p>&lt;strong>● Define and implement data retention and deletion policies — a critical gap confirmed by Data and AI Lead&lt;/strong>&lt;
+&lt;p>&lt;strong>● Lead SQL Server CDC configuration and reliability for the Redshift ingestion pipeline&lt;/strong>&lt;
+&lt;p>&lt;strong>● Manage data volume growth — implement archiving, partitioning, and capacity strategies&lt;/strong>&lt;
+&lt;p>&lt;strong>● Oversee database security including CyberArk-based privileged access management&lt;/strong>&lt;
+&lt;p>&lt;strong>● Collaborate with the Data Platform team on the broader platform consolidation programme&lt;/strong>&lt;
+&lt;p>&lt;strong>● Establish and enforce DBA standards, backup and recovery procedures across all four environments&lt;/strong>&lt;
+&lt;p>&lt;strong>● Mentor and manage IC DBAs within the team&lt;/strong>&lt;
+&lt;p>&lt;strong>● Ensure PCI DSS compliance across all SQL Server environments — PAN, PII, CVV controls&lt;/strong>&lt;
+&lt;p>&lt;
+&lt;p>&lt;strong>Required Skills &amp; Experience&lt;/strong>&lt;
+&lt;p>&lt;strong>● 12+ years in SQL Server DBA roles — multi-environment production experience required&lt;/strong>&lt;
+&lt;p>&lt;strong>● Proven experience managing large-scale SQL Server estates with significant data volume challenges&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; Deep expertise in data retention, archiving, and deletion policy design and implementation&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; Strong SQL Server CDC experience for downstream ingestion pipelines&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; AWS experience: EC2, DynamoDB, RDS&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; Familiarity with CyberArk or equivalent PAM solutions&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; PCI DSS database compliance experience &#x2014; PAN/PII data handling&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; Experience with legacy SQL Server environments and inherited technical debt&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;strong>&#x25cf; Strong people management and mentoring skills&lt;/strong>&lt;/p>&#xd;
+&lt;p>&lt;/p></jobDesc><jobLocation>Bangalore</jobLocation><jobReqExp>8 - 10 Years</jobReqExp><numOfOpening>1</numOfOpening><jobPositions/><jobPositionsClosed>0</jobPositionsClosed><openDate/><jobReward/><jobRewardPoints/><jobType>R</jobType><jobLocationList/><jobPostingDate>08-Oct-2026</jobPostingDate><isHotJob>N</isHotJob><jobStatus>ACTIVE</jobStatus><jobCode>THR-DA-026188_79974</jobCode><jobSkills>&lt;p>Data Scientist/ AI ML, Communication&lt;/p></jobSkills><otherDetails></otherDetails><locations>Bangalore</locations><bussinessUnit></bussinessUnit><mobileReqJobExp>8-10 Yrs</mobileReqJobExp><isEeoEnabled></isEeoEnabled></jobVO></CandidateJobVO>An unexpected error occurred

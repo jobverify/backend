@@ -1,0 +1,9 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://target.wd5.myworkdayjobs.com/wday/cxs/target/targetcareers/jobs",
+  "detailUrlBase": "https://target.wd5.myworkdayjobs.com/en-US/targetcareers",
+  "locationCountry": null,
+  "searchText": "India",
+  "locationPattern": "india|bangalore|bengaluru|pune|hyderabad|mumbai|gurgaon|gurugram",
+  "maxPages": 10
+}

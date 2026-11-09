@@ -1,0 +1,21 @@
+{
+  "source": "linear",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../../scraper/linear/script.js",
+  "companyCareerPage": "https://linear.app/careers",
+  "companyDomain": "linear.app",
+  "atsPlatform": "ashby-via-bound-first-party-careers-data",
+  "zeroResultPolicy": "evidence-required",
+  "sourceScopeComplete": false,
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "paginationStrategy": "bound-first-party-role-groups-and-reconciled-native-posting-response",
+  "extractionStrategy": "active-bound-careers-model+native-role-identity+typed-geography+validated-native-india-details+closing-complete-native-model",
+  "configuredBoardProofRequiresLiveEvidence": true,
+  "verifiedSurfaceSummary": "The active corporate careers renderer binds every current Linear Ashby role ID and public role/application URL. Runtime compares all advertised IDs, titles and primary location labels with the complete native board, checks every native worksite/country, public description, original date and reviewed public row schema, and reconciles closing corporate/native inventory after selected public detail reads. This configured board can complete independently of unproved company-wide coverage. Unknown geography/criteria, contradictory current labels, unavailable details or closing changes retain partial evidence. Company totals and lifecycle cleanup remain unknown. No city/HQ or private-form inference is used."
+}

@@ -1,0 +1,21 @@
+{
+  "source": "reviewdale",
+  "companyName": "ReviewDale",
+  "officialBrandName": "ReviewDale",
+  "adapter": "script",
+  "modulePath": "../reviewdale/script.js",
+  "dryRunFile": "reviewdale/jobs.json",
+  "companyCareerPage": "https://www.reviewdale.com/",
+  "officialCareersPageUrl": "https://www.reviewdale.com/",
+  "companyDomain": "reviewdale.com",
+  "atsPlatform": "official-first-party-site-no-verified-careers-feed",
+  "countryFilter": "India",
+  "paginationStrategy": "verified-first-party-product-site-sentinel",
+  "extractionStrategy": "no-verified-official-careers-page-or-ats-feed+return-empty",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.reviewdale.com/ is ReviewDale's first-party product site. The public surface identifies ReviewDale and renders its JavaScript product shell, but exposes no verified public careers page, official ATS endpoint, or enumerable job feed. This exact-name provider fails closed and returns no jobs rather than substituting similarly named companies or third-party listings."
+}

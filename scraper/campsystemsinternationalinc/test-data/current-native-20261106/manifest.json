@@ -1,0 +1,10 @@
+{
+  "source": "campsystemsinternationalinc",
+  "capturedOn": "2026-11-06",
+  "authority": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/JobBoardView/LoadSearchResults",
+  "nativeTotal": 22,
+  "indiaRecords": 0,
+  "notes": "Anonymous unfiltered native query, Top=50 Skip=0. totalCount and initialTotalOpportunitiesCount both equal 22. Additional native probes Top=2 Skip=0,2,20,22 retain the same totals and return 2,2,2,0 records.",
+  "file": "listing.json.gz",
+  "sha256": "e9adc46c83de985702cdc8608ffcf26e2b75604a58c25c6599b9e092140b0fed"
+}

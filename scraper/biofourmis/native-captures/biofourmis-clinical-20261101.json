@@ -1,0 +1,27 @@
+{
+  "url": "https://biofourmis.com/about/clinical-job-openings",
+  "status": 404,
+  "headers": {
+    "alt-svc": "clear",
+    "cache-control": "no-cache, must-revalidate, max-age=0, no-store, private",
+    "connection": "keep-alive",
+    "content-encoding": "br",
+    "content-type": "text/html; charset=UTF-8",
+    "date": "Sun, 01 Nov 2026 01:05:51 GMT",
+    "expires": "Wed, 11 Jan 1984 05:00:00 GMT",
+    "host-header": "WordPress.com",
+    "link": "<https://biofourmis.com/wp-json/>; rel=\"https://api.w.org/\"",
+    "server": "nginx",
+    "server-timing": "a8c-cdn, dc;desc=sin, cache;desc=MISS;dur=857.0",
+    "strict-transport-security": "max-age=31536000",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding, accept, content-type, cookie",
+    "x-ac": "33.sin _atomic_bur MISS",
+    "x-hacker": "Want root?  Visit join.a8c.com and mention this header.",
+    "x-remembering": "Eric Binnion <https://friendsofericbinnion.wordpress.com/>"
+  },
+  "requestedAt": "2026-11-01T01:05:39.952Z",
+  "completedAt": "2026-11-01T01:05:41.316Z",
+  "bytes": 88644,
+  "sha256": "e560bd66c7b7d921caa8e0f525093ce3e0e39d68c1d47c5585c36823207a0ce5"
+}

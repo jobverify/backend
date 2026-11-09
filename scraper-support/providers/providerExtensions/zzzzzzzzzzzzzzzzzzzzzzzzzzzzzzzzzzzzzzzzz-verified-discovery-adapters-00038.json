@@ -1,0 +1,51 @@
+[
+  {
+    "source": "credoai",
+    "companyName": "Credo AI",
+    "adapter": "script",
+    "atsPlatform": "ashby",
+    "boardToken": "credo.ai",
+    "parser": "source-local-current-official-native-identity-and-shared-Ashby-mapper",
+    "companyDomain": "credo.ai",
+    "officialHomepageUrl": "https://www.credo.ai/",
+    "companyCareerPage": "https://www.credo.ai/company/jobs",
+    "jobsBoardUrl": "https://jobs.ashbyhq.com/credo.ai",
+    "countryFilter": "India",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "public-single-response-API-and-native-board-ID-reconciliation-plus-final-whole-recheck",
+    "extractionStrategy": "current-active-corporate-embed+native-org-identity+public-API+exact-India-role-and-application-full-native-content",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T14:58:28.715Z",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "originalDryRunFile": null,
+    "remediationStatus": "implemented-offline-native-fixture-qualified-awaiting-independent-review",
+    "runtimeQualification": "ordinary-http-not-qualified-research-browser-proof-separate",
+    "verificationDisposition": "current-official-native-binding-offline-qualification-runtime-status-separate",
+    "sourceScopeNotes": "Exact current Credo AI corporate jobs embed and native Credo.AI organization. Individual legal employer absent/null. Generic Remote future-hiring record unresolved; complete company/country coverage not claimed. Only current explicit native India country+India Remote roles qualify; new secondary/geographic contracts fail closed. Original UTC native publication timestamps retained; one-calendar-month eligibility. Browser used only for research rawHTTP capture, never runtime.",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T14:58:28.715Z",
+      "officialURL": "https://www.credo.ai/",
+      "matchedLinks": [
+        "https://www.credo.ai/company/jobs",
+        "https://jobs.ashbyhq.com/credo.ai/embed"
+      ],
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/credoai-native-001/browser-native-001/manifest.json",
+          "sha256": "c215f494998b1b0cb43aaae360d449011f525086f0c295183355a7fd2b096c55"
+        }
+      ],
+      "bindingMethod": "actual-current-active-corporate-anchor-and-executable-native-embed"
+    },
+    "verifiedSurfaceSummary": "Current exact native organization, public API, India role/application pages and full API/board recheck support offline local qualification. Runtime inventory counts remain null."
+  }
+]

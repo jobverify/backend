@@ -1,0 +1,33 @@
+{
+  "companyName": "Gameberry Labs",
+  "host": "gameberry",
+  "identifier": "c69cfb2f-b876-4b10-bba3-a2f6411cd7f5",
+  "officialUrl": "https://gameberrylabs.com/",
+  "shellUrl": "https://gameberry.keka.com/careers",
+  "documentUrl": "https://gameberry.keka.com/ats/documents/c69cfb2f-b876-4b10-bba3-a2f6411cd7f5/careerportal/13fbe6501ce545e3810697881257d27a.html",
+  "redirectUrl": "https://gameberrylabs.com/jobs",
+  "mode": "redirect",
+  "source": "gameberrylabs",
+  "root": "https://gameberry.keka.com/careers/",
+  "portalIdentity": {
+    "name": "Gameberry Labs",
+    "shortName": "Gameberry Labs",
+    "domain": "gameberry.keka.com"
+  },
+  "expectedFinalUrls": {},
+  "foreignCountryProof": {
+    "jobId": "85579",
+    "locationId": 12811,
+    "country": "Spain",
+    "rawRecordSha256": "bc005b80376ba1cd213e9079ffc63f99b15baba8976eb95fd03ca664b4e12d94",
+    "rendererSha256": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b",
+    "stableSignatureSha256": "e6ae2fd4ce13b4b1be9065e1d8b1854ee6b8268da1a397be0536b5ec624a94d3",
+    "allowOnlyThisDisplayAgeField": "publishedSinceDays",
+    "referencePublishedSinceDays": 69,
+    "referenceBody": {
+      "workspacePath": "artifacts/keka-style-scope-repair/fresh-registered-2026-10-29T23-55-51.261Z/gameberrylabs/007.body",
+      "sha256": "41189fc6e1b2af69ae73f86be3f8e12d258e80d5f53b689d1fa5d9e6640c1f7e",
+      "roleId": 85579
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://synechron.wd1.myworkdayjobs.com/wday/cxs/synechron/SynechronCareers/jobs",
+  "detailUrlBase": "https://synechron.wd1.myworkdayjobs.com/en-US/SynechronCareers",
+  "countryFacetParameter": "locationCountry",
+  "maxPages": 10
+}

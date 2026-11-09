@@ -1,0 +1,15 @@
+[
+  {
+    "source": "basware",
+    "catalogOverride": true,
+    "atsPlatform": "jobylon-native-widget",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "complete-inline-widget-array-and-closing-reconciliation",
+    "extractionStrategy": "current-first-party-group-binding+native-widget-records+verified-full-role-details",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Current first-party Jobylon group 195/company 1689 binding and native role extraction; public inventory completeness is conditional on the current unfiltered page, reviewed loader/controller, all-row country-office partition, verified India details and matching closing inventory. Incomplete proof retains positives and forbids cleanup; legal-company universality remains unknown."
+  }
+]

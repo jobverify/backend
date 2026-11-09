@@ -1,0 +1,36 @@
+[
+  {
+    "source": "banyancloud",
+    "companyName": "Banyan Cloud",
+    "adapter": "script",
+    "modulePath": "../workbookbatch07/failClosedSentinel.js",
+    "dryRunFile": "workbookbatch07/banyancloud.jobs.json",
+    "atsPlatform": "workbook-exact-name-sentinel",
+    "countryFilter": "India",
+    "paginationStrategy": "none",
+    "extractionStrategy": "exact-name-batch-coverage-sentinel-return-empty-until-public-surface-is-verified",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-07-27",
+    "verifiedPublicJobCount": 0,
+    "verifiedIndiaJobCount": 0,
+    "verifiedSurfaceSummary": "Workbook batch 07 exact-name sentinel for Banyan Cloud added on Monday, July 27, 2026. It intentionally returns zero jobs until a trustworthy public careers surface is verified for this exact company name."
+  },
+  {
+    "source": "wellsfargotechnology",
+    "companyName": "Wells Fargo Technology",
+    "adapter": "script",
+    "modulePath": "../workbookbatch07/failClosedSentinel.js",
+    "dryRunFile": "workbookbatch07/wellsfargotechnology.jobs.json",
+    "atsPlatform": "workbook-exact-name-sentinel",
+    "countryFilter": "India",
+    "paginationStrategy": "none",
+    "extractionStrategy": "exact-name-batch-coverage-sentinel-return-empty-until-public-surface-is-verified",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-07-27",
+    "verifiedPublicJobCount": 0,
+    "verifiedIndiaJobCount": 0,
+    "verifiedSurfaceSummary": "Workbook batch 07 exact-name sentinel for Wells Fargo Technology added on Monday, July 27, 2026. It intentionally returns zero jobs until a trustworthy public careers surface is verified for this exact company name."
+  }
+]

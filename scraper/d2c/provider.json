@@ -1,0 +1,17 @@
+﻿{
+  "source": "d2c",
+  "companyName": "D2C",
+  "adapter": "script",
+  "modulePath": "../../scraper/d2c/script.js",
+  "companyCareerPage": "https://d2c.in/",
+  "atsPlatform": "official-company-site-no-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "homepage-plus-missing-first-party-careers-routes",
+  "extractionStrategy": "verified-homepage-shell+verified-missing-first-party-careers-routes+no-public-job-signals",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "d2c.in",
+  "verifiedOn": "2026-07-14",
+  "verifiedSurfaceSummary": "Verified https://d2c.in/ on July 14, 2026. The first-party homepage is a Mirav Labs marketing site with no public careers or jobs signals, and common first-party careers routes such as /careers, /career, /jobs, /join-us, /work-with-us, and /openings returned first-party Apache 404 pages."
+}
+

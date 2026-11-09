@@ -1,0 +1,587 @@
+[
+  {
+    "name": "abb",
+    "company": "ABB",
+    "baseUrl": "https://abb.wd3.myworkdayjobs.com/External_Career_Page",
+    "companyCareerPage": "https://careers.abb/global/en/search-results"
+  },
+  {
+    "name": "allstate",
+    "company": "Allstate",
+    "baseUrl": "https://allstate.wd5.myworkdayjobs.com/allstate_careers",
+    "companyCareerPage": "https://www.allstate.jobs/"
+  },
+  {
+    "name": "airbus",
+    "company": "Airbus",
+    "baseUrl": "https://ag.wd3.myworkdayjobs.com/en-US/Airbus",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "amadeus",
+    "company": "Amadeus",
+    "baseUrl": "https://amadeus.wd502.myworkdayjobs.com/jobs"
+  },
+  {
+    "name": "alation",
+    "company": "Alation",
+    "officialBrandName": "Alation",
+    "baseUrl": "https://alation.wd503.myworkdayjobs.com/en-US/ExternalSite",
+    "companyCareerPage": "https://www.alation.com/careers/all-careers/",
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.alation.com/careers/all-careers/ is the live first-party Alation careers page and that it links current openings to the public Workday board at https://alation.wd503.myworkdayjobs.com/en-US/ExternalSite. Verified on the same date that the live Workday surface exposed India openings including People Operations Generalist, Software Engineer II, and Software Engineer III with location marker IND-CHENNAI."
+  },
+  {
+    "name": "alteryx",
+    "company": "Alteryx",
+    "officialBrandName": "Alteryx",
+    "baseUrl": "https://alteryx.wd108.myworkdayjobs.com/en-US/AlteryxCareers",
+    "companyCareerPage": "https://www.alteryx.com/about-us/careers",
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.alteryx.com/about-us/careers was the live first-party Alteryx careers page and that the public Workday board remained available at https://alteryx.wd108.myworkdayjobs.com/en-US/AlteryxCareers. Verified on the same date that the public Workday jobs API at https://alteryx.wd108.myworkdayjobs.com/wday/cxs/alteryx/AlteryxCareers/jobs returned 74 total postings, exposed the India country facet c4f78be1a8f14da0ab49ce1162348a5e with count 6, and returned 6 live India openings when filtered to that verified India facet. Verified current public first-party India detail pages including Sr. Workday Integration Specialist at https://alteryx.wd108.myworkdayjobs.com/en-US/AlteryxCareers/job/Bangalore-India/Sr-Workday-Integration-Specialist_R12273, Learning Programs Specialist at https://alteryx.wd108.myworkdayjobs.com/en-US/AlteryxCareers/job/India---Remote/Learning-Programs-Specialist_R12227, and CX Operations Specialist at https://alteryx.wd108.myworkdayjobs.com/en-US/AlteryxCareers/job/India---Remote/CX-Operations-Specialist_R12183."
+  },
+  {
+    "name": "altera",
+    "company": "Altera",
+    "baseUrl": "https://altera.wd1.myworkdayjobs.com/Altera?locations=7a5690ab19831000af4c51ba7c190000&locations=7a5690ab19831000af4bec9f639a0000",
+    "companyCareerPage": "https://www.altera.com/careers"
+  },
+  {
+    "name": "soti",
+    "company": "Soti",
+    "baseUrl": "https://soti.wd3.myworkdayjobs.com/Careers"
+  },
+  {
+    "name": "aveva",
+    "company": "AVEVA",
+    "baseUrl": "https://aveva.wd3.myworkdayjobs.com/AVEVA_careers"
+  },
+  {
+    "name": "browserstack",
+    "company": "BrowserStack",
+    "baseUrl": "https://browserstack.wd3.myworkdayjobs.com/External",
+    "companyCareerPage": "https://www.browserstack.com/careers"
+  },
+  {
+    "name": "bloomenergy",
+    "company": "Bloom Energy",
+    "baseUrl": "https://bloomenergy.wd1.myworkdayjobs.com/BloomEnergyCareers",
+    "companyCareerPage": "https://www.bloomenergy.com/careers/"
+  },
+  {
+    "name": "broadcom",
+    "company": "Broadcom",
+    "baseUrl": "https://broadcom.wd1.myworkdayjobs.com/External_Career?locations=2a204116f85f01189cd964af936b70fb&locations=877d747df71910021363ea290d900000&locations=0dd627624e2e0176f301cad8dcd9ab0b&locations=752a3c9efe39105be2259b2c18d3b6e4&locations=2d466ab4e6e0013cf503069082349dd2",
+    "companyCareerPage": "https://www.broadcom.com/company/careers"
+  },
+  {
+    "name": "broadridge",
+    "company": "Broadridge Financial Solutions",
+    "baseUrl": "https://broadridge.wd5.myworkdayjobs.com/Careers",
+    "companyCareerPage": "https://broadridge.wd5.myworkdayjobs.com/Careers"
+  },
+  {
+    "name": "cadence",
+    "company": "Cadence",
+    "baseUrl": "https://cadence.wd1.myworkdayjobs.com/External_Careers",
+    "companyCareerPage": "https://www.cadence.com/en_US/home/company/life-at-cadence/careers.html"
+  },
+  {
+    "name": "caterpillar",
+    "company": "Caterpillar",
+    "baseUrl": "https://cat.wd5.myworkdayjobs.com/en-US/CaterpillarCareers",
+    "companyCareerPage": "https://careers.caterpillar.com/en/jobs/"
+  },
+  {
+    "name": "cloudera",
+    "company": "Cloudera",
+    "baseUrl": "https://cloudera.wd5.myworkdayjobs.com/External_Career",
+    "companyCareerPage": "https://www.cloudera.com/careers.html"
+  },
+  {
+    "name": "csg",
+    "company": "CSG",
+    "baseUrl": "https://csgi.wd5.myworkdayjobs.com/CSGCareers",
+    "companyCareerPage": "https://www.csgi.com/careers"
+  },
+  {
+    "name": "crowdstrikeindia",
+    "company": "CrowdStrike India",
+    "baseUrl": "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers",
+    "companyCareerPage": "https://crowdstrike.wd5.myworkdayjobs.com/crowdstrikecareers"
+  },
+  {
+    "name": "dxc",
+    "company": "DXC Technology",
+    "baseUrl": "https://dxctechnology.wd1.myworkdayjobs.com/DXCJobs",
+    "companyCareerPage": "https://careers.dxc.com"
+  },
+  {
+    "name": "dbstechindia",
+    "company": "DBS Tech India",
+    "baseUrl": "https://dbs.wd3.myworkdayjobs.com/DBS_Careers?locationCountry=c4f78be1a8f14da0ab49ce1162348a5e&locationRegionStateProvince=3cfc61cd0cf4100004b86c8483b80007&locationRegionStateProvince=a3c37012f51642f4a7b3dafc8ac37801&primaryLocation=5366ddcc4bf90192123de53fe42db278&primaryLocation=68fe1569ccbd10018b4147860d530000&primaryLocation=8e87adfb71e210018b87bdcaf7680000",
+    "companyCareerPage": "https://www.dbs.com/dbstechindia/career.html"
+  },
+  {
+    "name": "elsevier",
+    "company": "Elsevier",
+    "baseUrl": "https://relx.wd3.myworkdayjobs.com/ElsevierJobs",
+    "companyCareerPage": "https://www.elsevier.com/about/careers"
+  },
+  {
+    "name": "f5",
+    "company": "F5",
+    "baseUrl": "https://ffive.wd5.myworkdayjobs.com/f5jobs",
+    "companyCareerPage": "https://www.f5.com/company/careers"
+  },
+  {
+    "name": "fox",
+    "company": "Fox Corporation",
+    "baseUrl": "https://fox.wd1.myworkdayjobs.com/en-US/Domestic",
+    "companyCareerPage": "https://www.foxcareers.com/Search/SearchResults?country=India",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "logitech",
+    "company": "Logitech",
+    "baseUrl": "https://logitech.wd5.myworkdayjobs.com/Logitech",
+    "companyCareerPage": "https://www.logitech.com/en-us/careers"
+  },
+  {
+    "name": "hpinc",
+    "company": "HP Inc.",
+    "baseUrl": "https://hp.wd5.myworkdayjobs.com/ExternalCareerSite",
+    "companyCareerPage": "https://careers.hp.com"
+  },
+  {
+    "name": "intel",
+    "company": "Intel",
+    "baseUrl": "https://intel.wd1.myworkdayjobs.com/External?locations=1e4a4eb3adf101f44070f976bf8184cf&locations=fabab36f05f51000ba74e9448dc20000",
+    "companyCareerPage": "https://jobs.intel.com"
+  },
+  {
+    "name": "kla",
+    "company": "KLA",
+    "baseUrl": "https://kla.wd1.myworkdayjobs.com/Search",
+    "companyCareerPage": "https://www.kla.com/careers",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "kiongroup",
+    "company": "KION Group",
+    "baseUrl": "https://kiongroup.wd3.myworkdayjobs.com/en-US/KIONGroup",
+    "companyCareerPage": "https://www.kiongroup.com/en/Careers/Career-Home/"
+  },
+  {
+    "name": "geappliances",
+    "company": "GE Appliances",
+    "baseUrl": "https://haier.wd3.myworkdayjobs.com/GE_Appliances",
+    "companyCareerPage": "https://careers.geappliances.com/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "michelinindiapltd",
+    "company": "Michelin India (P) Ltd.",
+    "baseUrl": "https://michelinhr.wd3.myworkdayjobs.com/fr-FR/Michelin?Location_Country=c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://recrutement.michelin.fr/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "dentsuaegis",
+    "company": "Dentsu Aegis",
+    "baseUrl": "https://dentsuaegis.wd3.myworkdayjobs.com/DAN_GLOBAL"
+  },
+  {
+    "name": "philips",
+    "company": "Philips",
+    "baseUrl": "https://philips.wd3.myworkdayjobs.com/jobs-and-careers"
+  },
+  {
+    "name": "pfizer",
+    "company": "Pfizer",
+    "officialBrandName": "Pfizer",
+    "baseUrl": "https://pfizer.wd1.myworkdayjobs.com/en-US/PfizerCareers",
+    "companyCareerPage": "https://www.pfizer.com/about/careers/search-results",
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.pfizer.com/about/careers/search-results was the live first-party Pfizer careers search page and that it publicly listed India openings including Manager, Market Access in India - Mumbai and Senior HCE in India - Chennai. Verified on the same date that the public Pfizer Workday board exposed the canonical handoff https://pfizer.wd1.myworkdayjobs.com/PfizerCareers and that its public jobs API at https://pfizer.wd1.myworkdayjobs.com/wday/cxs/pfizer/PfizerCareers/jobs returned 30 India-filtered postings with the standard Workday Location_Country facet. Verified live India examples included Associate - MES in India - Vizag, Manager, Secretarial & Shareholder Services, India in India - Mumbai, Manager - Medical Communications and Content Solutions (MCCS), Oncology in India - Remote, and current public Pfizer India job detail pages under https://pfizer.wd1.myworkdayjobs.com/en-US/PfizerCareers/ including Data Ops Engineer in India - Chennai and India - Mumbai, Associate II - Reg CMC Strategy in India - Chennai, and Junior Associate in India - Vizag."
+  },
+  {
+    "name": "shell",
+    "company": "Shell",
+    "baseUrl": "https://shell.wd3.myworkdayjobs.com/en-GB/shellcareers"
+  },
+  {
+    "name": "spgi",
+    "company": "SPGI",
+    "baseUrl": "https://spgi.wd5.myworkdayjobs.com/SPGI_Careers"
+  },
+  {
+    "name": "motorolasolutions",
+    "company": "Motorola Solutions",
+    "baseUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers",
+    "companyCareerPage": "https://careers.motorolasolutions.com"
+  },
+  {
+    "name": "equifax",
+    "company": "Equifax",
+    "baseUrl": "https://equifax.wd5.myworkdayjobs.com/en-US/External"
+  },
+  {
+    "name": "elemica",
+    "company": "Elemica",
+    "baseUrl": "https://elemica.wd501.myworkdayjobs.com/wday/cxs/elemica/Elemica_Careers/jobs",
+    "companyCareerPage": "https://elemica.com/why-elemica/careers/"
+  },
+  {
+    "name": "epiqsystems",
+    "company": "Epiq Systems",
+    "baseUrl": "https://epiqsystems.wd503.myworkdayjobs.com/en-US/Epiq_Careers"
+  },
+  {
+    "name": "lnw",
+    "company": "Light & Wonder",
+    "baseUrl": "https://lnw.wd5.myworkdayjobs.com/LightWonderExternalCareers"
+  },
+  {
+    "name": "nvidia",
+    "company": "NVIDIA",
+    "baseUrl": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite",
+    "companyCareerPage": "https://www.nvidia.com/en-us/about-nvidia/careers"
+  },
+  {
+    "name": "o9solutions",
+    "company": "o9 Solutions",
+    "baseUrl": "https://o9solutions.wd5.myworkdayjobs.com/o9SolutionsExternal?locations=f1067acbdfdc1001082fa42e89560000",
+    "companyCareerPage": "https://o9solutions.com/careers"
+  },
+  {
+    "name": "q2ebanking",
+    "company": "Q2",
+    "baseUrl": "https://q2ebanking.wd5.myworkdayjobs.com/Q2"
+  },
+  {
+    "name": "quantiphi",
+    "company": "Quantiphi",
+    "baseUrl": "https://quantiphi.wd1.myworkdayjobs.com/en-US/Careers_at_Quantiphi",
+    "companyCareerPage": "https://quantiphi.wd1.myworkdayjobs.com/en-US/Careers_at_Quantiphi"
+  },
+  {
+    "name": "att",
+    "company": "AT&T",
+    "baseUrl": "https://att.wd1.myworkdayjobs.com/ATTSpecialInvite"
+  },
+  {
+    "name": "dow",
+    "company": "Dow",
+    "baseUrl": "https://dow.wd1.myworkdayjobs.com/ExternalCareers"
+  },
+  {
+    "name": "fractal",
+    "company": "Fractal",
+    "baseUrl": "https://fractal.wd1.myworkdayjobs.com/en-US/Careers?locations=4fedd31659ec01018833637cbf900000&locations=7edfb62955d310014b634f88574d0000&locations=ce4e62e669131000e2dc7e2e78a50000&locations=4fedd31659ec010188335e09918c0000&locations=3b3fb1d62c071000e2a0f48656560000&locations=4fedd31659ec01018833886e5c060000&locations=7babd3b910a21000e841d1c78e770000&locations=7edfb62955d310014b6351f083a60000"
+  },
+  {
+    "name": "mastercard",
+    "company": "Mastercard",
+    "baseUrl": "https://mastercard.wd1.myworkdayjobs.com/CorporateCareers?locations=8eab563831bf10acb97b7fba5feff76e&locations=8eab563831bf10acbb7b5bf86d570af1&locations=28905a74db1b10019f5bb16c36030000&locations=8eab563831bf10acbc722e4859721571&locations=8ffae25149e210718ae5b2e1cb1993bb&locations=85a5bdf4e1831035984400a2fb698c94",
+    "companyCareerPage": "https://careers.mastercard.com"
+  },
+  {
+    "name": "medtronic",
+    "company": "Medtronic",
+    "baseUrl": "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers",
+    "companyCareerPage": "https://www.medtronic.com/en-us/our-company/careers.html",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "stryker",
+    "company": "Stryker",
+    "baseUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers",
+    "companyCareerPage": "https://careers.stryker.com/jobs",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "microchip",
+    "company": "Microchip Technology",
+    "baseUrl": "https://wd5.myworkdaysite.com/en-US/recruiting/microchiphr/External",
+    "companyCareerPage": "https://www.microchip.com/en-us/about/careers"
+  },
+  {
+    "name": "ncrvoyix",
+    "company": "NCR Voyix",
+    "baseUrl": "https://ncr.wd1.myworkdayjobs.com/ext_apac",
+    "companyCareerPage": "https://www.ncrvoyix.com/about/careers"
+  },
+  {
+    "name": "nxp",
+    "company": "NXP Semiconductors",
+    "baseUrl": "https://nxp.wd3.myworkdayjobs.com/careers",
+    "companyCareerPage": "https://www.nxp.com/company/about-nxp/careers:CAREERS"
+  },
+  {
+    "name": "northerntrust",
+    "company": "Northern Trust",
+    "baseUrl": "https://ntrs.wd1.myworkdayjobs.com/northerntrust",
+    "companyCareerPage": "https://www.northerntrust.com/united-states/about-us/careers"
+  },
+  {
+    "name": "marvell",
+    "company": "Marvell",
+    "baseUrl": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers",
+    "companyCareerPage": "https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers"
+  },
+  {
+    "name": "visa",
+    "company": "Visa",
+    "baseUrl": "https://visa.wd5.myworkdayjobs.com/Visa",
+    "companyCareerPage": "https://corporate.visa.com/en/careers.html"
+  },
+  {
+    "name": "trellix",
+    "company": "Trellix",
+    "baseUrl": "https://trellix.wd1.myworkdayjobs.com/EnterpriseCareers?locations=17473f74f1d501886cf7ba67a101abdd&locations=17473f74f1d501f1ff3fb267a101a6dd"
+  },
+  {
+    "name": "autodesk",
+    "company": "Autodesk",
+    "baseUrl": "https://autodesk.wd1.myworkdayjobs.com/en-US/Ext",
+    "companyCareerPage": "https://autodesk.wd1.myworkdayjobs.com/EXT",
+    "boardIdentityVerified": true
+  },
+  {
+    "name": "calix",
+    "company": "Calix",
+    "baseUrl": "https://calix.wd1.myworkdayjobs.com/en-US/ExternalInternational"
+  },
+  {
+    "name": "paloalto",
+    "company": "Palo Alto Networks",
+    "baseUrl": "https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers?locations=4c6868193c0310016a33a54db4b20000&locations=4c6868193c0310016a33b01abd8b0000&locations=e62cc4173be310016a98201022730000&locations=e62cc4173be310016a988b977ccd0000&locations=0925b66a7d40107de95dc57546152c93&locations=a4e5dc5cfe170161250a9bd1b000e413&locations=bafc965434591001f048843674030000&locations=45eb6188f3f71001f085c28ca35a0000&locations=9b10db154fdd105cf240db7bb48decbe&locations=9b10db154fdd105cf1ec795200e5ec5f&locations=2e473c9ce0941001603bdcd7043c0000",
+    "companyCareerPage": "https://jobs.paloaltonetworks.com/en"
+  },
+  {
+    "name": "redhat",
+    "company": "Red Hat",
+    "baseUrl": "https://redhat.wd5.myworkdayjobs.com/jobs",
+    "companyCareerPage": "https://www.redhat.com/jobs"
+  },
+  {
+    "name": "resmed",
+    "company": "ResMed Technology Pvt Ltd",
+    "baseUrl": "https://resmed.wd3.myworkdayjobs.com/en-US/Resmed_External_Careers",
+    "companyCareerPage": "https://careers.resmed.com/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "salesforce",
+    "company": "Salesforce",
+    "baseUrl": "https://salesforce.wd12.myworkdayjobs.com/external_career_site",
+    "companyCareerPage": "https://careers.salesforce.com"
+  },
+  {
+    "name": "temenos",
+    "company": "Temenos",
+    "baseUrl": "https://temenos.wd103.myworkdayjobs.com/en-US/Temenoscareers",
+    "companyCareerPage": "https://www.temenos.com/about-us/careers/"
+  },
+  {
+    "name": "sabre",
+    "company": "Sabre Corporation",
+    "baseUrl": "https://sabre.wd1.myworkdayjobs.com/SabreJobs",
+    "companyCareerPage": "https://www.sabre.com/careers",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "safesend",
+    "company": "SafeSend",
+    "baseUrl": "https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site",
+    "companyCareerPage": "https://safesend.com/about/careers/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "avenhospitality",
+    "company": "Aven Hospitality",
+    "baseUrl": "https://ah.wd108.myworkdayjobs.com/AvenHospitalityJobs",
+    "companyCareerPage": "https://www.avenhospitality.com/careers",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "samsungresearch",
+    "company": "Samsung Research",
+    "baseUrl": "https://sec.wd3.myworkdayjobs.com/en-US/Samsung_Careers?locations=189767dd6c9201b802603c83a5292c78&Location_Country=c4f78be1a8f14da0ab49ce1162348a5e&hiringCompany=189767dd6c9201554f3e5312a7290a85",
+    "companyCareerPage": "https://research.samsung.com/careers"
+  },
+  {
+    "name": "sony",
+    "company": "Sony",
+    "baseUrl": "https://sonyglobal.wd1.myworkdayjobs.com/en-US/SonyGlobalCareers",
+    "companyCareerPage": "https://sonyglobal.wd1.myworkdayjobs.com/en-US/SonyGlobalCareers"
+  },
+  {
+    "name": "mrisoftware",
+    "company": "MRI Software",
+    "baseUrl": "https://mrisoftware.wd501.myworkdayjobs.com/External_CareerSite"
+  },
+  {
+    "name": "kaleris",
+    "company": "Kaleris",
+    "baseUrl": "https://kaleris.wd501.myworkdayjobs.com/kaleris_careers?locations=39a74440c4f910011fdea2ce8da20000&locations=39a74440c4f910011fdea6685c650000"
+  },
+  {
+    "name": "nissandigitalindia",
+    "company": "Nissan Digital India",
+    "baseUrl": "https://alliance.wd3.myworkdayjobs.com/en-US/nissanjobs?Location_Country=c4f78be1a8f14da0ab49ce1162348a5e&Location_Region_State_Province=65209da0144c4c0a888940bb289f14bc",
+    "companyCareerPage": "https://www.nissanmotor.jobs/ami/india/ndi/careers.html",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "synechron",
+    "company": "Synechron",
+    "baseUrl": "https://synechron.wd1.myworkdayjobs.com/SynechronCareers",
+    "companyCareerPage": "https://www.synechron.com/careers/jobs/all/India/all",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "sprinklr",
+    "company": "Sprinklr",
+    "baseUrl": "https://sprinklr.wd1.myworkdayjobs.com/careers",
+    "companyCareerPage": "https://www.sprinklr.com/careers/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "thales",
+    "company": "Thales",
+    "baseUrl": "https://thales.wd3.myworkdayjobs.com/Careers",
+    "companyCareerPage": "https://careers.thalesgroup.com/global/en/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "thoughtspot",
+    "company": "ThoughtSpot",
+    "baseUrl": "https://thoughtspot.wd5.myworkdayjobs.com/en-US/careers",
+    "companyCareerPage": "https://www.thoughtspot.com/careers",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "target",
+    "company": "Target",
+    "baseUrl": "https://target.wd5.myworkdayjobs.com/en-US/targetcareers",
+    "companyCareerPage": "https://indiajobs.target.com/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "trinitylifesciences",
+    "company": "Trinity Life Sciences",
+    "baseUrl": "https://trinitylifesciences.wd108.myworkdayjobs.com/Trinity",
+    "companyCareerPage": "https://trinitylifesciences.com/company/careers/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "verizon",
+    "company": "Verizon",
+    "baseUrl": "https://verizon.wd12.myworkdayjobs.com/verizon-careers?locations=4466d54cbeba1000c057b4c460500000&locations=4466d54cbeba1000c05cff9bdacc0000&locations=4466d54cbeba1000c066b6f377040000",
+    "companyCareerPage": "https://mycareer.verizon.com/jobs/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "workday",
+    "company": "Workday",
+    "baseUrl": "https://workday.wd5.myworkdayjobs.com/Workday",
+    "companyCareerPage": "https://workday.wd5.myworkdayjobs.com/Workday"
+  },
+  {
+    "name": "gapinc",
+    "company": "Gap Inc.",
+    "baseUrl": "https://gapinc.wd1.myworkdayjobs.com/GAPINC",
+    "companyCareerPage": "https://gapinc.wd1.myworkdayjobs.com/GAPINC",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "unisys",
+    "company": "Unisys",
+    "baseUrl": "https://unisys.wd5.myworkdayjobs.com/External",
+    "companyCareerPage": "https://www.unisys.com/careers/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "guidewire",
+    "company": "Guidewire",
+    "baseUrl": "https://wd5.myworkdaysite.com/recruiting/guidewire/external",
+    "companyCareerPage": "https://www.guidewire.com/about/careers/jobs"
+  },
+  {
+    "name": "wolterskluwer",
+    "company": "Wolters Kluwer",
+    "baseUrl": "https://wk.wd3.myworkdayjobs.com/External",
+    "companyCareerPage": "https://careers.wolterskluwer.com/en-in",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "valeo",
+    "company": "Valeo",
+    "baseUrl": "https://valeo.wd3.myworkdayjobs.com/en-US/valeo_jobs",
+    "companyCareerPage": "https://www.valeo.com/en/careers/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "protiviti",
+    "company": "Protiviti",
+    "baseUrl": "https://roberthalf.wd1.myworkdayjobs.com/en-US/ProtivitiIndia",
+    "companyCareerPage": "https://www.protiviti.com/in-pcc/careers",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "venaenergy",
+    "company": "Vena Energy",
+    "baseUrl": "https://venaenergy.wd102.myworkdayjobs.com/External",
+    "companyCareerPage": "https://venagroup.com/careers/",
+    "countryFilter": "Global"
+  },
+  {
+    "name": "brenntagindia",
+    "company": "Brenntag India",
+    "baseUrl": "https://brenntag.wd3.myworkdayjobs.com/brenntag_jobs",
+    "companyCareerPage": "https://www.brenntag.com/en-in/career/",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+  },
+  {
+    "name": "transunioncibil",
+    "company": "TransUnion CIBIL",
+    "baseUrl": "https://transunion.wd5.myworkdayjobs.com/transunion",
+    "companyCareerPage": "https://www.transunioncibil.com/careers/careers-at-tu",
+    "locationCountry": null,
+    "officialWorkdayBoardUrl": "https://transunion.wd5.myworkdayjobs.com/transunion",
+    "jobsApiUrl": "https://transunion.wd5.myworkdayjobs.com/wday/cxs/transunion/transunion/jobs",
+    "verifiedOn": "2026-07-17",
+    "verifiedSurfaceSummary": "Verified on Friday, July 17, 2026 that the official TransUnion CIBIL careers page at https://www.transunioncibil.com/careers/careers-at-tu exposes a View Openings handoff to the official public Workday board at https://transunion.wd5.myworkdayjobs.com/transunion, whose public jobs API contract is https://transunion.wd5.myworkdayjobs.com/wday/cxs/transunion/transunion/jobs. This exact-name provider is pinned to that first-party Workday handoff for India hiring."
+  },
+  {
+    "name": "rockwellautomation",
+    "company": "Rockwell Automation",
+    "officialBrandName": "Rockwell Automation",
+    "baseUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation",
+    "companyCareerPage": "https://www.rockwellautomation.com/en-us/careers.html",
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.rockwellautomation.com/en-us/careers.html was the live first-party Rockwell Automation careers page and that its View Jobs handoff resolved to the public Workday board at https://rockwellautomation.wd1.myworkdayjobs.com/en-US/External_Rockwell_Automation. Verified on the same date that the live Workday surface exposed India openings including Software Development Engineer in Bangalore, India, SAP SCM Consultant across Bengaluru, India, Pune, India, and India New Delhi (Noida), and AI Transformation Lead across Bangalore, India, Pune, India, and Noida, India."
+  },
+  {
+    "name": "analogdevicesindia",
+    "company": "Analog Devices India",
+    "officialBrandName": "Analog Devices",
+    "baseUrl": "https://analogdevices.wd1.myworkdayjobs.com/External",
+    "companyCareerPage": "https://www.analog.com/en/careers/career-opportunities.html",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "officialWorkdayBoardUrl": "https://analogdevices.wd1.myworkdayjobs.com/External",
+    "jobsApiUrl": "https://analogdevices.wd1.myworkdayjobs.com/wday/cxs/analogdevices/External/jobs",
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.analog.com/en/careers/career-opportunities.html is the live first-party Analog Devices careers page and links Search Analog Devices Jobs to https://analogdevices.wd1.myworkdayjobs.com/External. Verified on the same date that the public Workday jobs API at https://analogdevices.wd1.myworkdayjobs.com/wday/cxs/analogdevices/External/jobs returned 955 total postings, exposed the India country facet c4f78be1a8f14da0ab49ce1162348a5e with count 114, and exposed India location buckets including Bangalore, Gandhinagar, and Hyderabad."
+  },
+  {
+    "name": "kantar",
+    "company": "Kantar",
+    "baseUrl": "https://kantar.wd3.myworkdayjobs.com/KANTAR",
+    "companyCareerPage": "https://www.kantar.com/careers",
+    "boardIdentityVerified": true,
+    "dryRunFile": "kantar/jobs.json"
+  }
+]

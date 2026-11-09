@@ -1,0 +1,21 @@
+{
+  "source": "temenos",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../../scraper/temenos.workday/script.js",
+  "baseUrl": "https://temenos.wd103.myworkdayjobs.com/en-US/Temenoscareers",
+  "companyCareerPage": "https://www.temenos.com/about-us/careers/",
+  "companyDomain": "temenos.com",
+  "atsPlatform": "workday",
+  "paginationStrategy": "complete-unfiltered-CXS+full-public-details+closing-CXS-after-current-office-directory",
+  "extractionStrategy": "current-corporate-tenant-site-binding+typed-native-countries+exact-role-secondary-worksite-country-proof",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedInventoryStatus": "discovery-only",
+  "verifiedAt": null,
+  "verifiedOn": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceScopeNotes": "Runtime validates the current corporate Workday tenant/site and declared public office directory, reconciles all directory pages and countries across current snapshots, and supplies data proof only for otherwise unresolved exact additional CXS worksite labels. Typed native countries, conflicting or ambiguous labels, remote labels, original native dates and descriptions remain intact. Two complete native inventory/detail passes close after public criteria and directory reads. Completion applies to this configured public board; whole-company totals and lifecycle cleanup remain unverified."
+}

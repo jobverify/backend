@@ -1,0 +1,32 @@
+[
+  {
+    "source": "aosmith",
+    "companyName": "A. O. Smith",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../aosmith/script.js",
+    "companyDomain": "aosmith.com",
+    "companyCareerPage": "https://jobs.aosmith.com/search/",
+    "officialHomepageUrl": "https://www.aosmith.com/",
+    "atsPlatform": "successfactors-public-native-get",
+    "countryFilter": "India",
+    "paginationStrategy": "employer-published-native-tile-client-get-offsets",
+    "extractionStrategy": "original-all-country-native-listings-and-own-postings-before-caps",
+    "parser": "aosmith-native-public-get",
+    "backfillMode": "discovery-only",
+    "zeroResultPolicy": "coverage-gap",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "boardIdentityVerified": false,
+    "bindingEvidence": null,
+    "scraperTimeoutMs": 200000,
+    "sourceLifecycleTimeoutMs": 240000,
+    "verificationDisposition": "current-discovery-own-model-stability-and-employer-country-scope-unverified",
+    "verifiedSurfaceSummary": "Anonymous public native GET discovery. Original listing and own posting observations remain separate from whole employer/country completeness and own-criteria stability. Missing reads are not empty-source proof."
+  }
+]

@@ -1,0 +1,18 @@
+HolidayIQ native recruiting discovery remediation (2026-10-23)
+
+The old script ignored transport and unconditionally returned []. Three first-written regression cases failed with Missing expected rejection against that original implementation: actual receipt replay through run and factory, and a failed transport. The updated adapter actively reads bounded native receipts and raises HOLIDAYIQ_COVERAGE_GAP; it never reports a verified empty inventory.
+
+Evidence retained in fixtures/capture-manifest.json:
+- Actual https://www.holidayiq.com/ returned HTTP 403 Cloudflare challenge at 2026-10-23T08:55:24.375Z. Web search exposed indexed consumer flight-search content, which does not override the actual HTTP receipt.
+- Actual https://www.linkedin.com/company/www-holidayiq-com returned HTTP 200. Native identity is HolidayIQ, employer 404342, with Organization schema naming HolidayIQ and the acquisition note. Its generic Browse Jobs links do not enumerate employer vacancies. Headquarters country is not vacancy country.
+- Exact checked employer 404342 India and Worldwide searches both returned HTTP 200 no-match states with no role cards. These are observed native search states, not proof that HolidayIQ has no vacancies across every channel.
+- Parent-group primary network and careers pages were independently researched and captured in parent-pages.json.gz. HolidayIQ Pte Ltd subsidiary association does not make lastminute.com branded vacancies HolidayIQ vacancies. These parent pages are research exclusions, not runtime inventory sources.
+
+Runtime checks homepage and exact native profile/searches, retaining status, final URL, body hash and capture time. Homepage Cloudflare 403 is a negative probe and does not prevent independent native discovery. Unknown transport failures, unsupported streams, changed final URLs, changed exact employer/search scope, new role cards, JobPosting schemas, microdata, country/date/expiry metadata, time elements or recruiting handoffs raise a typed incomplete-coverage error requiring review. Publication timestamps are never synthesized from capture time; no city/headquarters-to-country inference occurs. Missing JD is not an exclusion here: no actual exact-employer vacancy was exposed to evaluate.
+
+No vacancies were recovered. Whole-company and India inventory counts are null, firstParty is false because a first-party recruiting handoff is unverified, listing/scope completeness are false, and lifecycle cleanup is disabled. This is a validated discovery/coverage-gap repair candidate, not a successful extraction claim. jobs.json remains the historical empty dry-run file and is not current inventory evidence.
+
+Transport is injected through factory defaults or run options. One aggregate deadline covers every fetch/body read; bodies are stream-only and capped at 4,000,000 bytes each; caller abort reason is preserved exactly, late/unread and interrupted readers are canceled. Importing with an unrelated --dry-run argument cannot fetch or save. Direct CLI exits nonzero for the coverage gap and performs no database writes.
+
+Verification: node --test scraper/holidayiq/script.test.js scraper-support/tests/holidayiqScript.test.js
+The scoped suite covers actual gzip receipt replay, factory/run injection, registration, SHA256 manifest, transport failure, pending fetch/body deadline, precise caller cancellation, late response cancellation, oversized/unsupported streams, final URL drift, native employer/scope/schema/date/country/expiry/role drift, and import side effects. Shared registry metadata is owned by the parent remediation task; catalog-candidate.json uses relative paths for its reviewable replacement.

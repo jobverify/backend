@@ -1,0 +1,14 @@
+{
+  "requestedUrl": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
+  "finalUrl": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
+  "status": 200,
+  "at": "2026-11-01T00:07:57.650Z",
+  "bytes": 2791050,
+  "sha256": "5988c86a7dd98ed25c0f7e9c1983d3b2acb09efb92e97722eec89bdec88da840",
+  "headers": {
+    "content-type": "application/json",
+    "server": "istio-envoy",
+    "cf-mitigated": null,
+    "cf-ray": null
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "requestedUrl": "https://www.coinbase.com/careers/positions/8333273",
+  "finalUrl": "https://www.coinbase.com/careers/positions/8333273",
+  "status": 403,
+  "at": "2026-11-01T00:07:56.634Z",
+  "bytes": 5705,
+  "sha256": "f5f93d61fc7cb7ed12e78e51fec34542456177a1337634b25b0671baee0236f4",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "cloudflare",
+    "cf-mitigated": "challenge",
+    "cf-ray": "a536a9c1789331ed-MAA"
+  }
+}

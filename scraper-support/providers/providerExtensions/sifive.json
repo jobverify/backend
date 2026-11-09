@@ -1,0 +1,15 @@
+{
+  "source": "sifive",
+  "companyName": "SiFive",
+  "officialBrandName": "SiFive",
+  "exactCompanyMatchOnly": true,
+  "adapter": "workday",
+  "baseUrl": "https://sifive.wd1.myworkdayjobs.com/en-US/sifivecareers",
+  "companyCareerPage": "https://www.sifive.com/careers",
+  "companyDomain": "sifive.com",
+  "officialWorkdayBoardUrl": "https://sifive.wd1.myworkdayjobs.com/en-US/sifivecareers",
+  "jobsApiUrl": "https://sifive.wd1.myworkdayjobs.com/wday/cxs/sifive/sifivecareers/jobs",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "verifiedOn": "2026-07-25",
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.sifive.com/careers is the live first-party SiFive careers page and that its See Open Roles handoff points to the public Workday board at https://sifive.wd1.myworkdayjobs.com/en-US/sifivecareers. Verified on the same date that public SiFive Workday job pages included current India openings such as Staff / Sr Staff Engineer in Bengaluru, Karnataka, India and Engineer I in Bengaluru, Karnataka, India."
+}

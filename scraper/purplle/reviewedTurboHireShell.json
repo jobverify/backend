@@ -1,0 +1,99 @@
+{
+  "observedURL": "https://purplle.turbohire.co/careerpage/3ed17e54-f66f-4ade-90b9-ef064dc6fbd6",
+  "observedAt": "2026-11-06T06:40:30.852Z",
+  "scripts": [
+    {
+      "async": "",
+      "src": "https://www.googletagmanager.com/gtag/js?id=G-36T6S0LNJM"
+    },
+    {
+      "src": "sha256:4b1ca93a847cdb57058846054ca8fa57e7d534ff94b0d081499695e9d79b02e8",
+      "async": ""
+    },
+    {
+      "src": "https://code.jquery.com/jquery-3.7.0.slim.min.js",
+      "integrity": "sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=",
+      "crossorigin": "anonymous"
+    },
+    {
+      "async": "",
+      "src": "https://checkout.razorpay.com/v1/checkout.js"
+    },
+    {
+      "async": "",
+      "src": "https://vjs.zencdn.net/7.3.0/video.min.js"
+    },
+    {
+      "async": "",
+      "defer": "defer",
+      "src": "https://www.webrtc-experiment.com/EBML.js"
+    },
+    {
+      "async": "",
+      "defer": "defer",
+      "src": "https://apis.google.com/js/platform.js"
+    },
+    {
+      "src": "https://fast.wistia.com/assets/external/E-v1.js",
+      "async": ""
+    },
+    {
+      "src": "https://fast.wistia.com/embed/medias/iwl55pmvfx.jsonp",
+      "async": ""
+    },
+    {
+      "src": "https://fast.wistia.com/embed/medias/fc0tvbwr6k.jsonp",
+      "async": ""
+    },
+    {
+      "src": "https://fast.wistia.com/embed/medias/vtxfkj6k9g.jsonp",
+      "async": ""
+    },
+    {
+      "src": "https://fast.wistia.com/embed/medias/v1zlv77sxf.jsonp",
+      "async": ""
+    },
+    {
+      "src": "https://turbohire.statuspage.io/embed/script.js"
+    },
+    {
+      "src": "/runtime-main.a3801c5ec8c75a558b86.js"
+    },
+    {
+      "src": "/18.0a0a3f53b49041744779.chunk.js"
+    },
+    {
+      "src": "/30.812b9abed47cf2099f54.chunk.js"
+    },
+    {
+      "src": "/main.bc8f2fdf0fa9e74f4468.chunk.js"
+    }
+  ],
+  "inlineSHA256": [
+    "c7ac27b0884ea5a24cf30845d0d7c80153b338e455d2d1213226a9f636018f73",
+    "a6f28dc86db77300570ab8bdceb0c5afb8479d776c51f8e124435476a4c55baf",
+    "988c48ac5ace12cc4df1f6a8e60d051e7d7d446167f90c93916e8c5439a83738"
+  ],
+  "styles": [
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900"
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/css?family=Inter:300,400,500,700"
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://fonts.googleapis.com/icon?family=Material+Icons"
+    },
+    {
+      "href": "/static/css/18.82f66c09.chunk.css",
+      "rel": "stylesheet"
+    },
+    {
+      "href": "/static/css/main.a21a9906.chunk.css",
+      "rel": "stylesheet"
+    }
+  ]
+}

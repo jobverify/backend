@@ -1,0 +1,28 @@
+{
+  "source": "ascenthealth",
+  "files": [
+    {
+      "file": "homepage.html.gz",
+      "url": "https://www.ascenthealthcare.com/",
+      "status": 200,
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\ascent-home-1793664627428-71d73dc85903.body",
+      "originalSha256": "fdb32a64e55b80813a904462eccf66ff3400f8693c634e1774c1424cf1efc930",
+      "fixtureSha256": "44c51b96e0eb0aec427850547479d19f216dd2723eeb24bc58c53140da00975b",
+      "gzipSha256": "d06c23c2515ef13e8067185debc4f6afdb7f2158d295b0fe6cdbf55906135b60",
+      "publicFormConfigurationRedactions": 2
+    },
+    {
+      "file": "careers.html.gz",
+      "url": "https://www.ascenthealthcare.com/careers/",
+      "status": 200,
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\ascent-careers-1793664627386-f806d41bd605.body",
+      "originalSha256": "d5339cf6f0c8de0a38df627efc09c5ff1d948204d32f686782cc61db6a68709b",
+      "fixtureSha256": "6f2aee7f055ac365dc770eaa095089faf0f87d6402668e09aa9f944e5d752d54",
+      "gzipSha256": "3b72064d601bb4960515066aad5545855d0f6839e621f8dd3f81bdccfca1a52b",
+      "publicFormConfigurationRedactions": 3
+    }
+  ],
+  "applicationActionsTaken": false,
+  "codeExecuted": false,
+  "note": "Public page fixtures; form nonce/token/site-key properties redacted inside statically decoded scripts."
+}

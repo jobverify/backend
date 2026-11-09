@@ -1,0 +1,43 @@
+[
+  {
+    "source": "imtf",
+    "companyName": "IMTF",
+    "adapter": "script",
+    "modulePath": "../imtf/script.js",
+    "dryRunFile": "imtf/jobs.json",
+    "catalogOverride": true,
+    "atsPlatform": "official-careers-advertised-workable-markdown",
+    "countryFilter": "India",
+    "parser": "source-specific-imtf-native-markdown",
+    "normalizationProfile": "engineering-default",
+    "backfillMode": "live-parser",
+    "paginationStrategy": "official-advertised-role-rows;whole-company-scope-unknown",
+    "extractionStrategy": "official-home-careers-handoff+each-role-own-explicit-Markdown-alternate",
+    "companyDomain": "imtf.com",
+    "officialHomepageUrl": "https://imtf.com/",
+    "companyCareerPage": "https://imtf.com/about-us/careers/",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "officialBindingVerifiedAt": null,
+    "verificationDisposition": "offline-implementation-awaiting-independent-review",
+    "remediationStatus": "implemented-offline-awaiting-independent-review",
+    "zeroResultPolicy": "coverage-gap",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "runtimeQualification": "unqualified-offline-fixture-only",
+    "verifiedSurfaceSummary": "Retained batch041 official IMTF home/careers advertises five Workable role links; one original full India role HTML and its explicitly advertised Markdown document retained at2026-10-22T00:23:16.299Z. Its native publication day remains2026-07-09. Four other role details/Markdown alternates are unretained. Dynamic source-specific advertised-link parser retains good India facts beside partial failures. Provisional official IMTF brand attribution only; legal employer, first-ever publication, lifecycle and global inventory unknown; no aliases, delegated inventory, verified empty or cleanup. Runtime, eligible, saved and visible counts unqualified.",
+    "bindingEvidence": {
+      "verified": false,
+      "officialURL": "https://imtf.com/about-us/careers/",
+      "bindingMethod": "official-home-to-careers-to-actual-advertised-role-HTML-and-Markdown-handoff",
+      "identityEvidenceScope": "Provisional registered IMTF brand association only; legal/global inventory/alias/delegation equivalence unknown",
+      "evidenceOrigin": "retained-batch041-offline-only",
+      "checkedAt": "2026-10-22T00:23:16.299Z",
+      "applicationsOpened": false,
+      "releaseRuling": "artifacts/full-catalog/imtf-offline-implementation-release-379.json"
+    }
+  }
+]

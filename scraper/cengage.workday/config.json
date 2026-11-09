@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://cengage.wd5.myworkdayjobs.com/wday/cxs/cengage/CengageIndiaCareers/jobs",
+  "detailUrlBase": "https://cengage.wd5.myworkdayjobs.com/CengageIndiaCareers",
+  "officialCareersUrl": "https://www.cengagegroup.com/careers/",
+  "inventoryScope": "complete-board-country-proof",
+  "locationCountry": null,
+  "workdayMaxPages": 50,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

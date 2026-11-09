@@ -1,0 +1,264 @@
+{
+  "source": "campsystemsinternationalinc",
+  "fixtures": [
+    {
+      "file": "careers.html.gz",
+      "url": "https://www.campsystems.com/careers",
+      "status": 200,
+      "capturedAt": "2026-11-02T22:16:45.399Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-careers-1793657805388-45018b47b7ec.body",
+      "originalSha256": "54a28ab36170d8517433b49d035b46fa55433e8acde6dece8be93950f0c66712",
+      "payloadSha256": "54a28ab36170d8517433b49d035b46fa55433e8acde6dece8be93950f0c66712",
+      "compressedSha256": "585ff3bc0cf00807ef480137b6217eebc9a9d77847a43469532e9fd46b8faf48",
+      "anonymousCsrfValueRedactions": 0
+    },
+    {
+      "file": "handoff.html.gz",
+      "url": "https://cta-redirect.hubspot.com/cta/redirect/5733783/94640c9a-0be6-492a-b662-941c8fc6e4bf",
+      "status": 200,
+      "capturedAt": "2026-11-02T22:21:55.442Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-opportunities-handoff-1793658115434-8424e91efbc7.body",
+      "originalSha256": "31c0b9ad3c65936510c4adec014903dee74b1316f83b56b8f352b1377c327709",
+      "payloadSha256": "31c0b9ad3c65936510c4adec014903dee74b1316f83b56b8f352b1377c327709",
+      "compressedSha256": "960bf978f7920c11a1a50b525d8fbfe6ec5ab9cdf4b5a55aeddd15fb9264962e",
+      "anonymousCsrfValueRedactions": 0
+    },
+    {
+      "file": "board.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/?q=&o=postedDateDesc",
+      "status": 200,
+      "capturedAt": "2026-11-02T22:25:32.131Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-native-board-1793658332119-88b85542d1c9.body",
+      "originalSha256": "79d994b7380c845da08c4da12e56b8734f7a9b70f662722a618e139e454dce74",
+      "payloadSha256": "f8b5f57692eb58b7241787eaa1083d1e26c962e2c362c0a8fa67fc8941823d56",
+      "compressedSha256": "5879b61a2078e399eb2fe23b2ecf06cb1ef3d03244947b12de21f1216a89d08f",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-cb59e146-6e61-40ef-b291-2d1a50bc8c7d.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=cb59e146-6e61-40ef-b291-2d1a50bc8c7d",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:40.078Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-cb59e146-6e61-40ef-b291-2d1a50bc8c7d-1793662420076-2ae12b6d1cd7.body",
+      "originalSha256": "ab2bff68c9b2c11500f53aca1e29a3455cf2fbf01dcafe6a037e60552f4c8bd2",
+      "payloadSha256": "40c0c001a206ae233c2b8a55b2b9a9fa0bc90c48caf834a62867beeda639e0fe",
+      "compressedSha256": "b0caf0cd420300ee7807d105b6da99728e7a8bd3ab3a4546a712b6d1c39fc105",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-22f639db-2d94-42a2-8035-e89cad3ee601.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=22f639db-2d94-42a2-8035-e89cad3ee601",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:40.043Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-22f639db-2d94-42a2-8035-e89cad3ee601-1793662420040-a04b6980b546.body",
+      "originalSha256": "96a3dd23881afa1933a3b67f1e44eb83fe725e439f69cdc8e4e5c34e5edde532",
+      "payloadSha256": "31f2e549d141ffbaad19b5f1c9d1ae38e8d08dcf34459164d0e64f01694af229",
+      "compressedSha256": "43f89f731def26fbc4565829bbdb873889272e2793dc8aef24585e0832d93173",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-bd06527c-06c9-40a8-a779-92de6dd9a2c0.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=bd06527c-06c9-40a8-a779-92de6dd9a2c0",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:40.895Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-bd06527c-06c9-40a8-a779-92de6dd9a2c0-1793662420893-a411ce2a79aa.body",
+      "originalSha256": "3713c17a4120ec1dab582cb9330dc9c35373f4ca9434fc727d103c6ad5984432",
+      "payloadSha256": "d3cd6070b0499b8f06c9ba5a47e9cf042626b88bf7aa8013fbd29d802341c3ae",
+      "compressedSha256": "8ba480b8465e37a3c62e06c2f52800827ec8f94e9250630ad750309a304edef7",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-e644c796-59d6-433f-8cb4-1ae9a9f4f632.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=e644c796-59d6-433f-8cb4-1ae9a9f4f632",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:41.185Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-e644c796-59d6-433f-8cb4-1ae9a9f4f632-1793662421182-12029ac5c6ce.body",
+      "originalSha256": "540f198fdc938ff2e90bd59990f6d679bdfbbf9c00847b941488ce0f9edccb54",
+      "payloadSha256": "b840934ecd2ae46693838236712d4e7ff655fa3ad87a6a3cd201aeb25bd56aa1",
+      "compressedSha256": "a6266738edc2cf0954cf95d40f6f225f07eec9ca16f9444048c84a48fd7259d7",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-fcf506d6-4f80-4a61-9dfd-4cb75fd7d69f.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=fcf506d6-4f80-4a61-9dfd-4cb75fd7d69f",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:41.269Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-fcf506d6-4f80-4a61-9dfd-4cb75fd7d69f-1793662421266-36629ef4ec9d.body",
+      "originalSha256": "8ee79d576398ded58e04322192e9022569315d6784f819dbb33a7a569e22c8de",
+      "payloadSha256": "4628e4a9ef581a5e752765698a212d68ec46ec2900d0312067e636cb3628635e",
+      "compressedSha256": "4177d0fd1064421add7d2b54baa472e644003b4d72504d946550a1936d2fb966",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-417e44b5-f099-4a8d-8d75-27d0782d7448.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=417e44b5-f099-4a8d-8d75-27d0782d7448",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:41.687Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-417e44b5-f099-4a8d-8d75-27d0782d7448-1793662421684-f6fba413bbb6.body",
+      "originalSha256": "3a3d4b2fd3e8a446c1755d4b0aba2b36ef9cb94a7466f9fccee1f56ab068ace1",
+      "payloadSha256": "bfd4489539f2adb76f0978f24c73abe38d1e6bd6dd644e2979225ba5752562f5",
+      "compressedSha256": "6a8550958c3a44493369bc3c62b6035890956a81dac1652bb396afa054a4f84d",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-c2312e9b-b9f2-4cae-9397-3c496d825587.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=c2312e9b-b9f2-4cae-9397-3c496d825587",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:42.110Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-c2312e9b-b9f2-4cae-9397-3c496d825587-1793662422107-b5439189e590.body",
+      "originalSha256": "6a2b7b8578be7103f42fd75aef06689c8d3538dd27939a5a576e17a5e70b9a75",
+      "payloadSha256": "51150f35841aaee7ab0a64f8c2e6905d2c8f17d61e6ac2da8c899e1ac8470a1a",
+      "compressedSha256": "cd60a32b484b9952ed2d98ad6569ad432c5808fc35571224037e149827f2a9b2",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-b41fd12a-2ee5-4aab-b7dd-3fa21f56c8ec.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=b41fd12a-2ee5-4aab-b7dd-3fa21f56c8ec",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:42.320Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-b41fd12a-2ee5-4aab-b7dd-3fa21f56c8ec-1793662422317-5926fb1b603d.body",
+      "originalSha256": "bcfe1487ca569f94f439df939a0df243ea64e36be998aabbf90f269334117247",
+      "payloadSha256": "b56724a26e3075aa9724525e55d72fa8e952719e02e2839a7cbcd28c3b973294",
+      "compressedSha256": "ccf876807841c7843b5bd9b60ed7020aad457bd11b57ce1a12b16a30ae78f61d",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-269dedbc-0495-4cff-8bed-b9fd904f155c.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=269dedbc-0495-4cff-8bed-b9fd904f155c",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:42.328Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-269dedbc-0495-4cff-8bed-b9fd904f155c-1793662422324-2d8a4b53ce47.body",
+      "originalSha256": "707f9966743736592df58a638497d30b6d9e3aca71b4975fc5a9b8724fec9bc1",
+      "payloadSha256": "2a349d528a97134e6ebdc5da18da9d71eb5b11509d5939b5bf2708310c2af7a2",
+      "compressedSha256": "2e02b0f4d400e9a7e331981dd5481e42b016ac333aa2e913ceea928a8ce26f66",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-5c2c8579-3790-480f-bf69-ae6bb27360a8.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=5c2c8579-3790-480f-bf69-ae6bb27360a8",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:42.835Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-5c2c8579-3790-480f-bf69-ae6bb27360a8-1793662422832-abfb451ce869.body",
+      "originalSha256": "4da55a79bb9f438791c8e4023b80a921b02e27c541d70233e1e45594ace72654",
+      "payloadSha256": "62791c54688a098e74b1a2da6f7bb4d59b4f0b9ecf867465bec25df5c6166740",
+      "compressedSha256": "d0ea855d3e6ee01d800c7de1242c22d633da67a266a6180d72971519cb7e4b6f",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-92d6d4dc-d09f-4fca-96ae-39ed921ce0f1.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=92d6d4dc-d09f-4fca-96ae-39ed921ce0f1",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:43.019Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-92d6d4dc-d09f-4fca-96ae-39ed921ce0f1-1793662423016-a58018c6b205.body",
+      "originalSha256": "ebbacf7397d4c2cc96777425350dc395eaa55e8064cce5c3e1719be73ad63412",
+      "payloadSha256": "37c9394885122003f7539cdd81c66bbfad3ae776bd9e1f25ef7945818d93e256",
+      "compressedSha256": "6a20b8e719cfca69aae624aa84d8ec519cf35e0c5c6d3c4180510f832088f615",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-cb53c90d-daad-4141-97c8-55572af258b1.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=cb53c90d-daad-4141-97c8-55572af258b1",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:43.373Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-cb53c90d-daad-4141-97c8-55572af258b1-1793662423370-fda2123fd94e.body",
+      "originalSha256": "813ba53fc6d6049fb8d93682a852a34c9d0d941ee9e01063e8a79661b3485f4b",
+      "payloadSha256": "f75dd084323f64d3c3031c42e5d80e088e27814a61f3dfc1fdb18a1271ccdd9b",
+      "compressedSha256": "e4be0d9a081da5ba4442415925aa0e4c16328f9b74610c23e12eb42dd50795bd",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-a49e396a-a351-4d85-8c13-550c8c38fc1f.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=a49e396a-a351-4d85-8c13-550c8c38fc1f",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:43.394Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-a49e396a-a351-4d85-8c13-550c8c38fc1f-1793662423391-98fe59941b57.body",
+      "originalSha256": "7f1e8feb91725bcdaedbe2eb85f62314f1d4ce8df53c64d143f20c13760db2f2",
+      "payloadSha256": "97cdd8e14b6bd3131bb3141cc21124bdb83f4d41bc405529717e5601770ac5f4",
+      "compressedSha256": "084b7c7c21ccd70180669165ca4d6fe34ce9f015e14686d7f8a8c9ec5134f42d",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-2b64d150-e4a2-4d06-badb-968edcdfeb6a.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=2b64d150-e4a2-4d06-badb-968edcdfeb6a",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:44.017Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-2b64d150-e4a2-4d06-badb-968edcdfeb6a-1793662424014-38e2b39c0fa8.body",
+      "originalSha256": "3bb692fbda09294429f5cf56f32e6bbd59c78a7422f116a4af4939ed4f8fedee",
+      "payloadSha256": "9620f7ab88ea086b8644f55f3e74d7ac78b5cc827c8b30f137139f75db8289d4",
+      "compressedSha256": "4cdf5bb51682ffae303c1f8073d5b18ae99e0e1f15623430bd27e2a5a7f4cbb9",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-1426e45f-b218-4b24-983b-40ce6a07740e.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=1426e45f-b218-4b24-983b-40ce6a07740e",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:44.027Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-1426e45f-b218-4b24-983b-40ce6a07740e-1793662424024-143a708efa1c.body",
+      "originalSha256": "b77b922a283c5f6a0a37b8e9fec30758b715f2b00694a177e62dae834a4ac34a",
+      "payloadSha256": "6d5c8e4c3b1d0c5e4fdd724e254f85bf18390b187ab089356f5397153851dbde",
+      "compressedSha256": "b37e21f13563effaa0c94b25501b5c58d54023bee20da21bc4ab26087f9f1d74",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-6c80ab55-09f8-4149-b9cf-10ab6af74a0c.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=6c80ab55-09f8-4149-b9cf-10ab6af74a0c",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:44.526Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-6c80ab55-09f8-4149-b9cf-10ab6af74a0c-1793662424521-5bb8b17ac7c6.body",
+      "originalSha256": "dd9127cb16a0adf81c2d7b5705825eb0e6351a55ad8a9c91315a36ff25cd2386",
+      "payloadSha256": "37840451397599ab451e90792b68b83c2660b2e10a9c7dfaec6d0e70ecbfc629",
+      "compressedSha256": "d973aeb00b9848ce29c2af2ffbeb57729f88aaa10e92ba395d149e20e9343e24",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-a3e975f6-21dc-409b-9487-611e8c08ad66.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=a3e975f6-21dc-409b-9487-611e8c08ad66",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:44.549Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-a3e975f6-21dc-409b-9487-611e8c08ad66-1793662424546-51a94ced4eed.body",
+      "originalSha256": "a03baf953e29d21bba16d93aa6ac485492982727e368b4dd1c48281738916330",
+      "payloadSha256": "d0d76f248505dcf965a1264df289c9f2df29e6fc8b4716b848e9c963b369c39b",
+      "compressedSha256": "d35ca6dfbb49c6ac34790f26207ec719d88de6e32455e8a379d6390aede819cb",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "role-ed934001-5df2-48ed-8b8b-c054ef0eec64.html.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/OpportunityDetail?opportunityId=ed934001-5df2-48ed-8b8b-c054ef0eec64",
+      "status": 200,
+      "capturedAt": "2026-11-02T23:33:45.454Z",
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\root-captures\\camp-role-ed934001-5df2-48ed-8b8b-c054ef0eec64-1793662425452-82876da5cc3e.body",
+      "originalSha256": "33cc75cebeeac652f80943c525ad2aa183482ce66d76c2347c49561f2fd44bf5",
+      "payloadSha256": "28290798e3e8c37a65bb943e8070d6c8d3e7b918b4e03f32c865d353a13a9062",
+      "compressedSha256": "d111d509720900326cf545ca6bdc8bd9a268f5c0f3550c506742056f995c7686",
+      "anonymousCsrfValueRedactions": 1
+    },
+    {
+      "file": "listing.json.gz",
+      "url": "https://recruiting.ultipro.com/CAM1010CSII/JobBoard/54a25c3a-e399-42b0-a553-16ed056e0517/JobBoardView/LoadSearchResults",
+      "method": "POST",
+      "publicBody": {
+        "opportunitySearch": {
+          "Top": 50,
+          "Skip": 0,
+          "QueryString": "",
+          "OrderBy": [
+            {
+              "Value": "postedDateDesc",
+              "PropertyName": "PostedDate",
+              "Ascending": false
+            }
+          ],
+          "Filters": []
+        }
+      },
+      "capturedAt": "2026-11-02T23:31:47.065Z",
+      "status": 200,
+      "originalBodyFile": "C:\\Users\\mohv\\release\\artifacts\\scraper-source-repairs-2026-11-02\\camp-native-investigation\\public-listing-1793662307058.json",
+      "originalSha256": "78f85a0c17a9d3abb5613cd04f4962370c2d39f9884c82a9c89ffd75dbe61856",
+      "payloadSha256": "78f85a0c17a9d3abb5613cd04f4962370c2d39f9884c82a9c89ffd75dbe61856",
+      "compressedSha256": "f41d8f6e3e8f3656966395339bde01d810436c103865b35abdf9f00474873ff5",
+      "anonymousCsrfValueRedactions": 0
+    }
+  ],
+  "note": "Public employer/native reads; anonymous CSRF values redacted. No browser headers, cookies, application or account actions."
+}

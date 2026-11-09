@@ -1,0 +1,1 @@
+export const CURRENT_SURFACE={source:"ananthtechnologies",companyName:"Ananth Technologies",homepageUrl:"https://ananthtech.com/",careersUrl:"https://ananthtech.com/careers/",brand:/Ananth Technologies/i,careersHeading:/join our team|ready to launch your career/i,intakeKind:"general-cv-email-intake",intakeEmail:"jobs@ananthtech.com"}

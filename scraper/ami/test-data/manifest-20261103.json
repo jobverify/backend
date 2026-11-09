@@ -1,0 +1,43 @@
+{
+  "capturedAt": "2026-11-03T04:44:04.249Z",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "ff86842f2c3fb8c9489034b89f432767424288021185417aa2646b0312bb203b",
+  "packetCount": 4,
+  "productionWrites": false,
+  "liveRequestsByThisScript": 0,
+  "responses": [
+    {
+      "url": "https://www.linkedin.com/company/ami/",
+      "finalUrl": "https://www.linkedin.com/company/ami/",
+      "status": 200,
+      "sha256": "ed65c756827f0d8bb5327736dc4fbd99d66e2ccaa8977fb98b8a63fdc199f71e",
+      "originalCapture": "ami-1793647637917-6024b435c782.body"
+    },
+    {
+      "url": "https://www.linkedin.com/jobs/search/?f_C=635771&geoId=102713980",
+      "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=635771&geoId=102713980",
+      "status": 200,
+      "sha256": "354d083205a7ef9f33eb0aec58f1c430001a74357d92911fd10185c9a54ad6e5",
+      "originalCapture": "ami-original-configured-public-india-search-354d083205a7.body"
+    },
+    {
+      "url": "https://www.linkedin.com/jobs/search/?keywords=&f_C=635771&geoId=102713980",
+      "finalUrl": "https://www.linkedin.com/jobs/search/?keywords=&f_C=635771&geoId=102713980",
+      "status": 200,
+      "sha256": "680d43faa2997d15cd96cbc663ea09cf2d39e1a3671663f68ee0c8d5aa6a1cfe",
+      "originalCapture": "ami-explicit-empty-native-keywords-control-680d43faa299.body"
+    },
+    {
+      "url": "https://www.ami.com/",
+      "finalUrl": "https://www.ami.com/",
+      "status": 403,
+      "sha256": "11de604b5c36939401d31184efb0ee1fdafc749aa03e864d128b58ce524b0241",
+      "originalCapture": "ami-corporate-11de604b5c36.body"
+    }
+  ],
+  "limitations": [
+    "Corporate www403 retained, not retried.",
+    "Configured public LinkedIn India query and empty-keyword control both render native keyword Jobs; neither proves unfiltered employer India absence.",
+    "Public company profile635771 does not itself declare a complete current employer role-feed contract."
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "source": "atomberg",
+  "catalogOverride": true,
+  "atsPlatform": "official-public-email-hiring-contact",
+  "paginationStrategy": "current-configured-redirect+public-careers-contact+closing",
+  "extractionStrategy": "first-party-employer-contact-observations+unknown-vacancy-country-and-company-scope",
+  "verifiedSurfaceSummary": "The configured Atomberg careers route currently redirects to /pages/careers. Its visible public recruiting contact asks for resumes at career@atomberg.com. Runtime verifies this exact current handoff and public employer contact twice, retains hiring observations with unknown vacancy/work-country scope and stops on public denial. Retail customer login, guessed alternate404 routes and private applications are not employee-inventory prerequisites. No company-wide vacancy zero or cleanup is authorized.",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "coverage-gap",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false
+}

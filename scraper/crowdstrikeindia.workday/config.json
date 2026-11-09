@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://crowdstrike.wd5.myworkdayjobs.com/wday/cxs/crowdstrike/crowdstrikecareers/jobs",
+  "detailUrlBase": "https://crowdstrike.wd5.myworkdayjobs.com/en-US/crowdstrikecareers",
+  "countryFacetParameter": "locationCountry"
+}

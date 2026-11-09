@@ -1,0 +1,22 @@
+{
+  "source": "infocuspinnovations",
+  "companyName": "InfoCusp Innovations",
+  "officialBrandName": "Infocusp",
+  "companyCareerPage": "https://www.infocusp.com/careers/openings/",
+  "homepageUrl": "https://www.infocusp.com/",
+  "companyDomain": "infocusp.com",
+  "atsPlatform": "first-party-server-rendered-openings-plus-zoho-recruit-application-links",
+  "countryFilter": "India",
+  "paginationStrategy": "single-complete-server-rendered-card-listing",
+  "extractionStrategy": "verified-official-homepage+careers-cards+matched-job-description-and-zoho-application-identity",
+  "verificationDisposition": "verified-public-first-party-openings",
+  "verifiedPublicJobCount": 5,
+  "verifiedIndiaJobCount": 5,
+  "verifiedSurfaceSummary": "Verified October 3, 2026: the official careers page server-renders five complete openings located in Ahmedabad and Pune, with full descriptions and exact infocusp.zohorecruit.in role-specific application links. Card control, description and application job IDs agree. Client location/title filters do not paginate the inventory; all five cards are extracted. The prior Keka client is no longer the current feed.",
+  "adapter": "script",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-03",
+  "dryRunFile": "infocuspinnovations/jobs.json",
+  "modulePath": "../infocuspinnovations/script.js"
+}

@@ -1,0 +1,11 @@
+LetsVenture / LVX native investigation
+
+Official lvxventures.com rebrand article expressly identifies LetsVenture becoming LVX; reciprocal native employer3325282 confirms the current identity. Corporate footer social link is an association, not a recruiting handoff; firstPartyfalse. Old letsventure.com fetch failed and old native employer slug returned404; neither proves inventory emptiness.
+
+Independent legacy-host Zoho board metadata names LVX Ventures (org57569000000209005/page57569000000209123). Embedded listing and public API agree on three published unlocked Remote Job vacancies: Senior Frontend Engineer57569000000323017, Senior Backend Software Engineer57569000000323001, Product Manager57569000000278015. Rendered canonical public details explicitly show "Posted on" July 18, April 20 and April 11, 2022, matching Date_Opened. This field is public posting evidence. The adapter returns the three role facts under existing Remote eligibility with countries null and original dates preserved; the age filter excludes all three. Missing/invalid dates cannot refresh old roles, date carriers must agree, and future publication dates remain withheld. Missing or placeholder JDs remain partial.
+
+Earlier independent Marketing Manager4466053550 evidence explicitly identifies India and the same LVX employer; its primary age text1monthago has no precise first-publication date. It remains age-unresolved and excluded whenever this observation is reconfirmed. Secondary independent searches and seed details run after critical corporate identity and Zoho extraction. Their failures or contract changes report independentDiscoveryGaps without discarding native dated roles. They never prove emptiness; an unobserved search has a null card count. Whole-company totals remain unknown, coverage-gap, cleanup disabled.
+
+All public response envelopes gzip-compressed with SHA manifest. Runtime uses bounded streams and one aggregate deadline, exact caller cancellation, unopened failure-body cancellation. Safe non-executing parser decodes native JavaScript data literals. Newly introduced country/temporal fields checked across API rows, hidden carriers and details. No production writes/deployment.
+
+Verify: node --test scraper/letsventure/script.test.js test/letsVentureCoverage.test.js

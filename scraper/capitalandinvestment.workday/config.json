@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://capitaland.wd3.myworkdayjobs.com/wday/cxs/capitaland/CapitalandInvestmentCareers/jobs",
+  "detailUrlBase": "https://capitaland.wd3.myworkdayjobs.com/CapitalandInvestmentCareers",
+  "officialCareersUrl": "https://www.capitaland.com/en/investment/careers.html",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

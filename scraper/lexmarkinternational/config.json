@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://lexmark.wd1.myworkdayjobs.com/wday/cxs/lexmark/Lexmark/jobs",
+  "detailUrlBase": "https://lexmark.wd1.myworkdayjobs.com/Lexmark",
+  "officialCareersUrl": "https://www.lexmark.com/en_us/about-us/careers.html",
+  "inventoryScope": "complete-board-country-proof",
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

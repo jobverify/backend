@@ -1,0 +1,42 @@
+[
+  {
+    "source": "finacussolutions",
+    "companyName": "Finacus Solutions",
+    "officialBrandName": "Finacus Solutions Private Limited",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/finacussolutions/script.js",
+    "dryRunFile": "finacussolutions/jobs.json",
+    "atsPlatform": "official-company-careers-page",
+    "companyDomain": "finacus.co.in",
+    "companyCareerPage": "https://www.finacus.co.in/careers/",
+    "officialHomepageUrl": "https://www.finacus.co.in/",
+    "jobsBoardUrl": "https://www.finacus.co.in/careers/",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T01:55:43.147Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T01:55:43.147Z",
+      "officialURL": "https://www.finacus.co.in/",
+      "matchedLinks": [
+        "https://www.finacus.co.in/careers/"
+      ],
+      "proofFile": "../artifacts/full-catalog/ranked-positive-remediation-003/finacus-full-native-012/001.json",
+      "proofSha256": "c229570faf633b22e721b2be4f966ebdd19fc0fa939268ca6b05b53802ace213"
+    },
+    "extractionStrategy": "current-official-careers+advertised-public-GET-detail+native-ID-title-full-JD+native-generic-application-position",
+    "paginationStrategy": "stable-current-visible-cards-global-total-unavailable",
+    "sourceScopeNotes": "Observed public card inventory has no native total or complete pagination proof. Always partial. Explicit India offices are retained; South Region remains unresolved. Native generic application anchor is shared and applicationUrlIsGeneric preserves role identities. Dates absent remain null. No form submission.",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "verifiedSurfaceSummary": "Current first-party homepage links careers; current public native AJAX and application clients bind numeric cards to full role detail and generic form position. Unknown whole-company inventory remains partial. Runtime counts are not stored in metadata."
+  }
+]

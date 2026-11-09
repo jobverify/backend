@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://aurecongroup.wd3.myworkdayjobs.com/wday/cxs/aurecongroup/aurecon/jobs",
+  "detailUrlBase": "https://aurecongroup.wd3.myworkdayjobs.com/en-US/aurecon",
+  "locationCountry": null,
+  "searchText": "",
+  "inventoryScope": "complete-board-country-proof",
+  "officialCareersUrl": "https://www.aurecongroup.com/careers/experienced-professionals",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "workdayMaxPages": 100
+}

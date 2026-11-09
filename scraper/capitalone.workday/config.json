@@ -1,0 +1,10 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://capitalone.wd12.myworkdayjobs.com/wday/cxs/capitalone/Capital_One/jobs",
+  "detailUrlBase": "https://capitalone.wd12.myworkdayjobs.com/Capital_One",
+  "locationCountry": null,
+  "searchText": "",
+  "workdayMaxPages": 100,
+  "detailEnrichmentBudgetMs": 120000,
+  "detailFetchConcurrency": 3
+}

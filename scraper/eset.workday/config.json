@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "inventoryScope": "complete-board-country-proof",
+  "officialCareersUrl": "https://www.eset.com/us/about/careers/",
+  "officialVanityCareersUrl": "https://jobs.eset.com/en-US/ESET_External",
+  "jobsApiUrl": "https://eset.wd3.myworkdayjobs.com/wday/cxs/eset/ESET_External/jobs",
+  "detailUrlBase": "https://eset.wd3.myworkdayjobs.com/ESET_External",
+  "locationCountry": null,
+  "searchText": "",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "workdayMaxPages": 25
+}

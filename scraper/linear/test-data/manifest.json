@@ -1,0 +1,49 @@
+{
+  "description": "Complete decoded public HTTP response bytes captured on 2026-10-31 UTC. Retained fixtures are historical evidence; replay does not refresh observation timestamps.",
+  "captures": {
+    "careers": {
+      "file": "careers-20261031.html.gz",
+      "url": "https://linear.app/careers",
+      "status": 200,
+      "contentType": "text/html",
+      "requestedAt": "2026-10-31T22:39:41.377Z",
+      "completedAt": "2026-10-31T22:39:41.377Z",
+      "bytes": 449326,
+      "sha256": "ddd065b354900a4d33e1108f76955466e9464a72f7736269c707970825d3fbdc",
+      "timestampProvenance": "Original primary capture records a single at timestamp; exact request duration unknown."
+    },
+    "native-api": {
+      "file": "native-api-20261031.json.gz",
+      "url": "https://api.ashbyhq.com/posting-api/job-board/Linear",
+      "status": 200,
+      "contentType": "application/json",
+      "requestedAt": "2026-10-31T23:44:58.944Z",
+      "completedAt": "2026-10-31T23:44:59.820Z",
+      "bytes": 412718,
+      "sha256": "a5f3512f1a2209950047fd69ac825b06514749dafe7771b20f9836f4cc24bd31",
+      "timestampProvenance": "Original bounded public GET request/completion timestamps."
+    },
+    "native-role": {
+      "file": "native-role-20261031.html.gz",
+      "url": "https://jobs.ashbyhq.com/Linear/6dd5500a-4bd4-4f57-ba09-7b07acefecf4",
+      "status": 200,
+      "contentType": "text/html",
+      "requestedAt": "2026-10-31T23:45:01.965Z",
+      "completedAt": "2026-10-31T23:45:02.641Z",
+      "bytes": 41500,
+      "sha256": "e76ee63f342c5bec7dc529271af7f770d6cef6d248cee92b3a0561a336da8adb",
+      "timestampProvenance": "Original bounded public GET request/completion timestamps."
+    },
+    "official-role": {
+      "file": "official-role-20261031.html.gz",
+      "url": "https://linear.app/careers/6dd5500a-4bd4-4f57-ba09-7b07acefecf4",
+      "status": 200,
+      "contentType": "text/html",
+      "requestedAt": "2026-10-31T23:44:59.841Z",
+      "completedAt": "2026-10-31T23:45:01.947Z",
+      "bytes": 392907,
+      "sha256": "000c1215488aebde8fd501ae57b180ccd809552f42cd2dcc7e9d7963e6c4c9ba",
+      "timestampProvenance": "Original bounded public GET request/completion timestamps."
+    }
+  }
+}

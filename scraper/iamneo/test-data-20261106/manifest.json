@@ -1,0 +1,196 @@
+{
+  "profile": "current-public-2026-11-06",
+  "source": "iamneo",
+  "kind": "unmodified actual public responses; no historical capture reconstruction",
+  "requests": [
+    {
+      "url": "https://iamneo.ai/careers/",
+      "status": 200,
+      "finalURL": "https://iamneo.ai/careers/",
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 435256,
+      "bodySHA256": "28352f02d5b8855895702598fc1dc0ac0452bfa59a8e10e4890d1666963f4ca6",
+      "startedAt": "2026-11-06T17:11:43.060Z",
+      "completedAt": "2026-11-06T17:11:45.148Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 4711,
+      "bodySHA256": "12f4d5eb157fd6160eb6d557bba88499ca1443b224c285b276587e1a0a240683",
+      "startedAt": "2026-11-06T17:11:45.355Z",
+      "completedAt": "2026-11-06T17:11:45.720Z"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+      "status": 200,
+      "finalURL": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+      "contentType": "application/x-javascript",
+      "bodyBytes": 79753,
+      "bodySHA256": "e2585ba1c4a259792330b7524042e3376994836454234a6da414eb1eeaaf315f",
+      "startedAt": "2026-11-06T17:11:45.729Z",
+      "completedAt": "2026-11-06T17:11:46.080Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/organization/default/careerportalinfo",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/organization/default/careerportalinfo",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 452,
+      "bodySHA256": "e01f1471450b79dd3b9ebba22a9effb50235352652f21a587a0feb202dc85f47",
+      "startedAt": "2026-11-06T17:11:46.082Z",
+      "completedAt": "2026-11-06T17:11:46.173Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/organization/grouplinkstatus",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/organization/grouplinkstatus",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 23,
+      "bodySHA256": "e6df21daeeed53bbd52bd27f01cdde394a06139d1dfdd9cec5463752abda95b0",
+      "startedAt": "2026-11-06T17:11:46.173Z",
+      "completedAt": "2026-11-06T17:11:46.293Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/embedjobs/grouplinkstatus/4ce06eef-5046-4d49-9a10-57a546e5f2ca",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/embedjobs/grouplinkstatus/4ce06eef-5046-4d49-9a10-57a546e5f2ca",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 23,
+      "bodySHA256": "e6df21daeeed53bbd52bd27f01cdde394a06139d1dfdd9cec5463752abda95b0",
+      "startedAt": "2026-11-06T17:11:46.294Z",
+      "completedAt": "2026-11-06T17:11:46.394Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/jobs/default/active",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/jobs/default/active",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 63694,
+      "bodySHA256": "af6314caa4cc0be0b0a466d8bebce48926997f228aca10396dd691c5eeba8191",
+      "startedAt": "2026-11-06T17:11:46.394Z",
+      "completedAt": "2026-11-06T17:11:46.571Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/embedjobs/default/active/4ce06eef-5046-4d49-9a10-57a546e5f2ca",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/embedjobs/default/active/4ce06eef-5046-4d49-9a10-57a546e5f2ca",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 63694,
+      "bodySHA256": "af6314caa4cc0be0b0a466d8bebce48926997f228aca10396dd691c5eeba8191",
+      "startedAt": "2026-11-06T17:11:46.572Z",
+      "completedAt": "2026-11-06T17:11:46.695Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/jobdetails/168836",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/jobdetails/168836",
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 16196,
+      "bodySHA256": "4f375906e209ec93b98416096cdee3453f3621c4c890e37ab71ae8d56218235b",
+      "startedAt": "2026-11-06T17:11:46.704Z",
+      "completedAt": "2026-11-06T17:11:46.823Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/jobdetails/168590",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/jobdetails/168590",
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 12997,
+      "bodySHA256": "47b3a98e645958257e5a0c654997768d94104ab1fc87cc40a39308554a9ed58b",
+      "startedAt": "2026-11-06T17:11:46.828Z",
+      "completedAt": "2026-11-06T17:11:46.941Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/jobdetails/168513",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/jobdetails/168513",
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 17353,
+      "bodySHA256": "90defc578a89858c57d8ea46e26e397d3eb434e33c98c431d674d6c9895a41d3",
+      "startedAt": "2026-11-06T17:11:46.949Z",
+      "completedAt": "2026-11-06T17:11:47.066Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/jobdetails/168214",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/jobdetails/168214",
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 16899,
+      "bodySHA256": "3fb3e3b89ca376f1577cc3fb4ea7c695d16c4614ff2736bb56a2900c1ed19dee",
+      "startedAt": "2026-11-06T17:11:47.070Z",
+      "completedAt": "2026-11-06T17:11:47.206Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/jobdetails/164804",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/jobdetails/164804",
+      "contentType": "text/html; charset=utf-8",
+      "bodyBytes": 19670,
+      "bodySHA256": "2e5825e234b665d42fbd1f30fa7e39b381fa9832061ae26e3c0d96e650be5896",
+      "startedAt": "2026-11-06T17:11:47.214Z",
+      "completedAt": "2026-11-06T17:11:47.343Z"
+    },
+    {
+      "url": "https://iamneo.ai/careers/",
+      "status": 200,
+      "finalURL": "https://iamneo.ai/careers/",
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 435256,
+      "bodySHA256": "28352f02d5b8855895702598fc1dc0ac0452bfa59a8e10e4890d1666963f4ca6",
+      "startedAt": "2026-11-06T17:11:47.348Z",
+      "completedAt": "2026-11-06T17:11:47.853Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/jobs/default/active",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/jobs/default/active",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 63694,
+      "bodySHA256": "af6314caa4cc0be0b0a466d8bebce48926997f228aca10396dd691c5eeba8191",
+      "startedAt": "2026-11-06T17:11:47.927Z",
+      "completedAt": "2026-11-06T17:11:48.212Z"
+    },
+    {
+      "url": "https://iamneo.keka.com/careers/api/embedjobs/default/active/4ce06eef-5046-4d49-9a10-57a546e5f2ca",
+      "status": 200,
+      "finalURL": "https://iamneo.keka.com/careers/api/embedjobs/default/active/4ce06eef-5046-4d49-9a10-57a546e5f2ca",
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 63694,
+      "bodySHA256": "af6314caa4cc0be0b0a466d8bebce48926997f228aca10396dd691c5eeba8191",
+      "startedAt": "2026-11-06T17:11:48.214Z",
+      "completedAt": "2026-11-06T17:11:48.364Z"
+    }
+  ],
+  "expectedNativeIds": [
+    "168836",
+    "168590",
+    "168513",
+    "168214",
+    "164804"
+  ],
+  "actualResultBeforeScopeReview": {
+    "jobs": 5,
+    "ids": [
+      "168836",
+      "168590",
+      "168513",
+      "168214",
+      "164804"
+    ],
+    "inventory": {
+      "status": "coverage-gap",
+      "surface": "https://iamneo.keka.com/careers/api/jobs/default/active",
+      "firstParty": true,
+      "listingComplete": false,
+      "pagesFetched": 1,
+      "reportedTotal": null,
+      "indiaFacetCount": null,
+      "verifiedAt": "2026-11-06T17:11:48.365Z",
+      "reason": "changed-active-activeElementAttributesSha256:https://iamneo.ai/careers/;changed-active-scripts:https://iamneo.ai/careers/"
+    }
+  },
+  "historicalProfileReplayable": false
+}

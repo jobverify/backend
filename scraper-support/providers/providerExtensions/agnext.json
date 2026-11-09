@@ -1,0 +1,22 @@
+{
+  "source": "agnext",
+  "companyName": "AgNext",
+  "officialBrandName": "AgNext",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../agnext/script.js",
+  "dryRunFile": "agnext/jobs.json",
+  "companyCareerPage": "https://www.agnext.com/",
+  "companyDomain": "agnext.com",
+  "atsPlatform": "keka-hosted-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "bounded-official-homepage-and-keka-board-observation",
+  "extractionStrategy": "live-official-keka-handoff-validation-with-blocked-board-diagnostics",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "officialCareersPageUrl": "https://www.agnext.com/",
+  "verifiedJobOpeningsPageUrl": "https://agnext.keka.com/careers",
+  "verifiedSurfaceSummary": "Rechecked 2026-10-23: official AgNext homepage links agnext.keka.com/careers. Browser requests for board and native API paths redirect to HTTP 200 Forbidden Access. Runtime detects blocked/error pages and never treats them as verified empty; extraction remains unresolved. Captures retained under scraper/agnext/fixtures.",
+  "verificationDisposition": "blocked-keka-board-native-listing-contract-unverified"
+}

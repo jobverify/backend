@@ -1,0 +1,484 @@
+{
+  "source": "dataiku",
+  "companyName": "Dataiku",
+  "officialUrl": "https://www.dataiku.com/company/careers",
+  "mode": "board-handoff",
+  "reviewedCorporateScopeSha256": "e39ee228b2df027bddf334af8cca019128f6dcb9a84a2bfe36fb916a418fee04",
+  "reviewedRecordKeys": [
+    "absolute_url",
+    "ai_disclaimer",
+    "ai_opt_out_request_url",
+    "application_deadline",
+    "company_name",
+    "content",
+    "data_compliance",
+    "departments",
+    "first_published",
+    "id",
+    "include_ai_disclaimer",
+    "internal_job_id",
+    "language",
+    "location",
+    "metadata",
+    "offices",
+    "requisition_id",
+    "title",
+    "updated_at"
+  ],
+  "reviewedRecordSchema": {
+    "$": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "absolute_url",
+        "ai_disclaimer",
+        "ai_opt_out_request_url",
+        "application_deadline",
+        "company_name",
+        "content",
+        "data_compliance",
+        "departments",
+        "first_published",
+        "id",
+        "include_ai_disclaimer",
+        "internal_job_id",
+        "language",
+        "location",
+        "metadata",
+        "offices",
+        "requisition_id",
+        "title",
+        "updated_at"
+      ],
+      "requiredKeys": [
+        "absolute_url",
+        "ai_disclaimer",
+        "ai_opt_out_request_url",
+        "application_deadline",
+        "company_name",
+        "content",
+        "data_compliance",
+        "departments",
+        "first_published",
+        "id",
+        "include_ai_disclaimer",
+        "internal_job_id",
+        "language",
+        "location",
+        "metadata",
+        "offices",
+        "requisition_id",
+        "title",
+        "updated_at"
+      ]
+    },
+    "$.absolute_url": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "demographic_data_consent_applies",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "type"
+      ],
+      "requiredKeys": [
+        "demographic_data_consent_applies",
+        "requires_consent",
+        "requires_processing_consent",
+        "requires_retention_consent",
+        "retention_period",
+        "type"
+      ]
+    },
+    "$.data_compliance[].type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].requires_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].requires_processing_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].requires_retention_consent": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].retention_period": {
+      "types": [
+        "null",
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.data_compliance[].demographic_data_consent_applies": {
+      "types": [
+        "boolean"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.internal_job_id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.location": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "name"
+      ],
+      "requiredKeys": [
+        "name"
+      ]
+    },
+    "$.location.name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ],
+      "requiredKeys": [
+        "id",
+        "name",
+        "value",
+        "value_type"
+      ]
+    },
+    "$.metadata[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value": {
+      "types": [
+        "null",
+        "object",
+        "string"
+      ],
+      "keys": [
+        "email",
+        "employee_id",
+        "name",
+        "user_id"
+      ],
+      "requiredKeys": [
+        "email",
+        "employee_id",
+        "name",
+        "user_id"
+      ]
+    },
+    "$.metadata[].value_type": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.updated_at": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.requisition_id": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.title": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.company_name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.first_published": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.language": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.application_deadline": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.content": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "child_ids",
+        "id",
+        "name",
+        "parent_id"
+      ],
+      "requiredKeys": [
+        "child_ids",
+        "id",
+        "name",
+        "parent_id"
+      ]
+    },
+    "$.departments[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.departments[].parent_id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[]": {
+      "types": [
+        "object"
+      ],
+      "keys": [
+        "child_ids",
+        "id",
+        "location",
+        "name",
+        "parent_id"
+      ],
+      "requiredKeys": [
+        "child_ids",
+        "id",
+        "location",
+        "name",
+        "parent_id"
+      ]
+    },
+    "$.offices[].id": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].name": {
+      "types": [
+        "string"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].location": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].child_ids": {
+      "types": [
+        "array"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].parent_id": {
+      "types": [
+        "null",
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.ai_disclaimer": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.include_ai_disclaimer": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.ai_opt_out_request_url": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value.name": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value.email": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value.user_id": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.metadata[].value.employee_id": {
+      "types": [
+        "null"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    },
+    "$.offices[].child_ids[]": {
+      "types": [
+        "number"
+      ],
+      "keys": [],
+      "requiredKeys": []
+    }
+  },
+  "reviewedMetadataIdentities": [
+    "[26662904004,\"Hiring Manager\",\"user\"]",
+    "[4545662004,\"Remote?\",\"single_select\"]",
+    "[4661136004,\"External-Facing Department\",\"single_select\"]",
+    "[4661137004,\"External-Facing Sub-Department\",\"single_select\"]"
+  ],
+  "reviewedCorporateStyleSha256": "d9057d1264d61708c3ca1316af7062dfc06e2615d63b5a6f4189f3010e5d5130"
+}

@@ -1,0 +1,73 @@
+{
+  "phase": 4,
+  "verifiedOn": "2026-10-24",
+  "historicalMetadataRewritten": false,
+  "registryVerifiedPublicationCounts": null,
+  "productionDatabaseTouched": false,
+  "fullPipelineExecuted": false,
+  "productionBrowserFallbackAdded": false,
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "outcome": "implemented-native-extractor-current-no-india-inventory",
+  "sourceImplementationChanged": true,
+  "officialUrl": "https://www.affirm.com/careers",
+  "binding": "Loading the official careers page issued HTTP200 GET https://boards-api.greenhouse.io/v1/boards/affirm/jobs/ and rendered exact job-boards.greenhouse.io/affirm/jobs/{id} links. Response timestamp/hash and active rendered links are retained in the fixture.",
+  "nativeUrl": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
+  "observedContract": "All225 full-content records reconcile to native meta.total and unique IDs. Every record names Affirm and has its exact native Affirm board URL. All current labels match eight explicit foreign-location shapes; no global or ambiguous remote posting was silently excluded.",
+  "currentScopes": [
+    "Remote US",
+    "New York, New York, United States; San Francisco, California, United States",
+    "Remote UK",
+    "Remote Poland",
+    "Remote Spain",
+    "Remote Canada",
+    "San Francisco, California, United States",
+    "New York, New York, United States"
+  ],
+  "scope": "Complete country labels must be resolved. Unrecognized/global/partial labels fail the source; future explicit city, India or Remote India rows are supported by the shared native Greenhouse extractor and a modified-fixture regression, not claimed as live India evidence.",
+  "currentSourceTrial": {
+    "performedAt": "2026-10-24T17:30:09.414Z",
+    "method": "Actual source code over bounded fresh public browser response transport; no production browser runtime added; default Node transport not verified in this restricted environment.",
+    "requests": 1,
+    "rawJobs": 0,
+    "eligibleJobs": 0,
+    "filterCounts": {
+      "nonIndia": 0,
+      "old": 0,
+      "closed": 0,
+      "invalidUrl": 0,
+      "nonJob": 0,
+      "emptyDescription": 0
+    },
+    "inventoryEvidence": {
+      "status": "complete-inventory",
+      "surface": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
+      "firstParty": true,
+      "listingComplete": true,
+      "pagesFetched": 1,
+      "reportedTotal": 225,
+      "indiaFacetCount": 0,
+      "verifiedAt": "2026-10-24T17:30:09.413Z",
+      "reason": "greenhouse-public-posting-api-complete-single-response"
+    }
+  },
+  "limits": [
+    "No current India posting was observed. Positive India support is contract-tested with a modified actual native record.",
+    "Board identity is an evidence-backed exact configuration with per-role employer/URL guards; the official-page binding is captured research evidence, not re-fetched during each runtime invocation.",
+    "Default Node transport and production publication were not verified in this restricted environment."
+  ],
+  "focusedVerification": {
+    "command": "node --test scraper/accellor/script.test.js scraper/affirm/script.test.js scraper/aembit/script.test.js scraper/accellor/catalogRepair.test.js scraper-support/tests/publishingGapAts.test.js scraper-support/tests/providerExtensions.test.js",
+    "passed": 56,
+    "failed": 0,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-ats/guards-final-green.log",
+    "scope": "Only owned changed source contracts plus effective registry and shared ATS compatibility checks; unchanged blocked-source extraction was not promoted."
+  },
+  "sharedCompatibilityVerification": {
+    "passed": 232,
+    "failed": 0,
+    "files": 14,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-shared-independent-cohort-final.log",
+    "scope": "Focused shared/API/native-fixture/source/discovery contracts; no full repository suite or production pipeline."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "catalogOverride": true,
+  "source": "atherenergy",
+  "companyName": "Ather Energy",
+  "adapter": "script",
+  "modulePath": "../atherenergy/script.js",
+  "companyCareerPage": "https://careers.atherenergy.com/jobs",
+  "companyDomain": "careers.atherenergy.com",
+  "atsPlatform": "official-company-careers",
+  "verifiedOn": "2026-10-27",
+  "verifiedSurfaceSummary": "On October 27, 2026 the current public jobs GET returned HTTP 403. No further source request followed. Current native inventory, full descriptions, employer and India scope remain unknown. Denial throws and never establishes empty inventory; legacy extraction is not counted as repaired.",
+  "paginationStrategy": "current-native-inventory-unavailable-stop-first-denial",
+  "extractionStrategy": "legacy-empty-marker-unverified-access-denial-is-not-empty",
+  "sourceScopeComplete": false,
+  "zeroResultPolicy": "evidence-required"
+}

@@ -1,0 +1,13 @@
+[
+  {
+    "source": "fleetx",
+    "atsPlatform": "official-company-native-opening-cards",
+    "paginationStrategy": "paired-current-page-owned-client-records;company-scope-unqualified",
+    "extractionStrategy": "active-html+declared-client-literal-openings;country-and-full-criteria-unproven",
+    "verifiedOn": "2026-11-05",
+    "nativeCareersPage": "https://www.fleetx.ai/careers",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "Current native observations use https://www.fleetx.ai/careers and its active declared page component. All published card/client fields are retained, including unlabeled locations, without executing website code. Own country, full criteria, canonical role URLs, application activity, company scope and cleanup remain unproven. Historical fleetx.io routes and timeout helpers are diagnostic only; failed reads stop collection and never establish an empty inventory.",
+    "catalogOverride": true
+  }
+]

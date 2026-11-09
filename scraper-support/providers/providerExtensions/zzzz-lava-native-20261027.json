@@ -1,0 +1,29 @@
+[
+  {
+    "source": "lavainternational",
+    "companyName": "Lava International",
+    "officialBrandName": "Lava International Limited",
+    "adapter": "script",
+    "modulePath": "../lavainternational/script.js",
+    "catalogOverride": true,
+    "homepageUrl": "https://www.lavamobiles.com/",
+    "aboutPageUrl": "https://www.lavamobiles.com/aboutus",
+    "companyCareerPage": "https://www.lavamobiles.com/career",
+    "applicationUrl": "https://www.lavamobiles.com/career/joblist",
+    "companyDomain": "lavamobiles.com",
+    "countryFilter": "India",
+    "atsPlatform": "official-company-site-openposition-api",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "native-unfiltered-all-roles+full-pdf+closing-snapshots-before-cap",
+    "extractionStrategy": "current-first-party-clients+full-native-role-and-pdf+explicit-work-country",
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "coverage-gap",
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "sourceScopeNotes": "Every run verifies current first-party legal employer and careers/joblist delegation, exact public listing/detail/application clients, the unfiltered listing and closing snapshot. Each published role is expanded through its native identity and the client-declared public PDF before caps. Formal RRF, full PDF criteria and explicit work country remain distinct from posting identity, corporate country and unknown job dates/work arrangement. Current successful empty feed can establish runtime empty inventory; HTTP500 or access denial cannot. Nonempty live detail/PDF coverage has not been observed in the current empty source; synthetic controls are separate evidence. Additional hiring paths or unknown work country preserve partial scope and disable cleanup.",
+    "remediationStatus": "native-unfiltered-list-role-pdf-and-closing-inventory-implemented"
+  }
+]

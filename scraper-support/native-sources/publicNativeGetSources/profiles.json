@@ -1,0 +1,95 @@
+{
+  "dehaat": {
+    "source": "dehaat",
+    "companyName": "Dehaat",
+    "displayName": "DeHaat",
+    "platform": "workable",
+    "tenant": "agrevolution",
+    "accountId": 517948,
+    "accountUid": "28a22174-e074-4931-b81f-cc2be85b5f86",
+    "domain": "agrevolution.in",
+    "primaryURLs": [
+      "https://agrevolution.in/",
+      "https://agrevolution.in/careers"
+    ],
+    "primaryTitles": [
+      "DeHaat",
+      "Dehaat"
+    ],
+    "countryFilter": "India",
+    "markdownURL": "https://apply.workable.com/agrevolution/jobs.md"
+  },
+  "dunzo": {
+    "source": "dunzo",
+    "companyName": "dunzo",
+    "displayName": "Dunzo",
+    "platform": "workable",
+    "tenant": "dunzo",
+    "accountId": 249691,
+    "accountUid": "df3a6c83-3277-4163-89ae-e2e2f8d26c21",
+    "domain": "dunzo.com",
+    "primaryURLs": [
+      "https://dunzo.com/"
+    ],
+    "primaryTitles": [
+      "Dunzo",
+      "dunzo"
+    ],
+    "countryFilter": "India",
+    "markdownURL": "https://apply.workable.com/dunzo/jobs.md"
+  },
+  "sigtuple": {
+    "source": "sigtuple",
+    "companyName": "SigTuple",
+    "displayName": "SigTuple",
+    "platform": "workable",
+    "tenant": "sigtuple",
+    "accountId": 342559,
+    "accountUid": "301bb372-b567-4bfd-afe1-ca0035561689",
+    "domain": "sigtuple.com",
+    "primaryURLs": [
+      "https://sigtuple.com/"
+    ],
+    "primaryTitles": [
+      "SigTuple"
+    ],
+    "countryFilter": "India",
+    "markdownURL": "https://apply.workable.com/sigtuple/jobs.md"
+  },
+  "odin": {
+    "source": "odin",
+    "companyName": "Odin",
+    "publisherName": "Odin",
+    "platform": "ashby",
+    "primaryURL": "https://www.joinodin.com/",
+    "primaryPages": [
+      "https://www.joinodin.com/",
+      "https://joinodin.notion.site/Careers-at-Odin-887cb068f5af4266a8986912f1bee72f"
+    ],
+    "primaryTitleSignals": [
+      "Odin"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/odin?includeCompensation=true",
+    "boardSlug": "odin",
+    "organizationId": "6e4df48d-077d-4ea5-8804-4a47a3bb5852",
+    "websiteOrigin": "https://www.joinodin.com",
+    "boardURL": "https://jobs.ashbyhq.com/odin",
+    "declaration": {
+      "kind": "active-native-board-link",
+      "boardURL": "https://jobs.ashbyhq.com/odin"
+    },
+    "countryFilter": "Global"
+  },
+  "ikya": {
+    "source": "ikya",
+    "companyName": "Ikya",
+    "publisherName": "ikya",
+    "platform": "smartrecruiters",
+    "companyIdentifier": "Ikya1",
+    "domain": "ikya.com",
+    "primaryURL": "http://www.ikya.com/",
+    "boardURL": "https://careers.smartrecruiters.com/Ikya1",
+    "publicAPIURL": "https://api.smartrecruiters.com/v1/companies/Ikya1/postings",
+    "countryFilter": "India"
+  }
+}

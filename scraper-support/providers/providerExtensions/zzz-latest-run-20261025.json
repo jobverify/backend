@@ -1,0 +1,21 @@
+[
+  {
+    "source": "att",
+    "companyName": "AT&T",
+    "adapter": "script",
+    "atsPlatform": "talentbrew",
+    "originalAtsPlatform": "workday",
+    "modulePath": "../../scraper/att.workday/script.js",
+    "baseUrl": "https://www.att.jobs/search-jobs?acm=ALL&alrpm=1269750&ascf=%5B%7B%22key%22%3A%22ALL%22%2C%22value%22%3A%22%22%7D%5D",
+    "companyCareerPage": "https://www.att.jobs/search-jobs?acm=ALL&alrpm=1269750&ascf=%5B%7B%22key%22%3A%22ALL%22%2C%22value%22%3A%22%22%7D%5D",
+    "companyDomain": "www.att.jobs",
+    "countryFilter": "India",
+    "parser": "att-native-country-pages",
+    "paginationStrategy": "native-india-facet-all-pages-and-closing-reconciliation",
+    "extractionStrategy": "native-country-listings-and-identity-bound-full-role-details",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "scraperRetryAttempts": 1,
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,17 @@
+﻿{
+  "source": "aadinathconsultancy",
+  "companyName": "Aadinath Consultancy",
+  "adapter": "script",
+  "modulePath": "../../scraper/aadinathconsultancy/script.js",
+  "companyCareerPage": "https://aadinathconsultants.com/",
+  "atsPlatform": "official-company-site-no-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "homepage-plus-missing-first-party-careers-routes",
+  "extractionStrategy": "verified-timeout-only-first-party-routes+legacy-autoindex-homepage-and-missing-first-party-careers-routes+no-public-job-signals",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "aadinathconsultants.com",
+  "verifiedOn": "2026-08-13",
+  "verifiedSurfaceSummary": "Verified on Thursday, August 13, 2026 that https://aadinathconsultants.com/ and the common first-party careers routes /careers, /career, /jobs, /join-us, /work-with-us, and /openings each currently fail with repeated connect timeouts, leaving no trustworthy public jobs surface reachable on the first-party domain."
+}
+

@@ -1,0 +1,7 @@
+NSEIT's verified legal successor, DEXIT Global Limited, publishes a native WP Job Openings listing and matching JobPosting detail for Helpdesk Executive (35855). Both identify Mumbai. The adapter follows existing public city eligibility while preserving country=null and the original September 2, 2025 publication date. That original date still excludes this role under the publishing age gate.
+
+Without an explicit country, every native address must contain the same whole allowed city as the listing. Composite locations, foreign or unsupported country carriers, and unexplained region metadata cannot use this fallback. Any active visible location label must also agree, independently of whether the description is substantive. Missing descriptions remain null and do not by themselves prevent a discovery record.
+
+This is an observed listing, not a certified complete company inventory. Historical page-size and repeated-page observations do not establish a total. Inventory evidence remains coverage-gap, country counts remain unknown, and lifecycle cleanup is disabled. No native country or date is inferred from headquarters, the provider filter, or capture time.
+
+Run `node --test scraper/nseit/script.test.js scraper/nseit/cityPolicy.test.js` from the backend directory. Tests cover captured native facts, country truth, location contradictions, missing descriptions, expiry and publication windows, employer identity, pagination, cancellation and transport limits. No database writes or application submissions are needed.

@@ -1,0 +1,24 @@
+{
+  "kind": "documentary-web-read",
+  "observationDate": "2026-11-01",
+  "observationTimePrecision": "day",
+  "preciseFetchTimestamp": null,
+  "recordedAt": "2026-11-01T00:13:09.368Z",
+  "employerListing": "https://www.coinbase.com/careers/positions",
+  "advertisedRole": "https://www.coinbase.com/careers/positions/8333273",
+  "roleTitle": "Customer Support Specialist II",
+  "nativeLabel": "Hyderabad, India",
+  "applyAnchorLabel": "Apply now",
+  "advertisedApplyUrl": "https://job-boards.greenhouse.io/embed/job_app?for=coinbase&token=8333273",
+  "nativeTenant": "coinbase",
+  "nativeRoleId": 8333273,
+  "evidenceType": "Web tool read of active employer role and its advertised public Apply now destination; no application interaction or submission.",
+  "rawFirstPartyHtmlAvailable": false,
+  "exactTimestampAvailable": false,
+  "limitations": [
+    "The web tool reported Crawled: today and did not expose a precise HTTP fetch timestamp or raw HTML.",
+    "Separate Node reads of both the employer listing and advertised employer detail returned HTTP 403 Cloudflare challenge.",
+    "Documentary binding is not a current successful production transport check of the employer website.",
+    "The native API independently returned matching Coinbase employer names, first-party role URLs and job IDs. Whole-company inventory completeness remains unverified."
+  ]
+}

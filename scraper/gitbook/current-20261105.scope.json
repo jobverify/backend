@@ -1,0 +1,26 @@
+{
+  "provenance": {
+    "workspacePath": "reports/scraper-2026-11-05-41887979507/continuation-6/gitbook/current-http.json.gz",
+    "sha256": "ffa6f2aaca40554aa82af35e516e1a5e23ba744606690fedcb7bdaeddcb1a0b2",
+    "capturedAt": "2026-11-05T09:41:38.019Z",
+    "fixtureSha256": "6833cae7d13a01e204ae966bfeba74179ede72f0bd308f02e7c1ec07be317e4c",
+    "additionalNativeCapture": {
+      "fixture": "fixtures/current-http-20261105-second.json.gz",
+      "sha256": "ea3ef69189cbc0ba62b2701fbb725168565c88b6248f770db29b0feaa84471d1",
+      "startedAt": "2026-11-05T09:48:14.993Z",
+      "completedAt": "2026-11-05T09:48:25.621Z",
+      "review": "All six native opening/closing responses use the second exact reviewed bootstrap. The two retained programs differ only in four uniform CDN build-path literals; unseen build IDs and changed programs remain unreviewed."
+    },
+    "binding": "Reviewed current first-party SSR role declarations. Complementary responsive variants are not an all-conditions visibility proof. This exact corporate scope is coupled to the retained native bootstrap and independently reconciled GitBook organization/publicWebsite. Partial only; whole-company hiring scope and Remote country eligibility remain unverified."
+  },
+  "scopeSha256": "4519a471212931e50a854d7385d34aec1e6d290e752a349ba806280438f139b9",
+  "nativeAppBootstrap": {
+    "sha256": "1afda87db028e24555eaa0e7d15bed3eb73958597ff9ee4ba58e9666bd931bde",
+    "additionalReviewedSha256": ["ead04f725f662593cf1076fa304ae1c47f2c89a8f819bd5e4aafa70a878446d6"]
+  },
+  "corporateRoleIds": [
+    "531ab2e2-af70-4b26-805e-1b4554184fd6",
+    "5d3d7b3d-0a50-4728-a9cc-18cfd8b14adb",
+    "cfd51d34-61c7-47c6-af41-04818008fea2"
+  ]
+}

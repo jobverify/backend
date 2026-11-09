@@ -1,0 +1,23 @@
+{
+  "source": "aurecon",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../../scraper/aurecon.workday/script.js",
+  "verificationDisposition": "current-runtime-evidence-required",
+  "verifiedSurfaceSummary": "Runtime qualifies current Aurecon native office-country relations and the exact configured Workday board. Whole-company totals and lifecycle cleanup remain unverified.",
+  "baseUrl": "https://aurecongroup.wd3.myworkdayjobs.com/en-US/aurecon",
+  "companyCareerPage": "https://www.aurecongroup.com/careers/experienced-professionals",
+  "companyDomain": "aurecongroup.com",
+  "atsPlatform": "workday",
+  "paginationStrategy": "unfiltered-native-CXS-opening-and-closing-with-current-office-models",
+  "extractionStrategy": "reviewed-current-publisher-JSON-renderer+exact-native-office-country-GUID-relations+typed-CXS-country-authority",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedInventoryStatus": "discovery-only",
+  "verifiedAt": null,
+  "verifiedOn": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceScopeNotes": "Runtime qualifies the current declared Aurecon renderer and native careers handoff, retains whole original contact models and country relations, and resolves only otherwise unknown exact additional Workday office labels. A source-only literal office suffix is retained with its original label. No publisher card IDs, positions or totals are invented. The native typed country, canonical role identity, opening/closing inventory and unresolved geography checks remain authoritative. Configured board completion does not prove whole-company coverage or authorize lifecycle cleanup."
+}

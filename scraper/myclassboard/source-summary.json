@@ -1,0 +1,48 @@
+{
+  "source": "myclassboard",
+  "verifiedAt": "2026-10-23",
+  "discovery": {
+    "legacyCareers": "https://www.myclassboard.com/careers/",
+    "currentCorporate": "https://www.mcbapp.com/",
+    "careers": "https://www.mcbapp.com/careers/",
+    "ats": "https://mcb.keka.com/careers",
+    "exactEmployer": "MyClassboard Educational Solutions Pvt Ltd",
+    "identityEvidence": [
+      "Current corporate home meta names MyClassboard and active contact anchors use myclassboard.in",
+      "Current corporate careers16 active role cards point to exact Keka tenant",
+      "Keka careerportalinfo names exact legal employer and companyWebsite https://www.myclassboard.com/",
+      "Native employer application forms and native client route binding verified without submission"
+    ]
+  },
+  "observed": {
+    "corporateRoleCards": 16,
+    "nativeActiveRecords": 21,
+    "explicitIndiaRecovered": 17,
+    "excludedCountryUnproven": [
+      "142099",
+      "141291",
+      "141278",
+      "59073"
+    ],
+    "eligibleAfterUnchangedLifecycleGateAt20261023": [
+      "143683",
+      "143062",
+      "59685",
+      "50237"
+    ],
+    "oldAfterUnchangedLifecycleGate": 13
+  },
+  "dates": "Native publishedOn strings preserved verbatim; page dates and capture dates never replace public posting dates. No native expiry value observed; active inventory membership and individual forms corroborate application state.",
+  "limitations": [
+    "Corporate16cards and native21record inventory differ; whole-company completeness remains unverified.",
+    "Four native roles lack explicit India country, including Hyderabad-only record59073; no country inferred.",
+    "Legacy email-only generic Software Engineer/Sales and Marketing sections are not substitute job records.",
+    "Google Forms sales/support campaign40+ advertised roles not treated as enumerated job records.",
+    "Related-jobs response is not an inventory endpoint.",
+    "Missing substantive detail remains null after other job gates; hidden/inert/template/comment/heading-only content never supplies JD."
+  ],
+  "lifecycleCleanupAllowed": false,
+  "sourceListingComplete": false,
+  "reportedTotal": null,
+  "indiaFacetCount": null
+}

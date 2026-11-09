@@ -1,0 +1,28 @@
+[
+  {
+    "catalogOverride": true,
+    "source": "nomuraindia",
+    "companyName": "Nomura India",
+    "officialBrandName": "Nomura",
+    "adapter": "script",
+    "modulePath": "../nomuraindia/script.js",
+    "dryRunFile": "nomuraindia/jobs.json",
+    "careersUrl": "https://careers.nomura.com/Nomura/go/Career-Opportunities-India/9050900/",
+    "atsPlatform": "successfactors-rmk-public-native",
+    "countryFilter": "India",
+    "paginationStrategy": "follow-actual-native-category-pagination-links-and-reconcile-closing-positives",
+    "extractionStrategy": "literal-native-role-HTML-microdata-full-description-and-explicit-job-country",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verifiedSurfaceSummary": "Current native reader replaces the historical verified-zero snapshot. Native observations do not establish complete employer inventory, active recruitment, application activation or publication.",
+    "backfillMode": "native-public-role-reader",
+    "zeroResultPolicy": "coverage-gap",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false
+  }
+]

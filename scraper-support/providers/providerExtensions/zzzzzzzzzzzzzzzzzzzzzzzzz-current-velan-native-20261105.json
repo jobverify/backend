@@ -1,0 +1,12 @@
+[
+ {
+  "source":"velaninfoservices",
+  "catalogOverride":true,
+  "paginationStrategy":"paired-canonical-careers-native-roles-and-delivery-center;company-scope-unqualified",
+  "extractionStrategy":"whole-native-role-criteria+all-matching-publisher-worksite-country-binding+paired-closing-models",
+  "verifiedOn":"2026-11-05",
+  "verifiedPublicJobCount":null,
+  "verifiedIndiaJobCount":null,
+  "verifiedSurfaceSummary":"The canonical first-party careers page declares the current native job groups, individual role pages and office surface. Full responsibilities, candidate profiles, benefits, native JOB IDs, posted calendar labels, position counts and original models remain retained. Native role locations bind only to every matching current publisher worksite address with an explicit country; interview venues or employer spelling alone supply no country or exact-campus claim. Requisitions, legal employer, employment mode, closing date and first-ever publication remain unknown. Public role pages contain an inline application form; no form interaction or submission occurs. Anonymous bounded reads stop on first failure. Company/listing completeness, totals, application activity and cleanup remain unqualified."
+ }
+]

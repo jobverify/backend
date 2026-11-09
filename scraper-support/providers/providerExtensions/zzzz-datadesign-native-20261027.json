@@ -1,0 +1,27 @@
+[
+  {
+    "source": "datadesign",
+    "companyName": "Data Design",
+    "officialLegalEmployer": "株式会社データ・デザイン",
+    "adapter": "script",
+    "modulePath": "../datadesign/script.js",
+    "homepageUrl": "https://www.datadesign.co.jp/",
+    "companyCareerPage": "https://recruit.datadesign.co.jp/jobs",
+    "jobListingsUrl": "https://recruit.datadesign.co.jp/jobs",
+    "jobsApiUrl": "https://recruit.datadesign.co.jp/wp-json/wp/v2/tj_job",
+    "atsPlatform": "wordpress-jobs-api",
+    "countryFilter": "India",
+    "paginationStrategy": "wp-total-headers+all-pages+full-native-details+closing-reconciliation",
+    "extractionStrategy": "official-corporate-handoff+native-role-api-parity+explicit-country+full-visible-criteria",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "companyDomain": "datadesign.co.jp",
+    "verifiedOn": "2026-10-27",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedSurfaceSummary": "The official corporate homepage delegates to the recruitment site and native tj_job archive. Enumerate the full public WordPress feed with declared pagination totals, compare full rendered content against every native role, use explicit JobPosting country and original posting dates, keep CMS posting IDs distinct from requisitions, and reconcile closing inventory before caps. The declared Mynavi public company profile is an additional recruitment channel; unresolved or denied scope keeps whole-company counts unavailable and disallows lifecycle cleanup. Current counts belong to runtime evidence.",
+    "dryRunFile": "datadesign/jobs.json",
+    "catalogOverride": true
+  }
+]

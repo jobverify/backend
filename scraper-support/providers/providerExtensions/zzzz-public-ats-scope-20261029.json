@@ -1,0 +1,115 @@
+[
+  {
+    "source": "eqtab",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": {
+      "mode": "board-handoff",
+      "boardUrl": "https://job-boards.eu.greenhouse.io/eqtpartners"
+    }
+  },
+  {
+    "source": "tenon",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "greenhouse",
+    "boardToken": "tenon",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "current-employer-handoff+complete-native-greenhouse-api",
+    "parser": "validated-public-ats",
+    "bindingEvidence": {
+      "verified": true,
+      "verifiedOn": "2026-10-29",
+      "officialURL": "https://www.tenon.ai/careers",
+      "matchedLinks": ["https://job-boards.greenhouse.io/tenon", "https://boards.greenhouse.io/tenon"]
+    },
+    "runtimeInventoryVerification": {
+      "mode": "board-handoff",
+      "boardUrl": "https://job-boards.greenhouse.io/tenon"
+    }
+  },
+  {
+    "source": "meru",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "lever",
+    "boardToken": "wearemeru",
+    "leverRegion": "global",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "current-employer-handoff+complete-native-lever-api",
+    "parser": "validated-public-ats",
+    "bindingEvidence": {
+      "verified": true,
+      "verifiedOn": "2026-10-29",
+      "officialURL": "https://wearemeru.com/careers/",
+      "matchedLinks": ["https://jobs.lever.co/wearemeru"]
+    },
+    "runtimeInventoryVerification": {
+      "mode": "board-handoff",
+      "boardUrl": "https://jobs.lever.co/wearemeru"
+    }
+  },
+  {
+    "source": "logrocket",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "lever",
+    "boardToken": "logrocket",
+    "leverRegion": "global",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "current-employer-role-reconciliation+complete-native-lever-api",
+    "parser": "validated-public-ats",
+    "bindingEvidence": {
+      "verified": true,
+      "verifiedOn": "2026-10-29",
+      "officialURL": "https://logrocket.com/careers",
+      "matchedLinks": ["https://jobs.lever.co/logrocket/c7acca26-e20c-4d4b-bf7b-470ab6c2a58f"]
+    },
+    "runtimeInventoryVerification": {
+      "mode": "role-links-exact",
+      "boardUrl": "https://jobs.lever.co/logrocket"
+    }
+  },
+  {
+    "source": "automox",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": {
+      "mode": "role-links-exact",
+      "boardUrl": "https://job-boards.greenhouse.io/automox"
+    }
+  },
+  {
+    "source": "choco",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": {
+      "mode": "board-embed",
+      "boardUrl": "https://jobs.ashbyhq.com/choco",
+      "employerHandoffPages": [
+        "https://choco.com/us/careers/open-roles",
+        "https://choco.com/careers/open-roles"
+      ]
+    }
+  },
+  {
+    "source": "characterai",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": {
+      "mode": "board-handoff",
+      "boardUrl": "https://jobs.ashbyhq.com/character"
+    }
+  },
+  {
+    "source": "abridge",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": {
+      "mode": "board-handoff",
+      "boardUrl": "https://jobs.ashbyhq.com/Abridge",
+      "nativeRemoteCountryScope": "US",
+      "unavailableAdvertisedRoles": "ashby-native-404"
+    }
+  }
+]

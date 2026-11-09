@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "leandata",
+  "companyName": "LeanData",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 8,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://www.leandata.com/company/careers/",
+      "finalURL": "https://www.leandata.com/company/careers/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "requestedAt": "2026-11-03T08:23:11.1142153Z",
+      "completedAt": "2026-11-03T08:23:13.5566828Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 68772,
+      "bodySHA256": "21f135eb199bbf1c8e02474cc34f605ae45ec2d6022065b91c72e54fbcae9e3c",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/LeanData",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/LeanData",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestedAt": "2026-11-03T08:27:53.9763148Z",
+      "completedAt": "2026-11-03T08:27:55.6402564Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 98977,
+      "bodySHA256": "0adb911382b96326ad11aad6e873bc8c44b8c13ff0717c185ec907c38c6082a9",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

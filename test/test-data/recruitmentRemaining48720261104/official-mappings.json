@@ -1,0 +1,83 @@
+[
+  {
+    "source": "hpenterprise",
+    "companyDomain": "hpe.com",
+    "companyCareerPage": "https://careers.hpe.com/india",
+    "officialHomepageUrl": "https://www.hpe.com/",
+    "publisherNames": [
+      "HPE",
+      "Hewlett Packard Enterprise"
+    ],
+    "nativeEmployerNames": [
+      "Hewlett Packard Enterprise",
+      "HPE"
+    ],
+    "officialReferences": [
+      "https://careers.hpe.com/india"
+    ],
+    "previous": {
+      "companyDomain": "welcometothejungle.com",
+      "companyCareerPage": "https://www.welcometothejungle.com/en/companies/hp-enterprise/jobs/enterprise-account-manager-retail_london_rim3dvyj",
+      "officialHomepageUrl": "https://www.welcometothejungle.com/"
+    }
+  },
+  {
+    "source": "teconnectivity",
+    "companyDomain": "te.com",
+    "companyCareerPage": "https://careers.te.com/",
+    "officialHomepageUrl": "https://www.te.com/",
+    "publisherNames": [
+      "TE Connectivity"
+    ],
+    "officialReferences": [
+      "https://careers.te.com/?trk=article-ssr-frontend-pulse_little-text-block"
+    ],
+    "previous": {
+      "companyDomain": "jobpe.com",
+      "companyCareerPage": "https://jobpe.com/te-connectivity-jobs-careers",
+      "officialHomepageUrl": "https://jobpe.com/"
+    }
+  },
+  {
+    "source": "pricewaterhousecoopers",
+    "companyDomain": "pwc.in",
+    "companyCareerPage": "https://www.pwc.in/careers/job-search.html",
+    "officialHomepageUrl": "https://www.pwc.in/",
+    "publisherNames": [
+      "PwC",
+      "PricewaterhouseCoopers"
+    ],
+    "nativeEmployerNames": [
+      "PwC"
+    ],
+    "officialReferences": [
+      "https://www.pwc.in/careers.html",
+      "https://www.pwc.in/careers/job-search.html"
+    ],
+    "previous": {
+      "companyDomain": "pwc.com",
+      "companyCareerPage": "https://www.pwc.com/tt/en/career.html",
+      "officialHomepageUrl": "https://www.pwc.com/"
+    }
+  },
+  {
+    "source": "loral",
+    "companyDomain": "loreal.com",
+    "companyCareerPage": "https://careers.loreal.com/en",
+    "officialHomepageUrl": "https://www.loreal.com/",
+    "publisherNames": [
+      "L'Oréal",
+      "L’Oréal",
+      "L'Oréal Groupe"
+    ],
+    "officialReferences": [
+      "https://www.loreal.com/Careers.aspx",
+      "https://careers.loreal.com/en"
+    ],
+    "previous": {
+      "companyDomain": "myjobmag.co.za",
+      "companyCareerPage": "https://www.myjobmag.co.za/jobs-at/l-oral",
+      "officialHomepageUrl": "https://www.myjobmag.co.za/"
+    }
+  }
+]

@@ -1,0 +1,2852 @@
+{
+  "recordedFrom": "artifacts\\scraper-coverage-repairs-2026-10-29\\logistics-third-wave\\gati-repair\\research-2026-10-29T22-40-15-279Z",
+  "surfaceHashes": {
+    "https://www.gati.com/": "7fe22a20205dbace8ba7dd2cb1efc03749048b2a3ec18866f149401fc8be8a70",
+    "https://www.allcargologistics.com/": "dc42c9ef7d944ae5e90bcb891e60a355a7851fbac87558e418aa11fdc7fe54fe",
+    "https://www.allcargologistics.com/about-us/careers": "1755e44270931e8cf47ed7251a9b43a30d39b0e0cdc39a1b99869c5ef9ee7b0a",
+    "https://allcargologistics.darwinbox.in/ms/candidatev2/main/careers/home": "15e0f6a43dc84f06b945a09f250fabb0c5ffce8e23adb3d78b3f45988c3c0792",
+    "https://allcargologistics.darwinbox.in/ms/candidatev2/main/careers/allJobs": "15e0f6a43dc84f06b945a09f250fabb0c5ffce8e23adb3d78b3f45988c3c0792",
+    "https://allcargologistics.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a"
+  },
+  "apiPayloads": {
+    "https://allcargologistics.darwinbox.in/ms/candidateapi/getCompanyConfig?is_preview=false&companyId=main": {
+      "message": {
+        "company": {
+          "id": "a68ca7c893d4ef",
+          "recruitment_enabled": true,
+          "onboarding_enabled": true,
+          "agent_builder_enabled": false,
+          "new_careers": true,
+          "is_preview": false,
+          "logo": "https://darwinbox-data-prod-mum.s3.ap-south-1.amazonaws.com/INSTANCE7_609261bc7ee9b_15/logo/a1608095135690587f30960f__tenant-avatar-15_464401922.jpg",
+          "company_name": "Allcargo Logistics Ltd.",
+          "subdomain": "allcargologistics",
+          "tenant_id": "15",
+          "banner_text": "Thank you for choosing us for your next chapter!",
+          "custom_weblink": "",
+          "custom_weblink_alias": "Additional Details",
+          "help_email": "",
+          "all_jobs_header_image": "",
+          "banner_images": [
+            "https://darwinbox-data-prod-mum.s3.ap-south-1.amazonaws.com/INSTANCE7_609261bc7ee9b_15/banners/a68506561668ca7c88e676c__default1.jpeg",
+            "https://darwinbox-data-prod-mum.s3.ap-south-1.amazonaws.com/INSTANCE7_609261bc7ee9b_15/banners/a212351592468ca7c891e19f__default2.jpeg"
+          ],
+          "languages": {},
+          "terms_url": "https://darwinbox.com/terms-of-use.php",
+          "terms_url_custom": "",
+          "is_pendo_enable_careers": "0",
+          "show_employer_benefits_jobdetailed": false,
+          "social_media_urls": {
+            "linkedIn": "https://in.linkedin.com/company/allcargogati",
+            "twitter": "",
+            "instagram": "",
+            "facebook": ""
+          },
+          "group_company_site": "",
+          "allJobsCount": 0,
+          "employer_benefit_section": "<p><br></p>",
+          "dynamic_background": false,
+          "dynamic_color": "#e32416",
+          "dynamic_color_top": "linear-gradient(90deg, #b00000, #ff0000);",
+          "is_country_of_residence": false,
+          "loginwithotp": "0",
+          "aliases": {
+            "department": "Department",
+            "emp_type": "Employee Type",
+            "emp_sub_type": "Employee Sub Type",
+            "designation": "Designation",
+            "capability": "Capability",
+            "functional_area": "Functional Area",
+            "offer_proposal": "Offer Proposal",
+            "job_tags": "Job Tag",
+            "country": "",
+            "shortlisting": "Shortlisting",
+            "screening": "Screening",
+            "pre_offer": "Pre-Offer",
+            "legal_entities": "Legal Entity"
+          },
+          "job_tile_permissions": {
+            "showPostedDate": false,
+            "showJobId": false,
+            "showDepartment": false,
+            "showLocation": true,
+            "showExperienceRange": true,
+            "showEmployeeType": true,
+            "showEmployeeSubType": false,
+            "salaryRange": false,
+            "legalEntities": false
+          },
+          "job_detail_permissions": {
+            "showPostedDate": true,
+            "showJobId": true,
+            "showDepartment": true,
+            "showLocation": true,
+            "showExperienceRange": true,
+            "showEmployeeType": true,
+            "showEmployeeSubType": true,
+            "salaryRange": true,
+            "legalEntities": false
+          },
+          "careers_filters": {
+            "department": "1",
+            "location": "1",
+            "experience": "1",
+            "employee_type": "1",
+            "functional_area": "0",
+            "capability": "0",
+            "job_tags": "0",
+            "country": "0",
+            "job_title": "1"
+          },
+          "date_time_format": {
+            "dateFormat": "DD-MM-YYYY",
+            "timeFormat": "24",
+            "timezone": "Asia/Kolkata"
+          },
+          "enableCvBasedJobRecommendations": false,
+          "brandingId": "a68ca7c893d4ef",
+          "all_jobs_banner_text": "Explore Opportunities with Us!"
+        }
+      },
+      "status": "success"
+    },
+    "https://allcargologistics.darwinbox.in/ms/candidateapi/groupcompanycareersetting?companyId=main": {
+      "message": {
+        "code": 0
+      },
+      "status": "success"
+    },
+    "https://allcargologistics.darwinbox.in/ms/candidateapi/job?page=1&companyId=main": {
+      "status": "success",
+      "message": {
+        "jobscount": 0,
+        "jobs": []
+      }
+    }
+  },
+  "corporate": {
+    "https://www.allcargologistics.com/": {
+      "styles": [
+        "<style ng-app-id=\"ng\">.header[_ngcontent-ng-c145699505]{z-index:111;position:relative;transition:all .7s ease-in-out;opacity:1}.header--container[_ngcontent-ng-c145699505]{z-index:20}.header--menus-main.active[_ngcontent-ng-c145699505]:after{content:\"\";position:absolute;width:100%;height:5px;background-color:var(--primary-red);border-radius:10px;bottom:0}.header--menus-dropdown[_ngcontent-ng-c145699505]{left:0;right:0;width:100%;transform:translateY(-200vh);transition:transform 1s ease;border:1px solid var(--light-grey)}.header--menus-dropdown.active[_ngcontent-ng-c145699505]{top:0%;transform:translateY(0)}.header--others[_ngcontent-ng-c145699505]:hover + .header--menus-dropdown[_ngcontent-ng-c145699505]{top:100%;transform:translateY(0)}@media only screen and (max-width:1440px){.logo[_ngcontent-ng-c145699505]{max-width:200px}}@media only screen and (max-width:1280px){.logo[_ngcontent-ng-c145699505]{max-width:160px}}</style>",
+        "<style ng-app-id=\"ng\">.footer--sticky[_ngcontent-ng-c440897496]{background-color:#ececec;border-radius:20px 20px 0 0}.footer--sticky-options[_ngcontent-ng-c440897496]{padding:20px 20px 5px}.footer--sticky-options.open[_ngcontent-ng-c440897496]{padding-bottom:0}.footer--sticky-options[_ngcontent-ng-c440897496]   .active[_ngcontent-ng-c440897496]{padding:10px;border-top-left-radius:10px;border-top-right-radius:10px}.footer--sticky-close[_ngcontent-ng-c440897496]{position:absolute;width:40px;height:40px;background-color:#ececec;border-radius:50%;text-align:center;padding:10px 0;transform:translateY(-20px);right:0;left:0;margin:0 auto}.sticky--container[_ngcontent-ng-c440897496]{bottom:0;left:0;right:0;z-index:105}.sticky--btn[_ngcontent-ng-c440897496]{bottom:10%;right:0;width:max-content;z-index:100}.scroll-top[_ngcontent-ng-c440897496]{display:block;z-index:100;height:50px;width:50px;cursor:pointer;border-radius:3px;transform:rotate(180deg);background:#a4a4a4b3;transition:all .5s ease 0s;transition:opacity .3s ease-in-out}@media only screen and (max-width:1550px){.scroll-top[_ngcontent-ng-c440897496]{bottom:15%}}@media only screen and (max-width:1024px){.scroll-top[_ngcontent-ng-c440897496]{bottom:25%}}.scroll-top-hide[_ngcontent-ng-c440897496]{opacity:0;visibility:hidden;pointer-events:none}.scroll-top-show[_ngcontent-ng-c440897496]{opacity:1;visibility:visible;pointer-events:all}</style>",
+        "<style ng-app-id=\"ng\">.footer--head-title[_ngcontent-ng-c1128542770]{width:30%}@media only screen and (max-width:1024px){.footer--head-title[_ngcontent-ng-c1128542770]{width:100%}}.footer--head-rating[_ngcontent-ng-c1128542770]{width:60%}@media only screen and (max-width:1024px){.footer--head-rating[_ngcontent-ng-c1128542770]{width:100%;margin-top:10px}}.footer--head-rating-tag[_ngcontent-ng-c1128542770]{width:78%}@media only screen and (max-width:1024px){.footer--head-rating-tag[_ngcontent-ng-c1128542770]{width:100%;margin-right:0}}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{padding:0 20px;position:relative}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]:before{content:\"\";position:absolute;width:100%;height:12px;left:0;top:-20px;border-radius:20px;background:#d1e6ec}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]   li[_ngcontent-ng-c1128542770]{position:relative}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]   li[_ngcontent-ng-c1128542770]:before{content:\"\";position:absolute;transform:translateY(2px);width:8px;height:8px;left:0;top:-20px;border-radius:20px;background:#72b3c7}.footer--left[_ngcontent-ng-c1128542770]{width:65%;column-count:3}@media only screen and (max-width:1024px){.footer--left-links[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{visibility:hidden;max-height:0;opacity:0;transition:all .7s ease-in-out}.footer--left-links[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]{position:relative}.footer--left-links[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]:after{content:\"\\e934\";position:absolute;top:50%;right:0;font-size:1em;color:var(--primary-blue);transform:translateY(-50%)}.footer--left-links.active[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]{font-weight:var(--bold)}.footer--left-links.active[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]:after{transform:translateY(-50%) rotate(180deg)}.footer--left-links.active[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{opacity:1;margin-top:20px;visibility:visible;max-height:200vh}}.footer--left[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{break-inside:avoid}@media only screen and (max-width:1024px){.footer--left[_ngcontent-ng-c1128542770]{width:100%;column-count:initial}}.footer--right[_ngcontent-ng-c1128542770]{width:35%}@media only screen and (max-width:1024px){.footer--right[_ngcontent-ng-c1128542770]{width:100%}}</style>",
+        "<style ng-app-id=\"ng\">.modal[_ngcontent-ng-c3767888116]{position:fixed;z-index:113;visibility:hidden;left:50%;top:50%;transform:translate(-50%,-200%);opacity:0;transition:transform .1s,opacity .5s;background:#fff;border-radius:20px;text-align:center}@media only screen and (max-width:1024px){.modal[_ngcontent-ng-c3767888116]{border-radius:20px 20px 0 0}}.modal.active[_ngcontent-ng-c3767888116]{transform:translate(-50%,-50%);opacity:1;visibility:visible}.modal--fullscreen[_ngcontent-ng-c3767888116]{width:100%;height:100%;max-height:100vh;overflow:auto;border-radius:0}.modal--noFullscreen[_ngcontent-ng-c3767888116]{max-width:60%;width:max-content;max-height:85vh;overflow:auto}@media only screen and (max-width:1024px){.modal--noFullscreen[_ngcontent-ng-c3767888116]{width:100%;top:auto;bottom:0}.modal--noFullscreen.active[_ngcontent-ng-c3767888116]{transform:translate(-50%)}}.modal--overlay[_ngcontent-ng-c3767888116]{position:fixed;top:0;left:0;width:100%;height:100%;background:#00000080;transform:translate(-50%,-200%);opacity:0;transition:transform .1s,opacity .5s}.modal--overlay.active[_ngcontent-ng-c3767888116]{transform:translate(0);opacity:1;z-index:112}.modal--header[_ngcontent-ng-c3767888116]{position:sticky;width:0;float:right;padding:0;top:0;z-index:10}.modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]{position:absolute;right:15px;top:10px;height:33px;width:33px;background-color:var(--secondary-red);padding:10px;border-radius:50%;aspect-ratio:1;line-height:1}.modal--header[_ngcontent-ng-c3767888116]   .close.left[_ngcontent-ng-c3767888116]{right:calc(100vw - 45px);top:13px}.logo--header[_ngcontent-ng-c3767888116]{width:100%;height:max-content;padding:10px}.logo-btn[_ngcontent-ng-c3767888116]{position:relative!important;top:0!important;right:0!important}.logo-img[_ngcontent-ng-c3767888116]{max-width:160px;margin-left:15px}.iframe-modal[_ngcontent-ng-c3767888116]{width:90%;max-width:920px;background:#0d0d0f;border-radius:16px;overflow:hidden;box-shadow:0 25px 60px -15px #000000a6}@media only screen and (max-width:1024px){.iframe-modal[_ngcontent-ng-c3767888116]{width:100%;border-radius:16px 16px 0 0}}.iframe-modal[_ngcontent-ng-c3767888116]:before{content:\"\";position:absolute;top:0;left:0;right:0;height:70px;background:linear-gradient(to bottom,rgba(0,0,0,.45),transparent);pointer-events:none;z-index:5}.iframe-modal[_ngcontent-ng-c3767888116]   .modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]{top:14px;right:14px;background-color:#ffffff24;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);transition:background-color .2s ease,transform .2s ease;z-index:11}.iframe-modal[_ngcontent-ng-c3767888116]   .modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]:hover{background-color:var(--secondary-red);transform:scale(1.08)}.iframe-modal[_ngcontent-ng-c3767888116]   .modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]   .icon[_ngcontent-ng-c3767888116]{color:#fff}.iframe-modal[_ngcontent-ng-c3767888116]     .video--frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}.iframe-modal[_ngcontent-ng-c3767888116]     .video--frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}</style>",
+        "<style ng-app-id=\"ng\">.header--mobile-placeholder[_ngcontent-ng-c3961322960]{height:60px;position:sticky;top:0;z-index:1}.header--mobile-menus[_ngcontent-ng-c3961322960]{border-top:.5px solid var(--light-grey)}.header--mobile-menus[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]{max-height:0;padding-top:0;opacity:0;visibility:hidden;transition:all .7s ease-in-out}.header--mobile-menus[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]   li[_ngcontent-ng-c3961322960]{visibility:inherit;max-height:inherit;padding:0;transition:padding 1.7s ease-in-out}.header--mobile-menus.active[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]{opacity:1;visibility:visible;max-height:500px;padding-top:10px}.header--mobile-menus.active[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]   li[_ngcontent-ng-c3961322960]{padding:15px 0;transition:none}.header--mobile-menus.active[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]   li[_ngcontent-ng-c3961322960]:last-child{padding:15px 0 10px}.header--mobile-menus[_ngcontent-ng-c3961322960]   .close[_ngcontent-ng-c3961322960]{transform:rotateX(180deg)}</style>",
+        "<style ng-app-id=\"ng\">.global--loader[_ngcontent-ng-c3186908434]{height:100vh;width:100vw;position:fixed;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#fff;top:0;z-index:999}.global--loader[_ngcontent-ng-c3186908434]   img[_ngcontent-ng-c3186908434]{margin-bottom:10px;width:200px;height:auto}.spinner[_ngcontent-ng-c3186908434]{display:block;position:relative;width:80px;height:44px;margin:0 auto;text-align:center}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]{position:absolute;top:20px;width:11px;height:11px;border-radius:50%;background:#ed1b2f}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(1){left:8px;animation:_ngcontent-ng-c3186908434_lds-ellipsis1 .6s cubic-bezier(0,1,1,0) infinite}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(2){left:8px;animation:_ngcontent-ng-c3186908434_lds-ellipsis2 .6s cubic-bezier(0,1,1,0) infinite}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(3){left:32px;animation:_ngcontent-ng-c3186908434_lds-ellipsis2 .6s cubic-bezier(0,1,1,0) infinite}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(4){left:56px;animation:_ngcontent-ng-c3186908434_lds-ellipsis3 .6s cubic-bezier(0,1,1,0) infinite}@keyframes _ngcontent-ng-c3186908434_lds-ellipsis1{0%{transform:scale(0)}to{transform:scale(1)}}@keyframes _ngcontent-ng-c3186908434_lds-ellipsis3{0%{transform:scale(1)}to{transform:scale(0)}}@keyframes _ngcontent-ng-c3186908434_lds-ellipsis2{0%{transform:translate(0)}to{transform:translate(24px)}}</style>",
+        "<style ng-app-id=\"ng\">.header--menus-dropdown[_ngcontent-ng-c3621660053]{left:0;right:0;width:100%;transform:translateY(-200vh);transition:transform 1s ease-in-out;border:1px solid var(--light-grey);z-index:12}.header--menus-dropdown.active[_ngcontent-ng-c3621660053]{transform:translateY(0)}.header--menus-dropdown-image[_ngcontent-ng-c3621660053]{width:40%}.header--menus-dropdown-image[_ngcontent-ng-c3621660053]   img[_ngcontent-ng-c3621660053]{height:100%;object-fit:cover}.header--menus-dropdown-links[_ngcontent-ng-c3621660053]{width:60%}</style>",
+        "<style ng-app-id=\"ng\">.header--search[_ngcontent-ng-c4232124625]{right:0;width:30%;transform:translateY(-200vh);border:1px solid var(--light-grey);transition:transform .5s;z-index:11;height:100%}.header--search.active[_ngcontent-ng-c4232124625]{transform:translateY(0);overflow-y:hidden}.header--search[_ngcontent-ng-c4232124625]   .input-field[_ngcontent-ng-c4232124625] > input[_ngcontent-ng-c4232124625]{border:none}.header--search-result[_ngcontent-ng-c4232124625]{overflow-y:auto;height:max-content;max-height:calc(100% - 120px)}@media only screen and (max-width:1024px){.header--search-result[_ngcontent-ng-c4232124625]{max-height:80vh}}.mobile--search[_ngcontent-ng-c4232124625]   input[_ngcontent-ng-c4232124625]{border:none}.search-input[_ngcontent-ng-c4232124625]   input[_ngcontent-ng-c4232124625]{font-family:var(--font-family);font-size:16px;font-weight:var(--normal);color:var(--black);width:100%}</style>",
+        "<style ng-app-id=\"ng\">.sustainable[_ngcontent-ng-c2726661696]{overflow:hidden}@media only screen and (max-width:640px){.sustainable[_ngcontent-ng-c2726661696]   img[_ngcontent-ng-c2726661696]{left:0;position:absolute;top:0;height:100%}}@media only screen and (max-width:1024px){.sustainable[_ngcontent-ng-c2726661696]   img[_ngcontent-ng-c2726661696]{min-height:45vh}}.sustainable--content[_ngcontent-ng-c2726661696]{position:absolute;top:50%;transform:translateY(-50%);left:32px;z-index:2;padding-top:130px}@media only screen and (max-width:640px){.sustainable--content[_ngcontent-ng-c2726661696]{left:15%;width:85%;padding-top:50px;transform:none;position:relative;top:0}}.sustainable--content-circle[_ngcontent-ng-c2726661696]{padding:40px;border-radius:50%;background:var(--white);width:18%;aspect-ratio:1}@media only screen and (max-width:1024px){.sustainable--content-circle[_ngcontent-ng-c2726661696]{width:30%;transform:translate(-20%)}}@media only screen and (max-width:640px){.sustainable--content-circle[_ngcontent-ng-c2726661696]{width:70%;transform:none;margin-top:40px;padding:20px}}.sustainable--content-desc[_ngcontent-ng-c2726661696]{width:72%}@media only screen and (max-width:1024px){.sustainable--content-desc[_ngcontent-ng-c2726661696]{width:70%}}@media only screen and (max-width:640px){.sustainable--content-desc[_ngcontent-ng-c2726661696]{width:100%;padding-left:0}}.sustainable--content-desc[_ngcontent-ng-c2726661696]   a[_ngcontent-ng-c2726661696]{margin-top:25px}.sustainable[_ngcontent-ng-c2726661696]   .svg-container1[_ngcontent-ng-c2726661696]{position:absolute;top:0;left:calc(9% - 6px);z-index:1}.sustainable[_ngcontent-ng-c2726661696]   .svg2[_ngcontent-ng-c2726661696]{position:absolute;top:60px;right:-7.8px;width:91vw;height:auto}@media only screen and (max-width:1440px){.sustainable[_ngcontent-ng-c2726661696]   .svg2[_ngcontent-ng-c2726661696]{right:-6.5px}}@media only screen and (max-width:1336px){.sustainable[_ngcontent-ng-c2726661696]   .svg2[_ngcontent-ng-c2726661696]{right:-6px}}@media only screen and (max-width:1024px){.sustainable[_ngcontent-ng-c2726661696]   .svg2[_ngcontent-ng-c2726661696]{top:40px;width:90.3vw}}@media only screen and (max-width:640px){.sustainable[_ngcontent-ng-c2726661696]   .svg2[_ngcontent-ng-c2726661696]{width:88vw;right:-3px}}@media only screen and (max-width:450px){.sustainable[_ngcontent-ng-c2726661696]   .svg2[_ngcontent-ng-c2726661696]{width:90.5vw}}@media only screen and (max-width:640px){.sustainable[_ngcontent-ng-c2726661696]   .svg2.safari[_ngcontent-ng-c2726661696]{width:89.5vw}}@media only screen and (max-width:450px){.sustainable[_ngcontent-ng-c2726661696]   .svg2.safari[_ngcontent-ng-c2726661696]{width:92vw}}.sustainable[_ngcontent-ng-c2726661696]   .svgc[_ngcontent-ng-c2726661696]{width:1.5vw;height:100%}@media only screen and (max-width:1024px){.sustainable[_ngcontent-ng-c2726661696]   .svgc[_ngcontent-ng-c2726661696]{width:4vw}}.sustainable[_ngcontent-ng-c2726661696]   .dark-red1[_ngcontent-ng-c2726661696], .sustainable[_ngcontent-ng-c2726661696]   .dark-red2[_ngcontent-ng-c2726661696]{stroke-dasharray:10000;stroke-dashoffset:10000}</style>",
+        "<style ng-app-id=\"ng\">.enquiry--form[_ngcontent-ng-c1592734957]   .form-group[_ngcontent-ng-c1592734957]   .info-icon-wrap[_ngcontent-ng-c1592734957]{position:absolute;top:16px;right:4px;display:inline-flex;align-items:center;cursor:pointer;z-index:2}.enquiry--form[_ngcontent-ng-c1592734957]   .form-group[_ngcontent-ng-c1592734957]   .info-icon-wrap[_ngcontent-ng-c1592734957]   .info-icon[_ngcontent-ng-c1592734957]{display:block}.enquiry--form[_ngcontent-ng-c1592734957]   .form-group[_ngcontent-ng-c1592734957]   .info-icon-wrap[_ngcontent-ng-c1592734957]   .info-tooltip[_ngcontent-ng-c1592734957]{display:none;position:absolute;bottom:130%;right:-10px;width:220px;background:#333;color:#fff;font-size:12px;line-height:1.4;padding:8px 10px;border-radius:6px;z-index:10;white-space:normal}.enquiry--form[_ngcontent-ng-c1592734957]   .form-group[_ngcontent-ng-c1592734957]   .info-icon-wrap[_ngcontent-ng-c1592734957]:hover   .info-tooltip[_ngcontent-ng-c1592734957]{display:block}</style>",
+        "<style ng-app-id=\"ng\">ng-lottie[_ngcontent-ng-c3114921805]{line-height:0!important}</style>",
+        "<style ng-app-id=\"ng\">.skeleton-loader[_ngcontent-ng-c1108275547]{width:100%}.skeleton-loader[_ngcontent-ng-c1108275547]   .skeleton-item[_ngcontent-ng-c1108275547]{background:#e0e0e0;border-radius:4px;position:relative;overflow:hidden;margin-bottom:.5rem}.skeleton-loader[_ngcontent-ng-c1108275547]   .skeleton-item[_ngcontent-ng-c1108275547]:after{content:\"\";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:_ngcontent-ng-c1108275547_shimmer 1.5s infinite}.skeleton-loader.text[_ngcontent-ng-c1108275547]   .skeleton-item[_ngcontent-ng-c1108275547]{height:1rem}.skeleton-loader.text[_ngcontent-ng-c1108275547]   .skeleton-item[_ngcontent-ng-c1108275547]:last-child{width:80%}.skeleton-loader.card[_ngcontent-ng-c1108275547]   .skeleton-item[_ngcontent-ng-c1108275547]{height:200px;border-radius:8px}.skeleton-loader.circle[_ngcontent-ng-c1108275547]   .skeleton-item[_ngcontent-ng-c1108275547]{width:100px;height:100px;border-radius:50%}@keyframes _ngcontent-ng-c1108275547_shimmer{0%{transform:translate(-100%)}to{transform:translate(100%)}}</style>",
+        "<style ng-app-id=\"ng\">.select[_ngcontent-ng-c169637986]{position:relative;width:100%;font-size:1em}.select--text[_ngcontent-ng-c169637986]{display:block;padding:13px 35px 13px 0;border-bottom:solid 1px var(--light-grey)}.select-text[_ngcontent-ng-c169637986]{position:relative;line-height:1.5;font-family:inherit;background-color:transparent;width:100%;padding:13px 35px 13px 0;font-size:1em;border:none;border-bottom:solid 1px var(--light-grey)}.select-text[_ngcontent-ng-c169637986]:focus{outline:none;border:none;border-bottom:solid 1px var(--primary-blue)}.select[_ngcontent-ng-c169637986]   .select-text[_ngcontent-ng-c169637986]{appearance:none;-webkit-appearance:none;color:var(--black)}.select[_ngcontent-ng-c169637986]:after{content:\"\";position:absolute;top:15px;right:10px;pointer-events:none;border:solid var(--dark-grey);border-width:0 2px 2px 0;display:inline-block;padding:4px;transform:rotate(45deg);-webkit-transform:rotate(45deg)}.rotate[_ngcontent-ng-c169637986]:after{top:22px;transform:rotate(225deg);-webkit-transform:rotate(rotate(225deg))}.time[_ngcontent-ng-c169637986]:after{content:\"\\e9d3\";position:absolute;border:none;border-width:0;display:inline-block;padding:0;transform:none;-webkit-transform:none;font-size:1.25em}.text[_ngcontent-ng-c169637986], .select-label[_ngcontent-ng-c169637986]{color:var(--black);background:#fff;font-size:1em;font-weight:400;position:absolute;pointer-events:none;background-color:transparent;left:0;top:12px;transition:.2s ease all}.text[_ngcontent-ng-c169637986]{position:static;display:block;padding:13px 35px 13px 0;color:var(--medium-grey);border-bottom:solid 1px var(--light-grey)}.text.active[_ngcontent-ng-c169637986]{position:absolute;color:var(--black);top:0;line-height:5px;transition:.2s ease all;font-size:75%;padding:0;border-bottom:none}.text.active--color[_ngcontent-ng-c169637986]{color:var(--primary-blue)}.select-text[_ngcontent-ng-c169637986]:focus + .select-label[_ngcontent-ng-c169637986], .select-text[_ngcontent-ng-c169637986]:valid + .select-label[_ngcontent-ng-c169637986]{color:var(--primary-blue);top:0;transition:.2s ease all;font-size:75%}.select-text[_ngcontent-ng-c169637986]:invalid + .select-label[_ngcontent-ng-c169637986]{font-size:1em;top:12px}.select-text[_ngcontent-ng-c169637986]:valid:not(focus) ~ .select-label[_ngcontent-ng-c169637986]{color:var(--black)}.select-text[_ngcontent-ng-c169637986]:valid:focus ~ .select-label[_ngcontent-ng-c169637986]{color:var(--primary-blue)}.select[_ngcontent-ng-c169637986]   .error[_ngcontent-ng-c169637986]{position:absolute;left:0;bottom:-15px}.dropdown[_ngcontent-ng-c169637986]{max-height:0;display:none;opacity:0;z-index:11;width:100%;right:0;padding:13px 5px 13px 15px;border:1px solid #439AB5;background-color:#fff;border-radius:10px}.dropdown[_ngcontent-ng-c169637986]   li[_ngcontent-ng-c169637986]{border-bottom:1px solid #439AB5;padding-bottom:10px;margin-bottom:10px}.dropdown[_ngcontent-ng-c169637986]   li[_ngcontent-ng-c169637986]:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}.dropdown.active[_ngcontent-ng-c169637986]{display:block;max-height:300px;opacity:0;transition:.3s ease all}.dropdown.active[_ngcontent-ng-c169637986]   ul[_ngcontent-ng-c169637986]{padding-right:10px;max-height:280px;overflow-y:auto}</style>",
+        "<style ng-app-id=\"ng\">.tabs--list-mobile[_ngcontent-ng-c4260764040]{border-bottom:2px solid #F3D1D1;overflow-x:auto;transition:padding-top .5s,padding-bottom .5s}.tabs--list-mobile[_ngcontent-ng-c4260764040]   span[_ngcontent-ng-c4260764040]{transition:font-size .5s}.tabs--list-mobile[_ngcontent-ng-c4260764040]   .active[_ngcontent-ng-c4260764040]{border-bottom:4px solid var(--primary-red)}</style>"
+      ],
+      "styleOrders": [
+        "c4308c33043e5dc60c15e0f64f815f0f249d9c00f53a4083529d008e936ec359"
+      ],
+      "imagePreloads": [
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/homepage-logistics-cards/November2025/vdLQfUX935zf4UFQD6II.png\" rel=\"preload\" fetchpriority=\"high\">",
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/homepage-logistics-cards/November2025/N3giyGoLWGJ5Q1yZ0fBt.png\" rel=\"preload\" fetchpriority=\"high\">",
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/homepage-logistics-cards/November2025/hlL38I8HevEZYkaBT1DT.png\" rel=\"preload\" fetchpriority=\"high\">",
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/footer-top-details/November2025/vdjGpPQ7ZkPcBMzrXqNx.png\" rel=\"preload\" fetchpriority=\"high\">",
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/homepage-banners/January2026/NPfmnj4uu8zzNPXiXIJg.png\" rel=\"preload\" fetchpriority=\"high\">",
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/homepage-banners/January2026/w8GsSaHaovJOtarKw7kD.png\" rel=\"preload\" fetchpriority=\"high\">",
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/home-page-static-details/November2025/BkMKTEh7utrYptJ68eVK.png\" rel=\"preload\" fetchpriority=\"high\">"
+      ],
+      "hydration": [
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": []
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 2
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 6
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 4
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 5
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t15",
+            "2": "t16"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t16",
+                "r": 2,
+                "t": {
+                  "3": "t17",
+                  "5": "t18"
+                },
+                "c": {
+                  "3": [],
+                  "5": []
+                }
+              }
+            ],
+            "2": []
+          }
+        },
+        {
+          "t": {
+            "0": "t20",
+            "5": "t21"
+          },
+          "c": {
+            "0": [],
+            "5": []
+          },
+          "e": {
+            "8": 0
+          }
+        },
+        {
+          "t": {
+            "0": "t19",
+            "2": "t22"
+          },
+          "c": {
+            "0": [],
+            "2": []
+          },
+          "n": {
+            "2": "1fnfnf"
+          }
+        },
+        {
+          "t": {
+            "0": "t20",
+            "5": "t21"
+          },
+          "c": {
+            "0": [],
+            "5": [
+              {
+                "i": "t21",
+                "r": 1
+              }
+            ]
+          },
+          "e": {
+            "8": 0
+          }
+        },
+        {
+          "t": {
+            "1": "t23",
+            "2": "t28",
+            "10": "t30"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t24",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "5": [
+                    {
+                      "i": "t26",
+                      "r": 1,
+                      "x": 3
+                    }
+                  ]
+                }
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t24",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "5": [
+                    {
+                      "i": "t26",
+                      "r": 1,
+                      "x": 6
+                    }
+                  ]
+                }
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t25",
+                      "r": 1,
+                      "t": {
+                        "3": "t27"
+                      },
+                      "c": {
+                        "3": []
+                      }
+                    }
+                  ],
+                  "2": [],
+                  "5": []
+                },
+                "x": 2
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t24",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "5": [
+                    {
+                      "i": "t26",
+                      "r": 1,
+                      "x": 5
+                    }
+                  ]
+                }
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t25",
+                      "r": 1,
+                      "t": {
+                        "3": "t27"
+                      },
+                      "c": {
+                        "3": []
+                      }
+                    }
+                  ],
+                  "2": [],
+                  "5": []
+                },
+                "x": 3
+              }
+            ],
+            "2": [
+              {
+                "i": "t28",
+                "r": 1,
+                "t": {
+                  "7": "t29"
+                },
+                "c": {
+                  "7": [
+                    {
+                      "i": "t29",
+                      "r": 1,
+                      "x": 7
+                    }
+                  ]
+                }
+              }
+            ],
+            "10": [
+              {
+                "i": "t30",
+                "r": 1,
+                "t": {
+                  "1": "t31",
+                  "2": "t32"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t31",
+                      "r": 1
+                    }
+                  ],
+                  "2": []
+                }
+              },
+              {
+                "i": "t30",
+                "r": 1,
+                "t": {
+                  "1": "t31",
+                  "2": "t32"
+                },
+                "c": {
+                  "1": [],
+                  "2": [
+                    {
+                      "i": "t32",
+                      "r": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t20",
+            "5": "t21"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t20",
+                "r": 1
+              }
+            ],
+            "5": []
+          },
+          "e": {
+            "8": 0
+          }
+        },
+        {
+          "t": {
+            "13": "t33"
+          },
+          "c": {
+            "13": []
+          }
+        },
+        {
+          "t": {
+            "0": "t0"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t0",
+                "r": 1,
+                "t": {
+                  "3": "t1",
+                  "4": "t2",
+                  "5": "t14"
+                },
+                "c": {
+                  "3": [],
+                  "4": [
+                    {
+                      "i": "t2",
+                      "r": 1,
+                      "t": {
+                        "5": "t3",
+                        "9": "t7",
+                        "10": "t8",
+                        "14": "t9",
+                        "15": "t10",
+                        "19": "t11",
+                        "20": "t12",
+                        "23": "t13"
+                      },
+                      "c": {
+                        "5": [
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t4",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 2
+                          },
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t6",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 2
+                          },
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t4",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            }
+                          },
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t6",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 3
+                          }
+                        ],
+                        "9": [
+                          {
+                            "i": "t7",
+                            "r": 1
+                          }
+                        ],
+                        "10": [],
+                        "14": [
+                          {
+                            "i": "t9",
+                            "r": 1
+                          }
+                        ],
+                        "15": [],
+                        "19": [
+                          {
+                            "i": "t11",
+                            "r": 1
+                          }
+                        ],
+                        "20": [],
+                        "23": [
+                          {
+                            "i": "t13",
+                            "r": 1
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "5": []
+                }
+              }
+            ]
+          },
+          "n": {
+            "2": "1fnfnf",
+            "4": "3fn2fnf"
+          }
+        },
+        {},
+        {
+          "t": {
+            "1": "t34",
+            "2": "t40",
+            "4": "t41"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t34",
+                "r": 1,
+                "n": {
+                  "2": "0f"
+                },
+                "t": {
+                  "2": "t35"
+                },
+                "c": {
+                  "2": [
+                    {
+                      "i": "t35",
+                      "r": 6,
+                      "e": {
+                        "0": 5
+                      },
+                      "t": {
+                        "1": "t36"
+                      },
+                      "c": {
+                        "1": [
+                          {
+                            "i": "t36",
+                            "r": 1,
+                            "t": {
+                              "1": "t37",
+                              "2": "t38"
+                            },
+                            "c": {
+                              "1": [],
+                              "2": [
+                                {
+                                  "i": "t38",
+                                  "r": 2,
+                                  "e": {
+                                    "0": 1
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "i": "t36",
+                            "r": 1,
+                            "t": {
+                              "1": "t37",
+                              "2": "t38"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t37",
+                                  "r": 3,
+                                  "e": {
+                                    "0": 2
+                                  },
+                                  "t": {
+                                    "1": "t39"
+                                  },
+                                  "c": {
+                                    "1": [
+                                      {
+                                        "i": "t39",
+                                        "r": 1
+                                      }
+                                    ]
+                                  }
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 3
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "2": [],
+            "4": []
+          }
+        },
+        {
+          "t": {
+            "2": "t43",
+            "3": "t44",
+            "4": "t45",
+            "5": "t47",
+            "7": "t50",
+            "8": "t51"
+          },
+          "c": {
+            "2": [
+              {
+                "i": "t43",
+                "r": 1
+              }
+            ],
+            "3": [],
+            "4": [
+              {
+                "i": "t45",
+                "r": 1,
+                "t": {
+                  "3": "t46"
+                },
+                "c": {
+                  "3": [
+                    {
+                      "i": "t46",
+                      "r": 1
+                    }
+                  ]
+                }
+              }
+            ],
+            "5": [
+              {
+                "i": "t47",
+                "r": 1,
+                "t": {
+                  "1": "t48"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t48",
+                      "r": 1,
+                      "t": {
+                        "4": "t49"
+                      },
+                      "c": {
+                        "4": [
+                          {
+                            "i": "t49",
+                            "r": 1
+                          }
+                        ]
+                      },
+                      "x": 3
+                    }
+                  ]
+                }
+              }
+            ],
+            "7": [
+              {
+                "i": "t50",
+                "r": 1
+              }
+            ],
+            "8": []
+          }
+        },
+        {
+          "t": {
+            "0": "t53"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t53",
+                "r": 1,
+                "t": {
+                  "4": "t54",
+                  "5": "t55",
+                  "6": "t56",
+                  "8": "t57",
+                  "9": "t58",
+                  "10": "t59"
+                },
+                "c": {
+                  "4": [
+                    {
+                      "i": "t54",
+                      "r": 2,
+                      "c": {
+                        "0": []
+                      }
+                    }
+                  ],
+                  "5": [],
+                  "6": [
+                    {
+                      "i": "t56",
+                      "r": 1
+                    }
+                  ],
+                  "8": [],
+                  "9": [
+                    {
+                      "i": "t59",
+                      "r": 2,
+                      "t": {
+                        "0": "t60"
+                      },
+                      "c": {
+                        "0": [
+                          {
+                            "i": "t60",
+                            "r": 1,
+                            "t": {
+                              "1": "t61"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t61",
+                                  "r": 1,
+                                  "c": {
+                                    "4": [],
+                                    "8": [
+                                      {
+                                        "i": "t62",
+                                        "r": 1,
+                                        "x": 7
+                                      }
+                                    ]
+                                  },
+                                  "t": {
+                                    "8": "t62"
+                                  }
+                                },
+                                {
+                                  "i": "t61",
+                                  "r": 1,
+                                  "c": {
+                                    "4": [],
+                                    "8": [
+                                      {
+                                        "i": "t62",
+                                        "r": 1,
+                                        "x": 6
+                                      }
+                                    ]
+                                  },
+                                  "t": {
+                                    "8": "t62"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "10": []
+                },
+                "e": {
+                  "12": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t65",
+            "1": "t66"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t66",
+                "r": 1,
+                "t": {
+                  "1": "t67"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t67",
+                      "r": 1,
+                      "x": 5
+                    }
+                  ]
+                }
+              }
+            ],
+            "1": []
+          }
+        },
+        {
+          "t": {
+            "0": "t53"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t53",
+                "r": 1,
+                "t": {
+                  "4": "t54",
+                  "5": "t55",
+                  "6": "t56",
+                  "8": "t57",
+                  "9": "t58",
+                  "10": "t59"
+                },
+                "c": {
+                  "4": [],
+                  "5": [],
+                  "6": [
+                    {
+                      "i": "t56",
+                      "r": 1
+                    }
+                  ],
+                  "8": [
+                    {
+                      "i": "t57",
+                      "r": 2,
+                      "e": {
+                        "0": 1
+                      }
+                    }
+                  ],
+                  "9": [
+                    {
+                      "i": "t58",
+                      "r": 1,
+                      "t": {
+                        "1": "t68",
+                        "2": "t71"
+                      },
+                      "c": {
+                        "1": [
+                          {
+                            "i": "t68",
+                            "r": 1,
+                            "c": {
+                              "3": [],
+                              "7": [
+                                {
+                                  "i": "t69",
+                                  "r": 1,
+                                  "x": 6
+                                }
+                              ],
+                              "11": [
+                                {
+                                  "i": "t70",
+                                  "r": 1
+                                }
+                              ]
+                            },
+                            "t": {
+                              "7": "t69",
+                              "11": "t70"
+                            }
+                          }
+                        ],
+                        "2": []
+                      }
+                    }
+                  ],
+                  "10": []
+                },
+                "e": {
+                  "12": 0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t73"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t73",
+                "r": 1,
+                "t": {
+                  "10": "t74"
+                },
+                "c": {
+                  "10": [
+                    {
+                      "i": "t74",
+                      "r": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t75"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t75",
+                "r": 1,
+                "t": {
+                  "1": "t76",
+                  "2": "t77",
+                  "7": "t81",
+                  "8": "t82"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t76",
+                      "r": 1
+                    }
+                  ],
+                  "2": [
+                    {
+                      "i": "t77",
+                      "r": 1,
+                      "t": {
+                        "10": "t78",
+                        "12": "t79",
+                        "13": "t80"
+                      },
+                      "c": {
+                        "10": [
+                          {
+                            "i": "t78",
+                            "r": 1
+                          }
+                        ],
+                        "12": [
+                          {
+                            "i": "t79",
+                            "r": 1,
+                            "x": 5
+                          }
+                        ],
+                        "13": []
+                      }
+                    }
+                  ],
+                  "7": [
+                    {
+                      "i": "t81",
+                      "r": 1
+                    }
+                  ],
+                  "8": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t85"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t85",
+                "r": 1
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t83",
+            "2": "t84",
+            "4": "t86"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t84",
+                "r": 1
+              }
+            ],
+            "2": [],
+            "4": []
+          }
+        },
+        {
+          "t": {
+            "0": "t65",
+            "1": "t66"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t66",
+                "r": 1,
+                "t": {
+                  "1": "t67"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t67",
+                      "r": 1,
+                      "x": 2
+                    }
+                  ]
+                }
+              }
+            ],
+            "1": []
+          }
+        },
+        {
+          "t": {
+            "0": "t87"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t87",
+                "r": 1,
+                "t": {
+                  "2": "t88",
+                  "3": "t89"
+                },
+                "c": {
+                  "2": [
+                    {
+                      "i": "t88",
+                      "r": 1
+                    }
+                  ],
+                  "3": [
+                    {
+                      "i": "t89",
+                      "r": 1,
+                      "n": {
+                        "2": "0f"
+                      },
+                      "t": {
+                        "2": "t90"
+                      },
+                      "c": {
+                        "2": [
+                          {
+                            "i": "t90",
+                            "r": 1,
+                            "t": {
+                              "10": "t91"
+                            },
+                            "c": {
+                              "10": [
+                                {
+                                  "i": "t91",
+                                  "r": 1
+                                }
+                              ]
+                            },
+                            "x": 81
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t92"
+          },
+          "c": {
+            "0": []
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 3
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 10
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 16
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "3": "t103",
+            "4": "t104",
+            "5": "t105"
+          },
+          "c": {
+            "3": [
+              {
+                "i": "t103",
+                "r": 1
+              }
+            ],
+            "4": [
+              {
+                "i": "t104",
+                "r": 1
+              }
+            ],
+            "5": []
+          }
+        },
+        {
+          "t": {
+            "0": "t114"
+          },
+          "c": {
+            "0": []
+          }
+        },
+        {
+          "t": {
+            "0": "t100",
+            "2": "t101",
+            "3": "t113"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t100",
+                "r": 1
+              }
+            ],
+            "2": [
+              {
+                "i": "t101",
+                "r": 8,
+                "t": {
+                  "1": "t102"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t102",
+                      "r": 7,
+                      "t": {
+                        "13": "t106",
+                        "21": "t107",
+                        "30": "t108",
+                        "38": "t109",
+                        "40": "t110",
+                        "41": "t111",
+                        "42": "t112"
+                      },
+                      "c": {
+                        "13": [],
+                        "21": [],
+                        "30": [],
+                        "38": [],
+                        "40": [],
+                        "41": [
+                          {
+                            "i": "t111",
+                            "r": 1
+                          }
+                        ],
+                        "42": []
+                      }
+                    }
+                  ]
+                }
+              }
+            ],
+            "3": []
+          },
+          "n": {
+            "6": "5fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "7": "t93",
+            "8": "t94",
+            "10": "t95",
+            "11": "t96",
+            "12": "t97"
+          },
+          "c": {
+            "7": [
+              {
+                "i": "t93",
+                "r": 1,
+                "x": 6
+              }
+            ],
+            "8": [],
+            "10": [],
+            "11": [],
+            "12": [
+              {
+                "i": "t97",
+                "r": 1,
+                "t": {
+                  "8": "t98"
+                },
+                "c": {
+                  "8": [
+                    {
+                      "i": "t98",
+                      "r": 1,
+                      "t": {
+                        "1": "t99"
+                      },
+                      "c": {
+                        "1": [
+                          {
+                            "i": "t99",
+                            "r": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "n": {
+            "14": "13fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "4": "t42",
+            "8": "t52",
+            "9": "t63",
+            "10": "t64",
+            "11": "t72",
+            "19": "t115",
+            "21": "t116",
+            "22": "t117"
+          },
+          "c": {
+            "4": [],
+            "8": [
+              {
+                "i": "t52",
+                "r": 1
+              }
+            ],
+            "9": [],
+            "10": [
+              {
+                "i": "t64",
+                "r": 1
+              }
+            ],
+            "11": [],
+            "19": [],
+            "21": [],
+            "22": []
+          },
+          "n": {
+            "21": "20fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "1": "t118",
+            "6": "t119",
+            "8": "t120",
+            "9": "t121",
+            "10": "t122"
+          },
+          "c": {
+            "1": [],
+            "6": [],
+            "8": [],
+            "9": [],
+            "10": []
+          },
+          "n": {
+            "8": "7fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "0": "t123",
+            "1": "t124"
+          },
+          "c": {
+            "0": [],
+            "1": [
+              {
+                "i": "t124",
+                "r": 1,
+                "t": {
+                  "1": "t125",
+                  "4": "t126",
+                  "14": "t130",
+                  "19": "t133"
+                },
+                "c": {
+                  "1": [],
+                  "4": [
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 3
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 5
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 7
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 6
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 7
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 4
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "14": [
+                    {
+                      "i": "t130",
+                      "r": 1,
+                      "t": {
+                        "3": "t131"
+                      },
+                      "c": {
+                        "3": [
+                          {
+                            "i": "t131",
+                            "r": 1,
+                            "t": {
+                              "1": "t132"
+                            },
+                            "c": {
+                              "1": []
+                            }
+                          }
+                        ]
+                      },
+                      "x": 2
+                    }
+                  ],
+                  "19": [
+                    {
+                      "i": "t133",
+                      "r": 1,
+                      "x": 4
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "c": {
+            "2": [
+              {
+                "i": "c2677222685",
+                "r": 1
+              }
+            ],
+            "5": [],
+            "6": [
+              {
+                "i": "t135",
+                "r": 1
+              }
+            ]
+          },
+          "t": {
+            "5": "t134",
+            "6": "t135"
+          }
+        }
+      ],
+      "visibleScopeHash": "b77eadb2197d46f358a7eee95403f91e7cb438f9fb78799e67bb57eb3464590a",
+      "scopeSha256": "833164b2d512cbe1aa3cacead0113cc125a6a0134400e15dc75f67a70cdf918c"
+    },
+    "https://www.allcargologistics.com/about-us/careers": {
+      "styles": [
+        "<style ng-app-id=\"ng\">.header[_ngcontent-ng-c145699505]{z-index:111;position:relative;transition:all .7s ease-in-out;opacity:1}.header--container[_ngcontent-ng-c145699505]{z-index:20}.header--menus-main.active[_ngcontent-ng-c145699505]:after{content:\"\";position:absolute;width:100%;height:5px;background-color:var(--primary-red);border-radius:10px;bottom:0}.header--menus-dropdown[_ngcontent-ng-c145699505]{left:0;right:0;width:100%;transform:translateY(-200vh);transition:transform 1s ease;border:1px solid var(--light-grey)}.header--menus-dropdown.active[_ngcontent-ng-c145699505]{top:0%;transform:translateY(0)}.header--others[_ngcontent-ng-c145699505]:hover + .header--menus-dropdown[_ngcontent-ng-c145699505]{top:100%;transform:translateY(0)}@media only screen and (max-width:1440px){.logo[_ngcontent-ng-c145699505]{max-width:200px}}@media only screen and (max-width:1280px){.logo[_ngcontent-ng-c145699505]{max-width:160px}}</style>",
+        "<style ng-app-id=\"ng\">.footer--sticky[_ngcontent-ng-c440897496]{background-color:#ececec;border-radius:20px 20px 0 0}.footer--sticky-options[_ngcontent-ng-c440897496]{padding:20px 20px 5px}.footer--sticky-options.open[_ngcontent-ng-c440897496]{padding-bottom:0}.footer--sticky-options[_ngcontent-ng-c440897496]   .active[_ngcontent-ng-c440897496]{padding:10px;border-top-left-radius:10px;border-top-right-radius:10px}.footer--sticky-close[_ngcontent-ng-c440897496]{position:absolute;width:40px;height:40px;background-color:#ececec;border-radius:50%;text-align:center;padding:10px 0;transform:translateY(-20px);right:0;left:0;margin:0 auto}.sticky--container[_ngcontent-ng-c440897496]{bottom:0;left:0;right:0;z-index:105}.sticky--btn[_ngcontent-ng-c440897496]{bottom:10%;right:0;width:max-content;z-index:100}.scroll-top[_ngcontent-ng-c440897496]{display:block;z-index:100;height:50px;width:50px;cursor:pointer;border-radius:3px;transform:rotate(180deg);background:#a4a4a4b3;transition:all .5s ease 0s;transition:opacity .3s ease-in-out}@media only screen and (max-width:1550px){.scroll-top[_ngcontent-ng-c440897496]{bottom:15%}}@media only screen and (max-width:1024px){.scroll-top[_ngcontent-ng-c440897496]{bottom:25%}}.scroll-top-hide[_ngcontent-ng-c440897496]{opacity:0;visibility:hidden;pointer-events:none}.scroll-top-show[_ngcontent-ng-c440897496]{opacity:1;visibility:visible;pointer-events:all}</style>",
+        "<style ng-app-id=\"ng\">.footer--head-title[_ngcontent-ng-c1128542770]{width:30%}@media only screen and (max-width:1024px){.footer--head-title[_ngcontent-ng-c1128542770]{width:100%}}.footer--head-rating[_ngcontent-ng-c1128542770]{width:60%}@media only screen and (max-width:1024px){.footer--head-rating[_ngcontent-ng-c1128542770]{width:100%;margin-top:10px}}.footer--head-rating-tag[_ngcontent-ng-c1128542770]{width:78%}@media only screen and (max-width:1024px){.footer--head-rating-tag[_ngcontent-ng-c1128542770]{width:100%;margin-right:0}}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{padding:0 20px;position:relative}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]:before{content:\"\";position:absolute;width:100%;height:12px;left:0;top:-20px;border-radius:20px;background:#d1e6ec}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]   li[_ngcontent-ng-c1128542770]{position:relative}.footer--head-rating[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]   li[_ngcontent-ng-c1128542770]:before{content:\"\";position:absolute;transform:translateY(2px);width:8px;height:8px;left:0;top:-20px;border-radius:20px;background:#72b3c7}.footer--left[_ngcontent-ng-c1128542770]{width:65%;column-count:3}@media only screen and (max-width:1024px){.footer--left-links[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{visibility:hidden;max-height:0;opacity:0;transition:all .7s ease-in-out}.footer--left-links[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]{position:relative}.footer--left-links[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]:after{content:\"\\e934\";position:absolute;top:50%;right:0;font-size:1em;color:var(--primary-blue);transform:translateY(-50%)}.footer--left-links.active[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]{font-weight:var(--bold)}.footer--left-links.active[_ngcontent-ng-c1128542770]   h3[_ngcontent-ng-c1128542770]:after{transform:translateY(-50%) rotate(180deg)}.footer--left-links.active[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{opacity:1;margin-top:20px;visibility:visible;max-height:200vh}}.footer--left[_ngcontent-ng-c1128542770]   ul[_ngcontent-ng-c1128542770]{break-inside:avoid}@media only screen and (max-width:1024px){.footer--left[_ngcontent-ng-c1128542770]{width:100%;column-count:initial}}.footer--right[_ngcontent-ng-c1128542770]{width:35%}@media only screen and (max-width:1024px){.footer--right[_ngcontent-ng-c1128542770]{width:100%}}</style>",
+        "<style ng-app-id=\"ng\">.modal[_ngcontent-ng-c3767888116]{position:fixed;z-index:113;visibility:hidden;left:50%;top:50%;transform:translate(-50%,-200%);opacity:0;transition:transform .1s,opacity .5s;background:#fff;border-radius:20px;text-align:center}@media only screen and (max-width:1024px){.modal[_ngcontent-ng-c3767888116]{border-radius:20px 20px 0 0}}.modal.active[_ngcontent-ng-c3767888116]{transform:translate(-50%,-50%);opacity:1;visibility:visible}.modal--fullscreen[_ngcontent-ng-c3767888116]{width:100%;height:100%;max-height:100vh;overflow:auto;border-radius:0}.modal--noFullscreen[_ngcontent-ng-c3767888116]{max-width:60%;width:max-content;max-height:85vh;overflow:auto}@media only screen and (max-width:1024px){.modal--noFullscreen[_ngcontent-ng-c3767888116]{width:100%;top:auto;bottom:0}.modal--noFullscreen.active[_ngcontent-ng-c3767888116]{transform:translate(-50%)}}.modal--overlay[_ngcontent-ng-c3767888116]{position:fixed;top:0;left:0;width:100%;height:100%;background:#00000080;transform:translate(-50%,-200%);opacity:0;transition:transform .1s,opacity .5s}.modal--overlay.active[_ngcontent-ng-c3767888116]{transform:translate(0);opacity:1;z-index:112}.modal--header[_ngcontent-ng-c3767888116]{position:sticky;width:0;float:right;padding:0;top:0;z-index:10}.modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]{position:absolute;right:15px;top:10px;height:33px;width:33px;background-color:var(--secondary-red);padding:10px;border-radius:50%;aspect-ratio:1;line-height:1}.modal--header[_ngcontent-ng-c3767888116]   .close.left[_ngcontent-ng-c3767888116]{right:calc(100vw - 45px);top:13px}.logo--header[_ngcontent-ng-c3767888116]{width:100%;height:max-content;padding:10px}.logo-btn[_ngcontent-ng-c3767888116]{position:relative!important;top:0!important;right:0!important}.logo-img[_ngcontent-ng-c3767888116]{max-width:160px;margin-left:15px}.iframe-modal[_ngcontent-ng-c3767888116]{width:90%;max-width:920px;background:#0d0d0f;border-radius:16px;overflow:hidden;box-shadow:0 25px 60px -15px #000000a6}@media only screen and (max-width:1024px){.iframe-modal[_ngcontent-ng-c3767888116]{width:100%;border-radius:16px 16px 0 0}}.iframe-modal[_ngcontent-ng-c3767888116]:before{content:\"\";position:absolute;top:0;left:0;right:0;height:70px;background:linear-gradient(to bottom,rgba(0,0,0,.45),transparent);pointer-events:none;z-index:5}.iframe-modal[_ngcontent-ng-c3767888116]   .modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]{top:14px;right:14px;background-color:#ffffff24;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(6px);transition:background-color .2s ease,transform .2s ease;z-index:11}.iframe-modal[_ngcontent-ng-c3767888116]   .modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]:hover{background-color:var(--secondary-red);transform:scale(1.08)}.iframe-modal[_ngcontent-ng-c3767888116]   .modal--header[_ngcontent-ng-c3767888116]   .close[_ngcontent-ng-c3767888116]   .icon[_ngcontent-ng-c3767888116]{color:#fff}.iframe-modal[_ngcontent-ng-c3767888116]     .video--frame{position:relative;width:100%;aspect-ratio:16/9;background:#000}.iframe-modal[_ngcontent-ng-c3767888116]     .video--frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}</style>",
+        "<style ng-app-id=\"ng\">.header--mobile-placeholder[_ngcontent-ng-c3961322960]{height:60px;position:sticky;top:0;z-index:1}.header--mobile-menus[_ngcontent-ng-c3961322960]{border-top:.5px solid var(--light-grey)}.header--mobile-menus[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]{max-height:0;padding-top:0;opacity:0;visibility:hidden;transition:all .7s ease-in-out}.header--mobile-menus[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]   li[_ngcontent-ng-c3961322960]{visibility:inherit;max-height:inherit;padding:0;transition:padding 1.7s ease-in-out}.header--mobile-menus.active[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]{opacity:1;visibility:visible;max-height:500px;padding-top:10px}.header--mobile-menus.active[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]   li[_ngcontent-ng-c3961322960]{padding:15px 0;transition:none}.header--mobile-menus.active[_ngcontent-ng-c3961322960]   .submenu[_ngcontent-ng-c3961322960]   li[_ngcontent-ng-c3961322960]:last-child{padding:15px 0 10px}.header--mobile-menus[_ngcontent-ng-c3961322960]   .close[_ngcontent-ng-c3961322960]{transform:rotateX(180deg)}</style>",
+        "<style ng-app-id=\"ng\">.global--loader[_ngcontent-ng-c3186908434]{height:100vh;width:100vw;position:fixed;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#fff;top:0;z-index:999}.global--loader[_ngcontent-ng-c3186908434]   img[_ngcontent-ng-c3186908434]{margin-bottom:10px;width:200px;height:auto}.spinner[_ngcontent-ng-c3186908434]{display:block;position:relative;width:80px;height:44px;margin:0 auto;text-align:center}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]{position:absolute;top:20px;width:11px;height:11px;border-radius:50%;background:#ed1b2f}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(1){left:8px;animation:_ngcontent-ng-c3186908434_lds-ellipsis1 .6s cubic-bezier(0,1,1,0) infinite}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(2){left:8px;animation:_ngcontent-ng-c3186908434_lds-ellipsis2 .6s cubic-bezier(0,1,1,0) infinite}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(3){left:32px;animation:_ngcontent-ng-c3186908434_lds-ellipsis2 .6s cubic-bezier(0,1,1,0) infinite}.spinner[_ngcontent-ng-c3186908434]   div[_ngcontent-ng-c3186908434]:nth-child(4){left:56px;animation:_ngcontent-ng-c3186908434_lds-ellipsis3 .6s cubic-bezier(0,1,1,0) infinite}@keyframes _ngcontent-ng-c3186908434_lds-ellipsis1{0%{transform:scale(0)}to{transform:scale(1)}}@keyframes _ngcontent-ng-c3186908434_lds-ellipsis3{0%{transform:scale(1)}to{transform:scale(0)}}@keyframes _ngcontent-ng-c3186908434_lds-ellipsis2{0%{transform:translate(0)}to{transform:translate(24px)}}</style>",
+        "<style ng-app-id=\"ng\">.header--menus-dropdown[_ngcontent-ng-c3621660053]{left:0;right:0;width:100%;transform:translateY(-200vh);transition:transform 1s ease-in-out;border:1px solid var(--light-grey);z-index:12}.header--menus-dropdown.active[_ngcontent-ng-c3621660053]{transform:translateY(0)}.header--menus-dropdown-image[_ngcontent-ng-c3621660053]{width:40%}.header--menus-dropdown-image[_ngcontent-ng-c3621660053]   img[_ngcontent-ng-c3621660053]{height:100%;object-fit:cover}.header--menus-dropdown-links[_ngcontent-ng-c3621660053]{width:60%}</style>",
+        "<style ng-app-id=\"ng\">.header--search[_ngcontent-ng-c4232124625]{right:0;width:30%;transform:translateY(-200vh);border:1px solid var(--light-grey);transition:transform .5s;z-index:11;height:100%}.header--search.active[_ngcontent-ng-c4232124625]{transform:translateY(0);overflow-y:hidden}.header--search[_ngcontent-ng-c4232124625]   .input-field[_ngcontent-ng-c4232124625] > input[_ngcontent-ng-c4232124625]{border:none}.header--search-result[_ngcontent-ng-c4232124625]{overflow-y:auto;height:max-content;max-height:calc(100% - 120px)}@media only screen and (max-width:1024px){.header--search-result[_ngcontent-ng-c4232124625]{max-height:80vh}}.mobile--search[_ngcontent-ng-c4232124625]   input[_ngcontent-ng-c4232124625]{border:none}.search-input[_ngcontent-ng-c4232124625]   input[_ngcontent-ng-c4232124625]{font-family:var(--font-family);font-size:16px;font-weight:var(--normal);color:var(--black);width:100%}</style>",
+        "<style ng-app-id=\"ng\">.careers--work-culture{position:relative;z-index:1}.careers--work-culture .sustainability--commitment-content{background-color:#ff372f}.careers--modal-description{max-height:50vh;padding-right:20px;overflow:auto}@media only screen and (max-width:1024px){.careers--modal-description{max-height:max-content;padding-right:0}}\n</style>",
+        "<style ng-app-id=\"ng\">app-icon[_ngcontent-ng-c1520732576]{font-size:7px}</style>",
+        "<style ng-app-id=\"ng\">.work--culture[_ngcontent-ng-c3735296895]{padding-left:10%;margin-left:0!important}@media only screen and (max-width:1024px){.work--culture[_ngcontent-ng-c3735296895]{padding-left:15px;padding-right:15px}}.work--culture.common--slider[_ngcontent-ng-c3735296895]:has(.slick-prev):after{content:\"\";border-bottom:2px solid #F3D1D1;width:72%;position:absolute;bottom:0;left:10%}.work--culture-svg[_ngcontent-ng-c3735296895]{position:absolute;left:0;width:7.1vw;top:0;z-index:1;height:auto}</style>",
+        "<style ng-app-id=\"ng\">.slick-track{display:flex!important;margin-left:0;margin-right:0}.testimonials{padding-left:0;padding-right:0;margin-left:0}.testimonials .slick-slide{padding:0 30px;margin:0}@media only screen and (max-width:1024px){.testimonials .slick-slide{padding:0 5px}}.testimonials:has(.slick-prev):after{left:15px}\n</style>",
+        "<style ng-app-id=\"ng\">.footer--businessShipment[_ngcontent-ng-c2670131352]{background:linear-gradient(90deg,var(--secondary-blue) 50%,var(--primary-blue) 50%)}@media only screen and (max-width:1024px){.footer--businessShipment[_ngcontent-ng-c2670131352]{background:linear-gradient(0deg,var(--secondary-blue) 50%,var(--primary-blue) 50%)}}.footer--businessShipment-card[_ngcontent-ng-c2670131352]:nth-child(2){padding-left:110px}@media only screen and (max-width:1024px){.footer--businessShipment-card[_ngcontent-ng-c2670131352]:nth-child(2){padding-left:0}}@media only screen and (max-width:1024px){.footer--businessShipment-card[_ngcontent-ng-c2670131352]{padding:25px 0}}</style>",
+        "<style ng-app-id=\"ng\">.sustainability--commitment{position:relative}.sustainability--commitment-content{position:sticky;height:max-content;overflow:hidden;top:0}@media only screen and (max-width:1024px){.sustainability--commitment-content{position:relative;top:0}}.sustainability--commitment-content-detail{padding-left:8%;padding-right:8%;padding-top:80px}@media only screen and (max-width:1024px){.sustainability--commitment-content-detail{padding:30px 20px;position:relative}}.sustainability--commitment-card{position:sticky;top:0;transition:all .3s ease-in-out}@media only screen and (max-width:1024px){.sustainability--commitment-card{padding:0 15px}}.sustainability--commitment-card .card{max-width:55vh}@media only screen and (max-width:1024px){.sustainability--commitment-card .card{max-width:100%}}.sustainability--commitment-card .card img{max-height:70vh}@media only screen and (max-width:640px){.sustainability--commitment-card .card img{max-height:80vh}}.sustainability--commitment-card-content{position:absolute;bottom:0;left:0}.sustainability--commitment-card-content.solidCard{position:static}.stack-item{width:100%}\n</style>",
+        "<style ng-app-id=\"ng\">.static--banner-svg1{position:absolute;bottom:-450px;right:50.86%;transform:translate(100%);z-index:1;width:26vw;height:auto}@media only screen and (max-width:1440px){.static--banner-svg1{bottom:-330px;right:50.75%;width:24vw}}.static--banner-svg2{position:absolute;top:80%;right:94%;transform:translate(100%);z-index:1;width:65vw;height:auto}@media only screen and (max-width:1440px){.static--banner-svg2{right:93.96%;width:63vw}}.static--banner-certified{top:0;right:4%}@media only screen and (max-width:1440px){.static--banner-certified{right:1.5%}}@media only screen and (max-width:1024px){.static--banner-certified{right:15px}}.static-right-1{stroke-dasharray:10000;stroke-dashoffset:10000}\n</style>",
+        "<style ng-app-id=\"ng\">.express--faqs{position:relative;z-index:5}\n</style>",
+        "<style ng-app-id=\"ng\">.faqs--list-item .question-text{width:95%}.faqs--list-item .answer{max-height:0;padding-top:0;opacity:0;transition:all .7s ease-in-out}.faqs--list-item .icon{transition:all .7s ease-in-out;transform:rotate(180deg)}.faqs--list-item.active .answer{opacity:1;max-height:500vh;padding-top:25px}.faqs--list-item.active .icon{transform:rotate(180deg)}\n</style>"
+      ],
+      "styleOrders": [
+        "2fd6f1efee7a0b2c94f2c407a0349b10f2513fd0115e8f4a7dc794aedd2f2d96",
+        "410db3be982151254dc80a83b8979367d120ca0fe42e812c3c2a4034bd8c7348",
+        "573ef58bd312715879a8ca3e91c3f102ebe6ea8ea12358a35024ba441557114d"
+      ],
+      "imagePreloads": [
+        "<link as=\"image\" href=\"https://www.allcargologistics.com/cms/career-static-details/January2025/IphfGKRiR0ADEibdVoSb.webp\" rel=\"preload\" fetchpriority=\"high\">"
+      ],
+      "hydration": [
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": []
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 2
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 6
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 4
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 5
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t15",
+            "2": "t16"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t16",
+                "r": 2,
+                "t": {
+                  "3": "t17",
+                  "5": "t18"
+                },
+                "c": {
+                  "3": [],
+                  "5": []
+                }
+              }
+            ],
+            "2": []
+          }
+        },
+        {
+          "t": {
+            "0": "t20",
+            "5": "t21"
+          },
+          "c": {
+            "0": [],
+            "5": []
+          },
+          "e": {
+            "8": 0
+          }
+        },
+        {
+          "t": {
+            "0": "t19",
+            "2": "t22"
+          },
+          "c": {
+            "0": [],
+            "2": []
+          },
+          "n": {
+            "2": "1fnfnf"
+          }
+        },
+        {
+          "t": {
+            "0": "t20",
+            "5": "t21"
+          },
+          "c": {
+            "0": [],
+            "5": [
+              {
+                "i": "t21",
+                "r": 1
+              }
+            ]
+          },
+          "e": {
+            "8": 0
+          }
+        },
+        {
+          "t": {
+            "1": "t23",
+            "2": "t28",
+            "10": "t30"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t24",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "5": [
+                    {
+                      "i": "t26",
+                      "r": 1,
+                      "x": 3
+                    }
+                  ]
+                }
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t24",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "5": [
+                    {
+                      "i": "t26",
+                      "r": 1,
+                      "x": 6
+                    }
+                  ]
+                }
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t25",
+                      "r": 1,
+                      "t": {
+                        "3": "t27"
+                      },
+                      "c": {
+                        "3": []
+                      }
+                    }
+                  ],
+                  "2": [],
+                  "5": []
+                },
+                "x": 2
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t24",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "5": [
+                    {
+                      "i": "t26",
+                      "r": 1,
+                      "x": 5
+                    }
+                  ]
+                }
+              },
+              {
+                "i": "t23",
+                "r": 1,
+                "t": {
+                  "1": "t24",
+                  "2": "t25",
+                  "5": "t26"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t25",
+                      "r": 1,
+                      "t": {
+                        "3": "t27"
+                      },
+                      "c": {
+                        "3": []
+                      }
+                    }
+                  ],
+                  "2": [],
+                  "5": []
+                },
+                "x": 3
+              }
+            ],
+            "2": [
+              {
+                "i": "t28",
+                "r": 1,
+                "t": {
+                  "7": "t29"
+                },
+                "c": {
+                  "7": [
+                    {
+                      "i": "t29",
+                      "r": 1,
+                      "x": 7
+                    }
+                  ]
+                }
+              }
+            ],
+            "10": [
+              {
+                "i": "t30",
+                "r": 1,
+                "t": {
+                  "1": "t31",
+                  "2": "t32"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t31",
+                      "r": 1
+                    }
+                  ],
+                  "2": []
+                }
+              },
+              {
+                "i": "t30",
+                "r": 1,
+                "t": {
+                  "1": "t31",
+                  "2": "t32"
+                },
+                "c": {
+                  "1": [],
+                  "2": [
+                    {
+                      "i": "t32",
+                      "r": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t20",
+            "5": "t21"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t20",
+                "r": 1
+              }
+            ],
+            "5": []
+          },
+          "e": {
+            "8": 0
+          }
+        },
+        {
+          "t": {
+            "13": "t33"
+          },
+          "c": {
+            "13": []
+          }
+        },
+        {
+          "t": {
+            "0": "t0"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t0",
+                "r": 1,
+                "t": {
+                  "3": "t1",
+                  "4": "t2",
+                  "5": "t14"
+                },
+                "c": {
+                  "3": [],
+                  "4": [
+                    {
+                      "i": "t2",
+                      "r": 1,
+                      "t": {
+                        "5": "t3",
+                        "9": "t7",
+                        "10": "t8",
+                        "14": "t9",
+                        "15": "t10",
+                        "19": "t11",
+                        "20": "t12",
+                        "23": "t13"
+                      },
+                      "c": {
+                        "5": [
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t4",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 2
+                          },
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t6",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 2
+                          },
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t4",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            }
+                          },
+                          {
+                            "i": "t3",
+                            "r": 1,
+                            "t": {
+                              "1": "t4",
+                              "2": "t6"
+                            },
+                            "c": {
+                              "1": [
+                                {
+                                  "i": "t6",
+                                  "r": 1
+                                }
+                              ],
+                              "2": []
+                            },
+                            "x": 3
+                          }
+                        ],
+                        "9": [
+                          {
+                            "i": "t7",
+                            "r": 1
+                          }
+                        ],
+                        "10": [],
+                        "14": [
+                          {
+                            "i": "t9",
+                            "r": 1
+                          }
+                        ],
+                        "15": [],
+                        "19": [
+                          {
+                            "i": "t11",
+                            "r": 1
+                          }
+                        ],
+                        "20": [],
+                        "23": [
+                          {
+                            "i": "t13",
+                            "r": 1
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "5": []
+                }
+              }
+            ]
+          },
+          "n": {
+            "2": "1fnfnf",
+            "4": "3fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "5": "t139"
+          },
+          "c": {
+            "5": [
+              {
+                "i": "t139",
+                "r": 1,
+                "t": {
+                  "1": "t140",
+                  "2": "t142",
+                  "3": "t141"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t140",
+                      "r": 1
+                    }
+                  ],
+                  "2": [
+                    {
+                      "i": "t142",
+                      "r": 1
+                    }
+                  ],
+                  "3": []
+                }
+              },
+              {
+                "i": "t139",
+                "r": 1,
+                "t": {
+                  "1": "t140",
+                  "2": "t142",
+                  "3": "t141"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t141",
+                      "r": 1
+                    }
+                  ],
+                  "2": [],
+                  "3": []
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t294"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t294",
+                "r": 1,
+                "t": {
+                  "1": "t295",
+                  "2": "t299",
+                  "3": "t301",
+                  "4": "t302",
+                  "6": "t304",
+                  "7": "t305"
+                },
+                "c": {
+                  "1": [
+                    {
+                      "i": "t295",
+                      "r": 1,
+                      "t": {
+                        "3": "t296",
+                        "4": "t297",
+                        "5": "t298"
+                      },
+                      "c": {
+                        "3": [],
+                        "4": [],
+                        "5": [
+                          {
+                            "i": "t298",
+                            "r": 1
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "2": [
+                    {
+                      "i": "t299",
+                      "r": 1,
+                      "t": {
+                        "1": "t300"
+                      },
+                      "c": {
+                        "1": [
+                          {
+                            "i": "t300",
+                            "r": 1
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "3": [
+                    {
+                      "i": "t301",
+                      "r": 3,
+                      "e": {
+                        "0": 2
+                      },
+                      "t": {
+                        "1": "t379"
+                      },
+                      "c": {
+                        "1": [
+                          {
+                            "i": "t379",
+                            "r": 1
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "4": [],
+                  "6": [
+                    {
+                      "i": "t304",
+                      "r": 1
+                    }
+                  ],
+                  "7": [
+                    {
+                      "i": "t305",
+                      "r": 1,
+                      "e": {
+                        "0": 0
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "t": {
+            "0": "t380"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t380",
+                "r": 1,
+                "t": {
+                  "2": "t381",
+                  "3": "t382",
+                  "5": "t383",
+                  "7": "t384",
+                  "8": "t385"
+                },
+                "c": {
+                  "2": [
+                    {
+                      "i": "t381",
+                      "r": 1
+                    }
+                  ],
+                  "3": [
+                    {
+                      "i": "t382",
+                      "r": 1
+                    }
+                  ],
+                  "5": [
+                    {
+                      "i": "t383",
+                      "r": 1,
+                      "x": 2
+                    }
+                  ],
+                  "7": [
+                    {
+                      "i": "t384",
+                      "r": 1,
+                      "x": 9
+                    }
+                  ],
+                  "8": [
+                    {
+                      "i": "t385",
+                      "r": 2,
+                      "e": {
+                        "0": 1
+                      }
+                    }
+                  ]
+                },
+                "n": {
+                  "7": "6f"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t387"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t387",
+                "r": 1,
+                "t": {
+                  "7": "t388",
+                  "9": "t389",
+                  "10": "t390"
+                },
+                "c": {
+                  "7": [
+                    {
+                      "i": "t388",
+                      "r": 1
+                    }
+                  ],
+                  "9": [],
+                  "10": [
+                    {
+                      "i": "t390",
+                      "r": 1,
+                      "t": {
+                        "1": "t391"
+                      },
+                      "c": {
+                        "1": [
+                          {
+                            "i": "t391",
+                            "r": 1,
+                            "t": {
+                              "3": "t392",
+                              "9": "t393",
+                              "10": "t394"
+                            },
+                            "c": {
+                              "3": [
+                                {
+                                  "i": "t392",
+                                  "r": 1
+                                }
+                              ],
+                              "9": [
+                                {
+                                  "i": "t393",
+                                  "r": 1
+                                }
+                              ],
+                              "10": []
+                            },
+                            "x": 3
+                          },
+                          {
+                            "i": "t391",
+                            "r": 1,
+                            "t": {
+                              "3": "t392",
+                              "9": "t393",
+                              "10": "t394"
+                            },
+                            "c": {
+                              "3": [],
+                              "9": [],
+                              "10": [
+                                {
+                                  "i": "t394",
+                                  "r": 1
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t395"
+          },
+          "c": {
+            "0": []
+          }
+        },
+        {
+          "t": {
+            "1": "t184"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t184",
+                "r": 1,
+                "t": {
+                  "5": "t185"
+                },
+                "c": {
+                  "5": []
+                },
+                "x": 9
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t183"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t183",
+                "r": 1,
+                "d": [
+                  5
+                ],
+                "t": {
+                  "6": "t186"
+                },
+                "c": {
+                  "6": [
+                    {
+                      "i": "t186",
+                      "r": 1,
+                      "e": {
+                        "0": 0
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t378",
+            "3": "t386",
+            "5": "t396",
+            "8": "t397",
+            "9": "t398"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t378",
+                "r": 1
+              }
+            ],
+            "3": [
+              {
+                "i": "t386",
+                "r": 1
+              }
+            ],
+            "5": [
+              {
+                "i": "t396",
+                "r": 1
+              }
+            ],
+            "8": [],
+            "9": []
+          },
+          "n": {
+            "7": "6fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "1": "t118",
+            "6": "t119",
+            "8": "t120",
+            "9": "t121",
+            "10": "t122"
+          },
+          "c": {
+            "1": [],
+            "6": [],
+            "8": [],
+            "9": [],
+            "10": []
+          },
+          "n": {
+            "8": "7fn2fnf"
+          }
+        },
+        {
+          "t": {
+            "2": "t153"
+          },
+          "c": {
+            "2": [
+              {
+                "i": "t153",
+                "r": 1,
+                "t": {
+                  "5": "t154"
+                },
+                "c": {
+                  "5": [
+                    {
+                      "i": "t154",
+                      "r": 1
+                    }
+                  ]
+                },
+                "x": 2
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "1": "t5"
+          },
+          "c": {
+            "1": [
+              {
+                "i": "t5",
+                "r": 1,
+                "x": 3
+              }
+            ]
+          }
+        },
+        {
+          "t": {
+            "0": "t123",
+            "1": "t124"
+          },
+          "c": {
+            "0": [
+              {
+                "i": "t123",
+                "r": 2,
+                "e": {
+                  "0": 1
+                }
+              }
+            ],
+            "1": [
+              {
+                "i": "t124",
+                "r": 1,
+                "t": {
+                  "1": "t125",
+                  "4": "t126",
+                  "14": "t130",
+                  "19": "t133"
+                },
+                "c": {
+                  "1": [],
+                  "4": [
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 3
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 5
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 7
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 6
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 7
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "i": "t126",
+                      "r": 1,
+                      "t": {
+                        "1": "t127",
+                        "3": "t128",
+                        "4": "t129"
+                      },
+                      "c": {
+                        "1": [],
+                        "3": [],
+                        "4": [
+                          {
+                            "i": "t129",
+                            "r": 1,
+                            "x": 4
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "14": [
+                    {
+                      "i": "t130",
+                      "r": 1,
+                      "t": {
+                        "3": "t131"
+                      },
+                      "c": {
+                        "3": [
+                          {
+                            "i": "t131",
+                            "r": 1,
+                            "t": {
+                              "1": "t132"
+                            },
+                            "c": {
+                              "1": []
+                            }
+                          }
+                        ]
+                      },
+                      "x": 2
+                    }
+                  ],
+                  "19": [
+                    {
+                      "i": "t133",
+                      "r": 1,
+                      "x": 4
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "c": {
+            "2": [
+              {
+                "i": "c2271079232",
+                "r": 1
+              }
+            ],
+            "5": [],
+            "6": [
+              {
+                "i": "t135",
+                "r": 1
+              }
+            ]
+          },
+          "t": {
+            "5": "t134",
+            "6": "t135"
+          }
+        }
+      ],
+      "visibleScopeHash": "ed08859d3c46fa262ae268ee8f8784d100a022d57d0599d632632b03e19e418b",
+      "scopeSha256": "8dbcb7beec12ec9187cd7fd5b08dc89a52d1071c9fe68ed1e6f4e43f0d9da26f"
+    }
+  }
+}

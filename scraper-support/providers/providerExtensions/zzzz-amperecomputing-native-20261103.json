@@ -1,0 +1,15 @@
+{
+  "source": "amperecomputing",
+  "catalogOverride": true,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "discovery-only",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "paginationStrategy": "full-native-json-pagination+exact-India-facet+all-own-details+closing-before-caps",
+  "extractionStrategy": "active-first-party-native-binding+full-native-json-pagination+typed-work-country+own-employer-and-role+full-SSR-criteria",
+  "verifiedSurfaceSummary": "The configured official Ampere Computing careers site publishes native Talemetry JSON with typed-country pagination and own full public role descriptions. Runtime reconciles all pages, the exact India facet, employer/role identity and closing inventory/details before caps. HTTP 403 is blocked inventory, never an India zero. Original posting dates remain unknown when the public source omits them. Private session-only Jobvite application fields remain separately unobserved and do not narrow complete public descriptions. Broader company hiring scope remains unverified; no city, generic remote label or application workflow tag substitutes for typed native work-country."
+}

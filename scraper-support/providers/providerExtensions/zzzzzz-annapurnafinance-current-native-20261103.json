@@ -1,0 +1,28 @@
+[
+  {
+    "source":"annapurnafinance",
+    "companyName":"Annapurna Finance",
+    "catalogOverride":true,
+    "adapter":"script",
+    "modulePath":"../annapurnafinance/script.js",
+    "companyCareerPage":"https://annapurnafinance.in/career/career-openings",
+    "companyDomain":"annapurnafinance.in",
+    "atsPlatform":"hrone",
+    "countryFilter":"India",
+    "parser":"custom-script",
+    "paginationStrategy":"published-native-terminal-array-pagination",
+    "extractionStrategy":"current-published-public-native-query-and-two-own-role-passes-final-inventory",
+    "zeroResultPolicy":"evidence-required",
+    "verifiedOn":null,
+    "verifiedAt":null,
+    "verifiedPublicJobCount":null,
+    "verifiedIndiaJobCount":null,
+    "verifiedInventoryStatus":"unverified",
+    "runtimeInventoryVerification":true,
+    "sourceScopeComplete":false,
+    "lifecycleCleanupAllowed":false,
+    "scraperTimeoutMs":1020000,
+    "sourceLifecycleTimeoutMs":1050000,
+    "verifiedSurfaceSummary":"Current official corporate handoff to HROne public hiring reads. Every native page and public own-role criteria must reconcile; unpublished countries, posting dates and runtime-configured role links remain explicit gaps. Employee/application data is excluded. Company-wide counts and lifecycle cleanup are unverified."
+  }
+]

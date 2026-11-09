@@ -1,0 +1,22 @@
+[
+  {
+    "source": "civicaindia",
+    "companyName": "Civica India",
+    "officialBrandName": "Civica",
+    "adapter": "script",
+    "modulePath": "../civicaindia/script.js",
+    "companyCareerPage": "https://www.civica.com/en-in/about-us/careers/",
+    "workablePageUrl": "https://apply.workable.com/civica-uk-ltd-1/",
+    "nativeAccountUrl": "https://apply.workable.com/api/v1/accounts/civica-uk-ltd-1",
+    "companyDomain": "civica.com",
+    "atsPlatform": "workable-native-api",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "unfiltered-native-cursor-total-and-closing-snapshot-reconciliation",
+    "extractionStrategy": "current-regional-corporate-handoff+exact-native-account-and-website+full-published-india-details",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current Civica India careers page selects the civica-uk-ltd-1 Workable tenant. Exact native account/website, complete cursor inventory, full published India details and closing state are checked on every run; native brand Civica is preserved without deriving a legal employer from the tenant slug.",
+    "catalogOverride": true
+  }
+]

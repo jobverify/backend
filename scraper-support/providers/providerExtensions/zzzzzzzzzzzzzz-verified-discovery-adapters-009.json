@@ -1,0 +1,328 @@
+[
+  {
+    "source": "blackberry",
+    "companyName": "BlackBerry",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "custom-script",
+    "backfillMode": "live-parser",
+    "baseUrl": "https://bb.wd3.myworkdayjobs.com/en-US/BlackBerry",
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.blackberry.com/en/careers",
+    "officialHomepageUrl": "https://www.blackberry.com/",
+    "companyDomain": "www.blackberry.com",
+    "boardIdentityVerified": true,
+    "modulePath": "../../scraper/blackberry.workday/script.js",
+    "dryRunFile": "blackberry.workday/jobs.json",
+    "verificationDisposition": "verified-official-native-board-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T22:10:19.479Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-cxs-complete-pages-and-explicit-board-union",
+    "extractionStrategy": "official-board-handoff+unchanged-workday-engine+native-role-identity-and-geography+board-provenance",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:10:19.480Z",
+      "officialURL": "https://www.blackberry.com/en/careers",
+      "matchedLinks": [
+        "https://bb.wd3.myworkdayjobs.com/BlackBerry/jobs",
+        "https://bb.wd3.myworkdayjobs.com/QNX",
+        "https://bb.wd3.myworkdayjobs.com/Student"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.blackberry.com/fr/careers",
+          "to": "https://bb.wd3.myworkdayjobs.com/BlackBerry/jobs",
+          "evidence": "Current corporate job-postings link clicked; English page contains same exact href."
+        },
+        {
+          "from": "https://www.blackberry.com/en/careers",
+          "to": "https://bb.wd3.myworkdayjobs.com/QNX",
+          "evidence": "Current corporate page separately identifies the QNX career site."
+        },
+        {
+          "from": "https://www.blackberry.com/en/careers",
+          "to": "https://bb.wd3.myworkdayjobs.com/Student",
+          "evidence": "Current corporate page separately identifies student recruitment."
+        }
+      ],
+      "evidenceOrigin": "fresh-public-corporate-html-or-inspectable-web-click+exact-native-public-cxs",
+      "httpProofs": [
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/probe-summary-001.json",
+          "sha256": "e4740fe361fa5ce007644d880c509ead54e06b098dd59de220e64f73ad938580"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/india-probe-summary-002.json",
+          "sha256": "2b58dc94d62e1c4e63cac7f202fafce8b90d27ac9732c6d0817e7af68bb4b7d7"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-001.json",
+          "sha256": "6bceb2e889ec15d912f7c4d21aa5f3aad38bd6bf9c38efefbb5c8e161ec22716"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-click-001.json",
+          "sha256": "d3d040e2f87220952e14f70050a15b29d89a1e44b7c6b4ccb2b4f3b0e13f049d"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+          "sha256": "9f8818e7cf8f8387ac9959f562843cea5e8f20ca7b9b3ac7c869e576ac89d4bd"
+        }
+      ],
+      "scopeArtifact": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+      "discoveryBatch": "batch-012",
+      "batchSha256": "84d794fa440c68e4ef3bdeecf5469199031fd36fd1fb9a8ea1c281868a13e4ec"
+    },
+    "recruitmentScope": "BlackBerry+QNX+Student current official boards; exact native duplicate reconciliation",
+    "companyCoverageComplete": false,
+    "verifiedSurfaceSummary": "All three currently official boards must reconcile every run; per-board evidence and exact employer/requisition duplicate checks required. Native raw full descriptions, exact requisitions/canonical URLs, country proofs and native date-only precision are preserved; catalog counts remain unknown and runtime artifacts govern qualification.",
+    "companyIndiaCoveragePolicy": "All three currently official boards must reconcile every run; per-board evidence and exact employer/requisition duplicate checks required"
+  },
+  {
+    "source": "blackrock",
+    "companyName": "BlackRock",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "custom-script",
+    "backfillMode": "live-parser",
+    "baseUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional",
+    "locationCountry": null,
+    "companyCareerPage": "https://careers.blackrock.com/search-jobs",
+    "officialHomepageUrl": "https://www.blackrock.com/",
+    "companyDomain": "www.blackrock.com",
+    "boardIdentityVerified": true,
+    "modulePath": "../../scraper/blackrock.workday/script.js",
+    "dryRunFile": "blackrock.workday/jobs.json",
+    "verificationDisposition": "verified-official-native-board-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T22:10:19.481Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-cxs-complete-pages-and-explicit-board-union",
+    "extractionStrategy": "official-board-handoff+unchanged-workday-engine+native-role-identity-and-geography+board-provenance",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:10:19.481Z",
+      "officialURL": "https://careers.blackrock.com/search-jobs",
+      "matchedLinks": [
+        "https://careers.blackrock.com/job/new-york/vice-president-americas-regional-lead-early-careers-learning-and-development/45831/101481644288",
+        "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/Vice-President--Americas-Regional-Lead---Early-Careers-Learning---Development_R266691/apply"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://careers.blackrock.com/search-jobs",
+          "to": "https://careers.blackrock.com/job/new-york/vice-president-americas-regional-lead-early-careers-learning-and-development/45831/101481644288",
+          "evidence": "Current public corporate search href."
+        },
+        {
+          "from": "https://careers.blackrock.com/job/new-york/vice-president-americas-regional-lead-early-careers-learning-and-development/45831/101481644288",
+          "to": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/Vice-President--Americas-Regional-Lead---Early-Careers-Learning---Development_R266691/apply",
+          "evidence": "Fresh corporate full description Apply link clicked; HTTP200 HTML independently retains exact target."
+        }
+      ],
+      "evidenceOrigin": "fresh-public-corporate-html-or-inspectable-web-click+exact-native-public-cxs",
+      "httpProofs": [
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/probe-summary-001.json",
+          "sha256": "e4740fe361fa5ce007644d880c509ead54e06b098dd59de220e64f73ad938580"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/india-probe-summary-002.json",
+          "sha256": "2b58dc94d62e1c4e63cac7f202fafce8b90d27ac9732c6d0817e7af68bb4b7d7"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-001.json",
+          "sha256": "6bceb2e889ec15d912f7c4d21aa5f3aad38bd6bf9c38efefbb5c8e161ec22716"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-click-001.json",
+          "sha256": "d3d040e2f87220952e14f70050a15b29d89a1e44b7c6b4ccb2b4f3b0e13f049d"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+          "sha256": "9f8818e7cf8f8387ac9959f562843cea5e8f20ca7b9b3ac7c869e576ac89d4bd"
+        }
+      ],
+      "scopeArtifact": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+      "discoveryBatch": "batch-012",
+      "batchSha256": "84d794fa440c68e4ef3bdeecf5469199031fd36fd1fb9a8ea1c281868a13e4ec",
+      "scopeProofs": [
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/blackrock-programs-web-004.json",
+          "sha256": "74a302e838fbf06bc3ea4536fe97d89018c3817205c7b7cbd03f6e1b1ee0eb39"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/blackrock-native-earlycareers-web-005.json",
+          "sha256": "595352431fbbff6c7410530e10749d582841d20b28e58ad12b1886340b25e671"
+        }
+      ]
+    },
+    "recruitmentScope": "BlackRock_Professional plus per-run exact blackrock.tal.net finite public program board; native Workday unresolved geography remains partial",
+    "companyCoverageComplete": false,
+    "verifiedSurfaceSummary": "Workday professional plus finite tal.net program scope checked separately; unresolved Workday global geography remains incomplete. Native raw full descriptions, exact requisitions/canonical URLs, country proofs and native date-only precision are preserved; catalog counts remain unknown and runtime artifacts govern qualification.",
+    "companyIndiaCoveragePolicy": "Workday professional plus finite tal.net program scope checked separately; unresolved Workday global geography remains incomplete"
+  },
+  {
+    "source": "blackstone",
+    "companyName": "Blackstone",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "custom-script",
+    "backfillMode": "live-parser",
+    "baseUrl": "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Careers",
+    "locationCountry": null,
+    "companyCareerPage": "https://www.blackstone.com/careers/careers-blackstone/",
+    "officialHomepageUrl": "https://www.blackstone.com/",
+    "companyDomain": "www.blackstone.com",
+    "boardIdentityVerified": true,
+    "modulePath": "../../scraper/blackstone.workday/script.js",
+    "dryRunFile": "blackstone.workday/jobs.json",
+    "verificationDisposition": "verified-official-native-board-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T22:10:19.481Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-cxs-complete-pages-and-explicit-board-union",
+    "extractionStrategy": "official-board-handoff+unchanged-workday-engine+native-role-identity-and-geography+board-provenance",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:10:19.481Z",
+      "officialURL": "https://www.blackstone.com/careers/careers-blackstone/",
+      "matchedLinks": [
+        "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Careers",
+        "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Campus_Careers"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.blackstone.com/careers/careers-blackstone/",
+          "to": "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Careers",
+          "evidence": "Current corporate handoff clicked in web transport."
+        },
+        {
+          "from": "https://www.blackstone.com/careers/students/",
+          "to": "https://blackstone.wd1.myworkdayjobs.com/en-US/Blackstone_Campus_Careers",
+          "evidence": "Fresh official Students View Open Positions link clicked; native28-record board observed separately."
+        }
+      ],
+      "evidenceOrigin": "fresh-public-corporate-html-or-inspectable-web-click+exact-native-public-cxs",
+      "httpProofs": [
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/probe-summary-001.json",
+          "sha256": "e4740fe361fa5ce007644d880c509ead54e06b098dd59de220e64f73ad938580"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/india-probe-summary-002.json",
+          "sha256": "2b58dc94d62e1c4e63cac7f202fafce8b90d27ac9732c6d0817e7af68bb4b7d7"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-001.json",
+          "sha256": "6bceb2e889ec15d912f7c4d21aa5f3aad38bd6bf9c38efefbb5c8e161ec22716"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-click-001.json",
+          "sha256": "d3d040e2f87220952e14f70050a15b29d89a1e44b7c6b4ccb2b4f3b0e13f049d"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+          "sha256": "9f8818e7cf8f8387ac9959f562843cea5e8f20ca7b9b3ac7c869e576ac89d4bd"
+        }
+      ],
+      "scopeArtifact": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+      "discoveryBatch": "batch-012",
+      "batchSha256": "84d794fa440c68e4ef3bdeecf5469199031fd36fd1fb9a8ea1c281868a13e4ec"
+    },
+    "recruitmentScope": "Blackstone_Careers+Blackstone_Campus_Careers; global inventory and full native India details",
+    "companyCoverageComplete": false,
+    "verifiedSurfaceSummary": "Experienced plus Campus boards must reconcile; unresolved native secondary geography retains an explicit India subset only. Native raw full descriptions, exact requisitions/canonical URLs, country proofs and native date-only precision are preserved; catalog counts remain unknown and runtime artifacts govern qualification.",
+    "companyIndiaCoveragePolicy": "Experienced plus Campus boards must reconcile; unresolved native secondary geography retains an explicit India subset only"
+  },
+  {
+    "source": "blueorigin",
+    "companyName": "Blue Origin",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "parser": "workday",
+    "backfillMode": "workday",
+    "baseUrl": "https://blueorigin.wd5.myworkdayjobs.com/en-US/BlueOrigin",
+    "locationCountry": null,
+    "companyCareerPage": "https://www.blueorigin.com/careers/search",
+    "officialHomepageUrl": "https://www.blueorigin.com/",
+    "companyDomain": "www.blueorigin.com",
+    "boardIdentityVerified": true,
+    "modulePath": "../../scraper/blueorigin.workday/script.js",
+    "dryRunFile": "blueorigin.workday/jobs.json",
+    "verificationDisposition": "verified-official-native-board-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T22:10:19.482Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-cxs-complete-pages-and-explicit-board-union",
+    "extractionStrategy": "official-board-handoff+unchanged-workday-engine+native-role-identity-and-geography+board-provenance",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T22:10:19.482Z",
+      "officialURL": "https://www.blueorigin.com/careers/search",
+      "matchedLinks": [
+        "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Denver-CO/Senior-Ground-Software-Engineer---Blue-Ring--Top-Secret-Clearance-Required-_R63416-1"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.blueorigin.com/careers/search",
+          "to": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Denver-CO/Senior-Ground-Software-Engineer---Blue-Ring--Top-Secret-Clearance-Required-_R63416-1",
+          "evidence": "Current Senior Ground Software Engineer - Blue Ring role link clicked."
+        }
+      ],
+      "evidenceOrigin": "fresh-public-corporate-html-or-inspectable-web-click+exact-native-public-cxs",
+      "httpProofs": [
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/probe-summary-001.json",
+          "sha256": "e4740fe361fa5ce007644d880c509ead54e06b098dd59de220e64f73ad938580"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/india-probe-summary-002.json",
+          "sha256": "2b58dc94d62e1c4e63cac7f202fafce8b90d27ac9732c6d0817e7af68bb4b7d7"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-001.json",
+          "sha256": "6bceb2e889ec15d912f7c4d21aa5f3aad38bd6bf9c38efefbb5c8e161ec22716"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-web-click-001.json",
+          "sha256": "d3d040e2f87220952e14f70050a15b29d89a1e44b7c6b4ccb2b4f3b0e13f049d"
+        },
+        {
+          "file": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+          "sha256": "9f8818e7cf8f8387ac9959f562843cea5e8f20ca7b9b3ac7c869e576ac89d4bd"
+        }
+      ],
+      "scopeArtifact": "../artifacts/full-catalog/verified-discovery-followup-007/official-scope-web-002.json",
+      "discoveryBatch": "batch-012",
+      "batchSha256": "84d794fa440c68e4ef3bdeecf5469199031fd36fd1fb9a8ea1c281868a13e4ec"
+    },
+    "recruitmentScope": "Exact BlueOrigin board; bounded probes only, global/India extraction unknown",
+    "companyCoverageComplete": false,
+    "verifiedSurfaceSummary": "Unfiltered native enumeration required; bounded diagnostic search cannot certify India-empty. Native raw full descriptions, exact requisitions/canonical URLs, country proofs and native date-only precision are preserved; catalog counts remain unknown and runtime artifacts govern qualification.",
+    "companyIndiaCoveragePolicy": "Unfiltered native enumeration required; bounded diagnostic search cannot certify India-empty"
+  }
+]

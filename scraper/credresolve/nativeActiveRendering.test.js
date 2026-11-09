@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+const packet=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/2026-10-31-native-packets.json.gz',import.meta.url))))
+const read=url=>{const row=packet.requests.find(row=>row.url===url);assert.ok(row,'Unrecorded '+url);return row.body}
+import {extractSearchResults} from './script.js'
+const rows=JSON.parse(packet.requests.find(r=>r.url.includes('/wp-json/')).body),original=rows.find(r=>r.id===600),parse=html=>extractSearchResults([{...structuredClone(original),content:{rendered:html}}])[0],field=original.content.rendered.match(/(<h[1-6][^>]*>\s*Job Location\s*<\/h[1-6]>\s*)<p/)[0]
+test('native country paragraph is qualified only when its own heading and value are active',()=>{assert.equal(parse(original.content.rendered).country,'India');for(const attr of ['hidden','inert','aria-hidden="true"','style="display:none"','style="opacity:0"']){const job=parse(original.content.rendered.replace(field,field.replace('<p','<p '+attr)));assert.equal(job.location,null,attr);assert.equal(job.country,null,attr);assert.match(job.rawNativeRoleEvidence.contentHtml,/Mumbai/)}const hiddenHeading=original.content.rendered.replace(/(<h[1-6])([^>]*>\s*Job Location)/,'$1 hidden$2');assert.equal(parse(hiddenHeading).country,null)})
+test('native CSS and comments cannot provide a hidden or duplicate workplace',()=>{const styled=original.content.rendered.replace(field,field.replace('<p','<p class="controlled-place"'))+'<style>.controlled-place{display:none}</style>';assert.equal(parse(styled).country,null);const copied=original.content.rendered+'<!--<h3>Job Location</h3><p>Berlin, Germany</p>-->';assert.equal(parse(copied).country,'India')})
+test('hidden JD children stay raw and do not become visible requirements',()=>{const changed=original.content.rendered.replace(/(<h[1-6][^>]*>\s*Job Description\s*<\/h[1-6]>\s*<p[^>]*>)/,'$1<span hidden>CONTROLLED_HIDDEN_DESCRIPTION</span>'),job=parse(changed);assert.notEqual(changed,original.content.rendered);assert.equal(job.jobDescription.includes('CONTROLLED_HIDDEN_DESCRIPTION'),false);assert.match(job.rawNativeRoleEvidence.contentHtml,/CONTROLLED_HIDDEN_DESCRIPTION/)})

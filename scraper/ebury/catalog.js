@@ -1,0 +1,66 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+const PROVIDER_METADATA = { ...{
+  "source": "ebury",
+  "companyName": "Ebury",
+  "adapter": "script",
+  "catalogOverride": true,
+  "atsPlatform": "greenhouse",
+  "boardToken": "ebury",
+  "modulePath": "./script.js",
+  "dryRunFile": "ebury/jobs.json",
+  "companyCareerPage": "https://ebury.com/company/careers",
+  "jobsBoardUrl": "https://job-boards.eu.greenhouse.io/ebury",
+  "countryFilter": "India",
+  "parser": "ebury-native-remix-full-detail-20261027",
+  "normalizationProfile": "engineering-default",
+  "paginationStrategy": "finite-corporate-next-and-native-page-counts;opening-closing-identities-before-caps",
+  "extractionStrategy": "current-corporate-handoff;every-advertised-native-detail;office-country-hierarchy;posting-versus-requisition;full-introduction-criteria-conclusion",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "zeroResultPolicy": "coverage-gap",
+  "backfillMode": "source-local-current-native-extraction",
+  "runtimeInventoryVerification": false,
+  "bindingEvidence": {
+    "verified": true,
+    "verifiedAt": "2026-10-27T08:41:08.045Z",
+    "officialCareerPage": "https://ebury.com/company/careers",
+    "bindingSurface": "https://ebury.com/company/careers",
+    "matchedLinks": [
+      "https://job-boards.eu.greenhouse.io/ebury/jobs/5012714101"
+    ],
+    "handoffType": "current-official-HTML-link",
+    "bindingScope": "corporate-current-Ebury-native-board-only;company-wide-scope-conservative"
+  },
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "unverified",
+  "sourceResearchObservedAt": "2026-10-27T08:41:08.045Z",
+  "sourceResearchNativeRecords": null,
+  "sourceResearchIndiaLocationMatches": null,
+  "verifiedSurfaceSummary": "Historical first 2026-10-27 capture changed139 to140 during pagination/details and remains partial. Fresh registered receipts reconcile140 stable native/API postings,150 corporate advertisements,11 inactive redirects,140 healthy full details across26 explicit countries and0 India matches. Current run evidence, rather than this metadata, determines completion. No persistence or application actions.",
+  "sourceScopeNotes": "Runtime completion requires all current corporate/native hiring channels, every finite page and native detail, explicit country hierarchy and secondary offices, exact posting/internal/requisition identities, full description and publication/expiry fields, and unchanged closing corporate/API/board states. Partial runs keep company and India totals unknown and disable absence/cleanup; no date, HQ, India or requisition defaults. Denials stop once without retry.",
+  "remediationStatus": "source-local-native-implemented;corporate-native-synchronization-and-company-scope-unresolved",
+  "verificationDisposition": "partial-native-inventory;not-company-India-absence",
+  "sourceLatestLiveAttemptedAt": null,
+  "sourceLatestLiveCompletedAt": null,
+  "sourceLatestLiveOutcome": "unverified",
+  "sourceLatestLiveObservedRecords": null,
+  "sourceLatestLiveIndiaJobs": null,
+  "sourceLatestLiveEligibleJobs": null,
+  "sourceLatestLiveNativeSingleResponseComplete": null,
+  "sourceLatestLiveHTTPStatus": null,
+  "sourceLatestLiveNativeEmptyArray": null,
+  "sourceNativeObservationCompletedAt": null,
+  "localPersistenceNewRealJobsSaved": 0,
+  "localPreservationPriorJobControls": null,
+  "localVisibilityExperiencedEnabled": null,
+  "localVisibilityExperiencedDisabled": null,
+  "runtimeQualification": "current-source-owned-native-HTML-pages-full-details-office-country-opening-closing-proofs",
+  "sourceRuntimeCompleteness": "current-proof-required"
+}, modulePath: path.join(currentDir, 'script.js'), dryRunFile: path.join(currentDir, 'jobs.json') }
+export default PROVIDER_METADATA
+export { PROVIDER_METADATA }

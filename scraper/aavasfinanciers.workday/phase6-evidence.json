@@ -1,0 +1,330 @@
+{
+  "phase": 6,
+  "source": "aavasfinanciers",
+  "outcome": "implemented-current-first-party-india-profile-reader-partial-whole-company-scope",
+  "officialCareerUrl": "https://www.aavas.in/career",
+  "nativeInventoryUrl": "https://www.aavas.in/join-our-team",
+  "nativeProfileCountObserved": 8,
+  "nativeProfileIds": [
+    "761",
+    "760",
+    "759",
+    "757",
+    "755",
+    "754",
+    "753",
+    "752"
+  ],
+  "binding": "Current active first-party View Open Positions links lead from the career page to the native recruitment table on the same employer host.",
+  "nativeControlContract": "The currently linked selector client builds /job-description/{encodedJobId}/{selectedNativeCityIds}. Role/control IDs come from current row callbacks, exact state/branch controls and direct native links. Native row title, canonical role URL and complete selected-city set must agree on every detail page. The current listing is rechecked after all profiles.",
+  "workplaceCountryProof": {
+    "readonlyFields": "The recruitment table headers explicitly define Job Title, Opening Location's and Branches. Readonly name=group_id text fields in the workplace-state column supply Maharashtra, Himachal Pradesh or Haryana for seven profiles. The Technical Executive row independently supplies VASAI in the branch column. This is role workplace metadata, not employer headquarters.",
+    "stateSelector": "The remaining profile uses exact native state IDs10=Punjab and15=Chandigarh. Its own native branch array includes matching Aavas FinancialService PostalAddress schemas with addressCountryIN for those exact region IDs/cities. Country proof is retained per output profile; unknown/foreign or inconsistent state/schema contracts reject.",
+    "noGlobalPolicyChanges": true
+  },
+  "profiles": [
+    {
+      "id": "761",
+      "title": "Relationship Officer/ Senior Relationship Officer",
+      "sourceUrl": "https://www.aavas.in/job-description/NzYx/NDc=,NDg=,ODE=",
+      "nativeWorkplaceStates": [
+        "Maharashtra"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Maharashtra",
+        "nativeJobId": "NzYx",
+        "nativeCityIds": [
+          "NDc=",
+          "NDg=",
+          "ODE="
+        ]
+      },
+      "locations": [
+        "BOISAR, Maharashtra, India",
+        "BORIVALI, Maharashtra, India",
+        "JALGAON, Maharashtra, India"
+      ],
+      "postingDate": null,
+      "minExperience": 1,
+      "maxExperience": 3
+    },
+    {
+      "id": "760",
+      "title": "Relationship Officer/ Senior Relationship Officer",
+      "sourceUrl": "https://www.aavas.in/job-description/NzYw/MzE=,Mjg5,OTA=,MTQ1",
+      "nativeWorkplaceStates": [
+        "Maharashtra"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Maharashtra",
+        "nativeJobId": "NzYw",
+        "nativeCityIds": [
+          "MzE=",
+          "Mjg5",
+          "OTA=",
+          "MTQ1"
+        ]
+      },
+      "locations": [
+        "BADLAPUR, Maharashtra, India",
+        "DHULE, Maharashtra, India",
+        "KALYAN, Maharashtra, India",
+        "THANE, Maharashtra, India"
+      ],
+      "postingDate": null,
+      "minExperience": 1,
+      "maxExperience": 3
+    },
+    {
+      "id": "759",
+      "title": "Relationship Officer/ Senior Relationship Officer",
+      "sourceUrl": "https://www.aavas.in/job-description/NzU5/Mzg=,Mjkw,MTE4,MTIw",
+      "nativeWorkplaceStates": [
+        "Maharashtra"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Maharashtra",
+        "nativeJobId": "NzU5",
+        "nativeCityIds": [
+          "Mzg=",
+          "Mjkw",
+          "MTE4",
+          "MTIw"
+        ]
+      },
+      "locations": [
+        "BELAPUR, Maharashtra, India",
+        "LATUR, Maharashtra, India",
+        "PANVEL, Maharashtra, India",
+        "PEN, Maharashtra, India"
+      ],
+      "postingDate": null,
+      "minExperience": 1,
+      "maxExperience": 3
+    },
+    {
+      "id": "757",
+      "title": "Relationship Officer/ Senior Relationship Officer",
+      "sourceUrl": "https://www.aavas.in/job-description/NzU3/NTI1,NDM0,NTEz,Mjky,NDI5",
+      "nativeWorkplaceStates": [
+        "Punjab",
+        "Chandigarh"
+      ],
+      "nativeLocationProof": {
+        "method": "native-state-selector-branch-country-schema",
+        "states": [
+          {
+            "nativeStateId": "15",
+            "state": "Chandigarh",
+            "country": "IN",
+            "nativeBranchId": "NTI1"
+          },
+          {
+            "nativeStateId": "10",
+            "state": "Punjab",
+            "country": "IN",
+            "nativeBranchId": "NTEz"
+          }
+        ],
+        "nativeJobId": "NzU3",
+        "nativeCityIds": [
+          "NTI1",
+          "NDM0",
+          "NTEz",
+          "Mjky",
+          "NDI5"
+        ]
+      },
+      "locations": [
+        "CHANDIGARH, Chandigarh, India",
+        "KHARAR, Punjab, India",
+        "LUDHIANA, Punjab, India",
+        "RUPNAGAR, Punjab, India",
+        "ZIRAKPUR, Punjab, India"
+      ],
+      "postingDate": null,
+      "minExperience": 1,
+      "maxExperience": 3
+    },
+    {
+      "id": "755",
+      "title": "Technical Executive",
+      "sourceUrl": "https://www.aavas.in/job-description/NzU1/MTUw",
+      "nativeWorkplaceStates": [
+        "Maharashtra"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Maharashtra",
+        "nativeJobId": "NzU1",
+        "nativeCityIds": [
+          "MTUw"
+        ]
+      },
+      "locations": [
+        "VASAI, Maharashtra, India"
+      ],
+      "postingDate": null,
+      "minExperience": 1,
+      "maxExperience": 3
+    },
+    {
+      "id": "754",
+      "title": "Legal Executive",
+      "sourceUrl": "https://www.aavas.in/job-description/NzU0/Mzg=,OTA=",
+      "nativeWorkplaceStates": [
+        "Maharashtra"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Maharashtra",
+        "nativeJobId": "NzU0",
+        "nativeCityIds": [
+          "Mzg=",
+          "OTA="
+        ]
+      },
+      "locations": [
+        "BELAPUR, Maharashtra, India",
+        "KALYAN, Maharashtra, India"
+      ],
+      "postingDate": null,
+      "minExperience": 1,
+      "maxExperience": 3
+    },
+    {
+      "id": "753",
+      "title": "Relationship Officer/ Senior Relationship Officer",
+      "sourceUrl": "https://www.aavas.in/job-description/NzUz/NTMz,Mjg2,Mjg3,Mjg1",
+      "nativeWorkplaceStates": [
+        "Himachal Pradesh"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Himachal Pradesh",
+        "nativeJobId": "NzUz",
+        "nativeCityIds": [
+          "NTMz",
+          "Mjg2",
+          "Mjg3",
+          "Mjg1"
+        ]
+      },
+      "locations": [
+        "BADDI, Himachal Pradesh, India",
+        "SHIMLA, Himachal Pradesh, India",
+        "SOLAN, Himachal Pradesh, India",
+        "UNA, Himachal Pradesh, India"
+      ],
+      "postingDate": null,
+      "minExperience": 0,
+      "maxExperience": 3
+    },
+    {
+      "id": "752",
+      "title": "Relationship Officer/ Senior Relationship Officer",
+      "sourceUrl": "https://www.aavas.in/job-description/NzUy/MjEx,MzY3,MjE4,NDc0,MjIw,NDM1,MjAy,MjA0,MjEy,MjQz,Mjgy,MjE5,Mjgz,MzY4,MjAz",
+      "nativeWorkplaceStates": [
+        "Haryana"
+      ],
+      "nativeLocationProof": {
+        "method": "native-readonly-role-workplace-state-column",
+        "state": "Haryana",
+        "nativeJobId": "NzUy",
+        "nativeCityIds": [
+          "MjEx",
+          "MzY3",
+          "MjE4",
+          "NDc0",
+          "MjIw",
+          "NDM1",
+          "MjAy",
+          "MjA0",
+          "MjEy",
+          "MjQz",
+          "Mjgy",
+          "MjE5",
+          "Mjgz",
+          "MzY4",
+          "MjAz"
+        ]
+      },
+      "locations": [
+        "AMBALA, Haryana, India",
+        "BAHADURGARH, Haryana, India",
+        "BHIWANI, Haryana, India",
+        "FATEHABAD, Haryana, India",
+        "HISAR, Haryana, India",
+        "KAITHAL, Haryana, India",
+        "KARNAL, Haryana, India",
+        "KURUKSHETRA, Haryana, India",
+        "PANIPAT, Haryana, India",
+        "PINJORE, Haryana, India",
+        "ROHTAK, Haryana, India",
+        "SIRSA, Haryana, India",
+        "SONIPAT, Haryana, India",
+        "TOHANA, Haryana, India",
+        "YAMUNANAGAR, Haryana, India"
+      ],
+      "postingDate": null,
+      "minExperience": 0,
+      "maxExperience": 3
+    }
+  ],
+  "content": "Original full responsibilities, candidate profile and desired-skills HTML retained, with active plain text. Minimum qualification, department and explicit native experience ranges are kept separately. Vacancy/headcount numbers are not cloned into extra jobs.",
+  "publicationDates": "Unknown/null for all eight profiles. Branch created/modified timestamps, staff poster labels and scrape clocks are never treated as job publication dates. The current raw eligibility analyzer returns8 under its existing missing-date policy; these are not claimed as eight newly published postings.",
+  "wholeCompanyScopeComplete": false,
+  "independentNativeTotal": null,
+  "sourceInventoryTotal": null,
+  "exhaustiveIndiaFacet": null,
+  "staticPublicationCounters": null,
+  "zeroIndiaClaim": false,
+  "currentSourceTrial": {
+    "source": "aavas",
+    "performedAt": "2026-10-24T18:43:11.665Z",
+    "method": "Actual source code over bounded fresh unauthenticated Chromium HTTP responses with JavaScript disabled. No production browser runtime, database, application submission or full pipeline.",
+    "requests": 12,
+    "rawJobs": 8,
+    "eligibleJobs": 8,
+    "filterCounts": {
+      "nonIndia": 0,
+      "old": 0,
+      "closed": 0,
+      "invalidUrl": 0,
+      "nonJob": 0,
+      "emptyDescription": 0
+    },
+    "inventoryEvidence": {
+      "status": "coverage-gap",
+      "surface": "https://www.aavas.in/join-our-team",
+      "firstParty": true,
+      "listingComplete": false,
+      "pagesFetched": 2,
+      "reportedTotal": null,
+      "indiaFacetCount": null,
+      "verifiedAt": "2026-10-24T18:43:08.025Z",
+      "reason": "current-first-party-role-control-and-workplace-state-country-proof-rechecked;independent-whole-company-native-total-unavailable"
+    }
+  },
+  "verification": {
+    "initialBehavioralRed": 17,
+    "behavioralPassed": 19,
+    "catalogRed": 1,
+    "catalogGreen": 1,
+    "finalFocusedPassed": 66,
+    "finalFocusedFailed": 0,
+    "log": "Windows Temp codex-scraper-repair-verification-20261024/phase6-source-final-focused.log",
+    "syntaxAndScopedDiffCheck": true
+  },
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "limits": [
+    "All currently visible eight profiles were read; no independent employer-wide total is exposed, so overall inventory and every output remain partial and prohibit lifecycle cleanup.",
+    "No job publication dates are exposed. Source publication fields remain null.",
+    "Actual source trial used fresh unauthenticated Chromium HTTP responses with JavaScript disabled. Default Node transport remains unverified in this restricted environment.",
+    "No production database, deployment, application submission, full pipeline, shared geographic policy or aggregate registry flags changed."
+  ]
+}

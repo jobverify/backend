@@ -1,0 +1,22 @@
+{
+  "source": "aviatrix",
+  "companyName": "Aviatrix",
+  "officialBrandName": "Aviatrix, Inc.",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../aviatrix/script.js",
+  "dryRunFile": "aviatrix/jobs.json",
+  "companyCareerPage": "https://aviatrix.ai/company/careers/",
+  "companyDomain": "aviatrix.ai",
+  "atsPlatform": "official-first-party-careers-client-rendered-no-verified-feed",
+  "countryFilter": "India",
+  "paginationStrategy": "verified-first-party-careers-page-sentinel",
+  "extractionStrategy": "client-rendered-page-without-verified-enumerable-feed+return-empty",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://aviatrix.ai/company/careers/",
+  "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://aviatrix.ai/company/careers/ is Aviatrix's first-party careers page and presents a client-rendered jobs surface without a stable, verified public listing feed. Older aviatrix.com Greenhouse routes are not used because they are not the live canonical careers handoff. This exact-name provider fails closed and returns no jobs rather than using third-party listings or substituting similarly named companies."
+}

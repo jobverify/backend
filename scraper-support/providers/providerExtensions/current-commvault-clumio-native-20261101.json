@@ -1,0 +1,32 @@
+[
+  {
+    "source": "clumio",
+    "companyName": "Clumio",
+    "adapter": "script",
+    "modulePath": "../clumio/script.js",
+    "atsPlatform": "greenhouse",
+    "countryFilter": "Global",
+    "companyCareerPage": "https://www.commvault.com/careers/jobs",
+    "companyDomain": "commvault.com",
+    "paginationStrategy": "paired-current-corporate-and-native-public-GETs",
+    "extractionStrategy": "all-original-corporate-native-roles-before-brand-and-country-selection",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "nativeJobFeedProfile": "clumio",
+    "scraperTimeoutMs": 900000,
+    "zeroResultPolicy": "coverage-gap",
+    "backfillMode": "discovery-only",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedInventoryStatus": "unverified",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "boardIdentityVerified": false,
+    "officialBindingVerifiedAt": null,
+    "bindingEvidence": null,
+    "verificationDisposition": "discovery-only-native-channel",
+    "verifiedSurfaceSummary": "Current Commvault corporate and native original models before role-owned Clumio selection; literal Commvault publisher. Whole employer, exclusive brand/legal employer, active recruitment, applications, database and publication remain unqualified."
+  }
+]

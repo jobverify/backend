@@ -1,0 +1,7 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://roberthalf.wd1.myworkdayjobs.com/wday/cxs/roberthalf/ProtivitiIndia/jobs",
+  "detailUrlBase": "https://roberthalf.wd1.myworkdayjobs.com/en-US/ProtivitiIndia",
+  "countryFacetParameter": "Location_Country",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e"
+}

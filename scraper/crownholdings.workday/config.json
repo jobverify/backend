@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://crownholdings.wd501.myworkdayjobs.com/wday/cxs/crownholdings/CrownHoldings/jobs",
+  "detailUrlBase": "https://crownholdings.wd501.myworkdayjobs.com/CrownHoldings",
+  "officialCareersUrl": "https://www.crowncork.com/careers",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "locationCountry": null,
+  "workdayMaxPages": 100,
+  "requestTimeoutMs": 20000,
+  "detailEnrichmentBudgetMs": 90000
+}

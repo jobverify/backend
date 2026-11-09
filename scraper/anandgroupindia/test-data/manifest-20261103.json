@@ -1,0 +1,8 @@
+{
+  "source": "anandgroupindia",
+  "sharedOriginalArchive": "../../anandgroup/test-data/native-20261103.json.gz",
+  "archiveSha256": "dd26b372ef76f12ed081ffaa6342bab62533ee54fbccc743867b2e4307931db8",
+  "canonicalNativeManifest": "../../anandgroup/test-data/manifest-20261103.json",
+  "nativeScope": "same current generic public group careers/JoinUs entry; no formal vacancy inventory",
+  "inventoryDelegationComplete": false
+}

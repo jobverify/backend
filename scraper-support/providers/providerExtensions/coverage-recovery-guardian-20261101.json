@@ -1,0 +1,35 @@
+[
+  {
+    "source": "guardian",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "parser": "custom-script",
+    "modulePath": "../../scraper/guardian.workday/script.js",
+    "zeroResultPolicy": "evidence-required",
+    "companyCareerPage": "https://www.guardianlife.com/careers/corporate",
+    "locationCountry": null,
+    "paginationStrategy": "unfiltered-full-native-board-and-post-receipt-closing-identity-reconciliation",
+    "extractionStrategy": "current-corporate-handoff+all-native-role-countries+strict-US-remote-geographic-applicant-scope-receipts+full-India-descriptions-and-native-dates",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Runtime checks the current publicly advertised Guardian corporate employee Workday account, not a fixed historical India hiring-company facet. All board identities, physical country evidence, complete positive India roles, current corporate branch handoffs and final closing identities must reconcile. Missing secondary physical countries may use a separate role-wide native TELECOMMUTE plus US applicantLocationRequirements receipt only after full fresh native identity, employer, content, location, date and enabled application consistency. Physical labels and unresolved country proof remain unchanged. Financial-professional Guardian Network provider recruiting is recorded separately from this configured corporate employee account. Whole-company, private-channel and legal-employer universality are unknown; counts and freshness are determined by each observation.",
+    "historicalIndiaDiscovery": {
+      "url": "https://www.guardianlife.com/about-guardian/where-we-work/india",
+      "lastObservedStatus": 308,
+      "redirect": "https://www.guardianlife.com/about-guardian",
+      "capturedAt": "2026-11-01T01:16:35.348Z",
+      "meaning": "Historical discovery URL; redirect supplies no current India employer absence or universal employment claim."
+    },
+    "publicInventoryVerification": {
+      "policy": "guardian-current-public-corporate-workday-inventory",
+      "nativeBoard": "https://guardianlife.wd5.myworkdayjobs.com/Guardian-Life-Careers",
+      "captureDirectory": "scraper/guardian.workday/native-captures",
+      "wholeCompanyScope": null,
+      "companyGlobalTotal": null,
+      "companyIndiaTotal": null,
+      "legalEmployerUniversality": null
+    }
+  }
+]

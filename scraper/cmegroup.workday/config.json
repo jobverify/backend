@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://cmegroup.wd1.myworkdayjobs.com/wday/cxs/cmegroup/cme_careers/jobs",
+  "detailUrlBase": "https://cmegroup.wd1.myworkdayjobs.com/cme_careers",
+  "locationCountry": null,
+  "searchText": "",
+  "maxJobs": null,
+  "workdayMaxPages": 100,
+  "detailEnrichmentBudgetMs": 120000,
+  "detailFetchConcurrency": 3
+}

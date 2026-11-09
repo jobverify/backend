@@ -1,0 +1,32 @@
+[
+  {
+    "source": "langchain",
+    "companyName": "LangChain",
+    "companyDomain": "langchain.com",
+    "companyCareerPage": "https://www.langchain.com/careers",
+    "officialHomepageUrl": "https://langchain.com/",
+    "adapter": "script",
+    "modulePath": "../../scraper/langchain/script.js",
+    "atsPlatform": "ashby",
+    "countryFilter": "India",
+    "paginationStrategy": "reviewed-native-board-array+full-api-models+closing-reconciliation",
+    "extractionStrategy": "current-corporate-handoff+reciprocal-native-employer+all-role-content-and-country-validation+typed-india-projection",
+    "parser": "langchain-native-public-board",
+    "normalizationProfile": "engineering-default",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "bindingEvidence": null,
+    "originalAdapter": null,
+    "originalAtsPlatform": null,
+    "originalModulePath": null,
+    "originalDryRunFile": null,
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "remediationStatus": "native-configured-board-qualified-company-scope-unverified",
+    "currentExtractionEvidence": "scraper/langchain/test-data/native-inventory-20261105/manifest.json",
+    "verifiedSurfaceSummary": "Each attempt validates the current corporate hiring handoff, reciprocal native employer, reviewed public board array, every native full-content role, typed primary and secondary countries, and closing responses. This qualifies the configured board only; whole-company inventory, other hiring channels, company India totals, persistence and public visibility remain unverified."
+  }
+]

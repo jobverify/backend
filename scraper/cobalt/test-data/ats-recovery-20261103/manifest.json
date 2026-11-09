@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "cobalt",
+  "companyName": "Cobalt",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 7,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://www.cobalt.io/life",
+      "finalURL": "https://www.cobalt.io/life",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "requestedAt": "2026-11-03T08:27:18.4360740Z",
+      "completedAt": "2026-11-03T08:27:21.5374107Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 111860,
+      "bodySHA256": "5fba1a97e7888ccf02a72daffa43b1b2d47fdb32810ff93326077c5285e80354",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://boards-api.greenhouse.io/v1/boards/cobaltio/jobs?content=true",
+      "finalURL": "https://boards-api.greenhouse.io/v1/boards/cobaltio/jobs?content=true",
+      "status": 200,
+      "contentType": "application/json",
+      "requestedAt": "2026-11-03T08:31:32.7762574Z",
+      "completedAt": "2026-11-03T08:31:34.4806703Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 84560,
+      "bodySHA256": "cc5047af1e1508ea8cc940712dbebae43243e778b1bf96fbcefa7e93fe0f8daa",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

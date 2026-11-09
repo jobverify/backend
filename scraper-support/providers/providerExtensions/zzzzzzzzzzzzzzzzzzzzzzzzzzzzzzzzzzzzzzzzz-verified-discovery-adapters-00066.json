@@ -1,0 +1,63 @@
+[
+  {
+    "source": "gigamon",
+    "companyName": "Gigamon",
+    "adapter": "script",
+    "modulePath": "../gigamon/script.js",
+    "dryRunFile": "gigamon/jobs.json",
+    "atsPlatform": "jobvite-native-html",
+    "countryFilter": "India",
+    "paginationStrategy": "native-unfiltered-category-tables-unique-public-role-identities-validated-advertised-continuations-and-first-page-closure",
+    "extractionStrategy": "official-corporate-careers-handoff-full-native-JobPosting-and-visible-role-country-corroboration-with-full-description-and-supplemental-disclosures",
+    "parser": "source-specific-gigamon-jobvite-native-html",
+    "normalizationProfile": "engineering-default",
+    "catalogOverride": true,
+    "companyDomain": "gigamon.com",
+    "officialHomepageUrl": "https://www.gigamon.com/",
+    "companyCareerPage": "https://www.gigamon.com/company/careers.html",
+    "officialCareersHandoffUrl": "https://jobs.jobvite.com/gigamon",
+    "jobsBoardUrl": "https://jobs.jobvite.com/gigamon",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "verificationDisposition": "native-runtime-validation-required",
+    "remediationStatus": "implemented-awaiting-independent-review-and-coordinated-ordinary-audit",
+    "backfillMode": "live-parser",
+    "originalAdapter": "script",
+    "originalAtsPlatform": "workbook-exact-name-sentinel",
+    "originalModulePath": "../workbookbatch08/failClosedSentinel.js",
+    "officialBindingVerifiedAt": "2026-10-21T23:52:53.837Z",
+    "verifiedSurfaceSummary": "Sealed original-clock anonymous official Gigamon corporate/careers/Jobvite GET evidence contains 26 global public role IDs and 11 corroborated India records, with all 26 complete detail bodies. These are historical native research and offline fixture counts, not source-worker, eligible, saved or public counts. Full visible descriptions including EOE, privacy and supplemental AI disclosures are retained alongside raw JobPosting assertions. Legal employer, requisition semantics, original publication and whole-employer inventory are unknown. Cleanup forbidden.",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T23:52:53.837Z",
+      "officialURL": "https://www.gigamon.com/",
+      "matchedLinks": [
+        "https://www.gigamon.com/",
+        "https://www.gigamon.com/company/careers.html",
+        "https://jobs.jobvite.com/gigamon"
+      ],
+      "bindingMethod": "exact-anonymous-official-corporate-careers-anchor-to-Gigamon-Jobvite-tenant-and-full-role-native-model",
+      "evidenceOrigin": "sealed-anonymous-public-GET-original-clock-research-and-offline-fixture-replay",
+      "identityEvidenceScope": "Gigamon native employer label; registered legal employer and first-ever publication unqualified. Native public role identifier has no independently established requisition semantics.",
+      "nativeProofArtifact": "artifacts/full-catalog/gigamon-native-001/research-report-001.json",
+      "nativeCaptureManifest": "artifacts/full-catalog/gigamon-native-001/research-artifact-manifest-001.json",
+      "applicationsOpened": false
+    },
+    "recruitmentCandidate": {
+      "kind": "official-jobvite-public-HTML",
+      "token": "gigamon",
+      "verifiedNativeURL": "https://jobs.jobvite.com/gigamon",
+      "handoffScope": "Advertised public board and role detail HTML only; application URLs retained unvisited."
+    },
+    "zeroResultPolicy": "coverage-gap",
+    "runtimeQualification": "unqualified-captured-replay-only-no-public-increase",
+    "sourceScopeComplete": false,
+    "sourceObservedNativeGlobalRecords": 26,
+    "sourceObservedNativeIndiaLabels": 11,
+    "sourceOfflineExtractedIndiaRecords": 11,
+    "sourceScopeNotes": "Native dates are source-reported assertions, publication/edit/validThrough separate; no scrape/create/edit substitution. All valid future and expired records remain available for existing unchanged eligibility/public predicates. Whole-employer scope and lifecycle cleanup remain unqualified."
+  }
+]

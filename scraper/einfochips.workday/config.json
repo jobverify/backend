@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://arrow.wd1.myworkdayjobs.com/wday/cxs/arrow/AC/jobs",
+  "detailUrlBase": "https://arrow.wd1.myworkdayjobs.com/AC",
+  "countryFacetParameter": "Location_Country",
+  "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+  "searchText": "einfochips",
+  "workdayMaxPages": 10,
+  "maxJobs": 1000,
+  "detailFetchConcurrency": 4
+}

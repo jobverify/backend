@@ -1,0 +1,11 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://cochlear.wd3.myworkdayjobs.com/wday/cxs/cochlear/Cochlear_Careers/jobs",
+  "detailUrlBase": "https://cochlear.wd3.myworkdayjobs.com/Cochlear_Careers",
+  "locationCountry": null,
+  "searchText": "",
+  "maxJobs": null,
+  "workdayMaxPages": 100,
+  "detailEnrichmentBudgetMs": 120000,
+  "detailFetchConcurrency": 3
+}

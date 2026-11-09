@@ -1,0 +1,8 @@
+{
+ "source":"farmtheory","companyName":"FarmTheory","adapter":"script","modulePath":"../farmtheory/script.js","dryRunFile":"farmtheory/jobs.json",
+ "companyCareerPage":"https://farmtheory.in/","companyDomain":"farmtheory.in","officialCareersPageUrl":null,
+ "atsPlatform":"unverified-native-employer-linkedin","countryFilter":"India","paginationStrategy":"bounded-exact-employer-observation;incomplete",
+ "extractionStrategy":"explicit-country+native-publication+active-application-required","parser":"custom-script","normalizationProfile":"engineering-default","verifiedOn":"2026-10-23",
+ "verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"sourceScopeComplete":false,"sourceListingComplete":false,"lifecycleCleanupAllowed":false,"firstParty":false,"exactCompanyMatchOnly":true,
+ "fixtureManifest":"scraper/farmtheory/fixtures/capture-manifest.json"
+}

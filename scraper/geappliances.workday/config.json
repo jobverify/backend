@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://haier.wd3.myworkdayjobs.com/wday/cxs/haier/GE_Appliances/jobs",
+  "detailUrlBase": "https://haier.wd3.myworkdayjobs.com/en-US/GE_Appliances",
+  "countryFacetParameter": "locationCountry"
+}

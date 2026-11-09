@@ -1,0 +1,67 @@
+[
+  {
+    "atsPlatform": "greenhouse-two-official-boards-native",
+    "countryFilter": "India",
+    "paginationStrategy": "two-advertised-single-page-boards-meta-total-reconciliation-and-closure-recheck",
+    "extractionStrategy": "current-corporate-module-two-board-union-public-posting-ID-dedup-full-native-role-GET-first_published",
+    "parser": "shared-apiPortal-greenhouse-with-source-local-binding-country-identity-full-content-and-date-guards",
+    "normalizationProfile": "engineering-default",
+    "source": "blenheimchalcot",
+    "companyName": "Blenheim Chalcot",
+    "adapter": "script",
+    "modulePath": "../blenheimchalcot/script.js",
+    "dryRunFile": "blenheimchalcot/jobs.json",
+    "companyCareerPage": "https://blenheimchalcot.com/careers",
+    "companyDomain": "blenheimchalcot.com",
+    "verifiedOn": null,
+    "verifiedSurfaceSummary": "Two anonymous public capture packets and frozen offline replay establish19 advertised public posts and5 unconflicted India extractions with complete native role content. Six native-public-post first_published timestamps materially differ from updates. These are scoped research/extraction observations, not newly visible or qualified publishing counts.",
+    "backfillMode": "live-parser",
+    "originalAdapter": "script",
+    "originalAtsPlatform": "workbook-exact-name-sentinel",
+    "originalModulePath": "../workbookbatch08/failClosedSentinel.js",
+    "originalDryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_Release_26.07.04\\jobverify-backend\\scraper\\workbookbatch08\\blenheimchalcot.jobs.json",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "catalogOverride": true,
+    "officialHomepageUrl": "https://blenheimchalcot.com/",
+    "remediationStatus": "implemented-awaiting-independent-review-and-coordinated-ordinary-audit",
+    "officialBindingVerifiedAt": "2026-10-20T21:45:21.873Z",
+    "verifiedAt": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T22:29:42.887Z",
+      "officialURL": "https://blenheimchalcot.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://blenheimchalcot.com/hubfs/hub_generated/module_assets/1/180389540626/1742539746573/module_Job_Listings.min.js",
+        "https://boards-api.greenhouse.io/v1/boards/blenheimchalcot/jobs?content=true",
+        "https://boards-api.greenhouse.io/v1/boards/blenheimchalcotindia/jobs?content=true"
+      ],
+      "bindingMethod": "current-corporate-careers-literal-script-explicit-two-board-combinedJobs-union",
+      "evidenceOrigin": "anonymous-public-GET-research-and-frozen-offline-replay",
+      "nativeProofArtifact": "artifacts/full-catalog/blenheimchalcot-native-001/capture-index.json",
+      "nativeClosureArtifact": "artifacts/full-catalog/blenheimchalcot-native-001/closure/capture-index.json",
+      "nativeFullDetailManifest": "artifacts/full-catalog/blenheimchalcot-native-001/publication-gap-199-source-support.json",
+      "applicationsOpened": false
+    },
+    "recruitmentCandidate": {
+      "kind": "greenhouse",
+      "token": "blenheimchalcotindia",
+      "boardURL": "https://boards-api.greenhouse.io/v1/boards/blenheimchalcotindia/jobs?content=true",
+      "verifiedNativeURL": "https://boards-api.greenhouse.io/v1/boards/blenheimchalcotindia/jobs?content=true",
+      "additionalVerifiedTokens": [
+        "blenheimchalcot"
+      ],
+      "handoffScope": "Current corporate careers page links the exact public Job Listings module. Its HTTP200 JavaScript explicitly configures and combines UK blenheimchalcot and India blenheimchalcotindia Greenhouse API URLs. India API independently GET200 inspected; both official boards must be considered for source completeness."
+    },
+    "zeroResultPolicy": "coverage-gap",
+    "sourceScopeComplete": false,
+    "runtimeQualification": "unqualified-frozen-replay-only-no-public-increase",
+    "verificationDisposition": "native-runtime-validation-required",
+    "sourceObservedNativeRecords": 19,
+    "sourceObservedNativeIndiaLabels": 6,
+    "sourceOfflineExtractedUnconflictedIndiaRecords": 5,
+    "sourceScopeNotes": "Corporate careers explicitly unions blenheimchalcot (13 posts) and blenheimchalcotindia (6 posts). Full native JSON confirms six India-labeled roles. Post8007068 has Mumbai location but London United Kingdom office and is excluded. Five other records retain native recruiter company_name, Business labels, explicit portfolio assignment evidence and unknown legal employer. This advertised recruitment union does not establish whole-company or single-employer coverage. All inventory evidence remains coverage-gap; no verified zero, cleanup, persistence or visibility increase is qualified. Original internal requisition publication is unknown; public-post first_published remains separate from creation/edit/deadline."
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "detail-5502",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%225502%22,siteNumber=CX_5001",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%225502%22,siteNumber=CX_5001",
+    "contentType": "application/json",
+    "bytes": 3358,
+    "sha256": "e4ab75edc7dfa8a3507bc15f0035f7e27c6ae1262a00c250f23dad3150011da5",
+    "requestedAt": "2026-11-02T20:56:09.348Z",
+    "completedAt": "2026-11-02T20:56:09.759Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "public-5502",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/5502",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/5502",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 19558,
+    "sha256": "20ce36d5b166b20beec60ff3364aa7179596cfd859ca3c5fd0b3c2916bf34d1f",
+    "requestedAt": "2026-11-02T20:56:09.762Z",
+    "completedAt": "2026-11-02T20:56:10.349Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "public-7502",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/7502",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/7502",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 19689,
+    "sha256": "921c36e7b5d0162f7cacd829e25247bd8e0ea75947a73a37c42598e0743bd294",
+    "requestedAt": "2026-11-02T20:56:10.352Z",
+    "completedAt": "2026-11-02T20:56:10.926Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "detail-7502",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%227502%22,siteNumber=CX_5001",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%227502%22,siteNumber=CX_5001",
+    "contentType": "application/json",
+    "bytes": 3379,
+    "sha256": "f7797664cd5c2fe8023cd490e32ba160532d1e363b6bda42cbc94d9ed9c5666e",
+    "requestedAt": "2026-11-02T20:56:10.113Z",
+    "completedAt": "2026-11-02T20:56:11.127Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "detail-7504",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%227504%22,siteNumber=CX_5001",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%227504%22,siteNumber=CX_5001",
+    "contentType": "application/json",
+    "bytes": 3407,
+    "sha256": "92b9521634fa2125b414a99356963b330d257e50778801abd19dca74db88af7e",
+    "requestedAt": "2026-11-02T20:56:10.927Z",
+    "completedAt": "2026-11-02T20:56:11.322Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "detail-8735",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%228735%22,siteNumber=CX_5001",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%228735%22,siteNumber=CX_5001",
+    "contentType": "application/json",
+    "bytes": 3161,
+    "sha256": "1cb317f6fa5a4379df7d509b8d2d37d1155e403294f30cd5dafef649ae8ec374",
+    "requestedAt": "2026-11-02T20:56:11.325Z",
+    "completedAt": "2026-11-02T20:56:11.719Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "public-7504",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/7504",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/7504",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 19742,
+    "sha256": "4de52ff5fa432ad9488048cd0e91b199d258dc3040898e57687c2857c50ad744",
+    "requestedAt": "2026-11-02T20:56:11.130Z",
+    "completedAt": "2026-11-02T20:56:11.779Z"
+  },
+  {
+    "source": "amnealpharmaceuticalsindia",
+    "key": "public-8735",
+    "url": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/8735",
+    "status": 200,
+    "finalUrl": "https://hcfa.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_5001/job/8735",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 19628,
+    "sha256": "64938a14e264634c12ca31db89dcebe5f6a825cc590e8247f31d84995212ad76",
+    "requestedAt": "2026-11-02T20:56:11.722Z",
+    "completedAt": "2026-11-02T20:56:12.371Z"
+  }
+]

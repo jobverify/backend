@@ -1,0 +1,9 @@
+﻿{
+ "source":"yournest","companyName":"YourNest","adapter":"script","modulePath":"../yournest/script.js","dryRunFile":"yournest/jobs.json",
+ "companyCareerPage":"https://jobs.pyjamahr.com/yournest-venture-capital","officialCareersPageUrl":"https://jobs.pyjamahr.com/yournest-venture-capital","companyDomain":"yournest.in",
+ "atsPlatform":"pyjamahr-native-anonymous-api","countryFilter":"India","paginationStrategy":"bounded-native-pagination;whole-company-scope-unverified","extractionStrategy":"exact-board-and-own-employer-binding+native-detail-country-created_at-valid_through+same-role-Apply","parser":"custom-script","normalizationProfile":"engineering-default","verifiedOn":"2026-10-23",
+ "verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"sourceScopeComplete":false,"sourceListingComplete":false,"lifecycleCleanupAllowed":false,"firstParty":false,"exactCompanyMatchOnly":true,
+ "nativeObservedRecordCount":3,"observedEligibleCount":0,
+ "verifiedSurfaceSummary":"Exact native board6566 uuid987EE7EF32 reciprocates yournest.in, but includes portfolio and generic talent pool. Three native anonymous API records: own roles376083 and374870 retain July2026 created_at and September2026 valid_through and are expired at verification;43774 is a generic pool and expired. Exact native LinkedIn2435150 India/Worldwide no-match and expired4477281516 redirect do not prove company emptiness. Company totals unknown; cleanup disabled.",
+ "fixtureManifest":"scraper/yournest/fixtures/capture-manifest.json"
+}

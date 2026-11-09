@@ -1,0 +1,28 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+
+const PROVIDER_METADATA = {
+  "source": "carrier",
+  "companyName": "Carrier",
+  "adapter": "script",
+  "atsPlatform": "workday",
+  "countryFilter": "India",
+  "paginationStrategy": "native-India-country-facet-all-pages-twice",
+  "extractionStrategy": "current-official-handoff-and-native-country-validated-Workday-CXS",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verificationDisposition": "verified-official-regional-binding-runtime-separate",
+  "verifiedSurfaceSummary": "Current Carrier corporate/public-role application handoffs and native India-country roles are checked each run. Raw offices and legal employers are retained; whole-company scope remains unknown. Runtime counts remain separate.",
+  "originalModulePath": null,
+  "backfillMode": "live-parser",
+  "modulePath": path.join(currentDir, 'script.js'),
+  "dryRunFile": path.join(currentDir, 'jobs.json')
+}
+
+export default PROVIDER_METADATA
+export { PROVIDER_METADATA }

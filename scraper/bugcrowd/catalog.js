@@ -1,0 +1,67 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+const PROVIDER_METADATA = { ...{
+  "source": "bugcrowd",
+  "companyName": "Bugcrowd",
+  "adapter": "publicAts",
+  "catalogOverride": true,
+  "atsPlatform": "greenhouse",
+  "boardToken": "bugcrowd",
+  "companyCareerPage": "https://www.bugcrowd.com/about/careers/",
+  "jobsBoardUrl": "https://job-boards.greenhouse.io/bugcrowd",
+  "countryFilter": "India",
+  "parser": "shared-public-ATS-Greenhouse-native-content",
+  "normalizationProfile": "engineering-default",
+  "paginationStrategy": "complete-single-public-API-response-reconciled-with-meta.total;reject-truncation",
+  "extractionStrategy": "native-description-and-first-published;explicit-India-location;no-application-fetches",
+  "backfillMode": "live-shared-adapter",
+  "originalAdapter": "script",
+  "originalAtsPlatform": "workbook-exact-name-sentinel",
+  "originalModulePath": "../workbookbatch08/failClosedSentinel.js",
+  "zeroResultPolicy": "coverage-gap",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "bindingEvidence": {
+    "verified": true,
+    "verifiedAt": "2026-10-22T21:17:58.835Z",
+    "matchedLinks": [
+      "https://boards-api.greenhouse.io/v1/boards/bugcrowd/departments",
+      "https://boards-api.greenhouse.io/v1/boards/bugcrowd/offices"
+    ],
+    "officialCareerPage": "https://www.bugcrowd.com/about/careers/",
+    "bindingSurface": "https://www.bugcrowd.com/about/careers/",
+    "bindingScope": "company-advertised-Greenhouse-board;whole-employer-scope-unresolved",
+    "applicationsOpened": false,
+    "scriptsExecuted": false
+  },
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "unverified",
+  "runtimeQualification": "actual-isolated-public-API-extraction-and-loopback-local-persistence-only",
+  "remediationStatus": "live2-India-local2-saved;whole-employer-scope-and-production-unobserved",
+  "sourceResearchObservedAt": "2026-10-22T21:13:42.666Z",
+  "sourceResearchNativeListingRows": 8,
+  "sourceResearchIndiaLocationMatches": 2,
+  "verifiedSurfaceSummary": "Company-advertised Greenhouse board verified through retained official content. Actual isolated GET completed 2026-10-22T21:28:04.524Z: 8 native records reconcile meta.total; 2 India jobs, 2 eligible. Loopback persistence saved 2, repeat inserts0; visible with experienced enabled2/disabled1. Prior inventory and complete-check history preserved. Full employer/secondary-location scope and current production publication remain unknown; this is not a verified company zero.",
+  "sourceScopeNotes": "Read only the public complete jobs?content=true response, including full native descriptions, original first_published dates and application links. Reconcile meta.total and reject incomplete/error responses. Existing shared India filtering and quality rules remain in force. No India matches does not establish company-wide zero openings. Whole-employer/secondary-location scope remains unresolved; complete-check promotion and lifecycle cleanup are disabled.",
+  "verificationDisposition": "positive-native-India-extraction-and-local-save-validated;incomplete-whole-source-scope",
+  "sourceLatestLiveAttemptedAt": "2026-10-22T21:28:03.903Z",
+  "sourceLatestLiveCompletedAt": "2026-10-22T21:28:04.524Z",
+  "sourceLatestLiveOutcome": "positive-extraction-incomplete-evidence",
+  "sourceLatestLiveObservedListingCount": 8,
+  "sourceLatestLiveIndiaJobs": 2,
+  "sourceLatestLiveEligibleJobs": 2,
+  "sourceLatestLiveNativeSingleResponseComplete": true,
+  "sourceLatestLiveHTTPResponses": 1,
+  "sourceLatestLiveHTTPStatus": 200,
+  "localPersistenceSavedJobs": 2,
+  "localPersistenceRepeatInserted": 0,
+  "localVisibilityExperiencedEnabled": 2,
+  "localVisibilityExperiencedDisabled": 1,
+  "sourceNativeObservationCompletedAt": "2026-10-22T21:28:04.524Z"
+}, modulePath: path.join(currentDir, 'script.js'), dryRunFile: path.join(currentDir, 'jobs.json') }
+export default PROVIDER_METADATA
+export { PROVIDER_METADATA }

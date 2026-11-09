@@ -1,0 +1,51 @@
+[
+  {
+    "source": "checkmarx",
+    "companyName": "Checkmarx",
+    "adapter": "script",
+    "modulePath": "../checkmarx/script.js",
+    "dryRunFile": "checkmarx/jobs.json",
+    "companyDomain": "checkmarx.com",
+    "officialHomepageUrl": "https://checkmarx.com/",
+    "companyCareerPage": "https://checkmarx.com/company/careers/",
+    "jobsBoardUrl": "https://www.comeet.com/jobs/checkmarx/C0.008",
+    "atsPlatform": "comeet-public-native-preloads",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-current-native-position-array-and-stable-full-recheck",
+    "extractionStrategy": "current-native-company-identity-typed-country-public-status-and-full-native-content-sections",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "backfillMode": "implemented",
+    "remediationStatus": "implemented-runtime-partial",
+    "originalAtsPlatform": "workbook-exact-name-sentinel",
+    "sourceInventoryZeroEvidencePolicy": "No whole-company verified zero from this partial public native board or from unavailable official HTML.",
+    "approvedOfficialBinding": {
+      "kind": "actual-public-official-configuration-plus-current-native-company-identity",
+      "officialURL": "https://checkmarx.com/company/careers/",
+      "companyUID": "C0.008",
+      "nativeBoardURL": "https://www.comeet.com/jobs/checkmarx/C0.008",
+      "checkedAt": "2026-10-21T03:25:40.790Z",
+      "evidence": {
+        "artifact": "artifacts/full-catalog/checkmarx-native-001/browser-native-011/packet-002.json",
+        "sha256": "aa6e5f425f4d555c3e4b32a1deac6f94513bebafed5b2df229189b159f5ce0d7",
+        "bodySha256": "a90876c4c0d11a1b0f7ff345cff9c2483cd336def6786a4ffc93f8a3aa155592"
+      },
+      "runtimeOfficialHtmlRequired": false,
+      "nativeIdentityFields": [
+        "company_uid",
+        "name",
+        "website",
+        "company_domain_set",
+        "url_comeet_hosted_page",
+        "url_recruit_hosted_page"
+      ],
+      "scope": "Official public configuration is historical provenance; current native identity and every selected public position are independently checked. Whole-company coverage and posting/closing dates stay unknown."
+    },
+    "verifiedSurfaceSummary": "Current exact Checkmarx public native company identity, full finite position array, stable recheck, typed countries and non-internal full native role details replace the sentinel. Actual official browser HTTP200 and ordinary WordPress HTTP403 remain separate. Employee-choice configuration is preserved and public eligibility requires explicit native is_internal:false. Native updates are not publication dates. Runtime totals remain unknown in catalog metadata."
+  }
+]

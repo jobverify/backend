@@ -1,0 +1,25 @@
+[
+  {
+    "source": "claroty",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../claroty/script.js",
+    "atsPlatform": "comeet-first-party-proxy",
+    "backfillMode": "live-parser",
+    "parser": "current-primary-grouped-Comeet-proxy-and-all-public-role-details",
+    "companyCareerPage": "https://claroty.com/careers",
+    "officialCareersPageUrl": "https://claroty.com/careers",
+    "companyDomain": "claroty.com",
+    "paginationStrategy": "current-client-unfiltered-department-groups-and-all-role-APIs-with-closing-snapshot",
+    "extractionStrategy": "current-primary-handoff+advertised-client+widget-company-UID+group-facet-reconciliation+all-role-API-and-primary-components",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "sourceScopeComplete": false,
+    "remediationStatus": "native-extraction-implemented-company-coverage-unverified",
+    "currentExtractionEvidence": "scraper/claroty/fixtures/current-20261030/manifest.json",
+    "verifiedSurfaceSummary": "Current official primary listing/role components, advertised client, company UID, grouped native job APIs and all full role details are revalidated in two snapshots. Original HTML is retained; absent publication/revision/status fields are not invented.",
+    "sourceScopeLimitation": "Only the currently advertised first-party Comeet proxy is extracted. Whole-company India availability, other channels, original dates, explicit upstream public-status flags, legal employer, application access, eligibility, persistence and public visibility remain unknown."
+  }
+]

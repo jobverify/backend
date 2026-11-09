@@ -1,0 +1,13 @@
+export const JUNGLEWORKS_CATALOG = {
+  source: 'jungleworks', companyName: 'Jungleworks', officialBrandName: 'Jungleworks', exactCompanyMatchOnly: true,
+  adapter: 'script', modulePath: '../jungleworks/script.js', dryRunFile: 'jungleworks/jobs.json',
+  companyCareerPage: 'https://jungleworks.com/careers/', companyDomain: 'jungleworks.com',
+  officialAtsUrl: 'https://jungleworks.zohorecruit.in/jobs/Careers',
+  nativeInventoryUrl: 'https://jungleworks.zohorecruit.in/recruit/v2/public/Job_Openings?pagename=Careers&source=CareerSite',
+  atsPlatform: 'zoho-recruit', countryFilter: 'India', paginationStrategy: 'unfiltered-public-api-reconciled-with-complete-server-embedded-portal-array',
+  extractionStrategy: 'fresh-official-handoff+native-organization-page-binding+full-portal-api-reconciliation+native-detail-hydration',
+  parser: 'custom-script', normalizationProfile: 'engineering-default', verifiedOn: '2026-10-23',
+  verifiedPublicJobCount: 1, verifiedIndiaJobCount: 1,
+  verifiedSurfaceSummary: 'October 23, 2026 capture: Jungleworks official careers Apply Now links to its Zoho Recruit Careers board. Board hidden meta binds Jungleworks/www.jungleworks.com organization 69660000000230516 and page 69660000000230662. The unfiltered public API and server-embedded jobs array agree on one published unlocked B2B Sales Trainee opening 69660000013757052, Mohali, India. Native detail adds Punjab, full employer description and 0-1 year experience. Date_Opened 2026-10-06 is retained as operational metadata only; no publication date or country facet total is asserted. Missing employer content or an output cap yields incomplete evidence; malformed identity/scope/pagination fails.',
+}
+export default JUNGLEWORKS_CATALOG

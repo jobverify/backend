@@ -1,0 +1,9 @@
+!fixtures/
+fixtures/*
+!fixtures/current-20261030/
+fixtures/current-20261030/*
+!fixtures/current-20261030/manifest.json
+!fixtures/current-20261030/*.txt.gz
+
+# Keep saved fixtures local; exclude them from Git and deployment.
+/fixtures/

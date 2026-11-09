@@ -1,0 +1,10 @@
+{
+ "source":"wizklub","companyName":"WizKlub","adapter":"script","modulePath":"../wizklub/script.js","dryRunFile":"wizklub/jobs.json",
+ "companyCareerPage":"https://dev.wizklub.com/","officialCareersPageUrl":"https://dev.wizklub.com/","companyDomain":"wizklub.com",
+ "atsPlatform":"native-employer-linkedin-explicit-brand-parent-roles","countryFilter":"India","paginationStrategy":"bounded-exact-brand-employers-India-and-Worldwide+parent-listing+3-reviewed-branded-details;incomplete",
+ "extractionStrategy":"exact-parent-employer+explicit-WizKlub-JD-brand+explicit-job-country+earliest-observed-native-date+active-Apply","parser":"custom-script","normalizationProfile":"engineering-default","verifiedOn":"2026-10-23",
+ "verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"sourceScopeComplete":false,"sourceListingComplete":false,"lifecycleCleanupAllowed":false,"firstParty":false,"exactCompanyMatchOnly":true,
+ "nativeObservedRecordCount":3,"nativeParentListingRecordCount":20,"nativeIndiaRecoveredCount":2,"observedEligibleCount":2,
+ "verifiedSurfaceSummary":"Official Wizklub schema associates current native Wizklub Futurz employer and support@infinitylearn.com. Old/current exact brand employer India/Worldwide no-match scopes do not establish company emptiness. Correct Sri Chaitanya parent employer 78106236 is distinguished from Canadian namesake 24988334. Twenty parent cards observed, three explicitly WizKlub brand details reviewed: active Coding and Robotics Trainer (2026-10-16) and Area Sales Manager (2026-10-13), both explicit India; Area Manager closed and excluded. Parent generic roles not attributed to WizKlub. Whole-company/India counts unknown; cleanup disabled.",
+ "fixtureManifest":"scraper/wizklub/fixtures/capture-manifest.json"
+}

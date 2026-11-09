@@ -1,0 +1,21 @@
+{
+  "source": "financialtimes",
+  "companyName": "Financial Times",
+  "adapter": "script",
+  "modulePath": "../financialtimes.workday/script.js",
+  "catalogOverride": true,
+  "atsPlatform": "greenhouse",
+  "companyCareerPage": "https://aboutus.ft.com/careers/",
+  "homepageUrl": "https://aboutus.ft.com/",
+  "companyDomain": "ft.com",
+  "countryFilter": "India",
+  "paginationStrategy": "complete-native-API-meta-total+office-graph+closing-full-capture-reconciliation-before-caps",
+  "extractionStrategy": "current-corporate-handoffs+advertised-career-channels+exact-native-office-country-ancestry+full-native-criteria-and-original-dates",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "zeroResultPolicy": "evidence-required",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedOn": "2026-10-27",
+  "verifiedSurfaceSummary": "Runtime binds current corporate careers to the Financial Times board, enumerates full native API postings against meta.total, resolves all plausible declared countries through the native office hierarchy, distinguishes talent communities from vacancies, and reconciles closing jobs, offices and corporate handoffs before caps. The public global Greenhouse route serves current first-party-bound EU posting URLs. No candidate application requests are made. Counts and completeness belong to runtime evidence."
+}

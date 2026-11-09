@@ -1,0 +1,92 @@
+{
+  "source": "reuters",
+  "version": "2026-11-07-current-native-server-models",
+  "corporateHome": "https://www.thomsonreuters.com/",
+  "corporateHomeFinal": "https://www.thomsonreuters.com/en",
+  "agencyHome": "https://reutersagency.com/",
+  "agencyCareers": "https://reutersagency.com/careers",
+  "corporateCareers": "https://www.thomsonreuters.com/en/careers",
+  "board": "https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site",
+  "boardCanonical": "https://thomsonreuters.wd5.myworkdayjobs.com/External_Career_Site",
+  "nativePrefix": "https://thomsonreuters.wd5.myworkdayjobs.com/wday/cxs/thomsonreuters/External_Career_Site",
+  "tenant": "thomsonreuters",
+  "site": "External_Career_Site",
+  "client": {
+    "url": "https://wd5.myworkdaycdn.com/wday/asset/candidate-experience-jobs/cx-jobs.min.js",
+    "finalURL": "https://wd5.myworkdaycdn.com/wday/asset/candidate-experience-jobs/2026.44.13/cx-jobs.min.js",
+    "SHA256": "10018e073547b33a0cb146a8b76aebf99cda428c52249df5aae081d9fc2890da"
+  },
+  "bootstrap": {
+    "prefix": "<!DOCTYPE html>\n<html lang=\"en-US\">\n<head>\n    <title></title>\n    <!-- Application Properties -->\n    <meta http-equiv=\"X-UA-Compatible\" content=\"chrome=1;IE=EDGE\"/>\n    <meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=2.0\">\n\n    <link rel=\"canonical\" href=\"https://thomsonreuters.wd5.myworkdayjobs.com/External_Career_Site\" />\n\n    <!-- OpenGraph Tags -->\n    <meta name=\"title\" property=\"og:title\" content=\"Careers at Thomson Reuters\">\n    <meta name=\"description\" property=\"og:description\" content=\"At Thomson Reuters, we’re not riding the AI wave — we’re reshaping the future of professional work across law, tax, compliance, and journalism. Here, you will collaborate with smart, ambitious people who thrive on solving complex problems, delivering market-leading solutions, and innovating with curiosity and care. Learn more about a career with us 📖 Our Employer Story 🔍 Inside Thomson Reuters Blog 🏆 Awards and Recognition 🌱 Join Our Talent Community ✅ Protect Your Job Search Future-ready careers Our focus on a skills-first approach ensures you’ll have the tools and knowledge to grow, lead, and thrive in an AI-enabled future.\">\n    <meta name=\"image\" property=\"og:image\" content=\"https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site/assets/logo\">\n    <meta property=\"og:type\" content=\"website\">\n    <meta property=\"og:url\" content=\"https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site\">\n\n\n    <!-- SEO Tags -->\n    \n\n    \n\n    <script type=\"text/javascript\">\n        window.workday = window.workday || {\n            tenant: \"thomsonreuters\",\n            siteId: \"External_Career_Site\",\n            locale: \"en-US\",\n            requestLocale: \"en-US\",\n            supportedLocales:[\"en-US\",\"es\",\"fr-FR\",\"pt-BR\"],\n            clientOrigin: \"https://wd5.myworkday.com\",\n            language: null,\n            cdnEndpoint: \"wd5.myworkdaycdn.com\",\n            useCdn: true,\n            maintenancePageUrl: \"https://wd5.myworkday.com/wday/drs/outage?t=thomsonreuters&s=External_Career_Site\",\n            token: \"",
+    "suffix": "\",\n            environment: \"PROD\",\n            isExternal: true,\n            appName: \"cxs\",\n            loggingEndpoint: \"https://wd5.myworkday.com/wday/microscope/prelogin\",\n            postingAvailable: null,\n            allowedFileTypes: [],\n            blockedFileTypes: [\"bas\",\"bat\",\"com\",\"exe\",\"js\",\"lnk\",\"ocx\",\"reg\",\"sct\",\"sys\",\"vb\",\"vbe\",\"vbs\",\"wsc\",\"wsf\",\"wsh\"],\n            toggles: [\"b9739002c86510002015dea9402c0000\",\"36ce9cb779e5100019c1a5050b9a0000\",\"32bccbf501f610002313c4ee6e9c0000\",\"e702eb48468610000d6ad4a553cb0000\",\"812c4a153c711000151c5ca11e310000\",\"0d6ebcfdc39a10001bc8f95b3aac0000\",\"43b4d9d7cb8e10000a703bad20420000\",\"532bfa92863b100019ab08f4c04b0000\",\"dac26076be8510002347bab78d5a0000\",\"badb3f02bef210000e20c92ac0260000\",\"e466d0b066ff10000c3605be74f10000\",\"292c4bafc34210001a28e93bebcf0000\",\"b3999fdcfb7310001ed650a18cc80000\",\"e42e6d1d2524100010042528c43e0000\",\"f45271d06fcd10001b2d8737149f0000\",\"b8ce26d67ff9100014ec4b645b840000\",\"bc9894c7142610001616fde6e0700000\",\"6edcf8e6cd7f10001b1f86c9e3ef0000\",\"a969fb8f4cfd10000ad4ba96cd820000\",\"459bb3f1e4a9100014b8f73a20850000\",\"ab2374beb65d10002c8233ca9b5a0000\",\"13809c87a71610001b62b41c11800000\",\"31177c86226910001079dc24b7110000\",\"4706b65dd8ee100015f0034e1e480000\",\"6c7d10abcf8e100015455f96664e0000\",\"7d2bc1254b7d10000e2b5811864a0000\",\"78b52d8385791000141adb10f19a0000\",\"560b3d5bfd701000208972c8730e0000\",\"158e13f2980210000e5f46c2d5ae0000\",\"b6678cba4dbc10000a476842e3bb0000\",\"2e8eb95af853100024f8c97124d40000\",\"65f18e16aea0100010c0b34df7700000\",\"96cc49ab4185100014c0824814050000\",\"e4f054463fea1000274c8a0d22ad0000\",\"466d58ad03691000185ddce1282a0000\",\"75ecc5f3792b1000131d51fc86ab0000\",\"bc814e895c1d10000d1fd3354f4b0000\",\"258d1be19f40100013265e0888c90000\",\"cdbf5f0a33931000115a15a023a40000\",\"20ccbc6c60701000fafdc3dce74a0000\",\"16593e8eb6ca10000935b558a50a0000\",\"e1733537b151100014e202818e520000\",\"db3fa9600f8810001798c5a6d2dd0000\",\"1502396ba0ef1000103c22d48c570000\",\"9c10810cc40b1000460d082ad8de0000\",\"9c10810cc40b100045f3593f47b50000\",\"6658d90adc4f100014da5605f7080000\",\"195d457a6acb10001008bcba6e490000\",\"7412d755467b1000466a75950f5a0000\",\"1fda372a2c2310002fdb093b08500000\",\"10f7a56eb11c100024a6d65b625a0000\",\"3b516ed7dbb11000154ebe32231b0000\",\"19a1bb1f047f1000128ab90ed0ad0000\",\"46d8e90e3f3b10001722edfe317e0000\",\"25e5d9d7d60010001a37bac5c8790000\",\"e1fdcb592a641000290e46a2b10f0000\",\"5054a9c1a3eb1000262607b170020000\",\"03fe4c00bf67100023f96eaade8a0000\",\"2af7a0871946100029867d9279b30000\"],\n            branding: {\"formFields\":{\"color\":\"#123021\",\"textColor\":\"#D64000\"},\"progressBar\":{\"color\":\"#123021\"},\"button\":{\"primary\":{\"color\":\"#D64000\",\"borderColor\":\"#D64000\",\"textColor\":\"#FFFFFF\",\"hover\":{\"color\":\"#D64000\",\"borderColor\":\"#D64000\",\"textColor\":\"#FFFFFF\"}},\"secondary\":{\"color\":\"#D64000\",\"borderColor\":\"#D64000\",\"textColor\":\"#FFFFFF\",\"hover\":{\"color\":\"#D64000\",\"borderColor\":\"#D64000\",\"textColor\":\"#FFFFFF\"}},\"shape\":\"PILL\"},\"header\":{\"imageBanner\":{\"maintainAspectRatio\":true,\"image\":{\"id\":\"06997b4a3cbc10010e73a0713aff0000\",\"altText\":null}},\"banner\":{\"color\":\"#FFFFFF\",\"borderColor\":\"#D64000\",\"textColor\":\"#212223\",\"image\":{\"id\":\"2889a38a657e100153a2f3deaab10002\",\"altText\":null}}},\"embedded\":false},\n            geoIpCountryCode: \"in\" == null ? \"\": \"in\",\n\n        };\n        function createScriptTag (src) {\n            var scriptTag =  document.createElement('script');\n            scriptTag.src = src;\n            scriptTag.setAttribute('defer', 'true');\n            scriptTag.setAttribute('crossorigin', 'anonymous');\n            return scriptTag;\n        }\n        var isIE = typeof Symbol === 'undefined';\n        var sharedAssetPath = '/wday/asset/uic-shared-vendors';\n        var sharedVendorLoaderAsset = sharedAssetPath + '/shared-vendors.min.js';\n        var cdnOrigin = 'https://' + \"wd5.myworkdaycdn.com\";\n        var sharedVendorsLoaderUrlOrigin = workday.clientOrigin !== '' ? workday.clientOrigin : cdnOrigin;\n        var sharedVendorsLoaderScript = createScriptTag(sharedVendorsLoaderUrlOrigin + sharedVendorLoaderAsset);\n        sharedVendorsLoaderScript.onload = function () {\n            var jobsScriptSrcFilename = isIE\n                ? 'cx-jobs-ie.min.js'\n                : 'cx-jobs.min.js';\n            var cxJobsAsset = '/wday/asset/candidate-experience-jobs/' + jobsScriptSrcFilename;\n            var jobsScript = createScriptTag(cdnOrigin + cxJobsAsset);\n            jobsScript.onerror = function () {\n                window.workday.useCdn = false;\n                var jobsScriptFromClientOrigin = createScriptTag(workday.clientOrigin + cxJobsAsset);\n                document.head.removeChild(jobsScript);\n                document.head.appendChild(jobsScriptFromClientOrigin);\n            }\n            document.head.appendChild(jobsScript);\n        };\n        document.head.appendChild(sharedVendorsLoaderScript);\n    </script>\n</head>\n<body>\n<div id=\"root\"></div>\n</body>\n</html>",
+    "tokenLiteralASTPath": "Program.body.0.expression.right.right.properties.10.value",
+    "originalPublicTokenGUIDs": [
+      "3c70bd81-3f2c-4b1b-8672-5036ac4fcb7d",
+      "b77f2a0e-d93b-43b1-a585-5212632db3a3"
+    ],
+    "wholeOpeningProgramSHA256": "be4e5dc0f4e6340dd5ef1d606583b1d68242c9669a48dd475069d2aac57829e5",
+    "qualification": "Only the exact assigned window.workday.token GUID value may vary. Complete surrounding HTML/program bytes remain exact; token is never sent or used by this public reader. No other UUID/text/program normalization, evaluation or script execution."
+  },
+  "agencyInitialBodyOpacityRule": "body { opacity: 0; transition-property: opacity; transition-duration: 0.25s; transition-delay: 0.25s; margin: 0; }",
+  "agencyInitialEnclosingStyleSHA256": "28af2f02fec3942bd507e460b24a51fa81695f1d04cb62394e3f329c021c477a",
+  "agencyAuthorityQualification": "Exact active first-party DOM declarations supply semantic routing only; agency browser visibility/activation is NOT certified and cannot qualify role criteria/applications.",
+  "country": {
+    "facetParameter": "Location_Country",
+    "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "descriptor": "India",
+    "alpha2Code": "IN"
+  },
+  "news": {
+    "facetParameter": "CF_Job_Posting_Anchor_Job_Category_EEB_Extended",
+    "id": "9276a62d4e68100204e60ceedade0001",
+    "descriptor": "News & Editorial Careers"
+  },
+  "eligibleRawLegalEmployer": "IND003 Thomson Reuters India Private Ltd",
+  "rawLegalEmployerIsNotReutersAlias": true,
+  "fieldSets": {
+    "envelope": [
+      "jobPostingInfo",
+      "hiringOrganization",
+      "similarJobs",
+      "userAuthenticated"
+    ],
+    "info": [
+      "id",
+      "title",
+      "jobDescription",
+      "location",
+      "postedOn",
+      "startDate",
+      "timeType",
+      "jobReqId",
+      "jobPostingId",
+      "jobPostingSiteId",
+      "country",
+      "canApply",
+      "posted",
+      "includeResumeParsing",
+      "jobRequisitionLocation",
+      "remoteType",
+      "externalUrl",
+      "questionnaireId",
+      "timeLeftToApply",
+      "endDate",
+      "jobPostingEndDateAsText",
+      "secondaryQuestionnaireId",
+      "additionalLocations",
+      "locationData",
+      "multiLocation"
+    ],
+    "row": [
+      "title",
+      "externalPath",
+      "postedOn",
+      "remoteType",
+      "bulletFields"
+    ]
+  },
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "companyGlobalTotal": null,
+  "companyIndiaTotal": null
+}

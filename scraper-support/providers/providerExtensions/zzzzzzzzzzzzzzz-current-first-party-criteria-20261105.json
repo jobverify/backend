@@ -1,0 +1,18 @@
+[
+  {
+    "source": "webandcrafts",
+    "companyName": "Webandcrafts",
+    "catalogOverride": true,
+    "paginationStrategy": "single-native-flight-index+full-first-party-details+closing-reconciliation",
+    "extractionStrategy": "current-first-party-careers-handoffs+active-literal-flight-listing+full-native-jobData+length-framed-literal-criteria+closing-model-reconciliation",
+    "sourceScopeNotes": "Retain each current full native model and literal Flight text record. Country requires an explicit own-job country; Koratty alone leaves country unknown. created_at is retained as native creation evidence, not publication. Missing full criteria, contradictory identity, denied reads or changed closing models cannot establish current recruitment or complete company inventory."
+  },
+  {
+    "source": "frugaltesting",
+    "companyName": "Frugal Testing",
+    "catalogOverride": true,
+    "paginationStrategy": "single-current-first-party-listing+closing-full-role-reconciliation",
+    "extractionStrategy": "current-first-party-listing+scoped-native-role-heading+complete-responsibilities-and-qualifications+closing-native-role-reconciliation",
+    "sourceScopeNotes": "Retain complete own-role HTML criteria and the original workplace, employment and experience fields. Hyderabad alone leaves country unknown. Current own-brand context is required; no exact legal employer or publication date is invented. Incomplete reads and denials remain coverage gaps. Whole-company inventory and lifecycle cleanup remain unqualified."
+  }
+]

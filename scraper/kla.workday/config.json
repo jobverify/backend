@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://kla.wd1.myworkdayjobs.com/wday/cxs/kla/Search/jobs",
+  "detailUrlBase": "https://kla.wd1.myworkdayjobs.com/Search",
+  "countryFacetParameter": "Country"
+}

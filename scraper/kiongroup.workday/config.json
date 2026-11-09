@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://kiongroup.wd3.myworkdayjobs.com/wday/cxs/kiongroup/KIONGroup/jobs",
+  "detailUrlBase": "https://kiongroup.wd3.myworkdayjobs.com/en-US/KIONGroup",
+  "countryFacetParameter": "locationCountry"
+}

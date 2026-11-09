@@ -1,0 +1,18 @@
+{
+  "source": "fullertonindia",
+  "requestedURL": "https://app52.workline.hr/CPortal/CanPRFApply.aspx?ModeFlag=V&filename=1515202604154090914_30.+JD_+Branch+Manager_+Urban+Retail.pdf",
+  "finalURL": "https://app52.workline.hr/CPortal/CanPRFApply.aspx?ModeFlag=V&filename=1515202604154090914_30.+JD_+Branch+Manager_+Urban+Retail.pdf",
+  "method": "GET",
+  "body": null,
+  "status": 200,
+  "headers": {
+    "content-type": "application/octet-stream"
+  },
+  "contentType": "application/octet-stream",
+  "startedAt": "2026-11-04T18:22:06.310Z",
+  "completedAt": "2026-11-04T18:22:06.936Z",
+  "bodyBytes": 69586,
+  "bodySHA256": "b052f9afe3e33b26b3899540b06577a083d45edb694df6bc7174964f86698a27",
+  "filename": "45fe2a3d65f80e504f343ba02268db7bf60ea017d4b9bd3979e0fe304019f147.b052f9afe3e33b26b3899540b06577a083d45edb694df6bc7174964f86698a27.txt.gz",
+  "replayed": false
+}

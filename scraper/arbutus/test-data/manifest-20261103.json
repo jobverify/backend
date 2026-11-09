@@ -1,0 +1,34 @@
+[
+  {
+    "key": "arbutus-corporate",
+    "url": "https://www.arbutusbio.com/culture-careers/",
+    "status": 200,
+    "finalUrl": "https://www.arbutusbio.com/culture-careers/",
+    "bytes": 86373,
+    "sha256": "0f116a632c46c728700ece7d61236e37d67f56d37523871d9407f97a9e4da2df",
+    "requestedAt": "2026-11-02T20:28:02.648Z",
+    "completedAt": "2026-11-02T20:28:04.072Z"
+  },
+  {
+    "key": "arbutus-client",
+    "url": "https://recruiting.paylocity.com/Recruiting/dist/public-site-react-list/public-site-react-list-bundle.js?ver=1791906323422",
+    "status": 200,
+    "finalUrl": "https://recruiting.paylocity.com/Recruiting/dist/public-site-react-list/public-site-react-list-bundle.js?ver=1791906323422",
+    "bytes": 371140,
+    "sha256": "597f3c85d20d715c8cd79fabbb89c37d07a634074ae08333c3203074a83b632f",
+    "requestedAt": "2026-11-02T20:28:02.690Z",
+    "completedAt": "2026-11-02T20:28:05.396Z"
+  },
+  {
+    "index": 0,
+    "url": "https://recruiting.paylocity.com/recruiting/jobs/All/f2fda2c7-bfc6-4840-90d0-83d242cada87/Arbutus-Biopharma-Inc",
+    "method": "GET",
+    "status": 200,
+    "finalUrl": "https://recruiting.paylocity.com/recruiting/jobs/All/f2fda2c7-bfc6-4840-90d0-83d242cada87/Arbutus-Biopharma-Inc",
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 25536,
+    "sha256": "abd13dc28f4759e1e3423c18d485e55ae15f80360efda7e5e9b32ee8738054c7",
+    "requestedAt": "2026-11-02T20:26:32.050Z",
+    "completedAt": "2026-11-02T20:26:33.669Z"
+  }
+]

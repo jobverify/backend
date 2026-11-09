@@ -1,0 +1,77 @@
+{
+  "source": "alphawavesemiindia",
+  "fixture": "native-20261103.json.gz",
+  "sha256": "0023c68472197aa44b05c332936b637069b8d083b63fcd5ba1259e18e440c9ba",
+  "captures": [
+    {
+      "source": "alphawavesemiindia",
+      "key": "workday-board",
+      "url": "https://alphawave.wd10.myworkdayjobs.com/Alphawave_External?locations=d9b1a3a6e54d1008421b5a4934ad0000&locations=f3ca14c95ae81010b95985e62beb0000",
+      "status": 200,
+      "finalUrl": "https://alphawave.wd10.myworkdayjobs.com/Alphawave_External?locations=d9b1a3a6e54d1008421b5a4934ad0000&locations=f3ca14c95ae81010b95985e62beb0000",
+      "contentType": "text/html",
+      "file": "alphawavesemiindia-workday-board-7fe9a80db63f.body",
+      "bytes": 7877,
+      "sha256": "7fe9a80db63fa1445b40dc9846b266427223d2dd0dc3611bd31d3f49710d4fff",
+      "requestedAt": "2026-11-02T22:10:17.985Z",
+      "completedAt": "2026-11-02T22:10:19.406Z"
+    },
+    {
+      "source": "alphawavesemiindia",
+      "key": "careers",
+      "url": "https://awavesemi.com/careers/india-job-openings/",
+      "status": 200,
+      "finalUrl": "https://www.qualcomm.com/data-center",
+      "contentType": "text/html;charset=utf-8",
+      "file": "alphawavesemiindia-careers-4f13d3b23858.body",
+      "bytes": 10206,
+      "sha256": "4f13d3b238587b72b67ea657aaba5d1ca773bf09a0570f3842032d8f897ef281",
+      "requestedAt": "2026-11-02T22:10:17.895Z",
+      "completedAt": "2026-11-02T22:10:20.944Z"
+    },
+    {
+      "source": "alphawavesemiindia",
+      "key": "unfiltered-legacy-jobs",
+      "url": "https://alphawave.wd10.myworkdayjobs.com/wday/cxs/alphawave/Alphawave_External/jobs",
+      "status": 200,
+      "finalUrl": "https://alphawave.wd10.myworkdayjobs.com/wday/cxs/alphawave/Alphawave_External/jobs",
+      "file": "alphawavesemiindia-unfiltered-legacy-jobs-a4301abdd83e.body",
+      "bytes": 66,
+      "sha256": "a4301abdd83e7b05afb7f4b9a18ef53ebda836854a71d21e0112f677ac9e65eb",
+      "method": "POST",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"\"}",
+      "requestedAt": "2026-11-02T22:20:12.963Z",
+      "completedAt": "2026-11-02T22:20:14.619Z"
+    },
+    {
+      "index": 0,
+      "url": "https://alphawave.wd10.myworkdayjobs.com/Alphawave_External",
+      "method": "GET",
+      "status": 200,
+      "finalUrl": "https://alphawave.wd10.myworkdayjobs.com/Alphawave_External",
+      "contentType": "text/html",
+      "bytes": 7877,
+      "sha256": "0380fa08c1bc21153aa4e7b37f051c6897e93561f1463c38f55dd8e10a814e63",
+      "file": "000-0380fa08c1bc.body",
+      "requestedAt": "2026-11-02T22:13:43.135Z",
+      "completedAt": "2026-11-02T22:13:44.435Z",
+      "source": "alphawavesemiindia",
+      "key": "production-0"
+    },
+    {
+      "index": 1,
+      "url": "https://alphawave.wd10.myworkdayjobs.com/wday/cxs/alphawave/Alphawave_External/jobs",
+      "method": "POST",
+      "status": 200,
+      "finalUrl": "https://alphawave.wd10.myworkdayjobs.com/wday/cxs/alphawave/Alphawave_External/jobs",
+      "contentType": "application/json",
+      "bytes": 311,
+      "sha256": "ee5e17a2e2fc3e5ec9afeed7d3b1a8f1c96bbd98af9f158f84d972e3b4593a8a",
+      "file": "001-ee5e17a2e2fc.body",
+      "requestedAt": "2026-11-02T22:13:44.443Z",
+      "completedAt": "2026-11-02T22:13:45.066Z",
+      "source": "alphawavesemiindia",
+      "key": "production-1"
+    }
+  ]
+}

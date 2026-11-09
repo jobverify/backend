@@ -1,0 +1,17 @@
+[
+  {
+    "source": "cloudflare",
+    "companyName": "Cloudflare",
+    "adapter": "script",
+    "modulePath": "../cloudflare/script.js",
+    "companyCareerPage": "https://www.cloudflare.com/careers/",
+    "companyDomain": "cloudflare.com",
+    "atsPlatform": "greenhouse",
+    "countryFilter": "India",
+    "parser": "cloudflare-native-greenhouse-locations",
+    "paginationStrategy": "single-native-feed-reconciled-total",
+    "extractionStrategy": "native-job-posting-locations+offices+employer-role-identity",
+    "zeroResultPolicy": "evidence-required",
+    "catalogOverride": true
+  }
+]

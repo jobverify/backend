@@ -1,0 +1,22 @@
+{
+  "source": "moneytap",
+  "companyName": "MoneyTap",
+  "officialBrandName": "MoneyTap (a Freo product)",
+  "adapter": "script",
+  "modulePath": "../moneytap/script.js",
+  "dryRunFile": "moneytap/jobs.json",
+  "companyCareerPage": "https://moneytap-1.jobsoid.com/",
+  "companyDomain": "moneytap-1.jobsoid.com",
+  "atsPlatform": "jobsoid-official-ats",
+  "countryFilter": "India",
+  "paginationStrategy": "single-native-jobsoid-closed-listing-section",
+  "extractionStrategy": "live-native-jobsoid-branded-explicit-empty-validation",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "officialAtsUrl": "https://moneytap-1.jobsoid.com/",
+  "verifiedSurfaceSummary": "October 23, 2026 branded moneytap-1 Jobsoid response reports No Current Openings. Each run fetches and validates the complete current listing, MoneyTap identity, active empty message and hiring handoffs. Failed, redirected or changed boards cannot certify zero. Future openings require a verified native extraction contract.",
+  "inventoryVerificationPolicy": "live-parser-evidence-required"
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "source": "brihaspathi",
+    "catalogOverride": true,
+    "companyName": "Brihaspathi Technologies Limited",
+    "adapter": "script",
+    "modulePath": "../brihaspathi/script.js",
+    "companyCareerPage": "https://www.brihaspathi.com/careers",
+    "companyDomain": "brihaspathi.com",
+    "atsPlatform": "first-party-strapi-api",
+    "countryFilter": "India",
+    "paginationStrategy": "reviewed-native-first-100-ceiling-and-full-closing-snapshot-before-cap",
+    "extractionStrategy": "current-native-react-client+public-strapi-role-cards+native-modal-identity",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedInventoryStatus": "coverage-gap",
+    "zeroResultPolicy": "coverage-gap",
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "sourceScopeNotes": "Current native React client delegates to public active Strapi job-openings and binds the native numeric identity to an application modal. It displays only role cards and brief plain text, with no full criteria or job-owned publication, expiry, formal requisition or work arrangement. Current API total1 contains Brand Manager, Hyderabad, a ten-character description and no job country. Company headquarters are not job geography; CMS publishedAt is preserved separately from unknown job publication. HR-only global visibility filtering matches the reviewed client. A possible API total beyond its advertised first100 ceiling remains partial rather than inventing pagination. Two complete native snapshots precede caps; all partial/unknown results disable absence and cleanup.",
+    "remediationStatus": "native-role-card-inventory-implemented;full-criteria-and-country-coverage-partial"
+  }
+]

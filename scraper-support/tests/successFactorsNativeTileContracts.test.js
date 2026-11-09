@@ -1,0 +1,10 @@
+import fs from 'node:fs'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {gunzipSync} from 'node:zlib'
+import {parseNativeTilePage} from '../shared/successFactorsNativeTiles.js'
+const origin='https://careers.holcimgroup.com',search=origin+'/search/',category=origin+'/holcim_ghbs/go/Job-at-Holcim-GHBS/8823002/',fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/holcim.workday/fixtures/native-20261023.json.gz',import.meta.url)))),bodies=new Map(fixture.requests.map(r=>[r.url,Buffer.from(r.rawBodyBase64,'base64').toString('utf8')])),base={validateURL:value=>new URL(value),nativeConfig:{companyToken:'holcimgrou'},apiPrefix:origin+'/tile-search-results?startrow=',parseTile:(doc,tile)=>({id:tile.attrs['data-row-index']})},query='?q=&sortColumn=referencedate&sortDirection=desc&searchby=location&d=10'
+test('native tile default still rejects a changed global query',()=>{assert.throws(()=>parseNativeTilePage(bodies.get(search),search,null,base),/scope/)})
+test('an explicit exact global query enables the currently advertised434-role native model',()=>{const p=parseNativeTilePage(bodies.get(search),search,null,{...base,expectedSearchQuery:query});assert.equal(p.records.length,25);assert.equal(p.reportedTotal,434)})
+test('an explicit native category endpoint and initial path preserve the15-row category scope',()=>{const p=parseNativeTilePage(bodies.get(category),category,null,{...base,initialPath:new URL(category).pathname,expectedApiEndpoint:'tile-search-results/category/8823002',expectedSearchQuery:''});assert.equal(p.records.length,15);assert.equal(p.reportedTotal,15);assert.equal(p.nextURL,null)})
+test('changing a declared query or category ID remains a hard failure',()=>{assert.throws(()=>parseNativeTilePage(bodies.get(search),search,null,{...base,expectedSearchQuery:query+'&country=IN'}),/scope/);assert.throws(()=>parseNativeTilePage(bodies.get(category),category,null,{...base,initialPath:new URL(category).pathname,expectedApiEndpoint:'tile-search-results/category/9999',expectedSearchQuery:''}),/scope/)})

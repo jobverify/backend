@@ -1,0 +1,22 @@
+{
+  "source": "simpleenergy",
+  "companyName": "Simple Energy",
+  "officialBrandName": "Simple Energy Private Limited",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../simpleenergy/script.js",
+  "dryRunFile": "simpleenergy/jobs.json",
+  "companyCareerPage": "https://www.simpleenergy.in/",
+  "companyDomain": "simpleenergy.in",
+  "atsPlatform": "official-first-party-homepage-no-public-careers-or-ats",
+  "countryFilter": "India",
+  "paginationStrategy": "verified-first-party-homepage-sentinel",
+  "extractionStrategy": "verified-first-party-homepage-without-public-careers-or-ats-handoff+return-empty",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-26",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://www.simpleenergy.in/",
+  "verifiedSurfaceSummary": "Verified on Sunday, July 26, 2026 that https://www.simpleenergy.in/ is the first-party site for the Indian electric-scooter manufacturer Simple Energy Private Limited (CIN U29309KA2019PTC127859). Its public navigation and homepage expose products, stores, support, and company information, but no careers route, public opening cards, or official ATS handoff. This exact literal-name provider therefore fails closed and returns no jobs until Simple Energy publishes a trustworthy first-party or official ATS-backed jobs surface."
+}

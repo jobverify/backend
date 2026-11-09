@@ -1,0 +1,11 @@
+{
+ "source":"supergrad","companyName":"Supergrad","officialBrandName":"Supergrad","exactCompanyMatchOnly":true,
+ "adapter":"script","modulePath":"../supergrad/script.js","dryRunFile":"supergrad/jobs.json",
+ "companyCareerPage":"https://www.supergrad.co.in/","companyDomain":"supergrad.co.in","officialCareersPageUrl":"https://www.supergrad.co.in/",
+ "atsPlatform":"native-official-domain-transport-gap","countryFilter":"India","paginationStrategy":"bounded-official-domain-probe;inventory-unverified",
+ "extractionStrategy":"exact-co-in-employer-native-probe+typed-coverage-gap","parser":"custom-script","normalizationProfile":"engineering-default","verifiedOn":"2026-10-23",
+ "verifiedPublicJobCount":null,"verifiedIndiaJobCount":null,"nativeObservedRecordCount":null,"observedEligibleCount":0,
+ "sourceScopeComplete":false,"sourceListingComplete":false,"lifecycleCleanupAllowed":false,"firstParty":false,
+ "fixtureManifest":"scraper/supergrad/fixtures/capture-manifest.json",
+ "verifiedSurfaceSummary":"Exact supergrad.co.in training/admissions provider retained; no substitution of UK SuperGrad or TopRankers Supergrads. Both www and bare native fetch captures timed out without HTTP receipts. Separate navigation DOMs display Cloudflare origin522, not raw response statuses. Search index shows EDGE courses/admissions and placement marketing, not employer vacancy inventory. Bounded native probe raises typed coverage gap; totals unknown and cleanup disabled."
+}

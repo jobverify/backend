@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://transunion.wd5.myworkdayjobs.com/wday/cxs/transunion/transunion/jobs",
+  "detailUrlBase": "https://transunion.wd5.myworkdayjobs.com/en-US/transunion",
+  "locationCountry": null,
+  "searchText": "India",
+  "locationPattern": "india|mumbai|pune|chennai|hyderabad|bengaluru|bangalore"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "discovery-only",
+  "surface": "https://www.linkedin.com/company/oyo-rooms/jobs/",
+  "firstParty": false,
+  "listingComplete": false,
+  "pagesFetched": 2,
+  "reportedTotal": null,
+  "indiaFacetCount": null,
+  "verifiedAt": "2026-10-03T08:03:56.923Z",
+  "reason": "OYO first-party careers handoff points to LinkedIn; linked public inventory has not been fully enumerated."
+}

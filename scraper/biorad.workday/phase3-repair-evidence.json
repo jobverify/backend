@@ -1,0 +1,23 @@
+{
+  "source": "biorad",
+  "evidenceManifest": "fixtures/phase3-20261024/manifest.json",
+  "productionRepair": "Actual HTTP202 challenge and access-control responses remain rejected with structured non-retriable soft-failure flags, source stage, status, request URL and final URL. No browser runtime or challenge workaround was added.",
+  "positiveNativeEvidence": {
+    "listingUrl": "https://careers.bio-rad.com/jobs/search?country_codes%5B%5D=IN",
+    "listingHttpStatus": 200,
+    "observedNativeIndiaListingCount": 5,
+    "validatedDetailUrl": "https://careers.bio-rad.com/jobs/trade-compliance-spec-iii-chennai-india",
+    "validatedRequisition": "2026-38980",
+    "detailHttpStatus": 200,
+    "validatedDescription": true,
+    "method": "Final navigation responses from a fresh normal browser passed the existing native company, identity, India location, application identity and matching full-description guards. Only one role was inspected."
+  },
+  "remainingBlocker": "A fresh isolated native role request returned AWS WAF HTTP202; a sequential browser landing also initially challenged before normal browser navigation reached HTTP200. The API-only runtime cannot execute that browser challenge. Positive browser parser evidence does not establish that HTTP-only transport or all role descriptions are healthy.",
+  "excludedObservation": "The preliminary parallel browser response-body sample disagreed with its final document during navigation. That sample was excluded; final sequential navigation responses support the retained positive parser evidence.",
+  "sourceRuntimeRecovered": false,
+  "allDetailsVerified": false,
+  "verifiedIndiaJobCount": null,
+  "verifiedPublicJobCount": null,
+  "productionWrites": false,
+  "fullSourceScrape": false
+}

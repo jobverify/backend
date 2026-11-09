@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://quantiphi.wd1.myworkdayjobs.com/wday/cxs/quantiphi/Careers_at_Quantiphi/jobs",
+  "detailUrlBase": "https://quantiphi.wd1.myworkdayjobs.com/en-US/Careers_at_Quantiphi",
+  "locationCountry": null,
+  "searchText": "India",
+  "locationPattern": "india|bengaluru|bangalore|hyderabad|mumbai|pune|gurgaon|gurugram|noida|kolkata|chennai"
+}

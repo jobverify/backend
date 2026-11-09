@@ -1,0 +1,27 @@
+[
+  {
+    "source":"sencogold",
+    "companyName":"Senco Gold",
+    "catalogOverride":true,
+    "adapter":"script",
+    "modulePath":"../sencogold/script.js",
+    "companyCareerPage":"https://www.sencogold.com/career",
+    "companyDomain":"sencogold.com",
+    "countryFilter":"India",
+    "atsPlatform":"official-company-careers",
+    "parser":"custom-script",
+    "extractionStrategy":"bounded-current-public-resume-intake-with-closing-read-and-unknown-inventory",
+    "zeroResultPolicy":"evidence-required",
+    "verifiedOn":null,
+    "verifiedAt":null,
+    "verifiedPublicJobCount":null,
+    "verifiedIndiaJobCount":null,
+    "verifiedInventoryStatus":"unverified",
+    "runtimeInventoryVerification":true,
+    "sourceScopeComplete":false,
+    "lifecycleCleanupAllowed":false,
+    "scraperTimeoutMs":90000,
+    "sourceLifecycleTimeoutMs":120000,
+    "verifiedSurfaceSummary":"The current free-text CV form does not publish an authoritative native vacancy inventory. Certificate and access failures remain source failures; vacancy and work-country totals require current evidence."
+  }
+]

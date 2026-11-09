@@ -1,0 +1,101 @@
+{
+  "source": "cams",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "0325c63972aed732e41dca0a310dcbc29f11c584af12d540bd91348134cb4f32",
+  "purpose": "Exact current public corporate shell/client/configuration originals plus clearly classified proxy response. Neither app-root nor proxy failure is a native vacancy zero.",
+  "responses": [
+    {
+      "source": "cams",
+      "key": "careers",
+      "url": "https://www.camsonline.com/about-cams/careers",
+      "status": 200,
+      "finalUrl": "https://www.camsonline.com/about-cams/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 11810,
+      "sha256": "4388954472b28b7d1aef59a00f35a5d33bf8630d5b913e7428826253249b854c",
+      "file": "cams-careers-4388954472b2.body",
+      "requestedAt": "2026-11-03T02:35:36.596Z",
+      "completedAt": "2026-11-03T02:35:37.450Z",
+      "discovery": {
+        "scripts": [
+          "https://www.camsonline.com/about-cams/runtime.cdb9cac797915bb701f7.1793253000.js",
+          "https://www.camsonline.com/about-cams/main.5646c457339c152c66ff.1793253000.js"
+        ],
+        "careerLinks": []
+      },
+      "originalCapture": "cams-careers-4388954472b2.body",
+      "responseClassification": "published-current-first-party-body"
+    },
+    {
+      "source": "cams",
+      "key": "published-client-correct-base",
+      "url": "https://www.camsonline.com/runtime.cdb9cac797915bb701f7.1793253000.js",
+      "status": 200,
+      "finalUrl": "https://www.camsonline.com/runtime.cdb9cac797915bb701f7.1793253000.js",
+      "contentType": "application/javascript; charset=UTF-8",
+      "bytes": 4059,
+      "sha256": "97900500d9ca2abdca3672ae19243a9c7a693c704a0c1f4aa687207a1a98dfea",
+      "file": "cams-published-client-correct-base-97900500d9ca.body",
+      "requestedAt": "2026-11-03T02:41:24.481Z",
+      "completedAt": "2026-11-03T02:41:25.425Z",
+      "originalCapture": "cams-published-client-correct-base-97900500d9ca.body",
+      "responseClassification": "published-current-first-party-body"
+    },
+    {
+      "source": "cams",
+      "key": "published-client-correct-base",
+      "url": "https://www.camsonline.com/main.5646c457339c152c66ff.1793253000.js",
+      "status": 200,
+      "finalUrl": "https://www.camsonline.com/main.5646c457339c152c66ff.1793253000.js",
+      "contentType": "application/javascript; charset=UTF-8",
+      "bytes": 4972426,
+      "sha256": "cd1da232971af1823afa4e9de61d9b2aec903b267f312a936c9ca9d2262acbd6",
+      "file": "cams-published-client-correct-base-cd1da232971a.body",
+      "requestedAt": "2026-11-03T02:41:25.428Z",
+      "completedAt": "2026-11-03T02:41:27.276Z",
+      "originalCapture": "cams-published-client-correct-base-cd1da232971a.body",
+      "responseClassification": "published-current-first-party-body"
+    },
+    {
+      "source": "cams",
+      "key": "published-public-url-configuration",
+      "url": "https://www.camsonline.com/assets/url.json",
+      "status": 200,
+      "finalUrl": "https://www.camsonline.com/assets/url.json",
+      "contentType": "application/json",
+      "bytes": 2147,
+      "sha256": "1c3e0225612b69268104dacd86e2ee619f71b72647a46e84e57f29c9d78f511d",
+      "file": "cams-published-public-url-configuration-1c3e0225612b.body",
+      "requestedAt": "2026-11-03T02:47:42.497Z",
+      "completedAt": "2026-11-03T02:47:43.074Z",
+      "originalCapture": "cams-published-public-url-configuration-1c3e0225612b.body",
+      "responseClassification": "published-current-first-party-body"
+    },
+    {
+      "source": "cams",
+      "key": "published-http-career-handoff",
+      "url": "http://careers.camsonline.com/",
+      "status": 500,
+      "finalUrl": "http://careers.camsonline.com/",
+      "contentType": "text/html",
+      "bytes": 2720,
+      "sha256": "be453f9dc7c975ee5ea196ea19653537a938a3b9e8d98eb3c50cd23ca884993d",
+      "file": "cams-published-http-career-handoff-be453f9dc7c9.body",
+      "requestedAt": "2026-11-03T02:49:34.061Z",
+      "completedAt": "2026-11-03T02:49:34.382Z",
+      "originalCapture": "cams-published-http-career-handoff-be453f9dc7c9.body",
+      "responseClassification": "audit-network-McAfee-gateway-not-employer-inventory"
+    }
+  ],
+  "strictHttpsFailure": {
+    "source": "cams",
+    "key": "strict-https-published-handoff-host-root",
+    "url": "https://careers.camsonline.com/",
+    "requestedAt": "2026-11-03T02:51:38.620Z",
+    "completedAt": "2026-11-03T02:51:38.867Z",
+    "error": {
+      "message": "fetch failed",
+      "code": "UNABLE_TO_VERIFY_LEAF_SIGNATURE"
+    }
+  }
+}

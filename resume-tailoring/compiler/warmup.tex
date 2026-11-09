@@ -1,0 +1,32 @@
+% Trusted dependency warmup only. No candidate facts or sample identity.
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{titlesec,enumitem,tabularx,array,multicol,xcolor,hyperref,fancyhdr}
+\pagestyle{empty}
+\hypersetup{hidelinks}
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+% Exercise actual font shapes, not just package loading. An offline compiler
+% cannot fetch a missing metric or font when a candidate later uses bold/italic.
+\newcommand{\ResumeFontShapes}{%
+  Regular text, \textbf{bold}, \textit{italic}, \textsl{slanted},
+  \textbf{\textit{bold italic}}, \textsc{small capitals},
+  \textsf{sans serif}, \textsf{\textbf{bold sans}}, \textsf{\textit{italic sans}},
+  \texttt{monospace}, \texttt{\textbf{bold mono}}, \texttt{\textit{italic mono}}.
+  \textbullet\ \textendash\ \textemdash\ \textbackslash\ \textasciitilde\ \textasciicircum\ \textbar\
+  C\#, R\&D, 10\%, \_underscore, \{braces\}, caf\'e.\par}
+\begin{document}
+\ResumeFontShapes
+{\large\ResumeFontShapes}
+{\Large\ResumeFontShapes}
+{\LARGE\ResumeFontShapes}
+% Also cover documents using the engine's default Unicode font encoding.
+{\fontencoding{TU}\fontfamily{lmr}\selectfont\ResumeFontShapes}
+\section*{Experience}
+\begin{itemize}[leftmargin=*,nosep]
+\item Trusted dependency preparation: readable text, accents caf\'e, 10\% and C\#.
+\end{itemize}
+\begin{tabularx}{\textwidth}{Xr}Education & Dates\end{tabularx}
+\href{https://example.org}{Reference hyperlink}
+\end{document}

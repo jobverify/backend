@@ -1,0 +1,28 @@
+{
+  "observedWidgetBuild": "b2605.31",
+  "moduleVersion": "4.71.2",
+  "companyToken": "colgate",
+  "assets": [
+    {
+      "url": "https://jobs.colgate.com/platform/js/widgets/reactWidgetLoader.js",
+      "sha256": "84b47b264d90a783d23c93e7b332ce635972d92fc08216315e7aa3cebacae77e"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/ui/widget-loader/resources/widget-loader.js",
+      "sha256": "65d5f8ac028b81b94457acfaaeac9bed823b86542fbabc0e05266010a5dd149a"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/rmk-jobs-search/index.json?tag=b2605.31",
+      "sha256": "8afafbe14e4c2743a9cd9fb063a9c06a81e7f17b87280043ab40f2dab1daddae"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/ui/rmk-jobs-search/resources_4.71.2/asset-manifest-entrypoints.json?tag=b2605.31",
+      "sha256": "54a27812dfe6fdf7fdf0481a5e523b02d9209ca2f579bff5418aa349fbf6100c"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/ui/rmk-jobs-search/resources_4.71.2/static/js/main.d01aeea5.js",
+      "sha256": "a34873175c3db0e22e70ad4a45201049f13491963fd91995486443220c880e48"
+    }
+  ],
+  "provenance": "Current public search HTML and advertisedwidget loader/index/manifest/client captured2026-10-21. Version orbody change must fail untilreviewed; these hashes are executable contractpins, not inventorycounts."
+}

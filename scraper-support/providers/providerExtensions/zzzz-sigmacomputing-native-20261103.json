@@ -1,0 +1,15 @@
+{
+  "source": "sigmacomputing",
+  "catalogOverride": true,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "discovery-only",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "paginationStrategy": "full-native-board-and-advertised-role-ids+full-public-details+current-native-offices+final-listing-after-all-criteria",
+  "extractionStrategy": "original-native-envelope+full-public-criteria+exact-role-office-ID-address-and-membership-country-proof+original-publication-date",
+  "verifiedSurfaceSummary": "The current official Sigma Computing careers page advertises the exact sigmacomputing Greenhouse board. Runtime retains every original board/detail field, education/publication data and job-owned questions. A separate mapper projection can resolve a primary worksite only when the same role ID/title/native URL, exact publisher city label, office ID/address and current directory membership agree; typed/conflicting countries, remote and unmatched location alternatives remain untouched. Closing full public details and current office bindings precede a final complete native listing. Unresolved countries, unreviewed criteria or unreconciled current advertised roles retain unknown configured-board totals. Company-wide scope and lifecycle cleanup remain separate and unverified."
+}

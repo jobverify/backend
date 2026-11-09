@@ -1,0 +1,67 @@
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+const PROVIDER_METADATA = { ...{
+  "source": "clearco",
+  "companyName": "Clearco",
+  "adapter": "publicAts",
+  "catalogOverride": true,
+  "atsPlatform": "ashby",
+  "boardToken": "clearco",
+  "companyCareerPage": "https://www.clear.co/careers",
+  "jobsBoardUrl": "https://jobs.ashbyhq.com/clearco",
+  "parser": "shared-native-public-ATS",
+  "countryFilter": "India",
+  "normalizationProfile": "engineering-default",
+  "paginationStrategy": "complete-single-native-API-response;native-schema-and-explicit-total-guards;reject-truncation",
+  "extractionStrategy": "native-India-location-evidence;full-native-description-and-publication-fields;no-application-requests",
+  "backfillMode": "live-shared-adapter",
+  "originalAdapter": "script",
+  "originalAtsPlatform": "workbook-exact-name-sentinel",
+  "originalModulePath": "../workbookbatch08/failClosedSentinel.js",
+  "zeroResultPolicy": "coverage-gap",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "bindingEvidence": {
+    "verified": true,
+    "verifiedAt": "2026-10-22T21:45:19.890Z",
+    "matchedLinks": [
+      "https://jobs.ashbyhq.com/clearco/embed"
+    ],
+    "officialCareerPage": "https://www.clear.co/careers",
+    "bindingSurface": "https://www.clear.co/careers/open-roles",
+    "handoffType": "advertised-official-subpage-link",
+    "bindingScope": "current-company-advertised-native-board;whole-employer-and-location-scope-unresolved",
+    "scriptsExecuted": false,
+    "applicationsOpened": false
+  },
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "unverified",
+  "runtimeQualification": "actual-isolated-native-API-and-loopback-zero-preservation-status-history-public-predicate-proof",
+  "remediationStatus": "live-native-API-connected;no-India-matches;whole-employer-and-location-scope-unresolved",
+  "sourceResearchObservedAt": "2026-10-22T21:42:42.757Z",
+  "sourceResearchNativeRecords": 6,
+  "sourceResearchIndiaLocationMatches": 0,
+  "verifiedSurfaceSummary": "Current official careers advertised-official-subpage-link identifies this native board. Actual restricted-worker GET completed 2026-10-22T21:50:32.060Z: 6 complete native records;0 India matches/0eligible. Native records do not establish explicit India eligibility. Loopback zero handling preserves prior inventory and complete-check clock/counts;0new realjobs/0visible under either setting. Full employer/location scope and current production publication remain unknown;not verified companyzero.",
+  "sourceScopeNotes": "Read the native public complete single-response inventory, including full descriptions, source publication timestamps, source application links and available location fields. Ashby validates apiVersion1, role/board identities and structured primary/secondary countries; Greenhouse reconciles meta.total. Generic remote/global scope is unresolved and cannot supply India eligibility. Explicit empty arrays remain observed board emptiness, not company-wide zero. Whole-employer scope and lifecycle cleanup stay disabled. Large JSON audit capture is bounded separately from HTML transport. No application/login/consent paths are requested.",
+  "verificationDisposition": "observed-native-records-without-India-matches;not-verified-company-zero",
+  "sourceLatestLiveAttemptedAt": "2026-10-22T21:50:31.565Z",
+  "sourceLatestLiveCompletedAt": "2026-10-22T21:50:32.060Z",
+  "sourceLatestLiveOutcome": "unverified-zero",
+  "sourceLatestLiveObservedRecords": 6,
+  "sourceLatestLiveIndiaJobs": 0,
+  "sourceLatestLiveEligibleJobs": 0,
+  "sourceLatestLiveNativeSingleResponseComplete": true,
+  "sourceLatestLiveHTTPStatus": 200,
+  "sourceLatestLiveNativeEmptyArray": false,
+  "localPersistenceNewRealJobsSaved": 0,
+  "localPreservationPriorJobControls": 1,
+  "localVisibilityExperiencedEnabled": 0,
+  "localVisibilityExperiencedDisabled": 0,
+  "sourceNativeObservationCompletedAt": "2026-10-22T21:50:32.060Z"
+}, modulePath: path.join(currentDir, 'script.js'), dryRunFile: path.join(currentDir, 'jobs.json') }
+export default PROVIDER_METADATA
+export { PROVIDER_METADATA }

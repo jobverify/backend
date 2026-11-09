@@ -1,0 +1,26 @@
+[
+  {
+    "source": "billease",
+    "companyName": "BillEase",
+    "officialBrandName": "BillEase",
+    "adapter": "script",
+    "modulePath": "../billease/script.js",
+    "dryRunFile": "billease/jobs.json",
+    "homepageUrl": "https://billease.ph/",
+    "companyCareerPage": "https://billease.ph/careers/",
+    "companyDomain": "billease.ph",
+    "atsPlatform": "manatal-careers-page",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "all-public-manatal-pages+closing-native-and-corporate-reconciliation",
+    "extractionStrategy": "visible-corporate-role-binding+native-country+full-role-details",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-10-26",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Current visible corporate role links and reciprocal native company website bind BillEase's Manatal tenant. All native pages, original role IDs, full explicit India details and closing corporate/native snapshots are checked. Unknown native countries and differing corporate/native role sets retain partial evidence. Corporate presentation locations do not fill native country gaps, and missing original job dates remain unknown.",
+    "catalogOverride": true
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "source": "datahub",
+    "companyName": "DataHub",
+    "adapter": "script",
+    "atsPlatform": "greenhouse",
+    "boardToken": "acryldata",
+    "parser": "source-local-current-deferred-Greenhouse-binding-and-shared-public-API-mapper",
+    "companyDomain": "datahub.com",
+    "officialHomepageUrl": "https://datahub.com/",
+    "companyCareerPage": "https://datahub.com/company/careers/",
+    "jobsBoardUrl": "https://job-boards.greenhouse.io/acryldata",
+    "countryFilter": "India",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "exact-public-API-total-single-response-and-final-whole-recheck",
+    "extractionStrategy": "current-corporate-deferred-loader-config+native-public-API+full-India-role-and-application-proof",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T15:08:37.715Z",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "originalDryRunFile": null,
+    "remediationStatus": "implemented-offline-native-old-only-awaiting-independent-review",
+    "runtimeQualification": "ordinary-http-unqualified-research-proof-separate",
+    "verificationDisposition": "native-original-publication-retained-ordinary-runtime-separate",
+    "sourceScopeNotes": "Current DataHub/Acryl corporate deferred loader config and observed native embed GET bind acryldata. Public API four records contains one explicit Bengaluru India role; its original July first publication is outside the calendar-month policy despite October update. Neither a new publication date nor native legal employer is inferred. Company inventory totals remain unknown. Stable scoped empty boards do not qualify whole-company zero inventory.",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T15:08:37.715Z",
+      "officialURL": "https://datahub.com/datahub-careers/",
+      "matchedLinks": [
+        "https://datahub.com/company/careers/",
+        "https://boards.greenhouse.io/embed/job_board/js?for=acryldata"
+      ],
+      "bindingMethod": "current-corporate-deferred-client-config-and-actual-loader-initiated-native-GET",
+      "proofs": [
+        {
+          "file": "../artifacts/full-catalog/datahub-native-001/research-native-001/manifest.json",
+          "sha256": "8e8a6a246acdaf76201c55f79023a360475ad29b21122cba6abe38f9f9791890"
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "One full native India role remains old under its first_published date. Current metadata proves recruitment identity only; ordinary runtime counts remain unknown and company scope partial.",
+    "catalogOverride": true
+  }
+]

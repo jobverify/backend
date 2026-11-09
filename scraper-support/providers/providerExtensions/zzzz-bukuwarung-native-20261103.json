@@ -1,0 +1,18 @@
+{
+  "source": "bukuwarung",
+  "catalogOverride": true,
+  "atsPlatform": "darwinbox-public-native",
+  "paginationStrategy": "full-native-board+all-public-details+final-listing-after-closing-details",
+  "extractionStrategy": "current-active-corporate-handoff+strict-native-identity-country-and-public-criteria+blocked-host-cache",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "unverified",
+  "sourceExtractionImplemented": true,
+  "remediationStatus": "native-extraction-implemented;declared-current-board-HTTP403;unknown-inventory-and-country-scope",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedSurfaceSummary": "The current BukuWarung corporate career page actively advertises See Open Positions at its exact bukuwarung Darwinbox candidate/careers tenant. Runtime enumerates the native board and retains original public role criteria, explicit countries and publisher dates, with a final listing after closing details. Current native HTTP403 is unavailable inventory with unknown totals, never verified empty. A run-local denied-host cache prevents further denied-host requests; broader employer hiring scope and cleanup remain unverified."
+}

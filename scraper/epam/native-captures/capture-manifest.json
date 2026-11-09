@@ -1,0 +1,53 @@
+{
+  "purpose": "Unmodified current public GET bodies for source-specific protocol regression tests. Fixture mutations in tests are synthetic fault cases, not live counts.",
+  "records": [
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/pages/_app-fa332e67f3a33ed3.js",
+      "finalUrl": "https://careers.epam.com/_next/static/chunks/pages/_app-fa332e67f3a33ed3.js",
+      "method": "GET",
+      "status": 200,
+      "contentType": "application/javascript",
+      "startedAt": "2026-11-05T07:00:45.870Z",
+      "completedAt": "2026-11-05T07:00:47.470Z",
+      "bytes": 1729044,
+      "sha256": "66f26b113cd0ae5c02536ebfaab2826ed4f17b85d567319a7af6edb0db9f9678",
+      "bodyFile": "public-controller.js.gz",
+      "transport": "playwright-installed-Chrome-document-only-JavaScript-disabled",
+      "requestHeaders": {
+        "x-anywhere-tenant": "anywhere"
+      }
+    },
+    {
+      "url": "https://careers.epam.com/api/jobs/v2/search/careers-i18n?facets=country%3D4060741400035606931&from=0&lang=en&size=50&sortBy=relevance%3Brelocation%3Dasc&websiteLocale=en-us",
+      "finalUrl": "https://careers.epam.com/api/jobs/v2/search/careers-i18n?facets=country%3D4060741400035606931&from=0&lang=en&size=50&sortBy=relevance%3Brelocation%3Dasc&websiteLocale=en-us",
+      "method": "GET",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-05T07:02:30.705Z",
+      "completedAt": "2026-11-05T07:02:31.524Z",
+      "bytes": 856514,
+      "sha256": "d367ecffdb04d996509a6ed779514aa1b9a680d987402b2becea6a378080770c",
+      "bodyFile": "india-first-page.json.gz",
+      "transport": "playwright-installed-Chrome-document-only-JavaScript-disabled",
+      "requestHeaders": {
+        "x-anywhere-tenant": "anywhere"
+      }
+    },
+    {
+      "url": "https://careers.epam.com/en/jobs/india",
+      "finalUrl": "https://careers.epam.com/en/jobs/india",
+      "method": "GET",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-05T06:59:20.811Z",
+      "completedAt": "2026-11-05T06:59:22.789Z",
+      "bytes": 1077556,
+      "sha256": "0561cb9647143c91a403cf18b3fa48302dfeb7bcaa0cff6bf53c2c83e21efb60",
+      "bodyFile": "india-careers.html.gz",
+      "transport": "playwright-installed-Chrome-document-only-JavaScript-disabled",
+      "requestHeaders": {
+        "x-anywhere-tenant": "anywhere"
+      }
+    }
+  ]
+}

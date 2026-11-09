@@ -1,0 +1,23 @@
+{
+  "source": "canva",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../../scraper/canva/script.js",
+  "companyName": "Canva",
+  "companyCareerPage": "https://www.lifeatcanva.com/en/jobs/",
+  "companyDomain": "lifeatcanva.com",
+  "atsPlatform": "official-first-party-jobs-board",
+  "countryFilter": "India",
+  "zeroResultPolicy": "evidence-required",
+  "sourceScopeComplete": false,
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedInventoryStatus": "unverified",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceBoundaryReviewedOn": "2026-11-03",
+  "scraperTimeoutMs": 90000,
+  "verifiedSurfaceSummary": "Access-denied responses leave inventory unverified. The scraper stops at the first non-success response. Native inventory and full public details remain unknown; bounded readers preserve cancellation and HTTP retry metadata. No private application/account prerequisite or verified-empty claim is introduced."
+}

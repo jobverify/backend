@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://allstate.wd5.myworkdayjobs.com/wday/cxs/allstate/allstate_careers/jobs",
+  "detailUrlBase": "https://allstate.wd5.myworkdayjobs.com/allstate_careers",
+  "locationCountry": null,
+  "searchText": "India",
+  "locationPattern": "india|pune|bangalore|bengaluru|gurgaon|gurugram|hyderabad"
+}

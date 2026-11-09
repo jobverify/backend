@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+const packet=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/2026-10-31-native-packets.json.gz',import.meta.url))))
+const read=url=>{const row=packet.requests.find(row=>row.url===url);assert.ok(row,'Unrecorded '+url);return row.body}
+import {readFingentOpenings,readFingentDetail} from './native.js'
+const css=packet.requests.find(r=>r.file==='fingent-author-2.css'),list=readFingentOpenings(read('https://www.fingent.com/careers/career-openings/')),parse=(html,authorCSS=css.body)=>{try{return readFingentDetail(html,list[0],{authorCSS,stylesheetUrl:css.url})}catch(error){if(error.message.startsWith('Fingent native role:'))return null;throw error}}
+test('all eight captured native role heroes retain the real author CSS rendering proof',()=>{for(const listing of list){const job=readFingentDetail(read(listing.sourceUrl),listing,{authorCSS:css.body,stylesheetUrl:css.url});assert.equal(job.location,'Kochi');assert.equal(job.country,null);assert.equal(job.rawNativeRoleEvidence.declaredHeroRenderingQualified,true)}})
+test('applicable author CSS cannot be overridden by the earlier display declaration',()=>{const html=read(list[0].sourceUrl);for(const rule of ['section.innerbnr2 ul.career-list li title {display:none !important}','body ul.career-list li > title {visibility:hidden}','ul.career-list li title {opacity:0}','section.innerbnr2 {display:none}','* {display:none}']){const job=parse(html,css.body+'\n'+rule);assert.equal(job?.location??null,null,rule);assert.notEqual(job?.rawNativeRoleEvidence.declaredHeroRenderingQualified,true,rule)}})
+test('inline hidden title props and hidden field ancestors remain unqualified',()=>{const html=read(list[0].sourceUrl);for(const attrs of ['hidden','inert','aria-hidden="true"','style="display:none"','style="visibility:collapse"','style="opacity:0"','style="opacity:0%"','style="content-visibility:hidden"']){const changed=html.replace('<title>Kochi</title>','<title '+attrs+'>Kochi</title>');assert.notEqual(changed,html);const job=parse(changed);assert.equal(job?.location??null,null,attrs)}assert.equal(parse(html.replace('class="career-list"','hidden class="career-list"'))?.location??null,null)})
+test('CSS field projection preserves attribute values and ignores unrelated/commented hiding rules',()=>{const html=read(list[0].sourceUrl);assert.equal(parse(html,css.body+'\nfooter title{display:none} /* ul.career-list title{display:none} */').location,'Kochi');const changed=html.replace('<title>Kochi</title>','<title title="title">Kochi</title>');assert.equal(parse(changed,css.body+'\nul.career-list title[title="title"] {display:none} ')?.location??null,null);assert.equal(parse(html.replace('<title>Kochi</title>','<title style="color:red">Kochi</title>')).location,'Kochi')})
+
+const displayRule=/ul\.career-list li title\s*\{[^{}]*\}/
+const roleHtml=read(list[0].sourceUrl),authorLink=roleHtml.match(/<link[^>]*noo-jobmonster-child\/css\/custom\.css[^>]*>/i)[0]
+const unqualified=job=>{assert.equal(job?.location??null,null);assert.notEqual(job?.rawNativeRoleEvidence.declaredHeroRenderingQualified,true)}
+
+test('conditional author blocks cannot establish the native title display declaration',()=>{for(const condition of ['@media print','@supports (display: no-such-value)','@media (min-width: 99999px)','@layer controlled']){const changed=css.body.replace(displayRule,rule=>condition+'{'+rule+'}');assert.notEqual(changed,css.body);unqualified(parse(roleHtml,changed))}})
+
+test('only an active author stylesheet link with unconditional screen media can qualify role fields',()=>{for(const attributes of ['media="print"','media="screen and (min-width: 99999px)"','media="all" disabled','media="all" inert','media="all" hidden','media="all" aria-hidden="true"']){const link=authorLink.replace(/\bmedia=(['"])all\1/i,attributes);assert.notEqual(link,authorLink);unqualified(parse(roleHtml.replace(authorLink,link)))}})
+
+test('the captured all-media author link and simple unconditional screen links retain the native field proof',()=>{for(const media of ['media="all"','media="screen"','']){const link=authorLink.replace(/\bmedia=(['"])all\1/i,media),job=parse(roleHtml.replace(authorLink,link));assert.equal(job.location,'Kochi');assert.equal(job.country,null);assert.equal(job.rawNativeRoleEvidence.declaredHeroRenderingQualified,true)}})
+
+test('commented declarations and quoted CSS text cannot substitute for an unconditional display property',()=>{for(const replacement of ['/* ul.career-list li title{display:block} */','ul.career-list li title{content:";display:block;"}','ul.career-list li title{--controlled:"{display:block;}"}'])unqualified(parse(roleHtml,css.body.replace(displayRule,replacement)))})

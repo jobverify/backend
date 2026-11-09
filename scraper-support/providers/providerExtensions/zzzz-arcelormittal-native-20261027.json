@@ -1,0 +1,25 @@
+[
+  {
+    "source": "arcelormittal",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../arcelormittal/script.js",
+    "companyCareerPage": "https://corporate.arcelormittal.com/careers",
+    "companyDomain": "emfg.fa.em4.oraclecloud.com",
+    "atsPlatform": "oracle-cloud",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": "2026-10-27",
+    "codeRepaired": false,
+    "sourceExtractionImplemented": false,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "verifiedPublicPostingCount": null,
+    "verifiedNativeBoardJobCount": null,
+    "verifiedNativeBoardIndiaJobCount": null,
+    "remediationStatus": "blocked-current-first-party-careers-403-guard-hardening-only",
+    "runtimeQualification": "current-first-party-denial-inventory-unknown",
+    "verificationDisposition": "blocked-no-current-employer-to-oracle-binding",
+    "verifiedSurfaceSummary": "2026-10-27 current first-party careers returned403 with explicit Just a moment gate. Source stopped; current Oracle delegation, native inventory and India/full/eligible counts remain unknown. Source-local guard now fails that denial before the historical Oracle route. Guard hardening and shared Oracle capability do not count as repaired ArcelorMittal extraction. Two pre-fix registered assertions mistakenly allowed the old run wrapper to issue its historical listing GET after the denial. Neither response was retained or used for binding/inventory evidence; neither was repeated to reconstruct a receipt. All subsequent registered tests/replays use a global fetch tripwire before import/run.",
+    "verificationArtifact": "../artifacts/scraper-log-review-1b360f27/oracle-pair-native-20261027/final-offline-replay-result.json"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "source": "thoughtspot",
+    "catalogOverride": true,
+    "adapter": "script",
+    "parser": "custom-script",
+    "atsPlatform": "rippling-first-party-feed",
+    "modulePath": "../../scraper/thoughtspot/script.js",
+    "baseUrl": null,
+    "locationCountry": null,
+    "companyCareerPage": "https://www.thoughtspot.com/careers",
+    "companyDomain": "thoughtspot.com",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "paginationStrategy": "first-party-native-listing-array-and-closing-reconciliation",
+    "extractionStrategy": "current-first-party-feed+reciprocal-rippling-role-identity+typed-india-country+full-visible-native-details",
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Current first-party careers listing and reciprocal ThoughtSpot Rippling role details replace the old unverified Workday zero. Native creation timestamps are not treated as original publication dates. Whole-company completeness and public visibility remain unknown."
+  }
+]

@@ -1,0 +1,7 @@
+FarmTheory now probes the live corporate storefront and exact native employer 94727677, with injected bounded streaming transport and an aggregate deadline. Captured 2026-10-23 responses show the non-www corporate root, reciprocal employer profile, and checked employer-filtered India and Worldwide searches returning no-match headings. The www corporate root failed TLS certificate validation; its receipt records an error without an invented HTTP status.
+
+No active eligible vacancy was verified. Corporate headquarters do not prove vacancy country. Historical search-index hiring posts and expired role links do not prove current application availability. No corporate recruiting handoff was observed. New recruiting links, structured vacancies or native cards require country, earliest public date, expiry and application reconciliation. Missing descriptions alone would not disqualify an otherwise eligible role.
+
+The collector throws FARMTHEORY_COVERAGE_GAP after the observed no-match pages: whole-company counts remain null, listing/scope incomplete, cleanup disabled. This does not claim employer emptiness. Fixtures retain original response bodies, URLs, statuses and timestamps; gzip SHA-256 manifest supports offline replay. The candidate remains local; no registry or production writes.
+
+Validation: `node --test scraper/farmtheory/script.test.js test/farmTheoryCoverage.test.js`. The original static implementation failed all three initial transport/abort/deadline tests with missing rejection assertions.

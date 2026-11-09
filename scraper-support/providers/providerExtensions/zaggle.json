@@ -1,0 +1,18 @@
+{
+  "source": "zaggle",
+  "companyName": "Zaggle",
+  "adapter": "script",
+  "modulePath": "../zaggle/script.js",
+  "homepageUrl": "https://www.zaggle.in/",
+  "companyCareerPage": "https://www.zaggle.in/careers",
+  "companyDomain": "zaggle.in",
+  "atsPlatform": "official-company-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "single-first-party-careers-page",
+  "extractionStrategy": "verified-first-party-careers-html+india-city-filter+application-link",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "verifiedSurfaceSummary": "Verified on July 25, 2026 that the official Zaggle careers page exposes India open roles with role details, India city locations, and application links. The scraper is fail-closed if the official Zaggle page signature changes."
+}
+

@@ -1,0 +1,23 @@
+{
+  "source": "skyscanner",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../../scraper/skyscanner/script.js",
+  "companyName": "Skyscanner",
+  "companyCareerPage": "https://www.skyscanner.com/jobs/current-jobs",
+  "companyDomain": "skyscanner.net",
+  "atsPlatform": "ashby",
+  "countryFilter": "India",
+  "zeroResultPolicy": "evidence-required",
+  "sourceScopeComplete": false,
+  "sourceCompanyWideScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedInventoryStatus": "unverified",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceBoundaryReviewedOn": "2026-11-03",
+  "scraperTimeoutMs": 90000,
+  "verifiedSurfaceSummary": "Current employer access denial leaves the active JobsApp/Ashby board binding unverified. Bounded source reads preserve original caller cancellation and denial metadata; no native board substitutes for unavailable current employer proof. Inventory, full native country/criteria scope and company totals remain unknown."
+}

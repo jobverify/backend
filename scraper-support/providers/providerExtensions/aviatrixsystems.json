@@ -1,0 +1,23 @@
+{
+  "source": "aviatrixsystems",
+  "companyName": "Aviatrix Systems",
+  "officialBrandName": "Aviatrix Systems",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../aviatrixsystems/script.js",
+  "dryRunFile": "aviatrixsystems/jobs.json",
+  "companyCareerPage": "https://aviatrix.ai/company/careers/",
+  "companyDomain": "aviatrix.ai",
+  "atsPlatform": "greenhouse",
+  "countryFilter": "India",
+  "paginationStrategy": "complete-greenhouse-posting-response-with-native-office-tree",
+  "extractionStrategy": "verified-first-party-greenhouse-jobs-and-office-country-scope",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 17,
+  "verifiedIndiaJobCount": 5,
+  "officialCareersPageUrl": "https://aviatrix.ai/company/careers/",
+  "verifiedSurfaceSummary": "Rechecked 2026-10-23: official Aviatrix careers JavaScript calls its aviatrix Greenhouse board. Native full response has 17 roles, including 5 India roles. Extraction validates employer/job/application identity, native totals and office-country bindings; unknown scope remains incomplete. Captures retained under scraper/aviatrixsystems/fixtures.",
+  "boardToken": "aviatrix"
+}

@@ -1,0 +1,8 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://o9solutions.wd5.myworkdayjobs.com/wday/cxs/o9solutions/o9SolutionsExternal/jobs",
+  "detailUrlBase": "https://o9solutions.wd5.myworkdayjobs.com/en-US/o9SolutionsExternal",
+  "locationCountry": null,
+  "locationPattern": "india|bengaluru|bangalore|chennai|hyderabad|pune|gurgaon|gurugram|mumbai|noida",
+  "maxPages": 20
+}

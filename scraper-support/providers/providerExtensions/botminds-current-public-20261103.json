@@ -1,0 +1,16 @@
+{
+  "source": "botminds",
+  "catalogOverride": true,
+  "companyName": "Botminds",
+  "adapter": "script",
+  "modulePath": "../botminds/script.js",
+  "companyCareerPage": "https://www.botminds.ai/careers",
+  "companyDomain": "botminds.ai",
+  "atsPlatform": "official-company-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "complete-native-static-board-plus-closing-full-role-reconciliation",
+  "extractionStrategy": "same-canonical-visible-full-criteria+native-jobposting-employer-country-original-date",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedSurfaceSummary": "Current official static board links four full first-party role pages. Runtime binds canonical URLs, visible titles and full responsibilities/qualifications to native JobPosting employer, explicit country and original publication date; its short schema description remains a summary. Opening and closing role inventories and full native detail models reconcile. Missing countries, removed/changed details and caps remain partial. Scope covers this declared public board; company-wide channels and undeclared lifecycle fields remain unknown."
+}

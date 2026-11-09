@@ -1,0 +1,43 @@
+[
+  {
+    "source": "aeriestechnology",
+    "companyName": "Aeries Technology",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/aeriestechnology/script.js",
+    "dryRunFile": "aeriestechnology/jobs.json",
+    "atsPlatform": "talentrecruit",
+    "parser": "custom-script",
+    "companyDomain": "aeriestechnology.com",
+    "companyCareerPage": "https://aeriestechnology.com/careers/",
+    "officialHomepageUrl": "https://aeriestechnology.com/",
+    "handoffBoardUrl": "https://aeriestechnology.talentrecruit.com/Search/",
+    "jobsBoardUrl": "https://aeriestechnology.talentrecruit.com/Search/",
+    "boardIdentityVerified": true,
+    "officialBindingVerifiedAt": "2026-10-21T00:41:40.608Z",
+    "verificationDisposition": "verified-official-native-binding-runtime-separate",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedAt": null,
+    "verifiedOn": null,
+    "verifiedInventoryStatus": "unverified",
+    "zeroResultPolicy": "evidence-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T00:41:40.608Z",
+      "officialURL": "https://aeriestechnology.com/careers/",
+      "matchedLinks": [
+        "https://aeriestechnology.talentrecruit.com/Search/"
+      ],
+      "proofFile": "../artifacts/full-catalog/ranked-positive-remediation-002/aeries-full-native-002/001.json",
+      "proofSha256": "5f9ac9cdd777451670c57117fd6aaf9cfd5add7c09c7a74083f10144141bd300"
+    },
+    "extractionStrategy": "current-active-corporate-handoff+current-native-client-template+all-public-Jobs+exact-role-application-clientID-offices-dates+full-RolesAndResponsibility",
+    "paginationStrategy": "reviewed-native-client-fetches-entire-Jobs-array+local-pagination+stable-final-full-feed",
+    "sourceScopeNotes": "Aeries official public board includes native client assignments; nativeClient/nativeClientId are retained without creating client aliases. Native state-only India locations retain city null. Missing or placeholder full roles remain incomplete; listing skills teasers and company boilerplate are never description fallback.",
+    "backfillMode": "live-parser",
+    "originalModulePath": null,
+    "verifiedSurfaceSummary": "Current official Aeries handoff and native public client/template establish the full Jobs feed and exact role URL construction. Source validates every public detail, application identity, native clientID, India office and publication/closing date. Runtime counts remain null in metadata."
+  }
+]

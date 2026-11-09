@@ -1,0 +1,27 @@
+[
+  {
+    "source":"bataindia",
+    "companyName":"Bata India",
+    "catalogOverride":true,
+    "adapter":"script",
+    "modulePath":"../bataindia/script.js",
+    "companyCareerPage":"https://bata.sensehq.com/careers",
+    "companyDomain":"bata.in",
+    "atsPlatform":"sensehq",
+    "countryFilter":"India",
+    "parser":"custom-script",
+    "extractionStrategy":"current-native-tenant-count-and-pagination-two-full-detail-passes-final-inventory",
+    "zeroResultPolicy":"evidence-required",
+    "verifiedOn":null,
+    "verifiedAt":null,
+    "verifiedPublicJobCount":null,
+    "verifiedIndiaJobCount":null,
+    "verifiedInventoryStatus":"unverified",
+    "runtimeInventoryVerification":true,
+    "sourceScopeComplete":false,
+    "lifecycleCleanupAllowed":false,
+    "scraperTimeoutMs":210000,
+    "sourceLifecycleTimeoutMs":240000,
+    "verifiedSurfaceSummary":"The configured native Bata tenant must reconcile every published row and full own-role criteria before completion. Empty descriptions and uncertain or conflicting workplaces remain gaps. Native publication dates are retained; broader company recruiting channels and cleanup are unverified."
+  }
+]

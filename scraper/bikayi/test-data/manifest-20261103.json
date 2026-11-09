@@ -1,0 +1,238 @@
+{
+  "recordedAt": "2026-11-02T23:48:05.169Z",
+  "method": "read-only-public-native-http-no-db",
+  "archive": "native-20261103.json.gz",
+  "archiveSha256": "3ef302c3a1f94ce6e9a7f24c068da09a24490ad79dad050de11ef78db0f602b9",
+  "responses": [
+    {
+      "key": "legacy-careers",
+      "url": "https://bikayi.com/careers",
+      "finalUrl": "https://bikglobal.notion.site/bikayi-memo",
+      "status": 200,
+      "bytes": 19984,
+      "sha256": "024048cd058f56df70670e8a1c5cf4a0b57d03878ecf4b74c008bc82858e5881",
+      "observedAt": "2026-11-02T23:05:46.807Z",
+      "originalCapture": "bikayi-legacy-careers-024048cd058f.body"
+    },
+    {
+      "key": "current-brand",
+      "url": "https://bik.ai/",
+      "finalUrl": "https://bik.ai/",
+      "status": 200,
+      "bytes": 128526,
+      "sha256": "93d3ff3603adb14dba6318be39f158bf1a390d939305bb825be2eeae4caf4a5e",
+      "observedAt": "2026-11-02T23:05:47.109Z",
+      "originalCapture": "bikayi-current-brand-93d3ff3603ad.body"
+    },
+    {
+      "key": "current-terms",
+      "url": "https://bik.ai/bik-terms",
+      "finalUrl": "https://bik.ai/bik-terms",
+      "status": 200,
+      "bytes": 68766,
+      "sha256": "e01384caf4ad1296fc23d0acf189ea0294ee4c1e19219cab60acb8b05ab9875d",
+      "observedAt": "2026-11-02T23:05:47.340Z",
+      "originalCapture": "bikayi-current-terms-e01384caf4ad.body"
+    },
+    {
+      "key": "candidate-careers",
+      "url": "https://bik.ai/careers",
+      "finalUrl": "https://bik.ai/careers",
+      "status": 200,
+      "bytes": 54090,
+      "sha256": "503e03768dc080b299b4682cb05f7f1a75e0037f4993ee098e37990cb0d64c3f",
+      "observedAt": "2026-11-02T23:05:47.422Z",
+      "originalCapture": "bikayi-candidate-careers-503e03768dc0.body"
+    },
+    {
+      "key": "careers-client-0",
+      "url": "https://bik.ai/_next/static/chunks/2550ecebeedbfe58.js",
+      "finalUrl": "https://bik.ai/_next/static/chunks/2550ecebeedbfe58.js",
+      "status": 200,
+      "bytes": 12367,
+      "sha256": "f1b2f6d27d9bf0376d738bd8bcd76466dfe6ad9aac66f1a0f1793a838c610293",
+      "observedAt": "2026-11-02T23:12:20.842Z",
+      "originalCapture": "bikayi-careers-client-0-f1b2f6d27d9b.body"
+    },
+    {
+      "key": "careers-client-2",
+      "url": "https://bik.ai/_next/static/chunks/2974e331711d86bc.js",
+      "finalUrl": "https://bik.ai/_next/static/chunks/2974e331711d86bc.js",
+      "status": 200,
+      "bytes": 64548,
+      "sha256": "0b41311e7cdc9a4c8218e35d90402a977dbcdef40e3d9bdb59e4efe456fa88a1",
+      "observedAt": "2026-11-02T23:12:20.913Z",
+      "originalCapture": "bikayi-careers-client-2-0b41311e7cdc.body"
+    },
+    {
+      "key": "careers-client-1",
+      "url": "https://bik.ai/_next/static/chunks/3b08c04d70ca98c3.js",
+      "finalUrl": "https://bik.ai/_next/static/chunks/3b08c04d70ca98c3.js",
+      "status": 200,
+      "bytes": 379883,
+      "sha256": "42924ab7cdbb8e92695762a86ebe23c4c715d39c935877cbd4ea7a188faeac8c",
+      "observedAt": "2026-11-02T23:12:20.926Z",
+      "originalCapture": "bikayi-careers-client-1-42924ab7cdbb.body"
+    },
+    {
+      "key": "careers-client-3",
+      "url": "https://bik.ai/_next/static/chunks/turbopack-1a285e5778939807.js",
+      "finalUrl": "https://bik.ai/_next/static/chunks/turbopack-1a285e5778939807.js",
+      "status": 200,
+      "bytes": 10059,
+      "sha256": "04854e6b5979cb66bad6ebab99a9d4870ef8b01bf13869d72c505958a8104ff7",
+      "observedAt": "2026-11-02T23:12:21.288Z",
+      "originalCapture": "bikayi-careers-client-3-04854e6b5979.body"
+    },
+    {
+      "key": "active-feed",
+      "url": "https://comida.keka.com/careers/api/embedjobs/default/active/a4f89fc2-d9b6-49a1-b6c7-66522d4c7956",
+      "finalUrl": "https://comida.keka.com/careers/api/embedjobs/default/active/a4f89fc2-d9b6-49a1-b6c7-66522d4c7956",
+      "status": 200,
+      "bytes": 108309,
+      "sha256": "f388be1fc9a2047430a4906f6bfdb1ee9748b7c3709d15ff19718a7663c1aeaf",
+      "observedAt": "2026-11-02T23:16:44.050Z",
+      "originalCapture": "bikayi-active-feed-f388be1fc9a2.body"
+    },
+    {
+      "key": "detail-145425",
+      "url": "https://comida.keka.com/careers/jobdetails/145425",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/145425",
+      "status": 200,
+      "bytes": 13013,
+      "sha256": "1144d3c50147818904ff16f883608ceaa1373d01889b3f01263856211eb8574a",
+      "observedAt": "2026-11-02T23:22:05.412Z",
+      "originalCapture": "bikayi-detail-145425-1144d3c50147.body"
+    },
+    {
+      "key": "detail-63647",
+      "url": "https://comida.keka.com/careers/jobdetails/63647",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/63647",
+      "status": 200,
+      "bytes": 11917,
+      "sha256": "ab1a881b0146c030d6fa89aa69a157ed031f23a60f023623aea6484de566b618",
+      "observedAt": "2026-11-02T23:22:06.905Z",
+      "originalCapture": "bikayi-detail-63647-ab1a881b0146.body"
+    },
+    {
+      "key": "public-board",
+      "url": "https://comida.keka.com/careers",
+      "finalUrl": "https://comida.keka.com/careers",
+      "status": 200,
+      "bytes": 1675,
+      "sha256": "737be4255b273db0821247e1d81ae437f22c9312aac3b4486e3eeb976596348f",
+      "observedAt": "2026-11-02T23:19:27.337Z",
+      "originalCapture": "bikayi-public-board-737be4255b27.body"
+    },
+    {
+      "key": "detail-145457",
+      "url": "https://comida.keka.com/careers/jobdetails/145457",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/145457",
+      "status": 200,
+      "bytes": 13621,
+      "sha256": "dbfc4bd9fbd6a269b0d786695944474840edf873bcda8ee080b595b376acb9be",
+      "observedAt": "2026-11-02T23:22:05.131Z",
+      "originalCapture": "bikayi-detail-145457-dbfc4bd9fbd6.body"
+    },
+    {
+      "key": "detail-145434",
+      "url": "https://comida.keka.com/careers/jobdetails/145434",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/145434",
+      "status": 200,
+      "bytes": 13072,
+      "sha256": "0917dc10049cbf6b36f4d1e4b75c3334b872f6468d800c7e581969478934a9b5",
+      "observedAt": "2026-11-02T23:22:05.269Z",
+      "originalCapture": "bikayi-detail-145434-0917dc10049c.body"
+    },
+    {
+      "key": "detail-139305",
+      "url": "https://comida.keka.com/careers/jobdetails/139305",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/139305",
+      "status": 200,
+      "bytes": 8924,
+      "sha256": "357977381aa93d5fc885ce066b313ed2d06708cefb3510254175d7c8d1d1fc56",
+      "observedAt": "2026-11-02T23:22:05.569Z",
+      "originalCapture": "bikayi-detail-139305-357977381aa9.body"
+    },
+    {
+      "key": "detail-134681",
+      "url": "https://comida.keka.com/careers/jobdetails/134681",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/134681",
+      "status": 200,
+      "bytes": 12276,
+      "sha256": "cc092d0851f109e23d453edd83243b5593ab9e85353afdb87a6b035e9f4227e1",
+      "observedAt": "2026-11-02T23:22:05.693Z",
+      "originalCapture": "bikayi-detail-134681-cc092d0851f1.body"
+    },
+    {
+      "key": "detail-130148",
+      "url": "https://comida.keka.com/careers/jobdetails/130148",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/130148",
+      "status": 200,
+      "bytes": 8613,
+      "sha256": "6f93f72677a66576ab5f77e40be0dffd5e4bac5d12d6f129e8047f407feca923",
+      "observedAt": "2026-11-02T23:22:05.838Z",
+      "originalCapture": "bikayi-detail-130148-6f93f72677a6.body"
+    },
+    {
+      "key": "detail-122159",
+      "url": "https://comida.keka.com/careers/jobdetails/122159",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/122159",
+      "status": 200,
+      "bytes": 12359,
+      "sha256": "b01561da4f223f286c9ab70ce9b1ca781acbd64c5fb4ac865ee75e7e013a1c73",
+      "observedAt": "2026-11-02T23:22:05.983Z",
+      "originalCapture": "bikayi-detail-122159-b01561da4f22.body"
+    },
+    {
+      "key": "detail-121966",
+      "url": "https://comida.keka.com/careers/jobdetails/121966",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/121966",
+      "status": 200,
+      "bytes": 11299,
+      "sha256": "5e00c9dd74a3876742ae36605ccdb10fb714beafc5fd3a101a3a2bc9d6071c1b",
+      "observedAt": "2026-11-02T23:22:06.128Z",
+      "originalCapture": "bikayi-detail-121966-5e00c9dd74a3.body"
+    },
+    {
+      "key": "detail-120638",
+      "url": "https://comida.keka.com/careers/jobdetails/120638",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/120638",
+      "status": 200,
+      "bytes": 11044,
+      "sha256": "91989838046866661113a913b3071b702093c118e9d84670d8d2e93eda9c3947",
+      "observedAt": "2026-11-02T23:22:06.436Z",
+      "originalCapture": "bikayi-detail-120638-919898380468.body"
+    },
+    {
+      "key": "detail-120596",
+      "url": "https://comida.keka.com/careers/jobdetails/120596",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/120596",
+      "status": 200,
+      "bytes": 12339,
+      "sha256": "10fcaf27eb2120fe2b5433822b4ac365dad4c3fc194b71bbb4fbbfcb13f012c3",
+      "observedAt": "2026-11-02T23:22:06.571Z",
+      "originalCapture": "bikayi-detail-120596-10fcaf27eb21.body"
+    },
+    {
+      "key": "detail-76025",
+      "url": "https://comida.keka.com/careers/jobdetails/76025",
+      "finalUrl": "https://comida.keka.com/careers/jobdetails/76025",
+      "status": 200,
+      "bytes": 13196,
+      "sha256": "942e0bfcbb61305234095d78b882582c870d2ddc5e48d4fd23812d4a92d8af71",
+      "observedAt": "2026-11-02T23:22:06.760Z",
+      "originalCapture": "bikayi-detail-76025-942e0bfcbb61.body"
+    },
+    {
+      "key": "declared-career-portal",
+      "url": "https://comida.keka.com/ats/documents/a4f89fc2-d9b6-49a1-b6c7-66522d4c7956/careerportal/fa4c00c68ee14bc2bce571b0d5320404.html",
+      "finalUrl": "https://comida.keka.com/ats/documents/a4f89fc2-d9b6-49a1-b6c7-66522d4c7956/careerportal/fa4c00c68ee14bc2bce571b0d5320404.html",
+      "status": 200,
+      "bytes": 12736,
+      "sha256": "72faa6b2e9dabf97a3a1261add682c3cee7fee3efd939a62996fe733c7682843",
+      "observedAt": "2026-11-02T23:22:56.010Z",
+      "originalCapture": "bikayi-declared-career-portal-72faa6b2e9da.body"
+    }
+  ]
+}

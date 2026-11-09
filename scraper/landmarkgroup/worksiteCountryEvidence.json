@@ -1,0 +1,523 @@
+{
+  "verifiedAt": "2026-10-27T05:38:32.084Z",
+  "method": "The exact job-bound typed City and State pair is matched to an explicit finite whitelist. Official Indian government city/state evidence and a government list of Indian states/UTs establish its country parent. This is a documented geographic inference; the source job itself has no Country column.",
+  "sourceIndex": {
+    "india-states-embassy": {
+      "url": "https://www.indianembassynetherlands.gov.in/page/indian-states-and-union-territories/",
+      "finalUrl": "https://www.indianembassynetherlands.gov.in/page/indian-states-and-union-territories/",
+      "status": 200,
+      "bytes": 86591,
+      "sha256": "5be057676b16d65dcad1240450b74f0edf501bffde540268d4e1dc7709ec8642",
+      "bodyFile": "sources/india-states-embassy.body",
+      "evidenceMarkers": [
+        "Indian States and Union Territories",
+        "Karnataka",
+        "Tamil Nadu",
+        "Gujarat",
+        "Chandigarh",
+        "Kerala",
+        "Telangana",
+        "Rajasthan",
+        "Punjab",
+        "Uttar Pradesh",
+        "Maharashtra"
+      ]
+    },
+    "mysore": {
+      "url": "https://mysore.nic.in/en/tourism/",
+      "finalUrl": "https://mysore.nic.in/en/tourism/",
+      "status": 200,
+      "bytes": 125699,
+      "sha256": "defe8c2dae08f06d169c3f72cf585128880ca6a4565b29275800663686f1981f",
+      "bodyFile": "sources/mysore.body",
+      "evidenceMarkers": [
+        "Mysore",
+        "city in the state of Karnataka",
+        "cities in India"
+      ]
+    },
+    "madurai": {
+      "url": "https://madurai.nic.in/about-district/",
+      "finalUrl": "https://madurai.nic.in/about-district/",
+      "status": 200,
+      "bytes": 124668,
+      "sha256": "4641e84bc28fcda67cb4adfb03253665e615d668c856873f9699e5246c550ae3",
+      "bodyFile": "sources/madurai.body",
+      "evidenceMarkers": [
+        "Madurai District is situated in the South of Tamil Nadu state."
+      ]
+    },
+    "madurai-city": {
+      "url": "https://madurai.nic.in/history/",
+      "finalUrl": "https://madurai.nic.in/history/",
+      "status": 200,
+      "bytes": 128250,
+      "sha256": "db0a2782a02aa1bd5724a9f8456463696692ba78eda30f4fd80b694703d40ada",
+      "bodyFile": "sources/madurai-city.body",
+      "evidenceMarkers": [
+        "Madurai city",
+        "districts of Tamilnadu State"
+      ]
+    },
+    "erode": {
+      "url": "https://erode.nic.in/about-district/",
+      "finalUrl": "https://erode.nic.in/about-district/",
+      "status": 200,
+      "bytes": 157015,
+      "sha256": "15635b9a492e8d692e2f26aaa7e5314983947340f5d47fb48ac94e2e82a57d6d",
+      "bodyFile": "sources/erode.body",
+      "evidenceMarkers": [
+        "Erode District lies on the extreme north of Tamil Nadu.",
+        "Erode Corporation"
+      ]
+    },
+    "trichy": {
+      "url": "https://tiruchirappalli.nic.in/about-district/",
+      "finalUrl": "https://tiruchirappalli.nic.in/about-district/",
+      "status": 200,
+      "bytes": 123209,
+      "sha256": "5ccd9933265146b17cd99cf7431dbacfbf9ae319a38af971d94a4c5c40c1e144",
+      "bodyFile": "sources/trichy.body",
+      "evidenceMarkers": [
+        "Tamil Nadu, India",
+        "city of Tiruchirappalli, also known as Trichy"
+      ]
+    },
+    "chennai": {
+      "url": "https://chennai.nic.in/about-district/",
+      "finalUrl": "https://chennai.nic.in/about-district/",
+      "status": 200,
+      "bytes": 120965,
+      "sha256": "1fe5dfffeae644fa8342d4c4b69594a3051c3d756c8a17d6d63128c49b3bcbb2",
+      "bodyFile": "sources/chennai.body",
+      "evidenceMarkers": [
+        "Chennai",
+        "capital city of the Indian State of Tamil Nadu"
+      ]
+    },
+    "baroda": {
+      "url": "https://vadodara.nic.in/about-district/",
+      "finalUrl": "https://vadodara.nic.in/about-district/",
+      "status": 200,
+      "bytes": 113935,
+      "sha256": "0ca8438d21fac4c41e970d493f2f1cd68ad895bfad01b5337b17de8d55618858",
+      "bodyFile": "sources/baroda.body",
+      "evidenceMarkers": [
+        "Vadodara(Baroda)"
+      ]
+    },
+    "baroda-state": {
+      "url": "https://vadodara.nic.in/economy/",
+      "finalUrl": "https://vadodara.nic.in/economy/",
+      "status": 200,
+      "bytes": 114344,
+      "sha256": "bb22780f352d87c95ba47a99ff419d0ee11cb2a977025d9b5ccf9fc331ad6215",
+      "bodyFile": "sources/baroda-state.body",
+      "evidenceMarkers": [
+        "Vadodara is leading producer",
+        "state of Gujarat"
+      ]
+    },
+    "gandhinagar": {
+      "url": "https://gandhinagar.nic.in/about-district/",
+      "finalUrl": "https://gandhinagar.nic.in/about-district/",
+      "status": 200,
+      "bytes": 116936,
+      "sha256": "c4e3f6722a4ff86985f7d943b5d3cea6ab3c5e92d044d3f76b2dbdf4638c0995",
+      "bodyFile": "sources/gandhinagar.body",
+      "evidenceMarkers": [
+        "Gandhinagar city",
+        "capital of Gujarat state"
+      ]
+    },
+    "chandigarh-police": {
+      "url": "https://portal.chandigarhpolice.gov.in/Public/AboutUs/History",
+      "finalUrl": "https://portal.chandigarhpolice.gov.in/Public/AboutUs/History",
+      "status": 200,
+      "bytes": 74756,
+      "sha256": "6cfafa6a49a45a4c39d565bede2bf13c27eabe3e75ed686885c2a231014d4a1d",
+      "bodyFile": "sources/chandigarh-police.body",
+      "evidenceMarkers": [
+        "city of Chandigarh",
+        "declared as a Union Territory",
+        "cities in India"
+      ]
+    },
+    "calicut": {
+      "url": "https://kozhikode.nic.in/en/about-district/",
+      "finalUrl": "https://kozhikode.nic.in/en/about-district/",
+      "status": 200,
+      "bytes": 159167,
+      "sha256": "d4c9426f66a315b34d57faa5aa712871df39a193ee42c5e19c1ded3c86b14dbc",
+      "bodyFile": "sources/calicut.body",
+      "evidenceMarkers": [
+        "Kozhikode, also known as Calicut",
+        "Kerala"
+      ]
+    },
+    "cochin": {
+      "url": "https://ernakulam.nic.in/en/tourist-place/fort-kochi/",
+      "finalUrl": "https://ernakulam.nic.in/en/tourist-place/fort-kochi/",
+      "status": 200,
+      "bytes": 133056,
+      "sha256": "8173b38a2a89d4ccbb6e562be6c20ee6adcdeb41b07ce0721aa4d5a8984d0f66",
+      "bodyFile": "sources/cochin.body",
+      "evidenceMarkers": [
+        "Kochi city of Ernakulam district in Kerala",
+        "Fort Cochin (Fort Kochi)"
+      ]
+    },
+    "cochin-ministry-tourism": {
+      "url": "https://www.incredibleindia.gov.in/en/kerala/alappuzha/kerala-a-quick-and-handy-tarvel-guide",
+      "finalUrl": "https://www.incredibleindia.gov.in/en/kerala/alappuzha/kerala-a-quick-and-handy-tarvel-guide",
+      "status": 200,
+      "bytes": 454827,
+      "sha256": "2884b9afc94cddac4e8c670b8c3325850c5c5cb95e8bc212bd18874473a4bc48",
+      "bodyFile": "sources/cochin-ministry-tourism.body",
+      "evidenceMarkers": [
+        "Kerala",
+        "Kochi, or Cochin"
+      ]
+    },
+    "hyderabad": {
+      "url": "https://hyderabad.telangana.gov.in/about-district/",
+      "finalUrl": "https://hyderabad.telangana.gov.in/about-district/",
+      "status": 200,
+      "bytes": 124016,
+      "sha256": "3180da42995b90e8efc4feb48ef74e48d1f789e4cdc7ac6ced137cc76da6a670",
+      "bodyFile": "sources/hyderabad.body",
+      "evidenceMarkers": [
+        "Hyderabad is the capital",
+        "state in India,Telangana"
+      ]
+    },
+    "bangalore": {
+      "url": "https://bengaluruurban.nic.in/en/",
+      "finalUrl": "https://bengaluruurban.nic.in/en/",
+      "status": 200,
+      "bytes": 176788,
+      "sha256": "cddb6b8960e11cbae0b7eef41d8297da21f761e7fa7fd7f3b3064f12171e27b3",
+      "bodyFile": "sources/bangalore.body",
+      "evidenceMarkers": [
+        "Bangalore is the largest city and the capital of the state of Karnataka.",
+        "largest city in India"
+      ]
+    },
+    "mohali": {
+      "url": "https://sasnagar.nic.in/about-district-second/",
+      "finalUrl": "https://sasnagar.nic.in/about-district-second/",
+      "status": 200,
+      "bytes": 132062,
+      "sha256": "c8c249c34461573cc70d8e86010a5fc1fac969c9b4b67f54e76224b12d22b5c8",
+      "bodyFile": "sources/mohali.body",
+      "evidenceMarkers": [
+        "District of Punjab",
+        "important township",
+        "Mohali",
+        "Northern India"
+      ]
+    },
+    "jaipur": {
+      "url": "https://www.tourism.rajasthan.gov.in/jaipur.html",
+      "finalUrl": "https://www.tourism.rajasthan.gov.in/jaipur.html",
+      "status": 200,
+      "bytes": 537948,
+      "sha256": "761f0fffcaca799a7d5ce92e391fe229de47d51b5143ff9f4545021056c33326",
+      "bodyFile": "sources/jaipur.body",
+      "evidenceMarkers": [
+        "JAIPUR",
+        "first planned city of India",
+        "capital city of Rajasthan"
+      ]
+    },
+    "mumbai": {
+      "url": "https://mumbaicity.gov.in/en/about-district/",
+      "finalUrl": "https://mumbaicity.gov.in/en/about-district/",
+      "status": 200,
+      "bytes": 133659,
+      "sha256": "d37d21dfc1348b5079a57905e5de35ef3aeb932d8eb92f8505906d4f98ec653a",
+      "bodyFile": "sources/mumbai.body",
+      "evidenceMarkers": [
+        "Mumbai",
+        "capital city of the Indian state of Maharashtra"
+      ]
+    },
+    "noida": {
+      "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1532273&lang=2&reg=48",
+      "finalUrl": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=1532273&lang=2&reg=48",
+      "status": 200,
+      "bytes": 100766,
+      "sha256": "6380402bbbf831da228a4eb201f5b44e345da0333fb25ce6a54c6a7d93571b1e",
+      "bodyFile": "sources/noida.body",
+      "evidenceMarkers": [
+        "The Noida city, located in Gautam Buddha Nagar District of Uttar Pradesh State"
+      ]
+    }
+  },
+  "whitelist": [
+    {
+      "pairKey": "mysore|karnataka",
+      "nativeCity": "Mysore",
+      "nativeState": "Karnataka",
+      "canonicalCity": "Mysore",
+      "canonicalState": "Karnataka",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "mysore"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "madurai|tamilnadu",
+      "nativeCity": "Madurai",
+      "nativeState": "Tamilnadu",
+      "canonicalCity": "Madurai",
+      "canonicalState": "Tamil Nadu",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "madurai",
+        "madurai-city"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "Exact native state spelling Tamilnadu mapped to official Tamil Nadu; no fuzzy state matching.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "erode|tamilnadu",
+      "nativeCity": "Erode",
+      "nativeState": "Tamilnadu",
+      "canonicalCity": "Erode",
+      "canonicalState": "Tamil Nadu",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "erode"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "Exact native state spelling Tamilnadu mapped to official Tamil Nadu; no fuzzy state matching.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "trichy|tamilnadu",
+      "nativeCity": "Trichy",
+      "nativeState": "Tamilnadu",
+      "canonicalCity": "Tiruchirappalli",
+      "canonicalState": "Tamil Nadu",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "trichy"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "District government explicitly names the city Tiruchirappalli, also known as Trichy, in Tamil Nadu, India.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "chennai|tamilnadu",
+      "nativeCity": "Chennai",
+      "nativeState": "Tamilnadu",
+      "canonicalCity": "Chennai",
+      "canonicalState": "Tamil Nadu",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "chennai"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "Exact native state spelling Tamilnadu mapped to official Tamil Nadu; no fuzzy state matching.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "baroda|gujarat",
+      "nativeCity": "Baroda",
+      "nativeState": "Gujarat",
+      "canonicalCity": "Vadodara",
+      "canonicalState": "Gujarat",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "baroda",
+        "baroda-state"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "The district government names the current city Vadodara(Baroda).",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "gandhinagar|gujarat",
+      "nativeCity": "Gandhinagar",
+      "nativeState": "Gujarat",
+      "canonicalCity": "Gandhinagar",
+      "canonicalState": "Gujarat",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "gandhinagar"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "chandigarh|chandigarh",
+      "nativeCity": "Chandigarh",
+      "nativeState": "Chandigarh",
+      "canonicalCity": "Chandigarh",
+      "canonicalState": "Chandigarh",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "chandigarh-police"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "cochin|kerala",
+      "nativeCity": "Cochin",
+      "nativeState": "Kerala",
+      "canonicalCity": "Kochi",
+      "canonicalState": "Kerala",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "cochin",
+        "cochin-ministry-tourism"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "Ministry of Tourism names Kochi, or Cochin; district government establishes Kochi in Kerala.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "calicut|kerala",
+      "nativeCity": "Calicut",
+      "nativeState": "Kerala",
+      "canonicalCity": "Kozhikode",
+      "canonicalState": "Kerala",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "calicut"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "District government explicitly names Kozhikode, also known as Calicut, in Kerala.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "hyderabad|telangana",
+      "nativeCity": "Hyderabad",
+      "nativeState": "Telangana",
+      "canonicalCity": "Hyderabad",
+      "canonicalState": "Telangana",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "hyderabad"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "bangalore|karnataka",
+      "nativeCity": "Bangalore",
+      "nativeState": "Karnataka",
+      "canonicalCity": "Bangalore",
+      "canonicalState": "Karnataka",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "bangalore"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "bangalore corporate|karnataka",
+      "nativeCity": "Bangalore Corporate",
+      "nativeState": "Karnataka",
+      "canonicalCity": "Bangalore",
+      "canonicalState": "Karnataka",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "bangalore"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "Exact native City alias for Bangalore, qualified by the SAME role Location Type=Corporate. Retain the explicit alias and the two observed Work Location names; no general suffix stripping.",
+      "extraGuards": {
+        "locationType": "Corporate",
+        "workLocationNames": [
+          "Bangalore Corporate Office CM",
+          "Corporate Office Easy Buy"
+        ]
+      }
+    },
+    {
+      "pairKey": "jaipur|rajasthan",
+      "nativeCity": "Jaipur",
+      "nativeState": "Rajasthan",
+      "canonicalCity": "Jaipur",
+      "canonicalState": "Rajasthan",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "jaipur"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "mohali|punjab",
+      "nativeCity": "MOHALI",
+      "nativeState": "Punjab",
+      "canonicalCity": "Mohali (S.A.S. Nagar district)",
+      "canonicalState": "Punjab",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "mohali"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": "Case normalization only; district government lists Mohali township in S.A.S. Nagar, Punjab.",
+      "extraGuards": null
+    },
+    {
+      "pairKey": "noida|uttar pradesh",
+      "nativeCity": "Noida",
+      "nativeState": "Uttar Pradesh",
+      "canonicalCity": "Noida",
+      "canonicalState": "Uttar Pradesh",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "noida"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    },
+    {
+      "pairKey": "mumbai|maharashtra",
+      "nativeCity": "Mumbai",
+      "nativeState": "Maharashtra",
+      "canonicalCity": "Mumbai",
+      "canonicalState": "Maharashtra",
+      "country": "India",
+      "countryCode": "IN",
+      "cityStateSourceLabels": [
+        "mumbai"
+      ],
+      "stateCountrySourceLabel": "india-states-embassy",
+      "aliasExplanation": null,
+      "extraGuards": null
+    }
+  ]
+}

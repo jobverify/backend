@@ -1,0 +1,393 @@
+{
+  "source": "keyence",
+  "corporatePages": [
+    {
+      "url": "https://www.keyence.co.in/ss/career/",
+      "status": 200,
+      "sha256": "9fe73274cd9e78a04edf303451fad517b70dea33818bdb537c6c947dff7db840",
+      "reviewedSha256": "95f3b962aef1635097ec6d2bb3bacf4922f0bef55bf452b28fa1d5bfc3003ea8"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/think.jsp",
+      "status": 200,
+      "sha256": "12300ff37bbe64c22b2630c1be1b85530b562ffa8ab3bbd200cdba836b78df34",
+      "reviewedSha256": "24520b9978850ce6e71a4997bad5004705ab8375bdc62beaebed3d8d849d6c80"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/humanity.jsp",
+      "status": 200,
+      "sha256": "e2803da465ada3d73fb52653b02ad55c6ad8950907c001cc6c287d2634c15e25",
+      "reviewedSha256": "3cb2ecb52149e1faa11c8408683a75b24ee893f30f253b14e338882f1635d9e1"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/creation.jsp",
+      "status": 200,
+      "sha256": "16ea793ed4ad74f89b00f2b6a3b27d80d051bc09998901bbdbf79fc23f000a02",
+      "reviewedSha256": "bcba2a7a45debabe396702b93f75a0fc6e6dc2dfca7bc6dcc7507d4e6a8018c6"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/development.jsp",
+      "status": 200,
+      "sha256": "d3354f15481ffc4765a21f0a7b7c58363aa1316e56745f1183c96777cbb78077",
+      "reviewedSha256": "84db0969238f6e8bf44f969bfea33748cbdf55653ae7a5443daba0b46c0ae3f5"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/company.jsp",
+      "status": 200,
+      "sha256": "b9b915ee0f996aa6b505178d0fb4d389d9e9273323cb1f6afc2bfd751e01f078",
+      "reviewedSha256": "759bb162b8681ceb436cfd42fd2a8fbd239236472df37d280054878f6e3ad5a2"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/privacy.jsp",
+      "status": 200,
+      "sha256": "1269e8fe50fd3455860f10fef63613d67e3147d924c4c5f458bef9ee630c3ec7",
+      "reviewedSha256": "c1c135f973d20df9161492a0dc192f614ce2611fc0dd0df7303135aa0a22208c"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie11.jsp",
+      "status": 200,
+      "sha256": "509547f3f39828e7a4e592dcb8b69b7233ac0c1c6b7381fec48c1bdacef3be0b",
+      "reviewedSha256": "58a73fb68cb456296df02a471607bd52d70acdcd147f7403419b2a7055376f07"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie.jsp",
+      "status": 200,
+      "sha256": "367896dd91522f20df0ff1046750ecebae03557bf6181eab149ba06c7cb29fa3",
+      "reviewedSha256": "3655ab5897413e76703e4ef52cf3e439200319074afcbf930e6ad7752286741b"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie11Sp.jsp",
+      "status": 200,
+      "sha256": "0480277a4401e8fb4949fcbe4330a5357c14545791fe5be2cc52dc5ccc9bbb37",
+      "reviewedSha256": "bd587516bed0b7639c5c8053a37b1e4d16101bfd7ab2b051d4e8dcd26bf84b34"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movieSp.jsp",
+      "status": 200,
+      "sha256": "082e596995e2c8cc9a491fcc4a22de37addd687190ae75730b4a82c593b658d8",
+      "reviewedSha256": "39c2173bd378ae6c5a6606c5ec1715440e06fa30b194c836c3c39f021ff183d2"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/package.jsp",
+      "status": 200,
+      "sha256": "763852dc2ade51c76ac83b8f5e9b51660f6dc7d035536b230fbd664c721f4eb1",
+      "reviewedSha256": "ca4f5c815523856f0383639a64c3057596876840041f7c52f7944508d9ee07e0"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/job.jsp",
+      "status": 200,
+      "sha256": "1f4ba6cec11be3b343a07b6cf260ef0fe1dae7465c710b5390f20fad1d6c7074",
+      "reviewedSha256": "03e3375397710173865ec95bb84ea550f5d109b14dc95b9d67e59f36553e3252"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/culture.jsp",
+      "status": 200,
+      "sha256": "5dc0faa08c40d1a9843f992fef187f4e2026a6c5323f7212e1a33a84d47db6f8",
+      "reviewedSha256": "908f7ac190a7d9925d0937325a83db34d15b4b4423767f8325a9d2c8e6b77f41"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/sensing.jsp",
+      "status": 200,
+      "sha256": "d87f52d94eabb4698eebd5a706bebf97e9f6571e15a7c8dbd0119485178b172d",
+      "reviewedSha256": "3af1de27b7970f61dc3ee7221f532c79bab2076a604753a0ef7408b5d020a887"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/vision.jsp",
+      "status": 200,
+      "sha256": "c5de62d02370d9c688e7c5e9b107298abf117386197f64aa5f336fdb27805f93",
+      "reviewedSha256": "16c4c5e9576f67bc2f7a2dfd57f3b3d2b7ae69606318b3ba165966340c03dd10"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/advanced.jsp",
+      "status": 200,
+      "sha256": "56ab5d5c5ddd8b2a8d5bdb7da4aea745392f7626c862afc8d0eac39c58d9f916",
+      "reviewedSha256": "fd6a2591f5833253c9fb07dac3688e7a8ca8cbac793668b655e82d8ff3846847"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movies.jsp",
+      "status": 200,
+      "sha256": "b4c1c3164ff2c890847c620478711cf8bbe2261faa4f8dc4e681814f43d5eb51",
+      "reviewedSha256": "f8b8a3d511f85d4d199cc483b6ec9ab3521d9b061d59fd644984163080916a66"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/mission.jsp",
+      "status": 200,
+      "sha256": "0cc63d60559dad86709bc29fdb6d68bdbb2ebb7c909944550b9a3aab28aab48b",
+      "reviewedSha256": "600b979bfc69097226f875ac6c261a4633bb30c9f7cdaf2866f2539e103fd7f2"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/philosophy.jsp",
+      "status": 200,
+      "sha256": "27526f11f1898a872239bbfc028f0f8ddccbf1c23d830e675b96cb3973cef014",
+      "reviewedSha256": "239b8a900658250a832f6951e8016a9a7b916c158cc7dc3ec06569655340dd79"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/global.jsp",
+      "status": 200,
+      "sha256": "50b5ca3220a541c320dc3d07673477d05b6a673dd01bbcb9eed089c50867e86f",
+      "reviewedSha256": "a7aad00a240218578e1fa533947772de08ed7306c225d1440f53b533d55bbcaf"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/sales.jsp",
+      "status": 200,
+      "sha256": "cce7a5427a4f44a14b194351eedf47bb77896d45330d401ac1cf7cac4c759ecb",
+      "reviewedSha256": "6325ebf5e3a2ce2a1ca6c5ef50328429402d5eb7aa47c17c3b08ff95328fd909"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie01.jsp",
+      "status": 200,
+      "sha256": "b8cd0880f131b858e6daf60b259450bfa6f0731083e7ffbd6edcb8904babe584",
+      "reviewedSha256": "4fabbd56a063b235b9eab7bb5dd3f8e3418088ccb2db917daf08b75838eec95e"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie02.jsp",
+      "status": 200,
+      "sha256": "5b9139c4e430ab6b92b5e49ef2b44069b37e737acc6448e651a7696e4402883b",
+      "reviewedSha256": "763d1856011f2deb9f0ccea2cf0c077539ccc3e3fdea50bb758b0b38c9457f7c"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie03.jsp",
+      "status": 200,
+      "sha256": "a6aa361fda5321015b22a08db7eaf4e937c15895bd297d734219ff644bcb8044",
+      "reviewedSha256": "77f0f8797c209cb1641bab875a1958d96d68de1fe795707af316f7f7f501b06c"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie04.jsp",
+      "status": 200,
+      "sha256": "bbbdc29bb11a378209c88944c31b13de4508c675a6dee0322a1152f5128985f6",
+      "reviewedSha256": "9db53fc20c5e3d98943462b871bc4c7ae276abd6c171f81f6a6cf99f0d8a38e5"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie05.jsp",
+      "status": 200,
+      "sha256": "c0a2b9e55c1c9c967fa48730d50285469753abbfeac1cc63a21e7cd7263d2a09",
+      "reviewedSha256": "2591dd8792f988e7a3770da9afac58847bd3ea0a96f027849741a1d5e87320e5"
+    },
+    {
+      "url": "https://www.keyence.co.in/ss/career/movie06.jsp",
+      "status": 200,
+      "sha256": "b07185f3b5ceed7ed9fa8905926395bab160af685aec460fc6f1cb8ccc645ce5",
+      "reviewedSha256": "46d968c23de970dc42124bd80b31e208de5b05e5e172954b6dd753b96df9736e"
+    }
+  ],
+  "clientUrl": "https://keyence.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
+  "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
+  "schemas": {
+    "company": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "company"
+      ],
+      "$.message.company": [
+        "agent_builder_enabled",
+        "aliases",
+        "allJobsCount",
+        "all_jobs_banner_text",
+        "all_jobs_header_image",
+        "banner_images",
+        "banner_text",
+        "brandingId",
+        "careers_filters",
+        "company_name",
+        "custom_weblink",
+        "custom_weblink_alias",
+        "date_time_format",
+        "dynamic_background",
+        "dynamic_color",
+        "dynamic_color_top",
+        "employer_benefit_section",
+        "enableCvBasedJobRecommendations",
+        "group_company_site",
+        "help_email",
+        "id",
+        "is_country_of_residence",
+        "is_pendo_enable_careers",
+        "is_preview",
+        "job_detail_permissions",
+        "job_tile_permissions",
+        "languages",
+        "loginwithotp",
+        "logo",
+        "new_careers",
+        "onboarding_enabled",
+        "recruitment_enabled",
+        "show_employer_benefits_jobdetailed",
+        "social_media_urls",
+        "subdomain",
+        "tenant_id",
+        "terms_url",
+        "terms_url_custom"
+      ],
+      "$.message.company.all_jobs_header_image": [],
+      "$.message.company.languages": [],
+      "$.message.company.social_media_urls": [
+        "facebook",
+        "instagram",
+        "linkedIn",
+        "twitter"
+      ],
+      "$.message.company.aliases": [
+        "capability",
+        "country",
+        "department",
+        "designation",
+        "emp_sub_type",
+        "emp_type",
+        "functional_area",
+        "job_tags",
+        "legal_entities",
+        "offer_proposal",
+        "pre_offer",
+        "screening",
+        "shortlisting"
+      ],
+      "$.message.company.job_tile_permissions": [
+        "legalEntities",
+        "salaryRange",
+        "showDepartment",
+        "showEmployeeSubType",
+        "showEmployeeType",
+        "showExperienceRange",
+        "showJobId",
+        "showLocation",
+        "showPostedDate"
+      ],
+      "$.message.company.job_detail_permissions": [
+        "legalEntities",
+        "salaryRange",
+        "showDepartment",
+        "showEmployeeSubType",
+        "showEmployeeType",
+        "showExperienceRange",
+        "showJobId",
+        "showLocation",
+        "showPostedDate"
+      ],
+      "$.message.company.careers_filters": [
+        "capability",
+        "country",
+        "department",
+        "employee_type",
+        "experience",
+        "functional_area",
+        "job_tags",
+        "job_title",
+        "location"
+      ],
+      "$.message.company.date_time_format": [
+        "dateFormat",
+        "timeFormat",
+        "timezone"
+      ]
+    },
+    "groups": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "code"
+      ]
+    },
+    "listing": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "jobs",
+        "jobscount"
+      ],
+      "$.message.jobs[]": [
+        "created_on",
+        "department",
+        "department_id",
+        "designation_display_name",
+        "emp_type",
+        "emp_type_id",
+        "experience_from_num",
+        "experience_to_num",
+        "functional_area",
+        "functional_area_id",
+        "id",
+        "job_posting_on",
+        "officelocation_arr",
+        "officelocation_show_arr",
+        "timezone",
+        "title",
+        "tool_tip_locations"
+      ]
+    },
+    "detail": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "isSaved",
+        "job"
+      ],
+      "$.message.job[]": [
+        "created_on",
+        "department",
+        "department_id",
+        "designation",
+        "designation_display_name",
+        "designation_name",
+        "designation_name_id",
+        "designation_title",
+        "designation_title_name",
+        "emp_sub_type_name",
+        "emp_type",
+        "emp_type_id",
+        "employee_sub_type",
+        "experience",
+        "experience_from_num",
+        "experience_to_num",
+        "functional_area_id",
+        "id",
+        "internal_job_code",
+        "is_remote",
+        "jd",
+        "job_posting",
+        "job_posting_on",
+        "job_tags",
+        "legal_entity_ids",
+        "locations",
+        "officelocation_arr",
+        "officelocation_show_arr",
+        "officelocation_show_arr_list",
+        "officelocations_area",
+        "officelocations_without_area",
+        "posted_on",
+        "salary_currency",
+        "salary_max",
+        "salary_min",
+        "salary_range",
+        "salary_timeframe",
+        "timezone",
+        "title",
+        "tool_tip_locations"
+      ],
+      "$.message.job[].job_posting": [
+        "careers"
+      ],
+      "$.message.job[].job_posting.careers": [
+        "from"
+      ]
+    }
+  },
+  "provenance": "Current first-party career link graph, current public candidate JS client, and two full native GET inventories/details. Only observed object key schemas; no invented employer/country/job values.",
+  "corporateNormalization": "keyence-akamai-rum-v1",
+  "normalizationProvenance": "Compared ordinary public GET captures of same Keyence pages. Only Akamai RUM generated DNS host, request/edge timing, request ID, client port, edge address and RUM token constants vary. All executable statements and other literals/attributes/forms remain exact. Two observed basic.js cache-stamp URLs returned identical JavaScript SHA256; runtime re-reads every actual basic.js URL before normalizing only its stamp. Reviewed all6 advertised cache-stamp versions across basic.js and suz-accessLog.js; content hash identical within each exact pathname. Runtime rechecks every actual advertised URL.",
+  "basicClientSha256": "be0e6316a71709dfb6ee369c0501d796281662bdf83dc7be6ace0c6f07fbbf0b",
+  "corporateClientHashes": {
+    "/js/common/basic.js": "be0e6316a71709dfb6ee369c0501d796281662bdf83dc7be6ace0c6f07fbbf0b",
+    "/js/common/suz-accessLog.js": "8cc3fbabe5b4376b4c7a5ed03087e82d3e8554fb931bc8fc4606d8c737b08890"
+  },
+  "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+  "rendererProvenance": "Exact current Chrome-User-Agent candidate shell from advertised employer handoff. Full text/attributes/scripts/forms/frames/hiring surfaces are byte-pinned and opening/closing scope snapshots reconcile; no candidate shell executable or hiring channel is ignored."
+}

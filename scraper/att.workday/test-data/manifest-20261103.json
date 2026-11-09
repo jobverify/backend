@@ -1,0 +1,192 @@
+[
+  {
+    "index": 0,
+    "url": "https://www.att.jobs/search-jobs?acm=ALL&alrpm=1269750&ascf=%5B%7B%22key%22%3A%22ALL%22%2C%22value%22%3A%22%22%7D%5D",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/search-jobs?acm=ALL&alrpm=1269750&ascf=%5B%7B%22key%22%3A%22ALL%22%2C%22value%22%3A%22%22%7D%5D",
+    "requestedAt": "2026-11-02T20:57:02.563Z",
+    "completedAt": "2026-11-02T20:57:06.298Z",
+    "bytes": 607349,
+    "sha256": "b7a2d22695de3c4a5b5ae59a5ac86d94f52a10cfe1e378c235593b7f758aa0f1"
+  },
+  {
+    "index": 1,
+    "url": "https://tbcdn.talentbrew.com/js/client/search.js",
+    "status": 200,
+    "finalUrl": "https://tbcdn.talentbrew.com/js/client/search.js",
+    "requestedAt": "2026-11-02T20:57:06.360Z",
+    "completedAt": "2026-11-02T20:57:06.932Z",
+    "bytes": 42932,
+    "sha256": "f58913158b9aa603a2a21969c4533ae9023d26ff6699d5ac505ef9d469bd85dd"
+  },
+  {
+    "index": 2,
+    "url": "https://tbcdn.talentbrew.com/bundles/tb-corepack.js",
+    "status": 200,
+    "finalUrl": "https://tbcdn.talentbrew.com/bundles/tb-corepack.js",
+    "requestedAt": "2026-11-02T20:57:06.935Z",
+    "completedAt": "2026-11-02T20:57:07.059Z",
+    "bytes": 118573,
+    "sha256": "679b3cbd2d0f1c7c867f2a1c3a2b5394042ce544acb547a791a0c1ce0199f669"
+  },
+  {
+    "index": 3,
+    "url": "https://www.att.jobs/search-jobs/results?ActiveFacetID=0&CurrentPage=2&RecordsPerPage=12&TotalContentResults=&Distance=50&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&CustomFacetName=&FacetTerm=&FacetType=0&FacetFilters%5B0%5D.ID=1269750&FacetFilters%5B0%5D.FacetType=2&FacetFilters%5B0%5D.Count=13&FacetFilters%5B0%5D.Display=India&FacetFilters%5B0%5D.IsApplied=true&FacetFilters%5B0%5D.FieldName=&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=6&PostalCode=&ResultsType=0&fc=&fl=&fcf=&afc=&afl=&afcf=&TotalContentPages=NaN",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/search-jobs/results?ActiveFacetID=0&CurrentPage=2&RecordsPerPage=12&TotalContentResults=&Distance=50&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&CustomFacetName=&FacetTerm=&FacetType=0&FacetFilters%5B0%5D.ID=1269750&FacetFilters%5B0%5D.FacetType=2&FacetFilters%5B0%5D.Count=13&FacetFilters%5B0%5D.Display=India&FacetFilters%5B0%5D.IsApplied=true&FacetFilters%5B0%5D.FieldName=&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=6&PostalCode=&ResultsType=0&fc=&fl=&fcf=&afc=&afl=&afcf=&TotalContentPages=NaN",
+    "requestedAt": "2026-11-02T20:57:07.061Z",
+    "completedAt": "2026-11-02T20:57:08.384Z",
+    "bytes": 26574,
+    "sha256": "4de237cbec1c0ec468a97e0f70c62bdb5b8383aba5f60b60eb238bc135869f33"
+  },
+  {
+    "index": 4,
+    "url": "https://www.att.jobs/job/bengaluru/sr-specialist-software-engineering-python-full-stack-developer-agentic-ai-and-azure-cloud/117/101571866576",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/sr-specialist-software-engineering-python-full-stack-developer-agentic-ai-and-azure-cloud/117/101571866576",
+    "requestedAt": "2026-11-02T20:57:08.392Z",
+    "completedAt": "2026-11-02T20:57:10.619Z",
+    "bytes": 606648,
+    "sha256": "4f2f372fd8274c30460c8b76c6614560381dba63111bf1a0b1d3fb2c9bc23ddb"
+  },
+  {
+    "index": 5,
+    "url": "https://www.att.jobs/job/hyderabad/sr-specialist-software-engineering-python-full-stack-developer-agentic-ai-and-azure-cloud/117/101571866560",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/hyderabad/sr-specialist-software-engineering-python-full-stack-developer-agentic-ai-and-azure-cloud/117/101571866560",
+    "requestedAt": "2026-11-02T20:57:10.653Z",
+    "completedAt": "2026-11-02T20:57:11.801Z",
+    "bytes": 606637,
+    "sha256": "1da182e41d6609f31fee84cba9b42ab54c002836649dcc09bfb5842c32198da7"
+  },
+  {
+    "index": 6,
+    "url": "https://www.att.jobs/job/hyderabad/senior-cyber-security-remediation-and-accelerated-delivery-program/117/99713374560",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/hyderabad/senior-cyber-security-remediation-and-accelerated-delivery-program/117/99713374560",
+    "requestedAt": "2026-11-02T20:57:11.821Z",
+    "completedAt": "2026-11-02T20:57:13.948Z",
+    "bytes": 605108,
+    "sha256": "ecb52efa4e0a274475069486c4aba30feb9bd52fd2b291ef08b859ae205fbbd3"
+  },
+  {
+    "index": 7,
+    "url": "https://www.att.jobs/job/bengaluru/sr-specialist-system-engineering-kubernetes-ci-cd-pipeline-python-automation/117/99526860896",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/sr-specialist-system-engineering-kubernetes-ci-cd-pipeline-python-automation/117/99526860896",
+    "requestedAt": "2026-11-02T20:57:13.978Z",
+    "completedAt": "2026-11-02T20:57:16.203Z",
+    "bytes": 616162,
+    "sha256": "b20ac4e353d5da432aa437e33c9d3649d8f28d4e08deeb5d13c4bf84180f0569"
+  },
+  {
+    "index": 8,
+    "url": "https://www.att.jobs/job/bengaluru/specialist-cybersecurity-it-audit-management-pci-dss-audits-soc-and-iso-27001-risk-assessments-info/117/102237342704",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/specialist-cybersecurity-it-audit-management-pci-dss-audits-soc-and-iso-27001-risk-assessments-info/117/102237342704",
+    "requestedAt": "2026-11-02T20:57:16.230Z",
+    "completedAt": "2026-11-02T20:57:18.099Z",
+    "bytes": 606990,
+    "sha256": "8a8ebbd72bb068584d4d0f9cbdd7536e00e5f03222379b86e037cb17edaf5c05"
+  },
+  {
+    "index": 9,
+    "url": "https://www.att.jobs/job/hyderabad/specialist-cybersecurity-it-audit-management-pci-dss-audits-soc-and-iso-27001-risk-assessments-info/117/102237342688",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/hyderabad/specialist-cybersecurity-it-audit-management-pci-dss-audits-soc-and-iso-27001-risk-assessments-info/117/102237342688",
+    "requestedAt": "2026-11-02T20:57:18.120Z",
+    "completedAt": "2026-11-02T20:57:20.194Z",
+    "bytes": 607027,
+    "sha256": "3e553dba7b6dac7b9a400d6aca59e25075a52d576cd1b52b5bb2be62d3abf568"
+  },
+  {
+    "index": 10,
+    "url": "https://www.att.jobs/job/bengaluru/sr-specialist-cybersecurity-architect/117/100122200624",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/sr-specialist-cybersecurity-architect/117/100122200624",
+    "requestedAt": "2026-11-02T20:57:20.217Z",
+    "completedAt": "2026-11-02T20:57:22.270Z",
+    "bytes": 606618,
+    "sha256": "e9cfa2f6a7ab9a4e738d206163d4c6d2ec8b3e622c6eb891cb8bc2a2ebd77a0b"
+  },
+  {
+    "index": 11,
+    "url": "https://www.att.jobs/job/hyderabad/sr-specialist-cybersecurity-architect/117/100122200592",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/hyderabad/sr-specialist-cybersecurity-architect/117/100122200592",
+    "requestedAt": "2026-11-02T20:57:22.295Z",
+    "completedAt": "2026-11-02T20:57:22.944Z",
+    "bytes": 606607,
+    "sha256": "13f34d4ba0a7a03d79cec026195fb314a84bf1b722101bdec33911432462f304"
+  },
+  {
+    "index": 12,
+    "url": "https://www.att.jobs/job/bengaluru/sr-specialist-cyber-security-vulnerability-management-ai/117/102456477600",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/sr-specialist-cyber-security-vulnerability-management-ai/117/102456477600",
+    "requestedAt": "2026-11-02T20:57:22.969Z",
+    "completedAt": "2026-11-02T20:57:25.174Z",
+    "bytes": 602018,
+    "sha256": "046951f5a7ad563a1397adff0987ae0b220b4554f9afbb95cf204f68cbf8dfbc"
+  },
+  {
+    "index": 13,
+    "url": "https://www.att.jobs/job/hyderabad/sr-specialist-cyber-security-vulnerability-management-ai/117/102456477584",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/hyderabad/sr-specialist-cyber-security-vulnerability-management-ai/117/102456477584",
+    "requestedAt": "2026-11-02T20:57:25.202Z",
+    "completedAt": "2026-11-02T20:57:27.336Z",
+    "bytes": 602007,
+    "sha256": "9e0c619c7eb7faaaf1454bc81d0706aa7b5b55973770f73013448571b4061a74"
+  },
+  {
+    "index": 14,
+    "url": "https://www.att.jobs/job/hyderabad/lead-embedded-firmware-engineer-residential-gateways-prplos-and-wireless/117/97125467664",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/hyderabad/lead-embedded-firmware-engineer-residential-gateways-prplos-and-wireless/117/97125467664",
+    "requestedAt": "2026-11-02T20:57:27.368Z",
+    "completedAt": "2026-11-02T20:57:34.161Z",
+    "bytes": 604671,
+    "sha256": "8e822d9727e02a72da89adc969c0fc24ab4b5a041fc676bbb560495a20e0865d"
+  },
+  {
+    "index": 16,
+    "url": "https://www.att.jobs/job/bengaluru/lead-embedded-firmware-engineer-residential-gateways-prplos-and-wireless/117/97125467648",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/lead-embedded-firmware-engineer-residential-gateways-prplos-and-wireless/117/97125467648",
+    "requestedAt": "2026-11-02T20:57:34.773Z",
+    "completedAt": "2026-11-02T20:57:36.168Z",
+    "bytes": 604654,
+    "sha256": "ddca49d24c6e68efbad53fc28e7ea3354d12be84ac01347bc7b36e139fd56ec4"
+  },
+  {
+    "index": 17,
+    "url": "https://www.att.jobs/job/bengaluru/manager-technology-servicenow-development/117/90335632992",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/job/bengaluru/manager-technology-servicenow-development/117/90335632992",
+    "requestedAt": "2026-11-02T20:57:36.197Z",
+    "completedAt": "2026-11-02T20:57:38.014Z",
+    "bytes": 599780,
+    "sha256": "d5908e2cad1e9759d7c695aae11ed7f72ee8375fb6d959a7b278bed7343c8e77"
+  },
+  {
+    "index": 18,
+    "url": "https://www.att.jobs/search-jobs?acm=ALL&alrpm=1269750&ascf=%5B%7B%22key%22%3A%22ALL%22%2C%22value%22%3A%22%22%7D%5D",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/search-jobs?acm=ALL&alrpm=1269750&ascf=%5B%7B%22key%22%3A%22ALL%22%2C%22value%22%3A%22%22%7D%5D",
+    "requestedAt": "2026-11-02T20:57:38.037Z",
+    "completedAt": "2026-11-02T20:57:38.318Z",
+    "bytes": 607349,
+    "sha256": "b7a2d22695de3c4a5b5ae59a5ac86d94f52a10cfe1e378c235593b7f758aa0f1"
+  },
+  {
+    "index": 19,
+    "url": "https://www.att.jobs/search-jobs/results?ActiveFacetID=0&CurrentPage=2&RecordsPerPage=12&TotalContentResults=&Distance=50&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&CustomFacetName=&FacetTerm=&FacetType=0&FacetFilters%5B0%5D.ID=1269750&FacetFilters%5B0%5D.FacetType=2&FacetFilters%5B0%5D.Count=13&FacetFilters%5B0%5D.Display=India&FacetFilters%5B0%5D.IsApplied=true&FacetFilters%5B0%5D.FieldName=&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=6&PostalCode=&ResultsType=0&fc=&fl=&fcf=&afc=&afl=&afcf=&TotalContentPages=NaN",
+    "status": 200,
+    "finalUrl": "https://www.att.jobs/search-jobs/results?ActiveFacetID=0&CurrentPage=2&RecordsPerPage=12&TotalContentResults=&Distance=50&RadiusUnitType=0&Keywords=&Location=&ShowRadius=False&IsPagination=False&CustomFacetName=&FacetTerm=&FacetType=0&FacetFilters%5B0%5D.ID=1269750&FacetFilters%5B0%5D.FacetType=2&FacetFilters%5B0%5D.Count=13&FacetFilters%5B0%5D.Display=India&FacetFilters%5B0%5D.IsApplied=true&FacetFilters%5B0%5D.FieldName=&SearchResultsModuleName=Search+Results&SearchFiltersModuleName=Search+Filters&SortCriteria=0&SortDirection=0&SearchType=6&PostalCode=&ResultsType=0&fc=&fl=&fcf=&afc=&afl=&afcf=&TotalContentPages=NaN",
+    "requestedAt": "2026-11-02T20:57:38.346Z",
+    "completedAt": "2026-11-02T20:57:38.429Z",
+    "bytes": 26574,
+    "sha256": "4de237cbec1c0ec468a97e0f70c62bdb5b8383aba5f60b60eb238bc135869f33"
+  }
+]

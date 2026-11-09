@@ -1,0 +1,25 @@
+[
+  {
+    "source": "gojek",
+    "companyName": "Gojek",
+    "adapter": "script",
+    "atsPlatform": "official-company-careers",
+    "companyCareerPage": "https://www.gojek.io/careers",
+    "companyDomain": "gojek.io",
+    "countryFilter": "India",
+    "parser": "custom-script",
+    "modulePath": "../../scraper/gojek/script.js",
+    "catalogOverride": true,
+    "extractionStrategy": "declared-literal-model-criteria+unresolved-employer-country-audit+discovery-only",
+    "paginationStrategy": "unverified-all-channel-and-closing-scope",
+    "sourceScopeComplete": false,
+    "sourceListingComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "authoritativeSourceTotal": null,
+    "authoritativeIndiaFacetCount": null,
+    "zeroResultPolicy": "evidence-required",
+    "currentLiveQualification": false,
+    "verificationStatus": "offline-declared-model-observations-only-employer-country-activation-and-source-scope-unresolved",
+    "currentSurfaceSummary": "The retained October29 Gojek careers response declares9 GoToGroup-linked serialized records with primary country fields SG or ID. All original criteria, countries, references and alternative fields are preserved as observations. Parent-tenant association, native detail, rendering and complete current Gojek hiring scope remain unresolved; no India-empty or full-source proof."
+  }
+]

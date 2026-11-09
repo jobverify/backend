@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://broadcom.wd1.myworkdayjobs.com/wday/cxs/broadcom/External_Career/jobs",
+  "detailUrlBase": "https://broadcom.wd1.myworkdayjobs.com/en-US/External_Career",
+  "maxPages": 20
+}

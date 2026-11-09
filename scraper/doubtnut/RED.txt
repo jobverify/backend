@@ -1,0 +1,8 @@
+Original reproduction (2026-10-23):
+Command: node --test scraper/doubtnut/script.test.js
+Before changing production code, the original unconditional [] adapter failed:
+  Doubtnut reads live transport and rejects a corporate shell instead of claiming empty inventory
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+  Expected code: DOUBTNUT_COVERAGE_GAP
+  Actual: run() returned [] without calling injected fetch.
+The final suite exercises retained actual receipts and transport boundaries.

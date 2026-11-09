@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://dbs.wd3.myworkdayjobs.com/wday/cxs/dbs/DBS_Careers/jobs",
+  "detailUrlBase": "https://dbs.wd3.myworkdayjobs.com/DBS_Careers",
+  "countryFacetParameter": "locationCountry"
+}

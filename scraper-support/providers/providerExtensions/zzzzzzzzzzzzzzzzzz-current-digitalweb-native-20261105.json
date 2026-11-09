@@ -1,0 +1,14 @@
+[
+  {
+    "source": "digitalwebsolutions",
+    "companyName": "Digital Web Solutions",
+    "catalogOverride": true,
+    "paginationStrategy": "complete-global-native-board+paired-full-role-models",
+    "extractionStrategy": "current-corporate-handoff+literal-native-board-redirect+own-JobPosting+complete-visible-criteria+closing-reconciliation",
+    "verifiedOn": "2026-11-05",
+    "verifiedPublicJobCount": 5,
+    "verifiedIndiaJobCount": 1,
+    "verifiedSurfaceSummary": "The current company handoff, literal native board redirect and all five full global models reconcile at closing. Only Senior Outreach Manager has an explicit own India worksite; four countries remain unknown. Complete visible responsibilities are preserved beyond the structured 2000-character excerpt. The registered Global scope is preserved.",
+    "sourceScopeNotes": "Return every complete own global role, including native rows with unknown countries. An employer address, city or remote label supplies no missing work country. Preserve the original JobPosting and full visible criteria, require current own employer identity and closing reconciliation, and keep company inventory scope and lifecycle cleanup unqualified."
+  }
+]

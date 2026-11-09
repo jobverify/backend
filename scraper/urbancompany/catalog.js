@@ -1,0 +1,21 @@
+﻿export const URBAN_COMPANY_CATALOG = {
+  source: 'urbancompany',
+  companyName: 'Urban Company',
+  officialBrandName: 'Urban Company',
+  adapter: 'script',
+  modulePath: '../../scraper/urbancompany/script.js',
+  homepageUrl: 'https://www.urbancompany.com/',
+  companyCareerPage: 'https://careers.urbancompany.com/jobs',
+  jobsApiUrl: 'https://www.urbanclap.com/api/v2/platform-gateway/getAllJobs',
+  companyDomain: 'urbancompany.com',
+  atsPlatform: 'official-first-party-jobs-api',
+  countryFilter: 'India',
+  paginationStrategy: 'single-post-request',
+  extractionStrategy: 'verified-careers-page+source-mapped-first-party-gateway+public-jobs-api',
+  parser: 'custom-script',
+  normalizationProfile: 'engineering-default',
+  verifiedOn: '2026-07-25',
+  verifiedSurfaceSummary: 'Verified on Saturday, July 25, 2026 that https://careers.urbancompany.com/jobs is the live first-party Urban Company careers page, that its published source map resolves the careers frontend gatewayBaseUrl to https://www.urbanclap.com, and that POST https://www.urbanclap.com/api/v2/platform-gateway/getAllJobs returned six public India jobs with structured title, department, location, description, and apply_url fields on the verified date.',
+  dryRunFile: 'urbancompany/jobs.json',
+}
+

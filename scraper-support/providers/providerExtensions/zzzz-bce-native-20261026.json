@@ -1,0 +1,19 @@
+[
+  {
+    "source": "bceglobaltech",
+    "companyName": "BCE Global Tech",
+    "adapter": "script",
+    "modulePath": "../bceglobaltech/script.js",
+    "companyCareerPage": "https://bceglobaltech.com/career",
+    "companyDomain": "bceglobaltech.com",
+    "atsPlatform": "zoho-recruit-api",
+    "countryFilter": "India",
+    "backfillMode": "live-parser",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-corporate-and-zoho-full-arrays-with-closing-reconciliation",
+    "extractionStrategy": "current-first-party-client-api-binding+native-legal-employer+full-details+current-office-country-evidence",
+    "verifiedOn": "2026-10-26",
+    "verifiedSurfaceSummary": "Current BCE Global Tech client binds its native corporate listing API. Runtime validates the exact linked Zoho organization/page and legal employer, reads all active native details and preserves native dates/descriptions/application URLs. India offices require current first-party country/address evidence. Distinct corporate/native/client inventories and unproven lifecycle scope retain partial coverage.",
+    "catalogOverride": true
+  }
+]

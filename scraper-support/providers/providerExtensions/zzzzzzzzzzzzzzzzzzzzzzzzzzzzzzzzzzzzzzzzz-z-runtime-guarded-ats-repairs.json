@@ -1,0 +1,38 @@
+[
+  {
+    "source": "gocardless",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "greenhouse",
+    "backfillMode": "live-parser",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "runtime-official-anchor-binding+shared-greenhouse-inventory+explicit-india-location+role-descriptions",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "runtime-binding-guarded-native-extractor-live-validation-pending"
+  },
+  {
+    "source": "fmc",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "backfillMode": "live-parser",
+    "parser": "shared-workday-jobs-api",
+    "paginationStrategy": "workday-jobs-api",
+    "extractionStrategy": "runtime-official-anchor-binding+shared-workday-india-inventory+role-descriptions",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "runtime-binding-guarded-native-extractor-live-validation-pending"
+  },
+  {
+    "source": "insulet",
+    "catalogOverride": true,
+    "adapter": "script",
+    "atsPlatform": "workday",
+    "backfillMode": "live-parser",
+    "parser": "shared-workday-jobs-api",
+    "paginationStrategy": "workday-jobs-api",
+    "extractionStrategy": "runtime-official-anchor-binding+shared-workday-india-inventory+role-descriptions",
+    "zeroResultPolicy": "evidence-required",
+    "remediationStatus": "runtime-binding-guarded-native-extractor-live-validation-pending"
+  }
+]

@@ -1,0 +1,33 @@
+[
+  {
+    "source": "nisum",
+    "companyName": "Nisum",
+    "officialBrandName": "Nisum",
+    "adapter": "script",
+    "modulePath": "../nisum/script.js",
+    "homepageUrl": "https://www.nisum.com/",
+    "officialCareersLandingUrl": "https://www.nisum.com/careers",
+    "companyCareerPage": "https://www.nisum.com/careers/careers-india",
+    "ceipalWidgetScriptUrl": "https://jobsapi.ceipal.com/APISource/widget.js",
+    "ceipalWidgetUrl": null,
+    "ceipalJobPostingsApiBaseUrl": null,
+    "ceipalApiKey": null,
+    "ceipalCareerPortalId": null,
+    "atsPlatform": "ceipal-careerapi",
+    "countryFilter": "India",
+    "paginationStrategy": "native-inventory-unverified-public-client-bot-denial",
+    "extractionStrategy": "current-first-party-widget-binding+public-v3-client+coverage-gap-guard",
+    "backfillMode": "discovery-only",
+    "zeroResultPolicy": "evidence-required",
+    "sourceExtractionImplemented": false,
+    "nativeExtractionVerified": false,
+    "fullInventoryVerified": false,
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "companyDomain": "nisum.com",
+    "verifiedOn": "2026-10-27",
+    "verifiedSurfaceSummary": "Current first-party Nisum India careers binding and the advertised Ceipal v3 client were verified on 2026-10-27. Its exact readonly listing POST in a fresh anonymous local Edge session returned HTTP 400 with an explicit bot-access denial. Native inventory, complete role details, country coverage, publication/expiry, requisition and application context, pagination and closing reconciliation remain unverified. This guard-only source preserves a coverage gap and proves no absence of openings. Widget identifiers are dynamically discovered and excluded from catalog metadata.",
+    "dryRunFile": "nisum/jobs.json",
+    "catalogOverride": true
+  }
+]

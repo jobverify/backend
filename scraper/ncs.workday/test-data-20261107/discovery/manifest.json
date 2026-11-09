@@ -1,0 +1,2856 @@
+{
+  "source": "ncs",
+  "purpose": "genuine independent discovery responses; controlled offline opening/closing reuse, not a live completed capture",
+  "closingResponsesReusedForTests": true,
+  "packets": [
+    {
+      "source": "ncs",
+      "requestedURL": "https://www.ncs.co/careers/",
+      "method": "GET",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "text/html"
+      },
+      "redirect": "manual",
+      "credentials": "omit",
+      "requestedAt": "2026-11-06T22:06:14.224Z",
+      "status": 200,
+      "finalURL": "https://www.ncs.co/careers/",
+      "responseHeaders": {
+        "content-type": "text/html;charset=UTF-8",
+        "content-length": "12460"
+      },
+      "bodyBytes": 97789,
+      "bodySHA256": "c17399f14cba34f29acdc56708d6a330c23bb0e2e06bc4d9ccfbeefb32f68c8c",
+      "bodyFile": "corporate.body",
+      "titles": [
+        "NCS | Careers"
+      ],
+      "links": [
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/jquery/jquery-3.6.0.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "//cdn.jsdelivr.net/npm/sweetalert2@10"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "https://embed.jochat.ai/wOob0jfJY.js"
+        },
+        {
+          "tag": "a",
+          "text": "Overview",
+          "url": "https://www.ncs.co:443/en-sg/careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Career stories",
+          "url": "https://www.ncs.co:443/en-sg/careers/career-stories/"
+        },
+        {
+          "tag": "a",
+          "text": "Chart your career",
+          "url": "https://www.ncs.co:443/en-sg/careers/chart-your-career/"
+        },
+        {
+          "tag": "a",
+          "text": "Life @ NCS",
+          "url": "https://www.ncs.co:443/en-sg/careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Opportunities for graduates",
+          "url": "https://www.ncs.co:443/en-sg/careers/graduate-careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Opportunities for interns",
+          "url": "https://www.ncs.co:443/en-sg/careers/opportunities-for-interns/"
+        },
+        {
+          "tag": "a",
+          "text": "View all jobs",
+          "url": "https://www.ncs.co/careers"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/jquery/jquery-3.6.0.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/jquery/moment.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/datatable/datatables.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/datatable/dataTables.buttons.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/js/careers/smartRecruiter.js"
+        },
+        {
+          "tag": "a",
+          "text": "Apply now",
+          "url": "?function=%28Application%20Services%29%7CGamification"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=%28Client%20Service%29%7C%28Sales%29"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=%28Product%20Engineering%20%26%20Management%29%7C%28Communications%20Engineering%29%7C%28IoT%20%26%20Machine%20Learning%29"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=%28Quality%20Assurance%20%26%20Management%29%7C%28Retail%20%26%20Customer%20Service%29%7C%28Transformation%29%7C%28Supply%20Chain%20%26%20Procurement%29%7C%28Strategy%20and%20Planning%29%7C%28Workplace%20Safety%20%26%20Health%29%7C%28Marketing%20%26%20Communications%29%7C%28Legal%2C%20Regulatory%2C%20Risk%20%26%20Compliance%29%7C%28Human%20Resources%29%7C%28Finance%29%7C%28Sustainability%29%7C%28General%20Management%20%26%20Admin%29"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=Cyber%20Security"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=%28Product%20Engineering%20%26%20Management%29%7C%28Digital%29%7C%28Data%20%26%20Analytics%29%7C%28Cloud%29%7C%28Consulting%29%7C%28Gamification%29%7C%28IoT%20%26%20Machine%20Learning%29"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?title=%28ignite%7Cinternship%7Cnucleus%7Cfusion%29"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=%28IT%20Infrastructure%29%7C%28Managed%20Services%29"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "?function=%28Product%20Engineering%20%26%20Management%29%7C%28Transformation%29%7C%28Strategy%20and%20Planning%29%7C%28Data%20%26%20Analytics%29%7C%28Application%20Services%29%7C%28Cloud%29%7C%28Cyber%20Security%29%7C%28IT%20Infrastructure%29%7C%28Managed%20Services%29"
+        },
+        {
+          "tag": "a",
+          "text": "Opportunities for Graduates & Interns Find out more",
+          "url": "https://www.ncs.co:443/en-sg/careers/graduate-careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Chart your career Find out more",
+          "url": "https://www.ncs.co:443/en-sg/careers/chart-your-career/"
+        },
+        {
+          "tag": "a",
+          "text": "Mentorship Roles Find out more",
+          "url": "https://www.ncs.co:443/en-sg/careers/mentoring/"
+        },
+        {
+          "tag": "a",
+          "text": "Opportunities for graduates",
+          "url": "https://www.ncs.co:443/en-sg/careers/graduate-careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Opportunities for interns",
+          "url": "https://www.ncs.co:443/en-sg/careers/opportunities-for-interns/"
+        },
+        {
+          "tag": "a",
+          "text": "Mentorship roles",
+          "url": "https://www.ncs.co:443/en-sg/careers/mentoring/"
+        },
+        {
+          "tag": "a",
+          "text": "Career stories",
+          "url": "https://www.ncs.co:443/en-sg/careers/career-stories/"
+        },
+        {
+          "tag": "a",
+          "text": "Chart your career",
+          "url": "https://www.ncs.co:443/en-sg/careers/chart-your-career/"
+        },
+        {
+          "tag": "a",
+          "text": "View all jobs",
+          "url": "/careers/"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/bootstrap/js/bootstrap.bundle.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/swiper/swiper-bundle.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/anime.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/main~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/common~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/jquery/jquery.waypoints.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/lottie/lottie.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/imagesloaded.pkgd.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/masonry.pkgd.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/masonry~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/axios.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/jquery/jquery.countup~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/lib/validate.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/validateForm~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/career~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/career-forms~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/form~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/careers/.resources/ncs-templates/webresources/js/contactUs-forms~2026-10-19-09-07-00-000~cache.js"
+        }
+      ],
+      "schemaTypes": [],
+      "completedAt": "2026-11-06T22:06:15.245Z",
+      "name": "corporate",
+      "filename": "c17399f14cba34f29acdc56708d6a330c23bb0e2e06bc4d9ccfbeefb32f68c8c.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://www.ncs.co/en-in/",
+      "method": "GET",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "text/html"
+      },
+      "redirect": "manual",
+      "credentials": "omit",
+      "requestedAt": "2026-11-06T22:07:24.653Z",
+      "status": 200,
+      "finalURL": "https://www.ncs.co/en-in/",
+      "responseHeaders": {
+        "content-type": "text/html;charset=UTF-8",
+        "content-length": "15672"
+      },
+      "bodyBytes": 106714,
+      "bodySHA256": "0ec79a2ae7262de74b64631b8294de768d157b3b32aa0926454eef8a8ec88d30",
+      "bodyFile": "declared-india-region-home.body",
+      "titles": [
+        "NCS India | AI-Led Technology Services"
+      ],
+      "links": [
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/jquery/jquery-3.6.0.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "//cdn.jsdelivr.net/npm/sweetalert2@10"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "https://js.adsrvr.org/up_loader.1.1.0.js"
+        },
+        {
+          "tag": "a",
+          "text": "Careers",
+          "url": "/en-in/careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Extraordinary careers start here",
+          "url": "javascript:"
+        },
+        {
+          "tag": "a",
+          "text": "Learn more",
+          "url": "/en-in/careers/"
+        },
+        {
+          "tag": "a",
+          "text": "Learn more",
+          "url": "/en-in/careers/"
+        },
+        {
+          "tag": "a",
+          "text": "India",
+          "url": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "text": "Job Enquiry",
+          "url": "javascript:void(0)"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/bootstrap/js/bootstrap.bundle.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/swiper/swiper-bundle.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/anime.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/main~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/common~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/lottie/lottie.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/home~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/axios.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/jquery/jquery.waypoints.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/jquery/jquery.countup~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/countup~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/validate.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/validateForm~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/form~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/contactUs-forms~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/cookieconsent.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/partners~2026-10-19-09-07-00-000~cache.js"
+        }
+      ],
+      "schemaTypes": [
+        "WebSite"
+      ],
+      "completedAt": "2026-11-06T22:07:25.780Z",
+      "name": "declared-india-region-home",
+      "filename": "0ec79a2ae7262de74b64631b8294de768d157b3b32aa0926454eef8a8ec88d30.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://www.ncs.co/en-in/careers/",
+      "method": "GET",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "text/html"
+      },
+      "redirect": "manual",
+      "credentials": "omit",
+      "requestedAt": "2026-11-06T22:07:37.663Z",
+      "status": 200,
+      "finalURL": "https://www.ncs.co/en-in/careers/",
+      "responseHeaders": {
+        "content-type": "text/html;charset=UTF-8",
+        "content-length": "13341"
+      },
+      "bodyBytes": 101970,
+      "bodySHA256": "fdd81a37128eaac3aaed87ed0fbd19c11c156b04bdfcd42479ded38521eed9a7",
+      "bodyFile": "declared-india-careers.body",
+      "titles": [
+        "NCS Careers and Jobs | Working at NCS | NCS India"
+      ],
+      "links": [
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/.resources/ncs-templates/webresources/lib/jquery/jquery-3.6.0.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "//cdn.jsdelivr.net/npm/sweetalert2@10"
+        },
+        {
+          "tag": "a",
+          "text": "Careers",
+          "url": "/en-in/careers/"
+        },
+        {
+          "tag": "a",
+          "text": "View all jobs",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobslist"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobview/senior-software-engineer-pune-maharashtra-india-2026051311573979"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobview/service-now-engineer-pune-maharashtra-india-2026050710190297"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobview/senior-software-engineer-pune-maharashtra-india-2026042013051860 "
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobview/qa-engineer-pune-maharashtra-india-2026050816552395?id=939295 "
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobview/senior-ai-engineer-pune-maharashtra-india-2026042112262332"
+        },
+        {
+          "tag": "a",
+          "text": "Apply Now",
+          "url": "https://careers.in.ncs-i.com/ncsi/jobview/platform-engineer-pune-maharashtra-india-2025081914333069"
+        },
+        {
+          "tag": "a",
+          "text": "India",
+          "url": "javascript:void(0)"
+        },
+        {
+          "tag": "a",
+          "text": "Job Enquiry",
+          "url": "javascript:void(0)"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/bootstrap/js/bootstrap.bundle.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/swiper/swiper-bundle.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/anime.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/main~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/common~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/axios.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/lib/validate.min~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/validateForm~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/form~2026-10-19-09-07-00-000~cache.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "/en-in/.resources/ncs-templates/webresources/js/contactUs-forms~2026-10-19-09-07-00-000~cache.js"
+        }
+      ],
+      "schemaTypes": [],
+      "completedAt": "2026-11-06T22:07:38.056Z",
+      "name": "declared-india-careers",
+      "filename": "fdd81a37128eaac3aaed87ed0fbd19c11c156b04bdfcd42479ded38521eed9a7.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://careers.in.ncs-i.com/ncsi/jobslist",
+      "method": "GET",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "text/html"
+      },
+      "redirect": "manual",
+      "credentials": "omit",
+      "requestedAt": "2026-11-06T22:07:52.056Z",
+      "status": 200,
+      "finalURL": "https://careers.in.ncs-i.com/ncsi/jobslist",
+      "responseHeaders": {
+        "content-type": "text/html",
+        "content-length": "5005"
+      },
+      "bodyBytes": 23513,
+      "bodySHA256": "53337c05bbe086c532d29e5795caeb03061bb0e5e8e6eb8e60bb4ca10a3c25ab",
+      "bodyFile": "declared-india-portal-list.body",
+      "titles": [
+        "NCS | Careers"
+      ],
+      "links": [
+        {
+          "tag": "script",
+          "text": "",
+          "url": "https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "https://careers.in.ncs-i.com/akam/13/6d2eb395"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "https://cdn.jsdelivr.net/npm/sweetalert2@11"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "runtime.80c5b42d017b320b.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "polyfills.fa9f56c9e6e47601.js"
+        },
+        {
+          "tag": "script",
+          "text": "",
+          "url": "main.d7e595f6e4ef0265.js"
+        }
+      ],
+      "schemaTypes": [],
+      "completedAt": "2026-11-06T22:07:52.833Z",
+      "name": "declared-india-portal-list",
+      "filename": "53337c05bbe086c532d29e5795caeb03061bb0e5e8e6eb8e60bb4ca10a3c25ab.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://careers.in.ncs-i.com/ncsi/main.d7e595f6e4ef0265.js",
+      "method": "GET",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/javascript,text/javascript,*/*;q=0.8"
+      },
+      "redirect": "manual",
+      "credentials": "omit",
+      "requestedAt": "2026-11-06T22:08:19.997Z",
+      "status": 200,
+      "finalURL": "https://careers.in.ncs-i.com/ncsi/main.d7e595f6e4ef0265.js",
+      "responseHeaders": {
+        "content-type": "application/javascript",
+        "content-length": "751490"
+      },
+      "bodyBytes": 2582252,
+      "bodySHA256": "2f31ee88f15796659174734a3fc4c4715a34d9c0364fd21a389230b503722d2c",
+      "bodyFile": "declared-india-main-client.body",
+      "completedAt": "2026-11-06T22:08:20.691Z",
+      "name": "declared-india-main-client",
+      "filename": "2f31ee88f15796659174734a3fc4c4715a34d9c0364fd21a389230b503722d2c.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://public.zwayam.com/data-service/v2/company/15955/careersite-configurations",
+      "method": "GET",
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "redirect": "manual",
+      "credentials": "omit",
+      "requestedAt": "2026-11-06T22:09:25.811Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/data-service/v2/company/15955/careersite-configurations",
+      "responseHeaders": {
+        "content-type": "application/json",
+        "content-length": "594"
+      },
+      "bodyBytes": 1029,
+      "bodySHA256": "e49a2d0d7c00e5d20933cf90777270bcf09741acb10a697d7834c07d7137cdd5",
+      "bodyFile": "declared-public-company-config.body",
+      "completedAt": "2026-11-06T22:09:27.006Z",
+      "name": "declared-public-company-config",
+      "filename": "e49a2d0d7c00e5d20933cf90777270bcf09741acb10a697d7834c07d7137cdd5.gz"
+    },
+    {
+      "source": "ncs",
+      "purpose": "single declared public readonly native job-list search; no application/candidate data",
+      "requestedURL": "https://public.zwayam.com/jobs/search",
+      "method": "POST",
+      "parameters": {
+        "filterCri": {
+          "paginationStartNo": 0,
+          "selectedCall": "sort",
+          "sortCriteria": {
+            "name": "modifiedDate",
+            "isAscending": false
+          },
+          "anyOfTheseWords": ""
+        },
+        "domain": "careers.in.ncs-i.com",
+        "companyId": "MTU5NTU="
+      },
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "multipart/form-data; boundary=----formdata-undici-065924343710"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:24:17.895Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs/search",
+      "responseHeaders": {
+        "content-type": "application/json"
+      },
+      "bodyFile": "declared-list-first-page.body",
+      "bodyBytes": 173566,
+      "bodySHA256": "b0ad9002abfb60b0dccf1bdbb4cb31b5c8fb4ec6ba74b5f9a81ba40d4d099915",
+      "completedAt": "2026-11-06T22:24:18.897Z",
+      "name": "declared-list-first-page",
+      "filename": "b0ad9002abfb60b0dccf1bdbb4cb31b5c8fb4ec6ba74b5f9a81ba40d4d099915.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://public.zwayam.com/jobs/search",
+      "method": "POST",
+      "parameters": {
+        "filterCri": {
+          "paginationStartNo": 10,
+          "selectedCall": "sort",
+          "sortCriteria": {
+            "name": "modifiedDate",
+            "isAscending": false
+          },
+          "anyOfTheseWords": ""
+        },
+        "domain": "careers.in.ncs-i.com",
+        "companyId": "MTU5NTU="
+      },
+      "requestHeaders": {
+        "accept": "application/json",
+        "content-type": "multipart/form-data; boundary=----formdata-undici-049706211848",
+        "user-agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:27:51.111Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs/search",
+      "responseHeaders": {
+        "content-type": "application/json"
+      },
+      "bodyFile": "declared-list-page-10.body",
+      "bodyBytes": 168050,
+      "bodySHA256": "8be067d0621680b264f68858f712250d7cc350800ca22500721b2d4a65901a21",
+      "completedAt": "2026-11-06T22:27:51.700Z",
+      "name": "declared-list-page-10",
+      "filename": "8be067d0621680b264f68858f712250d7cc350800ca22500721b2d4a65901a21.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://public.zwayam.com/jobs/search",
+      "method": "POST",
+      "parameters": {
+        "filterCri": {
+          "paginationStartNo": 20,
+          "selectedCall": "sort",
+          "sortCriteria": {
+            "name": "modifiedDate",
+            "isAscending": false
+          },
+          "anyOfTheseWords": ""
+        },
+        "domain": "careers.in.ncs-i.com",
+        "companyId": "MTU5NTU="
+      },
+      "requestHeaders": {
+        "accept": "application/json",
+        "content-type": "multipart/form-data; boundary=----formdata-undici-091968735243",
+        "user-agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:27:51.704Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs/search",
+      "responseHeaders": {
+        "content-type": "application/json"
+      },
+      "bodyFile": "declared-list-page-20.body",
+      "bodyBytes": 134801,
+      "bodySHA256": "b3cf018fae86d5fb46d44ce54d7d30402d961b5609eb6019b70d6e9ff991250c",
+      "completedAt": "2026-11-06T22:27:51.917Z",
+      "name": "declared-list-page-20",
+      "filename": "b3cf018fae86d5fb46d44ce54d7d30402d961b5609eb6019b70d6e9ff991250c.gz"
+    },
+    {
+      "source": "ncs",
+      "requestedURL": "https://public.zwayam.com/jobs/search",
+      "method": "POST",
+      "parameters": {
+        "filterCri": {
+          "paginationStartNo": 30,
+          "selectedCall": "sort",
+          "sortCriteria": {
+            "name": "modifiedDate",
+            "isAscending": false
+          },
+          "anyOfTheseWords": ""
+        },
+        "domain": "careers.in.ncs-i.com",
+        "companyId": "MTU5NTU="
+      },
+      "requestHeaders": {
+        "accept": "application/json",
+        "content-type": "multipart/form-data; boundary=----formdata-undici-041934869167",
+        "user-agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:27:51.923Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs/search",
+      "responseHeaders": {
+        "content-type": "application/json"
+      },
+      "bodyFile": "declared-list-page-30.body",
+      "bodyBytes": 123783,
+      "bodySHA256": "df26297011b4e761f40489310f5e9cd773719b39893c8053f1518f030937079e",
+      "completedAt": "2026-11-06T22:27:52.106Z",
+      "name": "declared-list-page-30",
+      "filename": "df26297011b4e761f40489310f5e9cd773719b39893c8053f1518f030937079e.gz"
+    },
+    {
+      "sequence": 1,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:37.554Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1206870.body",
+      "bodyBytes": 9513,
+      "bodySHA256": "8c4720083abe8ea1fc2060a892c437c60b4744eed873a4228428c254320108db",
+      "completedAt": "2026-11-06T22:29:38.371Z",
+      "name": "role-1206870.body",
+      "filename": "8c4720083abe8ea1fc2060a892c437c60b4744eed873a4228428c254320108db.gz",
+      "parameters": {
+        "jobUrl": "senior-consultant-sap-fi-pune-maharashtra-india-2026110516074952",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1206870
+      }
+    },
+    {
+      "sequence": 2,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:37.579Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1165199.body",
+      "bodyBytes": 14238,
+      "bodySHA256": "ce16928a97d69921f378cae285c76126703f07e9032cddbd0d80aac69d41dd85",
+      "completedAt": "2026-11-06T22:29:38.194Z",
+      "name": "role-1165199.body",
+      "filename": "ce16928a97d69921f378cae285c76126703f07e9032cddbd0d80aac69d41dd85.gz",
+      "parameters": {
+        "jobUrl": "ai-agent-operations-engineer-pune-maharashtra-india-202608181742117",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1165199
+      }
+    },
+    {
+      "sequence": 3,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:37.579Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-949942.body",
+      "bodyBytes": 34558,
+      "bodySHA256": "c0bb7629ebdd0bfddf712fe885720df86277d7ff54938ef5f16143a645a553c8",
+      "completedAt": "2026-11-06T22:29:38.293Z",
+      "name": "role-949942.body",
+      "filename": "c0bb7629ebdd0bfddf712fe885720df86277d7ff54938ef5f16143a645a553c8.gz",
+      "parameters": {
+        "jobUrl": "ai-engineer-pune-maharashtra-india-2026060217312480",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 949942
+      }
+    },
+    {
+      "sequence": 4,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:37.580Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1165169.body",
+      "bodyBytes": 36598,
+      "bodySHA256": "fd8799f4d676c7d8efa5a21df33d6f36d6d60b84edc896857c9de5602eab2854",
+      "completedAt": "2026-11-06T22:29:38.301Z",
+      "name": "role-1165169.body",
+      "filename": "fd8799f4d676c7d8efa5a21df33d6f36d6d60b84edc896857c9de5602eab2854.gz",
+      "parameters": {
+        "jobUrl": "agent-evaluation-instrumentation-engineer-pune-maharashtra-india-2026081817423775",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1165169
+      }
+    },
+    {
+      "sequence": 5,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165199/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.197Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165199/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1165199-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:38.400Z",
+      "name": "role-1165199-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 6,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/949942/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.295Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/949942/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-949942-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:38.479Z",
+      "name": "role-949942-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 7,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165169/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.302Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165169/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1165169-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:38.508Z",
+      "name": "role-1165169-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 8,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1206870/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.373Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1206870/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1206870-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:38.639Z",
+      "name": "role-1206870-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 9,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.402Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1197306.body",
+      "bodyBytes": 4153,
+      "bodySHA256": "4154b76f803b4dece09cd060205b517e65e287416ef47496a969597a66e2e7e9",
+      "completedAt": "2026-11-06T22:29:38.619Z",
+      "name": "role-1197306.body",
+      "filename": "4154b76f803b4dece09cd060205b517e65e287416ef47496a969597a66e2e7e9.gz",
+      "parameters": {
+        "jobUrl": "software-developer-pune-maharashtra-india-2026101614130257",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1197306
+      }
+    },
+    {
+      "sequence": 10,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.481Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1167830.body",
+      "bodyBytes": 9266,
+      "bodySHA256": "22df7448d697f9729a132cc00dc7229d5ba18de41b53358e9411520209b39044",
+      "completedAt": "2026-11-06T22:29:38.703Z",
+      "name": "role-1167830.body",
+      "filename": "22df7448d697f9729a132cc00dc7229d5ba18de41b53358e9411520209b39044.gz",
+      "parameters": {
+        "jobUrl": "application-support-engineer-pune-maharashtra-india-2026082515161744",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1167830
+      }
+    },
+    {
+      "sequence": 11,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.509Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1192472.body",
+      "bodyBytes": 5282,
+      "bodySHA256": "a46c36e7f9a7ea52f24c5a8ce2c470a9acd5f9915ea35086f1ef484e518ae18f",
+      "completedAt": "2026-11-06T22:29:38.810Z",
+      "name": "role-1192472.body",
+      "filename": "a46c36e7f9a7ea52f24c5a8ce2c470a9acd5f9915ea35086f1ef484e518ae18f.gz",
+      "parameters": {
+        "jobUrl": "software-engineer-pune-maharashtra-india-202610081107494",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1192472
+      }
+    },
+    {
+      "sequence": 12,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1197306/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.620Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1197306/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1197306-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:38.817Z",
+      "name": "role-1197306-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 13,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.641Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1165162.body",
+      "bodyBytes": 41250,
+      "bodySHA256": "8c4934c40f8186136c6e64a66d057d284ee1c87f8531103aeb29db9eb034cf63",
+      "completedAt": "2026-11-06T22:29:38.874Z",
+      "name": "role-1165162.body",
+      "filename": "8c4934c40f8186136c6e64a66d057d284ee1c87f8531103aeb29db9eb034cf63.gz",
+      "parameters": {
+        "jobUrl": "ai-machine-learning-engineer-pune-maharashtra-india-2026081817424764",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1165162
+      }
+    },
+    {
+      "sequence": 14,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167830/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.704Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167830/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1167830-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:38.900Z",
+      "name": "role-1167830-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 15,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1192472/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.813Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1192472/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1192472-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.018Z",
+      "name": "role-1192472-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 16,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.820Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-950039.body",
+      "bodyBytes": 71674,
+      "bodySHA256": "b38ba6069e6e7a277371ed55223176917b5bb18eb700c662253efb3f6c458140",
+      "completedAt": "2026-11-06T22:29:39.075Z",
+      "name": "role-950039.body",
+      "filename": "b38ba6069e6e7a277371ed55223176917b5bb18eb700c662253efb3f6c458140.gz",
+      "parameters": {
+        "jobUrl": "tech-lead-pune-maharashtra-india-2026060217275535",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 950039
+      }
+    },
+    {
+      "sequence": 17,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165162/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.877Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165162/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1165162-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.082Z",
+      "name": "role-1165162-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 18,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:38.903Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1143468.body",
+      "bodyBytes": 44284,
+      "bodySHA256": "21d93079b3dbff8404824ede382b4641b82eb4b82a1b04560f575c0bf373442e",
+      "completedAt": "2026-11-06T22:29:39.142Z",
+      "name": "role-1143468.body",
+      "filename": "21d93079b3dbff8404824ede382b4641b82eb4b82a1b04560f575c0bf373442e.gz",
+      "parameters": {
+        "jobUrl": "ai-practice-head-pune-maharashtra-india-2026071613152248",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1143468
+      }
+    },
+    {
+      "sequence": 19,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.021Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1186682.body",
+      "bodyBytes": 17332,
+      "bodySHA256": "75a515f9b23e311427837d0cfcbd7bcde55514e4fe9c257122c29ce51ea6ff2a",
+      "completedAt": "2026-11-06T22:29:39.262Z",
+      "name": "role-1186682.body",
+      "filename": "75a515f9b23e311427837d0cfcbd7bcde55514e4fe9c257122c29ce51ea6ff2a.gz",
+      "parameters": {
+        "jobUrl": "tech-lead-architect-outsystems-pune-maharashtra-india-2026092513243811",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1186682
+      }
+    },
+    {
+      "sequence": 20,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/950039/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.078Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/950039/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-950039-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.268Z",
+      "name": "role-950039-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 21,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.085Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1164007.body",
+      "bodyBytes": 14379,
+      "bodySHA256": "ce25a1a3e33d52056b8735863c6c01b328186ab85d13c44a2183fbf8c3a8d9bf",
+      "completedAt": "2026-11-06T22:29:39.316Z",
+      "name": "role-1164007.body",
+      "filename": "ce25a1a3e33d52056b8735863c6c01b328186ab85d13c44a2183fbf8c3a8d9bf.gz",
+      "parameters": {
+        "jobUrl": "lead-consultant-pune-maharashtra-india-2026081809123645",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1164007
+      }
+    },
+    {
+      "sequence": 22,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1143468/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.145Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1143468/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1143468-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.334Z",
+      "name": "role-1143468-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 23,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1186682/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.265Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1186682/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1186682-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.463Z",
+      "name": "role-1186682-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 24,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.270Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-930959.body",
+      "bodyBytes": 16938,
+      "bodySHA256": "6121d8823864afd3aeac23eb23b730965ae3c87758d79db8cb36feab30518236",
+      "completedAt": "2026-11-06T22:29:39.491Z",
+      "name": "role-930959.body",
+      "filename": "6121d8823864afd3aeac23eb23b730965ae3c87758d79db8cb36feab30518236.gz",
+      "parameters": {
+        "jobUrl": "m365-engineer-pune-maharashtra-india-2026042017554043",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 930959
+      }
+    },
+    {
+      "sequence": 25,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1164007/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.319Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1164007/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1164007-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.503Z",
+      "name": "role-1164007-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 26,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.337Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1201593.body",
+      "bodyBytes": 14738,
+      "bodySHA256": "8295ed64294c9dd222497a0a49b7261e347ad3f276e1c3414944fc1b7a0066c7",
+      "completedAt": "2026-11-06T22:29:39.565Z",
+      "name": "role-1201593.body",
+      "filename": "8295ed64294c9dd222497a0a49b7261e347ad3f276e1c3414944fc1b7a0066c7.gz",
+      "parameters": {
+        "jobUrl": "salesforce-functional-solution-lead-pune-maharashtra-india-2026102617171278",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1201593
+      }
+    },
+    {
+      "sequence": 27,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.467Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1200124.body",
+      "bodyBytes": 5738,
+      "bodySHA256": "1e92ba356ae8329a678772a56868b398af335d355a68ae1ed77e2753b6936b03",
+      "completedAt": "2026-11-06T22:29:39.691Z",
+      "name": "role-1200124.body",
+      "filename": "1e92ba356ae8329a678772a56868b398af335d355a68ae1ed77e2753b6936b03.gz",
+      "parameters": {
+        "jobUrl": "servicenow-developer-hrsd-csm--pune-maharashtra-india-2026102217554459",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1200124
+      }
+    },
+    {
+      "sequence": 28,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/930959/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.494Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/930959/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-930959-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.681Z",
+      "name": "role-930959-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 29,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.506Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-937708.body",
+      "bodyBytes": 5522,
+      "bodySHA256": "04cd451d01cdc476fcc5e4b07c92171cadade2d7b8e4c83d08769f83c1764ec4",
+      "completedAt": "2026-11-06T22:29:40.043Z",
+      "name": "role-937708.body",
+      "filename": "04cd451d01cdc476fcc5e4b07c92171cadade2d7b8e4c83d08769f83c1764ec4.gz",
+      "parameters": {
+        "jobUrl": "service-now-engineer-pune-maharashtra-india-2026050710190297",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 937708
+      }
+    },
+    {
+      "sequence": 30,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1201593/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.569Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1201593/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1201593-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.774Z",
+      "name": "role-1201593-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 31,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.685Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1195113.body",
+      "bodyBytes": 19317,
+      "bodySHA256": "1cc12523cc797a8740b4ed2fb01cf35609a67b90925b6e92c4626fbbcf196f33",
+      "completedAt": "2026-11-06T22:29:39.904Z",
+      "name": "role-1195113.body",
+      "filename": "1cc12523cc797a8740b4ed2fb01cf35609a67b90925b6e92c4626fbbcf196f33.gz",
+      "parameters": {
+        "jobUrl": "sdet-software-development-engineer-pune-maharashtra-india-2026101510191044",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1195113
+      }
+    },
+    {
+      "sequence": 32,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1200124/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.695Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1200124/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1200124-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:39.890Z",
+      "name": "role-1200124-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 33,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.776Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1174700.body",
+      "bodyBytes": 43189,
+      "bodySHA256": "81663debf2237accda2e9bdb79af1d09810bf1273b8e3bc3e0dd416ee96954e7",
+      "completedAt": "2026-11-06T22:29:40.014Z",
+      "name": "role-1174700.body",
+      "filename": "81663debf2237accda2e9bdb79af1d09810bf1273b8e3bc3e0dd416ee96954e7.gz",
+      "parameters": {
+        "jobUrl": "operations-lead-pune-maharashtra-india-2026090714535088",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1174700
+      }
+    },
+    {
+      "sequence": 34,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.893Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1167302.body",
+      "bodyBytes": 15818,
+      "bodySHA256": "f880f5b5d1b112cc195626fbf1a2349ecb93daa3b2fdd53d9a96270b6d524b30",
+      "completedAt": "2026-11-06T22:29:40.124Z",
+      "name": "role-1167302.body",
+      "filename": "f880f5b5d1b112cc195626fbf1a2349ecb93daa3b2fdd53d9a96270b6d524b30.gz",
+      "parameters": {
+        "jobUrl": "l3-system-specialist-pune-maharashtra-india-2026082412045047",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1167302
+      }
+    },
+    {
+      "sequence": 35,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1195113/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:39.908Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1195113/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1195113-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.102Z",
+      "name": "role-1195113-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 36,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1174700/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.015Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1174700/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1174700-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.209Z",
+      "name": "role-1174700-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 37,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/937708/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.047Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/937708/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-937708-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.239Z",
+      "name": "role-937708-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 38,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.111Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1193798.body",
+      "bodyBytes": 5025,
+      "bodySHA256": "5ee7ff4776bdc369e6944e420bc8c8078e00aa2f4ecb4752ca07b45e2a355664",
+      "completedAt": "2026-11-06T22:29:40.324Z",
+      "name": "role-1193798.body",
+      "filename": "5ee7ff4776bdc369e6944e420bc8c8078e00aa2f4ecb4752ca07b45e2a355664.gz",
+      "parameters": {
+        "jobUrl": "solution-designer-pune-maharashtra-india-2026101210252059",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1193798
+      }
+    },
+    {
+      "sequence": 39,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167302/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.127Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167302/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1167302-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.310Z",
+      "name": "role-1167302-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 40,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.213Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1192462.body",
+      "bodyBytes": 8369,
+      "bodySHA256": "e3e37a6711d1ce0cd5884769ccfd8d98f8bfe9c8a97cc557f005491bf9340b28",
+      "completedAt": "2026-11-06T22:29:40.443Z",
+      "name": "role-1192462.body",
+      "filename": "e3e37a6711d1ce0cd5884769ccfd8d98f8bfe9c8a97cc557f005491bf9340b28.gz",
+      "parameters": {
+        "jobUrl": "lead-engineer-full-stack-net-pune-maharashtra-india-2026100715082253",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1192462
+      }
+    },
+    {
+      "sequence": 41,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.241Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1192455.body",
+      "bodyBytes": 10028,
+      "bodySHA256": "b2f9f5cd942448320091836059adf5c7b817c198c2b03470fd7879a3892bb9c5",
+      "completedAt": "2026-11-06T22:29:40.469Z",
+      "name": "role-1192455.body",
+      "filename": "b2f9f5cd942448320091836059adf5c7b817c198c2b03470fd7879a3892bb9c5.gz",
+      "parameters": {
+        "jobUrl": "aws-consultant-pune-maharashtra-india-2026100715083755",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1192455
+      }
+    },
+    {
+      "sequence": 42,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.314Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1168003.body",
+      "bodyBytes": 11466,
+      "bodySHA256": "36537c2bbcf16aa0de70eb77d86c1d1d26f874153816e7af8b2624bdb7a1add6",
+      "completedAt": "2026-11-06T22:29:40.544Z",
+      "name": "role-1168003.body",
+      "filename": "36537c2bbcf16aa0de70eb77d86c1d1d26f874153816e7af8b2624bdb7a1add6.gz",
+      "parameters": {
+        "jobUrl": "sdet-software-development-engineer-pune-maharashtra-india-2026082515155820",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1168003
+      }
+    },
+    {
+      "sequence": 43,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1193798/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.326Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1193798/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1193798-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.510Z",
+      "name": "role-1193798-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 44,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1192462/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.447Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1192462/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1192462-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.641Z",
+      "name": "role-1192462-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 45,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1192455/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.474Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1192455/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1192455-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.657Z",
+      "name": "role-1192455-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 46,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.514Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-912414.body",
+      "bodyBytes": 6429,
+      "bodySHA256": "a8776fe1ed07aead0421d381eccd5d34ffc80b6ba34aae21336dfb065f4f4dc6",
+      "completedAt": "2026-11-06T22:29:40.729Z",
+      "name": "role-912414.body",
+      "filename": "a8776fe1ed07aead0421d381eccd5d34ffc80b6ba34aae21336dfb065f4f4dc6.gz",
+      "parameters": {
+        "jobUrl": "senior-software-engineer-pune-maharashtra-india-2026030514512161",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 912414
+      }
+    },
+    {
+      "sequence": 47,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1168003/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.548Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1168003/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1168003-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.736Z",
+      "name": "role-1168003-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 48,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.646Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1167305.body",
+      "bodyBytes": 9647,
+      "bodySHA256": "f2e29f2421516080ba11c50329818dc78400c20f0d7d6af594c5e5d50a2bddd2",
+      "completedAt": "2026-11-06T22:29:40.882Z",
+      "name": "role-1167305.body",
+      "filename": "f2e29f2421516080ba11c50329818dc78400c20f0d7d6af594c5e5d50a2bddd2.gz",
+      "parameters": {
+        "jobUrl": "l3-network-specialist-pune-maharashtra-india-2026082412043253",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1167305
+      }
+    },
+    {
+      "sequence": 49,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.662Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1158588.body",
+      "bodyBytes": 12448,
+      "bodySHA256": "e5c9d54d2ad785b0c463b8a27febbf8112ddea18ced9dcad03f5cce3ebce01b3",
+      "completedAt": "2026-11-06T22:29:40.892Z",
+      "name": "role-1158588.body",
+      "filename": "e5c9d54d2ad785b0c463b8a27febbf8112ddea18ced9dcad03f5cce3ebce01b3.gz",
+      "parameters": {
+        "jobUrl": "senior-automation-engineer-pune-maharashtra-india-2026081214441886",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1158588
+      }
+    },
+    {
+      "sequence": 50,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/912414/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.730Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/912414/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-912414-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:40.922Z",
+      "name": "role-912414-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 51,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.741Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1167035.body",
+      "bodyBytes": 16441,
+      "bodySHA256": "db5559363ac892b329d75ba891e966d264ba9762c212af89fffed75c09be09a7",
+      "completedAt": "2026-11-06T22:29:40.972Z",
+      "name": "role-1167035.body",
+      "filename": "db5559363ac892b329d75ba891e966d264ba9762c212af89fffed75c09be09a7.gz",
+      "parameters": {
+        "jobUrl": "it-service-desk-lead-pune-maharashtra-india-2026082116012744",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1167035
+      }
+    },
+    {
+      "sequence": 52,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167305/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.883Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167305/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1167305-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.086Z",
+      "name": "role-1167305-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 53,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1158588/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.894Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1158588/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1158588-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.079Z",
+      "name": "role-1158588-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 54,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.924Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-933012.body",
+      "bodyBytes": 25376,
+      "bodySHA256": "e6f89a9a7ad4f2bf89e9249bcee50ad9f5d7fa113ba02863c35bc12e97246451",
+      "completedAt": "2026-11-06T22:29:41.138Z",
+      "name": "role-933012.body",
+      "filename": "e6f89a9a7ad4f2bf89e9249bcee50ad9f5d7fa113ba02863c35bc12e97246451.gz",
+      "parameters": {
+        "jobUrl": "full-stack-developer-pune-maharashtra-india-2026042411581477",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 933012
+      }
+    },
+    {
+      "sequence": 55,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167035/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:40.975Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1167035/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1167035-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.167Z",
+      "name": "role-1167035-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 56,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.081Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-933005.body",
+      "bodyBytes": 8393,
+      "bodySHA256": "60253c9dcd57774a58fb5b3660530823fa07e11405e2ad126962dbd1be1d966e",
+      "completedAt": "2026-11-06T22:29:41.283Z",
+      "name": "role-933005.body",
+      "filename": "60253c9dcd57774a58fb5b3660530823fa07e11405e2ad126962dbd1be1d966e.gz",
+      "parameters": {
+        "jobUrl": "full-stack-developer-pune-maharashtra-india-2026042411582432",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 933005
+      }
+    },
+    {
+      "sequence": 57,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.087Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1168978.body",
+      "bodyBytes": 7124,
+      "bodySHA256": "5fd5d56f4606d7d5aaabfb7c4cbae5943701a1b470b224066ae1c36bf8f4747f",
+      "completedAt": "2026-11-06T22:29:41.300Z",
+      "name": "role-1168978.body",
+      "filename": "5fd5d56f4606d7d5aaabfb7c4cbae5943701a1b470b224066ae1c36bf8f4747f.gz",
+      "parameters": {
+        "jobUrl": "customer-service-executive-pune-maharashtra-india-2026082715144928",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1168978
+      }
+    },
+    {
+      "sequence": 58,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/933012/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.140Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/933012/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-933012-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.337Z",
+      "name": "role-933012-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 59,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.170Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1140110.body",
+      "bodyBytes": 14204,
+      "bodySHA256": "f2cf911cda5402da53251e9a50705f5bb7282b9df145b8e1d6a6a7074ed60122",
+      "completedAt": "2026-11-06T22:29:41.374Z",
+      "name": "role-1140110.body",
+      "filename": "f2cf911cda5402da53251e9a50705f5bb7282b9df145b8e1d6a6a7074ed60122.gz",
+      "parameters": {
+        "jobUrl": "systems-lead-pune-maharashtra-india-2026071012043779",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1140110
+      }
+    },
+    {
+      "sequence": 60,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/933005/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.284Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/933005/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-933005-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.472Z",
+      "name": "role-933005-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 61,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1168978/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.302Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1168978/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1168978-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.487Z",
+      "name": "role-1168978-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 62,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.338Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1140107.body",
+      "bodyBytes": 10241,
+      "bodySHA256": "691a34fde7beee0c78c8760a4114c3a50db9329c9f9e3403f0c5833e9c12d3aa",
+      "completedAt": "2026-11-06T22:29:41.554Z",
+      "name": "role-1140107.body",
+      "filename": "691a34fde7beee0c78c8760a4114c3a50db9329c9f9e3403f0c5833e9c12d3aa.gz",
+      "parameters": {
+        "jobUrl": "network-lead-pune-maharashtra-india-2026071012044871",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1140107
+      }
+    },
+    {
+      "sequence": 63,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1140110/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.376Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1140110/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1140110-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.570Z",
+      "name": "role-1140110-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 64,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.474Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1175806.body",
+      "bodyBytes": 14066,
+      "bodySHA256": "72290b5aac99f013bb57a9db30de4194ef4c7b4d5c1e0ef443ea8c62a0193a3b",
+      "completedAt": "2026-11-06T22:29:41.703Z",
+      "name": "role-1175806.body",
+      "filename": "72290b5aac99f013bb57a9db30de4194ef4c7b4d5c1e0ef443ea8c62a0193a3b.gz",
+      "parameters": {
+        "jobUrl": "salesforce-communication-cloud-developer-pune-maharashtra-india-2026090714531484",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1175806
+      }
+    },
+    {
+      "sequence": 65,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.489Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1176759.body",
+      "bodyBytes": 6425,
+      "bodySHA256": "365d880a518b8bbe2bb7d61785bd9edcc5933a17d3e654e63fcd28fc44771bbe",
+      "completedAt": "2026-11-06T22:29:41.699Z",
+      "name": "role-1176759.body",
+      "filename": "365d880a518b8bbe2bb7d61785bd9edcc5933a17d3e654e63fcd28fc44771bbe.gz",
+      "parameters": {
+        "jobUrl": "salesforce-devops-engineer-pune-maharashtra-india-202609101126489",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1176759
+      }
+    },
+    {
+      "sequence": 66,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1140107/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.556Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1140107/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1140107-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.744Z",
+      "name": "role-1140107-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 67,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.572Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-941245.body",
+      "bodyBytes": 8577,
+      "bodySHA256": "ce970c93e76424ecac6cba9544844ca80e4d39ff644b8973c3b474a06e0af43f",
+      "completedAt": "2026-11-06T22:29:41.779Z",
+      "name": "role-941245.body",
+      "filename": "ce970c93e76424ecac6cba9544844ca80e4d39ff644b8973c3b474a06e0af43f.gz",
+      "parameters": {
+        "jobUrl": "senior-software-engineer-pune-maharashtra-india-2026051311573979",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 941245
+      }
+    },
+    {
+      "sequence": 68,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1176759/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.701Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1176759/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1176759-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.897Z",
+      "name": "role-1176759-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 69,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1175806/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.706Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1175806/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1175806-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.890Z",
+      "name": "role-1175806-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 70,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.746Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-949742.body",
+      "bodyBytes": 22703,
+      "bodySHA256": "e36bd7a01c984dfb85000955dd9b92ea0ec86f40760fdabde30253b53e433b68",
+      "completedAt": "2026-11-06T22:29:41.996Z",
+      "name": "role-949742.body",
+      "filename": "e36bd7a01c984dfb85000955dd9b92ea0ec86f40760fdabde30253b53e433b68.gz",
+      "parameters": {
+        "jobUrl": "senior-engineer-salesforce-admin-pune-maharashtra-india-202606021732235",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 949742
+      }
+    },
+    {
+      "sequence": 71,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/941245/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.781Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/941245/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-941245-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:41.988Z",
+      "name": "role-941245-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 72,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.893Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1165922.body",
+      "bodyBytes": 5992,
+      "bodySHA256": "2c3fae38d75eeea1ccf74a7884765109a98a77ec307bbeda76fec721a922a118",
+      "completedAt": "2026-11-06T22:29:42.108Z",
+      "name": "role-1165922.body",
+      "filename": "2c3fae38d75eeea1ccf74a7884765109a98a77ec307bbeda76fec721a922a118.gz",
+      "parameters": {
+        "jobUrl": "senior-software-engineer-pune-maharashtra-india-2026081919402487",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1165922
+      }
+    },
+    {
+      "sequence": 73,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.900Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1148179.body",
+      "bodyBytes": 11307,
+      "bodySHA256": "9333d42f88002f89b78297f19a4533b23c582a323acc0641c9bbd67956644e37",
+      "completedAt": "2026-11-06T22:29:42.115Z",
+      "name": "role-1148179.body",
+      "filename": "9333d42f88002f89b78297f19a4533b23c582a323acc0641c9bbd67956644e37.gz",
+      "parameters": {
+        "jobUrl": "automation-lead-pune-maharashtra-india-2026072812053113",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1148179
+      }
+    },
+    {
+      "sequence": 74,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.991Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-1155212.body",
+      "bodyBytes": 8139,
+      "bodySHA256": "40160ad3883f176be0bbc363960773514bcaa3d3f4d6a9a5e9103275a22de846",
+      "completedAt": "2026-11-06T22:29:42.219Z",
+      "name": "role-1155212.body",
+      "filename": "40160ad3883f176be0bbc363960773514bcaa3d3f4d6a9a5e9103275a22de846.gz",
+      "parameters": {
+        "jobUrl": "senior-software-engineer-pune-maharashtra-india-2026081111194596",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 1155212
+      }
+    },
+    {
+      "sequence": 75,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/949742/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:41.999Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/949742/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-949742-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:42.187Z",
+      "name": "role-949742-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 76,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165922/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:42.111Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1165922/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1165922-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:42.315Z",
+      "name": "role-1165922-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 77,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1148179/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:42.118Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1148179/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1148179-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:42.309Z",
+      "name": "role-1148179-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 78,
+      "url": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "method": "POST",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:42.190Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/jobs-service/v1/jobs/careersite",
+      "contentType": "application/json",
+      "bodyFile": "role-959282.body",
+      "bodyBytes": 4316,
+      "bodySHA256": "85f9e95d994b20230a626a9760d1993ca72ca9fbc93d8a085aa9d38cc3fa7dba",
+      "completedAt": "2026-11-06T22:29:42.400Z",
+      "name": "role-959282.body",
+      "filename": "85f9e95d994b20230a626a9760d1993ca72ca9fbc93d8a085aa9d38cc3fa7dba.gz",
+      "parameters": {
+        "jobUrl": "software-engineer-pune-maharashtra-india-2026062318220990",
+        "externalSource": "CareerSite",
+        "campusUrl": "empty",
+        "companyId": "15955",
+        "jobId": 959282
+      }
+    },
+    {
+      "sequence": 79,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1155212/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:42.222Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/1155212/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-1155212-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:42.408Z",
+      "name": "role-1155212-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    },
+    {
+      "sequence": 80,
+      "url": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/959282/15955",
+      "method": "GET",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (compatible; Jobverify careers inventory check)",
+        "Accept": "application/json"
+      },
+      "credentials": "omit",
+      "redirect": "manual",
+      "requestedAt": "2026-11-06T22:29:42.403Z",
+      "status": 200,
+      "finalURL": "https://public.zwayam.com/requisition_service/getReqFieldsForCareersSite/959282/15955",
+      "contentType": "application/json",
+      "bodyFile": "role-959282-custom.body",
+      "bodyBytes": 84,
+      "bodySHA256": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe",
+      "completedAt": "2026-11-06T22:29:42.597Z",
+      "name": "role-959282-custom.body",
+      "filename": "ca0776dbda55bf2e69e43bd34e617a6288a0f75495cdb9766c57328209eebdfe.gz"
+    }
+  ]
+}

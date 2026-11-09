@@ -1,0 +1,12 @@
+{
+  "listingStrategy": "jobs-api",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "officialCareersUrl": "https://www.coca-colacompany.com/careers",
+  "officialVanityCareersUrl": "https://careers.coca-colacompany.com/",
+  "officialVanityRedirectStatus": 301,
+  "jobsApiUrl": "https://coke.wd1.myworkdayjobs.com/wday/cxs/coke/coca-cola-careers/jobs",
+  "detailUrlBase": "https://coke.wd1.myworkdayjobs.com/coca-cola-careers",
+  "locationCountry": null,
+  "searchText": ""
+}

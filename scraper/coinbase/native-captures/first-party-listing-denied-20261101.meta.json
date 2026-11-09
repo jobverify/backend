@@ -1,0 +1,15 @@
+{
+  "requestedUrl": "https://www.coinbase.com/careers/positions",
+  "finalUrl": "https://www.coinbase.com/careers/positions",
+  "status": 403,
+  "fetchedAt": "2026-11-01T00:06:00.344Z",
+  "bytes": 5681,
+  "sha256": "22f777a54a87f2a31fd33ef3558a3d151ff3ee507b768a7c1980567d49ef9af7",
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "server": "cloudflare",
+    "cf-mitigated": "challenge"
+  },
+  "officialSignal": false,
+  "oldParserJobs": []
+}

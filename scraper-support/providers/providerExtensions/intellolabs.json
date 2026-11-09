@@ -1,0 +1,19 @@
+{
+  "source": "intellolabs",
+  "companyName": "Intello Labs",
+  "adapter": "script",
+  "modulePath": "../intellolabs/script.js",
+  "companyCareerPage": "https://www.intellolabs.com/careers",
+  "atsPlatform": "official-company-site-no-structured-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "none",
+  "extractionStrategy": "verified-exact-name-careers-page-with-unstructured-open-positions-return-empty",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "intellolabs.com",
+  "exactCompanyMatchOnly": true,
+  "verifiedOn": "2026-07-26",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "Verified on July 26, 2026 that https://www.intellolabs.com/careers is the first-party Intello Labs careers page. Its Open Positions section exposes department and location selectors without enumerable public job cards or trusted detail links, so this exact-name provider returns no inferred jobs and fails closed if the verified page contract drifts."
+}

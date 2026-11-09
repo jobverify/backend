@@ -1,0 +1,22 @@
+{
+  "source": "cruise",
+  "companyName": "Cruise",
+  "officialBrandName": "Cruise",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../cruise/script.js",
+  "dryRunFile": "cruise/jobs.json",
+  "companyCareerPage": "https://www.getcruise.com/careers/",
+  "companyDomain": "getcruise.com",
+  "atsPlatform": "first-party-careers-coverage-gap",
+  "countryFilter": "India",
+  "paginationStrategy": "unverified-no-enumerable-native-contract",
+  "extractionStrategy": "bounded-first-party-check+explicit-coverage-gap",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": null,
+  "officialCareersPageUrl": "https://www.getcruise.com/careers/",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedSurfaceSummary": "Cruise careers navigation failed TLS verification on 2026-10-23 (ERR_CERT_DATE_INVALID). No HTTP inventory was captured and no exact-employer native extraction contract was verified. Runtime makes a bounded official careers check and throws an explicit coverage gap; counts remain unknown, and stale-job deletion must not treat this as verified empty. No GM jobs are substituted."
+}

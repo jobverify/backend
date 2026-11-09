@@ -1,0 +1,16 @@
+{
+  "source": "cashfreepayments",
+  "catalogOverride": true,
+  "companyName": "Cashfree Payments",
+  "adapter": "script",
+  "modulePath": "../cashfreepayments/script.js",
+  "companyCareerPage": "https://www.cashfree.com/careers/",
+  "companyDomain": "cashfree.com",
+  "atsPlatform": "kula-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "all-public-api-pages+rendered-board+closing-full-native-models",
+  "extractionStrategy": "current-official-iframe+account1291+same-ID-full-public-criteria+typed-worksite-country",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedSurfaceSummary": "Current corporate careers page embeds the public Cashfree Kula board. Runtime validates account1291 and employer identity, all anonymous public API pages/counts against rendered account models and observed public role URLs, full original criteria, explicit worksite countries and original dates. Closing corporate/board/API full models reconcile; missing countries, criteria conflicts and caps remain partial. No private application session is needed. Scope covers this declared first-party board; company-wide channels remain unknown."
+}

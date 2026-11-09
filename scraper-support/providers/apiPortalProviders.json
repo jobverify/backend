@@ -1,0 +1,2571 @@
+[
+  {
+    "source": "atlassian",
+    "companyName": "Atlassian",
+    "companyCareerPage": "https://www.atlassian.com/company/careers/all-jobs",
+    "countryFilter": "India",
+    "atsPlatform": "icims",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "atlassian",
+    "templateOptions": {
+      "locationPattern": "india|bengaluru|bangalore|pune|hyderabad|mumbai|gurgaon|gurugram|chennai|delhi|noida|remote - india"
+    }
+  },
+  {
+    "source": "bazaarvoice",
+    "companyName": "Bazaarvoice",
+    "companyCareerPage": "https://www.bazaarvoice.com/company/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "lever",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "lever",
+    "templateOptions": {
+      "boardToken": "bazaarvoice",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurgaon|gurugram|noida|chennai"
+    }
+  },
+  {
+    "source": "bristolmyerssquibb",
+    "companyName": "Bristol Myers Squibb",
+    "companyCareerPage": "https://jobs.bms.com/careers?location=india",
+    "companyDomain": "jobs.bms.com",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.bms.com",
+      "domain": "bms.com",
+      "location": "India",
+      "locationPattern": "india|hyderabad|mumbai|delhi|bangalore|bengaluru|pune|chennai|gurgaon|gurugram|remote"
+    }
+  },
+  {
+    "source": "amd",
+    "companyName": "AMD",
+    "companyCareerPage": "https://careers.amd.com/careers-home/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "jibe",
+    "paginationStrategy": "page-number",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://careers.amd.com/careers-home/jobs",
+        "listingApiUrl": "https://careers.amd.com/api/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "country": "India",
+          "limit": "100"
+        }
+      },
+      "pagination": {
+        "strategy": "page-number",
+        "pageParam": "page",
+        "pageSize": 100,
+        "resultsPath": "jobs",
+        "totalCountPath": "count"
+      },
+      "mapping": {
+        "title": "data.title",
+        "location": "data.full_location",
+        "jobId": "data.slug",
+        "requisitionId": "data.req_id",
+        "sourceUrl": "data.apply_url",
+        "applyUrl": "data.apply_url",
+        "department": "data.department",
+        "employmentType": "data.employment_type",
+        "jobDescription": "data.description",
+        "minimumQualification": "data.qualifications",
+        "preferredQualification": "data.responsibilities",
+        "postingDate": "data.posted_date"
+      }
+    }
+  },
+  {
+    "source": "arista",
+    "companyName": "Arista Networks",
+    "scraperTimeoutMs": 600000,
+    "companyCareerPage": "https://www.arista.com/en/careers",
+    "countryFilter": "India",
+    "atsPlatform": "smartrecruiters",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.arista.com/en/careers",
+        "listingApiUrl": "https://api.smartrecruiters.com/v1/companies/AristaNetworks/postings"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "limit": "100"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 100,
+        "offsetParam": "offset",
+        "limitParam": "limit",
+        "resultsPath": "content",
+        "totalCountPath": "totalFound"
+      },
+      "mapping": {
+        "title": "name",
+        "location": "location.fullLocation",
+        "jobId": "id",
+        "requisitionId": "refNumber",
+        "sourceUrl": "postingUrl",
+        "applyUrl": "applyUrl",
+        "department": "department.label",
+        "employmentType": "typeOfEmployment.label",
+        "experienceLevel": "experienceLevel.label",
+        "postingDate": "releasedDate"
+      },
+      "detail": {
+        "enabled": true,
+        "concurrency": 5,
+        "urlTemplate": "https://api.smartrecruiters.com/v1/companies/AristaNetworks/postings/{{jobId}}",
+        "method": "GET",
+        "mapping": {
+          "jobDescription": "jobAd.sections.jobDescription.text",
+          "minimumQualification": "jobAd.sections.qualifications.text",
+          "preferredQualification": "jobAd.sections.additionalInformation.text"
+        }
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "astrazeneca",
+    "companyName": "AstraZeneca",
+    "companyCareerPage": "https://careers.astrazeneca.com/",
+    "companyDomain": "astrazeneca.com",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "astrazeneca.eightfold.ai",
+      "domain": "astrazeneca.com",
+      "location": "India",
+      "locationPattern": "india|mumbai|bangalore|bengaluru|hyderabad|pune|chennai|gurugram|gurgaon|kolkata|remote"
+    }
+  },
+  {
+    "source": "allegis",
+    "companyName": "Allegis Global Solutions",
+    "companyCareerPage": "https://www.allegisglobalsolutions.com/en/about-us/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "smartrecruiters",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "smartrecruiters",
+    "templateOptions": {
+      "companySlug": "AllegisGlobalSolutions",
+      "limit": 10,
+      "locationPattern": "\\bIndia\\b"
+    },
+    "config": {
+      "request": {
+        "query": {
+          "country": "in"
+        }
+      }
+    }
+  },
+  {
+    "source": "amagi",
+    "companyName": "Amagi",
+    "companyCareerPage": "https://www.amagi.com/careers/open-roles",
+    "countryFilter": "India",
+    "atsPlatform": "mynexthire",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.amagi.com/careers/open-roles",
+        "listingApiUrl": "https://amagi.mynexthire.com/employer/careers/reqlist/get"
+      },
+      "request": {
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "source": "careers",
+          "code": "",
+          "filterByBuId": -1
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "reqDetailsBOList",
+        "hasMorePath": "hasMore"
+      },
+      "mapping": {
+        "title": "reqTitle",
+        "location": {
+          "strategy": "template",
+          "template": "{{city}}, {{country}}",
+          "values": {
+            "city": "location",
+            "country": "locationGroup.0"
+          }
+        },
+        "jobId": "reqId",
+        "requisitionId": "reqId",
+        "sourceUrl": {
+          "strategy": "mynexthire-link",
+          "baseUrl": "https://amagi.mynexthire.com/employer/jobs/careers",
+          "pageType": "jd",
+          "cvSource": "careers",
+          "reqIdPath": "reqId"
+        },
+        "applyUrl": {
+          "strategy": "mynexthire-link",
+          "baseUrl": "https://amagi.mynexthire.com/employer/jobs/careers/apply",
+          "pageType": "application",
+          "cvSource": "careers",
+          "reqIdPath": "reqId"
+        },
+        "department": "buName",
+        "employmentType": {
+          "path": "employmentType",
+          "valueMap": {
+            "full-time": "Full-time",
+            "contract": "Contract",
+            "intern": "Internship"
+          }
+        },
+        "experienceLevel": {
+          "path": "fresher",
+          "valueMap": {
+            "true": "Entry Level",
+            "false": "Mid Level"
+          }
+        },
+        "jobDescription": "jdDisplay",
+        "postingDate": "approvedOn"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "atkinsrealis",
+    "companyName": "AtkinsRéalis",
+    "companyCareerPage": "https://careers.atkinsrealis.com/en/jobs?location=india",
+    "countryFilter": "India",
+    "atsPlatform": "connectid-jobs-api",
+    "paginationStrategy": "page-number",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "auth": {
+        "strategy": "bearer-token-endpoint",
+        "tokenUrl": "https://atkinsats-prod-api.connectid.cloud/api/jobs/token",
+        "authorizedOrigins": [
+          "https://atkinsats-prod-api.connectid.cloud"
+        ]
+      },
+      "discovery": {
+        "careerPageUrl": "https://careers.atkinsrealis.com/en/jobs?location=india",
+        "listingApiUrl": "https://atkinsats-prod-api.connectid.cloud/api/jobs/jobs"
+      },
+      "request": {
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "limit": 100,
+          "language": "en",
+          "country": "India",
+          "is_early_careers": false
+        }
+      },
+      "pagination": {
+        "strategy": "page-number",
+        "pageParam": "page",
+        "pageParamLocation": "body",
+        "pageSize": 100,
+        "resultsPath": "jobs",
+        "totalCountPath": "meta.totalCount"
+      },
+      "mapping": {
+        "title": "job_posting_title",
+        "location": {
+          "strategy": "template",
+          "template": "{{city}}, {{region}}, {{country}}",
+          "values": {
+            "city": {
+              "path": "locations",
+              "find": {
+                "key": "country",
+                "value": "India"
+              },
+              "valuePath": "city"
+            },
+            "region": {
+              "path": "locations",
+              "find": {
+                "key": "country",
+                "value": "India"
+              },
+              "valuePath": "region"
+            },
+            "country": {
+              "path": "locations",
+              "find": {
+                "key": "country",
+                "value": "India"
+              },
+              "valuePath": "country"
+            }
+          }
+        },
+        "jobId": "id",
+        "requisitionId": "job_requisition_id",
+        "sourceUrl": "external_posting_url",
+        "applyUrl": "external_posting_url",
+        "department": "job_area",
+        "employmentType": {
+          "path": "time_type",
+          "valueMap": {
+            "Full time": "Full-time",
+            "Part time": null
+          }
+        },
+        "postingDate": "created_at",
+        "jobDescription": "job_description",
+        "minimumQualification": "person_requirements",
+        "remoteStatus": {
+          "path": "is_remote",
+          "valueMap": {
+            "true": "Remote",
+            "false": "On-site"
+          }
+        }
+      }
+    }
+  },
+  {
+    "source": "cloudflare",
+    "companyName": "Cloudflare",
+    "companyCareerPage": "https://www.cloudflare.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.cloudflare.com/careers/",
+        "listingApiUrl": "https://boards-api.greenhouse.io/v1/boards/cloudflare/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "content": "true"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs",
+        "totalCountPath": "meta.total"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location.name",
+        "jobId": "id",
+        "applyUrl": "absolute_url",
+        "department": "departments.0.name",
+        "jobDescription": "content",
+        "postingDate": "first_published"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "\\bindia\\b"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "cloudsek",
+    "companyName": "CloudSEK",
+    "companyCareerPage": "https://www.cloudsek.com/openings",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "cloudsek",
+      "locationPattern": "india|bengaluru|bangalore|pune|mumbai|hyderabad|gurugram|gurgaon|noida|delhi|remote"
+    }
+  },
+  {
+    "source": "cred",
+    "companyName": "CRED",
+    "companyCareerPage": "https://careers.cred.club/",
+    "countryFilter": "India",
+    "atsPlatform": "lever",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://careers.cred.club/",
+        "listingApiUrl": "https://api.lever.co/v0/postings/cred"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "mode": "json"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page"
+      },
+      "mapping": {
+        "title": "text",
+        "location": "categories.location",
+        "jobId": "id",
+        "requisitionId": "id",
+        "applyUrl": "applyUrl",
+        "sourceUrl": "hostedUrl",
+        "department": "categories.department",
+        "employmentType": {
+          "path": "categories",
+          "valuePath": "commitment",
+          "valueMap": {
+            "full time": "Full-time",
+            "contract": "Contract",
+            "intern": "Internship"
+          }
+        },
+        "jobDescription": "descriptionBodyPlain",
+        "postingDate": "createdAt"
+      }
+    }
+  },
+  {
+    "source": "databricks",
+    "companyName": "Databricks",
+    "companyCareerPage": "https://www.databricks.com/company/careers",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.databricks.com/company/careers",
+        "listingApiUrl": "https://boards-api.greenhouse.io/v1/boards/databricks/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "content": "true"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs",
+        "hasMorePath": "hasMore"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location.name",
+        "jobId": "id",
+        "requisitionId": "requisition_id",
+        "applyUrl": "absolute_url",
+        "department": "departments.0.name",
+        "jobDescription": "content",
+        "postingDate": "first_published"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "razorpay",
+    "companyName": "Razorpay",
+    "companyCareerPage": "https://razorpay.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://razorpay.com/careers/",
+        "listingApiUrl": "https://boards-api.greenhouse.io/v1/boards/razorpaysoftwareprivatelimited/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "content": "true"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs",
+        "hasMorePath": "hasMore"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location.name",
+        "jobId": "id",
+        "applyUrl": "absolute_url",
+        "department": "departments.0.name",
+        "jobDescription": "content",
+        "postingDate": "first_published"
+      }
+    }
+  },
+  {
+    "source": "freshworks",
+    "companyName": "Freshworks",
+    "companyCareerPage": "https://www.freshworks.com/company/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "smartrecruiters",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.freshworks.com/company/careers/",
+        "listingApiUrl": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "limit": "100"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 100,
+        "offsetParam": "offset",
+        "limitParam": "limit",
+        "resultsPath": "content",
+        "hasMorePath": "nextPageId"
+      },
+      "mapping": {
+        "title": "name",
+        "location": "location.city",
+        "jobId": "id",
+        "applyUrl": "ref",
+        "department": "department.label",
+        "employmentType": "typeOfEmployment.label"
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://api.smartrecruiters.com/v1/companies/Freshworks/postings/{{jobId}}",
+        "method": "GET",
+        "mapping": {
+          "jobDescription": "jobAd.sections.jobDescription.text",
+          "minimumQualification": "jobAd.sections.qualifications.text",
+          "preferredQualification": "jobAd.sections.additionalInformation.text"
+        }
+      }
+    }
+  },
+  {
+    "source": "servicenow",
+    "companyName": "ServiceNow",
+    "companyCareerPage": "https://careers.servicenow.com/jobs/",
+    "countryFilter": "India",
+    "atsPlatform": "smartrecruiters",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "smartrecruiters",
+    "templateOptions": {
+      "companySlug": "ServiceNow",
+      "limit": 10,
+      "locationPattern": "india|hyderabad|bangalore|bengaluru|mumbai|pune|delhi|chennai|gurugram|gurgaon|remote"
+    },
+    "config": {
+      "request": {
+        "query": {
+          "country": "in"
+        }
+      }
+    }
+  },
+  {
+    "source": "github",
+    "companyName": "GitHub",
+    "companyCareerPage": "https://www.github.careers/careers-home",
+    "countryFilter": "India",
+    "atsPlatform": "official-company-careers",
+    "paginationStrategy": "page-number",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.github.careers/careers-home",
+        "listingApiUrl": "https://www.github.careers/api/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "location": "India"
+        }
+      },
+      "pagination": {
+        "strategy": "page-number",
+        "pageParam": "page",
+        "pageSize": 10,
+        "resultsPath": "jobs",
+        "totalCountPath": "totalCount"
+      },
+      "mapping": {
+        "title": "data.title",
+        "location": "data.location_name",
+        "jobId": "data.slug",
+        "requisitionId": "data.req_id",
+        "applyUrl": "data.apply_url",
+        "department": "data.categories.0.name",
+        "employmentType": "data.employment_type",
+        "minimumQualification": "data.qualifications",
+        "jobDescription": "data.description",
+        "postingDate": "data.posted_date"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "materialize",
+    "companyName": "Materialize",
+    "companyCareerPage": "https://materialize.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "ashby",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "verified-first-party-careers-page+public-ashby-board+public-ashby-get-feed+india-location-filter",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "ashbyPublicBoardUrl": "https://jobs.ashbyhq.com/materialize",
+    "ashbyJobBoardUrl": "https://api.ashbyhq.com/posting-api/job-board/materialize",
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://materialize.com/careers/ was the live first-party Materialize careers page and publicly listed openings including Senior / Staff Software Engineer (Database) and Field Engineer in New York. Verified that the public Ashby board at https://jobs.ashbyhq.com/materialize and the companion public GET feed at https://api.ashbyhq.com/posting-api/job-board/materialize were live and exposed listed roles including Senior / Staff Software Engineer (Database), Field Engineer, Senior Marketing Manager, and Enterprise Account Executive. The verified public board showed New York and remote-US openings only, with zero India openings on the verified date.",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://materialize.com/careers/",
+        "listingApiUrl": "https://api.ashbyhq.com/posting-api/job-board/materialize"
+      },
+      "request": {
+        "method": "GET"
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs"
+      },
+      "mapping": {
+        "title": "title",
+        "location": [
+          "secondaryLocations.0.address.postalAddress.addressLocality",
+          "secondaryLocations.0.location",
+          "address.postalAddress.addressLocality",
+          "address.postalAddress.addressCountry",
+          "location"
+        ],
+        "jobId": "id",
+        "requisitionId": "id",
+        "sourceUrl": "jobUrl",
+        "applyUrl": "applyUrl",
+        "department": "department",
+        "employmentType": {
+          "path": "employmentType",
+          "valueMap": {
+            "FullTime": "Full-time",
+            "PartTime": "Part-time",
+            "Contract": "Contract",
+            "Internship": "Internship"
+          }
+        },
+        "jobDescription": "descriptionPlain",
+        "postingDate": "publishedAt",
+        "remoteStatus": [
+          {
+            "path": "isRemote",
+            "valueMap": {
+              "true": "Remote",
+              "false": null
+            }
+          },
+          {
+            "path": "workplaceType",
+            "valueMap": {
+              "Hybrid": "Hybrid",
+              "Remote": "Remote",
+              "OnSite": "On-site",
+              "Onsite": "On-site"
+            }
+          }
+        ]
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurugram|gurgaon|noida|delhi|chennai|kolkata|ahmedabad|trivandrum|kochi"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "meesho",
+    "companyName": "Meesho",
+    "companyCareerPage": "https://www.meesho.io/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "lever",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.meesho.io/jobs",
+        "listingApiUrl": "https://api.lever.co/v0/postings/meesho"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "mode": "json"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page"
+      },
+      "mapping": {
+        "title": "text",
+        "location": "categories.location",
+        "jobId": "id",
+        "requisitionId": "id",
+        "applyUrl": "applyUrl",
+        "sourceUrl": "hostedUrl",
+        "department": "categories.department",
+        "employmentType": "categories.commitment",
+        "jobDescription": "descriptionBodyPlain",
+        "postingDate": "createdAt"
+      }
+    }
+  },
+  {
+    "source": "mongodb",
+    "companyName": "MongoDB",
+    "companyCareerPage": "https://www.mongodb.com/company/careers/see-jobs",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.mongodb.com/company/careers/see-jobs",
+        "listingApiUrl": "https://boards-api.greenhouse.io/v1/boards/mongodb/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "content": "true"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs",
+        "hasMorePath": "hasMore"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location.name",
+        "jobId": "id",
+        "requisitionId": "requisition_id",
+        "applyUrl": "absolute_url",
+        "department": "departments.0.name",
+        "employmentType": {
+          "path": "metadata",
+          "find": {
+            "key": "name",
+            "value": "Employment Type"
+          },
+          "valuePath": "value"
+        },
+        "jobDescription": "content",
+        "postingDate": "first_published"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india|bengaluru|bangalore|gurugram|gurgaon|mumbai|pune|hyderabad|chennai|noida"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "gitlab",
+    "companyName": "GitLab",
+    "companyCareerPage": "https://about.gitlab.com/jobs/all-jobs/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://about.gitlab.com/jobs/all-jobs/",
+        "listingApiUrl": "https://boards-api.greenhouse.io/v1/boards/gitlabcrm/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "content": "true"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs",
+        "hasMorePath": "hasMore"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location.name",
+        "jobId": "id",
+        "applyUrl": "absolute_url",
+        "department": "departments.0.name",
+        "jobDescription": "content",
+        "postingDate": "updated_at"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "grafanalabs",
+    "companyName": "Grafana Labs",
+    "companyCareerPage": "https://grafana.com/careers/",
+    "countryFilter": "India",
+    "companyDomain": "grafana.com",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "grafanalabs",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurugram|gurgaon|noida|delhi|chennai|remote india"
+    },
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://grafana.com/careers/ is the live first-party Grafana Labs careers page, that it visibly promotes \"Explore open roles\", and that it hands candidates to the official Greenhouse board at https://job-boards.greenhouse.io/grafanalabs. The public Greenhouse jobs API at https://boards-api.greenhouse.io/v1/boards/grafanalabs/jobs?content=true was reachable and returned 131 live Grafana Labs openings on the verified date, but none matched India location signals; the only APAC listings observed were Japan (Remote) and Singapore (Remote). This provider therefore uses the trusted first-party Greenhouse feed and currently returns a verified zero-openings result for India."
+  },
+  {
+    "source": "groww",
+    "companyName": "Groww",
+    "companyCareerPage": "https://job-boards.eu.greenhouse.io/groww",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "groww",
+      "locationPattern": "india|bengaluru|bangalore|mumbai|gift city"
+    }
+  },
+  {
+    "source": "armada",
+    "companyName": "Armada",
+    "companyCareerPage": "https://www.armada.ai/careers",
+    "companyDomain": "armada.ai",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "armada",
+      "locationPattern": "india|bengaluru|bangalore|pune|hyderabad|gurgaon|gurugram|mumbai|chennai|noida|delhi"
+    }
+  },
+  {
+    "source": "arcadia",
+    "companyName": "Arcadia",
+    "companyCareerPage": "https://www.arcadia.com/careers",
+    "companyDomain": "arcadia.com",
+    "countryFilter": "India",
+    "atsPlatform": "official-company-careers-rippling-api",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "verified-first-party-careers-page+first-party-rippling-jobs-api+india-location-filter",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "verifiedSurfaceSummary": "Verified on Thursday, September 3, 2026 that https://www.arcadia.com/careers is the live first-party careers page and it loads current openings from https://www.arcadia.com/api/rippling-jobs. The first-party feed exposes public Arcadia Rippling detail URLs and current Chennai, India roles.",
+    "config": {
+      "request": {
+        "method": "GET"
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "items"
+      },
+      "mapping": {
+        "title": "name",
+        "location": "locations.0.name",
+        "jobId": "id",
+        "requisitionId": "id",
+        "sourceUrl": "url",
+        "applyUrl": "url",
+        "department": "department.name"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india|bengaluru|bangalore|pune|hyderabad|gurgaon|gurugram|mumbai|chennai|noida|delhi"
+          }
+        ]
+      },
+      "discovery": {
+        "listingApiUrl": "https://www.arcadia.com/api/rippling-jobs"
+      }
+    }
+  },
+  {
+    "source": "celigo",
+    "companyName": "Celigo",
+    "companyCareerPage": "https://www.celigo.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "celigo",
+      "locationPattern": "india|hyderabad|bengaluru|bangalore|pune|chennai|mumbai|gurgaon|gurugram|noida|delhi|remote"
+    }
+  },
+  {
+    "source": "phonepe",
+    "companyName": "PhonePe",
+    "companyCareerPage": "https://www.phonepe.com/careers/job-openings/",
+    "countryFilter": "India",
+    "atsPlatform": "phonepe-first-party-json",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.phonepe.com/careers/job-openings/",
+        "listingApiUrl": "https://www.phonepe.com/apollo/job-postings/latest.json"
+      },
+      "request": {
+        "method": "GET",
+        "query": {}
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "results",
+        "totalCountPath": "totalCount"
+      },
+      "recordFilter": {
+        "include": [
+          { "field": "status", "pattern": "^PUBLIC$" }
+        ]
+      },
+      "detail": {
+        "enabled": true,
+        "required": false,
+        "strategy": "smartrecruiters-public-posting",
+        "expectedCompany": "PHONEPELIMITED",
+        "expectedCountry": "in",
+        "locationPath": "location",
+        "publicUrlPath": "applyUrl",
+        "concurrency": 3,
+        "mapping": {
+          "jobDescription": "jobDescription",
+          "minimumQualification": "minimumQualification"
+        }
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location",
+        "jobId": "applyUrl",
+        "requisitionId": "applyUrl",
+        "sourceUrl": "applyUrl",
+        "applyUrl": "applyUrl",
+        "department": "department",
+        "employmentType": "type",
+        "postingDate": "updatedAt"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "applyUrl",
+            "pattern": "^https://jobs\\.smartrecruiters\\.com/PHONEPELIMITED/"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "postman",
+    "companyName": "Postman",
+    "companyCareerPage": "https://www.postman.com/company/careers/open-positions/",
+    "countryFilter": "India",
+    "atsPlatform": "workday",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "verified-first-party-careers-cache",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "verifiedOn": "2026-10-03",
+    "verifiedPublicJobCount": 35,
+    "verifiedIndiaJobCount": 11,
+    "verifiedSurfaceSummary": "Verified on October 3, 2026 that Postman's official open positions page loads its first-party careers-jobs.json cache, which reports 35 Workday-backed openings and 11 India openings. Sample India Workday detail links opened successfully. The cache exposes a total count and source marker that the scraper validates before publishing roles.",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.postman.com/company/careers/open-positions/",
+        "listingApiUrl": "https://www.postman.com/_mk-www-next/api-cache/careers-jobs.json"
+      },
+      "request": {
+        "method": "GET"
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location",
+        "jobId": "id",
+        "requisitionId": "id",
+        "sourceUrl": "url",
+        "applyUrl": "url",
+        "department": "department",
+        "jobDescription": "description",
+        "postingDate": "updated_at"
+      },
+      "inventoryValidation": {
+        "minRecords": 1,
+        "totalCountPath": "meta.total",
+        "sourcePath": "meta.source",
+        "expectedSource": "workday_cxs",
+        "requiredFields": ["id", "title", "url", "location", "department"],
+        "uniqueField": "id",
+        "urlField": "url",
+        "allowedUrlOrigin": "https://postman.wd108.myworkdayjobs.com",
+        "urlPathPrefix": "/careers/job/"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "planetscale",
+    "companyName": "PlanetScale",
+    "companyCareerPage": "https://planetscale.com/careers",
+    "countryFilter": "India",
+    "companyDomain": "planetscale.com",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "planetscale",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurugram|gurgaon|noida|delhi|chennai|remote india|remote - india"
+    },
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://planetscale.com/careers was the live first-party PlanetScale careers page, that its Current openings section linked candidates to the official Greenhouse board under https://job-boards.greenhouse.io/planetscale, and that the public Greenhouse jobs API at https://boards-api.greenhouse.io/v1/boards/planetscale/jobs?content=true was the trusted machine-readable source for those openings. The verified first-party page listed roles including Software Engineer - PlanetScale Postgres (Remote), Solutions Engineer (Remote - EMEA, Remote - NA), and Enterprise Support Engineer (Remote - NA, APAC, EMEA), with zero India openings on the verified date."
+  },
+  {
+    "source": "qualcomm",
+    "companyName": "Qualcomm",
+    "companyCareerPage": "https://careers.qualcomm.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "dryRunEnrichPublicExperience": false,
+    "scraperTimeoutMs": 900000,
+    "config": {
+      "rateLimit": {
+        "minimumIntervalMs": 1000,
+        "maxRetries": 2,
+        "baseDelayMs": 5000,
+        "maxDelayMs": 30000
+      },
+      "discovery": {
+        "careerPageUrl": "https://careers.qualcomm.com/careers",
+        "listingApiUrl": "https://careers.qualcomm.com/api/pcsx/search"
+      },
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.qualcomm.com/careers?domain=qualcomm.com",
+          "Origin": "https://careers.qualcomm.com"
+        },
+        "query": {
+          "domain": "qualcomm.com",
+          "query": "",
+          "location": "India",
+          "sort_by": "timestamp"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "traversalMode": "staged-snapshot",
+        "pageSize": 10,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": { "strategy": "eightfold-location" },
+        "country": { "strategy": "eightfold-country" },
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": "positionUrl",
+        "applyUrl": "positionUrl",
+        "department": "department",
+        "postingDate": "postedTs"
+      },
+      "detail": {
+        "enabled": true,
+        "requireListingIdentity": true,
+        "concurrency": 2,
+        "urlTemplate": "https://careers.qualcomm.com/api/pcsx/position_details?position_id={{jobId}}&domain=qualcomm.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.qualcomm.com/careers?domain=qualcomm.com",
+          "Origin": "https://careers.qualcomm.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        }
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "country",
+            "pattern": "^India$"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "stripe",
+    "companyName": "Stripe",
+    "companyCareerPage": "https://stripe.com/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://stripe.com/jobs",
+        "listingApiUrl": "https://boards-api.greenhouse.io/v1/boards/stripe/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "content": "true"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs",
+        "hasMorePath": "hasMore"
+      },
+      "mapping": {
+        "title": "title",
+        "location": "location.name",
+        "jobId": "id",
+        "requisitionId": "requisition_id",
+        "applyUrl": "absolute_url",
+        "department": "departments.0.name",
+        "jobDescription": "content",
+        "postingDate": "first_published"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india|bengaluru|bangalore|mumbai|pune|hyderabad|chennai|gurugram|noida"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "thoughtworks",
+    "companyName": "Thoughtworks",
+    "companyCareerPage": "https://www.thoughtworks.com/careers/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "thoughtworks",
+      "locationPattern": "india|bengaluru|bangalore|pune|chennai|hyderabad|gurgaon|gurugram|noida|delhi|mumbai|remote"
+    }
+  },
+  {
+    "source": "twilio",
+    "companyName": "Twilio",
+    "companyCareerPage": "https://jobs.twilio.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "official-company-careers",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://jobs.twilio.com/careers",
+        "listingApiUrl": "https://jobs.twilio.com/api/pcsx/search"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "domain": "twilio.com",
+          "query": "",
+          "location": "India",
+          "start": "0"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "data.positions",
+        "hasMorePath": "data.hasMore"
+      },
+      "mapping": {
+        "title": "name",
+        "location": "locations.0",
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "department": "department",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "postingDate": {
+          "path": "data",
+          "valuePath": "efcustomTextPostDate"
+        }
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://jobs.twilio.com/api/pcsx/position_details?position_id={{jobId}}&domain=twilio.com&hl=en",
+        "method": "GET",
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        }
+      }
+    }
+  },
+  {
+    "source": "microsoft",
+    "companyName": "Microsoft",
+    "companyCareerPage": "https://careers.microsoft.com",
+    "verifiedOn": "2026-10-03",
+    "verifiedSurfaceSummary": "Verified on October 3, 2026 that the official Microsoft India careers search at https://apply.careers.microsoft.com/api/pcsx/search remains public. Its India query reports 231 positions and returns at most 10 records per request even when the requested limit is 50, so this provider advances in 10-record pages and retries temporary HTTP 429 responses.",
+    "scraperTimeoutMs": 720000,
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "apply.careers.microsoft.com",
+      "domain": "microsoft.com",
+      "pageSize": 10
+    },
+    "config": {
+      "rateLimit": {
+        "minimumIntervalMs": 500,
+        "maxRetries": 5,
+        "baseDelayMs": 2000,
+        "maxDelayMs": 30000
+      },
+      "mapping": {
+        "location": [
+          "standardizedLocations.1",
+          "locations.0"
+        ],
+        "employmentType": {
+          "path": "data",
+          "valuePath": "efcustomTextEmploymentType.0",
+          "valueMap": {
+            "Full-Time": "Full-time",
+            "Internship": "Internship",
+            "Temp/Contract": "Contract",
+            "Post Doc Research": "Contract"
+          }
+        }
+      },
+      "detail": {
+        "urlTemplate": "https://apply.careers.microsoft.com/api/pcsx/position_details?position_id={{jobId}}&domain=microsoft.com&hl=en&queried_location=India"
+      }
+    }
+  },
+  {
+    "source": "morganstanley",
+    "companyName": "Morgan Stanley",
+    "companyCareerPage": "https://www.morganstanley.com/careers/career-opportunities-search",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "morganstanley.eightfold.ai",
+      "domain": "morganstanley.com",
+      "location": "India",
+      "locationPattern": "india|mumbai|bengaluru|bangalore|remote"
+    },
+    "config": {
+      "mapping": {
+        "employmentType": {
+          "path": "data",
+          "valuePath": "efcustomTextTextTimeType.0",
+          "valueMap": {
+            "Full time": "Full-time",
+            "Part time": null
+          }
+        },
+        "remoteStatus": {
+          "path": "data",
+          "valuePath": "workLocationOption",
+          "valueMap": {
+            "hybrid": "Hybrid",
+            "onsite": "On-site",
+            "remote": "Remote"
+          }
+        }
+      }
+    }
+  },
+  {
+    "source": "amdocs",
+    "companyName": "Amdocs",
+    "companyCareerPage": "https://jobs.amdocs.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.amdocs.com",
+      "domain": "amdocs.com"
+    }
+  },
+  {
+    "source": "appviewx",
+    "companyName": "AppViewX",
+    "companyCareerPage": "https://www.appviewx.com/company/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "appviewx",
+      "locationPattern": "india|bangalore|bengaluru|coimbatore|chennai|hyderabad|pune|gurgaon|gurugram|mumbai|remote"
+    }
+  },
+  {
+    "source": "devrev",
+    "companyName": "DevRev",
+    "companyCareerPage": "https://devrev.ai/careers",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "devrev",
+      "locationPattern": "india|bengaluru|bangalore|chennai|hyderabad|mumbai|delhi|gurgaon|gurugram|noida|pune"
+    }
+  },
+  {
+    "source": "mitsogo",
+    "companyName": "Mitsogo Inc",
+    "companyCareerPage": "https://www.mitsogo.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "mitsogoinc",
+      "locationPattern": "india|delhi|chennai|kochi|bengaluru|bangalore"
+    }
+  },
+  {
+    "source": "cambridgemobiletelematics",
+    "companyName": "Cambridge Mobile Telematics",
+    "companyCareerPage": "https://www.cmtelematics.com/career-1-77/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "cambridgemobiletelematics",
+      "locationPattern": "india|chennai"
+    }
+  },
+  {
+    "source": "appliedmaterials",
+    "companyName": "Applied Materials",
+    "companyCareerPage": "https://careers.appliedmaterials.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "careers.appliedmaterials.com",
+      "domain": "appliedmaterials.com"
+    }
+  },
+  {
+    "source": "paypal",
+    "companyName": "PayPal",
+    "companyCareerPage": "https://careers.pypl.com/home/",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "paypal.eightfold.ai",
+      "domain": "paypal.com",
+      "locationPattern": "india|bengaluru|bangalore|chennai|mumbai|hyderabad|pune|remote"
+    }
+  },
+  {
+    "source": "aptean",
+    "companyName": "Aptean",
+    "companyCareerPage": "https://careers.aptean.com/jobs?country=India",
+    "countryFilter": "India",
+    "atsPlatform": "jibe",
+    "paginationStrategy": "page-number",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://careers.aptean.com/jobs?country=India",
+        "listingApiUrl": "https://careers.aptean.com/api/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "country": "India",
+          "internal": "false",
+          "separator": "%7C",
+          "facetField": "country%7Ctags3%7Ctags4"
+        }
+      },
+      "pagination": {
+        "strategy": "page-number",
+        "pageParam": "page",
+        "pageSize": 10,
+        "resultsPath": "jobs",
+        "totalCountPath": "totalCount"
+      },
+      "mapping": {
+        "title": "data.title",
+        "location": [
+          "data.full_location",
+          "data.location_name"
+        ],
+        "jobId": "data.slug",
+        "requisitionId": "data.req_id",
+        "sourceUrl": "data.apply_url",
+        "applyUrl": "data.apply_url",
+        "department": "data.department",
+        "employmentType": {
+          "path": "data",
+          "valuePath": "employment_type",
+          "valueMap": {
+            "FULL_TIME": "Full-time",
+            "PART_TIME": null,
+            "CONTRACT": "Contract",
+            "TEMPORARY": "Contract",
+            "INTERN": "Internship",
+            "INTERNSHIP": "Internship"
+          }
+        },
+        "experienceRequired": "data.tags3.0",
+        "jobDescription": "data.description",
+        "postingDate": "data.posted_date"
+      }
+    }
+  },
+  {
+    "source": "ericsson",
+    "companyName": "Ericsson",
+    "companyCareerPage": "https://jobs.ericsson.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.ericsson.com",
+      "domain": "ericsson.com",
+      "locationPath": "locations.0",
+      "locationPattern": "india|bengaluru|bangalore|chennai|hyderabad|gurgaon|gurugram|noida|pune|kolkata|mumbai"
+    }
+  },
+  {
+    "source": "eaton",
+    "companyName": "Eaton Corporation",
+    "companyCareerPage": "https://jobs.eaton.com/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "eaton.eightfold.ai",
+      "domain": "eaton.com",
+      "locationPath": [
+        "standardizedLocations.0",
+        "locations.0"
+      ],
+      "locationPattern": "india|hyderabad|pune|pondicherry|ahilyanagar"
+    },
+    "config": {
+      "detail": {
+        "urlTemplate": "https://eaton.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=eaton.com&hl=en"
+      }
+    }
+  },
+  {
+    "source": "eightfoldai",
+    "companyName": "Eightfold AI",
+    "companyCareerPage": "https://eightfold.ai/company/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "app.eightfold.ai",
+      "domain": "volkscience.com",
+      "locationPattern": "india|bengaluru|bangalore|noida|hyderabad|pune|chennai|mumbai|remote"
+    }
+  },
+  {
+    "source": "fluke",
+    "companyName": "Fluke",
+    "companyCareerPage": "https://fortive.eightfold.ai/careers?Operating+Company=Fluke&domain=fortive.com&location=India&sort_by=relevance",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "fortive.eightfold.ai",
+      "domain": "fortive.com"
+    },
+    "config": {
+      "request": {
+        "query": {
+          "sort_by": "relevance",
+          "filter_operating_company": "fluke"
+        }
+      }
+    }
+  },
+  {
+    "source": "commvault",
+    "companyName": "Commvault",
+    "companyCareerPage": "https://www.commvault.com/careers/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "commvault",
+      "locationPattern": "india|bengaluru|bangalore|chennai|hyderabad|pune|mumbai"
+    }
+  },
+  {
+    "source": "commerceiq",
+    "companyName": "CommerceIQ",
+    "companyCareerPage": "https://www.commerceiq.ai/careers",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "commerceiq",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurugram|gurgaon|noida|chennai|delhi|remote"
+    },
+    "config": {
+      "resultFilter": {
+        "exclude": [
+          {
+            "field": "title",
+            "pattern": "talent community"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "asapp",
+    "companyName": "ASAPP",
+    "companyCareerPage": "https://www.asapp.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "lever",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "lever",
+    "templateOptions": {
+      "boardToken": "asapp-2",
+      "locationPattern": "india|bengaluru|bangalore|pune|mumbai|gurgaon|gurugram|noida|hyderabad|chennai"
+    }
+  },
+  {
+    "source": "mthree",
+    "companyName": "mthree",
+    "companyCareerPage": "https://mthree.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "mthree",
+      "locationPattern": "india|bengaluru|bangalore|pune|mumbai|gurgaon|gurugram|noida|hyderabad|chennai"
+    }
+  },
+  {
+    "source": "virtusa",
+    "companyName": "Virtusa",
+    "companyCareerPage": "https://www.virtusa.com/careers/job-search/in",
+    "countryFilter": "India",
+    "atsPlatform": "agenticweb-graphql",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.virtusa.com/careers/job-search/in",
+        "listingApiUrl": "https://prod.agenticweb-marketing.com/careers/graphql"
+      },
+      "request": {
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "query": "query { jobListResults(isList: \"true\") { results { title careerCtaLink city country contestNumber jobSchedule jobField jobType postedDate yearsOfExperience descriptionExternalHTML externalQualificationHTML } } }"
+        }
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "data.jobListResults.results"
+      },
+      "mapping": {
+        "title": "title",
+        "location": {
+          "strategy": "template",
+          "template": "{{city}}, {{country}}",
+          "values": {
+            "city": "city",
+            "country": "country"
+          }
+        },
+        "jobId": "contestNumber",
+        "requisitionId": "contestNumber",
+        "sourceUrl": "careerCtaLink",
+        "applyUrl": "careerCtaLink",
+        "department": "jobField",
+        "employmentType": "jobSchedule",
+        "experienceRequired": {
+          "strategy": "suffix",
+          "value": "yearsOfExperience",
+          "singularSuffix": " year",
+          "suffix": " years"
+        },
+        "jobDescription": "descriptionExternalHTML",
+        "minimumQualification": "externalQualificationHTML",
+        "postingDate": "postedDate"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "observeai",
+    "companyName": "Observe.AI",
+    "companyCareerPage": "https://www.observe.ai/careers",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "observeai",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurgaon|gurugram|noida|chennai|delhi|remote"
+    }
+  },
+  {
+    "source": "newrelic",
+    "companyName": "New Relic",
+    "companyCareerPage": "https://newrelic.com/careers",
+    "companyDomain": "newrelic.com",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse-board-api",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "verified-first-party-careers-page+embedded-drupal-jobsearchdata+official-greenhouse-board-api+india-filter",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "newrelic",
+      "locationPattern": "india|bangalore|bengaluru|hyderabad"
+    },
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://newrelic.com/careers was the live first-party New Relic careers page, that its bot-safe HTML at https://newrelic.com/careers?is_bot=true embedded Drupal jobSearchData.jobs records whose absolute_url values pointed to the official Greenhouse board under https://job-boards.greenhouse.io/newrelic/, and that the corresponding public Greenhouse board API at https://boards-api.greenhouse.io/v1/boards/newrelic/jobs?content=true exposed India openings including Director, Billing in Bangalore, India, Lead Financial Compliance Analyst in Bangalore, India, and Lead Fullstack Engineer - Backend focused in Hyderabad, India."
+  },
+  {
+    "source": "nielseniq",
+    "companyName": "NielsenIQ",
+    "companyCareerPage": "https://nielseniq.com/global/en/jobs/",
+    "countryFilter": "India",
+    "atsPlatform": "smartrecruiters",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "smartrecruiters",
+    "templateOptions": {
+      "companySlug": "NielsenIQ",
+      "limit": 10,
+      "locationPattern": "\\bIndia\\b"
+    },
+    "config": {
+      "request": {
+        "query": {
+          "country": "in"
+        }
+      }
+    }
+  },
+  {
+    "source": "lamresearch",
+    "companyName": "Lam Research",
+    "companyCareerPage": "https://www.lamresearch.com/careers/careers-overview/",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "lamresearch.eightfold.ai",
+      "domain": "lamresearch.com",
+      "locationPattern": "india|bengaluru|bangalore|chennai|mumbai|hyderabad|pune|remote"
+    }
+  },
+  {
+    "source": "infineon",
+    "companyName": "Infineon",
+    "companyCareerPage": "https://jobs.infineon.com/careers",
+    "companyDomain": "infineon.com",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.infineon.com",
+      "domain": "infineon.com",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|noida|gurgaon|gurugram|chennai|kolkata"
+    }
+  },
+  {
+    "source": "hsbctechnologyindia",
+    "companyName": "HSBC Technology India",
+    "companyCareerPage": "https://portal.careers.hsbc.com/careers?location=India",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "hsbc.eightfold.ai",
+      "domain": "hsbc.com",
+      "location": "India",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|chennai|mumbai|gurugram|gurgaon|kolkata|thiruvananthapuram"
+    }
+  },
+  {
+    "source": "slb",
+    "companyName": "SLB",
+    "companyCareerPage": "https://careers.slb.com/job-listing",
+    "companyDomain": "slb.com",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "apply.slb.com",
+      "domain": "slb.com",
+      "location": "India",
+      "locationPath": "locations.0",
+      "locationPattern": "\\bIndia\\b"
+    },
+    "config": {
+      "mapping": {
+        "sourceUrl": {
+          "strategy": "template",
+          "template": "https://apply.slb.com/careers/job/{{jobId}}",
+          "values": {
+            "jobId": "id"
+          }
+        },
+        "applyUrl": {
+          "strategy": "template",
+          "template": "https://apply.slb.com/careers/apply?pid={{jobId}}&domain=slb.com",
+          "values": {
+            "jobId": "id"
+          }
+        }
+      }
+    }
+  },
+  {
+    "source": "stmicroelectronics",
+    "companyName": "STMicroelectronics",
+    "companyCareerPage": "https://www.st.com/content/st_com/en/about/careers.html",
+    "companyDomain": "stmicroelectronics.com",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "stmicroelectronics.eightfold.ai",
+      "domain": "stmicroelectronics.com",
+      "location": "India",
+      "locationPattern": "\\bIndia\\b"
+    }
+  },
+  {
+    "source": "zenoti",
+    "companyName": "Zenoti",
+    "companyCareerPage": "https://www.zenoti.com/company/careers",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "zenoti",
+      "locationPattern": "india|hyderabad|bengaluru|bangalore|gurgaon|gurugram|pune|chennai|mumbai|noida|remote"
+    }
+  },
+  {
+    "source": "xebia",
+    "companyName": "Xebia",
+    "companyCareerPage": "https://xebia.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "xebiaapac",
+      "locationPattern": "india|xus-in|bangalore|bengaluru|gurgaon|gurugram|hyderabad|pune|chennai|mumbai|noida"
+    }
+  },
+  {
+    "source": "tekion",
+    "companyName": "Tekion",
+    "companyCareerPage": "https://www.tekion.com/job-openings",
+    "countryFilter": "India",
+    "atsPlatform": "ashby",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "ashbyPublicBoardUrl": "https://jobs.ashbyhq.com/tekion",
+    "ashbyJobBoardUrl": "https://api.ashbyhq.com/posting-api/job-board/tekion",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://www.tekion.com/job-openings",
+        "listingApiUrl": "https://api.ashbyhq.com/posting-api/job-board/tekion"
+      },
+      "request": {
+        "method": "GET"
+      },
+      "pagination": {
+        "strategy": "single-page",
+        "resultsPath": "jobs"
+      },
+      "mapping": {
+        "title": "title",
+        "location": [
+          "secondaryLocations.0.address.postalAddress.addressLocality",
+          "secondaryLocations.0.location",
+          "address.postalAddress.addressLocality",
+          "address.postalAddress.addressCountry",
+          "location"
+        ],
+        "jobId": "id",
+        "requisitionId": "id",
+        "sourceUrl": "jobUrl",
+        "applyUrl": "applyUrl",
+        "department": "department",
+        "employmentType": {
+          "path": "employmentType",
+          "valueMap": {
+            "FullTime": "Full-time",
+            "PartTime": "Part-time",
+            "Contract": "Contract",
+            "Internship": "Internship"
+          }
+        },
+        "jobDescription": "descriptionPlain",
+        "postingDate": "publishedAt",
+        "remoteStatus": [
+          {
+            "path": "isRemote",
+            "valueMap": {
+              "true": "Remote",
+              "false": null
+            }
+          },
+          {
+            "path": "workplaceType",
+            "valueMap": {
+              "Hybrid": "Hybrid",
+              "Remote": "Remote",
+              "OnSite": "On-site",
+              "Onsite": "On-site"
+            }
+          }
+        ]
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurugram|gurgaon|noida|delhi|chennai|kolkata|ahmedabad|trivandrum|kochi"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "tektronix",
+    "companyName": "Tektronix",
+    "companyCareerPage": "https://www.tek.com/en/careers",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://careers.ralliant.com/tektronix/",
+        "listingApiUrl": "https://ralliant.eightfold.ai/api/pcsx/search"
+      },
+      "request": {
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.ralliant.com/tektronix/",
+          "Origin": "https://careers.ralliant.com"
+        },
+        "query": {
+          "domain": "ralliant.com",
+          "sort_by": "relevance",
+          "filter_efcustom_text_operatingcompany": "tektronix"
+        }
+      },
+      "pagination": {
+        "strategy": "offset-limit",
+        "pageSize": 10,
+        "offsetParam": "start",
+        "limitParam": "limit",
+        "resultsPath": "data.positions",
+        "totalCountPath": "data.count"
+      },
+      "mapping": {
+        "title": "name",
+        "location": "locations.0",
+        "jobId": "id",
+        "requisitionId": "displayJobId",
+        "sourceUrl": {
+          "path": "data",
+          "valuePath": "publicUrl"
+        },
+        "applyUrl": {
+          "path": "data",
+          "valuePath": "positionUserActions.applyAction.applyUrl"
+        },
+        "department": "department",
+        "postingDate": "postedTs"
+      },
+      "detail": {
+        "enabled": true,
+        "urlTemplate": "https://ralliant.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=ralliant.com&hl=en",
+        "method": "GET",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Accept-Language": "en-US,en;q=0.9",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+          "X-Requested-With": "XMLHttpRequest",
+          "Referer": "https://careers.ralliant.com/tektronix/",
+          "Origin": "https://careers.ralliant.com"
+        },
+        "mapping": {
+          "jobDescription": "data.jobDescription"
+        }
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "\\bIndia\\b|bangalore|bengaluru|hyderabad|pune|mumbai|gurgaon|gurugram|noida|delhi|chennai"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "worley",
+    "companyName": "Worley",
+    "companyCareerPage": "https://www.worley.com/en/careers",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "jobs.worley.com",
+      "domain": "worley.com",
+      "location": "India",
+      "locationPath": [
+        "standardizedLocations.0",
+        "locations.0"
+      ]
+    }
+  },
+  {
+    "source": "sandisk",
+    "companyName": "Sandisk",
+    "companyCareerPage": "https://www.sandisk.com/careers/jobs-at-sandisk",
+    "countryFilter": "India",
+    "atsPlatform": "smartrecruiters",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+optional-detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "smartrecruiters",
+    "templateOptions": {
+      "companySlug": "Sandisk",
+      "limit": 100,
+      "locationPattern": "\\bIndia\\b"
+    },
+    "config": {
+      "request": {
+        "query": {
+          "country": "in"
+        }
+      }
+    }
+  },
+  {
+    "source": "entrupy",
+    "companyName": "Entrupy",
+    "companyCareerPage": "https://www.entrupy.com/careers/",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "entrupy",
+      "locationPattern": "india|bengaluru|bangalore|mangalore"
+    }
+  },
+  {
+    "source": "zscaler",
+    "companyName": "Zscaler",
+    "companyCareerPage": "https://www.zscaler.com/careers/search?region%5B0%5D=APJ&region%5B1%5D=INDIA",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "zscaler",
+      "locationPattern": "india|\\bind\\b|bangalore|bengaluru|mohali|hyderabad|mumbai|pune|gurgaon|gurugram|delhi|new delhi|remote - india"
+    }
+  },
+  {
+    "source": "watchguard",
+    "companyName": "WatchGuard Technologies",
+    "companyCareerPage": "https://www.watchguard.com/wgrd-careers",
+    "countryFilter": "India",
+    "atsPlatform": "lever",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "lever",
+    "templateOptions": {
+      "boardToken": "watchguard",
+      "locationPattern": "\\bIndia\\b"
+    }
+  },
+  {
+    "source": "viasat",
+    "companyName": "Viasat",
+    "companyCareerPage": "https://careers.viasat.com/us/en/search-results",
+    "countryFilter": "India",
+    "atsPlatform": "jibe",
+    "paginationStrategy": "page-number",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://careers.viasat.com/us/en/search-results",
+        "listingApiUrl": "https://careers.viasat.com/api/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "country": "India"
+        }
+      },
+      "pagination": {
+        "strategy": "page-number",
+        "pageParam": "page",
+        "pageSize": 10,
+        "resultsPath": "jobs",
+        "totalCountPath": "totalCount"
+      },
+      "mapping": {
+        "title": "data.title",
+        "location": [
+          "data.full_location",
+          "data.location_name"
+        ],
+        "jobId": "data.slug",
+        "requisitionId": "data.req_id",
+        "sourceUrl": "data.apply_url",
+        "applyUrl": "data.apply_url",
+        "department": "data.department",
+        "employmentType": "data.employment_type",
+        "jobDescription": "data.description",
+        "minimumQualification": "data.qualifications",
+        "preferredQualification": "data.responsibilities",
+        "postingDate": "data.posted_date"
+      }
+    }
+  },
+  {
+    "source": "volopay",
+    "companyName": "Volopay",
+    "companyCareerPage": "https://app.dover.com/dover/careers/ebed3959-fa8a-4719-b143-0730e1223ec8",
+    "companyDomain": "volopay.com",
+    "countryFilter": "India",
+    "atsPlatform": "dover",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "dover",
+    "templateOptions": {
+      "clientUuid": "ebed3959-fa8a-4719-b143-0730e1223ec8",
+      "applySlug": "volopay",
+      "locationPattern": "india|mumbai|bangalore|bengaluru"
+    },
+    "config": {
+      "pagination": {
+        "resultsPath": "results"
+      }
+    }
+  },
+  {
+    "source": "motorq",
+    "companyName": "Motorq",
+    "companyCareerPage": "https://motorq.com/careers",
+    "companyDomain": "motorq.com",
+    "countryFilter": "India",
+    "atsPlatform": "dover",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "dover",
+    "templateOptions": {
+      "clientUuid": "9e8e642f-e978-454c-b55c-910215742ec7",
+      "applySlug": "motorq",
+      "locationPattern": "india|chennai|bangalore|bengaluru"
+    },
+    "config": {
+      "pagination": {
+        "resultsPath": "results"
+      },
+      "mapping": {
+        "postingDate": [
+          "created",
+          "createdAt",
+          "updatedAt",
+          "openedAt"
+        ],
+        "remoteStatus": {
+          "path": "workplace_type",
+          "valueMap": {
+            "REMOTE": "Remote",
+            "HYBRID": "Hybrid",
+            "ONSITE": "On-site",
+            "ON_SITE": "On-site"
+          }
+        },
+        "employmentType": {
+          "path": "compensation",
+          "valuePath": "employment_type",
+          "valueMap": {
+            "FULL_TIME": "Full-time",
+            "PART_TIME": "Part-time",
+            "CONTRACT": "Contract",
+            "CONTRACTOR": "Contract",
+            "INTERN": "Internship"
+          }
+        }
+      },
+      "detail": {
+        "mapping": {
+          "jobDescription": [
+            "user_provided_description",
+            "description",
+            "jobDescription",
+            "descriptionHtml"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "source": "johndeereindia",
+    "companyName": "John Deere India",
+    "companyCareerPage": "https://careers.deere.com/careers?location=India",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "careers.deere.com",
+      "domain": "johndeere.com",
+      "location": "India",
+      "locationPattern": "\\bIndia\\b|pune|bangalore|bengaluru|hyderabad|gurgaon|gurugram|noida|delhi|chennai|mumbai|remote"
+    }
+  },
+  {
+    "source": "trimble",
+    "companyName": "Trimble Inc",
+    "companyCareerPage": "https://www.trimble.com/en/careers",
+    "companyDomain": "trimble.com",
+    "countryFilter": "India",
+    "atsPlatform": "eightfold",
+    "paginationStrategy": "offset-limit",
+    "extractionStrategy": "api+detail",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "eightfold",
+    "templateOptions": {
+      "host": "trimblecareers.trimble.com",
+      "domain": "trimble.com",
+      "location": "India",
+      "locationPath": "locations.0",
+      "locationPattern": "india|remote|chennai|pune|navi mumbai|mumbai|gurgaon|gurugram|hyderabad|bangalore|bengaluru|noida"
+    }
+  },
+  {
+    "source": "arcesium",
+    "companyName": "Arcesium",
+    "companyCareerPage": "https://www.arcesium.com/careers",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "arcesiumllc",
+      "locationPattern": "india|hyderabad|gurugram|gurgaon|bangalore|bengaluru|pune|mumbai"
+    }
+  },
+  {
+    "source": "bookingcom",
+    "companyName": "Booking.com",
+    "companyCareerPage": "https://jobs.booking.com/booking/jobs",
+    "countryFilter": "India",
+    "atsPlatform": "jibe",
+    "paginationStrategy": "page-number",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "config": {
+      "discovery": {
+        "careerPageUrl": "https://jobs.booking.com/booking/jobs",
+        "listingApiUrl": "https://jobs.booking.com/api/jobs"
+      },
+      "request": {
+        "method": "GET",
+        "query": {
+          "country": "India"
+        }
+      },
+      "pagination": {
+        "strategy": "page-number",
+        "pageParam": "page",
+        "pageSize": 10,
+        "resultsPath": "jobs",
+        "totalCountPath": "totalCount"
+      },
+      "mapping": {
+        "title": "data.title",
+        "location": "data.full_location",
+        "jobId": "data.slug",
+        "requisitionId": "data.req_id",
+        "sourceUrl": {
+          "strategy": "template",
+          "template": "https://jobs.booking.com/booking/jobs/{{jobId}}?lang=en-us",
+          "values": {
+            "jobId": "data.slug"
+          }
+        },
+        "applyUrl": "data.apply_url",
+        "department": "data.categories.0.name",
+        "employmentType": "data.employment_type",
+        "jobDescription": "data.description",
+        "postingDate": "data.posted_date"
+      },
+      "resultFilter": {
+        "include": [
+          {
+            "field": "location",
+            "pattern": "india"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "source": "collibra",
+    "companyName": "Collibra",
+    "companyCareerPage": "https://www.collibra.com/company/careers",
+    "companyDomain": "collibra.com",
+    "countryFilter": "India",
+    "atsPlatform": "greenhouse",
+    "paginationStrategy": "single-page",
+    "extractionStrategy": "api",
+    "parser": "api-portal",
+    "normalizationProfile": "engineering-default",
+    "template": "greenhouse",
+    "templateOptions": {
+      "boardToken": "collibra",
+      "locationPattern": "india|bengaluru|bangalore|hyderabad|pune|mumbai|gurgaon|gurugram|noida|delhi|new delhi|chennai|remote india|india remote|remote, india|remote - india"
+    },
+    "verifiedOn": "2026-07-25",
+    "verifiedSurfaceSummary": "Verified on Saturday, July 25, 2026 that https://www.collibra.com/company/careers remained the live first-party Collibra careers page, that it listed 40 current openings through first-party role URLs such as /company/careers/jobs/7059344?gh_jid=7059344 and /company/careers/jobs/7940004?gh_jid=7940004, and that the public Greenhouse jobs API at https://boards-api.greenhouse.io/v1/boards/collibra/jobs?content=true returned the same 40 live openings with first-party absolute_url values under collibra.com. Verified sample openings on the date included DevOps Software Engineer in Prague, Director, Talent Acquisition in New York, New York, USA; Raleigh, North Carolina, USA, and Executive Assistant II in Brussels, Belgium, with zero India openings."
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "source": "front",
+  "companyName": "Front",
+  "scope": "Anonymous public employer and ATS reads only; no database writes or publication verification.",
+  "expectedNativeCount": 1,
+  "expectedIndiaCount": 0,
+  "wholeCompanyInventoryVerified": false,
+  "requests": [
+    {
+      "requestedURL": "https://front.com/jobs",
+      "finalURL": "https://front.com/jobs",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-03T08:25:16.5571886Z",
+      "completedAt": "2026-11-03T08:25:18.0832125Z",
+      "filename": "01-response.txt.gz",
+      "bodyBytes": 159863,
+      "bodySHA256": "4df75c33124fd2439564ecc5dcd33906913b8c93681ebd43c622bda60e82cdcb",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    },
+    {
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/frontcareers",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/frontcareers",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "requestedAt": "2026-11-03T08:27:55.6510727Z",
+      "completedAt": "2026-11-03T08:27:56.1201789Z",
+      "filename": "02-response.txt.gz",
+      "bodyBytes": 27193,
+      "bodySHA256": "851e6ce0b5a7db9f0ef9c4600a896e50bef1e85c0c73f1e0898d53d3bc278e53",
+      "bodyRepresentation": "Complete decoded HTTP response text, re-encoded as UTF-8"
+    }
+  ]
+}

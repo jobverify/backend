@@ -1,0 +1,24 @@
+{
+  "url": "https://c27rhq.csb.app/get-jobs.js",
+  "status": 200,
+  "headers": {
+    "alt-svc": "h3=\":443\"; ma=86400",
+    "cache-control": "private, max-age=0, no-cache, no-store",
+    "cf-cache-status": "BYPASS",
+    "cf-ray": "a536dd99bce86cce-MAA",
+    "connection": "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "text/javascript",
+    "date": "Sun, 01 Nov 2026 00:43:31 GMT",
+    "server": "cloudflare",
+    "set-cookie": "signedIn=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; max-age=0; HttpOnly",
+    "transfer-encoding": "chunked",
+    "vary": "Accept-Encoding",
+    "via": "1.1 google",
+    "x-request-id": "GOPFHofn4FuODXeDlNkD"
+  },
+  "requestedAt": "2026-11-01T00:43:19.814Z",
+  "completedAt": "2026-11-01T00:43:21.687Z",
+  "bytes": 7934,
+  "sha256": "cadd78c6e28f5a0795a15c9f1da6b25dd26845b21191e5d5d5d4c8ee7fe7d798"
+}

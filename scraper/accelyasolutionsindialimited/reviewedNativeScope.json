@@ -1,0 +1,139 @@
+{
+  "listingPayloadFields": [
+    "facets",
+    "jobPostings",
+    "total",
+    "userAuthenticated"
+  ],
+  "listingFields": [
+    "bulletFields",
+    "externalPath",
+    "locationsText",
+    "postedOn",
+    "title"
+  ],
+  "detailPayloadFields": [
+    "hiringOrganization",
+    "jobPostingInfo",
+    "similarJobs",
+    "userAuthenticated"
+  ],
+  "detailFields": [
+    "canApply",
+    "country",
+    "endDate",
+    "externalUrl",
+    "id",
+    "includeResumeParsing",
+    "jobDescription",
+    "jobPostingEndDateAsText",
+    "jobPostingId",
+    "jobPostingSiteId",
+    "jobReqId",
+    "jobRequisitionLocation",
+    "location",
+    "logoImage",
+    "posted",
+    "postedOn",
+    "questionnaireId",
+    "remoteType",
+    "secondaryQuestionnaireId",
+    "startDate",
+    "timeLeftToApply",
+    "timeType",
+    "title"
+  ],
+  "corporateExecutableSignature": "beb63ee982b5d433be2a349665edf33d3e2c46957a6c52c26fc13074c9b3aebc",
+  "detailNestedFields": {
+    "$": [
+      "canApply",
+      "country",
+      "endDate",
+      "externalUrl",
+      "id",
+      "includeResumeParsing",
+      "jobDescription",
+      "jobPostingEndDateAsText",
+      "jobPostingId",
+      "jobPostingSiteId",
+      "jobReqId",
+      "jobRequisitionLocation",
+      "location",
+      "logoImage",
+      "posted",
+      "postedOn",
+      "questionnaireId",
+      "remoteType",
+      "secondaryQuestionnaireId",
+      "startDate",
+      "timeLeftToApply",
+      "timeType",
+      "title"
+    ],
+    "$.country": [
+      "descriptor",
+      "id"
+    ],
+    "$.logoImage": [
+      "alt",
+      "src"
+    ],
+    "$.jobRequisitionLocation": [
+      "country",
+      "descriptor"
+    ],
+    "$.jobRequisitionLocation.country": [
+      "alpha2Code",
+      "descriptor",
+      "id"
+    ]
+  },
+  "corporateExecutableSignatures": [
+    "beb63ee982b5d433be2a349665edf33d3e2c46957a6c52c26fc13074c9b3aebc",
+    "3f0708de4f7364abe85a4d0f16b7dcf5d2939dbbd890c9f5479825943d7970bf"
+  ],
+  "corporateVariantProvenance": {
+    "explanation": "Both observed first-party mobile and desktop WP Rocket variants; every active attribute remains signed. Only cookie expiry, typed performance viewport/token values, and the exact unused appBk localization value are normalized. All nine reviewed declared consumer programs must match before and after native hydration.",
+    "desktopObservation": {
+      "url": "https://w3.accelya.com/careers/",
+      "finalUrl": "https://w3.accelya.com/careers/",
+      "method": "GET",
+      "status": 200,
+      "observedAt": "2026-10-29T19:39:42.681Z",
+      "filename": "001.txt",
+      "sha256": "fd64824b1c52640cabcbf89e7db8ab1aecc8e94289fa00fd851eaafbca993568"
+    },
+    "unusedLocalization": {
+      "scriptId": "bk-main-js-extra",
+      "shape": "single var appBk literal with only lowercase10hex bk and exact sourceURL directive",
+      "consumerProof": "All nine declared external programs parsed without appBk or .bk reads; exact program hashes must match before and after native hydration.",
+      "observationArtifact": "workday-fourth-wave/accelya-nonce-review/proposal.json",
+      "scopeRebase": "Existing real mobile and desktop bodies re-signed after only exact unused localization normalization; latest real body equals normalized prior mobile signature. All other attributes/scripts/forms/handlers unchanged."
+    }
+  },
+  "corporateInlineStyleSignatures": [
+    "dbc7ec85127825121f8c9a3223de011e0008c23937532f3447dff8d9e1496ce8"
+  ],
+  "corporateInlineStyleProvenance": {
+    "observedVariants": [
+      {
+        "name": "old-mobile",
+        "styleCount": 11,
+        "sha256": "dbc7ec85127825121f8c9a3223de011e0008c23937532f3447dff8d9e1496ce8"
+      },
+      {
+        "name": "old-desktop",
+        "styleCount": 11,
+        "sha256": "dbc7ec85127825121f8c9a3223de011e0008c23937532f3447dff8d9e1496ce8"
+      },
+      {
+        "name": "current-observed",
+        "styleCount": 11,
+        "sha256": "dbc7ec85127825121f8c9a3223de011e0008c23937532f3447dff8d9e1496ce8"
+      }
+    ],
+    "representation": "Ordered complete inline style raw bodies, attributes, DOM positions and inert context from unchanged captureActiveHiringScope.styles. Every raw body is retained in source audit. No CSS syntax or selectors ignored.",
+    "reference": "workday-fourth-wave/accelya-nonce-review/real-style-baselines.json",
+    "allThreeRealBodiesHaveIdenticalStyles": true
+  }
+}

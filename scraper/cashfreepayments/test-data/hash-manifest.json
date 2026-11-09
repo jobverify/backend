@@ -1,0 +1,57 @@
+{
+  "fixture": "native-20261103.json.gz",
+  "sha256": "7cf490f520ef846429be152c9b0f0e72def0070876952713852786777fa71190",
+  "captures": [
+    {
+      "source": "cashfreepayments",
+      "key": "careers",
+      "url": "https://www.cashfree.com/careers/",
+      "status": 200,
+      "finalUrl": "https://www.cashfree.com/careers/",
+      "contentType": "text/html",
+      "bytes": 762106,
+      "sha256": "8c727d161e51f95957028270c669fdbf9446bb1d27d956c5cc2146a5204f994d",
+      "file": "cashfreepayments-careers-8c727d161e51.body",
+      "requestedAt": "2026-11-02T21:26:39.361Z",
+      "completedAt": "2026-11-02T21:26:39.806Z"
+    },
+    {
+      "source": "cashfreepayments",
+      "key": "board",
+      "url": "https://careers.kula.ai/cashfree?jobs=true",
+      "status": 200,
+      "finalUrl": "https://careers.kula.ai/cashfree?jobs=true",
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 365475,
+      "sha256": "781dec0d1a66c684df61125676cd16d5be0858d4022c9e3334db8771141b6eac",
+      "file": "cashfreepayments-board-781dec0d1a66.body",
+      "requestedAt": "2026-11-02T21:26:39.807Z",
+      "completedAt": "2026-11-02T21:26:42.250Z"
+    },
+    {
+      "source": "cashfreepayments",
+      "key": "api",
+      "url": "https://careers.kula.ai/api/internal/ats_job_posts?accountName=cashfree&page=1&type=ats_job_post.index&items=99",
+      "status": 200,
+      "finalUrl": "https://careers.kula.ai/api/internal/ats_job_posts?accountName=cashfree&page=1&type=ats_job_post.index&items=99",
+      "contentType": "application/json; charset=utf-8",
+      "bytes": 231099,
+      "sha256": "2b57c11e189ce3dea655eb83ac60f98e566a0b7d282b4245a5fdb82b1a70ce4c",
+      "file": "cashfreepayments-api-2b57c11e189c.body",
+      "requestedAt": "2026-11-02T21:26:42.252Z",
+      "completedAt": "2026-11-02T21:26:43.449Z"
+    },
+    {
+      "source": "cashfreepayments",
+      "key": "role-4467",
+      "url": "https://careers.kula.ai/cashfree/4467-security-engineer-2?jobs=true",
+      "status": 200,
+      "finalUrl": "https://careers.kula.ai/cashfree/4467-security-engineer-2?jobs=true",
+      "bytes": 101468,
+      "sha256": "35310b1963745401fa30a823b2be22eedf828ef213679a3480373e8ffdee53b5",
+      "file": "cashfreepayments-role-4467-35310b196374.body",
+      "requestedAt": "2026-11-02T21:34:52.689Z",
+      "completedAt": "2026-11-02T21:34:54.832Z"
+    }
+  ]
+}

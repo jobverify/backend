@@ -1,0 +1,46 @@
+[
+  {
+    "source": "averydennison",
+    "companyName": "Avery Dennison",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../averydennison.workday/script.js",
+    "originalModulePath": null,
+    "companyDomain": "averydennison.com",
+    "officialHomepageUrl": "https://www.averydennison.com/",
+    "companyCareerPage": "https://www.averydennison.com/en/home/careers/search-jobs.html",
+    "jobsBoardUrl": "https://api.smartrecruiters.com/v1/companies/AveryDennison/postings?limit=100&offset=0",
+    "atsPlatform": "smartrecruiters-public-postings",
+    "countryFilter": "India",
+    "parser": "shared-apiPortal-and-smartRecruitersDetail-with-source-local-contract-validation",
+    "normalizationProfile": "engineering-default",
+    "paginationStrategy": "bounded-advertised-global-offset-limit-total-empty-terminal-and-full-final-recheck",
+    "extractionStrategy": "active-corporate-inline-client+typed-India-country+active-PUBLIC-full-details+releasedDate+exact-native-URLs",
+    "backfillMode": "live-parser",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "coverage-gap",
+    "remediationStatus": "implemented-awaiting-ordinary-audit-and-independent-review",
+    "runtimeQualification": "unqualified-offline-evidence-only-until-coordinated-ordinary-audit",
+    "verificationDisposition": "native-runtime-validation-required",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T21:12:09.018Z",
+      "officialURL": "https://www.averydennison.com/en/home/careers/search-jobs.html",
+      "matchedLinks": [
+        "https://api.smartrecruiters.com/v1/companies/AveryDennison/postings?limit=50&offset=0",
+        "https://careers.smartrecruiters.com/AveryDennison/military-talent"
+      ],
+      "bindingMethod": "active-official-inline-CONFIG-exact-tenant-and-native-listing-detail-templates",
+      "evidenceOrigin": "owned-fresh-anonymous-browser-context-public-GET-only",
+      "nativeProofArtifact": "artifacts/full-catalog/averydennison-native-001/qualification-002/manifest.json",
+      "corporateProofArtifact": "artifacts/full-catalog/averydennison-native-001/research-001/001.json"
+    },
+    "sourceScopeNotes": "The current corporate general search client advertises the exact AveryDennison public SmartRecruiters feed. Complete observed tenant pages and all typed-India full details are reconciled twice per run. Native releasedDate is a UTC posting-release instant, not a proven first-ever publication, creation or update date. Native legal employer and whole-company coverage remain unknown. India-associated conflicting country evidence fails closed; unrelated foreign-only native country inconsistencies remain excluded and visible in diagnostics. Configured native application URLs are retained without opening forms or claiming application access or eligibility. Scope remains partial and cannot authorize company-wide cleanup or verified zero.",
+    "verifiedSurfaceSummary": "Sealed anonymous corporate/native packets and offline full-feed replay support implementation. No static opening count, runtime extraction, persistence or public visibility qualification is claimed."
+  }
+]

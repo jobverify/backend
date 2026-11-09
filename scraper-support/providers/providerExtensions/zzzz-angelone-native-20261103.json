@@ -1,0 +1,18 @@
+{
+  "source": "angelone",
+  "catalogOverride": true,
+  "atsPlatform": "official-public-next-careers-panel",
+  "paginationStrategy": "unfiltered-route-owned-Flight-array+reviewed-client-pagination+opening-closing-final-source",
+  "extractionStrategy": "current-visible-careers-panel+exact-bound-native-renderer-input+unknown-upstream-and-company-scope",
+  "verifiedSurfaceSummary": "The current Angel One corporate careers page has a visible Open Positions panel. Its exact declared native renderer receives the route-owned jobs array, derives departments, filters and paginates that same input by10 and renders own /careers/{slug} links. Current ordinary browser and native source observations both show zero panel roles. Runtime binds the original unfiltered Flight model to the actual renderer, preserves native records and compares opening/closing/final arrays. This observed current UI input is not proof of upstream or whole-company vacancy absence; authoritative company totals and lifecycle cleanup remain unknown.",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "verified-empty",
+  "configuredPublicPanelScopeComplete": true,
+  "companyCoverageComplete": false,
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false
+}

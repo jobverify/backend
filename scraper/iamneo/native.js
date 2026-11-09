@@ -1,0 +1,41 @@
+import baselines from './native.scope.json' with {type:'json'}
+import {createCurrentSourceScope,hasLiteralActiveKekaConfiguration,unhandledKekaGeography,finishCurrentKekaInventory} from '../../scraper-support/shared/kekaCurrentSourceScope.js'
+import {createHash} from 'node:crypto'
+import {readNativeDocument,extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+const official='https://iamneo.ai/careers/'
+const root='https://iamneo.keka.com/careers/'
+const identifier='4ce06eef-5046-4d49-9a10-57a546e5f2ca'
+const board=`${root}api/jobs/default/active`
+const embed=`${root}api/embedjobs/default/active/${identifier}`
+const renderer='https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js'
+const clean=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
+const hash=value=>createHash('sha256').update(value).digest('hex')
+const fail=message=>{throw new Error(`iamneo native inventory: ${message}`)}
+const regionNames=new Intl.DisplayNames(['en'],{type:'region',fallback:'none'})
+function locations(job){if(!Array.isArray(job.jobLocations)||!job.jobLocations.length)fail(`unresolved geography for ${job.id}`);const seen=new Set();return job.jobLocations.map(loc=>{const id=String(loc?.id??'');if(!/^[1-9]\d*$/.test(id)||!Number.isSafeInteger(Number(id))||seen.has(id))fail(`invalid geography identity for ${job.id}`);seen.add(id);const name=clean(loc.name),city=clean(loc.city),country=clean(loc.countryName),code=clean(loc.countryCode);if((!name&&!city)||!/^[A-Z]{2}$/.test(code)||['ZZ','XA','XB','UN','EU','EZ','QO'].includes(code)||!country||(loc.state!=null&&typeof loc.state!=='string'))fail(`invalid geography for ${job.id}`);const canonical=regionNames.of(code);const aliases=code==='US'?['usa','united states of america']:code==='GB'?['uk']:[];if(!canonical||canonical===code||(canonical.toLowerCase()!==country.toLowerCase()&&!aliases.includes(country.toLowerCase())))fail(`conflicting country for ${job.id}`);return{...loc,name:name||city,city:city||name}})}
+export async function runNativeInventory({fetchImpl=fetch,signal,maxJobs,maxPages,fetchText,fetchPage}={}){
+ if(fetchText||fetchPage)fail('unsupported legacy transport; fetchImpl with observed status and final URL is required')
+ if(maxJobs!=null||maxPages!=null)fail('inventory caps are unsupported')
+ const scope=createCurrentSourceScope({baselines,kekaRootUrl:root})
+ const request=async url=>{signal?.throwIfAborted();const timeout=AbortSignal.timeout(20000);const r=await fetchImpl(url,{signal:signal?AbortSignal.any([signal,timeout]):timeout,headers:{Accept:'application/json,text/html,application/javascript','User-Agent':'JobverifyScraper/1.0'}});if(r.status!==200||r.url!==url)fail(`HTTP or redirect identity for ${url}`);const body=await r.text();if(url===renderer)scope.observeRenderer(url,body);if(Object.hasOwn(baselines,url)||url.includes('/careerportal/'))scope.observe(url,body);signal?.throwIfAborted();timeout.throwIfAborted();return body}
+ const officialDoc=readNativeDocument(await request(official));if(!officialDoc.nodes(n=>n.tag==='a'&&n.attrs.href?.replace(/\/$/,'')===root.slice(0,-1)).length)fail('missing active official careers handoff')
+ const shell=readNativeDocument(await request(root.slice(0,-1)))
+ if(shell.nodes(n=>n.tag==='base'&&n.attrs.id==='baseHref'&&n.attrs.href==='/careers/').length!==1||shell.nodes(n=>n.tag==='meta'&&n.attrs.name==='portalName'&&!n.attrs.content).length!==1||shell.nodes(n=>n.attrs.id==='kh-jobs-section').length!==1||shell.nodes(n=>n.tag==='script'&&n.attrs.src===renderer).length!==1||!shell.nodes(n=>n.tag==='a'&&n.attrs.href==='https://iamneo.ai/').length)fail('active SSR board contract changed')
+ const script=await request(renderer)
+ for(const signal of ['$.ajaxSetup({beforeSend:', 'document.getElementById("baseHref").attributes.href.value','/api/jobs/${e}/active','/api/organization/grouplinkstatus','/api/organization/${apiPortalName}/careerportalinfo','jobLocations','bindJobs(jobList,!1)'])if(!script.includes(signal))fail('native SSR renderer contract changed')
+ const portal=JSON.parse(await request(`${root}api/organization/default/careerportalinfo`));if(portal?.name!=='iamneo'||portal.shortName!=='iamneo'||portal.careersPortalDomain!=='iamneo.keka.com'||portal.companyWebsite!=='https://iamneo.ai/'||typeof portal.logoPath!=='string'||shell.nodes(n=>n.tag==='img'&&n.attrs.src===`/ats/documents/${identifier}/${portal.logoPath}`).length!==1)fail('brand, host or UUID relationship changed')
+ for(const url of [`${root}api/organization/grouplinkstatus`,`${root}api/embedjobs/grouplinkstatus/${identifier}`])if(JSON.parse(await request(url))?.isGroupLinked!==false)fail('unresolved grouped employer scope')
+ const rawBody=await request(board),raw=JSON.parse(rawBody)
+ if(!Array.isArray(raw)||JSON.stringify(JSON.parse(await request(embed)))!==JSON.stringify(raw))fail('unfiltered board and embedded inventories disagree')
+ const unknown=raw.filter(job=>unhandledKekaGeography(job).length)
+ const seen=new Set(),jobs=[]
+ for(const native of raw){const id=String(native?.id??'');if(!/^[1-9]\d*$/.test(id)||!Number.isSafeInteger(Number(id))||seen.has(id)||!clean(native.title))fail('invalid or duplicate raw job identity');seen.add(id);const places=unknown.includes(native)?[]:locations(native);const description=extractActiveDescription(native.description);if(!description)fail(`invalid full description for ${id}`);if(native.skillNames!=null&&(!Array.isArray(native.skillNames)||native.skillNames.some(s=>!clean(s))))fail(`invalid skills for ${id}`);if(native.publishedOn!=null&&(!clean(native.publishedOn)||!Number.isFinite(Date.parse(native.publishedOn))))fail(`invalid posting date for ${id}`);if(native.departmentName!=null&&typeof native.departmentName!=='string')fail(`invalid department for ${id}`)
+  const url=`${root}jobdetails/${id}`,doc=readNativeDocument(await request(url));const ids=doc.nodes(n=>Object.hasOwn(n.attrs,'selectedjobid')).map(n=>n.attrs.selectedjobid);const titles=doc.nodes(n=>n.tag==='h1'&&Object.hasOwn(n.attrs,'title'));const descriptions=doc.nodes(n=>doc.hasClass(n,'job-description-container'));if(!ids.length||ids.some(value=>value!==id)||titles.length!==1||descriptions.length!==1||clean(doc.text(titles[0]))!==clean(native.title)||clean(doc.text(descriptions[0]))!==clean(description))fail(`detail identity or full description disagreement for ${id}`)
+  const india=places.filter(loc=>loc.countryCode==='IN');if(!india.length)continue;const primary=india[0];const rendered=loc=>[loc.name,clean(loc.state),'India'].filter(Boolean).join(', ')
+  const job={source:'iamneo',company:'iamneo',companyCareerPage:official,companyDomain:'iamneo.ai',atsPlatform:'keka',jobId:id,requisitionId:clean(native.jobNumber)||id,title:clean(native.title),location:rendered(primary),locations:india.map(rendered),city:primary.city,state:clean(primary.state)||null,country:'India',sourceUrl:url,applyUrl:url,link:url,jobDescription:description,experienceRequired:clean(native.experience)||null,department:clean(native.departmentName)||null,employmentType:Number(native.jobType)===2?'Full Time':null,requiredSkills:native.skillNames||[],postingDate:native.publishedOn?new Date(native.publishedOn).toISOString():null,closingDate:null,publicExperienceChecked:true,sourceListingComplete:true,sourceDetailComplete:description.length>=80,sourceNativePayload:native,sourceNativeInventorySha256:hash(rawBody),sourceNativeDescriptionSha256:hash(native.description),scrapedAt:new Date().toISOString()};if(!job.sourceDetailComplete)job.sourceDetailFailureKind='limited-source-content';jobs.push(job)
+ }
+ await request(official)
+ if(JSON.stringify(JSON.parse(await request(board)))!==JSON.stringify(raw)||JSON.stringify(JSON.parse(await request(embed)))!==JSON.stringify(raw))fail('current full inventory changed during detail hydration')
+ return finishCurrentKekaInventory(jobs,{raw,unknown,scope,evidence:{surface:board,firstParty:true,pagesFetched:1,verifiedAt:new Date().toISOString(),reason:'official-legacy-SSR-keka-renderer-brand-logo-UUID-full-array-both-group-APIs-board-embed-closing-and-active-source-scope-reconciliation-native-details'}})
+}

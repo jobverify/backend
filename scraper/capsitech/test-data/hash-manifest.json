@@ -1,0 +1,86 @@
+{
+  "fixture": "native-20261103.json.gz",
+  "sha256": "89b8ab08efe5a38231d4c6e2da161de982bc15988cd3c76808140dada12d38fd",
+  "captures": [
+    {
+      "source": "capsitech",
+      "key": "careers-client",
+      "url": "https://www.capsitech.com/wp-content/themes/capsitech/assets/js/career.js?v=1.4",
+      "status": 200,
+      "finalUrl": "https://www.capsitech.com/wp-content/themes/capsitech/assets/js/career.js?v=1.4",
+      "contentType": "application/javascript",
+      "bytes": 18204,
+      "sha256": "5e27e82c02ee3bfe2d80bc8184578cb6877ad71ab7e7a963d26dd786b12c6281",
+      "file": "capsitech-careers-client-5e27e82c02ee.body",
+      "requestedAt": "2026-11-02T21:26:38.484Z",
+      "completedAt": "2026-11-02T21:26:39.359Z"
+    },
+    {
+      "source": "capsitech",
+      "key": "careers",
+      "url": "https://www.capsitech.com/career/",
+      "status": 200,
+      "finalUrl": "https://www.capsitech.com/career/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 74024,
+      "sha256": "7dcf6f3d83022837846a7ab706d476c5e804424e7eab6c6be4fc159515395a69",
+      "file": "capsitech-careers-7dcf6f3d8302.body",
+      "requestedAt": "2026-11-02T21:26:38.380Z",
+      "completedAt": "2026-11-02T21:26:46.162Z"
+    },
+    {
+      "source": "capsitech",
+      "key": "robots",
+      "url": "https://www.capsitech.com/robots.txt",
+      "status": 200,
+      "finalUrl": "https://www.capsitech.com/robots.txt",
+      "bytes": 502,
+      "sha256": "9d12dbf8ece942728b428795bf0ec45526078234120c24ead7c3b47ec2b8032e",
+      "file": "capsitech-robots-9d12dbf8ece9.body",
+      "requestedAt": "2026-11-02T21:34:49.264Z",
+      "completedAt": "2026-11-02T21:34:50.185Z"
+    },
+    {
+      "source": "capsitech",
+      "key": "sitemap",
+      "url": "https://www.capsitech.com/sitemap_index.xml",
+      "status": 200,
+      "finalUrl": "https://www.capsitech.com/sitemap_index.xml",
+      "bytes": 792,
+      "sha256": "084ffc42e8c007a4bb9268103acd5f7a9b3185259fa83138e3775d2ef58210b1",
+      "file": "capsitech-sitemap-084ffc42e8c0.body",
+      "requestedAt": "2026-11-02T21:34:50.186Z",
+      "completedAt": "2026-11-02T21:34:56.097Z"
+    },
+    {
+      "index": 0,
+      "url": "https://www.capsitech.com/career/",
+      "method": "GET",
+      "status": 200,
+      "finalUrl": "https://www.capsitech.com/career/",
+      "contentType": "text/html; charset=UTF-8",
+      "bytes": 74024,
+      "sha256": "7dcf6f3d83022837846a7ab706d476c5e804424e7eab6c6be4fc159515395a69",
+      "file": "000-7dcf6f3d8302.body",
+      "requestedAt": "2026-11-02T21:29:27.394Z",
+      "completedAt": "2026-11-02T21:29:33.518Z",
+      "source": "capsitech",
+      "key": "production-careers"
+    },
+    {
+      "index": 1,
+      "url": "https://www.capsitech.com/wp-content/themes/capsitech/api/api-get-career-options.php?resumeKey=ktKZ1Cwsz1UQjDvq7xB04RLYL5%2Fdwa69ADxX3mondSQ%3D",
+      "method": "GET",
+      "status": 200,
+      "finalUrl": "https://www.capsitech.com/wp-content/themes/capsitech/api/api-get-career-options.php?resumeKey=ktKZ1Cwsz1UQjDvq7xB04RLYL5%2Fdwa69ADxX3mondSQ%3D",
+      "contentType": "application/json",
+      "bytes": 3969,
+      "sha256": "95a19ec5d1608cd1d1110ac62516b0f8bfed0d7db040c5122f4a64952bd38dd5",
+      "file": "001-95a19ec5d160.body",
+      "requestedAt": "2026-11-02T21:29:33.523Z",
+      "completedAt": "2026-11-02T21:29:40.327Z",
+      "source": "capsitech",
+      "key": "production-listing"
+    }
+  ]
+}

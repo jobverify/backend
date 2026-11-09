@@ -1,0 +1,17 @@
+﻿{
+  "source": "absolutdata",
+  "companyName": "Absolutdata",
+  "adapter": "script",
+  "modulePath": "../../scraper/absolutdata/script.js",
+  "companyCareerPage": "https://absolutdata.com/",
+  "atsPlatform": "official-company-site-no-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "exact-name-domain-root-plus-common-careers-route-timeout-validation",
+  "extractionStrategy": "verified-exact-name-first-party-domains-time-out-plus-common-careers-routes-time-out-return-empty",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "absolutdata.com",
+  "verifiedOn": "2026-07-14",
+  "verifiedSurfaceSummary": "Verified on July 14, 2026 that https://absolutdata.com/, https://www.absolutdata.com/, https://absolutdata.com/careers, https://www.absolutdata.com/careers, https://absolutdata.com/jobs, and https://www.absolutdata.com/jobs all timed out during direct probes, while careers.absolutdata.com and jobs.absolutdata.com returned NXDOMAIN. No trustworthy public first-party jobs surface was reachable."
+}
+

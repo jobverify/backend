@@ -1,0 +1,84 @@
+{
+  "phase": 6,
+  "source": "abansholdings",
+  "outcome": "implemented-current-native-group-india-reader-partial-legal-scope",
+  "officialCorporateUrl": "https://abansfinserv.com/",
+  "officialCareerDelegation": [
+    "https://abansfinserv.com/",
+    "https://abanscareers.com/",
+    "https://abanscareers.com/career-openings.aspx",
+    "https://abans.keka.com/careers"
+  ],
+  "nativePublisher": "ABANS GROUP",
+  "corporateRelationship": "The current corporate homepage explicitly states Abans Holdings Limited is now Abans Financial Services Limited and links to the shared Abans career site. The career site currently delegates to the exact Keka board. Keka reciprocally identifies its companyWebsite as https://abansfinserv.com/. Group roles are not relabeled as Holdings-only jobs.",
+  "nativeContract": "The current embedded client makes one nonpaginated active-array GET and builds role links using job.id. Runtime checks the current portal configuration/renderer contract, reciprocal native organization, unlinked native portal mode, each job/location/date/content, and a final active-array signature recheck.",
+  "nativeObservedPosts": 11,
+  "explicitNativeIndiaPosts": 10,
+  "unresolvedNativeGeography": [
+    {
+      "id": 163213,
+      "title": "Base Metals - Sales Trader",
+      "reason": "Native jobLocations is empty. JD has Location:Mumbai, but no country mapping contract was adopted. No location is inferred from headquarters."
+    }
+  ],
+  "wholeCompanyScopeComplete": false,
+  "inventoryCounts": null,
+  "zeroIndiaClaim": false,
+  "staticPublicationCounters": null,
+  "descriptionPreservation": "Full original native HTML plus active plain text. Strict ISO/calendar/clock/timezone validation precedes publication canonicalization; nativePublishedOn preserves the original literal/offset, while postingDate preserves the exact representable instant. Six observed India roles are old and are not redated.",
+  "currentSourceTrial": {
+    "source": "abans",
+    "performedAt": "2026-10-24T18:43:05.808Z",
+    "method": "Actual source code over bounded fresh unauthenticated Chromium HTTP responses with JavaScript disabled. No production browser runtime, database, application submission or full pipeline.",
+    "requests": 10,
+    "rawJobs": 10,
+    "eligibleJobs": 4,
+    "filterCounts": {
+      "nonIndia": 0,
+      "old": 6,
+      "closed": 0,
+      "invalidUrl": 0,
+      "nonJob": 0,
+      "emptyDescription": 0
+    },
+    "inventoryEvidence": {
+      "status": "coverage-gap",
+      "surface": "https://abans.keka.com/careers/api/embedjobs/default/active/7f72cc0e-e77b-4832-9d67-8b9c42a4da9d",
+      "firstParty": true,
+      "listingComplete": false,
+      "pagesFetched": 2,
+      "reportedTotal": null,
+      "indiaFacetCount": null,
+      "verifiedAt": "2026-10-24T18:43:05.114Z",
+      "reason": "current-official-reciprocal-abans-group-keka-native-contract-rechecked;holdings-only-legal-scope-unreconciled;native-location-scope-unresolved"
+    }
+  },
+  "verification": {
+    "behavioralTests": {
+      "initialRed": 17,
+      "currentPassed": 29
+    },
+    "calendarReview": {
+      "redFailures": 9,
+      "invalidRolloverExample": "2026-09-31T00:00:00Z",
+      "positiveOffset": "2026-10-01T14:41:52.7730000+05:30",
+      "redLog": "phase6-abans-date-red.log"
+    },
+    "catalogTest": {
+      "red": 1,
+      "green": 1
+    },
+    "finalFocusedPassed": 66,
+    "finalFocusedFailed": 0,
+    "log": "Windows Temp codex-scraper-repair-verification-20261024/phase6-source-final-focused.log",
+    "syntaxAndScopedDiffCheck": true
+  },
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "limits": [
+    "Group recruitment remains distinct from exhaustive Holdings-only legal scope; jobs and inventory always forbid lifecycle cleanup.",
+    "One native role has unreviewed geography. Whole-company totals and exhaustive India facet stay null even when the currently observed native array remains stable.",
+    "Actual source trial used fresh unauthenticated Chromium HTTP responses with JavaScript disabled. Default Node network transport remains unverified in this restricted environment.",
+    "No production database, full pipeline, application submission, deployment or registry aggregate-flag change."
+  ]
+}

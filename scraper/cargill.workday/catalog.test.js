@@ -1,0 +1,4 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {getScraperCatalog} from '../../scraper-support/providers/index.js'
+test('Cargill replaces one sentinel with current binding and leaves runtime totals unknown',()=>{const catalog=getScraperCatalog(),matches=catalog.filter(p=>p.source==='cargill');assert.equal(new Set(catalog.map(p=>p.source)).size,catalog.length);assert.equal(matches.length,1);const p=matches[0];assert.equal(p.adapter,'script');assert.equal(p.atsPlatform,'successfactors-rmk');assert.match(p.modulePath,/cargill.workday[\\/]script.js$/);assert.equal(p.companyDomain,'cargill.com');assert.equal(p.jobsBoardUrl,'https://careers.cargill.com/en/search-jobs');assert.equal(p.verifiedPublicJobCount,null);assert.equal(p.verifiedIndiaJobCount,null);assert.equal(p.verifiedOn,null);assert.equal(p.verifiedInventoryStatus,'unverified')})

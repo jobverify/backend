@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://osv-chegg.wd5.myworkdayjobs.com/wday/cxs/osv_chegg/Chegg/jobs",
+  "detailUrlBase": "https://osv-chegg.wd5.myworkdayjobs.com/Chegg",
+  "countryFacetParameter": "locationCountry"
+}

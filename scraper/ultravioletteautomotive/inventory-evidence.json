@@ -1,0 +1,11 @@
+{
+  "status": "complete-inventory",
+  "surface": "https://ultraviolette.zohorecruit.in/recruit/v2/public/Job_Openings?pagename=Careers&source=CareerSite",
+  "firstParty": true,
+  "listingComplete": true,
+  "pagesFetched": 38,
+  "reportedTotal": 34,
+  "indiaFacetCount": 34,
+  "verifiedAt": "2026-10-23T05:20:44.283Z",
+  "reason": "Official careers embed binding; complete embedded native board and public API ID parity; all native detail identities/countries validated."
+}

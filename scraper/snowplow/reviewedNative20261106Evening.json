@@ -1,0 +1,759 @@
+{
+  "version": "2026-11-06-evening",
+  "provenance": "Genuine current public declared Snowplow employer/HiBob complete DOM, literal runtime-declared resources, site, feed and all eleven application forms; no execution or authentication. Native feed/application bodies match Nov6 originals; 12 corporate cards vs11 feed remains unresolved. Current exact deployment adds marketing-location sort/projection only; strict empty postingLocations/full raw role/application proofs preserved. Runtime literal table contains87 chunks, all independently fetched. Existing corporate mismatch/native reference/typography gaps retained.",
+  "corporateBodySha256": "ea890474613f743b38e2dcdb8bc342ea28e42ab869b9ecfe1a1f28fad4e4ab58",
+  "boardBodySha256": "2ea9525ed718a77fb306d4b4c03088ec83c20d3d74661ddd189cf813a637ac8b",
+  "siteCanonicalSha256": "13a06325ab4ed73e881bff056e30755d35848f602b888c55ea20374307dc4321",
+  "feedScopeSha256": "d6b33fc7314af5a3a3a94942438a65944f04b0723999fdaa37598af51b3bb334",
+  "supplementedBaseEngineGaps": [
+    "public-client-contract-changed",
+    "unverified-public-feed-scope-or-pagination",
+    "additional-public-filter-scope"
+  ],
+  "preservedBaseEngineGaps": [
+    "unreconciled-native-role-reference"
+  ],
+  "preservedCorporateMismatch": "corporate/native inventory identity mismatch",
+  "resources": [
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/styles.b9cc01d93284b67d.css",
+      "contentType": "text/css",
+      "sha256": "a23c32b493d15103eb8550ebe3ba7ffee42e0863df8b5881638d883f01853b9c",
+      "bytes": 659785
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/deployment-info.js",
+      "contentType": "application/javascript",
+      "sha256": "e52bde212858c9983652a0f26776e85e5eac79808cb3bc52085e9b4cd1716bad",
+      "bytes": 3100
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/runtime.1a1d839159fe0484.js",
+      "contentType": "text/javascript",
+      "sha256": "6834d2a03b4d914dae81a70089650b2a8f9e64f9512ff6a6f977870a22c40b87",
+      "bytes": 5481
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/polyfills.a7632ba8419ce340.js",
+      "contentType": "text/javascript",
+      "sha256": "61a29fb7a249cf958d2692e2e3710d4dfa0cc91d100dc053675048854ab53253",
+      "bytes": 34817
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/main.81fe083ec4eabe33.js",
+      "contentType": "text/javascript",
+      "sha256": "88fd44e9e60013f0d93e9bd337ea47caa30fa286d82f1b546609326b1497c9bc",
+      "bytes": 2054006
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/537.038906792a469540.js",
+      "contentType": "text/javascript",
+      "sha256": "07872e9f96ce6ce788adc1e11b8b264ff98724ad99c46dc356536262806ff9f4",
+      "bytes": 52560
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/592.67f4868ae49d10fb.js",
+      "contentType": "text/javascript",
+      "sha256": "8af4ce2e2e6c7627d0b3edb766867a224c94053ec50e86dcf510cb5146ba6bd5",
+      "bytes": 101832
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/289.f8bdd7555f6dbaa7.js",
+      "contentType": "text/javascript",
+      "sha256": "c9030cd6af036b9df11e008ce254fd8c3fcb18076c310839841393379758b3a7",
+      "bytes": 2374
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/577.1ad0854b924815e9.js",
+      "contentType": "text/javascript",
+      "sha256": "669169ed72cb427389fa885eea647f35b8a6d1efb2c40110b9e2a4e53ec04fce",
+      "bytes": 1935
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/162.3504757023f1ed56.js",
+      "contentType": "text/javascript",
+      "sha256": "a477eecaed992585e81902acb1b8720da46a1f278eb70b0dc76ce8bb7f926901",
+      "bytes": 3189
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/675.701b72fd25693759.js",
+      "contentType": "text/javascript",
+      "sha256": "043123f3a291059b776fdf2e7472b9acac1b1d3d8f700b23fd3aac47e835696a",
+      "bytes": 19673
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/686.f5871d24326511b6.js",
+      "contentType": "text/javascript",
+      "sha256": "e3aa0b2ac46ee47cead7c7754df2e3bb39fd6329a281e3d424fbd427e10e2453",
+      "bytes": 13720
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/767.aed65e38383d01e9.js",
+      "contentType": "text/javascript",
+      "sha256": "90e56b16d334ff7698e5049d3effcba0fc0934cf473aaa5a89d5825b078b24b4",
+      "bytes": 63285
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/913.3c00bc97e55bcd70.js",
+      "contentType": "text/javascript",
+      "sha256": "edb6097c16c7ecf2e1935f1ffa443da50743c80c0dcd32e015300db6e368610c",
+      "bytes": 66551
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1132.8c67021c53a8c520.js",
+      "contentType": "text/javascript",
+      "sha256": "f62416c67abec4a882abec2b47bab8d8adfbebc3e5aee44ebb00bf4cf0a0bb01",
+      "bytes": 19322
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1170.788ae02e13164b93.js",
+      "contentType": "text/javascript",
+      "sha256": "e86b4b14cca774608306d876c0922c682289756fea43e73827345cf302e2978f",
+      "bytes": 19464
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1171.b90549b08d157d70.js",
+      "contentType": "text/javascript",
+      "sha256": "33b3ebf06ac351e0e69006e3d46a7c26cf6620bae6e9921ecd09122f714fca9c",
+      "bytes": 2378
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1268.f695fad2eae5caf9.js",
+      "contentType": "text/javascript",
+      "sha256": "a73f9e18f9580b2163ad58749a0ee957697abac4b3a90db9f6a93156fa248543",
+      "bytes": 19748
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1396.d153d0f8eca22b79.js",
+      "contentType": "text/javascript",
+      "sha256": "6bbc4954b1bdfdb353be7ee4c7035ffaefc49dc1ef28e4d8d05f31c32da7b4ad",
+      "bytes": 8562
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1430.b8a9d624267828ab.js",
+      "contentType": "text/javascript",
+      "sha256": "446b5aa5c63e1a66acf791bba956e98aed5a8e1ae3647b5e8b89b84c8c8c8f18",
+      "bytes": 8140
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1464.26b1a995771e6aae.js",
+      "contentType": "text/javascript",
+      "sha256": "e8bb03cc06c1341172d90f3cc8a1da0f93f22dc65f3ba2167c4c12cce48cc24f",
+      "bytes": 18861
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1927.97059e5745f1c06e.js",
+      "contentType": "text/javascript",
+      "sha256": "104c3bd1cbc0659e48c77965402fcac26ccd589054ced944a232d5cab869d392",
+      "bytes": 6666
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/1989.0ddbd38d19f7bd51.js",
+      "contentType": "text/javascript",
+      "sha256": "5d86ad6b215387ab57c4f0c7c56d6f1414fa57272a179bc0b1330deaeafc2192",
+      "bytes": 2423
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/common.b6b3db48b3b11174.js",
+      "contentType": "text/javascript",
+      "sha256": "3f9d7f838ca8ef03bf3270ac20bc01843ad7e7457ed494e4f0f46ffa7417dd1b",
+      "bytes": 7526
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2183.b7ef38a1d2c8a622.js",
+      "contentType": "text/javascript",
+      "sha256": "a428c8d84a5f157b31a867cb64381590f1e505553c46c35a8a6531194e7e8406",
+      "bytes": 2132
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2190.0966428deb203bfa.js",
+      "contentType": "text/javascript",
+      "sha256": "6b719ee8d84081d2771e9b7d211f78b957e8bb80c54cb2b9f061e7d108c04cb6",
+      "bytes": 2209
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2461.affbdbc8dea1afe3.js",
+      "contentType": "text/javascript",
+      "sha256": "8698e821cb0be1957f461466ce8332b78571df0f6537541aaaed8ad042b8b9c2",
+      "bytes": 800
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2046.02aef2f52c7db2f1.js",
+      "contentType": "text/javascript",
+      "sha256": "5541e290a579c3bed00b06946768df386857751139dbd9bcc244beb26abc22bb",
+      "bytes": 79146
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2592.7a06c36bda59fbb3.js",
+      "contentType": "text/javascript",
+      "sha256": "34f8828b4f14727b427eab48978dd907316a93c94742d6b16a246aeef07e238b",
+      "bytes": 33316
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2232.f9570c8d896a5080.js",
+      "contentType": "text/javascript",
+      "sha256": "59c2cc91215ba6c7d875308ab8dbc981a52b3710926af71ba8f7cd6e2c19975b",
+      "bytes": 19059
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2256.9ed4ed743a686cef.js",
+      "contentType": "text/javascript",
+      "sha256": "90af42c8aab47dcdcbfaa7fcb304a7667004690d17b61807f83cace5efbb9c14",
+      "bytes": 11756
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2754.2831e201def0a0d9.js",
+      "contentType": "text/javascript",
+      "sha256": "1c706f7106e76164fe0e77ca4ab65121d833ea4844820ef4b87c2059d829ea21",
+      "bytes": 2871
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2814.dabdd6540865cdef.js",
+      "contentType": "text/javascript",
+      "sha256": "5c7835c5c13dac24f66ba02dc92ccf01c632a26ec6e75010200292bb9de5dfd1",
+      "bytes": 2293
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2991.a576476b0847ecac.js",
+      "contentType": "text/javascript",
+      "sha256": "462fd9fa35d082114e95ce12ba7d683a66fdbff5757ccb8c9ac22511d908c6a4",
+      "bytes": 16558
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/2965.ecdabb6258172e64.js",
+      "contentType": "text/javascript",
+      "sha256": "d04b76a889d7a1dd3203ab5bfebe18fd9e23b7870473dccec49d673861e39463",
+      "bytes": 44497
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3115.08dd6575e93ceb27.js",
+      "contentType": "text/javascript",
+      "sha256": "7c6077470450eb635aa5597b7beea2d895793e19ea309055f6baf59ada169b71",
+      "bytes": 20813
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3213.6c69dc873655190b.js",
+      "contentType": "text/javascript",
+      "sha256": "9b95ed15990c91937ad892a4508a773477071f41eadc4564296878762990b144",
+      "bytes": 234133
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3128.af20782a0bface06.js",
+      "contentType": "text/javascript",
+      "sha256": "7c8dba8f02115d0fa6a7520af1b7fea2565450f8532b7c3a93b22659ee4f2cc9",
+      "bytes": 2403
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3487.9ba48c70f71b228d.js",
+      "contentType": "text/javascript",
+      "sha256": "46cfb73747aa4d1d05a8606e5ed4181811d6e3bcf5dc591ac6eecbc0e389f1ea",
+      "bytes": 2340
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3534.9921e2477110d8b3.js",
+      "contentType": "text/javascript",
+      "sha256": "83e45dfd8b5d15047ed4d4063f61c38b610757c25129261a8bb88de803f2e761",
+      "bytes": 23712
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3558.81f2904f21514d00.js",
+      "contentType": "text/javascript",
+      "sha256": "35ddef20ac0fd4343600932ef769efa0f7a3518e21681429386ee2eb83891d00",
+      "bytes": 22196
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3599.5346545c12b8d6ef.js",
+      "contentType": "text/javascript",
+      "sha256": "30f4d7515b208f8af224cc3ea828736c7cdc95b2354e626dfde281149abf5abc",
+      "bytes": 7593
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4157.20f24e884a49afc1.js",
+      "contentType": "text/javascript",
+      "sha256": "febbc40227c0fb3054d94d774537493a904845befcb3ee50325fbf8a25c3826a",
+      "bytes": 1203407
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3842.53c28bbc22538e45.js",
+      "contentType": "text/javascript",
+      "sha256": "df1143ad3faf650af741bed1290fc7f708190a7930dc8b7c1940288fb99e4a50",
+      "bytes": 2117
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3632.d49cdbce5c9a22fb.js",
+      "contentType": "text/javascript",
+      "sha256": "6e97e9a3237a4a903286e63fe2fbe02d1542af7daa34821c15542c90a8c598fe",
+      "bytes": 29142
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/3936.f320ba431733cc64.js",
+      "contentType": "text/javascript",
+      "sha256": "ad94fbb0f16858c1b6a9d11ca72692d15d8ac756bd189478bb32b63422857cfb",
+      "bytes": 2024
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4298.de6aa572381bbc85.js",
+      "contentType": "text/javascript",
+      "sha256": "6ec5d92d3ee5135caf7423d93eb9bd8cdc456613fe156a12626f414ba675b796",
+      "bytes": 21660
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4202.7de1c5e41cc2f901.js",
+      "contentType": "text/javascript",
+      "sha256": "2148ca36aa2096bd0776c067e176743d0c06fe3b757b36057acf7979dc1a740d",
+      "bytes": 22382
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4385.43a8a8318d7a5ab4.js",
+      "contentType": "text/javascript",
+      "sha256": "40b8972f2bd703e67e8a280f0b3bcc775ce759d300cf4899783e0013af25e3ab",
+      "bytes": 19637
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4520.569dc4df3fcb1458.js",
+      "contentType": "text/javascript",
+      "sha256": "08eeb0845cbc33c9a869feba0c3955d3e902b6352e447a8d0f278bfff7cfbc3f",
+      "bytes": 92667
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4536.f3567294dec90487.js",
+      "contentType": "text/javascript",
+      "sha256": "a155d060a7f26d85186f256b2d53e9ef1e7d9178a73ee727c9e6f2bedc0f3a8e",
+      "bytes": 20039
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4178.9b63e793b3df8249.js",
+      "contentType": "text/javascript",
+      "sha256": "98bb45c8a7d2d172bb920c374c98479b65c5a9775db631e5adf7d4d17a5099fc",
+      "bytes": 174480
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4496.8cb44f7895fa925c.js",
+      "contentType": "text/javascript",
+      "sha256": "caeb444e7305ccc1e04277f452c9b49b4f726ed8d643134cd0fc24b6045eb21b",
+      "bytes": 7726
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/4888.3db6810f6c01324e.js",
+      "contentType": "text/javascript",
+      "sha256": "d223bfa6726d2e3e22cd4d6a72f3154bb6c873ec3e3eb771083434f70394ceb3",
+      "bytes": 7544
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/5064.4649e11afacb9088.js",
+      "contentType": "text/javascript",
+      "sha256": "516505ab74679daa8e886802fa794aca92d00818a8c550554ed14af0e5ddb59c",
+      "bytes": 7384
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/5387.3bf87f05f89eed9c.js",
+      "contentType": "text/javascript",
+      "sha256": "fdbe65b61079cc190cdfb7fa00099573abd9be98e0fcc3f3cff21e9f38e33ea9",
+      "bytes": 15691
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/5592.de5009e42edc784b.js",
+      "contentType": "text/javascript",
+      "sha256": "b37b9df8158b8c3c90482129ea19b9a1d0acd246c34296b1736c13cfb0c8dcb7",
+      "bytes": 2083
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/5668.43102fc1b61f5c16.js",
+      "contentType": "text/javascript",
+      "sha256": "64179caf633ca26d9acdd3d1100e142a71e0ce0234afe79b86e3e5ec673fc39d",
+      "bytes": 17770
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/5980.65b58c6ce03586f2.js",
+      "contentType": "text/javascript",
+      "sha256": "b962fc15b683dae9ad12dbf70083f3a4058284ba6381fb659effe3bfd5d600ff",
+      "bytes": 5651
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/5799.e3b7dd88fa7b24b6.js",
+      "contentType": "text/javascript",
+      "sha256": "a262de0c178695bb04df1bd71214bbaabafd8688aba012fc5f7fffcd4fb8cbbd",
+      "bytes": 25621
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6067.066260bc1eaf1081.js",
+      "contentType": "text/javascript",
+      "sha256": "4afcca462f101308e17b780e37ac2dcb8cf57322fac8043381c571a7488d70ba",
+      "bytes": 51298
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6087.300a85cbaa4f380a.js",
+      "contentType": "text/javascript",
+      "sha256": "8bc8e1f115c1181516d45999a067dd55b5efe109aeb1d1028a999097800656ec",
+      "bytes": 5469
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6429.b8ab9aa84cdecaa8.js",
+      "contentType": "text/javascript",
+      "sha256": "767bcfe2f79a978df4a5116d9af2c80435cb563516765a0ab70b72dd39d7b3f8",
+      "bytes": 109732
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6293.d07e253f1662cca0.js",
+      "contentType": "text/javascript",
+      "sha256": "a8b79936438901f5132726438dc924041676e942aee40d98f651a698764e8004",
+      "bytes": 25760
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6370.a3f539741ce00659.js",
+      "contentType": "text/javascript",
+      "sha256": "fee9549af9a059caddefe9f83b86100ce8d1973f47f58c8c75f878d0932549bf",
+      "bytes": 22368
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6475.e751c0598e237548.js",
+      "contentType": "text/javascript",
+      "sha256": "411183fcb2f014766167123fd474b51a5966628fbcdf8b75ebf626d0529b623b",
+      "bytes": 10325
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6297.646894d2ccaae37a.js",
+      "contentType": "text/javascript",
+      "sha256": "0abe168a438a75643547ad6ca27de31c4bc79f8bfbd9625c0244c8cbb518e5bc",
+      "bytes": 323849
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6624.63dadd3bbd4c2884.js",
+      "contentType": "text/javascript",
+      "sha256": "300449abd1aa95b5d94eb5f216aa1338968646370cc4b842019905352411f52b",
+      "bytes": 24091
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6923.1fe2c7b507a10ae9.js",
+      "contentType": "text/javascript",
+      "sha256": "7cb4245a13461f7a9d5ac124aaf0e257d61eef692edf3b33dab6a35d9eb8802b",
+      "bytes": 18400
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7180.30d0fc59876f159b.js",
+      "contentType": "text/javascript",
+      "sha256": "8317ddcd50721c61a0c2da96c85931a41b5b298d57be0a045551ef6cdb5e3f5e",
+      "bytes": 1917
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7081.752212d87bc37feb.js",
+      "contentType": "text/javascript",
+      "sha256": "98415053312d66be988ab72a6c8f26f2dc1c986b722a44fa02f2f4601ef52a6f",
+      "bytes": 20808
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7133.dcfcae3bd19b146f.js",
+      "contentType": "text/javascript",
+      "sha256": "feb61911245482dfdbdce4a090d6d2d5bfe5866868fe58bcefb248f47a6af607",
+      "bytes": 2495
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7233.1e6fea6a38287bc6.js",
+      "contentType": "text/javascript",
+      "sha256": "85a6c567d44d8cc9ac452d67b65359ad45473d6131d6e5c5c6da97b999b58d18",
+      "bytes": 21833
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7234.452f3dfe5be32132.js",
+      "contentType": "text/javascript",
+      "sha256": "5dbd16f553d03df8d41ed71e741ba4d661e915657da55abcabdfc359cebafeb5",
+      "bytes": 2189
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7715.bccc61c0e50e48c4.js",
+      "contentType": "text/javascript",
+      "sha256": "2c8e1c6f40d1fc53f275c35b5b7aca88313d4a13ffcb95e4b2263bc28421bb28",
+      "bytes": 2483
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7882.4ab701a0524c6d54.js",
+      "contentType": "text/javascript",
+      "sha256": "60ae233d270e4f7793f102bf5f01d1b62626453fec552aaa25932202544e849d",
+      "bytes": 7528
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/6825.11911ab1712247e4.js",
+      "contentType": "text/javascript",
+      "sha256": "45584451776e5c4938fa56ffddf2a4839399c754afe3a23ff665550f56f511ff",
+      "bytes": 6115955
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/8439.7efaaca024d54720.js",
+      "contentType": "text/javascript",
+      "sha256": "4bd53b2df65060d0883c590c8785d54e101a6178a7cefa71d6e31836b15b5685",
+      "bytes": 151986
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/8385.9e9025bc89ecbf50.js",
+      "contentType": "text/javascript",
+      "sha256": "efed54f96d7e6d16a2e2b6996324d1112fcce82ada6fed78ff8cb672e2e52f17",
+      "bytes": 2817
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/8280.caea8de4270b9793.js",
+      "contentType": "text/javascript",
+      "sha256": "a2680e5772c9c9c0df7bb0e22073e126437def4b501e8e71c05ba314fb70e39f",
+      "bytes": 2365
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/8473.2616f39674932d0a.js",
+      "contentType": "text/javascript",
+      "sha256": "d3f885b50f39d26916169dc83d2c923b877f70e97e5486e0dd405f56fc7fcb97",
+      "bytes": 2068
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/8627.3a0e66cf00f20a79.js",
+      "contentType": "text/javascript",
+      "sha256": "da4854df1d6dbb48d6b180c757e8d43aaeb8c9697e8c3bcb1f14839690cfa39e",
+      "bytes": 68710
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/7947.42fedb6d9de54037.js",
+      "contentType": "text/javascript",
+      "sha256": "04c4d636d4538865285ea1b80e5ff30175dda5f23dbcc7711ec089fac0a4f41c",
+      "bytes": 59906
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9051.2c00032ebd85600c.js",
+      "contentType": "text/javascript",
+      "sha256": "689176c42e30841fefc1c252aa419b5be7d815b18cb397f9f4d5654fb01f79fc",
+      "bytes": 50739
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9406.12ff75a9c4ee4fb4.js",
+      "contentType": "text/javascript",
+      "sha256": "b4ab1189bc8f65a52e6f862c771d20cf9169071c9afd1aa2342576df5e76fcc4",
+      "bytes": 21227
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9266.29e11ecc7dd15946.js",
+      "contentType": "text/javascript",
+      "sha256": "89a9fd8a9b87963385e80c949ff7f081b08f725ac373d4daf7f7939221fabb40",
+      "bytes": 19628
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9512.2bdbf5fb3024a9cc.js",
+      "contentType": "text/javascript",
+      "sha256": "06fce21cb1a130ec82b40b970cad7d066c74ffbd4727ebceb54411e3bd3f9993",
+      "bytes": 17875
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9070.cdbceebb3a611d57.js",
+      "contentType": "text/javascript",
+      "sha256": "3467cc2c4d368f2c46bc75320844843c14da9f6d41d13c9b6a8b7a8e681198d0",
+      "bytes": 30786
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9807.d0e9df1291570099.js",
+      "contentType": "text/javascript",
+      "sha256": "dcb475383a48bf21aaad931ee9bfbffcf74df50e473a72c5d52d5e5d21da8a8a",
+      "bytes": 2180
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9858.9993c679f0aa8e5a.js",
+      "contentType": "text/javascript",
+      "sha256": "4da85548cae4f262dac6e0f16040457cf4ced490174c8cb307d1d1f8a94216c3",
+      "bytes": 6523
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9942.239045998772e972.js",
+      "contentType": "text/javascript",
+      "sha256": "3ab3fac103f510deb9b48c603a71b5452c791360fcbec26fe8a23294445fb8b3",
+      "bytes": 18835
+    },
+    {
+      "url": "https://front.hibob.com/master-ff248bbc481be0bf119e8568a0f5c490d6aa1577/careers/9945.56b22401e32158c9.js",
+      "contentType": "text/javascript",
+      "sha256": "2941e8c190b6a5a76f9ae24663d948736b36743108cd32cd4007390818478db1",
+      "bytes": 52447
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap",
+      "contentType": "text/css; charset=utf-8",
+      "sha256": "96ac89130ee368fb8e025c438d36d62fff891b34f640e0f51e466b8110daea4a",
+      "bytes": 1644,
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36"
+      }
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@400;500;600;700&family=Rubik:wght@400;500;600;700&display=swap",
+      "contentType": "text/css; charset=utf-8",
+      "sha256": "3607fd878fd8fcd13245339eca576a07d91c0023d1145cd2c7ed740621bf1719",
+      "bytes": 20159,
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36"
+      }
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter&display=swap",
+      "contentType": "text/css; charset=utf-8",
+      "sha256": "d47b907dca0e2d0b7f0ddaed9b08c31687fe75dd554f1d0b656419d4fb78c335",
+      "bytes": 2591,
+      "requestHeaders": {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.7778.96 Safari/537.36"
+      }
+    },
+    {
+      "url": "https://cdn.icomoon.io/fe7353d4db/hibob-font-new-3/1793611218/font/style.css",
+      "contentType": "text/css",
+      "sha256": "e669dc53b105e5f08303307e4020841dc7675be8d3e7cf8526172bb9972b2d4e",
+      "bytes": 229054
+    }
+  ],
+  "unresolvedResources": [
+    {
+      "url": "https://cloud.typography.com/7991694/6984012/css/fonts.css",
+      "error": "HTTP 403"
+    }
+  ],
+  "observedRowFieldTypes": {
+    "id": [
+      "string"
+    ],
+    "title": [
+      "string"
+    ],
+    "departmentId": [
+      "string"
+    ],
+    "department": [
+      "string"
+    ],
+    "employmentTypeId": [
+      "string"
+    ],
+    "employmentType": [
+      "string"
+    ],
+    "siteId": [
+      "number"
+    ],
+    "site": [
+      "string"
+    ],
+    "country": [
+      "string"
+    ],
+    "language": [
+      "string"
+    ],
+    "description": [
+      "string"
+    ],
+    "requirements": [
+      "null",
+      "string"
+    ],
+    "responsibilities": [
+      "null",
+      "string"
+    ],
+    "benefits": [
+      "null",
+      "string"
+    ],
+    "sectionLabels": [
+      "object"
+    ],
+    "publishedAt": [
+      "string"
+    ],
+    "workspaceTypeId": [
+      "string"
+    ],
+    "workspaceType": [
+      "string"
+    ],
+    "payTransparencyMinSalary": [
+      "null",
+      "number"
+    ],
+    "payTransparencyMaxSalary": [
+      "null",
+      "number"
+    ],
+    "payTransparencySalaryCurrency": [
+      "null",
+      "string"
+    ],
+    "payTransparencySalaryPayPeriod": [
+      "null",
+      "string"
+    ],
+    "payTransparencySalaryAdditionalInfo": [
+      "null"
+    ],
+    "postingLocations": [
+      "array"
+    ]
+  },
+  "forms": {
+    "8ac2ff36-33a6-4d62-842c-8ec6e55c2dc6": {
+      "fullRawRoleCriteriaSha256": "d8530d4c068a7a52d4ef099ccb2dc285515c4f931005edec148137137eea9fbc",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "a51db4b387760edd3220577af7c7d1ce3d8f4010723e864f127fca4f23eca9d0"
+    },
+    "d7bbceff-c3ac-48a2-8661-e6b069619793": {
+      "fullRawRoleCriteriaSha256": "12b8663aae8a5c82889bab2182c35dec243e8ec44717a5b2076dc35fc0155039",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "0245d40180f2985fc7a162cd65dc80faa43c25486789d809169572119f465e63"
+    },
+    "7231c8b1-4c5a-4707-b28c-16d5284dbd25": {
+      "fullRawRoleCriteriaSha256": "ba405fcc2e5e1ed0718fb52b83420669cfc67163b66e00b7078afc52f7030556",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "a424fdf133da46c0e968f9ab636929ead66299fda2a412706f0b4236357b21e6"
+    },
+    "06c7f607-c7b3-4895-8a1a-fa98fb34af8f": {
+      "fullRawRoleCriteriaSha256": "4dd6ca58ed99b5bff1375a3dcf0b2f20659e9d5457da310065d556a8f0d2f10b",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "c06cd56f92d65785bf11a83dd22043d0e3ac732a734143e247ea8b0b20e58838"
+    },
+    "bed846f2-3702-4117-b35d-c77c3177897e": {
+      "fullRawRoleCriteriaSha256": "4c6cd0967f9d8f548e06d21e485d65a3c79c22534e645d53a791d00d150feefe",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "e787b6e3f323cd9fbba64ee62569e48b07826db061c487eaa8ad13f3f0645a5f"
+    },
+    "c8f4bc5d-92bb-4838-ac8b-c12a4f5009a4": {
+      "fullRawRoleCriteriaSha256": "49f2928feb5506b4f412d638b00b156872c56933ecc8c41baa612c628738d35d",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "1998ed4035027a4b8047a303514fafa12e1f83142c8588a5768212ae7d325f42"
+    },
+    "06759ba0-62cb-4f37-b706-f5ba5955c6e8": {
+      "fullRawRoleCriteriaSha256": "cc51ab66ce016800a53db2142954762c40766067629d0c5a9a71aba505db0d8e",
+      "metadataSha256": "3870139d4023f372a25ac2f09807a822e151ebdd3f76aa912edbafee9d90cf9a",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "480ea9e54e793365108d1aa9cae6084590666ed43c181c9d4aafb7c39fec9ea3"
+    },
+    "e20f8477-faad-4e92-95b4-0a1f6bc26658": {
+      "fullRawRoleCriteriaSha256": "ab503b80daed2ae06225267f79738d16b4b0c63b1ed816cb7c0d36a61f2825ff",
+      "metadataSha256": "2633e7b1755026a7ac1ec86b496fafa52a2a9326000263f1ab01981d6072dce9",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "30ef413b237a0fc60668da8ed947147f557b10d103311854459880588ee61ff0"
+    },
+    "c7153f06-954e-4fbd-894c-33020217da54": {
+      "fullRawRoleCriteriaSha256": "43fa32d2868ace432d2c0f4e30fa523f90a091a2ad60c896ef7e8693e82f5a1b",
+      "metadataSha256": "a7b4b5307dc33e05bd24d1223868855fbdb4bf7ef09da2f92914b8bd55f7bfe3",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "4d2d27350db7365f507607d8744e6b38a21699eedaf3a9d08d74bd5966078064"
+    },
+    "2ca301b1-a31a-44e6-99be-3b26931c0864": {
+      "fullRawRoleCriteriaSha256": "3f21e49ce361c9af1b1f419b9d5b14e925bc65c5891cc05922a762391d8fbf22",
+      "metadataSha256": "3870139d4023f372a25ac2f09807a822e151ebdd3f76aa912edbafee9d90cf9a",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "73db9c90ec8c47f24a948d8f33d7def721377d4e15f7dc29d4815635e274bc8a"
+    },
+    "93b32237-13c9-4f1f-9620-30acc0064a1a": {
+      "fullRawRoleCriteriaSha256": "1d2c3df3ba8a33f6d8e29df4fb9f544ba602a210ba782caccc8f63b7d3de25c2",
+      "metadataSha256": "a14252d5a79b33a939b56388d805cab60b4d337c00fafc9028468fe41182aa1a",
+      "otherDataSha256": "4c39fec591ac8499600d48fe9a81e0144501c4a957b0161de69c3c826203a348",
+      "applicationFormSha256": "548285591b82c610094b540459453ac0283bb6fb17753e5874c40654994e4d74"
+    }
+  }
+}

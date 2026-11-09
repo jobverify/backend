@@ -1,0 +1,28 @@
+[
+  {
+    "source":"aryaai",
+    "companyName":"Arya.ai",
+    "officialBrandName":"Arya.ai",
+    "catalogOverride":true,
+    "adapter":"script",
+    "modulePath":"../aryaai/script.js",
+    "companyCareerPage":"https://arya.ai/careers",
+    "companyDomain":"arya.ai",
+    "countryFilter":"India",
+    "atsPlatform":"official-company-careers",
+    "parser":"custom-script",
+    "extractionStrategy":"current-active-corporate-briefs-declared-native-detail-status-and-final-corporate-read",
+    "zeroResultPolicy":"evidence-required",
+    "verifiedOn":null,
+    "verifiedAt":null,
+    "verifiedPublicJobCount":null,
+    "verifiedIndiaJobCount":null,
+    "verifiedInventoryStatus":"unverified",
+    "runtimeInventoryVerification":true,
+    "sourceScopeComplete":false,
+    "lifecycleCleanupAllowed":false,
+    "scraperTimeoutMs":120000,
+    "sourceLifecycleTimeoutMs":150000,
+    "verifiedSurfaceSummary":"Current corporate cards remain short hiring observations. Full native criteria, an active application route and explicit role work countries must be qualified before emitting vacancies. A missing external detail does not establish whole-company absence."
+  }
+]

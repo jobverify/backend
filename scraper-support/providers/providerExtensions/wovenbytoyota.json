@@ -1,0 +1,23 @@
+{
+  "source": "wovenbytoyota",
+  "companyName": "Woven by Toyota",
+  "officialBrandName": "Woven by Toyota",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../wovenbytoyota/script.js",
+  "dryRunFile": "wovenbytoyota/jobs.json",
+  "companyCareerPage": "https://woven.toyota/en/careers/",
+  "companyDomain": "woven.toyota",
+  "atsPlatform": "lever",
+  "countryFilter": "India",
+  "paginationStrategy": "native-lever-unfiltered-skip-limit-terminal-page",
+  "extractionStrategy": "live-official-client-handoff+native-lever-inventory+source-country-scope",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 148,
+  "verifiedIndiaJobCount": 0,
+  "verifiedSurfaceSummary": "October 23, 2026 official English careers client identifies the woven-by-toyota Lever board. Two unfiltered native pages enumerate 148 roles, none in India. The rendered No matching roles shell is not inventory evidence. Runtime requires current handoff, bounded native pagination and resolved location scope.",
+  "atsBoardToken": "woven-by-toyota",
+  "inventoryVerificationPolicy": "live-parser-evidence-required"
+}

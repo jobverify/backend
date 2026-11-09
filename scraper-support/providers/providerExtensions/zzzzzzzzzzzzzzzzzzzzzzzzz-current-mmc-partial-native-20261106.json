@@ -1,0 +1,12 @@
+[
+ {
+  "source":"mmcinfotechservices",
+  "catalogOverride":true,
+  "paginationStrategy":"single-public-native-panel-observation;company-scope-unqualified",
+  "extractionStrategy":"whole-original-inline-role-panels+declared-unvisited-application-links+unknown-native-country-and-posting-identities",
+  "verifiedOn":"2026-11-06",
+  "verifiedPublicJobCount":null,
+  "verifiedIndiaJobCount":null,
+  "verifiedSurfaceSummary":"The current official careers page publishes four inline role panels and declared prefilled application form links. Whole panel/control models, full criteria and original page bytes are retained. Application labels and local panel ordinals are observations, not posting IDs or requisitions. Native work country, closing reconciliation, company/listing totals and lifecycle cleanup remain unqualified. Public source URLs identify the actual careers page; application forms are never visited. Anonymous metadata-checked reads stop at the first failure. Factory/run transports, clocks, caps, cancellation and audit callbacks are honored. This repair adds no qualified India source."
+ }
+]

@@ -1,0 +1,152 @@
+name: Jobverify Post-scrape Classification
+run-name: 'Job Classification #${{ github.run_number }}'
+
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_id:
+        description: Internal pipeline ID (leave empty for classification only)
+        type: string
+      dispatch_token:
+        description: Internal dispatch identity
+        type: string
+      pipeline_sha:
+        description: Internal source revision
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: jobverify-post-scrape-classification
+  cancel-in-progress: false
+
+jobs:
+  register:
+    name: Register job classification
+    permissions:
+      contents: read
+      actions: write
+    runs-on: ubuntu-latest
+    outputs:
+      pipeline_id: ${{ steps.claim.outputs.pipeline_id }}
+    steps:
+      - name: Mask pipeline dispatch identity
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as event_file:
+              token = json.load(event_file).get("inputs", {}).get("dispatch_token", "")
+          if token:
+              token = token.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              print("::add-mask::" + token)
+          PY
+      - name: ${{ inputs.dispatch_token && format('Job Classification [dispatch:{0}]', inputs.dispatch_token) || 'Job Classification' }}
+        run: echo 'Pipeline dispatch identity recorded'
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - id: claim
+        run: node scripts/pipelineGithub.js register
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          PIPELINE_STAGE: classification
+          PIPELINE_ID: ${{ inputs.pipeline_id }}
+          PIPELINE_DISPATCH_TOKEN: ${{ inputs.dispatch_token }}
+          PIPELINE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+  classify:
+    name: Classify jobs (shard ${{ matrix.shard }})
+    needs: register
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    env:
+      CLASSIFICATION_SHARD: ${{ matrix.shard }}
+      CLASSIFICATION_SHARD_COUNT: '4'
+      CLASSIFICATION_BUDGET_SECONDS: '18000'
+      CLASSIFICATION_CONCURRENCY: '4'
+      POST_SCRAPE_CLASSIFICATION_MODE: 'policy'
+      GLICLASS_CPU_THREADS: '4'
+      GLICLASS_MODEL_DIRECTORY: '.cache/gliclass-model'
+      HF_HOME: '${{ github.workspace }}/.cache/gliclass-hub'
+      NODE_OPTIONS: '--use-system-ca'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: classification/gliclass/requirements.txt
+      - name: Install dependencies
+        timeout-minutes: 12
+        run: |
+          npm ci
+          python -m pip install --disable-pip-version-check torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --disable-pip-version-check -r classification/gliclass/requirements.txt
+      - name: Cache immutable checkpoint
+        uses: actions/cache@v6
+        with:
+          path: .cache/gliclass-model
+          key: gliclass-cpu-${{ runner.os }}-${{ hashFiles('classification/gliclass/model.json') }}
+      - name: Download and verify public model
+        timeout-minutes: 10
+        run: python classification/gliclass/download.py "$GLICLASS_MODEL_DIRECTORY"
+      - name: Classify saved MongoDB descriptions
+        run: node scripts/classifySavedJobs.js
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+      - name: Upload progress and resource diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: classification-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cache/scraper-actions/classification-${{ matrix.shard }}.json
+            .cache/scraper-actions/classification-${{ matrix.shard }}.ndjson
+            .cache/scraper-actions/gliclass-worker.log
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+  report:
+    name: Report classification results
+    needs: [register, classify]
+    if: always() && needs.register.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: classification-*
+          path: .cache/scraper-actions
+          merge-multiple: true
+      - name: Record aggregate outcome
+        if: always()
+        run: node scripts/pipelineGithub.js report
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          PIPELINE_STAGE: classification
+          PIPELINE_JOB_RESULT: ${{ needs.classify.result }}

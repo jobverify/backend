@@ -1,0 +1,25 @@
+[
+  {
+    "source": "firebolt",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../firebolt/script.js",
+    "atsPlatform": "comeet",
+    "backfillMode": "live-parser",
+    "parser": "current-corporate-bound-native-Comeet-literal-inventory-and-public-details",
+    "companyCareerPage": "https://www.firebolt.io/careers",
+    "officialCareersPageUrl": "https://www.firebolt.io/careers",
+    "companyDomain": "firebolt.io",
+    "paginationStrategy": "unfiltered-native-company-literal-array-and-all-public-details-with-closing-snapshot",
+    "extractionStrategy": "current-corporate-handoff+reciprocal-company-identity+static-data-only-native-bootstrap+advertised-client+public-status-and-explicit-country",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedOn": null,
+    "sourceScopeComplete": false,
+    "remediationStatus": "native-extraction-implemented-company-coverage-unverified",
+    "currentExtractionEvidence": "scraper/firebolt/fixtures/current-20261030/manifest.json",
+    "verifiedSurfaceSummary": "Current corporate role handoffs, native company UID/brand/website, literal public posting inventory, full located role sections and all detail identities are revalidated with the advertised native client and closing snapshot. Revision timestamps remain separate from unknown publication; unlocated short postings remain unresolved.",
+    "sourceScopeLimitation": "Only the currently advertised native Comeet account is extracted. Native publication dates, unlocated postings, whole-company India availability, other channels, legal employer, eligibility, persistence and public visibility remain unknown."
+  }
+]

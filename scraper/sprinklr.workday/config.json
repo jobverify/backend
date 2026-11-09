@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://sprinklr.wd1.myworkdayjobs.com/wday/cxs/sprinklr/careers/jobs",
+  "detailUrlBase": "https://sprinklr.wd1.myworkdayjobs.com/careers",
+  "countryFacetParameter": "locationCountry"
+}

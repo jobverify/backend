@@ -1,0 +1,344 @@
+{
+  "contrastsecurity": {
+    "source": "contrastsecurity",
+    "companyName": "Contrast Security",
+    "publisherName": "Contrast Security",
+    "platform": "ashby",
+    "primaryURL": "https://www.contrastsecurity.com/",
+    "primaryPages": [
+      "https://www.contrastsecurity.com/",
+      "https://www.contrastsecurity.com/contrast-careers"
+    ],
+    "primaryTitleSignals": [
+      "Contrast Security"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/contrast-security?includeCompensation=true",
+    "boardSlug": "contrast-security",
+    "organizationId": "c341bcad-0048-4fb0-bb75-f046f716268f",
+    "websiteOrigin": "https://www.contrastsecurity.com",
+    "boardURL": "https://jobs.ashbyhq.com/contrast-security",
+    "declaration": {
+      "kind": "active-native-board-link",
+      "boardURL": "https://jobs.ashbyhq.com/contrast-security"
+    },
+    "countryFilter": "India"
+  },
+  "datafold": {
+    "source": "datafold",
+    "companyName": "Datafold",
+    "publisherName": "Datafold",
+    "platform": "ashby",
+    "primaryURL": "https://www.datafold.com/careers/",
+    "primaryPages": [
+      "https://www.datafold.com/careers/"
+    ],
+    "primaryTitleSignals": [
+      "Datafold"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/datafold?includeCompensation=true",
+    "boardSlug": "datafold",
+    "organizationId": "25c04251-28a2-46f6-aeea-58822308757a",
+    "websiteOrigin": "https://www.datafold.com",
+    "boardURL": "https://jobs.ashbyhq.com/datafold",
+    "declaration": {
+      "kind": "active-literal-native-inline-profile",
+      "scriptSHA256": "cfd436b251cd15ac37cdfb3f92036482def218bb002eceb1566e8faf12ed2b84",
+      "literalPublicURI": "datafold"
+    },
+    "countryFilter": "India"
+  },
+  "redpanda": {
+    "source": "redpanda",
+    "companyName": "Redpanda",
+    "publisherName": "Redpanda Data",
+    "platform": "ashby",
+    "primaryURL": "https://www.redpanda.com/jobs",
+    "primaryPages": [
+      "https://www.redpanda.com/jobs"
+    ],
+    "primaryTitleSignals": [
+      "Redpanda"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/redpanda-data?includeCompensation=true",
+    "boardSlug": "redpanda-data",
+    "organizationId": "d3e96b7d-a7a7-4693-bc3a-0498761300fe",
+    "websiteOrigin": "https://www.redpanda.com",
+    "boardURL": "https://jobs.ashbyhq.com/redpanda-data",
+    "declaration": {
+      "kind": "active-literal-native-inline-profile",
+      "scriptSHA256": "6f82899e05c396dc98c1940addc6f5497420425ffac63cca5b6e0169e9687157",
+      "literalPublicURI": "redpanda-data"
+    },
+    "countryFilter": "India"
+  },
+  "clearco": {
+    "source": "clearco",
+    "companyName": "Clearco",
+    "publisherName": "Clearco",
+    "platform": "ashby",
+    "primaryURL": "https://www.clear.co/careers",
+    "primaryPages": [
+      "https://www.clear.co/careers",
+      "https://www.clear.co/careers/open-roles"
+    ],
+    "primaryTitleSignals": [
+      "Clearco"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/clearco?includeCompensation=true",
+    "boardSlug": "clearco",
+    "organizationId": "54d2d8b9-a6e5-4cb6-9b2a-616ae55893b0",
+    "websiteOrigin": "https://clear.co",
+    "boardURL": "https://jobs.ashbyhq.com/clearco",
+    "declaration": {
+      "kind": "active-native-embed-script",
+      "scriptURL": "https://jobs.ashbyhq.com/clearco/embed"
+    },
+    "countryFilter": "India"
+  },
+  "asapp": {
+    "source": "asapp",
+    "companyName": "ASAPP",
+    "publisherName": "ASAPP",
+    "platform": "lever",
+    "primaryURL": "https://www.asapp.com/careers",
+    "primaryPages": [
+      "https://www.asapp.com/careers"
+    ],
+    "primaryTitleSignals": [
+      "ASAPP"
+    ],
+    "publicAPIURL": "https://api.lever.co/v0/postings/asapp-2?mode=json&skip=0&limit=100",
+    "boardSlug": "asapp-2",
+    "boardURL": "https://jobs.lever.co/asapp-2",
+    "declaration": {
+      "kind": "active-literal-native-inline-profile",
+      "scriptSHA256": "924db237928f548fe691350d24a41338f233fb91c3d784c4d8cc65f760ce6c71",
+      "literalPublicURI": "https://api.lever.co/v0/postings/asapp-2"
+    },
+    "countryFilter": "India"
+  },
+  "sandboxaq": {
+    "source": "sandboxaq",
+    "companyName": "SandboxAQ",
+    "publisherName": "SandboxAQ",
+    "platform": "ashby",
+    "primaryURL": "https://www.sandboxaq.com/careers",
+    "primaryPages": [
+      "https://www.sandboxaq.com/careers",
+      "https://www.sandboxaq.com/careers-list"
+    ],
+    "primaryTitleSignals": [
+      "SandboxAQ"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/sandboxaq?includeCompensation=true",
+    "boardSlug": "sandboxaq",
+    "organizationId": "139c66e2-8418-47b9-8075-a389cd78d94a",
+    "websiteOrigin": "https://www.sandboxaq.com",
+    "boardURL": "https://jobs.ashbyhq.com/sandboxaq",
+    "declaration": {
+      "kind": "active-native-embed-script",
+      "scriptURL": "https://jobs.ashbyhq.com/sandboxaq/embed?version=2"
+    },
+    "countryFilter": "Global"
+  },
+  "delphixindia": {
+    "source": "delphixindia",
+    "companyName": "Delphix India",
+    "publisherName": "Perforce",
+    "platform": "lever",
+    "primaryURL": "https://www.perforce.com/careers",
+    "primaryPages": [
+      "https://www.perforce.com/careers"
+    ],
+    "primaryTitleSignals": [
+      "Perforce"
+    ],
+    "publicAPIURL": "https://api.lever.co/v0/postings/perforce?mode=json&skip=0&limit=100",
+    "boardSlug": "perforce",
+    "boardURL": "https://jobs.lever.co/perforce",
+    "declaration": {
+      "kind": "active-native-board-link",
+      "boardURL": "https://jobs.lever.co/perforce"
+    },
+    "brandKeyword": "delphix",
+    "identityPages": [
+      "https://www.delphix.com/",
+      "https://www.perforce.com/products/delphix"
+    ],
+    "countryFilter": "India"
+  },
+  "plivo": {
+    "source": "plivo",
+    "companyName": "Plivo",
+    "publisherName": "Plivo",
+    "platform": "lever",
+    "primaryURL": "https://www.plivo.com/jobs/",
+    "primaryPages": [
+      "https://www.plivo.com/jobs/"
+    ],
+    "primaryTitleSignals": [
+      "Plivo"
+    ],
+    "publicAPIURL": "https://api.lever.co/v0/postings/plivo?mode=json&skip=0&limit=100",
+    "boardSlug": "plivo",
+    "boardURL": "https://jobs.lever.co/plivo",
+    "declaration": {
+      "kind": "active-declared-astro-component",
+      "scriptURL": "https://www.plivo.com/_astro/JobsPage.-GAK2gps.js",
+      "scriptSHA256": "5ae28d27614a49163b0278006144f90a65c197ab5560322572e63fd32b447cd9",
+      "scriptSpecifier": "/_astro/JobsPage.-GAK2gps.js",
+      "reviewedAlternates": [
+        {
+          "scriptURL": "https://www.plivo.com/_astro/JobsPage.DnD3gZT1.js",
+          "scriptSHA256": "cf56dcacfe1a2264d9e2609182c2ca754ec7a7dd575a21ee5af2501a39d89d8f",
+          "scriptSpecifier": "/_astro/JobsPage.DnD3gZT1.js"
+        }
+      ]
+    },
+    "allowMissingNativeBoard": true,
+    "countryFilter": "Global"
+  },
+  "prefect": {
+    "source": "prefect",
+    "companyName": "Prefect",
+    "publisherName": "Prefect",
+    "platform": "ashby",
+    "primaryURL": "https://www.prefect.io/company",
+    "primaryPages": [
+      "https://www.prefect.io/company",
+      "https://www.prefect.io/careers"
+    ],
+    "primaryTitleSignals": [
+      "Prefect"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/prefect?includeCompensation=true",
+    "boardSlug": "prefect",
+    "organizationId": "c9144f55-0971-45bb-b42b-4e0c6dd085e8",
+    "websiteOrigin": "https://prefect.io",
+    "boardURL": "https://jobs.ashbyhq.com/prefect",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://www.prefect.io/_next/static/immutable/chunks/052ped2bd1jzg.js",
+      "scriptSHA256": "88847dd8f5eef8cef5eef5a0547d3b3be5807961a0bd3087e515dc5c1e587982",
+      "scriptSpecifier": "/_next/static/immutable/chunks/052ped2bd1jzg.js"
+    },
+    "countryFilter": "India"
+  },
+  "dagster": {
+    "source": "dagster",
+    "companyName": "Dagster",
+    "publisherName": "Prefect",
+    "platform": "ashby",
+    "primaryURL": "https://dagster.io/company/careers",
+    "primaryPages": [
+      "https://dagster.io/company/careers",
+      "https://www.prefect.io/careers"
+    ],
+    "primaryTitleSignals": [
+      "Prefect"
+    ],
+    "publicAPIURL": "https://api.ashbyhq.com/posting-api/job-board/prefect?includeCompensation=true",
+    "boardSlug": "prefect",
+    "organizationId": "c9144f55-0971-45bb-b42b-4e0c6dd085e8",
+    "websiteOrigin": "https://prefect.io",
+    "boardURL": "https://jobs.ashbyhq.com/prefect",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://www.prefect.io/_next/static/immutable/chunks/052ped2bd1jzg.js",
+      "scriptSHA256": "88847dd8f5eef8cef5eef5a0547d3b3be5807961a0bd3087e515dc5c1e587982",
+      "scriptSpecifier": "/_next/static/immutable/chunks/052ped2bd1jzg.js"
+    },
+    "sourceAliasPublisherShift": "Configured Dagster careers URI currently redirects to Prefect; keep literal Prefect publisher, without product-specific or legal-employer attribution.",
+    "countryFilter": "India"
+  },
+  "affirm": {
+    "source": "affirm",
+    "companyName": "Affirm",
+    "publisherName": "Affirm",
+    "platform": "greenhouse",
+    "primaryURL": "https://www.affirm.com/careers",
+    "primaryPages": [
+      "https://www.affirm.com/careers"
+    ],
+    "primaryTitleSignals": [
+      "Careers"
+    ],
+    "publicAPIURL": "https://boards-api.greenhouse.io/v1/boards/affirm/jobs?content=true",
+    "boardToken": "affirm",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/affirm",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://www.affirm.com/sections-Jobs-895ebc840a0b26051eaf.js",
+      "scriptSHA256": "e0e03254f43c30e4a5b10a3283181065bf610b065af9da9e8a1104998384a1f7",
+      "scriptSpecifier": "/sections-Jobs-895ebc840a0b26051eaf.js",
+      "reviewedAlternates": [
+        {
+          "scriptURL": "https://www.affirm.com/sections-Jobs-65cbf014b3c569923b18.js",
+          "scriptSpecifier": "/sections-Jobs-65cbf014b3c569923b18.js",
+          "scriptSHA256": "142cb6de171f70dde22443e3b1c7e1ee4eafa52ffe55f6912eada982fd0b50e1"
+        }
+      ]
+    },
+    "countryFilter": "India"
+  },
+  "cymulate": {
+    "source": "cymulate",
+    "companyName": "Cymulate",
+    "publisherName": "Cymulate",
+    "platform": "greenhouse",
+    "primaryURL": "https://cymulate.com/careers/",
+    "primaryPages": [
+      "https://cymulate.com/careers/"
+    ],
+    "primaryTitleSignals": [
+      "Cymulate"
+    ],
+    "publicAPIURL": "https://boards-api.greenhouse.io/v1/boards/cymulate/jobs?content=true",
+    "boardToken": "cymulate",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/cymulate",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://cymulate.com/wp-content/cache/min/1/wp-content/themes/cymulateTheme/app/blocks/cy-careers-search/assets/block.js?ver=1793360255",
+      "scriptSHA256": "45dd1d0101af2a6753528f0a7818036d65bf9d76322730653be6b41150910801",
+      "scriptSpecifier": "https://cymulate.com/wp-content/cache/min/1/wp-content/themes/cymulateTheme/app/blocks/cy-careers-search/assets/block.js?ver=1793360255",
+      "reviewedAlternates": [
+        {
+          "scriptURL": "https://cymulate.com/wp-content/cache/min/1/wp-content/themes/cymulateTheme/app/blocks/cy-careers-search/assets/block.js?ver=1793608799",
+          "scriptSHA256": "45dd1d0101af2a6753528f0a7818036d65bf9d76322730653be6b41150910801",
+          "scriptSpecifier": "https://cymulate.com/wp-content/cache/min/1/wp-content/themes/cymulateTheme/app/blocks/cy-careers-search/assets/block.js?ver=1793608799"
+        }
+      ]
+    },
+    "countryFilter": "India"
+  },
+  "tailscale": {
+    "source": "tailscale",
+    "companyName": "Tailscale",
+    "publisherName": "Tailscale",
+    "platform": "greenhouse",
+    "primaryURL": "https://tailscale.com/careers",
+    "primaryPages": [
+      "https://tailscale.com/careers"
+    ],
+    "primaryTitleSignals": [
+      "Tailscale"
+    ],
+    "publicAPIURL": "https://boards-api.greenhouse.io/v1/boards/tailscale/jobs?content=true",
+    "boardToken": "tailscale",
+    "publicAPIBase": "https://boards-api.greenhouse.io/v1/boards/tailscale",
+    "declaration": {
+      "kind": "active-declared-external-profile",
+      "scriptURL": "https://tailscale.com/_next/static/chunks/44640-dc80d7b513269eaf.js",
+      "scriptSHA256": "0cf5bfc726c7f188abc708a98770550d742858b5a1e9ff2b425aa7b4732bd689",
+      "scriptSpecifier": "/_next/static/chunks/44640-dc80d7b513269eaf.js",
+      "reviewedAlternates": [
+        {
+          "scriptURL": "https://tailscale.com/_next/static/chunks/44640-94f2d044bde7e9bf.js",
+          "scriptSpecifier": "/_next/static/chunks/44640-94f2d044bde7e9bf.js",
+          "scriptSHA256": "ceca4395d0f0f6c1488c9219c7cce53aead98b57945bf2e8dda2a7bdd89879e6"
+        }
+      ]
+    },
+    "countryFilter": "India"
+  }
+}

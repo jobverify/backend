@@ -1,0 +1,25 @@
+[
+  {
+    "source": "avasoft",
+    "companyName": "AVASOFT",
+    "officialBrandName": "AVASOFT",
+    "adapter": "script",
+    "modulePath": "../avasoft/script.js",
+    "companyCareerPage": "https://avasoft.com/career/",
+    "companyDomain": "avasoft.com",
+    "atsPlatform": "official-company-careers",
+    "countryFilter": "India",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "native-visible-cards+verified-loading-client+closing-card-and-detail-reconciliation",
+    "extractionStrategy": "native-employer-and-wordpress-page-identity+complete-role-sections+explicit-India-country",
+    "applicationStrategy": "role-declared-contact-page+verified-career-enquiry",
+    "verifiedOn": "2026-10-26",
+    "verifiedPublicPostingCount": null,
+    "verifiedIndiaRoleCount": null,
+    "verifiedSurfaceSummary": "Current published cards are hidden on all four Elementor breakpoints; they must not be returned as active vacancies. Hidden cards and no explicit empty state retain partial inventory evidence, not India absence. Visible cards require matching native employer/title/page identity and complete eligibility, candidate criteria, benefits and interview sections. Verify executable animation declarations, the current gallery/webinar loading client, actual role-declared contact route and separate career-enquiry email. Preserve unknown original job publication dates; WordPress document dates and graduating-class years do not establish job publication. Reconcile explicit role-owned country/employer/date/deadline metadata and all closing card/document/application states before caps. No requisition or role-specific form is fabricated.",
+    "dryRunFile": "avasoft/jobs.json",
+    "catalogOverride": true
+  }
+]

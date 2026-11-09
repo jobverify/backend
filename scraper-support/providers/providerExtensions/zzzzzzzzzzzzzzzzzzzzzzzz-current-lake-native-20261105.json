@@ -1,0 +1,11 @@
+[
+  {
+    "source": "lakechemicalspvtltd",
+    "catalogOverride": true,
+    "atsPlatform": "official-company-native-card-worksites",
+    "paginationStrategy": "paired-current-company-and-role-pages;company-scope-unqualified",
+    "extractionStrategy": "whole-native-card-models+explicit-assigned-worksite-country+paired-original-evidence",
+    "verifiedOn": "2026-11-05",
+    "verifiedSurfaceSummary": "Current native roles retain whole published criteria and exact role-assigned named worksite addresses with explicit India country, reconciled at closing. Shared application links preserve distinct native role identities. Undisclosed requisitions, dates and legal employer remain unknown. Company completeness and cleanup remain unqualified."
+  }
+]

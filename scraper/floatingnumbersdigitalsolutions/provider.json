@@ -1,0 +1,18 @@
+﻿{
+  "source": "floatingnumbersdigitalsolutions",
+  "companyName": "Floating Numbers Digital Solutions",
+  "officialBrandName": "Floating Numbers",
+  "adapter": "script",
+  "modulePath": "../../scraper/floatingnumbersdigitalsolutions/script.js",
+  "companyCareerPage": "https://www.floatingnumbers.com/",
+  "atsPlatform": "official-company-site-no-public-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "homepage-only",
+  "extractionStrategy": "verified-first-party-marketing-homepage+no-careers-route-or-public-job-listings",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "companyDomain": "floatingnumbers.com",
+  "verifiedOn": "2026-07-18",
+  "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://www.floatingnumbers.com/ remained the first-party Floating Numbers homepage. The verified page marketed Floating Numbers as 'The best content moderation company in india', focused on service marketing copy such as 'We're moderation experts - We are here to help you' and 'Committed to team excellence', and did not expose a careers page, public openings list, or trustworthy first-party jobs feed. There is no trustworthy public jobs surface, so the provider remains fail-closed until real public listings appear."
+}
+

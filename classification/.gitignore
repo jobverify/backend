@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+# Keep scraped source text and human annotation local.
+*.jsonl

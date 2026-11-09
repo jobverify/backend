@@ -1,0 +1,16 @@
+[
+  {
+    "source": "baseten",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/baseten/script.js",
+    "atsPlatform": "ashby",
+    "sourceScopeComplete": false,
+    "zeroResultPolicy": "evidence-required",
+    "parser": "custom-script",
+    "paginationStrategy": "unfiltered-native-array-and-publisher-opening-closing-reconciliation",
+    "extractionStrategy": "actual-flight-renderer-binding+original-native-records+typed-locations+full-visible-criteria+explicit-unresolved-scope",
+    "verificationStatus": "offline-reader-tested-current-live-source-unverified",
+    "verifiedSurfaceSummary": "Source-local reader tested against retained actual HTTP bodies. Preserves the original native/CMS records, complete visible descriptions, title aliases and exact unavailable-role states. Missing declared program/style bodies and three unresolved role-owned JD worksite alternatives keep company and India coverage incomplete, with cleanup disabled. This registration is not current live or full-source verification."
+  }
+]

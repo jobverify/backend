@@ -1,0 +1,17 @@
+{
+  "source": "apollo",
+  "catalogOverride": true,
+  "companyName": "Apollo Tyres",
+  "adapter": "script",
+  "modulePath": "../apollo/script.js",
+  "companyCareerPage": "https://apollotyres.csod.com/ux/ats/careersite/1/home?c=apollotyres",
+  "homepageUrl": "https://corporate.apollotyres.com/careers/",
+  "companyDomain": "apollotyres.csod.com",
+  "atsPlatform": "cornerstone-csod",
+  "countryFilter": "India",
+  "paginationStrategy": "anonymous-native-unfiltered-search+closing-corporate-tenant-client-inventory-proof",
+  "extractionStrategy": "current-official-handoff+explicit-native-zero-only; positive-criteria-country-hydration-unverified",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedSurfaceSummary": "Current Apollo Tyres corporate careers page actively links the declared CSOD careersite1. Runtime binds the anonymous apollotyres native context and published search client, then reconciles two explicitly successful unfiltered native total0/empty-ID responses with closing corporate, tenant and client proof. Unknown/contradictory payloads cannot become empty through total defaults. Future positive requisitions remain partial until full native details, countries and original dates are qualified; no India/default-description output is fabricated. Scope covers this declared board, not unknown company-wide channels."
+}

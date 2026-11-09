@@ -1,0 +1,88 @@
+{
+  "source": "accelyasolutionsindialimited",
+  "allowance": "exact-unused-appBk-localization-only",
+  "consumerAnalysis": "All nine current declared programs parsed without reads of appBk or bk members. OneTrust computed window[f] belongs solely to file:// offline JSONP basename handling; no appBk dataflow. Future unknown programs revoke complete source scope.",
+  "programs": [
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/consent/c4304bc4-d19c-4222-8663-5254ea9e76d4/OtAutoBlock.js?ver=1792674294",
+      "id": "",
+      "type": "",
+      "programSha256": "3fb413baa44629d1a01977be407211297835abc9d9b26c180fce33615ce4473a",
+      "rawSha256": "3fb413baa44629d1a01977be407211297835abc9d9b26c180fce33615ce4473a",
+      "contentType": "application/javascript",
+      "bytes": 8937
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/consent/c4304bc4-d19c-4222-8663-5254ea9e76d4/otSDKStub.js?ver=1792674294",
+      "id": "",
+      "type": "text/javascript",
+      "programSha256": "ec83119d334fe2a5a1a29b8e63cc7661e9e86841902f8714c0dc20c8dd020db7",
+      "rawSha256": "ec83119d334fe2a5a1a29b8e63cc7661e9e86841902f8714c0dc20c8dd020db7",
+      "contentType": "application/javascript",
+      "bytes": 22254
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/wp-content/plugins/sitepress-multilingual-cms/res/js/cookies/language-cookie.js?ver=1792674294",
+      "id": "wpml-cookie-js",
+      "type": "",
+      "programSha256": "b3448833be8053de28454fe3bf9fce9f0b42c660dd14589fc7628b8da5303461",
+      "rawSha256": "b3448833be8053de28454fe3bf9fce9f0b42c660dd14589fc7628b8da5303461",
+      "contentType": "application/javascript",
+      "bytes": 256
+    },
+    {
+      "url": "https://w3.accelya.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1",
+      "id": "jquery-core-js",
+      "type": "",
+      "programSha256": "cb6f2d32c49d1c2b25e9ffc9aaafa3f83075346c01bcd4ae6eb187392a4292cf",
+      "rawSha256": "cb6f2d32c49d1c2b25e9ffc9aaafa3f83075346c01bcd4ae6eb187392a4292cf",
+      "contentType": "application/javascript",
+      "bytes": 87553
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/wp-content/plugins/bubuku-post-view-count/assets/build/common.js?ver=1792674296",
+      "id": "bk-post-view-js-js",
+      "type": "",
+      "programSha256": "e997a4d5aa143a8c338cb8932d855a81f24a5ae12fd23367bae8a68d3c581526",
+      "rawSha256": "e997a4d5aa143a8c338cb8932d855a81f24a5ae12fd23367bae8a68d3c581526",
+      "contentType": "application/javascript",
+      "bytes": 4965
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/wp-content/themes/accelya/assets/js/common.js?ver=1792674294",
+      "id": "bk-main-js",
+      "type": "",
+      "programSha256": "bd1300c18cbb515b883043754b8c66e41abf8300f415a90dff4a751e16aa9f38",
+      "rawSha256": "bd1300c18cbb515b883043754b8c66e41abf8300f415a90dff4a751e16aa9f38",
+      "contentType": "application/javascript",
+      "bytes": 78099
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/wp-content/themes/accelya/blocks/slider-window/script.js?ver=1792674324",
+      "id": "bbk-slider-window-view-script-js",
+      "type": "",
+      "programSha256": "3e93d5d65e4774e2029e0e6d9537b4efa90e5a864f4c95d33ffd0338ee9965be",
+      "rawSha256": "3e93d5d65e4774e2029e0e6d9537b4efa90e5a864f4c95d33ffd0338ee9965be",
+      "contentType": "application/javascript",
+      "bytes": 898
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/cache/min/1/wp-content/themes/accelya/blocks/teams/script.js?ver=1792674324",
+      "id": "bbk-teams-view-script-js",
+      "type": "",
+      "programSha256": "d7a5d328f4f20b34a8b29b1309d62388c715d451c82c9c3098ab55634139427a",
+      "rawSha256": "d7a5d328f4f20b34a8b29b1309d62388c715d451c82c9c3098ab55634139427a",
+      "contentType": "application/javascript",
+      "bytes": 1180
+    },
+    {
+      "url": "https://w3.accelya.com/wp-content/plugins/wp-rocket/assets/js/wpr-beacon.min.js",
+      "id": "",
+      "type": "",
+      "programSha256": "c887b51ed880800ad5057329aa53b8a55d31e34cc6e8406791c1e497355d4bd8",
+      "rawSha256": "c887b51ed880800ad5057329aa53b8a55d31e34cc6e8406791c1e497355d4bd8",
+      "contentType": "application/javascript",
+      "bytes": 26004
+    }
+  ]
+}

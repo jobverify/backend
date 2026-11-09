@@ -1,0 +1,18 @@
+{
+  "source": "birlanu",
+  "catalogOverride": true,
+  "atsPlatform": "darwinbox-public-native",
+  "paginationStrategy": "full-native-board+all-public-details+final-listing-after-closing-details",
+  "extractionStrategy": "current-active-corporate-handoff+strict-native-identity-country-and-public-criteria+blocked-host-cache",
+  "verifiedOn": null,
+  "verifiedAt": null,
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "verifiedInventoryStatus": "unverified",
+  "sourceExtractionImplemented": true,
+  "remediationStatus": "native-extraction-implemented;declared-current-board-HTTP403;unknown-inventory-and-country-scope",
+  "sourceScopeComplete": false,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedSurfaceSummary": "BirlaNu's current people page identifies BirlaNu Limited (formerly HIL Limited) and actively links Join Us to the exact iconnect-hil Darwinbox allJobs tenant. Runtime reconciles its native public board, all original role/detail criteria and explicit countries with a final listing after closing details. Current native HTTP403 means unavailable inventory and unknown totals, never zero or company-wide absence. One denied native host is closed for the rest of a collection; broader employer hiring scope and cleanup remain unverified."
+}

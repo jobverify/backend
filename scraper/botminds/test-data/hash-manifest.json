@@ -1,0 +1,71 @@
+{
+  "fixture": "native-20261103.json.gz",
+  "sha256": "dc73ae5b733ee75478cd02856e70470f92284766c8b2b0d03aeecd60c0252c61",
+  "captures": [
+    {
+      "source": "botminds",
+      "key": "agentic-software-architect",
+      "url": "https://www.botminds.ai/careers/agentic-software-architect",
+      "status": 200,
+      "finalUrl": "https://www.botminds.ai/careers/agentic-software-architect",
+      "contentType": "text/html",
+      "bytes": 18234,
+      "sha256": "a375c985fa2d7f27b169833db7aefc158447a08bd7d1ff7043c7ddcb65cb1151",
+      "file": "botminds-agentic-software-architect-a375c985fa2d.body",
+      "requestedAt": "2026-11-02T21:26:37.602Z",
+      "completedAt": "2026-11-02T21:26:38.161Z"
+    },
+    {
+      "source": "botminds",
+      "key": "careers",
+      "url": "https://www.botminds.ai/careers",
+      "status": 200,
+      "finalUrl": "https://www.botminds.ai/careers",
+      "contentType": "text/html",
+      "bytes": 15669,
+      "sha256": "bf1879753fb6a72697991241f5fd7fb00dc9178367117f99c65d5b707d3b3163",
+      "file": "botminds-careers-bf1879753fb6.body",
+      "requestedAt": "2026-11-02T21:26:37.552Z",
+      "completedAt": "2026-11-02T21:26:38.234Z"
+    },
+    {
+      "source": "botminds",
+      "key": "forward-deployed-engineer",
+      "url": "https://www.botminds.ai/careers/forward-deployed-engineer",
+      "status": 200,
+      "finalUrl": "https://www.botminds.ai/careers/forward-deployed-engineer",
+      "contentType": "text/html",
+      "bytes": 17706,
+      "sha256": "b5a9e9cd6f7de5ee2753b11f6712c90b8e63078b2f01dacd77ab76b7967685f6",
+      "file": "botminds-forward-deployed-engineer-b5a9e9cd6f7d.body",
+      "requestedAt": "2026-11-02T21:26:38.162Z",
+      "completedAt": "2026-11-02T21:26:38.322Z"
+    },
+    {
+      "source": "botminds",
+      "key": "software-architect",
+      "url": "https://www.botminds.ai/careers/software-architect",
+      "status": 200,
+      "finalUrl": "https://www.botminds.ai/careers/software-architect",
+      "contentType": "text/html",
+      "bytes": 17285,
+      "sha256": "065992edeb594e423e23692c785028c3d57f3786a430db7d5956b21893f1be61",
+      "file": "botminds-software-architect-065992edeb59.body",
+      "requestedAt": "2026-11-02T21:26:38.235Z",
+      "completedAt": "2026-11-02T21:26:38.378Z"
+    },
+    {
+      "source": "botminds",
+      "key": "solution-architect",
+      "url": "https://www.botminds.ai/careers/solution-architect",
+      "status": 200,
+      "finalUrl": "https://www.botminds.ai/careers/solution-architect",
+      "contentType": "text/html",
+      "bytes": 17396,
+      "sha256": "b80c0ec18a5bb0d880b7908e3c417d84357901932daa20405b268a34a4686ab0",
+      "file": "botminds-solution-architect-b80c0ec18a5b.body",
+      "requestedAt": "2026-11-02T21:26:38.325Z",
+      "completedAt": "2026-11-02T21:26:38.482Z"
+    }
+  ]
+}

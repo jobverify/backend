@@ -1,0 +1,28 @@
+{
+  "source": "cargill",
+  "evidenceManifest": "fixtures/phase3-20261024/manifest.json",
+  "productionRepairs": [
+    "Preserve blocked HTTP stage, status and request/final URLs as non-retriable soft failures.",
+    "Abort active sibling detail requests and allow their actual fetch/body operations up to 1000ms to settle before rejecting. Regressions reproduced two active requests surviving the old failure after its source deadline was cleared, including delayed cooperative abort cleanup. The corrected source retains the first error and settles those cooperative requests before rejection."
+  ],
+  "positiveNativeEvidence": {
+    "careersUrl": "https://careers.cargill.com/en",
+    "searchUrl": "https://careers.cargill.com/en/search-jobs",
+    "observedIndiaFacetId": "1269750",
+    "observedIndiaFacetCount": 85,
+    "observedFirstPageRows": 15,
+    "validatedNativeRequisition": "336252",
+    "validatedTitle": "Consultant, Tax Content Architect",
+    "validatedLocation": "Bangalore, Karnataka, India, 560087",
+    "validatedNativeDescriptionCharacters": 2106,
+    "method": "One current native country-filter page and one role's advertised official SAP/RMK handoff passed the existing identity, employer, location and full-description guards. The two advertised query-client asset hashes still matched the existing contract."
+  },
+  "remainingBlocker": "Current normal browser requests to the required corporate root and corporate /careers page returned HTTP403 Access Denied. The production corporate binding check remains mandatory. Careers-stage success does not establish a completed source run, all India pages, every role detail, or whole-company coverage.",
+  "sourceRuntimeRecovered": false,
+  "abortSettlementLimit": "The source preserves a finite 1000ms cleanup grace. An arbitrary custom transport that ignores abort may outlive that grace; the source does not wait forever or claim it can terminate uncooperative external code.",
+  "completeInventoryVerified": false,
+  "verifiedIndiaJobCount": null,
+  "verifiedPublicJobCount": null,
+  "productionWrites": false,
+  "fullSourceScrape": false
+}

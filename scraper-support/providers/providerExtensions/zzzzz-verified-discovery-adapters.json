@@ -1,0 +1,574 @@
+[
+  {
+    "source": "aiagroup",
+    "companyName": "AIA Group",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://aia.wd3.myworkdayjobs.com/en-US/External",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.aia.com/en/careers/overview",
+    "officialHomepageUrl": "https://www.aia.com/en",
+    "companyDomain": "www.aia.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:26:09.912Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:26:09.912Z",
+      "officialURL": "https://www.aia.com/en/careers/overview",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://aia.wd3.myworkdayjobs.com/External"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-003",
+      "proofFiles": [
+        "proof/batch-003-search-02.json",
+        "proof/batch-003-open-01.json",
+        "proof/batch-003-find-01.json",
+        "proof/batch-003-find-02.json",
+        "proof/batch-003-open-02.json",
+        "proof/batch-003-click-01.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.aia.com/en/careers/overview",
+          "to": "https://aia.wd3.myworkdayjobs.com/External",
+          "evidence": "See corporate opportunities link 8 resolved exactly to this Workday board."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Corporate employee recruitment and AIA Premier Advisor recruiting are separate flows. Prefer corporate opportunities for employee vacancies. Do not merge AIA India into this source until the intended India employer is known; Tata AIA is a distinct joint venture.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "aig",
+    "companyName": "AIG",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://aig.wd1.myworkdayjobs.com/en-US/aig",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.aig.com/home/careers",
+    "officialHomepageUrl": "https://www.aig.com/",
+    "companyDomain": "www.aig.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:26:09.912Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:26:09.912Z",
+      "officialURL": "https://www.aig.com/home/careers",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://www.aig.com/home/careers/experienced-professionals",
+        "https://aig.wd1.myworkdayjobs.com/aig"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-003",
+      "proofFiles": [
+        "proof/batch-003-search-03.json",
+        "proof/batch-003-open-02.json",
+        "proof/batch-003-click-01.json",
+        "proof/batch-003-open-04.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.aig.com/home/careers",
+          "to": "https://www.aig.com/home/careers/experienced-professionals",
+          "evidence": "Official Experienced Professionals link 17."
+        },
+        {
+          "from": "https://www.aig.com/home/careers/experienced-professionals",
+          "to": "https://aig.wd1.myworkdayjobs.com/aig",
+          "evidence": "View job openings link 27 resolves to exact Workday board."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Do not assume Tata AIG or AIG subsidiaries share the same employer scope or that every parent-board vacancy belongs to a regional source.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "albemarle",
+    "companyName": "Albemarle",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://albemarle.wd5.myworkdayjobs.com/en-US/External",
+    "boardIdentityVerified": true,
+    "locationCountry": null,
+    "companyCareerPage": "https://www.albemarle.com/us/en/careers",
+    "officialHomepageUrl": "https://www.albemarle.com/",
+    "companyDomain": "www.albemarle.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:39:15.147Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:39:15.147Z",
+      "officialURL": "https://www.albemarle.com/us/en/careers",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://albemarle.eightfold.ai/careers?location=US",
+        "https://albemarle.wd5.myworkdayjobs.com/External"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-004",
+      "proofFiles": [
+        "proof/batch-004-search-03.json",
+        "proof/batch-004-open-01.json",
+        "proof/batch-004-click-01.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.albemarle.com/us/en/careers",
+          "to": "https://albemarle.eightfold.ai/careers?location=US",
+          "evidence": "View Job Opportunities link 48 exact destination."
+        },
+        {
+          "from": "https://www.albemarle.com/us/en/careers",
+          "to": "https://albemarle.wd5.myworkdayjobs.com/External",
+          "evidence": "Go to Albemarle's Workday Portal & Sign Up link 95 exact destination."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Both discovery front end and underlying Workday handoff are directly linked by corporate page. Workday site name External is exact. Do not use US-filtered Eightfold results as complete global or India inventory. No India role verified.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "alcoa",
+    "companyName": "Alcoa",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://alcoa.wd5.myworkdayjobs.com/en-US/Careers",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.alcoa.com/careers/en",
+    "officialHomepageUrl": "https://www.alcoa.com/",
+    "companyDomain": "www.alcoa.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:39:15.147Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:39:15.147Z",
+      "officialURL": "https://www.alcoa.com/careers/en",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://alcoa.wd5.myworkdayjobs.com/Careers"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-004",
+      "proofFiles": [
+        "proof/batch-004-search-04.json",
+        "proof/batch-004-open-01.json",
+        "proof/batch-004-click-01.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.alcoa.com/careers/en",
+          "to": "https://alcoa.wd5.myworkdayjobs.com/Careers",
+          "evidence": "Search All Vacancies link 29 exact destination."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Official site additionally links Workday location filters for multiple countries. Careers is case sensitive as observed. No current India vacancy verified; regional operating-location list does not establish a zero count.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "alfalaval",
+    "companyName": "Alfa Laval",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://alfalaval.wd3.myworkdayjobs.com/en-US/Alfa_Laval_jobs",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.alfalaval.in/career/career/",
+    "officialHomepageUrl": "https://www.alfalaval.com/",
+    "companyDomain": "www.alfalaval.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:39:15.147Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:39:15.147Z",
+      "officialURL": "https://www.alfalaval.in/career/career/",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://alfalaval.wd3.myworkdayjobs.com/en-US/Alfa_Laval_jobs"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-004",
+      "proofFiles": [
+        "proof/batch-004-search-07.json",
+        "proof/batch-004-open-01.json",
+        "proof/batch-004-find-01.json",
+        "proof/batch-004-click-01.json",
+        "proof/batch-004-search-30.json",
+        "proof/batch-004-open-04.json",
+        "proof/batch-004-open-05.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.alfalaval.in/career/career/",
+          "to": "https://alfalaval.wd3.myworkdayjobs.com/en-US/Alfa_Laval_jobs",
+          "evidence": "See our job vacancies link 2 exact Workday destination."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Official India corporate page and official global branded recruiting front end agree on identity. Workday site Alfa_Laval_jobs is exact. Other old indexed Alfa Laval job pages can be more than a year old; no stale posting was counted as a current verified vacancy.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "alliantenergy",
+    "companyName": "Alliant Energy",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://alliantenergy.wd1.myworkdayjobs.com/en-US/alliant",
+    "boardIdentityVerified": true,
+    "locationCountry": null,
+    "companyCareerPage": "https://www.alliantenergy.com/careers",
+    "officialHomepageUrl": "https://www.alliantenergy.com/",
+    "companyDomain": "www.alliantenergy.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:39:15.147Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:39:15.147Z",
+      "officialURL": "https://www.alliantenergy.com/careers",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://alliantenergy.wd1.myworkdayjobs.com/alliant"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-004",
+      "proofFiles": [
+        "proof/batch-004-search-12.json",
+        "proof/batch-004-open-02.json",
+        "proof/batch-004-find-01.json",
+        "proof/batch-004-click-01.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.alliantenergy.com/careers",
+          "to": "https://alliantenergy.wd1.myworkdayjobs.com/alliant",
+          "evidence": "See current job openings and apply link 33 exact destination."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Company career identity and external Workday board verified. Do not confuse Alliant Energy with unrelated Alliant-named employers. No current India role verified; runtime country filtering remains untested.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "ameriprisefinancial",
+    "companyName": "Ameriprise Financial",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://ameriprise.wd5.myworkdayjobs.com/en-US/Ameriprise",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.ameriprise.com/careers/",
+    "officialHomepageUrl": "https://www.ameriprise.com/",
+    "companyDomain": "www.ameriprise.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:52:30.651Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:52:30.651Z",
+      "officialURL": "https://www.ameriprise.com/careers/",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://ameriprise.wd5.myworkdayjobs.com/Ameriprise",
+        "https://ameriprise.wd5.myworkdayjobs.com/Ameriprise"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-005",
+      "proofFiles": [
+        "proof/batch-005-search-10.json",
+        "proof/batch-005-open-02.json",
+        "proof/batch-005-find-04.json",
+        "proof/batch-005-open-03.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.ameriprise.com/careers/",
+          "to": "https://ameriprise.wd5.myworkdayjobs.com/Ameriprise",
+          "evidence": "Corporate page serialized Search and apply content explicitly contains this exact URL."
+        },
+        {
+          "from": "https://www.ameriprise.com/careers/india-jobs/",
+          "to": "https://ameriprise.wd5.myworkdayjobs.com/Ameriprise",
+          "evidence": "Official India careers page repeats exact Search and apply URL; destination opens as Workday."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Official India page says Ameriprise India LLP is wholly owned but separately operated; preserve the actual hiring entity. No individual current India vacancy or runtime count verified; career/office presence is not a vacancy count.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "amgen",
+    "companyName": "Amgen",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://amgen.wd1.myworkdayjobs.com/en-US/Careers",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://careers.amgen.com/en/india",
+    "officialHomepageUrl": "https://www.amgen.com/",
+    "companyDomain": "www.amgen.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T17:52:30.651Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T17:52:30.651Z",
+      "officialURL": "https://careers.amgen.com/en/india",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://careers.amgen.com/en/search-jobs",
+        "https://careers.amgen.com/en/job/hyderabad/senior-manager-database-design/87/97141856416",
+        "https://amgen.wd1.myworkdayjobs.com/Careers/job/India---Hyderabad/Senior-Manager-Database-Design_R-248648-1/apply"
+      ],
+      "bindingMethod": "official-company-job-application-link-exact-workday-tenant-and-site",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-005",
+      "proofFiles": [
+        "proof/batch-005-search-12.json",
+        "proof/batch-005-open-02.json",
+        "proof/batch-005-click-01.json",
+        "proof/batch-005-find-03.json",
+        "proof/batch-005-open-03.json",
+        "proof/batch-005-open-05.json",
+        "proof/batch-005-find-08.json",
+        "proof/batch-005-click-03.json",
+        "proof/batch-005-click-04.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://careers.amgen.com/en/india",
+          "to": "https://careers.amgen.com/en/search-jobs",
+          "evidence": "SEE ALL JOBS link 47 resolves to branded search front end."
+        },
+        {
+          "from": "https://careers.amgen.com/en/location/india-jobs/87/1269750/2/3",
+          "to": "https://careers.amgen.com/en/job/hyderabad/senior-manager-database-design/87/97141856416",
+          "evidence": "Official India results link 51 identifies current dated role."
+        },
+        {
+          "from": "https://careers.amgen.com/en/job/hyderabad/senior-manager-database-design/87/97141856416",
+          "to": "https://amgen.wd1.myworkdayjobs.com/Careers/job/India---Hyderabad/Senior-Manager-Database-Design_R-248648-1/apply",
+          "evidence": "Apply Now link 48 exact Workday destination recorded in web error metadata."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. CXS base is constructed from the exact tenant and Careers site in the observed official job application URL; the board root itself was not a discovery-page link. Official branded front end also exposes Eightfold talent signup and Workday returning-applicant login; these are separate flows for the same employer. Indexed India result totals differ by capture and page; none promoted to runtime counts.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "scraperTimeoutMs": 540000,
+    "sourceLifecycleTimeoutMs": 600000
+  },
+  {
+    "source": "aritzia",
+    "companyName": "Aritzia",
+    "catalogOverride": true,
+    "adapter": "workday",
+    "atsPlatform": "workday",
+    "baseUrl": "https://aritzia.wd3.myworkdayjobs.com/en-US/External",
+    "boardIdentityVerified": true,
+    "locationCountry": "c4f78be1a8f14da0ab49ce1162348a5e",
+    "companyCareerPage": "https://www.aritzia.com/en/aritzia/corporate-hub/careers/careers-landing-page",
+    "officialHomepageUrl": "https://www.aritzia.com/",
+    "companyDomain": "www.aritzia.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T18:33:31.920Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T18:33:31.920Z",
+      "officialURL": "https://www.aritzia.com/en/aritzia/corporate-hub/careers/careers-landing-page",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://aritzia.wd3.myworkdayjobs.com/en-US/External/jobs"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-006",
+      "proofFiles": [
+        "proof/batch-006-search-18.json",
+        "proof/batch-006-open-18.json",
+        "proof/batch-006-click-12.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.aritzia.com/en/aritzia/corporate-hub/careers/careers-landing-page",
+          "to": "https://aritzia.wd3.myworkdayjobs.com/en-US/External/jobs",
+          "evidence": "Official Search Jobs link123 clicked; exact Workday shard and site observed."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Workday target returned zero text lines, which is unknown extraction availability, not zero vacancies. Career marketing covers retail, corporate and distribution roles; no specific current India vacancy verified.",
+    "parser": "workday-cxs",
+    "paginationStrategy": "workday-native-offset-total",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  },
+  {
+    "source": "armorcode",
+    "companyName": "ArmorCode",
+    "catalogOverride": true,
+    "adapter": "publicAts",
+    "atsPlatform": "greenhouse",
+    "boardToken": "armorcode",
+    "companyCareerPage": "https://www.armorcode.com/careers",
+    "officialHomepageUrl": "https://www.armorcode.com/",
+    "companyDomain": "www.armorcode.com",
+    "remediationStatus": "implemented-awaiting-live-validation",
+    "officialBindingVerifiedAt": "2026-10-20T18:33:31.920Z",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-20T18:33:31.920Z",
+      "officialURL": "https://www.armorcode.com/careers",
+      "httpStatus": null,
+      "matchedLinks": [
+        "https://boards.greenhouse.io/armorcode",
+        "https://job-boards.greenhouse.io/armorcode"
+      ],
+      "bindingMethod": "official-company-careers-link",
+      "evidenceOrigin": "public-web-extraction",
+      "discoveryBatch": "batch-006",
+      "proofFiles": [
+        "proof/batch-006-search-20.json",
+        "proof/batch-006-open-20.json",
+        "proof/batch-006-click-13.json"
+      ],
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.armorcode.com/careers",
+          "to": "https://boards.greenhouse.io/armorcode",
+          "evidence": "Official See open roles link58 clicked."
+        },
+        {
+          "from": "https://boards.greenhouse.io/armorcode",
+          "to": "https://job-boards.greenhouse.io/armorcode",
+          "evidence": "Observed redirect to current Greenhouse hostname."
+        }
+      ]
+    },
+    "verifiedSurfaceSummary": "Shared adapter activated from exact official ATS handoff. Runtime counts remain unknown until a fresh isolated native trial; source inventory and detail health are evaluated separately. Exact ATS binding is verified, while current India role evidence conflicts across captures. No global/India runtime total or verified zero is asserted.",
+    "parser": "validated-public-ats",
+    "paginationStrategy": "complete-public-posting-api",
+    "extractionStrategy": "verified-official-binding+native-inventory+explicit-india-location+role-descriptions",
+    "normalizationProfile": "engineering-default",
+    "countryFilter": "India",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser"
+  }
+]

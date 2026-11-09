@@ -1,0 +1,14 @@
+{
+  "source": "sencogold",
+  "url": "https://www.sencogold.com/career",
+  "status": 200,
+  "capturedAt": "2026-11-03T03:00:32.347Z",
+  "file": "career.html.gz",
+  "originalBytes": 25392,
+  "originalSha256": "1f60b6bfa2c59a14eda9ecbf498d32238350ee9c4b1909b6d1eb7b8550f28d8d",
+  "fixtureBytes": 25380,
+  "fixtureSha256": "bb04d4b1a7921011b90d3987983bc20b62453b32aa299ed39911535a5ccd95b0",
+  "compressedSha256": "7c46d7b5611990496135cbacfa5838b6152ac4f18fd2d17656d779dea5f270c9",
+  "publicFormTokenRedactions": 1,
+  "synthetic": false
+}

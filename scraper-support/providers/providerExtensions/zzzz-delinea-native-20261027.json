@@ -1,0 +1,12 @@
+[
+  {
+    "source": "delinea", "companyName": "Delinea", "officialBrandName": "Delinea", "adapter": "script", "modulePath": "../delinea/script.js",
+    "companyCareerPage": "https://delinea.com/careers", "companyDomain": "delinea.com", "atsPlatform": "ashby-native-board-and-role-details",
+    "paginationStrategy": "all-preloaded-native-postings+full-public-feed+every-detail+closing-identities-and-criteria",
+    "extractionStrategy": "current-official-and-localized-handoffs+exact-employer+all-native-role-details+explicit-country+original-date-precision",
+    "verifiedOn": "2026-10-27", "verifiedPublicJobCount": null, "verifiedIndiaJobCount": null, "zeroResultPolicy": "evidence-required",
+    "advertisedAdditionalChannelUrl": "https://centrify.wd1.myworkdayjobs.com/en-US/External/",
+    "verifiedSurfaceSummary": "The English corporate page advertises Ashby; its four localized careers pages still advertise Centrify Workday. On 2026-10-27 ordinary anonymous Edge navigation of that exact Workday URL reached the Workday maintenance page, so whole-source scope remains partial. Extract every Ashby posting and native detail, preserve exact employer/country/full criteria and original publication precision, and reconcile opening/closing board, feed and all advertised channels before caps. Canonical posting UUIDs are not formal requisitions. Unresolved advertised channels, unknown geography, criteria loss, failed details or changed inventory retain confirmed India rows with unknown source totals and no cleanup evidence. Historical notes never prove current inventory.",
+    "catalogOverride": true
+  }
+]

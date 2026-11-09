@@ -1,0 +1,41 @@
+[
+  {
+    "source": "banyansoftware",
+    "companyName": "Banyan Software",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/banyansoftware/script.js",
+    "dryRunFile": "banyansoftware/jobs.json",
+    "atsPlatform": "greenhouse",
+    "boardToken": "banyansoftware",
+    "companyCareerPage": "https://banyansoftware.com/careers",
+    "companyDomain": "banyansoftware.com",
+    "officialHomepageUrl": "https://banyansoftware.com/",
+    "jobsBoardUrl": "https://job-boards.greenhouse.io/embed/job_board?for=banyansoftware",
+    "parser": "shared-public-ATS-with-current-official-native-board-guards",
+    "paginationStrategy": "primitive-total-complete-native-single-response-and-exact-boundary-recheck",
+    "extractionStrategy": "current-active-official-iframe+existing-shared-ATS-mapping+all-native-primary-and-secondary-office-country-evidence",
+    "zeroResultPolicy": "evidence-required",
+    "verifiedOn": null,
+    "verifiedAt": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedInventoryStatus": "unverified",
+    "remediationStatus": "implemented-local-native-verification-pending",
+    "companyCoverageComplete": false,
+    "companyGlobalTotal": null,
+    "companyIndiaTotal": null,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-21T02:32:32.283Z",
+      "officialURL": "https://banyansoftware.com/careers",
+      "matchedLinks": [
+        "https://job-boards.greenhouse.io/embed/job_board?for=banyansoftware"
+      ],
+      "artifact": "artifacts/full-catalog/greenhouse-candidate-ranking-001/banyansoftware-official.json",
+      "artifactSha256": "3fbf9b895fd6af5531bc9b1a133ed7796b6f8b1ac13f9edb1f57ad5e8a8fee3a",
+      "bindingMethod": "current-active-first-party-iframe-target-account; each-execution-reverifies"
+    },
+    "verifiedSurfaceSummary": "Current official group-board recruitment is implemented locally. Primary and secondary native locations, exact role identity, employer, active descriptions, original publication/closing dates, upstream failures and boundary stability are checked. A complete observation of this board does not establish whole-employer or portfolio-company coverage. Whole-company counts remain unknown; no deployment or production writes are authorized."
+  }
+]

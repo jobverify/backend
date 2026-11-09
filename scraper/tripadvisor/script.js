@@ -1,0 +1,97 @@
+import { createNativeGreenhouseScraper, NATIVE_GREENHOUSE_PROFILES, nativeSourceMetadata } from '../../scraper-support/native-sources/declaredGreenhouse/nativeCareers.js'
+import { createCurrentGreenhouseScraper } from '../buildkite/currentNative.js'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { fetchJsonWithRetry } from '../../scraper-support/utils/fetch.js'
+import { attachGreenhouseSourceEvidence } from '../../scraper-support/utils/greenhouseSourceEvidence.js'
+import { hasNativeIndiaLocation, selectGreenhouseLocation } from '../../scraper-support/utils/greenhouseLocations.js'
+
+import TRIPADVISOR_CATALOG from './catalog.js'
+
+const currentDir = path.dirname(fileURLToPath(import.meta.url))
+
+export const SOURCE = TRIPADVISOR_CATALOG.source
+export const COMPANY = TRIPADVISOR_CATALOG.companyName
+export const GREENHOUSE_API_URL = 'https://boards-api.greenhouse.io/v1/boards/tripadvisor/jobs?content=true'
+
+const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
+
+const normalizeWhitespace = (value) => String(value ?? '')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&nbsp;/gi, ' ')
+  .replace(/&amp;/gi, '&')
+  .replace(/&quot;/gi, '"')
+  .replace(/&#39;|&apos;|&#x27;|&#8217;/gi, "'")
+  .replace(/\u00a0/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim()
+
+const metadataIncludesIndia = (metadata = []) =>
+  (Array.isArray(metadata) ? metadata : []).some((entry) =>
+    /country/i.test(String(entry?.name ?? ''))
+    && /\bindia\b/i.test(String(entry?.value ?? '')))
+
+export const isIndiaJob = (job = {}) => {
+  return hasNativeIndiaLocation(selectGreenhouseLocation(job))
+}
+
+const mapJob = (job = {}) => {
+  const location = normalizeWhitespace(selectGreenhouseLocation(job))
+  const sourceUrl = normalizeWhitespace(job?.absolute_url)
+  const title = normalizeWhitespace(job?.title)
+
+  if (!title || !location || !sourceUrl) return null
+
+  return {
+    title,
+    company: COMPANY,
+    department: normalizeWhitespace(job?.departments?.[0]?.name),
+    location,
+    city: location.split(',')[0] || null,
+    country: 'India',
+    jobId: String(job?.id ?? ''),
+    requisitionId: normalizeWhitespace(job?.requisition_id),
+    sourceUrl,
+    applyUrl: sourceUrl,
+    employmentType: null,
+    experienceRequired: null,
+    minimumQualification: null,
+    preferredQualification: null,
+    requiredSkills: [],
+    postingDate: normalizeWhitespace(job?.first_published)?.slice(0, 10) || null,
+    closingDate: null,
+    jobDescription: normalizeWhitespace(job?.content),
+  }
+}
+
+export const extractJobsFromGreenhousePayload = (payload = {}) =>
+  (Array.isArray(payload?.jobs) ? payload.jobs : [])
+    .filter(isIndiaJob)
+    .map(mapJob)
+    .filter(Boolean)
+
+const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
+  headers: {
+    'User-Agent': USER_AGENT,
+    Accept: 'application/json,text/plain,*/*',
+  },
+  label: SOURCE,
+  timeoutMs: 15000,
+})
+
+export const createTripadvisorScraper = (defaults = {}) => createCurrentGreenhouseScraper('tripadvisor', defaults)
+
+export const run = options => createTripadvisorScraper().run(options)
+
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')
+  const isDryRun = process.argv.includes('--dry-run')
+  const jobs = await run()
+
+  if (isDryRun) {
+    saveToFile(jobs, path.join(currentDir, 'jobs.json'))
+  } else {
+    await saveToDB(jobs, SOURCE)
+  }
+}

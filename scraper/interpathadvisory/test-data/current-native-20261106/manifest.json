@@ -1,0 +1,11 @@
+{
+  "source": "interpathadvisory",
+  "capturedOn": "2026-11-06",
+  "authority": "https://apply.workable.com/api/v3/accounts/interpath-advisory/jobs",
+  "nativeTotal": 80,
+  "cursorPages": 9,
+  "indiaDetails": 14,
+  "notes": "First-party careers handoff and reciprocal account included. Eight full ten-record pages retain nextPage; ninth empty page omits it. Fixture contains all listing records and 14 full public India details.",
+  "file": "inventory.json.gz",
+  "sha256": "a0eafda4817808f6d4ffdb41176f390f8012708306cc30b00b809f52d2f0c6d4"
+}

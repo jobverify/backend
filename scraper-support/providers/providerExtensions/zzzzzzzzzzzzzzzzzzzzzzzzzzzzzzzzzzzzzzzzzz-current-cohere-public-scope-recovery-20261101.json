@@ -1,0 +1,13 @@
+[
+  {
+    "source": "cohere",
+    "catalogOverride": true,
+    "adapter": "script",
+    "modulePath": "../../scraper/cohere/script.js",
+    "zeroResultPolicy": "evidence-required",
+    "parser": "cohere-native-public-scope-reconciliation",
+    "paginationStrategy": "full-native-board-feed-role-opening-closing-identity-and-original-clock-reconciliation",
+    "extractionStrategy": "unchanged-rich-native-ashby-audit+role-owned-explicit-applicant-scope-receipts+dynamic-public-inventory-qualification",
+    "verifiedSurfaceSummary": "Runtime preserves the full shared native role audit, private activation unknowns and original geography. A separate source-owned receipt qualifies only current complete first-party-bound public inventories and role-specific India eligibility, with opening/detail/closing and original response-clock guards. No static zero or completeness claim."
+  }
+]

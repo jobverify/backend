@@ -1,0 +1,264 @@
+name: Jobverify Description Rewrite
+run-name: 'Description Rewrite #${{ github.run_number }}'
+on:
+  workflow_dispatch:
+    inputs:
+      pipeline_id:
+        description: Internal pipeline ID (leave empty for Rewrite then Classification)
+        type: string
+      dispatch_token:
+        description: Internal dispatch identity
+        type: string
+      pipeline_sha:
+        description: Internal source revision
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: jobverify-description-rewrite
+  cancel-in-progress: false
+jobs:
+  register:
+    name: Register description rewrite
+    permissions:
+      contents: read
+      actions: write
+    runs-on: ubuntu-24.04
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+      shard_count: ${{ steps.plan.outputs.shard_count }}
+      max_parallel: ${{ steps.plan.outputs.max_parallel }}
+      queue_as_of: ${{ steps.plan.outputs.queue_as_of }}
+      runtime_artifact: description-runtime-avx2-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Mask pipeline dispatch identity
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os
+          with open(os.environ["GITHUB_EVENT_PATH"], encoding="utf-8") as event_file:
+              token = json.load(event_file).get("inputs", {}).get("dispatch_token", "")
+          if token:
+              token = token.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+              print("::add-mask::" + token)
+          PY
+      - name: ${{ inputs.dispatch_token && format('Description Rewrite [dispatch:{0}]', inputs.dispatch_token) || 'Description Rewrite' }}
+        run: echo 'Pipeline dispatch identity recorded'
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Install native debugger test tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gdb gcc libc6-dev
+      - name: Check rewrite workflow and worker diagnostics on Linux
+        env:
+          JOB_DESCRIPTION_REWRITE_REQUIRE_NATIVE_TESTS: '1'
+        run: |
+          bash -n scripts/portableRewriteRuntime.sh
+          node --test test/descriptionRewriteWorkflow.test.js test/jobDescriptionPartitioning.test.js test/jobDescriptionPlanCli.test.js test/descriptionRewriteReporting.test.js test/jobDescriptionReport20261105.test.js test/jobDescriptionPortableRuntime.test.js test/jobDescriptionNativeDiagnostics.test.js test/jobDescriptionWorkerHealth.test.js
+      - name: Claim pipeline stage
+        run: node scripts/pipelineGithub.js register
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          PIPELINE_STAGE: rewrite
+          PIPELINE_ID: ${{ inputs.pipeline_id }}
+          PIPELINE_DISPATCH_TOKEN: ${{ inputs.dispatch_token }}
+          PIPELINE_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      - name: Inspect the complete pending queue
+        id: description_queue
+        run: |
+          node scripts/rewriteJobDescriptions.js
+          node -e "const fs=require('node:fs'); const s=JSON.parse(fs.readFileSync('.cache/scraper-actions/description-summary.json')); fs.appendFileSync(process.env.GITHUB_OUTPUT,'queued='+Number(s.queued || 0)+'\n');"
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          JOB_DESCRIPTION_REWRITE_MODE: 'publish'
+      - name: Plan configured shards for the complete queue
+        id: plan
+        run: node scripts/planDescriptionRewrites.js
+        env:
+          JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ vars.JOB_DESCRIPTION_REWRITE_SHARD_COUNT || '32' }}
+          JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD: ${{ vars.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD || '1000' }}
+          JOB_DESCRIPTION_REWRITE_MAX_PARALLEL: ${{ vars.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || '32' }}
+      - name: Cache portable AVX2 CPU runtime
+        id: portable_runtime
+        if: steps.description_queue.outputs.queued != '0'
+        uses: actions/cache@v6
+        with:
+          path: .cache/description-rewriter-avx2
+          key: description-runtime-avx2-ubuntu24-x64-b11146-${{ hashFiles('scripts/portableRewriteRuntime.sh') }}
+      - name: Check out immutable llama.cpp source
+        if: steps.description_queue.outputs.queued != '0' && steps.portable_runtime.outputs.cache-hit != 'true'
+        uses: actions/checkout@v7
+        with:
+          repository: ggml-org/llama.cpp
+          ref: 7fe450e19305b828c199d602c23a8337aaa1f03b # b11146
+          path: .cache/description-rewriter-source
+          persist-credentials: false
+      - name: Build portable AVX2 CPU runtime once
+        if: steps.description_queue.outputs.queued != '0' && steps.portable_runtime.outputs.cache-hit != 'true'
+        timeout-minutes: 30
+        run: bash scripts/portableRewriteRuntime.sh build
+      - name: Verify portable runtime before distributing it
+        if: steps.description_queue.outputs.queued != '0'
+        run: bash scripts/portableRewriteRuntime.sh activate
+      - name: Upload portable runtime for all rewrite shards
+        if: steps.description_queue.outputs.queued != '0'
+        uses: actions/upload-artifact@v7
+        with:
+          name: description-runtime-avx2-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/description-rewriter-avx2/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+      - name: Upload partition plan
+        uses: actions/upload-artifact@v7
+        with:
+          name: description-rewrite-plan-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/scraper-actions/description-plan.json
+          include-hidden-files: true
+          retention-days: 14
+  rewrite_descriptions:
+    name: Rewrite job descriptions (shard ${{ matrix.shard }})
+    needs: register
+    strategy:
+      fail-fast: false
+      max-parallel: ${{ fromJSON(needs.register.outputs.max_parallel) }}
+      matrix: ${{ fromJSON(needs.register.outputs.matrix) }}
+    runs-on: ${{ vars.JOB_DESCRIPTION_REWRITE_RUNNER || 'ubuntu-24.04' }}
+    timeout-minutes: 350
+    env:
+      JOB_DESCRIPTION_REWRITE_MODE: 'publish'
+      JOB_DESCRIPTION_REWRITE_SHARD: ${{ matrix.shard }}
+      JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ needs.register.outputs.shard_count }}
+      JOB_DESCRIPTION_REWRITE_QUEUE_AS_OF: ${{ needs.register.outputs.queue_as_of }}
+      PIPELINE_SUMMARY_FILE: '.cache/scraper-actions/description-summary-${{ matrix.shard }}.json'
+      JOB_DESCRIPTION_REWRITE_BUDGET_SECONDS: ${{ vars.JOB_DESCRIPTION_REWRITE_BUDGET_SECONDS || '19800' }}
+      JOB_DESCRIPTION_REWRITE_CPU_THREADS: ${{ vars.JOB_DESCRIPTION_REWRITE_CPU_THREADS || '4' }}
+      JOB_DESCRIPTION_REWRITE_REQUIRE_CUSTOM_BINARY: '1'
+      JOB_DESCRIPTION_REWRITE_NATIVE_BACKTRACE: '1'
+      JOB_DESCRIPTION_REWRITE_CONCURRENCY: ${{ vars.JOB_DESCRIPTION_REWRITE_CONCURRENCY || '4' }}
+      JOB_DESCRIPTION_REWRITE_CORRECTION_MODE: ${{ vars.JOB_DESCRIPTION_REWRITE_CORRECTION_MODE || 'adaptive' }}
+      JOB_DESCRIPTION_WORKFLOW_BUDGET_SECONDS: '21000'
+      NODE_OPTIONS: '--use-system-ca'
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+    steps:
+      - name: Record generation job start
+        run: printf 'JOB_DESCRIPTION_WORKFLOW_STARTED_AT=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: 'npm'
+          cache-dependency-path: 'package-lock.json'
+      - name: Install backend dependencies
+        run: npm ci
+      - name: Inspect pending description queue
+        id: description_queue
+        run: |
+          node scripts/rewriteJobDescriptions.js
+          node -e "const fs=require('node:fs'); const s=JSON.parse(fs.readFileSync(process.env.PIPELINE_SUMMARY_FILE)); fs.appendFileSync(process.env.GITHUB_OUTPUT,'queued='+Number(s.queued || 0)+'\n');"
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+      - name: Cache immutable model
+        if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
+        uses: actions/cache@v6
+        with:
+          path: .cache/description-rewriter
+          key: description-lfm12b-model-${{ runner.os }}-bb741ebb
+      - name: Download the portable runtime built during registration
+        if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ needs.register.outputs.runtime_artifact }}
+          path: .cache/description-rewriter-avx2
+      - name: Verify and select portable AVX2 CPU runtime
+        if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
+        run: bash scripts/portableRewriteRuntime.sh activate
+      - name: Restore validated source-grounded rewrites
+        if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
+        uses: actions/cache/restore@v6
+        with:
+          path: .cache/description-rewrites
+          key: description-lfm12b-rewrites-${{ runner.os }}-v29-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            description-lfm12b-rewrites-${{ runner.os }}-v29-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-
+      - name: Prepare native crash diagnostics
+        if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
+        run: |
+          if ! command -v gdb >/dev/null 2>&1; then
+            if ! (sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends gdb); then
+              echo 'Native backtrace debugger unavailable; runtime diagnostics will record this explicitly.'
+            fi
+          fi
+      - name: Drain the durable source-hash queue
+        if: steps.description_queue.outcome == 'success'
+        timeout-minutes: 345
+        run: node scripts/rewriteJobDescriptions.js --apply
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+      - name: Save validated source-grounded rewrites for the next batch
+        if: always() && steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0' && hashFiles('.cache/description-rewrites/**') != ''
+        uses: actions/cache/save@v6
+        with:
+          path: .cache/description-rewrites
+          key: description-lfm12b-rewrites-${{ runner.os }}-v29-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Upload generation quality and capacity diagnostics
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: description-rewrite-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cache/scraper-actions/description-summary-${{ matrix.shard }}.json
+            .cache/scraper-actions/description-worker-${{ matrix.shard }}.log
+            .cache/scraper-actions/description-worker-${{ matrix.shard }}.log.native.json
+            .cache/scraper-actions/description-rejections-${{ matrix.shard }}.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
+  report:
+    name: Report description rewrite results
+    needs: [register, rewrite_descriptions]
+    if: always() && needs.register.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.pipeline_sha || github.sha }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: description-rewrite-*-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/scraper-actions
+          merge-multiple: true
+      - name: Record aggregate stage outcome
+        if: always()
+        run: node scripts/pipelineGithub.js report
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          PIPELINE_STAGE: rewrite
+          JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ needs.register.outputs.shard_count }}
+          PIPELINE_JOB_RESULT: ${{ needs.rewrite_descriptions.result }}
+      - name: Upload aggregate rewrite report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: description-rewrite-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .cache/scraper-actions/description-summary.json
+            .cache/scraper-actions/description-plan.json
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14

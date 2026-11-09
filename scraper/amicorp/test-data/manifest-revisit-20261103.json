@@ -1,0 +1,141 @@
+[
+  {
+    "source": "amicorp",
+    "key": "sitemap",
+    "url": "https://amicorp.com/page-sitemap.xml",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/page-sitemap.xml",
+    "contentType": "text/xml; charset=UTF-8",
+    "bytes": 63862,
+    "sha256": "1dc47300e0bcc957dfe79f4451c4f6824c90b481baeb4665e24d3971bcdf43ba",
+    "requestedAt": "2026-11-02T20:56:06.720Z",
+    "completedAt": "2026-11-02T20:56:09.346Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "careers",
+    "url": "https://amicorp.com/ami-news/careers/",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/ami-news/careers/",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 547697,
+    "sha256": "b4dc5f6b06c17c1fe2a8c28fc3ed57ed81d97a855419bb430922e273beffe1f1",
+    "requestedAt": "2026-11-02T20:56:06.170Z",
+    "completedAt": "2026-11-02T20:56:10.110Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "market-intelligence-lead-mumbai-jd",
+    "url": "https://amicorp.com/ami-news/careers/market-intelligence-lead-mumbai-jd/",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/ami-news/careers/market-intelligence-lead-mumbai-jd/",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 390679,
+    "sha256": "547924d667b3e5ff88f02b47c6202b507d294c96b34680983f1f6809573a6092",
+    "requestedAt": "2026-11-02T20:56:11.782Z",
+    "completedAt": "2026-11-02T20:56:14.501Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "market-intelligence-lead-bangalore-jd",
+    "url": "https://amicorp.com/ami-news/careers/market-intelligence-lead-bangalore-jd/",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/ami-news/careers/market-intelligence-lead-bangalore-jd/",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 390671,
+    "sha256": "7384223f296c6d1ba847fcdb5651dac64390f4d8fd27dc12697bb60604bad886",
+    "requestedAt": "2026-11-02T20:56:12.372Z",
+    "completedAt": "2026-11-02T20:56:15.298Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "senior-manager-digital-insights-analytics-client-data-experience-mumbai-jd",
+    "url": "https://amicorp.com/ami-news/careers/senior-manager-digital-insights-analytics-client-data-experience-mumbai-jd/",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/ami-news/careers/senior-manager-digital-insights-analytics-client-data-experience-mumbai-jd/",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 393105,
+    "sha256": "1c0777964551c209e8288205ef315db5a2d2708f93a97d3ad58c5176cf01b423",
+    "requestedAt": "2026-11-02T20:56:14.504Z",
+    "completedAt": "2026-11-02T20:56:16.909Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "senior-manager-digital-insights-analytics-client-data-experience-bangalore-jd",
+    "url": "https://amicorp.com/ami-news/careers/senior-manager-digital-insights-analytics-client-data-experience-bangalore-jd/",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/ami-news/careers/senior-manager-digital-insights-analytics-client-data-experience-bangalore-jd/",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 393045,
+    "sha256": "e90a4e46de9fa49a8c921b3dad039320488d6dee854fda2ed82df4c4d37224a1",
+    "requestedAt": "2026-11-02T20:56:15.301Z",
+    "completedAt": "2026-11-02T20:56:17.871Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "senior-sales-business-development-jd1345",
+    "url": "https://amicorp.com/ami-news/careers/senior-sales-business-development-jd1345/",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/ami-news/careers/senior-sales-business-development-jd1345/",
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 386469,
+    "sha256": "3ea86e596bc3659af874ae0c77d19ecaf719282b2f81d8cca2d9cb76f146cca6",
+    "requestedAt": "2026-11-02T20:56:16.911Z",
+    "completedAt": "2026-11-02T20:56:19.334Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "rest-11130",
+    "url": "https://amicorp.com/wp-json/wp/v2/pages/11130",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/wp-json/wp/v2/pages/11130",
+    "bytes": 24991,
+    "sha256": "32f00e4932080b1435c12c1925069d0d258f0f9ee2ef62c24dd321b1486a2215",
+    "requestedAt": "2026-11-02T20:59:50.768Z",
+    "completedAt": "2026-11-02T20:59:53.344Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "rest-11128",
+    "url": "https://amicorp.com/wp-json/wp/v2/pages/11128",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/wp-json/wp/v2/pages/11128",
+    "bytes": 24997,
+    "sha256": "b3395c6839fdc64446950f0427a96cde481ffb9539c00a1dfafd6052a956902c",
+    "requestedAt": "2026-11-02T20:59:53.347Z",
+    "completedAt": "2026-11-02T20:59:54.964Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "rest-11136",
+    "url": "https://amicorp.com/wp-json/wp/v2/pages/11136",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/wp-json/wp/v2/pages/11136",
+    "bytes": 26995,
+    "sha256": "8471ff9bc1e2141aa3cafa7b1fe5ef9189f27e3960177a03d29d3fa3691584a1",
+    "requestedAt": "2026-11-02T20:59:54.967Z",
+    "completedAt": "2026-11-02T20:59:56.603Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "rest-11139",
+    "url": "https://amicorp.com/wp-json/wp/v2/pages/11139",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/wp-json/wp/v2/pages/11139",
+    "bytes": 27005,
+    "sha256": "7d8cbbc049ffa268ef8571095424d5955934a6b1b0fb3502b9c419df9c60b473",
+    "requestedAt": "2026-11-02T20:59:56.605Z",
+    "completedAt": "2026-11-02T20:59:58.233Z"
+  },
+  {
+    "source": "amicorp",
+    "key": "rest-7944",
+    "url": "https://amicorp.com/wp-json/wp/v2/pages/7944",
+    "status": 200,
+    "finalUrl": "https://amicorp.com/wp-json/wp/v2/pages/7944",
+    "bytes": 20919,
+    "sha256": "d5cce58ceca374754f1a4cbea1f87f5febe068c2dc15033ac3f1a94bd9d9ecf1",
+    "requestedAt": "2026-11-02T20:59:58.235Z",
+    "completedAt": "2026-11-02T20:59:59.957Z"
+  }
+]

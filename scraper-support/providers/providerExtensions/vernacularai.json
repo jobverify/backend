@@ -1,0 +1,23 @@
+{
+  "source": "vernacularai",
+  "companyName": "Vernacular.ai",
+  "officialBrandName": "Vernacular.ai",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../vernacularai/script.js",
+  "dryRunFile": "vernacularai/jobs.json",
+  "companyCareerPage": "https://careers.smartrecruiters.com/vernacularai",
+  "companyDomain": "careers.smartrecruiters.com",
+  "atsPlatform": "smartrecruiters",
+  "countryFilter": "India",
+  "paginationStrategy": "official-smartrecruiters-api-offset-pagination",
+  "extractionStrategy": "pinned-vernacularai-smartrecruiters-tenant+public-india-filter+smartrecruiters-application-url",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-25",
+  "officialCareersPageUrl": "https://careers.smartrecruiters.com/vernacularai",
+  "smartRecruitersCompanyIdentifier": "Vernacularai",
+  "smartRecruitersListingApiUrl": "https://api.smartrecruiters.com/v1/companies/vernacularai/postings",
+  "smartRecruitersDetailApiUrlTemplate": "https://api.smartrecruiters.com/v1/companies/vernacularai/postings/{{jobId}}",
+  "verifiedSurfaceSummary": "Verified on July 25, 2026 that https://careers.smartrecruiters.com/vernacularai is Vernacular.ai's official SmartRecruiters careers page. The provider accepts only PUBLIC India postings from the pinned vernacularai tenant and only SmartRecruiters-hosted application URLs; it fails closed if that identity or URL contract changes."
+}

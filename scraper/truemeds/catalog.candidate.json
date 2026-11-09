@@ -1,0 +1,21 @@
+{
+  "source": "truemeds",
+  "companyName": "Truemeds",
+  "adapter": "script",
+  "atsPlatform": "linkedin-employer-public-board",
+  "countryFilter": "India",
+  "companyCareerPage": "https://www.truemeds.in/about-us",
+  "employerHandoff": "https://www.linkedin.com/company/truemeds-india",
+  "employerId": "14614643",
+  "paginationStrategy": "native-employer-list-count-and-terminal-marker; bounded at 100 roles; drift is a coverage gap",
+  "extractionStrategy": "current-official-employer-handoff-native-itemlist-visible-cards-and-role-jobposting",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 13,
+  "verifiedIndiaJobCount": 10,
+  "verifiedSurfaceSummary": "Official truemeds.in about-us identifies Intellihealth Solutions Private Limited and links the Truemeds India employer LinkedIn profile. Its See jobs handoff exposes 13 native cards; ten current India role details were recovered and three returned HTTP 429. This is employer-board discovery only; whole-company inventory and lifecycle scope remain incomplete.",
+  "zeroResultPolicy": "coverage-gap",
+  "inventoryCompleteness": "discovery-only",
+  "lifecycleCleanupAllowed": false,
+  "sourceListingComplete": false,
+  "fixtureManifest": "scraper/truemeds/fixtures/manifest.json"
+}

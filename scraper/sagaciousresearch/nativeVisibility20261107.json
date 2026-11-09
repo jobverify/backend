@@ -1,0 +1,30 @@
+{
+  "reviewedAt": "2026-11-06T19:20:17.740Z",
+  "viewportPolicy": {
+    "mobile": "0-767",
+    "tablet": "768-1024",
+    "desktop": "1025-99999"
+  },
+  "styles": {
+    "/wp-content/plugins/elementor/assets/css/frontend.min.css": "0a5d398672e25dc7f020f69df92a985481b248a60e301fee232d0c8afd648dc5",
+    "/wp-content/uploads/elementor/css/post-1103.css": "9cdd1d6664dab6e37e21830c8a3692b7e22be0fce39ebf5d6f9b2e3693d1dcdc",
+    "/wp-content/uploads/elementor/css/post-35685.css": "c1a09d57046722b7141fd59fcf735edaa8e56a3714274e30afdffceefb9c237b",
+    "/wp-content/uploads/elementor/css/post-41554.css": "c02721bc13ebd55b02aa490af31c46766e688d27292de6b9e63ac94758380612",
+    "/wp-content/uploads/elementor/css/post-38684.css": "d43b365c7f3998a48615b33ef0cbdbe30b3b36093f74b1c3aecf1951de24391a",
+    "/wp-content/uploads/elementor/css/post-38606.css": "ee1308dc230becf791afee16e8ebba910b138c68325fda7c78e913db6dbe8b56",
+    "/wp-content/uploads/elementor/css/post-38537.css": "8bbf5dd8c3df24fd320a1acd2eb5e1e269b008f05eb25c1fd0e54be08e507836",
+    "/wp-content/uploads/elementor/css/post-166.css": "6aa734a8db93fb0700f8d26101ea4a1a8a9939cff4d62500fa631889b5f49fc6"
+  },
+  "renderScripts": {
+    "eae-main-js": {
+      "url": "https://sagaciousresearch.com/wp-content/plugins/addon-elements-for-elementor-page-builder/assets/js/eae.min.js?ver=1.14.5",
+      "SHA256": "285b57b8d0bd9182e9948c778b19823e4fbc5e51f3d10ad4624783bd16d6993b"
+    },
+    "eae-index-js": {
+      "url": "https://sagaciousresearch.com/wp-content/plugins/addon-elements-for-elementor-page-builder/build/index.min.js?ver=1.14.5",
+      "SHA256": "6bb83d31d62ac6d68eb2c0d7f3ccdd51cb17ac532a7cab22f31ddc437b110fb6"
+    }
+  },
+  "renderInstanceComparison": "Only numeric data-eae-slider on has_eae_slider hosts is omitted from a comparison copy. Declared eae-main selects .aepro-section-bs background slider children with this key; eae-slider-id is a different attribute and is never omitted. Raw opening/closing HTML and all other attributes are retained.",
+  "limitations": "Reviewed publisher CSS identity for responsive visibility; page modification timestamps are never posting dates."
+}

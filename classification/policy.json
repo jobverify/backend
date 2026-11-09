@@ -1,0 +1,28 @@
+{
+  "version": "gliclass-job-type-v1",
+  "filterRules": {
+    "categoryDefaultsWin": true,
+    "internDefaultYears": 0,
+    "fresherDefaultYears": 0,
+    "experiencedDefaultRange": [
+      1,
+      15
+    ],
+    "graduationCohortUsesReferenceYear": true
+  },
+  "thresholds": {
+    "jobType": 0.95
+  },
+  "questions": {
+    "jobType": {
+      "type": "choice",
+      "instructions": "Which category describes this vacancy, based on its description and employer requirements? Classify the vacancy itself. Required experience counts; preferred experience does not exclude freshers. Managing interns is not an internship. Management trainee is not automatically an intern. Choose the best supported category.",
+      "criteria": {
+        "Full-time Fresher": "Regular full-time employment open to applicants without prior professional experience, including fresh graduates and entry-level trainees.",
+        "Full-time Experienced": "Regular full-time employment requiring prior professional experience or established senior or management responsibilities.",
+        "Intern": "The vacancy itself is an internship or student intern placement.",
+        "Contract": "The vacancy itself is fixed-term, temporary, freelance, or contract employment."
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "source": "pixis",
+  "companyName": "Pixis",
+  "officialBrandName": "Pixis",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../pixis/script.js",
+  "dryRunFile": "pixis/jobs.json",
+  "companyCareerPage": "https://pixis.ai/careers/",
+  "companyDomain": "pixis.ai",
+  "atsPlatform": "official-first-party-careers",
+  "countryFilter": "India",
+  "paginationStrategy": "single-firstparty-open-roles-section",
+  "extractionStrategy": "live-native-closed-open-roles-empty-validation",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "officialCareersPageUrl": "https://pixis.ai/careers/",
+  "verifiedSurfaceSummary": "Official careers response captured October 23, 2026 explicitly reports no vacancies. Each run validates the complete native open-roles section, current hiring links and error-free CMS state; changed or failed pages cannot certify zero.",
+  "inventoryVerificationPolicy": "live-parser-evidence-required"
+}

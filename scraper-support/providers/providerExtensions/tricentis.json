@@ -1,0 +1,22 @@
+{
+  "source": "tricentis",
+  "companyName": "Tricentis",
+  "officialBrandName": "Tricentis",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../tricentis/script.js",
+  "dryRunFile": "tricentis/jobs.json",
+  "companyCareerPage": "https://www.tricentis.com/company/careers",
+  "companyDomain": "tricentis.com",
+  "atsPlatform": "workday",
+  "countryFilter": "India",
+  "paginationStrategy": "workday-jobs-api",
+  "extractionStrategy": "official-careers-page+workday-jobs-api+india-location-filter",
+  "parser": "workday-custom-wrapper",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-07-26",
+  "officialCareersPageUrl": "https://www.tricentis.com/company/careers",
+  "officialAtsPageUrl": "https://tricentis.wd1.myworkdayjobs.com/en-US/Tricentis_Careers",
+  "jobsApiUrl": "https://tricentis.wd1.myworkdayjobs.com/wday/cxs/tricentis/Tricentis_Careers/jobs",
+  "verifiedSurfaceSummary": "Verified on Sunday, July 26, 2026 that Tricentis' first-party careers page links to its public Workday board at tricentis.wd1.myworkdayjobs.com/en-US/Tricentis_Careers and that the public board exposes an India role. This provider is literal-name only and delegates India filtering to the shared Workday jobs API engine."
+}

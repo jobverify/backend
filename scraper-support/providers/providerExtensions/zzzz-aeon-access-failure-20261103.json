@@ -1,0 +1,8 @@
+[
+  {
+    "source": "aeon",
+    "extractionStrategy": "verified-official-homepage+verified-careers-hub+verified-join-us-page+declared-peoplestrong-access-failure-with-unknown-inventory",
+    "zeroResultPolicy": "evidence-required",
+    "lifecycleCleanupAllowed": false
+  }
+]

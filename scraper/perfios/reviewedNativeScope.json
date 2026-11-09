@@ -1,0 +1,283 @@
+{
+  "source": "perfios",
+  "corporatePages": [
+    {
+      "url": "https://perfios.ai/careers/",
+      "status": 200,
+      "sha256": "6e2d921cf315f1574e5384aaa88825c610ee52311bd9746030aa4b0e84aaf01b"
+    }
+  ],
+  "clientUrl": "https://perfios.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
+  "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
+  "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+  "schemas": {
+    "company": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "company"
+      ],
+      "$.message.company": [
+        "agent_builder_enabled",
+        "aliases",
+        "allJobsCount",
+        "all_jobs_banner_text",
+        "all_jobs_header_image",
+        "banner_images",
+        "banner_text",
+        "brandingId",
+        "careers_filters",
+        "company_name",
+        "custom_weblink",
+        "custom_weblink_alias",
+        "date_time_format",
+        "dynamic_background",
+        "dynamic_color",
+        "dynamic_color_top",
+        "employer_benefit_section",
+        "enableCvBasedJobRecommendations",
+        "group_company_site",
+        "help_email",
+        "id",
+        "is_country_of_residence",
+        "is_pendo_enable_careers",
+        "is_preview",
+        "job_detail_permissions",
+        "job_tile_permissions",
+        "languages",
+        "loginwithotp",
+        "logo",
+        "new_careers",
+        "onboarding_enabled",
+        "recruitment_enabled",
+        "show_employer_benefits_jobdetailed",
+        "social_media_urls",
+        "subdomain",
+        "tenant_id",
+        "terms_url",
+        "terms_url_custom"
+      ],
+      "$.message.company.all_jobs_header_image": [],
+      "$.message.company.languages": [],
+      "$.message.company.social_media_urls": [
+        "facebook",
+        "instagram",
+        "linkedIn",
+        "twitter"
+      ],
+      "$.message.company.aliases": [
+        "capability",
+        "country",
+        "department",
+        "designation",
+        "emp_sub_type",
+        "emp_type",
+        "functional_area",
+        "job_tags",
+        "legal_entities",
+        "offer_proposal",
+        "pre_offer",
+        "screening",
+        "shortlisting"
+      ],
+      "$.message.company.job_tile_permissions": [
+        "legalEntities",
+        "salaryRange",
+        "showDepartment",
+        "showEmployeeSubType",
+        "showEmployeeType",
+        "showExperienceRange",
+        "showJobId",
+        "showLocation",
+        "showPostedDate"
+      ],
+      "$.message.company.job_detail_permissions": [
+        "legalEntities",
+        "salaryRange",
+        "showDepartment",
+        "showEmployeeSubType",
+        "showEmployeeType",
+        "showExperienceRange",
+        "showJobId",
+        "showLocation",
+        "showPostedDate"
+      ],
+      "$.message.company.careers_filters": [
+        "capability",
+        "country",
+        "department",
+        "employee_type",
+        "experience",
+        "functional_area",
+        "job_tags",
+        "job_title",
+        "location"
+      ],
+      "$.message.company.date_time_format": [
+        "dateFormat",
+        "timeFormat",
+        "timezone"
+      ]
+    },
+    "groups": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "code"
+      ]
+    },
+    "listing": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "jobs",
+        "jobscount"
+      ],
+      "$.message.jobs[]": [
+        "created_on",
+        "department",
+        "department_id",
+        "designation_display_name",
+        "emp_type",
+        "emp_type_id",
+        "experience_from_num",
+        "experience_to_num",
+        "functional_area",
+        "functional_area_id",
+        "id",
+        "job_posting_on",
+        "officelocation_arr",
+        "officelocation_show_arr",
+        "timezone",
+        "title",
+        "tool_tip_locations"
+      ]
+    },
+    "detail": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "isSaved",
+        "job"
+      ],
+      "$.message.job[]": [
+        "capability",
+        "created_on",
+        "department",
+        "department_id",
+        "designation",
+        "designation_display_name",
+        "designation_name",
+        "designation_name_id",
+        "designation_title",
+        "designation_title_name",
+        "emp_sub_type_name",
+        "emp_type",
+        "emp_type_id",
+        "employee_sub_type",
+        "experience",
+        "experience_from_num",
+        "experience_to_num",
+        "functional_area_id",
+        "id",
+        "internal_job_code",
+        "is_remote",
+        "jd",
+        "job_posting",
+        "job_posting_on",
+        "job_tags",
+        "locations",
+        "officelocation_arr",
+        "officelocation_show_arr",
+        "officelocation_show_arr_list",
+        "officelocations_area",
+        "officelocations_without_area",
+        "parent_department_list",
+        "posted_on",
+        "salary_currency",
+        "salary_max",
+        "salary_min",
+        "salary_range",
+        "salary_timeframe",
+        "timezone",
+        "title",
+        "tool_tip_locations"
+      ],
+      "$.message.job[].job_posting": [
+        "careers"
+      ],
+      "$.message.job[].job_posting.careers": [
+        "from"
+      ],
+      "$.message.job[].parent_department_list[]": [
+        "code",
+        "id",
+        "level",
+        "name"
+      ],
+      "$.message.job[].job_tags[]": [
+        "_id",
+        "description",
+        "name"
+      ]
+    }
+  },
+  "legacyTransition": {
+    "url": "https://perfios.darwinbox.in/ms/candidate/careers/",
+    "shellSha256": "5430b7b88e76f852407f2689785fe50c825ab5057fd7eebb90b9f8323250c450",
+    "clientUrl": "https://perfios.darwinbox.in/ms/candidate/main.38495915aab0be25d160.js",
+    "clientSha256": "fb1c30f3d27ed7ff358db31c20acf465f486befb0f3f2085df5cf0cb6e95fdb7",
+    "declaredTransition": "e.message.company.new_careers?window.location.href=t.companyId?\"/ms/candidatev2/\"+t.companyId:\"/ms/candidatev2/main\"",
+    "companySchema": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "company"
+      ],
+      "$.message.company": [
+        "aliases",
+        "banners",
+        "company_name",
+        "dynamic_background",
+        "dynamic_color",
+        "dynamic_color_top",
+        "filter_order",
+        "font_color_career_page",
+        "is_country_of_residence",
+        "is_pendo_enable_careers",
+        "languages",
+        "loginwithotp",
+        "logo",
+        "new_careers",
+        "onboarding_enabled",
+        "recruitment_enabled",
+        "tenant_id",
+        "terms_url",
+        "terms_url_custom",
+        "url"
+      ],
+      "$.message.company.languages": [],
+      "$.message.company.aliases": [
+        "capability",
+        "department",
+        "designation",
+        "emp_type",
+        "functional_area",
+        "offer_proposal",
+        "pre_offer",
+        "screening",
+        "shortlisting"
+      ]
+    }
+  }
+}

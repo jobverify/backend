@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://revature.wd1.myworkdayjobs.com/wday/cxs/revature/revaturecareers/jobs",
+  "detailUrlBase": "https://revature.wd1.myworkdayjobs.com/en-US/revaturecareers",
+  "countryFacetParameter": "locationCountry"
+}

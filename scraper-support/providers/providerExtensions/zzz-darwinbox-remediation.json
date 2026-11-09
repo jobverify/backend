@@ -1,0 +1,1147 @@
+[
+  {
+    "source": "mindsprint",
+    "companyName": "Mindsprint",
+    "adapter": "script",
+    "modulePath": "../../scraper/mindsprint/script.js",
+    "companyCareerPage": "https://www.mindsprint.com/",
+    "companyDomain": "www.mindsprint.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:14.967Z",
+      "officialURL": "https://www.mindsprint.com/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://mindsprint.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://mindsprint.darwinbox.in/ms/candidateapi/job/alljobs?companyId=a671608963ef6d",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.mindsprint.com/join-us",
+          "finalURL": "https://www.mindsprint.com/join-us",
+          "httpStatus": 200
+        },
+        {
+          "requestedURL": "https://mindsprint.com/",
+          "finalURL": "https://www.mindsprint.com/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:36.664Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 47,
+    "verifiedIndiaJobCount": 47,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "clixcapital",
+    "companyName": "Clix Capital",
+    "adapter": "script",
+    "modulePath": "../../scraper/clixcapital/script.js",
+    "companyCareerPage": "https://www.clix.capital/careers/",
+    "companyDomain": "www.clix.capital",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:13.128Z",
+      "officialURL": "https://www.clix.capital/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://clixhrconnect.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://clixhrconnect.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.clix.capital/careers/",
+          "finalURL": "https://www.clix.capital/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:20.384Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 42,
+    "verifiedIndiaJobCount": 42,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "tessolve",
+    "companyName": "Tessolve",
+    "adapter": "script",
+    "modulePath": "../../scraper/tessolve/script.js",
+    "companyCareerPage": "https://www.tessolve.com/careers/",
+    "companyDomain": "www.tessolve.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:18.940Z",
+      "officialURL": "https://www.tessolve.com/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://tessolve.darwinbox.com/ms/candidatev2/main/careers/allJobs",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6ac76185bdde8?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6ac47e284e8be?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6ac3716ed79b2?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6abe041032f46?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6abcaca016632?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6ab37987650c7?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6ab35bf4987e5?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6aace57fb90f2?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6aabae0ba811c?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a97b996d4d?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a78d768158?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a772a7ed83?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a74c7816aa?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a4f519baa0?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a4ce5f1c8d?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a48b163468?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a9a47679ba86?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a86fc7d72718?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a6c0f594a6f5?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a43666004def?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a3a2dc6310c1?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a292aae21f17?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6a016e1c6fb31?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69fd6a7c8a3cf?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69fd6861c3a42?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69fc566dd5ebc?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69957b28cf3d5?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a698049b8ca4e0?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69705c2c5a871?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a694b680b786b1?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a693bb4b19c732?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a692e7cd76249b?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69256f92e532e?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a69200d527501c?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a691ef5d762b99?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a691846b966012?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a68fb467fe00c2?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a68ad437e24e26?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a688ca46e57d3d?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a67ecd5f4d0818?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a67e23eee38d5b?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a67a1d72a565a1?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a6735d86647a1d?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a65cca61bbcdab?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a65c205762966b?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a659e5bb306138?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a647efa053ef80?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a64117107aa62a?apply=1",
+        "https://tessolve.darwinbox.com/ms/candidate/careers/a61ae3dff373d6?apply=1"
+      ],
+      "inventorySurface": "https://tessolve.darwinbox.com/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.tessolve.com/careers/",
+          "finalURL": "https://www.tessolve.com/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:44.441Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 49,
+    "verifiedIndiaJobCount": 42,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "brigadegroup",
+    "companyName": "Brigade Group",
+    "adapter": "script",
+    "modulePath": "../../scraper/brigadegroup/script.js",
+    "companyCareerPage": "https://www.brigadegroup.com/careers",
+    "companyDomain": "www.brigadegroup.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.887Z",
+      "officialURL": "https://www.brigadegroup.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://brigadegroup.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://brigadegroup.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.brigadegroup.com/careers",
+          "finalURL": "https://www.brigadegroup.com/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:20.202Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 45,
+    "verifiedIndiaJobCount": 43,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "pixxel",
+    "companyName": "Pixxel",
+    "adapter": "script",
+    "modulePath": "../../scraper/pixxel/script.js",
+    "companyCareerPage": "https://www.pixxel.space/careers",
+    "companyDomain": "www.pixxel.space",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:15.087Z",
+      "officialURL": "https://www.pixxel.space/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://pixxel.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://pixxel.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.pixxel.space/careers",
+          "finalURL": "https://www.pixxel.space/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:38.612Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 32,
+    "verifiedIndiaJobCount": 28,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "lgsoftindia",
+    "companyName": "LG Soft India",
+    "adapter": "script",
+    "modulePath": "../../scraper/lgsoftindia/script.js",
+    "companyCareerPage": "https://lgsoftindia.com/",
+    "companyDomain": "lgsoftindia.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:13.769Z",
+      "officialURL": "https://lgsoftindia.com/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://lgsihrms.darwinbox.in/ms/candidatev2/a6914476a29263/careers/home"
+      ],
+      "inventorySurface": "https://lgsihrms.darwinbox.in/ms/candidateapi/job/alljobs?companyId=a6914476a29263",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://lgsoftindia.com/",
+          "finalURL": "https://lgsoftindia.com/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:32.769Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 27,
+    "verifiedIndiaJobCount": 27,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "polycab",
+    "companyName": "Polycab",
+    "adapter": "script",
+    "modulePath": "../../scraper/polycab/script.js",
+    "companyCareerPage": "https://polycab.com/life-at-polycab/careers",
+    "companyDomain": "polycab.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:15.237Z",
+      "officialURL": "https://polycab.com/life-at-polycab/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://polycab.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://polycab.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://polycab.com/life-at-polycab/careers",
+          "finalURL": "https://polycab.com/life-at-polycab/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:38.106Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 27,
+    "verifiedIndiaJobCount": 27,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "lakshmimachineworks",
+    "companyName": "Lakshmi Machine Works",
+    "adapter": "script",
+    "modulePath": "../../scraper/lakshmimachineworks/script.js",
+    "companyCareerPage": "https://www.lmwglobal.com/",
+    "companyDomain": "www.lmwglobal.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:13.784Z",
+      "officialURL": "https://www.lmwglobal.com/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://lmwanubhav.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://lmwanubhav.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://lmwglobal.com/",
+          "finalURL": "https://www.lmwglobal.com/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:30.352Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 19,
+    "verifiedIndiaJobCount": 19,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "affle",
+    "companyName": "Affle",
+    "adapter": "script",
+    "modulePath": "../../scraper/affle/script.js",
+    "companyCareerPage": "https://affle.com/career",
+    "companyDomain": "affle.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.556Z",
+      "officialURL": "https://affle.com/career",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://affle.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://affle.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://affle.com/career",
+          "finalURL": "https://affle.com/career",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:19.902Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 24,
+    "verifiedIndiaJobCount": 17,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "elgi",
+    "companyName": "ELGi",
+    "adapter": "script",
+    "modulePath": "../../scraper/elgi/script.js",
+    "companyCareerPage": "https://www.elgi.com/careers/",
+    "companyDomain": "www.elgi.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.938Z",
+      "officialURL": "https://www.elgi.com/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://elgi.darwinbox.in/ms/candidate/a61e65404e890b/careers"
+      ],
+      "inventorySurface": "https://elgi.darwinbox.in/ms/candidateapi/job/alljobs?companyId=a61e65404e890b",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.elgi.com/careers/",
+          "finalURL": "https://www.elgi.com/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:20.397Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 18,
+    "verifiedIndiaJobCount": 18,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "cleartax",
+    "companyName": "ClearTax",
+    "adapter": "script",
+    "modulePath": "../../scraper/cleartax/script.js",
+    "companyCareerPage": "https://www.clear.in/s/careers",
+    "companyDomain": "www.clear.in",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.496Z",
+      "officialURL": "https://www.clear.in/s/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://clear.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://clear.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.clear.in/s/careers",
+          "finalURL": "https://www.clear.in/s/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:18.093Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 15,
+    "verifiedIndiaJobCount": 15,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "cardekho",
+    "companyName": "CarDekho",
+    "adapter": "script",
+    "modulePath": "../../scraper/cardekho/script.js",
+    "companyCareerPage": "https://careers.cardekho.com/",
+    "companyDomain": "careers.cardekho.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.356Z",
+      "officialURL": "https://careers.cardekho.com/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://cardekho.darwinbox.in/ms/candidate/606876f7e2c79/careers"
+      ],
+      "inventorySurface": "https://cardekho.darwinbox.in/ms/candidateapi/job/alljobs?companyId=606876f7e2c79",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://careers.cardekho.com/",
+          "finalURL": "https://careers.cardekho.com/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:17.326Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 16,
+    "verifiedIndiaJobCount": 16,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "mgmotorindia",
+    "companyName": "MG Motor India",
+    "adapter": "script",
+    "modulePath": "../../scraper/mgmotorindia/script.js",
+    "companyCareerPage": "https://www.mgmotor.co.in/careers",
+    "companyDomain": "www.mgmotor.co.in",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:14.130Z",
+      "officialURL": "https://www.mgmotor.co.in/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://mgmhr.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://mgmhr.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.mgmotor.co.in/careers",
+          "finalURL": "https://www.mgmotor.co.in/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:33.745Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 11,
+    "verifiedIndiaJobCount": 11,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "subex",
+    "companyName": "Subex",
+    "adapter": "script",
+    "modulePath": "../../scraper/subex/script.js",
+    "companyCareerPage": "https://www.subex.com/careers/",
+    "companyDomain": "www.subex.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:16.661Z",
+      "officialURL": "https://www.subex.com/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://subex.darwinbox.in/ms/candidatev2/main/careers/allJobs",
+        "https://subex.darwinbox.in/ms/candidatev2/main/careers/home"
+      ],
+      "inventorySurface": "https://subex.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.subex.com/careers/",
+          "finalURL": "https://www.subex.com/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:40.325Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 12,
+    "verifiedIndiaJobCount": 11,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "vivriticapital",
+    "companyName": "Vivriti Capital",
+    "adapter": "script",
+    "modulePath": "../../scraper/vivriticapital/script.js",
+    "companyCareerPage": "https://www.vivriticapital.com/work-with-us.html",
+    "companyDomain": "www.vivriticapital.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:15.889Z",
+      "officialURL": "https://www.vivriticapital.com/work-with-us.html",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://vivriti.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://vivriti.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.vivriticapital.com/work-with-us.html",
+          "finalURL": "https://www.vivriticapital.com/work-with-us.html",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:44.314Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 29,
+    "verifiedIndiaJobCount": 29,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "hfcl",
+    "companyName": "HFCL",
+    "adapter": "script",
+    "modulePath": "../../scraper/hfcl/script.js",
+    "companyCareerPage": "https://www.hfcl.com/company/careers",
+    "companyDomain": "www.hfcl.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.816Z",
+      "officialURL": "https://www.hfcl.com/company/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://hifi.darwinbox.in/ms/candidatev2/604761d854807/careers/home",
+        "https://hifi.darwinbox.in/ms/candidate/604761d854807/careers"
+      ],
+      "inventorySurface": "https://hifi.darwinbox.in/ms/candidateapi/job/alljobs?companyId=604761d854807",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.hfcl.com/company/careers",
+          "finalURL": "https://www.hfcl.com/company/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:28.874Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 9,
+    "verifiedIndiaJobCount": 9,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "moneyview",
+    "companyName": "Moneyview",
+    "adapter": "script",
+    "modulePath": "../../scraper/moneyview/script.js",
+    "companyCareerPage": "https://moneyview.in/careers",
+    "companyDomain": "moneyview.in",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:14.615Z",
+      "officialURL": "https://moneyview.in/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://moneyview.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://moneyview.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://moneyview.in/careers",
+          "finalURL": "https://moneyview.in/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:35.157Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 9,
+    "verifiedIndiaJobCount": 9,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "primesoftenterprise",
+    "companyName": "Primesoft Enterprise",
+    "adapter": "script",
+    "modulePath": "../../scraper/primesoftenterprise/script.js",
+    "companyCareerPage": "https://primesoft.net/",
+    "companyDomain": "primesoft.net",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:16.025Z",
+      "officialURL": "https://primesoft.net/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://primesoft.darwinbox.in/ms/candidatev2/main/careers/allJobs"
+      ],
+      "inventorySurface": "https://primesoft.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://primesoft.net/",
+          "finalURL": "https://primesoft.net/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:38.306Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 8,
+    "verifiedIndiaJobCount": 8,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "pharmeasy",
+    "companyName": "PharmEasy",
+    "adapter": "script",
+    "modulePath": "../../scraper/pharmeasy/script.js",
+    "companyCareerPage": "https://pharmeasy.in/careers/",
+    "companyDomain": "pharmeasy.in",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:14.690Z",
+      "officialURL": "https://pharmeasy.in/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://myhr.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://myhr.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://pharmeasy.in/careers/",
+          "finalURL": "https://pharmeasy.in/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:35.022Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 7,
+    "verifiedIndiaJobCount": 7,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "locus",
+    "companyName": "Locus",
+    "adapter": "script",
+    "modulePath": "../../scraper/locus/script.js",
+    "companyCareerPage": "https://locus.sh/careers/",
+    "companyDomain": "locus.sh",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:13.758Z",
+      "officialURL": "https://locus.sh/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://locus.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://locus.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://locus.sh/careers/",
+          "finalURL": "https://locus.sh/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:32.729Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 10,
+    "verifiedIndiaJobCount": 5,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "ninjacart",
+    "companyName": "Ninjacart",
+    "adapter": "script",
+    "modulePath": "../../scraper/ninjacart/script.js",
+    "companyCareerPage": "https://ninjacart.com/careers/",
+    "companyDomain": "ninjacart.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:15.193Z",
+      "officialURL": "https://ninjacart.com/careers/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://ninjacart.darwinbox.in/ms/candidatev2/main/careers/home"
+      ],
+      "inventorySurface": "https://ninjacart.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://ninjacart.com/careers/",
+          "finalURL": "https://ninjacart.com/careers/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:34.753Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 5,
+    "verifiedIndiaJobCount": 5,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "bigbasket",
+    "companyName": "BigBasket",
+    "adapter": "script",
+    "modulePath": "../../scraper/bigbasket/script.js",
+    "companyCareerPage": "https://careers.bigbasket.com/",
+    "companyDomain": "careers.bigbasket.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:12.221Z",
+      "officialURL": "https://careers.bigbasket.com/",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://bigbasket.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://bigbasket.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://careers.bigbasket.com/",
+          "finalURL": "https://careers.bigbasket.com/",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:16.058Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 5,
+    "verifiedIndiaJobCount": 5,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "kalelogistics",
+    "companyName": "Kale Logistics",
+    "adapter": "script",
+    "modulePath": "../../scraper/kalelogistics/script.js",
+    "companyCareerPage": "https://www.kalelogistics.com/careers",
+    "companyDomain": "www.kalelogistics.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:14.709Z",
+      "officialURL": "https://www.kalelogistics.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://kale.darwinbox.in/ms/candidatev2/main/careers/home"
+      ],
+      "inventorySurface": "https://kale.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.kalelogistics.com/careers",
+          "finalURL": "https://www.kalelogistics.com/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:31.223Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 3,
+    "verifiedIndiaJobCount": 3,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "unacademy",
+    "companyName": "Unacademy",
+    "adapter": "script",
+    "modulePath": "../../scraper/unacademy/script.js",
+    "companyCareerPage": "https://unacademy.com/careers",
+    "companyDomain": "unacademy.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:15.532Z",
+      "officialURL": "https://unacademy.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://unacademy.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://unacademy.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://unacademy.com/careers",
+          "finalURL": "https://unacademy.com/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:40.766Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 7,
+    "verifiedIndiaJobCount": 7,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "tbotek",
+    "companyName": "TBO Tek",
+    "adapter": "script",
+    "modulePath": "../../scraper/tbotek/script.js",
+    "companyCareerPage": "https://www.tbo.com/careers",
+    "companyDomain": "www.tbo.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:15.783Z",
+      "officialURL": "https://www.tbo.com/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://tbo.darwinbox.in/ms/candidate/careers"
+      ],
+      "inventorySurface": "https://tbo.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.tbo.com/careers",
+          "finalURL": "https://www.tbo.com/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:42.718Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 27,
+    "verifiedIndiaJobCount": 2,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "lendingkart",
+    "companyName": "Lendingkart",
+    "adapter": "script",
+    "modulePath": "../../scraper/lendingkart/script.js",
+    "companyCareerPage": "https://www.lendingkart.com/job",
+    "companyDomain": "www.lendingkart.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:34:13.922Z",
+      "officialURL": "https://www.lendingkart.com/job",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a9fc1bf9ba8f?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a9fb6a52e1cf?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a9a75d530177?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a993215665c8?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a8d3ec2cb02a?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a7dbd679c9df?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a798c1f93702?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a7977d189ae5?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a731005cfedd?from=all",
+        "https://hrlendingkart.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6a2faf50455d4?from=all"
+      ],
+      "inventorySurface": "https://hrlendingkart.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://www.lendingkart.com/job/",
+          "finalURL": "https://www.lendingkart.com/job",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:31.162Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 1,
+    "verifiedIndiaJobCount": 1,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  },
+  {
+    "source": "darwinbox",
+    "companyName": "Darwinbox",
+    "adapter": "script",
+    "modulePath": "../../scraper/darwinbox/script.js",
+    "companyCareerPage": "https://darwinbox.com/en-us/careers",
+    "companyDomain": "darwinbox.com",
+    "atsPlatform": "darwinbox",
+    "countryFilter": "India",
+    "paginationStrategy": "complete-native-public-pagination-with-total-reconciliation",
+    "extractionStrategy": "verified-official-handoff+complete-public-darwinbox-inventory",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "backfillMode": "live-parser",
+    "catalogOverride": true,
+    "bindingEvidence": {
+      "verified": true,
+      "checkedAt": "2026-10-19T19:38:29.930Z",
+      "officialURL": "https://darwinbox.com/en-us/careers",
+      "httpStatus": 200,
+      "matchedLinks": [
+        "https://dbx.darwinbox.in/ms/candidatev2/main/careers/allJobs"
+      ],
+      "inventorySurface": "https://dbx.darwinbox.in/ms/candidateapi/job/alljobs?companyId=main",
+      "bindingMethod": "official-company-page-links-to-exact-inventory-tenant",
+      "checks": [
+        {
+          "requestedURL": "https://darwinbox.com/en-us/careers",
+          "finalURL": "https://darwinbox.com/en-us/careers",
+          "httpStatus": 200
+        }
+      ]
+    },
+    "verifiedAt": "2026-10-19T19:32:22.097Z",
+    "verifiedInventoryStatus": "complete-inventory",
+    "verifiedPublicJobCount": 28,
+    "verifiedIndiaJobCount": 15,
+    "verificationNotes": "Fresh complete inventory and an exact public tenant link on the official company page verified during catalog remediation. Historical counts do not certify later runs."
+  }
+]

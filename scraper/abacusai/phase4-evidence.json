@@ -1,0 +1,29 @@
+{
+  "phase": 4,
+  "verifiedOn": "2026-10-24",
+  "historicalMetadataRewritten": false,
+  "registryVerifiedPublicationCounts": null,
+  "productionDatabaseTouched": false,
+  "fullPipelineExecuted": false,
+  "productionBrowserFallbackAdded": false,
+  "fixture": "fixtures/current-native-20261024.json.gz",
+  "fixtureManifest": "fixtures/manifest.json",
+  "outcome": "unsupported-explicit-india-and-role-application-contract-remains-blocked",
+  "sourceImplementationChanged": false,
+  "officialUrl": "https://abacus.ai/jobs",
+  "observations": [
+    "Current first-party jobs page contains Research Scientist, Software Engineer Generative AI and Jr SDR sections with full content.",
+    "No explicit India work location is supplied for those sections. Apply links share mailto:jobs@abacus.ai, rather than a role-specific HTTP application/detail contract."
+  ],
+  "blocker": "No proven India eligibility or supported native role/application contract. Employer headquarters and generic recruiting email were not promoted to India evidence.",
+  "inventoryComplete": false,
+  "indiaJobCount": null,
+  "sourceCaptureCount": 1,
+  "focusedVerification": {
+    "command": "node --test scraper/accellor/script.test.js scraper/affirm/script.test.js scraper/aembit/script.test.js scraper/accellor/catalogRepair.test.js scraper-support/tests/publishingGapAts.test.js scraper-support/tests/providerExtensions.test.js",
+    "passed": 56,
+    "failed": 0,
+    "evidence": "Windows Temp codex-scraper-repair-verification-20261024/phase4-ats/guards-final-green.log",
+    "scope": "Only owned changed source contracts plus effective registry and shared ATS compatibility checks; unchanged blocked-source extraction was not promoted."
+  }
+}

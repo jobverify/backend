@@ -1,0 +1,6 @@
+{
+  "listingStrategy": "jobs-api",
+  "jobsApiUrl": "https://thomsonreuters.wd5.myworkdayjobs.com/wday/cxs/thomsonreuters/External_Career_Site/jobs",
+  "detailUrlBase": "https://thomsonreuters.wd5.myworkdayjobs.com/en-US/External_Career_Site",
+  "countryFacetParameter": "Location_Country"
+}

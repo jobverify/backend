@@ -1,0 +1,22 @@
+{
+  "source": "moeving",
+  "companyName": "MoEVing",
+  "officialBrandName": "MoEVing",
+  "exactCompanyMatchOnly": true,
+  "adapter": "script",
+  "modulePath": "../moeving/script.js",
+  "dryRunFile": "moeving/jobs.json",
+  "companyCareerPage": "https://moeving.freshteam.com/jobs",
+  "companyDomain": "moeving.com",
+  "atsPlatform": "Freshteam official ATS (unverified current inventory)",
+  "countryFilter": "India",
+  "paginationStrategy": "unverified-native-inventory",
+  "extractionStrategy": "bounded-native-check-rejects-unverified-inventory",
+  "parser": "custom-script",
+  "normalizationProfile": "engineering-default",
+  "verifiedOn": "2026-10-23",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "officialCareersPageUrl": "https://moeving.freshteam.com/jobs",
+  "verifiedSurfaceSummary": "Rechecked 2026-10-23: the published MoEVing Freshteam handoff returns HTTP 200 with Freshteam’s invalid-domain/no-ats claimable-domain shell. The official Join Us page serves generic rental content. No current enumerable employer inventory is verified. The bounded native check throws with coverage-gap evidence for the inactive tenant; unknown or unavailable inventory never certifies zero. Public and India vacancy counts remain unknown."
+}

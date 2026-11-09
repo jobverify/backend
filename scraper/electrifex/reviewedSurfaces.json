@@ -1,0 +1,101 @@
+{
+  "reviewedAt": "2026-10-26T22:00:06.630Z",
+  "assets": [
+    {
+      "url": "https://www.electrifex.com/assets/index-CM0MATKD.js",
+      "sha256": "1034d50eef9168707e86a142b22b407fc85a9946443dd730e32a24ccb1a00761"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/datatable/jquery-3.7.0.js",
+      "sha256": "126add89639e7ac92dff67c061c2e32486ecca91d0d1d1ed8f1bc5ee34596a27"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/select2/select2.min.js",
+      "sha256": "f7244fff610595b944f76bf3080d74e3af42b5dd234f8f079e698cc39ac966b0"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/quill/quill.min.js",
+      "sha256": "c675f57388d3598637c4e0f9fe154bd61dfb1c2086271f944a0bb2b9b059b074"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/chart.js/chart.umd.js",
+      "sha256": "74401d738dd3e03ee5dfb3b6841210fe2c4ead8a960c4011ca4ba0b78a9fd8f3"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/echarts/echarts.min.js",
+      "sha256": "987554a0014ad7be585eccc91c4329d050b40c2c0ebd2e8ec84adca82c0eb843"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/tinymce/tinymce.min.js",
+      "sha256": "fb2ab5c71174c1e9214381fec4ebf787d3b760049eb9640ea797e6cef020b620"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/php-email-form/validate.js",
+      "sha256": "bb388b1ade58efcce82985d6c2bd651f81c2734af8c8248e4f14fd3ac836c555"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/apexcharts/apexcharts.min.js",
+      "sha256": "49090a28e8803db116aef2109e83e70225081624038933cabb6d66626998d46f"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+      "sha256": "82f64f62bb03c1bc1824b0f9c9e05f70dba33e146818e63cdf5c306c8cf3dedd"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/simple-datatables/simple-datatables.js",
+      "sha256": "04aa017241ae8fe719cbee9f2d1752f1a2ca4d27141c6ae423d185995a793318"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/js/main.js",
+      "sha256": "64bb0e928549f1453988a750285c535565f612a592ceee439e34e88b7b97eec3"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/bootstrap/css/bootstrap.min.css",
+      "sha256": "3017df4a76db5f01c2b99b603d88b03106df13bcfe18e67b7c13c2341d3a67df"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/bootstrap-icons/bootstrap-icons.css",
+      "sha256": "4ffa6bea4304d2eda418683f56261685ed47bf00995039f27e5ad62d53938d2d"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/boxicons/css/boxicons.min.css",
+      "sha256": "620eea24b0cee1d8cc8395c80f295cf2e7b6fab962493c26b49a8d42b63a4dc9"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/quill/quill.snow.css",
+      "sha256": "8f222e44c583fabcfb2dda567f26cef14e8303ae4909592382bb77d4516c9c01"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/quill/quill.bubble.css",
+      "sha256": "da1c47ba35f0f3dd06ba6c031cf5abc090ad75965dac96a7946b2b39349f5e77"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/remixicon/remixicon.css",
+      "sha256": "68db25986776d8ef597a7176607ff222a266a4c7391d36cb61f64d6ffe0d1ec6"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/simple-datatables/style.css",
+      "sha256": "3ce8203b3a5a10a6597a95c72a8769a2a19ed0abe33f167e1bd7dc927a65d18d"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/vendor/select2/select2.min.css",
+      "sha256": "a64bd479f8dafd4a1d89aac51b7be7bdc36cbb0150782d5cf67cb82fb10dca2c"
+    },
+    {
+      "url": "https://talents.electrifex.com/static/assets/css/style.css",
+      "sha256": "c08d54094082b74de6c87ca887778ad58bf2eeddf829d52c6cc86369ff1ef05b"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i",
+      "sha256": "25c4cc9e2e5e198dfb2ccbcab5c83f0fc5b255490ce155d2a3af57031aab5b71"
+    }
+  ],
+  "inlineScripts": [
+    "117b83ccea20aebf814c15a5b25ff8901827284c4615c699740b9eb9d46e144a",
+    "1db73899135c31811df4aea58ef017c47174ef01fdce19f26a9efe71654d6a1c",
+    "e1751473d3cd85c9bc1405e2da817e6a04814de4d9f511bbfdf0de8378f007f6"
+  ],
+  "inlineStyles": [
+    "5f2f5f1b64c2708fa8fc45c8e9369ba3098d3050ae8cfc4fada12ee43563bb1e"
+  ]
+}

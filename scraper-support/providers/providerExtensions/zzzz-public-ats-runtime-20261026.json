@@ -1,0 +1,56 @@
+[
+  {
+    "source": "close",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-handoff", "boardUrl": "https://jobs.ashbyhq.com/Close", "handoffBoardUrl": "https://jobs.ashbyhq.com/close" },
+    "catalogOverride": true
+  },
+  {
+    "source": "classdojo",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-handoff", "boardUrl": "https://jobs.ashbyhq.com/ClassDojo" },
+    "catalogOverride": true
+  },
+  {
+    "source": "coalesce",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-handoff", "boardUrl": "https://jobs.ashbyhq.com/Coalesce", "handoffBoardUrl": "https://jobs.ashbyhq.com/coalesce" },
+    "catalogOverride": true
+  },
+  {
+    "source": "deepl",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-handoff", "boardUrl": "https://jobs.ashbyhq.com/DeepL" },
+    "catalogOverride": true
+  },
+  {
+    "source": "fellowapp",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-handoff", "boardUrl": "https://jobs.ashbyhq.com/fellowai" },
+    "catalogOverride": true
+  },
+  {
+    "source": "charthop",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-handoff", "boardUrl": "https://jobs.ashbyhq.com/ChartHop" },
+    "catalogOverride": true
+  },
+  {
+    "source": "freshpaint",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "board-embed", "boardUrl": "https://jobs.ashbyhq.com/freshpaint" },
+    "catalogOverride": true
+  },
+  {
+    "source": "datagrail",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "role-links-exact", "boardUrl": "https://job-boards.greenhouse.io/datagrail" },
+    "catalogOverride": true
+  },
+  {
+    "source": "fireworksai",
+    "adapter": "publicAts",
+    "runtimeInventoryVerification": { "mode": "role-links-exact", "boardUrl": "https://jobs.ashbyhq.com/fireworks" },
+    "catalogOverride": true
+  }
+]

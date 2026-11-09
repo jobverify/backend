@@ -1,0 +1,222 @@
+{
+  "source": "stanplus",
+  "corporatePages": [
+    {
+      "url": "https://www.red.health/career",
+      "status": 200,
+      "sha256": "87254f78c853f4f89c7d231c3512104c5a51bf8bc4957c9590e49d0dcdcdafd6"
+    }
+  ],
+  "clientUrl": "https://redhealth.darwinbox.in/ms/candidatev2/main.71bd301266b6050c.js",
+  "clientSha256": "6f5467fb999e4b8e32b93895fd9719614f682d32c414ae96676889ccbbbf3e8a",
+  "rendererSha256": "2280857a4dc8b6cd2f901e6555bd22eee6dd8eb7063a62bdb5427b7d570b4ea7",
+  "schemas": {
+    "company": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "company"
+      ],
+      "$.message.company": [
+        "agent_builder_enabled",
+        "aliases",
+        "allJobsCount",
+        "all_jobs_banner_text",
+        "all_jobs_header_image",
+        "banner_images",
+        "banner_text",
+        "brandingId",
+        "careers_filters",
+        "company_name",
+        "custom_weblink",
+        "custom_weblink_alias",
+        "date_time_format",
+        "dynamic_background",
+        "dynamic_color",
+        "dynamic_color_top",
+        "employer_benefit_section",
+        "enableCvBasedJobRecommendations",
+        "group_company_site",
+        "help_email",
+        "id",
+        "is_country_of_residence",
+        "is_pendo_enable_careers",
+        "is_preview",
+        "job_detail_permissions",
+        "job_tile_permissions",
+        "languages",
+        "loginwithotp",
+        "logo",
+        "new_careers",
+        "onboarding_enabled",
+        "recruitment_enabled",
+        "show_employer_benefits_jobdetailed",
+        "social_media_urls",
+        "subdomain",
+        "tenant_id",
+        "terms_url",
+        "terms_url_custom"
+      ],
+      "$.message.company.all_jobs_header_image": [],
+      "$.message.company.languages": [],
+      "$.message.company.social_media_urls": [
+        "facebook",
+        "instagram",
+        "linkedIn",
+        "twitter"
+      ],
+      "$.message.company.aliases": [
+        "capability",
+        "country",
+        "department",
+        "designation",
+        "emp_sub_type",
+        "emp_type",
+        "functional_area",
+        "job_tags",
+        "legal_entities",
+        "offer_proposal",
+        "pre_offer",
+        "screening",
+        "shortlisting"
+      ],
+      "$.message.company.job_tile_permissions": [
+        "legalEntities",
+        "salaryRange",
+        "showDepartment",
+        "showEmployeeSubType",
+        "showEmployeeType",
+        "showExperienceRange",
+        "showJobId",
+        "showLocation",
+        "showPostedDate"
+      ],
+      "$.message.company.job_detail_permissions": [
+        "legalEntities",
+        "salaryRange",
+        "showDepartment",
+        "showEmployeeSubType",
+        "showEmployeeType",
+        "showExperienceRange",
+        "showJobId",
+        "showLocation",
+        "showPostedDate"
+      ],
+      "$.message.company.careers_filters": [
+        "capability",
+        "country",
+        "department",
+        "employee_type",
+        "experience",
+        "functional_area",
+        "job_tags",
+        "job_title",
+        "location"
+      ],
+      "$.message.company.date_time_format": [
+        "dateFormat",
+        "timeFormat",
+        "timezone"
+      ]
+    },
+    "groups": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "code"
+      ]
+    },
+    "listing": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "jobs",
+        "jobscount"
+      ],
+      "$.message.jobs[]": [
+        "created_on",
+        "department",
+        "department_id",
+        "designation_display_name",
+        "emp_type",
+        "emp_type_id",
+        "experience_from_num",
+        "experience_to_num",
+        "functional_area",
+        "functional_area_id",
+        "id",
+        "job_posting_on",
+        "officelocation_arr",
+        "officelocation_show_arr",
+        "timezone",
+        "title",
+        "tool_tip_locations"
+      ]
+    },
+    "detail": {
+      "$": [
+        "message",
+        "status"
+      ],
+      "$.message": [
+        "isSaved",
+        "job"
+      ],
+      "$.message.job[]": [
+        "capability",
+        "created_on",
+        "department",
+        "department_id",
+        "designation",
+        "designation_display_name",
+        "designation_name",
+        "designation_name_id",
+        "designation_title",
+        "designation_title_name",
+        "emp_sub_type_name",
+        "emp_type",
+        "emp_type_id",
+        "employee_sub_type",
+        "experience",
+        "experience_from_num",
+        "experience_to_num",
+        "functional_area_id",
+        "id",
+        "internal_job_code",
+        "is_remote",
+        "jd",
+        "job_posting",
+        "job_posting_on",
+        "job_tags",
+        "locations",
+        "officelocation_arr",
+        "officelocation_show_arr",
+        "officelocation_show_arr_list",
+        "officelocations_area",
+        "officelocations_without_area",
+        "parent_department_list",
+        "posted_on",
+        "salary_currency",
+        "salary_max",
+        "salary_min",
+        "salary_range",
+        "salary_timeframe",
+        "timezone",
+        "title",
+        "tool_tip_locations"
+      ],
+      "$.message.job[].job_posting": [
+        "careers"
+      ],
+      "$.message.job[].job_posting.careers": [
+        "from"
+      ]
+    }
+  }
+}

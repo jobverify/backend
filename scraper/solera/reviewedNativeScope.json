@@ -1,0 +1,85 @@
+{
+  "listingPayloadFields": [
+    "total",
+    "jobPostings",
+    "facets",
+    "userAuthenticated"
+  ],
+  "listingFields": [
+    "title",
+    "externalPath",
+    "locationsText",
+    "postedOn",
+    "bulletFields"
+  ],
+  "detailPayloadFields": [
+    "jobPostingInfo",
+    "hiringOrganization",
+    "similarJobs",
+    "userAuthenticated"
+  ],
+  "detailFields": [
+    "additionalLocations",
+    "canApply",
+    "country",
+    "endDate",
+    "externalUrl",
+    "id",
+    "includeResumeParsing",
+    "jobDescription",
+    "jobPostingEndDateAsText",
+    "jobPostingId",
+    "jobPostingSiteId",
+    "jobReqId",
+    "jobRequisitionLocation",
+    "location",
+    "posted",
+    "postedOn",
+    "questionnaireId",
+    "startDate",
+    "timeLeftToApply",
+    "timeType",
+    "title"
+  ],
+  "detailNestedFields": {
+    "$": [
+      "additionalLocations",
+      "canApply",
+      "country",
+      "endDate",
+      "externalUrl",
+      "id",
+      "includeResumeParsing",
+      "jobDescription",
+      "jobPostingEndDateAsText",
+      "jobPostingId",
+      "jobPostingSiteId",
+      "jobReqId",
+      "jobRequisitionLocation",
+      "location",
+      "posted",
+      "postedOn",
+      "questionnaireId",
+      "startDate",
+      "timeLeftToApply",
+      "timeType",
+      "title"
+    ],
+    "$.country": [
+      "descriptor",
+      "id"
+    ],
+    "$.jobRequisitionLocation": [
+      "country",
+      "descriptor"
+    ],
+    "$.jobRequisitionLocation.country": [
+      "alpha2Code",
+      "descriptor",
+      "id"
+    ]
+  },
+  "corporateExecutableSignatures": [
+    "0d0308e3300d85784c7de5133e31cfc5aaab6f0de64bd23a0db327da8d1d51cf"
+  ]
+}
