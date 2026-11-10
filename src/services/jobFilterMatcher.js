@@ -177,7 +177,9 @@ export const buildJobFilterConditions = (queryParams = {}, { includeExperienceYe
       : /^\d+$/u.test(normalized) && DATE_POSTED_OPTIONS.includes(Number(normalized)) ? Number(normalized) : null;
   }).filter((value) => value != null))];
   if (postedValues.length) Object.assign(filters, buildDatePostedFilter(postedValues));
-  const cleanQuery = normalizeFilterText(query);
+  const cleanQuery = Array.isArray(query)
+    ? query.slice(0, 50).map(value => normalizeFilterText(value)).filter(Boolean).join(' ')
+    : normalizeFilterText(query);
   if (cleanQuery) filters.$text = { $search: cleanQuery };
   return filters;
 };

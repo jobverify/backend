@@ -64,6 +64,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PIPELINE_DISPATCH_TOKEN: ${{ inputs.dispatch_token }}
+          SCRAPER_CONCURRENCY: ${{ vars.SCRAPER_CONCURRENCY }}
       - name: Restore source checkpoint on rerun
         if: steps.register.outputs.should_run == 'true'
         uses: actions/cache/restore@v6
@@ -82,7 +83,7 @@ jobs:
           MONGO_URI: ${{ secrets.MONGO_URI }}
           TELEGRAM_ENABLED: ${{ vars.TELEGRAM_ENABLED }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          SCRAPER_CONCURRENCY: ${{ vars.SCRAPER_CONCURRENCY }}
+          SCRAPER_CONCURRENCY: ${{ steps.register.outputs.scraper_concurrency }}
           SCRAPER_CHECKPOINT_FILE: '.cache/scraper-actions/run-state.json'
           SCRAPER_SOURCE_LIFECYCLE_TIMEOUT_MS: '1800000'
           SCRAPER_NATIVE_DETAIL_RECOVERY: '1'

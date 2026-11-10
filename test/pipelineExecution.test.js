@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import { fileURLToPath } from 'node:url';
 import PipelineRun from '../src/models/PipelineRun.js';
-import { createPipeline, claimStage, recordStageResult, completeWorkflow, completeLocalStage, dispatchNext, failPipeline } from '../src/pipeline/execution.js';
+import { createPipeline, claimStage, recordStageResult, completeWorkflow, completeLocalStage, dispatchNext, failPipeline, requestPipelineStop } from '../src/pipeline/execution.js';
 import { defaultConfiguration, stageOutcome } from '../src/pipeline/policy.js';
 import { reconcileGithub, createDirectGithubPipeline } from '../src/pipeline/github.js';
 import { reconcileLocal } from '../src/pipeline/local.js';
@@ -13,6 +13,48 @@ test('durable pipeline claims, handoffs, failures and configuration snapshots', 
  const mongo=await MongoMemoryServer.create({binary:{version:'8.2.6',downloadDir:fileURLToPath(new URL('../.cache/mongodb-binaries/',import.meta.url))}});
  t.after(async()=>{await mongoose.disconnect();await mongo.stop();});
  await mongoose.connect(mongo.getUri());await PipelineRun.init();
+ await t.test('stop requests retain the execution slot until cancellation is acknowledged',async()=>{
+  const run=await createPipeline({configuration:defaultConfiguration(),target:'github',origin:'admin'});
+  await dispatchNext(run._id,async()=>{});
+  const queued=await PipelineRun.findById(run._id).lean();
+  await claimStage(run._id,'scraper',{runId:9871,token:queued.stages[0].dispatchToken});
+  await assert.rejects(requestPipelineStop(run._id,'rewrite'),e=>e.status===409);
+  const stopping=await requestPipelineStop(run._id,'scraper');
+  assert.ok(stopping.cancelRequestedAt);assert.equal(stopping.activeKey,'database');
+  await assert.rejects(createPipeline({configuration:defaultConfiguration(),target:'local',origin:'admin'}),e=>e.status===409);
+  await completeWorkflow(9871,'success',async()=>assert.fail('Cancellation must prevent handoff'));
+  const cancelled=await PipelineRun.findById(run._id).lean();
+  assert.equal(cancelled.status,'cancelled');assert.equal(cancelled.stages[0].status,'cancelled');
+  assert.equal(cancelled.stages[1].status,'blocked');assert.equal(cancelled.activeKey,undefined);
+  assert.equal((await requestPipelineStop(run._id)).status,'cancelled');
+ });
+ await t.test('local cancellation wins over a late successful stage result',async()=>{
+  const run=await createPipeline({configuration:defaultConfiguration(),target:'local',origin:'admin'});
+  await dispatchNext(run._id,async()=>{});
+  const queued=await PipelineRun.findById(run._id).lean();
+  await claimStage(run._id,'scraper',{token:queued.stages[0].dispatchToken});
+  await requestPipelineStop(run._id);
+  await completeLocalStage(run._id,'scraper','completed',{inserted:3});
+  await dispatchNext(run._id,async()=>assert.fail('Stopped local run must not advance'));
+  const cancelled=await PipelineRun.findById(run._id).lean();
+  assert.equal(cancelled.status,'cancelled');assert.equal(cancelled.activeKey,undefined);
+  assert.equal(cancelled.stages[1].status,'blocked');
+ });
+ await t.test('GitHub cancellation targets the exact worker and waits for its completion',async sub=>{
+  const run=await createPipeline({configuration:defaultConfiguration(),target:'github',origin:'admin',repo:'owner/repo',initialRunId:9872});
+  let finished=false;const cancelled=[];
+  sub.mock.method(globalThis,'fetch',async(url,options)=>{
+   if(options.method==='POST'){cancelled.push(String(url));return new Response(null,{status:202});}
+   return Response.json({id:9872,status:finished?'completed':'in_progress',conclusion:finished?'cancelled':null});
+  });
+  const stopping=await requestPipelineStop(run._id);
+  const pending=await reconcileGithub(stopping,{token:'test-token'});
+  assert.equal(pending.activeKey,'database');assert.equal(pending.status,'running');
+  assert.deepEqual(cancelled,['https://api.github.com/repos/owner/repo/actions/runs/9872/cancel']);
+  finished=true;
+  const done=await reconcileGithub(pending,{token:'test-token'});
+  assert.equal(done.status,'cancelled');assert.equal(done.activeKey,undefined);
+ });
  await t.test('one database slot, exact workflow identity, duplicate completion is harmless',async()=>{
   const config=defaultConfiguration();const run=await createPipeline({configuration:config,target:'github',origin:'admin',repo:'owner/repo',ref:'main'});
   config.stages.reverse();assert.equal(run.stages[0].key,'scraper');

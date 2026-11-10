@@ -108,6 +108,10 @@ const normalizeDate = (value) => {
   const parsed = new Date(normalized)
   if (Number.isNaN(parsed.getTime())) return normalized
 
+  // A source timestamp's calendar date must not shift with the scraper host's timezone.
+  const nativeDate = /^(\d{4}-\d{2}-\d{2})(?:T|$)/.exec(normalized)
+  if (nativeDate) return nativeDate[1]
+
   const year = parsed.getFullYear()
   const month = String(parsed.getMonth() + 1).padStart(2, '0')
   const day = String(parsed.getDate()).padStart(2, '0')

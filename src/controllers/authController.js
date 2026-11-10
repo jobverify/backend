@@ -610,6 +610,13 @@ export const login = async (req, res) => {
     if (!user) {
       const pendingUser = await PendingUser.findOne({ email: normalizedEmail });
       const pendingPasswordMatches = await bcrypt.compare(password, pendingUser?.password || LOGIN_DUMMY_HASH);
+      if (!pendingUser) {
+        return res.status(401).json({
+          code: 401,
+          success: false,
+          message: "Account does not exist. Please create an account.",
+        });
+      }
       if (pendingUser?.password) {
         if (pendingPasswordMatches) {
           return res.status(401).json({

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import nodemailer from 'nodemailer';
-import { sendPasswordResetEmail } from '../src/utils/sendEmail.js';
+import { sendPasswordResetEmail, sendVerificationEmail } from '../src/utils/sendEmail.js';
 import User from '../src/models/User.js';
 import { requestPasswordReset } from '../src/controllers/authController.js';
 
@@ -19,6 +19,51 @@ function relayEnvironment(t, overrides = {}) {
   });
   t.mock.method(console, 'log', () => {});
 }
+
+test('registration verification uses the authenticated relay without SMTP', async t => {
+  relayEnvironment(t);
+  t.mock.method(nodemailer, 'createTransport', () => assert.fail('verification must use relay'));
+  const verificationLink = `https://jobverify.test/verify-email#token=${'b'.repeat(64)}`;
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    assert.equal(url, 'https://mail-relay.example.workers.dev/send-verification');
+    assert.equal(options.headers.Authorization, `Bearer ${secret}`);
+    assert.equal(options.redirect, 'error');
+    assert.deepEqual(JSON.parse(options.body), { to: 'owner@gmail.com', verificationLink });
+    return Response.json({ success: true });
+  });
+  assert.deepEqual(await sendVerificationEmail('owner@gmail.com', verificationLink), { accepted: ['owner@gmail.com'] });
+});
+
+test('verification relay failure stays safe and never falls back to SMTP', async t => {
+  relayEnvironment(t);
+  t.mock.method(nodemailer, 'createTransport', () => assert.fail('must not fall back to SMTP'));
+  t.mock.method(globalThis, 'fetch', async () => Response.json({ error: 'private details' }, { status: 503 }));
+  await assert.rejects(sendVerificationEmail('owner@gmail.com', 'https://jobverify.test/verify-email'),
+    { message: 'Verification email relay delivery failed.' });
+});
+
+test('verification retains direct SMTP when the relay is not configured', async t => {
+  relayEnvironment(t, {
+    EMAIL_RELAY_URL: '', SMTP_HOST: '127.0.0.1', SMTP_PORT: '465', SMTP_SECURE: 'true',
+    SMTP_USER: 'sender@gmail.com', SMTP_PASS: 'test-password', SMTP_FROM: 'sender@gmail.com',
+  });
+  t.mock.method(globalThis, 'fetch', () => assert.fail('direct SMTP must not call relay'));
+  const verificationLink = `https://jobverify.test/verify-email#token=${'b'.repeat(64)}`;
+  t.mock.method(nodemailer, 'createTransport', () => ({ sendMail: async mail => {
+    assert.equal(mail.to, 'owner@gmail.com');
+    assert.equal(mail.subject, 'Verify your Jobverify account');
+    assert.ok(mail.html.includes(verificationLink));
+    return { accepted: [mail.to] };
+  } }));
+  assert.deepEqual(await sendVerificationEmail('owner@gmail.com', verificationLink), { accepted: ['owner@gmail.com'] });
+});
+
+test('verification rejects missing relay credentials before network access', async t => {
+  relayEnvironment(t, { EMAIL_RELAY_SECRET: '' });
+  t.mock.method(globalThis, 'fetch', () => assert.fail('invalid config must not call relay'));
+  await assert.rejects(sendVerificationEmail('owner@gmail.com', 'https://jobverify.test/verify-email'),
+    { message: 'Invalid verification email relay configuration.' });
+});
 
 test('password-reset relay uses authenticated HTTPS and waits for acceptance without SMTP configuration', async t => {
   relayEnvironment(t);

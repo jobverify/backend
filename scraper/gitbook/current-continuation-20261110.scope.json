@@ -1,0 +1,72 @@
+{
+  "provenance": {
+    "capturedAt": "2026-11-10T15:45:43.531Z",
+    "completedAt": "2026-11-10T15:46:04.877Z",
+    "fixture": "fixtures/current-http-continuation-20261110.json.gz",
+    "fixtureSha256": "abda21296bb2b4f173eb8f8291426f097797ff3282b259432b0a4df24363c791",
+    "corporateBodySha256": "13b8c18760a46790fced7f3c8e4bdb19b74fed7b61a32f76317429481e59787f",
+    "binding": "Finite exact Nov10 afternoon public deployment. Complete original main/preload bytes and native role bootstrap inspected; current country and whole-company inventory remain unresolved. Partial only.",
+    "review": "Corporate active text, links, forms, frames, interactions and every style remain identical to the earlier Nov10 capture. Changed attributes are Framer generator/search indices/release timestamps and six renderer asset references. All ten complete declared programs were captured twice with stable bytes. Three route/shared modules differ only by deployment imports; Framer runtime changes include query-parameter route state, shared property controls, Escape handling and carousel paging. Main route table and CMS asset references changed; full renderer visibility is not certified. The Ashby literal-app executable tail differs only in four occurrences of the public Vite deployment path. All six native role pages share the exact reviewed tail; native role/organization/schema/criteria opening and closing reconciliation remains mandatory. Global Remote/Europe records retain null country and disabled cleanup."
+  },
+  "scopeSha256": "9ab44486399ad7c79431e5406225918b95ccf229c33872fc5a2235bce8ad4f8a",
+  "nativeAppBootstrap": {
+    "sha256": "e5c41e1b8050725d94a6eae614f6d8013532691f6d870d04bf4dddd27652adc2"
+  },
+  "corporateRoleIds": [
+    "531ab2e2-af70-4b26-805e-1b4554184fd6",
+    "5d3d7b3d-0a50-4728-a9cc-18cfd8b14adb",
+    "cfd51d34-61c7-47c6-af41-04818008fea2"
+  ],
+  "declaredPrograms": [
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/script_main.lhbAnaCs.mjs",
+      "sha256": "01173a2af1138f682dddf53224bb928c354f2a6ffff4b386d64929d6b2ed611a",
+      "bytes": 17315
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/rolldown-runtime.CNOWq4Kh.mjs",
+      "sha256": "2d8d100f1a8f491dcf0b1adcd5d5f59a48dfd1683b8123c97785039b0e72e99d",
+      "bytes": 817
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/react.BQDVJODu.mjs",
+      "sha256": "266968918640b6d01091345f7cc03f3e40e394c10a38c688714c77a3459bd1c5",
+      "bytes": 145074
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/framer.DvH7WFbW.mjs",
+      "sha256": "1468014439e2533222d1bcef901f5d09d88ad1ba263329949b4b4d23f0a76230",
+      "bytes": 449787
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/motion.BfBj0Vkg.mjs",
+      "sha256": "6ded36067afe40332797f0b7eeb608263f8a8b293067d971e1c8b23629af82d6",
+      "bytes": 155658
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/toplevel-deps.DdUl1xDK.mjs",
+      "sha256": "9f3b6dbf1d4c52901e9c4975a73d8bd351d7704e93e6ea801f1bec389d741664",
+      "bytes": 411886
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/1VjPohRBK3whC-mmINQUjs2HeHP3TAuQki5KCKQqfkA.B21MFsbp.mjs",
+      "sha256": "78f861721f85f1df08acdf374c6ae88496e1a058023213fd5316c87a5c41e161",
+      "bytes": 99686
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/shared.DyeE1IEV.mjs",
+      "sha256": "884edc6ee673dc1ca4079eaaeaaab7b6cb24802e868ca13b3ef1a9b6153e975d",
+      "bytes": 636253
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/tVXXlDnVX.BpIoFH7M.mjs",
+      "sha256": "7fb019b773ab56173c4f119344f2029475027903661d868259407394bdc327d2",
+      "bytes": 11689
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/N0GdP398w.Cmay8RJy.mjs",
+      "sha256": "39910c461c665e4096bb1da7798e8c88f4c5425a58b606558e01980023056a19",
+      "bytes": 928
+    }
+  ]
+}

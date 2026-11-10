@@ -82,6 +82,10 @@ export const buildScraperAttemptDiagnostics = (jobs, analysis = analyzePublishab
   filteredNonJob: analysis.filterCounts.nonJob,
   inventoryEvidence: readInventoryEvidence(jobs),
   detailHealth: extractionDetailHealth(analysis.indiaJobs),
+  ...(Object.getOwnPropertyDescriptor(jobs, 'emptyOnlyRecruitmentRecovery')?.value?.source === provider.source
+    ? { emptyOnlyRecruitmentRecovery: Object.getOwnPropertyDescriptor(jobs, 'emptyOnlyRecruitmentRecovery').value } : {}),
+  ...(Object.getOwnPropertyDescriptor(jobs, 'softFailureRecruitmentRecovery')?.value?.source === provider.source
+    ? { softFailureRecruitmentRecovery: Object.getOwnPropertyDescriptor(jobs, 'softFailureRecruitmentRecovery').value } : {}),
   ...(readInventoryDelegationEvidence(jobs)
     ? { inventoryDelegationEvidence: readInventoryDelegationEvidence(jobs) } : {}),
   ...(readSourceObservationEvidence(jobs, provider.source)
@@ -1794,6 +1798,12 @@ if (resolveExecutionPath(process.argv[1]) === directExecutionModulePath) {
     if (String(process.env.SCRAPER_FIRST_N || '').trim()) selectScrapersForRun([], { dryRun: isDryRun })
     assertLiveMongoUriConfigured()
     validateRecruitmentBatchAssets()
+    if (!isDryRun) {
+      const { default: connectDB } = await import('../db/db.js')
+      const { standaloneScraperEnvironment } = await import('../src/pipeline/scraperConcurrency.js')
+      await connectDB()
+      Object.assign(process.env, await standaloneScraperEnvironment(process.env.PIPELINE_ID))
+    }
     preparedRun = prepareScraperRun()
     if (!isDryRun && !/^(?:0|false|no)$/i.test(String(process.env.SCRAPER_RUN_LEASE || '1'))) {
       runLease = await waitForMongoRunLease({

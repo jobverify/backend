@@ -38,6 +38,32 @@ const nativeDOMExceptionName = nativeDOMExceptionPrototype && Object.getOwnPrope
 const nativeDOMExceptionMessage = nativeDOMExceptionPrototype && Object.getOwnPropertyDescriptor(nativeDOMExceptionPrototype, 'message')?.get
 const fail = message => { throw new Error(message) }
 const requireValue = (value, message) => { if (!value) fail(message) }
+const cleanupRead = operation => { try { void Promise.resolve(operation()).catch(() => {}) } catch {} }
+// Abort signals also bound transports and streams which do not implement abort.
+// Always observe late settlement, and dispose a late response without waiting
+// for cancellation itself to settle.
+const waitForRead = (operation, signal, disposeLate) => new Promise((resolve, reject) => {
+  let settled = false
+  const detach = () => signal.removeEventListener('abort', aborted)
+  const aborted = () => {
+    if (settled) return
+    settled = true; detach(); reject(signal.reason)
+  }
+  signal.addEventListener('abort', aborted, { once: true })
+  if (signal.aborted) { aborted(); return }
+  Promise.resolve().then(() => { signal.throwIfAborted(); return operation() }).then(value => {
+    if (settled || signal.aborted) {
+      aborted()
+      if (disposeLate) cleanupRead(() => disposeLate(value, signal.reason))
+      return
+    }
+    settled = true; detach(); resolve(value)
+  }, error => {
+    if (settled) return
+    if (signal.aborted) { aborted(); return }
+    settled = true; detach(); reject(error)
+  })
+})
 const diagnosticValue = (value, key) => {
   const original = value
   try {
@@ -369,23 +395,31 @@ export function createVerifiedRecruitmentScraper(config) {
         lastRequest.set(url.origin,Date.now())
         let response
         if (format !== 'json' && options.fetchPage) {
-          const page = await options.fetchPage(url.href, { signal })
+          const page = await waitForRead(() => options.fetchPage(url.href, { signal }), signal)
           response = { ...page, contentType: page.contentType || 'text/html', body: page.html }
         } else if (format === 'json' && options.fetchJson) {
-          const payload = await options.fetchJson(url.href, { ...init, signal })
+          const payload = await waitForRead(() => options.fetchJson(url.href, { ...init, signal }), signal)
           response = { status: 200, url: url.href, contentType: 'application/json', body: JSON.stringify(payload) }
         } else {
           const timeout = AbortSignal.any([signal, AbortSignal.timeout(15000)])
-          const raw = await (options.fetchImpl || globalThis.fetch)(url.href, { ...init, method,
+          const raw = await waitForRead(() => (options.fetchImpl || globalThis.fetch)(url.href, { ...init, method,
             redirect: format === 'json' ? 'error' : 'follow', credentials: 'omit', signal: timeout,
-            headers: { Accept: format === 'json' ? 'application/json' : 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)', ...init.headers } })
-          requireValue(Number(raw.headers.get('content-length')) <= 4e6, 'Recruitment response body exceeds its limit')
-          const reader = raw.body?.getReader(), chunks = []; let bytes = 0
-          requireValue(reader, 'Missing recruitment response body')
+            headers: { Accept: format === 'json' ? 'application/json' : 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)', ...init.headers } }),
+          timeout, (late, reason) => late?.body?.cancel(reason))
+          let reader
+          const chunks = []; let bytes = 0
           try {
-            for (;;) { const item = await reader.read(); signal.throwIfAborted(); if (item.done) break
+            requireValue(Number(raw.headers.get('content-length')) <= 4e6, 'Recruitment response body exceeds its limit')
+            reader = raw.body?.getReader()
+            requireValue(reader, 'Missing recruitment response body')
+            for (;;) { const item = await waitForRead(() => reader.read(), timeout); timeout.throwIfAborted(); if (item.done) break
               bytes += item.value.byteLength; requireValue(bytes <= 4e6, 'Recruitment response body exceeds its limit'); chunks.push(Buffer.from(item.value)) }
-          } finally { await reader.cancel().catch(() => {}); reader.releaseLock() }
+          } finally {
+            if (reader) {
+              cleanupRead(() => reader.cancel(timeout.aborted ? timeout.reason : undefined))
+              cleanupRead(() => reader.releaseLock())
+            } else cleanupRead(() => raw.body?.cancel(timeout.aborted ? timeout.reason : undefined))
+          }
           response = { status: raw.status, url: raw.url, contentType: raw.headers.get('content-type') || '', body: Buffer.concat(chunks).toString('utf8') }
         }
         signal.throwIfAborted()
@@ -1228,6 +1262,8 @@ export function createVerifiedRecruitmentScraper(config) {
           await readOracleRecruitment(board, { readPage: read, readJson, permit, matchingEmployer, matchingPublisher,
             companyEmployerFlexField: config.oracleCompanyEmployerFlexField || null,
             brandEmploymentDeclaration: config.nativeOracleBrandEmployerDeclaration || null,
+            descriptionEmployerDeclaration: config.nativeOracleDescriptionEmployerDeclaration || null,
+            roleWorkplaceDeclarations: config.nativeOracleRoleWorkplaceDeclarations || null,
             requireNativeEmployerName: config.requireNativeEmployerName === true, maxPages, maxDetails,
             canRead: () => observed.requestCount < maxRequests,
             inventoryRead: value => { if (!observed.nativeInventoryReads.some(row => row.surface === value.surface)) observed.nativeInventoryReads.push(value) },

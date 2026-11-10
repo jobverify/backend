@@ -8,7 +8,7 @@ export async function collectFirstPartyNativeRoles(options,profile){
  const {source,company,configuredURL,currentURL=configuredURL,parseIndex,parseDetail,isRoleURL}=profile
  const failure=message=>firstPartyFailure(source,message),cap=options.maxJobs??null
  if(cap!==null&&(!Number.isSafeInteger(cap)||cap<1||cap>1000))throw RangeError('Invalid native role output limit')
- const reader=createFirstPartyDocumentReader(options,{source,urls:[configuredURL,currentURL],roleURL:isRoleURL,
+ const reader=createFirstPartyDocumentReader(options,{source,urls:[configuredURL,currentURL],roleURL:isRoleURL,requestTimeoutCeilingMs:profile.requestTimeoutCeilingMs,
   redirects:profile.redirectTarget?{[configuredURL]:profile.redirectTarget}:{}})
  try{
   const observedAt=(options.now??(()=>new Date().toISOString()))()

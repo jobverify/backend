@@ -18,6 +18,8 @@ import { processAutoApplyQueue } from './src/services/autoApplyService.js';
 import { recoverJobAlertOutbox } from './src/services/jobAlertOutboxService.js';
 import { recoverTelegramChannelAlerts } from './src/services/telegramChannelService.js';
 import { logOperationalError } from './src/utils/operationalLog.js';
+import { initializeVerification } from './src/jobVerification/initialize.js';
+import { verificationService } from './src/jobVerification/service.js';
 
 async function main() {
   const port = parsePort(process.env.PORT);
@@ -26,6 +28,7 @@ async function main() {
     isReady: () => !stopping && mongoose.connection.readyState === 1,
   });
   await connectDB();
+  await initializeVerification();
   let server;
   try {
     server = app.listen(port, "0.0.0.0");
@@ -43,6 +46,11 @@ async function main() {
   console.log(`Server is running on 0.0.0.0:${port}`);
 
   const stopTasks = [
+    (() => {
+      const stopTick = createPeriodicTask(() => verificationService.tick(), { intervalMs: 1000, runImmediately: true,
+        onError: () => console.error('[Job verification] Queue storage is unavailable.') });
+      return async () => { await verificationService.stop(); await stopTick(); };
+    })(),
     createPeriodicTask(recoverTelegramChannelAlerts, {
       intervalMs: 15_000, runImmediately: true,
       onError: error => logOperationalError('telegram_broadcast', error),

@@ -24,6 +24,13 @@ const premiumUser = {
   accessRole: ACCESS_ROLES.MONTHLY,
   premium: { planId: PLAN_IDS.MONTHLY, status: "active", expiresAt: new Date(Date.now() + 60_000) },
 };
+
+test('job search accepts repeated keywords and retains the legacy scalar format', () => {
+  assert.deepEqual(buildJobSearchRequest({ query: ['Frontend', 'Backend', 'Frontend'] }).filters.query, ['Backend', 'Frontend']);
+  assert.equal(buildJobSearchRequest({ query: 'Frontend' }).filters.query, 'Frontend');
+  assert.throws(() => buildJobSearchRequest({ query: Array.from({ length: 51 }, (_, i) => `term${i}`) }),
+    error => error instanceof SearchInputError && error.code === 'FILTER_VALUE_LIMIT_EXCEEDED');
+});
 const response = () => ({
   statusCode: 200,
   body: null,

@@ -935,6 +935,40 @@ const resolveJobListSortOption = ({ sort, hasTextSearch = false } = {}) => {
   return { sortDate: -1, _id: -1 };
 };
 
+const resolveNumberedJobQueryOptions = (filters) => {
+  const options = { maxTimeMS: MAX_NUMBERED_QUERY_EXECUTION_MS };
+  // Semantic visibility expressions make trial plans expensive. Start with the
+  // existing equality-key index instead of trialling unrelated multikey indexes.
+  // Text searches must retain Mongo's text-index selection.
+  if (!filters.$text && (filters.companyKey || filters.locationKeys)) {
+    options.hint = {
+      status: 1,
+      isPublicIndia: 1,
+      ...(filters.companyKey ? { companyKey: 1 } : {}),
+      ...(filters.locationKeys ? { locationKeys: 1 } : {}),
+      sortDate: -1,
+      _id: -1,
+    };
+  }
+  return options;
+};
+
+const executeNumberedJobQuery = async (execute, options) => {
+  try {
+    return await execute(options);
+  } catch (error) {
+    if (!options.hint || error?.code !== 2
+      || !/hint provided does not correspond to an existing index/i.test(error.message)) {
+      throw error;
+    }
+    // Older deployments and disposable test databases may not have these
+    // indexes yet. Keep the original bounded query available in that case.
+    const fallbackOptions = { ...options };
+    delete fallbackOptions.hint;
+    return execute(fallbackOptions);
+  }
+};
+
 const jobFilters = (queryParams, options, siteSettings) => applyPublicJobVisibility(
   buildJobFilterConditions(queryParams, options), siteSettings,
 );
@@ -1309,28 +1343,28 @@ export const getAllJobs = async (req, res) => {
         message: "Pagination exceeds the supported range. Use /api/jobs/search for deeper results." });
     }
     const { page: pageNum, limit: limitNum, offset: skip } = pagination;
-    const queryOptions = { maxTimeMS: MAX_NUMBERED_QUERY_EXECUTION_MS };
+    const queryOptions = resolveNumberedJobQueryOptions(filters);
 
     const sortOption = resolveJobListSortOption({ sort, hasTextSearch });
     const canUseSummaryTotals = isDefaultPublicJobListFilter(filterConditions);
-    let jobsQuery;
-    if (sort === "recommended") {
-      const recommendationPipeline = buildRecommendationPipeline(
-        filters,
-        req.user?.profile,
-        { skip, limit: limitNum },
-      );
-      jobsQuery = Job.aggregate(recommendationPipeline, queryOptions);
-    } else {
-      jobsQuery = applyJobListProjection(Job.find(filters, null, queryOptions),
+    const createJobsQuery = (options) => {
+      if (sort === "recommended") {
+        const recommendationPipeline = buildRecommendationPipeline(
+          filters,
+          req.user?.profile,
+          { skip, limit: limitNum },
+        );
+        return Job.aggregate(recommendationPipeline, options);
+      }
+      return applyJobListProjection(Job.find(filters, null, options),
         { includeTextScore: hasTextSearch && !sort })
         .sort(sortOption).skip(skip).limit(limitNum).lean();
-    }
+    };
 
     // Consume the query immediately: a fast rejection must not wait for the
     // summary before a handler is attached (Node treats it as process-fatal).
     const [jobs, summaryTotals] = await Promise.all([
-      jobsQuery.exec(),
+      executeNumberedJobQuery(options => createJobsQuery(options).exec(), queryOptions),
       canUseSummaryTotals
         ? resolvePublicJobDatasetTotals(req.siteSettings, queryOptions).catch(() => null)
         : Promise.resolve(null),
@@ -1341,11 +1375,11 @@ export const getAllJobs = async (req, res) => {
     }
     queryPhase = "totals";
     const [total, companies] = await Promise.all([
-      Job.countDocuments(filters, queryOptions).catch(error => {
+      executeNumberedJobQuery(options => Job.countDocuments(filters, options), queryOptions).catch(error => {
         error.jobQueryPhase = "job_total";
         throw error;
       }),
-      Job.distinct("company", filters, queryOptions).catch(error => {
+      executeNumberedJobQuery(options => Job.distinct("company", filters, options), queryOptions).catch(error => {
         error.jobQueryPhase = "company_total";
         throw error;
       }),

@@ -41,7 +41,7 @@ export function launchLocal(run) {
 }
 export async function reconcileLocal(run) {
   if(run?.target==='local'&&run.activeKey&&Date.now()-new Date(run.heartbeatAt||run.startedAt).getTime()>120000) {
-    await failPipeline(run._id,'interrupted','Local worker stopped sending progress. Check its logs before starting another run.');
+    await failPipeline(run._id,run.cancelRequestedAt?'cancelled':'interrupted',run.cancelRequestedAt?'Stopped by an administrator.':'Local worker stopped sending progress. Check its logs before starting another run.');
     return PipelineRun.findById(run._id).lean();
   }
   return run;

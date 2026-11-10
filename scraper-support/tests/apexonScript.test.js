@@ -266,6 +266,7 @@ test('Apexon run validates the first-party careers flow and returns normalized I
     apexon.EXPLORE_JOBS_URL,
     'https://www.apexon.com/career-job-detail/?id=0&jobid=6500',
     'https://www.apexon.com/career-job-detail/?id=0&jobid=6609',
+    apexon.EXPLORE_JOBS_URL,
   ])
   assert.deepEqual(
     jobs.map((job) => job.title),

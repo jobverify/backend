@@ -6,7 +6,7 @@ import PipelineRun from '../models/PipelineRun.js';
 import PipelineConfiguration from '../models/PipelineConfiguration.js';
 import AdminAudit from '../models/AdminAudit.js';
 import { defaultConfiguration, validateConfiguration } from '../pipeline/policy.js';
-import { createPipeline, dispatchNext, failPipeline, pipelineError } from '../pipeline/execution.js';
+import { createPipeline, dispatchNext, failPipeline, pipelineError, requestPipelineStop } from '../pipeline/execution.js';
 import { githubRequest, dispatchGithubStage, reconcileGithub } from '../pipeline/github.js';
 import { localEnabled, launchLocal, reconcileLocal, readLocalLog } from '../pipeline/local.js';
 
@@ -63,6 +63,25 @@ export const triggerPipeline=endpoint(async(req,res)=>{
 export const getPipelineRuns=endpoint(async(req,res)=>{
   const limit=Math.min(50,Math.max(1,Number(req.query.limit)||20));
   res.json({success:true,data:await PipelineRun.find().sort({createdAt:-1}).limit(limit).lean()});
+});
+const stopRun=async(id,key)=>{
+  let run=await requestPipelineStop(id,key);
+  if(run.target==='github')run=await reconcileGithub(run,{advance:false});
+  else if(!run.localOwner)run=await failPipeline(id,'cancelled','Stopped by an administrator.')||run;
+  return run;
+};
+export const stopPipeline=endpoint(async(req,res)=>{
+  const run=await stopRun(req.params.id,req.params.stage);
+  await audit(req,'stopPipeline',`Stop requested for ${run._id}${req.params.stage?` (${req.params.stage})`:''}`);
+  res.status(202).json({success:true,data:run});
+});
+export const stopAllPipelines=endpoint(async(req,res)=>{
+  const runs=await PipelineRun.find({activeKey:'database'}).lean();
+  const results=await Promise.allSettled(runs.map(run=>stopRun(run._id)));
+  await audit(req,'stopPipeline',`Stop all requested: ${runs.map(run=>run._id).join(', ')}`);
+  const failed=results.find(result=>result.status==='rejected');
+  if(failed)throw failed.reason;
+  res.status(202).json({success:true,data:results.map(result=>result.value)});
 });
 export const getPipelineRun=endpoint(async(req,res)=>{
   let run=await PipelineRun.findById(req.params.id).lean();if(!run)throw pipelineError('Pipeline not found.',404);

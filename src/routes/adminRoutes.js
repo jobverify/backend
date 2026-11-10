@@ -7,7 +7,7 @@ import express from "express";
 import { getPipelineSchedule, savePipelineSchedule } from '../controllers/pipelineController.js';
 import { updateSiteSettings } from "../controllers/siteSettingsController.js";
 import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs } from '../controllers/adminTelegramAlertsController.js';
-import { getPipelineStatus, savePipelineConfiguration, getPipelineCapabilities, triggerPipeline, getPipelineRuns, getPipelineRun, getPipelineLog, downloadPipeline, retiredPipelineControl } from '../controllers/pipelineController.js';
+import { getPipelineStatus, savePipelineConfiguration, getPipelineCapabilities, triggerPipeline, getPipelineRuns, getPipelineRun, getPipelineLog, downloadPipeline, retiredPipelineControl, stopPipeline, stopAllPipelines } from '../controllers/pipelineController.js';
 import { getUserSuggestions } from "../controllers/userSuggestionController.js";
 import { purgeScraperJobs } from "../controllers/scraperMaintenanceController.js";
 import {
@@ -142,6 +142,9 @@ router.put('/pipeline/schedule', savePipelineSchedule);
 router.get('/pipeline/capabilities', getPipelineCapabilities);
 router.put('/pipeline/configuration', savePipelineConfiguration);
 router.post('/pipeline/trigger', scrapeTriggerLimiter, triggerPipeline);
+router.post('/pipeline/stop', stopAllPipelines);
+router.post('/pipeline/runs/:id/stop', stopPipeline);
+router.post('/pipeline/runs/:id/stages/:stage/stop', stopPipeline);
 router.get('/pipeline/runs', getPipelineRuns);
 router.get('/pipeline/runs/:id', getPipelineRun);
 router.get('/pipeline/runs/:id/logs/:stage', getPipelineLog);

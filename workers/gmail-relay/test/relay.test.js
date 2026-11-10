@@ -82,6 +82,7 @@ for (const invalid of [
   { to: 'owner@gmail.com', resetLink: `https://jobverify.test/reset-password#token=${token}&next=evil` },
   { to: 'owner@gmail.com', resetLink: `https://user:pass@jobverify.test/reset-password#token=${token}` },
   { to: 'owner@gmail.com', resetLink: 'https://jobverify.test/reset-password#token=short' },
+  { to: 'owner@gmail.com', resetLink: `https://jobverify.test/verify-email#token=${token}` },
   { ...body, html: '<a href="https://evil.test">malicious</a>' },
   { ...body, from: 'spoofed@gmail.com' },
   null,
@@ -176,3 +177,63 @@ test('relay rejects unknown paths and non-POST requests', async t => {
   assert.equal((await handler(new Request('https://relay.test/send-password-reset'), env)).status, 405);
   assert.equal(calls.transports.length, 0);
 });
+
+const verificationLink = `https://jobverify.test/verify-email#token=${token}`;
+const verificationBody = { to: body.to, verificationLink };
+const verificationRequest = (payload = verificationBody, authorization = `Bearer ${secret}`) => new Request('https://relay.test/send-verification', {
+  method: 'POST', headers: { Authorization: authorization, 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload),
+});
+
+test('verification relay waits for SMTP acceptance and sends a fixed verification template', async t => {
+  const { calls, transport, env, handler } = fixture(t);
+  let accept;
+  const pending = new Promise(resolve => { accept = resolve; });
+  transport.sendMail = async mail => { calls.mail.push(mail); await pending; return { accepted: [mail.to] }; };
+  let settled = false;
+  const delivery = handler(verificationRequest(), env).then(response => { settled = true; return response; });
+  await new Promise(resolve => setImmediate(resolve));
+  try { assert.equal(settled, false); } finally { accept(); }
+  assert.equal((await delivery).status, 200);
+  assert.equal(calls.mail[0].from, 'Jobverify <sender@gmail.com>');
+  assert.equal(calls.mail[0].to, body.to);
+  assert.equal(calls.mail[0].subject, 'Verify your Jobverify account');
+  assert.ok(calls.mail[0].text.includes(verificationLink));
+  assert.ok(calls.mail[0].html.includes(verificationLink));
+  assert.equal(calls.closed, 1);
+  assert.equal(calls.rateKeys.length, 2);
+});
+
+test('verification relay requires authentication and enforces recipient limits', async t => {
+  const { calls, env, handler } = fixture(t);
+  assert.equal((await handler(verificationRequest(verificationBody, ''), env)).status, 401);
+  env.RECIPIENT_LIMITER.limit = async () => ({ success: false });
+  assert.equal((await handler(verificationRequest(), env)).status, 429);
+  assert.equal(calls.transports.length, 0);
+});
+
+test('verification relay returns a safe error when Gmail rejects delivery', async t => {
+  const { calls, transport, env, handler } = fixture(t);
+  transport.sendMail = async () => { throw new Error(`private ${env.GMAIL_APP_PASSWORD} ${verificationLink}`); };
+  const response = await handler(verificationRequest(), env);
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), { success: false, error: 'SMTP_UNAVAILABLE' });
+  assert.equal(calls.closed, 1);
+});
+
+for (const invalid of [
+  body,
+  { ...verificationBody, verificationLink: resetLink },
+  { ...verificationBody, verificationLink: `https://evil.test/verify-email#token=${token}` },
+  { ...verificationBody, verificationLink: `https://jobverify.test/verify-email?next=evil#token=${token}` },
+  { ...verificationBody, verificationLink: `${verificationLink}&next=evil` },
+  { ...verificationBody, verificationLink: 'https://jobverify.test/verify-email#token=short' },
+  { ...verificationBody, to: 'first@gmail.com,second@gmail.com' },
+  { ...verificationBody, html: 'custom HTML' },
+]) {
+  test(`verification relay rejects invalid payload ${JSON.stringify(invalid).slice(0, 100)}`, async t => {
+    const { calls, env, handler } = fixture(t);
+    assert.equal((await handler(verificationRequest(invalid), env)).status, 400);
+    assert.equal(calls.transports.length, 0);
+  });
+}

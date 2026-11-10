@@ -10,6 +10,7 @@ import { redactLog } from '../src/pipeline/local.js';
 import { aggregateClassificationSummaries } from '../classification/reporting.js';
 import { aggregateRewriteSummaries } from '../rewriting/reporting.js';
 import { validateRewriteShard } from '../rewriting/partitioning.js';
+import { scraperRunEnvironment } from '../src/pipeline/scraperConcurrency.js';
 
 const command=process.argv[2],key=process.env.PIPELINE_STAGE;
 const token=process.env.GH_TOKEN;
@@ -36,7 +37,9 @@ try {
       await claimStage(id,key,{runId:Number(process.env.GITHUB_RUN_ID),token:dispatchToken});
     }
     if(id) {
-      await fs.appendFile(process.env.GITHUB_OUTPUT,`pipeline_id=${id}\nshould_run=true\n`);
+      const run=await PipelineRun.findById(id).lean();
+      const scraperEnv=await scraperRunEnvironment(run);
+      await fs.appendFile(process.env.GITHUB_OUTPUT,`pipeline_id=${id}\nshould_run=true\nscraper_concurrency=${scraperEnv.SCRAPER_CONCURRENCY}\n`);
       if(process.env.GITHUB_ENV)await fs.appendFile(process.env.GITHUB_ENV,`PIPELINE_ID=${id}\n`);
       await updateStage(id,key,{status:'running'});
     }

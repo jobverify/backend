@@ -1,9 +1,10 @@
 import { getSiteSettings, saveSiteSettings } from "../services/siteSettingsService.js";
+import { verificationEnabled } from '../jobVerification/service.js';
 
 export async function readSiteSettings(_req, res, next) {
   try {
     res.set("Cache-Control", "no-store");
-    res.json({ success: true, data: await getSiteSettings() });
+    res.json({ success: true, data: { ...await getSiteSettings(), jobVerificationEnabled: verificationEnabled() } });
   } catch (error) { next(error); }
 }
 

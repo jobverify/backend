@@ -6,7 +6,7 @@
 import nodemailer from "nodemailer";
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
-import { sendPasswordResetViaRelay } from "./passwordResetRelay.js";
+import { sendPasswordResetViaRelay, sendVerificationViaRelay } from "./passwordResetRelay.js";
 
 const requireEmailConfig = (name) => {
   const value = String(process.env[name] ?? "").trim();
@@ -54,7 +54,9 @@ const sendEmail = async (to, subject, html, successLabel) => {
 };
 
 // Sends a verification email containing a registration magic link.
-export const sendVerificationEmail = async (to, magicLink) => sendEmail(
+export const sendVerificationEmail = async (to, magicLink) => String(process.env.EMAIL_RELAY_URL ?? '').trim()
+  ? sendVerificationViaRelay(to, magicLink)
+  : sendEmail(
   to,
   "Verify your Jobverify account",
   `

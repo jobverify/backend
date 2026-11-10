@@ -52,13 +52,14 @@ async function readPayload(request) {
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
 }
 
-function validPayload(payload, origin) {
+function validPayload(payload, origin, verification) {
+  const linkKey = verification ? 'verificationLink' : 'resetLink';
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)
     || Object.keys(payload).length !== 2 || !isMailbox(payload.to)
-    || typeof payload.resetLink !== 'string' || payload.resetLink.length > 1024) return false;
+    || typeof payload[linkKey] !== 'string' || payload[linkKey].length > 1024) return false;
   try {
-    const link = new URL(payload.resetLink);
-    return link.origin === origin && link.pathname === '/reset-password'
+    const link = new URL(payload[linkKey]);
+    return link.origin === origin && link.pathname === (verification ? '/verify-email' : '/reset-password')
       && !link.username && !link.password && !link.search
       && /^#token=[0-9a-f]{64}$/i.test(link.hash);
   } catch { return false; }
@@ -82,23 +83,38 @@ function resetEmail(payload, user) {
   };
 }
 
+function verificationEmail(payload, user) {
+  return {
+    from: `Jobverify <${user}>`, to: payload.to,
+    subject: 'Verify your Jobverify account',
+    text: `Welcome to Jobverify! Use this link to verify your email address:\n\n${payload.verificationLink}\n\nThis link expires in 30 minutes. If you did not request it, ignore this email.`,
+    html: `<div style="font-family:sans-serif;max-width:600px;margin:auto;padding:24px">
+      <h2>Welcome to Jobverify!</h2>
+      <p>Use the link below to verify your email address. This link expires in 30 minutes.</p>
+      <p><a href="${escapeHtml(payload.verificationLink)}">Verify Email Address</a></p>
+      <p>If you did not request this email, you can safely ignore it.</p>
+    </div>`,
+  };
+}
+
 export function createRelayHandler({ createTransport }) {
   return async function handleRequest(request, env) {
     const path = new URL(request.url).pathname;
-    if (!['/send-password-reset', '/verify-smtp'].includes(path)) return reply(404, 'NOT_FOUND');
+    if (!['/send-password-reset', '/send-verification', '/verify-smtp'].includes(path)) return reply(404, 'NOT_FOUND');
+    const verification = path === '/send-verification';
     if (request.method !== 'POST') return reply(405, 'METHOD_NOT_ALLOWED', { Allow: 'POST' });
     const config = configuration(env);
     if (!config) return reply(503, 'RELAY_NOT_CONFIGURED');
     if (!authorized(request, config.secret)) return reply(401, 'UNAUTHORIZED');
 
     let payload;
-    if (path === '/send-password-reset') {
+    if (path !== '/verify-smtp') {
       if (request.headers.get('Content-Type')?.split(';')[0].trim().toLowerCase() !== 'application/json') {
         return reply(415, 'JSON_REQUIRED');
       }
       try { payload = await readPayload(request); }
       catch (error) { return reply(error.status === 413 ? 413 : 400, 'INVALID_PAYLOAD'); }
-      if (!validPayload(payload, config.origin)) return reply(400, 'INVALID_PAYLOAD');
+      if (!validPayload(payload, config.origin, verification)) return reply(400, 'INVALID_PAYLOAD');
     }
 
     let transporter;
@@ -121,14 +137,14 @@ export function createRelayHandler({ createTransport }) {
       });
       if (path === '/verify-smtp') await transporter.verify();
       else {
-        const result = await transporter.sendMail(resetEmail(payload, config.user));
+        const result = await transporter.sendMail((verification ? verificationEmail : resetEmail)(payload, config.user));
         if (!result.accepted?.some(address => typeof address === 'string' && address.toLowerCase() === payload.to.toLowerCase())) {
           throw new Error('Recipient not accepted');
         }
       }
       return reply(200);
     } catch (error) {
-      // Never log provider responses, credentials, addresses or reset links.
+      // Never log provider responses, credentials, addresses or account links.
       const code = ['EAUTH', 'ETIMEDOUT', 'EDNS', 'ESOCKET', 'ECONNECTION', 'EENVELOPE', 'ETLS'].includes(error?.code)
         ? error.code : 'DELIVERY_FAILED';
       const reason = String(error?.message ?? '').includes('proxy request failed') ? 'SOCKET_PROXY_FAILURE'

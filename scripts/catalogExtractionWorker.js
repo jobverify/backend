@@ -53,7 +53,7 @@ export async function auditExtraction(provider, { outputDirectory, capturePublic
       failureReason: extractionFailureReason(error),
       ...(retainedFailureEvidence ? { retainedFailureEvidence } : {}),
       ...(capture ? { retainedNativeApiEvidence: capture.evidence } : {}),
-      failureCode: /^[A-Z_0-9]{1,80}$/.test(error?.code || '') ? error.code : 'EXTRACTION_OR_UPSTREAM_ERROR',
+      failureCode: typeof error?.code === 'string' && /^[A-Z_0-9]{1,80}$/.test(error.code) ? error.code : 'EXTRACTION_OR_UPSTREAM_ERROR',
       rawJobs: null, rawJobsBasis: 'unavailable-failed-attempt', indiaJobs: null, eligibleJobs: null, inventoryEvidence: null,
     }
   }

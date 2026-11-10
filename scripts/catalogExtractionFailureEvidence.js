@@ -10,6 +10,23 @@ const property = (value, key) => {
   try { return Object.getOwnPropertyDescriptor(value, key) } catch { return {} }
 }
 const field = (value, key) => property(value, key)?.value
+const domPrototype = typeof DOMException === 'undefined' ? null : DOMException.prototype
+const domGetters = Object.fromEntries(['name', 'message', 'code'].map(key =>
+  [key, domPrototype && Object.getOwnPropertyDescriptor(domPrototype, key)?.get]))
+// Native DOM errors keep these fields in branded prototype accessors. Invoke
+// only the saved built-in getters; arbitrary object accessors remain unread.
+const errorField = (value, key) => {
+  const own = property(value, key)
+  if (own) return own.value
+  if (!domGetters[key] || value === null || typeof value !== 'object') return undefined
+  try {
+    let prototype = Object.getPrototypeOf(value)
+    for (let depth = 0; prototype && depth < 4; depth++, prototype = Object.getPrototypeOf(prototype)) {
+      if (prototype === domPrototype) return domGetters[key].call(value)
+      if (Object.getOwnPropertyDescriptor(prototype, key)) return undefined
+    }
+  } catch {}
+}
 const count = value => Number.isSafeInteger(value) && value >= 0 && value <= 1000000 ? value : null
 const identifier = (value, pattern) => typeof value === 'string' && value.length <= 80 && pattern.test(value) ? value : null
 const name = value => identifier(value, /^[A-Za-z][A-Za-z0-9_.]*$/)
@@ -33,7 +50,7 @@ const message = value => {
 
 function reason(value, depth = 0) {
   if (!record(value)) return null
-  const result = { name: name(field(value, 'name')), message: message(field(value, 'message')), code: code(field(value, 'code')) }
+  const result = { name: name(errorField(value, 'name')), message: message(errorField(value, 'message')), code: code(errorField(value, 'code')) }
   const cause = field(value, 'cause')
   if (depth < 2) result.cause = typeof cause === 'string' ? { message: message(cause) } : reason(cause, depth + 1)
   return result.name || result.message || result.code || result.cause ? result : null

@@ -102,6 +102,12 @@ const main = async () => {
     `[replay-log] Replaying ${sources.length} scraper sources from ${sourceListFile || sourceLog}`,
   )
 
+  if (!process.argv.includes('--dry-run')) {
+    const { default: connectDB } = await import('../db/db.js')
+    const { standaloneScraperEnvironment } = await import('../src/pipeline/scraperConcurrency.js')
+    await connectDB()
+    Object.assign(process.env, await standaloneScraperEnvironment(process.env.PIPELINE_ID))
+  }
   const { runAll } = await import('../scraper-support/runner.js')
   const summary = await runAll()
 

@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { HEX_CATALOG } from './catalog.js'
+import {hasCurrentHexPublisher,runCurrentHex} from './currentNative.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -10,8 +11,6 @@ export const SOURCE = PROVIDER_METADATA.source
 export const COMPANY = PROVIDER_METADATA.companyName
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 export const SAMPLE_ROLE_URLS = PROVIDER_METADATA.sampleRoleUrls
-
-const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
@@ -30,26 +29,11 @@ const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/\s+/g, ' ')
   .trim()
 
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
-}
-
 export const hasVerifiedCareersLandingSignal = (html = '') => {
   const normalized = normalizeWhitespace(html)
   return /(?:Careers at Hex|Hex Careers)/i.test(normalized)
     && /Make everyone a data person/i.test(normalized)
-    && /It's just "Hex"!/i.test(normalized)
+    && (/It's just "Hex"!/i.test(normalized) || hasCurrentHexPublisher(html))
     && /We're hiring in San Francisco, New York, and remote\./i.test(normalized)
 }
 
@@ -105,7 +89,9 @@ export const hasCompleteUsOnlyInventory = (html = '') => {
 }
 
 export const createHexScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (typeof options.fetchText !== 'function') return runCurrentHex(options)
+    const {fetchText}=options
     const careersHtml = await fetchText(CAREERS_URL)
     if (!hasVerifiedCareersLandingSignal(careersHtml)) {
       throw new Error('Hex verified careers page no longer matches the known fail-closed contract')

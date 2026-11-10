@@ -4,6 +4,14 @@ import { defaultConfiguration, validateConfiguration, createStages, directConfig
 import { selectClassificationDescription } from '../src/services/classificationDescription.js';
 import { buildRewriteInput } from '../src/services/jobDescriptionPolicy.js';
 
+test('scraper concurrency is retained and rejects invalid values', () => {
+  assert.equal(validateConfiguration({...defaultConfiguration(),scraperConcurrency:7}).scraperConcurrency,7);
+  for(const scraperConcurrency of [0,-1,1.5,'4','',null,true,Number.MAX_SAFE_INTEGER+1]) {
+    assert.throws(()=>validateConfiguration({...defaultConfiguration(),scraperConcurrency}),error=>error.status===400);
+  }
+  assert.ok(Number.isSafeInteger(validateConfiguration({stages:defaultConfiguration().stages}).scraperConcurrency));
+});
+
 test('all permutations and enabled subsets preserve configured order', () => {
   const permutations = a => a.length ? a.flatMap((v,i) => permutations(a.filter((_,j)=>j!==i)).map(rest=>[v,...rest])) : [[]];
   for (const order of permutations(['scraper','rewrite','classification'])) for (let mask=1;mask<8;mask++) {

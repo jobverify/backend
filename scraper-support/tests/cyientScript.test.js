@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { spawnSync } from 'node:child_process'
 import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
@@ -134,4 +135,25 @@ test('extractJobDetail reads Cyient detail fields, skills, and closing dates', (
   assert.match(detail.jobDescription, /Roles & Responsibilities/i)
   assert.match(detail.jobDescription, /Educational Qualification/i)
   assert.match(detail.jobDescription, /Required Skills/i)
+})
+
+test('Cyient preserves native calendar dates across host timezones', () => {
+  const moduleUrl = new URL('../../scraper/cyient/script.js', import.meta.url).href
+  const script = `
+    import { extractJobDetail } from ${JSON.stringify(moduleUrl)}
+    const detail = extractJobDetail({
+      createDate: '2026-05-15T23:30:00.000-07:00',
+      endtDate: '2026-07-04T00:00:00.000+05:30',
+    })
+    process.stdout.write(JSON.stringify({ postingDate: detail.postingDate, closingDate: detail.closingDate }))
+  `
+  for (const timeZone of ['UTC', 'Asia/Kolkata', 'America/Los_Angeles']) {
+    const result = spawnSync(process.execPath, ['--input-type=module', '--eval', script], {
+      env: { ...process.env, TZ: timeZone }, encoding: 'utf8', timeout: 5000,
+    })
+    assert.equal(result.status, 0, result.stderr)
+    assert.deepEqual(JSON.parse(result.stdout), {
+      postingDate: '2026-05-15', closingDate: '2026-07-04',
+    }, timeZone)
+  }
 })

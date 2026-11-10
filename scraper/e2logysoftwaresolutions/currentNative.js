@@ -114,27 +114,31 @@ function originalNativeData(page){
   need(row?.type==='VariableDeclaration'&&row.kind==='var'&&node?.id.type==='Identifier'&&node.id.name===name,'Native data authority declaration structure changed')
   return node
  }
- const job=declarator(3,0,'jobs'),meta=declarator(8,0,'meta'),token=declarator(0,1,'csrfToken'),init=job.init
+ const job=declarator(3,0,'jobs'),meta=declarator(8,0,'meta'),token=declarator(0,1,'csrfToken'),visitorCountry=declarator(9,0,'country'),init=job.init
  need(init?.type==='CallExpression'&&!init.optional&&init.callee.type==='MemberExpression'&&!init.callee.computed
   &&init.callee.object.type==='Identifier'&&init.callee.object.name==='JSON'&&init.callee.property.type==='Identifier'&&init.callee.property.name==='parse'
   &&init.arguments.length===1&&init.arguments[0].type==='Literal'&&typeof init.arguments[0].value==='string','Native jobs is not one literal JSON data carrier')
  const employer=literal(meta.init)
  need(token.init?.type==='Literal'&&typeof token.init.value==='string','Native request token is not literal data')
- // Only three already-qualified literal initializers vary. Keep every other
+ need(visitorCountry.init?.type==='Literal'&&typeof visitorCountry.init.value==='string'
+  &&/^[A-Z]{2}$/.test(visitorCountry.init.value)&&nativeCountryName(visitorCountry.init.value),
+ 'Native visitor-country form default is not a known literal ISO country')
+ // The requester's form default varies with geolocation; it is separate from
+ // the native job's Country. Keep all references and uses in the reviewed AST.
+ // Only four already-qualified literal initializers vary. Keep every other
  // name, operator, statement, property and literal in the reviewed AST. This
  // closes aliases, dynamic code and computed writes without simulating them.
- const masked=new Set([job,meta,token])
+ const masked=new Set([job,meta,token,visitorCountry])
  const profile=JSON.stringify(ast,function(key,value){
   if(['start','end','raw'].includes(key))return undefined
   if(key==='init'&&masked.has(this))return {type:'ReviewedLiteralData',binding:this.id.name}
   return value
  })
- // The current anonymous response differs only in the form visitor-country
- // literal (GB -> IN), consumed by selectedCountry/mobileCountryCode. Keep
- // both exact reviewed programs; workplace country still comes from the role.
+ // The visitor-country initializer is validated above, then masked alongside
+ // job data and the CSRF token. No source program or job country is executed
+ // or rewritten. All other syntax retains its exact reviewed structure.
  const profileSHA=sha(profile)
- need(profileSHA==='1b0db916611d233b738e4cb4f29c5cf645da507a087a69eadc4392f04b0f2713'
-  ||profileSHA==='8e95b677cf60159bc58ae60a7acaa052344f65d4a4dd8a145a9bcfeb2af8d9b7','Native data carrier authority structure changed')
+ need(profileSHA==='f1206e648157c25bf2dd02b61c7441a5413b8a5ea3c61056d07aed2c8232a36c','Native data carrier authority structure changed')
  let jobs;try{jobs=JSON.parse(init.arguments[0].value)}catch{throw failure('Invalid native job JSON literal')}
  return {jobs,meta:employer}
 }

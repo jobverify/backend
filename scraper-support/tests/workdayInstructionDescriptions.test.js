@@ -4,11 +4,11 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 const sources=[
- ['commonwealthbankofaustralia','native-20261021.json.gz',72],
- ['cmegroup','native-20261021.json.gz',16],
- ['ciena','native-20261021.json.gz',8],
- ['carelonglobalsolutions','runtime-native-20261021.json.gz',15],
- ['chrobinson','native-20261021.json.gz',4],
+ ['commonwealthbankofaustralia','cme20261110-native.json.gz',81],
+ ['cmegroup','cme20261110-native.json.gz',16],
+ ['ciena','cme20261110-native.json.gz',12],
+ ['carelonglobalsolutions','cme20261110-native.json.gz',14],
+ ['chrobinson','cme20261110-native.json.gz',1],
 ]
 const instructions=[
  'Please click the Apply now button to access the complete details about this position, the requirements, the application instructions and the recruitment process. Please submit your application to view further information.',
@@ -20,11 +20,13 @@ async function replay(t,source,fixtureName,description){
  const fixtureURL=new URL(`../../scraper/${source}.workday/fixtures/${fixtureName}`,import.meta.url)
  const fixture=JSON.parse(gunzipSync(fs.readFileSync(fixtureURL)))
  const {run}=await import(`../../scraper/${source}.workday/script.js`)
- const checkedAt=fixture.capturedTrial?.completedAt??fixture.checkedAt??'2026-10-21T13:05:07.749Z'
+ const checkedAt=fixture.capturedTrial?.completedAt??fixture.checkedAt??'2026-10-21T13:05:07.749Z',reads=new Map()
  t.mock.method(globalThis,'fetch',async(url,init={})=>{
   // Earlier fixtures hold one copy of each actual detail response. Workday's
   // initial and final detail checks intentionally replay those same responses.
-  const original=fixture.packets.find(p=>p.url===String(url)&&p.method===(init.method??'GET')&&(p.requestBody??null)===(init.body??null))
+  const key=JSON.stringify([String(url),init.method??'GET',init.body??null]),index=reads.get(key)||0
+  reads.set(key,index+1)
+  const original=fixture.packets.filter(p=>p.url===String(url)&&p.method===(init.method??'GET')&&(p.requestBody??null)===(init.body??null))[index]
   assert.ok(original,'Uncaptured native request '+url)
   const packet=structuredClone(original)
   if(description&&packet.url.includes('/job/')){

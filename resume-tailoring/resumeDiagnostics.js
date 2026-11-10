@@ -21,12 +21,43 @@ const failures = {
 };
 const stages = new Set(['worker', 'startup', 'formatting', 'rendering', 'generating', 'repairing', 'latex', 'compiling', 'validating', 'comparing', 'completed']);
 const codes = new Set([...Object.keys(failures), 'started', 'passed']);
+const fidelityIssuePatterns = {
+  identity: /^Missing or changed candidate name\./,
+  contact: /^(?:Missing original visible (?:email|phone number)|Unsupported or changed (?:email|phone number)|(?:Email|Phone) link target does not match)/,
+  link: /^(?:Invalid or unsafe generated link destination|Missing or changed original link|Unsupported portfolio or profile link)/,
+  employment: /^(?:Missing or changed employment|Duplicated employment entry):/,
+  education: /^(?:Missing or changed education|Duplicated education entry):/,
+  date: /^(?:Date no longer associated with |Missing or changed original date:|Unsupported date:)/,
+  metric: /^(?:Unsupported number or metric|Missing original metric):/,
+  skill: /^Unsupported candidate skill:/,
+  title: /^Unsupported candidate title:/,
+};
+const fidelityIssueTypes = [...Object.keys(fidelityIssuePatterns), 'other'];
+
+// Discard private validation feedback; only fixed categories and counts may be
+// written to Actions logs. Unrecognised feedback is counted without its text.
+export function summarizeResumeFidelityIssues(issues = []) {
+  const counts = {};
+  for (const issue of Array.isArray(issues) ? issues : []) {
+    const type = Object.keys(fidelityIssuePatterns).find(key => typeof issue === 'string' && fidelityIssuePatterns[key].test(issue)) || 'other';
+    counts[type] = (counts[type] || 0) + 1;
+  }
+  return counts;
+}
 
 export function safeResumeDiagnostic(event = {}) {
   const result = { stage: stages.has(event.stage) ? event.stage : 'worker', code: codes.has(event.code) ? event.code : 'processing_failed' };
   if (result.stage === 'latex' && result.code === 'latex_invalid' && typeof event.reason === 'string' && Object.hasOwn(RESUME_LATEX_REASONS, event.reason)) result.reason = event.reason;
   for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'outputTokens', 'pageCount']) {
     if (typeof event[key] === 'number' && Number.isFinite(event[key]) && event[key] >= 0 && event[key] <= 1000000) result[key] = Math.round(event[key] * 100) / 100;
+  }
+  if (result.stage === 'validating' && result.code === 'factual_validation_failed' && event.issueCounts && typeof event.issueCounts === 'object') {
+    const counts = {};
+    for (const key of fidelityIssueTypes) {
+      const count = event.issueCounts[key];
+      if (Number.isInteger(count) && count > 0 && count <= 1000000) counts[key] = count;
+    }
+    if (Object.keys(counts).length) result.issueCounts = counts;
   }
   return result;
 }

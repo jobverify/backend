@@ -20,6 +20,17 @@
     "verificationDisposition": "native-runtime-validation-required",
     "companyCareerPage": "https://www.flywire.com/company/careers",
     "companyDomain": "flywire.com",
+    "nativeEmployerNames": [
+      "FW Solutions India LLP [India]"
+    ],
+    "nativeEmployerEvidence": {
+      "reviewedOn": "2026-11-10",
+      "source": "https://ir.flywire.com/static-files/6fcfbfdc-8aa3-4f56-adf7-61f833ba3a80",
+      "section": "Exhibit 21.1 — Subsidiaries of Flywire Corporation",
+      "filingLegalName": "FW Solutions India LLP",
+      "nativeLabel": "FW Solutions India LLP [India]",
+      "scope": "Exact named employer on the currently corporate-linked Flywire Workday board; preserve the original native employer on every role."
+    },
     "officialHomepageUrl": "https://www.flywire.com/",
     "originalAdapter": "script",
     "originalAtsPlatform": "workbook-exact-name-sentinel",

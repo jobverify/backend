@@ -113,7 +113,7 @@ export const hasOfficialContactSignal = (html) => {
   const rawPage = String(html ?? '')
   const page = normalizeWhitespace(html).toLowerCase()
 
-  const hasCurrentContactMetadata = /<title>\s*Contact Us \| Pantheon Digital \| Pantheon Digital\s*<\/title>/i.test(rawPage)
+  const hasCurrentContactMetadata = /<title>\s*Contact Us \| Pantheon Digital(?: \| Pantheon Digital)?\s*<\/title>/i.test(rawPage)
     && /property=["']og:url["'][^>]+content=["']https:\/\/pantheondigitals\.com\/contact-us["']/i.test(rawPage)
     && /property=["']og:site_name["'][^>]+content=["']Pantheon Digital["']/i.test(rawPage)
     && /connect with our Saket, New Delhi team/i.test(rawPage)

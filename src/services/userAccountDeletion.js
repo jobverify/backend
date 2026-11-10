@@ -1,4 +1,5 @@
 import ResumeUsage from '../models/ResumeUsage.js';
+import mongoose from 'mongoose';
 import { removeRetiredAccountData } from './retiredAccountData.js';
 import User from "../models/User.js";
 import PendingUser from "../models/PendingUser.js";
@@ -28,6 +29,8 @@ export const removeUserAccount = async (user) => {
   const userId = user._id;
   await User.updateOne({ _id: userId }, { $set: { accountDeletingAt: new Date() } });
   await removeRetiredAccountData(userId);
+  // These private reports use `owner`, unlike the legacy `user` collections.
+  await mongoose.connection.collection('jobverifications').deleteMany({ owner: userId });
   for (const Model of [ApplicationEvent, CandidateEvidence, CVRevision]) await Model.deleteMany({ user: userId });
   for (const Model of [AutoApplyAttempt]) await Model.deleteMany({ user: userId });
   for (const Model of [Subscription, Click, JobAlertDelivery, PlanPurchase, AccessEvent, TelegramLinkToken, UserSuggestion, Application, Resume, TailoredResume, ResumeArtifact, ResumeUsage]) {
