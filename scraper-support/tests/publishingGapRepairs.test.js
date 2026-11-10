@@ -37,6 +37,11 @@ test('historical repair release retains 50 distinct official bindings while curr
       continue
     }
     assert.equal(provider.atsPlatform, metadata.atsPlatform)
+    if (metadata.source === 'g2') {
+      assert.equal(metadata.boardToken, 'g2', 'The archived release retains its historical board token')
+      assert.equal(provider.boardToken, 'G2', 'The current Ashby board identity is case sensitive')
+      assert.ok(metadata.bindingEvidence.matchedLinks.includes('https://jobs.ashbyhq.com/G2/embed'))
+    }
     assert.equal(provider.backfillMode, 'live-parser')
     if (provider.parser === 'identity-bound-native-ashby-role-observations') {
       assert.equal(provider.zeroResultPolicy, 'coverage-gap')
@@ -132,16 +137,17 @@ for (const metadata of manifest) {
       return
     }
     const url = `https://example.com/jobs/${metadata.source}`
+    const boardToken = provider.boardToken
     const record = metadata.atsPlatform === 'greenhouse'
       ? { id: 1, title: 'Software Engineer', location: { name: 'Bangalore, India' }, absolute_url: url, content: 'Build and maintain applications.' }
       : metadata.atsPlatform === 'ashby'
         ? { id: '1', title: 'Software Engineer', location: 'Bangalore, India',
-          jobUrl: `https://jobs.ashbyhq.com/${encodeURIComponent(metadata.boardToken)}/1`,
-          applyUrl: `https://jobs.ashbyhq.com/${encodeURIComponent(metadata.boardToken)}/1/application`,
+          jobUrl: `https://jobs.ashbyhq.com/${encodeURIComponent(boardToken)}/1`,
+          applyUrl: `https://jobs.ashbyhq.com/${encodeURIComponent(boardToken)}/1/application`,
           isListed: true, descriptionPlain: 'Build and maintain applications.' }
         : { id: '1', text: 'Software Engineer', categories: { location: 'Bangalore, India' },
-          hostedUrl: `https://jobs.lever.co/${encodeURIComponent(metadata.boardToken)}/1`,
-          applyUrl: `https://jobs.lever.co/${encodeURIComponent(metadata.boardToken)}/1/apply`,
+          hostedUrl: `https://jobs.lever.co/${encodeURIComponent(boardToken)}/1`,
+          applyUrl: `https://jobs.lever.co/${encodeURIComponent(boardToken)}/1/apply`,
           descriptionPlain: 'Build and maintain applications.' }
     const payload = metadata.atsPlatform === 'lever' ? [record]
       : metadata.atsPlatform === 'greenhouse' ? { jobs: [record], meta: { total: 1 } } : { jobs: [record], apiVersion: '1' }
@@ -153,6 +159,10 @@ for (const metadata of manifest) {
     assert.notEqual(jobs[0].sourceListingComplete, false)
     if (metadata.atsPlatform === 'lever') {
       await assert.rejects(module.run({ fetchJson: async () => [{ ...record, hostedUrl: url, applyUrl: `${url}/apply` }] }), /board|identity/i)
+    }
+    if (metadata.source === 'g2') {
+      const wrongBoard = { ...record, jobUrl: 'https://jobs.ashbyhq.com/g2/1', applyUrl: 'https://jobs.ashbyhq.com/g2/1/application' }
+      await assert.rejects(module.run({ fetchJson: async () => ({ ...payload, jobs: [wrongBoard] }) }), /foreign board or role identity/)
     }
     await assert.rejects(module.run({ fetchJson: async () => { throw new Error('HTTP 503') } }), /503/)
   })

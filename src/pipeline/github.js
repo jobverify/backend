@@ -36,7 +36,7 @@ export async function githubRequest(repo,endpoint,{token=process.env.GITHUB_PAT,
       githubStatus:response.status,githubMessage:typeof details?.message==='string'?details.message.slice(0,1000):'',
     });
   }
-  return response.status===204?null:response.json();
+  return [202,204].includes(response.status)?null:response.json();
 }
 export const dispatchGithubStage=(run,stage,token=process.env.GITHUB_PAT)=>githubRequest(run.repo,`/actions/workflows/${WORKFLOWS[stage.key]}/dispatches`,{
   token,method:'POST',body:{ref:run.ref,inputs:{pipeline_id:run._id,dispatch_token:stage.dispatchToken,pipeline_sha:run.sha||''}},
@@ -59,6 +59,7 @@ export async function reconcileGithub(run,{token=process.env.GITHUB_PAT,advance=
   if(!run||run.target!=='github'||isTerminal(run.status))return run;
   const stage=run.stages.find(s=>['queued','preparing','running'].includes(s.status));
   if(!stage) {
+    if(run.cancelRequestedAt){await failPipeline(run._id,'cancelled','Stopped by an administrator.');return PipelineRun.findById(run._id).lean();}
     if(advance)await dispatchNext(run._id,(row,next)=>dispatchGithubStage(row,next,token));
     return PipelineRun.findById(run._id).lean();
   }
@@ -79,7 +80,16 @@ export async function reconcileGithub(run,{token=process.env.GITHUB_PAT,advance=
   // Downtime before the first recovery attempt must not exhaust the retry
   // window: an undispatched weekly occurrence still deserves a start.
   const waitingSince=run.origin==='scheduler'&&stage.status==='queued'?stage.recoveryStartedAt:stage.queuedAt;
-  if(remote?.status==='completed'&&advance) {
+  if(run.cancelRequestedAt) {
+    if(remote?.status==='completed')await failPipeline(run._id,'cancelled','Stopped by an administrator.');
+    else if(remote) {
+      try{await githubRequest(run.repo,`/actions/runs/${remote.id}/cancel`,{token,method:'POST'});}
+      catch(error){if(error.githubStatus!==409)throw error;}
+    } else {
+      // An unclaimed dispatch cannot execute after the durable stop flag is set.
+      await failPipeline(run._id,'cancelled','Stopped by an administrator.');
+    }
+  } else if(remote?.status==='completed'&&advance) {
     await completeWorkflow(remote.id,remote.conclusion,(row,next)=>dispatchGithubStage(row,next,token));
   } else if(!remote&&waitingSince&&Date.now()-new Date(waitingSince).getTime()>24*60*60*1000) {
     await failPipeline(run._id,'failed','No matching GitHub run appeared within 24 hours.');

@@ -268,13 +268,20 @@ test('JPMorgan Chase wrapper forwards caller cancellation through the corporate 
   const wrapper = await loadJPMorganChaseModule()
   for (const phase of ['corporate', 'detail']) {
     const controller = new AbortController(), reason = Object.freeze({ phase })
+    const textSignals = [], detailSignals = []
     const transport = wrapperTransport(1, {
       onText(url, options) {
-        assert.equal(options?.signal, controller.signal)
+        textSignals.push(options?.signal)
         if (phase === 'corporate') controller.abort(reason)
       },
-      onDetail(_url, options) { assert.equal(options?.signal, controller.signal); controller.abort(reason) },
+      onDetail(_url, options) { detailSignals.push(options?.signal); controller.abort(reason) },
     })
     await assert.rejects(wrapper.run({ ...transport, signal: controller.signal }), e => e === reason)
+    assert.equal(textSignals.length, phase === 'corporate' ? 1 : 2)
+    assert.equal(detailSignals.length, phase === 'detail' ? 1 : 0)
+    for (const requestSignal of [...textSignals, ...detailSignals]) {
+      assert.equal(requestSignal?.aborted, true)
+      assert.equal(requestSignal.reason, reason)
+    }
   }
 })

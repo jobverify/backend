@@ -6,7 +6,8 @@ import assert from 'node:assert/strict'
 import { runVerifiedWorkdayBoardUnion } from '../shared/workdayBoardUnion.js'
 
 const sourceDir = fileURLToPath(new URL('../../scraper/cmegroup.workday/', import.meta.url))
-const fixture = () => JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/cmegroup.workday/fixtures/native-20261021.json.gz', import.meta.url))))
+// Maintained current public capture; the historical 20261021 bytes are unavailable.
+const fixture = () => JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/cmegroup.workday/fixtures/cme20261110-native.json.gz', import.meta.url))))
 
 for (const changed of ['top-level code', 'nested code', 'nested descriptor', 'top-level India ID']) {
   test('a final foreign-primary detail read rejects a contradictory ' + changed, async t => {
@@ -29,10 +30,12 @@ for (const changed of ['top-level code', 'nested code', 'nested descriptor', 'to
 }
 
 async function runWithAddress(t, label, transform = () => {}) {
-  const { packets, checkedAt } = fixture()
+  const { packets, checkedAt } = fixture(), reads = new Map()
   t.mock.method(globalThis, 'fetch', async (url, init = {}) => {
-    const packet = packets.find(p => p.url === String(url) && p.method === (init.method ?? 'GET')
-      && p.requestBody === (init.body ?? null))
+    const key = JSON.stringify([String(url), init.method ?? 'GET', init.body ?? null]), index = reads.get(key) || 0
+    reads.set(key, index + 1)
+    const packet = packets.filter(p => p.url === String(url) && p.method === (init.method ?? 'GET')
+      && p.requestBody === (init.body ?? null))[index]
     assert.ok(packet, 'Only the captured native requests are allowed')
     let body = packet.body
     if (packet.url.includes('/job/')) {

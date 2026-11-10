@@ -38,6 +38,8 @@ lerna-debug.log*
 *.sw?
 docs/*
 !docs/security-operations.md
+!docs/job-verification.md
+!docs/job-verification-notices.md
 !docs/superpowers/
 docs/superpowers/*
 !docs/superpowers/plans/

@@ -54,7 +54,103 @@ const reviewedOracleBrandEmployer = (detail, contract) => {
   } }
 }
 
-export function oracleRecruitmentEmployer(detail,{companyFlexField=null,brandEmploymentDeclaration=null}={}){
+const oracleDescriptionBlocks = value => {
+  const doc = readNativeDocument(normalizeNativeAttributeBoundaries(value || ''))
+  const blocked = new Set(['blockquote', 'q', 'pre', 'code', 'template', 'aside', 'object', 'iframe', 'noscript', 'script', 'style'])
+  const ownText = node => typeof node === 'string' ? node : node.inert || blocked.has(node.tag)
+    ? '' : node.children.map(ownText).join(' ')
+  const blocks = []
+  const visit = node => {
+    if (typeof node === 'string' || node.inert || blocked.has(node.tag)) return false
+    let childBlock = false
+    for (const child of node.children) if (visit(child)) childBlock = true
+    const block = ['p', 'div', 'li', 'td'].includes(node.tag)
+    if (block && !childBlock) {
+      const value = decodeNativeEntities(ownText(node)).replace(/\s+/g, ' ').trim()
+      if (value) blocks.push(value)
+    }
+    return block || childBlock
+  }
+  visit(doc.nodes(node => node.tag === 'root')[0])
+  return blocks
+}
+
+const compatibleOracleOrganization = (detail, name) => detail.Organization == null
+  || typeof detail.Organization === 'string' && (!text(detail.Organization) || text(detail.Organization) === name)
+
+const oracleDescriptionEmployerLabels = blocks => blocks.flatMap((value, index) => {
+  if (/^(?:Employer|Organization Name)$/i.test(value)) return [blocks[index + 1] || '']
+  const label = value.match(/^(?:Employer|Organization Name)\s*:\s*(.+)$/i)
+  return label ? [label[1]] : []
+})
+
+// Contradictions may be unwrapped text or loose text beside nested blocks.
+// Retain all active text, with block boundaries, instead of requiring the
+// stricter terminal label/value structure used to establish positive proof.
+const oracleActiveEmployerBlocks = value => {
+  const doc = readNativeDocument(normalizeNativeAttributeBoundaries(value || ''))
+  const blocked = new Set(['blockquote', 'q', 'pre', 'code', 'template', 'aside', 'object', 'iframe', 'noscript', 'script', 'style'])
+  const boundary = new Set(['p', 'div', 'li', 'td', 'tr', 'section', 'article', 'header', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br'])
+  const active = node => {
+    if (typeof node === 'string') return node
+    if (node.inert || blocked.has(node.tag)) return ''
+    const content = node.children.map(active).join(' ')
+    return boundary.has(node.tag) ? '\n' + content + '\n' : content
+  }
+  return active(doc.nodes(node => node.tag === 'root')[0]).split(/\r?\n/)
+    .map(line => decodeNativeEntities(line).replace(/\s+/g, ' ').trim()).filter(Boolean)
+}
+
+const oracleDescriptionEmployerConflict = (detail, name) => {
+  const escapedName = name.replace(/[.*+?^$()|[\]\\]/g, '\\$&')
+  const namedDenial = new RegExp(escapedName + '.{0,60}(?:is not|will not be).{0,40}employer', 'i')
+  return publicDescriptionFields.some(field => {
+    const blocks = oracleActiveEmployerBlocks(detail[field]), active = blocks.join(' ')
+    return oracleDescriptionEmployerLabels(blocks).some(value => value !== name) || namedDenial.test(active)
+      || /\bnot (?:be )?(?:employed by|an? employee of)\b|\b(?:franchise|independently operated|third[- ]party) employer\b/i.test(active)
+  })
+}
+
+// A source may opt in to a reviewed label/value pair in this role's own full
+// public criteria. Keep the value separate from the next label; publisher
+// names and organization identifiers never supply this declaration.
+const describedOracleEmployer = (detail, contract) => {
+  if (contract?.kind !== 'native-role-organization-label' || contract.field !== 'ExternalDescriptionStr'
+    || contract.label !== 'Organization Name' || !text(contract.name)
+    || !compatibleOracleOrganization(detail, contract.name)) return null
+  const blocks = oracleDescriptionBlocks(detail.ExternalDescriptionStr)
+  const values = blocks.flatMap((value, index) => value === contract.label ? [blocks[index + 1] || ''] : [])
+  if (!values.length || values.some(value => value !== contract.name)
+    || oracleDescriptionEmployerConflict(detail, contract.name)) return null
+  return { employer: { name: contract.name }, binding: {
+    method: 'native-role-description-organization-label', field: contract.field,
+    label: contract.label, value: contract.name, legalEmployer: null,
+  } }
+}
+
+// This exceptional proof is bound to a reviewed full native role, including
+// its exact ID/title and the first active criteria paragraph. A generic
+// company profile, a substring, or another role cannot reuse the declaration.
+const oracleRoleWorkplaceEmployer = (detail, declarations) => {
+  for (const contract of list(declarations).slice(0, 40)) {
+    if (contract?.kind !== 'native-role-workplace-statement' || contract.field !== 'ExternalDescriptionStr'
+      || !text(contract.name) || !text(contract.position) || !text(contract.id) || !text(contract.title)
+      || detail.Id !== contract.id || detail.Title !== contract.title || !text(contract.statement)
+      || contract.statement.length < 100 || !contract.statement.endsWith('.')
+      || !contract.statement.startsWith(contract.position + ' at ' + contract.name + ' ')
+      || !compatibleOracleOrganization(detail, contract.name)) continue
+    const blocks = oracleDescriptionBlocks(detail.ExternalDescriptionStr)
+    if (blocks[0] !== contract.statement && !blocks[0]?.startsWith(contract.statement + ' ')) continue
+    if (oracleDescriptionEmployerConflict(detail, contract.name)) continue
+    return { employer: { name: contract.name }, binding: {
+      method: 'explicit-native-role-workplace-statement', field: contract.field,
+      nativeId: contract.id, nativeTitle: contract.title, statement: contract.statement, legalEmployer: null,
+    } }
+  }
+  return null
+}
+
+export function oracleRecruitmentEmployer(detail,{companyFlexField=null,brandEmploymentDeclaration=null,descriptionEmployerDeclaration=null,roleWorkplaceDeclarations=null}={}){
   const legal=[]
   if(detail.LegalEmployer!=null){
     need(typeof detail.LegalEmployer==='string','invalid native legal employer')
@@ -77,7 +173,9 @@ export function oracleRecruitmentEmployer(detail,{companyFlexField=null,brandEmp
   const company=companyFlexField?readField(companyFlexField):null
   if(legal.length)return {employer:{name:legal[0]},binding:null}
   if(company)return {employer:{name:company},binding:{method:'native-requisition-company-flex-field',field:'requisitionFlexFields',prompt:companyFlexField,legalEmployer:null}}
-  return reviewedOracleBrandEmployer(detail,brandEmploymentDeclaration)||{employer:null,binding:null}
+  return reviewedOracleBrandEmployer(detail,brandEmploymentDeclaration)
+    || describedOracleEmployer(detail,descriptionEmployerDeclaration)
+    || oracleRoleWorkplaceEmployer(detail,roleWorkplaceDeclarations)||{employer:null,binding:null}
 }
 
 // This reader only receives a board advertised by the current company page.
@@ -157,7 +255,8 @@ export async function readOracleRecruitment(board, io) {
         io.unresolved('native-full-description-unavailable'); continue
       }
       const ownEmployer=oracleRecruitmentEmployer(detail,{companyFlexField:io.companyEmployerFlexField,
-        brandEmploymentDeclaration:io.brandEmploymentDeclaration})
+        brandEmploymentDeclaration:io.brandEmploymentDeclaration,descriptionEmployerDeclaration:io.descriptionEmployerDeclaration,
+        roleWorkplaceDeclarations:io.roleWorkplaceDeclarations})
       const employer = ownEmployer.employer
       if (employer && !io.matchingEmployer(employer.name) || !employer && (io.requireNativeEmployerName || !publisher)) {
         io.unresolved('native-employer-mismatch'); continue
@@ -167,7 +266,7 @@ export async function readOracleRecruitment(board, io) {
       io.addJob({ id: row.Id, title: detail.Title, url, employer,
         employerBinding: employer ? ownEmployer.binding : { method: 'current-corporate-delegation-and-native-site-publisher', publisher,
           siteNumber: site, publicSiteURL: publicBase.href, corporateBinding: board.bindingEvidence, legalEmployer: null },
-        ...(ownEmployer.binding?.method === 'explicit-native-role-corporate-workplace-declaration' ? { legalEmployer: null } : {}),
+        ...(['explicit-native-role-corporate-workplace-declaration','native-role-description-organization-label','explicit-native-role-workplace-statement'].includes(ownEmployer.binding?.method) ? { legalEmployer: null } : {}),
         description: publicDescriptionFields.map(field => detail[field]).filter(text).join('\n'),
         location: india[0].label || 'India', posted: detail.ExternalPostedStartDate, closing: detail.ExternalPostedEndDate,
         employmentType: detail.JobSchedule || null, record: { detail, listing: row, nativeSiteNumber: site, publicRoleRoute: publicBase.href } })

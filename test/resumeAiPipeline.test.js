@@ -20,6 +20,19 @@ test('pipeline separately compares source claims and returns only validated docu
   assert.ok(result.facts);
 });
 
+test('failed factual validation reports safe issue categories for both bounded attempts', async () => {
+  const diagnostics = [];
+  await assert.rejects(processResumeDocument({ mode: 'base', source }, {
+    generate: async () => latex,
+    compile: async () => ({ ...compiled, text: source.text.replace('alex@example.com', 'other@example.test') }),
+    onDiagnostic: event => diagnostics.push(event),
+  }), { code: 'factual_validation_failed' });
+  const failures = diagnostics.filter(event => event.code === 'factual_validation_failed');
+  assert.equal(failures.length, 2);
+  for (const event of failures) assert.deepEqual(event.issueCounts, { contact: 2 });
+  assert.doesNotMatch(JSON.stringify(diagnostics), /alex@|other@|Example Corp/);
+});
+
 test('generation and its one repair receive source-supported contact destinations', async () => {
   let generations = 0;
   const original = { ...source, text: source.text + '\n+1 202 555 0123', links: [...source.links, 'https://example.test/alex'] };

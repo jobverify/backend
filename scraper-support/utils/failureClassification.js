@@ -20,6 +20,7 @@ const getErrorText = (error = {}) => {
   for (let current = error; current && typeof current === 'object' && !seen.has(current) && seen.size < 8; current = current.cause) {
     seen.add(current)
     parts.push(current.message, current.code)
+    if (current.name === 'TimeoutError') parts.push('timeout')
     const status = current.status ?? current.statusCode ?? current.response?.status
     if (/^[1-5]\d\d$/.test(String(status))) parts.push(`HTTP ${status}`)
   }
@@ -96,7 +97,7 @@ export const classifyScraperError = (error = {}) => {
 
   if (NETWORK_OR_TIMEOUT_PATTERN.test(text)
     || /\bLYRA_NATIVE_REQUEST_DEADLINE\b/.test(text)
-    || /(?:read|body)[^\n]{0,40}deadline (?:exceeded|expired)/i.test(text)) {
+    || /\b(?:source|request|read|body)\b[^\n]{0,40}deadline (?:exceeded|expired)/i.test(text)) {
     return {
       softFailure: true,
       upstreamOutage: true,

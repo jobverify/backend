@@ -104,7 +104,7 @@ export const buildJobSearchRequest = (input = {}) => {
     }
     if (rawValue == null || rawValue === "") continue;
 
-    if (definition.type === "string") {
+    if (definition.type === "string" && !(key === 'query' && Array.isArray(rawValue))) {
       const value = normalizeScalar(rawValue, definition.maxLength);
       if (value) {
         filters[key] = value;
@@ -117,7 +117,7 @@ export const buildJobSearchRequest = (input = {}) => {
     const values = asInputValues(rawValue);
     const unique = new Set();
     for (const value of values) {
-      const normalized = normalizeScalar(value, 80);
+      const normalized = normalizeScalar(value, definition.maxLength ?? 80);
       if (normalized) unique.add(normalized);
     }
     if (unique.size === 0) continue;

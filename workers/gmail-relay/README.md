@@ -1,16 +1,17 @@
 # Private Gmail relay
 
 Render calls this Worker over authenticated HTTPS. The Worker submits one fixed
-password-reset email to Gmail over TLS on port 465. The backend still issues,
-stores, validates and expires reset tokens. No mailbox-provider API is required.
+password-reset or registration-verification email to Gmail over TLS on port 465.
+The backend still issues, stores, validates and expires tokens. No mailbox-provider API is required.
 
 Deployed relay: `https://jobverify-gmail-relay.jobverify-gmail-relay.workers.dev`.
 Gmail authentication from this deployed Worker was verified on November 6, 2026,
 without sending an email. Backend activation and a real delivery test are
 separate steps below.
 
-Only password-reset delivery uses the relay. Registration verification and
-email-change verification retain their existing SMTP transport.
+Password-reset and registration verification (including resend) use the relay
+when `EMAIL_RELAY_URL` is configured. Email-change verification retains its
+existing SMTP transport.
 
 ## Install and authenticate
 
@@ -73,7 +74,10 @@ Google account security activity if the deployed check returns `EAUTH`.
 
 ## Activate on Render
 
-Deploy the backend changes, then add these **backend** environment variables:
+Deploy the updated Worker first (`npm run deploy` from this directory), then
+deploy the backend changes and add these **backend** environment variables.
+The updated Worker remains compatible with the existing password-reset backend.
+Both supported email types use the same settings; no additional secret is needed:
 
 ```dotenv
 EMAIL_RELAY_URL=https://jobverify-gmail-relay.YOUR-SUBDOMAIN.workers.dev
@@ -86,8 +90,10 @@ Save and redeploy/restart the backend for environment changes to take effect.
 Never add any relay or Gmail secret to Vercel/frontend environment variables.
 
 After SMTP verification passes, request one real password-reset email from the
-live profile and verify the link works. Keep the Gmail account's sending limits
-in mind; Workers does not remove Gmail's quotas.
+live profile and verify the link works. Also test a registration verification
+email and the resend flow. Allow at least 60 seconds between emails to the same
+recipient: recipient limits are shared by both email types. Keep the Gmail
+account's sending limits in mind; Workers does not remove Gmail's quotas.
 
 To roll back, remove `EMAIL_RELAY_URL` and restart the backend. This restores the
 existing direct SMTP path, which still requires SMTP access from the host.
@@ -95,11 +101,13 @@ existing direct SMTP path, which still requires SMTP access from the host.
 ## Contract and protections
 
 - `POST /send-password-reset`: JSON `{ "to": "user@gmail.com", "resetLink": "https://www.jobverify.in/reset-password#token=<64 hex characters>" }`.
+- `POST /send-verification`: JSON `{ "to": "user@gmail.com", "verificationLink": "https://www.jobverify.in/verify-email#token=<64 hex characters>" }`.
 - `POST /verify-smtp`: no mail payload and no email sent.
-- Both require `Authorization: Bearer <RELAY_SECRET>` (at least 32 characters).
+- All endpoints require `Authorization: Bearer <RELAY_SECRET>` (at least 32 characters).
 - One plain recipient address; maximum body 2048 bytes. No arbitrary HTML,
   sender, headers, attachments or SMTP destination accepted.
-- Exact HTTPS frontend origin, `/reset-password`, no credentials/query parameters,
+- Exact HTTPS frontend origin, `/reset-password` or `/verify-email` matching the
+  endpoint, no credentials/query parameters,
   and a single 64-character hexadecimal token in the fragment.
 - Gmail TLS/certificate validation remains enabled. Success means Gmail accepted
   the message, not guaranteed arrival in the inbox.
@@ -111,9 +119,11 @@ existing direct SMTP path, which still requires SMTP access from the host.
   recipient/minute, approximately **per Cloudflare location**, not a global
   Gmail quota. Existing backend authentication and reset rate limits still apply.
 - Provider errors are logged only as safe error codes. No credentials, recipients,
-  email bodies or reset links are logged by this code.
-- No automatic retries or SMTP fallback when the relay is configured. Relay
+  email bodies or account links are logged by this code.
+- No automatic retries or SMTP fallback when the relay is configured. Reset
   failures use the backend's existing reset-token cleanup and retryable error.
+  Registration and resend retain their existing generic responses and server-side
+  delivery-error logging; those public responses do not prove delivery.
 
 The Worker URL is internet reachable; its secret authenticates server callers.
 It is not a private-network endpoint. Rotate both copies of `RELAY_SECRET` if it

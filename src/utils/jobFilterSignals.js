@@ -181,7 +181,7 @@ const decodeHtmlEntitiesOnce = (value = "") => String(value)
   .replace(/&nbsp;/gi, " ")
   .replace(/&amp;/gi, "&")
   .replace(/&quot;/gi, "\"")
-  .replace(/&#39;|&apos;/gi, "'")
+  .replace(/&#39;|&apos;|&rsquo;|&lsquo;/gi, "'")
   .replace(/&lt;/gi, "<")
   .replace(/&gt;/gi, ">");
 
@@ -1326,7 +1326,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const minimumAtLeastExperienceMatch = combinedText.match(
-    /\b(?:minimum(?:\s+of)?|at[\s-]*least)\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b(?:\s+of\s+[^.]{0,80}?\bexperience|\s+experience)\b/i,
+    /\b(?:minimum(?:\s+of)?|at[\s-]*least)\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b(?:\s+of\s+[^.]{0,80}?\bexperience|\s+(?:progressive\s+)?experience)\b/i,
   );
   if (
     minimumAtLeastExperienceMatch

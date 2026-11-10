@@ -1,17 +1,19 @@
 import { randomUUID } from 'node:crypto';
 import PipelineRun from '../models/PipelineRun.js';
 import { createStages, validateConfiguration, isTerminal, describeStageCompletion } from './policy.js';
+import { configuredScraperConcurrency } from './scraperConcurrency.js';
 
 export const pipelineError=(message,status=409,extra={})=>Object.assign(new Error(message),{status,...extra});
 export async function createPipeline({configuration,target,origin,repo,ref,sha,requestedBy,localOwner,initialRunId,scheduleSlot}) {
-  validateConfiguration(configuration);
+  configuration=validateConfiguration(configuration);
+  const scraperConcurrency=await configuredScraperConcurrency(configuration.scraperConcurrency);
   await PipelineRun.init();
   await PipelineRun.collection.createIndex({activeKey:1},{unique:true,sparse:true});
   if(scheduleSlot)await PipelineRun.collection.createIndex({scheduleSlot:1},{unique:true,sparse:true});
   const stages=createStages(configuration);
   if(initialRunId)Object.assign(stages.find(s=>s.enabled),{status:'preparing',startedAt:new Date(),githubRunId:Number(initialRunId)});
   try { return (await PipelineRun.create({_id:randomUUID(),activeKey:'database',origin,target,repo,ref,sha,requestedBy,localOwner,
-    ...(scheduleSlot?{scheduleSlot}:{}),heartbeatAt:new Date(),startedAt:new Date(),stages})).toObject(); }
+    ...(scheduleSlot?{scheduleSlot}:{}),scraperConcurrency,heartbeatAt:new Date(),startedAt:new Date(),stages})).toObject(); }
   catch(error) {
     if(error.code===11000&&scheduleSlot&&await PipelineRun.exists({scheduleSlot}))throw pipelineError('This scheduled interval already started.',409,{scheduleAlreadyClaimed:true});
     if(error.code===11000)throw pipelineError('A pipeline is already active.',409,{activeRun:await PipelineRun.findOne({activeKey:'database'}).lean()});
@@ -42,10 +44,18 @@ function stop(run,status,error) {
 export async function failPipeline(id,status,error) {
   return changeRun(id,run=>{if(isTerminal(run.status))return false;stop(run,status,error);});
 }
+export async function requestPipelineStop(id,key) {
+  const changed=await changeRun(id,run=>{
+    if(isTerminal(run.status))return false;
+    if(key&&!run.stages.some(s=>s.key===key&&['queued','preparing','running'].includes(s.status)))throw pipelineError('This stage is no longer active. Refresh status.');
+    run.cancelRequestedAt ||= new Date();
+  });
+  return changed||PipelineRun.findById(id).lean();
+}
 export async function dispatchNext(id,dispatch) {
   let selected;
   const run=await changeRun(id,row=>{
-    if(isTerminal(row.status)||row.stages.some(s=>['queued','preparing','running'].includes(s.status)))return false;
+    if(isTerminal(row.status)||row.cancelRequestedAt||row.stages.some(s=>['queued','preparing','running'].includes(s.status)))return false;
     const stage=row.stages.find(s=>s.status==='waiting');
     if(!stage){row.status='completed';row.completedAt=new Date();delete row.activeKey;return;}
     stage.status='queued';stage.queuedAt=new Date();stage.dispatchToken=randomUUID();selected=stage.key;
@@ -67,7 +77,7 @@ export async function dispatchNext(id,dispatch) {
 }
 export async function claimStage(id,key,{runId,token,owner}={}) {
   const run=await changeRun(id,row=>{
-    if(isTerminal(row.status))throw pipelineError('Pipeline is no longer active.');
+    if(isTerminal(row.status)||row.cancelRequestedAt)throw pipelineError('Pipeline is no longer active.');
     const stage=row.stages.find(s=>s.key===key);
     if(!stage||stage.status!=='queued'||stage.dispatchToken!==token)throw pipelineError('This stage has already been claimed or its dispatch identity is invalid.');
     stage.status='preparing';stage.startedAt=new Date();stage.githubRunId=runId;stage.owner=owner;
@@ -89,6 +99,7 @@ export async function completeWorkflow(runId,conclusion,dispatch) {
   const changed=await changeRun(existing._id,row=>{
     const stage=row.stages.find(s=>s.githubRunId===Number(runId));
     if(isTerminal(row.status)||!['queued','preparing','running'].includes(stage.status))return false;
+    if(row.cancelRequestedAt){stop(row,'cancelled','Stopped by an administrator.');return;}
     const outcome=conclusion==='cancelled'?'cancelled':stage.processingOutcome==='incomplete'?'incomplete':
       conclusion==='success'&&stage.processingOutcome==='completed'?'completed':'failed';
     stage.status=outcome;stage.completedAt=new Date();
@@ -100,6 +111,7 @@ export async function completeWorkflow(runId,conclusion,dispatch) {
 export async function completeLocalStage(id,key,outcome,summary) {
   return changeRun(id,row=>{
     if(isTerminal(row.status))return false;
+    if(row.cancelRequestedAt){stop(row,'cancelled','Stopped by an administrator.');return;}
     const stage=row.stages.find(s=>s.key===key);stage.status=outcome;stage.summary=describeStageCompletion(key,summary,outcome);stage.completedAt=new Date();
     if(outcome!=='completed')stop(row,outcome,`Stage ${key} ${outcome}.`);
   });

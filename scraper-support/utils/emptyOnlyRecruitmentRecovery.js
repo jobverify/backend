@@ -3,6 +3,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { attachInventoryEvidence, readInventoryEvidence, isFreshCompleteInventoryEvidence } from './inventoryEvidence.js'
 import { classifyScraperError } from './failureClassification.js'
+import { publicRecruitmentPath as publicPath, summarizeRecruitmentRecoveryAudit as auditSummary } from './recruitmentRecoveryAudit.js'
 
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const manifest = JSON.parse(readFileSync(new URL('./emptyOnlyRecruitmentSources.json', import.meta.url), 'utf8'))
@@ -13,28 +14,22 @@ const transportOption = key => /fetch|^(?:request|searchJobs|searchRoles|createS
 const isInjectedTransport = options => Object.entries(options).some(([key, value]) =>
   key !== 'emptyOnlyRecovery' && value != null && (transportOption(key)
     || typeof value === 'function' && key !== 'now'))
-const publicPath = value => {
-  try { const url = new URL(value); return /^https?:$/.test(url.protocol) ? (url.origin + url.pathname).slice(0, 240) : null }
-  catch { return null }
-}
-const auditSummary = audit => ({
-  requestCount: Number.isSafeInteger(audit?.requestCount) ? audit.requestCount : 0,
-  nativeRecords: Number.isSafeInteger(audit?.nativeRecords) ? audit.nativeRecords : 0,
-  unresolved: (audit?.unresolved || []).slice(0, 8).filter(value => typeof value === 'string').map(value => value.slice(0, 180)),
-  failures: (audit?.failures || []).slice(0, 8).map(failure => ({
-    stage: failure.stage, status: failure.status, code: failure.code,
-    message: String(failure.message || '').slice(0, 180), requestUrl: publicPath(failure.requestUrl),
-  })),
-  receipts: (audit?.receipts || []).slice(0, limits.maxRequests).map(receipt => ({
-    requestedURL: publicPath(receipt.requestedURL), finalURL: publicPath(receipt.finalURL),
-    status: receipt.status, bodyBytes: receipt.bodyBytes, bodySHA256: receipt.bodySHA256,
-  })),
-})
-const diagnostic = (jobs, entry, value) => {
+const diagnostic = (jobs, entry, provider, value) => {
   Object.defineProperty(jobs, 'emptyOnlyRecruitmentRecovery', { configurable: true, value: {
     source: entry.source, originalReaderSHA256: entry.sha256,
     sourceScopeComplete: false, lifecycleCleanupAllowed: false, ...value,
   } })
+  if (!readInventoryEvidence(jobs)) {
+    const detail = [value.status, ...(value.unresolved || []),
+      ...(value.failures || []).slice(0, 3).map(failure => [failure.stage,
+        failure.status == null ? null : 'HTTP ' + failure.status, failure.code, failure.message].filter(Boolean).join(' '))]
+      .filter(Boolean).join('; ').slice(0, 1024)
+    attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: publicPath(provider.companyCareerPage),
+      firstParty: (value.receipts || []).some(receipt => receipt.status === 200),
+      listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: value.receipts?.length || 0,
+      reportedTotal: null, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
+      reason: 'empty-only-recruitment-recovery; ' + detail })
+  }
   return jobs
 }
 
@@ -77,7 +72,7 @@ export async function recoverEmptyOnlyRecruitment(jobs, provider, options = {}) 
       allowDeclaredExternalCareersPages: provider.allowDeclaredExternalCareersPages ?? true,
     }).run(requestOptions)
     options.signal?.throwIfAborted()
-    if (!recovered.length) return diagnostic(jobs, entry, {
+    if (!recovered.length) return diagnostic(jobs, entry, provider, {
       status: 'no-qualified-india-roles', ...auditSummary(recovered[observations]),
     })
     for (const job of recovered) Object.assign(job, {
@@ -85,13 +80,13 @@ export async function recoverEmptyOnlyRecruitment(jobs, provider, options = {}) 
     })
     const evidence = readInventoryEvidence(recovered)
     attachInventoryEvidence(recovered, { ...evidence, lifecycleCleanupAllowed: false, listingComplete: false })
-    return diagnostic(recovered, entry, {
+    return diagnostic(recovered, entry, provider, {
       status: 'observed-india-roles', ...auditSummary(recovered[observations]), returnedIndiaJobs: recovered.length,
     })
   } catch (error) {
     options.signal?.throwIfAborted()
     const classification = classifyScraperError(error)
-    return diagnostic(jobs, entry, { status: 'unavailable',
+    return diagnostic(jobs, entry, provider, { status: 'unavailable',
       failureKind: classification.failureKind, softFailure: classification.softFailure,
       ...auditSummary(error?.recruitmentObservations),
     })

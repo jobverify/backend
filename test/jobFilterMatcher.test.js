@@ -6,6 +6,18 @@ import {
   jobMatchesSavedFilters,
 } from "../src/services/jobFilterMatcher.js";
 
+test('multiple submitted searches contribute to the Mongo text search', () => {
+  assert.deepEqual(buildJobFilterConditions({ query: ['Frontend Engineer', 'Backend'] }).$text,
+    { $search: 'Frontend Engineer Backend' });
+});
+
+test('later search terms remain searchable when their combined length exceeds one term limit', () => {
+  const first = 'a'.repeat(150);
+  const second = 'b'.repeat(150);
+  assert.equal(buildJobFilterConditions({ query: [first, second, 'Backend'] }).$text.$search,
+    `${first} ${second} Backend`);
+});
+
 test("jobMatchesSavedFilters applies the full saved-filter contract except sortBy", () => {
   const matched = jobMatchesSavedFilters({
     userProfile: { branch: "CSE", passingYear: 2027 },

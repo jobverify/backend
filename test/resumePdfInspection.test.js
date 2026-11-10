@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import PDFDocument from 'pdfkit';
 import { inspectResumePdf } from '../resume-tailoring/latexCompiler.js';
+import { buildSourceFacts, validateResumeFidelity } from '../src/services/resumeLatexContent.js';
 
 function fixture({ font = 11, x = 60, y = 740, pageWidth = 612, prefix = '' } = {}) {
   const content = `${prefix} BT /F1 ${font} Tf ${x} ${y} Td (Synthetic readable resume text) Tj ET`;
@@ -21,6 +23,26 @@ test('actual PDF parsing confirms readable selectable text and page count', asyn
   const result = await inspectResumePdf(fixture());
   assert.equal(result.pageCount, 1);
   assert.match(result.text, /Synthetic readable resume text/);
+});
+
+test('actual PDF font changes within contacts and skills do not change candidate facts', async () => {
+  const document = new PDFDocument({ size: 'A4', margin: 50 });
+  const chunks = [];
+  const pdf = new Promise((resolve, reject) => {
+    document.on('data', chunk => chunks.push(chunk));
+    document.on('end', () => resolve(Buffer.concat(chunks)));
+    document.on('error', reject);
+  });
+  document.fontSize(11).text('Example Candidate');
+  document.text('candidate', { continued: true }).font('Helvetica-Bold').text('@example.test');
+  document.font('Helvetica').text('SKILLS');
+  document.text('Java', { continued: true }).font('Helvetica-Bold').text('Script', { continued: true });
+  document.font('Helvetica').text(', Python');
+  document.end();
+  const output = await inspectResumePdf(await pdf);
+  const source = { text: 'Example Candidate\ncandidate@example.test\nSKILLS\nJavaScript, Python', links: [] };
+  assert.equal(output.text, source.text);
+  assert.deepEqual(validateResumeFidelity({ facts: buildSourceFacts(source), text: output.text, links: output.links }).issues, []);
 });
 test('PDF inspection renders each page and rejects invisible or clipped text', async () => {
   await assert.rejects(inspectResumePdf(fixture({ prefix: '1 1 1 rg' })), /visible|readable/i);

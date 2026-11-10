@@ -9,12 +9,14 @@ import { promisify } from 'node:util';
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import PipelineRun from '../src/models/PipelineRun.js';
+import PipelineConfiguration from '../src/models/PipelineConfiguration.js';
 import { failPipeline } from '../src/pipeline/execution.js';
 
 test('GitHub CLI registers direct roots, reports work and dispatches separate correlated stages',{timeout:300000},async t=>{
  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'pipeline-github-cli-'));
  const mongo=await MongoMemoryServer.create({binary:{version:'8.2.6',downloadDir:fileURLToPath(new URL('../.cache/mongodb-binaries/',import.meta.url))}});
  await mongoose.connect(mongo.getUri());
+ await PipelineConfiguration.create({_id:'global',scraperConcurrency:7});
  t.after(async()=>{await mongoose.disconnect();await mongo.stop();await fs.rm(directory,{recursive:true,force:true});});
  const script=fileURLToPath(new URL('../scripts/pipelineGithub.js',import.meta.url));
  const hook=path.join(directory,'mock-github.mjs'),eventFile=path.join(directory,'event.json'),dispatchFile=path.join(directory,'dispatches.jsonl');
@@ -40,6 +42,8 @@ test('GitHub CLI registers direct roots, reports work and dispatches separate co
  };
  await run('register','scraper',1100);
  let record=await PipelineRun.findOne().lean();assert.equal(record.stages[0].githubRunId,1100);
+ assert.equal(record.scraperConcurrency,7);
+ assert.match(await fs.readFile(path.join(directory,'outputs'),'utf8'),/scraper_concurrency=7\n/);
  assert.ok((await fs.readFile(env.GITHUB_ENV,'utf8').catch(()=>'' )).includes(`PIPELINE_ID=${record._id}\n`));
  await fs.mkdir(path.join(directory,'.cache/scraper-actions'),{recursive:true});
  await fs.writeFile(path.join(directory,'.cache/scraper-actions/pipeline-scraper-summary.json'),JSON.stringify({failed:0,scanned:1}));

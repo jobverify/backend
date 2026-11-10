@@ -4,6 +4,7 @@
  */
 
 import { Schema, model } from "mongoose";
+import { verificationKeys as buildVerificationKeys } from '../jobVerification/urls.js';
 import { buildJobSearchKeys } from "../utils/jobSearchKeys.js";
 import { buildJobDerivedFields } from "../utils/jobDerivedFields.js";
 
@@ -219,6 +220,7 @@ export const JobSchema = new Schema(
     extractedAt: { type: Date, default: null },
     jobId: { type: String, trim: true, default: null },
     requisitionId: { type: String, trim: true, default: null },
+    verificationKeys: { type: [String], default: undefined },
     fingerprint: {
       type: String,
       required: true,
@@ -253,6 +255,7 @@ export const JobSchema = new Schema(
 
 JobSchema.pre("validate", function setJobSearchKeys(next) {
   Object.assign(this, buildJobSearchKeys(this), buildJobDerivedFields(this));
+  this.verificationKeys = buildVerificationKeys(this);
   next();
 });
 
@@ -289,6 +292,9 @@ JobSchema.index({ status: 1, workArrangement: 1 });
 JobSchema.index({ secondaryRoleDomains: 1 });
 JobSchema.index({ jobId: 1 });
 JobSchema.index({ requisitionId: 1 });
+JobSchema.index({ verificationKeys: 1 }, { name: 'verification_identity' });
+JobSchema.index({ sourceUrl: 1 }, { name: 'verification_source_url' });
+JobSchema.index({ applyUrl: 1 }, { name: 'verification_apply_url' });
 JobSchema.index({ eligibleBatches: 1 });
 JobSchema.index({ branches: 1 });
 JobSchema.index({ createdAt: -1 });

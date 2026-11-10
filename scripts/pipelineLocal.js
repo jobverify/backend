@@ -9,6 +9,7 @@ import { backendRoot, localLogPath, localEnabled, redactLog } from '../src/pipel
 import { dispatchNext, claimStage, updateStage, completeLocalStage, failPipeline } from '../src/pipeline/execution.js';
 import { stageOutcome } from '../src/pipeline/policy.js';
 import { prepareLocalStage } from '../src/pipeline/localPreparation.js';
+import { scraperRunEnvironment } from '../src/pipeline/scraperConcurrency.js';
 
 const id=process.argv[2];let child,heartbeat,logPath,currentKey,stopping=false,ownsRun=false;
 const log=async text=>{if(logPath)await fs.appendFile(logPath,redactLog(text));};
@@ -16,7 +17,7 @@ async function command(executable,args,env={}) {
   if(stopping)throw new Error('Local pipeline interrupted');
   await log(`\n> ${path.basename(executable)} ${args.map(a=>/mongodb|token/i.test(a)?'[redacted]':a).join(' ')}\n`);
   return new Promise((resolve,reject)=>{
-    child=spawn(executable,args,{cwd:backendRoot,env:{...process.env,...env},windowsHide:true,stdio:['ignore','pipe','pipe']});
+    child=spawn(executable,args,{cwd:backendRoot,env:{...process.env,...env},windowsHide:true,detached:process.platform!=='win32',stdio:['ignore','pipe','pipe']});
     let writes=Promise.resolve();
     const append=data=>{writes=writes.then(()=>log(data.toString())).catch(()=>{});};
     child.stdout.on('data',append);child.stderr.on('data',append);
@@ -29,29 +30,35 @@ async function prepare(key) {
  }});
 }
 async function shutdown() {
+  if(stopping)return;
   stopping=true;
   if(child?.pid) {
-    if(process.platform==='win32')spawn('taskkill.exe',['/PID',String(child.pid),'/T','/F'],{windowsHide:true,stdio:'ignore'});
-    else child.kill('SIGTERM');
+    if(process.platform==='win32')await new Promise((resolve,reject)=>{
+      const killer=spawn('taskkill.exe',['/PID',String(child.pid),'/T','/F'],{windowsHide:true,stdio:'ignore'});
+      killer.once('error',reject);killer.once('exit',code=>code===0||!child?resolve():reject(new Error('Local worker could not be stopped.')));
+    });
+    else {try{process.kill(-child.pid,'SIGTERM');}catch(error){if(error.code!=='ESRCH')throw error;}}
   }
-  await failPipeline(id,'interrupted','Local worker interrupted.').catch(()=>{});
+  const run=await PipelineRun.findById(id).lean().catch(()=>null);
+  await failPipeline(id,run?.cancelRequestedAt?'cancelled':'interrupted',run?.cancelRequestedAt?'Stopped by an administrator.':'Local worker interrupted.').catch(()=>{});
 }
 process.once('SIGTERM',()=>void shutdown());process.once('SIGINT',()=>void shutdown());
 try {
   if(!localEnabled())throw new Error('Local execution is disabled.');
   configureMongoDns();await mongoose.connect(process.env.MONGO_URI);
   // One detached owner per pipeline, including accidental duplicate worker launches.
-  const owned=await PipelineRun.findOneAndUpdate({_id:id,target:'local',activeKey:'database',localOwner:{$exists:false}},{$set:{localOwner:String(process.pid),heartbeatAt:new Date()}},{new:true}).lean();
+  const owned=await PipelineRun.findOneAndUpdate({_id:id,target:'local',activeKey:'database',cancelRequestedAt:{$exists:false},localOwner:{$exists:false}},{$set:{localOwner:String(process.pid),heartbeatAt:new Date()}},{new:true}).lean();
   if(!owned)throw new Error('Local pipeline is already owned or no longer active.');
   ownsRun=true;
   heartbeat=setInterval(()=>{
-    void PipelineRun.updateOne({_id:id,activeKey:'database',localOwner:String(process.pid)},{$set:{heartbeatAt:new Date()}}).then(async result=>{
+    void PipelineRun.updateOne({_id:id,activeKey:'database',localOwner:String(process.pid),cancelRequestedAt:{$exists:false}},{$set:{heartbeatAt:new Date()}}).then(async result=>{
       if(!result.matchedCount)await shutdown();
     }).catch(()=>void shutdown());
   },15000);
   while(!stopping) {
     const run=await PipelineRun.findById(id).lean();
     if(!run?.activeKey)break;
+    if(run.cancelRequestedAt){await shutdown();break;}
     const stage=run.stages.find(s=>s.status==='waiting');
     if(!stage){await dispatchNext(id,async()=>{});break;}
     await dispatchNext(id,async()=>{});
@@ -61,7 +68,7 @@ try {
     const env=await prepare(currentKey);
     await updateStage(id,currentKey,{status:'running'});
     const summaryFile=path.join(backendRoot,'.cache/pipeline',`${id}-${currentKey}.json`);
-    const common={...env,PIPELINE_SUMMARY_FILE:summaryFile,CLASSIFICATION_SUMMARY_FILE:summaryFile,
+    const common={...env,...await scraperRunEnvironment(run),PIPELINE_ID:id,PIPELINE_SUMMARY_FILE:summaryFile,CLASSIFICATION_SUMMARY_FILE:summaryFile,
       JOB_DESCRIPTION_REWRITE_MODE:'publish',JOB_DESCRIPTION_REWRITE_BUDGET_SECONDS:'18000',
       POST_SCRAPE_CLASSIFICATION_MODE:'policy',JOB_DESCRIPTION_WORKFLOW_BUDGET_SECONDS:'21000'};
     const args=currentKey==='scraper'?['--use-system-ca','scraper-support/runner.js','--parallel']:

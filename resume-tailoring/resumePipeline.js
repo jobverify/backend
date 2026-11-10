@@ -1,7 +1,7 @@
 import { prepareResumeModel, generateResumeText, RESUME_MODEL } from './resumeRuntime.js';
 import { prepareResumeCompiler, compileResumeLatex } from './latexCompiler.js';
 import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
-import { safeResumeDiagnostic, resumeFailure } from './resumeDiagnostics.js';
+import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
   buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations } from '../src/services/resumeLatexContent.js';
 
@@ -49,7 +49,7 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   for (let attempt = 1; attempt <= 2; attempt++) {
     const diagnose = (code, extra = {}) => onDiagnostic(safeResumeDiagnostic({ stage, code, attempt,
       seconds: (Date.now() - started) / 1000, ...extra }));
-    let latex = '', result;
+    let latex = '', result, issueCounts;
     const issues = [];
     try {
       await phase(attempt === 1 ? 'generating' : 'repairing');
@@ -67,7 +67,11 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
         issues.push('The tailored PDF exceeds two pages. Shorten less relevant prose while retaining all protected employment and education facts and text of at least 10pt.');
       }
       const fidelity = validateResumeFidelity({ facts, text: result.text, links: result.links, tailored });
-      if (!fidelity.valid) { failureCode = 'factual_validation_failed'; issues.push(...fidelity.issues); }
+      if (!fidelity.valid) {
+        failureCode = 'factual_validation_failed';
+        issues.push(...fidelity.issues);
+        issueCounts = summarizeResumeFidelityIssues(fidelity.issues);
+      }
       // Avoid spending a comparison call on a document that already needs repair.
       if (!issues.length) {
         await phase('comparing');
@@ -81,7 +85,7 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
             ...comparison.unsupportedClaims.map(claim => `Unsupported claim: ${claim}`));
         }
       }
-      if (issues.length) diagnose(failureCode, { issueCount: issues.length, pageCount: result.pageCount });
+      if (issues.length) diagnose(failureCode, { issueCount: issues.length, pageCount: result.pageCount, issueCounts });
     } catch (error) {
       failureCode = safeResumeDiagnostic({ stage, code: error.code || ({ latex: 'latex_invalid', compiling: 'compiler_failed',
         validating: 'pdf_invalid', comparing: 'comparison_invalid' }[stage]) }).code;

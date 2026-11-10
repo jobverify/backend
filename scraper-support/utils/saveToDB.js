@@ -20,6 +20,7 @@ import {
   normalizeStoredLocations,
 } from '../../src/utils/jobLocations.js'
 import { buildJobSearchKeys } from '../../src/utils/jobSearchKeys.js'
+import { verificationKeys } from '../../src/jobVerification/urls.js'
 import { buildJobDerivedFields } from '../../src/utils/jobDerivedFields.js'
 import {
   normalizeLifecycleDate,
@@ -498,6 +499,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
             source: normalizedJob.source || source,
             sourceUrl,
             applyUrl,
+            verificationKeys: verificationKeys({ sourceUrl, applyUrl, sourceAvailability: normalizedJob.sourceAvailability }),
             applicationUrlIsGeneric: normalizedJob.applicationUrlIsGeneric === true,
             companyCareerPage: normalizedJob.companyCareerPage,
             companyDomain: normalizedJob.companyDomain,

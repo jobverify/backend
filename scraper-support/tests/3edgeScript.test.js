@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
 const load3EdgeModule = async () => {
   try {
@@ -44,7 +45,7 @@ test('official site is present while public career routes are missing', async ()
   assert.equal(edge.isMissingCareerRoute(notFoundHtml), true)
 })
 
-test('run returns no jobs when 3Edge exposes no public careers or jobs routes', async () => {
+test('run keeps homepage discovery unqualified without probing guessed career routes', async () => {
   const edge = await load3EdgeModule()
   assert.ok(edge)
 
@@ -57,18 +58,16 @@ test('run returns no jobs when 3Edge exposes no public careers or jobs routes', 
         return homepageHtml
       }
 
-      if (url === edge.CAREERS_ROUTE_URL || url === edge.JOBS_ROUTE_URL) {
-        return notFoundHtml
-      }
-
       throw new Error(`Unexpected URL: ${url}`)
     },
   })
 
-  assert.deepEqual(requestedUrls, [
-    'https://3edge.com/',
-    'https://3edge.com/careers',
-    'https://3edge.com/jobs',
-  ])
+  assert.deepEqual(requestedUrls, ['https://3edge.com/'])
   assert.deepEqual(jobs, [])
+  const evidence = readInventoryEvidence(jobs)
+  assert.equal(evidence.status, 'coverage-gap')
+  assert.equal(evidence.firstParty, false)
+  assert.equal(evidence.listingComplete, false)
+  assert.equal(evidence.reportedTotal, null)
+  assert.equal(evidence.indiaFacetCount, null)
 })

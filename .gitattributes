@@ -2,6 +2,7 @@
 /scraper/biofourmis/native-captures/biofourmis-clinical-20261101.txt -text
 /scraper/biofourmis/native-captures/biofourmis-current-20261101.html -text
 /scraper/biofourmis/native-captures/biofourmis-homepage-20261101.html -text
+/scraper/biofourmis/native-captures/biofourmis-careers-loader-20261101.txt -text whitespace=cr-at-eol
 /scraper/biofourmis/native-captures/biofourmis-native-board-20261101.txt -text
 /scraper/brainvire/fixtures/closing-20261026.html -text
 /scraper/brainvire/fixtures/opening-20261026.html -text

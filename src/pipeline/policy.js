@@ -1,14 +1,24 @@
 export const STAGES = ['scraper', 'rewrite', 'classification'];
 export const WORKFLOWS = { scraper: 'scraper.yml', rewrite: 'rewrite-descriptions.yml', classification: 'classify-jobs.yml' };
 export const WORKFLOW_NAMES = { 'Jobverify Scraper Cron': 'scraper', 'Jobverify Description Rewrite': 'rewrite', 'Jobverify Post-scrape Classification': 'classification' };
-export const defaultConfiguration = () => ({ stages: STAGES.map(key => ({ key, enabled: true })) });
+export function validateScraperConcurrency(value) {
+  if (!Number.isSafeInteger(value) || value < 1) {
+    throw Object.assign(new Error('Scraper concurrency must be a positive whole number.'),{status:400});
+  }
+  return value;
+}
+export const defaultScraperConcurrency = () => {
+  const value=Number(process.env.SCRAPER_CONCURRENCY);
+  return Number.isSafeInteger(value)&&value>0?value:1;
+};
+export const defaultConfiguration = () => ({ stages: STAGES.map(key => ({ key, enabled: true })), scraperConcurrency:defaultScraperConcurrency() });
 export function validateConfiguration(value) {
   const stages=value?.stages;
   if (!Array.isArray(stages) || stages.length!==3 || new Set(stages.map(s=>s?.key)).size!==3
     || stages.some(s=>!STAGES.includes(s?.key)||typeof s.enabled!=='boolean') || !stages.some(s=>s.enabled)) {
     throw Object.assign(new Error('Provide all three unique pipeline stages and enable at least one.'),{status:400});
   }
-  return {stages:stages.map(({key,enabled})=>({key,enabled}))};
+  return {stages:stages.map(({key,enabled})=>({key,enabled})),scraperConcurrency:validateScraperConcurrency(value.scraperConcurrency===undefined?defaultScraperConcurrency():value.scraperConcurrency)};
 }
 export const directConfiguration = start => {
   if (!STAGES.includes(start)) throw new Error('Unknown stage');

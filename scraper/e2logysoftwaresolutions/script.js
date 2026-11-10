@@ -13,7 +13,7 @@ export const hasVerifiedEmptyCareersSurface=()=>false
 export const extractListings=extractCurrentListings,extractJobDetail=extractCurrentDetail
 export const createE2logySoftwareSolutionsScraper=(defaults={})=>({
  run(options={}){
-  return collectFirstPartyNativeRoles({...defaults,...options},{source:SOURCE,company:COMPANY,companyDomain:COMPANY_DOMAIN,atsPlatform:CATALOG.atsPlatform,
+  return collectFirstPartyNativeRoles({requestTimeoutMs:30000,sourceTimeoutMs:180000,...defaults,...options},{source:SOURCE,company:COMPANY,companyDomain:COMPANY_DOMAIN,atsPlatform:CATALOG.atsPlatform,requestTimeoutCeilingMs:30000,
    configuredURL:CAREERS_URL,parseIndex:extractCurrentListings,parseDetail:extractCurrentDetail,isRoleURL:isCurrentRoleURL})
  }
 })

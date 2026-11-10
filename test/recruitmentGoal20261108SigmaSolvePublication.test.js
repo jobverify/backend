@@ -109,8 +109,27 @@ test('mid-acquisition opaque caller cancellation never inspects the foreign reas
  const controller=new AbortController(),reason=new Proxy(Object.freeze({opaque:true}),{get(target,key){if(key==='nativeEvidence')throw Error('foreign evidence getter');return Reflect.get(target,key)}}),r=replay({transform:p=>{if(p.requestedURL===PRIMARY)controller.abort(reason)}});let caught;try{await registered().run({...r.options,signal:controller.signal})}catch(e){caught=e}assert.equal(caught,reason);assert.equal(r.requests.length,1);assert.equal(readSigmaSolveFailureEvidence(controller.signal).source,'sigmasolve')
 })
 
-for(const status of [403,429,503])test('native HTTP '+status+' with a stalled body keeps status, Retry-After, partial bytes and stops',async()=>{
- const r=replay(),fetchImpl=async(url,init)=>{if(String(url)===ROLE){r.requests.push(String(url));const response=new Response(new ReadableStream({start(c){c.enqueue(Buffer.from('partial upstream response'))}}),{status,headers:{'content-type':'text/html','retry-after':'5'}});Object.defineProperty(response,'url',{value:String(url)});return response}return r.options.fetchImpl(url,init)},error=await failureOf(createSigmaSolveNativeScraper().run({...r.options,fetchPage:undefined,fetchText:undefined,fetchImpl,readTimeoutMs:25}));assert.equal(error.status,status);assert.equal(error.nativeEvidence.rawResponses.at(-1).response.headers['retry-after'],'5');if(status===429)assert.equal(error.retryDelayMs,5000);assert.equal(error.acquisitionFailure.code,'SIGMASOLVE_READ_TIMEOUT');assert.equal(r.requests.length,2);assert.equal(error.nativeEvidence.rawResponses.at(-1).response.bodyComplete,false);assert.ok(error.nativeEvidence.rawResponses.at(-1).response.bodyBytes>0)
+for(const status of [403,429,503])test('native HTTP '+status+' with a stalled body keeps status, Retry-After, partial bytes and stops',async t=>{
+ const advance=elapsed(t)
+ t.mock.timers.enable({apis:['setTimeout']})
+ let roleStarted
+ const started=new Promise(resolve=>{roleStarted=resolve}),r=replay()
+ const fetchImpl=async(url,init)=>{
+  if(String(url)!==ROLE)return r.options.fetchImpl(url,init)
+  r.requests.push(String(url))
+  const response=new Response(new ReadableStream({start(c){c.enqueue(Buffer.from('partial upstream response'))}}),{status,headers:{'content-type':'text/html','retry-after':'5'}})
+  Object.defineProperty(response,'url',{value:String(url)})
+  roleStarted()
+  return response
+ }
+ const pending=failureOf(createSigmaSolveNativeScraper().run({...r.options,fetchPage:undefined,fetchText:undefined,fetchImpl,readTimeoutMs:25}))
+ await started
+ // Drain acquisition microtasks before expiring the stalled read. Real CPU
+ // scheduling must not consume this test's budget before headers are observed.
+ await new Promise(resolve=>setImmediate(resolve))
+ advance(25);t.mock.timers.tick(25)
+ const error=await pending
+ assert.equal(error.status,status);assert.equal(error.nativeEvidence.rawResponses.at(-1).response.headers['retry-after'],'5');if(status===429)assert.equal(error.retryDelayMs,5000);assert.equal(error.acquisitionFailure.code,'SIGMASOLVE_READ_TIMEOUT');assert.equal(r.requests.length,2);assert.equal(error.nativeEvidence.rawResponses.at(-1).response.bodyComplete,false);assert.ok(error.nativeEvidence.rawResponses.at(-1).response.bodyBytes>0)
 })
 
 const elapsed=t=>{let value=1000;const descriptor=Object.getOwnPropertyDescriptor(performance,'now');Object.defineProperty(performance,'now',{configurable:true,value:()=>value});t.after(()=>descriptor?Object.defineProperty(performance,'now',descriptor):delete performance.now);return ms=>{value+=ms}}

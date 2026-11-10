@@ -34,6 +34,8 @@ test('pipeline API authorizes configuration, exact dispatch, tracking and confli
   }
   if(pathname.endsWith('/commits/main'))return Response.json({sha:'a'.repeat(40)});
   if(pathname.endsWith('/dispatches'))return new Response(null,{status:204});
+  if(pathname.endsWith('/cancel'))return new Response(null,{status:202});
+  if(pathname.endsWith('/actions/runs/786'))return Response.json({id:786,status:'in_progress'});
   if(pathname.endsWith('/runs'))return Response.json({workflow_runs:[]});
   if(pathname.includes('/actions/workflows/'))return Response.json({state:'active'});
   throw new Error('Unexpected mocked request');
@@ -47,6 +49,11 @@ test('pipeline API authorizes configuration, exact dispatch, tracking and confli
  };
  assert.equal((await request('pipeline/status',{id:null})).status,401);
  assert.equal((await request('pipeline/status',{id:'member'})).status,403);
+ for(const endpoint of ['pipeline/stop','pipeline/runs/missing/stop','pipeline/runs/missing/stages/scraper/stop']) {
+  assert.equal((await request(endpoint,{method:'POST',id:null})).status,401);
+  assert.equal((await request(endpoint,{method:'POST',id:'member'})).status,403);
+ }
+ assert.equal((await request('pipeline/runs/missing/stop',{method:'POST'})).status,404);
  for(const method of ['GET','PUT']) {
   assert.equal((await request('pipeline/schedule',{method,id:null})).status,401);
   assert.equal((await request('pipeline/schedule',{method,id:'member'})).status,403);
@@ -61,10 +68,13 @@ test('pipeline API authorizes configuration, exact dispatch, tracking and confli
  const first=await request('pipeline/status');assert.deepEqual(first.body.data.configuration,defaultConfiguration());
  assert.equal(first.body.data.capabilities.local,false);
  const bad=await request('pipeline/configuration',{method:'PUT',body:{stages:[]}});assert.equal(bad.status,400);
- const config={stages:[{key:'classification',enabled:true},{key:'scraper',enabled:false},{key:'rewrite',enabled:true}]};
+ const config={stages:[{key:'classification',enabled:true},{key:'scraper',enabled:false},{key:'rewrite',enabled:true}],scraperConcurrency:7};
  assert.equal((await request('pipeline/configuration',{method:'PUT',body:config})).status,200);
+ assert.equal((await request('pipeline/status')).body.data.configuration.scraperConcurrency,7);
+ for(const scraperConcurrency of [0,1.5,'7',null])assert.equal((await request('pipeline/configuration',{method:'PUT',body:{...config,scraperConcurrency}})).status,400);
  const started=await request('pipeline/trigger',{method:'POST',body:{target:'github'}});assert.equal(started.status,202);
  const run=started.body.data;assert.equal(run.stages[0].status,'queued');assert.equal(run.stages[1].status,'disabled');
+ assert.equal(run.scraperConcurrency,7);
  const dispatch=calls.find(c=>c.pathname.endsWith('/dispatches'));
  assert.match(dispatch.pathname,/classify-jobs.yml/);assert.equal(dispatch.body.inputs.pipeline_id,run._id);assert.equal(dispatch.body.ref,'main');
  assert.equal(dispatch.body.inputs.pipeline_sha,'a'.repeat(40));
@@ -100,7 +110,14 @@ test('pipeline API authorizes configuration, exact dispatch, tracking and confli
   assert.equal(manifest.kind,'all');
  }
  assert.equal((await request(`pipeline/runs/${run._id}/download?stage=invalid`)).status,400);
+ await PipelineRun.updateOne({_id:run._id},{$set:{'stages.0.githubRunId':786,'stages.0.status':'running'}});
+ const stopping=await request(`pipeline/runs/${run._id}/stages/classification/stop`,{method:'POST'});
+ assert.equal(stopping.status,202);assert.ok(stopping.body.data.cancelRequestedAt);
+ assert.ok(calls.some(call=>call.pathname.endsWith('/actions/runs/786/cancel')));
+ assert.equal((await PipelineRun.findById(run._id).lean()).activeKey,'database');
+ assert.equal((await request('pipeline/stop',{method:'POST'})).status,202);
  await failPipeline(run._id,'cancelled','Test cleanup');
+ assert.deepEqual((await request('pipeline/stop',{method:'POST'})).body.data,[]);
 });
 
 test('local logs cannot choose filesystem paths and secrets are redacted',()=>{

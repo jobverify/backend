@@ -1,18 +1,23 @@
 import {types} from 'node:util'
 
-const maxBytes=16*1024*1024,requestMs=15000,typedArray=Object.getPrototypeOf(Uint8Array.prototype)
+const maxBytes=16*1024*1024,typedArray=Object.getPrototypeOf(Uint8Array.prototype)
 const intrinsic=name=>Object.getOwnPropertyDescriptor(typedArray,name).get
 const byteLength=intrinsic('byteLength'),byteOffset=intrinsic('byteOffset'),arrayBuffer=intrinsic('buffer')
 const ignore=operation=>{try{Promise.resolve(operation()).catch(()=>{})}catch{}}
 
 // Admission and proof that a query is a public read belong to the source
 // profile. This primitive preserves the declared method in every transport.
-export async function boundedDeclaredPublicRead(url,{fetchImpl,signal,overflowError,request={method:'GET'}}){
+export async function boundedDeclaredPublicRead(url,{fetchImpl,signal,overflowError,request={method:'GET'},timeoutMs=15000}){
  if(!request||!['GET','POST'].includes(request.method)||Object.keys(request).some(key=>!['method','body'].includes(key))||
   (request.method==='GET'?request.body!==undefined:typeof request.body!=='string'||Buffer.byteLength(request.body)>1024||!request.body))throw TypeError('Invalid declared public read descriptor')
+ if(!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>60000)throw RangeError('Invalid declared public read deadline')
  const method=request.method,body=request.body,started=performance.now(),canceled=new WeakSet(),released=new WeakSet()
  let response,reader,timeoutReason
- const check=()=>{signal?.throwIfAborted();if(performance.now()-started>=requestMs)throw timeoutReason??=new DOMException('The operation was aborted due to timeout','TimeoutError')}
+ const callerSignal=signal,deadline=new AbortController()
+ const expired=()=>timeoutReason??=new DOMException('The operation was aborted due to timeout','TimeoutError')
+ const timer=setTimeout(()=>deadline.abort(expired()),timeoutMs)
+ signal=callerSignal?AbortSignal.any([callerSignal,deadline.signal]):deadline.signal
+ const check=()=>{callerSignal?.throwIfAborted();if(performance.now()-started>=timeoutMs&&!deadline.signal.aborted)deadline.abort(expired());signal.throwIfAborted()}
  const release=value=>{if(!value||released.has(value))return;released.add(value);ignore(()=>value.releaseLock())}
  const cancelReader=(value,reason)=>{if(!value||canceled.has(value))return;canceled.add(value);ignore(()=>value.cancel(reason));release(value)}
  const cancelResponse=(value,reason)=>ignore(()=>{const body=value?.body;if(!body||canceled.has(body))return;canceled.add(body);return body.cancel(reason)})
@@ -47,5 +52,5 @@ export async function boundedDeclaredPublicRead(url,{fetchImpl,signal,overflowEr
   const page={status:response.status,url:response.url,headers:Object.fromEntries(response.headers),bodyBase64:bytes.toString('base64')}
   check();return page
  }catch(error){if(reader)cancelReader(reader,error);else cancelResponse(response,error);throw error}
- finally{release(reader)}
+ finally{clearTimeout(timer);release(reader)}
 }

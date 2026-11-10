@@ -18,7 +18,8 @@ const reviewedNovember6 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20
 const reviewedNovember6Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261106Evening.json', import.meta.url), 'utf8'))
 const reviewedNovember9 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109.json', import.meta.url), 'utf8'))
 const reviewedNovember9Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109Evening.json', import.meta.url), 'utf8'))
-const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening]
+const reviewedNovember10 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261110.json', import.meta.url), 'utf8'))
+const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening, reviewedNovember10]
 // The current board still declares this public alias. November 10 original
 // manual GETs proved the exact publisher redirect and the full font-only CSS
 // already reviewed in the earlier deployment. Historical unresolved captures
@@ -31,7 +32,8 @@ const currentTypography = {
   requestHeaders: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36',
     Accept: 'text/css,*/*;q=0.1', Referer: 'https://snowplow.careers.hibob.com/'},
 }
-const currentTypographyFor = (review, url) => review.boardBodySha256 === 'ec96c9b440727c141df06efb91ae34ea34dc734314f2095d7fc40d1d5baaa137'
+const currentTypographyFor = (review, url) => ['ec96c9b440727c141df06efb91ae34ea34dc734314f2095d7fc40d1d5baaa137',
+  'e139384bbfcd7de51b69ab829582a2da96b8ba1fb29821cf036d277f29c101aa'].includes(review.boardBodySha256)
   && url === currentTypography.url && review.unresolvedResources.some(resource => resource.url === url) ? currentTypography : null
 const applicationMetadataHashes = new Set(reviewedDeployments.flatMap(review => Object.values(review.forms).map(form => form.metadataSha256)))
 const applicationSupportingHashes = new Set(reviewedDeployments.flatMap(review => Object.values(review.forms).map(form => form.otherDataSha256)))

@@ -4,11 +4,13 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import {run} from './script.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
-const fixture=()=>JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/native-20261021.json.gz',import.meta.url))))
+const fixture=()=>JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/cme20261110-native.json.gz',import.meta.url))))
 async function replay(t,change,options={}){
- const {packets,checkedAt}=fixture(),counts={listing:0,detail:0,bootstrap:0}
+ const {packets,checkedAt}=fixture(),counts={listing:0,detail:0,bootstrap:0},reads=new Map()
  t.mock.method(globalThis,'fetch',async(url,init={})=>{
-  const packet=packets.find(p=>p.url===String(url)&&p.method===(init.method??'GET')&&(p.method!=='POST'||p.requestBody===init.body))
+  const key=JSON.stringify([String(url),init.method??'GET',init.body??null]),index=reads.get(key)||0
+  reads.set(key,index+1)
+  const packet=packets.filter(p=>p.url===String(url)&&p.method===(init.method??'GET')&&(p.requestBody??null)===(init.body??null))[index]
   assert.ok(packet,'Only actual advertised native requests: '+url)
   const p=structuredClone(packet);if(p.method==='POST')counts.listing++;else if(p.url.includes('/job/'))counts.detail++;else counts.bootstrap++
   change?.(p,counts)
@@ -17,7 +19,7 @@ async function replay(t,change,options={}){
  const jobs=await run({now:()=>checkedAt,requestScheduler:{acquire:async()=>()=>{},recordRateLimit:()=>{},minIntervalMs:0},retryBaseDelayMs:0,...options})
  return{jobs,counts}
 }
-test('actual finite Bangalore facet yields16 current native India roles with full JDs and original dates, retaining unknown company scope',async t=>{
+test('20261110 public Bangalore facet yields16 native India roles with full JDs and original dates, retaining unknown company scope',async t=>{
  const {jobs,counts}=await replay(t);assert.equal(jobs.length,16);assert.equal(counts.listing,2);assert.equal(counts.detail,32)
  const details=fixture().packets.filter(p=>p.url.includes('/job/')).map(p=>JSON.parse(p.body))
  for(const j of jobs){
@@ -29,6 +31,10 @@ test('actual finite Bangalore facet yields16 current native India roles with ful
   assert.equal(j.sourceListingComplete,false);assert.equal(j.sourceScopeComplete,false);assert.equal(j.sourceGlobalJobCount,null)
   assert.equal(j.sourceObservedNativeLocationFacetCount,16);assert.ok(j.jobDescription.length>1000)
  }
+ const reposted=jobs.find(job=>job.jobId==='34009')
+ assert.equal(reposted.title,'Network Ops Engineer III- India')
+ assert.equal(reposted.sourceUrl,'https://cmegroup.wd1.myworkdayjobs.com/cme_careers/job/Bangalore---Bagmane-Tridib/Network-Ops-Engineer-III--India_34009-1')
+ assert.equal(reposted.postedAt,'2026-10-28T00:00:00.000Z')
  assert.deepEqual([...new Set(jobs.map(j=>j.nativeEmployer))].sort(),['CME Chicago Mercantile Exchange Inc.','INTEC CME India Pvt Ltd'])
  assert.equal(readInventoryEvidence(jobs).reportedTotal,null);assert.equal(readInventoryEvidence(jobs).indiaFacetCount,null)
 })
@@ -54,6 +60,14 @@ for(const [name,change]of [
 })
 test('final native listing identity drift rejects',async t=>{
  await assert.rejects(()=>replay(t,(p,c)=>{if(p.method==='POST'&&c.listing>1){const j=JSON.parse(p.body);j.jobPostings[0].title+=' changed';p.body=JSON.stringify(j)}}))
+})
+
+test('final native listing requisition drift is rejected independently of a repost URL suffix',async t=>{
+ await assert.rejects(()=>replay(t,(p,c)=>{if(p.method==='POST'&&c.listing>1){const j=JSON.parse(p.body);j.jobPostings[0].bulletFields=['99999'];p.body=JSON.stringify(j)}}),/native listing requisition changed/)
+})
+
+test('fresh closing detail requisition drift rejects after the initial inventory reconciles',async t=>{
+ await assert.rejects(()=>replay(t,(p,c)=>{if(p.url.includes('/job/')&&c.listing>1){const j=JSON.parse(p.body);j.jobPostingInfo.jobReqId='99999';p.body=JSON.stringify(j)}}),/native title\/requisition\/board mismatch/)
 })
 test('a capped/cancelled native check cannot return successful empty',async()=>{
  await assert.rejects(()=>run({maxJobs:1}));await assert.rejects(()=>run({timeoutMs:0}));await assert.rejects(()=>run({signal:AbortSignal.abort(Error('cancelled'))}),/cancelled/)

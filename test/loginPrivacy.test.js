@@ -15,7 +15,20 @@ const createResponse = () => ({
   cookie() { assert.fail("An unsuccessful sign-in must not create a session."); },
 });
 
-test("invalid login responses do not disclose whether an email is registered", async (t) => {
+test('an unregistered email receives the create-account warning', async t => {
+  t.mock.method(User, 'findOne', async () => null);
+  t.mock.method(PendingUser, 'findOne', async () => null);
+  const res = createResponse();
+  await login({ body: { email: 'unknown.account@gmail.com', password: 'IncorrectPassword123' } }, res);
+  assert.equal(res.statusCode, 401);
+  assert.deepEqual(res.body, {
+    code: 401,
+    success: false,
+    message: 'Account does not exist. Please create an account.',
+  });
+});
+
+test("registered accounts retain the generic invalid-password warning", async (t) => {
   const passwordHash = await bcrypt.hash("CorrectPassword123", 4);
   const accounts = new Map([
     ["google.account@gmail.com", { password: null, google: { sub: "google-subject" } }],
@@ -25,7 +38,7 @@ test("invalid login responses do not disclose whether an email is registered", a
   t.mock.method(User, "findOne", async ({ email }) => accounts.get(email) ?? null);
   t.mock.method(PendingUser, "findOne", async () => null);
 
-  for (const email of ["unknown.account@gmail.com", ...accounts.keys()]) {
+  for (const email of accounts.keys()) {
     const res = createResponse();
     await login({ body: { email, password: "IncorrectPassword123" } }, res);
 
@@ -72,7 +85,9 @@ test('failed login categories each perform one policy-cost password comparison',
     await login({ body: { email, password: 'IncorrectPassword123!' } }, res);
     assert.equal(compare.mock.callCount() - previous, 1, email);
     assert.equal(res.statusCode, 401);
-    assert.equal(res.body.message, 'Incorrect email or password. Please try again or reset your password.');
+    assert.equal(res.body.message, email === 'unknown.account@gmail.com'
+      ? 'Account does not exist. Please create an account.'
+      : 'Incorrect email or password. Please try again or reset your password.');
   }
 });
 

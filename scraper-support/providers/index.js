@@ -666,12 +666,21 @@ const createScriptScraper = (provider) => ({
       ? pathToFileURL(provider.modulePath).href
       : provider.modulePath
     const module = await import(moduleSpecifier)
-    const jobs = await module.run(runOptions)
+    let jobs
+    try { jobs = await module.run(runOptions) }
+    catch (error) {
+      const { recoverSoftFailedRecruitment } = await import('../utils/softFailureRecruitmentRecovery.js')
+      jobs = await recoverSoftFailedRecruitment(error, provider, runOptions)
+      if (!jobs) throw error
+    }
     const { recoverEmptyOnlyRecruitment } = await import('../utils/emptyOnlyRecruitmentRecovery.js')
     const recovered = await recoverEmptyOnlyRecruitment(jobs, provider, runOptions)
     const decorated = decorateJobsWithProviderMetadata(recovered, provider)
     if (recovered.emptyOnlyRecruitmentRecovery) Object.defineProperty(decorated, 'emptyOnlyRecruitmentRecovery', {
       value: recovered.emptyOnlyRecruitmentRecovery, configurable: true,
+    })
+    if (recovered.softFailureRecruitmentRecovery) Object.defineProperty(decorated, 'softFailureRecruitmentRecovery', {
+      value: recovered.softFailureRecruitmentRecovery, configurable: true,
     })
     return decorated
   },

@@ -14,7 +14,7 @@ const norm=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
 const sha=value=>createHash('sha256').update(value).digest('hex')
 const equal=(left,right)=>JSON.stringify(left)===JSON.stringify(right)
 const reviewed=JSON.parse(readFileSync(new URL('./current.scope.json',import.meta.url),'utf8'))
-const reviewedProfiles=[reviewed,...['current-20261105.scope.json','current-20261107.scope.json','current-20261110.scope.json']
+const reviewedProfiles=[reviewed,...['current-20261105.scope.json','current-20261107.scope.json','current-20261110.scope.json','current-continuation-20261110.scope.json']
  .map(file=>JSON.parse(readFileSync(new URL('./'+file,import.meta.url),'utf8')))]
 const schemaFields=new Set(['@context','@type','title','description','directApply','identifier','datePosted','hiringOrganization',
  'jobLocation','employmentType','jobLocationType','applicantLocationRequirements'])

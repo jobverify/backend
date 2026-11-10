@@ -4,12 +4,13 @@ import {boundedDeclaredPublicGet} from './boundedDeclaredPublicGet.js'
 
 export const firstPartyFailure=(source,message,fields={})=>Object.assign(Error(source+' native careers: '+message),{
  abortRetries:true,softFailure:true,lifecycleCleanupAllowed:false,...fields})
-export function createFirstPartyDocumentReader(options,{source,urls,roleURL=()=>false,redirects={}}){
+export function createFirstPartyDocumentReader(options,{source,urls,roleURL=()=>false,redirects={},requestTimeoutCeilingMs=15000}){
  const failure=(message,fields)=>firstPartyFailure(source,message,fields),caller=options.signal
  caller?.throwIfAborted()
  const sourceTimeoutMs=options.sourceTimeoutMs??90000,requestTimeoutMs=options.requestTimeoutMs??15000
  if(!Number.isSafeInteger(sourceTimeoutMs)||sourceTimeoutMs<1||sourceTimeoutMs>180000
-  ||!Number.isSafeInteger(requestTimeoutMs)||requestTimeoutMs<1||requestTimeoutMs>15000)throw RangeError('Invalid first-party source/request deadline')
+  ||!Number.isSafeInteger(requestTimeoutCeilingMs)||requestTimeoutCeilingMs<1||requestTimeoutCeilingMs>60000
+  ||!Number.isSafeInteger(requestTimeoutMs)||requestTimeoutMs<1||requestTimeoutMs>requestTimeoutCeilingMs)throw RangeError('Invalid first-party source/request deadline')
  const started=performance.now(),controller=new AbortController(),signal=caller?AbortSignal.any([caller,controller.signal]):controller.signal
  const timeout=setTimeout(()=>controller.abort(new DOMException(source+' source deadline exceeded','TimeoutError')),sourceTimeoutMs)
  const permitted=new Set(urls),receipts=[]
@@ -65,7 +66,7 @@ export function createFirstPartyDocumentReader(options,{source,urls,roleURL=()=>
     }catch(error){try{Promise.resolve(response?.body?.cancel?.(error)).catch(()=>{})}catch{};throw error}
    }
    try{
-    const response=await boundedDeclaredPublicGet(url,{signal:requestSignal,fetchImpl:acquire,overflowError:failure('Original response byte budget exceeded')})
+    const response=await boundedDeclaredPublicGet(url,{signal:requestSignal,timeoutMs:requestTimeoutMs,fetchImpl:acquire,overflowError:failure('Original response byte budget exceeded')})
     checkRequest();Object.assign(receipt,{status:response.status,finalUrl:response.url})
     // Every acquired entity consumes the aggregate budget, including redirects
     // and errors. A declared unavailable capture is distinct from an empty or

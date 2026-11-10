@@ -21,3 +21,13 @@ test('only allowlisted LaTeX validation reasons can appear in public diagnostics
   assert.deepEqual(safeResumeDiagnostic({ stage: 'compiling', code: 'compiler_failed', reason: 'unsupported_package' }),
     { stage: 'compiling', code: 'compiler_failed' });
 });
+
+test('factual diagnostics expose bounded category counts without candidate facts', () => {
+  const issueCounts = { contact: 1, employment: 1, date: 1, skill: 1, metric: 1 };
+  const event = { stage: 'validating', code: 'factual_validation_failed', issueCounts: {
+    ...issueCounts, 'private@example.test': 1, other: 'private text', identity: Infinity, education: -1, title: 1.5, link: 1000001,
+  } };
+  assert.deepEqual(safeResumeDiagnostic(event), { stage: 'validating', code: 'factual_validation_failed', issueCounts });
+  assert.deepEqual(safeResumeDiagnostic({ ...event, stage: 'compiling' }), { stage: 'compiling', code: 'factual_validation_failed' });
+  assert.doesNotMatch(JSON.stringify(safeResumeDiagnostic(event)), /private|Private/);
+});
