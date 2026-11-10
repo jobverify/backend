@@ -1,0 +1,130 @@
+{
+  "source": "current-native-abb-http",
+  "capturedAt": "2026-10-20T20:30:26.873Z",
+  "nativeDetailURL": "https://careers.abb/global/en/job/JR00050898/AI-Factory-Architecture-Lead",
+  "packetSha256": "ed95d35883eca45113e76b144d0d5ef24131a57bc39e78ecb49d14c421c1c241",
+  "bodySha256": "c7067150a029c7258128d40a0dbf884d5908a30bc432e1f8fdc3e308fb7bb6cc",
+  "listing": {
+    "subCategory": "IS Architecture",
+    "contractType": "Regular",
+    "type": "Full Time",
+    "descriptionTeaser": "Become part of our team as AI Factory Architecture Lead, driving the technical direction and orchestration of AI architecture across the AI Factory portfolio. Lead and coordinate architecture activities, ensuring scalable and secure AI solutions. Ideal for experienced technical leaders with a strong background in AI technology and enterprise environments.",
+    "state": "Moravskoslezský kraj",
+    "siteType": "external",
+    "multi_category": [
+      "Information Systems"
+    ],
+    "reqId": "JR00050898",
+    "grade": "Grade 11",
+    "city": "Ostrava",
+    "businessSegment": "Automation",
+    "latitude": "49.83465",
+    "industry": "All Others",
+    "multi_location": [
+      "Bangalore, Karnātaka, India",
+      "Bologna, Milano, Italy",
+      "Cleveland, Ohio, United States of America",
+      "Fornebu, Norway",
+      "Ostrava, Moravskoslezský kraj, Czechia"
+    ],
+    "address": "Mistecka 1120/103, Ostrava, 703 00 Ostrava Moravskoslezský kraj, Czechia",
+    "applyUrl": "https://abb.wd3.myworkdayjobs.com/External_Career_Page/job/Ostrava-Moravskoslezsk-kraj-Czechia/AI-Factory-Architecture-Lead_JR00050898/apply",
+    "externalApply": true,
+    "cityState": "Ostrava, Moravskoslezský kraj",
+    "country": "Czechia",
+    "visibilityType": "External",
+    "longitude": "18.28204",
+    "jobId": "JR00050898",
+    "locale": "en_GLOBAL",
+    "title": "AI Factory Architecture Lead",
+    "jobSeqNo": "ABB1GLOBALJR00050898EXTERNALENGLOBAL",
+    "postedDate": "2026-10-20T00:00:00.000+0000",
+    "dateCreated": "2026-10-20T16:40:08.131+0000",
+    "cityStateCountry": "Ostrava, Moravskoslezský kraj, Czechia",
+    "jobType": "Full Time",
+    "jobVisibility": [
+      "external"
+    ],
+    "location": "Ostrava, Moravskoslezský kraj, Czechia",
+    "cityCountry": "Ostrava, Czechia",
+    "category": "Information Systems",
+    "ml_skills": [
+      "ai architecture",
+      "ai solution architecture",
+      "ai technology ecosystem",
+      "machine learning",
+      "digital platforms",
+      "enterprise architecture",
+      "technical leadership",
+      "stakeholder management",
+      "solution design",
+      "governance framework",
+      "technical evaluation",
+      "ai transformation",
+      "reusable patterns",
+      "technical standards development",
+      "ai roadmap assessment",
+      "vendor management",
+      "cross-functional collaboration",
+      "ai governance",
+      "ai capability development",
+      "ai technology assessment",
+      "ai platform delivery",
+      "ai solution review",
+      "ai solution approval",
+      "ai solution alignment",
+      "ai solution standards adoption"
+    ],
+    "ml_job_parser": {
+      "descriptionTeaser": "Become part of our team as AI Factory Architecture Lead, driving the technical direction and orchestration of AI architecture across the AI Factory portfolio. Lead and coordinate architecture activities, ensuring scalable and secure AI solutions. Ideal for experienced technical leaders with a strong background in AI technology and enterprise environments.",
+      "descriptionTeaser_first200": "At ABB, we help industries run leaner and cleaner—and every person here makes that happen. You’ll be empowered to lead, supported to grow, and proud of the impact we create together. Join us and he...",
+      "descriptionTeaser_keyword": "At ABB, we help industries run leaner and cleaner—and every person here makes that happen. You’ll be empowered to lead, supported to grow, and proud of the impact we create together. Join us and help...",
+      "descriptionTeaser_ats": "At ABB, we help industries run leaner and cleanerand every person here makes that happen. You’ll be empowered to lead, supported to grow, and proud of the impact we create together. Join us and help"
+    },
+    "isMultiLocation": true,
+    "multi_location_array": [
+      {
+        "latlong": {
+          "lon": 77.59369,
+          "lat": 12.97194
+        },
+        "location": "Bangalore, Karnātaka, India"
+      },
+      {
+        "latlong": {
+          "lon": 11.33875,
+          "lat": 44.49381
+        },
+        "location": "Bologna, Milano, Italy"
+      },
+      {
+        "latlong": {
+          "lon": -81.69541,
+          "lat": 41.4995
+        },
+        "location": "Cleveland, Ohio, United States of America"
+      },
+      {
+        "latlong": {
+          "lon": 10.62869,
+          "lat": 59.89951
+        },
+        "location": "Fornebu, Norway"
+      },
+      {
+        "latlong": {
+          "lon": 18.28204,
+          "lat": 49.83465
+        },
+        "location": "Ostrava, Moravskoslezský kraj, Czechia"
+      }
+    ],
+    "isMultiCategory": false,
+    "multi_category_array": [
+      {
+        "category": "Information Systems"
+      }
+    ],
+    "badge": ""
+  }
+}

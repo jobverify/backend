@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "error": {
+    "message": "",
+    "body": ""
+  },
+  "data": {
+    "id": 1970393556911730,
+    "displayJobId": "200041085",
+    "name": "Software Engineering INTERN",
+    "location": "India, Multiple Locations, Multiple Locations",
+    "locations": [
+      "India, Multiple Locations, Multiple Locations"
+    ],
+    "publicUrl": "https://apply.careers.microsoft.com/careers/job/1970393556911730",
+    "jobDescription": "<b>Overview</b><br><p>Come build community, explore your passions and do your best work at Microsoft with thousands of University interns from every corner of the world.</p>",
+    "efcustomTextEmploymentType": [
+      "Internship"
+    ]
+  },
+  "metadata": null
+}

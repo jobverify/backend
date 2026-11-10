@@ -8,6 +8,26 @@ import { fileURLToPath } from "node:url";
 const testDir = path.dirname(fileURLToPath(import.meta.url));
 const backendDir = path.resolve(testDir, "..");
 
+test('index planning retains the canonical cloud environment fallback', () => {
+  const script = `
+    import assert from 'node:assert/strict';
+    import fs from 'node:fs';
+    import path from 'node:path';
+    import dotenv from 'dotenv';
+    const configured = [];
+    const exists = fs.existsSync;
+    fs.existsSync = file => ['.env', '.env.cloud'].includes(path.basename(String(file))) || exists(file);
+    dotenv.config = options => { configured.push(path.basename(options.path)); return { parsed: {} }; };
+    await import('./scripts/indexes.js');
+    assert.ok(configured.includes('.env.cloud'), 'planner must retain cloud fallback configuration');
+  `;
+  const result = spawnSync(process.execPath, ['--input-type=module', '--eval', script], {
+    cwd: backendDir, encoding: 'utf8',
+    env: { PATH: process.env.PATH, SystemRoot: process.env.SystemRoot, NODE_ENV: 'test', MONGO_URI: '' },
+  });
+  assert.equal(result.status, 0, result.stderr);
+});
+
 test("index management can be imported without a configured database URI", () => {
   const result = spawnSync(
     process.execPath,

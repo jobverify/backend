@@ -1,0 +1,52 @@
+{
+  "source": "auvik",
+  "capturedAt": "2026-10-30T05:41:43.715Z",
+  "purpose": "Full saved anonymous research responses for regression replay; these are not live runtime validation.",
+  "syntheticData": false,
+  "requests": [
+    {
+      "source": "auvik",
+      "url": "https://www.auvik.com/careers/",
+      "companyDomain": "auvik.com",
+      "companyName": "Auvik",
+      "purpose": "Current catalog primary careers URL; research only, no current native binding assumed",
+      "index": 2,
+      "requestedURL": "https://www.auvik.com/careers/",
+      "finalURL": "https://www.auvik.com/careers/",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "location": null
+      },
+      "bodySHA256": "615805dd4b06459e2b4fa5f71a7fd66d5cf7b6ba5f328de3683bfa2947e2fbcb",
+      "bodyBytes": 351917,
+      "filename": "01-615805dd4b06459e2b4fa5f71a7fd66d5cf7b6ba5f328de3683bfa2947e2fbcb.txt.gz",
+      "requestedAt": "2026-10-30T04:55:09.379Z",
+      "completedAt": "2026-10-30T04:55:11.165Z",
+      "provenance": "native-batch13-primary-research-v1/002-auvik-615805dd4b06459e2b4fa5f71a7fd66d5cf7b6ba5f328de3683bfa2947e2fbcb.txt.gz"
+    },
+    {
+      "source": "auvik",
+      "url": "https://boards-api.greenhouse.io/v1/boards/auviknetworks/jobs?content=true",
+      "companyDomain": "greenhouse.io",
+      "observedOn": "https://www.auvik.com/careers/",
+      "purpose": "Documented full-content expansion of exact current NPRL-advertised public account",
+      "index": 1,
+      "requestedURL": "https://boards-api.greenhouse.io/v1/boards/auviknetworks/jobs?content=true",
+      "finalURL": "https://boards-api.greenhouse.io/v1/boards/auviknetworks/jobs?content=true",
+      "method": "GET",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json",
+        "location": null
+      },
+      "bodySHA256": "4e7faf60e4663eddcd6c97fe0ae28e2721a7989b5339dce186fce3ec1d273749",
+      "bodyBytes": 173915,
+      "filename": "02-4e7faf60e4663eddcd6c97fe0ae28e2721a7989b5339dce186fce3ec1d273749.txt.gz",
+      "requestedAt": "2026-10-30T05:41:47.744Z",
+      "completedAt": "2026-10-30T05:41:49.917Z",
+      "provenance": "native-batch13-auvik-full-research-v1/001-auvik-4e7faf60e4663eddcd6c97fe0ae28e2721a7989b5339dce186fce3ec1d273749.txt.gz"
+    }
+  ]
+}

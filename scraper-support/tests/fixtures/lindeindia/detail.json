@@ -1,0 +1,103 @@
+{
+  "response": {
+    "gradeID": "73877",
+    "minimumExp": "2",
+    "isCampusJob": false,
+    "jobTitle": "Application Support Specialist - Digital & IT Application Operations",
+    "entityID": "1475",
+    "requisitionCode": "LEI/STM/1871499",
+    "jurisdictionTypeID": null,
+    "maximumExp": "5",
+    "skills": [
+      {
+        "text": "Support",
+        "mandatory": false
+      },
+      {
+        "text": "Documentation",
+        "mandatory": false
+      },
+      {
+        "text": "Maintenance",
+        "mandatory": false
+      },
+      {
+        "text": "End User Training",
+        "mandatory": false
+      },
+      {
+        "text": "Automation",
+        "mandatory": false
+      },
+      {
+        "text": "Monitoring",
+        "mandatory": false
+      }
+    ],
+    "qualifications": [
+      "B.E/ B.Tech",
+      "MCA",
+      "Diploma"
+    ],
+    "CandidatePortalStartDate": "2026-10-23 00:00:00.0",
+    "band": "G11",
+    "confidential": false,
+    "noOfOpening": "2",
+    "payGroupID": null,
+    "CandidatePortalEndDate": "2026-11-06 00:00:00.0",
+    "tat": "0",
+    "minSalary": "0",
+    "employmentTenureType": "12 Months",
+    "campusSysContentType": "NON_CAMPUS",
+    "RoleName": null,
+    "maxBudgetSalary": "0",
+    "functionalArea": null,
+    "JobFamilyCode": "No",
+    "jobDescription": "<h2 style=\"margin-left:0cm;\" data-pasted=\"true\">Role Definition</h2><p style=\"margin-left:0cm;\">An experienced team contributor who independently handles standard technical, functional or operational assignments and supports more complex work under guidance.</p><h2 style=\"margin-left:0cm;\" data-pasted=\"true\">Key Responsibilities</h2><h3 style=\"margin-left:0cm;\">Work execution</h3><div style=\"margin-left:0cm;\"><ul style=\"list-style-type: disc;\"><li style=\"margin-left:0cm;\">Test, deploy or support assigned components.</li><li style=\"margin-left:0cm;\">Complete standard assignments within agreed timelines and quality standards.</li><li style=\"margin-left:0cm;\">Follow approved processes, technical standards and security requirements.</li><li style=\"margin-left:0cm;\">Maintain accurate work records and technical documentation.</li></ul><p style=\"margin-left:0cm;\"><br></p></div><h3 style=\"margin-left:0cm;\">Support and operations</h3><div style=\"margin-left:0cm;\"><ul style=\"list-style-type: disc;\"><li style=\"margin-left:0cm;\">Resolve standard incidents and service requests.</li><li style=\"margin-left:0cm;\">Perform monitoring, maintenance, testing and administrative activities.</li><li style=\"margin-left:0cm;\">Escalate complex or high-risk issues with appropriate diagnostic information.</li><li style=\"margin-left:0cm;\">Participate in user training, releases, upgrades and planned maintenance.</li></ul><p><br></p></div><h3 style=\"margin-left:0cm;\">Collaboration</h3><div style=\"margin-left:0cm;\"><ul style=\"list-style-type: disc;\"><li style=\"margin-left:0cm;\">Coordinate with colleagues, users and support teams.</li><li style=\"margin-left:0cm;\">Participate in project meetings, reviews and improvement activities.</li><li style=\"margin-left:0cm;\">Share lessons learned and update knowledge articles.</li></ul></div><p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;'><strong><span style=\"color:black;\">&nbsp;</span></strong></p><h2 style=\"margin-left:0cm;\" data-pasted=\"true\">Additional Responsibilities</h2><div style=\"margin-left:0cm;\"><ul style=\"list-style-type: disc;\"><li style=\"margin-left:0cm;\">Contribute to small enhancements and automation initiatives.</li><li style=\"margin-left:0cm;\">Assist with data preparation, testing and deployment activities.</li><li style=\"margin-left:0cm;\">Participate in user-support and training sessions.</li><li style=\"margin-left:0cm;\">Contribute to problem investigations under guidance.</li></ul></div><p style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;margin-left:0cm;line-height:normal;font-size:15px;font-family:\"Calibri\",sans-serif;'><strong><span style=\"color:black;\">&nbsp;</span></strong></p><h2 style=\"margin-left:0cm;\" data-pasted=\"true\">Education and Experience</h2><div style=\"margin-left:0cm;\"><ul style=\"list-style-type: disc;\"><li style=\"margin-left:0cm;\">Bachelor&rsquo;s degree, diploma, relevant technical qualification or equivalent professional experience.</li><li style=\"margin-left:0cm;\">Normally 2 to 5 years of relevant experience.</li><li style=\"margin-left:0cm;\">Experience in working with tools like Documentum, Supplier Connect, JIRA, DevOps is desired.</li><li style=\"margin-left:0cm;\"><span data-teams=\"true\" data-pasted=\"true\">OpenText Documentum experience is added as advantage</span></li></ul></div>",
+    "gradeCode": "Executive",
+    "designation": "Support Team Member II - IT for Engineering & Data Driven Automation",
+    "CampusType": "Non Campus",
+    "shiftTo": null,
+    "maxSalary": "0",
+    "designationID": "972900",
+    "WorkflowName": "Applicant Workflow TPA Non CTQ",
+    "roleType": "Yes",
+    "locationHierarchyComplete": "India>Gujarat>Vadodara>Vadodara",
+    "requisitionId": "1871499",
+    "orgUnitCode": "Digital & IT Platform Execution & Detailed Engineering",
+    "Onsite": null,
+    "organizationUnitComplete": "Linde Engineering India Pvt. Ltd.>Digital & IT Platform Execution & Detailed Engineering>Digital & IT Platform Execution & Detailed Engineering>Digital & IT Application Operations>25300",
+    "hrOrgUnitID": "38551997",
+    "requisitionType": "New Position-Capacity",
+    "currency": null,
+    "departmentHierarchy": null,
+    "industryName": null,
+    "roleContributionType": "No",
+    "programType": "No",
+    "jobTitleID": "0",
+    "languages": [
+      "English",
+      "Hindi",
+      "Gujarati"
+    ],
+    "employmentType": "Third Party Agency",
+    "joiningLocation": "Vadodara",
+    "EducationSepecializationID": null,
+    "employeeCategoryTypeID": null,
+    "internalJobDescription": null,
+    "educationSepecialization": null,
+    "certifications": [],
+    "authorityTypeID": null,
+    "minBudgetSalary": "0",
+    "requisitionStatus": "OPEN",
+    "shiftFrom": null,
+    "bandId": "7579",
+    "worksiteID": "1339186",
+    "functionalDesignationID": "0",
+    "jobRoleID": null
+  },
+  "messageCode": {
+    "code": 200,
+    "messages": "success"
+  }
+}

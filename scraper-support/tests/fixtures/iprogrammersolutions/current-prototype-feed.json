@@ -1,0 +1,477 @@
+{
+  "data": [
+    {
+      "id": 2,
+      "attributes": {
+        "title": "Staff Data Scientist",
+        "jobId": "#2",
+        "locationLabel": "Bangluru",
+        "locationDetail": null,
+        "employmentType": "Full-time",
+        "locationType": "On-site",
+        "aboutUs": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "iProgrammer helps you build beautiful tools for your life’s work. In today's world of endless apps and tabs, iProgrammer provides one place for teams to get everything done, seamlessly connecting docs, notes, projects, calendar, and email—with AI built in to find answers and automate work. Millions of users, from individuals to large organizations like Toyota, Figma, and OpenAI, love iProgrammer for its flexibility and choose it because it helps them save time and money. \n\nIn-person collaboration is essential to iProgrammer's culture. We require all team members to work from our offices on Mondays, Tuesdays, and Thursdays, our designated Anchor Days. Certain teams or positions may require additional in-office workdays.\n",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "aboutRole": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We're looking for a motivated early career sales professional with an entrepreneurial and building spirit to join our Outbound Sales Development team! As a member of the team, you'll be instrumental in helping define our outbound sales motion, meaningfully shape our future product, and drive business revenue all while having a blast doing it!",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "achievements": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Work with our outbound sales team to experiment with pipeline generation tactics and strategic approaches.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "bold": true,
+                    "text": "Help build the foundations of outbound sales",
+                    "type": "text"
+                  },
+                  {
+                    "text": " at iProgrammer: As a member of our outbound sales team, you'll be instrumental in helping define our outbound sales motion.\n",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have > 1 year experience in a sales development (outbound-focused) role, preferably in SaaS tech or a high-growth environment",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have strong verbal and written communication skills  ",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "niceToHaves": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Technical understanding of SaaS products and business workflows",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "applyUrl": "http://localhost:3000/careers/JobID",
+        "isActive": true,
+        "displayOrder": 1,
+        "createdAt": "2026-09-10T10:54:30.046Z",
+        "updatedAt": "2026-09-10T10:56:14.786Z",
+        "publishedAt": "2026-09-10T10:56:14.777Z",
+        "seo": null
+      }
+    },
+    {
+      "id": 3,
+      "attributes": {
+        "title": "Staff Data Scientist",
+        "jobId": "#3",
+        "locationLabel": "Bangluru",
+        "locationDetail": null,
+        "employmentType": "Full-time",
+        "locationType": "On-site",
+        "aboutUs": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "iProgrammer helps you build beautiful tools for your life’s work. In today's world of endless apps and tabs, iProgrammer provides one place for teams to get everything done, seamlessly connecting docs, notes, projects, calendar, and email—with AI built in to find answers and automate work. Millions of users, from individuals to large organizations like Toyota, Figma, and OpenAI, love iProgrammer for its flexibility and choose it because it helps them save time and money. \n\nIn-person collaboration is essential to iProgrammer's culture. We require all team members to work from our offices on Mondays, Tuesdays, and Thursdays, our designated Anchor Days. Certain teams or positions may require additional in-office workdays.\n",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "aboutRole": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We're looking for a motivated early career sales professional with an entrepreneurial and building spirit to join our Outbound Sales Development team! As a member of the team, you'll be instrumental in helping define our outbound sales motion, meaningfully shape our future product, and drive business revenue all while having a blast doing it!",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "achievements": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Work with our outbound sales team to experiment with pipeline generation tactics and strategic approaches.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "bold": true,
+                    "text": "Help build the foundations of outbound sales",
+                    "type": "text"
+                  },
+                  {
+                    "text": " at iProgrammer: As a member of our outbound sales team, you'll be instrumental in helping define our outbound sales motion.\n",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have > 1 year experience in a sales development (outbound-focused) role, preferably in SaaS tech or a high-growth environment",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have strong verbal and written communication skills  ",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "niceToHaves": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Technical understanding of SaaS products and business workflows",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "applyUrl": "http://localhost:3000/careers/JobID",
+        "isActive": true,
+        "displayOrder": 1,
+        "createdAt": "2026-09-10T10:54:30.046Z",
+        "updatedAt": "2026-09-10T12:27:37.843Z",
+        "publishedAt": "2026-09-10T12:27:37.835Z",
+        "seo": null
+      }
+    },
+    {
+      "id": 4,
+      "attributes": {
+        "title": "Staff Data Scientist",
+        "jobId": "#4",
+        "locationLabel": "Bangluru",
+        "locationDetail": null,
+        "employmentType": "Full-time",
+        "locationType": "On-site",
+        "aboutUs": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "iProgrammer helps you build beautiful tools for your life’s work. In today's world of endless apps and tabs, iProgrammer provides one place for teams to get everything done, seamlessly connecting docs, notes, projects, calendar, and email—with AI built in to find answers and automate work. Millions of users, from individuals to large organizations like Toyota, Figma, and OpenAI, love iProgrammer for its flexibility and choose it because it helps them save time and money. \n\nIn-person collaboration is essential to iProgrammer's culture. We require all team members to work from our offices on Mondays, Tuesdays, and Thursdays, our designated Anchor Days. Certain teams or positions may require additional in-office workdays.\n",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "aboutRole": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We're looking for a motivated early career sales professional with an entrepreneurial and building spirit to join our Outbound Sales Development team! As a member of the team, you'll be instrumental in helping define our outbound sales motion, meaningfully shape our future product, and drive business revenue all while having a blast doing it!",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "achievements": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Work with our outbound sales team to experiment with pipeline generation tactics and strategic approaches.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "bold": true,
+                    "text": "Help build the foundations of outbound sales",
+                    "type": "text"
+                  },
+                  {
+                    "text": " at iProgrammer: As a member of our outbound sales team, you'll be instrumental in helping define our outbound sales motion.\n",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have > 1 year experience in a sales development (outbound-focused) role, preferably in SaaS tech or a high-growth environment",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have strong verbal and written communication skills  ",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "niceToHaves": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Technical understanding of SaaS products and business workflows",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "applyUrl": "http://localhost:3000/careers/JobID",
+        "isActive": true,
+        "displayOrder": 1,
+        "createdAt": "2026-09-10T10:54:30.046Z",
+        "updatedAt": "2026-09-10T12:28:13.248Z",
+        "publishedAt": "2026-09-10T12:28:13.234Z",
+        "seo": null
+      }
+    },
+    {
+      "id": 1,
+      "attributes": {
+        "title": "Staff Data Scientist",
+        "jobId": "#1",
+        "locationLabel": "USA",
+        "locationDetail": null,
+        "employmentType": "Full-time",
+        "locationType": "On-site",
+        "aboutUs": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "iProgrammer helps you build beautiful tools for your life’s work. In today's world of endless apps and tabs, iProgrammer provides one place for teams to get everything done, seamlessly connecting docs, notes, projects, calendar, and email—with AI built in to find answers and automate work. Millions of users, from individuals to large organizations like Toyota, Figma, and OpenAI, love iProgrammer for its flexibility and choose it because it helps them save time and money. \n\nIn-person collaboration is essential to iProgrammer's culture. We require all team members to work from our offices on Mondays, Tuesdays, and Thursdays, our designated Anchor Days. Certain teams or positions may require additional in-office workdays.\n",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "aboutRole": [
+          {
+            "type": "paragraph",
+            "children": [
+              {
+                "text": "We're looking for a motivated early career sales professional with an entrepreneurial and building spirit to join our Outbound Sales Development team! As a member of the team, you'll be instrumental in helping define our outbound sales motion, meaningfully shape our future product, and drive business revenue all while having a blast doing it!",
+                "type": "text"
+              }
+            ]
+          }
+        ],
+        "achievements": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Work with our outbound sales team to experiment with pipeline generation tactics and strategic approaches.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "bold": true,
+                    "text": "Help build the foundations of outbound sales",
+                    "type": "text"
+                  },
+                  {
+                    "text": " at iProgrammer: As a member of our ",
+                    "type": "text"
+                  },
+                  {
+                    "bold": true,
+                    "text": "outbound sales",
+                    "type": "text"
+                  },
+                  {
+                    "text": " team, you'll be instrumental in helping define our outbound sales motion.\n",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "skills": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have > 1 year experience in a sales development (outbound-focused) role, preferably in SaaS tech or a high-growth environment",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "You have strong verbal and written communication skills  ",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "niceToHaves": [
+          {
+            "type": "list",
+            "format": "unordered",
+            "children": [
+              {
+                "type": "list-item",
+                "children": [
+                  {
+                    "text": "Technical understanding of SaaS products and business workflows",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "applyUrl": "http://localhost:3000/careers/JobID",
+        "isActive": true,
+        "displayOrder": 1,
+        "createdAt": "2026-09-10T10:54:30.046Z",
+        "updatedAt": "2026-09-10T15:31:25.598Z",
+        "publishedAt": "2026-09-10T10:55:15.794Z",
+        "seo": null
+      }
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 25,
+      "pageCount": 1,
+      "total": 4
+    }
+  }
+}

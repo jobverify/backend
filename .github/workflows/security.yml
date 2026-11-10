@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   tests:
-    name: Syntax and isolated API regression tests
+    name: Semantic lint and isolated API regression tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -25,7 +25,8 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v7
         with:
-          node-version: '24.14.0'
+          node-version: '24.x'
+          check-latest: true
           cache: npm
       - run: npm ci --ignore-scripts
       - name: Install Chromium for browser regression tests
@@ -52,7 +53,8 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@v7
         with:
-          node-version: '24.14.0'
+          node-version: '24.x'
+          check-latest: true
       - name: Verify secret scan filtering
         run: node --test test/filterSecretScan.test.js
       - name: Install checksum-verified official Gitleaks binary
@@ -90,6 +92,20 @@ jobs:
           scan_exit=$?
           set -e
           node scripts/filterSecretScan.js "$raw_report" .github/secret-scan-exceptions.json "$RUNNER_TEMP/security-reports/gitleaks-current.json" "$RUNNER_TEMP/gitleaks-current" "$scan_exit"
+      - name: Assemble and scan the distributable backend
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          node scripts/assembleRelease.js --project-root . --kind backend --output "$RUNNER_TEMP/backend-release"
+          release_tree="$RUNNER_TEMP/backend-release/backend"
+          raw_report="$RUNNER_TEMP/gitleaks-release-raw.json"
+          trap 'rm -f "$raw_report"' EXIT
+          set +e
+          gitleaks dir "$release_tree" --no-banner --log-level error --ignore-gitleaks-allow --report-format json --report-path "$raw_report" >/dev/null 2>&1
+          scan_exit=$?
+          set -e
+          node scripts/filterSecretScan.js "$raw_report" .github/secret-scan-exceptions.json "$RUNNER_TEMP/security-reports/gitleaks-release.json" "$release_tree" "$scan_exit"
       - name: Scan all fetched refs and complete history
         if: ${{ !cancelled() && steps.gitleaks.outcome == 'success' }}
         shell: bash
@@ -111,3 +127,34 @@ jobs:
           path: ${{ runner.temp }}/security-reports/*.json
           if-no-files-found: error
           retention-days: 7
+
+  scraper-regressions:
+    name: Isolated scraper regression tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24.x'
+          check-latest: true
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Install browser used by fixture regression tests
+        run: npx --no-install playwright install --with-deps chromium
+      - run: npm run test:scraper
+
+  required-checks:
+    name: Backend required checks
+    if: always()
+    needs: [tests, secrets, scraper-regressions]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require all regression and security jobs
+        env:
+          TEST_RESULT: ${{ needs.tests.result }}
+          SECRET_RESULT: ${{ needs.secrets.result }}
+          SCRAPER_RESULT: ${{ needs.scraper-regressions.result }}
+        run: test "$TEST_RESULT" = success && test "$SECRET_RESULT" = success && test "$SCRAPER_RESULT" = success

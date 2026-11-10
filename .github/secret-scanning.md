@@ -74,3 +74,12 @@ The same review covers the Chronus public Recruiterbox client's SHA256
 integrity pin and the synthetic publishing and JWT values used by the isolated
 public-budget and SEO route tests. Each entry retains the exact rule, file,
 and detected-value digest restriction.
+
+The 2026-11-09 review covers seven historical provider metadata matches: the
+Astellas public SuccessFactors response integrity pin; BP, Fifth Third,
+Crown Holdings and Equinor public Workday board identities; Calbee's public
+Sonar ATS board identity; and Etihad Airways' public SmartRecruiters company
+identifier. Their field definitions and public board bindings were checked in
+the historical source. Each exception applies only to its exact detected-value
+digest, `generic-api-key` rule, and individually listed historical JSON path.
+New values and matches in other files remain blocked.

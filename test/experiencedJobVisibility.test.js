@@ -57,6 +57,8 @@ test('experienced job visibility is reversible and consistent across public surf
   } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
   await mongoose.connect(mongo.getUri());
+  let snapshotCacheTime = Date.now();
+  t.mock.method(Date, 'now', () => snapshotCacheTime);
   const { default: jobRoutes } = await import('../src/routes/jobRoutes.js');
   await t.test('explicit zero ranges and compact year units have literal public categories', async () => {
     const cases = [
@@ -187,6 +189,9 @@ test('experienced job visibility is reversible and consistent across public surf
       assert.equal((await read('/api/jobs?jobType=Full-time%20Fresher')).pagination.total, 2);
       assert.ok((await read('/api/jobs/meta?jobType=Contract')).data.companies.includes('Legacy 2'));
       assert.equal((await read('/api/jobs/stats')).data.totalJobs, 5);
+      // Snapshot summaries retain their prior inventory for the 30-second cache TTL.
+      assert.equal((await read('/api/jobs/snapshot')).data.totalJobs, 3);
+      snapshotCacheTime += 30_001;
       assert.equal((await read('/api/jobs/snapshot')).data.totalJobs, 5);
       assert.ok(!(await read('/api/jobs/meta')).data.jobTypes.includes('Full-time Experienced'));
     } finally { await Job.deleteMany({ _id: { $in: variantIds } }); }

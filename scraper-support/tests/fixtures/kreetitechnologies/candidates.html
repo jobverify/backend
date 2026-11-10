@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kreeti Technologies</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a class="nav-link" href="https://careers.kreeti.com">Careers</a>
+      <a class="nav-link" href="/candidates">Jobs</a>
+      <a class="nav-link" href="/life_at_kreeti">Life at Kreeti</a>
+    </nav>
+
+    <section class="jobs">
+      <section class="container">
+        <h3 class="section-title">No Open Positions</h3>
+        <span class="section-description"
+          >We value your time. We respond to every applicant, so you’ll never be left in the dark</span
+        >
+      </section>
+    </section>
+
+    <section class="interested">
+      <section class="container">
+        <h3 class="section-title mb-4">LET US KNOW THAT YOU ARE INTERESTED</h3>
+        <div class="custom-form">
+          <form
+            class="new_candidate"
+            id="new_candidate"
+            enctype="multipart/form-data"
+            action="/candidates"
+            accept-charset="UTF-8"
+            data-remote="true"
+            method="post"
+          >
+            <section class="row">
+              <section class="col-sm-6">
+                <div class="form-group">
+                  <select
+                    class="form-control"
+                    required="required"
+                    name="job[job_id]"
+                    id="job_job_id"
+                  >
+                    <option value="">Select Position</option>
+                    <option value="48">Agile Project Manager</option>
+                  </select>
+                </div>
+              </section>
+            </section>
+            <input
+              type="submit"
+              name="commit"
+              value="Apply"
+              class="btn btn-primary float-right"
+            />
+          </form>
+        </div>
+      </section>
+    </section>
+
+    <footer>Copyright © 2022 Kreeti Technologies Pvt. Ltd. All rights reserved.</footer>
+  </body>
+</html>

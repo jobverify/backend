@@ -1,0 +1,35 @@
+{
+  "data": {
+    "data": [
+      {
+        "id": 48152,
+        "jobTitle": "Software Engineer",
+        "jobUrl": "software-engineer",
+        "location": "Bangalore, Karnataka, India",
+        "department": {
+          "departmentName": "Engineering"
+        },
+        "employmentType": "Full Time",
+        "createdDate": "2026-07-01T10:00:00.000Z",
+        "jobConfigurationData": {
+          "Description": "Build customer-facing Rakuten products."
+        }
+      },
+      {
+        "id": 48153,
+        "jobTitle": "Product Manager",
+        "jobUrl": "product-manager",
+        "location": "Tokyo, Japan",
+        "department": {
+          "departmentName": "Product"
+        },
+        "employmentType": "Full Time",
+        "createdDate": "2026-07-02T10:00:00.000Z"
+      }
+    ],
+    "totalCount": 2,
+    "facetedSearchConfig": {
+      "paginationHowMuch": 10
+    }
+  }
+}

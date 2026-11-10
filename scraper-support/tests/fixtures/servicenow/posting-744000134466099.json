@@ -1,0 +1,139 @@
+{
+  "id": "744000134466099",
+  "name": "Principal Applications Dev Engineer_UI",
+  "uuid": "831054ba-46fe-4585-9118-52b9d5dc18d2",
+  "jobId": "b0c5cbf1-c6ea-4f76-b2de-ba10d6fb5155",
+  "jobAdId": "931ab8e8-1864-4aed-aca3-38ac1a0fccad",
+  "defaultJobAd": true,
+  "refNumber": "JB0073281",
+  "company": {
+    "name": "ServiceNow",
+    "identifier": "ServiceNow"
+  },
+  "location": {
+    "city": "Hyderabad",
+    "country": "in",
+    "address": "Salarpuria Sattva Knowledge City Knowledge City, Unit II, 17 to 10 Floor Survey No. 83/1, Serilingampally Mandal",
+    "postalCode": "500081",
+    "remote": false,
+    "hybrid": false,
+    "fullLocation": "Hyderabad, , India"
+  },
+  "customField": [
+    {
+      "fieldId": "60345fa28b4ba8595bef1863",
+      "fieldLabel": "Recruiting Team",
+      "valueId": "professional",
+      "valueLabel": "Professional"
+    },
+    {
+      "fieldId": "60345e1a0b24a127cbdfa148",
+      "fieldLabel": "Employee Type",
+      "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+      "valueLabel": "Regular"
+    },
+    {
+      "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+      "fieldLabel": "Department",
+      "valueId": "2294038",
+      "valueLabel": "Engineering, Infrastructure and Operations"
+    },
+    {
+      "fieldId": "COUNTRY",
+      "fieldLabel": "Country/Region",
+      "valueId": "in",
+      "valueLabel": "India"
+    },
+    {
+      "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+      "fieldLabel": "Brands",
+      "valueId": "default",
+      "valueLabel": "ServiceNow"
+    },
+    {
+      "fieldId": "60345d5c5165a31b17288279",
+      "fieldLabel": "Region",
+      "valueId": "858884996eea4a49baa6231279f39054",
+      "valueLabel": "APAC - Asia Pacific"
+    },
+    {
+      "fieldId": "603462175165a31b1728827d",
+      "fieldLabel": "Cost Center",
+      "valueId": "CC6060",
+      "valueLabel": "6060 ITSM Engineering"
+    },
+    {
+      "fieldId": "6034601b43915a29a4b3389b",
+      "fieldLabel": "Job Location",
+      "valueId": "L_HYD002",
+      "valueLabel": "Knowledge City, Unit II, 17 to 10 Floor, Survey No. 83/1, Serilingampally Mandal, Hyderabad- 500081, Telangana, India(L_HYD002)"
+    },
+    {
+      "fieldId": "618ed92b8f5e5f110e5bfb95",
+      "fieldLabel": "Work Persona",
+      "valueId": "bf7551c6-9b06-4e7c-8217-3baf43edd060",
+      "valueLabel": "Flexible"
+    },
+    {
+      "fieldId": "690cc0e8c682c3dbadaa7d73",
+      "fieldLabel": "Job Posting Type",
+      "valueId": "professional",
+      "valueLabel": "Professional"
+    }
+  ],
+  "releasedDate": "2026-06-26T12:48:21.759Z",
+  "creator": {
+    "name": "Prashanthi shadipuram",
+    "avatarUrl": ""
+  },
+  "postingUrl": "https://jobs.smartrecruiters.com/ServiceNow/744000134466099-principal-applications-dev-engineer-ui",
+  "applyUrl": "https://jobs.smartrecruiters.com/ServiceNow/744000134466099-principal-applications-dev-engineer-ui?oga=true",
+  "referralUrl": "https://jobs.smartrecruiters.com/external-referrals/company/ServiceNow/publication/831054ba-46fe-4585-9118-52b9d5dc18d2?dcr_ci=ServiceNow",
+  "jobAd": {
+    "sections": {
+      "companyDescription": {
+        "title": "Company Description",
+        "text": "<p>It all started when engineer Fred Luddy wrote code that automated a tedious task for his coworker, Phyllis. She cried tears of joy. That moment inspired Fred to build a company that could do that for everyone—freeing people from busywork so they could focus on meaningful work. Today, ServiceNow is the AI control tower for business reinvention. Our ServiceNow AI platform brings together any AI, any data, and any workflow— helping 85% of the Fortune 500® work smarter, faster, and better. We're building an AI-native culture where technology and talent are unstoppable together. And we're just getting started.</p><p>&#xa0;</p><p>Join us to put AI to work for people.</p><p>.</p>"
+      },
+      "jobDescription": {
+        "title": "Job Description",
+        "text": "<p><strong>What you get to do in this role:</strong></p><p>Role Overview</p><p>We are looking for an experienced IC6-level engineer to drive the technical direction, architecture, and execution of next-generation product experiences on the ServiceNow platform. This individual will be a hands-on technical leader who combines deep full-stack expertise, strong architectural judgment, AI fluency, and a passion for building scalable, customer-facing products.</p><p>The ideal candidate is equally comfortable designing complex distributed systems, crafting modern UI experiences, mentoring senior engineers, and leveraging AI technologies to deliver differentiated product capabilities.</p><p>Key Responsibilities</p><ul><li>Lead the design and development of large-scale product initiatives across the full stack.</li><li>Define technical architecture and engineering standards that improve scalability, reliability, performance, and maintainability.</li><li>Drive adoption of AI-powered capabilities, including LLM-based experiences, intelligent workflows, copilots, and automation features.</li><li>Partner closely with Product Management, UX, Data Science, and Platform teams to translate business goals into technical solutions.</li><li>Make high-impact technical decisions and influence engineering strategy across multiple teams.</li><li>Conduct architecture reviews, design discussions, and technical deep dives.</li><li>Mentor senior engineers and raise the overall engineering bar through coaching and technical leadership.</li><li>Own critical production systems and drive operational excellence, observability, security, and reliability.</li><li>Evaluate emerging technologies and identify opportunities to improve developer productivity and product quality.</li></ul>"
+      },
+      "qualifications": {
+        "title": "Qualifications",
+        "text": "<p><strong>To be successful in this role you have:</strong></p><ul><li>10+ years of software engineering experience with a track record of delivering complex enterprise products.</li><li>Strong expertise in modern front-end technologies (JavaScript, TypeScript, React, Web Components, modern UI architecture).</li><li>Strong backend engineering experience with distributed systems, APIs, microservices, and cloud-native architectures.</li><li>Demonstrated ability to design systems that scale to enterprise workloads.</li><li>Experience leading technical initiatives spanning multiple teams without direct authority.</li><li>Deep understanding of software design principles, architecture patterns, performance optimization, and system reliability.</li><li>Strong communication skills with the ability to influence senior technical and business stakeholders.</li></ul><p>Preferred Qualifications</p><ul><li>Experience building products on the ServiceNow platform.</li><li>Strong understanding of Generative AI, LLMs, RAG architectures, AI agents, vector databases, and prompt engineering.</li><li>Experience integrating AI capabilities into customer-facing enterprise products.</li><li>Knowledge of cloud platforms and modern DevOps practices.</li><li>Experience with analytics, experimentation, telemetry, and data-driven product development.</li></ul><p>What Success Looks Like</p><ul><li>Shapes the technical vision for major product areas.</li><li>Delivers architectures that enable rapid innovation while maintaining quality and scale.</li><li>Drives adoption of AI capabilities that create measurable customer value.</li><li>Raises engineering standards across the organization through technical leadership and mentorship.</li><li>Becomes a trusted technical advisor for both engineering and product leadership.</li></ul>"
+      },
+      "additionalInformation": {
+        "title": "Additional Information",
+        "text": "<p><strong>Work Personas</strong></p><p>We approach our distributed world of work with flexibility and trust. Work personas (flexible, remote, or required in office) are categories that are assigned to ServiceNow employees depending on the nature of their work and their assigned work location. <a href=\"https://careers.servicenow.com/life-at-servicenow#workpersonas\" rel=\"noopener noreferrer\"><u>Learn more here</u></a>. To determine eligibility for a work persona, ServiceNow may confirm the distance between your primary residence and the closest ServiceNow office using a third-party service.</p><p><strong>Equal Opportunity Employer</strong></p><p>ServiceNow is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to race, color, creed, religion, sex, sexual orientation, national origin or nationality, ancestry, age, disability, gender identity or expression, marital status, veteran status, or any other category protected by law. In addition, all qualified applicants with arrest or conviction records will be considered for employment in accordance with legal requirements.&#xa0;</p><p><strong>Accommodations</strong></p><p>We strive to create an accessible and inclusive experience for all candidates. If you require a reasonable accommodation to complete any part of the application process, or are unable to use this online application and need an alternative method to apply, please contact <a href=\"mailto:globaltalentss@servicenow.com\" rel=\"noopener noreferrer\">globaltalentss@servicenow.com </a>for assistance.&#xa0;</p><p><strong>Export Control Regulations</strong></p><p>For positions requiring access to controlled technology subject to export control regulations, including the U.S. Export Administration Regulations (EAR), ServiceNow may be required to obtain export control approval from government authorities for certain individuals. All employment is contingent upon ServiceNow obtaining any export license or other approval that may be required by relevant export control authorities.&#xa0;</p><p>From Fortune. ©2026 Fortune Media IP Limited. All rights reserved. Used under license. .&#xa0;</p>"
+      }
+    }
+  },
+  "active": true,
+  "visibility": "PUBLIC",
+  "industry": {
+    "id": "it_and_services",
+    "label": "Information Technology And Services"
+  },
+  "function": {
+    "id": "engineering",
+    "label": "Engineering"
+  },
+  "department": {
+    "id": 2294038,
+    "label": "Engineering, Infrastructure and Operations"
+  },
+  "experienceLevel": {
+    "id": "not_applicable",
+    "label": "Not Applicable"
+  },
+  "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+  },
+  "language": {
+    "code": "en",
+    "label": "English",
+    "labelNative": "English (US)"
+  }
+}

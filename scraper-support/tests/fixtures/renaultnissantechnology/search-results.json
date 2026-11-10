@@ -1,0 +1,46 @@
+{
+  "result": "Success",
+  "data": {
+    "Report_Entry": [
+      {
+        "Company": "RNTBCI PL",
+        "contractType": "ALL_EMPL_TYPE_Regular",
+        "jobFamilyGroup": "N - Information Technologies & Systems",
+        "jobPostingDescription": "<p><b>Role Overview:</b></p><p>Strategic Data Governance Leader with proven expertise in establishing and enforcing data management frameworks, policies, and standards.</p><p><b>Experience and Skills Required: </b></p><ul><li>Bachelor’s or Master’s degree in Information Systems, Data Science, Computer Science, or related field.</li><li>10&#43; years of experience in data governance, data management, or IT leadership.</li></ul><p><b>Responsibilities: </b></p><ul><li>Design and implement enterprise-wide data governance frameworks and policies.</li><li>Ensure compliance with global data regulations such as GDPR, CCPA, and industry-specific standards.</li></ul>",
+        "jobPostingTitle": "Data Governance Leader (Deputy Manager)",
+        "jobPostingUrl": "https://alliancewd.wd3.myworkdayjobs.com/renault-group-careers/job/Chennai/Data-Governance-Leader--Deputy-Manager-_JOBREQ_50237852-1",
+        "jobRequisitionId": "JOBREQ_50237852",
+        "jobpostingID": "JOB_POSTING-3-87777",
+        "location": "Chennai",
+        "locationCountry": "India",
+        "startDate": "2026-06-05"
+      },
+      {
+        "Company": "RNTBCI PL",
+        "contractType": "ALL_EMPL_TYPE_Regular",
+        "jobFamilyGroup": "T - Research & Development",
+        "jobPostingDescription": "<p><b>Role Summary:</b><br />Dynatrace administration across GCP infrastructure and applications.</p><p><b>Key Responsibilities:</b></p><ul><li>Define standards for <b>custom metrics</b>, anomaly detection, and AI-driven problem analysis.</li><li>Automate monitoring deployments and configurations using <b>Terraform and GitOps principles</b>.</li></ul>",
+        "jobPostingTitle": "Cloud Support Engineer  - Level 3 (Senior Engineer)",
+        "jobPostingUrl": "https://alliancewd.wd3.myworkdayjobs.com/renault-group-careers/job/Chennai/Cloud-Support-Engineer----Level-3--Senior-Engineer-_JOBREQ_50242089",
+        "jobRequisitionId": "JOBREQ_50242089",
+        "jobpostingID": "JOB_POSTING-3-87782",
+        "location": "Chennai",
+        "locationCountry": "India",
+        "startDate": "2026-06-05"
+      },
+      {
+        "Company": "RNTBCI PL",
+        "contractType": "ALL_EMPL_TYPE_Regular",
+        "jobFamilyGroup": "T - Research & Development",
+        "jobPostingDescription": "<p>Calibration engineer for alliance programs.</p>",
+        "jobPostingTitle": "Calibration Engineer",
+        "jobPostingUrl": "https://alliancewd.wd3.myworkdayjobs.com/renault-group-careers/job/Paris/Calibration-Engineer_JOBREQ_00000001",
+        "jobRequisitionId": "JOBREQ_00000001",
+        "jobpostingID": "JOB_POSTING-3-99999",
+        "location": "Paris",
+        "locationCountry": "France",
+        "startDate": "2026-06-11"
+      }
+    ]
+  }
+}

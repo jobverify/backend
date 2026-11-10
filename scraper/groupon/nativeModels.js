@@ -6,10 +6,11 @@ import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.j
 
 export const ENTRY='https://www.grouponcareers.com/',PRIMARY='https://careers.groupon.com/',API='https://api-core.livingsocial.com/careers/jobs'
 export const MODULES={main:{path:'index-Ax6y42Wp.js',sha:'a1ed719fbfef73ef23b6e8b3cd99540aa6430d743289d24c26158fa034ca27d1'},origins:{path:'src-D1ipTgb0.js',sha:'d2fe89a21723b6af3dca2e6f8f672575d45a19b43ed9dbb28ccbc524f6f61005'},roles:{path:'page-D1ud1n30.js',sha:'31d3a164851b495cc2654ae7531d95f2ba29b697300475629334741ef8bd0d43'},detail:{path:'useJob-CUjdKsOP.js',sha:'ea5dcaeb284a5a4ab5f6a267c9ef665181f1bcf9e6acb403518958f75d505dd7'},locations:{path:'locations-C3ZnT-yL.js',sha:'f8cc099c0deb019e88e81611f1e496878de18723dcb971e5206b9d9ece35b971'}}
-// The two exact published clients share the reviewed production GET and full
+// These exact published clients share the reviewed production GET and full
 // criteria contracts. The declared entry selects its entire matching graph.
 export const CURRENT_MODULES={main:{path:'index-kQ8lO2tS.js',sha:'fcbbfbc2e5eed21787ebbc1a187cbfbfd0d2d9aa3a64238085e6b517afe07204'},origins:{path:'src-w5C0Sia3.js',sha:'a493598602e7499fd8b5e8fef89711d999d8c9ef8f4844be9881f1e9a0a4caf0'},roles:{path:'page-Dp0bProt.js',sha:'ae52e5cef72868d9a9894999ef6f4411687b1890b7c98361baa07e512df0bab0'},detail:{path:'useJob-vB8fc8As.js',sha:'e4301da6b22e1454910bd37a3d4203182a26052f4a9775946cd11d8895de2565'},locations:MODULES.locations}
-export const MODULE_PROFILES=[MODULES,CURRENT_MODULES]
+export const CURRENT_20261110_MODULES={main:{path:'index-Doyq3TRB.js',sha:'3937e4ee67292fed831755b6c5a25f47ba592d342f96193b0d5069502afc254b'},origins:{path:'src-dGgtAKLy.js',sha:'580f573465192b3a79cdcd6c62d92f12ef94865ef3d29a993abd2298dad41b03'},roles:{path:'page-DkBDFwow.js',sha:'e7ff4016b3caaff126d848cccd58a6f89d65da3d562e9078040123b2a6771439'},detail:{path:'useJob-Dd5siOF_.js',sha:'4466fbe2e23e0ee22b0a00df9a69b075e0fa356bab8a850ed1e11821be579086'},locations:MODULES.locations}
+export const MODULE_PROFILES=[MODULES,CURRENT_MODULES,CURRENT_20261110_MODULES]
 export const profileModuleURL=(key,modules)=>new URL('assets/'+modules[key].path,PRIMARY).href
 export const moduleURL=key=>profileModuleURL(key,MODULES)
 export function profileForPublisher(value){

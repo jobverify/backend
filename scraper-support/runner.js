@@ -1812,19 +1812,6 @@ if (resolveExecutionPath(process.argv[1]) === directExecutionModulePath) {
     }
 
     const summary = await runAll({ stopSignal: shutdown.signal, preparedRun })
-    const legacyTableData = Object.keys(summary).map((source) => ({
-      Source: source,
-      Status: summary[source].success ? '✅ OK' : (summary[source].skipped ? '⏭️ Skip' : '❌ Fail'),
-      Jobs: summary[source].jobs || 0,
-      Status: summary[source].success
-        ? 'âœ… OK'
-        : (summary[source].skipped
-          ? 'â­ï¸ Skip'
-          : (summary[source].softFailure ? 'âš ï¸ Upstream' : 'âŒ Fail')),
-      New: summary[source].inserted || 0,
-      Updated: summary[source].updated || 0,
-      Time: `${((summary[source].durationMs || 0) / 1000).toFixed(1)}s`
-    }))
     const tableData = Object.keys(summary).map((source) => {
       const result = summary[source]
 

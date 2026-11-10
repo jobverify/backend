@@ -1,0 +1,29 @@
+{
+  "jobs": [
+    {
+      "id": "job-1",
+      "title": "Graduate Software Engineer",
+      "location": {
+        "displayName": "Bengaluru, India"
+      },
+      "applyUrl": "https://careers.example.com/jobs/job-1",
+      "requisitionId": "REQ-1",
+      "department": "Engineering",
+      "employmentType": "Full-time",
+      "experienceRequired": "0-1 years of experience"
+    },
+    {
+      "id": "job-2",
+      "title": "Contract QA Engineer",
+      "location": {
+        "displayName": "Pune, India"
+      },
+      "applyUrl": "https://careers.example.com/jobs/job-2",
+      "requisitionId": "REQ-2",
+      "department": "Quality Engineering",
+      "employmentType": "Contract",
+      "experienceRequired": "2-4 years of experience"
+    }
+  ],
+  "hasMore": true
+}

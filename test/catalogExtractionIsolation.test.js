@@ -40,6 +40,21 @@ test('isolated extraction rejects database access before a source can connect', 
   })
 })
 
+test('a direct source failure retains its redacted root cause without inventing inventory counts', async () => {
+  await withFixture(`export const run = async () => {
+    throw new Error('Native detail contract changed https://example.test/?token=PRIVATE_URL password="PRIVATE_PASSWORD"',
+      {cause: Object.assign(new Error('original native country is unavailable'), {code:'NATIVE_COUNTRY_MISSING'})});
+  }`, async ({ directory, provider }) => {
+    const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
+    assert.equal(row.outcome, 'extraction-failed')
+    assert.match(row.failureReason?.message || '', /Native detail contract changed/)
+    assert.equal(row.failureReason?.cause?.code, 'NATIVE_COUNTRY_MISSING')
+    assert.doesNotMatch(JSON.stringify(row), /PRIVATE_/)
+    assert.equal(row.rawJobs, null)
+    assert.equal(row.eligibleJobs, null)
+  })
+})
+
 test('native fetch failure is reported from bounded underlying evidence with unknown qualified counts', async t => {
   const fixture = `export const run = async () => {
     const error = new Error('Arrow native collection incomplete; cleanup forbidden');

@@ -18,7 +18,7 @@ const records = new Map(manifest.requests.map(receipt => {
 const page = records.get('https://cloudinary.com/careers/jobs').body
 const feedURL = 'https://api.lever.co/v0/postings/cloudinary?mode=json'
 const inline = readNativeDocument(page).nodes(node => node.tag === 'script' && node.raw?.includes('ACCOUNT_NAME'))[0].raw
-const minimal = `<div id="job-listings"></div><script>${inline}</script>`
+const minimal = `<select id="filter-location"></select><select id="filter-team"></select><button id="clear-filters"></button><div id="job-listings"></div><script>${inline}</script>`
 
 test('captured active Cloudinary renderer binds the exact Lever account through its current fetch data flow', () => {
   assert.deepEqual(activeLeverCareersFeeds(readNativeDocument(page)), [feedURL])
@@ -37,6 +37,7 @@ test('quoted endpoints, inactive scripts and an uncalled or broken renderer cann
     minimal.replace('renderJobs(jobs);', 'renderJobs([]);'),
     minimal.replace('\ninitJobBoard();', '\n// initJobBoard();'),
     minimal.replace('id="job-listings"', 'id="unrelated"'),
+    minimal.replace('id="filter-location"', 'id="unrelated-filter"'),
     `<div id="job-listings"></div><script>const example = ${JSON.stringify(feedURL)}</script>`,
   ]
   for (const html of mutations) {

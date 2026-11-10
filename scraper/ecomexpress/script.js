@@ -1,5 +1,4 @@
-import http from 'node:http'
-import https from 'node:https'
+import { fetchVerifiedHttpsPage } from '../../scraper-support/utils/verifiedHttps.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -21,9 +20,6 @@ export const DELHIVERY_CONTINUE_URL = PROVIDER_METADATA.delhiveryContinueUrl
 
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
-const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308])
-const MAX_REDIRECTS = 10
 
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
@@ -64,78 +60,12 @@ const extractTitle = (html = '') => {
   return normalizeWhitespace(match?.[1]) || null
 }
 
-export const isRecoverableCertificateError = (error) => {
-  const message = String(error?.message ?? '')
-  const causeCode = String(error?.cause?.code ?? '')
-  const causeMessage = String(error?.cause?.message ?? '')
-  const combined = `${message} ${causeCode} ${causeMessage}`
-
-  return /CERT_HAS_EXPIRED/i.test(combined)
-    || /certificate has expired/i.test(combined)
-    || /SEC_E_CERT_EXPIRED/i.test(combined)
-}
-
-export const fetchPageAllowingExpiredCertificate = (url, redirectCount = 0) => new Promise((resolve, reject) => {
-  const targetUrl = new URL(url)
-  const transport = targetUrl.protocol === 'http:' ? http : https
-
-  const request = transport.request(targetUrl, {
-    method: 'GET',
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    rejectUnauthorized: false,
-  }, (response) => {
-    const status = response.statusCode ?? 0
-    const location = response.headers.location
-
-    if (
-      location
-      && REDIRECT_STATUSES.has(status)
-      && redirectCount < MAX_REDIRECTS
-    ) {
-      response.resume()
-      resolve(fetchPageAllowingExpiredCertificate(new URL(location, targetUrl).toString(), redirectCount + 1))
-      return
-    }
-
-    let html = ''
-    response.setEncoding('utf8')
-    response.on('data', (chunk) => {
-      html += chunk
-    })
-    response.on('end', () => {
-      resolve({
-        status,
-        url: targetUrl.toString(),
-        html,
-      })
-    })
-  })
-
-  request.setTimeout(15000, () => {
-    request.destroy(new Error(`Timed out fetching ${url}`))
-  })
-  request.on('error', reject)
-  request.end()
+export const fetchEcomExpressPage = (url, options = {}) => fetchVerifiedHttpsPage(url, {
+  ...options, allowedOrigins: ['https://www.ecomexpress.in', 'https://ecomexpress.in'],
+  headers: { 'User-Agent': USER_AGENT },
 })
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = fetchEcomExpressPage
 
 export const hasPublicJobsSignal = (html = '') =>
   PUBLIC_JOBS_SIGNAL_PATTERNS.some((pattern) => pattern.test(String(html ?? '')))
@@ -157,64 +87,31 @@ const isVerifiedLandingPage = (page = {}) =>
   && hasMergerLandingSignal(page.html)
   && !hasPublicJobsSignal(page.html)
 
-const fetchVerifiedPage = async (
-  url,
-  fetchPage,
-  fetchPageAllowingExpiredCertificateImpl,
-) => {
-  try {
-    return await fetchPage(url)
-  } catch (error) {
-    if (!isRecoverableCertificateError(error)) {
-      throw error
-    }
-
-    return fetchPageAllowingExpiredCertificateImpl(url)
-  }
-}
-
 export const createEcomExpressScraper = () => ({
   async run({
     fetchPage = defaultFetchPage,
-    fetchPageAllowingExpiredCertificate: fetchPageAllowingExpiredCertificateImpl = fetchPageAllowingExpiredCertificate,
   } = {}) {
-    const homepage = await fetchVerifiedPage(
-      HOMEPAGE_URL,
-      fetchPage,
-      fetchPageAllowingExpiredCertificateImpl,
-    )
+    const homepage = await fetchPage(HOMEPAGE_URL)
 
     if (!isVerifiedLandingPage(homepage)) {
       throw new Error('Ecom Express verified homepage no longer matches the known merger landing page')
     }
 
     for (const routeUrl of CHECKED_LANDING_PAGE_URLS.slice(1)) {
-      const routePage = await fetchVerifiedPage(
-        routeUrl,
-        fetchPage,
-        fetchPageAllowingExpiredCertificateImpl,
-      )
+      const routePage = await fetchPage(routeUrl)
 
       if (!isVerifiedLandingPage(routePage)) {
         throw new Error(`Ecom Express verified landing page route changed: ${routeUrl}`)
       }
     }
 
-    const robotsPage = await fetchVerifiedPage(
-      ROBOTS_TXT_URL,
-      fetchPage,
-      fetchPageAllowingExpiredCertificateImpl,
-    )
+    const robotsPage = await fetchPage(ROBOTS_TXT_URL)
 
     if (!isVerifiedLandingPage(robotsPage)) {
       throw new Error('Ecom Express verified robots.txt changed')
     }
 
-    const sitemapPage = await fetchVerifiedPage(
-      SITEMAP_URL,
-      fetchPage,
-      fetchPageAllowingExpiredCertificateImpl,
-    )
+    const sitemapPage = await fetchPage(SITEMAP_URL)
 
     if (!isVerifiedLandingPage(sitemapPage)) {
       throw new Error('Ecom Express verified sitemap changed')

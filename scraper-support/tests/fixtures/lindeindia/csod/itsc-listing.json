@@ -1,0 +1,540 @@
+{
+  "status": "Success",
+  "timestamp": "2026-10-24T17:19:27.9146396Z",
+  "data": {
+    "totalCount": 24,
+    "requisitions": [
+      {
+        "requisitionId": 33395,
+        "postingEffectiveDate": "9/18/2026",
+        "postingExpirationDate": "-",
+        "displayJobTitle": "Specialist / Senior Specialist - HR IT Application",
+        "locations": [
+          {
+            "city": "Kolkata",
+            "state": "West Bengal",
+            "country": "IN"
+          }
+        ],
+        "externalDescription": " You will be directly partnering with global stakeholders and consumers of the SAPFIM database for modifications and integration enhancements, working independently to design and meet their needs Also, will share technical responsibility for the HR Middleware servers that manage global HR integrations Will be responsible for the technical support of HR Linux servers in the Azure datacentre for key add-on modules of SAPHRON, namely Nakisa and Quick Document Builder (AQDB), aligning with Cloud Infrastructure Services team for lifecycle maintenance and third-party vendors for upgrades And create and maintain integration files for TLC (top-level comparison) between SAPHRON and the North America payroll systems, UltiPro Work on Troubleshooting, developing, and implementing resolutions to technical issues across the global HR landscape Also, working closely with the technical teams, manage day to day incidents logged in SMAX Incident Management tool Provide back up support for SAPHRON Externals Management functionality and process You will also support SOX controls, audit activities, and compliance requirements related to HR applications, integrations, and employee data "
+      }
+    ],
+    "filters": [
+      {
+        "filterType": "Country",
+        "doLocalize": true,
+        "items": [
+          {
+            "key": "in",
+            "text": "Country.IN",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "filterType": "State",
+        "doLocalize": false,
+        "items": [
+          {
+            "key": "west bengal",
+            "text": "West Bengal",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "filterType": "City",
+        "doLocalize": false,
+        "items": [
+          {
+            "key": "kolkata",
+            "text": "Kolkata",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "filterType": "DatePosted",
+        "doLocalize": true,
+        "items": [
+          {
+            "key": "Anytime",
+            "text": "Anytime",
+            "count": 24
+          }
+        ]
+      }
+    ],
+    "customFieldFilters": [
+      {
+        "id": "134",
+        "items": [
+          {
+            "key": "101",
+            "count": 20
+          },
+          {
+            "key": "100",
+            "count": 4
+          }
+        ]
+      },
+      {
+        "id": "139",
+        "items": [
+          {
+            "key": "133",
+            "count": 17
+          },
+          {
+            "key": "780",
+            "count": 6
+          },
+          {
+            "key": "132",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "140",
+        "items": [
+          {
+            "key": "144",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "145",
+        "items": [
+          {
+            "key": "972",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "151",
+        "items": [
+          {
+            "key": "2302",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "158",
+        "items": [
+          {
+            "key": "2303",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "159",
+        "items": [
+          {
+            "key": "155",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "183",
+        "items": [
+          {
+            "key": "181",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "191",
+        "items": [
+          {
+            "key": "185",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "205",
+        "items": [
+          {
+            "key": "870",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "235",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "240",
+        "items": [
+          {
+            "key": "299",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "251",
+        "items": [
+          {
+            "key": "2266",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "306",
+        "items": [
+          {
+            "key": "817",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "307",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "308",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "309",
+        "items": [
+          {
+            "key": "yes",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "320",
+        "items": [
+          {
+            "key": "916",
+            "count": 11
+          },
+          {
+            "key": "917",
+            "count": 8
+          },
+          {
+            "key": "915",
+            "count": 4
+          },
+          {
+            "key": "918",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "344",
+        "items": [
+          {
+            "key": "998",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "347",
+        "items": [
+          {
+            "key": "1518",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "360",
+        "items": [
+          {
+            "key": "1441",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "411",
+        "items": [
+          {
+            "key": "1508",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "412",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "430",
+        "items": [
+          {
+            "key": "no",
+            "count": 23
+          },
+          {
+            "key": "yes",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "498",
+        "items": [
+          {
+            "key": "1623",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "511",
+        "items": [
+          {
+            "key": "1775",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "520",
+        "items": [
+          {
+            "key": "1757",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "521",
+        "items": [
+          {
+            "key": "2265",
+            "count": 16
+          },
+          {
+            "key": "1765",
+            "count": 5
+          },
+          {
+            "key": "2193",
+            "count": 1
+          },
+          {
+            "key": "2263",
+            "count": 1
+          },
+          {
+            "key": "2264",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "522",
+        "items": [
+          {
+            "key": "1771",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "550",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "564",
+        "items": [
+          {
+            "key": "2026",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "565",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "566",
+        "items": [
+          {
+            "key": "no",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "567",
+        "items": [
+          {
+            "key": "2029",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "613",
+        "items": [
+          {
+            "key": "2040",
+            "count": 24
+          }
+        ]
+      },
+      {
+        "id": "655",
+        "items": [
+          {
+            "key": "2306",
+            "count": 15
+          }
+        ]
+      },
+      {
+        "id": "661",
+        "items": [
+          {
+            "key": "2404",
+            "count": 15
+          }
+        ]
+      },
+      {
+        "id": "662",
+        "items": [
+          {
+            "key": "2405",
+            "count": 12
+          }
+        ]
+      },
+      {
+        "id": "665",
+        "items": [
+          {
+            "key": "2644",
+            "count": 10
+          },
+          {
+            "key": "2617",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "666",
+        "items": [
+          {
+            "key": "2645",
+            "count": 10
+          },
+          {
+            "key": "2478",
+            "count": 1
+          },
+          {
+            "key": "2483",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "668",
+        "items": [
+          {
+            "key": "2642",
+            "count": 10
+          },
+          {
+            "key": "2489",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "687",
+        "items": [
+          {
+            "key": "2613",
+            "count": 10
+          },
+          {
+            "key": "2595",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "684",
+        "items": [
+          {
+            "key": "2643",
+            "count": 10
+          }
+        ]
+      },
+      {
+        "id": "667",
+        "items": [
+          {
+            "key": "2485",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "554",
+        "items": [
+          {
+            "key": "2005",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  }
+}

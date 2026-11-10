@@ -1,0 +1,90 @@
+{
+  "url": "https://www.supergaming.com/careers",
+  "finalUrl": "https://www.supergaming.com/careers",
+  "status": 200,
+  "capturedAt": "2026-10-23T04:45:16.957Z",
+  "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n<title>Careers — SuperGaming</title>\n<meta name=\"description\" content=\"Help us put the next billion players in the game. Write to careers@supergaming.com.\">\n<meta property=\"og:title\" content=\"Careers — SuperGaming\">\n<meta property=\"og:description\" content=\"Help us put the next billion players in the game. Write to careers@supergaming.com.\">\n<meta property=\"og:image\" content=\"assets/og-default.png\">\n<link rel=\"icon\" href=\"assets/favicon.png\" type=\"image/png\">\n<link rel=\"stylesheet\" href=\"assets/css/site.css?v=4\">\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX\"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>\n</head>\n<body>\n<header class=\"nav scrolled\">\n  <a class=\"nav__brand\" href=\"index.html\" aria-label=\"SuperGaming home\"><img class=\"badge\" src=\"assets/logo.png\" alt=\"SuperGaming\" width=\"324\" height=\"252\"></a>\n  <nav class=\"nav__links\" aria-label=\"Primary\">\n    <a href=\"games.html\">Games</a>\n    <a href=\"superplatform.html\">SuperPlatform</a>\n    <a href=\"press.html\">Press</a>\n    <a href=\"careers.html\" aria-current=\"page\">Careers</a>\n    <a href=\"contact.html\">Contact</a>\n  </nav>\n  <button class=\"nav__burger\" aria-label=\"Menu\"><span></span></button>\n</header>\n<main class=\"human-view\">\n  <section class=\"page-hero\">\n    <div class=\"wrap\">\n      <span class=\"eyebrow\">Careers</span>\n      <h1>Help us put the<br>next billion players<br>in the game.</h1>\n    </div>\n  </section>\n  <section class=\"section\">\n    <div class=\"wrap\">\n      <div class=\"band\" style=\"align-items:flex-start\">\n        <div class=\"reveal\">\n          <p class=\"band__body\" style=\"margin-top:0;font-size:17px;color:#c4c4c4\">SuperGaming is a Series B-funded game development company headquartered in Singapore with studios in Pune, India. Our founders have been building gaming startups for over a decade and were among the first Indian companies to get into Y Combinator.</p>\n          <p class=\"band__body\" style=\"font-size:17px;color:#c4c4c4\">Making games is the highest form of craft for a software engineer. You'll work at the forefront of realtime multiplayer tech, on games played by millions — Indus, Prime Rush, MaskGun — and on SuperPlatform, the engine that runs them all.</p>\n        </div>\n        <div class=\"reveal\" data-d=\"1\">\n          <p class=\"proof-line\">10+ years. 100+ games.<br>200 million installs globally.</p>\n        </div>\n      </div>\n      <div style=\"margin-top:clamp(40px,6vw,72px)\">\n        <div class=\"sec-head reveal\"><div><span class=\"eyebrow\">Why join</span></div></div>\n        <div class=\"reasons reveal\">\n          <div class=\"reason\"><span class=\"rn\">01</span><p>Your work reaches millions of players.</p></div>\n          <div class=\"reason\"><span class=\"rn\">02</span><p>Top salary &amp; benefits.</p></div>\n          <div class=\"reason\"><span class=\"rn\">03</span><p>A team that ships.</p></div>\n        </div>\n        <div class=\"bigcta reveal\">\n          <p>Want in?</p>\n          <a class=\"btn btn--solid\" style=\"margin-top:28px\" href=\"mailto:careers@supergaming.com?subject=Joining%20SuperGaming\">careers@supergaming.com <span class=\"arr\">→</span></a>\n        </div>\n      </div>\n    </div>\n  </section>\n</main>\n<div class=\"machine-view\">\n  <div class=\"machine-bar\"><span class=\"eyebrow\">Machine-readable &middot; careers.md</span></div>\n  <pre data-md># SuperGaming — Careers\n\nHelp us put the next billion players in the game.\n\nSuperGaming is a Series B-funded game development company headquartered in Singapore with\nstudios in Pune, India. Our founders have been building gaming startups for over a decade\nand were among the first Indian companies to get into Y Combinator.\n\n10+ years. 100+ games. 200 million installs globally.\n\nMaking games is the highest form of craft for a software engineer. You'll work at the\nforefront of realtime multiplayer tech, on games played by millions — Indus, Prime Rush,\nMaskGun — and on SuperPlatform, the engine that runs them all.\n\nWhy join: your work reaches millions of players · top salary &amp; benefits · a team that ships.\n\nWant in? Write to careers@supergaming.com (subject: \"Joining SuperGaming\").\n</pre>\n</div>\n<footer class=\"footer\">\n  <div class=\"wrap\">\n    <div class=\"footer__top\">\n      <div class=\"footer__brand footer__col\">\n        <img class=\"badge\" src=\"assets/logo.png\" alt=\"SuperGaming\" width=\"324\" height=\"252\">\n        <p class=\"footer__boiler\">SuperGaming is a Series B-funded game development company headquartered in Singapore with studios in Pune, India.</p>\n        <div style=\"margin-top:24px;display:flex;flex-direction:column;gap:12px;align-items:flex-start\"><a class=\"link-arrow\" href=\"https://play.google.com/store/apps/dev?id=5441715344114404890\" target=\"_blank\" rel=\"noopener\">SuperGaming on Google Play <span class=\"arr\">&rarr;</span></a><a class=\"link-arrow\" href=\"https://apps.apple.com/np/developer/supergaming/id1517249224\" target=\"_blank\" rel=\"noopener\">SuperGaming on App Store <span class=\"arr\">&rarr;</span></a></div>\n      </div>\n      <div class=\"footer__col\"><h4>Studios</h4>\n        <address class=\"footer__addr\"><b>Singapore &middot; HQ</b>SuperGaming Pte Ltd<br>200 Jalan Sultan, #11-01 Textile Centre<br>Singapore 199018</address>\n        <address class=\"footer__addr\"><b>Pune &middot; Studio</b>SuperGaming Indus Studio, Charlie's House<br>Viman Nagar, Pune<br>Maharashtra 411014, India</address>\n      </div>\n      <div class=\"footer__col\"><h4>Contact</h4>\n        <ul><li><a href=\"mailto:partnerships@supergaming.com\">partnerships@supergaming.com</a></li><li><a href=\"mailto:press@supergaming.com\">press@supergaming.com</a></li><li><a href=\"mailto:careers@supergaming.com\">careers@supergaming.com</a></li><li><a href=\"mailto:support@supergaming.com\">support@supergaming.com</a></li></ul>\n      </div>\n    </div>\n    <div class=\"footer__bottom\">\n      <div class=\"footer__socials\"><a href=\"https://www.instagram.com/supergaming_npc/\" target=\"_blank\" rel=\"noopener\">Instagram</a><a href=\"https://twitter.com/supergamingnpc\" target=\"_blank\" rel=\"noopener\">X</a><a href=\"https://www.youtube.com/@supergaming6686\" target=\"_blank\" rel=\"noopener\">YouTube</a><a href=\"https://in.linkedin.com/company/supg\" target=\"_blank\" rel=\"noopener\">LinkedIn</a></div>\n      <div class=\"footer__legal\"><div class=\"hm-toggle\" data-hm><button data-hm-btn=\"human\" class=\"active\">Human</button><button data-hm-btn=\"machine\">Machine</button></div><a href=\"privacy.html\">Privacy</a><a href=\"tos.html\">Terms</a><span class=\"footer__copy\">&copy; <span data-year>2026</span> SuperGaming Pte Ltd. All rights reserved.</span></div>\n    </div>\n  </div>\n</footer>\n<script src=\"assets/js/site.js?v=4\"></script>\n</body>\n</html>",
+  "text": "Games\nSuperPlatform\nPress\nCareers\nContact\nCAREERS\nHELP US PUT THE\nNEXT BILLION PLAYERS\nIN THE GAME.\n\nSuperGaming is a Series B-funded game development company headquartered in Singapore with studios in Pune, India. Our founders have been building gaming startups for over a decade and were among the first Indian companies to get into Y Combinator.\n\nMaking games is the highest form of craft for a software engineer. You'll work at the forefront of realtime multiplayer tech, on games played by millions — Indus, Prime Rush, MaskGun — and on SuperPlatform, the engine that runs them all.\n\n10+ years. 100+ games.\n200 million installs globally.\n\nWHY JOIN\n01\n\nYour work reaches millions of players.\n\n02\n\nTop salary & benefits.\n\n03\n\nA team that ships.\n\nWANT IN?\n\nCAREERS@SUPERGAMING.COM\n→\n\nSuperGaming is a Series B-funded game development company headquartered in Singapore with studios in Pune, India.\n\nSUPERGAMING ON GOOGLE PLAY\n→\nSUPERGAMING ON APP STORE\n→\nSTUDIOS\nSINGAPORE · HQ\nSuperGaming Pte Ltd\n200 Jalan Sultan, #11-01 Textile Centre\nSingapore 199018\nPUNE · STUDIO\nSuperGaming Indus Studio, Charlie's House\nViman Nagar, Pune\nMaharashtra 411014, India\nCONTACT\npartnerships@supergaming.com\npress@supergaming.com\ncareers@supergaming.com\nsupport@supergaming.com\nInstagram\nX\nYouTube\nLinkedIn\nHuman\nMachine\nPrivacy\nTerms\n© 2026 SuperGaming Pte Ltd. All rights reserved.",
+  "links": [
+    {
+      "text": "",
+      "href": "https://www.supergaming.com/index.html"
+    },
+    {
+      "text": "Games",
+      "href": "https://www.supergaming.com/games.html"
+    },
+    {
+      "text": "SuperPlatform",
+      "href": "https://www.supergaming.com/superplatform.html"
+    },
+    {
+      "text": "Press",
+      "href": "https://www.supergaming.com/press.html"
+    },
+    {
+      "text": "Careers",
+      "href": "https://www.supergaming.com/careers.html"
+    },
+    {
+      "text": "Contact",
+      "href": "https://www.supergaming.com/contact.html"
+    },
+    {
+      "text": "careers@supergaming.com →",
+      "href": "mailto:careers@supergaming.com?subject=Joining%20SuperGaming"
+    },
+    {
+      "text": "SuperGaming on Google Play →",
+      "href": "https://play.google.com/store/apps/dev?id=5441715344114404890"
+    },
+    {
+      "text": "SuperGaming on App Store →",
+      "href": "https://apps.apple.com/np/developer/supergaming/id1517249224"
+    },
+    {
+      "text": "partnerships@supergaming.com",
+      "href": "mailto:partnerships@supergaming.com"
+    },
+    {
+      "text": "press@supergaming.com",
+      "href": "mailto:press@supergaming.com"
+    },
+    {
+      "text": "careers@supergaming.com",
+      "href": "mailto:careers@supergaming.com"
+    },
+    {
+      "text": "support@supergaming.com",
+      "href": "mailto:support@supergaming.com"
+    },
+    {
+      "text": "Instagram",
+      "href": "https://www.instagram.com/supergaming_npc/"
+    },
+    {
+      "text": "X",
+      "href": "https://twitter.com/supergamingnpc"
+    },
+    {
+      "text": "YouTube",
+      "href": "https://www.youtube.com/@supergaming6686"
+    },
+    {
+      "text": "LinkedIn",
+      "href": "https://in.linkedin.com/company/supg"
+    },
+    {
+      "text": "Privacy",
+      "href": "https://www.supergaming.com/privacy.html"
+    },
+    {
+      "text": "Terms",
+      "href": "https://www.supergaming.com/tos.html"
+    }
+  ],
+  "scripts": [
+    "https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX",
+    "https://www.supergaming.com/assets/js/site.js?v=4"
+  ]
+}

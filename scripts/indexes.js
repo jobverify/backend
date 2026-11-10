@@ -4,12 +4,16 @@
  */
 
 import path from "path";
-import { fileURLToPath, pathToFileURL } from "url";
-import dotenv from "dotenv";
+import { pathToFileURL } from "url";
 import mongoose from "mongoose";
+import { configureMongoDns } from '../src/utils/mongoDns.js';
 
-const currentDir = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(currentDir, "../.env"), quiet: true });
+// Model initialization runs when a connection opens. Disable its implicit DDL
+// before importing any models, including when the command is only planning.
+mongoose.set('autoCreate', false);
+mongoose.set('autoIndex', false);
+
+await import('../loadEnv.js');
 
 const { default: Job } = await import("../src/models/Job.js");
 const { default: JobAlertOutbox } = await import('../src/models/JobAlertOutbox.js');
@@ -34,6 +38,17 @@ const { default: CVRevision } = await import('../src/models/CVRevision.js');
 const { default: TailoredResume } = await import('../src/models/TailoredResume.js');
 const { default: ResumeUsage } = await import('../src/models/ResumeUsage.js');
 const { default: RateLimitBucket } = await import('../src/models/RateLimitBucket.js');
+const { default: PendingUser } = await import('../src/models/PendingUser.js');
+const { default: PlanPurchase } = await import('../src/models/PlanPurchase.js');
+const { default: PipelineConfiguration } = await import('../src/models/PipelineConfiguration.js');
+const { default: PipelineRun } = await import('../src/models/PipelineRun.js');
+const { default: SiteSettings } = await import('../src/models/SiteSettings.js');
+const { default: ScraperStatus } = await import('../src/models/ScraperStatus.js');
+const { default: ScraperSchedule } = await import('../src/models/ScraperSchedule.js');
+const { default: TelegramLinkToken } = await import('../src/models/TelegramLinkToken.js');
+const { default: TelegramChannelSchedule } = await import('../src/models/TelegramChannelSchedule.js');
+const { default: TelegramChannelDelivery } = await import('../src/models/TelegramChannelDelivery.js');
+const { default: TelegramBroadcastSettings } = await import('../src/models/TelegramBroadcastSettings.js');
 
 const MODELS = [
   ["Job", Job],
@@ -59,6 +74,17 @@ const MODELS = [
   ['TailoredResume', TailoredResume],
   ['ResumeUsage', ResumeUsage],
   ['RateLimitBucket', RateLimitBucket],
+  ['PendingUser', PendingUser],
+  ['PlanPurchase', PlanPurchase],
+  ['PipelineConfiguration', PipelineConfiguration],
+  ['PipelineRun', PipelineRun],
+  ['SiteSettings', SiteSettings],
+  ['ScraperStatus', ScraperStatus],
+  ['ScraperSchedule', ScraperSchedule],
+  ['TelegramLinkToken', TelegramLinkToken],
+  ['TelegramChannelSchedule', TelegramChannelSchedule],
+  ['TelegramChannelDelivery', TelegramChannelDelivery],
+  ['TelegramBroadcastSettings', TelegramBroadcastSettings],
 ];
 
 const formatIndex = (idx) => {
@@ -165,8 +191,10 @@ export async function runIndexManagement({
   try {
     ensureSafeApply({ applyMode, dryRun });
     if (shouldConnect) {
-      const { default: connectDB } = await import("../db/db.js");
-      await connectDB();
+      if (mongoose.connection.readyState !== 0) throw new Error('Index planner requires its own disconnected process.');
+      if (!process.env.MONGO_URI) throw new Error('MONGO_URI is required.');
+      configureMongoDns();
+      await mongoose.connect(process.env.MONGO_URI, { autoCreate: false, autoIndex: false });
     }
 
     log(

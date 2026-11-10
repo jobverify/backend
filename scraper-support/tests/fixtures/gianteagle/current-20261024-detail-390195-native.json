@@ -1,0 +1,345 @@
+{
+  "jobDetail": {
+    "status": 200,
+    "hits": 1,
+    "totalHits": 1,
+    "data": {
+      "job": {
+        "teamName": "Digital Domain Services (Jon Berkowitz)",
+        "storeNumber": "IndiaCOR",
+        "hasSecondaryInternalQuestionnaire": "no",
+        "ml_skills": [
+          "python",
+          "software development",
+          "unit testing",
+          "system integration",
+          "regression testing",
+          "parallel testing",
+          "llm integration",
+          "langchain",
+          "deep learning frameworks",
+          "large language models",
+          "flowcharting",
+          "debugging",
+          "system implementation",
+          "application support",
+          "training delivery",
+          "management reporting",
+          "vendor management",
+          "customer requirements analysis",
+          "problem solving",
+          "team collaboration"
+        ],
+        "companyName": "Giant Eagle",
+        "jobCode": "31226",
+        "locationType": "Corporate Office",
+        "ml_title": "Software Engineer",
+        "category_raw": "Information Technology",
+        "standardisedCountry": "India",
+        "type": "Full time",
+        "descriptionTeaser": "Job SummaryAs a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, ",
+        "test3f": "false",
+        "state": "Karnātaka",
+        "brand": "Corporate",
+        "jobPostingSite": "Giant Eagle Bangalore",
+        "jobUpdatedDate": "2026-08-26T01:05:58.337+0000",
+        "siteType": "external",
+        "standardised_multi_location": [
+          {
+            "standardisedMapQueryLocation": "Motganhalli,Karnataka,India",
+            "standardisedStateCode": "KA",
+            "standardisedCity": "Motganhalli",
+            "latitude": "13.00445",
+            "latlong": {
+              "lon": 77.31221,
+              "lat": 13.00445
+            },
+            "isLocationStandardized": true,
+            "standardisedCountry": "India",
+            "standardisedTimezone": "+05:30 UTC",
+            "standardisedState": "Karnataka",
+            "longitude": "77.31221"
+          }
+        ],
+        "secondaryQuestionnaireId": "",
+        "aboutUS": "At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.",
+        "standardisedMapQueryLocation": "Motganhalli,Karnataka,India",
+        "jobProfile": "Engineer, Software",
+        "Rate": "",
+        "uniqueValue": {
+          "jobId": "390195",
+          "refNum": "GIEAUS",
+          "locale": "hi_IN",
+          "siteType": "external"
+        },
+        "uniqueKey": "GIEAUS390195externalhi_IN",
+        "internalCategoryId": "GIEAUS_Information_Technology",
+        "jobUniqueIdentifier": "refNum,jobId,siteType,locale",
+        "primaryInternalQuestionnaireId": "QUESTIONNAIRE-3-734",
+        "ml_job_overview": {
+          "summary": "As a Software Engineer at Giant Eagle in India, you will play a pivotal role in designing, developing, modifying, and evaluating programming for systems and applications. You will be responsible for analysing existing programmes, formulating logic for new systems, and preparing documentation and approval processes. The role involves collaborating with project teams to ensure customer requirements are met efficiently and cost-effectively. Compensation for this position ranges from $1,368,700 to $1,662,000 per year, with eligibility for health, vision, and dental insurance, paid time off, 401(k), bonus potential, and additional benefits. This is an opportunity to grow within a supportive, mission-driven environment focused on quality and innovation.",
+          "skills": [
+            "Experience with professional concepts and application of Giant Eagle policies and procedures.",
+            "Ability to work on problems of moderate scope, exercising judgement within defined procedures and practices.",
+            "Familiarity with coding languages and tools utilised within the team, including Python and LLM frameworks.",
+            "Experience working with Large Language Models such as GPT, Llama2, or similar architectures, and knowledge of LLM-integration frameworks like Langchain.",
+            "Experience in fine-tuning LLMs for specific tasks and providing training to application support team members.",
+            "Ability to complete all facets of unit, system, regression, and parallel testing for applications.",
+            "Strong communication skills with non-IT personnel and the ability to maintain effective communication with team members.",
+            "Experience in providing 24x7 support to business customers and participating in off-hour support rotations.",
+            "Familiarity with industry trends and new products to evaluate opportunities for maximising IT investment."
+          ],
+          "responsibilities": [
+            "Responsible for designing, developing, modifying, debugging, and evaluating programming in systems and applications.",
+            "Play a key role in analysing existing programmes or formulating logic for new systems, including preparing flowcharts and coding/testing/debugging programmes.",
+            "Take ownership of developing conversion and system implementation plans, as well as preparing and obtaining approval of systems and programming documentation.",
+            "Deliver high-quality changes in development, maintenance, and system standards, and train users in system conversion and implementation.",
+            "Collaborate cross-functionally to participate in project teams, ensuring customer requirements are met in a timely and cost-effective manner.",
+            "Lead efforts to install, configure, test, and document custom-developed and vendor-packaged applications.",
+            "Help drive innovation in providing minor development for enhancements and reporting, and completing all facets of unit, system, regression, and parallel testing.",
+            "Provide training and turnover to application support team members and produce management reports accurately and on time.",
+            "Maintain communications with group and team members, assist other team members as required, and participate in education and on-the-job training programmes.",
+            "Execute off-hour support responsibilities and participate in off-hours support rotations."
+          ],
+          "education": [
+            "A Bachelor’s Degree is desired for this position."
+          ]
+        },
+        "multi_category": [
+          {
+            "primaryLocaleCategory": "Information Technology",
+            "internalCategoryId": "GIEAUS_Information_Technology",
+            "category_raw": "Information Technology",
+            "category": "Information Technology"
+          }
+        ],
+        "reqId": "390195",
+        "ai_summary": "As a Software Engineer at Giant Eagle in India, you will be responsible for designing, developing, modifying, and debugging programming in systems and applications. The role involves analysing existing programmes, preparing flowcharts, coding, testing, and providing training to users. You will also contribute to system implementation plans, participate in project teams, and ensure customer requirements are met efficiently. The position requires 3–5 years of experience, a Bachelor’s degree, and familiarity with coding languages such as Python, LLM frameworks, and integration tools like Langchain. Experience with Large Language Models (LLMs) and fine-tuning them for specific tasks is desirable. The salary range is $136,870–$166,200 per year, with additional benefits available.",
+        "displayCareerSite": true,
+        "standardisedTimezone": "+05:30 UTC",
+        "ml_country": "India",
+        "city": "",
+        "jobFamilyGroup": "Information Technology",
+        "visibilityLocale": [
+          "hi_IN"
+        ],
+        "latitude": "13.00445",
+        "hasSecondaryQuestionnaire": "no",
+        "multi_location": [
+          {
+            "country": "India",
+            "cityState": "Karnātaka",
+            "address": "560045, Karnātaka, India",
+            "locationName": "India Corporate Office",
+            "city": "",
+            "postalCode": "560045",
+            "latlong": {
+              "lon": 77.31221,
+              "lat": 13.00445
+            },
+            "latitude": "13.00445",
+            "stateCountry": "Karnātaka, India",
+            "locationId": "IndiaCOR",
+            "location": "India Corporate Office",
+            "state": "Karnātaka",
+            "cityCountry": "India",
+            "cityStateCountry": "Karnātaka, India",
+            "mapQueryLocation": "560045, Karnātaka, India",
+            "longitude": "77.31221"
+          }
+        ],
+        "locationId": "IndiaCOR",
+        "AdditionaAboutUs1": "",
+        "address": "560045, Karnātaka, India",
+        "locationName": "India Corporate Office",
+        "AdditionaAboutUs2": "",
+        "jobPostingSiteId": "GEBExternalcareers",
+        "isTranslated": false,
+        "hasPrimaryInternalQuestionnaire": "yes",
+        "ml_language_fullform": "english",
+        "cmsJobId": "JOB_POSTING-3-181686",
+        "applyUrl": "https://gianteagle.wd503.myworkdayjobs.com/GEBExternalcareers/job/India-Corporate-Office/Engineer--Software_390195-1/apply",
+        "ml_Description": "As a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, devising logic procedures, preparing flowcharting, performing coding and testing/debugging programs. You will also develop conversion and system implementation plans, as well as prepare and obtain approval of systems and programming documentation. You will recommend] changes in development, maintenance and system standards and trains users in conversion and implementation of systems. You will participate on project teams to develop systems and applications, which will assist in ensuring customer requirements are met in a timely and cost-effective manner. Use professional concepts and apply Giant Eagle policies and procedures to resolve a variety of issues. Work on problems of moderate scope where analysis of situations or data requires review of a variety of factors. Exercise judgment within defined procedures and practices to determine appropriate action. Receive general direction and instructions on routine work, and detailed instructions on new projects or assignments. Take charge of the installation, configuration, testing and documentation of custom-developed and vendor-packaged applications. Provide minor development for enhancements and reporting. Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes. Some experience working with Large Language Models (LLMs) such as GPT, Llama2 or similar architectures. Knowledge of LLM-integration frameworks such as Langchain, and expierence in fine – tuning these models for specific tasks. Familiarity with programming languages such as Python and experience with LLM, deep learning frameworks. Complete all facets of unit, system, regression and parallel testing for the applications. Provide training and turnover to application support Team Members. Produce all management reports completely, accurately and on time. Maintain cognizance of industry trends and new products to evaluate opportunities for achieving maximum effective usage of Company's investment in information technology. Prevent unauthorized access to information, assets or restricted areas and report any attempts. Report any kinds of problems to the appropriate management in a timely manner. When required, assist in providing 24x7 support to our business customers. Ability to communicate well with non-IT personnel. Maintain communications with Group/Team members. Assist other Team Members as required to ensure customer requirements are met. Participate in all education and on-the-job training programs as recommended by IS management. Execute off-hour support responsibilities and participate in off-hours support rotations. Job Summary. Experience Required: 3 to 5 years. Education Desired: Bachelors Degree. Complete other duties as assigned. About Us. ",
+        "externalApply": false,
+        "cityState": "Karnātaka",
+        "country": "India",
+        "primaryLocationReference": "India Corporate Office",
+        "postalCode": "560045",
+        "hasPrimaryQuestionnaire": "yes",
+        "timeType": "Full time",
+        "isEverGreenReq": "0",
+        "source": "WORKDAY",
+        "jobRequisitionId": "390195",
+        "indeedApplyTags": true,
+        "standardisedCity": "Motganhalli",
+        "locationAccuracyLevel": "city",
+        "jobFamily": "Software Engineering",
+        "visibilityType": "External",
+        "longitude": "77.31221",
+        "ats": "WORKDAY",
+        "isDerived": false,
+        "latlong": {
+          "lon": 77.31221,
+          "lat": 13.00445
+        },
+        "internalMobility": [
+          "external"
+        ],
+        "secondaryInternalQuestionnaireId": "",
+        "stateCountry": "Karnātaka, India",
+        "jobId": "390195",
+        "updatedByOfflineProcessing": true,
+        "refNum": "GIEAUS",
+        "profileId": "31226",
+        "topic": "Intg.JobPull.GeoLocation",
+        "primaryLocaleCategory": "Information Technology",
+        "description": "<p style=\"text-align:left\"><b>Job Summary</b></p>As a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, devising logic procedures, preparing flowcharting, performing coding and testing/debugging programs. You will also develop conversion and system implementation plans, as well as prepare and obtain approval of systems and programming documentation. You will recommend] changes in development, maintenance and system standards and trains users in conversion and implementation of systems. You will participate on project teams to develop systems and applications, which will assist in ensuring customer requirements are met in a timely and cost-effective manner.<p style=\"text-align:left\"><b>Job Description</b></p><ul><li>Experience Required: 3 to 5 years;</li><li>Education Desired: Bachelors Degree</li><li>Use professional concepts and apply Giant Eagle policies and procedures to resolve a variety of issues.</li><li>Work on problems of moderate scope where analysis of situations or data requires review of a variety of factors. Exercise judgment within defined procedures and practices to determine appropriate action.</li><li>Receive general direction and instructions on routine work, and detailed instructions on new projects or assignments.</li><li>Take charge of the installation, configuration, testing and documentation of custom-developed and vendor-packaged applications.</li><li>Provide minor development for enhancements and reporting.</li><li>Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes.</li><li>Some experience working with Large Language Models (LLMs) such as GPT, Llama2 or similar architectures.</li><li>Knowledge of LLM-integration frameworks such as Langchain, and expierence in fine – tuning these models for specific tasks.</li><li>Familiarity with programming languages such as Python and experience with LLM, deep learning frameworks.</li><li>Complete all facets of unit, system, regression and parallel testing for the applications.</li><li>Provide training and turnover to application support Team Members.</li><li>Produce all management reports completely, accurately and on time.</li><li>Maintain cognizance of industry trends and new products to evaluate opportunities for achieving maximum effective usage of Company&#39;s investment in information technology.</li><li>Prevent unauthorized access to information, assets or restricted areas and report any attempts.</li><li>Report any kinds of problems to the appropriate management in a timely manner.</li><li>When required, assist in providing 24x7 support to our business customers.</li><li>Ability to communicate well with non-IT personnel.</li><li>Maintain communications with Group/Team members.</li><li>Assist other Team Members as required to ensure customer requirements are met.</li><li>Participate in all education and on-the-job training programs as recommended by IS management.</li><li>Execute off-hour support responsibilities and participate in off-hours support rotations.</li><li>Complete other duties as assigned.</li></ul><p></p><ul></ul><p style=\"text-align:left\"><b>About Us</b></p>At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.<br><br>The hiring range for this position is $1368700.00– $1662000.00 per hour/year. This range represents the anticipated base pay for this role. Actual compensation will be determined based on factors such as experience, skills, education, and location.\nEligible employees may be offered health, vision, and dental insurance, personal/sick paid time, 401(k) retirement savings plan, bonus potential, paid bereavement, vacation and paid holidays.<br>",
+        "locale": "hi_IN",
+        "title": "Engineer, Software",
+        "jobSeqNo": "GIEAUS390195EXTERNALHIIN",
+        "postedDate": "2026-08-04T00:00:00.000+0000",
+        "postingStatus": "OPEN",
+        "ml_highlight": "We are recruiting a Software Engineer to design, develop, and evaluate programming in systems and applications. You will analyse existing programmes, prepare flowcharts, and participate in project teams to meet customer requirements. Ideal candidates have 3–5 years’ experience and a background in software engineering.",
+        "dateCreated": "2026-08-04T06:27:11.295+0000",
+        "rate": "",
+        "isLocationStandardized": true,
+        "cityStateCountry": "Karnātaka, India",
+        "department": "Information Technology",
+        "hashKey": "0b742beaec5d2de708498cc9522af3dd14773abf4d669354cf709bf80915f02e768944eb4ea862e379c75dcd63ae1a8736e839206195d91f10bf0d3ab5bf92f5",
+        "AboutUs": "At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.",
+        "parentRefNum": "GIEAUS",
+        "jobLevelId": "Non-Manager",
+        "actionType": "Refer",
+        "jobVisibility": [
+          "external",
+          "internal"
+        ],
+        "primaryQuestionnaireId": "QUESTIONNAIRE-3-734",
+        "standardisedStateCode": "KA",
+        "teamId": "S036897",
+        "isCritical": true,
+        "jobFamilyId": "Software Engineering",
+        "location": "India Corporate Office",
+        "cityCountry": "India",
+        "category": "Information Technology",
+        "mapQueryLocation": "560045, Karnātaka, India",
+        "standardisedState": "Karnataka"
+      },
+      "isMultiLocationEnabled": true,
+      "multiLocationFieldName": "multi_location",
+      "multiLocationValues": [
+        "cityState",
+        "country",
+        "address",
+        "city",
+        "clubName",
+        "latlong",
+        "branch",
+        "stateCountry",
+        "workLocation",
+        "indeedApplyTags",
+        "job_id",
+        "location",
+        "storeName",
+        "cityStateCountry",
+        "state"
+      ]
+    },
+    "eid": {
+      "eid": "6adcdab71a26cb0f2bc41e32"
+    },
+    "sourceResponseTime": 3,
+    "source": "ES"
+  },
+  "alternateLinks": [
+    {
+      "rel": "canonical",
+      "lang": "",
+      "href": "https://jobs.gianteagle.com/in/hi/job/390195/Engineer-Software"
+    }
+  ],
+  "jsonLd": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "inLanguage": "hi_in",
+      "name": "job",
+      "url": "https://jobs.gianteagle.com/in/hi/job/390195/Engineer-Software",
+      "datePublished": "2026-02-06",
+      "dateModified": "2026-02-06"
+    },
+    {
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "Giant Eagle",
+        "value": "390195"
+      },
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Giant Eagle",
+        "sameAs": "https://jobs.gianteagle.com/in/hi",
+        "url": "https://jobs.gianteagle.com/in/hi/job/390195/Engineer-Software",
+        "logo": null
+      },
+      "jobLocation": {
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "13.00445",
+          "longitude": "77.31221"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "postalCode": "560045",
+          "addressCountry": "India",
+          "addressLocality": "",
+          "addressRegion": "Karnātaka"
+        },
+        "@type": "Place"
+      },
+      "employmentType": [
+        "FULL_TIME"
+      ],
+      "@type": "JobPosting",
+      "workHours": "40 hours per week",
+      "description": "&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job Summary&lt;/b&gt;&lt;/p&gt;As a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, devising logic procedures, preparing flowcharting, performing coding and testing/debugging programs. You will also develop conversion and system implementation plans, as well as prepare and obtain approval of systems and programming documentation. You will recommend] changes in development, maintenance and system standards and trains users in conversion and implementation of systems. You will participate on project teams to develop systems and applications, which will assist in ensuring customer requirements are met in a timely and cost-effective manner.&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job Description&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Experience Required: 3 to 5 years;&lt;/li&gt;&lt;li&gt;Education Desired: Bachelors Degree&lt;/li&gt;&lt;li&gt;Use professional concepts and apply Giant Eagle policies and procedures to resolve a variety of issues.&lt;/li&gt;&lt;li&gt;Work on problems of moderate scope where analysis of situations or data requires review of a variety of factors. Exercise judgment within defined procedures and practices to determine appropriate action.&lt;/li&gt;&lt;li&gt;Receive general direction and instructions on routine work, and detailed instructions on new projects or assignments.&lt;/li&gt;&lt;li&gt;Take charge of the installation, configuration, testing and documentation of custom-developed and vendor-packaged applications.&lt;/li&gt;&lt;li&gt;Provide minor development for enhancements and reporting.&lt;/li&gt;&lt;li&gt;Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes.&lt;/li&gt;&lt;li&gt;Some experience working with Large Language Models (LLMs) such as GPT, Llama2 or similar architectures.&lt;/li&gt;&lt;li&gt;Knowledge of LLM-integration frameworks such as Langchain, and expierence in fine – tuning these models for specific tasks.&lt;/li&gt;&lt;li&gt;Familiarity with programming languages such as Python and experience with LLM, deep learning frameworks.&lt;/li&gt;&lt;li&gt;Complete all facets of unit, system, regression and parallel testing for the applications.&lt;/li&gt;&lt;li&gt;Provide training and turnover to application support Team Members.&lt;/li&gt;&lt;li&gt;Produce all management reports completely, accurately and on time.&lt;/li&gt;&lt;li&gt;Maintain cognizance of industry trends and new products to evaluate opportunities for achieving maximum effective usage of Company&#39;s investment in information technology.&lt;/li&gt;&lt;li&gt;Prevent unauthorized access to information, assets or restricted areas and report any attempts.&lt;/li&gt;&lt;li&gt;Report any kinds of problems to the appropriate management in a timely manner.&lt;/li&gt;&lt;li&gt;When required, assist in providing 24x7 support to our business customers.&lt;/li&gt;&lt;li&gt;Ability to communicate well with non-IT personnel.&lt;/li&gt;&lt;li&gt;Maintain communications with Group/Team members.&lt;/li&gt;&lt;li&gt;Assist other Team Members as required to ensure customer requirements are met.&lt;/li&gt;&lt;li&gt;Participate in all education and on-the-job training programs as recommended by IS management.&lt;/li&gt;&lt;li&gt;Execute off-hour support responsibilities and participate in off-hours support rotations.&lt;/li&gt;&lt;li&gt;Complete other duties as assigned.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;ul&gt;&lt;/ul&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;About Us&lt;/b&gt;&lt;/p&gt;At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.&lt;br&gt;&lt;br&gt;The hiring range for this position is $1368700.00– $1662000.00 per hour/year. This range represents the anticipated base pay for this role. Actual compensation will be determined based on factors such as experience, skills, education, and location.\nEligible employees may be offered health, vision, and dental insurance, personal/sick paid time, 401(k) retirement savings plan, bonus potential, paid bereavement, vacation and paid holidays.&lt;br&gt;",
+      "title": "Engineer, Software",
+      "datePosted": "2026-08-30",
+      "@context": "http://schema.org",
+      "occupationalCategory": "Information Technology",
+      "directApply": false
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "inLanguage": "hi_in",
+      "name": "job",
+      "url": "https://jobs.gianteagle.com/in/hi/job/390195/Engineer-Software",
+      "datePublished": "2026-02-10",
+      "dateModified": "2026-02-10"
+    },
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://jobs.gianteagle.com/in/hi"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "search-results",
+          "item": "https://jobs.gianteagle.com/in/hi/search-results"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Engineer, Software",
+          "item": "https://jobs.gianteagle.com/in/hi/job/390195/Engineer-Software"
+        }
+      ]
+    }
+  ]
+}

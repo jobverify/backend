@@ -1,0 +1,110 @@
+{
+  "id": "744000132384890",
+  "name": "Software Engineer (Wifi/ Embedded)",
+  "uuid": "0933502f-1fca-4503-9615-e54f3d0649c1",
+  "jobId": "b1a7e592-1a60-41b5-a096-f019bae05b77",
+  "jobAdId": "5c0a8005-877f-4a43-98b2-cf678e54a2f2",
+  "defaultJobAd": true,
+  "refNumber": "REF3199X",
+  "company": {
+    "name": "Arista Networks",
+    "identifier": "AristaNetworks"
+  },
+  "location": {
+    "city": "Chennai",
+    "region": "TN",
+    "country": "in",
+    "remote": false,
+    "hybrid": true,
+    "latitude": "13.0843007",
+    "longitude": "80.2704622",
+    "fullLocation": "Chennai, TN, India"
+  },
+  "customField": [
+    {
+      "fieldId": "COUNTRY",
+      "fieldLabel": "Country/Region",
+      "valueId": "in",
+      "valueLabel": "India"
+    },
+    {
+      "fieldId": "58b81d3de4b06dbf7dd514e1",
+      "fieldLabel": "Department",
+      "valueId": "1455224",
+      "valueLabel": "Software Engineering"
+    },
+    {
+      "fieldId": "58b81d3de4b06dbf7dd514e0",
+      "fieldLabel": "Brands",
+      "valueId": "default",
+      "valueLabel": "Arista Networks"
+    },
+    {
+      "fieldId": "62a7845974fe2c08874d5452",
+      "fieldLabel": "Role",
+      "valueId": "4e150511-63af-4e42-850a-47ad805607cc",
+      "valueLabel": "Senior"
+    }
+  ],
+  "releasedDate": "2026-06-16T10:32:06.071Z",
+  "creator": {
+    "name": "Ram Ganesh",
+    "avatarUrl": ""
+  },
+  "postingUrl": "https://jobs.smartrecruiters.com/AristaNetworks/744000132384890-software-engineer-wifi-embedded-",
+  "applyUrl": "https://jobs.smartrecruiters.com/AristaNetworks/744000132384890-software-engineer-wifi-embedded-?oga=true",
+  "referralUrl": "https://jobs.smartrecruiters.com/external-referrals/company/AristaNetworks/publication/0933502f-1fca-4503-9615-e54f3d0649c1?dcr_ci=AristaNetworks",
+  "jobAd": {
+    "sections": {
+      "companyDescription": {
+        "title": "Company Description",
+        "text": "<p>Arista Networks is an industry leader in data-driven, client-to-cloud networking for large data center, campus and routing environments. Arista is a well-established and profitable company with over $8 billion in revenue. Arista’s award-winning platforms, ranging in Ethernet speeds up to 800G bits per second, redefine scalability, agility, and resilience.&#xa0; Arista is a founding member of the Ultra Ethernet consortium. We have shipped over 20 million cloud networking ports worldwide with CloudVision and EOS, an advanced network operating system. Arista is committed to open standards, and its products are available worldwide directly and through partners.</p><p>At Arista, we value the diversity of thought and perspectives each employee brings. We believe fostering an inclusive environment where individuals from various backgrounds and experiences feel welcome is essential for driving creativity and innovation.</p><p>Our commitment to excellence has earned us several prestigious awards, such as the Great Place to Work Survey for Best Engineering Team and Best Company for Diversity, Compensation, and Work-Life Balance. At Arista, we take pride in our track record of success and strive to maintain the highest quality and performance standards in everything we do.</p>"
+      },
+      "jobDescription": {
+        "title": "Job Description",
+        "text": "<p><strong>Who You’ll Work With</strong></p><p>The candidate will be working with the WiFi team at Arista, developing cutting edge and next generation WiFi solutions in a fast-paced environment. The WiFi team is responsible for the end to end development of the Cloud managed WiFi product portfolio of Arista. This specific position is for the WiFi AccessPoint team.</p><p><strong>What You’ll Do</strong></p><p>As a core member of the AccessPoint team, the candidate is expected to work closely with relevant teams to understand product requirements, design the solution, build the software and deliver it for final validation and customer deployment. The successful candidate will also keep track of new and emerging technologies and their impact on Arista products, come up with new and innovative ideas to improve and differentiate the product and help Arista become a leading player in the Campus space. The candidate will also work closely with sales and support teams to push new solutions, understand customer needs and pain points and help resolve escalations. The candidate is expected to have a strong background in software development and good understanding of systems and networking areas with the knowledge of the WiFi area as an added bonus.</p><p>The candidate's role will not be limited to a single aspect of the product, it will be broad encompassing many different aspects including but not limited to developing new Access Points, designing and implementing new features, tracking new technologies and working closely with the sales and customer teams.</p>"
+      },
+      "qualifications": {
+        "title": "Qualifications",
+        "text": "<p><strong>Requirements:</strong><br>\n• Strong engineering and Computer Science fundamentals<br>\n• Minimum 6-15&#xa0;years of relevant experience<br>\n• Well versed with programming in one of C/C++ languages<br>\n• Experience working in a Linux environment, developing applications or&#xa0;<strong>Linux drivers</strong></p><p><strong>Proven experience in Any of the below:</strong><br>\n1. Network device drivers, operating system internals, Kernels, compilers, SOC architecture<br>\n2. User space development for connectivity related products (Wireless Lan access points/ controllers, networking equipment) in one or more of following areas:<br>\n&#xa0;&#xa0; &#xa0;• HostAPD, Portal, RADIUS, AAA, Identity and role management, Radsec<br>\n&#xa0;&#xa0; &#xa0;• Tunnels, Firewall, Iptables, Flow Classification, QoS, TLS, DTLS</p><p><strong>Preferred Skills:</strong><br>\n• Experience with Wi-Fi device drivers on Linux.<br>\n• Hands-on experience in working with one or more WIFI chipset platforms<br>\n• Good System Level understanding of the Wireless AP functionality<br>\n• Experience in developing Wi-Fi features, system integration, evaluate various performance parameters</p>"
+      },
+      "additionalInformation": {
+        "title": "Additional Information",
+        "text": "<p>Arista stands out as an engineering-centric company. Our leadership, including founders and engineering managers, are all engineers who understand sound software engineering principles and the importance of doing things right.<br>\nWe hire globally into our diverse team. At Arista, engineers have complete ownership of their projects. Our management structure is flat and streamlined, and software engineering is led by those who understand it best. We prioritize the development and utilization of test automation tools.<br>\nOur engineers have access to every part of the company, providing opportunities to work across various domains. Arista is headquartered in Santa Clara, California, with development offices in Australia, Canada, India, Ireland, and the US. We consider all our R&amp;D centers equal in stature.<br>\nJoin us to shape the future of networking and be part of a culture that values invention, quality, respect, and fun.</p>"
+      },
+      "videos": {
+        "title": "Videos To Watch",
+        "urls": [
+          "https://www.youtube.com/watch?v=Pli9z1vH9bc"
+        ]
+      }
+    }
+  },
+  "active": true,
+  "visibility": "PUBLIC",
+  "industry": {
+    "id": "computer_networking",
+    "label": "Computer Networking"
+  },
+  "function": {
+    "id": "information_technology",
+    "label": "Information Technology"
+  },
+  "department": {
+    "id": 1455224,
+    "label": "Software Engineering"
+  },
+  "experienceLevel": {
+    "id": "mid_senior_level",
+    "label": "Mid-Senior Level"
+  },
+  "typeOfEmployment": {
+    "id": "permanent",
+    "label": "Full-time"
+  },
+  "language": {
+    "code": "en",
+    "label": "English",
+    "labelNative": "English (US)"
+  }
+}

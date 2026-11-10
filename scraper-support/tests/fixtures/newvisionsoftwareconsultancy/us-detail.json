@@ -1,0 +1,113 @@
+{
+  "response": {
+    "gradeID": null,
+    "minimumExp": "6",
+    "isCampusJob": false,
+    "jobTitle": "Senior AI Engineer- Data",
+    "entityID": "1397",
+    "requisitionCode": "NVS/SA-D/1897947",
+    "jurisdictionTypeID": null,
+    "maximumExp": "10",
+    "skills": [
+      {
+        "text": "SQL",
+        "mandatory": false
+      },
+      {
+        "text": "Data Analytics",
+        "mandatory": false
+      },
+      {
+        "text": "Python",
+        "mandatory": false
+      },
+      {
+        "text": "Azure Data bricks",
+        "mandatory": false
+      },
+      {
+        "text": "ADF",
+        "mandatory": false
+      },
+      {
+        "text": "pyspark",
+        "mandatory": false
+      },
+      {
+        "text": "Azure Data Lake",
+        "mandatory": false
+      },
+      {
+        "text": "Azure Cloud Architect - System",
+        "mandatory": false
+      },
+      {
+        "text": "MS Azure Cloud",
+        "mandatory": false
+      },
+      {
+        "text": "AI Tools ",
+        "mandatory": false
+      }
+    ],
+    "qualifications": [
+      "Graduation/Equivalent Course"
+    ],
+    "CandidatePortalStartDate": "2026-10-19 00:00:00.0",
+    "confidential": false,
+    "noOfOpening": "1",
+    "payGroupID": null,
+    "CandidatePortalEndDate": "2027-10-19 00:00:00.0",
+    "tat": "0",
+    "minSalary": "110",
+    "employmentTenureType": null,
+    "campusSysContentType": "NON_CAMPUS",
+    "RoleName": null,
+    "maxBudgetSalary": "0",
+    "functionalArea": null,
+    "JobFamilyCode": null,
+    "jobDescription": "<p data-pasted=\"true\"><strong>Senior AI Engineer</strong> with <strong>6+ years of experience</strong></p><div style=\"font-family:'Segoe UI';font-size:14px;font-style:normal;font-weight:400;line-height:20px;\" data-pasted=\"true\"><h2>Overview</h2><p>We are seeking a <strong>Senior AI Engineer / AI Developer</strong> with strong hands-on experience in <strong>Python</strong> and <strong>Azure AI Services</strong> to build and enhance an AI-driven compliance platform supporting investment and tax-related workflows. The role focuses on designing and developing AI-powered solutions that ingest, classify, extract, standardize, and process client data through orchestrated workflows. This is an individual contributor role requiring strong coding, problem-solving, and solution delivery skills within the Microsoft Azure ecosystem.</p><hr><h2>Key Responsibilities</h2><ul><li>Design, develop, and implement AI-powered compliance solutions using Python and Azure services.</li><li>Build data ingestion and transformation pipelines to process client information.</li><li>Develop workflows to classify, extract, standardize, and enrich data using Azure AI services.</li><li>Implement and maintain Azure Functions for event-driven and serverless processing.</li><li>Integrate AI services and business workflows with downstream compliance systems.</li><li>Map client data to standardized internal schemas and data models.</li><li>Develop REST APIs, microservices, and workflow orchestrations to support end-to-end processing.</li><li>Ensure high-quality code through testing, debugging, optimization, and code reviews.</li><li>Collaborate with cross-functional teams including architects, AI engineers, and business stakeholders.</li><li>Support integration of processed information into tax data warehouses and compliance platforms.</li></ul><hr><h2>Must Have Skills</h2><ul><li><strong>5+ years of hands-on Python development experience.</strong></li><li>Strong experience building scalable backend applications, APIs, and services using Python.</li><li>Experience with:<ul><li>Azure OpenAI</li><li>Azure AI Foundry</li><li>Azure AI Services / Cognitive Services</li></ul></li><li>Strong knowledge of Microsoft Azure cloud platform.</li><li>Hands-on experience with Azure Functions.</li><li>Experience designing and implementing AI-enabled workflows and automation solutions.</li><li>Understanding of data processing, transformation, and integration patterns.</li><li>Experience consuming and integrating REST APIs and cloud services.</li><li>Ability to independently design, develop, test, and deliver production-ready solutions.</li></ul><hr><h2>Good to Have Skills</h2><ul><li>Experience with AI/LLM-based application development and orchestration.</li><li>Experience in document processing, information extraction, and classification solutions.</li><li>Knowledge of workflow orchestration frameworks and event-driven architectures.</li><li>Experience with Azure DevOps, CI/CD pipelines, and automated deployments.</li><li>Understanding of data warehousing concepts and structured data models.</li><li>Experience working on compliance, regulatory, governance, or audit-related solutions.</li><li>Familiarity with monitoring, logging, and observability practices in Azure.</li></ul><hr><h2>Nice to Have Skills</h2><ul><li>Experience in Financial Services, Tax, Compliance, or Regulatory domains.</li><li>Knowledge of Generative AI application development and prompt engineering.</li><li>Exposure to Responsible AI and AI Governance frameworks.</li><li>Experience integrating multiple AI models/services within a single business workflow.</li><li>Familiarity with investment management or tax filing workflows.</li><li>Exposure to serverless and cloud-native architecture best practices.</li></ul><hr><h2>Behavioral Requirements</h2><ul><li>Strong ownership mindset with the ability to independently drive deliverables.</li><li>Hands-on developer who enjoys coding and solving technical problems.</li><li>Excellent analytical and troubleshooting skills.</li><li>Ability to work effectively in a remote and distributed team environment.</li><li>Strong verbal and written communication skills.</li><li>Collaborative approach with the ability to work across technical and business teams.</li><li>Adaptability to evolving requirements and emerging AI technologies.</li><li>Prioritizes quality, maintainability, and scalability in solution development.</li><li>Results-oriented with a focus on delivering business value.</li><li>Self-motivated learner who stays current with Azure AI and Generative AI advancements.</li></ul></div>",
+    "designation": "Senior Software Engineer",
+    "CampusType": "Non-Campus",
+    "shiftTo": null,
+    "maxSalary": "127",
+    "designationID": "855684",
+    "WorkflowName": "Workflow- Applicant",
+    "roleType": "Critical",
+    "locationHierarchyComplete": "USA>US>San Francisco>Hybrid>US standard>California",
+    "requisitionId": "1897947",
+    "orgUnitCode": "AI & Analytics",
+    "Onsite": null,
+    "organizationUnitComplete": "NewVison>New Vision Softcom & Consultancy Pvt. Ltd>Business Units (BU)>AI & Analytics>Data Engineering",
+    "hrOrgUnitID": "2380399",
+    "requisitionType": "New",
+    "currency": "USD (United States of America,Dollars)",
+    "departmentHierarchy": null,
+    "industryName": null,
+    "roleContributionType": null,
+    "programType": null,
+    "jobTitleID": "0",
+    "languages": [
+      "English"
+    ],
+    "employmentType": "Full Time",
+    "joiningLocation": "San Francisco",
+    "EducationSepecializationID": null,
+    "employeeCategoryTypeID": null,
+    "internalJobDescription": null,
+    "educationSepecialization": null,
+    "certifications": [],
+    "authorityTypeID": null,
+    "minBudgetSalary": "0",
+    "requisitionStatus": "OPEN",
+    "shiftFrom": null,
+    "bandId": null,
+    "worksiteID": "1469740",
+    "functionalDesignationID": "0",
+    "jobRoleID": null
+  },
+  "messageCode": {
+    "code": 200,
+    "messages": "success"
+  }
+}

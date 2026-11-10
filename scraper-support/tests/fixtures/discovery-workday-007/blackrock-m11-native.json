@@ -1,0 +1,475 @@
+{
+  "provenance": "Actual current M11-only native CXS listing total and full country-typed details; no invented role/count.",
+  "listing": {
+    "total": 3,
+    "jobPostings": [
+      {
+        "title": "Vice President, Application Engineer",
+        "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Vice-President--Application-Engineer_R261168",
+        "timeType": "Full time",
+        "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+        "postedOn": "Posted 19 Days Ago",
+        "bulletFields": [
+          "R261168"
+        ]
+      },
+      {
+        "title": "Application Engineer, Vice President",
+        "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer--Vice-President_R261170",
+        "timeType": "Full time",
+        "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+        "postedOn": "Posted 19 Days Ago",
+        "bulletFields": [
+          "R261170"
+        ]
+      },
+      {
+        "title": "AI Enabled Full stack Engineer, Aladdin Engineering, Associate",
+        "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer---Aladdin-Portfolio-Management---Vice-President_R260416",
+        "timeType": "Full time",
+        "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+        "postedOn": "Posted 25 Days Ago",
+        "bulletFields": [
+          "R260416"
+        ]
+      }
+    ],
+    "facets": [
+      {
+        "facetParameter": "timeType",
+        "descriptor": "Full/Part-time",
+        "values": [
+          {
+            "descriptor": "Full time",
+            "id": "c4dded1bf1090162aca45a0b544f4f00",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "facetParameter": "workerSubType",
+        "descriptor": "Job Type",
+        "values": [
+          {
+            "descriptor": "Regular",
+            "id": "131d7f8fcf9f01f35b958bcd5750eb0d",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "facetParameter": "jobFamilyGroup",
+        "descriptor": "Job Category",
+        "values": [
+          {
+            "descriptor": "Engineering",
+            "id": "7c29ce3598461001f7505cfee2240000",
+            "count": 3
+          }
+        ]
+      },
+      {
+        "facetParameter": "locationMainGroup",
+        "values": [
+          {
+            "facetParameter": "locations",
+            "descriptor": "Locations",
+            "values": [
+              {
+                "descriptor": "Amsterdam, Netherlands",
+                "id": "131d7f8fcf9f013a2930e857f75009ce",
+                "count": 1
+              },
+              {
+                "descriptor": "AT8 - 725 Ponce de Leon Ave NE, Atlanta",
+                "id": "67adaadc6f4c0197623e47419307cd4e",
+                "count": 1
+              },
+              {
+                "descriptor": "Atlanta, GA",
+                "id": "131d7f8fcf9f01332580df57f750ffcd",
+                "count": 10
+              },
+              {
+                "descriptor": "B3G - Skyline Belgrade, Kneza Milosa 88, Belgrade",
+                "id": "1c5b42afdaee010160880ad2fa150000",
+                "count": 5
+              },
+              {
+                "descriptor": "Bengaluru, India",
+                "id": "131d7f8fcf9f0108d331d757f750f5cd",
+                "count": 6
+              },
+              {
+                "descriptor": "Boston, MA",
+                "id": "131d7f8fcf9f013718ebc657f750e1cd",
+                "count": 1
+              },
+              {
+                "descriptor": "BU3-Budapest-GTC White House, Vaci ut 47, District XIII, Budapest",
+                "id": "131d7f8fcf9f01c3d3ab3b9af75068d3",
+                "count": 10
+              },
+              {
+                "descriptor": "Chicago, IL",
+                "id": "131d7f8fcf9f015a3e57a957f750becd",
+                "count": 10
+              },
+              {
+                "descriptor": "Dallas, TX",
+                "id": "131d7f8fcf9f01bdbb30a157f750b4cd",
+                "count": 2
+              },
+              {
+                "descriptor": "DC3-Washington - 1401 New York Avenue, N.W., 3rd Floor",
+                "id": "131d7f8fcf9f01c215cfff9af75044d4",
+                "count": 2
+              },
+              {
+                "descriptor": "Dublin, Ireland",
+                "id": "131d7f8fcf9f019d0fc09457f750a5cd",
+                "count": 2
+              },
+              {
+                "descriptor": "ED3 - 20 Brandon Street, Edinburgh",
+                "id": "7c29a80f2b801000c3ea8992cd050000",
+                "count": 1
+              },
+              {
+                "descriptor": "Edinburgh, Scotland",
+                "id": "131d7f8fcf9f012d44558c57f7509bcd",
+                "count": 14
+              },
+              {
+                "descriptor": "Gurugram, India",
+                "id": "131d7f8fcf9f01c37cbb7257f7507dcd",
+                "count": 12
+              },
+              {
+                "descriptor": "Hong Kong, Hong Kong",
+                "id": "131d7f8fcf9f018876bd6e57f75078cd",
+                "count": 2
+              },
+              {
+                "descriptor": "Kuwait City, Kuwait",
+                "id": "9d34dfc1ddb7100140cf709ee3d00000",
+                "count": 1
+              },
+              {
+                "descriptor": "LO9-London - Drapers Gardens",
+                "id": "131d7f8fcf9f013542e48f95f7503fcf",
+                "count": 2
+              },
+              {
+                "descriptor": "London, Greater London",
+                "id": "131d7f8fcf9f01c8d6145e57f75064cd",
+                "count": 26
+              },
+              {
+                "descriptor": "LU2-Luxembourg - 35a Avenue J F Kennedy",
+                "id": "131d7f8fcf9f01cf86ea7c95f7502bcf",
+                "count": 1
+              },
+              {
+                "descriptor": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+                "id": "866218765a69100195e38a8b9cc40000",
+                "count": 3
+              },
+              {
+                "descriptor": "Mexico City, Mexico",
+                "id": "131d7f8fcf9f0166c4204057f75046cd",
+                "count": 8
+              },
+              {
+                "descriptor": "ML3-Milan - Piazza San Fedele 2",
+                "id": "131d7f8fcf9f010c8ff23b95f750e5ce",
+                "count": 1
+              },
+              {
+                "descriptor": "Mumbai, India",
+                "id": "131d7f8fcf9f014033ba3257f75037cd",
+                "count": 22
+              },
+              {
+                "descriptor": "N14 - 50 Hudson Yards, Floor 60-63, New York, 10001",
+                "id": "93b94999e53110014ad8f8fdd69f0000",
+                "count": 1
+              },
+              {
+                "descriptor": "New York, NY",
+                "id": "131d7f8fcf9f01c686272557f75028cd",
+                "count": 84
+              },
+              {
+                "descriptor": "NY7 - 50 Hudson Yards, New York",
+                "id": "1b2a81e64d850131866fa0e4705e7379",
+                "count": 10
+              },
+              {
+                "descriptor": "Paris, France",
+                "id": "131d7f8fcf9f01ac9ab21857f75019cd",
+                "count": 1
+              },
+              {
+                "descriptor": "Princeton, NJ",
+                "id": "131d7f8fcf9f0139bfe20857f75005cd",
+                "count": 8
+              },
+              {
+                "descriptor": "San Francisco, CA",
+                "id": "131d7f8fcf9f01c7ffcef756f750f1cc",
+                "count": 25
+              },
+              {
+                "descriptor": "SAU - 3 Harbor Dr, Suite 204, Sausalito, CA",
+                "id": "caa959dd75420164fd99d299c901a066",
+                "count": 2
+              },
+              {
+                "descriptor": "Sausalito, CA",
+                "id": "37e19281f5b71001121d78f9735b0000",
+                "count": 4
+              },
+              {
+                "descriptor": "Seoul, Korea",
+                "id": "131d7f8fcf9f01f08875e356f750d8cc",
+                "count": 2
+              },
+              {
+                "descriptor": "SF4-San Francisco - 400 Howard Street",
+                "id": "131d7f8fcf9f01b131622797f750d9d0",
+                "count": 4
+              },
+              {
+                "descriptor": "Shanghai, China",
+                "id": "131d7f8fcf9f016fa21fdf56f750d3cc",
+                "count": 1
+              },
+              {
+                "descriptor": "Singapore, Singapore",
+                "id": "131d7f8fcf9f01f8c2f0da56f750cecc",
+                "count": 9
+              },
+              {
+                "descriptor": "Sydney, Australia",
+                "id": "131d7f8fcf9f012fffbdce56f750bfcc",
+                "count": 3
+              },
+              {
+                "descriptor": "Tokyo, Japan",
+                "id": "131d7f8fcf9f01d42697bf56f750b0cc",
+                "count": 9
+              },
+              {
+                "descriptor": "Toronto, Canada",
+                "id": "131d7f8fcf9f01a05801bb56f750abcc",
+                "count": 1
+              },
+              {
+                "descriptor": "TW3 -Taipei- 28F., No.100, Songren Rd, Xinyi District, Taipei City",
+                "id": "8bb68ff758bc0146128cd3bbd98ba195",
+                "count": 1
+              },
+              {
+                "descriptor": "Wilmington, DE",
+                "id": "131d7f8fcf9f014a3127ae56f7509ccc",
+                "count": 11
+              },
+              {
+                "descriptor": "XDE-Regional - Delaware",
+                "id": "131d7f8fcf9f0180246ea0ebf750fcd5",
+                "count": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "userAuthenticated": false
+  },
+  "details": {
+    "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Vice-President--Application-Engineer_R261168": {
+      "jobPostingInfo": {
+        "id": "337ec8237b051000f16ed2fd62a80000",
+        "title": "Vice President, Application Engineer",
+        "jobDescription": "<p style=\"text-align:left\"><b>About this role</b></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p>At BlackRock, technology is the foundation of our business. As a VP, Java Back-End Engineer, you’ll lead by example — architecting, coding, and mentoring teams to build resilient systems that power our global post-trade operations. You’ll design and deliver enterprise-scale software with a focus on reliability, performance, and clean engineering practices.\nThis role is ideal for a technical leader who enjoys staying close to the code, guiding design decisions, and solving complex data challenges — all while fostering a culture of excellence and continuous improvement.\n\nAbout Post Trade Accounting (PTA)\n\nA major strategic area within Aladdin and one of BlackRock’s largest engineering investments.\n\nResponsible for the systems that ensure accurate, scalable, and efficient accounting across global operations.\n\nExpanding into data analytics and pipeline initiatives using Snowflake, Redis, and distributed event streaming and messaging platforms to manage high-volume, real-time data.\n\nCollaborates closely with Product, Operations, and other Engineering teams to deliver business-critical capabilities.\n\nAgile and collaborative environment that values technical depth, quality, and innovation.\n\n\nKey Responsibilities\n\nDesign and develop robust, high-performance back-end systems using Java 11+ and the Spring Boot ecosystem.\n\nLead design discussions, code reviews, and architecture sessions with a hands-on approach.\n\nBuild and maintain microservices and event-driven systems to process and distribute large-scale financial data.\n\nDevelop data integration and pipeline components that connect systems across Snowflake, SQL Server, and real-time streaming platforms.\n\nImplement and optimize Redis-based caching and data stores for low-latency access patterns.\n\nChampion best practices for code quality, testing, automation, and performance tuning.\n\nMentor engineers to elevate technical craftsmanship, problem-solving, and design thinking.\n\nCollaborate cross-functionally to ensure technical solutions align with product goals and business outcomes.\n\n\nQualifications / Competencies\n\nB.S./M.S. in Computer Science, Engineering, or related discipline.\n\n8+ years of professional experience in Java and object-oriented design.\n\nStrong knowledge of Spring Boot, REST APIs, and enterprise integration patterns.\n\nDeep expertise in SQL Server, including stored procedures, performance tuning, and data modeling.\n\nExperience with Redis for caching or data persistence.\n\nHands-on exposure to distributed event streaming and messaging platforms or similar publish-subscribe systems for real-time event processing.\n\nFamiliarity with Snowflake and data pipeline concepts (ETL, batch vs. streaming).\n\nExperience with Agentic coding and general understanding of how LLMs are working\n\nStrong focus on clean architecture, maintainability, and production readiness.\n\nExcellent communication and leadership skills — able to guide teams and influence design direction.\n\n\nNice to Have\n\nExperience with Enterprise-grade container orchestration platform supporting declarative infrastructure and horizontal scaling, Open Container Initiative (OCI) container image packaging and runtime, or cloud-native environments (AWS/GCP).\n\nExposure to observability tools (metrics collection, Grafana, Open Telemetry).\n\nScripting experience in Python for automation or data analysis.\n\nExposure to Prompt Engineering and Agentic AI\n\nInterest in financial systems, accounting, or investment technology.<p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b><span>Our benefits</span></b><br /><br /><span>To help you stay energized, engaged and inspired, we offer a wide range of benefits including a strong retirement plan, tuition reimbursement, comprehensive healthcare, support for working parents and Flexible Time Off (FTO) so you can relax, recharge and be there for the people you care about.</span></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Our hybrid work model</b></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\">BlackRock’s hybrid work model is designed to enable a culture of collaboration and apprenticeship that enriches the experience of our employees, while supporting flexibility for all. Employees are currently required to work at least 4 days in the office per week, with the flexibility to work from home 1 day a week. Some business groups may require more time in the office due to their roles and responsibilities. We remain focused on increasing the impactful moments that arise when we work together in person – aligned with our commitment to performance and innovation. As a new joiner, you can count on this hybrid model to accelerate your learning and onboarding experience here at BlackRock.</p><p style=\"text-align:inherit\"></p><p><b><br />Guidance on AI use for candidates</b></p><br /><p>At BlackRock, AI has long been part of how we work – enhancing decision-making, improving operations, and helping us deliver better outcomes for clients. We encourage candidates to use AI thoughtfully to learn, prepare, and work more effectively; but during our interview process, we want to focus on getting to know you through your own experiences, thinking, and judgment. To support you, we’ve provided <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fcareers.blackrock.com%2Fen%2Fai-interview-guidance&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858686005%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;whXuYBXo637EPj15E8LLiyRsdWphXOyPK8ODdCxk2Xs%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><b>guidance</b></span></a> on when and how to use AI during our hiring process so you can approach each step with confidence and showcase your best self.<br /></p><br /><p style=\"text-align:left !important\"><b>About BlackRock</b></p><br /><p style=\"text-align:left !important\">At BlackRock, we are all connected by one mission: to help more and more people experience financial well-being.  Our clients, and the people they serve, are saving for retirement, paying for their children’s educations, buying homes and starting businesses. Their investments also help to strengthen the global economy: support businesses small and large; finance infrastructure projects that connect and power cities; and facilitate innovations that drive progress.</p><br /><p style=\"text-align:left !important\">This mission would not be possible without our smartest investment – the one we make in our employees. It’s why we’re dedicated to creating an environment where our colleagues feel welcomed, valued and supported with networks, benefits and development opportunities to help them thrive.</p><br /><p style=\"text-align:left !important\">To learn more about BlackRock, please visit <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fcareers.blackrock.com%2F&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858757460%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;6CXUoyh4Ub9im0GQOujEuZH8Rmf3O%2BLXRHCG8Lq4BLM%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>Careers.BlackRock.com</u></span></a>. We also encourage you to get to know us on <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fblackrock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858797423%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;F9%2BP2n8dtIohs%2BfyLRpV%2FXcW7F4NmY266WgISqxEJBk%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>LinkedIn</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.instagram.com%2Fblackrock%2F&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858827710%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;JbotoyYoorFoIKfwqJ3jMHDQ4GDxptOzl6DWG%2BmCDVA%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>Instagram</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.youtube.com%2F%40LifeatBlackRock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858854986%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;4m94z87I%2F5Y33edGFrw7b8oEwUqEPoMi8aRSP5Grc2E%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>YouTube</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fx.com%2FBlackRock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858881999%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;JN9zBoi1f6dr35BovPmwulYT68B%2F1QHg3gR%2Bmg7TT14%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>X</u></span></a>, and <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.tiktok.com%2F%40blackrock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858903740%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;aHv7vpILkjI1mNFebVSda3a0HnLsNeTO4nisrrZIFrc%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>TikTok</u></span></a>.<br /></p><p style=\"text-align:left\"><span>BlackRock is proud to be an Equal Opportunity Employer.  We evaluate qualified applicants without regard to age, disability, family status, gender identity, race, religion, sex, sexual orientation and other protected attributes at law.</span></p>",
+        "location": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+        "postedOn": "Posted 19 Days Ago",
+        "startDate": "2026-10-01",
+        "timeType": "Full time",
+        "jobReqId": "R261168",
+        "jobPostingId": "Vice-President--Application-Engineer_R261168",
+        "jobPostingSiteId": "BlackRock_Professional",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "canApply": true,
+        "posted": true,
+        "includeResumeParsing": true,
+        "jobRequisitionLocation": {
+          "descriptor": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "country": {
+            "descriptor": "India",
+            "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+            "alpha2Code": "IN"
+          }
+        },
+        "externalUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Vice-President--Application-Engineer_R261168",
+        "questionnaireId": "aa50d29c4e951001fa22c5859fcc0000",
+        "timeLeftToApply": "13 days left to apply",
+        "endDate": "2026-11-04",
+        "jobPostingEndDateAsText": "End Date: November 4, 2026"
+      },
+      "hiringOrganization": {
+        "name": "",
+        "url": ""
+      },
+      "similarJobs": [
+        {
+          "title": "Application Engineer, Vice President",
+          "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer--Vice-President_R261170",
+          "timeType": "Full time",
+          "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "postedOn": "Posted 19 Days Ago",
+          "startDate": "2026-10-01",
+          "timeLeftToApply": "11 days left to apply",
+          "jobPostingEndDateAsText": "End Date: November 2, 2026"
+        },
+        {
+          "title": "AI Enabled Full stack Engineer, Aladdin Engineering, Associate",
+          "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer---Aladdin-Portfolio-Management---Vice-President_R260416",
+          "timeType": "Full time",
+          "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "postedOn": "Posted 25 Days Ago",
+          "startDate": "2026-09-25",
+          "timeLeftToApply": "9 days left to apply",
+          "jobPostingEndDateAsText": "End Date: October 31, 2026"
+        }
+      ],
+      "userAuthenticated": false
+    },
+    "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer--Vice-President_R261170": {
+      "jobPostingInfo": {
+        "id": "7b3f4505aaa310009e6335c6ed630000",
+        "title": "Application Engineer, Vice President",
+        "jobDescription": "<p style=\"text-align:left\"><b>About this role</b></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p>BlackRock’s Post Trade & Accounting group is seeking a Vice President-level engineering leader to advance our enterprise Client Reporting platform. This role encompasses technical leadership, system design, and direct coding responsibilities, enabling the development of robust, event-driven platforms that deliver reliable solutions for institutional and Aladdin clients globally.\nYou will lead development of core platform capabilities across distributed services and data systems, shaping long-term architecture for a mission-critical platform where scale, accuracy, resiliency, and auditability are essential. You will also partner across product and operations to drive modernization, automation, and AI-enabled engineering practices.\n\nAbout the Team\nThe Client Reporting team delivers and manages BlackRock’s enterprise Client Reporting platform, providing end-to-end reporting solutions for a diverse global base of accounting and institutional clients. We oversee the full lifecycle of report production and distribution—ensuring quality, scalability, and operational excellence through advanced QC workflows, exception management tools (including the Aladdin dashboard), and robust monitoring frameworks.\nThe team manages reporting inventory and KPIs, supports both standardized and highly customized data sets, and enables access to reporting-ready data through digital portals and reporting libraries. We also power a dynamic self-service experience, offering secure document delivery via API, SFTP, and Secure Links, along with flexible tools for client-driven report configuration and branding.\nBy owning the critical systems and processes behind client reporting, the team plays a central role in shaping client experience, driving automation and innovation, and delivering scalable, resilient solutions for industry-leading clients.\n\nWhat You’ll Do\n\nLead development, architecture, and design of distributed, event-driven systems (Java/Python)\n\nEvolve scalable microservices and API-first platforms aligned to enterprise strategy\n\nArchitect high-throughput data systems integrating SQL/NoSQL, streaming, and caching technologies\n\nDrive performance, resiliency, observability, and production excellence\n\nProvide full-stack technical leadership across backend and frontend (Angular/React)\n\nTranslate complex business requirements into scalable technical solutions and executable roadmaps\n\nManage stakeholders and lead global teams to deliver against strategic milestones\n\nLead adoption of AI-assisted SDLC practices (Copilot, Claude, Windsurf, etc.)\n\nDesign safe and scalable LLM integration patterns (prompt engineering, structured outputs, streaming, tool/function calling)\n\nArchitect multi-step or agent-based workflows (e.g., LangChain, Google ADK or equivalent)\n\nDefine shared prompts, agent contracts, and AI governance standards across teams\n\nGuide teams in translating ambiguous problems into structured, AI-augmentable execution plans\n\n\nWhat you'll bring\n\nB.S./M.S. in Computer Science, Engineering, or related field (or equivalent experience).\n\n7+ years of progressive software engineering experience with proven leadership of teams or major platforms\n\nStrong expertise in Java, Python, and distributed systems architecture\n\nExperience designing highly available, real-time enterprise systems\n\nDeep understanding of APIs, microservices, data modeling, and scalability patterns\n\nExperience with SQL, NoSQL, and streaming technologies (e.g., distributed event streaming and messaging platforms, Redis)\n\nExposure to cloud-native and DevOps practices (Open Container Initiative (OCI) container image packaging and runtime, Enterprise-grade container orchestration platform supporting declarative infrastructure and horizontal scaling, CI/CD)\n\nStrong stakeholder management and cross-functional influence skills\n\nDemonstrated experience integrating AI into engineering workflows and production platforms\n\n\nNice to Have\n\nExperience with distributed event streaming and messaging platforms, Redis, or other distributed systems technologies\n\nCloud-native experience (Open Container Initiative (OCI) container image packaging and runtime, Enterprise-grade container orchestration platform supporting declarative infrastructure and horizontal scaling, Azure/AWS/GCP)\n\nExposure to CI/CD and observability tooling\n\nInterest in financial systems, reporting platforms, or investment processes<p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b><span>Our benefits</span></b><br /><br /><span>To help you stay energized, engaged and inspired, we offer a wide range of benefits including a strong retirement plan, tuition reimbursement, comprehensive healthcare, support for working parents and Flexible Time Off (FTO) so you can relax, recharge and be there for the people you care about.</span></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Our hybrid work model</b></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\">BlackRock’s hybrid work model is designed to enable a culture of collaboration and apprenticeship that enriches the experience of our employees, while supporting flexibility for all. Employees are currently required to work at least 4 days in the office per week, with the flexibility to work from home 1 day a week. Some business groups may require more time in the office due to their roles and responsibilities. We remain focused on increasing the impactful moments that arise when we work together in person – aligned with our commitment to performance and innovation. As a new joiner, you can count on this hybrid model to accelerate your learning and onboarding experience here at BlackRock.</p><p style=\"text-align:inherit\"></p><p><b><br />Guidance on AI use for candidates</b></p><br /><p>At BlackRock, AI has long been part of how we work – enhancing decision-making, improving operations, and helping us deliver better outcomes for clients. We encourage candidates to use AI thoughtfully to learn, prepare, and work more effectively; but during our interview process, we want to focus on getting to know you through your own experiences, thinking, and judgment. To support you, we’ve provided <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fcareers.blackrock.com%2Fen%2Fai-interview-guidance&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858686005%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;whXuYBXo637EPj15E8LLiyRsdWphXOyPK8ODdCxk2Xs%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><b>guidance</b></span></a> on when and how to use AI during our hiring process so you can approach each step with confidence and showcase your best self.<br /></p><br /><p style=\"text-align:left !important\"><b>About BlackRock</b></p><br /><p style=\"text-align:left !important\">At BlackRock, we are all connected by one mission: to help more and more people experience financial well-being.  Our clients, and the people they serve, are saving for retirement, paying for their children’s educations, buying homes and starting businesses. Their investments also help to strengthen the global economy: support businesses small and large; finance infrastructure projects that connect and power cities; and facilitate innovations that drive progress.</p><br /><p style=\"text-align:left !important\">This mission would not be possible without our smartest investment – the one we make in our employees. It’s why we’re dedicated to creating an environment where our colleagues feel welcomed, valued and supported with networks, benefits and development opportunities to help them thrive.</p><br /><p style=\"text-align:left !important\">To learn more about BlackRock, please visit <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fcareers.blackrock.com%2F&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858757460%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;6CXUoyh4Ub9im0GQOujEuZH8Rmf3O%2BLXRHCG8Lq4BLM%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>Careers.BlackRock.com</u></span></a>. We also encourage you to get to know us on <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fblackrock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858797423%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;F9%2BP2n8dtIohs%2BfyLRpV%2FXcW7F4NmY266WgISqxEJBk%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>LinkedIn</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.instagram.com%2Fblackrock%2F&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858827710%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;JbotoyYoorFoIKfwqJ3jMHDQ4GDxptOzl6DWG%2BmCDVA%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>Instagram</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.youtube.com%2F%40LifeatBlackRock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858854986%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;4m94z87I%2F5Y33edGFrw7b8oEwUqEPoMi8aRSP5Grc2E%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>YouTube</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fx.com%2FBlackRock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858881999%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;JN9zBoi1f6dr35BovPmwulYT68B%2F1QHg3gR%2Bmg7TT14%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>X</u></span></a>, and <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.tiktok.com%2F%40blackrock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858903740%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;aHv7vpILkjI1mNFebVSda3a0HnLsNeTO4nisrrZIFrc%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>TikTok</u></span></a>.<br /></p><p style=\"text-align:left\"><span>BlackRock is proud to be an Equal Opportunity Employer.  We evaluate qualified applicants without regard to age, disability, family status, gender identity, race, religion, sex, sexual orientation and other protected attributes at law.</span></p>",
+        "location": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+        "postedOn": "Posted 19 Days Ago",
+        "startDate": "2026-10-01",
+        "timeType": "Full time",
+        "jobReqId": "R261170",
+        "jobPostingId": "Application-Engineer--Vice-President_R261170",
+        "jobPostingSiteId": "BlackRock_Professional",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "canApply": true,
+        "posted": true,
+        "includeResumeParsing": true,
+        "jobRequisitionLocation": {
+          "descriptor": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "country": {
+            "descriptor": "India",
+            "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+            "alpha2Code": "IN"
+          }
+        },
+        "externalUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer--Vice-President_R261170",
+        "questionnaireId": "aa50d29c4e951001fa22c5859fcc0000",
+        "timeLeftToApply": "11 days left to apply",
+        "endDate": "2026-11-02",
+        "jobPostingEndDateAsText": "End Date: November 2, 2026"
+      },
+      "hiringOrganization": {
+        "name": "",
+        "url": ""
+      },
+      "similarJobs": [
+        {
+          "title": "Vice President, Application Engineer",
+          "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Vice-President--Application-Engineer_R261168",
+          "timeType": "Full time",
+          "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "postedOn": "Posted 19 Days Ago",
+          "startDate": "2026-10-01",
+          "timeLeftToApply": "13 days left to apply",
+          "jobPostingEndDateAsText": "End Date: November 4, 2026"
+        },
+        {
+          "title": "AI Enabled Full stack Engineer, Aladdin Engineering, Associate",
+          "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer---Aladdin-Portfolio-Management---Vice-President_R260416",
+          "timeType": "Full time",
+          "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "postedOn": "Posted 25 Days Ago",
+          "startDate": "2026-09-25",
+          "timeLeftToApply": "9 days left to apply",
+          "jobPostingEndDateAsText": "End Date: October 31, 2026"
+        }
+      ],
+      "userAuthenticated": false
+    },
+    "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer---Aladdin-Portfolio-Management---Vice-President_R260416": {
+      "jobPostingInfo": {
+        "id": "48c19de39c3d1001ea2d31c6b9010000",
+        "title": "AI Enabled Full stack Engineer, Aladdin Engineering, Associate",
+        "jobDescription": "<p style=\"text-align:left\"><b>About this role</b></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p>Our technology supports Portfolio Management teams overseeing over $14 trillion in assets, and the products you build will sit at the heart of tools used daily by investors making decisions that impact millions of people worldwide. It’s engineering work with real reach, real complexity, and real impact.</p><br /><p>Aladdin Portfolio Management Engineering is a global team of passionate product engineers who are on a mission to build out a next generation platform of persona based, workflow driven experience with horizontally scalable &amp; modular architecture.</p><br /><p><b>Responsibilities:</b></p><ul><li>Actively contributing to Technical Design Deployment Readiness Reviews, Core Reviews and the whole PDLC.</li><li>Accelerate productivity with an AI-enabled PDLC with a strong focus on quality &amp; resiliency.</li><li>Provide operational excellence to our clients with production support with an “SRE” mindset.</li><li>Influence and mentor other engineers in the team, raising the bar on technical excellence.</li><li>Collaborate in a global, multi-office environment, aligning teams across geographies around shared architectural vision.</li><li>Champion a strong engineering culture grounded in continuous learning and optimizing to best practices such as DORA.</li><li>Build domain and technical context quickly and translate that into specifications, plans and actionable Agile backlogs.</li></ul><br /><p><b>Qualifications<u>:</u></b></p><br /><p>•          B.E./B.Tech/MCA or equivalent degree in Computer Science or Engineering</p><p>•          5&#43; years of proven experience</p><br /><p><b>Skills and Experience:</b></p><ul><li>Proven experience operating as a Senior Engineer or Team Lead, defining and owning technical direction across initiatives with Agile Practices such as Lean or Scaled Agile.</li><li>A proven foundation in modern languages such Core Java and UI technologies such as React &amp; Angular.</li><li>Demonstrated ability to act as a work definer at scale: shaping ambiguous problem spaces into well-structured initiatives, clear architectural runways, and executable delivery plans.</li><li>Strong background designing enterprise scale, distributed systems, balancing functional requirements with non-functional concerns such as resiliency, scalability, latency, and operability.</li></ul><br /><p><b>Hand-on experience with AI enabled SDLC / PDLC practices, including:</b></p><ul><li>Using AI to accelerate design exploration, prototyping, and architectural decision making</li><li>Applying AI assisted development, testing, code review, and documentation practices</li><li>Embedding AI capabilities into product workflows and platform services responsibly and securely</li><li>Frameworks such as Windsurf &amp; Cursor and GitHub Copilot</li></ul><br /><ul><li>Ability to partner effectively with Product Management, Engineering, and Business leaders to translate strategic objectives into coherent architectural strategies.</li><li>Excellent communication and influencing skills, able to articulate complex architectural concepts to senior stakeholders and align diverse teams behind a shared technical vision.</li><li>Track record at articulating architectural tradeoffs and design options, including impacts on scalability, resilience, cost, and delivery velocity.</li><li>Strong architectural governance skills: setting standards, guiding design reviews, managing technical debt, and ensuring long term platform sustainability.</li><li>Experience of API design principles &amp; Event Driven Architecture.</li><li>Rigorous approach to quality through demonstrable TDD &amp; BDD experience.</li></ul><br /><p><b>Nice to have and opportunities to learn:</b></p><br /><ul><li>Expertise in Domain Driven Design (DDD), including domain modelling and aligning architecture to complex business domains.</li><li>Front office Portfolio Management or Wealth Management domain experience, with a strong understanding of investment workflows, decision making processes, and the role of technology in supporting portfolio managers and advisors.</li><li>Domain knowledge of asset classes &amp; analytics (e.g., equities, fixed income, multi asset, alternatives) and how their characteristics influence risk, performance, liquidity, and system design.</li><li>Experience with portfolio construction concepts, including asset allocation, constraints, benchmarks, rebalancing, and optimization, and how these map to scalable platform and architecture decisions.</li><li>Exposure to event-driven architectures at scale, including microservices, messaging, and streaming platforms aligned to business domains.</li><li>Experience shaping or contributing to platform strategies that enable multiple product teams to move faster with consistency and autonomy.</li><li>Familiarity with cloud native and hybrid architectures, including patterns for scalability, resilience, and cost aware design in large enterprises – including frameworks like Kubernetes.</li><li>Exposure to modern DevOps and platform engineering practices that support high throughput, high quality delivery at enterprise scale, and demonstrable improvements across DORA metrics.</li><li>Familiarity with micro frontend architectures, including their use in large scale, multi team environments to enable independent domain ownership, parallel delivery, and consistent user experiences across complex platform</li></ul><br /><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b><span>Our benefits</span></b><br /><br /><span>To help you stay energized, engaged and inspired, we offer a wide range of benefits including a strong retirement plan, tuition reimbursement, comprehensive healthcare, support for working parents and Flexible Time Off (FTO) so you can relax, recharge and be there for the people you care about.</span></p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Our hybrid work model</b></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\">BlackRock’s hybrid work model is designed to enable a culture of collaboration and apprenticeship that enriches the experience of our employees, while supporting flexibility for all. Employees are currently required to work at least 4 days in the office per week, with the flexibility to work from home 1 day a week. Some business groups may require more time in the office due to their roles and responsibilities. We remain focused on increasing the impactful moments that arise when we work together in person – aligned with our commitment to performance and innovation. As a new joiner, you can count on this hybrid model to accelerate your learning and onboarding experience here at BlackRock.</p><p style=\"text-align:inherit\"></p><p><b><br />Guidance on AI use for candidates</b></p><br /><p>At BlackRock, AI has long been part of how we work – enhancing decision-making, improving operations, and helping us deliver better outcomes for clients. We encourage candidates to use AI thoughtfully to learn, prepare, and work more effectively; but during our interview process, we want to focus on getting to know you through your own experiences, thinking, and judgment. To support you, we’ve provided <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fcareers.blackrock.com%2Fen%2Fai-interview-guidance&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858686005%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;whXuYBXo637EPj15E8LLiyRsdWphXOyPK8ODdCxk2Xs%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><b>guidance</b></span></a> on when and how to use AI during our hiring process so you can approach each step with confidence and showcase your best self.<br /></p><br /><p style=\"text-align:left !important\"><b>About BlackRock</b></p><br /><p style=\"text-align:left !important\">At BlackRock, we are all connected by one mission: to help more and more people experience financial well-being.  Our clients, and the people they serve, are saving for retirement, paying for their children’s educations, buying homes and starting businesses. Their investments also help to strengthen the global economy: support businesses small and large; finance infrastructure projects that connect and power cities; and facilitate innovations that drive progress.</p><br /><p style=\"text-align:left !important\">This mission would not be possible without our smartest investment – the one we make in our employees. It’s why we’re dedicated to creating an environment where our colleagues feel welcomed, valued and supported with networks, benefits and development opportunities to help them thrive.</p><br /><p style=\"text-align:left !important\">To learn more about BlackRock, please visit <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fcareers.blackrock.com%2F&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858757460%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;6CXUoyh4Ub9im0GQOujEuZH8Rmf3O%2BLXRHCG8Lq4BLM%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>Careers.BlackRock.com</u></span></a>. We also encourage you to get to know us on <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.linkedin.com%2Fcompany%2Fblackrock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858797423%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;F9%2BP2n8dtIohs%2BfyLRpV%2FXcW7F4NmY266WgISqxEJBk%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>LinkedIn</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.instagram.com%2Fblackrock%2F&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858827710%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;JbotoyYoorFoIKfwqJ3jMHDQ4GDxptOzl6DWG%2BmCDVA%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>Instagram</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.youtube.com%2F%40LifeatBlackRock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858854986%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;4m94z87I%2F5Y33edGFrw7b8oEwUqEPoMi8aRSP5Grc2E%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>YouTube</u></span></a>, <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fx.com%2FBlackRock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858881999%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;JN9zBoi1f6dr35BovPmwulYT68B%2F1QHg3gR%2Bmg7TT14%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>X</u></span></a>, and <a target=\"_blank\" href=\"https://nam10.safelinks.protection.outlook.com/?url&#61;https%3A%2F%2Fwww.tiktok.com%2F%40blackrock&amp;data&#61;05%7C02%7CPoulam.Maiti%40blackrock.com%7C8c001f38dc71438fe65308debd7ccca5%7C282a32955c424d939ec16631001cc5f7%7C0%7C0%7C639156540858903740%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata&#61;aHv7vpILkjI1mNFebVSda3a0HnLsNeTO4nisrrZIFrc%3D&amp;reserved&#61;0\"><span style=\"color:#0875e1\"><u>TikTok</u></span></a>.<br /></p><p style=\"text-align:left\"><span>BlackRock is proud to be an Equal Opportunity Employer.  We evaluate qualified applicants without regard to age, disability, family status, gender identity, race, religion, sex, sexual orientation and other protected attributes at law.</span></p>",
+        "location": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+        "postedOn": "Posted 25 Days Ago",
+        "startDate": "2026-09-25",
+        "timeType": "Full time",
+        "jobReqId": "R260416",
+        "jobPostingId": "Application-Engineer---Aladdin-Portfolio-Management---Vice-President_R260416",
+        "jobPostingSiteId": "BlackRock_Professional",
+        "country": {
+          "descriptor": "India",
+          "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+        },
+        "canApply": true,
+        "posted": true,
+        "includeResumeParsing": true,
+        "jobRequisitionLocation": {
+          "descriptor": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "country": {
+            "descriptor": "India",
+            "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+            "alpha2Code": "IN"
+          }
+        },
+        "externalUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer---Aladdin-Portfolio-Management---Vice-President_R260416",
+        "questionnaireId": "aa50d29c4e951001fa22c5859fcc0000",
+        "timeLeftToApply": "9 days left to apply",
+        "endDate": "2026-10-31",
+        "jobPostingEndDateAsText": "End Date: October 31, 2026"
+      },
+      "hiringOrganization": {
+        "name": "",
+        "url": ""
+      },
+      "similarJobs": [
+        {
+          "title": "Application Engineer, Vice President",
+          "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Application-Engineer--Vice-President_R261170",
+          "timeType": "Full time",
+          "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "postedOn": "Posted 19 Days Ago",
+          "startDate": "2026-10-01",
+          "timeLeftToApply": "11 days left to apply",
+          "jobPostingEndDateAsText": "End Date: November 2, 2026"
+        },
+        {
+          "title": "Vice President, Application Engineer",
+          "externalPath": "/job/M11---Commers-III-43-44--45-Fl-Internatl-Business-Park-Oberoi-Garden-City/Vice-President--Application-Engineer_R261168",
+          "timeType": "Full time",
+          "locationsText": "M11 - Commers III, 43, 44 & 45 Fl, Internat'l Business Park, Oberoi Garden City",
+          "postedOn": "Posted 19 Days Ago",
+          "startDate": "2026-10-01",
+          "timeLeftToApply": "13 days left to apply",
+          "jobPostingEndDateAsText": "End Date: November 4, 2026"
+        }
+      ],
+      "userAuthenticated": false
+    }
+  }
+}

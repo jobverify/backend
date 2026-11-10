@@ -1,0 +1,63 @@
+{
+  "capturedAt": "2026-10-24T17:22:42.215Z",
+  "source": "newvisionsoftwareconsultancy",
+  "fixtureScope": "One actual current listing/detail pair from 177 observed listings; department path differs under the same tenant/legal employer.",
+  "reportedNativeTotal": 177,
+  "listingRequest": {
+    "url": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=160&limit=20",
+    "method": "POST",
+    "body": "{}",
+    "responseSha256": "29eaea53657d9b8624f44dc546fd35a945c17f809228fb115fce6b3d8e3d3e08"
+  },
+  "detailRequest": {
+    "url": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/job/NVS_AE_1775095/v2?part=basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied&isReqId=false",
+    "method": "GET",
+    "responseSha256": "fb446ee842d83ba5a75e87f9149280fa9cbdf1e4466fbce3ade945416b31fa56"
+  },
+  "listing": {
+    "jobCode": "NVS/AE/1775095",
+    "jobTitle": "AI Engineer",
+    "organizationUnit": "Data and AI",
+    "organizationUnitComplete": "NewVison>New Vision Softcom & Consultancy Pvt. Ltd>Business Units (BU)>Data and AI>Data Engineering",
+    "locationHierarchyComplete": "APAC>India>Hyderabad>Hybrid>Hyderabad office standard>Telangana",
+    "locationHierarchy": "Hyderabad",
+    "jobDetailUrl": "https://careers-newvision.peoplestrong.com/job/detail/NVS_AE_1775095",
+    "jobPostedDate": "2026-06-18",
+    "jobClosureDate": "2027-06-18",
+    "employmentTenureType": null,
+    "expRange": "7-8 years",
+    "skills": {
+      "mustTohave": [],
+      "goodtohave": [
+        "AI",
+        " Machine Learning",
+        " Python",
+        " C#",
+        " Docker and kubernetes",
+        " CI/CD Integration",
+        " SQL",
+        " Cosmos DB",
+        " Machine Learning  ",
+        " Rest API"
+      ]
+    }
+  },
+  "detail": {
+    "messageCode": {
+      "code": 200,
+      "messages": "success"
+    },
+    "response": {
+      "entityID": "1397",
+      "requisitionCode": "NVS/AE/1775095",
+      "requisitionId": "1775095",
+      "jobTitle": "AI Engineer",
+      "organizationUnitComplete": "NewVison>New Vision Softcom & Consultancy Pvt. Ltd>Business Units (BU)>AI & Analytics>Data Engineering",
+      "orgUnitCode": "AI & Analytics",
+      "locationHierarchyComplete": "APAC>India>Hyderabad>Hybrid>Hyderabad office standard>Telangana",
+      "requisitionStatus": "OPEN",
+      "jobDescription": "<p data-end=\"76\" data-start=\"61\"><strong data-end=\"76\" data-start=\"61\">JOB SUMMARY</strong></p><p data-end=\"639\" data-start=\"78\">The Applied AI Solutions Architect is a strategic role responsible for designing, implementing, and managing AI-driven solutions that align with business objectives. This position bridges technical expertise in artificial intelligence (AI) and machine learning (ML) with business strategy, ensuring scalable, ethical, and high-performing AI systems. The AI Solutions Architect collaborates with cross-functional teams to deliver innovative solutions, leveraging generative AI, cloud platforms, and modern architectures like Retrieval-Augmented Generation (RAG).</p><ul type=\"disc\"><li><strong><span data-olk-copy-source=\"MessageBody\">Location:</span></strong> Hyderabad (preferred) but open to other locations</li><li><strong>Shift timing:</strong> 2 PM &ndash; 11 PM IST (no exceptions)</li></ul><p><br></p><p data-end=\"666\" data-start=\"646\"><strong data-end=\"666\" data-start=\"646\">ESSENTIAL DUTIES</strong></p><ul data-end=\"2049\" data-start=\"668\"><li data-end=\"851\" data-section-id=\"1bgww01\" data-start=\"668\"><strong data-end=\"690\" data-start=\"670\">Solution Design:</strong> Architect end-to-end AI/ML pipelines, including data ingestion, preprocessing, model training, deployment, and monitoring, ensuring scalability and performance.</li><li data-end=\"1033\" data-section-id=\"1y6c1cv\" data-start=\"853\"><strong data-end=\"880\" data-start=\"855\">Technology Selection:</strong> Evaluate and select appropriate AI frameworks, tools, and cloud services (e.g., AWS SageMaker, Azure AI, Google Cloud AI) based on project requirements.</li><li data-end=\"1225\" data-section-id=\"19kyqch\" data-start=\"1035\"><strong data-end=\"1070\" data-start=\"1037\">Generative AI Implementation:</strong> Design solutions using large language models (LLMs) and RAG architecture for applications like content generation, customer engagement, or product design.</li><li data-end=\"1401\" data-section-id=\"wi12m9\" data-start=\"1227\"><strong data-end=\"1247\" data-start=\"1229\">Collaboration:</strong> Work with data scientists, engineers, product managers, and executives to translate business needs into technical solutions, acting as a trusted advisor.</li><li data-end=\"1524\" data-section-id=\"1tr8v0o\" data-start=\"1403\"><strong data-end=\"1431\" data-start=\"1405\">Governance and Ethics:</strong> Implement responsible AI practices, addressing bias, security, and compliance in AI systems.</li><li data-end=\"1651\" data-section-id=\"1sl9bvc\" data-start=\"1526\"><strong data-end=\"1548\" data-start=\"1528\">MLOps and AIOps:</strong> Establish CI/CD pipelines, model versioning, and monitoring frameworks to operationalize AI solutions.</li><li data-end=\"1793\" data-section-id=\"11c78o\" data-start=\"1653\"><strong data-end=\"1678\" data-start=\"1655\">Thought Leadership:</strong> Advocate for AI-driven innovation, mentor teams, and communicate technical concepts to non-technical stakeholders.</li><li data-end=\"1928\" data-section-id=\"1u6dr7c\" data-start=\"1795\"><strong data-end=\"1826\" data-start=\"1797\">Performance Optimization:</strong> Ensure AI solutions meet latency, cost, and quality requirements, optimizing production environments.</li><li data-end=\"2049\" data-section-id=\"1rkkyo5\" data-start=\"1930\"><strong data-end=\"2049\" data-start=\"1932\">Monitor and tune workloads within the Microsoft Fabric platform to ensure cost-effective and efficient operations</strong></li></ul><hr data-start=\"2051\" data-end=\"2054\"><p data-end=\"2076\" data-start=\"2056\"><strong data-end=\"2076\" data-start=\"2056\">TECHNICAL SKILLS</strong></p><ul data-end=\"2736\" data-start=\"2078\"><li data-end=\"2186\" data-section-id=\"17vybj\" data-start=\"2078\"><strong data-end=\"2098\" data-start=\"2080\">AI Techniques:</strong> Expertise with the concepts of generative AI, prompt engineering, fine-tuning, and RAG.</li><li data-end=\"2365\" data-section-id=\"h4dgxd\" data-start=\"2188\"><strong data-end=\"2210\" data-start=\"2190\">Azure Ecosystem:</strong> Expertise in Azure Machine Learning, Azure OpenAI Service (GPT, Codex, DALL&middot;E), Azure AI Search (RAG pattern), Azure Cognitive Services, and Azure DevOps.</li><li data-end=\"2503\" data-section-id=\"tc491z\" data-start=\"2367\"><strong data-end=\"2387\" data-start=\"2369\">AI Frameworks:</strong> Familiarity with Microsoft Semantic Kernel, Autogen C#, PyTorch, Scikit-learn, ONNX, and Hugging Face Transformers.</li><li data-end=\"2674\" data-section-id=\"w9vp0r\" data-start=\"2505\"><strong data-end=\"2523\" data-start=\"2507\">Programming:</strong> Skilled in Python and C# for AI/ML development, with expertise in vector search using Azure Cosmos DB, prompt engineering, and content safety filters.</li><li data-end=\"2736\" data-section-id=\"1ha3p4s\" data-start=\"2676\"><strong data-end=\"2693\" data-start=\"2678\">Data Tools:</strong> Familiarity with SQL Server and Cosmos DB.</li></ul><hr data-start=\"2738\" data-end=\"2741\"><p data-end=\"2764\" data-start=\"2743\"><strong data-end=\"2764\" data-start=\"2743\">ADDITIONAL ASSETS</strong></p><ul data-end=\"3181\" data-start=\"2766\"><li data-end=\"2889\" data-section-id=\"13pha0u\" data-start=\"2766\"><strong data-end=\"2779\" data-start=\"2768\">DevOps:</strong> Knowledge of version control (Git) and CI/CD (Azure DevOps, Docker, Kubernetes via Azure Kubernetes Service).</li><li data-end=\"2961\" data-section-id=\"1i0quhf\" data-start=\"2891\"><strong data-end=\"2914\" data-start=\"2893\">Data Engineering:</strong> Understanding of ETL processes and data lakes.</li><li data-end=\"3043\" data-section-id=\"h5tthw\" data-start=\"2963\"><strong data-end=\"2987\" data-start=\"2965\">Microsoft Purview:</strong> Understanding of Microsoft Purview for data governance.</li><li data-end=\"3128\" data-section-id=\"cmc0vh\" data-start=\"3045\"><strong data-end=\"3062\" data-start=\"3047\">Compliance:</strong> Familiarity with compliance regulations (716, GDPR, GLBA, HIPAA).</li><li data-end=\"3181\" data-section-id=\"1l40ecg\" data-start=\"3130\">Knowledge of Microsoft Responsible AI principles.</li></ul><hr data-start=\"3183\" data-end=\"3186\"><p data-end=\"3203\" data-start=\"3188\"><strong data-end=\"3203\" data-start=\"3188\">SOFT SKILLS</strong></p><ul data-end=\"4398\" data-start=\"3205\"><li data-end=\"3308\" data-section-id=\"t82b7z\" data-start=\"3205\">Strong communication skills with the ability to collaborate across technical and non-technical teams.</li><li data-end=\"3502\" data-section-id=\"pc1j2a\" data-start=\"3310\">Results driven; high integrity; ability to influence, negotiate and build relationships; superior communication skills; making complex decisions and leading teams through complex challenges.</li><li data-end=\"3574\" data-section-id=\"cwupso\" data-start=\"3504\">Self-disciplined to work in a virtual, agile, globally sourced team.</li><li data-end=\"3697\" data-section-id=\"156in9\" data-start=\"3576\">Strategic, out-of-the-box thinker with problem-solving experience to assess, analyze, troubleshoot, and resolve issues.</li><li data-end=\"3875\" data-section-id=\"1bc3zqf\" data-start=\"3699\">Excellent analytical skills, extraordinary attention to detail, and ability to present recommendations to business teams based on trends, patterns, and modern best practices.</li><li data-end=\"3948\" data-section-id=\"1c0d7c8\" data-start=\"3877\">Experience with Power BI datasets and semantic modelling is an asset.</li><li data-end=\"4027\" data-section-id=\"gww4br\" data-start=\"3950\">Familiarity with Microsoft Purview or similar governance tools is an asset.</li><li data-end=\"4088\" data-section-id=\"7qhj84\" data-start=\"4029\">Working knowledge of Python, PySpark, or KQL is an asset.</li><li data-end=\"4238\" data-section-id=\"1oj1lzl\" data-start=\"4090\">Experience and passion for technology and providing exceptional experience both internally for employees and externally for clients and prospects.</li><li data-end=\"4312\" data-section-id=\"40gc6k\" data-start=\"4240\">Strong ownership, bias to action, and ability to succeed in ambiguity.</li><li data-end=\"4398\" data-section-id=\"174satf\" data-start=\"4314\">Ability to deliver value consistently by motivating teams towards achieving goals.</li></ul><p><br></p><p><span data-olk-copy-source=\"MessageBody\">&nbsp; <strong>Certifications Requirements:</strong></span></p><ul><li> AWS Certified Machine Learning &ndash; Specialty</li><li>&nbsp;Microsoft Azure AI Engineer Associate</li><li>Google Cloud Professional Machine Learning Engineer</li><li>Coursera or Edureka AI/ML certifications (e.g., DeepLearning.AI&rsquo;s Generative AI Specialization)</li><li>ITIL or TOGAF for enterprise architecture alignment (optional)</li></ul><p><br></p><p data-end=\"4425\" data-start=\"4405\"><strong data-end=\"4425\" data-start=\"4405\">DOMAIN KNOWLEDGE</strong></p><ul data-end=\"4539\" data-start=\"4427\"><li data-end=\"4539\" data-section-id=\"19fudqh\" data-start=\"4427\">Experience in industries like healthcare, finance, or technology, with an understanding of relevant use cases.</li></ul><p><br></p><p>New Vision is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees</p>",
+      "employmentType": "Full Time"
+    }
+  }
+}

@@ -7,9 +7,15 @@ const schema = new Schema({
   kind: { type: String, enum: ['job_published'], default: 'job_published', immutable: true },
   status: { type: String, enum: ['pending', 'processing', 'completed'], default: 'pending' },
   attemptCount: { type: Number, default: 0 },
+  failedAttemptCount: { type: Number, default: 0 },
   nextAttemptAt: { type: Date, default: Date.now },
   claimToken: { type: String, default: null },
   claimExpiresAt: { type: Date, default: null },
+  // ObjectId order defines this event's bounded audience, not enrollment time.
+  // Initialization is explicit so an empty audience and a legacy receipt differ.
+  recipientScanInitialized: { type: Boolean, default: false },
+  recipientUpperBound: { type: Schema.Types.ObjectId, default: null },
+  recipientCursor: { type: Schema.Types.ObjectId, default: null },
   completedAt: { type: Date, default: null },
   outcome: { type: String, enum: ['', 'matched', 'job_unavailable'], default: '' },
   lastError: { type: String, maxlength: 100, default: '' },

@@ -1,0 +1,307 @@
+{
+  "company": {
+    "id": 27892,
+    "slug": "shortloop",
+    "name": "ShortLoop",
+    "website": "https://shortloop.dev/",
+    "ycdc_status": "Active"
+  },
+  "jobs": [
+    {
+      "listing": {
+        "id": 91213,
+        "title": "Customer Success (AI Products)",
+        "url": "/companies/shortloop/jobs/zwoBqHQ-customer-success-ai-products",
+        "applyUrl": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D91213&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=27892",
+        "location": "Bengaluru, KA, IN / Bengaluru, Karnataka, IN",
+        "askUs": false,
+        "type": "Full-time",
+        "role": "support",
+        "roleSpecificType": null,
+        "prettyRole": "Support",
+        "salaryRange": "₹12 - ₹30 INR",
+        "equityRange": "0.05% - 0.20%",
+        "minExperience": "1+ years",
+        "minSchoolYear": null,
+        "visa": "US citizenship/visa not required",
+        "skills": [],
+        "isIncomplete": false,
+        "companyUrl": "/companies/shortloop",
+        "companyName": "ShortLoop",
+        "companyBatchName": "W23",
+        "companyOneLiner": "Phone AI that Captures Every Dealership Revenue Opportunity",
+        "createdAt": "7 months",
+        "lastActive": "3 months"
+      },
+      "detail": {
+        "id": 91213,
+        "title": "Customer Success (AI Products)",
+        "url": "/companies/shortloop/jobs/zwoBqHQ-customer-success-ai-products",
+        "applyUrl": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D91213&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=27892",
+        "location": "Bengaluru, KA, IN / Bengaluru, Karnataka, IN",
+        "askUs": false,
+        "type": "Full-time",
+        "role": "support",
+        "roleSpecificType": null,
+        "prettyRole": "Support",
+        "salaryRange": "₹12 - ₹30 INR",
+        "equityRange": "0.05% - 0.20%",
+        "minExperience": "1+ years",
+        "minSchoolYear": null,
+        "visa": "US citizenship/visa not required",
+        "skills": [],
+        "isIncomplete": false,
+        "companyUrl": "/companies/shortloop",
+        "companyName": "ShortLoop",
+        "companyBatchName": "W23",
+        "companyOneLiner": "Phone AI that Captures Every Dealership Revenue Opportunity",
+        "createdAt": "7 months",
+        "lastActive": "3 months",
+        "description": "ShortLoop builds AI Agents for US automotive dealerships. Our AI handles inbound calls, missed calls, service bookings, and outbound campaigns across Sales, Service, and Reception.\n\nWe work with individual and multi-store dealer groups across the US and are rapidly scaling.\n\n## About the Role\n\nWe are hiring for our Customer Success team to own the full lifecycle of dealership deployments.\n\nThis is not a passive “account manager” role.\n\nYou will:\n\n* Deploy AI systems at new dealerships\n* Coordinate integrations with engineering\n* Configure workflows, dashboards, data in accordance with dealership requirements\n* Analyze call data and performance metrics\n* Run performance reviews with dealer GMs & Sales & Service Directors\n* Identify gaps and drive improvements\n* Ensure renewals, upsell and multi-store expansion\n\nThis is a hands-on role working daily with:\n\n* US dealership operators\n* Our Sales & Engineering team\n* Real call data and operational metrics\n\nYou must be extremely detail-oriented and comfortable working with numbers, dashboards, and process documentation.\n\n## Ideal Profile\n\n* 2–5 years of experience in SaaS Customer Success / Implementation / Solutions\n* Experience serving US customers preferred\n* Strong analytical mindset (comfortable with numbers, metrics, dashboards)\n* Excellent written and verbal English communication\n* Process-driven and detail-oriented\n* Comfortable working in US hours\n* Startup experience preferred",
+        "interview_process": "1. 15 minute initial chat. Discussion on professional experience.\n2. 2-3 interviews, 60 minutes each.\n3. 1 culture fit round with founders, 60 minutes.\n4. Offer, including salary, equity, and benefits\n5. Join as full time employee."
+      },
+      "schema": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Customer Success (AI Products)",
+        "url": "https://www.ycombinator.com/companies/shortloop/jobs/zwoBqHQ-customer-success-ai-products",
+        "description": "<p>ShortLoop builds AI Agents for US automotive dealerships. Our AI handles inbound calls, missed calls, service bookings, and outbound campaigns across Sales, Service, and Reception.</p>\n<p>We work with individual and multi-store dealer groups across the US and are rapidly scaling.</p>\n<h2>About the Role</h2>\n<p>We are hiring for our Customer Success team to own the full lifecycle of dealership deployments.</p>\n<p>This is not a passive “account manager” role.</p>\n<p>You will:</p>\n<ul>\n<li>Deploy AI systems at new dealerships</li>\n<li>Coordinate integrations with engineering</li>\n<li>Configure workflows, dashboards, data in accordance with dealership requirements</li>\n<li>Analyze call data and performance metrics</li>\n<li>Run performance reviews with dealer GMs &amp; Sales &amp; Service Directors</li>\n<li>Identify gaps and drive improvements</li>\n<li>Ensure renewals, upsell and multi-store expansion</li>\n</ul>\n<p>This is a hands-on role working daily with:</p>\n<ul>\n<li>US dealership operators</li>\n<li>Our Sales &amp; Engineering team</li>\n<li>Real call data and operational metrics</li>\n</ul>\n<p>You must be extremely detail-oriented and comfortable working with numbers, dashboards, and process documentation.</p>\n<h2>Ideal Profile</h2>\n<ul>\n<li>2–5 years of experience in SaaS Customer Success / Implementation / Solutions</li>\n<li>Experience serving US customers preferred</li>\n<li>Strong analytical mindset (comfortable with numbers, metrics, dashboards)</li>\n<li>Excellent written and verbal English communication</li>\n<li>Process-driven and detail-oriented</li>\n<li>Comfortable working in US hours</li>\n<li>Startup experience preferred</li>\n</ul>\n",
+        "datePosted": "2026-03-01T11:33:55Z",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "ShortLoop",
+          "sameAs": "https://shortloop.dev/"
+        },
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": {
+            "@type": "QuantitativeValue",
+            "unitText": "YEAR",
+            "minValue": 12,
+            "maxValue": 30
+          }
+        },
+        "interview_process": "<ol>\n<li>15 minute initial chat. Discussion on professional experience.</li>\n<li>2-3 interviews, 60 minutes each.</li>\n<li>1 culture fit round with founders, 60 minutes.</li>\n<li>Offer, including salary, equity, and benefits</li>\n<li>Join as full time employee.</li>\n</ol>\n",
+        "jobLocation": [
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "listing": {
+        "id": 86789,
+        "title": "Software Engineer (Senior)",
+        "url": "/companies/shortloop/jobs/BMl8B4a-software-engineer-senior",
+        "applyUrl": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D86789&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=27892",
+        "location": "Bengaluru, KA, IN / Bengaluru, Karnataka, IN",
+        "askUs": false,
+        "type": "Full-time",
+        "role": "eng",
+        "roleSpecificType": "Full stack",
+        "prettyRole": "Engineering",
+        "salaryRange": "₹3M - ₹4.5M INR",
+        "equityRange": "0.10% - 0.20%",
+        "minExperience": "3+ years",
+        "minSchoolYear": null,
+        "visa": "US citizenship/visa not required",
+        "skills": [
+          "Amazon Web Services (AWS)",
+          "Microsoft Azure",
+          "Node.js",
+          "Python",
+          "Software Architecture"
+        ],
+        "isIncomplete": false,
+        "companyUrl": "/companies/shortloop",
+        "companyName": "ShortLoop",
+        "companyBatchName": "W23",
+        "companyOneLiner": "Phone AI that Captures Every Dealership Revenue Opportunity",
+        "createdAt": "9 months",
+        "lastActive": null
+      },
+      "detail": {
+        "id": 86789,
+        "title": "Software Engineer (Senior)",
+        "url": "/companies/shortloop/jobs/BMl8B4a-software-engineer-senior",
+        "applyUrl": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D86789&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=27892",
+        "location": "Bengaluru, KA, IN / Bengaluru, Karnataka, IN",
+        "askUs": false,
+        "type": "Full-time",
+        "role": "eng",
+        "roleSpecificType": "Full stack",
+        "prettyRole": "Engineering",
+        "salaryRange": "₹3M - ₹4.5M INR",
+        "equityRange": "0.10% - 0.20%",
+        "minExperience": "3+ years",
+        "minSchoolYear": null,
+        "visa": "US citizenship/visa not required",
+        "skills": [
+          "Amazon Web Services (AWS)",
+          "Microsoft Azure",
+          "Node.js",
+          "Python",
+          "Software Architecture"
+        ],
+        "isIncomplete": false,
+        "companyUrl": "/companies/shortloop",
+        "companyName": "ShortLoop",
+        "companyBatchName": "W23",
+        "companyOneLiner": "Phone AI that Captures Every Dealership Revenue Opportunity",
+        "createdAt": "9 months",
+        "lastActive": null,
+        "description": "ShortLoop builds high-reliability AI phone agents that autonomously manage conversations for automotive dealerships. These agents book service appointments, qualify leads, and integrate deeply into dealership workflows - requiring tight SLAs, fault-tolerant systems, and fast, context-aware reasoning. As a software engineer on the team, you will design, scale, and evolve the infrastructure that powers these real-time Agentic AI systems.\n\n## **What you’ll be doing**\n\nThis role is highly cross-functional and involves substantial ownership of system behavior, architecture, and execution.\n\n* Leading design and implementation of real-time communication and conversation systems.\n* Scaling the infrastructure for our Agentic AI pipelines (LLMs, tools, decision loops).\n* Owning major backend components - from API surfaces to integration layers to data persistence.\n* Architecting cloud-native systems with a focus on resilience, latency, and cost efficiency.\n* Shaping engineering practices, performance monitoring, testing strategy, and deployment processes.\n* Collaborating directly with the founding team to align architecture with product roadmap.\n* Supporting integrations with dealership management software and task automation workflows.\n\n## **About you**\n\n* 3 - 5 years in a full-time engineering role building production systems.\n* Strong experience architecting scalable, secure, and observable cloud applications.\n* Ability to independently scope, design, and execute complex system components.\n* Experience with data infrastructure, event-driven architectures, or distributed systems.\n* Comfortable working in a fast-moving early-stage environment with high autonomy.\n* You take initiative - if something is broken, ambiguous, or inefficient, you drive the fix.\n\n## **Nice to have**\n\n* Experience building from 0 → 1 or working in early-stage teams.\n* Familiarity with LLM-based reasoning systems, speech pipelines, or real-time telephony (SIP, WebRTC).\n* Performance tuning experience - query optimization, caching strategies, concurrent systems.\n* Experience designing internal tools or workflow automation at scale.\n\n## **Our tech stack**\n\nAzure, AWS, Python, Node.js, React, MongoDB, ClickHouse.",
+        "interview_process": "1. 15 minute initial chat. Discussion on professional experience.\n2. 2-3 technical interviews, 60 minutes each.\n3. 1 culture fit round with founders, 60 minutes.\n4. Offer, including salary, equity and benefits\n5. Join as full time employee."
+      },
+      "schema": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Software Engineer (Senior)",
+        "url": "https://www.ycombinator.com/companies/shortloop/jobs/BMl8B4a-software-engineer-senior",
+        "description": "<p>ShortLoop builds high-reliability AI phone agents that autonomously manage conversations for automotive dealerships. These agents book service appointments, qualify leads, and integrate deeply into dealership workflows - requiring tight SLAs, fault-tolerant systems, and fast, context-aware reasoning. As a software engineer on the team, you will design, scale, and evolve the infrastructure that powers these real-time Agentic AI systems.</p>\n<h2><strong>What you’ll be doing</strong></h2>\n<p>This role is highly cross-functional and involves substantial ownership of system behavior, architecture, and execution.</p>\n<ul>\n<li>Leading design and implementation of real-time communication and conversation systems.</li>\n<li>Scaling the infrastructure for our Agentic AI pipelines (LLMs, tools, decision loops).</li>\n<li>Owning major backend components - from API surfaces to integration layers to data persistence.</li>\n<li>Architecting cloud-native systems with a focus on resilience, latency, and cost efficiency.</li>\n<li>Shaping engineering practices, performance monitoring, testing strategy, and deployment processes.</li>\n<li>Collaborating directly with the founding team to align architecture with product roadmap.</li>\n<li>Supporting integrations with dealership management software and task automation workflows.</li>\n</ul>\n<h2><strong>About you</strong></h2>\n<ul>\n<li>3 - 5 years in a full-time engineering role building production systems.</li>\n<li>Strong experience architecting scalable, secure, and observable cloud applications.</li>\n<li>Ability to independently scope, design, and execute complex system components.</li>\n<li>Experience with data infrastructure, event-driven architectures, or distributed systems.</li>\n<li>Comfortable working in a fast-moving early-stage environment with high autonomy.</li>\n<li>You take initiative - if something is broken, ambiguous, or inefficient, you drive the fix.</li>\n</ul>\n<h2><strong>Nice to have</strong></h2>\n<ul>\n<li>Experience building from 0 → 1 or working in early-stage teams.</li>\n<li>Familiarity with LLM-based reasoning systems, speech pipelines, or real-time telephony (SIP, WebRTC).</li>\n<li>Performance tuning experience - query optimization, caching strategies, concurrent systems.</li>\n<li>Experience designing internal tools or workflow automation at scale.</li>\n</ul>\n<h2><strong>Our tech stack</strong></h2>\n<p>Azure, AWS, Python, Node.js, React, MongoDB, ClickHouse.</p>\n",
+        "datePosted": "2025-12-09T21:46:46Z",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "ShortLoop",
+          "sameAs": "https://shortloop.dev/"
+        },
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": {
+            "@type": "QuantitativeValue",
+            "unitText": "YEAR",
+            "minValue": 3000000,
+            "maxValue": 4500000
+          }
+        },
+        "interview_process": "<ol>\n<li>15 minute initial chat. Discussion on professional experience.</li>\n<li>2-3 technical interviews, 60 minutes each.</li>\n<li>1 culture fit round with founders, 60 minutes.</li>\n<li>Offer, including salary, equity and benefits</li>\n<li>Join as full time employee.</li>\n</ol>\n",
+        "jobLocation": [
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "listing": {
+        "id": 86785,
+        "title": "Software Engineer - Fullstack",
+        "url": "/companies/shortloop/jobs/uHS0vD3-software-engineer-fullstack",
+        "applyUrl": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D86785&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=27892",
+        "location": "Bengaluru, KA, IN / Bengaluru, Karnataka, IN",
+        "askUs": false,
+        "type": "Full-time",
+        "role": "eng",
+        "roleSpecificType": "Full stack",
+        "prettyRole": "Engineering",
+        "salaryRange": "₹2M - ₹3M INR",
+        "equityRange": "0.10%",
+        "minExperience": "Any (new grads ok)",
+        "minSchoolYear": null,
+        "visa": "US citizenship/visa not required",
+        "skills": [
+          "Amazon Web Services (AWS)",
+          "Microsoft Azure",
+          "MongoDB",
+          "Node.js",
+          "Python",
+          "React"
+        ],
+        "isIncomplete": false,
+        "companyUrl": "/companies/shortloop",
+        "companyName": "ShortLoop",
+        "companyBatchName": "W23",
+        "companyOneLiner": "Phone AI that Captures Every Dealership Revenue Opportunity",
+        "createdAt": "9 months",
+        "lastActive": null
+      },
+      "detail": {
+        "id": 86785,
+        "title": "Software Engineer - Fullstack",
+        "url": "/companies/shortloop/jobs/uHS0vD3-software-engineer-fullstack",
+        "applyUrl": "https://account.ycombinator.com/authenticate?continue=https%3A%2F%2Fwww.workatastartup.com%2Fapplication%3Fsignup_job_id%3D86785&defaults%5BsignUpActive%5D=true&defaults%5Bwaas_company%5D=27892",
+        "location": "Bengaluru, KA, IN / Bengaluru, Karnataka, IN",
+        "askUs": false,
+        "type": "Full-time",
+        "role": "eng",
+        "roleSpecificType": "Full stack",
+        "prettyRole": "Engineering",
+        "salaryRange": "₹2M - ₹3M INR",
+        "equityRange": "0.10%",
+        "minExperience": "Any (new grads ok)",
+        "minSchoolYear": null,
+        "visa": "US citizenship/visa not required",
+        "skills": [
+          "Amazon Web Services (AWS)",
+          "Microsoft Azure",
+          "MongoDB",
+          "Node.js",
+          "Python",
+          "React"
+        ],
+        "isIncomplete": false,
+        "companyUrl": "/companies/shortloop",
+        "companyName": "ShortLoop",
+        "companyBatchName": "W23",
+        "companyOneLiner": "Phone AI that Captures Every Dealership Revenue Opportunity",
+        "createdAt": "9 months",
+        "lastActive": null,
+        "description": "ShortLoop builds enterprise-grade AI phone agents that deliver human-level clarity in real-time conversations. Our systems run 24/7 for automotive dealerships across the U.S. and India, managing inbound and outbound calls, scheduling service appointments, qualifying leads, and executing workflow automation against dealer systems. We operate with strict latency and reliability requirements. As an engineer here, you will help extend and harden the systems that make this possible.\n\n### **What you’ll be doing**\n\nYou will contribute across the stack with a focus on clean implementation, operational reliability, and rapid iteration. Typical work includes:\n\n• Building and improving real-time telephony and conversation-processing services.\\\n• Implementing features within our Agentic AI workflow engine.\\\n• Working on backend APIs and integrations with dealer management systems.\\\n• Contributing to internal tools used by Ops, Design, and Growth.\\\n• Participating in code reviews, observability improvements, and deployment workflows.\\\n• Collaborating directly with founders and senior engineers to evolve ShortLoop’s architecture.\n\n### **About you**\n\n• 0 - 3 years in a full-time engineering role or equivalent project experience.\\\n• Solid fundamentals in computer science, distributed systems basics, and debugging.\\\n• Comfortable working with cloud infrastructure and modern backend frameworks.\\\n• Strong initiative - you notice broken things and want to fix them.\\\n• Interest in real-time systems, LLM - powered applications, or workflow automation.\\\n• Eagerness to learn from senior engineers and take on progressively larger responsibilities.\n\n### **Nice to have**\n\n• Experience with Python, Node.js, or TypeScript.\\\n• Exposure to React or similar frontend frameworks.\\\n• Familiarity with MongoDB, ClickHouse, Pinecone or event-driven architectures.\\\n• Coursework or project experience in speech/LLM applications, telephony (SIP, WebRTC), or backend performance tuning.\n\n### **Our tech stack**\n\nAzure, AWS, Python, Node.js, React, MongoDB, ClickHouse.",
+        "interview_process": "1. 15 minute initial chat. Discussion on professional experience.\n2. 2-3 technical interviews, 60 minutes each.\n3. 1 culture fit round with founders, 60 minutes.\n4. Offer, including salary, equity and benefits\n5. Join as full time employee."
+      },
+      "schema": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Software Engineer - Fullstack",
+        "url": "https://www.ycombinator.com/companies/shortloop/jobs/uHS0vD3-software-engineer-fullstack",
+        "description": "<p>ShortLoop builds enterprise-grade AI phone agents that deliver human-level clarity in real-time conversations. Our systems run 24/7 for automotive dealerships across the U.S. and India, managing inbound and outbound calls, scheduling service appointments, qualifying leads, and executing workflow automation against dealer systems. We operate with strict latency and reliability requirements. As an engineer here, you will help extend and harden the systems that make this possible.</p>\n<h3><strong>What you’ll be doing</strong></h3>\n<p>You will contribute across the stack with a focus on clean implementation, operational reliability, and rapid iteration. Typical work includes:</p>\n<p>• Building and improving real-time telephony and conversation-processing services.<br>\n• Implementing features within our Agentic AI workflow engine.<br>\n• Working on backend APIs and integrations with dealer management systems.<br>\n• Contributing to internal tools used by Ops, Design, and Growth.<br>\n• Participating in code reviews, observability improvements, and deployment workflows.<br>\n• Collaborating directly with founders and senior engineers to evolve ShortLoop’s architecture.</p>\n<h3><strong>About you</strong></h3>\n<p>• 0 - 3 years in a full-time engineering role or equivalent project experience.<br>\n• Solid fundamentals in computer science, distributed systems basics, and debugging.<br>\n• Comfortable working with cloud infrastructure and modern backend frameworks.<br>\n• Strong initiative - you notice broken things and want to fix them.<br>\n• Interest in real-time systems, LLM - powered applications, or workflow automation.<br>\n• Eagerness to learn from senior engineers and take on progressively larger responsibilities.</p>\n<h3><strong>Nice to have</strong></h3>\n<p>• Experience with Python, Node.js, or TypeScript.<br>\n• Exposure to React or similar frontend frameworks.<br>\n• Familiarity with MongoDB, ClickHouse, Pinecone or event-driven architectures.<br>\n• Coursework or project experience in speech/LLM applications, telephony (SIP, WebRTC), or backend performance tuning.</p>\n<h3><strong>Our tech stack</strong></h3>\n<p>Azure, AWS, Python, Node.js, React, MongoDB, ClickHouse.</p>\n",
+        "datePosted": "2025-12-09T21:19:53Z",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "ShortLoop",
+          "sameAs": "https://shortloop.dev/"
+        },
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": {
+            "@type": "QuantitativeValue",
+            "unitText": "YEAR",
+            "minValue": 2000000,
+            "maxValue": 3000000
+          }
+        },
+        "interview_process": "<ol>\n<li>15 minute initial chat. Discussion on professional experience.</li>\n<li>2-3 technical interviews, 60 minutes each.</li>\n<li>1 culture fit round with founders, 60 minutes.</li>\n<li>Offer, including salary, equity and benefits</li>\n<li>Join as full time employee.</li>\n</ol>\n",
+        "jobLocation": [
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

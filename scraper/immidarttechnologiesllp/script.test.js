@@ -132,53 +132,20 @@ test('Immidart Technologies LLP run decorates official first-party careers jobs 
   assert.equal(jobs[9].requiredSkills.length, 4)
 })
 
-test('Immidart official fetch falls back only for the verified certificate alt-name mismatch', async () => {
+test('Immidart certificate failures propagate without a second request', async () => {
   const immidart = await loadImmidartModule()
-  const certificateError = Object.assign(
-    new Error("Hostname/IP does not match certificate's altnames: Host: www.immidart.com."),
-    { code: 'ERR_TLS_CERT_ALTNAME_INVALID' },
-  )
-  const fallbackUrls = []
-
-  const page = await immidart.fetchTextWithOfficialFallback(immidart.HOMEPAGE_URL, {
-    strictFetchText: async () => {
-      throw certificateError
-    },
-    fallbackFetchText: async (url) => {
-      fallbackUrls.push(url)
-      return homepageHtml
-    },
-  })
-
-  assert.equal(page, homepageHtml)
-  assert.deepEqual(fallbackUrls, [immidart.HOMEPAGE_URL])
-
-  await assert.rejects(
-    immidart.fetchTextWithOfficialFallback('https://example.com/', {
-      strictFetchText: async () => {
-        throw certificateError
-      },
-      fallbackFetchText: async () => {
-        throw new Error('Unexpected fallback for an unverified host')
-      },
-    }),
-    /certificate's altnames/i,
-  )
-
-  await assert.rejects(
-    immidart.fetchTextWithOfficialFallback(immidart.CAREERS_URL, {
-      strictFetchText: async () => {
-        throw new Error('HTTP 500 for https://www.immidart.com/company/careers')
-      },
-      fallbackFetchText: async () => {
-        throw new Error('Unexpected fallback for a non-certificate error')
-      },
-    }),
-    /HTTP 500/i,
-  )
+  let calls = 0
+  const certificateError = Object.assign(new Error('certificate mismatch'), { code: 'ERR_TLS_CERT_ALTNAME_INVALID' })
+  await assert.rejects(immidart.fetchImmidartText(immidart.HOMEPAGE_URL, { request: () => {
+    calls++
+    const req = new EventEmitter()
+    req.end = () => req.emit('error', certificateError)
+    return req
+  } }), error => error === certificateError)
+  assert.equal(calls, 1)
 })
 
-test('Immidart certificate-mismatch fallback disables TLS rejection only for the verified host', async () => {
+test('Immidart transport always verifies TLS for the verified host', async () => {
   const immidart = await loadImmidartModule()
   const requests = []
   const fakeRequest = (url, options, callback) => {
@@ -198,21 +165,21 @@ test('Immidart certificate-mismatch fallback disables TLS rejection only for the
     return request
   }
 
-  const text = await immidart.fetchTextAllowingMismatchedCertificate(immidart.HOMEPAGE_URL, {
+  const text = await immidart.fetchImmidartText(immidart.HOMEPAGE_URL, {
     request: fakeRequest,
   })
 
   assert.equal(text, homepageHtml)
   assert.equal(requests.length, 1)
   assert.equal(requests[0].url, immidart.HOMEPAGE_URL)
-  assert.equal(requests[0].options.rejectUnauthorized, false)
+  assert.equal(requests[0].options.rejectUnauthorized, true)
   assert.match(requests[0].options.headers['User-Agent'], /Mozilla\/5\.0/)
 
   await assert.rejects(
-    immidart.fetchTextAllowingMismatchedCertificate('https://example.com/', {
+    immidart.fetchImmidartText('https://example.com/', {
       request: fakeRequest,
     }),
-    /refusing certificate fallback/i,
+    /verified origins/i,
   )
 })
 

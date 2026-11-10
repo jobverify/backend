@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 import { ENTRUST_SOFTWARE_SERVICES_CATALOG } from './catalog.js'
 
@@ -54,6 +55,7 @@ export const hasPublicJobListingSignal = (html = '') => /data-job-id=|Apply now|
 export const createEntrustSoftwareServicesScraper = () => ({
   async run({
     fetchText = defaultFetchText,
+    now = () => new Date().toISOString(),
   } = {}) {
     const homepageHtml = await fetchText(HOMEPAGE_URL)
 
@@ -65,7 +67,12 @@ export const createEntrustSoftwareServicesScraper = () => ({
       throw new Error('The verified eNTrust homepage no longer matches the trusted first-party surface')
     }
 
-    return []
+    return attachInventoryEvidence([], {
+      status: 'discovery-only', surface: HOMEPAGE_URL, firstParty: true,
+      listingComplete: false, pagesFetched: 1, reportedTotal: null, indiaFacetCount: null,
+      verifiedAt: now(),
+      reason: 'Current eNTrust homepage identity verified; no public recruiting surface or authoritative vacancy totals are declared.',
+    })
   },
 })
 

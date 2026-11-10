@@ -1,0 +1,92 @@
+{
+  "source": "katalon",
+  "company": "Katalon",
+  "verificationDisposition": "complete-native-enumeration-with-unresolved-india-recruiting-versus-vietnam-work-location",
+  "nativePublicJobCount": 14,
+  "nativeIndiaRecruitingLocationCount": 2,
+  "verifiedIndiaBasedWorkCount": null,
+  "unresolvedJobIds": [
+    "8557097",
+    "8464989"
+  ],
+  "sourceListingComplete": false,
+  "indiaScopeComplete": false,
+  "playbackInventoryEvidence": {
+    "status": "discovery-only",
+    "surface": "https://careers.katalon.com/jobs",
+    "firstParty": true,
+    "listingComplete": false,
+    "pagesFetched": 5,
+    "reportedTotal": 14,
+    "indiaFacetCount": 2,
+    "verifiedAt": "2026-10-23T02:55:53.897Z",
+    "reason": "native-india-recruiting-location-conflicts-with-required-foreign-relocation"
+  },
+  "recruitingCandidates": [
+    {
+      "jobId": "8557097",
+      "title": "Director of Sales, APMEA (B2B/SaaS/Relocation to Vietnam)",
+      "sourceUrl": "https://careers.katalon.com/jobs/8557097-director-of-sales-apmea-b2b-saas-relocation-to-vietnam",
+      "applyUrl": "https://careers.katalon.com/jobs/8557097-director-of-sales-apmea-b2b-saas-relocation-to-vietnam/applications/new",
+      "location": "Bengaluru, India",
+      "sourceLocationConflict": "Native India recruiting location requires relocation to Vietnam; work location is unresolved"
+    },
+    {
+      "jobId": "8464989",
+      "title": "Head of Data (Relocation to Vietnam)",
+      "sourceUrl": "https://careers.katalon.com/jobs/8464989-head-of-data-relocation-to-vietnam",
+      "applyUrl": "https://careers.katalon.com/jobs/8464989-head-of-data-relocation-to-vietnam/applications/new",
+      "location": "Bengaluru, India",
+      "sourceLocationConflict": "Native India recruiting location requires relocation to Vietnam; work location is unresolved"
+    }
+  ],
+  "retained": [
+    {
+      "file": "official-response.json",
+      "sha256": "bb32b3dd9f000f8e515b6c6f502067b4ca84a4f99ce843e470043eb953f75300",
+      "responses": [
+        {
+          "url": "https://katalon.com/careers/all-jobs",
+          "finalUrl": "https://katalon.com/careers/all-jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T02:51:46.910Z",
+          "bodySha256": "d445e502424942b0512111ad6f5039dcb1fe3d6267ac0da5cafd1dcb0375ff6b"
+        }
+      ]
+    },
+    {
+      "file": "careers-responses.json",
+      "sha256": "abb7ff417a786bef333ae8c400831f96a0f1480efe4a7fab4a4780b1fa5dc46f",
+      "responses": [
+        {
+          "url": "https://careers.katalon.com/jobs",
+          "finalUrl": "https://careers.katalon.com/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T02:50:02.123Z",
+          "bodySha256": "e52979826e7893a30c475cb2fabf56b94b256a05fc4a4052b6146b88a674fae4"
+        },
+        {
+          "url": "https://careers.katalon.com/jobs.rss",
+          "finalUrl": "https://careers.katalon.com/jobs.rss",
+          "status": 200,
+          "capturedAt": "2026-10-23T02:50:03.017Z",
+          "bodySha256": "7a007f83ab514d419d6399b1da4c212a4be68913c161a6f9d1d0bbd5ce71eba9"
+        },
+        {
+          "url": "https://careers.katalon.com/jobs/8464989-head-of-data-relocation-to-vietnam",
+          "finalUrl": "https://careers.katalon.com/jobs/8464989-head-of-data-relocation-to-vietnam",
+          "status": 200,
+          "capturedAt": "2026-10-23T02:50:02.963Z",
+          "bodySha256": "5e0f954f0078699d7bcd802a3c6bc1589e16ced86ff1bfb369305dfa9840badf"
+        },
+        {
+          "url": "https://careers.katalon.com/jobs/8557097-director-of-sales-apmea-b2b-saas-relocation-to-vietnam",
+          "finalUrl": "https://careers.katalon.com/jobs/8557097-director-of-sales-apmea-b2b-saas-relocation-to-vietnam",
+          "status": 200,
+          "capturedAt": "2026-10-23T02:50:02.172Z",
+          "bodySha256": "c295a6e361908c2b3d7dde0b971cd8b1025bcfb20ed020df4d88d3a6bd44041d"
+        }
+      ]
+    }
+  ]
+}

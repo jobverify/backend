@@ -13,6 +13,7 @@ import { dispatchTailoredResumes, tailoredResumeActionsConfigured } from '../src
 
 function configure(t, values = {}) {
   const config = { GITHUB_PAT: 'test-token-only', GITHUB_REPO: 'example/backend', 
+    TAILORED_RESUME_GITHUB_REPO: undefined,
     TAILORED_RESUME_ACTIONS_ENABLED: 'true', TAILORED_RESUME_ACTIONS_MONTHLY_RUN_LIMIT: '10', ...values };
   for (const [key, value] of Object.entries(config)) {
     const before = process.env[key];
@@ -38,6 +39,28 @@ test('tailoring dispatches its own workflow on the default branch with no candid
   assert.equal(result.reused, false);
   assert.equal(calls.length, 3);
   assert.match(calls[0].endpoint, /tailored-resumes\.yml\/runs/);
+});
+
+test('resume dispatch uses its dedicated repository instead of the scraper repository', async t => {
+  configure(t, { GITHUB_REPO: 'jobverify/jobverify-backend', TAILORED_RESUME_GITHUB_REPO: 'jobverify/backend' });
+  const calls = [];
+  await dispatchTailoredResumes({ request: async (repo, endpoint) => {
+    assert.equal(repo, 'jobverify/backend');
+    calls.push(endpoint);
+    if (endpoint.includes('/runs?')) return { workflow_runs: [] };
+    if (!endpoint) return { default_branch: 'main' };
+  } });
+  assert.equal(calls.length, 3);
+  assert.equal(process.env.GITHUB_REPO, 'jobverify/jobverify-backend');
+});
+
+test('resume repository configuration is validated independently of the scraper repository', async t => {
+  configure(t, { GITHUB_REPO: undefined, TAILORED_RESUME_GITHUB_REPO: 'jobverify/backend' });
+  assert.equal(tailoredResumeActionsConfigured(), true);
+  process.env.TAILORED_RESUME_GITHUB_REPO = 'invalid';
+  process.env.GITHUB_REPO = 'jobverify/jobverify-backend';
+  assert.equal(tailoredResumeActionsConfigured(), false);
+  await assert.rejects(dispatchTailoredResumes({ request: async () => assert.fail('GitHub must not be called') }), { statusCode: 503 });
 });
 
 test('a waiting runner is reused, while a running worker gets a follow-up run for newly queued work', async t => {

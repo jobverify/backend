@@ -1,0 +1,59 @@
+{
+  "kind": "compact-offline-continuation-cases-no-duplicated-raw-models",
+  "reviewSealSHA256": "5b4b691e6ba1ddfc389af2df5c06927f19711c2f509efa109e0715dfa1983fa5",
+  "cases": [
+    {
+      "name": "advertised-more-jobs-anchor",
+      "control": "<a href=\"/gigamon?page=2\">More jobs</a>",
+      "originalReviewerPath": "artifacts/full-catalog/gigamon-native-001/independent-review-001/advertised-more-jobs-anchor.html",
+      "exactHTMLSHA256": "8ba3df75e1fac1d613387922952ad23c80957fde938dc960d29f5a676cd98c38"
+    },
+    {
+      "name": "unresolved-camelcase-loadMore",
+      "control": "<button ng-click=\"loadMore()\">Load more</button>",
+      "originalReviewerPath": "artifacts/full-catalog/gigamon-native-001/independent-review-001/unresolved-camelcase-loadMore.html",
+      "exactHTMLSHA256": "187928b5872b77559b2bf4d669f53cd2674f9ca9411225d12cd1bd7de15d928c"
+    }
+  ],
+  "partitions": [
+    {
+      "url": "https://jobs.jobvite.com/gigamon",
+      "roleIds": [
+        "oJJIAfwu",
+        "oMhmAfwJ",
+        "oe4MAfwo",
+        "oI4MAfwS",
+        "ovmtAfwE",
+        "oIsQAfwk",
+        "oW23zfwk",
+        "ofKSAfwb",
+        "o0iIAfwk",
+        "owReAfwV",
+        "oNnaAfwE",
+        "o7PFAfwV",
+        "osrCAfwP"
+      ],
+      "control": "<a href=\"/gigamon?page=2\">More jobs</a>"
+    },
+    {
+      "url": "https://jobs.jobvite.com/gigamon?page=2",
+      "roleIds": [
+        "opOFAfwc",
+        "oVVRAfw1",
+        "oPPSAfwQ",
+        "oXkTAfwu",
+        "ovOSAfwv",
+        "o6czAfwb",
+        "oE8EAfwK",
+        "orLIAfwe",
+        "oC6XzfwY",
+        "onsRAfw0",
+        "oUtRAfwy",
+        "objQAfwE",
+        "okkyAfww"
+      ],
+      "control": ""
+    }
+  ],
+  "modelSource": "native-captures.json unchanged; disjoint partitions retain original row markup and all26 detail models exactly"
+}

@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "Offset": 0,
+      "Limit": 24,
+      "TotalJobsCount": 2,
+      "requisitionList": [
+        {
+          "Id": "25003421",
+          "Title": "Applications Engineer",
+          "PostedDate": "2026-07-01",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "IN",
+          "PrimaryLocation": "BENGALURU, KARNATAKA, India",
+          "Department": "Engineering",
+          "JobFunction": null,
+          "JobFamily": null,
+          "WorkerType": null,
+          "JobType": null,
+          "StudyLevel": "Bachelor's degree in Electrical Engineering",
+          "ShortDescriptionStr": "Develop customer-focused analog and embedded solutions.",
+          "ExternalResponsibilitiesStr": "Collaborate with customers and field teams to solve technical problems.",
+          "ExternalQualificationsStr": null,
+          "secondaryLocations": [
+            {
+              "Name": "BENGALURU, KARNATAKA, India",
+              "CountryCode": "IN"
+            }
+          ]
+        },
+        {
+          "Id": "25003422",
+          "Title": "Systems Engineer",
+          "PostedDate": "2026-07-01",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "US",
+          "PrimaryLocation": "DALLAS, TEXAS, United States",
+          "Department": "Engineering",
+          "JobFunction": null,
+          "JobFamily": null,
+          "WorkerType": null,
+          "JobType": null,
+          "StudyLevel": null,
+          "ShortDescriptionStr": "Design semiconductor systems.",
+          "ExternalResponsibilitiesStr": null,
+          "ExternalQualificationsStr": null,
+          "secondaryLocations": []
+        }
+      ]
+    }
+  ]
+}

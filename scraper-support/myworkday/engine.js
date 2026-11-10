@@ -2125,7 +2125,8 @@ const runWorkdayJobsApiScraper = async ({
             requestScheduler,
             requireProofResponse: countryProof,
           })
-        } catch (error) {
+        } catch (initialError) {
+          let error = initialError
           throwIfAborted(signal)
           if (shouldRetryWithoutWorkdayCountryFacet({
             error,

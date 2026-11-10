@@ -40,12 +40,10 @@ export const applyExpiredAccessDowngrade = (user, now = new Date()) => {
   }
 
   user.accessRole = ACCESS_ROLES.FREE;
-  user.premium = {
-    ...user.premium,
-    planId: PLAN_IDS.FREE,
-    status: "expired",
-    telegramAlertsEnabled: false,
-  };
+  user.premium ??= {};
+  user.premium.planId = PLAN_IDS.FREE;
+  user.premium.status = "expired";
+  user.premium.telegramAlertsEnabled = false;
 
   return true;
 };

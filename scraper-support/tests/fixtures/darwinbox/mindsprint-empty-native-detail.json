@@ -1,0 +1,73 @@
+{
+  "status": "success",
+  "message": {
+    "job": [
+      {
+        "id": "a6ab9e6ee0d075",
+        "designation": "a657d452e4cd58",
+        "designation_display_name": "",
+        "employee_sub_type": "",
+        "experience": "4 - 8 Years",
+        "experience_from_num": 48,
+        "experience_to_num": 96,
+        "salary_currency": "",
+        "salary_min": "",
+        "salary_max": "",
+        "salary_range": "",
+        "salary_timeframe": "Annual",
+        "jd": "",
+        "officelocations_area": [
+          "Prince Info City-II, 10th Floor, Chennai, Tamil Nadu\r, India"
+        ],
+        "officelocations_without_area": [
+          "Chennai, Tamil Nadu\r, India"
+        ],
+        "designation_title": "",
+        "created_on": "2026-09-28T04:02:54.000Z",
+        "is_remote": 0,
+        "designation_name": "Accounting Associate",
+        "emp_sub_type_name": "",
+        "job_tags": [],
+        "legal_entity_ids": [],
+        "internal_job_code": "J_2939",
+        "job_posting": {
+          "careers": {
+            "from": 1790533800
+          }
+        },
+        "officelocation_arr": [
+          "a655f4fd4e9468"
+        ],
+        "officelocation_show_arr": "Prince Info City-II, 10th Floor, Chennai, Tamil Nadu, India",
+        "job_posting_on": 1790533800,
+        "department_id": "a655e5425e5cba",
+        "parent_department_list": [
+          {
+            "level": "l1",
+            "code": "DEP19",
+            "name": "Intelligent Enterprise Operations",
+            "id": "a655e5425e5cba"
+          }
+        ],
+        "capability": [],
+        "tool_tip_locations": [
+          "Prince Info City-II, 10th Floor, Chennai, Tamil Nadu, India"
+        ],
+        "designation_name_id": "a655e6a80229fc",
+        "posted_on": 1790533800,
+        "designation_title_name": "",
+        "timezone": "Asia/Calcutta",
+        "officelocation_show_arr_list": [
+          "Prince Info City-II, 10th Floor, Chennai, Tamil Nadu, India"
+        ],
+        "locations": "Prince Info City-II, 10th Floor, Chennai, Tamil Nadu\r, India",
+        "department": "Intelligent Enterprise Operations",
+        "emp_type": "Permanent Full Time",
+        "emp_type_id": "a6544dbbecce08",
+        "functional_area_id": "Please Select One",
+        "title": "Accounting Associate"
+      }
+    ],
+    "isSaved": false
+  }
+}

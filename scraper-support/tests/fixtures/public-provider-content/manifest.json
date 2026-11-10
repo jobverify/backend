@@ -1,0 +1,52 @@
+{
+  "captureMethod": "Bounded headless Chromium public read, no authentication or application submission",
+  "source": "Actual employer native payloads; fixture fields minimized, not original response bytes",
+  "oracle": {
+    "capturedAt": "2026-10-24T16:20:23.752Z",
+    "requestedUrl": "https://fa-etvl-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%22134637%22,siteNumber=CX_1",
+    "url": "https://fa-etvl-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails?expand=all&onlyData=true&finder=ById;Id=%22134637%22,siteNumber=CX_1",
+    "status": 200,
+    "bodySha256": "4021cfeafdf4dc3230966e5e1bc4a02c4d18d967d408599fef6f330b4b5065d4",
+    "capturedNativeId": "134637",
+    "capturedDescriptionCharacters": 1068
+  },
+  "fountain": {
+    "capturedAt": "2026-10-24T16:20:22.492Z",
+    "requestedUrl": "https://ap-1.fountain.com/internal_api/portal/cms/application_forms/new?funnel_id=b775b39d-2a57-4954-b232-0d460503938b&try_new_ui=true&brand_id=a9218256-8fbf-40ab-936b-49ff5ff7c900",
+    "url": "https://hire.rekrutek.ai/internal_api/portal/cms/application_forms/new?funnel_id=b775b39d-2a57-4954-b232-0d460503938b&try_new_ui=true&brand_id=a9218256-8fbf-40ab-936b-49ff5ff7c900",
+    "status": 200,
+    "bodySha256": "3aecd9bd9326b94c791d9da1c68f41f417178105178d93126d51c64827b6e41c",
+    "observedDescriptionCharacters": 0,
+    "contentRecoveryClaim": false
+  },
+  "fountainBindings": {
+    "cms-careers-binding": {
+      "capturedAt": "2026-10-24T16:21:34.667Z",
+      "requestedUrl": "https://www.cms.com/careers",
+      "url": "https://www.cms.com/careers",
+      "status": 200,
+      "bodySha256": "f26dae6bb24dfde4e46ac53303200799596743a4b5962efbd3fbc8e72f4f6ca8",
+      "links": [
+        "https://careers.ap-1.fountain.com/cms/a9218256-8fbf-40ab-936b-49ff5ff7c900"
+      ]
+    },
+    "cms-public-board": {
+      "capturedAt": "2026-10-24T16:21:37.346Z",
+      "requestedUrl": "https://careers.ap-1.fountain.com/cms/a9218256-8fbf-40ab-936b-49ff5ff7c900",
+      "url": "https://careers.rekrutek.ai/cms/a9218256-8fbf-40ab-936b-49ff5ff7c900",
+      "status": 200,
+      "bodySha256": "3774b43cd31f6cbfb67a61514d124b93ef59b897740951484a64e251200ac35b",
+      "links": []
+    },
+    "cms-public-role": {
+      "capturedAt": "2026-10-24T16:21:39.144Z",
+      "requestedUrl": "https://ap-1.fountain.com/cms/apply/chennai-project-manager-chennai",
+      "url": "https://apply.rekrutek.ai/apply/cms/opening/chennai-project-manager-chennai",
+      "status": 200,
+      "bodySha256": "d6972a4046fe9af48073bd78606fe5d63202846669de7b6668a99c9554b9f679",
+      "links": []
+    }
+  },
+  "limits": "Oracle listing limited to one role and one matching detail; Fountain one known role form and three binding documents; no production writes, no full inventory or publication claim.",
+  "contractTests": "Positive Fountain content tests use explicitly synthetic nonempty content on the observed account/brand/role contract. Actual captured CMS empty JD stays missing."
+}

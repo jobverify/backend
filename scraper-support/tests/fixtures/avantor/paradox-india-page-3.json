@@ -1,0 +1,1351 @@
+{
+  "params": {
+    "page_number": 3,
+    "filter": {
+      "country": [
+        "India"
+      ]
+    }
+  },
+  "totalJob": 26,
+  "isLoading": false,
+  "jobs": [
+    {
+      "sourceID": "c6667b1c0307da5d9d793025e7f805a5",
+      "uniqueID": "PDX_AV_3DB49587-0079-4528-B060-95C6D95CBAA8_24810551",
+      "requisitionID": "R-174804",
+      "reference": "R-174804",
+      "title": "Skill Builder/Developer (SB)",
+      "companyID": "PIJ-api.paradox.ai-17629-scrape-prod-58650",
+      "companyName": "api.paradox.ai-AV",
+      "locations": [
+        {
+          "zipCode": "411014",
+          "locationID": "24810551",
+          "locationName": "IND-Pune",
+          "streetAddress": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "Mahār",
+          "address1": "",
+          "address2": "Global Business City,",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "locationText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "locationParsedText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune, Mahār"
+        },
+        {
+          "zipCode": "12345",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Pune, IND",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "",
+          "address1": "Pune, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "locationText": "Pune, IND, Pune, Mahārāshtra, 12345, India",
+          "locationParsedText": "Pune, IND, Pune, MH 12345, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune"
+        },
+        {
+          "zipCode": "641021",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Coimbatore, IND",
+          "city": "Coimbatore",
+          "state": "Tamil Nadu",
+          "stateAbbr": "",
+          "address1": "Coimbatore, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "locationText": "Coimbatore, IND, Coimbatore, 641021, India",
+          "locationParsedText": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Coimbatore, Tamil Nadu",
+          "cityStateAbbr": "Coimbatore"
+        }
+      ],
+      "isRemote": false,
+      "employmentType": [
+        "Full Time"
+      ],
+      "employmentStatus": [],
+      "postingType": "1",
+      "isInternal": "false",
+      "applyURL": "https://olivia.paradox.ai/co/Avantor1/Job?job_id=R-174804_1",
+      "originalURL": "skill-builder-developer-sb/job/R-174804",
+      "lang": "en",
+      "availableLanguages": [
+        "en"
+      ],
+      "commuteTimeDuration": 0,
+      "customFields": [
+        {
+          "cfKey": "cf_employee_type",
+          "value": "Regular",
+          "key": "CF Employee Type"
+        },
+        {
+          "cfKey": "cf_is_evergreen",
+          "value": "0",
+          "key": "CF Is Evergreen"
+        },
+        {
+          "cfKey": "cf_is_external",
+          "value": "1",
+          "key": "CF Is External"
+        },
+        {
+          "cfKey": "cf_job_family",
+          "value": "Applications Development & Deployment",
+          "key": "CF Job Family"
+        },
+        {
+          "cfKey": "cf_job_remote",
+          "value": "0",
+          "key": "CF Job Is Remote"
+        },
+        {
+          "cfKey": "cf_primary_questionnaire",
+          "value": "QUESTIONNAIRE-6-496",
+          "key": "CF Primary Questionnaire"
+        },
+        {
+          "cfKey": "cf_time_type",
+          "value": "Full time",
+          "key": "CF Time Type"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "R-174804",
+          "key": "CF CF Shorten Job Id"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "P1-6931482-0",
+          "key": "cf_shorten_job_id"
+        }
+      ],
+      "jobCardExtraFields": [
+        {
+          "attribute_name": "requisition_id",
+          "value": "R-174804",
+          "classname": "results-list__custom1"
+        }
+      ],
+      "addressFormatTokens": [
+        {
+          "street": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "street_address": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "address2": "Global Business City,",
+          "zip": "411014",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune, Mahār",
+          "state_abbr": "Mahār",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "location_id": "24810551",
+          "location_name": "IND-Pune",
+          "location_parsed_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "location_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India"
+        },
+        {
+          "street": "Pune, IND",
+          "street_address": "Pune, IND",
+          "address1": "Pune, IND",
+          "zip": "12345",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "location_parsed_text": "Pune, IND, Pune, MH 12345, India",
+          "location_text": "Pune, IND, Pune, Mahārāshtra, 12345, India"
+        },
+        {
+          "street": "Coimbatore, IND",
+          "street_address": "Coimbatore, IND",
+          "address1": "Coimbatore, IND",
+          "zip": "641021",
+          "city": "Coimbatore",
+          "city_state": "Coimbatore, Tamil Nadu",
+          "city_state_abbr": "Coimbatore",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "location_parsed_text": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "location_text": "Coimbatore, IND, Coimbatore, 641021, India"
+        }
+      ]
+    },
+    {
+      "sourceID": "c81d84ccaf1b0d46e7872cf40d31b0c3",
+      "uniqueID": "PDX_AV_36BB3BC2-56DA-453B-B076-4C0D20619515_24810551",
+      "requisitionID": "R-174805",
+      "reference": "R-174805",
+      "title": "Solution/Skills Architect (SA)",
+      "companyID": "PIJ-api.paradox.ai-17629-scrape-prod-58650",
+      "companyName": "api.paradox.ai-AV",
+      "locations": [
+        {
+          "zipCode": "411014",
+          "locationID": "24810551",
+          "locationName": "IND-Pune",
+          "streetAddress": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "Mahār",
+          "address1": "",
+          "address2": "Global Business City,",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "locationText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "locationParsedText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune, Mahār"
+        },
+        {
+          "zipCode": "12345",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Pune, IND",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "",
+          "address1": "Pune, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "locationText": "Pune, IND, Pune, Mahārāshtra, 12345, India",
+          "locationParsedText": "Pune, IND, Pune, MH 12345, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune"
+        },
+        {
+          "zipCode": "641021",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Coimbatore, IND",
+          "city": "Coimbatore",
+          "state": "Tamil Nadu",
+          "stateAbbr": "",
+          "address1": "Coimbatore, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "locationText": "Coimbatore, IND, Coimbatore, 641021, India",
+          "locationParsedText": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Coimbatore, Tamil Nadu",
+          "cityStateAbbr": "Coimbatore"
+        }
+      ],
+      "isRemote": false,
+      "employmentType": [
+        "Full Time"
+      ],
+      "employmentStatus": [],
+      "postingType": "1",
+      "isInternal": "false",
+      "applyURL": "https://olivia.paradox.ai/co/Avantor1/Job?job_id=R-174805_1",
+      "originalURL": "solution-skills-architect-sa/job/R-174805",
+      "lang": "en",
+      "availableLanguages": [
+        "en"
+      ],
+      "commuteTimeDuration": 0,
+      "customFields": [
+        {
+          "cfKey": "cf_employee_type",
+          "value": "Regular",
+          "key": "CF Employee Type"
+        },
+        {
+          "cfKey": "cf_is_evergreen",
+          "value": "0",
+          "key": "CF Is Evergreen"
+        },
+        {
+          "cfKey": "cf_is_external",
+          "value": "1",
+          "key": "CF Is External"
+        },
+        {
+          "cfKey": "cf_job_family",
+          "value": "Applications Development & Deployment",
+          "key": "CF Job Family"
+        },
+        {
+          "cfKey": "cf_job_remote",
+          "value": "0",
+          "key": "CF Job Is Remote"
+        },
+        {
+          "cfKey": "cf_primary_questionnaire",
+          "value": "QUESTIONNAIRE-6-496",
+          "key": "CF Primary Questionnaire"
+        },
+        {
+          "cfKey": "cf_time_type",
+          "value": "Full time",
+          "key": "CF Time Type"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "R-174805",
+          "key": "CF CF Shorten Job Id"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "P1-6931454-0",
+          "key": "cf_shorten_job_id"
+        }
+      ],
+      "jobCardExtraFields": [
+        {
+          "attribute_name": "requisition_id",
+          "value": "R-174805",
+          "classname": "results-list__custom1"
+        }
+      ],
+      "addressFormatTokens": [
+        {
+          "street": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "street_address": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "address2": "Global Business City,",
+          "zip": "411014",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune, Mahār",
+          "state_abbr": "Mahār",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "location_id": "24810551",
+          "location_name": "IND-Pune",
+          "location_parsed_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "location_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India"
+        },
+        {
+          "street": "Pune, IND",
+          "street_address": "Pune, IND",
+          "address1": "Pune, IND",
+          "zip": "12345",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "location_parsed_text": "Pune, IND, Pune, MH 12345, India",
+          "location_text": "Pune, IND, Pune, Mahārāshtra, 12345, India"
+        },
+        {
+          "street": "Coimbatore, IND",
+          "street_address": "Coimbatore, IND",
+          "address1": "Coimbatore, IND",
+          "zip": "641021",
+          "city": "Coimbatore",
+          "city_state": "Coimbatore, Tamil Nadu",
+          "city_state_abbr": "Coimbatore",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "location_parsed_text": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "location_text": "Coimbatore, IND, Coimbatore, 641021, India"
+        }
+      ]
+    },
+    {
+      "sourceID": "1794e77ea77ce19400d3725048dc0a10",
+      "uniqueID": "PDX_AV_5AE7F399-4EF1-4DC4-BA54-CF9207DAD2E1_24810551",
+      "requisitionID": "R-173879",
+      "reference": "R-173879",
+      "title": "Sr. BSE - Application Development",
+      "companyID": "PIJ-api.paradox.ai-17629-scrape-prod-58650",
+      "companyName": "api.paradox.ai-AV",
+      "locations": [
+        {
+          "zipCode": "411014",
+          "locationID": "24810551",
+          "locationName": "IND-Pune",
+          "streetAddress": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "Mahār",
+          "address1": "",
+          "address2": "Global Business City,",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "locationText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "locationParsedText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune, Mahār"
+        },
+        {
+          "zipCode": "12345",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Pune, IND",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "",
+          "address1": "Pune, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "locationText": "Pune, IND, Pune, Mahārāshtra, 12345, India",
+          "locationParsedText": "Pune, IND, Pune, MH 12345, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune"
+        },
+        {
+          "zipCode": "641021",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Coimbatore, IND",
+          "city": "Coimbatore",
+          "state": "Tamil Nadu",
+          "stateAbbr": "",
+          "address1": "Coimbatore, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "locationText": "Coimbatore, IND, Coimbatore, 641021, India",
+          "locationParsedText": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Coimbatore, Tamil Nadu",
+          "cityStateAbbr": "Coimbatore"
+        }
+      ],
+      "isRemote": false,
+      "employmentType": [
+        "Full Time"
+      ],
+      "employmentStatus": [],
+      "postingType": "1",
+      "isInternal": "false",
+      "applyURL": "https://olivia.paradox.ai/co/Avantor1/Job?job_id=R-173879_1",
+      "originalURL": "sr-bse-application-development/job/R-173879",
+      "lang": "en",
+      "availableLanguages": [
+        "en"
+      ],
+      "commuteTimeDuration": 0,
+      "customFields": [
+        {
+          "cfKey": "cf_employee_type",
+          "value": "Regular",
+          "key": "CF Employee Type"
+        },
+        {
+          "cfKey": "cf_is_evergreen",
+          "value": "0",
+          "key": "CF Is Evergreen"
+        },
+        {
+          "cfKey": "cf_is_external",
+          "value": "1",
+          "key": "CF Is External"
+        },
+        {
+          "cfKey": "cf_job_family",
+          "value": "Applications Development & Deployment",
+          "key": "CF Job Family"
+        },
+        {
+          "cfKey": "cf_job_remote",
+          "value": "0",
+          "key": "CF Job Is Remote"
+        },
+        {
+          "cfKey": "cf_primary_questionnaire",
+          "value": "QUESTIONNAIRE-6-496",
+          "key": "CF Primary Questionnaire"
+        },
+        {
+          "cfKey": "cf_time_type",
+          "value": "Full time",
+          "key": "CF Time Type"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "R-173879",
+          "key": "CF CF Shorten Job Id"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "P1-6931564-0",
+          "key": "cf_shorten_job_id"
+        }
+      ],
+      "jobCardExtraFields": [
+        {
+          "attribute_name": "requisition_id",
+          "value": "R-173879",
+          "classname": "results-list__custom1"
+        }
+      ],
+      "addressFormatTokens": [
+        {
+          "street": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "street_address": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "address2": "Global Business City,",
+          "zip": "411014",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune, Mahār",
+          "state_abbr": "Mahār",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "location_id": "24810551",
+          "location_name": "IND-Pune",
+          "location_parsed_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "location_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India"
+        },
+        {
+          "street": "Pune, IND",
+          "street_address": "Pune, IND",
+          "address1": "Pune, IND",
+          "zip": "12345",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "location_parsed_text": "Pune, IND, Pune, MH 12345, India",
+          "location_text": "Pune, IND, Pune, Mahārāshtra, 12345, India"
+        },
+        {
+          "street": "Coimbatore, IND",
+          "street_address": "Coimbatore, IND",
+          "address1": "Coimbatore, IND",
+          "zip": "641021",
+          "city": "Coimbatore",
+          "city_state": "Coimbatore, Tamil Nadu",
+          "city_state_abbr": "Coimbatore",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "location_parsed_text": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "location_text": "Coimbatore, IND, Coimbatore, 641021, India"
+        }
+      ]
+    },
+    {
+      "sourceID": "194bd75cbefbc6c52a437f8d2ebc3378",
+      "uniqueID": "PDX_AV_1BB773CC-6660-48AD-9DFA-4EB445565E62_24810551",
+      "requisitionID": "R-175027",
+      "reference": "R-175027",
+      "title": "Sr. Data Engineer",
+      "companyID": "PIJ-api.paradox.ai-17629-scrape-prod-58650",
+      "companyName": "api.paradox.ai-AV",
+      "locations": [
+        {
+          "zipCode": "411014",
+          "locationID": "24810551",
+          "locationName": "IND-Pune",
+          "streetAddress": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "Mahār",
+          "address1": "",
+          "address2": "Global Business City,",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "locationText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "locationParsedText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune, Mahār"
+        },
+        {
+          "zipCode": "12345",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Pune, IND",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "",
+          "address1": "Pune, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "locationText": "Pune, IND, Pune, Mahārāshtra, 12345, India",
+          "locationParsedText": "Pune, IND, Pune, MH 12345, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune"
+        }
+      ],
+      "isRemote": false,
+      "employmentType": [
+        "Full Time"
+      ],
+      "employmentStatus": [],
+      "postingType": "1",
+      "isInternal": "false",
+      "applyURL": "https://olivia.paradox.ai/co/Avantor1/Job?job_id=R-175027_1",
+      "originalURL": "sr-data-engineer/job/R-175027",
+      "lang": "en",
+      "availableLanguages": [
+        "en"
+      ],
+      "commuteTimeDuration": 0,
+      "customFields": [
+        {
+          "cfKey": "cf_employee_type",
+          "value": "Regular",
+          "key": "CF Employee Type"
+        },
+        {
+          "cfKey": "cf_is_evergreen",
+          "value": "0",
+          "key": "CF Is Evergreen"
+        },
+        {
+          "cfKey": "cf_is_external",
+          "value": "1",
+          "key": "CF Is External"
+        },
+        {
+          "cfKey": "cf_job_family",
+          "value": "Data Engineering",
+          "key": "CF Job Family"
+        },
+        {
+          "cfKey": "cf_job_remote",
+          "value": "0",
+          "key": "CF Job Is Remote"
+        },
+        {
+          "cfKey": "cf_primary_questionnaire",
+          "value": "QUESTIONNAIRE-6-496",
+          "key": "CF Primary Questionnaire"
+        },
+        {
+          "cfKey": "cf_time_type",
+          "value": "Full time",
+          "key": "CF Time Type"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "R-175027",
+          "key": "CF CF Shorten Job Id"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "P1-7065551-0",
+          "key": "cf_shorten_job_id"
+        }
+      ],
+      "jobCardExtraFields": [
+        {
+          "attribute_name": "requisition_id",
+          "value": "R-175027",
+          "classname": "results-list__custom1"
+        }
+      ],
+      "addressFormatTokens": [
+        {
+          "street": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "street_address": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "address2": "Global Business City,",
+          "zip": "411014",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune, Mahār",
+          "state_abbr": "Mahār",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "location_id": "24810551",
+          "location_name": "IND-Pune",
+          "location_parsed_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "location_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India"
+        },
+        {
+          "street": "Pune, IND",
+          "street_address": "Pune, IND",
+          "address1": "Pune, IND",
+          "zip": "12345",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "location_parsed_text": "Pune, IND, Pune, MH 12345, India",
+          "location_text": "Pune, IND, Pune, Mahārāshtra, 12345, India"
+        }
+      ]
+    },
+    {
+      "sourceID": "f60481bbfcca1c515f840c298bb5167d",
+      "uniqueID": "PDX_AV_9CF86F1F-5080-44A7-86CF-BD1E0A45D24B_24810551",
+      "requisitionID": "R-174302",
+      "reference": "R-174302",
+      "title": "Sr. Data Engineer",
+      "companyID": "PIJ-api.paradox.ai-17629-scrape-prod-58650",
+      "companyName": "api.paradox.ai-AV",
+      "locations": [
+        {
+          "zipCode": "411014",
+          "locationID": "24810551",
+          "locationName": "IND-Pune",
+          "streetAddress": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "Mahār",
+          "address1": "",
+          "address2": "Global Business City,",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "locationText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "locationParsedText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune, Mahār"
+        },
+        {
+          "zipCode": "12345",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Pune, IND",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "",
+          "address1": "Pune, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "locationText": "Pune, IND, Pune, Mahārāshtra, 12345, India",
+          "locationParsedText": "Pune, IND, Pune, MH 12345, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune"
+        },
+        {
+          "zipCode": "641021",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Coimbatore, IND",
+          "city": "Coimbatore",
+          "state": "Tamil Nadu",
+          "stateAbbr": "",
+          "address1": "Coimbatore, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "locationText": "Coimbatore, IND, Coimbatore, 641021, India",
+          "locationParsedText": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Coimbatore, Tamil Nadu",
+          "cityStateAbbr": "Coimbatore"
+        }
+      ],
+      "isRemote": false,
+      "employmentType": [
+        "Full Time"
+      ],
+      "employmentStatus": [],
+      "postingType": "1",
+      "isInternal": "false",
+      "applyURL": "https://olivia.paradox.ai/co/Avantor1/Job?job_id=R-174302_1",
+      "originalURL": "sr-data-engineer/job/R-174302",
+      "lang": "en",
+      "availableLanguages": [
+        "en"
+      ],
+      "commuteTimeDuration": 0,
+      "customFields": [
+        {
+          "cfKey": "cf_employee_type",
+          "value": "Regular",
+          "key": "CF Employee Type"
+        },
+        {
+          "cfKey": "cf_is_evergreen",
+          "value": "0",
+          "key": "CF Is Evergreen"
+        },
+        {
+          "cfKey": "cf_is_external",
+          "value": "1",
+          "key": "CF Is External"
+        },
+        {
+          "cfKey": "cf_job_family",
+          "value": "Data Engineering",
+          "key": "CF Job Family"
+        },
+        {
+          "cfKey": "cf_job_remote",
+          "value": "0",
+          "key": "CF Job Is Remote"
+        },
+        {
+          "cfKey": "cf_primary_questionnaire",
+          "value": "QUESTIONNAIRE-6-496",
+          "key": "CF Primary Questionnaire"
+        },
+        {
+          "cfKey": "cf_time_type",
+          "value": "Full time",
+          "key": "CF Time Type"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "R-174302",
+          "key": "CF CF Shorten Job Id"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "P1-6931780-0",
+          "key": "cf_shorten_job_id"
+        }
+      ],
+      "jobCardExtraFields": [
+        {
+          "attribute_name": "requisition_id",
+          "value": "R-174302",
+          "classname": "results-list__custom1"
+        }
+      ],
+      "addressFormatTokens": [
+        {
+          "street": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "street_address": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "address2": "Global Business City,",
+          "zip": "411014",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune, Mahār",
+          "state_abbr": "Mahār",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "location_id": "24810551",
+          "location_name": "IND-Pune",
+          "location_parsed_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "location_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India"
+        },
+        {
+          "street": "Pune, IND",
+          "street_address": "Pune, IND",
+          "address1": "Pune, IND",
+          "zip": "12345",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "location_parsed_text": "Pune, IND, Pune, MH 12345, India",
+          "location_text": "Pune, IND, Pune, Mahārāshtra, 12345, India"
+        },
+        {
+          "street": "Coimbatore, IND",
+          "street_address": "Coimbatore, IND",
+          "address1": "Coimbatore, IND",
+          "zip": "641021",
+          "city": "Coimbatore",
+          "city_state": "Coimbatore, Tamil Nadu",
+          "city_state_abbr": "Coimbatore",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "location_parsed_text": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "location_text": "Coimbatore, IND, Coimbatore, 641021, India"
+        }
+      ]
+    },
+    {
+      "sourceID": "a15db38425f2850e8d40a9ecd3c7bb71",
+      "uniqueID": "PDX_AV_BDBC5EEC-4F74-4745-9009-62BDF278E8D1_24810551",
+      "requisitionID": "R-174270",
+      "reference": "R-174270",
+      "title": "Supply Chain Data Scientist",
+      "companyID": "PIJ-api.paradox.ai-17629-scrape-prod-58650",
+      "companyName": "api.paradox.ai-AV",
+      "locations": [
+        {
+          "zipCode": "411014",
+          "locationID": "24810551",
+          "locationName": "IND-Pune",
+          "streetAddress": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "Mahār",
+          "address1": "",
+          "address2": "Global Business City,",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "locationText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "locationParsedText": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune, Mahār"
+        },
+        {
+          "zipCode": "12345",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Pune, IND",
+          "city": "Pune",
+          "state": "Mahārāshtra",
+          "stateAbbr": "",
+          "address1": "Pune, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "locationText": "Pune, IND, Pune, Mahārāshtra, 12345, India",
+          "locationParsedText": "Pune, IND, Pune, MH 12345, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Pune, Mahārāshtra",
+          "cityStateAbbr": "Pune"
+        },
+        {
+          "zipCode": "641021",
+          "locationID": "",
+          "locationName": "",
+          "streetAddress": "Coimbatore, IND",
+          "city": "Coimbatore",
+          "state": "Tamil Nadu",
+          "stateAbbr": "",
+          "address1": "Coimbatore, IND",
+          "address2": "",
+          "country": "India",
+          "countryAbbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "locationText": "Coimbatore, IND, Coimbatore, 641021, India",
+          "locationParsedText": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "isRemote": false,
+          "postalCode": "",
+          "distance": -1,
+          "sublocality": "",
+          "cityState": "Coimbatore, Tamil Nadu",
+          "cityStateAbbr": "Coimbatore"
+        }
+      ],
+      "isRemote": false,
+      "employmentType": [
+        "Full Time"
+      ],
+      "employmentStatus": [],
+      "postingType": "1",
+      "isInternal": "false",
+      "applyURL": "https://olivia.paradox.ai/co/Avantor1/Job?job_id=R-174270_1",
+      "originalURL": "supply-chain-data-scientist/job/R-174270",
+      "lang": "en",
+      "availableLanguages": [
+        "en"
+      ],
+      "commuteTimeDuration": 0,
+      "customFields": [
+        {
+          "cfKey": "cf_employee_type",
+          "value": "Regular",
+          "key": "CF Employee Type"
+        },
+        {
+          "cfKey": "cf_is_evergreen",
+          "value": "0",
+          "key": "CF Is Evergreen"
+        },
+        {
+          "cfKey": "cf_is_external",
+          "value": "1",
+          "key": "CF Is External"
+        },
+        {
+          "cfKey": "cf_job_family",
+          "value": "Data Engineering",
+          "key": "CF Job Family"
+        },
+        {
+          "cfKey": "cf_job_remote",
+          "value": "0",
+          "key": "CF Job Is Remote"
+        },
+        {
+          "cfKey": "cf_primary_questionnaire",
+          "value": "QUESTIONNAIRE-6-496",
+          "key": "CF Primary Questionnaire"
+        },
+        {
+          "cfKey": "cf_time_type",
+          "value": "Full time",
+          "key": "CF Time Type"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "R-174270",
+          "key": "CF CF Shorten Job Id"
+        },
+        {
+          "cfKey": "cf_shorten_job_id",
+          "value": "P1-6931863-0",
+          "key": "cf_shorten_job_id"
+        }
+      ],
+      "jobCardExtraFields": [
+        {
+          "attribute_name": "requisition_id",
+          "value": "R-174270",
+          "classname": "results-list__custom1"
+        }
+      ],
+      "addressFormatTokens": [
+        {
+          "street": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "street_address": "VWR Lab Products Pvt Ltd, Global Business City,",
+          "address2": "Global Business City,",
+          "zip": "411014",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune, Mahār",
+          "state_abbr": "Mahār",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5528763,
+          "longitude": 73.9482315,
+          "location_id": "24810551",
+          "location_name": "IND-Pune",
+          "location_parsed_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India",
+          "location_text": "VWR Lab Products Pvt Ltd,, Global Business City,, Pune Mahār 411014, India"
+        },
+        {
+          "street": "Pune, IND",
+          "street_address": "Pune, IND",
+          "address1": "Pune, IND",
+          "zip": "12345",
+          "city": "Pune",
+          "city_state": "Pune, Mahārāshtra",
+          "city_state_abbr": "Pune",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 18.5246091,
+          "longitude": 73.8786239,
+          "location_parsed_text": "Pune, IND, Pune, MH 12345, India",
+          "location_text": "Pune, IND, Pune, Mahārāshtra, 12345, India"
+        },
+        {
+          "street": "Coimbatore, IND",
+          "street_address": "Coimbatore, IND",
+          "address1": "Coimbatore, IND",
+          "zip": "641021",
+          "city": "Coimbatore",
+          "city_state": "Coimbatore, Tamil Nadu",
+          "city_state_abbr": "Coimbatore",
+          "country": "India",
+          "country_abbr": "IN",
+          "latitude": 10.9315512,
+          "longitude": 76.9815877,
+          "location_parsed_text": "Coimbatore, IND, Coimbatore, TN 641021, India",
+          "location_text": "Coimbatore, IND, Coimbatore, 641021, India"
+        }
+      ]
+    }
+  ],
+  "similarJobs": [],
+  "triggerSearch": 0,
+  "facets": [
+    {
+      "alias": "Category",
+      "field": "category",
+      "facet_field_keyvalue": [
+        {
+          "original_value": "Account Management",
+          "custom_value": "Account Management",
+          "doc_count": 2
+        },
+        {
+          "original_value": "Accounting & Controllership",
+          "custom_value": "Accounting & Controllership",
+          "doc_count": 2
+        },
+        {
+          "original_value": "Applications Development & Deployment",
+          "custom_value": "Applications Development & Deployment",
+          "doc_count": 4
+        },
+        {
+          "original_value": "Applications Support",
+          "custom_value": "Applications Support",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Channel Sales",
+          "custom_value": "Channel Sales",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Contingent Workers",
+          "custom_value": "Contingent Workers",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Data Engineering",
+          "custom_value": "Data Engineering",
+          "doc_count": 3
+        },
+        {
+          "original_value": "HR Operations & Analytics",
+          "custom_value": "HR Operations & Analytics",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Information Security",
+          "custom_value": "Information Security",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Internal Audit",
+          "custom_value": "Internal Audit",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Manufacturing Operations",
+          "custom_value": "Manufacturing Operations",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Payroll",
+          "custom_value": "Payroll",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Planning",
+          "custom_value": "Planning",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Pricing & Quotes",
+          "custom_value": "Pricing & Quotes",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Quality Assurance & Quality Systems",
+          "custom_value": "Quality Assurance & Quality Systems",
+          "doc_count": 2
+        },
+        {
+          "original_value": "Quality Control & Validation",
+          "custom_value": "Quality Control & Validation",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Tax",
+          "custom_value": "Tax",
+          "doc_count": 2
+        }
+      ]
+    },
+    {
+      "alias": "City",
+      "field": "city",
+      "facet_field_keyvalue": [
+        {
+          "original_value": "Ahmedabad",
+          "custom_value": "Ahmedabad",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Coimbatore",
+          "custom_value": "Coimbatore",
+          "doc_count": 12
+        },
+        {
+          "original_value": "Dehradun",
+          "custom_value": "Dehradun",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Delhi NCR",
+          "custom_value": "Delhi NCR",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Hyderabad",
+          "custom_value": "Hyderabad",
+          "doc_count": 1
+        },
+        {
+          "original_value": "NA",
+          "custom_value": "NA",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Panoli",
+          "custom_value": "Panoli",
+          "doc_count": 2
+        },
+        {
+          "original_value": "Pune",
+          "custom_value": "Pune",
+          "doc_count": 15
+        },
+        {
+          "original_value": "Thane",
+          "custom_value": "Thane",
+          "doc_count": 1
+        }
+      ]
+    },
+    {
+      "alias": "State",
+      "field": "state",
+      "facet_field_keyvalue": [
+        {
+          "original_value": "Delhi",
+          "custom_value": "Delhi",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Gujarāt",
+          "custom_value": "Gujarāt",
+          "doc_count": 3
+        },
+        {
+          "original_value": "Maharashtra",
+          "custom_value": "Maharashtra",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Mahārāshtra",
+          "custom_value": "Mahārāshtra",
+          "doc_count": 15
+        },
+        {
+          "original_value": "Tamil Nadu",
+          "custom_value": "Tamil Nadu",
+          "doc_count": 12
+        },
+        {
+          "original_value": "Telangāna",
+          "custom_value": "Telangāna",
+          "doc_count": 1
+        },
+        {
+          "original_value": "Uttarākhand",
+          "custom_value": "Uttarākhand",
+          "doc_count": 1
+        }
+      ]
+    }
+  ]
+}

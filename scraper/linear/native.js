@@ -109,7 +109,8 @@ const flightRecords = payload => {
   }
   return records
 }
-const nativeUrl = (value, id, application = false) => value === `https://jobs.ashbyhq.com/Linear/${id}${application ? '/application' : ''}`
+const nativeUrl = (value, id, application = false) => ['Linear', 'linear'].some(board =>
+  value === `https://jobs.ashbyhq.com/${board}/${id}${application ? '/application' : ''}`)
 
 export const extractRoleSummaries = html => {
   const { doc, payload } = executableRuntime(html)
@@ -310,7 +311,7 @@ const validateNativeRole = (html, row, scopes) => {
 const validURL = url => {
   const value = new URL(url)
   requireLinear(url === CAREERS_PAGE_URL || url === NATIVE_API_URL
-    || value.origin === 'https://jobs.ashbyhq.com' && /^\/Linear\/[a-f\d-]{36}$/.test(value.pathname)
+    || value.origin === 'https://jobs.ashbyhq.com' && /^\/(?:Linear|linear)\/[a-f\d-]{36}$/.test(value.pathname)
       && !value.search && !value.hash && !value.username && !value.password, 'response URL outside reviewed source identity')
 }
 

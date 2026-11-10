@@ -5,6 +5,7 @@ import {nativeSafeCount} from '../aecom.workday/nativeJSON.js'
 import {BOARD,ROLE_BASE,need,json} from './nativeDeclarations.js'
 
 const string=v=>typeof v==='string'&&v.trim().length>0,int=v=>Number.isSafeInteger(v)&&v>=0
+const nativeIndiaRegions=new Set('Andaman and Nicobar Islands;Andhra Pradesh;Arunachal Pradesh;Assam;Bihar;Chandigarh;Chhattisgarh;Dadra and Nagar Haveli and Daman and Diu;Delhi;Goa;Gujarat;Haryana;Himachal Pradesh;Jammu and Kashmir;Jharkhand;Karnataka;Kerala;Ladakh;Lakshadweep;Madhya Pradesh;Maharashtra;Manipur;Meghalaya;Mizoram;Nagaland;Odisha;Puducherry;Punjab;Rajasthan;Sikkim;Tamil Nadu;Telangana;Tripura;Uttar Pradesh;Uttarakhand;West Bengal'.split(';'))
 const roleKeys='GeoLocation all_locations apply_info assets audiences buid city city_ac city_exact city_slab city_slab_exact city_slug company company_ac company_canonical_microsite company_canonical_microsite_exact company_digital_strategies_customer company_enhanced company_exact company_member company_slab company_slab_exact country country_ac country_exact country_short country_short_exact country_slab country_slab_exact country_slug date_added date_added_exact date_new date_new_exact date_updated date_updated_exact default_facet_tags description django_ct django_id facet_hash featured_facet_tags federal_contractor full_address full_loc full_loc_exact google_place_id guid html_description id internal_tags is_posted job_category job_function job_shift job_source_name job_type lat_long_buid_slab lat_long_buid_slab_exact link location location_exact location_info location_name mapped_moc on_sites onet onet_exact other reqid salted_date standard_facet_tags state state_ac state_exact state_short state_short_exact state_slab state_slab_exact state_slug street_name street_number text title title_ac title_exact title_slab title_slab_exact title_slug uid zipcode'.split(' ')
 const common='guid id reqid buid company_exact country_ac country_exact country_short_exact title_exact title_slug location_exact description is_posted on_sites onet_exact other GeoLocation company_member federal_contractor django_ct django_id city_slab_exact country_slab_exact company_slab_exact title_slab_exact lat_long_buid_slab_exact'.split(' ')
 const timestamp=(value,label,now)=>{
@@ -79,7 +80,15 @@ export function readRole(model,listing,now){
  need(description.length>=200&&/qualification|capabilit|experience|education|skills|requirements/i.test(description),'missing whole role requirements')
  const labelled=label=>blocks.filter(s=>s.toLowerCase().startsWith(label.toLowerCase()+':')).map(s=>s.slice(s.indexOf(':')+1).trim()),primary=labelled('Primary Location'),extra=labelled('Other Locations'),reqs=labelled('Req ID')
  need(primary.length===1&&reqs.length===1&&reqs[0]===model.reqid,'native body requisition or primary location differs')
- for(const label of [...primary,...extra]){const parts=label.split('|').map(s=>s.trim());need(parts.length===2&&parts[0]==='India'&&/^[\p{L}\p{M}0-9 .'-]+$/u.test(parts[1]),'native body work-country conflicts or is unresolved')}
+ for(const label of [...primary,...extra]){
+  const parts=label.split('|').map(s=>s.trim()),cityPattern=/^[\p{L}\p{M}0-9 .'-]+$/u
+  // The current native multi-location body can include its state between
+  // country and city. Every worksite must still explicitly name India; the
+  // optional state is a closed India-region value, never country inference.
+  const placement=parts.length===2&&cityPattern.test(parts[1])
+   ||parts.length===3&&nativeIndiaRegions.has(parts[1])&&cityPattern.test(parts[2])
+  need(parts[0]==='India'&&placement,'native body work-country conflicts or is unresolved')
+ }
  if(!ghost)need(extra.length===0&&primary[0]==='India | '+city,'body and structured primary worksite differ')
  for(const block of blocks){const match=block.match(/^(country|work(?:site|place) country|mandatory work assignment|employer|legal employer|hiring (?:company|organization))\s*:\s*(.*)$/i);if(match)need(/country|assignment/i.test(match[1])?/^(?:India|IND)[.!]?$/.test(match[2]):/^Stantec[.!]?$/.test(match[2]),'criteria employer or workplace country conflicts or is unresolved')}
  need(!/\b(?:this is not (?:a |an )?(?:current |open )?(?:vacancy|position)|no (?:current |open )?vacanc(?:y|ies))\b/i.test(description),'non-vacancy criteria')

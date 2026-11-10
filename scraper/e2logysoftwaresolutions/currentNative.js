@@ -93,11 +93,19 @@ function qualifiedZohoDataDocument(html){
 function originalNativeData(page){
  const declarations=allNodes(page.root).filter(node=>node.tag==='script')
  const declarationProfile=declarations.map(node=>({attrs:Object.fromEntries(Object.entries(node.attrs).sort(([a],[b])=>a.localeCompare(b))),inert:Boolean(node.inert)}))
- need(sha(JSON.stringify(declarationProfile))==='7ee717b715910c42f12efb0d5a77b17fa0201b74ba6f008089d155bbe037ef15','Native program declaration authority changed')
+ const declarationSHA=sha(JSON.stringify(declarationProfile))
+ const currentDeployment=declarationSHA==='8464e63a74fe56cba930917b413ca26ab453d46f0001fea1c7579296552a5e0a'
+ need(currentDeployment||declarationSHA==='7ee717b715910c42f12efb0d5a77b17fa0201b74ba6f008089d155bbe037ef15','Native program declaration authority changed')
  // Count every inline script, including an unexpected MIME type or escaped
  // identifier. Hashes qualify authored bytes only; no program is executed.
  const scripts=declarations.filter(node=>!node.attrs.src)
- need(scripts.length===6&&INLINE_PROGRAM_SHA256.every((hash,index)=>sha(scripts[index].raw??'')===hash),'Unreviewed native inline program authority')
+ // Nov10's genuine opening/closing responses retain the exact carrier AST,
+ // employer and criteria. The static CDN map and declarations changed with
+ // the Zoho deployment. Keep that finite pair together; unseen assets or a
+ // changed program remain unreviewed. The original profile remains readable.
+ const programHashes=currentDeployment?INLINE_PROGRAM_SHA256.map((hash,index)=>index===2
+  ?'c63ab7f71866c1089db6945e4e90d2fdcb0b419e919b3e84b0690e5772a77c99':hash):INLINE_PROGRAM_SHA256
+ need(scripts.length===6&&programHashes.every((hash,index)=>sha(scripts[index].raw??'')===hash),'Unreviewed native inline program authority')
  const script=scripts[5]
  need(!script.inert&&page.head.children.includes(script),'Native data carrier is not active in the owned head')
  let ast;try{ast=parse(script.raw,{ecmaVersion:'latest',sourceType:'script'})}catch{throw failure('Unreviewed native data authority program syntax')}

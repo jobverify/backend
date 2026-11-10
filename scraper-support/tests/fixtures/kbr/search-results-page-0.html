@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <script type="text/javascript">
+      var phApp = phApp || {};
+      phApp.ddo = {
+        "siteConfig": {
+          "data": {
+            "refineSearchAPIUrl": "https://careers.kbr.com/widgets"
+          }
+        },
+        "eagerLoadRefineSearch": {
+          "totalHits": 2,
+          "hits": 10,
+          "data": {
+            "jobs": [
+              {
+                "reqId": "R2109999",
+                "jobId": "R2109999",
+                "title": "Senior Associate Designer",
+                "cityStateCountry": "Chennai, Tamil Nadu, India",
+                "country": "India",
+                "city": "Chennai",
+                "category": "Engineering Design",
+                "type": "Full time",
+                "postedDate": "2026-06-20T00:00:00.000+0000",
+                "descriptionTeaser": "Design engineering role supporting KBR project execution in India.",
+                "applyUrl": "https://careers.kbr.com/us/en/job/R2109999/Senior-Associate-Designer",
+                "ml_skills": ["smartplant 3d", "asme standards"]
+              },
+              {
+                "reqId": "R2199999",
+                "jobId": "R2199999",
+                "title": "Systems Engineer",
+                "cityStateCountry": "Houston, Texas, United States of America",
+                "country": "United States of America",
+                "city": "Houston",
+                "category": "Engineering",
+                "type": "Full time",
+                "postedDate": "2026-06-18T00:00:00.000+0000",
+                "descriptionTeaser": "Non-India role that should be filtered out."
+              }
+            ],
+            "aggregations": [
+              {
+                "field": "country",
+                "value": {
+                  "India": 1,
+                  "United States of America": 1
+                }
+              }
+            ]
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "mode": "exact-public-frozen-navi-partial-trial-for-historical-report-regression",
+  "productionWrites": false,
+  "source": "navi",
+  "origin": "artifacts/full-catalog/navi-partial-001/navi.json",
+  "trialByteHash": "79fb7c8c1a5eea29989cf333c69493b877dfcb54cd1bdfbb5228d416ffbacd78",
+  "fixture": {
+    "file": "test/fixtures/partialReport/navi-frozen-partial-002.json.gz",
+    "bytes": 48665,
+    "sha256": "a2d92e1a1cafc0a7aa848dd59a0cc871b8183d0ed35f98f0e89d0ca8c38c44d2"
+  },
+  "nativeEvidenceFixture": "../naviPartial/reviewed-native-003.json.gz",
+  "receiptFiles": 62
+}

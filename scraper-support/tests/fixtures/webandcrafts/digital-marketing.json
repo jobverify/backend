@@ -1,0 +1,97 @@
+{
+  "status": true,
+  "message": "success",
+  "results": {
+    "total_records": 2,
+    "records_filtered_count": 2,
+    "current_page": 1,
+    "total_page_count": 1,
+    "item_per_page": 50,
+    "data": [
+      {
+        "id": 42,
+        "title": "Social Media Analyst",
+        "wac_pro_job_dept": {
+          "id": 6,
+          "category_name": "Digital Marketing",
+          "sequence": 8,
+          "total_openings": 3,
+          "is_active": true,
+          "total_applicants": 142
+        },
+        "department_id": {
+          "id": 7,
+          "name": "Digital Marketing"
+        },
+        "designation": 354,
+        "designation_data": {
+          "id": 354,
+          "name": "Social Media Analyst"
+        },
+        "job_type": "On-Site",
+        "about": "<p>We are looking for a data-driven and detail-oriented Social Media Analyst to join our team.</p>",
+        "responsibilities": "<ul><li>Develop and execute strategies for social media campaigns.</li><li>Analyze campaign performance data.</li></ul>",
+        "requirements": "<ul><li>Bachelor's or master's degree in marketing, communications, or a related field.</li><li>2-5 years of experience in digital marketing and social media management.</li></ul>",
+        "join_team_content": "<p>Thank you for your keen interest in becoming a part of Webandcrafts.</p>",
+        "technology": [],
+        "slug": "social-media-analyst",
+        "experience_range_from": 2,
+        "experience_range_to": 5,
+        "location": "Koratty",
+        "is_incremental": false,
+        "pre_requirements": "",
+        "benefits": "",
+        "number_of_openings": 2,
+        "pace": "High",
+        "is_active": true,
+        "requisition_id": "WAC-DM-SOC-2424",
+        "formatted_experience_range": "2 - 5 years",
+        "created_at": "2026-03-19T13:26:37.149981Z",
+        "updated_at": "2026-03-19T17:16:37.567682Z",
+        "total_applicants": 0
+      },
+      {
+        "id": 43,
+        "title": "Technical Content Writer",
+        "wac_pro_job_dept": {
+          "id": 6,
+          "category_name": "Digital Marketing",
+          "sequence": 8,
+          "total_openings": 3,
+          "is_active": true,
+          "total_applicants": 142
+        },
+        "department_id": {
+          "id": 43,
+          "name": "Content"
+        },
+        "designation": 355,
+        "designation_data": {
+          "id": 355,
+          "name": "Technical Content Writer"
+        },
+        "job_type": "On-Site",
+        "about": "<p>Webandcrafts is a leading digital solutions provider.</p>",
+        "responsibilities": "<ul><li>Research and write blog posts.</li><li>Collaborate with developers and designers.</li></ul>",
+        "requirements": "<ul><li>Bachelor’s degree in Computer Science, IT, or a related field (preferred).</li><li>Strong writing and communication skills in English.</li></ul>",
+        "join_team_content": "<p>Thank you for your keen interest in becoming a part of Webandcrafts.</p>",
+        "technology": [],
+        "slug": "technical-content-writer",
+        "experience_range_from": 2,
+        "experience_range_to": null,
+        "location": "Koratty",
+        "is_incremental": false,
+        "pre_requirements": "",
+        "benefits": "",
+        "number_of_openings": 1,
+        "pace": "High",
+        "is_active": true,
+        "requisition_id": "WAC-HRANDFINANCE-TEC-4897",
+        "formatted_experience_range": "2+ years",
+        "created_at": "2026-03-19T13:26:37.156840Z",
+        "updated_at": "2026-03-19T17:18:00.903324Z",
+        "total_applicants": 0
+      }
+    ]
+  }
+}

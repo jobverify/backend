@@ -21,6 +21,7 @@ import {
 } from "../utils/accessControl.js";
 import { getPaymentProvider } from "./paymentProvider.js";
 import { planEntitlementContributionRemoval } from "./entitlementRemoval.js";
+import { expireEntitlement, expiredEntitlementFilter } from './entitlementExpiryService.js';
 
 const addMonths = (date, months) => {
   const next = new Date(date);
@@ -170,7 +171,7 @@ export const cancelActivePlan = async ({ userId }) => {
     }], { session });
     await Subscription.updateOne(
       { user: user._id },
-      { $set: { isActive: false } },
+      { $inc: { dispatchRevision: 1 } },
       { session },
     );
 
@@ -485,7 +486,7 @@ const revokeRefundedEntitlement = async ({ purchase, now, session }) => {
   if (removal.deactivateSubscription) {
     await Subscription.updateOne(
       { user: user._id },
-      { $set: { isActive: false } },
+      { $inc: { dispatchRevision: 1 } },
       { session },
     );
   }
@@ -543,21 +544,10 @@ export const reconcileWebhookRefund = async ({
 }, webhookTransactionOptions);
 
 export const downgradeExpiredPlans = async (now = new Date()) => {
-  const users = await User.find({
-    accessRole: { $ne: ACCESS_ROLES.FREE },
-    "premium.expiresAt": { $lte: now },
-  });
-
   let downgraded = 0;
-  for (const user of users) {
-    if (applyExpiredAccessDowngrade(user, now)) {
-      await user.save();
-      await Subscription.updateOne(
-        { user: user._id },
-        { $set: { isActive: false } },
-      ).catch(() => null);
-      downgraded += 1;
-    }
+  const users = User.find(expiredEntitlementFilter(now)).select('_id').lean().cursor();
+  for await (const user of users) {
+    if (await expireEntitlement(user._id, now)) downgraded += 1;
   }
 
   return downgraded;

@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-10-24T18:07:15.081Z",
+  "officialListing": "https://www.appinessworld.com/careers/job-details/",
+  "rawListingSha256": "7d0a7a10ba26fb474fdccaed9a7197fc787de74188da70b937baf77d5b670868",
+  "captureWindow": {
+    "earliest": "2026-10-24T18:07:00.996Z",
+    "latest": "2026-10-24T18:07:14.948Z"
+  },
+  "observedCards": 28,
+  "reportedTotal": null,
+  "transport": "isolated browser same-origin cookie-free GET receipts",
+  "ordinaryHttpAvailabilityVerified": false,
+  "fixtureMinimization": "Exact native role labels, IDs, per-role URLs, content sections and JobPosting string retained; unrelated navigation, tracking and application contact fields removed. Native literal CR/LF inside schema description intentionally retained.",
+  "samples": [
+    {
+      "file": "native-4-20261024.json",
+      "nativeId": "4",
+      "url": "https://www.appinessworld.com/careers/job-details/seo-expert/",
+      "capturedAt": "2026-10-24T18:07:01.126Z",
+      "rawDetailSha256": "07f4766f41b4f210fef6716c92a267e03d981d9e16a3fe3afaede811d17e1cde"
+    },
+    {
+      "file": "native-25-20261024.json",
+      "nativeId": "25",
+      "url": "https://www.appinessworld.com/careers/job-details/25/",
+      "capturedAt": "2026-10-24T18:07:05.792Z",
+      "rawDetailSha256": "f5fa59d1efabbe20ec4442627bf7cc33b4e0f00ce1d3d171032231eb9dbb2073"
+    }
+  ],
+  "unitListingSample": {
+    "file": "two-role-listing-20261024.html",
+    "nativeIds": [
+      "4",
+      "25"
+    ],
+    "actualListingCount": 28,
+    "controlledSampleCount": 2
+  },
+  "finalVerification": {
+    "nativeReceiptReplayAt": "2026-10-24T18:30:42.817Z",
+    "captureClockPreserved": "2026-10-24T18:07:00.996Z",
+    "verifiedDetails": 28,
+    "missingDescriptions": 0,
+    "insertionAndPublicEligible": 0,
+    "filteredOld": 28,
+    "inventoryTotalUnreported": true,
+    "identity": {
+      "nativeRoles": 28,
+      "uniqueNativeIds": 28,
+      "uniqueJobIds": 28,
+      "uniqueRequisitionIds": 28,
+      "uniqueTitles": 28,
+      "duplicateIdsOrSlugs": 0
+    },
+    "tests": {
+      "ownerPassed": 31,
+      "independentPassed": 18
+    },
+    "codeAndTestHashes": [
+      {
+        "file": "scraper/appinessinteractive/script.js",
+        "sha256": "287726cbdee3677090447b6806743af035250ada5451c2822a041e78ff34f891"
+      },
+      {
+        "file": "scraper/appinessinteractive/nativeDetails.js",
+        "sha256": "68336f891eab3945ccdb278637bfd34d26c121f8af90cebce8b6df7e62edc2a2"
+      },
+      {
+        "file": "scraper-support/tests/appinessInteractiveDescriptionRecovery.test.js",
+        "sha256": "1837f1e2a07cff01d649e01325eb53b05e2a84459716f62a3803c5c7dd3c1793"
+      },
+      {
+        "file": "scraper-support/tests/AppinessInteractiveScript.test.js",
+        "sha256": "120b2cfa474a9d13fb89cf2ab0a2929b91292bee2de2acf6c5c3320eeba48bea"
+      }
+    ]
+  }
+}

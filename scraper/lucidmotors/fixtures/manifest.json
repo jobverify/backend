@@ -1,0 +1,79 @@
+{
+  "captureMethod": "browser native HTTP responses; gzip preserves exact response envelope/body strings",
+  "sources": [
+    {
+      "file": "search-response.json.gz",
+      "url": "https://lucidmotors.com/careers/search",
+      "finalUrl": "https://lucidmotors.com/careers/search",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:08:26.634Z",
+      "bodyBytes": 156371,
+      "bodySha256": "a84866d2973d453576a8929606a3a65593adb076810e326e31de22a3ef76adab"
+    },
+    {
+      "file": "client-api-responses.json.gz",
+      "url": "https://lucidmotors.com/_next/static/chunks/4339-1c9a62c0d4b5600e.js",
+      "finalUrl": "https://lucidmotors.com/_next/static/chunks/4339-1c9a62c0d4b5600e.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:10:57.949Z",
+      "bodyBytes": 1671820,
+      "bodySha256": "cf8f6461e31ab35c5250dc4b0fc5d1bb8f3287658cd9edddc8bd84f6acedcf89"
+    },
+    {
+      "file": "native-responses.json.gz",
+      "url": "https://boards-api.greenhouse.io/v1/boards/lucidmotors/jobs?content=true",
+      "finalUrl": "https://boards-api.greenhouse.io/v1/boards/lucidmotors/jobs?content=true",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:10:35.272Z",
+      "bodyBytes": 11593205,
+      "bodySha256": "82b9fdda795c4bd0dfa735f1ae29fa0d65da5382e1a1f265ba910903452807af"
+    },
+    {
+      "file": "native-responses.json.gz",
+      "url": "https://boards-api.greenhouse.io/v1/boards/lucidmotors/departments?render_as=tree",
+      "finalUrl": "https://boards-api.greenhouse.io/v1/boards/lucidmotors/departments?render_as=tree",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:10:35.129Z",
+      "bodyBytes": 458913,
+      "bodySha256": "15fc08f0f065819e0c1cc7440d1b8f37b741049265ae18f08b01d4fc5194fd31"
+    },
+    {
+      "file": "native-responses.json.gz",
+      "url": "https://boards-api.greenhouse.io/v1/boards/lucidmotors/offices?render_as=tree",
+      "finalUrl": "https://boards-api.greenhouse.io/v1/boards/lucidmotors/offices?render_as=tree",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:10:45.962Z",
+      "bodyBytes": 15900540,
+      "bodySha256": "c05d714f98b82a1d9fa13f466ca195fb7144fd390888f7c9a7ef9ed53819e0e8"
+    }
+  ],
+  "observation": {
+    "reportedTotal": 445,
+    "indiaRoles": 0,
+    "departmentsDistinctIds": 445,
+    "officeAssignedRoles": 443,
+    "unassignedRoles": [
+      {
+        "id": 5098737007,
+        "location": "Canada"
+      },
+      {
+        "id": 5114594007,
+        "location": "United States"
+      }
+    ],
+    "geography": "country inherited from native office hierarchy; unresolved or contradictory geography fails closed",
+    "foreignAdministrativeOfficeMismatch": {
+      "id": 5249944007,
+      "publishedLocation": "Munich, BY",
+      "publishedCountry": "Germany",
+      "administrativeOfficeCountry": "United States",
+      "policy": "Both known countries exclude India; any India/foreign disagreement fails."
+    }
+  },
+  "limitations": [
+    "India extraction tested with synthetic mutations because current native inventory has no India roles.",
+    "Unresolved office/country, mixed India/foreign scope, pagination and changed handoff schema fail instead of returning empty.",
+    "Missing substantive India descriptions are retained with incomplete detail/listing flags and discovery-only evidence."
+  ]
+}

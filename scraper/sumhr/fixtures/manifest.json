@@ -1,0 +1,60 @@
+{
+  "source": "sumhr",
+  "captures": [
+    {
+      "file": "official-1.html.gz",
+      "url": "https://sumhr.com/",
+      "finalUrl": "https://sumhr.com/",
+      "status": 200,
+      "capturedAt": "2026-10-23T06:32:36.671Z",
+      "bytes": 601213,
+      "sha256": "1f6c62a4bbccbe374cb156ae64b2fdeeda95af4c97d583ac362f023210a01be5",
+      "captureMethod": "browser-context-fetch-response.text",
+      "classification": "official-employer-site",
+      "gzipSha256": "e2b1c44d98014a2389482b5efcf533b9327b4e427073fdf2153d74a84c442b54"
+    },
+    {
+      "file": "official-2.html.gz",
+      "url": "https://sumhr.com/about-us/",
+      "finalUrl": "https://sumhr.com/about-us/",
+      "status": 200,
+      "capturedAt": "2026-10-23T06:32:36.737Z",
+      "bytes": 210355,
+      "sha256": "e3e18a9998246470625fac18ec94a19f26f0bdb208c0a2260196b5772476ac77",
+      "captureMethod": "browser-context-fetch-response.text",
+      "classification": "official-employer-site",
+      "gzipSha256": "3d2b2b7be3988611995dd24585bc7ae3985428101f0e5773f43647d34241cae5"
+    },
+    {
+      "file": "candidate-ats-1.html.gz",
+      "url": "https://sumhr.hire.trakstar.com/",
+      "finalUrl": "https://sumhr.hire.trakstar.com/",
+      "status": 200,
+      "capturedAt": "2026-10-23T06:32:52.466Z",
+      "bytes": 97874,
+      "sha256": "29f2569c9cca7f41449ed2894f00dddcea4deef875dae12d83d6e84330cda360",
+      "captureMethod": "browser-context-fetch-response.text",
+      "classification": "independent-native-employer-recruiting-surface;corporate-outbound-authorization-unproven",
+      "gzipSha256": "aba6c52dd84e5326769251b3707e1975567fac1edb60a0ce1b11e21e5ec24693"
+    },
+    {
+      "file": "candidate-ats-2.html.gz",
+      "url": "https://sumhr.hire.trakstar.com/jobs/fk03ii/",
+      "finalUrl": "https://sumhr.hire.trakstar.com/jobs/fk03ii/",
+      "status": 200,
+      "capturedAt": "2026-10-23T06:32:52.624Z",
+      "bytes": 116718,
+      "sha256": "ec56c13ca8d8082a7e14759dec5fc4e5c88abc86be6df316252b4a57dc2ce960",
+      "captureMethod": "browser-context-fetch-response.text",
+      "classification": "independent-native-employer-recruiting-surface;corporate-outbound-authorization-unproven",
+      "gzipSha256": "b603934bf6ceb3bf29b4a93cdaf7755e66036415c3521ecf8e5d39a71385047e"
+    }
+  ],
+  "nativeEmployerIdentityEvidence": {
+    "tenant": "sumhr",
+    "reviewedClientId": "u0mr5",
+    "configuredContact": "sid@sumhr.com",
+    "officialEmailDomain": "sumhr.com",
+    "corporateOutboundAtsAuthorizationVerified": false
+  }
+}

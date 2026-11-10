@@ -1,0 +1,132 @@
+{
+  "listing": {
+    "ml_skills": [
+      "c#",
+      ".net",
+      "system design",
+      "distributed systems architecture",
+      "asynchronous processing",
+      "azure services",
+      "cloud architecture",
+      "security best practices",
+      "oauth",
+      "app insights",
+      "asp.net core",
+      "entity framework core",
+      "ci/cd pipelines",
+      "azure devops",
+      "infrastructure as code",
+      "code review",
+      "unit testing",
+      "integration testing",
+      "mentoring",
+      "technical leadership",
+      "root cause analysis",
+      "incident management",
+      "observability",
+      "technical risk management"
+    ],
+    "companyName": "NSM Services Private Limited",
+    "type": "Full time",
+    "descriptionTeaser": "Take on the role of Senior Software Engineer, leading technical design and architecture for complex C#/.NET features. Drive engineering excellence, mentor teams, and set best practices. Ideal for experienced engineers with strong leadership and expertise in system design and cloud architecture.",
+    "state": "Tamil Nādu",
+    "siteType": "external",
+    "multi_category": [
+      "Technology"
+    ],
+    "reqId": "R-084717",
+    "city": "Chennai",
+    "latitude": "13.08784",
+    "multi_location": [
+      "Chennai, Tamil Nādu",
+      "Bangaluru, Karnātaka"
+    ],
+    "address": "Block No. 5, 6th Floor, DLF IT Park, 1/124 Shivaji Gardens, Ramapuram, Chennai- 600089, Tamil Nādu, India",
+    "applyUrl": "https://quickenloans.wd5.myworkdayjobs.com/rocket_india/job/Chennai-TN/Senior-Software-Engineer_R-084717/apply",
+    "ml_job_parser": {
+      "descriptionTeaser": "Take on the role of Senior Software Engineer, leading technical design and architecture for complex C#/.NET features. Drive engineering excellence, mentor teams, and set best practices. Ideal for experienced engineers with strong leadership and expertise in system design and cloud architecture.",
+      "descriptionTeaser_first200": "Senior Software Engineer. Summary. Experienced C#/.NET engineer who leads technical design for medium-to-large features, establishes code quality standards, and mentors engineering teams. You'll dr...",
+      "descriptionTeaser_keyword": "Senior Software Engineer. Summary. Experienced C#/.NET engineer who leads technical design for medium-to-large features, establishes code quality standards, and mentors engineering teams. You'll drive...",
+      "descriptionTeaser_ats": "Senior Software Engineer Summary Experienced C#/.NET engineer who leads technical design for medium-to-large features, establishes code quality standards, and mentors engineering teams. You'll drive a"
+    },
+    "externalApply": false,
+    "cityState": "Chennai, Tamil Nādu",
+    "country": "India",
+    "visibilityType": "External",
+    "longitude": "80.27847",
+    "jobId": "R-084717",
+    "locale": "en_IN",
+    "title": "Senior Software Engineer",
+    "jobSeqNo": "RCARCAUSR084717EXTERNALENIN",
+    "postedDate": "2026-10-15T00:00:00.000+0000",
+    "dateCreated": "2026-10-15T12:48:38.791+0000",
+    "cityStateCountry": "Chennai, Tamil Nādu, India",
+    "department": "81015 OPTIC Platform Engineering",
+    "jobVisibility": [
+      "external",
+      "internal"
+    ],
+    "location": "Chennai, Tamil Nādu",
+    "category": "Technology",
+    "isMultiLocation": true,
+    "multi_location_array": [
+      {
+        "country": "India",
+        "cityState": "Chennai, Tamil Nādu",
+        "address": "Block No. 5, 6th Floor, DLF IT Park, 1/124 Shivaji Gardens, Ramapuram, Chennai- 600089, Tamil Nādu, India",
+        "locationName": "Chennai, TN",
+        "city": "Chennai",
+        "postalCode": "600089",
+        "latlong": {
+          "lon": 80.27847,
+          "lat": 13.08784
+        },
+        "latitude": "13.08784",
+        "cityStateZipCode": "Chennai, Tamil Nādu, 600089",
+        "stateCountry": "Tamil Nādu, India",
+        "externalLocation": "",
+        "locationId": "L503",
+        "location": "Chennai, Tamil Nādu",
+        "state": "Tamil Nādu",
+        "cityCountry": "Chennai, India",
+        "cityStateCountry": "Chennai, Tamil Nādu, India",
+        "mapQueryLocation": "Chennai, Tamil Nādu, India",
+        "longitude": "80.27847"
+      },
+      {
+        "country": "India",
+        "cityState": "Bangaluru, Karnātaka",
+        "address": "Block No. 2, 3rd Floor, North Wing, Bhartiya Centre of Information Technology, Milestone Buildcon SEZ, Bhartiya City, Thanisandra Main Road, Bangaluru- 560064, Karnātaka, India",
+        "locationName": "Bangalore, KA",
+        "city": "Bangaluru",
+        "postalCode": "560064",
+        "latlong": {
+          "lon": 77.68581,
+          "lat": 13.08618
+        },
+        "latitude": "13.08618",
+        "cityStateZipCode": "Bangaluru, Karnātaka, 560064",
+        "stateCountry": "Karnātaka, India",
+        "externalLocation": "",
+        "locationId": "L1516",
+        "location": "Bangaluru, Karnātaka",
+        "state": "Karnātaka",
+        "cityCountry": "Bangaluru, India",
+        "cityStateCountry": "Bangaluru, Karnātaka, India",
+        "mapQueryLocation": "Bangaluru, Karnātaka, India",
+        "longitude": "77.68581"
+      }
+    ],
+    "isMultiCategory": false,
+    "multi_category_array": [
+      {
+        "category": "Technology"
+      }
+    ],
+    "badge": ""
+  },
+  "nativeDetailURL": "https://careers.rocket.com/in/en/job/R-084717/Senior-Software-Engineer",
+  "nativeDetailBodySha256": "71ad8bbd7aa9e8b184d529e8623f0c78bdc8ed3a105773a5ff4fbff64071c491",
+  "archiveFile": "http-0008.json",
+  "archiveSha256": "8928be3ee9a2619d7b3d87d9ed18cbe0115b28ce8567cf4d025b08bb9e9aafd9"
+}

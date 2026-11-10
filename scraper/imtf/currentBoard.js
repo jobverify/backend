@@ -1,6 +1,7 @@
 import {readHTML,sha,markdownCode} from './parser.js'
 import {decodeHTML} from 'entities'
-import {plainHTML} from '../../scraper-support/native-sources/jobPostingData.js'
+import {plainHTML,countryName} from '../../scraper-support/native-sources/jobPostingData.js'
+import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 
 export const LLM_INDEX='https://apply.workable.com/imtf/llms.txt'
 export const BOARD_INDEX='https://apply.workable.com/imtf/jobs.md'
@@ -10,7 +11,7 @@ const requireShape=(ok,message)=>{if(!ok)fail(message)}
 const unique=(values,label)=>{requireShape(values.length===1,'Missing/ambiguous native '+label);return values[0]}
 const date=s=>typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&Number.isFinite(Date.parse(s))&&new Date(s).toISOString().slice(0,10)===s
 const names=new Intl.DisplayNames(['en'],{type:'region'}),countries=new Map()
-for(let a=65;a<=90;a++)for(let b=65;b<=90;b++){const code=String.fromCharCode(a,b),name=names.of(code);if(name!==code&&code!=='ZZ')countries.set(name.toLowerCase(),{name,code})}
+for(let a=65;a<=90;a++)for(let b=65;b<=90;b++){const code=String.fromCharCode(a,b),name=countryName(code);if(name)countries.set(name.toLowerCase(),{name,code})}
 const placement=label=>{
   const m=/^(.+), ([^,()]+)(?: \((Hybrid|Remote)\))?$/.exec(label)
   const country=m&&countries.get(m[2].toLowerCase())
@@ -52,17 +53,47 @@ export function inventory(text,total){
   return rows
 }
 export const signature=rows=>JSON.stringify([...rows].sort((a,b)=>a.shortcode.localeCompare(b.shortcode)))
-const compact=value=>decodeHTML(value).normalize('NFKC').replace(/[^\p{L}\p{N}]/gu,'').toLowerCase()
+// Only presentation syntax is removed: native Markdown list/heading markers,
+// emphasis and escape delimiters. Plain text keeps semantic punctuation, case,
+// decimal points and symbols such as C++ and C#.
+const criteriaText=value=>decodeHTML(value).normalize('NFKC').replace(/\s+/g,' ').trim()
+const blockTags=new Set('p div h1 h2 h3 h4 h5 h6 li ul ol blockquote pre table tr td th dl dt dd section article address figure figcaption'.split(' '))
+const htmlCriteria=value=>{
+  const document=readNativeDocument(value)
+  const text=node=>{
+    if(node.inert||['script','style'].includes(node.tag))return ''
+    if(node.tag==='br')return '\n'
+    // Inline elements do not insert whitespace into rendered words/punctuation.
+    const children=node.children.map(child=>typeof child==='string'?child:text(child)).join('')
+    return blockTags.has(node.tag)?'\n'+children+'\n':children
+  }
+  return criteriaText(text(document.nodes(node=>node.tag==='root')[0]))
+}
+const markdownCriteria=value=>criteriaText(value
+  .replace(/!?\[([^\]]*)\]\([^)]*\)/g,'$1')
+  .replace(/^\s{0,3}(?:[-+*]|\d+[.)])\s+/gm,'')
+  .replace(/^\s{0,3}#{3,6}\s+/gm,'')
+  .replace(/(\*\*|__)(\S[^\n]*?\S|\S)\1/g,'$2')
+  .replace(/(?<![\\\w])([*_])(\S[^\n]*?\S|\S)\1(?!\w)/g,'$2')
+  // Unescape only after formatting: escaped asterisks are literal criteria.
+  .replace(/\\([\\`*_[\]{}()#+.!-])/g,'$1'))
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,stable(value[key])])):value
 const criteriaFields=[['description','Description'],['requirements','Requirements'],['benefits','Benefits']]
 const ownFields=new Set('id shortcode title remote location locations state isInternal code published type language department accountUid approvalStatus workplace description requirements benefits salary_from salary_to salary_currency_iso_code salary_frequency'.split(' '))
+const locationFields=new Set(['city','country','countryCode','region','hidden'])
+function locationShape(value,primary=false){
+  requireShape(value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).every(key=>locationFields.has(key)),'Unreviewed native own location field')
+  requireShape(['city','country','region'].every(key=>value[key]==null||typeof value[key]==='string'&&value[key].trim()===value[key]&&value[key].length>0),'Invalid native own location label')
+  requireShape(primary?value.hidden===undefined||value.hidden===false:value.hidden===false,'Native own hidden/unresolved location')
+  requireShape(typeof value.countryCode==='string'&&/^[A-Z]{2}$/.test(value.countryCode),'Native own hidden/unresolved location')
+}
 function reconciledCriteria(n,fact,places){
   const declaredCountries=new Set(places.map(p=>p.country)),text=[]
   for(const [key]of criteriaFields){
     requireShape(typeof n[key]==='string'&&plainHTML(n[key]).length>=40,'Missing full native '+key)
     const visible=plainHTML(n[key]),allText=decodeHTML(n[key].replace(/<[^>]*>/g,' '))
-    requireShape(compact(visible)===compact(allText),'Unreviewed hidden native '+key+' criteria')
-    requireShape(compact(visible)===fact.criteria[key],'Native Markdown/own '+key+' criteria conflict')
+    requireShape(criteriaText(visible)===criteriaText(allText),'Unreviewed hidden native '+key+' criteria')
+    requireShape(htmlCriteria(n[key])===fact.criteria[key],'Native Markdown/own '+key+' criteria conflict')
     text.push(allText)
   }
   const fullText=text.join('\n')
@@ -82,9 +113,9 @@ export function detailCountry(markdown,row){
   const sections=[...markdown.matchAll(/^## (Description|Requirements|Benefits|Apply)\n/gm)],criteria={}
   for(let i=0;i<3;i++){
     const value=markdown.slice(sections[i].index+sections[i][0].length,sections[i+1].index)
-    const plain=value.replace(/!?\[([^\]]*)\]\([^)]*\)/g,'$1').replace(/\\([\\`*_[\]{}()#+.!-])/g,'$1')
+    const plain=markdownCriteria(value)
     requireShape(plain.trim().length>=40,'Missing full Markdown '+criteriaFields[i][0])
-    criteria[criteriaFields[i][0]]=compact(plain)
+    criteria[criteriaFields[i][0]]=plain
   }
   const apply=markdown.slice(markdown.indexOf('## Apply'))
   requireShape(apply.trimEnd()===`## Apply\n\n[Apply at IMTF](https://apply.workable.com/imtf/j/${row.shortcode}/apply)\n\n---\nPowered by [Workable](https://www.workable.com)`,'Native detail application identity mismatch')
@@ -100,12 +131,15 @@ export function ownCountries(raw,row,identity,fact){
   requireShape(n.workplace===row.workplace&&({full:'Full-time',part:'Part-time',contract:'Contract',temp:'Temporary',temporary:'Temporary',intern:'Internship',volunteer:'Volunteer',other:'Other'})[n.type]===row.employment,'Native own workplace/employment criteria mismatch')
   requireShape(Array.isArray(n.locations)&&n.locations.length>0,'Native own locations missing')
   const places=n.locations.map(l=>{
-    requireShape(l&&l.hidden===false&&typeof l.countryCode==='string'&&/^[A-Z]{2}$/.test(l.countryCode),'Native own hidden/unresolved location')
-    const country=names.of(l.countryCode)
-    requireShape(country!==l.countryCode&&l.countryCode!=='ZZ'&&(!l.country||countries.get(l.country.toLowerCase())?.code===l.countryCode),'Native own country label/code conflict')
+    locationShape(l)
+    const country=countryName(l.countryCode)
+    requireShape(country&&(!l.country||countries.get(l.country.toLowerCase())?.code===l.countryCode),'Native own country label/code conflict')
     return {city:l.city??null,country,countryCode:l.countryCode}
   })
-  if(n.location!=null)requireShape(n.locations.some(l=>['city','country','countryCode','region'].every(k=>(l[k]??null)===(n.location[k]??null))),'Native own primary/all-location conflict')
+  if(n.location!=null){
+    locationShape(n.location,true)
+    requireShape(n.locations.some(l=>['city','country','countryCode','region'].every(k=>(l[k]??null)===(n.location[k]??null))),'Native own primary/all-location conflict')
+  }
   requireShape(places.some(p=>p.countryCode===row.countryCode&&p.city===row.city),'Native own/Markdown primary location conflict')
   reconciledCriteria(n,fact,places)
   return {nativeNumericJobId:n.id,places,signature:sha(JSON.stringify(stable(n)))}

@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "Offset": 0,
+      "Limit": 24,
+      "TotalJobsCount": 2,
+      "requisitionList": [
+        {
+          "Id": "337745",
+          "Title": "Senior Principal NetSuite Functional Consultant",
+          "PostedDate": "2026-06-24",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "IN",
+          "PrimaryLocation": "HYDERABAD, TELANGANA, India",
+          "Department": null,
+          "JobFunction": "Consulting",
+          "JobFamily": null,
+          "WorkerType": null,
+          "JobType": null,
+          "StudyLevel": "Bachelor degree in Engineering or related field",
+          "ShortDescriptionStr": "Senior Principal Consultant - NetSuite ERP Implementation (Industrial Equipments)",
+          "ExternalResponsibilitiesStr": "Lead global ERP transformation programs across finance, supply chain, inventory, procurement, and order management.",
+          "ExternalQualificationsStr": null,
+          "secondaryLocations": [
+            {
+              "Name": "BENGALURU, KARNATAKA, India",
+              "CountryCode": "IN"
+            }
+          ]
+        },
+        {
+          "Id": "330753",
+          "Title": "Data Center Training Delivery Specialist, Join OCI",
+          "PostedDate": "2026-06-24",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "US",
+          "PrimaryLocation": "AUSTIN, TEXAS, United States",
+          "Department": "Data Center",
+          "JobFunction": null,
+          "JobFamily": null,
+          "WorkerType": null,
+          "JobType": null,
+          "StudyLevel": null,
+          "ShortDescriptionStr": "Oracle is seeking a Data Center Training Delivery Specialist.",
+          "ExternalResponsibilitiesStr": null,
+          "ExternalQualificationsStr": null,
+          "secondaryLocations": []
+        }
+      ]
+    }
+  ]
+}

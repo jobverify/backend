@@ -2,6 +2,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { createRipplehireInventoryScraper } from '../altimetrik/ripplehireInventory.js'
+import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -230,10 +231,60 @@ export const extractJobDetail = (xml, listing = {}) => {
   }
 }
 
+// These are explicit workplace fields in the role's own current description.
+// The board's numeric country IDs and company/phone defaults are not a country map.
+const countryWords = value => value.normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim()
+const foreignCountryLabels = (() => {
+  const names = new Set(['United States of America', 'USA', 'U.S.A.', 'U.S.', 'US', 'UK', 'UAE', 'Great Britain'])
+  const regions = new Intl.DisplayNames(['en'], { type: 'region' })
+  for (let first = 65; first <= 90; first++) for (let second = 65; second <= 90; second++) {
+    const code = String.fromCharCode(first, second), name = regions.of(code)
+    if (code !== 'IN' && name && name !== code) names.add(name)
+  }
+  return [...names].map(name => ` ${countryWords(name)} `)
+})()
+const countryFromOwnRoleLocation = ({ listing, nativeDetail }) => {
+  const html = nativeDetail.jobVO.jobDesc
+  if (typeof html !== 'string') return null
+  const title = normalizeWhitespace(nativeDetail.jobVO.jobTitle)
+  let locations, method
+  if (!/<[a-z!/?]/i.test(html)) {
+    const header = html.split(/\r?\n\s*\r?\n/)[0].split(/\r?\n/).map(normalizeWhitespace)
+    if (header[0] !== `Job Title: ${title}`) return null
+    const field = line => /^Location\s*:\s*(.*)$/i.exec(line)
+    if (!header.some(field)) return null
+    locations = html.split(/\r?\n/).map(normalizeWhitespace).map(field).filter(Boolean).map(match => match[1])
+    method = 'header'
+  } else {
+    const document = readNativeDocument(html)
+    const root = document.nodes(node => node.tag === 'root')[0]
+    const blocks = root.children.filter(node => typeof node !== 'string' && !node.inert)
+    if (blocks[0]?.tag !== 'p' || normalizeWhitespace(document.text(blocks[0])) !== title || blocks[1]?.tag !== 'table'
+      || root.children.some(node => typeof node === 'string' && node.trim())) return null
+    const pair = row => row.children.filter(node => typeof node !== 'string' && !node.inert && ['td', 'th'].includes(node.tag)).map(document.text)
+    const headerRows = document.nodes(node => node.tag === 'tr', blocks[1]).map(pair)
+    if (headerRows.length !== 4 || headerRows.some(row => row.length !== 2)
+      || headerRows.map(row => row[0]).join('|') !== 'Function|Location|Reports To|Works Closely With') return null
+    locations = document.nodes(node => node.tag === 'tr').map(pair).filter(row => /^Location\s*:?$/i.test(row[0])).map(row => row.length === 2 ? row[1] : null)
+    method = 'table'
+  }
+  const explicitIndia = value => /^[^,;|\r\n]{1,120},\s*India(?:\s*\((?:Hybrid|Remote|On[- ]site)\))?$/i.test(value)
+  if (!locations.some(explicitIndia)) return null
+  if (locations.length !== 1) throw new Error('Tredence contradictory or ambiguous native role Location headers')
+  for (const value of [...locations, listing.jobLocation, listing.locations, nativeDetail.jobVO.jobLocation, nativeDetail.jobVO.locations]) {
+    if (value == null) continue
+    if (typeof value !== 'string') throw new Error('Tredence ambiguous native workplace field schema')
+    const words = ` ${countryWords(value)} `
+    if (foreignCountryLabels.some(country => words.includes(country))) throw new Error('Tredence contradictory native workplace country')
+  }
+  return { country: 'India', evidence: `native-own-role-location-${method}:${locations[0]}` }
+}
+
 export const createTredenceScraper = ({ fetchText } = {}) => ({
   run: (options = {}) => createRipplehireInventoryScraper({
     source: 'tredence', company: 'Tredence', origin: BASE_URL, token: TOKEN, parentCompanyId: 191,
     normalizeEmploymentType, extractSkills: extractNumberedSkills,
+    countryResolver: countryFromOwnRoleLocation,
   }).run({ ...(fetchText === undefined ? {} : { fetchText }), ...options }),
 })
 

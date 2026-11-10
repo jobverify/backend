@@ -15,5 +15,6 @@
   "devDependencies": {
     "wrangler": "^4.36.0"
   },
+  "overrides": { "undici": "^7.30.2" },
   "engines": { "node": ">=24.14.0 <25" }
 }

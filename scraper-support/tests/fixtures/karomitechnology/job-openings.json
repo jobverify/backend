@@ -1,0 +1,38 @@
+{
+  "code": "success",
+  "data": [
+    {
+      "Posting_Title": "Team Lead - Implementation",
+      "Job_Type": "Full time",
+      "City": "Chennai",
+      "State": "Tamil Nadu",
+      "Country": "India",
+      "Job_Description": "Configure and implement the product in line with client requirements, while planning and managing project timelines and deliverables.",
+      "$url": "https://karomi.zohorecruit.in/jobs/Careers/68103000004873051/Team-Lead---Implementation?source=CareerSite",
+      "id": "68103000004873051",
+      "Remote_Job": false
+    },
+    {
+      "Posting_Title": "Enterprise Sales manager (Mumbai)",
+      "Job_Type": "Full time",
+      "City": "Mumbai",
+      "State": "Maharashtra",
+      "Country": "India",
+      "Job_Description": "The Sales Head – CPG (India) will drive revenue growth and customer acquisition within the Consumer-Packaged Goods segment for ManageArtworks’ SaaS solutions.",
+      "$url": "https://karomi.zohorecruit.in/jobs/Careers/68103000004219013/Enterprise-Sales-manager-Mumbai?source=CareerSite",
+      "id": "68103000004219013",
+      "Remote_Job": false
+    },
+    {
+      "Posting_Title": "Business Development Manager",
+      "Job_Type": "Full time",
+      "City": "Princeton",
+      "State": "New Jersey",
+      "Country": "United States",
+      "Job_Description": "Overview The Manager – Business Development will assume a pivotal role in fostering growth in the Americas for the ManageArtworks suite.",
+      "$url": "https://karomi.zohorecruit.in/jobs/Careers/68103000003183142/Business-Development-Manager?source=CareerSite",
+      "id": "68103000003183142",
+      "Remote_Job": false
+    }
+  ]
+}

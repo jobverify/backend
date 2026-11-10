@@ -1,0 +1,186 @@
+jQuery(function ($) {
+
+  $.ajax({
+    url: wdhubJobData.ajaxUrl,
+    type: "POST",
+    data: {
+      action: "get_wdhub_job"
+    },
+
+    success: function (response) {
+
+      console.log("FULL RESPONSE:", response);
+
+      if (!response.success) {
+        console.error("Error:", response.data);
+        return;
+      }
+
+      const data = response.data;
+
+      if (!Array.isArray(data)) {
+        console.error("Data is not array");
+        return;
+      }
+
+      // Clear all tables
+      $("#cariadBody").empty();
+      $("#pesBody").empty();
+      $("#dsBody").empty();
+      $("#dataAiBody").empty();
+      $("#corporateBody").empty();
+      $("#result2Body").empty();
+      $("#buDropdown").find("option:not(:first)").remove();
+
+      const otherJobs = [];
+
+      data.forEach(job => {
+
+        if (!job || !job.bu) return;
+
+        const buLower = job.bu.toLowerCase();
+        const buNormalized = buLower.replace(/_/g, ' ');
+        const jobbu = job.bu.replace(/_/g, ' ');
+
+        console.log("JOB:", job);
+
+        // ==========================
+        // Cariad Table
+        // ==========================
+        if (buNormalized.includes("cariad")) {
+
+          const li = `
+            <li>
+             <p class="designation"> ${job.designation || ''}</p>
+              <p class="location">Location: ${job.location || ''}</p>
+              <p class="link"><a href="${job.job_url}" target="_blank">Apply</a></p>
+            </li>
+          `;
+
+          $("#cariadBody").append(li);
+        }
+        // ==========================
+        // Product Engineering Services
+        // ==========================
+        else if (buNormalized.includes("product engineering services")) {
+ console.log("? PES MATCH FOUND:", job);
+  console.log("BU RAW:", job.bu);
+  console.log("BU NORMALIZED:", buNormalized);
+          appendToTable(job, "#pesBody");
+        }
+
+        // ==========================
+        // Digital Solutions
+        // ==========================
+        else if (buNormalized.includes("digital solutions")) {
+          appendToTable(job, "#dsBody");
+        }
+
+        // ==========================
+        // Data and AI  
+        // ==========================
+        else if (
+          buNormalized.includes("data & ai") ||
+          buNormalized.includes("data ai")
+        ) {
+          appendToTable(job, "#dataAiBody");
+        }
+
+        // ==========================
+        //Corporate Functions
+        // ==========================
+        else if (
+          buNormalized.includes("corporate functions") ||
+          buNormalized.includes("corporate")
+        ) {
+          appendToTable(job, "#corporateBody");
+        }
+
+
+        // ==========================
+        // Others ? table + dropdown
+        // ==========================
+        else {
+          otherJobs.push(job);
+          appendRow(job);
+
+          if ($("#buDropdown option[value='" + job.bu + "']").length === 0) {
+            $("#buDropdown").append(
+              new Option(jobbu, job.bu)
+            );
+          }
+        }
+      });
+
+      // ==========================
+      // Dropdown filter
+      // ==========================
+      $("#buDropdown").off("change").on("change", function () {
+
+        const selectedBU = $(this).val();
+        $("#result2Body").empty();
+
+        if (!selectedBU) {
+          displayTable(otherJobs);
+        } else {
+          const filtered = otherJobs.filter(job =>
+            job.bu === selectedBU
+          );
+          displayTable(filtered);
+        }
+      });
+
+      // ==========================
+      // Functions
+      // ==========================
+
+      function appendToTable(job, selector) {
+        const jobbu = job.bu.replace(/_/g, ' ');
+
+        const row = `
+          <tr>
+            <td>${jobbu}</td>
+            <td>${job.designation || ''}</td>
+            <td>${job.location || ''}</td>
+            <td><a href="${job.job_url}" target="_blank">Apply</a></td>
+          </tr>
+        `;
+
+        $(selector).append(row);
+      }
+
+      function appendRow(job) {
+        const jobbu = job.bu.replace(/_/g, ' ');
+
+        const row = `
+          <tr>
+            <td>${jobbu}</td>
+            <td>${job.designation || ''}</td>
+            <td>${job.location || ''}</td>
+            <td><a href="${job.job_url}" target="_blank">Apply</a></td>
+          </tr>
+        `;
+
+        $("#result2Body").append(row);
+      }
+
+      function displayTable(jobs) {
+        if (!jobs.length) {
+          $("#result2Body").append(
+            `<tr><td colspan="4">No jobs found</td></tr>`
+          );
+          return;
+        }
+
+        jobs.forEach(job => appendRow(job));
+      }
+
+    },
+
+    error: function (xhr, status, error) {
+      console.error("AJAX FAILED:", error);
+    }
+
+  });
+
+});

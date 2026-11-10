@@ -1,0 +1,74 @@
+{
+  "code": 200,
+  "data": {
+    "data": [
+      {
+        "_source": {
+          "jobTitle": "Mobility NCE Developer",
+          "jobCode": 28769,
+          "referenceNumber": "PER00000089",
+          "experienceUIField": "3-7 years",
+          "DepartmentName": "USA_Talent Acquisition",
+          "jobUrl": "mobility-nce-developer-santa-clara-ca-santa-clara-usa-202207071550309",
+          "location": "United States",
+          "locAgg": "United States",
+          "text1": "United States",
+          "jobLocationRecord": [
+            {
+              "country": "United States",
+              "city": "",
+              "formattedLocation": "United States",
+              "location": "United States",
+              "state": ""
+            }
+          ],
+          "shortDescription": "manage their 5g 4g 3g networks.",
+          "mandatorySkills": [
+            "NCE"
+          ]
+        }
+      },
+      {
+        "_source": {
+          "jobTitle": "Denodo Business Analyst",
+          "jobCode": 178137,
+          "referenceNumber": "PSL216732_1-172-1",
+          "experienceUIField": "4-12 years",
+          "DepartmentName": "Data_Int_ CRO 1",
+          "jobUrl": "business-analyst-india-bengaluru-2026052916163278",
+          "location": "BENGALURU;Pune",
+          "locAgg": "BENGALURU;Pune",
+          "text1": "India",
+          "jobLocationRecord": [
+            {
+              "country": "India",
+              "city": "Bengaluru",
+              "formattedLocation": "Bengaluru, Karnataka, India",
+              "location": "BENGALURU",
+              "state": "Karnataka"
+            },
+            {
+              "country": "India",
+              "city": "Pune",
+              "formattedLocation": "Pune, Maharashtra, India",
+              "location": "Pune",
+              "state": "Maharashtra"
+            }
+          ],
+          "shortDescription": "Role - Business Analyst Key Responsibilities - Business analysis with Denodo and Data Analysis experience",
+          "mandatorySkills": [
+            "Business Analysis",
+            "Denodo",
+            "Data Analysis"
+          ],
+          "createDate": "29-May-2026"
+        }
+      }
+    ],
+    "totalCount": 690,
+    "hasMoreData": true,
+    "facetedSearchConfig": {
+      "paginationHowMuch": "9"
+    }
+  }
+}

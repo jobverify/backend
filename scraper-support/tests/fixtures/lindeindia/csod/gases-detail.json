@@ -1,0 +1,21 @@
+{
+  "status": 0,
+  "timestamp": "2026-10-24T17:03:12.0515181Z",
+  "data": {
+    "displayTitle": "Senior Engineer O&M",
+    "externalDescription": "<ul><li>In this role, you will ensure safe and timely execution of the DCTL Pipeline Project by coordinating site activities, monitoring project progress, managing contractors, and ensuring compliance with quality, safety, and statutory requirements</li><li>Plan and execute preventive, predictive, and corrective maintenance activities for plant equipment to ensure high reliability, availability, and operational efficiency</li><li>Lead and coordinate plant shutdown activities by preparing job plans, arranging resources, monitoring execution, and ensuring completion within the approved schedule and budget</li><li>You will monitor equipment performance and troubleshoot operational issues to minimize downtime, improve plant reliability, and achieve production targets</li><li>Ensure compliance with EHS standards and company procedures through risk assessments, permit-to-work implementation, safety audits, and adherence to operational best practices</li><li>Also, you will maintain accurate maintenance records and reports, track KPIs, manage spare parts requirements, and support continuous improvement initiatives to enhance plant performance and cost efficiency</li></ul>",
+    "ref": "req33900",
+    "requisitionStatusId": 2,
+    "allowApply": true,
+    "primaryLocation": {
+      "title": "Dahej OnSite",
+      "ref": "50235268",
+      "city": "Dahej",
+      "state": "Gujrat",
+      "country": "IN"
+    },
+    "additionalLocations": [],
+    "openDate": "2026-10-21T14:27:04",
+    "companyApplyUrl": "https://linde.csod.com/ux/ats/careersite/25/home/requisition/33900?c=linde"
+  }
+}

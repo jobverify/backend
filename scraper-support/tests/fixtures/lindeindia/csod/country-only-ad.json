@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "timeStamp": "2026-10-24T17:42:15+0000",
+  "totalRecords": 1,
+  "data": [
+    {
+      "actions": [],
+      "items": [
+        {
+          "fields": {
+            "id": 31768,
+            "reqId": "req31768",
+            "title": "Associate Manager Operations & Maintenance - Onsite Operations",
+            "location": "Kalinganagar",
+            "ad": "<p class=\"header1 header_job_title\"><font size=\"3\"><strong>Linde South Asia Services Pvt. Ltd. | Business Area: Operations<br></strong></font><span style=\"color: var(--color-blue-header); font-family: var(--font-family-Linde-bold); font-size: 2rem;\">Associate Manager Operations & Maintenance - Onsite Operations</span><br><font size=\"3\"><strong>Kalinganagar, Odisha, India | Working Scheme: On-Site | Job Type: Regular / Permanent / Unlimited / FTE | Reference Code: req31768</strong></font></p>\n<ul><li>In this role you will be responsible\r\n     for plant maintenance activities, planned and unplanned shutdowns\r\n     activities.</li><li>Further you will supervise the installation, calibration, and\r\n     commissioning of instruments like pressure transmitters, flow meters, and\r\n     control valves etc.</li><li>Additionally, you will be responsible for troubleshooting and fixing faulty instruments to minimize downtime and optimize existing\r\n     systems for better efficiency.</li><li>Furthermore, you will supervise scheduled calibration of sensors, valves, and transmitters (pressure,\r\n     temperature, flow, and level) to ensure high-accuracy data. </li><li>Executing PM programs to proactively identify drift, wear, or potential instrument\r\n     failures before they disrupt plant operations is a part of your responsibility.</li><li>Moreover, you are in charge for identifying and maintaining minimum stock levels of critical spares and consumables for reducing downtime.</li></ul>",
+            "description": "In this role you will be responsible\r\n     for plant maintenance activities, planned and unplanned shutdowns\r\n     activities.Further you will supervise the installation, calibration, and\r\n     commissioning of instruments like pressure transmitters, flow meters, and\r\n     control valves etc.Additionally, you will be responsible for troubleshooting and fixing faulty instruments to minimize downtime and optimize existing\r\n     systems for better efficiency.Furthermore, you will supervise scheduled calibration of sensors, valves, and transmitters (pressure,\r\n     temperature, flow, and level) to ensure high-accuracy data. Executing PM programs to proactively identify drift, wear, or potential instrument\r\n     failures before they disrupt plant operations is a part of your responsibility.Moreover, you are in charge for identifying and maintaining minimum stock levels of critical spares and consumables for reducing downtime."
+          },
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

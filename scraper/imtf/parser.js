@@ -1,5 +1,6 @@
 import {createHash} from 'node:crypto'
 import {decodeHTML} from 'entities'
+import {countryName} from '../../scraper-support/native-sources/jobPostingData.js'
 export const HOME='https://imtf.com/'
 export const CAREERS='https://imtf.com/about-us/careers/'
 export const sha=value=>createHash('sha256').update(value).digest('hex')
@@ -94,7 +95,7 @@ const workplaceKey=value=>{const key=typeof value==='string'?normalized(value):n
 // regions. Unrecognized final listing tokens can remain absent/ambiguous.
 const countryKey=value=>value.trim().replace(/\s+/g,' ').toLowerCase()
 const countryNames=new Map(),displayNames=new Intl.DisplayNames(['en'],{type:'region'})
-for(let a=65;a<=90;a++)for(let b=65;b<=90;b++){const code=String.fromCharCode(a,b),name=displayNames.of(code);if(name!==code&&code!=='ZZ')countryNames.set(countryKey(name),name)}
+for(let a=65;a<=90;a++)for(let b=65;b<=90;b++){const code=String.fromCharCode(a,b),name=countryName(code);if(name)countryNames.set(countryKey(name),name)}
 // The captured same-country spellings name one Swiss city; keep both raw labels.
 const sameCity=(listed,native,country)=>listed===native||country==='Switzerland'&&((listed==='Zurich'&&native==='Z\u00fcrich')||(listed==='Z\u00fcrich'&&native==='Zurich'))
 // An explicit two-city "A or B, Country" card may name more alternatives than

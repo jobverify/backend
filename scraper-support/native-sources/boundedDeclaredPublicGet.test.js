@@ -220,12 +220,20 @@ for (const stage of ['fetch', 'metadata iterator']) test('a synchronous syntheti
     body: { getReader: () => reader, cancel() { stats.canceled++; return Promise.resolve() } },
     arrayBuffer: async () => new ArrayBuffer(0) }
   let count = 0
-  const jobs = await createNativeGreenhouseScraper(p).run({ fetchImpl: async url => {
+  const operation = createNativeGreenhouseScraper(p).run({ fetchImpl: async url => {
     if (++count === 1) { if (stage === 'fetch') clock = 15001; return first }
     return heldResponse(url)
   } })
-  assert.equal(jobs.sourceAudit.rawPages[0].error?.name, 'TimeoutError')
-  assert.equal(jobs.sourceAudit.rawPages[0].transportQualified, false)
+  // The outer runtime now owns the earliest read deadline and rejects with
+  // retained incomplete evidence; a timeout cannot return a completed scrape.
+  await assert.rejects(operation, error => {
+    assert.equal(error.code, 'GREENHOUSE_READ_TIMEOUT')
+    assert.equal(error.cause?.name, 'TimeoutError')
+    assert.equal(error.nativeEvidence.incompleteCollection, true)
+    assert.deepEqual(error.partialNativeJobs, [])
+    assert.equal(error.lifecycleCleanupAllowed, false)
+    return true
+  })
   assert.equal(stats.canceled, 1)
   assert.equal(stats.released, stage === 'fetch' ? 0 : 1)
 })

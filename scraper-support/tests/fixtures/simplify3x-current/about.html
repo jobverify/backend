@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Simplify3x | Meet Our Visionary Team</title>
+    <meta name="description" content="Meet the visionary team behind Simplify3x. Learn about our culture, values, and leadership driving AI-first digital transformation solutions globally." />
+    <meta name="keywords" content="Simplify3x team, about us, company culture, leadership, Vijay Daniel CEO, digital transformation company" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="About Simplify3x - Meet Our Visionary Team" />
+    <meta property="og:description" content="Founded on the principle that technology should empower rather than complicate. Meet our global team driving innovation." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://simplify3x.com/about.html" />
+    <meta property="og:image" content="https://simplify3x.com/assets/images/simp3x.webp" />
+    
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/newstyle.css" />
+    
+    <!-- Optimized font loading - only weights actually used -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Scroll Stack Animation Styles -->
+    <style>
+        /* Override the grid layout for scroll stack */
+        .purpose-div {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0 !important;
+            position: relative;
+            z-index: 2;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px 0 50px 0;
+            /* Reduced top padding */
+            min-height: 100vh;
+            /* Reduced height */
+            align-items: center;
+        }
+
+        /* Publications Marquee Styles */
+        .publications-marquee {
+            width: 100%;
+            margin: 120px 0 0px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-row {
+            display: flex;
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .marquee-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 32px;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        /* Top Row - Scroll Left */
+        .marquee-left .marquee-content {
+            animation: scrollLeft 40s linear infinite;
+        }
+
+        /* Bottom Row - Scroll Right */
+        .marquee-right .marquee-content {
+            animation: scrollRight 40s linear infinite;
+        }
+
+        .marquee-item {
+            flex-shrink: 0;
+            /* width: 180px; */
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .marquee-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* filter: grayscale(100%) brightness(0) invert(1); */
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .marquee-item:hover img {
+            opacity: 1;
+            filter: grayscale(0%) brightness(1) invert(0);
+        }
+
+        .about-grid-item {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(134.71deg, #0B0B0B 0%, #1E1E1E 105.13%);
+            border-radius: 28px;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .about-grid-item:hover {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+
+        .about-grid-item:active {
+            transform: scale(0.98);
+        }
+
+        .about-grid-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            /* filter: grayscale(100%) brightness(0) invert(1); */
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .about-grid-item:hover img {
+            opacity: 1;
+            filter: grayscale(0%) brightness(1) invert(0);
+        }
+
+        /* Hover image for first grid item - appears as background */
+        .about-grid-item .hover-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: all 0.5s ease;
+            z-index: 1;
+            filter: blur(2px);
+        }
+
+        .about-grid-item .default-img {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .about-grid-item:hover .hover-img {
+            opacity: 0.3;
+            transform: scale(1);
+            filter: blur(1px);
+        }
+
+        .about-grid-item:hover .default-img {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        .about-grid .one-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .about-grid .two-row {
+            justify-content: center;
+            display: flex;
+            gap: 40px;
+        }
+
+        .about-grid-item.one {
+            height: 350px;
+            flex: 1;
+        }
+
+        .about-grid-item.two {
+            height: 350px;
+            flex: 1;
+        }
+
+        .about-grid-item.three {
+            height: 280px;
+            flex: 1;
+        }
+
+        .about-grid-item.four {
+            height: 280px;
+            flex: 1;
+        }
+
+        .about-grid-item.five {
+            height: 280px;
+            flex: 1;
+        }
+
+        .about-grid-item.three .default-img {
+            width: 300px;
+        }
+
+
+
+
+        /* Animations */
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scrollRight {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Team Flipping Cards Styles */
+        .team-section {
+            padding: 90px 0;
+            background: #f8f9fa;
+            position: relative;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(337px, 1fr));
+            gap: 45px;
+
+        }
+
+        .team-card {
+            height: 370px;
+            perspective: 1000px;
+        }
+
+        .team-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .team-card:hover .team-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .team-card-front,
+        .team-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .team-card-front {
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-card-back {
+            background: #ff6b35;
+            color: white;
+            transform: rotateY(180deg);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            align-items: start;
+            text-align: center;
+            z-index: 4;
+        }
+
+        .team-card-front img {
+            width: 100%;
+            /* height: 100%; */
+            object-fit: cover;
+        }
+
+        .team-card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            z-index: 2;
+            color: #fff;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .team-card-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 23px;
+            font-weight: 600;
+        }
+
+        .team-card-info p {
+            margin: 0;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .team-card-back h3 {
+            margin: 0 0 5px 0;
+            font-size: 23px;
+            font-weight: 600;
+            text-align: left;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .team-card-back .line,
+        .team-modal-card .line {
+            background-color: #ffffff78;
+            width: 120px;
+            height: 1px;
+            margin-bottom: 10px;
+        }
+
+        .team-title {
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            text-align: left;
+            color: #fff;
+        }
+
+        .team-description {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: left;
+            color: #fff;
+        }
+
+        .team-social {
+            display: flex;
+            gap: 15px;
+            height: 24px;
+            justify-content: center;
+        }
+
+        .team-social a {
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .team-social a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Pulse animation for first team card */
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+
+            .team-card-back {
+                padding: 20px;
+            }
+
+            .team-card-back h3 {
+                font-size: 1.5rem;
+            }
+
+            .team-description {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* ===== Team mobile modal (<=1024px) ===== */
+        @media (max-width: 1262px) {
+            @keyframes pulseCard {
+
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+
+                50% {
+                    transform: scale(0.95);
+                }
+            }
+
+            .team-card:first-child.pulse-animation {
+                animation: pulseCard 1s ease-in-out 3;
+            }
+
+            .team-card:first-child.pulse-animation .team-card-inner {
+                animation: pulseCard 1s ease-in-out 3;
+            }
+
+            /* Disable flip on mobile/tablet */
+            .team-card:hover .team-card-inner {
+                transform: none !important;
+            }
+
+            .team-card-inner {
+                transition: none;
+            }
+
+            .team-modal {
+                position: fixed;
+                inset: 0;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                z-index: 3000;
+            }
+
+            .team-modal.open {
+                display: flex;
+            }
+
+            .team-modal-backdrop {
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, .6);
+                opacity: 0;
+                transition: opacity .25s ease;
+            }
+
+            .team-modal.open .team-modal-backdrop {
+                opacity: 1;
+                backdrop-filter: blur(4px);
+            }
+
+            .team-modal-card {
+                position: relative;
+                width: min(92vw, 252px);
+                background: #db663b;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+                transform-origin: center;
+                transform: scale(0.2);
+                opacity: 0;
+                padding: 20px;
+            }
+
+            .team-modal.open .team-modal-card {
+                animation: tmPop .28s cubic-bezier(.2, .7, .3, 1) forwards;
+            }
+
+            .team-modal-illustration {
+                position: absolute;
+                top: -45px;
+                left: 50%;
+                transform: translateX(-50%) scale(0);
+                width: 90px;
+                height: 90px;
+                border-radius: 50%;
+                border: 4px solid #fff;
+                background: #f3f3f3 center/cover no-repeat;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+            }
+
+            .team-modal.open .team-modal-illustration {
+                animation: tmImg .34s .12s cubic-bezier(.2, .7, .3, 1) forwards;
+            }
+
+            .team-modal-close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                border-radius: 50%;
+                border: 0;
+                cursor: pointer;
+            }
+
+            .team-modal-close:before,
+            .team-modal-close:after {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 16px;
+                height: 2px;
+                background: #111;
+                transform-origin: center;
+            }
+
+            .team-modal-close:before {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+
+            .team-modal-close:after {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            .team-modal-content {
+                text-align: left;
+            }
+
+            .team-modal-content h3 {
+                margin: 6px 0 2px 0;
+                font-size: 20px;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .team-modal-content .tm-title {
+                margin: 0 0 12px 0;
+                font-size: 12px;
+                color: #fff;
+            }
+
+            .team-modal-content .tm-desc {
+                font-size: 12px;
+                color: #fff;
+                line-height: 1.55;
+                text-align: left;
+            }
+
+            @keyframes tmPop {
+                from {
+                    transform: scale(0.2);
+                    opacity: 0;
+                }
+
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes tmImg {
+                from {
+                    transform: translateX(-50%) scale(0);
+                }
+
+                to {
+                    transform: translateX(-50%) scale(1);
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header (copied from index) -->
+    <header class="header other-pages">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html#home">
+                        <img src="assets/images/simp3x.webp" alt="Copora Logo">
+                    </a>
+                </div>
+
+                <!-- Mobile hamburger button -->
+                <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+
+                <div class="header-actions">
+                    <!-- Mobile Menu Header -->
+                    <div class="mobile-menu-header">
+                        <div class="mobile-menu-logo">
+                            <a href="index.html">
+                                <img src="assets/images/simp3x.webp" alt="SIMPLIFY3X Logo" />
+                            </a>
+                        </div>
+                        <button class="mobile-menu-close" aria-label="Close menu">
+                            <img loading="lazy" src="assets/images/cross.webp" alt="Close" />
+                        </button>
+                    </div>
+
+                    <!-- Navigation -->
+                    <nav class="nav">
+                        <ul class="nav-list">
+                            <li class="dropdown">
+                                <button class="nav-link dropdown-toggle" type="button" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    What we offer
+                                    <img loading="lazy" class="hideinlaptop" style="    margin-left: 10px;margin-top: 10px;"
+                                        src="assets/images/sidebar-arrow.webp" alt="">
+                                </button>
+
+                                <div class="dropdown-menu" role="menu">
+                                    <div class="dropdown-col">
+                                        <a href="https://simplifyqa.ai/" class="dropdown-item"
+                                            target="_blank">SimplifyQA</a>
+                                        <a href="https://hire3x.com/" class="dropdown-item" target="_blank">Hire3x</a>
+                                        <a href="https://www.walnutai.ai/" class="dropdown-item" target="_blank">Walnut</a>
+                                        <a href="https://devopsark.ai/" class="dropdown-item" target="_blank">DevOpsArk</a>
+                                        <!-- <a href="https://bominso.com/" class="dropdown-item" target="_blank"
+                                            >BOMINSO</a> -->
+                                        <div class="dropdown-has-submenu">
+                                            <div class="dropdown-item dropdown-item-has-submenu">
+                          <div style="display: flex; align-items: center">
+                            <span>Custom Solutions</span>
+                            <img
+                              loading="lazy"
+                              class="hideinlaptop"
+                              style="
+                                margin-left: 7px;
+                                margin-top: 8px;
+                                width: 10px;
+                              "
+                              src="assets/images/sidebar-arrow.webp"
+                              alt=""
+                            />
+                          </div>
+                                                <div class="dropdown-submenu">
+                                                    <a href="devSolutions.html" class="dropdown-submenu-item">Digital
+                                                        Transformation Solution</a>
+                                                    <a href="solutions.html" class="dropdown-submenu-item">Quality
+                                                        Assurance Solution</a>
+                                                    <a href="globalStaffing.html" class="dropdown-submenu-item">Global
+                                                        Staffing Solution</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <button class="nav-link dropdown-toggle" type="button" aria-haspopup="true"
+                                    aria-expanded="false">
+                                    Who we are
+                                    <img loading="lazy" class="hideinlaptop" style="  margin-left: 10px;  margin-top: 10px;"
+                                        src="assets/images/sidebar-arrow.webp" alt="">
+                                </button>
+                                <div class="dropdown-menu" role="menu">
+                                    <div class="dropdown-col">
+                                        <a href="about.html" class="dropdown-item">About Us</a>
+                                        <!-- <a href="insights.html" class="dropdown-item">Insights</a> -->
+                                        <a href="life.html" class="dropdown-item">Life @ Simplify3x</a>
+                                        <a href="blog.html" class="dropdown-item">Blogs</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- <li>
+                                <a href="customer-stories.html" class="nav-link">
+                                    Customer stories
+                                </a>
+                            </li> -->
+
+                            <li>
+                                <a href="contact.html" class="nav-link">
+                                    Contact now
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <!-- Newsletter Section -->
+                    <div class="mobile-newsletter">
+                        <div class="newsletter-text">
+                            <div class="gradient-heading-2">Stay Updated</div>
+                            <div class="gradient-heading-2">With Our Newsletter</div>
+                        </div>
+                        <form class="newsletter-form" onsubmit="event.preventDefault(); return false;">
+                            <input type="email" class="newsletter-input" placeholder="Your email" required />
+                            <button type="submit" class="newsletter-button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About page content -->
+    <main class="about-page position-relative">
+        <!-- Background Video -->
+        <video class="about-page-bg-video" autoplay="autoplay" muted="muted" loop="loop" playsinline="playsinline" webkit-playsinline preload="auto">
+            <source src="https://cvstaticfiles.s3.ap-south-1.amazonaws.com/website/Simplify3x/about.mp4" type="video/mp4">
+        </video>
+
+        <section class="container ">
+            <div>
+                <div class="gradient-heading-2 grad-mob fs-70 mb-5">Meet Simplify3x</div>
+                <div class="hero-description text-justify lh-32px">Founded on the principle that technology should
+                    empower rather than complicate, we've built a global ecosystem of innovative products and services
+                    that help businesses scale efficiently and sustainably.</div>
+            </div>
+        </section>
+    </main>
+    <div style="padding-block: 90px;overflow: hidden;" class="who-we-are mob-rel">
+        <img loading="lazy" class="mobile-dots-2 hideinlaptop" src="assets/images/mobile-dotes.webp" alt="">
+        <div class="container">
+            <div class="flex-one mob-rel"
+                style="display: flex; justify-content: space-between; align-items: start; gap: 60px;">
+               <div>
+                 <h2 class="gradient-heading" style="margin: 0; flex: 0 0 auto; max-width: 500px;">
+                    Who We Are
+                </h2>
+                <div class="culture-subtitle hideinmobile" style="margin-top: 10px;">
+              Driven by Innovation, United by Purpose
+            </div>
+               </div>
+                <div style="display: flex; align-items: start; gap: 13px;" class="mob-rel">
+                    <div class="about-vert-line"></div>
+                    <p class="gradient-description" style="border-left:unset;">At Simplify3x, we help businesses solve
+                        complex problems with simple, smart solutions using AI. We offer both products and services, all
+                        working together in one ecosystem to support different business needs ensuring every solution we
+                        provide adds real value and helps our clients grow worldwide.
+                        </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team Flipping Cards Section -->
+    <section class="team-section">
+        <img loading="lazy" style="position: absolute; bottom: 0; right: 0;" src="assets/images/dots-cor.png" alt="">
+        <div class="container">
+            <h2 class="gradient-heading hideinmobile" style="margin-bottom: 70px;">Our Visionaries</h2>
+            <h2 class="gradient-heading hideinlaptop" style="margin-bottom: 70px;">At the Helm of our <br /> vision</h2>
+
+            <div class="team-grid">
+                <!-- Card 1 -->
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <!-- Front -->
+                        <div class="team-card-front">
+                            <img loading="lazy" class="hideinlaptop" style="position: absolute;
+                            top: 15px;
+                            left: 16px;
+                            height: 12px;
+                            width: 12px;" src="assets/images/expand.svg" alt="">
+                            <img loading="lazy" src="assets/images/vd.png" alt="">
+                            <div class="team-card-info">
+                                <h3>Vijay Daniel</h3>
+                                <p>Chief Executive Officer</p>
+                            </div>
+                            <img loading="lazy" class="service-blur" src="assets/images/black-blur.png" alt="">
+                        </div>
+                        <!-- Back -->
+                        <div class="team-card-back">
+                            <div>
+                                <h3>Vijay Daniel</h3>
+                                <p class="team-title">Chief Executive Officer</p>
+                                <div class="line"></div>
+                                <p class="team-description">CEO of Simplify3x with 15+ years in IT and IT-enabled
+                                    services. Expert in test automation, in-sprint agile automation, and test strategy.
+                                    Has led end-to-end automation programs, managed global clients, and delivered
+                                    scalable, high-impact solutions.</p>
+                            </div>
+                            <div class="team-social">
+                                <a
+      href="https://www.linkedin.com/in/vijay-daniel?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile of Vijay Daniel"
+    >
+      <img loading="lazy" src="assets/images/linkedin.webp" alt="LinkedIn">
+    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <div class="team-card-front">
+                            <img loading="lazy" class="hideinlaptop" style="position: absolute;
+                            top: 15px;
+                            left: 16px;
+                            height: 12px;
+                            width: 12px;" src="assets/images/expand.svg" alt="">
+                            <img loading="lazy" src="assets/images/ravi.png" alt="Bob Smith">
+                            <div class="team-card-info">
+                                <h3>Ravi Reddy</h3>
+                                <p>Chief Strategy Officer</p>
+                            </div>
+                            <img loading="lazy" class="service-blur" src="assets/images/black-blur.png" alt="">
+                        </div>
+                        <div class="team-card-back">
+                            <div>
+                                <h3>Ravi Reddy</h3>
+                                <p class="team-title">Chief Strategy Officer</p>
+                                <div class="line"></div>
+                                <p class="team-description" style="margin-bottom:10px;">As Chief Strategy Officer at Simplify3x Software, he drives
+                                    strategic initiatives centered on operational excellence and customer success. With
+                                    expertise in Agile, DevOps, and Scrum, he leads process innovation, fosters
+                                    cross-functional collaboration, and strengthens client relationships.</p>
+                            </div>
+                            <div class="team-social">
+                               <a
+      href="https://www.linkedin.com/in/ravi-reddy-980a5480?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile of Ravi Reddy"
+    >
+      <img loading="lazy" src="assets/images/linkedin.webp" alt="LinkedIn">
+    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <div class="team-card-front">
+                            <img loading="lazy" class="hideinlaptop" style="position: absolute;
+                            top: 15px;
+                            left: 16px;
+                            height: 12px;
+                            width: 12px;" src="assets/images/expand.svg" alt="">
+                            <img loading="lazy" src="assets/images/shreya.png" alt="Carol Davis">
+                            <div class="team-card-info">
+                                <h3>Shreya Gupta</h3>
+                                <p>Chief Product Officer</p>
+                            </div>
+                            <img loading="lazy" class="service-blur" src="assets/images/black-blur.png" alt="">
+                        </div>
+                        <div class="team-card-back">
+                            <div>
+                                <h3>Shreya Gupta</h3>
+                                <p class="team-title">Chief Product Officer</p>
+                                <div class="line"></div>
+                                <p class="team-description">As Chief Platform Officer at Simplify3x Software Private
+                                    Limited, he leads teams delivering innovative, customized solutions across domains.
+                                    With 10+ years in development, testing, and automation, he simplifies complex
+                                    problems, ensures quality delivery, fosters collaboration.</p>
+                            </div>
+                            <div class="team-social">
+                                    <a
+      href="https://www.linkedin.com/in/shreya-gupta-5b411a22?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile of Shreya Gupta"
+    >
+      <img loading="lazy" src="assets/images/linkedin.webp" alt="LinkedIn">
+    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <div class="team-card-front">
+                            <img loading="lazy" class="hideinlaptop" style="position: absolute;
+                            top: 15px;
+                            left: 16px;
+                            height: 12px;
+                            width: 12px;" src="assets/images/expand.svg" alt="">
+                            <img loading="lazy" src="assets/images/naga.png" alt="David Brown">
+                            <div class="team-card-info">
+                                <h3>Nagraj M C</h3>
+                                <p>Chief Quality officer</p>
+                            </div>
+                            <img loading="lazy" class="service-blur" src="assets/images/black-blur.png" alt="">
+                        </div>
+                        <div class="team-card-back">
+                            <div>
+                                <h3>Nagraj M C</h3>
+                                <p class="team-title">Chief Quality officer</p>
+                                <div class="line"></div>
+                                <p class="team-description">A senior software engineering leader with 35+ years of
+                                    experience delivering high-quality solutions. He specializes in test process
+                                    improvement, automation, DevOps adoption, and leadership coaching, driving
+                                    transformation across people, processes, and technology to create sustained customer
+                                    value.</p>
+                            </div>
+                            <div class="team-social">
+                                <a
+      href="https://www.linkedin.com/in/mcnagaraj?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile of Nagraj M C"
+    >
+      <img loading="lazy" src="assets/images/linkedin.webp" alt="LinkedIn">
+    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <div class="team-card-front">
+                            <img loading="lazy" class="hideinlaptop" style="position: absolute;
+                            top: 15px;
+                            left: 16px;
+                            height: 12px;
+                            width: 12px;" src="assets/images/expand.svg" alt="">
+                            <img loading="lazy" src="assets/images/visakh.png" alt="Emma Wilson">
+                            <div class="team-card-info">
+                                <h3>Visakh S T</h3>
+                                <p>Chief Delivery Officer</p>
+                            </div>
+                            <img loading="lazy" class="service-blur" src="assets/images/black-blur.png" alt="">
+                        </div>
+                        <div class="team-card-back">
+                            <div>
+                                <h3>Visakh S T</h3>
+                                <p class="team-title">Chief Delivery Officer</p>
+                                <div class="line"></div>
+                                <p class="team-description">CTO at Simplify3x, leading AI-first technology strategy for global enterprises. He delivers scalable digital platforms, resilient products, and high-performing teams. Driving outcome-oriented execution by embedding AI, automation, and modern engineering to create measurable business impact.
+                                </p>
+                            </div>
+                            <div class="team-social">
+                                <a
+      href="https://www.linkedin.com/in/visakhst?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile of Visakh S T"
+    >
+      <img loading="lazy" src="assets/images/linkedin.webp" alt="LinkedIn">
+    </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="team-card">
+                    <div class="team-card-inner">
+                        <div class="team-card-front">
+                            <img loading="lazy" class="hideinlaptop" style="position: absolute;
+                            top: 15px;
+                            left: 16px;
+                            height: 12px;
+                            width: 12px;" src="assets/images/expand.svg" alt="">
+                            <img loading="lazy" src="assets/images/hari.png" alt="Frank Miller">
+                            <div class="team-card-info">
+                                <h3>Haribabu T</h3>
+                                <p>SVP Quality Engineering</p>
+                            </div>
+                            <img loading="lazy" class="service-blur" src="assets/images/black-blur.png" alt="">
+                        </div>
+                        <div class="team-card-back">
+                            <div>
+                                <h3>Haribabu T</h3>
+                                <p class="team-title">SVP Quality Engineering</p>
+                                <div class="line"></div>
+                                <p class="team-description" style="margin-bottom:10px;">Senior VP - Quality Engineering at Simplify3x
+                                    Software professional with 25+ years of experience in application development, maintenance, quality engineering, and business growth. He has led global consulting across healthcare, banking, and insurance.</p>
+                            </div>
+                            <div class="team-social">
+                                   <a
+      href=" https://www.linkedin.com/in/hari-babu-thulluri-2588627?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_v…"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="LinkedIn profile of Hari Babu Thulluri"
+    >
+      <img loading="lazy" src="assets/images/linkedin.webp" alt="LinkedIn">
+    </a>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile modal container (hidden by default) -->
+        <div class="team-modal hideinlaptop" id="teamModal" aria-hidden="true">
+            <div class="team-modal-backdrop"></div>
+            <div class="team-modal-card" role="dialog" aria-modal="true" aria-labelledby="tmName">
+
+                <button class="team-modal-close" id="tmClose" aria-label="Close"></button>
+                <div class="team-modal-content">
+                    <h3 id="tmName"></h3>
+                    <div class="tm-title" id="tmRole"></div>
+                    <div class="line"></div>
+                    <div class="tm-desc" id="tmDesc"></div>
+                    <div style="margin-top: 15px;">
+                        <a href="#" id="tmLinkedin" target="_blank" aria-label="LinkedIn">
+                            <img loading="lazy" src="assets/images/linkedin.webp" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Image section below number-part -->
+    <main class="purpose-part">
+        <section class="container">
+            <div class="section-title text-center hideinmobile" style="margin-bottom: 45px;">Publications and Mentions
+            </div>
+            <div class="gradient-heading-2 hideinlaptop text-center fs-70 mb-5" style="justify-content: center;">
+                Publications and <br /> Mentions</div>
+            <div class="about-grid">
+                <div class="one-row">
+                    <div class="about-grid-item one" data-pdf="https://cvstaticfiles.s3.ap-south-1.amazonaws.com/website/Simplify3x/Forbes.pdf">
+                        <img loading="lazy" class="hideinlaptop" style="position: absolute; top: 10px; right: 10px; height: 15px; width: 15px;" src="assets/images/redirect copy.svg" alt="">
+                        <img loading="lazy" src="assets/images/forbes-txt.webp" alt="Publication 1" class="default-img">
+                        <img loading="lazy" src="assets/images/forbes.png" alt="Forbes Publication" class="hover-img">
+                    </div>
+                    <div class="about-grid-item two" data-pdf="https://cvstaticfiles.s3.ap-south-1.amazonaws.com/website/Simplify3x/CIOoutlook.pdf">
+                        <img loading="lazy" class="hideinlaptop" style="position: absolute; top: 10px; right: 10px; height: 15px; width: 15px;" src="assets/images/redirect copy.svg" alt="">
+                        <img loading="lazy" src="assets/images/cio.webp" alt="Publication 1" class="default-img">
+                        <img loading="lazy" src="assets/images/cio.png" alt="Forbes Publication" class="hover-img">
+                    </div>
+                </div>
+                <div class="two-row">
+                    <a class="about-grid-item three"
+                        href="https://trak.in/stories/exclusive-interview-this-tech-startup-is-enabling-scriptless-testing-anyone-can-test-a-product-without-any-code/"
+                        target="_blank">
+                        <img loading="lazy" class="hideinlaptop" style="position: absolute; top: 8px; right: 8px; height: 10px; width: 10px;" src="assets/images/redirect copy.svg" alt="">
+                        <img loading="lazy" src="assets/images/news-financial.webp" alt="Publication 1" class="default-img">
+                        <img loading="lazy" src="assets/images/financial.png" alt="Forbes Publication" class="hover-img">
+                </a>
+                    <a class="about-grid-item four"
+                        href="https://www.expresscomputer.in/guest-blogs/key-trends-shaping-the-future-of-ai-software-testing/108029/#:~:text=There%20is%20a%20distinct%20shift,impact%20on%20various%20user%20groups."
+                        target="_blank">
+                        <img loading="lazy" class="hideinlaptop" style="position: absolute; top: 8px; right: 8px; height: 10px; width: 10px;" src="assets/images/redirect copy.svg" alt="">
+                        <img loading="lazy" src="assets/images/news-express.webp" alt="Publication 1" class="default-img">
+                        <img loading="lazy" src="assets/images/computers.png" alt="Forbes Publication" class="hover-img">
+                    </a>
+                    <a class="about-grid-item five"
+                        href="https://www.timesnownews.com/technology-science/simplify3x-elevating-software-testing-with-people-focused-process-driven-and-technologically-advanced-strategies-article-105571944"
+                        target="_blank">
+                        <img loading="lazy" class="hideinlaptop" style="position: absolute; top: 8px; right: 8px; height: 10px; width: 10px;" src="assets/images/redirect copy.svg" alt="">
+                        <img loading="lazy" src="assets/images/times-text.webp" alt="Publication 1" class="default-img">
+                        <img loading="lazy" src="assets/images/times.png" alt="Forbes Publication" class="hover-img">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Marquee Section -->
+            <div class="publications-marquee">
+                <div class="client-left-overlay-g"></div>
+                <!-- Top Row - Moving Left -->
+                <div class="marquee-row marquee-left">
+                    <div class="marquee-content">
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-hindu.webp" alt="Publication 1"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-india.webp" alt="Publication 2"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-today.webp" alt="Publication 3"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-economic.webp" alt="Publication 4"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-drum.webp" alt="Publication 5"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-express.webp" alt="Publication 6"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-mint.webp" alt="Publication 7"></div>
+
+                        <!-- Duplicate for seamless loop -->
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-hindu.webp" alt="Publication 1"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-india.webp" alt="Publication 2"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-today.webp" alt="Publication 3"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-economic.webp" alt="Publication 4"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-drum.webp" alt="Publication 5"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-express.webp" alt="Publication 6"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-mint.webp" alt="Publication 7"></div>
+
+                    </div>
+                </div>
+
+                <!-- Bottom Row - Moving Right -->
+                <div class="marquee-row marquee-right">
+                    <div class="marquee-content">
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-good.webp" alt="Publication 9"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-forbes.webp" alt="Publication 10"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/times-text.webp" alt="Publication 11"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-gartner.webp" alt="Publication 12"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-tech.webp" alt="Publication 1"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-trak.webp" alt="Publication 2"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-financial.webp" alt="Publication 8"></div>
+
+
+                        <!-- Duplicate for seamless loop -->
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-good.webp" alt="Publication 9"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-forbes.webp" alt="Publication 10"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/times-text.webp" alt="Publication 11"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-gartner.webp" alt="Publication 12"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-tech.webp" alt="Publication 1"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-trak.webp" alt="Publication 2"></div>
+                        <div class="marquee-item"><img loading="lazy" src="assets/images/news-financial.webp" alt="Publication 8"></div>
+
+                    </div>
+                </div>
+                <div class="client-right-overlay-g"></div>
+            </div>
+
+        </section>
+    </main>
+    <main class="number-part">
+        <section class="container">
+            <div class="number-part-item employee-card">
+                <img loading="lazy" id="employee-icon" src="assets/images/Employees o.webp" alt="Employee">
+                <div class="number-part-number">600+</div>
+                <div class="number-part-text text-center hideinmobile">Experts driving innovation and delivering real
+                    impact.</div>
+                <div class="number-part-text text-center hideinlaptop">Employees worldwide</div>
+            </div>
+            <div class="num-vertical-line"></div>
+            <div class="number-part-item cont-card">
+                <img loading="lazy" id="office-icon" src="assets/images/office o.webp" alt="Office">
+                <div class="number-part-number">6</div>
+                <div class="number-part-text text-center hideinmobile">Global locations driving business growth.
+                </div>
+                <div class="number-part-text text-center hideinlaptop">Offices Across Continents</div>
+            </div>
+            <div class="num-vertical-line hideinmobile"></div>
+            <div class="hideinlaptop" style="display: flex; justify-content: space-around; width: 100%;">
+                <div class="num-hor-line"></div>
+                <div class="num-hor-line"></div>
+            </div>
+            <div class="number-part-item world-card">
+                <img loading="lazy" id="world-icon" src="assets/images/world.webp" alt="World">
+                <div class="number-part-number">100+</div>
+                <div class="number-part-text text-center hideinmobile"> Organizations empowered through smart, simple
+                    solutions.
+                </div>
+                <div class="number-part-text text-center hideinlaptop">Countries we Serve</div>
+            </div>
+            <div class="num-vertical-line"></div>
+            <div class="number-part-item project-card">
+                <img loading="lazy" id="project-icon" src="assets/images/success o.webp" alt="Project">
+                <div class="number-part-number">200+</div>
+                <div class="number-part-text text-center hideinmobile">Successful Projects delivered with precision,
+                    speed, and
+                    excellence.</div>
+                <div class="number-part-text text-center hideinlaptop">Successful Projects</div>
+            </div>
+    </main>
+
+    <section class="cs-cta-section">
+        <div class="cta-container">
+            <h2 class="gradient-heading-2 hideinmobile" style="justify-content: center;font-size: 54px;">Get Started
+                with Simplify3x Today</h2>
+            <div class="gradient-heading-2 hideinlaptop fs-70 mb-2" style="justify-content: center;">Get Started with
+                Simplify3x Today</div>
+            <p class="section-description">Streamline your workflows, optimize efficiency, and empower your organization
+                to maximize performance.</p>
+            <div class="cs-cta-buttons">
+                <a href="contact.html" class="btn btn-primary no-shadow">
+                    <span class="btn-text">Request a Demo</span>
+                </a>
+                <a href="index.html#ecosystem" class="btn btn-secondary no-shadow">
+                    <span class="btn-text">Explore Our Ecosystem</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+  <footer class="footer show-talk-box">
+    <div style="position: relative; z-index: 2" class="container">
+      <div class="footer-header">
+        <div class="width-1 hideinlaptop">
+          <img style="width: 100%" src="assets/images/simp3x.webp" alt="" />
+        </div>
+        <div class="gradient-heading-2">Say hello to us!</div>
+        <!-- <div class="flex-1">
+                <img loading="lazy" src="assets/images/foot-call.webp" alt="">
+                <div class="text">
+                    +91 8041116728
+                </div>
+            </div> -->
+        <div class="flex-1 hideinlaptop">
+          <img loading="lazy" src="assets/images/foot-mail.webp" alt="" />
+          <div class="text">
+            <a style="color: white" href="mailto:info@simplify3x.com"
+              >info@simplify3x.com</a
+            >
+          </div>
+        </div>
+        <div class="width-1 hideinmobile">
+          <img style="width: 100%" src="assets/images/simp3x.webp" alt="" />
+        </div>
+      </div>
+      <div class="footer-content">
+        <div class="footer-main">
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4 class="footer-column-title">Pages</h4>
+              <div class="footer-links-grid">
+                <div class="links-group">
+                  <a href="index.html" class="footer-link">Home</a>
+                  <a href="about.html" class="footer-link">About Us</a>
+                  <!-- <a href="#about" class="footer-link">Insights</a> -->
+                  <a href="life.html" class="footer-link"
+                    >Life @ Simplify3x</a
+                  >
+                  <a href="blog.html" class="footer-link">Blog</a>
+
+                  <!-- <a href="#" class="footer-link">Customer Stories</a> -->
+                  <div class="footer-dropdown">
+                    <button
+                      class="footer-dropdown-toggle footer-link"
+                      type="button"
+                    >
+                      Custom Solutions
+                    </button>
+                    <div class="footer-dropdown-menu">
+                      <a href="devSolutions.html" class="footer-dropdown-item"
+                        >Digital Transformation Solution</a
+                      >
+                      <a href="solutions.html" class="footer-dropdown-item"
+                        >Quality Assurance Solution</a
+                      >
+                      <a
+                        href="globalStaffing.html"
+                        class="footer-dropdown-item"
+                        >Global Staffing Solution</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="footer-column col-1">
+              <h4 class="footer-column-title">Products</h4>
+              <div class="footer-links-grid">
+                <div class="links-group">
+                  <a
+                    href="https://simplifyqa.ai/"
+                    class="footer-link"
+                    target="_blank"
+                    >SimplifyQA</a
+                  >
+                  <a
+                    href="https://hire3x.com/"
+                    class="footer-link"
+                    target="_blank"
+                    >Hire3x</a
+                  >
+                  <a
+                    href="https://www.walnutai.ai/"
+                    class="footer-link"
+                    target="_blank"
+                    >Walnut</a
+                  >
+                  <a
+                    href="https://devopsark.ai/"
+                    class="footer-link"
+                    target="_blank"
+                    >DevOpsArk</a
+                  >
+                  <!-- <a
+                    href="https://bominso.com/"
+                    class="footer-link"
+                    target="_blank"
+                    >BOMINSO</a
+                  > -->
+                </div>
+              </div>
+            </div>
+            <div class="footer-column col-2">
+              <h4 class="footer-column-title">Support</h4>
+              <div class="footer-links-grid">
+                <div class="links-group">
+                  <a href="contact.html" class="footer-link">Contact Us</a>
+                  <a
+                    href="https://www.hire3x.com/careers"
+                    target="_blank"
+                    class="footer-link"
+                    >Careers</a
+                  >
+                  <!-- <a href="responsibility.html" class="footer-link">Responsibility</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="footer-column col-2">
+              <h4 class="footer-column-title">Trust & Security</h4>
+              <div class="footer-links-grid">
+                <div class="links-group">
+                    <a href="javascript:void(0)" class="footer-link" id="view-iso-cert">ISO</a>
+                  <a
+                    href="https://cvstaticfiles.s3.ap-south-1.amazonaws.com/website/Simplify3x/Simplify3X+SOC+2+Type+2+Report.pdf"
+                    target="_blank"
+                    class="footer-link"
+                    >SOC 2</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-brand hideinlaptop hideinmobile">
+            <div class="laptop-newsletter">
+              <div class="newsletter-text">
+                <div class="gradient-heading-2">Stay Updated</div>
+                <div class="gradient-heading-2">With Our Newsletter</div>
+              </div>
+              <form
+                class="newsletter-form"
+                onsubmit="
+                  event.preventDefault();
+                  return false;
+                "
+                style="margin-top: 30px"
+              >
+                <input
+                  type="email"
+                  class="newsletter-input"
+                  placeholder="Your email"
+                  required
+                />
+                <button type="submit" class="newsletter-button">
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background-color: #151515; padding-bottom: 30px">
+      <div class="container">
+        <div class="footer-bottom">
+          <div class="footer-social">
+            <a
+              href="https://www.instagram.com/simplify3x?igsh=MTVyNjhhcTlzOXA4cA=="
+              class="social-link"
+              target="_blank"
+            >
+              <img loading="lazy" src="assets/images/foot-insta.webp"
+                alt="Instagram"
+                class="social-icon"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/simplify3x/"
+              class="social-link"
+              target="_blank"
+            >
+              <img loading="lazy" src="assets/images/foot-linked.webp"
+                alt="LinkedIn"
+                class="social-icon"
+              />
+            </a>
+          </div>
+
+          <div
+            style="display: flex; align-items: center; gap: 10px"
+            class="hideinmobile"
+          >
+            <img loading="lazy" height="30px" src="assets/images/foot-mail.webp" alt="" />
+            <div class="text">
+              <a style="color: white" href="mailto:info@simplify3x.com"
+                >info@simplify3x.com</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <script defer src="js/script.js"></script>
+    <script defer src="js/certificate.js"></script>
+    <script>
+        // Swap icons on hover for all cards
+        (function () {
+            // Employee card
+            const employeeCard = document.querySelector('.employee-card');
+            if (employeeCard) {
+                const employeeImg = employeeCard.querySelector('#employee-icon');
+                const employeeNormalSrc = 'assets/images/Employees o.webp';
+                const employeeHoverSrc = 'assets/images/Employees bw.webp';
+                const _pre1 = new Image();
+                _pre1.src = employeeHoverSrc;
+                employeeCard.addEventListener('mouseenter', () => { employeeImg.src = employeeHoverSrc; });
+                employeeCard.addEventListener('mouseleave', () => { employeeImg.src = employeeNormalSrc; });
+            }
+
+            // Office card
+            const officeCard = document.querySelector('.cont-card');
+            if (officeCard) {
+                const officeImg = officeCard.querySelector('#office-icon');
+                const officeNormalSrc = 'assets/images/office o.webp';
+                const officeHoverSrc = 'assets/images/office bw.webp';
+                const _pre2 = new Image();
+                _pre2.src = officeHoverSrc;
+                officeCard.addEventListener('mouseenter', () => { officeImg.src = officeHoverSrc; });
+                officeCard.addEventListener('mouseleave', () => { officeImg.src = officeNormalSrc; });
+            }
+
+            // World card
+            const worldCard = document.querySelector('.world-card');
+            if (worldCard) {
+                const worldImg = worldCard.querySelector('#world-icon');
+                const worldNormalSrc = 'assets/images/world.webp';
+                const worldHoverSrc = 'assets/images/world-2.webp';
+                const _pre3 = new Image();
+                _pre3.src = worldHoverSrc;
+                worldCard.addEventListener('mouseenter', () => { worldImg.src = worldHoverSrc; });
+                worldCard.addEventListener('mouseleave', () => { worldImg.src = worldNormalSrc; });
+            }
+
+            // Project card
+            const projectCard = document.querySelector('.project-card');
+            if (projectCard) {
+                const projectImg = projectCard.querySelector('#project-icon');
+                const projectNormalSrc = 'assets/images/success o.webp';
+                const projectHoverSrc = 'assets/images/Success bw.webp';
+                const _pre4 = new Image();
+                _pre4.src = projectHoverSrc;
+                projectCard.addEventListener('mouseenter', () => { projectImg.src = projectHoverSrc; });
+                projectCard.addEventListener('mouseleave', () => { projectImg.src = projectNormalSrc; });
+            }
+        })();
+
+        // PDF Download functionality for about-grid-item
+        (function () {
+            const gridItems = document.querySelectorAll('.about-grid-item');
+
+            gridItems.forEach(item => {
+                const pdfPath = item.getAttribute('data-pdf');
+
+                if (pdfPath) {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        
+                        // Show loading feedback immediately
+                        document.body.style.cursor = 'wait';
+                        item.style.cursor = 'wait';
+                        item.style.opacity = '0.7';
+
+                        const filename = pdfPath.split('/').pop();
+                        const isS3Link = pdfPath.startsWith('http');
+
+                        if (isS3Link) {
+                            // For S3 links, fetch as blob to force download
+                            fetch(pdfPath)
+                                .then(response => {
+                                    if (!response.ok) throw new Error('Network response was not ok');
+                                    return response.blob();
+                                })
+                                .then(blob => {
+                                    const url = window.URL.createObjectURL(blob);
+                                    const link = document.createElement('a');
+                                    link.href = url;
+                                    link.download = filename;
+                                    document.body.appendChild(link);
+                                    link.click();
+                                    document.body.removeChild(link);
+                                    window.URL.revokeObjectURL(url);
+                                })
+                                .catch(error => {
+                                    console.error('Download failed:', error);
+                                    // Fallback: open in new tab
+                                    window.open(pdfPath, '_blank');
+                                })
+                                .finally(() => {
+                                    // Reset cursor and style
+                                    document.body.style.cursor = 'default';
+                                    item.style.cursor = 'pointer';
+                                    item.style.opacity = '1';
+                                });
+                        } else {
+                            // Reset cursor immediately for local files (simplistic)
+                            document.body.style.cursor = 'default';
+                            item.style.cursor = 'pointer';
+                            item.style.opacity = '1';
+
+                            // For local files, use direct download
+                            const link = document.createElement('a');
+                            link.href = pdfPath;
+                            link.download = filename;
+                            link.target = '_blank';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        }
+                    });
+                }
+            });
+        })();
+
+        // Pulse animation for first team card when 60% of team-section is visible
+        (function () {
+            // Only run on screens with max-width 1262px
+            if (window.innerWidth > 1262) {
+                return;
+            }
+
+            const teamSection = document.querySelector('.team-section');
+            const firstTeamCard = document.querySelector('.team-card:first-child');
+            let hasAnimated = false;
+            let hasScrolled = false;
+
+            if (!teamSection || !firstTeamCard) {
+                return;
+            }
+
+            function checkVisibility() {
+                // Only check if we haven't animated yet and screen width is <= 1262px
+                if (hasAnimated || window.innerWidth > 1262) {
+                    return;
+                }
+
+                const rect = teamSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                const sectionHeight = rect.height;
+
+                // Calculate visible portion of the section in viewport coordinates
+                // rect.top: distance from viewport top to element top (negative if above viewport)
+                // rect.bottom: distance from viewport top to element bottom
+                
+                // If element is completely above viewport
+                if (rect.bottom < 0) {
+                    return; // Not visible
+                }
+                
+                // If element is completely below viewport
+                if (rect.top > windowHeight) {
+                    return; // Not visible
+                }
+
+                // Calculate visible height in viewport coordinates
+                // Visible top edge in viewport: max(0, rect.top) - element might start above viewport
+                // Visible bottom edge in viewport: min(windowHeight, rect.bottom) - element might extend below viewport
+                const visibleTopInViewport = Math.max(0, rect.top);
+                const visibleBottomInViewport = Math.min(windowHeight, rect.bottom);
+                const visibleHeightInViewport = Math.max(0, visibleBottomInViewport - visibleTopInViewport);
+
+                // Calculate percentage visible
+                const visiblePercentage = (visibleHeightInViewport / sectionHeight) * 100;
+
+                // Only trigger animation when 60% or more is visible AND user has scrolled
+                // This prevents triggering on initial page load
+                if (visiblePercentage >= 60 && !hasAnimated && hasScrolled) {
+                    hasAnimated = true;
+
+                    // Add pulse animation class
+                    firstTeamCard.classList.add('pulse-animation');
+
+                    // Remove animation after 5 seconds
+                    setTimeout(() => {
+                        firstTeamCard.classList.remove('pulse-animation');
+                    }, 5000);
+                }
+            }
+
+            // Track if user has scrolled
+            window.addEventListener('scroll', function() {
+                hasScrolled = true;
+                checkVisibility();
+            }, { once: false });
+
+            window.addEventListener('resize', function () {
+                // Reset if window becomes larger than 1262px
+                if (window.innerWidth > 1262) {
+                    hasAnimated = false;
+                    hasScrolled = false;
+                    firstTeamCard.classList.remove('pulse-animation');
+                } else {
+                    checkVisibility();
+                }
+            });
+
+            // Don't check on initial load - wait for scroll
+        })();
+
+    </script>
+</body>
+
+</html>

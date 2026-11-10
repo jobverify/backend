@@ -62,6 +62,7 @@ export async function collectNativeObservations({read,openingRead,check,r,anchor
  requireShape(signature(opening)===signature(closing),'Native inventory changed during collection')
  const closingListing=parseListing(home,await read(CAREERS,'html',{fresh:true}))
  requireShape(closingListing.provenance&&!closingListing.failures.length&&corporateKey(listing.candidates)===corporateKey(closingListing.candidates),'Corporate inventory changed during observation collection')
+ check()
  Object.assign(r.nativeObservationInventory,{closing,closingConsistent:true,closingCorporateConsistent:true})
  Object.assign(r,{source:'imtf',recordKind:'vacancy-rows',observedRecordCount:r.nativeObservations.length,observedVacancyCount:r.nativeObservations.length,companyGlobalTotal:null,companyIndiaTotal:null})
 }

@@ -1,0 +1,8 @@
+{
+  "capturedAt": "2026-10-08T18:21:40.507Z",
+  "url": "https://kapiva.in/about-us/",
+  "status": 200,
+  "finalUrl": "https://kapiva.in/about-us/",
+  "fixture": "about-current.html",
+  "notes": "Exact current title, og:title, canonical link, About Kapiva eyebrow, science-backed Ayurveda heading, seed-to-health-report heading, and legal company footer tag retained from the first-party response. Other markup omitted."
+}

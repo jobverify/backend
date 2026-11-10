@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 2,
+      "Limit": 24,
+      "requisitionList": [
+        {
+          "Id": "2114",
+          "Title": "Software Development Engineer in Test II",
+          "PostedDate": "2026-06-25",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "IN",
+          "PrimaryLocation": "India",
+          "Department": null,
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "ExternalQualificationsStr": null,
+          "ShortDescriptionStr": "The Software Development Engineer in Test II ensures software quality through designing, implementing, and maintaining automated testing systems and processes.",
+          "ExternalResponsibilitiesStr": null,
+          "WorkplaceType": "Remote"
+        },
+        {
+          "Id": "2999",
+          "Title": "Senior Product Designer",
+          "PostedDate": "2026-06-20",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "US",
+          "PrimaryLocation": "Cambridge, Massachusetts, United States",
+          "Department": "Design",
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "ExternalQualificationsStr": null,
+          "ShortDescriptionStr": "Design global product experiences.",
+          "ExternalResponsibilitiesStr": "Partner with teams across the business."
+        }
+      ]
+    }
+  ]
+}

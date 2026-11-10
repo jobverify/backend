@@ -1,0 +1,139 @@
+{
+  "source": "appsecure",
+  "capturedOn": "2026-10-23",
+  "mode": "actual read-only public browser response envelopes and DOM/network metadata",
+  "evidence": [
+    {
+      "file": "official-pages.json.gz",
+      "sha256": "c961f606570ecf92c0b1cfad7d968c2f5d6313f6b38e0201e7f212d557041b59",
+      "uncompressedSha256": "d27f4f734fa2dccd579456a41f4ccbb86ce3c89adb985650a63d82edf9273c7b",
+      "responses": [
+        {
+          "url": "https://www.appsecure.security/",
+          "finalUrl": "https://www.appsecure.security/",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:08:58.421Z",
+          "bodySHA256": "cdac12ee1bb5c004a770f2ec13d9c0120e9705a54f9dfc4eece7b91ceab8a594"
+        },
+        {
+          "url": "https://www.appsecure.security/about",
+          "finalUrl": "https://www.appsecure.security/about",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:08:58.875Z",
+          "bodySHA256": "8466754d629534768ddc9a4bb3fb0c629fccc48345f2d8a7b3c1236a2546fe41"
+        }
+      ]
+    },
+    {
+      "file": "official-pages.dom.json.gz",
+      "sha256": "ad473bc5ae66d3d0e5903fa849cf07382573d735451090b0220196f457dbe2c8",
+      "uncompressedSha256": "807b4e0d8c1f505eaa5efcf857e7e88404e1ef8191bba3f6277b7be94cbb8892",
+      "responses": []
+    },
+    {
+      "file": "linkedin-pages.json.gz",
+      "sha256": "3dab43735fa90507402d104e1043045cd957a5643fda162a15e0fdc7daa117d6",
+      "uncompressedSha256": "6862eca324551e496cd30513081dbdbdf4ced39f34ab8409590f83932f1d7c1c",
+      "responses": [
+        {
+          "url": "https://www.linkedin.com/company/appsecure-security",
+          "finalUrl": "https://www.linkedin.com/company/appsecure-security",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:09:05.567Z",
+          "bodySHA256": "7e2bcefd7031c90392574720096a031c08f959867caba12a5e6c79e2048a631c"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/view/4468771843",
+          "finalUrl": "https://www.linkedin.com/jobs/general-manager-customer-service-jobs?trk=expired_jd_redirect",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:09:07.232Z",
+          "bodySHA256": "5367d44bf0f05547c32c8f66c8154fb100523480c7048a15c5dbb6ff780ce90e"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/sandeephodkasia_bugbounty-hiring-pentesting-activity-7492483018570235905-l4xZ",
+          "finalUrl": "https://www.linkedin.com/posts/sandeephodkasia_bugbounty-hiring-pentesting-activity-7492483018570235905-l4xZ",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:09:08.162Z",
+          "bodySHA256": "f4305d8df7177b2764271122e4effdbe2fe137aa488ae021bd37e6faf27af43d"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:09:08.722Z",
+          "bodySHA256": "05d1d642aadcea5144a1198b31e47d4efd0e25e8534f0b897808147246ed37fa"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+          "status": 200,
+          "capturedAt": "2026-10-23T08:09:09.326Z",
+          "bodySHA256": "ba57fc75423d363be59a94033e9a26de67b168a26c75dd0c76d4b34850e75429"
+        }
+      ]
+    },
+    {
+      "file": "linkedin-pages.dom.json.gz",
+      "sha256": "2db44e2f05fe2b7d2a276a03e7f4c3df2dce1d65fde25ab61c33ad6d24d75061",
+      "uncompressedSha256": "9ca9cbd0b23422547986b4a8f4a8b828df96f37fa9fda76f0d392fb2cc37991f",
+      "responses": []
+    }
+  ],
+  "captures": [
+    {
+      "file": "fresh-about-page.json.gz",
+      "sha256": "e3f344bc756b06df83d30de1940d2eb03108f005d96134b1deca50531ab501e7",
+      "uncompressedSha256": "782245298c0801ea65b73b5bd008f9decd9bd20dd549df66feb4c30a563a4ae1",
+      "responses": [
+        {
+          "url": "https://www.appsecure.security/about",
+          "finalUrl": "https://www.appsecure.security/about",
+          "status": 200,
+          "capturedAt": "2026-10-23T13:51:58.563Z",
+          "bodySha256": "b007bdad1dabe6eeda8654f548e4676f2e7f589013cb18d3c8516cfc536a2380"
+        }
+      ]
+    },
+    {
+      "file": "fresh-native-employer.json.gz",
+      "sha256": "76b122577a188e086764a4257fdb9ed58992e05bbbb85b7811cb5740bde9dea9",
+      "uncompressedSha256": "68dfe23ad288f3961c752ca358a23e4e1483a2a95e2e729efbeb11d18099cd37",
+      "responses": [
+        {
+          "url": "https://www.linkedin.com/company/appsecure-security/",
+          "finalUrl": "https://www.linkedin.com/company/appsecure-security/",
+          "status": 200,
+          "capturedAt": "2026-10-23T13:52:11.321Z",
+          "bodySha256": "5e1034c40f4f7e4769469d4d6024b4815f19de693c5f2a0375dbf0c5e4c99fd9"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=India",
+          "status": 200,
+          "capturedAt": "2026-10-23T13:52:11.806Z",
+          "bodySha256": "e8b189284a5550a8c97d8ac3dd7de93cada5e28031a21cfc8c05fcad638a5605"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13392021&location=Worldwide",
+          "status": 429,
+          "capturedAt": "2026-10-23T13:52:12.139Z",
+          "bodySha256": "7f21baf22d7ae7f8481decf0db0d6768cf061515e5b489d179cb22bcdc8739ff"
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "fresh-about-page.dom.json",
+      "sha256": "7b849f4f57e5814a622fdf80fa0b87137610a5dc8241aeaa87678012cb6b2378",
+      "evidenceType": "DOM observation, not HTTP response receipt"
+    },
+    {
+      "file": "fresh-native-employer.dom.json",
+      "sha256": "222985de3636d0467ab270adb062ae49da71e11a03503d3d30569b508a1bcdd8",
+      "evidenceType": "DOM observation, not HTTP response receipt"
+    }
+  ],
+  "latestInvestigation": "Fresh 2026-10-23 employer recruiting observations: AppSecure active about-careers remains generic email. Exact employer13392021 India selected no-match; Worldwide429 stops collection, not retried. No emptycompany assertion."
+}

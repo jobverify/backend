@@ -1,0 +1,223 @@
+{
+  "source": "supergaming",
+  "captureMethod": "Actual public browser HTTP bodies plus separately identified DOM/navigation observations; no applications submitted.",
+  "captures": [
+    {
+      "file": "careers-response.json",
+      "url": "https://www.supergaming.com/careers",
+      "finalUrl": "https://www.supergaming.com/careers",
+      "status": 200,
+      "capturedAt": "2026-10-23T04:45:16.957Z",
+      "bodySha256": "e2121622e7e9bbd528ada9c0d2ae3a509d6c66333fdfe74441b5f87f1ffe5f51",
+      "fileSha256": "90c5613a110e9a3a9ee097a56c52b8ab445da5e9659d0b3c357a8b414291a4d7"
+    }
+  ],
+  "outcome": "native-listed-expired-role-with-incomplete-company-scope",
+  "reportedTotal": null,
+  "indiaFacetCount": null,
+  "files": [
+    {
+      "file": "employer-shortener-navigation.dom.json.gz",
+      "gzipSHA256": "58ae0321d0aaebe2f457c6eb633e20d9bee2c60d038160c5e1764f7e69c0d2a6",
+      "uncompressedSHA256": "1df596f39d8fc2ec62e90662e25f62947227d7a0c0925fc23cae1a80f5904aeb",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "employer-shortener-navigation.json.gz",
+      "gzipSHA256": "858ce9c035384bc4f31d7895b470bc72809b733274d960eabeca130df6c3bb1a",
+      "uncompressedSHA256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "responses": []
+    },
+    {
+      "file": "gohire-board-pages.dom.json.gz",
+      "gzipSHA256": "f5a1122bfadd42d98d4f0ce5e7b07739c0baab5b41e31f26e10ac607b45092b6",
+      "uncompressedSHA256": "c446cc07aa1066456d2a36e0933a3eaf38a72b6f4ca50074bf16cb6fe547b3ca",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "gohire-board-pages.json.gz",
+      "gzipSHA256": "b0b1baa2d26adee7ed26c1baf944e7ac3416928d0c549ec555594a2fef017439",
+      "uncompressedSHA256": "55ea4e7c18472d017e3d7dd513ed67073281e2fe88b9a6606b8ea1b347385bcd",
+      "responses": [
+        {
+          "url": "https://jobs.gohire.io/supergaming-zikxnf8m/",
+          "finalUrl": "https://jobs.gohire.io/supergaming-zikxnf8m/",
+          "status": 200,
+          "capturedAt": "2026-10-23T10:05:13.892Z",
+          "bodySHA256": "4ccb1aa78074d7539ba5d9d5b771c778e6584923683673eb2e6aca7d3fdc15f2",
+          "bodyBytes": 16876
+        }
+      ]
+    },
+    {
+      "file": "gohire-detail-pages.dom.json.gz",
+      "gzipSHA256": "a3cf4cc666210f7b29f996fed4897e61bab98f55aaa92fdf29f1b0d752ede4a0",
+      "uncompressedSHA256": "27961ddad02988340254a989cd13370f26abc02d49c806c4f59b8718a622b1ce",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "gohire-detail-pages.json.gz",
+      "gzipSHA256": "7486c5773782e01949a88d569c8b78e170203dd40ba3a0ede1605d5103e1b90d",
+      "uncompressedSHA256": "625a7ee6a47380e9d537ca3decfd1a575b31e3f1c5a3a7b2a8b374472a059aa0",
+      "responses": [
+        {
+          "url": "https://jobs.gohire.io/supergaming-zikxnf8m/roblox-game-developer-291433/",
+          "finalUrl": "https://jobs.gohire.io/supergaming-zikxnf8m/roblox-game-developer-291433/",
+          "status": 200,
+          "capturedAt": "2026-10-23T10:06:07.941Z",
+          "bodySHA256": "454c0c40e0176e4045e13cc3b35a492465215e5d35e450a8b673a6f1eaeeeb0e",
+          "bodyBytes": 31332
+        },
+        {
+          "url": "https://jobs.gohire.io/supergaming-zikxnf8m/intern-ios-developer-172499/",
+          "finalUrl": "https://jobs.gohire.io/supergaming-zikxnf8m/intern-ios-developer-172499/",
+          "status": 200,
+          "capturedAt": "2026-10-23T10:06:08.488Z",
+          "bodySHA256": "87496a0ab23905a6ee297c990e9625554f39f44352c87b9f7f78bcf6caca54cf",
+          "bodyBytes": 13308
+        }
+      ]
+    },
+    {
+      "file": "native-application-pages.dom.json.gz",
+      "gzipSHA256": "c689266f0da9845b7366139598175de34e0fd867c101261f46afc6e832309ba3",
+      "uncompressedSHA256": "cc0fbad1020476cb3e2003d1dfac1167cfe61422e0114ebde69a96626f11bb58",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "native-application-pages.json.gz",
+      "gzipSHA256": "effb4e0ad4f0f8ad00b3dea9eecd9e3f3f600f0cc65995b81866fa8976487c16",
+      "uncompressedSHA256": "bdfa34c34a739a4de06cebc4451e5d4bc80f677145e6e5dd47e56cbaf6b3e0f6",
+      "responses": [
+        {
+          "url": "https://app.gohire.io/widget/ZIkXNF8M/291433?host=jobs.gohire.io",
+          "finalUrl": "https://app.gohire.io/widget/ZIkXNF8M/291433?host=jobs.gohire.io",
+          "status": 200,
+          "capturedAt": "2026-10-23T12:04:21.929Z",
+          "bodySHA256": "1730682c3d5c78f8dc3a284946d7f65fd3c96a6622c65be8e6e3e3435c66bb80",
+          "bodyBytes": 10078
+        }
+      ]
+    },
+    {
+      "file": "native-employer-pages.dom.json.gz",
+      "gzipSHA256": "761d4988bfa2c0b903f8df997b5cc0f9289cb75eedc919148edf1c5396e29b7d",
+      "uncompressedSHA256": "778e995c5f42d0c28d5070978156847f8453f30f535d649cc4424d8b5d755eaa",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "native-employer-pages.json.gz",
+      "gzipSHA256": "976f354343a29527988bf961cb600e1e70b189f494ea3998a1d7713abe19c816",
+      "uncompressedSHA256": "0f7c453095cea35e4028dd8185a196332dd4de5ed8ed24d3157b623169b7c9d8",
+      "responses": [
+        {
+          "url": "https://in.linkedin.com/company/supg/",
+          "finalUrl": "https://in.linkedin.com/company/supg/",
+          "status": 200,
+          "capturedAt": "2026-10-23T10:09:12.563Z",
+          "bodySHA256": "2a4e3a097f45717c2514a4a078a8708dc4ee5d496142dc64e73176047e7cac97",
+          "bodyBytes": 368954
+        }
+      ]
+    },
+    {
+      "file": "native-job-api-pages.dom.json.gz",
+      "gzipSHA256": "cc8b05e5541924687024aacfd7ffcf51ecebc3b91cd637deb90ac2dc5b8b2986",
+      "uncompressedSHA256": "e4dff6cf0219c11caad295d611e308cd722fffb8ac0d90780c37d30fc3491904",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "native-job-api-pages.json.gz",
+      "gzipSHA256": "cede45b91e6cf82238c8f32e21f9d6743498a8fec1b4166cfb9ac3dbb499f815",
+      "uncompressedSHA256": "c9dc8b2d036c2996612abad7bad62f7b9dc8bc245a7d55f82941f019e86cc267",
+      "responses": [
+        {
+          "url": "https://api.gohire.io/widget-job?clientHash=ZIkXNF8M&jobId=291433",
+          "finalUrl": "https://api.gohire.io/widget-job?clientHash=ZIkXNF8M&jobId=291433",
+          "status": 200,
+          "capturedAt": "2026-10-23T12:05:41.580Z",
+          "bodySHA256": "12eccacd772bb2fca998cd70a60b5d2c341b2e0145ee7735af9136c7d606a470",
+          "bodyBytes": 11154
+        }
+      ]
+    },
+    {
+      "file": "official-employer-pages.dom.json.gz",
+      "gzipSHA256": "a292d5d497fda08033bb250beee459986f533e9f12ca66d839d3e1d1c6ee7a7e",
+      "uncompressedSHA256": "30daf52788dd85ef58555eca22a6bd63ad1de7007bbae47c135be19ec1be05d6",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "official-employer-pages.json.gz",
+      "gzipSHA256": "8480040464bc61b2f80b69944e25d240394674d46c019e5e2d4abd4f371b9c1d",
+      "uncompressedSHA256": "39c0a4ebddade8789a3c54d4dc5b965a27d61c8a1384f89eb4b04e8adf95dc4b",
+      "responses": [
+        {
+          "url": "https://www.supergaming.com/careers",
+          "finalUrl": "https://www.supergaming.com/careers",
+          "status": 200,
+          "capturedAt": "2026-10-23T10:07:36.009Z",
+          "bodySHA256": "e2121622e7e9bbd528ada9c0d2ae3a509d6c66333fdfe74441b5f87f1ffe5f51",
+          "bodyBytes": 6911
+        },
+        {
+          "url": "https://www.linkedin.com/company/supg/",
+          "capturedAt": "2026-10-23T10:07:37.140Z",
+          "error": "TypeError: Failed to fetch"
+        }
+      ]
+    },
+    {
+      "file": "widget-client-pages.dom.json.gz",
+      "gzipSHA256": "b3cccb9a51efbcf7a5fb8974f968b813a3f865554f21c627576b1ba4de21ceab",
+      "uncompressedSHA256": "ccc2301de87ddb89771f5103ec19c9b2860805755b4072c010258b954006b916",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "widget-client-pages.json.gz",
+      "gzipSHA256": "ad24d6ecf7e085f1fc9d956fecdda4cbc9e3b54fb5e0d57992c64ecd101d12b7",
+      "uncompressedSHA256": "2977160776ff3ddec78c1f0626210fa14cbb4a2b3bb71ae39387aac21225963e",
+      "responses": [
+        {
+          "url": "https://widget.gohire.io/widget/ZIkXNF8M",
+          "capturedAt": "2026-10-23T10:10:28.032Z",
+          "error": "TypeError: Failed to fetch"
+        }
+      ]
+    },
+    {
+      "file": "widget-direct-pages.dom.json.gz",
+      "gzipSHA256": "87cb1447cd3aab873482cb18d56c493fa3cee21535e10a8c67cce1b0e62a23ca",
+      "uncompressedSHA256": "6e46fbbaf03dae47d34f124fc0dccf4811b9c05c0793d04dbb3c3e4a2402c729",
+      "responses": [],
+      "observationOnly": true
+    },
+    {
+      "file": "widget-direct-pages.json.gz",
+      "gzipSHA256": "88b642186173ef46c2d532b7a8f37ade34a61eb2110367ef0d7de804574fbcaf",
+      "uncompressedSHA256": "a34c8ba7933fb993015ca75324a1393908b5c841cf6374ad80d2ad8860b3c695",
+      "responses": [
+        {
+          "url": "https://widget.gohire.io/widget/ZIkXNF8M",
+          "finalUrl": "https://widget.gohire.io/widget/ZIkXNF8M",
+          "status": 200,
+          "capturedAt": "2026-10-23T12:03:29.500Z",
+          "bodySHA256": "f6125b71a2ad15532de0e48c975ccf3e7ee08e19f1a9cbeaef390be846dfed9c",
+          "bodyBytes": 187976
+        }
+      ]
+    }
+  ],
+  "observedNativeJobs": 1,
+  "observedIndiaCandidates": 1,
+  "eligibleIndiaJobs": 0,
+  "lifecycleCleanupAllowed": false
+}

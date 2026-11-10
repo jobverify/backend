@@ -1,0 +1,56 @@
+{
+  "totalJobs": 109,
+  "jobSearchResult": [
+    {
+      "response": {
+        "id": "116250",
+        "unifiedStandardTitle": "SME - Microsoft Forefront Identity Manager, Azure Active Directory",
+        "unifiedUrlTitle": "SME-Microsoft-Forefront-Identity-Manager%2C-Azure-Active-Directory",
+        "urlTitle": "SME-Microsoft-Forefront-Identity-Manager%2C-Azure-Active-Directory",
+        "unifiedStandardStart": "6/2/26",
+        "unifiedStandardEnd": "7/2/26",
+        "custprimecity": "Bengaluru",
+        "custCountryRegion": [
+          "India"
+        ],
+        "currency": [
+          "INR"
+        ]
+      }
+    },
+    {
+      "response": {
+        "id": "116874",
+        "unifiedStandardTitle": "SeniorAdministrator - Microsoft Forefront Identity Manager",
+        "unifiedUrlTitle": "SeniorAdministrator-Microsoft-Forefront-Identity-Manager",
+        "urlTitle": "SeniorAdministrator-Microsoft-Forefront-Identity-Manager",
+        "unifiedStandardStart": "6/3/26",
+        "unifiedStandardEnd": "7/3/26",
+        "custprimecity": "Bengaluru",
+        "custCountryRegion": [
+          "India"
+        ],
+        "currency": [
+          "INR"
+        ]
+      }
+    },
+    {
+      "response": {
+        "id": "999999",
+        "unifiedStandardTitle": "Consultant - Paris",
+        "unifiedUrlTitle": "Consultant-Paris",
+        "urlTitle": "Consultant-Paris",
+        "unifiedStandardStart": "6/5/26",
+        "unifiedStandardEnd": "7/5/26",
+        "custprimecity": "Paris",
+        "custCountryRegion": [
+          "France"
+        ],
+        "currency": [
+          "EUR"
+        ]
+      }
+    }
+  ]
+}

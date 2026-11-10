@@ -1,0 +1,68 @@
+{
+  "job": {
+    "id": "82048",
+    "organization_id": "133",
+    "code": "82048",
+    "title": "System Engineer",
+    "display_title": null,
+    "job_role": [
+      "Engineer"
+    ],
+    "min_experience": 3,
+    "max_experience": 12,
+    "no_of_positions": 1,
+    "country": "India",
+    "state": "",
+    "location": [
+      "Bangalore"
+    ],
+    "type": "Full Time With Benef",
+    "type_id": "1",
+    "pa_id": "IN00",
+    "shift_timing": "General(8.30 to 5.30)",
+    "required_skills": "System Engineering,MBSE,MagicDraw,Sysml,IBM DOORS,Rhapsody",
+    "additional_skills": "Jira, Confluence&",
+    "description": "<div style=\"font-family: 'Segoe UI'; font-size: 14px; line-height: 20px;\">\n<h2>Job Overview</h2>\n<ul>\n<li>The candidate will act as a key contributor and/or Product Owner, responsible for defining and managing system-level requirements, ensuring alignment with customer expectations, and supporting delivery using Agile methodologies.</li>\n</ul>\n<hr />\n<h2>Key Responsibilities</h2>\n<ul>\n<li>Develop strong domain expertise in automotive systems (Body, Vehicle Access, Seating, Lighting)</li>\n<li>Analyze customer requirements and translate them into system-level requirements</li>\n<li>Perform subsystem and feature analysis, including requirement decomposition</li>\n<li>Manage interfaces across subsystems to ensure seamless integration</li>\n<li>Develop and maintain system requirements, boundary diagrams, and capability definitions</li>\n<li>Support system architecture definition and validation activities</li>\n<li>Use MBSE tools (e.g., MagicDraw) for system modeling and documentation</li>\n<li>Work in Agile environments (Scrum/SAFe) and participate in sprint ceremonies</li>\n<li>Collaborate with cross-functional teams (design, validation, integration)</li>\n<li>Communicate effectively with stakeholders, including customers and internal teams</li>\n</ul>\n<hr />\n<h2>Required Skills &amp; Qualifications</h2>\n<ul>\n<li>Strong knowledge of System Engineering principles</li>\n<li>Experience in automotive domain (preferably Body systems: Climate, Lighting, Wiper, Washer, Mirrors)</li>\n<li>Hands-on experience in:\n<ul>\n<li>System requirements development</li>\n<li>Boundary diagrams</li>\n<li>Capability definitions</li>\n</ul>\n</li>\n<li>Experience with MagicDraw or similar MBSE tools</li>\n<li>Familiarity with Agile methodologies (Scrum/SAFe)</li>\n<li>Strong analytical, communication, and problem-solving skills</li>\n</ul>\n<hr />\n<h2>Good to Have</h2>\n<ul>\n<li>Experience working with OEMs (preferably Ford)</li>\n<li>Exposure to system integration and validation processes</li>\n<li>Understanding of end-to-end vehicle systems and architecture</li>\n</ul>\n<hr />\n<h2>Key Skills</h2>\n<p>System Engineering, MBSE, MagicDraw, Automotive Systems, Requirement Management, Agile (Scrum/SAFe), System Architecture, Integration, Validation</p>\n</div>",
+    "services_deliverables": "",
+    "comments": null,
+    "qualification": [
+      "B.E"
+    ],
+    "qualification_specialization": [],
+    "certification": "NA",
+    "min_salary": "0.00",
+    "max_salary": "0.00",
+    "travel_required": "No",
+    "expected_joining_date": "2026/06/01",
+    "status": "Published",
+    "created_at": "2026/06/09",
+    "updated_at": "2026-06-26 08:33:06 UTC",
+    "created_by": "761158",
+    "recruiter_contact": "9945201546",
+    "recruiter_email": "harish.s3@kpit.com",
+    "recruiter_name": "Harish T",
+    "template": "",
+    "template_image": "",
+    "template_image_url": "https://talentojo.kpit.com/wp-content/uploads/jobs//wp-content/uploads/jobs/",
+    "resume_upload_limit_exhausted": false,
+    "irrelevant_rejections_limit_exceeded": false,
+    "has_offered_candidates": false,
+    "is_from_uk_eu": false,
+    "campus_degree": null,
+    "campus_stream": null
+  },
+  "organization": {
+    "id": 133,
+    "name": "KPIT",
+    "url": "https://www.kpit.com",
+    "logo_url": "https://talentojo-kel.kpit.com/tojo/app/images/kpit.png"
+  },
+  "linked_recruiters": [
+    {
+      "id": 761158,
+      "name": "Harish T",
+      "email": "harish.s3@kpit.com",
+      "mobile_number": "9945201546"
+    }
+  ]
+}

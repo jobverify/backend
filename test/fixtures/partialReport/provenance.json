@@ -1,0 +1,23 @@
+{
+  "mode": "exact-public-native-frozen-partial-trials-for-historical-report-regressions",
+  "productionWrites": false,
+  "rows": [
+    {
+      "source": "phonepe",
+      "origin": "artifacts/full-catalog/partial-publication-phonepe/trial-001/phonepe.json",
+      "trialByteHash": "2b5bbfc0a0ed70c735b49901805fee5ab0806299471d67cbe549f2fc53f9e541",
+      "receiptFiles": 114,
+      "fixture": "phonepe-actual-001.json.gz",
+      "fixtureSha256": "5d468234412b8874f13dfb53925e04ea90d4f38de0624f41088b3858d53f2fd0"
+    },
+    {
+      "source": "zeeentertainmententerprises",
+      "origin": "artifacts/full-catalog/zee-native-001/partial-trial-001/zeeentertainmententerprises.json",
+      "trialByteHash": "9eaba76087e42d3c62dc4087bfdaf53142ae06e8a1c65bd94fa0ce3291840b05",
+      "receiptFiles": 173,
+      "fixture": "zee-frozen-partial-001.json.gz",
+      "nativeEvidenceFixture": "../zeePartial/native-reviewed-005.json.gz",
+      "fixtureSha256": "a52f262e8091137f6207d1f0972e488641801a15fe420c1129cbb26ea36c0ede"
+    }
+  ]
+}

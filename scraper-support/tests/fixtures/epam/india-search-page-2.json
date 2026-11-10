@@ -1,0 +1,65 @@
+{
+  "data": {
+    "total": 12,
+    "jobs": [
+      {
+        "uid": "blt3page2seniorai",
+        "name": "Senior Business Analyst - AI",
+        "city": [
+          {
+            "name": "Coimbatore"
+          },
+          {
+            "name": "Hyderabad"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "vacancy_type": "Office",
+        "job_specialization": [
+          "Business Analyst"
+        ],
+        "skills": [
+          "Business Analysis",
+          "Artificial Intelligence"
+        ],
+        "seo": {
+          "url": "/en/vacancy/senior-business-analyst-ai-blt3page2seniorai_en"
+        },
+        "created_at": "2026-06-21T11:00:00.000Z",
+        "text": "Support AI-enabled intake, workflow automation, and supplier intelligence programs."
+      },
+      {
+        "uid": "blt3page2architect",
+        "name": "Palantir Data Solution Architect",
+        "city": [
+          {
+            "name": "Gurugram"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "vacancy_type": "Office",
+        "job_specialization": [
+          "Software Architect"
+        ],
+        "skills": [
+          "Palantir Platform",
+          "Python",
+          "SQL"
+        ],
+        "seo": {
+          "url": "/en/vacancy/palantir-data-solution-architect-blt3page2architect_en"
+        },
+        "created_at": "2026-06-21T11:05:00.000Z",
+        "text": "Lead Palantir-based data and AI platform delivery for insurance clients."
+      }
+    ]
+  }
+}

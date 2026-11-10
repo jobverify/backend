@@ -1,0 +1,42 @@
+{
+  "error": null,
+  "hits": 2632,
+  "facets": {},
+  "content": {
+    "sidebar": {},
+    "search_results": {}
+  },
+  "jobs": [
+    {
+      "id": "53e13a03-4621-4f55-a7e5-7daedd9315df",
+      "id_icims": "10390095",
+      "title": "RPA Engineer , AR Automation",
+      "job_category": "Operations, IT, & Support Engineering",
+      "job_schedule_type": "full-time",
+      "job_path": "/en/jobs/10390095/rpa-engineer-ar-automation",
+      "location": "IN, TS, Hyderabad",
+      "normalized_location": "Hyderabad, Telangana, IND",
+      "city": "Hyderabad",
+      "country_code": "IND",
+      "posted_date": "April 13, 2026",
+      "description": "We are seeking an innovative Automation Engineer to join our Accounts Receivable Automation team at Amazon. In this role, you will leverage modern technologies including AI, Machine Learning, Large Language Models (LLMs), and traditional RPA tools to transform our financial operations.<br/><br/>Join our Finance Operations team to design and implement intelligent automation solutions that operate at Amazons unprecedented scale.",
+      "url_next_step": "https://account.amazon.com/jobs/10390095/apply"
+    },
+    {
+      "id": "8fc22122-796c-46da-8cb0-467e406e2baa",
+      "id_icims": "10407869",
+      "title": "Sr Risk Manager, Surveillance , SPS Internal Risk",
+      "job_category": "Project/Program/Product Management--Non-Tech",
+      "job_schedule_type": "full-time",
+      "job_path": "/en/jobs/10407869/sr-risk-manager-surveillance-sps-internal-risk",
+      "location": "IN, KA, Bengaluru",
+      "normalized_location": "Bengaluru, Karnataka, IND",
+      "city": "Bengaluru",
+      "country_code": "IND",
+      "posted_date": "April 30, 2026",
+      "description": "We are seeking a Senior Risk Manager to lead execution and remediation for our global surveillance testing program. In this role, you will establish and scale surveillance frameworks, drive strategic process improvements, coordinate with testing laboratories, and own the remediation process from test result receipt through resolution.",
+      "url_next_step": "https://account.amazon.jobs/jobs/10407869/apply"
+    }
+  ],
+  "job_posting_search_request": "{\"jobPostingSearchRequest\":{\"query\":null,\"excludeFacets\":[{\"name\":\"businessCategory\",\"values\":[{\"name\":\"a-confidential-job\"}]},{\"name\":\"isPostedExternally\",\"values\":[{\"name\":\"0\"}]},{\"name\":\"isUnsearchable\",\"values\":[{\"name\":\"1\"}]}],\"filterFacets\":[{\"name\":\"normalizedCountryCode\",\"values\":[{\"name\":\"IND\"}]}],\"start\":\"0\",\"size\":\"2\",\"sort\":{\"sortOrder\":\"DESCENDING\",\"sortType\":\"SCORE\"},\"location\":null,\"accessLevel\":\"EXTERNAL\",\"includeFacets\":[],\"locationFacets\":[],\"jobTypeFacets\":[],\"contentFilterFacets\":[],\"treatment\":\"OM\"}}"
+}

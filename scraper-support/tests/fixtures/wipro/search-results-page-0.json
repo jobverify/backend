@@ -1,0 +1,123 @@
+{
+  "jobSearchResult": [
+    {
+      "response": {
+        "jobLocationShort": [
+          "Bengaluru, IND-29, IND, 560035<br/>",
+          "Chennai, IND-33, IND, 600119<br/>",
+          "Hyderabad, IND-36, IND, 500032<br/>",
+          "Mumbai, IND-27, IND, 400708<br/>",
+          "Pune, IND-27, IND, 411005<br/>",
+          "Delhi, IND-07, IND, 110044<br/>",
+          "Kochi, IND-32, IND, ",
+          "New Delhi, IND-07, IND, "
+        ],
+        "jobLocationCountry": [
+          "India"
+        ],
+        "unifiedStandardEnd": "7/2/26",
+        "supportedLocales": [
+          "en_US"
+        ],
+        "unifiedUrlTitle": "Intern-L0-1",
+        "unifiedStandardStart": "6/25/26",
+        "id": "185093",
+        "unifiedStandardTitle": "Intern L0 1",
+        "sfstd_jobLocation_obj": [
+          "Bengaluru",
+          "Chennai",
+          "Hyderabad",
+          "Mumbai",
+          "Pune",
+          "Delhi",
+          "Kochi",
+          "New Delhi"
+        ],
+        "jobLocationState": [
+          "Delhi",
+          "Karnataka",
+          "Kerala",
+          "Maharashtra",
+          "Tamil Nadu",
+          "Telangana"
+        ],
+        "urlTitle": "Intern-L0-1"
+      }
+    },
+    {
+      "response": {
+        "jobLocationShort": [
+          "Bengaluru, IND-29, IND, 560035<br/>",
+          "Bhubaneswar, IND-21, IND, 751024<br/>",
+          "Chennai, IND-33, IND, 600119<br/>",
+          "Coimbatore, IND-33, IND, 641004<br/>",
+          "Delhi, IND-07, IND, 110044<br/>",
+          "Kolkata, IND-19, IND, 700091<br/>",
+          "Mumbai, IND-27, IND, 400708<br/>",
+          "New Delhi, IND-07, IND, ",
+          "Pune, IND-27, IND, 411005<br/>"
+        ],
+        "jobLocationCountry": [
+          "India"
+        ],
+        "supportedLocales": [
+          "en_US"
+        ],
+        "sfstd_jobLocation_obj": [
+          "Bengaluru",
+          "Bhubaneswar",
+          "Chennai",
+          "Coimbatore",
+          "Delhi",
+          "Kolkata",
+          "Mumbai",
+          "New Delhi",
+          "Pune"
+        ],
+        "jobLocationState": [
+          "Delhi",
+          "Karnataka",
+          "Maharashtra",
+          "Odisha",
+          "Tamil Nadu",
+          "West Bengal"
+        ],
+        "unifiedStandardEnd": "6/30/26",
+        "unifiedUrlTitle": "M365-Solution-architect",
+        "unifiedStandardStart": "4/20/26",
+        "currency": [
+          "INR"
+        ],
+        "id": "159390",
+        "unifiedStandardTitle": "M365 Solution architect",
+        "urlTitle": "M365-Solution-architect"
+      }
+    },
+    {
+      "response": {
+        "jobLocationShort": [
+          "Austin, USA<br/>"
+        ],
+        "jobLocationCountry": [
+          "United States"
+        ],
+        "supportedLocales": [
+          "en_US"
+        ],
+        "sfstd_jobLocation_obj": [
+          "Austin"
+        ],
+        "jobLocationState": [
+          "Texas"
+        ],
+        "unifiedStandardEnd": "7/10/26",
+        "unifiedUrlTitle": "Cloud-Architect-US",
+        "unifiedStandardStart": "6/10/26",
+        "id": "199999",
+        "unifiedStandardTitle": "Cloud Architect US",
+        "urlTitle": "Cloud-Architect-US"
+      }
+    }
+  ],
+  "totalJobs": 5884
+}

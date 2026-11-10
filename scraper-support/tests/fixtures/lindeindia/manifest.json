@@ -1,0 +1,185 @@
+{
+  "capturedAt": "2026-10-24T16:18:22.496Z",
+  "captureMethod": "Bounded unauthenticated headless Chromium navigation and native UI response capture; no database writes.",
+  "officialBinding": [
+    {
+      "url": "https://www.linde.in/",
+      "status": 200,
+      "signal": "Linde in India | A Linde Company; direct careers link to https://www.lindecareers.com/"
+    },
+    {
+      "url": "https://www.lindecareers.com/en/job-locations",
+      "status": 200,
+      "signal": "The active India country anchor publishes data-modal-target JSON whose Content renders the Linde Engineering PeopleStrong handoff; the live India popup confirmed its active engineering anchor."
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/home",
+      "status": 404,
+      "signal": "Functioning Candidate Portal; About Linde Engineering India. HTML shell alone is never empty/inventory proof."
+    }
+  ],
+  "nativeRequests": [
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/urlinfo",
+      "method": "GET",
+      "body": null,
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_urlinfo.json",
+      "length": 1571
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/layout?isPreview=false",
+      "method": "GET",
+      "body": null,
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_layout.json",
+      "length": 6972
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/layout?isPreview=false",
+      "method": "GET",
+      "body": null,
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_layout.json",
+      "length": 6972
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/urlinfo",
+      "method": "GET",
+      "body": null,
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_urlinfo.json",
+      "length": 1571
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=45",
+      "method": "POST",
+      "body": "{}",
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_jobs_v1-0.json",
+      "length": 34606
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/job/LEI_STM_1871499/v2?part=basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied&isReqId=false",
+      "method": "GET",
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_job_LEI_STM_1871499_v2.json",
+      "length": 5912
+    },
+    {
+      "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/job/organizationDetails?jobCode=LEI/STM/1871499",
+      "method": "GET",
+      "status": 200,
+      "file": "_api_cp_rest_altone_cp_job_organizationDetails.json",
+      "length": 1195
+    }
+  ],
+  "nativeIdentity": {
+    "tenantHost": "leindiacareers.peoplestrong.com",
+    "realm": 1207,
+    "assetTenant": 1134,
+    "assetOrg": 1207,
+    "legalEmployer": "Linde Engineering India Pvt. Ltd.",
+    "entityID": "1475",
+    "sampleRequisitionCode": "LEI/STM/1871499",
+    "sampleRequisitionId": "1871499",
+    "sampleStatus": "OPEN",
+    "sampleLocation": "India>Gujarat>Vadodara>Vadodara"
+  },
+  "listingSample": {
+    "uiOffset": 0,
+    "uiLimit": 45,
+    "reportedTotal": 28,
+    "receivedRows": 28,
+    "fixtureRows": 3,
+    "nativeListingDescriptions": 0,
+    "nativeDetailsCaptured": 1,
+    "notes": "Native UI default page size45 returned28 records in one response. Only one detail was fetched; this is not a full detail scrape or recovery claim."
+  },
+  "bundle": {
+    "url": "https://leindiacareers.peoplestrong.com/chunk-JDYUWVO3.js",
+    "sha256": "2b782a4428d5f70be135e9303ea8b5f0faf19ceeada1f2c5671b86a802390a2b",
+    "contractSnippets": [
+      "isNewOrgstructureConfig(){return this.makeRecruitGetReq(\"jobs/newOrgStructure/config/0/\")}getJobDetails(t,r,o){return o===void 0&&(o=!1),this.sessionService.isAuthenticated?this.makeSecuredGetReq(\"job/\"+t+\"/v2?part=\"+r+\"&isReqId=\"+o):this.makeGetReq(\"job/\"+t+\"/v2?part=\"+r+\"&isReqId=\"+o)}getUserDetails(t){return this.makeSecuredGetReq(\"user/details?part=\"+t)}getConsentDetails(t){return t!==void 0&&t?this.makeSecuredGe",
+      "joblist(t,r,o,s,l){return l||this.sessionService.isAuthenticated?this.makeSecuredPostReq(\"jobs/v1?offset=\"+t+\"&limit=\"+r+o,s):this.makePostReq(\"jobs/v1?offset=\"+t+\"&limit=\"+r+o,s)}getMyjoblist(t,r,o){return this.makeSecuredGetReq(\"myjobs/v1?offset=\"+t+\"&limit=\"+r+o)}getWorkFlowStage(){return this.makeSecuredGetReq(\"workflowStageMap\")}applyJob(t,r,o,s){let l=localStorage.getItem(\"Campus_Hiring\"),u=localStorage.getItem"
+    ]
+  },
+  "limitations": "No full-source detail recovery, production persistence, public-visibility claim, commit, push or deployment. Native portal shell404 cannot establish verified-empty without successful exact-tenant metadata and reconciled API inventory.",
+  "boundedVerification": {
+    "verifiedAt": "2026-10-24T16:46:14.698Z",
+    "bounded": true,
+    "productionWrites": false,
+    "jobs": [
+      {
+        "jobId": "LEI/STM/1871499",
+        "requisitionId": "1871499",
+        "title": "Application Support Specialist - Digital & IT Application Operations",
+        "location": "Vadodara, Gujarat, India",
+        "country": "India",
+        "employmentType": "Third Party Agency",
+        "postingDate": "2026-10-23",
+        "closingDate": "2026-11-06",
+        "descriptionLength": 1536,
+        "applyUrl": "https://leindiacareers.peoplestrong.com/job/detail/LEI_STM_1871499",
+        "sourceListingComplete": false
+      }
+    ],
+    "inventory": {
+      "status": "discovery-only",
+      "surface": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=1",
+      "firstParty": true,
+      "listingComplete": false,
+      "pagesFetched": 1,
+      "reportedTotal": null,
+      "indiaFacetCount": null,
+      "verifiedAt": "2026-10-24T16:46:14.698Z",
+      "reason": "Verified Engineering limited read; native Engineering listing reports 28 roles. India Gases and ITSC CSOD inventories are not reconciled; whole-company India scope remains open."
+    },
+    "requests": [
+      {
+        "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/urlinfo",
+        "method": "GET"
+      },
+      {
+        "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/layout?isPreview=false",
+        "method": "GET"
+      },
+      {
+        "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=1",
+        "method": "POST"
+      },
+      {
+        "url": "https://leindiacareers.peoplestrong.com/api/cp/rest/altone/cp/job/LEI_STM_1871499/v2?part=basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied&isReqId=false",
+        "method": "GET"
+      }
+    ]
+  },
+  "targetedVerification": {
+    "command": "node --test scraper-support/tests/lindeIndiaScript.test.js scraper-support/tests/lindeIndiaCatalog.test.js scraper-support/tests/lindeIndiaDescriptionRecovery.test.js",
+    "passedTests": 20,
+    "failedTests": 0,
+    "verifiedAt": "2026-10-24T16:46:14.705Z",
+    "redEvidence": "11 initial source regressions failed before implementation; cancellation during native tenant lookup also failed before its boundary check. Four source-review assertions reproduced inactive handoffs and incorrect whole-company completeness/emptiness before correction.",
+    "scope": "Focused source tests only. Full repository suite not rerun; earlier broad run had 481 failures, not all attributed."
+  },
+  "overallCompanyScope": {
+    "targetCompany": "Linde India",
+    "coveredSubset": "Linde Engineering India PeopleStrong only",
+    "engineeringReportedTotal": 28,
+    "overallReportedTotal": null,
+    "overallIndiaFacetCount": null,
+    "unreconciledBoards": [
+      "https://linde.csod.com/ux/ats/careersite/25/home?c=linde&cfdd[0][id]=251&cfdd[0][options][0]=1375&cfdd[0][options][1]=1131&cfdd[0][options][2]=1132&country=in",
+      "https://linde.csod.com/ux/ats/careersite/25/home?c=linde&cfdd[0][id]=251&cfdd[0][options][0]=2266&country=in"
+    ],
+    "evidencePolicy": "Complete Engineering enumeration is coverage-gap; limited Engineering reads are discovery-only. Neither can authorize whole-company cleanup or verified-empty."
+  },
+  "publisherUiContract": {
+    "observedAt": "2026-10-24T16:46:14.702Z",
+    "control": "Active anchor href=# with data-modal-target JSON, visible label India and headline India",
+    "contentField": "Content contains the three India employer anchor targets; only active anchors in this field are accepted.",
+    "nativeUiAction": "Clicked the official India country control; its modal rendered an active Search all open jobs link to the exact Engineering portal.",
+    "renderedHtmlSha256": "f427033b758e4730344fbed00fe1232ba2152ebdd5e958d3e04c790e88b30890",
+    "fixtureRepresentation": "india-modal.json and locations-binding.html are minimized actual component data, not a whole-page byte copy."
+  }
+}

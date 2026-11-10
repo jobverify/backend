@@ -1,0 +1,25 @@
+{
+  "total": 2,
+  "jobPostings": [
+    {
+      "title": "Intern",
+      "externalPath": "/job/Bangalore/Intern_JR101673",
+      "timeType": "Full time",
+      "locationsText": "Bangalore",
+      "postedOn": "Posted Today",
+      "bulletFields": [
+        "JR101673"
+      ]
+    },
+    {
+      "title": "Senior Python Developer",
+      "externalPath": "/job/Bangalore/Senior-Python-Developer_JR101653",
+      "timeType": "Full time",
+      "locationsText": "Bangalore",
+      "postedOn": "Posted 8 Days Ago",
+      "bulletFields": [
+        "JR101653"
+      ]
+    }
+  ]
+}

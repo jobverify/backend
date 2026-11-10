@@ -1,15 +1,18 @@
 import { parse } from 'acorn'
+import { recruitmentProgramProfile } from './recruitmentProgramProfile.js'
 
 // Recognize the reviewed inline Lever job-board data flow without executing
 // employer JavaScript. A tenant string alone does not establish a binding.
 export const activeLeverCareersFeeds = document => {
   const feeds = []
+  if (['job-listings', 'filter-location', 'filter-team', 'clear-filters']
+    .some(id => document.nodes(node => node.attrs.id === id).length !== 1)) return feeds
   for (const script of document.nodes(node => node.tag === 'script' && !node.attrs.src
     && !Object.hasOwn(node.attrs, 'nomodule')
     && /^(?:|(?:text|application)\/javascript)$/i.test(node.attrs.type || ''))) {
     if (!script.raw?.includes('api.lever.co/v0/postings/')) continue
     try {
-      const program = parse(script.raw, { ecmaVersion: 'latest' })
+      const program = parse(script.raw, { ecmaVersion: 'latest', sourceType: 'module' })
       const declarations = program.body.filter(node => node.type === 'VariableDeclaration' && node.kind === 'const')
         .flatMap(node => node.declarations)
       const unique = name => { const nodes = declarations.filter(node => node.id.name === name); return nodes.length === 1 ? nodes[0].init : null }
@@ -17,6 +20,7 @@ export const activeLeverCareersFeeds = document => {
       if (account?.type !== 'Literal' || typeof account.value !== 'string' || !/^[a-z\d][a-z\d._-]{0,100}$/i.test(account.value)
         || api?.type !== 'TemplateLiteral' || api.expressions.length !== 1 || api.expressions[0].name !== 'ACCOUNT_NAME'
         || api.quasis[0].value.cooked !== 'https://api.lever.co/v0/postings/' || api.quasis[1].value.cooked !== '?mode=json') continue
+      if (recruitmentProgramProfile(program, account) !== '84d4d310347ab70afdca4f8181630a322a9cd62d23d63befa3574a0abf09c1a0') continue
       if (container?.type !== 'CallExpression' || container.callee?.object?.name !== 'document'
         || container.callee?.property?.name !== 'getElementById' || container.arguments.length !== 1
         || container.arguments[0].value !== 'job-listings'

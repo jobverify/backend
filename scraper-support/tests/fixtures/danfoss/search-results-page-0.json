@@ -1,0 +1,29 @@
+{
+  "jobSearchResult": [
+    {
+      "response": {
+        "jobLocationShort": [
+          "Oragadam, IND    ",
+          "Pune, IND    ",
+          "Pune, IND    "
+        ],
+        "supportedLocales": ["en_GB"],
+        "unifiedUrlTitle": "Master-Data-Expert-&amp;-Business-Analyst%2C-Procurement",
+        "unifiedStandardStart": "24/06/2026",
+        "unifiedStandardTitle": "Master Data Expert & Business Analyst, Procurement",
+        "id": "50011"
+      }
+    },
+    {
+      "response": {
+        "jobLocationShort": ["Nordborg, DNK"],
+        "supportedLocales": ["en_GB"],
+        "unifiedUrlTitle": "Senior-Engineer",
+        "unifiedStandardStart": "24/06/2026",
+        "unifiedStandardTitle": "Senior Engineer",
+        "id": "40001"
+      }
+    }
+  ],
+  "totalJobs": 45
+}

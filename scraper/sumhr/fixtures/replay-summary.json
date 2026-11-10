@@ -1,0 +1,28 @@
+{
+  "source": "sumhr",
+  "replayedAt": "2026-10-23T06:42:09.537Z",
+  "nativeObservedJobCount": 1,
+  "wholeCompanyJobCount": null,
+  "wholeCompanyIndiaJobCount": null,
+  "cleanupEligible": false,
+  "inventoryEvidence": {
+    "status": "discovery-only",
+    "surface": "https://sumhr.hire.trakstar.com/",
+    "firstParty": false,
+    "listingComplete": false,
+    "pagesFetched": 4,
+    "reportedTotal": null,
+    "indiaFacetCount": null,
+    "verifiedAt": "2026-10-23T06:42:09.534Z",
+    "reason": "native-sumhr-client-u0mr5-configured-sumhr-domain-contact-and-active-forms;corporate-outbound-ats-authorization-and-whole-company-scope-unproven"
+  },
+  "jobs": [
+    {
+      "jobId": "fk03ii",
+      "title": "Sr. Software Developer (LAMP)",
+      "location": "Mumbai, MH, India",
+      "postingDate": null,
+      "sourceDetailComplete": true
+    }
+  ]
+}

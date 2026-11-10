@@ -46,7 +46,9 @@ export const createThreePillarGlobalScraper = ({
       if (!hasOfficialThreePillarCareersSignal(html)) {
         throw new Error('3Pillar Global careers page no longer exposes the verified Darwinbox handoff')
       }
-      const jobs = await darwinbox.run({ ...options, signal, ...(maxJobs == null ? {} : { maxJobs }) })
+      // The current native board exceeds the shared ten-page default. Traverse
+      // its declared total within a bounded source budget; caller caps still win.
+      const jobs = await darwinbox.run({ maxPages: 1000, ...options, signal, ...(maxJobs == null ? {} : { maxJobs }) })
       signal?.throwIfAborted()
       return mapJobsWithInventoryEvidence(jobs, (job) => ({
         ...job,

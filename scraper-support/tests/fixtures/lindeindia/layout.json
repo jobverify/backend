@@ -1,0 +1,381 @@
+{
+  "response": [
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_00",
+      "type": "LOGIN_HEADER",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_01",
+      "type": "BANNER",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [
+          {
+            "heading": "It starts now",
+            "bodyText": "At Linde, every day is an opportunity: an opportunity to learn, to grow, to share success and to contribute to one of the world’s leading industrial gas and engineering companies. Seize the opportunity: take your next step with us.",
+            "image": "https://static.peoplestrong.com/talentpact/images/candidate-portal/org_1207/2505046029588622.png",
+            "imageAlign": "",
+            "btnText": "Click Here",
+            "url": "https://www.lindecareers.com/en/index.html",
+            "iconClass": "",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          }
+        ],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_02",
+      "type": "COLOR",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "<style>.site-footer{background:#000}.banner-drop-cv{background:#f77f07}.banner-signin{background:#231f20}.btn-primary{background:#C8215C!important;border-color:#C8215C!important}.panel-heading .material-icons, .panel-title, .remember-row .link, .resend-btn, .resend-btn .material-icons, .panel-heading .title{color:#C8215C!important}.purple-color{color:#C8215C!important}.title-large{color:#C8215C!important}.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span:focus,.pagination>.active>span:hover{color:#C8215C!important}.pagination>li>a:focus,.pagination>li>a:hover,.pagination>li>span:focus,.pagination>li>span:hover{color:#C8215C!important}.themeBg{background-color: #231f20 !important;}</style>",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": true,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_03",
+      "type": "FOOTER",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [
+          {
+            "heading": "",
+            "bodyText": "",
+            "image": "",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "https://www.facebook.com/lindeplc",
+            "iconClass": "facebook-white",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          },
+          {
+            "heading": "",
+            "bodyText": "",
+            "image": "",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "https://twitter.com/Lindeplc",
+            "iconClass": "twitter-white",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          },
+          {
+            "heading": "",
+            "bodyText": "",
+            "image": "",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "https://www.linkedin.com/company/linde/",
+            "iconClass": "linekdin-white",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          },
+          {
+            "heading": "",
+            "bodyText": "",
+            "image": "",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "https://www.linde-engineering.com/en/index.html",
+            "iconClass": "google-white",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          }
+        ],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_04",
+      "type": "BANNER",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [
+          {
+            "heading": "",
+            "bodyText": "",
+            "image": "https://static.peoplestrong.com/talentpact/images/candidate-portal/org_1207/2505229037490080.jpeg",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "",
+            "iconClass": "",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          }
+        ],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_05",
+      "type": "TEXT",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [
+          {
+            "heading": "About Linde Engineering India",
+            "bodyText": "Linde Engineering India Pvt. Ltd. (LEI), established in 1987 with its business office at Vadodara, is a 100% subsidiary of Linde. With more than 1200 employees, LEI has access to the 1000 process engineering patents & knowhow of Linde.",
+            "image": "",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "",
+            "iconClass": "",
+            "headingColor": "#005190",
+            "bodyColor": "#2f73a4",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          }
+        ],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_06",
+      "type": "BANNER",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [
+          {
+            "heading": "",
+            "bodyText": "",
+            "image": "https://static.peoplestrong.com/talentpact/images/candidate-portal/org_1207/2505304575552788.jpeg",
+            "imageAlign": "",
+            "btnText": "",
+            "url": "",
+            "iconClass": "",
+            "headingColor": "",
+            "bodyColor": "",
+            "bgColor": "",
+            "headingMargin": "",
+            "bodyTextMargin": "",
+            "btnMargin": ""
+          }
+        ],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    },
+    {
+      "urlResourceID": null,
+      "urlResourceDraftID": null,
+      "section": "AREA_07",
+      "type": "JOBSBYBUSINESSUNIT",
+      "bundleId": null,
+      "isActive": null,
+      "roleID": null,
+      "organizationID": null,
+      "data": {
+        "data": [],
+        "image": "",
+        "imageAlign": "",
+        "headingColor": "",
+        "bodyColor": "",
+        "bgColor": "",
+        "layout": {
+          "parallax": false,
+          "fluid": false,
+          "fixedHeader": false,
+          "cardWithLines": false
+        },
+        "heading": "",
+        "bodyText": ""
+      },
+      "urlID": null,
+      "modifiedDate": null,
+      "templateId": null,
+      "category": null,
+      "templateName": null
+    }
+  ],
+  "messageCode": {
+    "code": 200,
+    "messages": "success"
+  }
+}

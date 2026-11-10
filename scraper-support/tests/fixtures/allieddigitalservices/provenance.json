@@ -1,0 +1,13 @@
+{
+  "capturedOn": "2026-10-08",
+  "description": "Relevant unchanged head, listing, detail, application identity and API excerpts from live first-party responses. Full captures are stored in run analysis/allieddigital.",
+  "urls": [
+    "https://www.allieddigital.net/",
+    "https://www.allieddigital.net/careers/",
+    "https://www.allieddigital.net/job-openings/",
+    "https://www.allieddigital.net/jobs/service-desk-executive-l3/",
+    "https://www.allieddigital.net/jobs/endpoint-administrator/",
+    "https://www.allieddigital.net/jobs/network-engineer-l3/",
+    "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings?per_page=100"
+  ]
+}

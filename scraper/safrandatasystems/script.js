@@ -1,6 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
+import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -86,11 +88,24 @@ const extractTitleText = (html) =>
 const extractFieldById = (html, fieldId) =>
   normalizeWhitespace(String(html ?? '').match(new RegExp(`<p id="${fieldId}">([\\s\\S]*?)<\\/p>`, 'i'))?.[1])
 
-const extractFieldListById = (html, fieldId) => [...String(html ?? '').matchAll(
-  new RegExp(`<p id="${fieldId}">([\\s\\S]*?)<\\/p>`, 'gi'),
-)]
-  .map((match) => normalizeWhitespace(match[1]))
-  .filter(Boolean)
+const extractFieldListById = (html, fieldId) => {
+  // Talentsoft now uses div containers with nested paragraphs for full criteria.
+  const document = readVisibleNativeDocument(html, { strict: true })
+  const ownsField = node => ['p', 'div'].includes(node.tag) && node.attrs.id === fieldId
+  const fields = document.nodes(ownsField)
+  const original = readNativeDocument(html), originalFields = []
+  const reveal = node => typeof node === 'string' ? node : { ...node, inert: false, children: node.children.map(reveal) }
+  const visit = node => {
+    if (typeof node === 'string') return
+    if (ownsField(node)) originalFields.push(reveal(node))
+    node.children.forEach(visit)
+  }
+  original.nodes(node => node.tag === 'root').forEach(visit)
+  const values = fields.map(node => normalizeWhitespace(document.text(node))).filter(Boolean)
+  if (originalFields.length !== fields.length || normalizeWhitespace(originalFields.map(node => original.text(node)).join(' '))
+    !== normalizeWhitespace(values.join(' '))) throw new Error('Safran detail contains hidden native description criteria')
+  return values
+}
 
 const extractOfferIdFromUrl = (value) =>
   normalizeWhitespace(String(value ?? '').match(/_(\d+)\.aspx(?:\?|$)/i)?.[1])

@@ -1,0 +1,29 @@
+{
+  "clientId": 1109,
+  "clientName": "ShareChat",
+  "companyWebsite": "https://sharechat.com/",
+  "tenantPreferencesMap": {
+    "career_page_url": {
+      "url": [
+        {
+          "url": "https://sharechat.mynexthire.com/employer/jobs",
+          "pageType": "application",
+          "displayName": "Application",
+          "openInNewTab": true
+        },
+        {
+          "url": "https://sharechat.mynexthire.com/employer/jobs",
+          "pageType": "jd",
+          "displayName": "Job Description",
+          "openInNewTab": true
+        },
+        {
+          "url": "https://sharechat.mynexthire.com/employer/jobs",
+          "pageType": "list",
+          "displayName": "Requisition List",
+          "openInNewTab": true
+        }
+      ]
+    }
+  }
+}

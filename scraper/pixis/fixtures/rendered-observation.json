@@ -1,0 +1,28 @@
+{
+  "links": [
+    {
+      "href": "https://pixis.ai/careers/",
+      "text": "Careers"
+    },
+    {
+      "href": "https://pixis.ai/careers/",
+      "text": "Join our ambitious teamCareers"
+    },
+    {
+      "href": "https://pixis.ai/careers/#vacancies",
+      "text": "See vacanciesSee vacancies"
+    },
+    {
+      "href": "https://pixis.ai/careers/#vacancies",
+      "text": "Join usJoin us"
+    },
+    {
+      "href": "https://pixis.ai/careers/",
+      "text": "Careers"
+    }
+  ],
+  "iframes": [
+    "https://api.vector.co/pixel/phoenix/sync-container?duid=0c2e7eb2e74e--01m5kbm6ppd5szvrbznjpxjzmb&ds=did-006l&euns=1&s=&version=v3.17.0&cd=.pixis.ai&pv=498e3870-ab96-4725-b6e0-e62ca1205f1e"
+  ],
+  "resources": []
+}

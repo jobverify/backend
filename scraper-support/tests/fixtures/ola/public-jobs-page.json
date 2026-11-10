@@ -1,0 +1,27 @@
+{
+  "Total": 1,
+  "Result": [
+    {
+      "JobTitle": "Senior Product Manager",
+      "Department": "Product",
+      "Location": "[{\"Address\":\"Bengaluru, Karnataka, India\"}]",
+      "JobId": "11c7e5a0-1234-4321-9999-123456789abc",
+      "JobCode": "OLA-12345",
+      "JobIdObfuscated": "publicjob-token-ola-123",
+      "Experience": {
+        "MinExp": 5,
+        "MaxExp": 8
+      },
+      "Skills": [
+        "Product management",
+        "Marketplace",
+        "Stakeholder communication"
+      ],
+      "PublishedDate": "2026-06-20T09:00:00Z",
+      "ExpiryDates": {
+        "CAREERPAGE": "2026-07-20T00:00:00"
+      },
+      "JobDescV2": "<p>Lead product strategy for mobility platforms.</p><ul><li>Own roadmap</li><li>Partner with engineering</li></ul>"
+    }
+  ]
+}

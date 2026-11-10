@@ -104,6 +104,8 @@ export async function runMemoryLimitedChild({
       // Preserve the original failure: direct-child cleanup cannot claim that
       // descendants were terminated successfully.
       try{
+        // This throw is caught immediately below and combined with the primary error.
+        // eslint-disable-next-line no-unsafe-finally
         if(!child.kill('SIGKILL')&&!finished)throw new Error('Could not clean up the supervised child');
         await withinShutdownDeadline(childExit,shutdownTimeoutMs,'Supervised child cleanup');
       }catch(error){cleanupErrors.push(error);child.unref();}

@@ -381,8 +381,8 @@ export const changePasswordValidation = [
 export const jobQueryValidation = [
   query("page")
     .optional()
-    .isInt({ min: 1 })
-    .withMessage("Page must be at least 1."),
+    .isInt({ min: 1, max: Number.MAX_SAFE_INTEGER })
+    .withMessage("Page must be a positive safe integer."),
   query("limit")
     .optional()
     .isInt({ min: 1, max: MAX_JOB_LIMIT })

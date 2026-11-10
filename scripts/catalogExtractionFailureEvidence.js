@@ -41,6 +41,8 @@ function reason(value, depth = 0) {
 
 const reasonText = value => value ? [value.name, value.message, value.code, reasonText(value.cause)].filter(Boolean).join(' ') : ''
 
+export { reason as extractionFailureReason }
+
 // Internal audit diagnostics only. Qualified counts remain null in the worker.
 export function extractionFailureDetails(error) {
   const nativeProperty = property(error, 'nativeEvidence')

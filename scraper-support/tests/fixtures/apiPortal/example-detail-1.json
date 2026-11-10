@@ -1,0 +1,9 @@
+{
+  "jobDescription": "Build backend services for India hiring.",
+  "minimumQualification": "B.E./B.Tech in Computer Science",
+  "preferredQualification": "Internship experience in distributed systems",
+  "requiredSkills": [
+    "Node.js",
+    "Distributed Systems"
+  ]
+}

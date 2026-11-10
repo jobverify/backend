@@ -1,0 +1,386 @@
+{
+  "capturedAt": "2026-10-24T17:23:10.674Z",
+  "captureMethod": "MCP Playwright managed isolated tab verified native UI requests. Local headless Chromium captured bytes after MCP denied WindowsTemp writes. Cookie-free API fetches proved public bearer-context transport.",
+  "scope": {
+    "engineeringReportedTotal": 28,
+    "gasesReportedTotal": 33,
+    "itscReportedTotal": 24,
+    "sourceRolePool": 85,
+    "fixtureCsodRoleExamples": 5,
+    "fullCompanyDetailValidation": true,
+    "fullCompanyLiveOneShotClaim": false
+  },
+  "fixtureMinimization": "Listing records are sampled, totals retain captured source totals. Ads retain the actual active role header and employer responsibilities fragment only; ad/details personal owner/reviewer IDs omitted. Unit routers explicitly substitute controlled counts. Public context token redacted, never hardcoded in runtime. Bootstrap fixtures retain only actual active root/route/context/controls contract fields; public maps/tracker keys, anonymous guest ID and correlation/session values omitted. Three additional CSOD actual-shape fixtures retain only active exact identity paragraphs and actual role responsibilities.",
+  "legalEntityIds": {
+    "1131": "Linde South Asia Services Pvt. Ltd.",
+    "1132": "Praxair India Private Limited",
+    "1375": "Linde India Limited",
+    "2266": "Linde Global Support Services Pvt. Ltd"
+  },
+  "nativeRequests": [
+    {
+      "method": "POST",
+      "url": "https://eu-fra.api.csod.com/rec-job-search/external/jobs",
+      "body": {
+        "careerSiteId": 25,
+        "careerSitePageId": 25,
+        "pageNumber": 1,
+        "pageSize": 25,
+        "cultureId": 1,
+        "searchText": "",
+        "cultureName": "en-US",
+        "states": [],
+        "countryCodes": [
+          "in"
+        ],
+        "cities": [],
+        "placeID": "",
+        "radius": null,
+        "postingsWithinDays": null,
+        "customFieldCheckboxKeys": [],
+        "customFieldDropdowns": [
+          {
+            "id": 251,
+            "options": [
+              1375,
+              1131,
+              1132
+            ]
+          }
+        ],
+        "customFieldRadios": []
+      }
+    },
+    {
+      "method": "POST",
+      "url": "https://eu-fra.api.csod.com/rec-job-search/external/jobs",
+      "body": {
+        "careerSiteId": 25,
+        "careerSitePageId": 25,
+        "pageNumber": 1,
+        "pageSize": 25,
+        "cultureId": 1,
+        "searchText": "",
+        "cultureName": "en-US",
+        "states": [],
+        "countryCodes": [
+          "in"
+        ],
+        "cities": [],
+        "placeID": "",
+        "radius": null,
+        "postingsWithinDays": null,
+        "customFieldCheckboxKeys": [],
+        "customFieldDropdowns": [
+          {
+            "id": 251,
+            "options": [
+              2266
+            ]
+          }
+        ],
+        "customFieldRadios": []
+      }
+    },
+    {
+      "method": "GET",
+      "url": "https://linde.csod.com/services/x/career-site/v1/careersites/25?cultureId=1"
+    },
+    {
+      "method": "GET",
+      "url": "https://linde.csod.com/services/x/core-customfields-service/v1/CustomFields?fieldIds=140&fieldIds=139&fieldIds=251&respectAvailablity=false&cultureId=1"
+    },
+    {
+      "method": "GET",
+      "url": "https://linde.csod.com/services/x/job-requisition/v2/requisitions/33900/jobDetails?cultureId=1"
+    },
+    {
+      "method": "GET",
+      "url": "https://linde.csod.com/Services/API/ATS/CareerSite/25/JobRequisitions/33900?useMobileAd=false&cultureId=1"
+    }
+  ],
+  "rawSha256": {
+    "gases-listing-page1.json": "7a7fda04053f9071ea3b60e439da0245aa69e19f0d96c117bf7c96f6a57f5cec",
+    "gases-listing-page2.json": "528a0ff06a16b7545578eb00df79f6d90cf8c2c58b7b34c10e854c96df24cf6f",
+    "itsc-listing-page1.json": "68e5fadd8a24478f19d4a8d849a40e928952c6ebface6b6abb6f63600c8a9db6",
+    "gases-ad-33900.json": "bf615950c936397884f8de497dc808b9e7b44894a91942fa69f1edca7f30c261",
+    "itsc-ad-33395.json": "302a03c588a3a644b4598c7243ee32e5f3d0dbc89248bd220b0d9c063a6e5e7c",
+    "gases-_player_career_site_1_25_6_pages_home_controls_js-native.js": "24e96bb1928bccb99b221c385577ddae7113c0fc688820ce48bc7c1a59252041"
+  },
+  "limitations": "Complete85-role identity/content validation uses transparently mixed recent public native receipts: final source-level replay reused142 exact successful role API receipts and made13 fresh publisher/tenant/listing reads. It is not a single live source scrape or production publication approval. Local Mongo proof:36 age-eligible stored/public,49 old filtered; experiencedJobsEnabled=true; exact source text/dates and input immutability preserved. Ordinary Node homepage fetch timed out in a bounded20s probe. No production DB writes or runtime browser fallback.",
+  "officialBinding": {
+    "homepage": "https://www.linde.in/",
+    "jobLocations": "https://www.lindecareers.com/en/job-locations",
+    "component": "Active India anchor data-modal-target JSON Content activates three exact native employer portal links; raw inert copies cannot bind a portal.",
+    "engineering": "https://leindiacareers.peoplestrong.com/home",
+    "gases": "https://linde.csod.com/ux/ats/careersite/25/home?c=linde&cfdd[0][id]=251&cfdd[0][options][0]=1375&cfdd[0][options][1]=1131&cfdd[0][options][2]=1132&country=in",
+    "itsc": "https://linde.csod.com/ux/ats/careersite/25/home?c=linde&cfdd[0][id]=251&cfdd[0][options][0]=2266&country=in"
+  },
+  "nativeClient": {
+    "bundleUrl": "https://linde.csod.com/player-career-site/1.25.6/pages/home.controls.js",
+    "contractReferences": [
+      "getJobDetail: services/x/job-requisition/v2/requisitions/{id}/jobDetails?cultureId=1",
+      "getJobAd/getJobPosting: Services/API/ATS/CareerSite/25/JobRequisitions/{id}?useMobileAd=false&cultureId=1",
+      "external jobs POST with careerSiteId/careerSitePageId25, cultureId1/en-US, countryCodes[in] and Legal entity251 exact dropdown IDs"
+    ],
+    "runtime": "Static public publisher/bootstrap reads plus supported native JSON APIs only; fresh anonymous context each run; no captured tokens or runtime browser fallback."
+  },
+  "actualVariants": [
+    {
+      "id": 33817,
+      "contract": "Explicit IN; listing state absent and detail state null; native city Maharashtra retained without mapping from location title Nagpur."
+    },
+    {
+      "id": 31768,
+      "contract": "Listing country IN only; detail city/state empty; emit location India and null city/state, reject any conflicting supplied country/city/state."
+    },
+    {
+      "id": 32733,
+      "contract": "Legacy active above-job-title/job-title/below-job-title paragraphs carry exact legal employer/title/India/reference instead of combined header_job_title."
+    },
+    {
+      "id": "LEI/EE/1812584",
+      "contract": "Optional detail organization null; exact listing legal employer plus verified tenant/entity1475/role/title/location/OPEN/native date gates retained, null evidence preserved."
+    }
+  ],
+  "sourceLevelReceiptReplay": {
+    "completedAt": "2026-10-24T17:55:06.858Z",
+    "receiptProvenance": {
+      "kind": "current publisher/tenant/listing reads plus recent exact native detail/ad receipt replay and missing detail completion",
+      "priorCaptureWindow": {
+        "start": "2026-10-24T17:40:56.962Z",
+        "end": "2026-10-24T17:47:36.981Z"
+      },
+      "freshCaptureWindow": {
+        "start": "2026-10-24T17:54:58.505Z",
+        "end": "2026-10-24T17:55:06.858Z"
+      },
+      "replayedRequests": 142,
+      "newPublicRequests": 13
+    },
+    "sourceJobs": 85,
+    "scopes": {
+      "engineering": 28,
+      "gases": 33,
+      "itsc": 24
+    },
+    "evidence": {
+      "status": "complete-inventory",
+      "surface": "https://www.lindecareers.com/en/job-locations",
+      "firstParty": true,
+      "listingComplete": true,
+      "pagesFetched": 5,
+      "reportedTotal": 85,
+      "indiaFacetCount": 85,
+      "verifiedAt": "2026-10-24T17:55:06.857Z",
+      "reason": "All official India scopes reconciled. Engineering: reconciled, native listing reports 28 roles; Gases: reconciled, native listing reports 33 roles; ITSC: reconciled, native listing reports 24 roles"
+    },
+    "logicalRequests": 155,
+    "pagesFetched": 5,
+    "descriptionsVerified": 85,
+    "explicitIndiaRoles": 85,
+    "roleIdsByScope": {
+      "engineering": [
+        "LEI/STM/1871499",
+        "LEI/L-D-IDE/1796965",
+        "LEI/EI-SS/1896486",
+        "LEI/E-PL-D-FT/1858274",
+        "LEI/CS-S-C-TC/1861663",
+        "LEI/PL-PDE/1837427",
+        "LEI/L-E/1890663",
+        "LEI/SWD/1835649",
+        "LEI/SSE/1841326",
+        "LEI/E-SA/1880475",
+        "LEI/E-M/1879506",
+        "LEI/-SEFH-PP/1876395",
+        "LEI/-SE/1876380",
+        "LEI/L-ES/1880796",
+        "LEI/E-ES/1880777",
+        "LEI/SPC/1820154",
+        "LEI/SSC/1820148",
+        "LEI/LD-S/1864486",
+        "LEI/SDI/1863352",
+        "LEI/L-E/1758969",
+        "LEI/CS/1840422",
+        "LEI/E-ID/1814450",
+        "LEI/EE/1812584",
+        "LEI/SDI/1799826",
+        "LEI/CPD-P/1712953",
+        "LEI/PEL-LP/1712952",
+        "LEI/PE-PD/1850591",
+        "LEI/SD-E/1751520"
+      ],
+      "gases": [
+        "33900",
+        "33899",
+        "33823",
+        "33820",
+        "33817",
+        "33814",
+        "33811",
+        "32425",
+        "33750",
+        "33939",
+        "27040",
+        "33781",
+        "33487",
+        "32941",
+        "32462",
+        "29982",
+        "28998",
+        "33182",
+        "33180",
+        "33184",
+        "33183",
+        "33181",
+        "33161",
+        "33160",
+        "32903",
+        "32902",
+        "32733",
+        "32286",
+        "31768",
+        "31444",
+        "31210",
+        "31209",
+        "29959"
+      ],
+      "itsc": [
+        "33395",
+        "33151",
+        "32838",
+        "26707",
+        "32593",
+        "32591",
+        "32590",
+        "32588",
+        "32587",
+        "32586",
+        "32585",
+        "32551",
+        "32550",
+        "32431",
+        "32429",
+        "32401",
+        "28006",
+        "27955",
+        "27714",
+        "26872",
+        "26869",
+        "25790",
+        "24875",
+        "25139"
+      ]
+    },
+    "captureClock": "2026-10-24T17:40:56.962Z"
+  },
+  "targetedVerification": {
+    "command": "node --test scraper-support/tests/lindeIndiaCsodCoverage.test.js scraper-support/tests/lindeIndiaScript.test.js scraper-support/tests/lindeIndiaDescriptionRecovery.test.js scraper-support/tests/lindeIndiaCatalog.test.js",
+    "passed": 34,
+    "failed": 0,
+    "redEvidence": "Initial missing-CSOD support5/7 failures; actual missing-state33817, optional-null Engineering1812584, country-only31768 and legacy-ad32733 each reproduced1red before its narrow fix. Independent review reproduced combined-header substring title acceptance; one regression went red, then the exact active dedicated role-span fix passed longer-title, duplicate-span and hidden-span guards.",
+    "scope": "Full repository suite not rerun; earlier broad run had 481 failures, not all attributed."
+  },
+  "nativeDateSemantics": "Public Engineering YYYY-MM-DD and CSOD culture1 M/d/yyyy values preserve native calendar days. CSOD openDate is internal and is not substituted for publication. Closing dash remains null. Calendar-only closing dates explicitly have sourceClosingDateIsExact=false. No fresh posting date is invented.",
+  "localPersistence": {
+    "artifact": "C:/Users/mohv/AppData/Local/Temp/codex-scraper-repair-verification-20261024/lindeindia-local-persistence-2026-10-24T17-56-00-865Z/verification.json",
+    "success": true,
+    "networkForbidden": true,
+    "localMongoOnly": true,
+    "productionWrites": false,
+    "sourceJobs": 85,
+    "eligible": 36,
+    "stored": 36,
+    "publicQueryMatched": 36,
+    "filteredOld": 49,
+    "filteredEmptyDescription": 0,
+    "firstSave": {
+      "inserted": 36,
+      "updated": 0,
+      "deleted": 0,
+      "filteredNonIndia": 0,
+      "filteredOld": 49,
+      "filteredClosed": 0,
+      "filteredInvalidUrl": 0,
+      "filteredEmptyDescription": 0,
+      "missed": 0,
+      "expired": 0,
+      "eligibleJobs": 36,
+      "missesBeforeExpiry": 2,
+      "staleCheckSkipped": false,
+      "staleCheckReason": null
+    },
+    "secondSave": {
+      "inserted": 0,
+      "updated": 36,
+      "deleted": 0,
+      "filteredNonIndia": 0,
+      "filteredOld": 49,
+      "filteredClosed": 0,
+      "filteredInvalidUrl": 0,
+      "filteredEmptyDescription": 0,
+      "missed": 0,
+      "expired": 0,
+      "eligibleJobs": 36,
+      "missesBeforeExpiry": 2,
+      "staleCheckSkipped": false,
+      "staleCheckReason": null
+    },
+    "sourcePayloadUnchanged": true,
+    "exactNativeContentAndDateChecks": 36,
+    "settings": {
+      "experiencedJobsEnabled": true
+    },
+    "earliestReceiptEligibilityClock": "2026-10-24T17:40:56.962Z"
+  },
+  "ordinaryNodeTransport": {
+    "boundedProbe": "run({maxJobs:1,maxPages:1,signal:AbortSignal.timeout(20000)})",
+    "result": "Official homepage connection timed out; caller timeout propagated after20017ms.",
+    "limitation": "The default Node HTTP transport was not proven live end-to-end in this environment. Browser research was an injected read transport only; no runtime browser fallback was added."
+  },
+  "artifactSha256": {
+    "sourceResult": "9247d54e59654110f1eada40fa0c0b61f6de9b618da19960b49bb23427213d53",
+    "sourceJobs": "49c57dbeef81a30afb399cc4451a60ecc74dc090040a67498800a3478a3ad002",
+    "localPersistence": "9b3a1955c21ce28fb8e71ff87a511f1d7ee7ce1c58dab1bd5384359074e17368"
+  },
+  "changedFiles": [
+    "scraper/lindeindia/script.js",
+    "scraper/lindeindia/csod.js",
+    "scraper-support/tests/lindeIndiaScript.test.js",
+    "scraper-support/tests/lindeIndiaDescriptionRecovery.test.js",
+    "scraper-support/tests/lindeIndiaCsodCoverage.test.js",
+    "scraper-support/tests/fixtures/lindeindia/null-detail-org-listing.json",
+    "scraper-support/tests/fixtures/lindeindia/null-detail-org-detail.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/country-only-ad.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/country-only-detail.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/country-only-listing.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/gases-ad.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/gases-board.html",
+    "scraper-support/tests/fixtures/lindeindia/csod/gases-detail.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/gases-listing.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/itsc-ad.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/itsc-board.html",
+    "scraper-support/tests/fixtures/lindeindia/csod/itsc-detail.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/itsc-listing.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/legacy-ad-detail.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/legacy-ad-listing.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/legacy-ad.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/legal-entities.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/manifest.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/missing-state-ad.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/missing-state-detail.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/missing-state-listing.json",
+    "scraper-support/tests/fixtures/lindeindia/csod/site.json"
+  ],
+  "updatedAt": "2026-10-24T17:56:49.317Z",
+  "independentReview": {
+    "accepted": true,
+    "focusedTestsPassed": 34,
+    "directFixtureProbesPassed": 4,
+    "artifact": "C:/Users/mohv/AppData/Local/Temp/codex-scraper-repair-verification-20261024/linde-independent-review-verification.json",
+    "findingsResolved": [
+      "Combined native ad dedicated role span now matches exact normalized title; no substring acceptance."
+    ],
+    "remainingConfirmedActionableFindings": 0
+  }
+}

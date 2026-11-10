@@ -1,0 +1,35 @@
+{
+  "status": 200,
+  "data": {
+    "requesterTitle": "",
+    "activeApplicationCount": 30,
+    "maxActiveApplication": 1000,
+    "reqDetailsBO": {
+      "educationList": [
+        "UG - Any"
+      ],
+      "mandatorySkillList": [
+        "Video editing"
+      ],
+      "nonMandatorySkillList": [],
+      "jdDisplay": "<p class=\"ql-align-justify\"><strong>Who are we, and what do we do?</strong></p><p><br></p><p><span style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);\">ShareChat (Mohalla Tech Pvt Ltd) is India’s largest homegrown social media company and the only local player to achieve profitability in the industry, with 200+ million Monthly Monetizable Users across all its platforms.</span></p><p><br></p><p><span style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);\">Founded in 2015, ShareChat has social media brands such as the ShareChat App and Moj App and micro drama app QuickTV under its portfolio. QuickTV, the newest addition to ShareChat's family of apps, crossed the 10 million downloads mark within 3 months of launch and currently has 60Mn MAUs across the network viewing the vertical episodic content.&nbsp;</span></p><p><br></p><p class=\"ql-align-justify\"><span style=\"color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);\">Today, the ShareChat network maintains a whopping 1,000 Cr ARR and is India’s leading social media platform servicing users across the country in 15 regional languages. This growth has led to a 28% YoY revenue growth in the July-Sept (2025-26) quarter and increased it by more than 60% in the Oct-Dec quarter.</span></p><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">What does the team do ?&nbsp;</strong></p><p><br></p><p class=\"ql-align-justify\">At QuickTV, ShareChat's short-form microdrama streaming app, the Content Operations team drives the creation and acquisition of bingeable, vertical microdramas — both live-action and AI-generated — built for mobile-first audiences. Partnering with production houses, creators, product, and feed teams, the team runs the full pipeline from script and greenlighting to production, localization, and release. It also leverages AI production tooling to turn screenplays into video faster and scale output across languages and markets.</p><p><br></p><p><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">What You’ll Do?</strong></p><ul><li><span style=\"background-color: transparent;\">Own end to end AI generated content production for microdrama series, ensuring high quality and engagement.</span></li><li><span style=\"background-color: transparent;\">Collaborate with writers, editors, sound designers and AI video animators, to translate creative ideas into visually striking AI-driven stories.</span></li><li><span style=\"background-color: transparent;\">Lead the internal team members, review and QC their work to ensure their generated videos align with requirements</span></li><li><span style=\"background-color: transparent;\">Collaborate with the team to understand project requirements and contribute to the development of prompt engineering and prompting techniques. </span></li><li><span style=\"background-color: transparent;\">Work with external agencies, guiding external teams with feedbacks and reviews to ensure quality output delivery,</span></li><li><span style=\"background-color: transparent;\">Conduct research and experiments based on latest advancements in generative AI and develop insights to enhance the quality and efficiency of generated videos</span></li><li><span style=\"background-color: transparent;\">&nbsp;Contribute innovative ideas and creative solutions to enhance team processes</span></li></ul><p><br></p><p><br></p><p><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Who You Are</strong></p><ul><li><span style=\"background-color: transparent;\">6+ years of experience in OTT, TV, filmmaking, or Microdrama AI video content</span></li><li><span style=\"background-color: transparent;\">Advanced understanding of AI-based creative tools (e.g., Runway, Midjourney, Nanobanana, Kling 3.0, Seedance 2.0, or similar). Some experience with editing softwares such as Adobe Premiere Pro, After Effects, and DaVinci Resolve will be a plus.</span></li><li><span style=\"background-color: transparent;\">&nbsp;Exposure to shot planning and execution (core to role)</span></li><li><span style=\"background-color: transparent;\">Strong storytelling skills with proven track record</span></li><li><span style=\"background-color: transparent;\">Familiarity with post-production workflows (editing, sound, VFX, excel)</span></li><li><span style=\"background-color: transparent;\">Comfortable working in fast-paced, high-output environments, adapting to evolving creative briefs and technology.</span></li><li><span style=\"background-color: transparent;\">Possess strong ownership and leadership experiences</span></li><li><span style=\"background-color: transparent;\">Deep understanding of Indian audiences and emotional storytelling, with a flair for cinematic composition and attention to detail.</span></li></ul><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Where you’ll be?</strong></p><p class=\"ql-align-justify\"><span style=\"background-color: transparent; color: rgb(0, 0, 0);\">Bangalore - Hybrid</span></p><p><br></p><p><strong>What’s In It For You?</strong></p><p><strong>&nbsp;</strong></p><p><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">At ShareChat, our values - </strong><strong>Ownership, Speed, User Empathy, Integrity, and First Principles </strong>are at the core of our ways of working. We believe in hiring top talent and grooming future leaders by providing a flexible environment to aid growth and development.</p><p><br></p><p><strong>Our Elite Benefits Suite:</strong></p><p><strong>Wealth &amp; Security: </strong>ESOPs and comprehensive insurance coverage.</p><p><strong>Lifestyle: </strong>Hybrid working culture, Gym allowance, and Zomato coupons.</p><p><strong>Family Support:</strong> Monthly childcare allowance for women employees.</p><p>And Many more…</p>",
+      "fresher": false,
+      "requisitionLocationGroup": [],
+      "expMin": 5,
+      "expMax": 8,
+      "reqTitle": "AI Creative Director",
+      "reqId": 2454,
+      "locationList": [
+        {
+          "office": "India",
+          "address": "India"
+        }
+      ],
+      "statusId": 3,
+      "requisitionPublished": true
+    }
+  },
+  "ts": 40,
+  "requestId": "13deb928-f1e9-448b-98e8-650327123234",
+  "v": "d17-2r-20261024061801"
+}

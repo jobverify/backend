@@ -1,0 +1,1789 @@
+{
+  "provenance": "Published /jobs/search listing identity and geography captured by native-fetch observer on 2026-10-03; description fields were not retained.",
+  "pages": [
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 14887,
+            "id": 1176223,
+            "jobUrl": "interior-designer-reno-kolkata-fte-kolkata-west-bengal-2026090718565917",
+            "title": "Interior Designer",
+            "location": "Kolkata,West Bengal",
+            "locAgg": "Kolkata,West Bengal",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Kolkata",
+                "formattedLocation": "Kolkata, West Bengal, India",
+                "location": "Kolkata,West Bengal"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 12480,
+            "id": 905520,
+            "jobUrl": "interior-designer-design-vadodara-gujarat-202602131848152",
+            "title": "Interior Designer",
+            "location": "Vadodara,Gujarat",
+            "locAgg": "Vadodara,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Vadodara",
+                "formattedLocation": "Vadodara, Gujarat, India",
+                "location": "Vadodara,Gujarat"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 13405,
+            "id": 939512,
+            "jobUrl": "cluster-manager-retail-ops-pune-maharashtra-2026051109291415",
+            "title": "Cluster Manager - Retail Ops",
+            "location": "Bengaluru, Karnataka, India",
+            "locAgg": "Bengaluru, Karnataka, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bengaluru, Karnataka, India"
+              }
+            ],
+            "jobTitle": "Cluster Manager - Retail Ops"
+          },
+          {
+            "jobCode": 11884,
+            "id": 724909,
+            "jobUrl": "interior-designer-kolkata-west-bengal-2025120518304010",
+            "title": "Interior Designer",
+            "location": "Mumbai, Maharashtra, India",
+            "locAgg": "Mumbai, Maharashtra, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai, Maharashtra, India"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 11982,
+            "id": 883949,
+            "jobUrl": "sales-lead-mumbai-maharashtra-2025121516183317",
+            "title": "Sales Lead",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Sales Lead"
+          },
+          {
+            "jobCode": 12509,
+            "id": 906828,
+            "jobUrl": "recruitment-specialist-ahmedabad-gujarat-2026021814192715",
+            "title": "Senior Recruitment Specialist",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Senior Recruitment Specialist"
+          },
+          {
+            "jobCode": 13079,
+            "id": 927020,
+            "jobUrl": "sales-lead-ahmedabad-gujarat-2026041015081291",
+            "title": "Sales Lead",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobTitle": "Sales Lead"
+          },
+          {
+            "jobCode": 12951,
+            "id": 921729,
+            "jobUrl": "sales-lead-hyderabad-hyderabad-telangana-2026033117270223",
+            "title": "Sales Lead - Hyderabad",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobTitle": "Sales Lead - Hyderabad"
+          },
+          {
+            "jobCode": 12842,
+            "id": 918828,
+            "jobUrl": "interior-designer-vesta-hitech-hyderabad-telangana-2026032015282690",
+            "title": "Interior Designer - Vesta - Hitech",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Hyderabad",
+                "formattedLocation": "Hyderabad, Telangana, India",
+                "location": "Hyderabad,Telangana"
+              }
+            ],
+            "jobTitle": "Interior Designer - Vesta - Hitech"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 12670,
+            "id": 911821,
+            "jobUrl": "associate-business-manager-sales-surat-gujarat-2026030321410362",
+            "title": "Associate Business Manager - Sales",
+            "location": "Surat,Gujarat",
+            "locAgg": "Surat,Gujarat",
+            "country": null,
+            "jobTitle": "Associate Business Manager - Sales"
+          },
+          {
+            "jobCode": 12259,
+            "id": 897636,
+            "jobUrl": "interior-designer-sales-chennai-tamil-nadu-2026012319272775",
+            "title": "Interior Designer - Sales ",
+            "location": "Chennai,Tamil Nadu",
+            "locAgg": "Chennai,Tamil Nadu",
+            "country": null,
+            "jobTitle": "Interior Designer - Sales "
+          },
+          {
+            "jobCode": 11278,
+            "id": 702957,
+            "jobUrl": "interior-designer-chennai-tamil-nadu-2025101316154132",
+            "title": "Interior Designer - vesta",
+            "location": "Chennai,Tamil Nadu",
+            "locAgg": "Chennai,Tamil Nadu",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Chennai",
+                "formattedLocation": "Chennai, Tamil Nadu, India",
+                "location": "Chennai,Tamil Nadu"
+              }
+            ],
+            "jobTitle": "Interior Designer - vesta"
+          },
+          {
+            "jobCode": 10798,
+            "id": 686838,
+            "jobUrl": "senior-general-manager-design-kolkata-west-bengal-2025090216055477",
+            "title": "Senior General Manager - Design",
+            "location": "Kolkata,West Bengal",
+            "locAgg": "Kolkata,West Bengal",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Kolkata",
+                "formattedLocation": "Kolkata, West Bengal, India",
+                "location": "Kolkata,West Bengal"
+              }
+            ],
+            "jobTitle": "Senior General Manager - Design"
+          },
+          {
+            "jobCode": 11015,
+            "id": 693283,
+            "jobUrl": "regional-head-mumbai-maharashtra-2025091719324677",
+            "title": "Regional Head",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Regional Head"
+          },
+          {
+            "jobCode": 10221,
+            "id": 674084,
+            "jobUrl": "regional-head-bangalore-karnataka-2025080513165878",
+            "title": "Regional Head",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Regional Head"
+          },
+          {
+            "jobCode": 10285,
+            "id": 675006,
+            "jobUrl": "associate-general-manager-sales-hyderabad-telangana-2025080620202412",
+            "title": "General Manager - Sales",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Hyderabad",
+                "formattedLocation": "Hyderabad, Telangana, India",
+                "location": "Hyderabad,Telangana"
+              }
+            ],
+            "jobTitle": "General Manager - Sales"
+          },
+          {
+            "jobCode": 10284,
+            "id": 675004,
+            "jobUrl": "associate-general-manager-design-hyderabad-telangana-202508062020513",
+            "title": "Associate General Manager - Design",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Hyderabad",
+                "formattedLocation": "Hyderabad, Telangana, India",
+                "location": "Hyderabad,Telangana"
+              }
+            ],
+            "jobTitle": "Associate General Manager - Design"
+          },
+          {
+            "jobCode": 15175,
+            "id": 1188771,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026092918295549",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 15124,
+            "id": 1187141,
+            "jobUrl": "senior-sales-lead-pune-maharashtra-202609261239247",
+            "title": "Senior Sales Lead",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Senior Sales Lead"
+          },
+          {
+            "jobCode": 15122,
+            "id": 1187138,
+            "jobUrl": "interior-designer-pune-maharashtra-2026092612394288",
+            "title": "Interior Designer ",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer "
+          },
+          {
+            "jobCode": 15123,
+            "id": 1187140,
+            "jobUrl": "interior-designer-pune-maharashtra-2026092612390750",
+            "title": "Interior Designer ",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer "
+          },
+          {
+            "jobCode": 15132,
+            "id": 1187471,
+            "jobUrl": "design-lead-bangalore-karnataka-2026092812362252",
+            "title": "Design Lead",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Design Lead"
+          },
+          {
+            "jobCode": 15149,
+            "id": 1187715,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026092816243517",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 15168,
+            "id": 1188201,
+            "jobUrl": "junior-interior-designer-bangalore-karnataka-2026092911595850",
+            "title": "Junior Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Junior Interior Designer"
+          },
+          {
+            "jobCode": 15169,
+            "id": 1188206,
+            "jobUrl": "senior-interior-designer-bangalore-karnataka-2026092912030885",
+            "title": "Senior Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 15145,
+            "id": 1187705,
+            "jobUrl": "senior-interior-designer-bangalore-karnataka-2026092816170145",
+            "title": "Senior Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 10985,
+            "id": 692714,
+            "jobUrl": "validation-lead-services-ahmedabad-gujarat-2025091716270217",
+            "title": "Validation Lead",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Validation Lead"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 14627,
+            "id": 1162203,
+            "jobUrl": "interior-designer-vesta-kolkata-kolkata-west-bengal-2026081312425382",
+            "title": "Senior Interior Designer",
+            "location": "Kolkata,West Bengal",
+            "locAgg": "Kolkata,West Bengal",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Kolkata",
+                "formattedLocation": "Kolkata, West Bengal, India",
+                "location": "Kolkata,West Bengal"
+              }
+            ],
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 14594,
+            "id": 1157749,
+            "jobUrl": "lead-facilities-admin-mumbai-maharashtra-2026081119585382",
+            "title": "Lead - Facilities & Admin",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Lead - Facilities & Admin"
+          },
+          {
+            "jobCode": 14945,
+            "id": 1178813,
+            "jobUrl": "interior-designer-lucknow-uttar-pradesh-2026091112342674",
+            "title": "Interior Designer",
+            "location": "Lucknow,Uttar Pradesh",
+            "locAgg": "Lucknow,Uttar Pradesh",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Lucknow",
+                "formattedLocation": "Lucknow, Uttar Pradesh, India",
+                "location": "Lucknow,Uttar Pradesh"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14939,
+            "id": 1178472,
+            "jobUrl": "senior-interior-designer-vesta-hyderabad-fte-hyderabad-telangana-2026091019150879",
+            "title": " Senior Interior Designer  Vesta - Hyderabad - FTE",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobTitle": " Senior Interior Designer  Vesta - Hyderabad - FTE"
+          },
+          {
+            "jobCode": 15051,
+            "id": 1183474,
+            "jobUrl": "interior-designer-bangalore-karnataka-202609211700553",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 15052,
+            "id": 1183484,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026092117055536",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 15028,
+            "id": 1182788,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026091909250296",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14525,
+            "id": 1153717,
+            "jobUrl": "operations-lead-guwahati-assam-2026080411570560",
+            "title": "Junior Operations Lead",
+            "location": "Guwahati,Assam",
+            "locAgg": "Guwahati,Assam",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Guwahati",
+                "formattedLocation": "Guwahati, Assam, India",
+                "location": "Guwahati,Assam"
+              }
+            ],
+            "jobTitle": "Junior Operations Lead"
+          },
+          {
+            "jobCode": 12855,
+            "id": 919023,
+            "jobUrl": "interior-designer-sales-pune-maharashtra-2026032020531550",
+            "title": "Interior Designer ",
+            "location": "Ahmedabad, Gujarat, India",
+            "locAgg": "Ahmedabad, Gujarat, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad, Gujarat, India"
+              }
+            ],
+            "jobTitle": "Interior Designer "
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 14967,
+            "id": 1179456,
+            "jobUrl": "senior-interior-designer-bangalore-karnataka-2026091214111985",
+            "title": "Senior Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 14979,
+            "id": 1180313,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026091516472197",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14513,
+            "id": 1152559,
+            "jobUrl": "interior-designer-mumbai-maharashtra-2026073117030142",
+            "title": "Interior Designer",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14982,
+            "id": 1180623,
+            "jobUrl": "sales-lead-mumbai-maharashtra-2026091611074353",
+            "title": "Sales Lead",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Sales Lead"
+          },
+          {
+            "jobCode": 14688,
+            "id": 1164246,
+            "jobUrl": "general-manager-design-kolkata-west-bengal-2026081815353036",
+            "title": "Customer Delivery Manager - Design",
+            "location": "Kolkata,West Bengal",
+            "locAgg": "Kolkata,West Bengal",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Kolkata",
+                "formattedLocation": "Kolkata, West Bengal, India",
+                "location": "Kolkata,West Bengal"
+              }
+            ],
+            "jobTitle": "Customer Delivery Manager - Design"
+          },
+          {
+            "jobCode": 14916,
+            "id": 1178151,
+            "jobUrl": "senior-interior-designer-bangalore-karnataka-2026091014533182",
+            "title": "Senior Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 14877,
+            "id": 1175722,
+            "jobUrl": "validation-lead-services-bangalore-fte-hyderabad-telangana-202609071119389",
+            "title": "Validation Lead",
+            "location": "Bengaluru, Karnataka, India",
+            "locAgg": "Bengaluru, Karnataka, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bengaluru, Karnataka, India"
+              }
+            ],
+            "jobTitle": "Validation Lead"
+          },
+          {
+            "jobCode": 14775,
+            "id": 1169075,
+            "jobUrl": "interior-designer-select-hyd-fte-hyderabad-telangana-202608251642196",
+            "title": "Interior Designer - Select - Hyd -  FTE",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobTitle": "Interior Designer - Select - Hyd -  FTE"
+          },
+          {
+            "jobCode": 14784,
+            "id": 1169553,
+            "jobUrl": "interior-designer-chandigarh-2026082612334075",
+            "title": "Interior Designer",
+            "location": "Chandigarh",
+            "locAgg": "Chandigarh",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 14527,
+            "id": 1153951,
+            "jobUrl": "interior-designer-coimbatore-tamil-nadu-2026080415445247",
+            "title": "Interior Designer ",
+            "location": "Coimbatore,Tamil Nadu",
+            "locAgg": "Coimbatore,Tamil Nadu",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Coimbatore",
+                "formattedLocation": "Coimbatore, Tamil Nadu, India",
+                "location": "Coimbatore,Tamil Nadu"
+              }
+            ],
+            "jobTitle": "Interior Designer "
+          },
+          {
+            "jobCode": 14792,
+            "id": 1169996,
+            "jobUrl": "business-manager-sales-reno-hyderabad-fte-hyderabad-telangana-2026082616584165",
+            "title": "Business Manager - Sales - Reno - Hyderabad - FTE",
+            "location": "Hyderabad,Telangana",
+            "locAgg": "Hyderabad,Telangana",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Hyderabad",
+                "formattedLocation": "Hyderabad, Telangana, India",
+                "location": "Hyderabad,Telangana"
+              }
+            ],
+            "jobTitle": "Business Manager - Sales - Reno - Hyderabad - FTE"
+          },
+          {
+            "jobCode": 14785,
+            "id": 1169638,
+            "jobUrl": "senior-interior-designer-mumbai-maharashtra-2026082612490871",
+            "title": "Senior Interior Designer",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 14769,
+            "id": 1168173,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026082419452880",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14831,
+            "id": 1172067,
+            "jobUrl": "interior-designer-design-mumbai-maharashtra-2026083118281381",
+            "title": "Interior Designer - Design",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Interior Designer - Design"
+          },
+          {
+            "jobCode": 14140,
+            "id": 1138847,
+            "jobUrl": "draftsman-pune-maharashtra-2026070814062633",
+            "title": "Draftsman",
+            "location": "Chennai, Tamil Nadu, India",
+            "locAgg": "Chennai, Tamil Nadu, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Chennai",
+                "formattedLocation": "Chennai, Tamil Nadu, India",
+                "location": "Chennai, Tamil Nadu, India"
+              }
+            ],
+            "jobTitle": "Draftsman"
+          },
+          {
+            "jobCode": 14555,
+            "id": 1156135,
+            "jobUrl": "interior-designer-bangalore-karnataka-2026080713420681",
+            "title": "Interior Designer",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14480,
+            "id": 1151183,
+            "jobUrl": "supply-manager-gurgaon-haryana-2026072918155319",
+            "title": "Supply Manager",
+            "location": "Gurgaon,Haryana",
+            "locAgg": "Gurgaon,Haryana",
+            "country": null,
+            "jobTitle": "Supply Manager"
+          },
+          {
+            "jobCode": 14565,
+            "id": 1156982,
+            "jobUrl": "experience-centre-manager-pune-maharashtra-2026081012295746",
+            "title": "Experience Centre - Manager",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobTitle": "Experience Centre - Manager"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 14714,
+            "id": 1165970,
+            "jobUrl": "business-manager-sales-mumbai-maharashtra-2026081918384320",
+            "title": "Business Manager-Sales",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Business Manager-Sales"
+          },
+          {
+            "jobCode": 14217,
+            "id": 1141057,
+            "jobUrl": "interior-designer-noida-uttar-pradesh-2026071312062210",
+            "title": "Interior Designer",
+            "location": "Noida,Uttar Pradesh",
+            "locAgg": "Noida,Uttar Pradesh",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 14295,
+            "id": 1144248,
+            "jobUrl": "interior-designer-pune-maharashtra-2026071712133880",
+            "title": "Interior Designer",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 13712,
+            "id": 951021,
+            "jobUrl": "lead-facilities-admin-delhi-2026060514334336",
+            "title": "Lead - Facilities & Admin",
+            "location": "Hyderabad, Telangana, India",
+            "locAgg": "Hyderabad, Telangana, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Hyderabad",
+                "formattedLocation": "Hyderabad, Telangana, India",
+                "location": "Hyderabad, Telangana, India"
+              }
+            ],
+            "jobTitle": "Lead - Facilities & Admin"
+          },
+          {
+            "jobCode": 14236,
+            "id": 1141345,
+            "jobUrl": "sales-lead-patna-bihar-2026071316401962",
+            "title": "Sales Lead",
+            "location": "Patna,Bihar",
+            "locAgg": "Patna,Bihar",
+            "country": null,
+            "jobTitle": "Sales Lead"
+          },
+          {
+            "jobCode": 13958,
+            "id": 959285,
+            "jobUrl": "senior-interior-designer-mumbai-maharashtra-2026062214404818",
+            "title": "Senior Interior Designer",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Senior Interior Designer"
+          },
+          {
+            "jobCode": 13953,
+            "id": 959235,
+            "jobUrl": "design-lead-mumbai-maharashtra-2026062213253280",
+            "title": "Design Lead",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Design Lead"
+          },
+          {
+            "jobCode": 13622,
+            "id": 947910,
+            "jobUrl": "senior-interior-designer-bangalore-jpn-reno--bangalore-karnataka-2026052720321520",
+            "title": "Senior Interior Designer - Bangalore - JPN - Reno+",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Senior Interior Designer - Bangalore - JPN - Reno+"
+          },
+          {
+            "jobCode": 13656,
+            "id": 948885,
+            "jobUrl": "senior-interior-designer-mrt-bangalore-karnataka-2026053013065629",
+            "title": "Associate Business Manager - Design",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Associate Business Manager - Design"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 13014,
+            "id": 924110,
+            "jobUrl": "executive-experience-centre-gurgaon-haryana-2026040618081522",
+            "title": "Executive - Experience Centre",
+            "location": "Vadodara, Gujarat, India;Gurugram, Haryana, India;Pune, Maharashtra, India;Chennai, Tamil Nadu, India;New Delhi, Delhi, India",
+            "locAgg": "Vadodara, Gujarat, India;Gurugram, Haryana, India;Pune, Maharashtra, India;Chennai, Tamil Nadu, India;New Delhi, Delhi, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Vadodara",
+                "formattedLocation": "Vadodara, Gujarat, India",
+                "location": "Vadodara, Gujarat, India"
+              },
+              {
+                "country": "India",
+                "city": "Gurugram",
+                "formattedLocation": "Gurugram, Haryana, India",
+                "location": "Gurugram, Haryana, India"
+              },
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune, Maharashtra, India"
+              },
+              {
+                "country": "India",
+                "city": "Chennai",
+                "formattedLocation": "Chennai, Tamil Nadu, India",
+                "location": "Chennai, Tamil Nadu, India"
+              },
+              {
+                "country": "India",
+                "city": "New Delhi",
+                "formattedLocation": "New Delhi, Delhi, India",
+                "location": "New Delhi, Delhi, India"
+              }
+            ],
+            "jobTitle": "Executive - Experience Centre"
+          },
+          {
+            "jobCode": 13261,
+            "id": 933356,
+            "jobUrl": "recruitment-specialist-bangalore-karnataka-2026042421205669",
+            "title": "Recruitment Specialist",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Recruitment Specialist"
+          },
+          {
+            "jobCode": 13099,
+            "id": 927412,
+            "jobUrl": "operations-lead-bangalore-bangalore-karnataka-202604111631449",
+            "title": "Operations Lead - Bangalore",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Operations Lead - Bangalore"
+          },
+          {
+            "jobCode": 12949,
+            "id": 921727,
+            "jobUrl": "operations-lead-bangalore-bangalore-karnataka-2026033117272394",
+            "title": "Operations Lead - Bangalore",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobTitle": "Operations Lead - Bangalore"
+          },
+          {
+            "jobCode": 12634,
+            "id": 910795,
+            "jobUrl": "operations-lead-bangalore-bangalore-karnataka-2026022813282570",
+            "title": "Operations Lead - Bangalore",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Operations Lead - Bangalore"
+          },
+          {
+            "jobCode": 11813,
+            "id": 721870,
+            "jobUrl": "recruitment-specialist-indore-madhya-pradesh-2025121014443249",
+            "title": "Recruitment Specialist",
+            "location": "Bengaluru, Karnataka, India",
+            "locAgg": "Bengaluru, Karnataka, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bengaluru, Karnataka, India"
+              }
+            ],
+            "jobTitle": "Recruitment Specialist"
+          },
+          {
+            "jobCode": 12422,
+            "id": 903751,
+            "jobUrl": "business-manager-design-pune-maharashtra-2026021016250046",
+            "title": "Business Manager - Design",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobTitle": "Business Manager - Design"
+          },
+          {
+            "jobCode": 12133,
+            "id": 891952,
+            "jobUrl": "interior-designer-design-mumbai-maharashtra-2026010720132236",
+            "title": "Interior Designer - Design",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobTitle": "Interior Designer - Design"
+          },
+          {
+            "jobCode": 12096,
+            "id": 889280,
+            "jobUrl": "design-lead-bhopal-madhya-pradesh-2025122912222346",
+            "title": "Design Lead",
+            "location": "Bhopal,Madhya Pradesh",
+            "locAgg": "Bhopal,Madhya Pradesh",
+            "country": null,
+            "jobTitle": "Design Lead"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 10207,
+            "id": 673755,
+            "jobUrl": "interior-designer-sales-pune-maharashtra-2025080416450547",
+            "title": "Interior Designer - Sales",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer - Sales"
+          },
+          {
+            "jobCode": 11964,
+            "id": 730088,
+            "jobUrl": "interior-designer-ahmedabad-gujarat-2025121313113387",
+            "title": "Interior Designer",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10226,
+            "id": 674187,
+            "jobUrl": "interior-designer-pune-maharashtra-2025080513573342",
+            "title": "Interior Designer",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10278,
+            "id": 674862,
+            "jobUrl": "operations-lead-surat-gujarat-2025081210374545",
+            "title": "Operations Lead",
+            "location": "Surat,Gujarat",
+            "locAgg": "Surat,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Surat",
+                "formattedLocation": "Surat, Gujarat, India",
+                "location": "surat,Gujarat"
+              }
+            ],
+            "jobTitle": "Operations Lead"
+          },
+          {
+            "jobCode": 11213,
+            "id": 700475,
+            "jobUrl": "city-head-pune-maharashtra-2025100718324450",
+            "title": "City Head",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "City Head"
+          },
+          {
+            "jobCode": 10377,
+            "id": 676212,
+            "jobUrl": "interior-designer-mumbai-maharashtra-2025080816352171",
+            "title": "Interior Designer",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10549,
+            "id": 679924,
+            "jobUrl": "interior-designer-pune-maharashtra-2025081719312594",
+            "title": "Interior Designer",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10412,
+            "id": 676991,
+            "jobUrl": "manager-production-planning-control-bangalore-karnataka-2025081116205389",
+            "title": "Manager - Production Planning & Control",
+            "location": "Bangalore,Karnataka",
+            "locAgg": "Bangalore,Karnataka",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bengaluru",
+                "formattedLocation": "Bengaluru, Karnataka, India",
+                "location": "Bangalore,Karnataka"
+              }
+            ],
+            "jobTitle": "Manager - Production Planning & Control"
+          },
+          {
+            "jobCode": 10404,
+            "id": 676856,
+            "jobUrl": "interior-designer-sales-pune-maharashtra-2025081117293130",
+            "title": "Interior Designer - Sales",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer - Sales"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 10710,
+            "id": 684290,
+            "jobUrl": "general-manager-governance-vadodara-gujarat-202508261401355",
+            "title": "General Manager - Governance",
+            "location": "Surat, Gujarat, India",
+            "locAgg": "Surat, Gujarat, India",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Surat",
+                "formattedLocation": "Surat, Gujarat, India",
+                "location": "Surat, Gujarat, India"
+              }
+            ],
+            "jobTitle": "General Manager - Governance"
+          },
+          {
+            "jobCode": 10246,
+            "id": 674377,
+            "jobUrl": "interior-designer-design-mumbai-maharashtra-2025080518552677",
+            "title": "Interior Designer - Design",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer - Design"
+          },
+          {
+            "jobCode": 10839,
+            "id": 687628,
+            "jobUrl": "area-general-manager-pune-maharashtra-2025090321262842",
+            "title": "Area General Manager",
+            "location": "Pune,Maharashtra",
+            "locAgg": "Pune,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Pune",
+                "formattedLocation": "Pune, Maharashtra, India",
+                "location": "Pune,Maharashtra"
+              }
+            ],
+            "jobTitle": "Area General Manager"
+          },
+          {
+            "jobCode": 10840,
+            "id": 687629,
+            "jobUrl": "area-general-manager-mumbai-maharashtra-2025090321261027",
+            "title": "Area General Manager",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Area General Manager"
+          },
+          {
+            "jobCode": 10842,
+            "id": 687631,
+            "jobUrl": "area-general-manager-surat-gujarat-2025090321250943",
+            "title": "Area General Manager",
+            "location": "Surat,Gujarat",
+            "locAgg": "Surat,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Surat",
+                "formattedLocation": "Surat, Gujarat, India",
+                "location": "surat,Gujarat"
+              }
+            ],
+            "jobTitle": "Area General Manager"
+          },
+          {
+            "jobCode": 10841,
+            "id": 687630,
+            "jobUrl": "area-general-manager-ahmedabad-gujarat-2025090321254984",
+            "title": "Area General Manager",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Area General Manager"
+          },
+          {
+            "jobCode": 10843,
+            "id": 687632,
+            "jobUrl": "area-general-manager-vadodara-gujarat-2025090321244616",
+            "title": "Area General Manager",
+            "location": "Vadodara,Gujarat",
+            "locAgg": "Vadodara,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Vadodara",
+                "formattedLocation": "Vadodara, Gujarat, India",
+                "location": "Vadodara,Gujarat"
+              }
+            ],
+            "jobTitle": "Area General Manager"
+          },
+          {
+            "jobCode": 10139,
+            "id": 672799,
+            "jobUrl": "business-development-specialist-chandigarh-2025080412530354",
+            "title": "Business Development Specialist",
+            "location": "Chandigarh",
+            "locAgg": "Chandigarh",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Chandigarh",
+                "formattedLocation": "Chandigarh, Chandigarh, India",
+                "location": "Chandigarh"
+              }
+            ],
+            "jobTitle": "Business Development Specialist"
+          },
+          {
+            "jobCode": 10195,
+            "id": 673671,
+            "jobUrl": "business-development-specialist-chennai-tamil-nadu-2025080416085817",
+            "title": "Business Development Specialist",
+            "location": "Chennai,Tamil Nadu",
+            "locAgg": "Chennai,Tamil Nadu",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Chennai",
+                "formattedLocation": "Chennai, Tamil Nadu, India",
+                "location": "Chennai,Tamil Nadu"
+              }
+            ],
+            "jobTitle": "Business Development Specialist"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 10205,
+            "id": 673729,
+            "jobUrl": "interior-designer-goa-2025080416421063",
+            "title": "Interior Designer",
+            "location": "Goa",
+            "locAgg": "Goa",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "",
+                "formattedLocation": "Goa, India",
+                "location": "Goa"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10302,
+            "id": 675441,
+            "jobUrl": "business-manager-sales-goa-202508071829496",
+            "title": "Business Manager - Sales",
+            "location": "Goa",
+            "locAgg": "Goa",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "",
+                "formattedLocation": "Goa, India",
+                "location": "Goa"
+              }
+            ],
+            "jobTitle": "Business Manager - Sales"
+          },
+          {
+            "jobCode": 10330,
+            "id": 675818,
+            "jobUrl": "operations-lead-ahmedabad-gujarat-2025080812483812",
+            "title": "Operations Lead",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Operations Lead"
+          },
+          {
+            "jobCode": 10036,
+            "id": 670615,
+            "jobUrl": "interior-designer-sales-mumbai-maharashtra-2025072817452795",
+            "title": "Interior Designer - Sales",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer - Sales"
+          },
+          {
+            "jobCode": 10324,
+            "id": 675783,
+            "jobUrl": "project-planner-ahmedabad-gujarat-2025080718173064",
+            "title": "Project Planner",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Project Planner"
+          },
+          {
+            "jobCode": 10334,
+            "id": 675876,
+            "jobUrl": "lead-category-export-ahmedabad-gujarat-2025080812481362",
+            "title": "Lead- Category Export",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Lead- Category Export"
+          },
+          {
+            "jobCode": 10388,
+            "id": 676279,
+            "jobUrl": "operations-lead-ahmedabad-gujarat-2025080820454775",
+            "title": "Operations Lead",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Operations Lead"
+          },
+          {
+            "jobCode": 10037,
+            "id": 670620,
+            "jobUrl": "junior-interior-designer-surat-gujarat-2025072817462070",
+            "title": "Junior Interior Designer",
+            "location": "Surat,Gujarat",
+            "locAgg": "Surat,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Surat",
+                "formattedLocation": "Surat, Gujarat, India",
+                "location": "surat,Gujarat"
+              }
+            ],
+            "jobTitle": "Junior Interior Designer"
+          },
+          {
+            "jobCode": 10020,
+            "id": 670577,
+            "jobUrl": "interior-designer-mumbai-maharashtra-2025072817485921",
+            "title": "Interior Designer - Design",
+            "location": "Mumbai,Maharashtra",
+            "locAgg": "Mumbai,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Mumbai",
+                "formattedLocation": "Mumbai, Maharashtra, India",
+                "location": "Mumbai,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer - Design"
+          }
+        ],
+        "hasMoreData": true,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    },
+    {
+      "data": {
+        "data": [
+          {
+            "jobCode": 10202,
+            "id": 673704,
+            "jobUrl": "interior-designer-nashik-maharashtra-2025080416465772",
+            "title": "Interior Designer",
+            "location": "Nashik,Maharashtra",
+            "locAgg": "Nashik,Maharashtra",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Nashik",
+                "formattedLocation": "Nashik, Maharashtra, India",
+                "location": "Nashik,Maharashtra"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10203,
+            "id": 673708,
+            "jobUrl": "interior-designer-indore-madhya-pradesh-202508041646213",
+            "title": "Interior Designer",
+            "location": "Indore,Madhya Pradesh",
+            "locAgg": "Indore,Madhya Pradesh",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Indore",
+                "formattedLocation": "Indore, Madhya Pradesh, India",
+                "location": "Indore,Madhya Pradesh"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10204,
+            "id": 673709,
+            "jobUrl": "interior-designer-bhopal-madhya-pradesh-2025080416453896",
+            "title": "Interior Designer",
+            "location": "Bhopal,Madhya Pradesh",
+            "locAgg": "Bhopal,Madhya Pradesh",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Bhopal",
+                "formattedLocation": "Bhopal, Madhya Pradesh, India",
+                "location": "Bhopal,Madhya Pradesh"
+              }
+            ],
+            "jobTitle": "Interior Designer"
+          },
+          {
+            "jobCode": 10052,
+            "id": 670704,
+            "jobUrl": "business-manager-sales-vijayawada-andhra-pradesh-2025080617104186",
+            "title": "Business Manager Sales",
+            "location": "Vijayawada,Andhra Pradesh",
+            "locAgg": "Vijayawada,Andhra Pradesh",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Vijayawada",
+                "formattedLocation": "Vijayawada, Andhra Pradesh, India",
+                "location": "VIJAYAWADA,Andhra Pradesh"
+              }
+            ],
+            "jobTitle": "Business Manager Sales"
+          },
+          {
+            "jobCode": 10260,
+            "id": 674465,
+            "jobUrl": "interior-designer-sales-ahmedabad-gujarat-2025080519533622",
+            "title": "Interior Designer - Sales",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Interior Designer - Sales"
+          },
+          {
+            "jobCode": 10218,
+            "id": 674066,
+            "jobUrl": "project-executive-surat-gujarat-2025080514310514",
+            "title": "Project Executive",
+            "location": "Surat,Gujarat",
+            "locAgg": "Surat,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Surat",
+                "formattedLocation": "Surat, Gujarat, India",
+                "location": "surat,Gujarat"
+              }
+            ],
+            "jobTitle": "Project Executive"
+          },
+          {
+            "jobCode": 10209,
+            "id": 673818,
+            "jobUrl": "territory-manager-last-mile-operations-ahmedabad-gujarat-2025080418140694",
+            "title": "Territory Manager - Last Mile Operations",
+            "location": "Ahmedabad,Gujarat",
+            "locAgg": "Ahmedabad,Gujarat",
+            "country": null,
+            "jobLocationRecord": [
+              {
+                "country": "India",
+                "city": "Ahmedabad",
+                "formattedLocation": "Ahmedabad, Gujarat, India",
+                "location": "Ahmedabad,Gujarat"
+              }
+            ],
+            "jobTitle": "Territory Manager - Last Mile Operations"
+          }
+        ],
+        "hasMoreData": false,
+        "totalCount": 106,
+        "facetedSearchConfig": {
+          "paginationHowMuch": "9"
+        }
+      }
+    }
+  ]
+}

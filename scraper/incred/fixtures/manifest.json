@@ -1,0 +1,220 @@
+{
+  "source": "incred",
+  "captureMethod": "Actual root browser same-origin HTTP responses; raw bodies retained unmodified. Initial page capture additionally includes rendered links/scripts/iframes and visible text.",
+  "captures": [
+    {
+      "file": "official-careers.json",
+      "url": "https://incred.com/Career-Page/",
+      "finalUrl": "https://incred.com/Career-Page/",
+      "status": 200,
+      "capturedAt": "2026-10-23T05:53:15.302Z",
+      "bodySha256": "3ad8a463cb63a157fc25745a44a7f7bf03e26155916b8a34c4d6a343f27f75cd",
+      "fileSha256": "0af852b96d49ebc2f0ab51934352f5d8d2dfad69702d6e1e2c1e5031d8318bde"
+    },
+    {
+      "file": "native-clients.json",
+      "entryIndex": 0,
+      "url": "https://incred.com/page-data/Career-Page/page-data.json",
+      "finalUrl": "https://incred.com/page-data/Career-Page/page-data.json",
+      "status": 200,
+      "capturedAt": "2026-10-23T05:58:29.817Z",
+      "bodySha256": "7d22a4bb287828290f76232964ddaa12650e2c4ef659174032e5c2c43e819359",
+      "fileSha256": "33ed92a5178bff595e4d8484ecbf3316caa358dd5b6137a5afb7e1c155bb378b"
+    },
+    {
+      "file": "native-clients.json",
+      "entryIndex": 1,
+      "url": "https://incred.com/webpack-runtime-ec15f7aef83616e3c1b1.js",
+      "finalUrl": "https://incred.com/webpack-runtime-ec15f7aef83616e3c1b1.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T05:58:29.816Z",
+      "bodySha256": "fa8a8499721594cac0bd71b4cf13d2bc8682702933565bd9980f5bcc89e5fd8e",
+      "fileSha256": "33ed92a5178bff595e4d8484ecbf3316caa358dd5b6137a5afb7e1c155bb378b"
+    },
+    {
+      "file": "native-clients.json",
+      "entryIndex": 2,
+      "url": "https://incred.com/app-9742a88616a8a01b7a23.js",
+      "finalUrl": "https://incred.com/app-9742a88616a8a01b7a23.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T05:58:29.816Z",
+      "bodySha256": "a0c863e9b5c9187ad97aa75c187137fee3f864f5285b38aaebc2de559767d68d",
+      "fileSha256": "33ed92a5178bff595e4d8484ecbf3316caa358dd5b6137a5afb7e1c155bb378b"
+    },
+    {
+      "file": "careers-clients.json",
+      "entryIndex": 0,
+      "url": "https://incred.com/6e08cd76e4b705db3262755ffbe9f7b0abc5d9d5-4d14e6b4474d9d73151d.js",
+      "finalUrl": "https://incred.com/6e08cd76e4b705db3262755ffbe9f7b0abc5d9d5-4d14e6b4474d9d73151d.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T05:59:36.208Z",
+      "bodySha256": "59b874bf4c5fc36533ac2e702c0155f09d179705def8381bd3f7faffe1e0674b",
+      "fileSha256": "2145de7e54c92f829d0449c0301c63ca4cff0c58a8fbf94ff9b6f06cccb46d6d"
+    },
+    {
+      "file": "careers-clients.json",
+      "entryIndex": 1,
+      "url": "https://incred.com/13f8a6f0f8843ac3c988e3cf3691a03e894da557-bd22897b4a88f3883087.js",
+      "finalUrl": "https://incred.com/13f8a6f0f8843ac3c988e3cf3691a03e894da557-bd22897b4a88f3883087.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T05:59:36.208Z",
+      "bodySha256": "2903be3767d16cf8d0512de79ca8e45835740b906a255288832ca30d8310ba58",
+      "fileSha256": "2145de7e54c92f829d0449c0301c63ca4cff0c58a8fbf94ff9b6f06cccb46d6d"
+    },
+    {
+      "file": "native-config-client.json",
+      "url": "https://incred.com/0a0cbcbff9b3f77faed87088c2a581f9f95f4c69-9f7603ef2d568b3361be.js",
+      "finalUrl": "https://incred.com/0a0cbcbff9b3f77faed87088c2a581f9f95f4c69-9f7603ef2d568b3361be.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T06:01:18.670Z",
+      "bodySha256": "11178a6bb33da43c969bdd9121e279824622e382ccf288f01c9b4c9baf7a72b4",
+      "fileSha256": "76b285a92e12191ee2418903c412d1b59b003feb26d855b9f290435cfe263164"
+    },
+    {
+      "file": "fresh-official-pages.json.gz",
+      "url": "https://incred.com/Career-Page/",
+      "finalUrl": "https://incred.com/Career-Page/",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:49:54.629Z",
+      "bodySha256": "3ad8a463cb63a157fc25745a44a7f7bf03e26155916b8a34c4d6a343f27f75cd"
+    },
+    {
+      "file": "fresh-official-pages.json.gz",
+      "url": "https://incred.com/",
+      "finalUrl": "https://incred.com/",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:49:54.760Z",
+      "bodySha256": "120bef1bd3ae84036dda3769d19e2657bc78d1d373c47af813835b3a5b843bbf"
+    },
+    {
+      "file": "native-employer.json.gz",
+      "url": "https://www.linkedin.com/company/incredfinancialservices/",
+      "finalUrl": "https://www.linkedin.com/company/incredfinancialservices/",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:50:27.992Z",
+      "bodySha256": "998c9d861638a76e954d541de72db3ad2e230f12edb772821e850e2c5ce9e50d"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/search/?f_C=13183871&location=India",
+      "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=13183871&location=India",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:00.388Z",
+      "bodySha256": "eddff397c5738aa508f808f2ddc39e9b142798aa35d9e23bb5919fec4fde1c7f"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/back-end-developer-at-incred-financial-services-4466103462?position=1&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=tGoQJX0Nf%2BZoUfbmahteRg%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/back-end-developer-at-incred-financial-services-4466103462?position=1&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=tGoQJX0Nf%2BZoUfbmahteRg%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:02.554Z",
+      "bodySha256": "425d675e8a0e4c8278ef3e44251a9507db2bbcff14ecaf2ee54f3cb6564b4ecd"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/branch-manager-at-incred-financial-services-4478423718?position=2&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=KRWhxHvYeNw9pk0Ptdvp4w%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/branch-manager-at-incred-financial-services-4478423718?position=2&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=KRWhxHvYeNw9pk0Ptdvp4w%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:03.507Z",
+      "bodySha256": "194d1384114f7884015c4326216ae4c7259076e43bd8f41476ae1e0add4091fa"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/product-manager-at-incred-financial-services-4481660379?position=3&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=JGy1tDYqqtqhP2wIGv%2BmSA%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/product-manager-at-incred-financial-services-4481660379?position=3&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=JGy1tDYqqtqhP2wIGv%2BmSA%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:04.445Z",
+      "bodySha256": "c7d2cc920847344bddd2d9fa789556f66ed1c9a9381f620db1257852cda4a14d"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/product-security-lead-at-incred-financial-services-4475785487?position=4&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=%2B30UydBEJkOhXEAPX62LBw%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/product-security-lead-at-incred-financial-services-4475785487?position=4&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=%2B30UydBEJkOhXEAPX62LBw%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:05.514Z",
+      "bodySha256": "d08e1296a320670093e5fde450b1514694757dc28c25018003de3acf873abe12"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/human-resources-business-partner-at-incred-financial-services-4477511585?position=5&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=tXtSS%2FlBbrslDzhL9Rqd2Q%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/human-resources-business-partner-at-incred-financial-services-4477511585?position=5&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=tXtSS%2FlBbrslDzhL9Rqd2Q%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:06.513Z",
+      "bodySha256": "fa0284104c58d2d6ba033e6dd04db392e7b7a6765bd45c8475235366ee945da9"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/program-manager-at-incred-financial-services-4477990899?position=6&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=YPx0%2FwvlkWSiDZhtztZdwg%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/program-manager-at-incred-financial-services-4477990899?position=6&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=YPx0%2FwvlkWSiDZhtztZdwg%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:07.324Z",
+      "bodySha256": "847155a3367ba2a75b276ed589486806e60d8026a87ed91160aeeb96b94b51c2"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "url": "https://www.linkedin.com/jobs/view/financial-planning-and-analysis-manager-at-incred-financial-services-4469705246?position=7&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=kapeZ3W3P8o5TKDWFPpcvA%3D%3D",
+      "finalUrl": "https://www.linkedin.com/jobs/view/financial-planning-and-analysis-manager-at-incred-financial-services-4469705246?position=7&pageNum=0&refId=EynSk4Zj55wNjn4hdcJmWA%3D%3D&trackingId=kapeZ3W3P8o5TKDWFPpcvA%3D%3D",
+      "status": 200,
+      "capturedAt": "2026-10-23T12:51:08.309Z",
+      "bodySha256": "70622c0f5b90f5422a6940be2bb1e78a0cbccf86f389bafb43b4d6974e70a5d5"
+    }
+  ],
+  "outcome": "partial-native-explicit-India-recovery",
+  "reportedTotal": null,
+  "indiaFacetCount": null,
+  "scope": "Native client initializes inventory undefined and renders No Current Opening before POST careerpagejobs resolves or after errors; SSR is not a truthful current empty. Full native inventory remains unverified.",
+  "supportingObservations": [
+    {
+      "file": "native-api-response.txt",
+      "url": "https://api.turbohire.co/api/careerpagejobs",
+      "method": "POST",
+      "observedStatus": 401,
+      "bodySha256": "5267b8f152b81ed1e4dcbf760722f41139fad9f737b0c92a734ea35e022aa7bf",
+      "note": "Raw response body saved from root-controlled browser native network request44. HTTP 401 was reported by the browser network tool, not reconstructed from an invented HTTP envelope. No request credentials are reproduced in this observation."
+    },
+    {
+      "file": "native-runtime-observation.json",
+      "fileSha256": "915daac14afb4d200ab676e7d2ba13a6408a1b91239e87731bbec42a77eac4c5",
+      "note": "Rendered native page retains empty-looking sentinel when native inventory request fails."
+    },
+    {
+      "file": "native-website-navigation.dom.json",
+      "fileSha256": "233c8f6ef36febf04cbda1cedc17824dfc15564f153d160629ceaca1acf218ea",
+      "note": "Navigation-only observed public profile website bit.ly/4edgv67 ultimately at incred.com with UTM parameters. DOM observation, no raw redirect response/header claim."
+    }
+  ],
+  "nativeContract": {
+    "entryModule": 43413,
+    "inventoryModule": 86730,
+    "export": "LV",
+    "method": "POST",
+    "url": "https://api.turbohire.co/api/careerpagejobs",
+    "requestBody": "empty",
+    "responseInventory": "Result",
+    "clientFilters": "Exact local CompanyName matches per native gL array; no pagination parameters in reviewed request.",
+    "failure": "401 Authorization denied observed in actual browser-native request; SSR default sentinel cannot certify current inventory."
+  },
+  "auditOutcome": "Official career job-updates handoff authorizes exact LinkedIn employer13183871;7native cards/details captured,6active explicitIndia roles verified. TurboHire primary feed remains401/unresolved; worldwide/secondary scope unknown and lifecycle cleanup disabled.",
+  "files": [
+    {
+      "file": "fresh-official-pages.json.gz",
+      "sha256": "38fff1cbdacefc8177a31a288d75e181cd16ea49c915e28d62bc3a4e1bbd451d",
+      "uncompressedSHA256": "fef061ca1780c170f84c8a16907c71a666c2605199fed48da52d2d3b85c1d840"
+    },
+    {
+      "file": "native-employer.json.gz",
+      "sha256": "7f1c88259dd5e2c010c6a439723bdef444f3c4afbe1e51c4d48e42a1e124c3a7",
+      "uncompressedSHA256": "d5478107df5ad3dd13aae97106f20ee2c026f5f46bf37350b6cc5c7c61b6a188"
+    },
+    {
+      "file": "native-jobs.json.gz",
+      "sha256": "7d6de94fa889d53bbe7113e5e2d95504d388633bf94ebc46aa4a72396153ee8f",
+      "uncompressedSHA256": "a75e3b63c3a39cb2746596d044f38d97f4f62e76c859b68effb4cdadb7943ebe"
+    },
+    {
+      "file": "native-website-navigation.json.gz",
+      "sha256": "858ce9c035384bc4f31d7895b470bc72809b733274d960eabeca130df6c3bb1a",
+      "uncompressedSHA256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ]
+}

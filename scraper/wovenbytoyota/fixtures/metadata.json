@@ -1,0 +1,63 @@
+{
+  "source": "wovenbytoyota",
+  "captureMethod": "Official browser-network response captures by root; body preserves the observed response text.",
+  "binding": {
+    "careers": "https://woven.toyota/en/careers/",
+    "client": "https://woven.toyota/_next/static/chunks/285jitvux73--.js",
+    "nativeBoard": "https://api.lever.co/v0/postings/woven-by-toyota",
+    "proof": "Official client constructs this exact Lever board URL, with English/Japanese location filters. Scraper enumerates unfiltered board to avoid hiding other locations."
+  },
+  "paginationDocumentation": "https://github.com/lever/postings-api#get-a-list-of-job-postings",
+  "observedInventory": {
+    "pages": [
+      100,
+      48
+    ],
+    "nativeRoles": 148,
+    "indiaRoles": 0,
+    "completeness": "Explicit skip/limit pages, terminal short page, unique board-specific native identities; every native location resolved from country ISO or exact official office/locale labels. Unknown geography remains incomplete."
+  },
+  "responses": [
+    {
+      "file": "careers-response.json",
+      "url": "https://woven.toyota/en/careers/",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:08:52.906Z",
+      "bodySha256": "78d90f51403844af4e93bc4daf0a579cdc708dbbf81e242f414b85a839fbf6f3",
+      "captureSha256": "39788ad0580b570fcaa3a512ef21f8f8c67f7e4b0e1cad25be92e5c001834fee"
+    },
+    {
+      "file": "client-api-responses.json",
+      "responseIndex": 0,
+      "url": "https://woven.toyota/_next/static/chunks/285jitvux73--.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:09:38.105Z",
+      "bodySha256": "9bb2c30d759d0a80582bcb11986466dd83f197c44771c764940d6ff78ca538c6",
+      "captureSha256": "2381b41411b76d0243d437e888be659a1184c1a2fbcd8b55c8b9420dd51530d3"
+    },
+    {
+      "file": "listing-responses.json",
+      "responseIndex": 0,
+      "url": "https://api.lever.co/v0/postings/woven-by-toyota?mode=json&skip=0&limit=100",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:09:44.360Z",
+      "bodySha256": "ee958f968b00aa9adf6d08b543d84681448bf2d0b0948aae5889315a435bccd7",
+      "captureSha256": "34f5467026778f4a9ec11ec6300dc5565d9f7511e7b58f0b673ebe39778e100a"
+    },
+    {
+      "file": "listing-responses.json",
+      "responseIndex": 1,
+      "url": "https://api.lever.co/v0/postings/woven-by-toyota?mode=json&skip=100&limit=100",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:09:44.914Z",
+      "bodySha256": "a38aa1b2ea6803eb3990938ceaa513248fa4b1d73cc108382cc590f69b44a4bf",
+      "captureSha256": "34f5467026778f4a9ec11ec6300dc5565d9f7511e7b58f0b673ebe39778e100a"
+    }
+  ],
+  "runtimePolicy": {
+    "officialBinding": "Fresh closed official careers HTML and active same-origin Next client containing exact native board URL/getLeverPostingsUrl are fetched before every native inventory attempt.",
+    "timestamp": "Lever createdAt is retained unchanged as nativeCreatedAt; it does not establish postingDate, which remains null.",
+    "pagesFetched": "Includes successful official page/client requests plus native pagination requests; captured playback has4 successful responses.",
+    "deadline": "Aggregate source deadline races all requests, body reads and pagination; uncooperative transports cannot prevent cancellation."
+  }
+}

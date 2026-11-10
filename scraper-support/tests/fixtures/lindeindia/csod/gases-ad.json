@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "timeStamp": "2026-10-24T17:19:28+0000",
+  "totalRecords": 1,
+  "data": [
+    {
+      "actions": [],
+      "items": [
+        {
+          "fields": {
+            "id": 33900,
+            "reqId": "req33900",
+            "title": "Senior Engineer O&M",
+            "location": "Dahej OnSite",
+            "ad": "<p class=\"header1 header_job_title\"><font size=\"3\"><strong>Linde South Asia Services Pvt. Ltd. | Business Area: Operations<br></strong></font><span style=\"color: var(--color-blue-header); font-family: var(--font-family-Linde-bold); font-size: 2rem;\">Senior Engineer O&M</span><br><font size=\"3\"><strong>Dahej, Gujrat, India | Working Scheme: On-Site | Job Type: Regular / Permanent / Unlimited / FTE | Reference Code: req33900</strong></font></p>\n<ul><li>In this role, you will ensure safe and timely execution of the DCTL Pipeline Project by coordinating site activities, monitoring project progress, managing contractors, and ensuring compliance with quality, safety, and statutory requirements</li><li>Plan and execute preventive, predictive, and corrective maintenance activities for plant equipment to ensure high reliability, availability, and operational efficiency</li><li>Lead and coordinate plant shutdown activities by preparing job plans, arranging resources, monitoring execution, and ensuring completion within the approved schedule and budget</li><li>You will monitor equipment performance and troubleshoot operational issues to minimize downtime, improve plant reliability, and achieve production targets</li><li>Ensure compliance with EHS standards and company procedures through risk assessments, permit-to-work implementation, safety audits, and adherence to operational best practices</li><li>Also, you will maintain accurate maintenance records and reports, track KPIs, manage spare parts requirements, and support continuous improvement initiatives to enhance plant performance and cost efficiency</li></ul>",
+            "description": "In this role, you will ensure safe and timely execution of the DCTL Pipeline Project by coordinating site activities, monitoring project progress, managing contractors, and ensuring compliance with quality, safety, and statutory requirementsPlan and execute preventive, predictive, and corrective maintenance activities for plant equipment to ensure high reliability, availability, and operational efficiencyLead and coordinate plant shutdown activities by preparing job plans, arranging resources, monitoring execution, and ensuring completion within the approved schedule and budgetYou will monitor equipment performance and troubleshoot operational issues to minimize downtime, improve plant reliability, and achieve production targetsEnsure compliance with EHS standards and company procedures through risk assessments, permit-to-work implementation, safety audits, and adherence to operational best practicesAlso, you will maintain accurate maintenance records and reports, track KPIs, manage spare parts requirements, and support continuous improvement initiatives to enhance plant performance and cost efficiency"
+          },
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

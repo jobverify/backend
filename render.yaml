@@ -3,7 +3,7 @@ services:
   - type: web
     name: jobverify-backend
     runtime: node
-    repo: https://github.com/jobverify/jobverify-backend
+    repo: https://github.com/jobverify/backend
     region: oregon
     plan: free
     branch: main
@@ -44,6 +44,8 @@ services:
         sync: false
       - key: GITHUB_REPO
         sync: false
+      - key: TAILORED_RESUME_GITHUB_REPO
+        value: jobverify/backend
       - key: SCRAPER_CONCURRENCY
         sync: false
       - key: WORKDAY_DETAIL_FETCH_CONCURRENCY

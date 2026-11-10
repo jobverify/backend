@@ -1,0 +1,24 @@
+{
+  "status": 200,
+  "error": {
+    "message": "",
+    "body": ""
+  },
+  "data": {
+    "id": 1970393556750481,
+    "displayJobId": "200024622",
+    "name": "Senior Software Engineer",
+    "location": "India, Multiple Locations, Multiple Locations",
+    "locations": [
+      "India, Multiple Locations, Multiple Locations",
+      "India, Karnataka, Bangalore",
+      "India, Telangana, Hyderabad"
+    ],
+    "publicUrl": "https://apply.careers.microsoft.com/careers/job/1970393556750481",
+    "jobDescription": "<b>Overview</b><br><p>Do you want to contribute to Microsoft's vision of empowering every person and organization to achieve more, with the power of cloud computing?</p>",
+    "efcustomTextEmploymentType": [
+      "Full-Time"
+    ]
+  },
+  "metadata": null
+}

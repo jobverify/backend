@@ -1,0 +1,32 @@
+<JobPageVO>
+  <startJobIndex>0</startJobIndex>
+  <maxJobSize>10</maxJobSize>
+  <totalJobCount>276</totalJobCount>
+  <jobVoList>
+    <jobVoList>
+      <jobSeq>886927</jobSeq>
+      <jobTitle>Software Release Engineer</jobTitle>
+      <jobReqExp />
+      <locations>Woking</locations>
+      <jobId>886927</jobId>
+      <jobTypeCustom3 />
+    </jobVoList>
+    <jobVoList>
+      <jobSeq>882627</jobSeq>
+      <jobTitle>Vehicle Integration </jobTitle>
+      <jobReqExp>2 - 5 Years</jobReqExp>
+      <locations>PIMPRI</locations>
+      <jobId>882627</jobId>
+      <jobTypeCustom3 />
+    </jobVoList>
+    <jobVoList>
+      <jobSeq>878546</jobSeq>
+      <jobTitle>MBD-ASW Developer</jobTitle>
+      <jobReqExp>2 - 5 Years</jobReqExp>
+      <locations>BANGALORE</locations>
+      <jobId>878546</jobId>
+      <jobTypeCustom3 />
+    </jobVoList>
+  </jobVoList>
+  <errorStatus>success</errorStatus>
+</JobPageVO>

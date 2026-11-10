@@ -1,0 +1,29 @@
+{
+  "jobsList": [
+    {
+      "postingTitle": "Executive Administrator",
+      "jobRequisitionId": "26021140",
+      "jcrURL": "/en-us/job-detail/26021140/executive-administrator-mumbai-india",
+      "city": "Mumbai",
+      "country": "India",
+      "area": "Administration; Corporate Services & Security",
+      "postedDate": "06/29/2026",
+      "yearsOfExperience": "N/A",
+      "location": "Mumbai, India",
+      "primaryLocation": "Mumbai, India"
+    },
+    {
+      "postingTitle": "Info Security Controls Specialist II B",
+      "jobRequisitionId": "26022159",
+      "jcrURL": "/en-us/job-detail/26022159/info-security-controls-specialist-ii-b-hyderabad-india",
+      "city": "Hyderabad",
+      "country": "India",
+      "area": "Technology",
+      "postedDate": "06/29/2026",
+      "yearsOfExperience": "N/A",
+      "location": "Hyderabad, India",
+      "primaryLocation": "Hyderabad, India"
+    }
+  ],
+  "totalMatches": 63
+}

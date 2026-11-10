@@ -63,6 +63,13 @@ const classes=new Set(['section','page-centered','posting-requirements','plain-l
 const qa=new Set(['job-description','posting-requirements','closing-description','ai-disclaimer'])
 const sizes=new Set(['11pt','15px','small','14.6667px'])
 const links=new Set(['https://www.lyrahealth.com/workforce-privacy-notice/','https://privacy-central.securiti.ai/#/dsr/be61bec1-10a5-47ac-94ab-3055974aefb1','mailto:globaldpo@lyrahealth.com'])
+// Complete native style declarations, including their order and attributes.
+// The Nov10 theme is shared by all seven captured India role pages. Changing
+// any stylesheet byte still requires a separately reviewed deployment.
+const ownStylesheetContracts=new Set([
+ 'b7a4c6b0d38a5e1ed4e199aafc4f24e33dc381c1a6b71cc49cfaa1aab92a02de',
+ '739391813e66453783d4d496a0a14934a7d175a660460ba750a28f317cf10a35',
+])
 // The native page masks an already-public privacy contact in a literal data
 // attribute. Reconcile that browser text transformation as data; never follow
 // the masking link or execute its script.
@@ -132,7 +139,7 @@ const ownRoleLayout=(d,html,row)=>{
  // inspect the raw tree rather than its active-only node index.
  const styles={inline:raw.filter(n=>n.tag==='style').map(n=>({attrs:n.attrs,raw:n.raw})),
   external:raw.filter(n=>n.tag==='link'&&(n.attrs.rel||'').toLowerCase().split(/\s+/).includes('stylesheet')).map(n=>n.attrs)}
- need(hash(canonical(styles))==='b7a4c6b0d38a5e1ed4e199aafc4f24e33dc381c1a6b71cc49cfaa1aab92a02de','unreviewed own stylesheet contract')
+ need(ownStylesheetContracts.has(hash(canonical(styles))),'unreviewed own stylesheet contract')
  const wrapper=one(d.nodes(n=>n.tag==='div'&&n.attrs.class==='section-wrapper page-full-width'),'whole own role criteria')
  const chain=[['div',{class:'section-wrapper page-full-width'}],['div',{class:'content'}],
   ['div',{class:'content-wrapper posting-page'}],['body',{class:'show header-compact'}],['html',{}],['root',{}]]

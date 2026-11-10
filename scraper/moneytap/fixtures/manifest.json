@@ -1,0 +1,19 @@
+{
+  "source": "moneytap",
+  "verifiedOn": "2026-10-23",
+  "evidenceMode": "Current branded official Jobsoid HTTP response captured in browser; replayed through production parser",
+  "observedGlobalJobs": 0,
+  "observedIndiaJobs": 0,
+  "runtimePolicy": "Each run requires the same native board identity, complete active listing container and explicit current no-openings message. New recruiting handoffs or native roles require extraction, not zero certification.",
+  "evidence": [
+    {
+      "file": "careers-response.json",
+      "fileSha256": "948cd110454bc3400eb94f8e3fc9404899e7141e30cefde9d2da6dff88afd9e0",
+      "url": "https://moneytap-1.jobsoid.com/",
+      "finalUrl": "https://moneytap-1.jobsoid.com/",
+      "status": 200,
+      "capturedAt": "2026-10-23T03:29:17.547Z",
+      "bodySha256": "154e372906f6f4c0b12e5b5993863eb29fb8df16f6b274b6e777de61e8ada1ae"
+    }
+  ]
+}

@@ -13,7 +13,7 @@ export const OFFICIAL_BINDING=Object.freeze({
 const check=(ok,message)=>{if(!ok)throw Error('Checkmarx native contract: '+message)}
 const plain=s=>typeof s==='string'&&s.trim()===s&&s.length>0&&s.length<=1000&&!/[<>\u0000-\u001f]/.test(s)
 const uid=s=>typeof s==='string'&&/^[A-F0-9]{2}\.[A-F0-9]{3}(?:-[A-F0-9]{2}\.[A-F0-9]{3})?$/.test(s)
-const COUNTRIES={IN:'India',US:'United States',PT:'Portugal',IL:'Israel',BR:'Brazil',PH:'Philippines',MX:'Mexico',GB:'United Kingdom'}
+const COUNTRIES={IN:'India',US:'United States',PT:'Portugal',IL:'Israel',BR:'Brazil',PH:'Philippines',MX:'Mexico',GB:'United Kingdom',SG:'Singapore'}
 const LOCATION_FIELDS=new Set(['name','country','city','state','postal_code','street_name','arrival_instructions','street_number','timezone','location_uid','is_remote'])
 const hasCarrierValue=value=>value!==null&&value!==undefined&&value!==''&&(typeof value!=='object'||Object.values(value).some(hasCarrierValue))
 function countryAddressCarriers(value,topLevel=true){

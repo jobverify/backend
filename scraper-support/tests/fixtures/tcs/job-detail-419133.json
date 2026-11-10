@@ -1,0 +1,33 @@
+{
+  "message": "Ok.",
+  "result": "Y",
+  "data": {
+    "jobId": 419133,
+    "title": "Middleware Support Engineer",
+    "walkInVenue": null,
+    "walkInRegTime": null,
+    "location": "Bengaluru",
+    "qualifications": "BACHELOR OF ENGINEERING",
+    "skilldetail": "Middleware",
+    "experience": "3 - 8 Years",
+    "role": "Database Administrator",
+    "description": " <p><span><strong>TCS has been a great pioneer in feeding the fire of young techies like you. We are a global leader in the technology arena and there's nothing that can stop us from growing together.</strong></span></p>\r\n<p><span><strong>What we are looking for</strong></span></p>\r\n<p><strong>Role: Middleware Support Engineer L1.5</strong></p>\r\n<p><strong>Location: Bengaluru</strong></p>\r\n<p><strong>Exp: 3-8 yrs</strong></p>\r\n<p><strong>Must&nbsp;have:</strong></p>\r\n<ol>\r\n <li>Strong experience in Apache Tomcat, Apache HTTP Server, and Java-based applications.</li>\r\n <li>Hands-on experience with Adobe Experience Manager (AEM &ndash; Author, Publisher, Dispatcher, Cache).</li>\r\n <li>Experience working with AWS services: EC2, EBS, ECS, EKS, RDS, S3, Load Balancer, Elastic Cache, IAM, Route 53, Lambda, Auto Scaling.</li>\r\n <li>Hands-on experience with Datadog (Synthetic &amp; RUM Monitoring).</li>\r\n <li>Experience in ServiceNow (CRQ, Incident, MIM, CTASK, SCTASK) and Jira for ticket management</li>\r\n</ol>\r\n<p><strong>Good to have:</strong></p>\r\n<ol>\r\n <li>Working knowledge of Splunk ITSI and AWS CloudWatch.</li>\r\n <li>Experience with Ansible Tower and Python automation.</li>\r\n</ol>",
+    "additionalInfo": null,
+    "country": "India",
+    "functionName": "TECHNOLOGY",
+    "applyby": "2026-07-04 00:00:00",
+    "youtubeUrl": null,
+    "fileName": null,
+    "quizFlag": "N",
+    "latitude": null,
+    "longitude": null,
+    "applied": false,
+    "locationId": "22597",
+    "quizMandatory": "N",
+    "languageId": 0,
+    "quizGiven": "N",
+    "countryMatch": "Y",
+    "minSalary": null,
+    "maxSalary": null
+  }
+}

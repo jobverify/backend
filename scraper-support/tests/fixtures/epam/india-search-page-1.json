@@ -1,0 +1,272 @@
+{
+  "data": {
+    "total": 12,
+    "jobs": [
+      {
+        "uid": "blt02p4etwfqf6mgzoy",
+        "name": "Senior Business Analyst - Corporate Actions with Gen AI",
+        "city": [
+          {
+            "name": "Pune"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "vacancy_type": "Office",
+        "job_specialization": [
+          "Business Analyst"
+        ],
+        "skills": [
+          "Business Analysis",
+          "Agile",
+          "Corporate Actions [Financial instruments]",
+          "GenAI for Requirement Management"
+        ],
+        "seo": {
+          "url": "/en/vacancy/senior-business-analyst-corporate-actions-with-gen-ai-blt02p4etwfqf6mgzoy_en"
+        },
+        "created_at": "2026-06-18T04:29:52.574Z",
+        "text": "We are seeking a Senior Business Analyst - Corporate Actions with Gen AI to enhance Corporate Actions Operations by deploying AI agents."
+      },
+      {
+        "uid": "blt0p72fye6mhf6mh8o",
+        "name": "Lead Business Analyst - Regulatory Reporting",
+        "city": [
+          {
+            "name": "Hyderabad"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "vacancy_type": "Office",
+        "job_specialization": [
+          "Business Analyst"
+        ],
+        "skills": [
+          "Business Analysis",
+          "Regulatory Reporting"
+        ],
+        "seo": {
+          "url": "/en/vacancy/lead-business-analyst-regulatory-reporting-blt0p72fye6mhf6mh8o_en"
+        },
+        "created_at": "2026-06-20T10:15:00.000Z",
+        "text": "Lead business analysis work across regulatory reporting workflows."
+      },
+      {
+        "uid": "ep1-job-03",
+        "name": "Software Engineer - Java Full Stack React",
+        "city": [
+          {
+            "name": "Chennai"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Developer"
+        ],
+        "skills": [
+          "Java",
+          "React"
+        ],
+        "seo": {
+          "url": "/en/vacancy/software-engineer-java-full-stack-react-ep1-job-03_en"
+        },
+        "created_at": "2026-06-20T10:16:00.000Z",
+        "text": "Build full stack features with Java and React."
+      },
+      {
+        "uid": "ep1-job-04",
+        "name": "Senior Solution Architect - Java, Spring Boot, Microservices, Cloud",
+        "city": [
+          {
+            "name": "Bengaluru"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Software Architect"
+        ],
+        "skills": [
+          "Java",
+          "Spring Boot",
+          "Microservice Architecture Style"
+        ],
+        "seo": {
+          "url": "/en/vacancy/senior-solution-architect-java-spring-boot-microservices-cloud-ep1-job-04_en"
+        },
+        "created_at": "2026-06-20T10:17:00.000Z",
+        "text": "Own architecture decisions for cloud-native Java systems."
+      },
+      {
+        "uid": "ep1-job-05",
+        "name": "Senior / Lead Business Analyst - Controls Specialist",
+        "city": [
+          {
+            "name": "Pune"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Business Analyst"
+        ],
+        "skills": [
+          "Business Analysis",
+          "Controls"
+        ],
+        "seo": {
+          "url": "/en/vacancy/senior-lead-business-analyst-controls-specialist-ep1-job-05_en"
+        },
+        "created_at": "2026-06-20T10:18:00.000Z",
+        "text": "Drive controls-focused business analysis across enterprise programs."
+      },
+      {
+        "uid": "ep1-job-06",
+        "name": "Lead Java Engineer",
+        "city": [
+          {
+            "name": "Gurugram"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Developer"
+        ],
+        "skills": [
+          "Java",
+          "REST API"
+        ],
+        "seo": {
+          "url": "/en/vacancy/lead-java-engineer-ep1-job-06_en"
+        },
+        "created_at": "2026-06-20T10:19:00.000Z",
+        "text": "Lead the delivery of Java platform services."
+      },
+      {
+        "uid": "ep1-job-07",
+        "name": "Data Engineer",
+        "city": [
+          {
+            "name": "Hyderabad"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Developer"
+        ],
+        "skills": [
+          "Python",
+          "SQL"
+        ],
+        "seo": {
+          "url": "/en/vacancy/data-engineer-ep1-job-07_en"
+        },
+        "created_at": "2026-06-20T10:20:00.000Z",
+        "text": "Design reliable data pipelines and transformation jobs."
+      },
+      {
+        "uid": "ep1-job-08",
+        "name": "Senior Product Designer",
+        "city": [
+          {
+            "name": "Coimbatore"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Other"
+        ],
+        "skills": [
+          "Figma",
+          "User Research"
+        ],
+        "seo": {
+          "url": "/en/vacancy/senior-product-designer-ep1-job-08_en"
+        },
+        "created_at": "2026-06-20T10:21:00.000Z",
+        "text": "Shape product experiences for enterprise users."
+      },
+      {
+        "uid": "ep1-job-09",
+        "name": "Cloud Platform Engineer",
+        "city": [
+          {
+            "name": "Chennai"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Developer"
+        ],
+        "skills": [
+          "Microsoft Azure",
+          "Terraform"
+        ],
+        "seo": {
+          "url": "/en/vacancy/cloud-platform-engineer-ep1-job-09_en"
+        },
+        "created_at": "2026-06-20T10:22:00.000Z",
+        "text": "Build and automate Azure platform foundations."
+      },
+      {
+        "uid": "ep1-job-10",
+        "name": "Lead QA Engineer",
+        "city": [
+          {
+            "name": "Bengaluru"
+          }
+        ],
+        "country": [
+          {
+            "name": "India"
+          }
+        ],
+        "job_specialization": [
+          "Other"
+        ],
+        "skills": [
+          "Quality Management",
+          "Selenium for Java"
+        ],
+        "seo": {
+          "url": "/en/vacancy/lead-qa-engineer-ep1-job-10_en"
+        },
+        "created_at": "2026-06-20T10:23:00.000Z",
+        "text": "Own quality strategy for critical delivery streams."
+      }
+    ]
+  }
+}

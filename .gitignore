@@ -1,9 +1,7 @@
 # Dependencies
 node_modules
 
-# Saved scraper and test fixtures
-**/fixtures/**
-**/test-fixtures/
+# Captured scraper and test fixtures are required repository inputs.
 
 # Environment
 .env
@@ -38,7 +36,13 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
-docs
+docs/*
+!docs/security-operations.md
+!docs/superpowers/
+docs/superpowers/*
+!docs/superpowers/plans/
+docs/superpowers/plans/*
+!docs/superpowers/plans/2026-11-10-security-remediation.md
 .tmp
 
 # Generated Python bytecode and interrupted scraper writes
@@ -46,4 +50,8 @@ __pycache__/
 *.pyc
 **/.jobs.json.*.tmp
 
-/reports/
+# Generated reports stay local; their shared verification source is versioned.
+/reports/*
+!/reports/native-catalog-recovery-20261109/
+/reports/native-catalog-recovery-20261109/*
+!/reports/native-catalog-recovery-20261109/verification-inputs.py

@@ -1,9 +1,8 @@
 import path from 'node:path'
-import https from 'node:https'
 import { fileURLToPath } from 'node:url'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { fetchVerifiedHttpsPage } from '../../scraper-support/utils/verifiedHttps.js'
 import { parseJavaScriptLiteral } from '../../scraper-support/utils/safeLiteral.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -27,31 +26,6 @@ const normalizeStringArray = (value) => Array.isArray(value)
   : []
 
 const buildBundleUrl = (bundlePath) => new URL(bundlePath, HOMEPAGE_URL).toString()
-
-const isVerifiedImmidartUrl = (url) => {
-  try {
-    const parsed = new URL(url)
-    return parsed.protocol === 'https:' && parsed.hostname === 'www.immidart.com'
-  } catch {
-    return false
-  }
-}
-
-const isCertificateAltNameError = (error) => {
-  const visited = new Set()
-  let current = error
-
-  while (current && !visited.has(current)) {
-    visited.add(current)
-    if (current?.code === 'ERR_TLS_CERT_ALTNAME_INVALID') return true
-    if (/certificate'?s altnames|ERR_TLS_CERT_ALTNAME_INVALID|Hostname\/IP does not match certificate/i.test(String(current?.message ?? ''))) {
-      return true
-    }
-    current = current?.cause
-  }
-
-  return false
-}
 
 const deriveLocation = (location) => {
   const normalized = normalizeWhitespace(location)
@@ -196,94 +170,14 @@ export const extractEmbeddedJobs = (bundleJs) => {
   return jobs
 }
 
-const fetchTextStrict = (url, { signal } = {}) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  signal,
-  timeoutMs: 15000,
-})
-
-export const fetchTextAllowingMismatchedCertificate = (url, {
-  request = https.request,
-  signal,
-  timeoutMs = 15000,
-} = {}) => new Promise((resolve, reject) => {
-  if (!isVerifiedImmidartUrl(url)) {
-    reject(new Error(`Immidart refusing certificate fallback for unverified URL: ${url}`))
-    return
-  }
-
-  if (signal?.aborted) {
-    reject(signal.reason || new Error('Immidart certificate fallback aborted'))
-    return
-  }
-
-  let settled = false
-  let requestHandle
-  const cleanup = () => {
-    signal?.removeEventListener?.('abort', onAbort)
-  }
-  const settle = (handler, value) => {
-    if (settled) return
-    settled = true
-    cleanup()
-    handler(value)
-  }
-  const onAbort = () => {
-    requestHandle?.destroy?.(signal.reason || new Error('Immidart certificate fallback aborted'))
-  }
-
-  requestHandle = request(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    rejectUnauthorized: false,
-  }, (response) => {
-    let body = ''
-    response.setEncoding?.('utf8')
-    response.on('data', (chunk) => {
-      body += chunk
-    })
-    response.on('end', () => {
-      const statusCode = Number(response.statusCode)
-      if (statusCode < 200 || statusCode >= 300) {
-        const error = new Error(`HTTP ${statusCode} for ${url}`)
-        error.status = statusCode
-        settle(reject, error)
-        return
-      }
-      settle(resolve, body)
-    })
-  })
-
-  requestHandle.on('error', (error) => settle(reject, error))
-  requestHandle.setTimeout?.(timeoutMs, () => {
-    requestHandle.destroy(new Error(`Immidart certificate fallback request timed out after ${timeoutMs}ms for ${url}`))
-  })
-  signal?.addEventListener?.('abort', onAbort, { once: true })
-  requestHandle.end()
-})
-
-export const fetchTextWithOfficialFallback = async (url, {
-  strictFetchText = fetchTextStrict,
-  fallbackFetchText = fetchTextAllowingMismatchedCertificate,
-  signal,
-} = {}) => {
-  try {
-    return await strictFetchText(url, { signal })
-  } catch (error) {
-    if (isVerifiedImmidartUrl(url) && isCertificateAltNameError(error)) {
-      return fallbackFetchText(url, { signal })
-    }
-    throw error
-  }
+export const fetchImmidartText = async (url, options = {}) => {
+  const page = await fetchVerifiedHttpsPage(url, { ...options,
+    allowedOrigins: ['https://www.immidart.com'], headers: { 'User-Agent': USER_AGENT } });
+  if (page.status < 200 || page.status >= 300) throw new Error('Immidart HTTPS request failed');
+  return page.html;
 }
 
-const defaultFetchText = (url, options = {}) => fetchTextWithOfficialFallback(url, options)
+const defaultFetchText = fetchImmidartText
 
 export const createImmidartTechnologiesLlpScraper = () => ({
   async run({ fetchText = defaultFetchText } = {}) {

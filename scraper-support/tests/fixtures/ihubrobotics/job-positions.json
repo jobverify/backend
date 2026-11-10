@@ -1,0 +1,64 @@
+[
+  {
+    "id": "10eb1a1c-6e74-4a3a-8097-181fd8478dad",
+    "title": "Digital Marketer",
+    "department": "Marketing",
+    "location": "Kochi, India",
+    "type": "Full-time",
+    "description": "Plan and execute digital marketing campaigns to promote robotics products and build brand awareness.",
+    "requirements": [
+      "Experience in digital marketing",
+      "Knowledge of SEO, SEM, and social media marketing"
+    ],
+    "is_active": true,
+    "created_at": "2025-12-11T04:58:00.819878+00:00",
+    "updated_at": "2025-12-11T05:02:26.912882+00:00",
+    "image_url": "/lovable-uploads/careers/IMG_1568.JPG"
+  },
+  {
+    "id": "1d2da86c-245c-49ae-9ae1-be304092ae80",
+    "title": "BD Executive (North India)",
+    "department": "Business Development",
+    "location": "Delhi/NCR, India",
+    "type": "Full-time",
+    "description": "Lead business development efforts in North India region.",
+    "requirements": [
+      "Experience in B2B sales in North India",
+      "Excellent communication skills"
+    ],
+    "is_active": true,
+    "created_at": "2025-12-11T04:58:00.819878+00:00",
+    "updated_at": "2025-12-11T05:02:26.912882+00:00",
+    "image_url": "/lovable-uploads/careers/IMG_1571.JPG"
+  },
+  {
+    "id": "6f259821-6138-4f23-818c-e74de85452af",
+    "title": "Sales Engineer",
+    "department": "Sales",
+    "location": "Dubai, UAE",
+    "type": "Full-time",
+    "description": "Be the technical expert in our sales team.",
+    "requirements": [
+      "Understanding of robotics and automation"
+    ],
+    "is_active": true,
+    "created_at": "2025-12-04T06:52:16.494815+00:00",
+    "updated_at": "2025-12-05T13:12:03.886456+00:00",
+    "image_url": "/lovable-uploads/careers/IMG_1569.jpg"
+  },
+  {
+    "id": "3a007d25-4857-4dc0-8fc8-c11617bbe627",
+    "title": "Perception Engineer",
+    "department": "Engineering",
+    "location": "On-site",
+    "type": "Full-time",
+    "description": "Design and implement perception pipelines.",
+    "requirements": [
+      "Strong proficiency in Python/C++"
+    ],
+    "is_active": true,
+    "created_at": "2025-12-05T13:06:55.721796+00:00",
+    "updated_at": "2025-12-05T13:24:29.760796+00:00",
+    "image_url": "1764941067007-4i4f2.JPG"
+  }
+]

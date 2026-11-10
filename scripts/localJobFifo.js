@@ -18,7 +18,7 @@ export async function* readJsonl(file, { repairTail = false } = {}) {
       pending = pending.slice(position + 1)
       validBytes += Buffer.byteLength(`${line}\n`)
       if (!line.trim()) continue
-      try { yield JSON.parse(line) } catch (error) { throw new Error(`Corrupt JSONL inside ${file}: ${error.message}`) }
+      try { yield JSON.parse(line) } catch (error) { throw new Error(`Corrupt JSONL inside ${file}: ${error.message}`, { cause: error }) }
     }
   }
   pending += decoder.end()

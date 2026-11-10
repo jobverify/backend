@@ -1,0 +1,322 @@
+{
+  "V101094": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101094",
+      "position_title": "Senior Business Analyst",
+      "designation": "Project Lead",
+      "work_location": "Coimbatore-India",
+      "min_experience": 10,
+      "max_experience": 15,
+      "no_of_position": "1",
+      "primary_skills": "GENERAL INSURANCE,HEALTH INSURANCE DOMAIN",
+      "secondary_skills": "",
+      "job_description": "<h3>Key Responsibilities</h3><ul><li>Gather, analyze, and document business requirements from insurance business stakeholders.</li><li>Understand and document <strong>insurance processes, products, workflows, and business rules</strong>.</li><li>Prepare <strong>BRD, FSD, user stories, functional specifications, process flows, and acceptance criteria</strong>.</li><li>Work closely with development and QA teams to clarify requirements and resolve functional queries.</li><li>Support digital insurance journeys including <strong>policy quotation, issuance, renewal, endorsement, claims, customer servicing, and payments</strong>.</li><li>Coordinate requirements across web, mobile, backend APIs, and third-party integrations.</li><li>Participate in requirement workshops, walkthroughs, sprint planning, demos, and UAT.</li><li>Perform gap analysis between existing and proposed processes.</li><li>Support integration requirements involving insurance core systems, payment gateways, customer platforms, and external services.</li><li>Coordinate with technical teams to ensure requirements are correctly implemented.</li><li>Maintain requirement traceability and ensure scope alignment throughout the project lifecycle.</li><li>Prepare user guides, process documentation, and knowledge-transfer materials where required.</li></ul>"
+    }
+  },
+  "V101087": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101087",
+      "position_title": "Java Full Stack Developer",
+      "designation": "Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 4,
+      "max_experience": 5,
+      "no_of_position": "2",
+      "primary_skills": "JAVA 8+, SPRING BOOT, MICROSERVICES, REST APIS, POSTGRESQL, SPRING DATA JPA, HIBERNATE, SQL, GIT, JENKINS",
+      "secondary_skills": "",
+      "job_description": "<p>We are looking for a <strong>Java Full Stack Developer with 4 years of experience</strong> to design, develop, and maintain scalable web applications. The candidate should have strong expertise in <strong>Java, Spring Boot, REST APIs, and either Angular or React</strong>, with good knowledge of database integration, microservices, and Agile development.<br><br><strong>Key Primary Skillset:</strong></p><ul><li><strong>Java 8/11/17+</strong></li><li><strong>Spring Boot &amp; Spring Framework</strong></li><li><strong>RESTful APIs &amp; Microservices</strong></li><li><strong>Angular or React</strong> – strong hands-on experience</li><li><strong>JPA / Hibernate</strong></li><li><strong>SQL – MySQL / PostgreSQL / Oracle</strong></li><li><strong>Git &amp; CI/CD</strong></li><li><strong>Unit Testing – JUnit / Mockito</strong></li><li><strong>API Testing – Postman</strong></li><li><strong>Agile / Scrum</strong></li></ul>"
+    }
+  },
+  "V101058": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101058",
+      "position_title": "Core Life BA",
+      "designation": "Project Lead",
+      "work_location": "Coimbatore-India",
+      "min_experience": 7,
+      "max_experience": 12,
+      "no_of_position": "1",
+      "primary_skills": "LIFE INSURANCE BUSINESS ANALYST,INSURANCE DOMAIN,LIFE INSURANCE INDUSTRY EXPOSURE (POLICY ADMINISTRATION, UNDERWRITING, CLAIMS)",
+      "secondary_skills": "MS OFFICE, POWERPOINT, WORD AND BASIC DATA VISUALIZATION, CLOUD, AI-ML SKILLS",
+      "job_description": "<p><strong>NSure Presales - Business Analyst – Life Insurance</strong></p><p><strong>Role Purpose:&nbsp;</strong>Support Life Insurance presales through requirement analysis, process documentation, solution mapping, proposals preparation, demonstrations and workshops.</p><p><strong>Key Responsibilities</strong></p><ul><li>Good Knowledge on Core System for Life Insurance&nbsp;and functional modules like Product Configuration, New Business, Policy Services, Claims, Re Insurance, Agency Management etc</li><li>Knowledge on digital solutions like B2B &amp; B2C Portals</li><li>Gather, analyze and document customer requirements.</li><li>Understand the RFP/RFI/ solution requirement and conduct clarification sessions.</li><li>Prepare business requirements and functional specifications for proposals.</li><li>Develop process flows, use cases and requirement traceability.</li><li>Map customer requirements to product functionality.</li><li>Support RFP/RFI responses, proposal preparation, demonstrations and PoCs.</li><li>Identify gaps, assumptions, dependencies and open questions.</li><li>Coordinate with the Technical and Product teams.</li><li>Support estimation and scope definition.</li><li>Maintain reusable Life Insurance presales content.</li><li>Use of AI in the tasks is preferrable</li><li>Knowledge on Health Insurance is added advantage</li></ul><p><strong>Key Deliverables</strong></p><ul><li>Business requirements</li><li>Functional specifications</li><li>Process flows</li><li>Use cases</li><li>Traceability matrix</li><li>RFP responses</li><li>Demo scenarios</li><li>Gap analysis</li><li>Presales documentation</li></ul><p><strong>Experience &amp; Qualifications</strong></p><ul><li>8-12 years of Life Insurance business analysis experience.</li><li>Good understanding of Life Insurance processes.</li><li>Strong requirements gathering, analytical and documentation skills.</li><li>Good knowledge of PowerPoint, Excel and Word.</li><li>Presales experience is an advantage.</li></ul><p>&nbsp;</p>"
+    }
+  },
+  "V101059": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101059",
+      "position_title": "Techno Functional Lead for NSure Presales",
+      "designation": "Project Lead",
+      "work_location": "Coimbatore-India",
+      "min_experience": 7,
+      "max_experience": 12,
+      "no_of_position": "1",
+      "primary_skills": "GENERAL INSURANCE KNOWLEDGE,SOLUTION ARCHITECT",
+      "secondary_skills": "",
+      "job_description": "<p><strong>Techno Functional Consultant – General Insurance</strong></p><p><strong>Role Purpose:&nbsp;</strong>Provide General Insurance/P&amp;C domain and technology expertise for presales engagements and act as the primary solutioning resource for General Insurance opportunities.</p><p><strong>Key Responsibilities</strong></p><ul><li>Analyze General Insurance business requirements from RFP/RFI and customer processes on Core System and front end solutions</li><li>Knowledge on Middle Office engine with Rules and Workflows</li><li>Technical knowledge on Java, Springboot, RDBMS Databases, Cloud services, API</li><li>Participate in discovery workshops and requirement discussions.</li><li>Provide expertise across Motor, Non-Motor, Property, Marine, Travel, Health, Commercial Lines, Policy Administration, Underwriting, Claims, Renewals, Endorsements, Commissions, Reinsurance, Payments and Finance.</li><li>Map requirements to product capabilities and define standard/configurable/custom solutions.</li><li>Good understanding and knowledge on the technical and architecture of the solution</li><li>Conduct product demonstrations and prepare business scenarios.</li><li>Co-ordinate with Sales, product tech team and infra team</li><li>Ability to prepare the implementation plan for Water fall, Agile and Hybrid</li><li>Support RFP/RFI responses, PoCs and gap analysis.</li><li>Define integration requirements with external systems and digital channels.</li><li>Work with BAs on functional documentation.</li><li>Coordinate with Product, Architecture, Engineering and Delivery.</li><li>Support estimation and implementation planning.</li></ul><p><strong>Key Deliverables</strong></p><ul><li>General Insurance solution design</li><li>Solution, technical and integration architecture</li><li>Process flows</li><li>Product demonstrations</li><li>RFP/RFI responses</li><li>Gap analysis</li><li>PoC scenarios</li><li>Integration requirements</li><li>Estimation inputs</li><li>Workshop materials</li></ul><p><strong>Experience &amp; Qualifications</strong></p><ul><li>7–12 years of General Insurance/P&amp;C experience.</li><li>Strong knowledge of Policy Administration, Underwriting, Claims and Billing.</li><li>Experience with insurance software platforms.</li><li>Understanding of APIs, integrations, digital platforms and enterprise architecture.</li><li>Presales/consulting experience preferred.</li><li>Excellent communication and presentation skills.</li></ul>"
+    }
+  },
+  "V101060": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101060",
+      "position_title": "Life Insurance Techno Functional Lead - NSure Presales",
+      "designation": "Project Lead",
+      "work_location": "Coimbatore-India",
+      "min_experience": 7,
+      "max_experience": 12,
+      "no_of_position": "1",
+      "primary_skills": "GENERAL INSURANCE KNOWLEDGE,SOLUTION ARCHITECT",
+      "secondary_skills": "",
+      "job_description": "<p><strong>NSure Presales - Techno Functional Consultant – Life Insurance</strong></p><p><strong>Role Purpose:&nbsp;</strong>Technical knowledge with<strong> </strong>deep Life Insurance domain and product expertise and translate customer requirements into viable software solutions during presales.</p><p><strong>Key Responsibilities</strong></p><ul><li>Analyze General Insurance business requirements from RFP/RFI and customer processes on Core System and front end solutions</li><li>Knowledge on Middle Office engine with Rules and Workflows</li><li>Technical knowledge on Java, Springboot, RDBMS Databases, Cloud services, API</li><li>Lead or participate in discovery sessions and customer workshops.</li><li>Provide expertise across New Business, Product Configuration, Underwriting, Policy Administration, Premiums, Renewals, Endorsements, Claims, Payments, Commissions, Reinsurance and Policy Servicing.</li><li>Map requirements to product capabilities and identify configuration, customization and gaps.</li><li>Good understanding and knowledge on the technical and architecture of the solution</li><li>Co-ordinate with product tech team and infra team</li><li>Ability to prepare the implementation plan for Water fall, Agile and Hybrid</li><li>Design solution flows and functional architecture.</li><li>Conduct product demonstrations and scenario walkthroughs.</li><li>Prepare Technical RFP/RFI responses, Presentations and support PoCs.</li><li>Work with BAs on requirements and documentation.</li><li>Coordinate feasibility with Sales, Product and Technology teams.</li><li>Support estimation, implementation planning and risk identification.</li></ul><p><strong>Key Deliverables</strong></p><ul><li>Life Insurance solution design</li><li>Solution, technical and integration architecture</li><li>Requirement mapping</li><li>Product demonstrations</li><li>RFP/RFI responses</li><li>Process flows</li><li>PoC scenarios</li><li>Gap analysis</li><li>Estimation inputs</li><li>Workshop outputs</li></ul><p><strong>Experience &amp; Qualifications</strong></p><ul><li>7–12 years of Life Insurance domain experience.</li><li>Experience with Life Insurance policy administration systems.</li><li>Strong understanding of Life Insurance products and processes.</li><li>Good understanding of tech stack, APIs, integrations and enterprise applications architectures.</li><li>Presales/consulting experience preferred.</li><li>Strong customer-facing and presentation skills.</li></ul><p>&nbsp;</p>"
+    }
+  },
+  "V101047": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101047",
+      "position_title": "Project Lead",
+      "designation": "Project Lead",
+      "work_location": "Coimbatore-India",
+      "min_experience": 10,
+      "max_experience": 15,
+      "no_of_position": "1",
+      "primary_skills": "PYTHON,POSTGRESQL,AI & MACHINE LEARNING,GEN AI,* NODE.JS / PYTHON * ⁠AWS / GCP FAMILIARITY * ⁠PGSQL / MONGODB,AZURE AI FOUNDARY",
+      "secondary_skills": "",
+      "job_description": "<ul><li>Architecture &amp; System Design: Evaluate and select appropriate AI infrastructure, including LLM orchestration frameworks, vector databases, and cloud compute options.</li><li>Technical Sprint Leadership: Lead Agile/Scrum ceremonies for cross-functional teams of data scientists, MLOps, and software engineers.</li><li>Code &amp; Pipeline Guardrails: Establish best practices for code quality, model version control, and continuous integration/continuous deployment (CI/CD) pipelines.</li><li>Resource Optimization: Monitor and optimize compute resource utilization, API latency, token usage, and inference costs.</li><li>Risk &amp; Performance Auditing: Evaluate model drift, bias, and technical debt while implementing robust validation and monitoring systems.</li></ul>"
+    }
+  },
+  "V101048": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101048",
+      "position_title": "AI Software Engineer",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 7,
+      "max_experience": 12,
+      "no_of_position": "4",
+      "primary_skills": "PYTHON,C++",
+      "secondary_skills": "",
+      "job_description": "<p>Key Responsibilities</p><ul><li>Model Development: Design, train, and fine-tune machine learning and deep learning models.</li><li>Pipeline Engineering: Build efficient data pipelines to ingest, clean, and preprocess large datasets.</li><li>Deployment &amp; MLOps: Deploy models to cloud infrastructure and set up continuous monitoring for performance.</li><li>System Integration: Write clean, production-grade code to integrate models into software applications.</li><li>Optimization: Optimize model inference speed, memory footprint, and compute costs.</li></ul>"
+    }
+  },
+  "V101013": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101013",
+      "position_title": "Nsure Inside Sales",
+      "designation": "Senior Associate",
+      "work_location": "mumbai-India",
+      "min_experience": 5,
+      "max_experience": 8,
+      "no_of_position": "1",
+      "primary_skills": "INSIDE SALES",
+      "secondary_skills": "",
+      "job_description": "<p>Nsure Inside Sales from India for South east asia markets.</p>"
+    }
+  },
+  "V101006": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V101006",
+      "position_title": "Oracle Apex Senior Developer",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 4,
+      "max_experience": 7,
+      "no_of_position": "3",
+      "primary_skills": "ORACLE PL/SQL,ORACLE APEX – APPLICATION DEVELOPMENT,",
+      "secondary_skills": "",
+      "job_description": "<h3>Job Summary</h3><p>We are looking for an experienced <strong>Oracle APEX Developer</strong> to design, develop, maintain, and enhance enterprise applications using Oracle APEX, SQL, and PL/SQL. The candidate should have strong experience in Oracle Database, REST API integration, application development, and performance optimization.</p><h3>Key Responsibilities</h3><ul><li>Design and develop responsive web applications using <strong>Oracle APEX</strong>.</li><li>Develop and maintain APEX pages, forms, reports, interactive grids, dashboards, and workflows.</li><li>Write efficient and optimized <strong>SQL queries and PL/SQL programs</strong>.</li><li>Develop stored procedures, functions, packages, triggers, and database objects.</li><li>Integrate APEX applications with external systems using <strong>REST APIs and ORDS</strong>.</li><li>Implement validations, dynamic actions, business rules, and custom application logic.</li><li>Customize APEX UI using <strong>HTML, CSS, JavaScript, and jQuery</strong>.</li><li>Implement application security, authentication, authorization, and role-based access.</li><li>Perform application and database <strong>performance tuning and optimization</strong>.</li><li>Troubleshoot and resolve application, database, and production issues.</li><li>Work closely with business analysts, functional teams, and other developers to understand requirements.</li><li>Participate in application testing, deployment, and production support.</li><li>Maintain technical documentation and follow development and deployment standards.</li></ul>"
+    }
+  },
+  "V100965": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100965",
+      "position_title": "Business Analyst",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 8,
+      "max_experience": 10,
+      "no_of_position": "2",
+      "primary_skills": "DOCUMENTATION,GENERAL INSURANCE KNOWLEDGE",
+      "secondary_skills": "INTEGRATION KNOWLEDGE,PRODUCT IMPLEMENTATION",
+      "job_description": "<p>* Gather, analyze, and document business requirements; prepare BRDs, FSDs, user stories, use cases, and business process flows<br>* Collaborate with business stakeholders to translate business requirements into functional solutions<br>* Prepare and review Functional Specification Documents (FSDs) and support Technical Specification Document (TSD) preparation with the technical team.<br>* Conduct requirement workshops, gap analysis, impact analysis, and define business rules, workflows, and product configurations.<br>* Support end-to-end implementation activities, including requirement validation, system configuration, UAT, production deployment, and post-go-live support.<br>* Work on system integrations by defining interface requirements, API specifications, data mapping, and integration workflows with internal and external systems<br>* Ensure complete requirement traceability, documentation quality, change management, and timely business sign-offs throughout the project lifecycle<br>* Provide General Insurance domain expertise, mentor junior Business Analysts, and coordinate with cross-functional teams to ensure successful project delivery</p>"
+    }
+  },
+  "V100964": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100964",
+      "position_title": "Developer",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 6,
+      "max_experience": 10,
+      "no_of_position": "4",
+      "primary_skills": "JAVA,ANGULAR,SPRINGBOOT",
+      "secondary_skills": "SYSTEM INTEGRATION KNOWLEDGE,DATABASE,SQL",
+      "job_description": "<p>* 6+ years of hands-on experience as a Java Full Stack Developer with Java, Spring Boot, and Angular<br>* Strong expertise in developing RESTful APIs and Microservices architecture<br>* Good understanding of the Spring Framework<br>* Basic understanding of Database concepts, SQL, and query optimization<br>* Strong troubleshooting, debugging, and performance optimization skills<br>* Good in analytical, problem-solving, and communication skills<br>* Insurance domain experience is an added advantage<br>* Analyze business requirements and translate them into robust technical solutions<br>* Ensure adherence to coding standards, security guidelines, and development best practices<br>* Flexibility to support clients during critical business hours and travel when required<br>&nbsp;</p>"
+    }
+  },
+  "V100963": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100963",
+      "position_title": "Project Lead",
+      "designation": "Project Lead",
+      "work_location": "Coimbatore-India",
+      "min_experience": 10,
+      "max_experience": 15,
+      "no_of_position": "2",
+      "primary_skills": "JAVA,ANGULAR,SPRINGBOOT",
+      "secondary_skills": "DATABASE,SQL",
+      "job_description": "<p>* 10+ years of experience in Java Full Stack Development with expertise in Java, Spring Boot, Angular, REST APIs, and Microservices<br>* Proven experience in leading development teams and delivering enterprise-scale applications<br>* Experience in mentoring developers and driving technical excellence within the team<br>* Good understanding of system architecture, design patterns, and secure application development<br>* Experience in database design, SQL, query optimization, and performance tuning<br>* Experience with CI/CD process, Git, code review practices, and Agile/Scrum methodologies<br>* Strong analytical, problem-solving, leadership, and stakeholder communication skills<br>* Insurance domain experience is preferred<br>* Coordinate with cross-functional teams, including QA, DevOps, and Infrastructure, for successful project delivery<br>* Support production releases, client discussions, and critical business activities as required<br>* Flexibility to support clients during critical business hours and travel when required.</p>"
+    }
+  },
+  "V100953": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100953",
+      "position_title": "Senior Associate",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 4,
+      "max_experience": 5,
+      "no_of_position": "1",
+      "primary_skills": "GENERAL INSURANCE,BUSINESS ANALYST",
+      "secondary_skills": "GOOD COMMUNICATION SKILL,CLIENT SUPPORT,PRODUCT IMPLEMENTATION",
+      "job_description": "<p>1. Requirement Elicitation: Gather, analyze, and document clear business and technical requirements from stakeholders for core general insurance systems, including policy administration, claims, finance &amp; reports.<br>2. Process Mapping: Define system requirements for auto rating engines, automated underwriting rules, and claim processing workflows<br>3. System Integration: Collaborate closely with IT developers and QA teams to translate business needs into functional specifications, ensuring seamless integration of insurance platforms and digital portals.<br>4. Testing &amp; Validation: Define testing strategies, create comprehensive User Acceptance Testing (UAT) scenarios, and lead business users through execution to validate system delivery against business goals.<br>5. Regulatory Compliance: Ensure all technology solutions and business workflows comply with current statutory insurance regulations, data privacy laws, and corporate governance standards.</p><p>6. Minimum 4 year of General Insurance domain experience with exposure to Policy, Claims, Underwriting, Finance &amp; daily operation report modules.<br>7. 1 or 2 client implementation expierience as an BA will be an added advantage.</p><p>8. Good Communication skill.</p>"
+    }
+  },
+  "V100954": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100954",
+      "position_title": "Business Analyst L1 - Life Insurance",
+      "designation": "Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 2,
+      "max_experience": 5,
+      "no_of_position": "3",
+      "primary_skills": "L1 SUPPORT,INSURANCE DOMAIN,SDLC,PROJECT COORDINATION,CLIENT HANDLING,STAKEHOLDER MANAGEMENT,LIFE INSURANCE BUSINESS ANALYST",
+      "secondary_skills": "",
+      "job_description": "<p>Business Analyst - Life Insurance Domain with minimum 2 to 3 years experience for handling L1 Support<br>Client Co-ordination&nbsp;<br>Project Co-Ordinator&nbsp;<br>Insurance Application<br>SDLC Process<br>Business Operations</p>"
+    }
+  },
+  "V100945": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100945",
+      "position_title": ".Net Senior Associate",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 9,
+      "max_experience": 12,
+      "no_of_position": "4",
+      "primary_skills": ".NET,SQL SERVER,AWS,AKS,NO SQL,KUBERNETES,MPP DATABASE",
+      "secondary_skills": "",
+      "job_description": "<h2>Job Description – Senior Associate ( Platform Engineer)</h2><p><strong>Job Title:</strong> Senior Associate – Backend Engineering<br><strong>Experience:</strong> 8–12 Years<br><strong>Location:</strong> South India (Remote)<br><strong>Employment Type:</strong> Full-Time</p><h2>About the Role</h2><p>We are seeking a highly skilled <strong>Senior Associate</strong> with <strong>8–12 years of experience</strong> in designing, developing, and supporting enterprise-grade applications. The ideal candidate should have strong expertise in <strong>.NET technologies</strong>, <strong>SQL Server</strong>, <strong>NoSQL databases</strong>, <strong>cloud-native application development</strong>, and <strong>container orchestration platforms</strong>. This role requires excellent communication skills, strong analytical abilities, and the capability to collaborate with global teams while mentoring peer developers.</p><h2>Key Responsibilities</h2><p>Design, develop, and maintain scalable, high-performance enterprise applications using the Microsoft .NET technology stack.</p><p>Build and optimize RESTful APIs and microservices for cloud-native applications.</p><p>Develop efficient database solutions using SQL Server, NoSQL databases, and MPP (Massively Parallel Processing) databases.</p><p>Design scalable data models and optimize complex SQL queries, stored procedures, and indexing strategies.</p><p>Deploy, monitor, and manage applications using Kubernetes and Azure Kubernetes Service (AKS).</p><p>Work with AWS cloud services for application deployment, monitoring, storage, and infrastructure management.</p><p>Troubleshoot production issues, identify root causes, and implement long-term solutions.</p><p>Participate in architecture discussions and contribute to technical design decisions.</p><p>Collaborate with cross-functional teams including Product, QA, DevOps, and Business stakeholders.</p><p>Review code, enforce coding standards, and mentor junior engineers.</p><p>Ensure applications follow security, performance, scalability, and reliability best practices.</p><p>Participate in Agile ceremonies including sprint planning, backlog refinement, and retrospectives.</p><h2>Required Skills</h2><h3>Technical Skills</h3><p>8–12 years of software development experience.</p><p>Strong experience with:</p><p>C#</p><p>.NET Framework / .NET Core / .NET 6+</p><p>ASP.NET Core</p><p>Web API</p><p>Microservices Architecture</p><p>Strong expertise in Microsoft SQL Server</p><p>Query optimization</p><p>Stored Procedures</p><p>Performance tuning</p><p>Indexing</p><p>Experience with NoSQL databases such as:</p><p>MongoDB</p><p>Cassandra</p><p>DynamoDB</p><p>Cosmos DB (preferred)</p><p>Experience with MPP databases such as:</p><p>Amazon Redshift</p><p>Azure Synapse Analytics</p><p>Snowflake</p><p>Greenplum</p><p>Vertica</p><p>Hands-on experience with:</p><p>Kubernetes</p><p>Azure Kubernetes Service (AKS)</p><p>Good working knowledge of AWS services including:</p><p>EC2</p><p>S3</p><p>RDS</p><p>IAM</p><p>CloudWatch</p><p>EKS (preferred)</p><p>Experience with Docker and containerization.</p><p>Familiarity with CI/CD pipelines using Azure DevOps, GitHub Actions, or Jenkins.</p><p>Strong understanding of distributed systems and cloud-native application architecture.</p><p>Experience with Git version control.</p><h2>Preferred Qualifications</h2><p>Experience with event-driven architecture (Kafka, RabbitMQ, Azure Service Bus, or AWS SQS/SNS).</p><p>Knowledge of Infrastructure as Code (Terraform or CloudFormation).</p><p>Experience with monitoring and observability tools such as Prometheus, Grafana, ELK, or Application Insights.</p><p>Exposure to DevSecOps practices.</p><p>Microsoft Azure or AWS certifications are a plus.</p><h2>Soft Skills</h2><p>Excellent verbal and written communication skills.</p><p>Strong stakeholder management and client-facing communication.</p><p>Ability to explain technical concepts to both technical and non-technical audiences.</p><p>Excellent problem-solving and analytical thinking.</p><p>Self-driven with the ability to work independently.</p><p>Strong mentoring and leadership capabilities.</p><p>Ability to thrive in a fast-paced Agile environment.</p><h2>Educational Qualification</h2><p>Bachelor's or Master's degree in Computer Science, Information Technology, Engineering, or a related field.</p><h2>What We're Looking For</h2><p>The ideal candidate is a technically strong engineer who combines deep backend development expertise with modern cloud and container technologies. They should be capable of driving technical discussions, delivering high-quality solutions, mentoring team members, and collaborating effectively with global stakeholders while ensuring scalability, reliability, and performance of enterprise applications.</p>"
+    }
+  },
+  "V100889": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100889",
+      "position_title": "Sr.Associate",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 5,
+      "max_experience": 8,
+      "no_of_position": "3",
+      "primary_skills": "JAVA,ANGULAR,SPRINGBOOT,POSTGRESQL",
+      "secondary_skills": "",
+      "job_description": "<p>We are seeking a <strong>Senior Associate – Full Stack Developer</strong> with strong expertise in <strong>Java, Spring Boot, Angular, and PostgreSQL</strong> to design, develop, and maintain scalable, high-performance enterprise applications.<br><br>The ideal candidate should demonstrate ownership, technical leadership, and a proactive approach to solving complex business and technical challenges while delivering high-quality software solutions within project timelines.</p>"
+    }
+  },
+  "V100887": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100887",
+      "position_title": "Project Manager",
+      "designation": "Project Manager",
+      "work_location": "Coimbatore-India",
+      "min_experience": 8,
+      "max_experience": 20,
+      "no_of_position": "1",
+      "primary_skills": "LIFE INSURANCE - IMPLEMENTOR,PROJECT MANAGEMENT & EXECUTION,STAKEHOLDER & CLIENT MANAGEMENT,AGILE & SDLC MANAGEMENT,PROJECT MANAGEMENT,AGILE & SCRUM",
+      "secondary_skills": "PRODUCT IMPLEMENTATION",
+      "job_description": "<p>8-20 years of experience with 5+ years in project management, preferably in the financial services industry / Understanding of Insurance domain</p><p>Strong proficiency in Agile, Scrum, Waterfall methodologies</p><p>PMP, PRINCE2, SAFe, or Agile certification</p><p>Proficiency in project management tools such as JIRA, Zoho, MSP or equivalent</p><p>Lead project lifecycles from initiation to closure, using methodologies like Agile/Scrum or Waterfall.</p><p>Strong understanding of change management principles, including assessment, planning, execution, monitoring &amp; control phases.</p><p>Experience in managing large-scale projects involving complex technical requirements using Agile/Scrum framework</p><p>Work with the business and project team to elicit, validate, and categorize requirements and document data flows</p><p>Lead projects from requirements definition through deployment, identifying schedules, scopes, budget estimations, and implementation plans.</p><p>Own client relationships and executive-level communications, including status cadences, business reviews, and deliverable acceptance.</p><p>Help manage the cross-functional strategic planning and business planning process, leading conversations with key stakeholders to develop concepts for strategic initiatives, and developing those into detailed program/project plans (including roadmaps, funding planning, resource planning and hiring goals).</p><p>Proficiency in project management tools such as JIRA, Zoho, MSP or equivalent</p><p>Manage multiple projects simultaneously, ensuring timely completion and meeting client expectations.</p><p>Develop and implement project plans, resource allocation, and risk management strategies.</p><p>Collaborate with cross-functional teams to identify business requirements and develop solutions.</p><p>Ensure compliance with organizational processes, policies, and procedures.</p><p>Identify potential improvement opportunities and take responsibility to drive them to completion.<br>&nbsp;</p>"
+    }
+  },
+  "V100819": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100819",
+      "position_title": "Associate",
+      "designation": "Senior Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 6,
+      "max_experience": 8,
+      "no_of_position": "1",
+      "primary_skills": "JAVA,ANGULAR",
+      "secondary_skills": "PL/SQL",
+      "job_description": "<p>- Design and develop applications utilizing Java and Angular technologies<br>- Analyze and translate business requirements into technical specifications.<br>- Conduct code reviews to ensure adherence to best practices and maintain high-quality standards.<br>- Knowledge in JIRA and GIT for version control.<br>- Hands-on experience in developing and integrating APIs<br>- Strong understanding of UI design principles and front-end development<br>- Minimum 1 year of Insurance domain experience with exposure will be added advantage<br>- Strong analytical, troubleshooting, and communication skills.</p>"
+    }
+  },
+  "V100770": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100770",
+      "position_title": "Business Analyst",
+      "designation": "Associate",
+      "work_location": "Coimbatore-India",
+      "min_experience": 2,
+      "max_experience": 3,
+      "no_of_position": "5",
+      "primary_skills": "GENERAL INSURANCE,BUSINESS ANALYST,STAKEHOLDER & CLIENT MANAGEMENT",
+      "secondary_skills": "",
+      "job_description": "<p>Business Analyst - General Insurance Domain with minimum 3 years experience for handling L1 Support<br>Client Co-ordination&nbsp;<br>Project Co-Ordinator&nbsp;<br>Insurance Application<br>SDLC Process<br>Business Operations&nbsp;</p>"
+    }
+  },
+  "V100427": {
+    "status": 200,
+    "message": "OK",
+    "response": {
+      "vacancy_number": "V100427",
+      "position_title": "Microsoft - Solution Architect",
+      "designation": "Solution Architect",
+      "work_location": "Coimbatore-India",
+      "min_experience": 6,
+      "max_experience": 9,
+      "no_of_position": "1",
+      "primary_skills": "POWER APPS,AZURE, DEVSECOPS, CLOUD,AZURE,UIPATH, POWER  AUTOMATE, PROJECT MANAGERMENT,MICROSOFT DYNAMICS 365 CRM,MICROSOFT DYNAMICS 365 CRM (SALES/CUSTOMER SERVICE).,POWER FX",
+      "secondary_skills": "",
+      "job_description": "<p><strong>Job Summary:</strong></p><p>We are looking for a <strong>highly experienced and customer-facing Solution Architect</strong> with deep technical knowledge in <strong>Microsoft Azure</strong>, <strong>Power Platform (Power Apps, Power Automate, Power BI, Power Pages)</strong>, and <strong>Dynamics 365 CRM</strong>. The ideal candidate should be capable of leading complex digital transformation engagements, shaping technical solutions, driving architecture decisions, and guiding teams through successful delivery and governance.</p><p><strong>Key Responsibilities:</strong></p><p><strong>Solution Architecture &amp; Design:</strong></p><ul><li>Lead the end-to-end solution design across Power Platform, Azure, and Dynamics 365 CRM.</li><li>Translate business requirements into scalable, secure, and performant technical solutions.</li><li>Develop architecture blueprints, system integration diagrams, security &amp; access models.</li><li>Define reusable components, design patterns, and frameworks for application development.</li></ul><p><strong>Power Platform &amp; CRM Expertise:</strong></p><ul><li>Architect and govern enterprise-grade <strong>Power Apps</strong> (Canvas &amp; Model-driven), <strong>Power Pages</strong>, <strong>Power Automate workflows</strong>, <strong>AI Builder</strong>, <strong>Dataverse</strong>, and <strong>Power BI dashboards</strong>.</li><li>Design customizations, extensions, plugins, workflows, and integrations in <strong>Dynamics 365 Customer Engagement (Sales, Service, Marketing, Field Service)</strong>.</li><li>Drive <strong>ALM (Application Lifecycle Management)</strong> using Azure DevOps and Git.</li></ul><p><strong>Azure Cloud:</strong></p><ul><li>Architect cloud-native integrations using <strong>Azure Functions, Logic Apps, API Management, Azure Service Bus, Key Vault, App Insights, etc.</strong></li><li>Design secure, scalable, and resilient cloud-hosted environments.</li><li>Ensure compliance with Azure governance, networking, and identity (AAD/B2C).</li></ul><p><strong>&nbsp;AI &amp; Intelligent Automation</strong></p><ul><li>Exposure to integrating with <strong>AI/ML</strong>, <strong>Chatbots (Copilot Studio)</strong>, and <strong>Document Automation (AI Builder / Azure Form Recognizer / Azure OpenAI)</strong> is desirable.</li></ul><p><strong>Client Engagement &amp; Presales:</strong></p><ul><li>Collaborate with sales/pre-sales teams to craft winning proposals, solution demos, RFP responses, and estimations.</li><li>Conduct workshops and technical discovery sessions with client stakeholders.</li><li>Support go-to-market strategy and accelerators with reusable assets.</li></ul><p><strong>Mentoring &amp; Governance:</strong></p><ul><li>Guide development teams with best practices, coding standards, and design reviews.</li><li>Govern Power Platform environments, license utilization, security model, and DLP policies.</li><li>Conduct UAT support, performance optimization, and solution validation.</li></ul><p>&nbsp;</p><p><strong>✅ Mandatory Skills:</strong></p><figure class=\"table\"><table><thead><tr><th><strong>Skill Area</strong></th><th><strong>Required Expertise</strong></th></tr></thead><tbody><tr><td><strong>Power Platform</strong></td><td>Power Apps (Canvas + Model), Power Automate (Cloud/Desktop), Power Pages, Dataverse, AI Builder</td></tr><tr><td><strong>Dynamics 365 CRM</strong></td><td>Sales, Customer Service, Plugins, Workflows, Entity Model, Solution Deployment</td></tr><tr><td><strong>Azure</strong></td><td>Azure Logic Apps, Functions, API Management, Service Bus, AD B2C, Key Vault</td></tr><tr><td><strong>Integration</strong></td><td>REST/SOAP APIs, SharePoint, SQL, Excel, SAP/Oracle (preferred)</td></tr><tr><td><strong>Security</strong></td><td>Azure AD, Role-Based Access Control (RBAC), OAuth, Environment Security</td></tr><tr><td><strong>DevOps</strong></td><td>Azure DevOps Pipelines, Git, CI/CD, Power Platform CLI</td></tr></tbody></table></figure><p>&nbsp;</p><p><strong>Preferred Candidate Profile:</strong></p><ul><li>Microsoft Certified: <strong>PL-600 / PL-400 / PL-200 / AZ-305 / MB-600</strong></li><li>Excellent verbal and written communication skills</li><li>Strong stakeholder management and presentation abilities</li><li>Experience working in Agile/Scrum-based delivery</li><li>Past experience in BFSI/Insurance/Manufacturing clients a plus</li></ul><p><strong>Additional Advantages:</strong></p><ul><li>Experience with <strong>agentic/LLM automation</strong> (e.g., Copilot Studio, Azure OpenAI).</li><li>Familiarity with <strong>UiPath / ABBYY / RPA tools</strong> is a plus.</li><li>Hands-on with <strong>Data migration</strong>, <strong>ETL</strong>, <strong>DevOps</strong>.</li><li>Background in legacy system modernization.</li></ul><p>&nbsp;</p>"
+    }
+  }
+}

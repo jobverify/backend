@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "timeStamp": "2026-10-24T17:34:11+0000",
+  "totalRecords": 1,
+  "data": [
+    {
+      "actions": [],
+      "items": [
+        {
+          "fields": {
+            "id": 33817,
+            "reqId": "req33817",
+            "title": "Senior Engineer – Operations and Maintenance-Ecover ROC",
+            "location": "Nagpur",
+            "ad": "<p class=\"header1 header_job_title\"><font size=\"3\"><strong>Linde South Asia Services Pvt. Ltd. | Business Area: Operations<br></strong></font><span style=\"color: var(--color-blue-header); font-family: var(--font-family-Linde-bold); font-size: 2rem;\">Senior Engineer – Operations and Maintenance-Ecover ROC</span><br><font size=\"3\"><strong>Nagpur, Maharashtra, India | Working Scheme: On-Site | Job Type: Fixed / Limited term contract / LTC / Associate | Reference Code: req33817</strong></font></p>\n<ul><li>In this role, you will be responsible for participating in daily field routine jobs and inspection of Mechanical &nbsp;issue. Also, during any abnormalities highlight the issue with reliability team and take corrective actions. Updating in EAM book &amp; reporting in LiDAP.</li><li>Further, you will be responsible for day-to-day plant operation, production etc. preparation DPR.</li><li>Furthermore, you will be responsible for any maintenance activities in the field, discussed with the maintenance people, identify the hazard related to that job, purging (if required), marking that line/ equipment’s in P&amp;ID, maintaining LOTO system for isolation after zero energy verification and then after PTW issued.</li><li>Moreover, you will be responsible of different PT, FT calibration and record keeping.</li><li>Additionally, you will be responsible for vendor management.</li><li>In this role you will be responsible for spare procurement. Handling of SAP and SRM.</li><li>Further you will be responsible for maintaining all safety standards.</li></ul>",
+            "description": "In this role, you will be responsible for participating in daily field routine jobs and inspection of Mechanical &nbsp;issue. Also, during any abnormalities highlight the issue with reliability team and take corrective actions. Updating in EAM book &amp; reporting in LiDAP.Further, you will be responsible for day-to-day plant operation, production etc. preparation DPR.Furthermore, you will be responsible for any maintenance activities in the field, discussed with the maintenance people, identify the hazard related to that job, purging (if required), marking that line/ equipment’s in P&amp;ID, maintaining LOTO system for isolation after zero energy verification and then after PTW issued.Moreover, you will be responsible of different PT, FT calibration and record keeping.Additionally, you will be responsible for vendor management.In this role you will be responsible for spare procurement. Handling of SAP and SRM.Further you will be responsible for maintaining all safety standards."
+          },
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

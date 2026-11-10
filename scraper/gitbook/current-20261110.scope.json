@@ -1,0 +1,72 @@
+{
+  "provenance": {
+    "capturedAt": "2026-11-10T01:25:14.448Z",
+    "completedAt": "2026-11-10T01:25:37.170Z",
+    "fixture": "fixtures/current-http-20261110.json.gz",
+    "fixtureSha256": "b0e0a142dc86f9ee583097e287223ac1023b962dce0d26a7a02673717c819941",
+    "corporateBodySha256": "184feec5ee43d1da6e00d37588d04e647656e60d00d8c3cfae7d036b292816c6",
+    "binding": "Finite exact current corporate hiring declaration profile and unchanged ten declared main/preload programs; independently reconciled native organization, employer and full role records. Full company scope and renderer visibility remain unverified; partial only.",
+    "review": "All ten declared program URLs and complete bytes are identical to the Nov07 reviewed profile in both opening and closing responses. Corporate current role IDs match all three native listed role models. Exact current Ashby Vite manifest/bootstrap is retained without interpretation or release normalization; all six role responses have the same full executable-tail hash. No country or cleanup authority is inferred."
+  },
+  "scopeSha256": "6866a7f5550051fc47103aac54fcd63eb53963578f49d1eaf0adaadd7229744f",
+  "nativeAppBootstrap": {
+    "sha256": "ad616d1734d2f2d862bf3b0c04e1a1d4acb243c2ef53eebdd3f391b369519fb5"
+  },
+  "corporateRoleIds": [
+    "531ab2e2-af70-4b26-805e-1b4554184fd6",
+    "5d3d7b3d-0a50-4728-a9cc-18cfd8b14adb",
+    "cfd51d34-61c7-47c6-af41-04818008fea2"
+  ],
+  "declaredPrograms": [
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/script_main.zoIqlaE2.mjs",
+      "sha256": "758af99a4f68ee2143c6f8feb573d6e2108d364ce46b703c208c2e0dbb6e801b",
+      "bytes": 17340
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/rolldown-runtime.CNOWq4Kh.mjs",
+      "sha256": "2d8d100f1a8f491dcf0b1adcd5d5f59a48dfd1683b8123c97785039b0e72e99d",
+      "bytes": 817
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/react.BQDVJODu.mjs",
+      "sha256": "266968918640b6d01091345f7cc03f3e40e394c10a38c688714c77a3459bd1c5",
+      "bytes": 145074
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/framer.C3YnPYgl.mjs",
+      "sha256": "6f61036dc8544b539b03f06a548a594d9f6a702469518095c4e13d0cb2cbe87f",
+      "bytes": 449372
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/motion.BfBj0Vkg.mjs",
+      "sha256": "6ded36067afe40332797f0b7eeb608263f8a8b293067d971e1c8b23629af82d6",
+      "bytes": 155658
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/toplevel-deps.AkkARife.mjs",
+      "sha256": "def3ff43f28e052d92177c49189f4131d13d69c879504a40fe19c4fcdcb4d92e",
+      "bytes": 411850
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/1VjPohRBK3whC-mmINQUjs2HeHP3TAuQki5KCKQqfkA.CqsTLgpu.mjs",
+      "sha256": "dfa5eaa3b8f60e29d74fa1b44159b3ab2c423fd4a450c8cd3f2df17d3275fc8d",
+      "bytes": 99686
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/shared.CIF94v_4.mjs",
+      "sha256": "efd024320c5312069dc95ff502abe7ae4c4011b2e2f0ef616fdff1fe7bf9d9fc",
+      "bytes": 636253
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/tVXXlDnVX.V1BdVfxB.mjs",
+      "sha256": "0de1ccd774f19dfc457a2dfe8124c0acc08b3bcb22d1d47606287c1d014b6d3b",
+      "bytes": 11689
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/N0GdP398w.Cmay8RJy.mjs",
+      "sha256": "39910c461c665e4096bb1da7798e8c88f4c5425a58b606558e01980023056a19",
+      "bytes": 928
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import {setTimeout as delay} from 'node:timers/promises'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {SOURCE,HOME,INDEX,API,HOST,canonical,need,parsed,hash,copy,corporateHome,indexRedirect,corporateIndex,corporateRole,nativePosting,readNativeRole} from './nativeRole.js'
 
 export const createNativeLyraScraper=(defaults={})=>({async run(passed={}){
@@ -14,9 +15,15 @@ export const createNativeLyraScraper=(defaults={})=>({async run(passed={}){
    unresolved:['company-recruitment-scope-unverified',...audit.failures.map(f=>f.message)],
    nativeInventoryReads:[{kind:'public-paginated-lever',surface:API,reportedTotal:audit.nativeRecords}]}})
   if(jobs.length)jobs[0].sourceNativeCollectionAudit={...copy(audit),responses:copy(receipts)}
+  if(audit.nativeRecords>0)attachSourceObservationEvidence(jobs,{
+   source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:audit.nativeRecords,
+   observedVacancyCount:audit.nativeRecords,sourceScopeComplete:false,
+  })
+  const heldReasons=[...new Set(audit.heldNativeRows.map(row=>String(row.reason).slice(0,320)))].slice(0,3)
+  const holds=audit.heldNativeRows.length?'; held-native-roles='+audit.heldNativeRows.length+'; hold-reasons='+heldReasons.join(' | '):''
   return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:HOME,firstParty:true,listingComplete:false,
    reportedTotal:null,indiaFacetCount:null,pagesFetched:receipts.length,verifiedAt:clock,
-   reason:'Full current own role models reconciled='+audit.nativeRoleClosingReconciled+'; company recruitment scope and cleanup remain unqualified'})
+   reason:'Full current own role models reconciled='+audit.nativeRoleClosingReconciled+holds+'; company recruitment scope and cleanup remain unqualified'})
  }
  if(cap===0)return finish([])
  const interval=options.minIntervalMs??1000

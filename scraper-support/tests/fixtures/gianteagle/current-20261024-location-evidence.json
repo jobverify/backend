@@ -1,0 +1,183 @@
+{
+  "source": "gianteagle",
+  "capturedAt": "2026-10-24T16:18:58.065Z",
+  "landingURL": "https://jobs.gianteagle.com/in/hi/search-results",
+  "reportedTotal": 10,
+  "listedRolesCaptured": 10,
+  "method": "Bounded read-only Playwright HTML and native model capture; selected role details only, no scraper execution or database writes",
+  "samples": [
+    {
+      "listing": {
+        "type": "Full time",
+        "descriptionTeaser": "As a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, devising lo...",
+        "state": "Karnātaka",
+        "brand": "Corporate",
+        "siteType": "external",
+        "multi_category": [
+          "Information Technology"
+        ],
+        "reqId": "390195",
+        "city": "",
+        "latitude": "13.00445",
+        "multi_location": [
+          "India Corporate Office"
+        ],
+        "address": "560045, Karnātaka, India",
+        "applyUrl": "https://gianteagle.wd503.myworkdayjobs.com/GEBExternalcareers/job/India-Corporate-Office/Engineer--Software_390195-1/apply",
+        "externalApply": false,
+        "cityState": "Karnātaka",
+        "country": "India",
+        "timeType": "Full time",
+        "visibilityType": "External",
+        "longitude": "77.31221",
+        "hiringManager": "Jon Berkowitz",
+        "jobId": "390195",
+        "locale": "hi_IN",
+        "title": "Engineer, Software",
+        "jobSeqNo": "GIEAUS390195EXTERNALHIIN",
+        "postedDate": "2026-08-04T00:00:00.000+0000",
+        "dateCreated": "2026-08-04T06:27:11.295+0000",
+        "rate": "",
+        "cityStateCountry": "Karnātaka, India",
+        "department": "Information Technology",
+        "jobVisibility": [
+          "external",
+          "internal"
+        ],
+        "teamId": "S036897",
+        "location": "India Corporate Office",
+        "category": "Information Technology",
+        "ml_skills": [
+          "python",
+          "software development",
+          "unit testing",
+          "system integration",
+          "regression testing",
+          "parallel testing",
+          "llm integration",
+          "langchain",
+          "deep learning frameworks",
+          "large language models",
+          "flowcharting",
+          "debugging",
+          "system implementation",
+          "application support",
+          "training delivery",
+          "management reporting",
+          "vendor management",
+          "customer requirements analysis",
+          "problem solving",
+          "team collaboration"
+        ],
+        "ml_job_parser": {
+          "descriptionTeaser": "We are recruiting a Software Engineer to design, develop, and evaluate programming in systems and applications. You will analyse existing programmes, prepare flowcharts, and participate in project teams to meet customer requirements. Ideal candidates have 3–5 years’ experience and a background in software engineering.",
+          "descriptionTeaser_keyword": "As a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, devising lo...",
+          "descriptionTeaser_ats": "Job SummaryAs a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, ",
+          "descriptionTeaser_first200": "As a Software Engineer, you will design, develop, modify, debug and evaluate programming in systems and applications. You will analyze existing programs or formulate logic for new systems, devising..."
+        },
+        "isMultiLocation": true,
+        "multi_location_array": [
+          {
+            "latlong": {
+              "lon": 77.31221,
+              "lat": 13.00445
+            },
+            "location": "India Corporate Office"
+          }
+        ],
+        "isMultiCategory": true,
+        "multi_category_array": [
+          {
+            "category": "Information Technology"
+          }
+        ],
+        "badge": ""
+      },
+      "detailHtml": "current-20261024-detail-390195.html",
+      "detailNative": "current-20261024-detail-390195-native.json",
+      "nativeDetailURL": "https://jobs.gianteagle.com/in/hi/job/390195/Engineer-Software",
+      "htmlSha256": "bff563ca2c9cdfbfe001ffa3ff38a71c07f5824bf607f771a4549dde0cb6bd3a"
+    },
+    {
+      "listing": {
+        "ml_skills": [
+          "software development",
+          "application testing",
+          "coding languages",
+          "process documentation",
+          "data flow analysis",
+          "installation and configuration",
+          "stakeholder communication",
+          "vendor-packaged application support",
+          "enhancement reporting"
+        ],
+        "type": "Full time",
+        "descriptionTeaser": "As an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems. Travel Required: None. Assist in th...",
+        "state": "Karnātaka",
+        "brand": "Corporate",
+        "siteType": "external",
+        "multi_category": [
+          "Information Technology"
+        ],
+        "reqId": "381834",
+        "city": "",
+        "latitude": "13.00445",
+        "multi_location": [
+          "India Corporate Office"
+        ],
+        "address": "560045, Karnātaka, India",
+        "applyUrl": "https://gianteagle.wd503.myworkdayjobs.com/GEBExternalcareers/job/India-Corporate-Office/Engineer-Associate--Software_381834/apply",
+        "ml_job_parser": {
+          "descriptionTeaser": "Join our team as a Engineer Associate, Software, supporting the development and testing of application software. Contribute to software analysis, modification, and documentation. Ideal for candidates with 6 months to 1 year of experience and a Bachelor's degree, seeking hands-on involvement in software engineering.",
+          "descriptionTeaser_ats": "Job SummaryAs an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems.Job DescriptionExperience",
+          "descriptionTeaser_keyword": "As an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems. Travel Required: None. Assist in th...",
+          "descriptionTeaser_first200": "As an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems. Travel Required: None. Assist in..."
+        },
+        "externalApply": false,
+        "cityState": "Karnātaka",
+        "country": "India",
+        "timeType": "Full time",
+        "visibilityType": "External",
+        "longitude": "77.31221",
+        "hiringManager": "Aji Viswanadhan",
+        "jobId": "381834",
+        "locale": "hi_IN",
+        "title": "Engineer Associate, Software",
+        "jobSeqNo": "GIEAUS381834EXTERNALHIIN",
+        "postedDate": "2026-03-20T00:00:00.000+0000",
+        "dateCreated": "2026-03-20T10:15:19.181+0000",
+        "rate": "",
+        "cityStateCountry": "Karnātaka, India",
+        "department": "Information Technology",
+        "jobVisibility": [
+          "external",
+          "internal"
+        ],
+        "teamId": "S036563",
+        "location": "India Corporate Office",
+        "category": "Information Technology",
+        "isMultiLocation": true,
+        "multi_location_array": [
+          {
+            "latlong": {
+              "lon": 77.31221,
+              "lat": 13.00445
+            },
+            "location": "India Corporate Office"
+          }
+        ],
+        "isMultiCategory": true,
+        "multi_category_array": [
+          {
+            "category": "Information Technology"
+          }
+        ],
+        "badge": ""
+      },
+      "detailHtml": "current-20261024-detail-381834.html",
+      "detailNative": "current-20261024-detail-381834-native.json",
+      "nativeDetailURL": "https://jobs.gianteagle.com/in/hi/job/381834/Engineer-Associate-Software",
+      "htmlSha256": "fcfd47e8954554186a6fe59bfde81a2207e2e2d83f402e021324da4ca866c300"
+    }
+  ]
+}

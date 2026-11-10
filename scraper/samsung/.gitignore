@@ -1,6 +1,3 @@
 # Retain the reviewed regression capture in clean checkouts.
 !fixtures/
 !fixtures/requisition-only-row-20261106.json.gz
-
-# Keep saved fixtures local; exclude them from Git and deployment.
-/fixtures/

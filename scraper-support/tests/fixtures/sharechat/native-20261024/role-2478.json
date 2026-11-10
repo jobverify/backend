@@ -1,0 +1,35 @@
+{
+  "status": 200,
+  "data": {
+    "requesterTitle": "",
+    "activeApplicationCount": 16,
+    "maxActiveApplication": 1000,
+    "reqDetailsBO": {
+      "educationList": [
+        "UG - Any"
+      ],
+      "mandatorySkillList": [
+        "CONTENT MODERATION"
+      ],
+      "nonMandatorySkillList": [],
+      "jdDisplay": "<p><strong>Who are we and What do we do?</strong></p><p><br></p><p>ShareChat (Mohalla Tech Pvt Ltd) is India’s largest homegrown social media company and the only local player to achieve profitability in the industry, with 200+ million Monthly Monetizable Users across all its platforms.</p><p><br></p><p>Founded in 2015, ShareChat has social media brands such as the ShareChat App and Moj App and micro drama app QuickTV under its portfolio. QuickTV, the newest addition to ShareChat's family of apps, crossed the 10 million downloads mark within 3 months of launch and currently has 60Mn MAUs across the network viewing the vertical episodic content.</p><p><br></p><p>Today, the ShareChat network maintains a whopping 1,000 Cr ARR and is India’s leading social media platform servicing users across the country in 15 regional languages. This growth has led to a 28% YoY revenue growth in the July-Sept (2025-26) quarter and increased it by more than 60% in the Oct-Dec quarter.</p><p><br></p><p><strong>What you’ll do:</strong></p><p><br></p><ol><li>Ensure timely the performance checks on all the domains of POD.</li><li>Focused on the quality and the safety of the content on the platform as well as our user experience.</li><li>Operationalise quality assurance processes at offshore/inhouse.</li><li>Manage end-to-end operations of the team and for the vertical.</li><li>Connect with Vendors for Calibrations, Training and quality &amp; Policy Updates.</li><li>Own and resolve user grievances via the CRM tool, ensuring SLA adherence and TAT compliance.</li></ol><p><br></p><p><br></p><p><strong>Who Are you?</strong></p><p><br></p><ol><li>6 months to 1 years of work experience in managing quality processes in a large team</li><li><strong>Content Moderation experience would be preferable. Freshers can also be considered</strong></li><li><strong>Written and spoken communication in </strong>the<strong> </strong>languages (<strong>Hindi &amp; Punjabi) and business proficiency in English </strong></li><li>Basic to advanced skills in <strong>MS Excel</strong> (or <strong>Google Sheets</strong>) and <strong>MS Word </strong>(or <strong>Google Doc</strong>)</li><li>The candidate should be flexible to work in <strong>rotational shifts</strong> and with <strong>rotational week-offs</strong>.</li><li>Basic analytical skills to drive decision-making.Self-starter; capable of taking initiative and working with minimal direction</li><li>Ability to understand and develop processes from scratch.</li><li>Essential to have attention to detail and accuracy, also a critical thinker and problem-solver</li><li>Ability to multitask, set priorities, and manage time effectively</li><li>Independently work in a fast-paced environment with tight deadlines</li></ol><p><br></p><p><br></p><p><strong>Where you’ll be?</strong></p><p><br></p><p>Remote</p><p><br></p><p><strong>What's in it for you?</strong></p><p><br></p><p>At ShareChat, our values—<strong>Ownership, Speed, User Empathy, Integrity, and First Principles</strong>—are at the core of our ways of working. We believe in hiring top talent and grooming future leaders by providing a flexible environment to aid growth and development.</p>",
+      "fresher": true,
+      "requisitionLocationGroup": [],
+      "expMin": 0,
+      "expMax": 0,
+      "reqTitle": "Intern - Content Moderation (Hindi & Punjabi)",
+      "reqId": 2478,
+      "locationList": [
+        {
+          "office": "Bangalore",
+          "address": "1st Floor, Sona Towers, Hosur Rd, next to Nexa Showroom, Chikku Lakshmaiah Layout, S.G. Palya, Bengaluru, Karnataka 560029"
+        }
+      ],
+      "statusId": 3,
+      "requisitionPublished": true
+    }
+  },
+  "ts": 67,
+  "requestId": "b65b5571-d8d7-4605-91e8-f166734c6044",
+  "v": "d17-2r-20261024061801"
+}

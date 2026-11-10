@@ -3,7 +3,7 @@ import test from 'node:test';
 import {readFileSync} from 'node:fs';
 import { buildRewritePlan } from '../rewriting/partitioning.js';
 import { rewriteWorkerConfiguration } from '../rewriting/worker.js';
-const read=name=>readFileSync(new URL('../.github/workflows/'+name,import.meta.url),'utf8');
+const read=name=>readFileSync(new URL('../.github/workflows/'+name,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 const environmentValue = (section, name, variables = {}) => {
  const value = section.match(new RegExp(`^ +${name}: (.+)$`, 'm'))?.[1];
  assert.ok(value, `Missing workflow environment value: ${name}`);

@@ -1,0 +1,64 @@
+{
+  "data": {
+    "careersList": [
+      {
+        "title": "Content & Operations",
+        "data": [
+          {
+            "requisitionId": 2390,
+            "requisitionTitle": "Video Editor- AI",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 6,
+            "yrsOfExpMin": 3,
+            "designation": "Video Editor- AI",
+            "employmentType": "contract",
+            "jobLevel": "On Contract",
+            "createdDate": 1779883145712,
+            "approvedDate": 1779940675444
+          },
+          {
+            "requisitionId": 2389,
+            "requisitionTitle": "AI-Screenplay Writer",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 6,
+            "yrsOfExpMin": 3,
+            "designation": "AI-Screenplay Writer",
+            "employmentType": "contract",
+            "jobLevel": "On Contract",
+            "createdDate": 1779882944498,
+            "approvedDate": 1779940670520
+          }
+        ]
+      },
+      {
+        "title": "Marketing",
+        "data": [
+          {
+            "requisitionId": 2371,
+            "requisitionTitle": "Intern - Video Editor",
+            "orgUnitName": "Marketing",
+            "officeLocationNames": [
+              "Bangalore"
+            ],
+            "yrsOfExpMax": 0,
+            "yrsOfExpMin": 0,
+            "designation": "Intern - Video Editor",
+            "employmentType": "intern",
+            "jobLevel": "I",
+            "createdDate": 1779452811139,
+            "approvedDate": 1779691699090
+          }
+        ]
+      }
+    ],
+    "offsetToken": null,
+    "count": 3,
+    "hasNext": false
+  }
+}

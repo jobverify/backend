@@ -1,0 +1,179 @@
+{
+  "source": "rivian",
+  "captureMethod": "Official browser-network captures by root; gzip preserves complete original capture bytes.",
+  "binding": {
+    "officialWork": "https://careers.rivian.com/work",
+    "search": "https://careers.rivian.com/careers-home/jobs",
+    "api": "https://careers.rivian.com/api/jobs",
+    "domain": "rivian.jibeapply.com",
+    "sourceScope": "Rivian Automotive (the official selected-company search scope), all countries and all pages",
+    "employer": "Rivian",
+    "nativeClient": "rivian",
+    "icimsTenantId": "13315",
+    "proof": "Official work page Search Jobs href targets careers-home/jobs. Search SSR searchOverride/search defaults explicitly select Rivian Automotive; actual search network requested this same-origin API with that scope. Every native role binds client_code rivian, Rivian Automotive tag, public iCIMS posting and official Rivian portal.",
+    "runtimeProof": "Each run fetches the current official work and search HTML, checks the exact canonical identities and Search Jobs handoff, and validates the live SSR window.searchConfig employer-only searchOverride/query before any API page, including zero. All requests share the aggregate cancellation budget."
+  },
+  "observedInventory": {
+    "total": 947,
+    "pages": [
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      47
+    ],
+    "india": 0,
+    "locationInventory": "Each native primary country/code reconciled with explicit postalAddress regionCode values in the full Google-derived primary/secondary location array; multipleLocations agrees with its size."
+  },
+  "files": [
+    {
+      "file": "first-api-response.json.gz",
+      "compressedSha256": "d4d1e8db3c45840c2e6fd44526e7247864e484e9202d4ded60cbf909073b66d6",
+      "captureSha256": "ae3b35a942282ed1690219f7a0f2559189cd53b45b66fbfbe9d90ffb0efcffc4",
+      "responses": [
+        {
+          "responseIndex": 0,
+          "url": "https://careers.rivian.com/api/jobs?page=1&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&deviceId=undefined&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=1&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&deviceId=undefined&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:30:49.872Z",
+          "bodySha256": "d3f528043be774fca561a0cfe4de11a092e1379b4079b139d549c59a44794c06"
+        }
+      ]
+    },
+    {
+      "file": "limit-api-response.json.gz",
+      "compressedSha256": "6b8498af70f8a343bf07a758438fe7f02a457dc62cd1fca7daf12f172b4bfd7e",
+      "captureSha256": "8f7fddfdaebb51fcb2141a34bcb733e04f3d26b50d61cf73f7fee43d471f5f62",
+      "responses": [
+        {
+          "url": "https://careers.rivian.com/api/jobs?page=1&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=1&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:09.807Z",
+          "bodySha256": "dcfdba2f6666b47fe80ecbc186c3540fa9602f28c228cc01a2f9204c000553e1"
+        }
+      ]
+    },
+    {
+      "file": "listing-responses.json.gz",
+      "compressedSha256": "4868aa549be5d1614f4cc7d196a2219ba68ed556589a3590150b5c7f6c5f0aaf",
+      "captureSha256": "9b14e0c5cd8c99a63436979010c0e03a90e4c9e5065dc8b2e4fc6f8fdb41cfcc",
+      "responses": [
+        {
+          "responseIndex": 0,
+          "url": "https://careers.rivian.com/api/jobs?page=1&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=1&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:33.150Z",
+          "bodySha256": "dcfdba2f6666b47fe80ecbc186c3540fa9602f28c228cc01a2f9204c000553e1"
+        },
+        {
+          "responseIndex": 1,
+          "url": "https://careers.rivian.com/api/jobs?page=2&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=2&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:33.714Z",
+          "bodySha256": "8e56ba12de32da3a17ea0a1771507ca22966d717eb221732506367ed3f8bffec"
+        },
+        {
+          "responseIndex": 2,
+          "url": "https://careers.rivian.com/api/jobs?page=3&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=3&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:34.846Z",
+          "bodySha256": "8c746f2e84344075e14d17ccc5e1ce3f3422838df0eb021727403908f741af0c"
+        },
+        {
+          "responseIndex": 3,
+          "url": "https://careers.rivian.com/api/jobs?page=4&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=4&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:37.019Z",
+          "bodySha256": "5ed82fec5305899f5caaf7f936ec62d76beacc4e7e4d8ada9e1035d5a80be06c"
+        },
+        {
+          "responseIndex": 4,
+          "url": "https://careers.rivian.com/api/jobs?page=5&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=5&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:34.427Z",
+          "bodySha256": "bd08e94df8edcb200b41f07b12591a5c5b614a8a3bdb8264a96c8202299b2b8c"
+        },
+        {
+          "responseIndex": 5,
+          "url": "https://careers.rivian.com/api/jobs?page=6&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=6&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:34.480Z",
+          "bodySha256": "b292ecd242392be2c29562b286e410be88f3c19a9049758eaf3eec25257b7cb2"
+        },
+        {
+          "responseIndex": 6,
+          "url": "https://careers.rivian.com/api/jobs?page=7&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=7&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:35.773Z",
+          "bodySha256": "04bc0aed087733ae2bae6cbfcdc2851cd9a3abc721343a3526050402ddd22d55"
+        },
+        {
+          "responseIndex": 7,
+          "url": "https://careers.rivian.com/api/jobs?page=8&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=8&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:35.772Z",
+          "bodySha256": "ee306ec972d5e80fd9a3c6ecc132486797dcb1bfd783613bd52de02b63676d58"
+        },
+        {
+          "responseIndex": 8,
+          "url": "https://careers.rivian.com/api/jobs?page=9&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=9&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:35.577Z",
+          "bodySha256": "33547fcf284b56536ca9c42ec226cf745537caa1101e01f72669bc3a5b3a9b13"
+        },
+        {
+          "responseIndex": 9,
+          "url": "https://careers.rivian.com/api/jobs?page=10&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "finalUrl": "https://careers.rivian.com/api/jobs?page=10&limit=100&sortBy=relevance&descending=false&internal=false&tags2=Rivian%20Automotive&domain=rivian.jibeapply.com",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:31:34.242Z",
+          "bodySha256": "dcfad393344fb2adf5d1104c82bdf56970daae8371eeca139c0978502de5cb25"
+        }
+      ]
+    },
+    {
+      "file": "search-response.json.gz",
+      "compressedSha256": "8de875da200ed2a364ddc03f5afeef9a09523b4288449b42c562e50695d2891b",
+      "captureSha256": "8527f1f1cd83b35586aa66cbdddbbe5048aca477297707626ee6142a336c1a73",
+      "responses": [
+        {
+          "url": "https://careers.rivian.com/careers-home/jobs",
+          "finalUrl": "https://careers.rivian.com/careers-home/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:30:31.797Z",
+          "bodySha256": "89061877e79eb143522d19cc1bd41f9a2f064fb617bbc289619299f5997813bc"
+        }
+      ]
+    },
+    {
+      "file": "work-response.json.gz",
+      "compressedSha256": "ecc44b3c147bf0c3de219e787708228f705d1ac07c4b41d66b5b2b5873b5d830",
+      "captureSha256": "acc3e81ee74fe79f03455481cec520154bec1ad8cb77e621b5a18a9773990d26",
+      "responses": [
+        {
+          "url": "https://careers.rivian.com/work",
+          "finalUrl": "https://careers.rivian.com/work",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:29:55.595Z",
+          "bodySha256": "79b7726336a66f947f9ae0868ba91f7a751c858909141324e4f68b5a4d878a45"
+        }
+      ]
+    }
+  ]
+}

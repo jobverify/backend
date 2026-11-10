@@ -1,0 +1,64 @@
+{
+  "code": 200,
+  "data": {
+    "data": [
+      {
+        "_source": {
+          "jobTitle": "Senior Data Engineer- DBT Snowflake",
+          "departmentName": "Employee",
+          "DepartmentName": "Employee",
+          "location": "Chennai, Tamil Nadu, India",
+          "locAgg": "Chennai, Tamil Nadu, India",
+          "jobCode": 14423,
+          "referenceNumber": "47098",
+          "refNumber": "47098",
+          "jobUrl": "senior-executive-nagpur-2026060819452887",
+          "experienceUIField": "7-9 years",
+          "mandatorySkills": [
+            "Snowflake - Development",
+            "DBT"
+          ],
+          "createDate": "08-Jun-2026",
+          "shortDescription": "Backup TREQ for Pradnya",
+          "jobLocationRecord": [
+            {
+              "city": "Chennai",
+              "country": "India",
+              "location": "Chennai, Tamil Nadu, India",
+              "state": "Tamil Nadu"
+            }
+          ]
+        }
+      },
+      {
+        "_source": {
+          "jobTitle": "IT Project Manager",
+          "departmentName": "Employee",
+          "location": "McLean, VA, USA",
+          "locAgg": "McLean, VA, USA",
+          "jobCode": 14416,
+          "referenceNumber": "47591",
+          "jobUrl": "architect-new-jersey-2026052921463982",
+          "experienceUIField": "Above 1 years",
+          "mandatorySkills": [
+            "MicroStrategy - Development"
+          ],
+          "createDate": "29-May-2026",
+          "shortDescription": "Onsite TREQ for SG",
+          "jobLocationRecord": [
+            {
+              "city": "McLean",
+              "country": "United States",
+              "location": "McLean, VA, USA"
+            }
+          ]
+        }
+      }
+    ],
+    "totalCount": 25,
+    "hasMoreData": true,
+    "facetedSearchConfig": {
+      "paginationHowMuch": "15"
+    }
+  }
+}

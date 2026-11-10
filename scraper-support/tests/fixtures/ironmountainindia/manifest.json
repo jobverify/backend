@@ -1,0 +1,51 @@
+{
+  "captureMethod": "isolated headless browser public GET receipts",
+  "ordinaryHttpAvailabilityVerified": false,
+  "advertisedScopeTotal": null,
+  "observedIndiaSitemapRoles": 16,
+  "primaryCxsSuccessful": 14,
+  "primaryCxsPermissionDenied": 2,
+  "mixedCaptureWindow": true,
+  "earliest": "2026-10-24T18:32:16.666Z",
+  "latest": "2026-10-24T18:35:44.163Z",
+  "native403ReceiptsRetried": false,
+  "fixtureMinimization": "Exact native source entry, joined identity/location/status/date fields and original primary Workday JD HTML retained. Unrelated analytics, workflow/questionnaire IDs and similar jobs omitted. Apply document body omitted; exact actual status/final URL retained.",
+  "samples": [
+    {
+      "file": "native-3E5B9F4951D04C2B88CB21B5658F3CC1-20261024.json",
+      "guid": "3E5B9F4951D04C2B88CB21B5658F3CC1",
+      "reqid": "J0103422",
+      "cxsStatus": 200,
+      "capturedAt": "2026-10-24T18:32:23.552Z",
+      "rawSha256": {
+        "nlx": "a844ffc9ec6eefe0a06d3c55dd6b137f81cbd2a6b1ba953f6870a952b4aac411",
+        "apply": "4dc8a5e32c63752394348cf738352d83eb0bc40266e324fae9e15f8fee91f23b",
+        "cxs": "086aa1c82d15bac809980d0a699affb4c540c834bf219035deaba859a17abdbc"
+      }
+    },
+    {
+      "file": "native-60603B3B91B24C10B1A347BF7944B439-20261024.json",
+      "guid": "60603B3B91B24C10B1A347BF7944B439",
+      "reqid": "J0107014",
+      "cxsStatus": 200,
+      "capturedAt": "2026-10-24T18:32:48.993Z",
+      "rawSha256": {
+        "nlx": "2903dd57e66aaad41941c6672f814fb020bb358083d243dfb2e4abe03fb0410d",
+        "apply": "33fa616802e071cd5fc4490b3b2ded4e353f14710a2810707f64b616c00f1c2c",
+        "cxs": "e699c1b45d9d39fbb69ace03b5d66ae549e5f11750642a683b21806c23526e0f"
+      }
+    },
+    {
+      "file": "native-A4412DFFE4634350BAF4FEF61347DFF7-20261024.json",
+      "guid": "A4412DFFE4634350BAF4FEF61347DFF7",
+      "reqid": "J0108836",
+      "cxsStatus": 403,
+      "capturedAt": "2026-10-24T18:32:43.576Z",
+      "rawSha256": {
+        "nlx": "fa5e039c4817e8c93f13364e5ce304cc25c10a79d2a797ca1a7707a71082c2e4",
+        "apply": "ff16583976e387d553b07bc7af700ea921c90dec1a21651a2de8d7423ccb8494",
+        "cxs": "6b4646c6a23496048b6731a3e0b7a9c444105d95aca4d9eb870b201ee8416cc0"
+      }
+    }
+  ]
+}

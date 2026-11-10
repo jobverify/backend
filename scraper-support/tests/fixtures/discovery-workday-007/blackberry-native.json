@@ -1,0 +1,624 @@
+{
+  "provenance": "Actual public CXS bodies from followup007 bounded native probes; no invented count or role.",
+  "boards": {
+    "BlackBerry": {
+      "listing": {
+        "total": 1,
+        "jobPostings": [
+          {
+            "title": "QNX- Senior Systems Software Developer -Wifi/Networking",
+            "externalPath": "/job/Hyderabad-India/QNX--Senior-Systems-Software-Developer--Wifi-Networking_20250320",
+            "locationsText": "Hyderabad, India",
+            "postedOn": "Posted 30+ Days Ago",
+            "bulletFields": [
+              "20250320"
+            ]
+          }
+        ],
+        "facets": [
+          {
+            "facetParameter": "Country",
+            "descriptor": "Country",
+            "values": [
+              {
+                "descriptor": "Canada",
+                "id": "a30a87ed25634629aa6c3958aa2b91ea",
+                "count": 15
+              },
+              {
+                "descriptor": "United States of America",
+                "id": "bc33aa3152ec42d4995f4791a106ed09",
+                "count": 3
+              },
+              {
+                "descriptor": "China",
+                "id": "6cb77610a8a543aea2d6bc10457e35d4",
+                "count": 2
+              },
+              {
+                "descriptor": "Germany",
+                "id": "dcc5b7608d8644b3a93716604e78e995",
+                "count": 2
+              },
+              {
+                "descriptor": "Japan",
+                "id": "8b705da2becf43cfaccc091da0988ab2",
+                "count": 2
+              },
+              {
+                "descriptor": "India",
+                "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "facetParameter": "Functional_Area",
+            "descriptor": "Functional Area",
+            "values": [
+              {
+                "descriptor": "Product Development",
+                "id": "c756b1bbadec10e14dc41446721441c6",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "facetParameter": "workerSubType",
+            "descriptor": "Job Type",
+            "values": [
+              {
+                "descriptor": "Regular",
+                "id": "c756b1bbadec10e10af6f59f8cfce4c9",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "facetParameter": "timeType",
+            "descriptor": "Time Type",
+            "values": [
+              {
+                "descriptor": "Full time",
+                "id": "ee0e89e3207510dd3c2b8bbe570ce847",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "facetParameter": "locationMainGroup",
+            "values": [
+              {
+                "facetParameter": "locations",
+                "descriptor": "Locations",
+                "values": [
+                  {
+                    "descriptor": "Hyderabad, India",
+                    "id": "b15feefdaa031001b5e1e32ca4710000",
+                    "count": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "facetParameter": "distance",
+            "descriptor": "Distance",
+            "values": [
+              {
+                "descriptor": "10 kilometers",
+                "id": "a538cdb60a631000078a4443636e00f8",
+                "count": 1
+              },
+              {
+                "descriptor": "25 kilometers",
+                "id": "a538cdb60a631000078a444d6fd600f9",
+                "count": 1
+              },
+              {
+                "descriptor": "50 kilometers",
+                "id": "a538cdb60a631000078a4452365100fa",
+                "count": 1
+              },
+              {
+                "descriptor": "100 kilometers",
+                "id": "a538cdb60a631000078a445539a700fb",
+                "count": 1
+              },
+              {
+                "descriptor": "Any Distance",
+                "id": "a538cdb60a631000078a4457dd7e00fc",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "userAuthenticated": false
+      },
+      "details": {
+        "/job/Hyderabad-India/QNX--Senior-Systems-Software-Developer--Wifi-Networking_20250320": {
+          "jobPostingInfo": {
+            "id": "cfbc58b26d0a1001998b5a8473cc0000",
+            "title": "QNX- Senior Systems Software Developer -Wifi/Networking",
+            "jobDescription": "<p><span style=\"font-size:14px\"> </span></p><p><b>Worker Sub-Type:</b></p>Regular<p><span style=\"font-size:14px\"> </span></p><p><b>Job Description: </b></p><p><span>QNX® is a trusted supplier of safe and secure operating systems, hypervisors, </span><span>frameworks</span><span> and development tools, and provides expert support and services for building the world’s most critical embedded systems.   We are the embedded experts. QNX was born in embedded, and provides time-tested and trusted foundation software, including our deterministic microkernel real-time operating system (RTOS), safety-certified products, </span><span>middleware</span><span> and security solutions, all purpose-built for embedded systems. </span> </p><p></p><p><span>QNX software </span><span>is trusted by more than</span><span> </span><a href=\"https://blackberry.qnx.com/en/forms/wp-why-blackberry-qnx-has-become-the-leading-ev-software-supplier\" target=\"_blank\"><span><span><span>68% of the Electric Vehicle market by volume</span></span></span></a><span><span><span>, 2</span><span>4</span><span> of the top 25 EV manufacturers and is running in more than </span><span>275</span><span> million</span><span> &#43;</span><span> vehicles globally.</span></span><span> </span></span><span><span> Our foundation products have been pre-certified to ISO 26262 ASIL </span><span>D</span><span> and we offer a broad range of board support packages, professional services, AUTOSAR adaptive support and middleware solutions – </span><span>from </span></span><span><span>acoustic management</span></span><span><span>,</span><span> to digital cockpits to </span></span><span><span>advanced driving </span><span>assistance</span><span> </span></span><span><span>(ADAS) - to accelerate development and help OEMs meet Start of Production (SOP) dates.</span></span><span> </span></p><p></p><p><b>Are you the person we are looking for?</b></p><p></p><p>Product Engineering unit is focused on product opportunities as they relate to our markets and the growth of our product portfolio considering the future technology. As a successful candidate, you will be responsible for maintaining and augmenting the WiFi and Networks subsystem on both native and virtualized systems. </p><p></p><p>Using your extensive knowledge of embedded systems and deep system knowledge, you will provide the technology leadership in all aspects of the software solutions from architecture, design, infrastructure costs, tech stack, scalability, reliability, availability, and performance to software quality. You will partner with product managers, architecture teams and customers to discover and deliver the solutions for the problems across multiple industries including our high-profile automotive Tier 1 accounts.</p><p></p><p>You must be someone with ideas and real passion for software delivered to maximize reuse, efficiency, and simplicity. Our customers count on us to convert awesome ideas into great products and services.</p><p><br />We thrive in a culture of innovation, technical depth and breadth, exploration and experimentation and provide great career growth opportunities. In return for your skills, expertise, and passion, we will provide you with an attractive compensation &amp; bonus package with excellent benefits. Join us and you will become part of a team that is already leading the way and has even bigger plans for the future. What we are working on is truly ground-breaking!</p><p></p><p><b><u>You will:</u></b></p><ul><li><p>Develop and maintain Wi-Fi and Networking driver components in an open-development environment.</p></li><li><p>Create and document software specifications and designs that address the needs of QNX customers.</p></li><li><p>Provide project estimates for requirement, design, implementation, and test efforts.</p></li><li><p>Provide clear communication with development team members, technical leads, and management on project status, risks and approaches.</p></li><li><p>Conduct design reviews, code reviews and unit test with technical peers.</p></li><li><p>Identify, analyze, and resolve potentially complex problems and inadequacies in software.</p></li><li><p>Liaises with customers regarding product performance, problems, and system design.</p></li><li><p>Develop custom software solutions based on customer requirements.</p></li><li><p>Maintain an in-depth understanding of current software department approaches and standards through communication with development team members, technical leads, and management.</p></li></ul><ul><li><p>Coach and mentor team on engineering best practices such as writing clean code, designing scalable, reliable, and performant software solutions, set and ensure compliance to software quality standards, safety standards etc. </p></li></ul><p></p><p><b><u>You will have:</u></b></p><ul><li><p>Proven experience in <b>Wi-Fi driver</b> development, including STA, AP, P2P, and multi-mode implementations.</p></li><li><p>Thorough knowledge of at least one interface like PCIe/SDIO/USB</p></li><li><p>Good knowledge of different authentication/encryption methods on Wi-Fi</p></li><li><p>Understanding of <b>wpa_supplicant</b> and <b>hostapd</b>.</p></li><li><p>Good understanding of Wi-Fi control and data paths.</p></li><li><p>Programming languages expertise in C, Python</p></li><li><p>Good knowledge in Linux OS internals.</p></li><li><p>Exposure to QNX is a huge plus</p></li></ul><p></p><p><b>Imagine what you could do at QNX! </b></p><p>#LI-KH1</p><p><span style=\"font-size:14px\"> </span></p><p><b>Scheduled Weekly Hours:</b></p>40<p><span style=\"font-size:14px\"> </span></p>",
+            "location": "Hyderabad, India",
+            "postedOn": "Posted 30+ Days Ago",
+            "startDate": "2026-09-18",
+            "timeType": "Full time",
+            "jobReqId": "20250320",
+            "jobPostingId": "QNX--Senior-Systems-Software-Developer--Wifi-Networking_20250320",
+            "jobPostingSiteId": "BlackBerry",
+            "country": {
+              "descriptor": "India",
+              "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+            },
+            "videoInfo": {
+              "javascriptUrl": "https://wd3.myworkday.com/wday/backpack-hub/muse/wday/js/muse-viewer-standalone.js",
+              "params": {
+                "tenant": "bb",
+                "application_context": "recruiting-external-site",
+                "toggles": "{\"wmc-22189\":true,\"wmc-22331\":true,\"wmc-27882\":true,\"wmc-13658\":true,\"wmc-13737\":true,\"wmc-24807\":true,\"wmc-11701\":true,\"muse-709\":false,\"wmc-5825\":false,\"wmc-5951\":false,\"wmc-14911\":true,\"wmc-8321\":false,\"wmc-15802\":true,\"wmc-20855\":true,\"wmc-20732\":false,\"wmc-16527\":true,\"wmc-21592\":true,\"wmc-9846\":false,\"wmc-21615\":true,\"wmc-15670\":true,\"wmc-21593\":true,\"wmc-12835\":true,\"wmc-14182\":true,\"wmc-14284\":true,\"wmc-15011\":true,\"uxlx-1\":true,\"wmc-11369\":false,\"wmc-7256\":false,\"wmc-15073\":true,\"wmc-28241\":false,\"wmc-14151\":false,\"wmc-8819\":false,\"wmc-18120\":true,\"wmc-14717\":true,\"wmc-16759\":true,\"wmc-19376\":false,\"wmc-3252\":true,\"wmc-27242\":true,\"wmc-8159\":false,\"wmc-11052\":false,\"wmc-12740\":true,\"muse-660\":true,\"wmc-8655\":true,\"wmc-8656\":true,\"wmc-12008\":true,\"wmc-16585\":true,\"wmc-15743\":true,\"wmc-16466\":true,\"wmc-7540\":false,\"wmc-13388\":true,\"wmc-10060\":false,\"lrn-965\":true,\"lrn-1802\":true,\"lrn-32769\":true,\"wmc-16519\":false,\"wmc-23952\":false,\"wmc-10948\":true,\"wmc-16065\":true,\"wmc-13055\":true,\"wmc-13187\":false,\"wmc-13094\":true,\"wmc-2787\":true,\"wmc-6386\":false,\"wmc-16278\":true,\"wmc-24972\":true,\"wmc-12913\":true,\"wmc-19864\":false,\"wmc-15663\":true,\"wmc-25344\":true,\"wmc-17760\":true,\"wmc-12857\":true,\"wmc-20760\":true,\"muse-7\":true,\"wmc-15869\":true,\"wmc-17540\":false,\"wmc-12033\":true,\"wmc-15981\":true,\"wmc-17354\":true,\"wmc-7007\":true,\"wmc-6460\":true,\"wmc-12094\":true,\"wmc-16142\":true,\"wmc-14718\":true,\"wmc-12770\":true,\"wmc-13879\":false,\"wmc-15592\":true,\"wmc-14424\":true,\"wmc-15591\":true,\"ml-25093\":false,\"wmc-13937\":true,\"wmc-2454\":true,\"wmc-16758\":true,\"wmc-23128\":true,\"wmc-5060\":false,\"wmc-12011\":true,\"wmc-17752\":true,\"wmc-13132\":true,\"lrn-34912\":true,\"wmc-10693\":true,\"wmc-31213\":true,\"wmc-13235\":true,\"wmc-13594\":true,\"wmc-7714\":true,\"wmc-22778\":false,\"wmc-2867\":true,\"wmc-22777\":false,\"wmc-22776\":true,\"wmc-13605\":true,\"wmc-12981\":true,\"wmc-13322\":true,\"wmc-13502\":true,\"wmc-24587\":false,\"wmc-21680\":false,\"wmc-10558\":true,\"wmc-13719\":true,\"wmc-16896\":true,\"wmc-12951\":true,\"wmc-14572\":false,\"wmc-13074\":true,\"wmc-13075\":true,\"wmc-13783\":true,\"wmc-16223\":true,\"wmc-11305\":true,\"wmc-9432\":false,\"wmc-17199\":true,\"wmc-14658\":true,\"wmc-16736\":true,\"wmc-12079\":false,\"wmc-12078\":false,\"wmc-7504\":true,\"wmc-25101\":true,\"wmc-12075\":true,\"wmc-13811\":false,\"wmc-13458\":true,\"wmc-16897\":true,\"wmc-7659\":false,\"wmc-13786\":true,\"wmc-16670\":true,\"wmc-1599\":true,\"wmc-1598\":false,\"wmc-17590\":true,\"wmc-22768\":false,\"wmc-18600\":true,\"wmc-12481\":true,\"wmc-14914\":true,\"wmc-7783\":true,\"wmc-18117\":false,\"wmc-24046\":true,\"wmc-24047\":true,\"wmc-12724\":false,\"wmc-9250\":true,\"wmc-16310\":true,\"wmc-11574\":true,\"wmc-16194\":true,\"wmc-15661\":true,\"wmc-619\":false,\"wmc-2496\":false,\"wmc-15408\":false,\"wmc-16878\":true,\"wmc-13572\":true,\"wmc-15853\":true,\"wmc-15834\":true,\"wmc-17198\":true,\"wmc-13245\":true,\"wmc-14403\":true,\"wmc-17505\":true,\"wmc-20495\":true,\"wmc-3182\":true,\"wmc-7505\":true,\"wmc-6806\":false,\"wmc-26460\":true,\"wmc-14937\":true,\"wmc-6628\":true,\"wmc-11780\":true,\"wmc-9377\":true,\"wmc-13684\":true,\"wmc-13429\":true,\"wmc-18129\":true,\"wmc-15400\":true,\"wmc-14534\":true,\"wmc-15160\":true,\"wmc-15285\":true,\"wmc-9803\":false,\"wmc-15252\":true,\"wmc-21767\":true,\"wmc-2129\":true,\"wmc-8224\":true,\"wmc-13160\":true,\"wmc-14883\":true,\"wmc-18153\":false,\"currentSystemVersion\":\"2026.42\",\"lrn-12626\":true,\"lrn-14483\":true}",
+                "type": "video",
+                "media_id": "7239a59b7f151001e95ff4b90a180000",
+                "public_path": "https://wd3.myworkday.com/wday/backpack-hub/muse-web-client/2026.41.201",
+                "poster": "https://wd3-media.myworkdaycdn.com/m/v3/fetch/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/8knLe0/progressive.h264.1080p.v7.mp4.0000001.jpg?__token__=ver=2023.09~kid=mediatransit~exp=1792548032~origin=wd3.myworkday.com~ttl=14400~hmac=22e4f09442145759c4fb0c7741a4eacdbb3898b4bc493659263272d4d3a822b3",
+                "user_agreement": {
+                  "accepted": false,
+                  "acceptance_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/user_agreement/27b3f872096510001029d985b6ae0043",
+                  "required": false,
+                  "terms_url": "/bb/inst/22761$1/rel-task/2998$37225"
+                },
+                "tracking_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/stats/play_events/7239a59b7f151001e95ff4b90a180000",
+                "report_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/report/player_issue/7239a59b7f151001e95ff4b90a180000",
+                "content_type": "video",
+                "duration": 130,
+                "created_on_ms": 1661515580000,
+                "tracks": [
+                  {
+                    "url": "https://wd3-media.myworkdaycdn.com/m/v3/fetch/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/text-tracks/91EAfENHSMOZzukwiGMTjnANpEXH4nQp/track.vtt?__token__=ver=2023.09~kid=mediatransit~exp=1792548032~origin=wd3.myworkday.com~ttl=14400~hmac=35be24955f30170ad28b150fb81815beb032289bd4f6648afbd77e4b0f101064",
+                    "language": "en_US",
+                    "label": "English (United States)"
+                  }
+                ],
+                "sources": [
+                  {
+                    "url": "https://wd3-media.myworkdaycdn.com/m/v3/playlist/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/8knLe0/HLS.v7.m3u8?tt=en_US%3BEnglish%2B%2528United%2BStates%2529%3Bs3%253A%252F%252Fworkday-media-eu%252Ff%252Fxb1F%252Fc%252FC0783FF8ABC21ECC%252F4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw%252Ftext-tracks%252F91EAfENHSMOZzukwiGMTjnANpEXH4nQp%252Ftrack.vtt&duration=130.041&__token__=ver=2023.09~kid=mediatransit~exp=1792548032~origin=wd3.myworkday.com~ttl=14400~hmac=22e4f09442145759c4fb0c7741a4eacdbb3898b4bc493659263272d4d3a822b3",
+                    "type": "application/x-mpegURL",
+                    "quality": "Auto",
+                    "hd_label": "",
+                    "size": 0,
+                    "duration": 130041
+                  }
+                ],
+                "cdn_token": "ver=2023.09~kid=mediatransit~exp=1792548032~origin=wd3.myworkday.com~ttl=14400~hmac=22e4f09442145759c4fb0c7741a4eacdbb3898b4bc493659263272d4d3a822b3",
+                "muse": {
+                  "interactions": [],
+                  "videoDuration": 130.041,
+                  "skipRestricted": false,
+                  "disallowRetries": false,
+                  "restrictAccess": false
+                }
+              }
+            },
+            "canApply": true,
+            "posted": true,
+            "includeResumeParsing": true,
+            "jobRequisitionLocation": {
+              "descriptor": "Hyderabad, India",
+              "country": {
+                "descriptor": "India",
+                "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+                "alpha2Code": "IN"
+              }
+            },
+            "externalUrl": "https://bb.wd3.myworkdayjobs.com/BlackBerry/job/Hyderabad-India/QNX--Senior-Systems-Software-Developer--Wifi-Networking_20250320",
+            "questionnaireId": "b2c5546837971001ab8e3aa1fe540000"
+          },
+          "hiringOrganization": {
+            "name": "5300 BlackBerry India Private Limited",
+            "url": ""
+          },
+          "similarJobs": [
+            {
+              "title": "QNX Senior Systems Software Developer (Tools & Compilers)",
+              "externalPath": "/job/Ottawa-Ontario/QNX-Principal-Systems-Software-Developer_20260223-1",
+              "timeType": "Full time",
+              "locationsText": "Ottawa, Ontario",
+              "postedOn": "Posted 15 Days Ago",
+              "startDate": "2026-10-05",
+              "timeLeftToApply": "9 days left to apply",
+              "jobPostingEndDateAsText": "End Date: October 30, 2026"
+            },
+            {
+              "title": "QNX Principal Systems Software Developer",
+              "externalPath": "/job/Ottawa-Ontario/QNX-Principal-Systems-Software-Developer_20260268-1",
+              "timeType": "Full time",
+              "locationsText": "Ottawa, Ontario",
+              "postedOn": "Posted 30+ Days Ago",
+              "startDate": "2026-08-19"
+            },
+            {
+              "title": "Senior Systems Software Developer",
+              "externalPath": "/job/Tokyo-Japan/Senior-Systems-Software-Developer_20260290-1",
+              "timeType": "Full time",
+              "locationsText": "Tokyo, Japan",
+              "postedOn": "Posted 30+ Days Ago",
+              "startDate": "2026-08-27"
+            },
+            {
+              "title": "QNX Everywhere Embedded Software Developer II",
+              "externalPath": "/job/Ottawa-Ontario/QNX-Everywhere-Embedded-Software-Developer-II_20260307-2",
+              "timeType": "Full time",
+              "locationsText": "Ottawa, Ontario",
+              "postedOn": "Posted 7 Days Ago",
+              "startDate": "2026-10-13"
+            },
+            {
+              "title": "QNX Senior Software Developer in Test (12-Month Contract, Maternity Leave Coverage)",
+              "externalPath": "/job/Ottawa-Ontario/QNX-Senior-Software-Developer-in-Test--12-Month-Contract--Maternity-Leave-Coverage-_20260293-1",
+              "timeType": "Full time",
+              "locationsText": "Ottawa, Ontario",
+              "postedOn": "Posted 18 Days Ago",
+              "startDate": "2026-10-02",
+              "timeLeftToApply": "9 days left to apply",
+              "jobPostingEndDateAsText": "End Date: October 30, 2026"
+            }
+          ],
+          "userAuthenticated": false
+        }
+      }
+    },
+    "QNX": {
+      "listing": {
+        "total": 2,
+        "jobPostings": [
+          {
+            "title": "QNX- Senior Systems Software Developer -Wifi/Networking",
+            "externalPath": "/job/Hyderabad-India/QNX--Senior-Systems-Software-Developer--BSP---Device-Drivers-_20250320",
+            "locationsText": "Hyderabad, India",
+            "postedOn": "Posted 30+ Days Ago",
+            "bulletFields": [
+              "20250320"
+            ]
+          },
+          {
+            "title": "BlackBerry QNX Systems Software Developer",
+            "externalPath": "/job/Hyderabad-India/BlackBerry-QNX-Systems-Software-Developer_20260163",
+            "locationsText": "Hyderabad, India",
+            "postedOn": "Posted 30+ Days Ago",
+            "bulletFields": [
+              "20260163"
+            ]
+          }
+        ],
+        "facets": [
+          {
+            "facetParameter": "Country",
+            "descriptor": "Country",
+            "values": [
+              {
+                "descriptor": "Canada",
+                "id": "a30a87ed25634629aa6c3958aa2b91ea",
+                "count": 12
+              },
+              {
+                "descriptor": "China",
+                "id": "6cb77610a8a543aea2d6bc10457e35d4",
+                "count": 2
+              },
+              {
+                "descriptor": "Germany",
+                "id": "dcc5b7608d8644b3a93716604e78e995",
+                "count": 2
+              },
+              {
+                "descriptor": "India",
+                "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+                "count": 2
+              },
+              {
+                "descriptor": "Japan",
+                "id": "8b705da2becf43cfaccc091da0988ab2",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "facetParameter": "Functional_Area",
+            "descriptor": "Functional Area",
+            "values": [
+              {
+                "descriptor": "Product Development",
+                "id": "c756b1bbadec10e14dc41446721441c6",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "facetParameter": "workerSubType",
+            "descriptor": "Job Type",
+            "values": [
+              {
+                "descriptor": "Regular",
+                "id": "c756b1bbadec10e10af6f59f8cfce4c9",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "facetParameter": "timeType",
+            "descriptor": "Time Type",
+            "values": [
+              {
+                "descriptor": "Full time",
+                "id": "ee0e89e3207510dd3c2b8bbe570ce847",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "facetParameter": "locationMainGroup",
+            "values": [
+              {
+                "facetParameter": "locations",
+                "descriptor": "Locations",
+                "values": [
+                  {
+                    "descriptor": "Hyderabad, India",
+                    "id": "b15feefdaa031001b5e1e32ca4710000",
+                    "count": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "facetParameter": "distance",
+            "descriptor": "Distance",
+            "values": [
+              {
+                "descriptor": "10 kilometers",
+                "id": "a538cdb60a631000078a4443636e00f8",
+                "count": 1
+              },
+              {
+                "descriptor": "25 kilometers",
+                "id": "a538cdb60a631000078a444d6fd600f9",
+                "count": 1
+              },
+              {
+                "descriptor": "50 kilometers",
+                "id": "a538cdb60a631000078a4452365100fa",
+                "count": 1
+              },
+              {
+                "descriptor": "100 kilometers",
+                "id": "a538cdb60a631000078a445539a700fb",
+                "count": 1
+              },
+              {
+                "descriptor": "Any Distance",
+                "id": "a538cdb60a631000078a4457dd7e00fc",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "userAuthenticated": false
+      },
+      "details": {
+        "/job/Hyderabad-India/QNX--Senior-Systems-Software-Developer--BSP---Device-Drivers-_20250320": {
+          "jobPostingInfo": {
+            "id": "6a01ad4b21ca1001d4cfb2a90ae10000",
+            "title": "QNX- Senior Systems Software Developer -Wifi/Networking",
+            "jobDescription": "<p><span style=\"font-size:14px\"> </span></p><p><b>Worker Sub-Type:</b></p>Regular<p><span style=\"font-size:14px\"> </span></p><p><b>Job Description: </b></p><p><span>QNX® is a trusted supplier of safe and secure operating systems, hypervisors, </span><span>frameworks</span><span> and development tools, and provides expert support and services for building the world’s most critical embedded systems.   We are the embedded experts. QNX was born in embedded, and provides time-tested and trusted foundation software, including our deterministic microkernel real-time operating system (RTOS), safety-certified products, </span><span>middleware</span><span> and security solutions, all purpose-built for embedded systems. </span> </p><p></p><p><span>QNX software </span><span>is trusted by more than</span><span> </span><a href=\"https://blackberry.qnx.com/en/forms/wp-why-blackberry-qnx-has-become-the-leading-ev-software-supplier\" target=\"_blank\"><span><span><span>68% of the Electric Vehicle market by volume</span></span></span></a><span><span><span>, 2</span><span>4</span><span> of the top 25 EV manufacturers and is running in more than </span><span>275</span><span> million</span><span> &#43;</span><span> vehicles globally.</span></span><span> </span></span><span><span> Our foundation products have been pre-certified to ISO 26262 ASIL </span><span>D</span><span> and we offer a broad range of board support packages, professional services, AUTOSAR adaptive support and middleware solutions – </span><span>from </span></span><span><span>acoustic management</span></span><span><span>,</span><span> to digital cockpits to </span></span><span><span>advanced driving </span><span>assistance</span><span> </span></span><span><span>(ADAS) - to accelerate development and help OEMs meet Start of Production (SOP) dates.</span></span><span> </span></p><p></p><p><b>Are you the person we are looking for?</b></p><p></p><p>Product Engineering unit is focused on product opportunities as they relate to our markets and the growth of our product portfolio considering the future technology. As a successful candidate, you will be responsible for maintaining and augmenting the WiFi and Networks subsystem on both native and virtualized systems. </p><p></p><p>Using your extensive knowledge of embedded systems and deep system knowledge, you will provide the technology leadership in all aspects of the software solutions from architecture, design, infrastructure costs, tech stack, scalability, reliability, availability, and performance to software quality. You will partner with product managers, architecture teams and customers to discover and deliver the solutions for the problems across multiple industries including our high-profile automotive Tier 1 accounts.</p><p></p><p>You must be someone with ideas and real passion for software delivered to maximize reuse, efficiency, and simplicity. Our customers count on us to convert awesome ideas into great products and services.</p><p><br />We thrive in a culture of innovation, technical depth and breadth, exploration and experimentation and provide great career growth opportunities. In return for your skills, expertise, and passion, we will provide you with an attractive compensation &amp; bonus package with excellent benefits. Join us and you will become part of a team that is already leading the way and has even bigger plans for the future. What we are working on is truly ground-breaking!</p><p></p><p><b><u>You will:</u></b></p><ul><li><p>Develop and maintain Wi-Fi and Networking driver components in an open-development environment.</p></li><li><p>Create and document software specifications and designs that address the needs of QNX customers.</p></li><li><p>Provide project estimates for requirement, design, implementation, and test efforts.</p></li><li><p>Provide clear communication with development team members, technical leads, and management on project status, risks and approaches.</p></li><li><p>Conduct design reviews, code reviews and unit test with technical peers.</p></li><li><p>Identify, analyze, and resolve potentially complex problems and inadequacies in software.</p></li><li><p>Liaises with customers regarding product performance, problems, and system design.</p></li><li><p>Develop custom software solutions based on customer requirements.</p></li><li><p>Maintain an in-depth understanding of current software department approaches and standards through communication with development team members, technical leads, and management.</p></li></ul><ul><li><p>Coach and mentor team on engineering best practices such as writing clean code, designing scalable, reliable, and performant software solutions, set and ensure compliance to software quality standards, safety standards etc. </p></li></ul><p></p><p><b><u>You will have:</u></b></p><ul><li><p>Proven experience in <b>Wi-Fi driver</b> development, including STA, AP, P2P, and multi-mode implementations.</p></li><li><p>Thorough knowledge of at least one interface like PCIe/SDIO/USB</p></li><li><p>Good knowledge of different authentication/encryption methods on Wi-Fi</p></li><li><p>Understanding of <b>wpa_supplicant</b> and <b>hostapd</b>.</p></li><li><p>Good understanding of Wi-Fi control and data paths.</p></li><li><p>Programming languages expertise in C, Python</p></li><li><p>Good knowledge in Linux OS internals.</p></li><li><p>Exposure to QNX is a huge plus</p></li></ul><p></p><p><b>Imagine what you could do at QNX! </b></p><p>#LI-KH1</p><p><span style=\"font-size:14px\"> </span></p><p><b>Scheduled Weekly Hours:</b></p>40<p><span style=\"font-size:14px\"> </span></p>",
+            "location": "Hyderabad, India",
+            "postedOn": "Posted 30+ Days Ago",
+            "startDate": "2026-09-18",
+            "timeType": "Full time",
+            "jobReqId": "20250320",
+            "jobPostingId": "QNX--Senior-Systems-Software-Developer--BSP---Device-Drivers-_20250320",
+            "jobPostingSiteId": "QNX",
+            "country": {
+              "descriptor": "India",
+              "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+            },
+            "videoInfo": {
+              "javascriptUrl": "https://wd3.myworkday.com/wday/backpack-hub/muse/wday/js/muse-viewer-standalone.js",
+              "params": {
+                "tenant": "bb",
+                "application_context": "recruiting-external-site",
+                "toggles": "{\"wmc-22189\":true,\"wmc-22331\":true,\"wmc-27882\":true,\"wmc-13658\":true,\"wmc-13737\":true,\"wmc-24807\":true,\"wmc-11701\":true,\"muse-709\":false,\"wmc-5825\":false,\"wmc-5951\":false,\"wmc-14911\":true,\"wmc-8321\":false,\"wmc-15802\":true,\"wmc-20855\":true,\"wmc-20732\":false,\"wmc-16527\":true,\"wmc-21592\":true,\"wmc-9846\":false,\"wmc-21615\":true,\"wmc-15670\":true,\"wmc-21593\":true,\"wmc-12835\":true,\"wmc-14182\":true,\"wmc-14284\":true,\"wmc-15011\":true,\"uxlx-1\":true,\"wmc-11369\":false,\"wmc-7256\":false,\"wmc-15073\":true,\"wmc-28241\":false,\"wmc-14151\":false,\"wmc-8819\":false,\"wmc-18120\":true,\"wmc-14717\":true,\"wmc-16759\":true,\"wmc-19376\":false,\"wmc-3252\":true,\"wmc-27242\":true,\"wmc-8159\":false,\"wmc-11052\":false,\"wmc-12740\":true,\"muse-660\":true,\"wmc-8655\":true,\"wmc-8656\":true,\"wmc-12008\":true,\"wmc-16585\":true,\"wmc-15743\":true,\"wmc-16466\":true,\"wmc-7540\":false,\"wmc-13388\":true,\"wmc-10060\":false,\"lrn-965\":true,\"lrn-1802\":true,\"lrn-32769\":true,\"wmc-16519\":false,\"wmc-23952\":false,\"wmc-10948\":true,\"wmc-16065\":true,\"wmc-13055\":true,\"wmc-13187\":false,\"wmc-13094\":true,\"wmc-2787\":true,\"wmc-6386\":false,\"wmc-16278\":true,\"wmc-24972\":true,\"wmc-12913\":true,\"wmc-19864\":false,\"wmc-15663\":true,\"wmc-25344\":true,\"wmc-17760\":true,\"wmc-12857\":true,\"wmc-20760\":true,\"muse-7\":true,\"wmc-15869\":true,\"wmc-17540\":false,\"wmc-12033\":true,\"wmc-15981\":true,\"wmc-17354\":true,\"wmc-7007\":true,\"wmc-6460\":true,\"wmc-12094\":true,\"wmc-16142\":true,\"wmc-14718\":true,\"wmc-12770\":true,\"wmc-13879\":false,\"wmc-15592\":true,\"wmc-14424\":true,\"wmc-15591\":true,\"ml-25093\":false,\"wmc-13937\":true,\"wmc-2454\":true,\"wmc-16758\":true,\"wmc-23128\":true,\"wmc-5060\":false,\"wmc-12011\":true,\"wmc-17752\":true,\"wmc-13132\":true,\"lrn-34912\":true,\"wmc-10693\":true,\"wmc-31213\":true,\"wmc-13235\":true,\"wmc-13594\":true,\"wmc-7714\":true,\"wmc-22778\":false,\"wmc-2867\":true,\"wmc-22777\":false,\"wmc-22776\":true,\"wmc-13605\":true,\"wmc-12981\":true,\"wmc-13322\":true,\"wmc-13502\":true,\"wmc-24587\":false,\"wmc-21680\":false,\"wmc-10558\":true,\"wmc-13719\":true,\"wmc-16896\":true,\"wmc-12951\":true,\"wmc-14572\":false,\"wmc-13074\":true,\"wmc-13075\":true,\"wmc-13783\":true,\"wmc-16223\":true,\"wmc-11305\":true,\"wmc-9432\":false,\"wmc-17199\":true,\"wmc-14658\":true,\"wmc-16736\":true,\"wmc-12079\":false,\"wmc-12078\":false,\"wmc-7504\":true,\"wmc-25101\":true,\"wmc-12075\":true,\"wmc-13811\":false,\"wmc-13458\":true,\"wmc-16897\":true,\"wmc-7659\":false,\"wmc-13786\":true,\"wmc-16670\":true,\"wmc-1599\":true,\"wmc-1598\":false,\"wmc-17590\":true,\"wmc-22768\":false,\"wmc-18600\":true,\"wmc-12481\":true,\"wmc-14914\":true,\"wmc-7783\":true,\"wmc-18117\":false,\"wmc-24046\":true,\"wmc-24047\":true,\"wmc-12724\":false,\"wmc-9250\":true,\"wmc-16310\":true,\"wmc-11574\":true,\"wmc-16194\":true,\"wmc-15661\":true,\"wmc-619\":false,\"wmc-2496\":false,\"wmc-15408\":false,\"wmc-16878\":true,\"wmc-13572\":true,\"wmc-15853\":true,\"wmc-15834\":true,\"wmc-17198\":true,\"wmc-13245\":true,\"wmc-14403\":true,\"wmc-17505\":true,\"wmc-20495\":true,\"wmc-3182\":true,\"wmc-7505\":true,\"wmc-6806\":false,\"wmc-26460\":true,\"wmc-14937\":true,\"wmc-6628\":true,\"wmc-11780\":true,\"wmc-9377\":true,\"wmc-13684\":true,\"wmc-13429\":true,\"wmc-18129\":true,\"wmc-15400\":true,\"wmc-14534\":true,\"wmc-15160\":true,\"wmc-15285\":true,\"wmc-9803\":false,\"wmc-15252\":true,\"wmc-21767\":true,\"wmc-2129\":true,\"wmc-8224\":true,\"wmc-13160\":true,\"wmc-14883\":true,\"wmc-18153\":false,\"currentSystemVersion\":\"2026.42\",\"lrn-12626\":true,\"lrn-14483\":true}",
+                "type": "video",
+                "media_id": "7239a59b7f151001e95ff4b90a180000",
+                "public_path": "https://wd3.myworkday.com/wday/backpack-hub/muse-web-client/2026.41.201",
+                "poster": "https://wd3-media.myworkdaycdn.com/m/v3/fetch/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/8knLe0/progressive.h264.1080p.v7.mp4.0000001.jpg?__token__=ver=2023.09~kid=mediatransit~exp=1792548033~origin=wd3.myworkday.com~ttl=14400~hmac=91f651ae022c59c83e8af431957a56302f0342d5640a95c7a1ecca3264abeb1e",
+                "user_agreement": {
+                  "accepted": false,
+                  "acceptance_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/user_agreement/27b3f872096510001029d985b6ae0043",
+                  "required": false,
+                  "terms_url": "/bb/inst/22761$1/rel-task/2998$37225"
+                },
+                "tracking_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/stats/play_events/7239a59b7f151001e95ff4b90a180000",
+                "report_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/report/player_issue/7239a59b7f151001e95ff4b90a180000",
+                "content_type": "video",
+                "duration": 130,
+                "created_on_ms": 1661515580000,
+                "tracks": [
+                  {
+                    "url": "https://wd3-media.myworkdaycdn.com/m/v3/fetch/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/text-tracks/91EAfENHSMOZzukwiGMTjnANpEXH4nQp/track.vtt?__token__=ver=2023.09~kid=mediatransit~exp=1792548033~origin=wd3.myworkday.com~ttl=14400~hmac=685370525e4796e8b52ab3b0d5e0c4ec37c4eb0680f66e238e59c30027a0d265",
+                    "language": "en_US",
+                    "label": "English (United States)"
+                  }
+                ],
+                "sources": [
+                  {
+                    "url": "https://wd3-media.myworkdaycdn.com/m/v3/playlist/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/8knLe0/HLS.v7.m3u8?tt=en_US%3BEnglish%2B%2528United%2BStates%2529%3Bs3%253A%252F%252Fworkday-media-eu%252Ff%252Fxb1F%252Fc%252FC0783FF8ABC21ECC%252F4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw%252Ftext-tracks%252F91EAfENHSMOZzukwiGMTjnANpEXH4nQp%252Ftrack.vtt&duration=130.041&__token__=ver=2023.09~kid=mediatransit~exp=1792548033~origin=wd3.myworkday.com~ttl=14400~hmac=91f651ae022c59c83e8af431957a56302f0342d5640a95c7a1ecca3264abeb1e",
+                    "type": "application/x-mpegURL",
+                    "quality": "Auto",
+                    "hd_label": "",
+                    "size": 0,
+                    "duration": 130041
+                  }
+                ],
+                "cdn_token": "ver=2023.09~kid=mediatransit~exp=1792548033~origin=wd3.myworkday.com~ttl=14400~hmac=91f651ae022c59c83e8af431957a56302f0342d5640a95c7a1ecca3264abeb1e",
+                "muse": {
+                  "interactions": [],
+                  "videoDuration": 130.041,
+                  "skipRestricted": false,
+                  "disallowRetries": false,
+                  "restrictAccess": false
+                }
+              }
+            },
+            "canApply": true,
+            "posted": true,
+            "includeResumeParsing": true,
+            "jobRequisitionLocation": {
+              "descriptor": "Hyderabad, India",
+              "country": {
+                "descriptor": "India",
+                "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+                "alpha2Code": "IN"
+              }
+            },
+            "externalUrl": "https://bb.wd3.myworkdayjobs.com/QNX/job/Hyderabad-India/QNX--Senior-Systems-Software-Developer--BSP---Device-Drivers-_20250320",
+            "questionnaireId": "b2c5546837971001ab8e3aa1fe540000"
+          },
+          "hiringOrganization": {
+            "name": "5300 BlackBerry India Private Limited",
+            "url": ""
+          },
+          "similarJobs": [],
+          "userAuthenticated": false
+        },
+        "/job/Hyderabad-India/BlackBerry-QNX-Systems-Software-Developer_20260163": {
+          "jobPostingInfo": {
+            "id": "ab66e99aba02100186798c6d489e0000",
+            "title": "BlackBerry QNX Systems Software Developer",
+            "jobDescription": "<p><span style=\"font-size:14px\"> </span></p><p><b>Worker Sub-Type:</b></p>Regular<p><span style=\"font-size:14px\"> </span></p><p><b>Job Description: </b></p><p>BlackBerry® QNX® is a trusted supplier of safe and secure operating systems, hypervisors, frameworks and development tools, and provides expert support and services for building the world’s most critical embedded systems.   We are the embedded experts. BlackBerry QNX was born in embedded, and provides time-tested and trusted foundation software, including our deterministic microkernel real-time operating system (RTOS), safety-certified products, middleware and security solutions, all purpose-built for embedded systems.  </p><p></p><p>BlackBerry QNX software is trusted by more than <a href=\"https://blackberry.qnx.com/en/forms/wp-why-blackberry-qnx-has-become-the-leading-ev-software-supplier\" target=\"_blank\"><span>68% of the Electric Vehicle market by volume</span></a>, 23 of the top 25 EV manufacturers and is running in more than 195 million vehicles globally.  Our foundation products have been pre-certified to ISO 26262 ASIL D and we offer a broad range of board support packages, professional services, AUTOSAR adaptive support and middleware solutions – from acoustic management, to digital cockpits to advanced driving <span>assistance (ADAS)</span> - to accelerate development and help OEMs meet Start of Production (SOP) dates. </p><p></p><p><b>Are you the person we are looking for?</b>  </p><p>Our customers count on us to convert awesome ideas into great products and services.  The QNX Board Support Package (BSP) Team is looking for Senior Driver Developers to design and implement the next generation computing platforms in Automotive &amp; other general embedded verticals. You will be part of a development team responsible for creating software drivers to support next-gen hardware peripherals on some of the most advanced hardware platforms available.  You must be someone with ideas and real passion for software delivered to maximize reuse, efficiency, and simplicity.</p><p></p><p><span>In return for your skills, expertise and enthusiasm, we will provide you with an attractive compensation &amp; comprehensive benefits package.  </span>We have some of the brightest minds working on cutting edge platforms at QNX.  Join us and you’ll become part of a team that is already leading the way and there is no telling what you could accomplish.</p><p></p><p><b><span>You will have:</span></b></p><ul><li><p>A successful track record of developing drivers for various hardware peripherals including the adaptation of existing drivers for embedded platforms.</p></li><li><p>Proven aptitude for BSP development such as board bring up, enhancement of existing software and performance tuning.</p></li><li><p>Enthusiastic about developing new driver architectures to support future hardware peripheral advancements.</p></li><li><p>Focused on ensuring software is held to our quality standards</p></li><li><p>Interested in opportunities to develop software under specialised safety standards such as ISO26262, IEC61508 etc.</p></li></ul><p></p><p><b><span>You will have the following technical skills:</span></b></p><ul><li><p>Bootloader and board bring up skills such as u-boot/DRAM controller initialization / system clock configuration / GPIO &amp; pinmux)</p></li><li><p>Experience with serial driver development for UARTs, i2c, SPI, CAN, input devices, touch controllers etc</p></li><li><p>Storage device driver development targeting block storage devices, UFS, SD/eMMC, AHCI/SATA, or flash technology (NAND/NOR)</p></li><li><p>High speed complex communication busses like PCIe, USB</p></li><li><p>Experience writing drivers for wired and wireless networking interfaces</p></li><li><p>Development know-how on power management, DVFS, thermal management, etc</p></li><li><p>Domain expertise with security hardware and firmware (TPM, TrustZone, etc.)</p></li></ul><p></p><p><b><span>You will have the following skills &amp; experience:</span></b></p><ul><li><p>Bachelor’s degree in Computer Science, Computer Engineering or equivalent experience</p></li><li><p>Established software development experience</p></li><li><p>In-depth knowledge of C and Assembly programming languages.</p></li><li><p>Hands on development experience using embedded operating systems (QNX, Linux, GreenHills, VXworks preferred)</p></li><li><p>Prior experience in driver development is essential</p></li><li><p>Experience writing software for major processor architectures (ARM, x86, PPC, etc.)</p></li><li><p>Hands on experience in the development of software following either safety standards (ISO26262, IEC61508 etc) or MIL standards would be a standout skill </p></li></ul><h2></h2><p><span style=\"font-size:14px\"> </span></p><p><b>Scheduled Weekly Hours:</b></p>40<p><span style=\"font-size:14px\"> </span></p>",
+            "location": "Hyderabad, India",
+            "postedOn": "Posted 30+ Days Ago",
+            "startDate": "2026-05-07",
+            "timeType": "Full time",
+            "jobReqId": "20260163",
+            "jobPostingId": "BlackBerry-QNX-Systems-Software-Developer_20260163",
+            "jobPostingSiteId": "QNX",
+            "country": {
+              "descriptor": "India",
+              "id": "c4f78be1a8f14da0ab49ce1162348a5e"
+            },
+            "videoInfo": {
+              "javascriptUrl": "https://wd3.myworkday.com/wday/backpack-hub/muse/wday/js/muse-viewer-standalone.js",
+              "params": {
+                "tenant": "bb",
+                "application_context": "recruiting-external-site",
+                "toggles": "{\"wmc-22189\":true,\"wmc-22331\":true,\"wmc-27882\":true,\"wmc-13658\":true,\"wmc-13737\":true,\"wmc-24807\":true,\"wmc-11701\":true,\"muse-709\":false,\"wmc-5825\":false,\"wmc-5951\":false,\"wmc-14911\":true,\"wmc-8321\":false,\"wmc-15802\":true,\"wmc-20855\":true,\"wmc-20732\":false,\"wmc-16527\":true,\"wmc-21592\":true,\"wmc-9846\":false,\"wmc-21615\":true,\"wmc-15670\":true,\"wmc-21593\":true,\"wmc-12835\":true,\"wmc-14182\":true,\"wmc-14284\":true,\"wmc-15011\":true,\"uxlx-1\":true,\"wmc-11369\":false,\"wmc-7256\":false,\"wmc-15073\":true,\"wmc-28241\":false,\"wmc-14151\":false,\"wmc-8819\":false,\"wmc-18120\":true,\"wmc-14717\":true,\"wmc-16759\":true,\"wmc-19376\":false,\"wmc-3252\":true,\"wmc-27242\":true,\"wmc-8159\":false,\"wmc-11052\":false,\"wmc-12740\":true,\"muse-660\":true,\"wmc-8655\":true,\"wmc-8656\":true,\"wmc-12008\":true,\"wmc-16585\":true,\"wmc-15743\":true,\"wmc-16466\":true,\"wmc-7540\":false,\"wmc-13388\":true,\"wmc-10060\":false,\"lrn-965\":true,\"lrn-1802\":true,\"lrn-32769\":true,\"wmc-16519\":false,\"wmc-23952\":false,\"wmc-10948\":true,\"wmc-16065\":true,\"wmc-13055\":true,\"wmc-13187\":false,\"wmc-13094\":true,\"wmc-2787\":true,\"wmc-6386\":false,\"wmc-16278\":true,\"wmc-24972\":true,\"wmc-12913\":true,\"wmc-19864\":false,\"wmc-15663\":true,\"wmc-25344\":true,\"wmc-17760\":true,\"wmc-12857\":true,\"wmc-20760\":true,\"muse-7\":true,\"wmc-15869\":true,\"wmc-17540\":false,\"wmc-12033\":true,\"wmc-15981\":true,\"wmc-17354\":true,\"wmc-7007\":true,\"wmc-6460\":true,\"wmc-12094\":true,\"wmc-16142\":true,\"wmc-14718\":true,\"wmc-12770\":true,\"wmc-13879\":false,\"wmc-15592\":true,\"wmc-14424\":true,\"wmc-15591\":true,\"ml-25093\":false,\"wmc-13937\":true,\"wmc-2454\":true,\"wmc-16758\":true,\"wmc-23128\":true,\"wmc-5060\":false,\"wmc-12011\":true,\"wmc-17752\":true,\"wmc-13132\":true,\"lrn-34912\":true,\"wmc-10693\":true,\"wmc-31213\":true,\"wmc-13235\":true,\"wmc-13594\":true,\"wmc-7714\":true,\"wmc-22778\":false,\"wmc-2867\":true,\"wmc-22777\":false,\"wmc-22776\":true,\"wmc-13605\":true,\"wmc-12981\":true,\"wmc-13322\":true,\"wmc-13502\":true,\"wmc-24587\":false,\"wmc-21680\":false,\"wmc-10558\":true,\"wmc-13719\":true,\"wmc-16896\":true,\"wmc-12951\":true,\"wmc-14572\":false,\"wmc-13074\":true,\"wmc-13075\":true,\"wmc-13783\":true,\"wmc-16223\":true,\"wmc-11305\":true,\"wmc-9432\":false,\"wmc-17199\":true,\"wmc-14658\":true,\"wmc-16736\":true,\"wmc-12079\":false,\"wmc-12078\":false,\"wmc-7504\":true,\"wmc-25101\":true,\"wmc-12075\":true,\"wmc-13811\":false,\"wmc-13458\":true,\"wmc-16897\":true,\"wmc-7659\":false,\"wmc-13786\":true,\"wmc-16670\":true,\"wmc-1599\":true,\"wmc-1598\":false,\"wmc-17590\":true,\"wmc-22768\":false,\"wmc-18600\":true,\"wmc-12481\":true,\"wmc-14914\":true,\"wmc-7783\":true,\"wmc-18117\":false,\"wmc-24046\":true,\"wmc-24047\":true,\"wmc-12724\":false,\"wmc-9250\":true,\"wmc-16310\":true,\"wmc-11574\":true,\"wmc-16194\":true,\"wmc-15661\":true,\"wmc-619\":false,\"wmc-2496\":false,\"wmc-15408\":false,\"wmc-16878\":true,\"wmc-13572\":true,\"wmc-15853\":true,\"wmc-15834\":true,\"wmc-17198\":true,\"wmc-13245\":true,\"wmc-14403\":true,\"wmc-17505\":true,\"wmc-20495\":true,\"wmc-3182\":true,\"wmc-7505\":true,\"wmc-6806\":false,\"wmc-26460\":true,\"wmc-14937\":true,\"wmc-6628\":true,\"wmc-11780\":true,\"wmc-9377\":true,\"wmc-13684\":true,\"wmc-13429\":true,\"wmc-18129\":true,\"wmc-15400\":true,\"wmc-14534\":true,\"wmc-15160\":true,\"wmc-15285\":true,\"wmc-9803\":false,\"wmc-15252\":true,\"wmc-21767\":true,\"wmc-2129\":true,\"wmc-8224\":true,\"wmc-13160\":true,\"wmc-14883\":true,\"wmc-18153\":false,\"currentSystemVersion\":\"2026.42\",\"lrn-12626\":true,\"lrn-14483\":true}",
+                "type": "video",
+                "media_id": "7239a59b7f151001e95ff4b90a180000",
+                "public_path": "https://wd3.myworkday.com/wday/backpack-hub/muse-web-client/2026.41.201",
+                "poster": "https://wd3-media.myworkdaycdn.com/m/v3/fetch/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/8knLe0/progressive.h264.1080p.v7.mp4.0000001.jpg?__token__=ver=2023.09~kid=mediatransit~exp=1792548034~origin=wd3.myworkday.com~ttl=14400~hmac=feb8640d9aaca2099c908d8d36aa960c902a13f20c7e69b9720236bbfc4f51e6",
+                "user_agreement": {
+                  "accepted": false,
+                  "acceptance_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/user_agreement/27b3f872096510001029d985b6ae0043",
+                  "required": false,
+                  "terms_url": "/bb/inst/22761$1/rel-task/2998$37225"
+                },
+                "tracking_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/stats/play_events/7239a59b7f151001e95ff4b90a180000",
+                "report_url": "https://wd3.myworkday.com/wday/backpack-hub/bb/report/player_issue/7239a59b7f151001e95ff4b90a180000",
+                "content_type": "video",
+                "duration": 130,
+                "created_on_ms": 1661515580000,
+                "tracks": [
+                  {
+                    "url": "https://wd3-media.myworkdaycdn.com/m/v3/fetch/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/text-tracks/91EAfENHSMOZzukwiGMTjnANpEXH4nQp/track.vtt?__token__=ver=2023.09~kid=mediatransit~exp=1792548034~origin=wd3.myworkday.com~ttl=14400~hmac=6c1bafbcdf1c9a654dadff5db4838962746be87edab58b39801b38f85d62f578",
+                    "language": "en_US",
+                    "label": "English (United States)"
+                  }
+                ],
+                "sources": [
+                  {
+                    "url": "https://wd3-media.myworkdaycdn.com/m/v3/playlist/bb/xb1F/c/C0783FF8ABC21ECC/4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw/8knLe0/HLS.v7.m3u8?tt=en_US%3BEnglish%2B%2528United%2BStates%2529%3Bs3%253A%252F%252Fworkday-media-eu%252Ff%252Fxb1F%252Fc%252FC0783FF8ABC21ECC%252F4aqBSH3KxvlfD6Ptbj42HurCSaEcDhlw%252Ftext-tracks%252F91EAfENHSMOZzukwiGMTjnANpEXH4nQp%252Ftrack.vtt&duration=130.041&__token__=ver=2023.09~kid=mediatransit~exp=1792548034~origin=wd3.myworkday.com~ttl=14400~hmac=feb8640d9aaca2099c908d8d36aa960c902a13f20c7e69b9720236bbfc4f51e6",
+                    "type": "application/x-mpegURL",
+                    "quality": "Auto",
+                    "hd_label": "",
+                    "size": 0,
+                    "duration": 130041
+                  }
+                ],
+                "cdn_token": "ver=2023.09~kid=mediatransit~exp=1792548034~origin=wd3.myworkday.com~ttl=14400~hmac=feb8640d9aaca2099c908d8d36aa960c902a13f20c7e69b9720236bbfc4f51e6",
+                "muse": {
+                  "interactions": [],
+                  "videoDuration": 130.041,
+                  "skipRestricted": false,
+                  "disallowRetries": false,
+                  "restrictAccess": false
+                }
+              }
+            },
+            "canApply": true,
+            "posted": true,
+            "includeResumeParsing": true,
+            "jobRequisitionLocation": {
+              "descriptor": "Hyderabad, India",
+              "country": {
+                "descriptor": "India",
+                "id": "c4f78be1a8f14da0ab49ce1162348a5e",
+                "alpha2Code": "IN"
+              }
+            },
+            "externalUrl": "https://bb.wd3.myworkdayjobs.com/QNX/job/Hyderabad-India/BlackBerry-QNX-Systems-Software-Developer_20260163",
+            "questionnaireId": "b2c5546837971001ab8e3aa1fe540000"
+          },
+          "hiringOrganization": {
+            "name": "5300 BlackBerry India Private Limited",
+            "url": ""
+          },
+          "similarJobs": [],
+          "userAuthenticated": false
+        }
+      }
+    },
+    "Student": {
+      "listing": {
+        "total": 0,
+        "jobPostings": [],
+        "facets": [
+          {
+            "facetParameter": "distance",
+            "descriptor": "distance",
+            "values": [
+              {
+                "descriptor": "10 kilometers",
+                "id": "a538cdb60a631000078a4443636e00f8",
+                "count": 1
+              },
+              {
+                "descriptor": "25 kilometers",
+                "id": "a538cdb60a631000078a444d6fd600f9",
+                "count": 1
+              },
+              {
+                "descriptor": "50 kilometers",
+                "id": "a538cdb60a631000078a4452365100fa",
+                "count": 1
+              },
+              {
+                "descriptor": "100 kilometers",
+                "id": "a538cdb60a631000078a445539a700fb",
+                "count": 1
+              },
+              {
+                "descriptor": "Any Distance",
+                "id": "a538cdb60a631000078a4457dd7e00fc",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "userAuthenticated": false
+      },
+      "details": {}
+    }
+  }
+}

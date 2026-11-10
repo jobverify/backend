@@ -26,14 +26,14 @@ const isPositiveSafeSequence = field => ({ $and: [
   { $eq: [field, { $trunc: { $convert: { input: field, to: "double", onError: 0, onNull: 0 } } }] },
 ] });
 
-const reserveSummaryRefresh = async () => {
+const reserveSummaryRefresh = async (queryOptions) => {
   for (let attempt = 0; attempt < 3; attempt += 1) {
-    const existing = await readJobDatasetSummary();
+    const existing = await readJobDatasetSummary(queryOptions);
     try {
       return await JobDatasetSummary.findOneAndUpdate(
         { _id: existing?._id ?? INITIAL_SUMMARY_ID, key: JOB_DATASET_SUMMARY_KEY },
         { $inc: { refreshSequence: 1 }, $setOnInsert: { key: JOB_DATASET_SUMMARY_KEY } },
-        { upsert: true, new: true, setDefaultsOnInsert: true },
+        { ...queryOptions, upsert: true, new: true, setDefaultsOnInsert: true },
       ).lean().exec();
     } catch (error) {
       // Initial concurrent upserts share MongoDB's unique _id. A legacy unique
@@ -43,8 +43,9 @@ const reserveSummaryRefresh = async () => {
   }
 };
 
-export const refreshJobDatasetSummary = async () => {
-  const reservation = await reserveSummaryRefresh();
+export const refreshJobDatasetSummary = async ({ maxTimeMS } = {}) => {
+  const queryOptions = maxTimeMS == null ? {} : { maxTimeMS };
+  const reservation = await reserveSummaryRefresh(queryOptions);
   const observedAt = new Date();
   const { $expr: lifecycleScope, ...baseScope } = applyPublicJobLocationScope({ status: "active" }, observedAt);
   const [result] = await Job.aggregate([
@@ -74,7 +75,7 @@ export const refreshJobDatasetSummary = async () => {
         ],
       },
     },
-  ]).exec();
+  ], queryOptions).exec();
   const aggregate = result?.visible?.[0];
 
   const companies = asSortedUniqueStrings(aggregate?.companies);
@@ -112,6 +113,7 @@ export const refreshJobDatasetSummary = async () => {
       key, { $cond: [preserveNewer, `$${key}`, { $literal: value }] },
     ])) }],
     {
+      ...queryOptions,
       upsert: false,
       new: true,
       setDefaultsOnInsert: true,
@@ -123,10 +125,11 @@ export const refreshJobDatasetSummary = async () => {
   return document ?? summary;
 };
 
-export const readJobDatasetSummary = async () => (
+export const readJobDatasetSummary = async ({ maxTimeMS } = {}) => (
   mongoose.connection.readyState !== 1 && JobDatasetSummary.findOne === NATIVE_SUMMARY_FIND_ONE
     ? null
-    : JobDatasetSummary.findOne({ key: JOB_DATASET_SUMMARY_KEY })
+    : JobDatasetSummary.findOne({ key: JOB_DATASET_SUMMARY_KEY }, null,
+      maxTimeMS == null ? {} : { maxTimeMS })
       .sort({ _id: 1 })
       .lean()
       .exec()

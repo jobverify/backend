@@ -1,0 +1,1715 @@
+{
+  "source": "sunrun",
+  "captureMethod": "Official browser captures; gzip preserves complete original capture bytes.",
+  "binding": {
+    "official": "https://careers.sunrun.com/explore-your-future",
+    "board": "https://sunrun.wd5.myworkdayjobs.com/en-US/Sunrun_Careers",
+    "tenant": "sunrun",
+    "site": "Sunrun_Careers",
+    "proof": "Active official Applicant Login anchors bind Workday board; board bootstrap explicitly tenant sunrun, siteId Sunrun_Careers, isExternal true. Public jobs POST uses unfiltered appliedFacets/searchText and every current job detail is checked."
+  },
+  "observedInventory": {
+    "total": 254,
+    "pages": [
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      20,
+      14
+    ],
+    "india": 0,
+    "countries": [
+      "United States of America"
+    ],
+    "pagination": "First total254, subsequent total0 is native offset contract; detail country metadata and all secondary addresses reconciled. Talentbrew search is a separate 232-result surface and is not used as a count oracle."
+  },
+  "captures": [
+    {
+      "file": "current-detail-response.json.gz",
+      "captureSha256": "bdabf1ca630880c4681f7160300261800f3405f5ff9ea19aec268fa49e1ecbf4",
+      "gzipSha256": "42413fcb5c4d26922cd940dcaacb356a3b00fb2f0a528b22420bd645d2617194",
+      "responses": [
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Kailua-Kona/Field-Sales-Consultant_R76917",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:55:50.710Z",
+          "bodySha256": "70f7728d23284791ba0ea146309478d2d07816f473ec546fa8a9f1c41b38317f"
+        }
+      ]
+    },
+    {
+      "file": "detail-responses.json.gz",
+      "captureSha256": "ae53cbda41d1a4a62ebd2a3ff2b035cb9ee42437922b8d8e6ae1ba13f1f65d20",
+      "gzipSha256": "4be3493a79c6fefd7e2cb1b5c2f857500736693b8f9827eb123d73ca4cecb1a7",
+      "responses": [
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Kailua-Kona/Field-Sales-Consultant_R76917",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.062Z",
+          "bodySha256": "70f7728d23284791ba0ea146309478d2d07816f473ec546fa8a9f1c41b38317f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Fresno/Sr-Field-Performance-Technician_R72865",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.145Z",
+          "bodySha256": "a3a3500826d9827c92848a7460fa16fadb838132217c65efba90787d38afe9aa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Bakersfield/Sr-Field-Performance-Technician_R71006-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.142Z",
+          "bodySha256": "bd0097ff3dbc4f8d88e5c7ad59b2703657758239fea81c0d024e778f69adc9a9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Maui/Field-Sales-Consultant_R76843",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.120Z",
+          "bodySha256": "6579a32e9addae3ee03d0a25fb6f9b30a6216e7924077835b42ff6e7bebee9ec"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Sr-Field-Performance-Technician_R73624",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.223Z",
+          "bodySha256": "ca03e5f3fbde47d91b07247ddc36c5339a11a0abf33f385468226f4219018a3f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Hollister/Sr-Field-Performance-Technician_R74090-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.166Z",
+          "bodySha256": "f8294d95f4647e27391add8edd1110412b719dcf24e9e98428bcdc6cd43163f0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Menifee/Sr-Field-Performance-Technician_R74804",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.339Z",
+          "bodySha256": "2aa65a8976ae80241b94a71ddcf5f2f2376299fe992d6b08232cf1cc8d2538ac"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Field-Operations-Technician_R75085",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:16.337Z",
+          "bodySha256": "14e57d6cd36b405bd17bff9e1a79279e77ced415505d7bcfca311d889b11d173"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Chico/Sr-Field-Performance-Technician_R71488-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.252Z",
+          "bodySha256": "fbfa8cdc7b00e9bcfbd495f5f590f72c89a8da5413530bf34c0448500403aa7b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Ontario/Sr-Field-Performance-Technician_R63310",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.291Z",
+          "bodySha256": "bb502dede8c7620abab346a7a9945ef6481a1fb1d0338ca1d670b1b5e7ea4386"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Senior-Category-Manager_R73435",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.113Z",
+          "bodySha256": "6fdf2c40358f868769d823af00053855f235f6df94c21b97bed71344b3990e43"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Staff-Revenue-Enablement-Specialist_R74753",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.211Z",
+          "bodySha256": "716a161bfe4a7f19341c022b1959a93b51fc2b909d4395fedd49fca04b5c2efa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MD-Beltsville/Sr-Field-Performance-Technician_R72664",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.212Z",
+          "bodySha256": "8582ba2399afc7c9e9ead6edc0dca14dbf21d5f7f84f8f4f4c6c9d0565d2b9a5"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Lancaster/Solar-Appointment-Setter_R73018",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.114Z",
+          "bodySha256": "7c4bf28caecc7ed4ca9a70ce29324183b77f63b23b5f915b1aae53b7dc966604"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NJ-Cherry-Hill/Field-Sales-Consultant_R73098",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.337Z",
+          "bodySha256": "b742a725ac67937cc873f05304298521a232bce7ae1686cc82946cc3719baae3"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CORPORATE---CA---San-Francisco/Sr-Corporate-Paralegal_R76705",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.324Z",
+          "bodySha256": "27245514265d55df698a49ed95810dfdcf792e342a84e9325345e7430d724eea"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Dublin/Sr-Field-Performance-Technician_R64041",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.142Z",
+          "bodySha256": "63bfd1955c3faef46a3490a5994fdaac84b358c0ed490b40ac11e945dd180537"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Field-Sales-Consultant_R76836",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.883Z",
+          "bodySha256": "9e92dbdb3f800fe24e596829635b3e9fa9d324df81a47347cff7420dea1cf699"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Merced/Solar-Appointment-Setter_R76838",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:17.936Z",
+          "bodySha256": "810098b3b054d4640545d2046381ac55fd825b4857dafb28a254e21ee5b4cabb"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Francisco/Vice-President--Strategic-Finance---Analytics_R66309",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.064Z",
+          "bodySha256": "45f39a49e127bb9cbbab61e7c9f2bbae3f3157d4a93e3cfabc974c4986a4c610"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Dallas/Solar-Sales-Representative_R76739",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.111Z",
+          "bodySha256": "7f9fa46e32986dbb7525e9dfb39b3286768aa7b77bcd621a432a3b2c8da3b659"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Huntington-Park/Solar-Appointment-Setter_R76461",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.103Z",
+          "bodySha256": "d826ef72101efa550c08e76500b9cc6fc430d5ac1abc21ed5fbc8361a9ff3d01"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Thousand-Oaks/Retail-Specialist_R76288-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.011Z",
+          "bodySha256": "dcc14825878b9a397b24bd5dde633fd81fa106480df8fc9917e4681c2fc28d42"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Hilo/Installer_R75351",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.071Z",
+          "bodySha256": "8efbab786c2673282ee303bed8ab81ae519565b0c08b908e5436314c7b0a7ab0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Jose/Sr-Field-Performance-Technician_R68284",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.077Z",
+          "bodySha256": "f46764c0b3b4f4caa178fdf64f47e13d6ce4dd33537d2acf90a08c9aba1486b8"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Killeen/Solar-Appointment-Setter_R76675",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.078Z",
+          "bodySha256": "8b81244f8a15664dc1fcbeba3b0ef56efc33fc59f2ede7de85c16008ea5feaa4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Fort-Worth/Solar-Appointment-Setter_R76668",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.077Z",
+          "bodySha256": "6138cce0d77a6d51ca5d7626d917dfd45407f525d74ebe66388aac3ad1cba024"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Ramon/Field-Sales-Consultant_R76639",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.025Z",
+          "bodySha256": "b8339cbe87baf7c1f102a7e8d87857cf906d0f710b1e8b01157cd9031c2c0a2b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/RI-Providence/Lead-Installer_R63275",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:18.716Z",
+          "bodySha256": "df2966e8bd224fe96f8853861979465b9aefade552497e0cdcf6ebaec487953f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/REMOTE/Associate--Strategic-Pricing_R73012",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.078Z",
+          "bodySha256": "fa3d38f69f928aa1013d7338dc0b9edf020913b021e9c068f208085376dbc2a3"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Customer-Engagement-Specialist_R68641",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.077Z",
+          "bodySha256": "985cce3800c22a63b707fdc0385db811ec43add166cbe236dd8d9ba7e6221f7d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Geneva/Solar-Appointment-Setter_R76548",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.023Z",
+          "bodySha256": "3095990291ff8a30abb22280fc3f180edee0fd8b43c4c3e4f4459de937bfd9e0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Sacramento/Solar-Sales-Representative_R76479",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.790Z",
+          "bodySha256": "39515f6561107c304835ab9a69d6d590708b27562b5f8f05d92dbbfd6d25f810"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Santa-Rosa/Solar-Sales-Representative_R76481",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.823Z",
+          "bodySha256": "34c52cba3e7c911947b1d2d47baff4bf5763f754e2f6be5b1246b472c3a446e9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Concord/Solar-Sales-Representative_R76483",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.824Z",
+          "bodySha256": "99309cc5d643ef58aa42abbebb5c5c83fac23fba29610e626f9695efc9b094fa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Jose/Solar-Sales-Representative_R76484",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.792Z",
+          "bodySha256": "0803b6c6e48b3a848ebbc37b85f9e1df9a62fdb8dba63a55d77e2b1244739b5a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Riverside/Field-Sales-Consultant_R73941-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.760Z",
+          "bodySha256": "117c2400a47b5f3ba1c6fa2b72835e44202d0e256945c5fc7667eca9dc3de08e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Palmer/Solar-Appointment-Setter_R76464",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.677Z",
+          "bodySha256": "2f7e0e9a9c7968de853d6add99a409b9498c4be00f66318fa07f1b48314ca02c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Round-Rock/Solar-Appointment-Setter_R68631",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.812Z",
+          "bodySha256": "ebbb0cd322d65d2ba7e6eac7c93e042c8a9bd3203c76b6108f213d4e9d0139ab"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Sonora/Solar-Appointment-Setter_R76455",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:19.871Z",
+          "bodySha256": "ce3cea1e650753bb854c603e2da9fc1b5f3292abbf68947c44768a4385e3283c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Martell/Solar-Appointment-Setter_R76447",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:20.682Z",
+          "bodySha256": "5c4d9103f95a4e4cc8880188d04de850a14b434848b2350c8cefec066eea1f0d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Norton/Certified-Field-Operations-Technician_R72965",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:21.326Z",
+          "bodySha256": "d85f0dd22d31e9f0edf4e36a52e75f1b2e9069707cc326be05a8dde8b432f1d7"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Naperville/Solar-Foreperson---1-500-sign-on-bonus_R74537",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:20.647Z",
+          "bodySha256": "fca135be9f81672f07c1253a7a407a5f1f619ada03096a9e8f100c2e92f36321"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Springfield/Appointment-Setter_R76284",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:20.527Z",
+          "bodySha256": "e1b055ac2797d304913f52d16a2d800870c0f56606700eed607641124e6adabd"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Champaign/Appointment-Setter_R76285",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:20.528Z",
+          "bodySha256": "592d37eaa83412a5e72a081dc1f21a3b6bd912c10ba4c72a876a78e52d9cc029"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/PA-King-of-Prussia/Solar-Sales-Representative_R76269",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:21.334Z",
+          "bodySha256": "b0ebabd0b30fabffffe160b3d3bcfa85dc5a0cf6521878abaa5e5d1604e2efdc"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Austin/Solar-Sales-Representative_R76232",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:20.691Z",
+          "bodySha256": "57bc3a1d5adbe19e4a0038cfe83d94629157dcc96841e6f16bfd03c9a087f259"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NJ-Brick/Solar-Sales-Representative_R76268",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:20.529Z",
+          "bodySha256": "57e810601a6deb1a2ffcbc8520d1c6eb8474df2cb5334dfdbabea3ffc479d275"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NY-Elmsford/Solar-Sales-Representative_R76265",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.479Z",
+          "bodySha256": "1f4bc544b597321d0381d3f2e0a026c6f73885a3ab4b0f52e0731a927a44216e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NY-Westbury/Solar-Sales-Representative_R76266",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.116Z",
+          "bodySha256": "4a1178e5a6c95cefa6ae2ab94039ea46cd024e73f851f52025dc61c4bee7ea13"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NY-Queens/Solar-Sales-Representative_R76267-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.176Z",
+          "bodySha256": "85c77ecb3b9ecd496de479979f3787e89abbbc77354f92ad4f02345ff43e72ad"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Modesto/Solar-Appointment-Setter_R76235",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.204Z",
+          "bodySha256": "ca87f059ebcfbb7ba7dc8cac1e985c21a5304cd668105a30987db2cfc8ef7820"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Vista/Field-Sales-Consultant_R74334",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.198Z",
+          "bodySha256": "a095861e666877d62e000a02f28523ea078123728033f8e97ee40dbfa3bbdad0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Yuba-City/Solar-Appointment-Setter_R76230",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.174Z",
+          "bodySha256": "fb17fd1021a7114e2a2a4bc77c7cf677386ca15ae6be3dd4f8a908aba12f7afa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Des-Plaines/People-Generalist_R75206",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:21.973Z",
+          "bodySha256": "abd79eef3e3da0b85865522592976c39b268c22531dc2e2d8b91b1d66c5d81d3"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Chicago/Field-Sales-Consultant_R72894",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:22.133Z",
+          "bodySha256": "051757b88c96dd550f81dd5b60d1c6a35998b688b242397a62d69dfdc9df671e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Matteson/Field-Sales-Consultant_R72893",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.088Z",
+          "bodySha256": "77aa54d28c10766d1be84a463e2df0ef185b7855544ca8fba8a04b59288f2264"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bolingbrook/Field-Sales-Consultant_R72892",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.135Z",
+          "bodySha256": "db8d51f47bc025a1e563f76ba9dea1b3b94e3e5baf32a47b9daa9f2b7d0ba29b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Woodland-Hills/Solar-Appointment-Setter_R73618",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.209Z",
+          "bodySha256": "80264b9738740d86887d56846974144f4bdf51696b627f372e7583e03bf1199e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/Fusion---Pulse-X---TN---OLYMPUS/Entry-Level-Solar-Sales-Representative_R76119",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.251Z",
+          "bodySha256": "ca3a3466f1709bc4e02492b3418035318683eebf6e7484f35400b96a795c6f8e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Austin/Field-Sales-Consultant_R74442",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.220Z",
+          "bodySha256": "b99b4163c873b5496a8b7f8a7eb0d01a7b88edbe8164662dfc4d6dddefd0a272"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Tomball/Field-Sales-Consultant_R73322",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.338Z",
+          "bodySha256": "4fd001824938d37072863f906855ec94b44a334e3c63fb7dd57d31b1efd24c93"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Sr-Replenishment-Planner_R76123",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.282Z",
+          "bodySha256": "357a4f889f279cb948dd3d0efe9547710def3ad046e81b27aa5a3bd599c210ae"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Des-Plaines/Field-Performance-Technician_R73645",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.339Z",
+          "bodySha256": "c82fe3abb3af9875ea77a390a69db4c298aa7eb2b2dc1754403a8dc3f8bb74a3"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Des-Plaines/Residential-Electrician---1-500-sign-on-bonus_R74073",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.034Z",
+          "bodySha256": "4a32b6fcadf14be1c9104776fb9bb0d9b714e77e31a3a161fc2764f6a07d2c3f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Des-Plaines/Foreperson_R65799",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.090Z",
+          "bodySha256": "c595701173f1c8b52e74f4af3b41e0253e543755628bf02b5c6638318006536e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Des-Plaines/Licensed-Electrician---1-500-sign-on-bonus_R74072",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.106Z",
+          "bodySha256": "4f31a072994f2a09dd5f1d71408524f95c4fe48c61a52103869ce0632259d794"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Naperville/Residential-Electrician---1-500-sign-on-bonus_R74536",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.067Z",
+          "bodySha256": "8a296e8f3f28ca4c07b5ac1b82a0e0e384e387d3b6ce84088bba00e9f25f0b33"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Naperville/Licensed-Electrician---1-500-sign-on-bonus_R74535",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.942Z",
+          "bodySha256": "caef3649af3e947ab6ff1ed9ba811d60afa05bd828ee6fdcd8e48fa71dbe88f4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Santa-Ana/Field-Sales-Consultant_R76079-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:23.907Z",
+          "bodySha256": "c78564717c37c4d29b10a621a91127f113ab2cecee5159c53072aa7a91ca063b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Waltham/Field-Sales-Consultant_R73121",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.092Z",
+          "bodySha256": "febae9bc9848d107a230086bcf20d6dd277991d355265474c1eee4ab47ffa0ef"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Luis-Obispo/Staff-Interconnection-Representative--Multifamily_R75561",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.063Z",
+          "bodySha256": "02446ff76f28da733e08b9d3c4f0fd3b4a2e793f68c017fc7d665558f4b3f3cd"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Corona/Sales-Expert_R76051-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.838Z",
+          "bodySha256": "df057239c25325bacd580fc98d9bea0703b4915d458c1b816d846a129eedf97e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bloomington/Field-Performance-Technician_R70017",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.836Z",
+          "bodySha256": "600a60bdb4c7b88af179079f49c4ae14a3a5e010a6b0d6cbb36c5aed6c9927d8"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Oswego/Solar-Appointment-Setter_R76038-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.858Z",
+          "bodySha256": "caff5bac56751a310fe3b8416495c3783a831ede2f97e312dc8637876a41b8ae"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Yorkville/Solar-Appointment-Setter_R76039",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.859Z",
+          "bodySha256": "f94de68c4c5ca4abadbf78aef6a5bb4405ea655134044480db2d7c2a8c65ae34"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MD-Beltsville/Foreperson_R73868-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.860Z",
+          "bodySha256": "851b9d0db760fb17883b44a25a074271b1da86adfe566fbc6af6b219afbd95fc"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Orland-Park/Solar-Appointment-Setter_R76009",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.859Z",
+          "bodySha256": "0fcce3955f31896bc471737dcc98f10d3ceaf48c9a922e35f2c9a5c0ca030712"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Carrollton/Retail-Specialist_R75269",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.860Z",
+          "bodySha256": "a86fd7e4c29d70fafe0d61b1717f7579a2217decd27654e1e0b89cca70434352"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NJ-Clifton/Sr-Field-Performance-Technician_R73025",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:24.974Z",
+          "bodySha256": "2de0810ac757047640eda98a3bea0b3513cc478d7a7821ec1b4fe469bd80921c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Naperville/Solar-Appointment-Setter_R75950",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.661Z",
+          "bodySha256": "0b479811033cd9e34424da960d2397df5bc66d4cc6fadf43635a25a2a4c0b447"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NY-New-Rochelle/Field-Service-Supervisor_R74036",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.532Z",
+          "bodySha256": "430e3e98db2aa1c04c1eab9560e7d32c3c069f2dc8905ec988a722aaa0decbbe"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Vernon-Hills/Solar-Appointment-Setter_R75951",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:26.471Z",
+          "bodySha256": "3dc5e25daf88e48efcc3c0b2a8e6d9d45f791fd14cce71505bad8884ab13da28"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Marcos/Sr-Field-Performance-Technician_R73583",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.734Z",
+          "bodySha256": "62a3f5a36518bddd9da7d728edb3bc8f8bcb86b5c1ca67561506b374c75d323d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-El-Cajon/Solar-Appointment-Setter_R74865",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.546Z",
+          "bodySha256": "cf6199d0b41907755a185b78b2ff514b6534d7b264291bd8ea8457851d1553cf"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Kailua-Kona/Solar-Appointment-Setter_R74898",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.704Z",
+          "bodySha256": "2cc0803192163f41c00cb61dae503dac5858ef61359cabfb34476bc0a902993a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Mission-Viejo/Solar-Appointment-Setter_R74904",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.582Z",
+          "bodySha256": "3a8df57b84e009a7f066323eb31c51b1db3d75e929003b0a8c1ebb1ec0366040"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Solar-Appointment-Setter_R74901",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:25.721Z",
+          "bodySha256": "092f70219225ca2dd6fd27d564dfb385c53050863f1b4f221cfebbe5dfdd46fa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Carlsbad/Solar-Appointment-Setter_R74860",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.158Z",
+          "bodySha256": "fb958246541f988b28e4363ea9f6b9588a14bde1bd85746ecde6116697e63940"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-East-Peoria/Warehouse-Specialist_R75153",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.320Z",
+          "bodySha256": "dbe05f08d35745cfb6072b3e84044194aa421f3801ba26b28a6ef3c7951b65d6"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Stockton/Solar-Appointment-Setter_R74471",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.293Z",
+          "bodySha256": "d6b73d30cd639f816e10d8af6cf0647cfad2235796adf1fdc68e9320a5688726"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Sr-Financial-Analyst_R75818",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.225Z",
+          "bodySha256": "1500f7c90d338106ddce606377deceb24de2b1f7a83e38fb2639c77d7e0324b2"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Waipahu/Field-Operations-Technician_R75086",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.290Z",
+          "bodySha256": "ae00a8f079b6039c67dae36a927a74759dd9b151472f03884178dc15c03609d9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/BRANCH---HI---Big-Island/Lead-Installer_R74246",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.306Z",
+          "bodySha256": "1a2b9b12c02d07d2088e2a0fe52d9b0e7ea9d9ca3aed890357558bdf6b19091e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Santa-Ana/Entry-Level-Sales-Representative_R75825",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.219Z",
+          "bodySha256": "a5c674d1728d847bd1c93f71f8e7ab7d5493dd0cbc383c06985a6334ef60dc1b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Des-Plaines/Lead-Installer_R75009",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.233Z",
+          "bodySha256": "d158e4ddec3337a46aa5efa5591ead42d7d2d4f9270f5078820efaeb52e71402"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bloomington/Residential-Electrician---1-500-sign-on-bonus_R67547",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.270Z",
+          "bodySha256": "4cc249b78d2135f290066cc941c4ad1a9ce08b2a0d31df6462f9e299b50a01fb"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Middleborough/Solar-Appointment-Setter_R75754",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:27.908Z",
+          "bodySha256": "2ff7d5cd28d5842db6f4e563119865448d9e56d13de8874da497f9bad7b864ed"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Ventura/Retail-Sales-District-Manager_R75600",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.330Z",
+          "bodySha256": "48510c0de3bbc78244497f986ed634c50dba9eeeeb1f692dd87185385446c0e5"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MD-Beltsville/Certified-Electrician-2_R70412",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.340Z",
+          "bodySha256": "ebbedd0deb1ecfdd520f569154ea8ae1c403bfacfa62458be9b4a907940d1b7f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Luis-Obispo/Solar-Sales-Representative_R75539",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.161Z",
+          "bodySha256": "c2ea99536697d34e246381c50dd53f5cd3c17b73028cd897fef0597a75a33685"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Camarillo/Solar-Sales-Representative_R75538",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.208Z",
+          "bodySha256": "9d0427b9f2655b7f1ad3bedcee1f5b66b16347e30e62cf2784908d3a95ed1f3d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Visalia/Solar-Sales-Representative_R75535",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.180Z",
+          "bodySha256": "d680600234fe33c84456bfe1e338698b771d905d1c111020973ffa416d777aaa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Corona/Solar-Sales-Representative_R75537",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.264Z",
+          "bodySha256": "7f285f8426a16709fa0698ce64084289438a7c68c8946839670edd358d7431b9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CT-Norwich/Solar-Appointment-Setter_R75613",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.282Z",
+          "bodySha256": "0ff117dbeb99f6cdc9efc09dc9eec68f097de9c664026a8d8f97b83be83f09f9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Salinas/Field-Sales-Consultant_R74637",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.208Z",
+          "bodySha256": "ed94a427de0da2df8a58b1a5587f1503f4758f7add6c8d98626c38e066da9576"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Joliet/Solar-Appointment-Setter_R75593",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.284Z",
+          "bodySha256": "11185d024e319eabf6fb02b6fe876e45124cb877c1bdc523782a021d2a5912f4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bolingbrook/Certified-Field-Operations-Technician--Talent-Pool--Future-_R73493",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.318Z",
+          "bodySha256": "7d4c413d031e485ec7e2b6f22d5563931369d08835ff4774261f3ddb6bae84f4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Luis-Obispo/Field-Sales-Consultant_R74352-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.279Z",
+          "bodySha256": "aa4ef4eacab85b14f26083209d20eeeca16e580bb1a188aff07121cae016b8f9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-South-Elgin/Solar-Appointment-Setter_R75536",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.285Z",
+          "bodySha256": "80bf1d6b8d7881a7fb6996e801c1a17dc3cdb6104b858a83e4388e542293cbf8"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Downers-Grove/Solar-Appointment-Setter_R75544",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:28.921Z",
+          "bodySha256": "372b536e1acf2cbcbc5e00b9c371df53f58d694f0c11cfc5120fa892d940c01b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Cicero/Solar-Appointment-Setter_R75542",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.277Z",
+          "bodySha256": "065c186b51cea97cde1e11153a830c3eabc5cd233dd07e7322fa81e78942b547"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Sugar-Land/Solar-Sales-Representative_R75509",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.050Z",
+          "bodySha256": "87e018964a2d819349fd14a0b71eff13a7712cd98ace79f18ae7b81d8a54bb22"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-McHenry/Solar-Appointment-Setter_R75527",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.905Z",
+          "bodySha256": "f70d1620a62efde5c95133bac4a1acd38c1ab478fc928261996cbdcf1a7c3e0f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Elmwood-Park/Solar-Appointment-Setter_R75528",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.207Z",
+          "bodySha256": "06e196423f3a9d66d731acce5245d98c206b21b51c57d3dc34cfae1425296e57"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Arlington-Heights/Solar-Appointment-Setter_R75525",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.895Z",
+          "bodySha256": "6f4ce82526e3f2d542be97d2cb58595f90c50026b804aaf4c18825e39a63c99f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Gurnee/Solar-Appointment-Setter_R75526",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.936Z",
+          "bodySha256": "4a687d7e8849ddd8ea71447356eabe70ea84bf6b12852d7a40a7c63b5e25cf2e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Jose/Solar-Appointment-Setter_R73418",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.053Z",
+          "bodySha256": "630aca7e02549031192e16c337e03d94bfe9ce732df74b850570e01cdccca230"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/REMOTE/Staff-Desktop-Support-Representative_R68380",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:29.946Z",
+          "bodySha256": "bd6af46ffa2e4d125b42c272cba98fdfd10bfb0381174e23f5756685f838c045"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palmdale/Solar-Sales-Representative_R75249",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.150Z",
+          "bodySha256": "3b394f669ee7a2e0754d249c0f3faab421ea5e38fc79c7f5d1fa7040f5e3d7b4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Chicago/Solar-Appointment-Setter_R73072",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.928Z",
+          "bodySha256": "e7c5dc03013b13992a69cdf6a39f356f43498024a7f457fe7083cc73077770d9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Social-Media-Content-Specialist_R65535",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.888Z",
+          "bodySha256": "af4e7717f243d7568999dc0b578dfb524b7f9559c453ad8e98e8d739a1e43138"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MD-Beltsville/Field-Operations-Technician_R74216",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.984Z",
+          "bodySha256": "78c958100e6122bdfe7fa1e6703ae626c3a5fd60c93168f01c227dfbeff21445"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Shrewsbury/Certified-Field-Operations-Technician_R73452",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.772Z",
+          "bodySha256": "e5d93f99976c0a2f4a5d669cc6e7737cf81363b1fa31d58974a935cb8827ee59"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Cypress/Solar-Appointment-Setter_R69775",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.817Z",
+          "bodySha256": "7f184a1bd4a41c3be7b8b79b425ce1aa871124ab3ed5f27bf37eb5d5064d43f1"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Luis-Obispo/Solar-Appointment-Setter_R73434",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.077Z",
+          "bodySha256": "7f7f43f4482eb6a43b3fbe1f46f7522c81c5aa28ffefce2b39c22ce3b5ad1cf7"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-La-Mesa/Solar-Appointment-Setter_R75209",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.769Z",
+          "bodySha256": "83e7fe11cf0df204b3793023717413df95fba99ec70031a77aae8de521074f7b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Dallas/Solar-Appointment-Setter_R75222-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:30.906Z",
+          "bodySha256": "de0ed047b5131e7f6d33331a4d9800a21dc629b1c641bacdf999e10666a2f195"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Bernardino/Retail-Specialist_R72028-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.839Z",
+          "bodySha256": "2ce107b28507694e68830010fac10e34167b64f018592c9a3d76e161c938899c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/REMOTE---CA---Orange-County/Legal-Counsel--Project-Finance_R67063",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.768Z",
+          "bodySha256": "366e4c163a81a9571c886b7be342742a264c7a6caa292d980113529ad701b87b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Canton/Sales-Expert_R75137",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.771Z",
+          "bodySha256": "1c33512051db198503003ddec7169985ec0558da6bbe20329054ff7078da0abe"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-69-Fresno-South-Solar/Solar-Sales-Representative_R74565",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.847Z",
+          "bodySha256": "8b9ebb61ea4b5b2a161d89e25728fd5340674703e279e712ec42200ae2bb005c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Stockton/Solar-Sales-Representative_R74566",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.838Z",
+          "bodySha256": "bbd482c19a8d6617acd47b7114d468ef2b001d921b8432c06732ba0f44b326fd"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NH-Nashua/Solar-Appointment-Setter_R74715",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.798Z",
+          "bodySha256": "33570dea1196897e6346f3b9903ab5aaed10b7581a7a27734704ef2520b0f8ef"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Irvine/Field-Sales-Consultant_R74456",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.640Z",
+          "bodySha256": "cbcf6248c300849a620cf74463a9a1483085ec97c37711c5e64c8422bff13328"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Lihue/Certified-Journeyman-Electrician--Talent-Pool--Future-_R74602",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:31.848Z",
+          "bodySha256": "1414bb4e3cdbc5feff2553f4d00d3b039983ff7df3dea3776b25e53c25920756"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Lihue/Solar-Installer--Talent-Pool--Future-_R74601",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.604Z",
+          "bodySha256": "418dabdb1aed9a305353013b8611cd556db62c085ed0e00524ecbebd454de9ff"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Jose/Field-Sales-Consultant_R74427",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.539Z",
+          "bodySha256": "527ee488349119f883a40770a5fa2f2d6d91d72134c910dd53627d09f0cb04e8"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Sugar-Land/Solar-Appointment-Setter_R73922",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.597Z",
+          "bodySha256": "8fc16b6c154e8fb0c193431f9ebe4d3a9bd328bc59e918b34f40a2b02fe0c69b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Los-Angeles/Retail-Sales-District-Manager_R74400",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.602Z",
+          "bodySha256": "ae24a13c5b89907499ac31cfe8cd570db6958dd110bef776617589ba5eb52428"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Murrieta/Retail-Specialist_R73328",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.603Z",
+          "bodySha256": "2a21b24c7b150eba5b715cd14df7f5bd2daa80ba790dd664279260cacc107d29"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Victorville/Retail-Specialist_R73332",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.653Z",
+          "bodySha256": "cf4d962e7102f6539a5cca39b71509625ac6b5dab9d3732ea9475d2ead09e45a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Ontario/Retail-Specialist_R73330",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.534Z",
+          "bodySha256": "37a46a3a801e9086a38a15659c11d714558cca726030b7e1545af6738c4519ee"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palm-Springs/Retail-Specialist_R73333",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:32.602Z",
+          "bodySha256": "d6c082e530e36b4146b9c5b7aa592a5fdf354e3fd29eb829d6fe12847454f7ad"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Waipahu/Solar-Appointment-Setter_R74319",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.320Z",
+          "bodySha256": "456bc61c081eb4e3ae46670f9b4449313272785b01cf9593b1f1c2f662b144a0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Long-Beach/Field-Sales-Consultant_R72782-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.330Z",
+          "bodySha256": "b7632672c540d794b71fe94e0f47e71247eba8f63ee6ff15cddc167eaa7a13fe"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Hawthorne/Field-Sales-Consultant_R74306",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.385Z",
+          "bodySha256": "091826e3f872608f5000155f77c9a1d129b97263e5b8316952b8daa99e10b1e0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Clemente/Retail-Specialist_R72909-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.431Z",
+          "bodySha256": "4f4f071e5e7157cc54c08903ca8b4b1a3d81b836031358789dbc1a55df8c111e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Diego/Retail-Specialist_R72910",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.385Z",
+          "bodySha256": "40d6d890682efa1c13b7a76c557ca8abfd736f8646995d4928f650ec1e18f336"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Chula-Vista/Retail-Specialist_R72913",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.410Z",
+          "bodySha256": "c201767798a04b8f7a0e85fead825848a8a92c16776ec6fa69df808d0210e639"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Poway/Retail-Specialist_R72934",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.432Z",
+          "bodySha256": "2412930fd60f14e1347e5209e48100bd157eaa1e9678931797271c88a9f5cfe1"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Lewisville/Field-Sales-Consultant_R74440",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:33.414Z",
+          "bodySha256": "7efd68cfebe4ad94311388234e6d94f856ac756a9edd436e2a28528777edf997"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Houston/Texas-Business-Development--New-Homes_R73943",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.106Z",
+          "bodySha256": "e922ab638fc550415d98119f1a375dfc5e3fec8ea9a18eb218978378567a0c41"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bolingbrook/Warehouse-Specialist_R57378",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.117Z",
+          "bodySha256": "3f9b8574ba07e1d0f2d112d7992fb114d9bae3fded8e58b5379002696c191145"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Fresno/Field-Sales-Consultant_R74186",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.182Z",
+          "bodySha256": "cdd6f86706753eca9b983516cf8216ceba69e948305ca11b74866cb4f740ce3e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palm-Springs/Field-Sales-Consultant_R74182",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.157Z",
+          "bodySha256": "211ccfedc9bd51652a94a81f010a1267f7f96b4604d2b2e7bfd5466837374936"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Murrieta/Field-Sales-Consultant_R74183",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.242Z",
+          "bodySha256": "5ac8c8c3e98a224bba73a7f26c20ab18c729e0cffd8f0343dfb4a233e6dcb143"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Monrovia/Field-Sales-Consultant_R74312",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.218Z",
+          "bodySha256": "32bfa9ff42bc4bcd05c7624d8faedc65f243102b3a24d55ef55dadfe84a91961"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Covina/Field-Sales-Consultant_R74309",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.162Z",
+          "bodySha256": "60e425a5366d2dfd86c5defa28863cac0ec2726df77bdab2a307877100e1cc57"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Diego/Field-Sales-Consultant_R74335-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.167Z",
+          "bodySha256": "cefef28d806763a7c322cccb294e6d53c66a2f50f0e0f1dded4b020577d42763"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Ventura/Field-Sales-Consultant_R73472-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.001Z",
+          "bodySha256": "077e41a023fc6b8841292bb37dc86f1af0c9e4ebb10a2bffff421dbde7c82e1e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Apple-Valley/Field-Sales-Consultant_R73928-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.946Z",
+          "bodySha256": "ee616db3e4c7815e05ae3f86a78ae1477db378b1bc7a8742941c8c452784519c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Burbank/Field-Sales-Consultant_R72794-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.006Z",
+          "bodySha256": "62030ea11a5657ead109058d4c06c57ce6ee3e027280567b73bf9ab78617384b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Covina/Solar-Appointment-Setter_R74030",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:34.943Z",
+          "bodySha256": "a9b48b4db3547d9c4f96bee0259d06f6dd49ca3b6e37e9c7d30ffaf89d3ac35f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Waipahu/Associate-Warehouse-Specialist_R72663",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.082Z",
+          "bodySha256": "2dcdb5d35547615fb32748bee09a8f05f324f90a442f0e97681e918532f436ee"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Dublin/Solar-Appointment-Setter_R73919",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.003Z",
+          "bodySha256": "5da6074a8553c65d36559ba1216489986c34d5ba70d308db48ed2b26d39152f1"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Hercules/Solar-Appointment-Setter_R73958",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.005Z",
+          "bodySha256": "c345dd1f1c7c0a9b8b5b88c468abc4c7d7060bc1dd56b9768b6a1100a9f15f31"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Long-Beach/Solar-Appointment-Setter_R73017",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.088Z",
+          "bodySha256": "28b34ac49141eca4c5c4c8a958de361600ca62656cd1e38c236897a6d7cc6240"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Oakland/Solar-Appointment-Setter_R73286",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.839Z",
+          "bodySha256": "eb82cbefe009ccae41ec65f5b468185a19fb8ae7742fef4b30e35235b903e452"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Whittier/Solar-Appointment-Setter_R73368",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.666Z",
+          "bodySha256": "03fe90e10c49d77311fd10b8f2ea688de443668218aee6c6d7430596ca502739"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Torrance/Solar-Appointment-Setter_R73016",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.856Z",
+          "bodySha256": "c17d7b54ef8674c47ef51975e0c30aaa6206f6235972085a06ebdadb8ee2d9df"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Apple-Valley/Sales-Expert_R72992",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.722Z",
+          "bodySha256": "3ee929728b189ec5eed90d19b2f674ae3087cd9cb52dc113b7d572b046180dd7"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Springfield/Field-Sales-Consultant_R68427",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.883Z",
+          "bodySha256": "c4a2d0b9262aea192ebd138501dbc7ef789bdcf97b5177eaa704ab5478085efa"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Duncanville/Field-Sales-Consultant_R70456",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.829Z",
+          "bodySha256": "3462878a4aecf7f40297124343005484a1a10411504a92ca5222b5610447d70d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Walnut-Creet/Field-Sales-Consultant_R73455",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.851Z",
+          "bodySha256": "962dbd49ae5ff0a53a1cf6a15db75f14344722df0bd3211228887591c340bcfc"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Kailua-Kona/Warehouse-Specialist_R71277-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:35.719Z",
+          "bodySha256": "a410c3f2ff95ea4a34650832ee5107a91e32ed503d17d326c8a88febf6ce0758"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Morgan-Hill/Solar-Appointment-Setter_R73281-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.468Z",
+          "bodySha256": "c98ab6ef7218e3b92f898bb58c3017def51ff3127f985eb006fe4461e7383d7d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Shrewsbury/Street-Sales-Specialist_R73275",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.571Z",
+          "bodySha256": "443ffcbc3d43c968b13219af18de88a48579fa3380b77016d32e6e127de057b4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Framingham/Street-Sales-Specialist_R73269",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.524Z",
+          "bodySha256": "eb6be6d084a71611b4f85ab59342b1cb9f6d23e01810930edfcc3effc79bf0ba"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CT-Rocky-Hill/Street-Sales-Specialist_R73270",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.616Z",
+          "bodySha256": "ad65c4aec7da91a056b198b073c688b2a85b54e7fe399e3139691378e2d35127"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CT-Stamford/Street-Sales-Specialist_R73273",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.526Z",
+          "bodySha256": "9710270280095a795ab1bd0e57f4cdc9dc6def6947731e919a730e151904d826"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Billerica/Street-Sales-Specialist_R73261",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.530Z",
+          "bodySha256": "b6b69f580c1b695d3d4d2d4824dec0689dc3d08847b597d355d54fa94945baed"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Chicopee/Street-Sales-Specialist_R73263",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.468Z",
+          "bodySha256": "08b7c472fa59ff3ccd7dbc11e3bcebfb5a435f9736ab7ab40455875b94f81e31"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Canton/Street-Sales-Specialist_R73264-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:36.528Z",
+          "bodySha256": "10715284dbf3ab53fdbc3e4c16ddc433ada58cca96d68744196a6eb155725b20"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Brockton/Street-Sales-Specialist_R73268",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.221Z",
+          "bodySha256": "79d672b4833f897dc294c7c692d8854de24b4b1d1e76c190d9f72d8d6da216fd"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Woburn/Street-Sales-Specialist_R73257",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.350Z",
+          "bodySha256": "a6ad505f13b51e217865f7810872a480f6e45afe78abc1d77f813e6630e699f4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Orland-Park/Street-Sales-Specialist_R73256",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.221Z",
+          "bodySha256": "3f9115e706e18b69ffaaced5dba6604f4a84e7a8a7fee42b84cda18f42d31bdb"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Peoria/Street-Sales-Specialist_R73259",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.290Z",
+          "bodySha256": "65410b40a68353a2f78e432e115b0a1f3398f6299803dfb304de656531e91bea"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Wheeling/Street-Sales-Specialist_R73260",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.221Z",
+          "bodySha256": "be1f57a150099964b52b4b660b930e60ebe4b95db489368d7a2bb37784b1db9b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MD-Beltsville/Street-Sales-Specialist_R73262",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.294Z",
+          "bodySha256": "f340e1621dc2a7c30bdf08746cc499d1459769f09090b84482d7c2921fd40792"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Garden-Grove/Solar-Appointment-Setter_R73236",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.345Z",
+          "bodySha256": "a52fa908ca558d95aa98731f64b24fdd64506734af584105cc071ae0f9dbef8c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Vallejo/Solar-Appointment-Setter_R73238",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.293Z",
+          "bodySha256": "f835015e0c1de0887c11b5ed36f51dd862e015bda53524de0bd406a29f7ed265"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Plymouth/Solar-Appointment-Setter_R73171",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.064Z",
+          "bodySha256": "fd5ca0f6e0b7b7f30792e2b2134ccd48d19963271ddd9207f41c434330e4836f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Corona/Solar-Sales-Representative_R73061",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.916Z",
+          "bodySha256": "2c4f9eb6a76571fb39f3963f3e4554cf24f4f678354b7d7c87499f43652e98ce"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Visalia/Solar-Sales-Representative_R73059",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.094Z",
+          "bodySha256": "e54a9dcad6419acb2d1d18750e321a94ec8979d84ec1d5377ca957c9b151705c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Luis-Obispo/Solar-Sales-Representative_R73062",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.018Z",
+          "bodySha256": "abf2245e8932cf1fd04406eb653fca123e5dcc1fb2c9a9b41fe0e274e6540442"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Vernon-Hills/Field-Sales-Consultant_R73122-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.975Z",
+          "bodySha256": "fa7d595acd6a1a91ae97132f5cc4b3aa6c3073529f7e6cf24b9f75390d6e85c5"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Kankakee/Field-Sales-Consultant_R73124",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.023Z",
+          "bodySha256": "366e94cf7cfaadb399a1bd690295aca70b94d6901a1b11678ae6e4fa09b3f188"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Glenview/Appointment-Setter_R72994",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.014Z",
+          "bodySha256": "4f2e87f664723b1b07c9eb1809b7953010a887298771e414b5f224bac57385fb"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Visalia/Solar-Appointment-Setter_R72918",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:37.949Z",
+          "bodySha256": "dad0bdc939dfb376f35745a4304d3a29a348eb0ce75dfdda60ccea53db556424"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bloomington/Solar-Installer_R69487",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.784Z",
+          "bodySha256": "6fa7e0cae2175b6d3bffb3146e3e5bb26049b9563ec27c855619bd2ee8e3d22e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Sugar-Land/Field-Sales-Consultant_R72869",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.683Z",
+          "bodySha256": "b4502ef4075d50ddbbf01eab7ee1f5a3e06bb7a97036c441bdcad1f5ca686251"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MD-Beltsville/Certified-Field-Performance-Technician_R63143",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.685Z",
+          "bodySha256": "669b869a49a27c170c98320062607e5025f4da3fad5f9402cac2711dcec9f468"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Sunnyvale/Solar-Appointment-Setter_R72750-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.743Z",
+          "bodySha256": "a24220539ea16168b4a2d7a63cbc3f57e77707f4170d45cd5e74126683cacfe4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Hilo/Removal-and-Reinstall-Certified-Electrician-Foreperson_R68575",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.744Z",
+          "bodySha256": "fa4b34bcf0e9584d477d4224f0943f804c6464757e360094d1b068bd49ad1488"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/AZ-Phoenix/Sr-Field-Performance-Technician_R70736",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.746Z",
+          "bodySha256": "d49efd547c796e22001d9e2ce82986d5aa242d51d2853246399c836c574b8af4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Orland-Park/Field-Sales-Consultant_R71447",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.731Z",
+          "bodySha256": "870d1fb7e442e9ded53f5f40f2644edf73eecdb1aa56bbbd9953465538b84a8c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Aurora/Field-Sales-Consultant_R71446",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:38.747Z",
+          "bodySha256": "0e3826e1a559ab5295b99358a9d79502f35abbb36b14fb39a48c45858126388f"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Riverside/Retail-Specialist_R69010-1",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.365Z",
+          "bodySha256": "4f2417e8d90691d7cd6a575401916e8d3d2d7f9db51ef1d1847ccdc99ca439da"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Bakersfield/Lead-Installer_R70084",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.325Z",
+          "bodySha256": "f06bf43f95ba683a1d4a7ea23e7a2f30cd242eb34d0355d91b530e36f9277ba1"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NY-White-Plains/Field-Sales-Consultant_R70321",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.393Z",
+          "bodySha256": "7415bbcbd301aaf441d43da2fce4ded6c3a6dc94c3e18bfd3389e2172ed301b1"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/IL-Bolingbrook/Field-Operations-Technician_R64927",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.370Z",
+          "bodySha256": "9b96d9368caa5d1892b84c678dde5de8ad36ff8538444a86bc681155223359ca"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Santa-Ana/Solar-Appointment-Setter_R69407",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.705Z",
+          "bodySha256": "8f61f5122b2581679c69aa69093769b36f63e7f037b94ce6263a2fa4e8a18df9"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Vista/Solar-Appointment-Setter_R69370",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.752Z",
+          "bodySha256": "c4dde8fb4b65e5f697f9b5f6bcf9f220e818cb7f25faea6b50042f42a23ecc1a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Downey/Solar-Appointment-Setter_R68491",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.539Z",
+          "bodySha256": "d30f69bccdc1f01e5f76532bd25d184fa1e387599a81a3b45d37bbdff31dfe0a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Lakewood/Solar-Appointment-Setter_R68493",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:39.669Z",
+          "bodySha256": "5421ea132b9c65a67e359b86f7100ae17bf1a3e19a4add64bc7d8beff60e43ec"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Stockton/Solar-Sales-Representative_R32116",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.471Z",
+          "bodySha256": "c8c59e2dd52034df763a094b3df7f67c43bf52a4785c3313e45fd028a4205aba"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Compton/Solar-Appointment-Setter_R66197",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.333Z",
+          "bodySha256": "a5a2d78dd01de08cf638db4845e1015fbb8a4c053194e7468538e11cefdaefa3"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Bakersfield/Solar-Sales-Representative---Urgently-Hiring_R65639",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.521Z",
+          "bodySha256": "d3ae057c8d9d41f96a11401b72ef6eecd9ea5fdb957b4592c2c8509bf32cdb04"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Temecula/Solar-Sales-Representative---Urgently-Hiring_R65646",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.484Z",
+          "bodySha256": "78018990b124ce823c1fa5aa7a9e141a009cf0248ae5f1d4e2b4ac9066c94cdf"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Torrance/Solar-Appointment-Setter_R64882",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.460Z",
+          "bodySha256": "7d7b6fdcad04f82edd592d22a857c9e49e9949b25d7c758cd143bff6fe397525"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/TX-Humble/Field-Sales-Consultant_R64646",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.512Z",
+          "bodySha256": "638ef907e36ec642b53a09603552bf2eea5d2cfa1ede6391b54e3e167e6e8d05"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-09-Commonwealth-Solar/Solar-Sales-Representative_R62989",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.854Z",
+          "bodySha256": "c3fbbe375e9d660ebb05b283fde3782f8e8d35b063e4be33ce5087766664d5bf"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Chicopee/Solar-Sales-Representative_R62991",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:40.737Z",
+          "bodySha256": "a6f1c909095b7b53bc97bd57f50f16d4593f8a57dbc203219d8af634a8600dcc"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CT-02-Stamford-Solar/Solar-Sales-Representative_R62992",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.686Z",
+          "bodySha256": "3ab643b13a8ed398bfd401104b410e299071dee4065d7052476cdcb5ff2d61db"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-12-Boston-Alliance-Solar/Solar-Sales-Representative_R62984",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.687Z",
+          "bodySha256": "1a88436782334ff445bc814534656eb8cd646d7bb7de0d50d7ef10cb2e6715cf"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Shrewsbury/Solar-Sales-Representative_R62985",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.604Z",
+          "bodySha256": "c8c2b86e4b77c2b98678401c70b7b2eb89cab08ab3b24f01cf235cb0f281cad4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Canton/Solar-Sales-Representative_R62986",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.597Z",
+          "bodySha256": "10e32bb8f66dec6a6a8271b23654909317c33b95b3a22406cfd70269f853820a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-10-Boston-Elite-Solar/Solar-Sales-Representative_R62987",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.656Z",
+          "bodySha256": "15fb5e22a315b7f34ac06099bc51c9e0df9913e1339529b2f26d6c5b9c75c908"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Billerica/Solar-Sales-Representative_R62982",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.685Z",
+          "bodySha256": "aab3df490573cee762de178ab2b5a61db26c183f30c13bf8c7a46090d6acf240"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CT-Rocky-Hill/Solar-Sales-Representative_R62994",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.745Z",
+          "bodySha256": "8a25cbbae32bcb348cf15d40382c95acd8554372245e8dadbf668b0853584a10"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/MA-Dartmouth/Solar-Appoinment-Setter_R50272",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:41.483Z",
+          "bodySha256": "0e237ea71509ac4ec08209981c2370c5c51b8f9bd6d55d25df3b4b696b018bf4"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Maui/Certified-Field-Performance-Technician--Talent-Pool--Future-Evergreen-_R58927",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.428Z",
+          "bodySha256": "3377e718e80950f1d00866c27e28c73e467d9c865db892290decaf6c8507b71e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-49-Port-City-Solar/Solar-Sales-Representative_R39342",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.500Z",
+          "bodySha256": "3d7206288c6a72eeb8625ca36cbefc8701c800e6e7c318034a135aa5c216ece1"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Certified-Electrician--Talent-Pool--Future-_R55104",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.500Z",
+          "bodySha256": "ab1aa3cf4021c38eff71c6191c4a257593a35fac7f552d2eba10150798481923"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Installer--Talent-Pool--Future-_R51682",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.475Z",
+          "bodySha256": "b1290f8493dbf81c9d479dd94476a0f401df63f777064659fc75cda1ace88f8b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Bakersfield/Field-Sales-Consultant_R53660",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.452Z",
+          "bodySha256": "07b96a98c81122a8c244c4ce9913dd8bf5f002a39156f75fc9727a9b65cc3368"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/HI-Honolulu/Sr-Field-Performance-Technician--Talent-Pool--Future-_R51470",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.549Z",
+          "bodySha256": "4bab60ed87632b755783122615a222b3b637fd2b485c37c7cd2894776a370cc8"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-San-Luis-Obispo/Solar-Sales-Representative_R48705",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.481Z",
+          "bodySha256": "4e57c06798c5b941cbad319ce3ba8512780c5037f521f96cb7a91b32a0b5418b"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Camarillo/Solar-Sales-Representative_R48703",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:42.549Z",
+          "bodySha256": "d87c7393bcf32cf789aa15646e53735f7b49f9663e4fadab139f32fd41d1603c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/UT-Lehi/Sr-Escalations-Expert_R49614",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.330Z",
+          "bodySha256": "48a7fcbb0a3449031956d487210618ac31e88fdcd870fc6a658fbe11b67a1966"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Woodland-Hills/Solar-Appointment-Setter_R33557",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.436Z",
+          "bodySha256": "c774081cf7981e91a9f03446a6785ef5d3a8888e6ab1a489630f78f799527f70"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Hawthorne/Solar-Appointment-Setter_R36822",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.334Z",
+          "bodySha256": "00c5fbe83dc3cbce0ddc10007c3a1ee07b3a775a02b626f9ebb85effbd0d0491"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NV-Las-Vegas/Energy-Sales-Retail-Associate_R29402",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.328Z",
+          "bodySha256": "2f8da6d30c240458f611284dbe084306788f40559ca506fdf4de9ba16d5d1e78"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NV-Henderson/Energy-Sales-Retail-Associate_R29400",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.332Z",
+          "bodySha256": "d45c9070db655605ab3c19357aa8e29c64d5ad52775e350033b9426b64cfc9a5"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Lakewood/Energy-Sales-Retail-Associate_R29167",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.254Z",
+          "bodySha256": "f5f08294cf2a40d8ea37f7466198ef69e362c3c984a7442aa2230415935844e5"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palm-Springs/Energy-Sales-Retail-Associate_R27915",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.335Z",
+          "bodySha256": "8377bec13c7812191eff99936ae43dcf12d0f8ae8618cdf5d95cee0adb6f958e"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palm-Springs/energy-Sales-Retail-Associate_R28095",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:43.253Z",
+          "bodySha256": "56918facbe4c2feb1bb759feba3854d4621de3bf6e7c128e71633824b5632e0c"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palm-Springs/Energy-Sales-Retail-Associate_R27918",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:44.131Z",
+          "bodySha256": "bb3beaf259d558b5ac63e44f60f2e908d621550b900eebece912369a5d562edb"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Vallejo/Energy-Sales-Retail-Associate_R28075",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:44.734Z",
+          "bodySha256": "c7e9870826fad516e14fdf6d88c0fb32a99fcb18d65b461bef58dc8f31919c64"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Inland-Empire/Energy-Sales-Retail-Associate_R23681",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:44.150Z",
+          "bodySha256": "84b5904a095096c40199aebec69f32f480c478419ab4afb74bf00c79481faa25"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Inland-Empire/Energy-Sales-Retail-Associate_R23683",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:44.231Z",
+          "bodySha256": "e2f9ec5ecbcd0712a6dfe77ec2204ded7f8856daab377fd85b967fb51d29daf5"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Palm-Springs/Retail-Sales-Associate-I_R23277",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:44.230Z",
+          "bodySha256": "4add35eafd13211ee755fb5282fab32be60f8f3dd0efe61290a728f37900b368"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/CA-Antioch/Energy-Sales-Retail-Associate_R20243",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:57:44.031Z",
+          "bodySha256": "4c37f3fe7d6fab5a0660b7f5c35596e79fa19f78a12995d8d9ef21fd18760d9b"
+        }
+      ]
+    },
+    {
+      "file": "initial-native-responses.json.gz",
+      "captureSha256": "dd74ee292c667757be3b6ffdbefafd0bec028606833e14bd79c3f7ccc5fa978b",
+      "gzipSha256": "dc90b6983d3f60f92337652493e6c882c1f27b2cb5cf6464a2efa413deda1ac5",
+      "responses": [
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/en-US/Sunrun_Careers",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:55:18.193Z",
+          "bodySha256": "2efd77259740f8dac980f0bc436222dd838e95f64b126d75b83285a1102e0021"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:55:19.175Z",
+          "bodySha256": "ee3ffaa64d6512e249afc97b2d5d582e2969c51b6ffdcffa140f63d222d4a53d"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/job/NJ-Moorestown/Electrical-Foreperson_R62405",
+          "status": 403,
+          "capturedAt": "2026-10-23T03:55:19.711Z",
+          "bodySha256": "3bf182fa9375ea3ddaf0a814354a3c5e6d70dca9e71aa5024f9da105700a19b5"
+        }
+      ]
+    },
+    {
+      "file": "listing-responses.json.gz",
+      "captureSha256": "292f9b1cecc717a25a3cfabe87ca6266ad06b468f69fb9812030cc1801f22570",
+      "gzipSha256": "89947be0beab85e603dae3bd8182bc7954cf4b1e9ff9a6308d2b8c4a11b0d61e",
+      "responses": [
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:13.029Z",
+          "bodySha256": "0405a4e2846d65e0a53c55eab3ea9485021a70ac9894f733076ac416ef574c71"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:12.960Z",
+          "bodySha256": "ad30b93ebbc82f9b422f858e060a36b49bdacb4e71d2fbecf447eed27a3b329a"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:12.989Z",
+          "bodySha256": "e78f40cf641c3e57e9c6d2f28ad64994b46005b2d562278304943ec75474a715"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:13.054Z",
+          "bodySha256": "0d988bbe57137b561864a752c2fbe55e61ebe71545ab19f1871299c6d2970d71"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:13.053Z",
+          "bodySha256": "4f13afac01f826e01996a0f3552d0c46354c88ab4a64590cd80aef79d2dbffea"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:13.924Z",
+          "bodySha256": "dcd6dca615838fdacfb3ac5f2aae5c6c1745f350fe20c451b2220544c1010e57"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.008Z",
+          "bodySha256": "20744b34d3de15086b8ed419cc14b56cebb7b829d461457e2e0238a725a15266"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.071Z",
+          "bodySha256": "f092be1058310373cbb2c391b1695abe5105bfafc76cfdc0f509a831d6d7c019"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.093Z",
+          "bodySha256": "1e14353b46f95deacc483a482c97d1c6fc6e17386634cb045201ca18f63ddadd"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.103Z",
+          "bodySha256": "088dc386e395bee5e35406c70d1acb61ae6891079d62d1888ed79073116a3ed6"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.923Z",
+          "bodySha256": "24422f4bf2b80cba9fe78723b6068128d6a81731cc88665921c39b74f2096db0"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.883Z",
+          "bodySha256": "012271267a78bcdda7f205c456cdfe85048604cd31ba9586b7665558614e4773"
+        },
+        {
+          "url": "https://sunrun.wd5.myworkdayjobs.com/wday/cxs/sunrun/Sunrun_Careers/jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:56:14.939Z",
+          "bodySha256": "bf50d50735d987651b8715c59db9fbb4e3fa2f767f72dba08846c505db5b6076"
+        }
+      ]
+    },
+    {
+      "file": "official-responses.json.gz",
+      "captureSha256": "f713617498eb1cb2cca5f57457f3ed977f207bf2916d74849f8b2c1d17ca53b8",
+      "gzipSha256": "be844c3ea9ccfcd6d7f8c6b121ea913def81ab069b0076f62c9f7d9bfb6de94f",
+      "responses": [
+        {
+          "url": "https://careers.sunrun.com/explore-your-future",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:54:36.419Z",
+          "bodySha256": "73463484e55e13618dfb245c20a50ca02a908f11fd79ad61f12e378c198bc746"
+        },
+        {
+          "url": "https://careers.sunrun.com/en/search-jobs",
+          "status": 200,
+          "capturedAt": "2026-10-23T03:54:34.981Z",
+          "bodySha256": "7a0ad0e83e6641fca44bfaad440a929105d5a10873831337673cf1c95fabc7ec"
+        },
+        {
+          "url": "https://careers.sunrun.com/en/job/moorestown-lenola/licensed-electrical-foreperson/21632/100994490368",
+          "status": 404,
+          "capturedAt": "2026-10-23T03:54:34.985Z",
+          "bodySha256": "4370d8ac3d5a2357ae3b2b96890ee642e71861186138a4263c9696ba5722d568"
+        }
+      ]
+    }
+  ]
+}

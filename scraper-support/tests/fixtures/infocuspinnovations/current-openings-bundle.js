@@ -1,0 +1,1 @@
+async function u(){const e={identifier:"d8a117a8-6620-46fb-959e-742de38602e5",domain:"https://infocusp.keka.com/careers"},a=(await fetch(`${e.domain}/api/embedjobs/default/active/${e.identifier}`).then(t=>t.json())).map(t=>({title:t.title,location:t.jobLocations.map(n=>n.city).join(", "),link:`${e.domain}/jobdetails/${t.id}`,departmentName:t.departmentName}));return a}

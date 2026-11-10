@@ -100,7 +100,10 @@ export async function collect(input={}){
    }
    try{
     const markdown=await read(identity.markdownURL,'markdown'),nativeFact=parseNativeMarkdown(markdown,identity),gaps=corporateAlignment(nativeFact,candidate,identity)
-    if(anchor&&gaps.some(gap=>gap.field==='title'||gap.field==='employment')){
+    // The current fully validated native role can establish the anchor itself;
+    // a preceding corporate-aligned row supplies no additional native trust.
+    anchor??=identity
+    if(gaps.some(gap=>gap.field==='title'||gap.field==='employment')){
      // This typed cross-surface result follows native identity/content proof.
      // It does not catch or downgrade a native parser/acquisition exception.
      r.recoveryTrigger={stage:'corporate-native-alignment',code:'IMTF_CORPORATE_ALIGNMENT_GAP',message:'Unresolved corporate/native title or employment',originalCorporateGuard:{code:'IMTF_SOURCE_SHAPE',message:'Markdown title/employment/header mismatch'},candidate,nativeFact,gaps}
