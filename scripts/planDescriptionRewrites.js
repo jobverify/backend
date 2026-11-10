@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { buildRewritePlan } from '../rewriting/partitioning.js';
+import { buildRewritePlan, DEFAULT_REWRITE_MAX_PARALLEL } from '../rewriting/partitioning.js';
 
 // Consume the read-only queue preview; planning never connects to the database.
 const summary = JSON.parse(await fs.readFile(process.argv[2] || '.cache/scraper-actions/description-summary.json', 'utf8'));
@@ -8,7 +8,7 @@ const queueAsOf = summary.queueAsOf || summary.startedAt;
 if (!Number.isFinite(Date.parse(queueAsOf))) throw new Error('Invalid rewrite queue cutoff');
 const plan = { ...buildRewritePlan(summary.queued, {
   jobsPerShard: Number(process.env.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD || 1000),
-  maxParallel: Number(process.env.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || 4),
+  maxParallel: Number(process.env.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || DEFAULT_REWRITE_MAX_PARALLEL),
   shardCount: process.env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT
     ? Number(process.env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT) : undefined,
 }), queueAsOf };

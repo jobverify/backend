@@ -4,6 +4,6 @@ The corporate careers endpoint returned HTTP403. The independently published emp
 
 Country must explicitly identify India in both native listing and matching detail. Other employers, expired/closed jobs, aggregator-provided jobs, absent enabled Apply, changed canonical identity, malformed/future dates, and introduced structured publication/expiry metadata fail closed or are excluded. Hidden, inert, template, comment and heading-only descriptions become nullable partial details after all other gates pass. An unavailable listing is never interpreted as company zero.
 
-Fixtures contain actual gzip-compressed HTTP captures with SHA256 manifest and a separate browser navigation observation. Runtime supports injected fetch, exact caller cancellation, aggregate fetch/body deadline and streamed body cancellation at a four-megabyte cap. Direct execution never persists an incomplete inventory. No shared registry, age gates, database or deployment changes are included.
+Fixtures contain actual gzip-compressed HTTP captures with SHA256 manifest and a separate browser navigation observation. Runtime supports injected fetch, exact caller cancellation, an unchanged 30-second aggregate deadline and a separate 20-second HTTP read deadline across headers and body. A stalled read identifies its URL and stage, cancels the request/body with the original reason, and stops retries while keeping inventory unknown. Streamed responses retain the four-megabyte cap. Direct execution never persists an incomplete inventory. No shared registry, age gates, database or deployment changes are included.
 
-Validation: `node --test test/starHealthCoverage.test.js`.
+Validation: `node --test scraper/starhealth/httpDeadline20261110.test.js test/starHealthCoverage.test.js`.

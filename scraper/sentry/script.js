@@ -122,7 +122,7 @@ export const createSentryScraper = ({ fetchImpl = globalThis.fetch } = {}) => ({
       return body
     }
     const corporate = readCorporateInventory(await request(CURRENT_CAREERS_URL))
-    const payload = await request(NATIVE_API_URL, true), records = reconcileNativeInventory(corporate, payload)
+    const payload = await request(NATIVE_API_URL, true), { records, ...reconciliation } = reconcileNativeInventory(corporate, payload)
     const inner = await createPublishingGapAtsScraper({ source: SOURCE, companyName: COMPANY, atsPlatform: 'ashby', boardToken: 'sentry', companyCareerPage: CAREERS_PAGE_URL, sourceScopeComplete: false })
       .run({ signal: bounded, fetchJson: async url => { check(url === NATIVE_API_URL, 'unexpected native endpoint'); return payload } })
     const evidence = readInventoryEvidence(inner)
@@ -131,15 +131,16 @@ export const createSentryScraper = ({ fetchImpl = globalThis.fetch } = {}) => ({
     check(digest(payload) === digest(closingPayload) && digest(corporate.props) === digest(closingCorporate.props), 'closing corporate/native full inventory, criteria, geography or publication changed')
     const nativeById = new Map(records.map(record => [record.id, record]))
     const unresolvedCountryRoleIds = records.filter(record => !ownCountries(record).known).map(record => record.id)
-    const observations = { corporateRoleCount: corporate.rows.size, nativeRoleCount: records.length, corporateNativeCountAgreement: true,
+    const observations = { ...reconciliation,
       unresolvedCountryRoleIds, closingInventoryAndCriteriaMatch: true, nativeRecords: records, hydratedProps: corporate.props,
       nativePropsRaw: corporate.nativePropsRaw, componentUrl: corporate.componentUrl, receipts, sourceScopeComplete: false }
     const nativeCollectionEvidence = structuredClone({
       source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: records.length, observedVacancyCount: records.length,
+      ...reconciliation,
       nativeRecords: records, opening: { corporate, payload }, closing: { corporate: closingCorporate, payload: closingPayload },
       unresolvedCountryRoleIds, receipts, closingInventoryAndCriteriaMatch: true, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
     })
-    const selected = inner.filter(job => { const country = ownCountries(nativeById.get(job.jobId)); return country.known && country.india })
+    const selected = inner.filter(job => { const country = ownCountries(nativeById.get(job.jobId)); return corporate.rows.has(job.jobId) && country.known && country.india })
     const capped = Number.isSafeInteger(maxJobs) && maxJobs > 0 ? selected.slice(0, maxJobs) : selected
     const jobs = capped.map(job => {
       const native = nativeById.get(job.jobId), row = corporate.rows.get(job.jobId), description = reviewDescription(job.sourceDescription)
@@ -154,9 +155,9 @@ export const createSentryScraper = ({ fetchImpl = globalThis.fetch } = {}) => ({
     signal?.throwIfAborted(); bounded.throwIfAborted()
     attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: records.length, observedVacancyCount: records.length, sourceScopeComplete: false })
     Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: nativeCollectionEvidence, configurable: true })
-    return attachInventoryEvidence(jobs, { ...evidence, status: 'discovery-only', listingComplete: false, pagesFetched: 2,
+    return attachInventoryEvidence(jobs, { ...evidence, status: 'discovery-only', listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 2,
       reportedTotal: records.length, indiaFacetCount: null, verifiedAt: new Date().toISOString(),
-      reason: `${evidence.reason};active-corporate-hydration-and-Ashby-role-binding;closing-full-native-inventory-match;whole-source-scope-unproved${unresolvedCountryRoleIds.length ? ';unresolved-own-native-country' : ''}` })
+      reason: `${evidence.reason};active-corporate-hydration-and-Ashby-role-binding;closing-full-native-inventory-match;whole-source-scope-unproved${!reconciliation.corporateNativeCountAgreement ? ';corporate-native-count-disagreement' : ''}${!reconciliation.corporateNativeInventoryAgreement ? ';corporate-native-inventory-disagreement' : ''}${unresolvedCountryRoleIds.length ? ';unresolved-own-native-country' : ''}` })
   },
 })
 

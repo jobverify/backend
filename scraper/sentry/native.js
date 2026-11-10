@@ -64,18 +64,27 @@ export const readCorporateInventory = html => {
 }
 export const reconcileNativeInventory = (corporate, payload) => {
   check(Array.isArray(payload?.jobs) && payload.apiVersion === '1', 'native posting inventory envelope changed')
-  const records = payload.jobs.filter(record => record.isListed === true), ids = new Set()
+  const records = payload.jobs.filter(record => record.isListed === true), ids = new Set(), reconciledRoleIds = [], nativeOnlyRoleIds = []
   for (const record of records) {
+    check(typeof record.id === 'string' && /^[0-9a-f-]{36}$/.test(record.id) && !ids.has(record.id)
+      && record.jobUrl === `https://jobs.ashbyhq.com/sentry/${record.id}`, 'native employer or role identity is missing, foreign or duplicated')
     const row = corporate.rows.get(record.id)
-    check(row && !ids.has(record.id) && norm(record.title) === norm(row.info.title)
-      && norm(record.location) === norm(row.info.locationName) && record.jobUrl === row.info.applyLink
-      && norm(record.employmentType) === norm(row.info.employmentType), 'corporate/API employer, role identity, location or employment type disagrees')
-    check(extractActiveDescription(record.descriptionHtml) && extractActiveDescription(record.descriptionHtml) === extractActiveDescription(row.info.descriptionHtml), 'corporate/API full job criteria disagree')
+    if (row) {
+      check(norm(record.title) === norm(row.info.title)
+        && norm(record.location) === norm(row.info.locationName) && record.jobUrl === row.info.applyLink
+        && norm(record.employmentType) === norm(row.info.employmentType), 'corporate/API employer, role identity, location or employment type disagrees')
+      check(extractActiveDescription(record.descriptionHtml) && extractActiveDescription(record.descriptionHtml) === extractActiveDescription(row.info.descriptionHtml), 'corporate/API full job criteria disagree')
+      reconciledRoleIds.push(record.id)
+    } else nativeOnlyRoleIds.push(record.id)
     if (record.publishedAt != null) check(typeof record.publishedAt === 'string' && /^\d{4}-\d\d-\d\dT/.test(record.publishedAt) && Number.isFinite(Date.parse(record.publishedAt)), 'native publication timestamp is malformed')
     ids.add(record.id)
   }
-  check(ids.size === corporate.rows.size, 'corporate/API native role counts disagree')
-  return records
+  check(reconciledRoleIds.length > 0, 'no corporate/API native role identity reconciles')
+  const corporateOnlyRoleIds = [...corporate.rows.keys()].filter(id => !ids.has(id))
+  return { records, corporateRoleCount: corporate.rows.size, nativeRoleCount: records.length,
+    corporateNativeCountAgreement: records.length === corporate.rows.size,
+    corporateNativeInventoryAgreement: nativeOnlyRoleIds.length === 0 && corporateOnlyRoleIds.length === 0,
+    reconciledRoleIds, nativeOnlyRoleIds, corporateOnlyRoleIds }
 }
 export const ownCountries = record => {
   const known = new Set(['location', 'address', 'secondaryLocations'])

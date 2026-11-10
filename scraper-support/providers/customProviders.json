@@ -37070,7 +37070,7 @@
     "verifiedIndiaJobCount": 0,
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026: https://www.odessainc.com/careers/ resolved with the public Odessa careers title and first-party Darwinbox careers script, while https://www.odessainc.com/wp-content/themes/odessa/components/jobs.php returned {\"error\":\"Darwinbox API returned HTTP 401\",\"raw\":\"{\\\"status\\\":0,\\\"message\\\":\\\"Invalid Credentials\\\"}\"}. Because the exact-name first-party jobs feed is credential-blocked, this local provider fails closed and returns [].",
     "modulePath": "../odessa/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\odessa\\jobs.json"
+    "dryRunFile": "odessa/jobs.json"
   },
   {
     "source": "proprofs",
@@ -37093,7 +37093,7 @@
     "verifiedIndiaJobCount": 0,
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026: https://www.proprofs.com/about/ resolved with the ProProfs brand and the Santa Monica plus Delhi-NCR office copy, while the exact-name first-party careers routes https://www.proprofs.com/careers and https://www.proprofs.com/jobs aborted during direct probes. No trustworthy public jobs surface was verified, so this local provider fails closed and returns [].",
     "modulePath": "../proprofs/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\proprofs\\jobs.json"
+    "dryRunFile": "proprofs/jobs.json"
   },
   {
     "source": "soroco",
@@ -37117,7 +37117,7 @@
     "verifiedSampleJobUrl": "https://soroco.com/all-job-openings/",
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026: https://soroco.com/careers/ resolved with the public Grow with Soroco careers page, a visible Account Based Marketing Manager role card in Bangalore, and a first-party View all openings link to https://soroco.com/all-job-openings/. The embedded Greenhouse API reference returned 0 jobs, so this local scraper trusts the visible first-party role card HTML instead of the empty third-party feed.",
     "modulePath": "../soroco/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\soroco\\jobs.json"
+    "dryRunFile": "soroco/jobs.json"
   },
   {
     "source": "aziro",
@@ -37139,7 +37139,7 @@
     "verifiedSampleJobUrl": "https://www.aziro.com/en/careers",
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026: https://www.aziro.com/en/careers resolved with the Aziro Careers title, the first-party note that Aziro is formerly MSys Technologies, and a visible Current Openings table that included Senior full stack engineer, Senior SDET Engineer, Senior QA Engineer, Lead CRM Specialist, and Senior Machine Learning Engineer with DevOps Expertise.",
     "modulePath": "../aziro/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\aziro\\jobs.json"
+    "dryRunFile": "aziro/jobs.json"
   },
   {
     "source": "3pillarglobal",
@@ -38889,7 +38889,7 @@
     "verifiedOn": "2026-07-18",
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://careers.proziod.com/ is the live first-party Proziod Analytics GoHire board and that it publicly listed 3 open jobs: Design Verification Engineers (DV), Customer Support Specialist, and Team Leader. The first-party job detail pages remained public on the same careers.proziod.com domain, including https://careers.proziod.com/design-verification-engineers-dv-294085/, confirming a trustworthy same-domain public jobs surface.",
     "modulePath": "../proziodanalytics/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\proziodanalytics\\jobs.json"
+    "dryRunFile": "proziodanalytics/jobs.json"
   },
   {
     "source": "xcaliberinfotech",
@@ -38908,7 +38908,7 @@
     "verifiedOn": "2026-07-18",
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that the first-party route https://xcaliberinfotech.com/search-jobs/ rendered a browser-visible \"Search For Open Positions\" shell but did not expose trustworthy public job cards, and that direct fetches to the same first-party route returned a Sucuri interstitial titled \"You are being redirected...\" with the message \"Javascript is required. Please enable javascript before you are allowed to see this page.\" Because the verified first-party careers surface is blocked and no trustworthy public jobs feed was accessible, this local provider intentionally fails closed and returns an empty array until Xcaliber Infotech publishes an accessible public board.",
     "modulePath": "../xcaliberinfotech/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\xcaliberinfotech\\jobs.json"
+    "dryRunFile": "xcaliberinfotech/jobs.json"
   },
   {
     "source": "tetrasoft",
@@ -38927,7 +38927,7 @@
     "verifiedOn": "2026-07-18",
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://www.tetrasoft.us/careers.html is the live first-party Tetrasoft Careers page and that it publicly exposes accordion-style role cards such as Tech Lead - Machine Learning with Python, Tech Lead - ReactJS, and Tech Lead - Python. Each role uses the same first-party mailto apply contract, ts_tag_offshore@tetrasoft.us, so this scraper is pinned to the verified first-party careers accordion plus the same-domain mailto handoff.",
     "modulePath": "../tetrasoft/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\tetrasoft\\jobs.json"
+    "dryRunFile": "tetrasoft/jobs.json"
   },
   {
     "source": "hestabittechnologies",
@@ -38965,7 +38965,7 @@
     "verifiedOn": "2026-07-18",
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://teliolabs.com/job-openings/ is the live first-party Teliolabs jobs archive and that it publicly listed same-domain job cards including Cloud Native Engineer and Junior Perl Developer. Those cards resolve to public detail pages under https://teliolabs.com/career/, confirming a trustworthy first-party wp-job-openings surface for this provider.",
     "modulePath": "../teliolabs/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\teliolabs\\jobs.json"
+    "dryRunFile": "teliolabs/jobs.json"
   },
   {
     "source": "napierhealthcaresolutions",
@@ -39466,7 +39466,7 @@
     "verifiedPublicJobCount": 19,
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://www.digitalwebsolutions.com/careers/ remained the first-party Digital Web Solutions careers page and that its View All Jobs CTA linked to the official public Hirenext board at https://hirenext.io/co/digital-web-solutions/. The verified board exposed 19 public roles including Trainee Recruitment Specialist in Gurgaon, AI & Content Associate in Noida, Uttar Pradesh, India, and Senior Executive - PPC in Noida on the verified date.",
     "modulePath": "../digitalwebsolutions/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\digitalwebsolutions\\jobs.json"
+    "dryRunFile": "digitalwebsolutions/jobs.json"
   },
   {
     "source": "datacoresystems",
@@ -39488,7 +39488,7 @@
     "verifiedPublicJobCount": 21,
     "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that direct automated fetches to https://datacoresystems.com/careers/ returned a Cloudflare 403 interstitial, while the currently indexed first-party careers surface and its Apply Now CTA hand off to the official BambooHR board at https://datacoresystems.bamboohr.com/careers. The public BambooHR list endpoint at https://datacoresystems.bamboohr.com/careers/list returned 21 openings including Customer Relationship Management (CRM) Lead in Harrisburg, Pennsylvania and SAP ABAP-Fiori Consultant in Middletown, Pennsylvania on the verified date.",
     "modulePath": "../datacoresystems/script.js",
-    "dryRunFile": "C:\\Users\\mohv\\GitHub\\jobverify_july_week3\\Jobverify-backend\\scraper\\datacoresystems\\jobs.json"
+    "dryRunFile": "datacoresystems/jobs.json"
   },
   {
     "source": "nexvalinfotech",

@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import path from 'node:path'
+import os from 'node:os'
 
 import {
   createBrowserUserDataDir,
@@ -48,17 +50,19 @@ test('resolveBrowserExecutablePath returns null when no supported browser execut
 
 test('createBrowserUserDataDir allocates a unique temp profile prefix for each browser launch', async () => {
   let receivedPrefix = null
+  const tmpdirPath = path.join(os.tmpdir(), 'browser-profile-test')
+  const expectedPrefix = path.join(tmpdirPath, 'jobverify-puppeteer-profile-')
 
   const userDataDir = await createBrowserUserDataDir({
-    tmpdirPath: 'C:\\Temp',
+    tmpdirPath,
     mkdtempImpl: async (prefix) => {
       receivedPrefix = prefix
       return `${prefix}abc123`
     },
   })
 
-  assert.equal(receivedPrefix, 'C:\\Temp\\jobverify-puppeteer-profile-')
-  assert.equal(userDataDir, 'C:\\Temp\\jobverify-puppeteer-profile-abc123')
+  assert.equal(receivedPrefix, expectedPrefix)
+  assert.equal(userDataDir, `${expectedPrefix}abc123`)
 })
 
 test('launchBrowser rejects a requesting source with an API-only migration error', async () => {

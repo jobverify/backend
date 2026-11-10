@@ -22,8 +22,16 @@ export function readCurrentCorporate(html){
 }
 function programProfile(owned){
  const scripts=owned.nodes.filter(node=>node.tag==='script')
- need(sha(JSON.stringify(scripts.map(node=>({attrs:Object.fromEntries(Object.entries(node.attrs).sort(([a],[b])=>a.localeCompare(b))),inert:Boolean(node.inert)}))))==='56dc36b1071183af6a602e7354f6e6e716595c79d01ca208bb7f7257dc94f951','Native program declarations require review')
- const inline=scripts.filter(node=>!node.attrs.src),hashes=['9ca9fd935c85d2a1e5fd42d6bf83f0be088278a232d6d5d77c458ba096c1cecc','21d75b390eafe069af969e64b88bb7625e3cf8edc1981b08434bc90dca5b05f7','02957f4fcc7279f1a2f33af35900e44362a6c5ec28b88231ca4688fadd411684','3d432e36401cc9bde326d9d3db94aa66fb5d67f6879885bf9a43a7ba844874e5','f4d0d7cebb48af8a675430918947ce5e300262a9f8ba4035d0ae1d8c5834ff6b']
+ const declarationSHA=sha(JSON.stringify(scripts.map(node=>({attrs:Object.fromEntries(Object.entries(node.attrs).sort(([a],[b])=>a.localeCompare(b))),inert:Boolean(node.inert)}))))
+ // Keep each reviewed deployment's declarations and literal CDN map paired.
+ // Nov10's opening/closing responses preserve the bootstrap AST, hidden
+ // schema, employer and original records; unseen program changes stay closed.
+ const mapSHA={
+  '56dc36b1071183af6a602e7354f6e6e716595c79d01ca208bb7f7257dc94f951':'02957f4fcc7279f1a2f33af35900e44362a6c5ec28b88231ca4688fadd411684',
+  'e4448574867b39a0adbed0763f3598ccf2d61953f311b65ecf99cbcc12f41494':'d56eac1c1377cfcf3edd65fa1fcaf674914aea20ab8533fb5e1971c4c3517166',
+ }[declarationSHA]
+ need(mapSHA,'Native program declarations require review')
+ const inline=scripts.filter(node=>!node.attrs.src),hashes=['9ca9fd935c85d2a1e5fd42d6bf83f0be088278a232d6d5d77c458ba096c1cecc','21d75b390eafe069af969e64b88bb7625e3cf8edc1981b08434bc90dca5b05f7',mapSHA,'3d432e36401cc9bde326d9d3db94aa66fb5d67f6879885bf9a43a7ba844874e5','f4d0d7cebb48af8a675430918947ce5e300262a9f8ba4035d0ae1d8c5834ff6b']
  need(inline.length===6&&hashes.every((hash,index)=>sha(inline[index].raw)===hash),'Native inline program requires review')
  need(owned.head.children.includes(inline[5]),'Native bootstrap owner changed')
  const ast=parse(inline[5].raw,{ecmaVersion:'latest'}),binding=ast.body[0]?.declarations?.[1]

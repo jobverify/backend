@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
+import {deniedTypographyPacket} from './typography20261110.fixture.js'
 import {createCurrentSnowplowScraper} from './currentNative.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -21,7 +22,7 @@ const replay=async mutate=>{
   assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit')
   const originalUrl=url.replace('aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',id)
   const matches=native.packets.filter(packet=>packet.url===originalUrl),at=calls.filter(value=>value===url).length
-  const packet=matches.length?matches[Math.min(at,matches.length-1)].response:assetMap.get(url)||archiveMap.get(url)
+  const packet=matches.length?matches[Math.min(at,matches.length-1)].response:assetMap.get(url)||archiveMap.get(url)||deniedTypographyPacket(url)
   assert.ok(packet,'Original captured endpoint: '+url)
   const response={status:packet.status,url:packet.url===originalUrl?url:packet.url,contentType:packet.contentType,body:packet.body,bodyComplete:packet.bodyComplete??true}
   mutate(response,url,calls)

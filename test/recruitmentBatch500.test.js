@@ -12,18 +12,20 @@ import * as currentNativeGroupTwo from './helpers/replayCurrentNativeGroupTwo.js
 import * as currentNativeLegacyPair from './helpers/replayCurrentNativeLegacyPair.js'
 import * as currentNativeCribl from './helpers/replayCurrentNativeCribl.js'
 import * as currentNativeAXA from './helpers/replayCurrentNativeAXA.js'
+import * as currentNativeFactSet from './helpers/replayCurrentNativeFactSet.js'
 
 const batch = recruitmentBatchProviders()
 const catalog = getScraperCatalog()
 const bySource = new Map(catalog.map(provider => [provider.source, provider]))
 const currentNativeSources=new Set(['adidas','aecom','aecomindia','corteva','evonik','2u','ikea','ferrero'])
 const currentNativeContracts = new Map([
-  currentNativeGroupOne, currentNativeGroupTwo, currentNativeLegacyPair, currentNativeCribl, currentNativeAXA,
+  currentNativeGroupOne, currentNativeGroupTwo, currentNativeLegacyPair, currentNativeCribl, currentNativeAXA, currentNativeFactSet,
 ].flatMap(contract => [...contract.supportedSources].map(source => [source, contract])))
 const currentNativeParsers = Object.freeze({
   '2070health': 'live-parser', ai21labs: 'runtime-verified-recruitment', aible: 'live-parser',
   airfranceklm: 'runtime-verified-recruitment', astrasecurity: 'live-parser',
   asus: 'live-parser', attackiq: 'live-parser', cribl: 'live-parser', axa: 'live-parser',
+  factsetresearchsystems: 'runtime-verified-recruitment',
 })
 const description = '<p>Build and operate production software systems, investigate service failures, review API designs and collaborate with the product engineering team on reliable delivery.</p>'
 

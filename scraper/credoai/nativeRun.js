@@ -1,5 +1,5 @@
 import {createPublishingGapAtsScraper} from '../../scraper-support/utils/publishingGapAts.js'
-import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachInventoryEvidence,copyNativeCollectionEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {HOME,CAREERS,BOARD,API,check,verifyCorporate,preload,validateInventory,validateDetail} from './nativeContract.js'
 export async function runNative(options={}){
  const now=new Date(options.now??Date.now()).toISOString(),timeout=options.timeoutMs??90000
@@ -14,6 +14,6 @@ export async function runNative(options={}){
   const final=JSON.parse(await get(API)),finalBoard=preload(await get(BOARD));validateInventory(final,finalBoard,now)
   check(JSON.stringify(final)===JSON.stringify(payload)&&JSON.stringify(finalBoard.jobBoard)===JSON.stringify(board.jobBoard),'Native inventory changed during extraction');signal.throwIfAborted()
   const jobs=mapped.map(j=>({...j,jobDescription:descriptions.get(j.jobId),description:descriptions.get(j.jobId),sourceDescription:descriptions.get(j.jobId),sourceDetailComplete:!!descriptions.get(j.jobId),sourceDetailStatus:descriptions.get(j.jobId)?'complete':'missing-content',sourceListingComplete:false,sourceScopeComplete:false,nativeLegalEmployer:null,nativeBrand:'Credo.AI',nativeObservedBoardCount:payload.jobs.length,nativeUnknownLocationIds:payload.jobs.filter(r=>r.address===null).map(r=>r.id),scrapedAt:now}))
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,pagesFetched:1,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'Stable public Ashby board/API plus full explicit India role/application pages. Generic Remote future-hiring record unresolved; other hiring surfaces and whole-company scope unproven.'})
+  return attachInventoryEvidence(copyNativeCollectionEvidence(mapped,jobs),{status:'coverage-gap',surface:BOARD,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:1,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'Stable public Ashby board/API plus full explicit India role/application pages. Generic Remote future-hiring record unresolved; other hiring surfaces and whole-company scope unproven.'})
  }finally{clearTimeout(timer);c.abort()}
 }

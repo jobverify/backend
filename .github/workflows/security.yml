@@ -144,6 +144,12 @@ jobs:
       - run: npm ci --ignore-scripts
       - name: Install browser used by fixture regression tests
         run: npx --no-install playwright install --with-deps chromium
+      - uses: actions/cache@v6
+        with:
+          path: .cache/mongodb-binaries
+          key: mongodb-8.2.6-${{ runner.os }}-${{ runner.arch }}
+      - name: Provision isolated test database binary
+        run: npm run test:provision-mongo
       - run: npm run test:scraper
 
   required-checks:

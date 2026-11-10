@@ -1,0 +1,184 @@
+{
+  "capturedOn": "2026-11-10",
+  "purpose": "Genuine current corporate entry pages and19 complete native PDF responses; captured raw bodies are preserved in gzip packets.",
+  "documentBase": "https://www.cloudphysician.net/",
+  "rawCountryQualification": "Only a role-native heading may qualify country; no city, company-address, boilerplate or filename inference.",
+  "records": [
+    {
+      "file": "corporate-careers.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/careers/",
+      "finalUrl": "https://www.cloudphysician.net/careers/",
+      "status": 200,
+      "bytes": 55097,
+      "sha256": "30ee765003d157ef58b97451b5e09a717f7e53677008d9e2d4b89646103c14ea"
+    },
+    {
+      "file": "jd-01.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Clinical-Intensivist.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Clinical-Intensivist.pdf",
+      "status": 200,
+      "bytes": 150239,
+      "sha256": "81ecdf5078db974508d7f8d0326303255053068553f68bf2ce97b27435af7f67"
+    },
+    {
+      "file": "jd-02.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Specialist-Physician.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Specialist-Physician.pdf",
+      "status": 200,
+      "bytes": 151413,
+      "sha256": "fa67ca62612ece46b9ecd0021831f13e00be1817d7052a43948b1bd848602b1c"
+    },
+    {
+      "file": "jd-03.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/Critical%20Care%20Associate_MBBS+ICU%20experience.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/Critical%20Care%20Associate_MBBS+ICU%20experience.pdf",
+      "status": 200,
+      "bytes": 35728,
+      "sha256": "cd85a3db9b236aa68cb48891a1f31f994590cfecad31edeae9f60c7ab7ad6a2c"
+    },
+    {
+      "file": "jd-04.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Critical-Care-Registered-Nurse.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Critical-Care-Registered-Nurse.pdf",
+      "status": 200,
+      "bytes": 44312,
+      "sha256": "5783ac1f1bc6e5cd74949a408f6999357e0d4792010b86a233769952dd2742cb"
+    },
+    {
+      "file": "jd-05.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/Nicu-Nurse.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/Nicu-Nurse.pdf",
+      "status": 200,
+      "bytes": 45705,
+      "sha256": "53f6a965c85e869512defecaf8a1e71e8aa7e737b744dc6cdba46a687c647bd4"
+    },
+    {
+      "file": "jd-06.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Registered-Nurse.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Registered-Nurse.pdf",
+      "status": 200,
+      "bytes": 44315,
+      "sha256": "8409d46e6abae45549ec56ebda436b6bfeda0ef8f2eda3f3d6b6dbaf3ff64bdb"
+    },
+    {
+      "file": "jd-07.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Clinical-Dietitian.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Clinical-Dietitian.pdf",
+      "status": 200,
+      "bytes": 37989,
+      "sha256": "16ffb608159f304d3df548b91b9c95e9b6090965b8fb7cd5cc4383dffd2c61c8"
+    },
+    {
+      "file": "jd-08.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Clinical-Pharmacist.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Clinical-Pharmacist.pdf",
+      "status": 200,
+      "bytes": 150246,
+      "sha256": "9c04226b5b100f47a243efeb7d60487c602d4465167a32fd5e443130f6c6c72a"
+    },
+    {
+      "file": "jd-09.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/Product_Designer_JD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/Product_Designer_JD.pdf",
+      "status": 200,
+      "bytes": 188390,
+      "sha256": "bacc6f52b87aa1cbd56938d856541d07d9e13c7f84a6e50c7b52f8b42e870759"
+    },
+    {
+      "file": "jd-10.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20250606_HeadofComplaince_JD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20250606_HeadofComplaince_JD.pdf",
+      "status": 200,
+      "bytes": 209940,
+      "sha256": "f6f7740c9405da53d833500c1fc304796e42f60edce181e2da1254631236f3a1"
+    },
+    {
+      "file": "jd-11.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20250606_EngineeringManager_JD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20250606_EngineeringManager_JD.pdf",
+      "status": 200,
+      "bytes": 200587,
+      "sha256": "cd4bad47ee8a7bc83d6c2bedbf90f2f718f4120989206a9e164f764e4fffc893"
+    },
+    {
+      "file": "jd-12.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Data-Engineer.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Data-Engineer.pdf",
+      "status": 200,
+      "bytes": 148885,
+      "sha256": "52523ba3c24e49b220eb56511e83b031eb9ab81a4642f1251baa164195928c51"
+    },
+    {
+      "file": "jd-13.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20240912_DevOpsEngineer_JD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20240912_DevOpsEngineer_JD.pdf",
+      "status": 200,
+      "bytes": 208169,
+      "sha256": "20da23a40fc87d99a0f286a2786ae0de7c42d617c18f09e604767ac222448858"
+    },
+    {
+      "file": "jd-14.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220919_QAEngineer-Automation-Selenium_JD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220919_QAEngineer-Automation-Selenium_JD.pdf",
+      "status": 200,
+      "bytes": 84736,
+      "sha256": "955c192f3fa453de492bd335eebb7038bc3b9fb75d58a56ddf0f237eb52c9a42"
+    },
+    {
+      "file": "jd-15.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20250507_MLEngineeJD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20250507_MLEngineeJD.pdf",
+      "status": 200,
+      "bytes": 203271,
+      "sha256": "9cea2934b836fa9df0065f7f5b8521b7e689a2d95f267a12eb267d5323af2328"
+    },
+    {
+      "file": "jd-16.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_BusinessDevelopment%20Manager.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_BusinessDevelopment%20Manager.pdf",
+      "status": 200,
+      "bytes": 147462,
+      "sha256": "e12fd091eb4245d98882efe451314770ae3997a7d06fd52fdcbe12a23f202e1c"
+    },
+    {
+      "file": "jd-17.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Accounts-Executive.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Accounts-Executive.pdf",
+      "status": 200,
+      "bytes": 152640,
+      "sha256": "a784771023654c859b51c1fc91f2123225133f8777beedc8d5db5295c5d574f2"
+    },
+    {
+      "file": "jd-18.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20220331_Executive-assistant-to-CEO.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20220331_Executive-assistant-to-CEO.pdf",
+      "status": 200,
+      "bytes": 151201,
+      "sha256": "b62d887c5f8215f38ab1db9791299fd8ba9eb5c0c9388567110aeeed657a94da"
+    },
+    {
+      "file": "jd-19.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/assets/jds/20250613_Marketing_Associate_JD.pdf",
+      "finalUrl": "https://www.cloudphysician.net/assets/jds/20250613_Marketing_Associate_JD.pdf",
+      "status": 200,
+      "bytes": 210826,
+      "sha256": "2bb5eed5026934e97cadd684fcd81657f4e3644bb4eaca4e00e3c07c3bcf682e"
+    },
+    {
+      "file": "registered-home.json.gz",
+      "requestUrl": "https://cloudphysician.net/",
+      "finalUrl": "https://www.cloudphysician.ai/",
+      "status": 200,
+      "bytes": 166275,
+      "sha256": "b0f5730ad98017f3b0988ffc538fb5af83cec9ce4a3a30255cc4000a195e9643"
+    },
+    {
+      "file": "registered-root.json.gz",
+      "requestUrl": "https://www.cloudphysician.net/careers",
+      "finalUrl": "https://www.cloudphysician.ai/",
+      "status": 200,
+      "bytes": 166275,
+      "sha256": "b0f5730ad98017f3b0988ffc538fb5af83cec9ce4a3a30255cc4000a195e9643"
+    }
+  ]
+}

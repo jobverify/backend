@@ -457,8 +457,14 @@ export function createVerifiedRecruitmentScraper(config) {
         if (response.status !== 200) throw Object.assign(new Error('Recruitment HTTP ' + response.status), {
           status: response.status, code: 'RECRUITMENT_HTTP_ERROR',
         })
-        requireValue(format === 'json' ? /(?:application|text)\/(?:[a-z.+-]*\+)?json\b/i.test(response.contentType)
-          : format === 'renderer' ? /(?:text\/(?:html|js)\b|application\/xhtml\+xml|(?:application|text)\/(?:java|ecma)script)/i.test(response.contentType)
+        const publisherHTML = typeof config.readCurrentPublisherDeclaration === 'function'
+          && (format === 'publisher-page' || format === 'page' && root && url.href === root.href)
+        requireValue(publisherHTML ? ['text/html', 'application/xhtml+xml']
+          .includes((response.contentType || '').split(';')[0].trim().toLowerCase())
+          : format === 'json' ? /(?:application|text)\/(?:[a-z.+-]*\+)?json\b/i.test(response.contentType)
+          : format === 'publisher-script' ? ['application/javascript', 'text/javascript', 'application/ecmascript', 'text/ecmascript']
+            .includes((response.contentType || '').split(';')[0].trim().toLowerCase())
+            : format === 'renderer' ? /(?:text\/(?:html|js)\b|application\/xhtml\+xml|(?:application|text)\/(?:java|ecma)script)/i.test(response.contentType)
             : /(?:text\/html|application\/xhtml\+xml)/i.test(response.contentType), 'Unexpected recruitment response type')
         if (format !== 'json' && /<title\b[^>]*>\s*Forbidden Access\s*<\/title>/i.test(body)) {
           const denied = readNativeDocument(normalizeNativeAttributeBoundaries(body))
@@ -521,7 +527,7 @@ export function createVerifiedRecruitmentScraper(config) {
       if (seenJobs.has(identity)) return
       seenJobs.add(identity); jobs.push(project(config, native, now))
     }
-    const bind = (value, officialURL, declaredExternal = false, bindingMethod = 'runtime-current-careers-link') => {
+    const bind = (value, officialURL, declaredExternal = false, bindingMethod = 'runtime-current-careers-link', publisherDeclaration = null) => {
       const url = https(value); if (!url) return
       const bindingPage = https(officialURL)
       if (declaredExternal && bindingMethod === 'runtime-current-careers-link'
@@ -533,9 +539,39 @@ export function createVerifiedRecruitmentScraper(config) {
       const key = board ? board.kind + ':' + (board.token || board.url) : url.origin + ':' + pathKey(url)
       if (board && !boards.has(key)) boards.set(key, { ...board, bindingEvidence: {
         verified: true, checkedAt: now, officialURL, matchedLinks: [url.href], bindingMethod,
+        ...(publisherDeclaration ? { publisherDeclaration: { context: publisherDeclaration.context, evidence: publisherDeclaration.evidence } } : {}),
       } })
       if (board?.kind === 'oracle' && /\/sites\/[^/]+\/jobs?\/[^/]+/i.test(url.pathname)) { permit(url); queue.push(url.href) }
       if (!board && (vendor.test(url.hostname) || config.allowDeclaredExternalCareersPages && declaredExternal)) { permit(url); queue.push(url.href) }
+    }
+    const declaredWorkdayBoard = value => {
+      const url = https(value), board = url && recruitmentBoard(url.href)
+      requireValue(board?.kind === 'workday' && url.href === board.url && !url.search && !url.hash
+        && board.origin === config.nativeWorkdayOrigin && board.tenant === config.nativeWorkdayTenant
+        && board.site === config.nativeWorkdaySiteId, 'Current publisher declared an unreviewed native Workday board')
+      return board
+    }
+    const readPublisherDeclaration = async (page, phase) => {
+      requireValue(typeof config.readCurrentPublisherDeclaration === 'function' && config.requireCorporateIdentityMatch === true
+        && identifiedCompanyHosts.has(new URL(page.url).hostname.replace(/^www\./, '')) && root && page.url === root.href
+        && official(new URL(page.url)), 'Current publisher declaration requires the identified official careers root')
+      const uncached = phase === 'closing' ? { cache: 'no-store' } : {}
+      const declaration = await config.readCurrentPublisherDeclaration({ page, now, phase,
+        readPage: (value, init = {}) => read(value, { ...init, ...uncached }, 'publisher-page'),
+        readRenderer: (value, init = {}) => read(value, { ...init, ...uncached }, 'publisher-script'),
+        readJson: (value, init = {}) => readJson(value, { ...init, ...uncached }),
+        readDeclaredBoardPage: value => {
+          const board = declaredWorkdayBoard(value)
+          permit(board.url)
+          return read(board.url, uncached, 'publisher-page')
+        },
+      })
+      declaredWorkdayBoard(declaration?.url)
+      requireValue(declaration.context && typeof declaration.context === 'object' && !Array.isArray(declaration.context)
+        && declaration.evidence && typeof declaration.evidence === 'object', 'Current publisher declaration context is missing')
+      observed.publisherDeclarations ||= []
+      observed.publisherDeclarations.push({ phase, ...declaration })
+      return declaration
     }
     if (config.requireCorporateIdentityMatch && homepage && !vendor.test(homepage.hostname)) queue.push(homepage.href)
     if (root && !vendor.test(root.hostname)) queue.push(root.href)
@@ -563,6 +599,12 @@ export function createVerifiedRecruitmentScraper(config) {
         }
       }
       const canDelegate = companyIdentified && (corporatePage || delegatedPublisherPage)
+      if (canDelegate && corporatePage && root && page.url === root.href && typeof config.readCurrentPublisherDeclaration === 'function') {
+        try {
+          const declaration = await readPublisherDeclaration(page, 'opening')
+          bind(declaration.url, page.url, true, 'runtime-current-careers-publisher-declaration', declaration)
+        } catch (error) { problem('current-publisher-declaration', error) }
+      }
       if (canDelegate && config.discoverLiteralRecruitmentData === true) {
         for (const feed of [...activeLeverCareersFeeds(doc), ...activeAshbyCareersFeeds(doc)]) {
           bind(feed, page.url, true, 'runtime-current-careers-active-native-fetch')
@@ -1154,14 +1196,23 @@ export function createVerifiedRecruitmentScraper(config) {
             }
             const corporateURL=board.bindingEvidence.officialURL
             const closingPublisher=await read(corporateURL,{cache:'no-store'})
-            const publisher=readNativeDocument(normalizeNativeAttributeBoundaries(closingPublisher.html))
-            requireValue(!publisher.nodes(node=>node.tag==='base').length,'Unreviewed closing company document base')
-            requireValue(publisher.nodes(node=>node.tag==='a'&&node.attrs.href).some(node=>{
-              const current=recruitmentBoard(new URL(node.attrs.href,closingPublisher.url).href)
-              return current?.kind==='workday'&&current.origin===board.origin&&current.tenant===board.tenant&&current.site===board.site
-            }),'Workday closing current company handoff changed')
+            let closingDeclaration
+            if(board.bindingEvidence.bindingMethod==='runtime-current-careers-publisher-declaration'){
+              closingDeclaration=await readPublisherDeclaration(closingPublisher,'closing')
+              requireValue(closingDeclaration.url===board.url
+                &&JSON.stringify(closingDeclaration.context)===JSON.stringify(board.bindingEvidence.publisherDeclaration.context),
+              'Workday closing current publisher declaration changed')
+            }else{
+              const publisher=readNativeDocument(normalizeNativeAttributeBoundaries(closingPublisher.html))
+              requireValue(!publisher.nodes(node=>node.tag==='base').length,'Unreviewed closing company document base')
+              requireValue(publisher.nodes(node=>node.tag==='a'&&node.attrs.href).some(node=>{
+                const current=recruitmentBoard(new URL(node.attrs.href,closingPublisher.url).href)
+                return current?.kind==='workday'&&current.origin===board.origin&&current.tenant===board.tenant&&current.site===board.site
+              }),'Workday closing current company handoff changed')
+            }
             for(const job of jobs.slice(jobsBeforeBoard))Object.assign(job,{
               sourceOfficialBinding:{...board.bindingEvidence,currentHandoffRechecked:true,closingURL:closingPublisher.url,
+                ...(closingDeclaration?{closingPublisherDeclaration:closingDeclaration.evidence}:{}),
                 closingBodySHA256:sha(closingPublisher.html),companyScopeComplete:false},
               sourceNativeClosingContext:{allSelectedListingPagesRechecked:true,eachFullRoleRechecked:true,
                 selectedPages:pageSnapshots.length,selectedReportedTotal:total,companyScopeComplete:false},

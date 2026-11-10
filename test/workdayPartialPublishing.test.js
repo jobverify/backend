@@ -16,7 +16,8 @@ const fixture=(source='blackrock',historical=false)=>{
 // Historical positives run against every exact source/config/dependency byte
 // attested by their immutable review. Current production code keeps its strict
 // source-drift gate and is tested separately below.
-const backend=fileURLToPath(new URL('..',import.meta.url)),reviewedRoot=fs.mkdtempSync(path.join(os.tmpdir(),'workday-reviewed-code-')),reviewedBackend=path.join(reviewedRoot,'jobverify-backend')
+// Receipt paths retain jobverify-backend/, even when the actual checkout is renamed.
+const backend=fileURLToPath(new URL('..',import.meta.url)),reviewedRoot=fs.mkdtempSync(path.join(os.tmpdir(),'workday-reviewed-code-')),reviewedBackend=path.join(reviewedRoot,'renamed-backend-checkout')
 fs.mkdirSync(reviewedBackend)
 fs.writeFileSync(path.join(reviewedBackend,'package.json'),'{"type":"module"}')
 const copyRuntimeDirectory=relative=>{
@@ -43,7 +44,8 @@ const restoredHashes=new Map()
 for(const source of ['blackrock','blackstone']){
  const f=fixture(source)
  for(const receipt of f.httpEvidence.receipts.filter(r=>r.kind==='current-code')){
-  const bytes=f.files.get(receipt.file),target=path.resolve(reviewedRoot,receipt.sourcePath),relative=path.relative(reviewedBackend,target)
+  const bytes=f.files.get(receipt.file),target=path.resolve(reviewedBackend,receipt.sourcePath.replace(/^jobverify-backend\//,'')),relative=path.relative(reviewedBackend,target)
+  assert.ok(receipt.sourcePath.startsWith('jobverify-backend/'))
   assert.ok(relative&&!relative.startsWith('..')&&!path.isAbsolute(relative),'Reviewed runtime must stay inside its temporary backend')
   assert.equal(hash(bytes),receipt.sha256)
   if(restoredHashes.has(receipt.sourcePath))assert.equal(restoredHashes.get(receipt.sourcePath),receipt.sha256)
