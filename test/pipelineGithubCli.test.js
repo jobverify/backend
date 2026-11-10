@@ -32,7 +32,7 @@ test('GitHub CLI registers direct roots, reports work and dispatches separate co
   throw new Error('Unexpected mocked GitHub request');
  };`);
  const exec=promisify(execFile);
- const env={...process.env,MONGO_URI:mongo.getUri(),GH_TOKEN:'test-only',GITHUB_REPOSITORY:'owner/jobs',GITHUB_REF_NAME:'main',PIPELINE_DEFAULT_BRANCH:'main',GITHUB_SHA:'a'.repeat(40),GITHUB_RUN_ATTEMPT:'1',GITHUB_EVENT_PATH:eventFile,TEST_DISPATCH_LOG:dispatchFile,PIPELINE_ID:'',PIPELINE_DISPATCH_TOKEN:'',GITHUB_ENV:path.join(directory,'environment')};
+ const env={...process.env,MONGO_URI:mongo.getUri(),GH_TOKEN:'test-only',GITHUB_REPOSITORY:'owner/jobs',GITHUB_REF_NAME:'main',PIPELINE_DEFAULT_BRANCH:'main',GITHUB_SHA:'a'.repeat(40),GITHUB_RUN_ATTEMPT:'1',GITHUB_EVENT_NAME:'workflow_dispatch',GITHUB_EVENT_PATH:eventFile,TEST_DISPATCH_LOG:dispatchFile,PIPELINE_ID:'',PIPELINE_DISPATCH_TOKEN:'',GITHUB_ENV:path.join(directory,'environment')};
  const run=async(command,key,id,extra={})=>exec(process.execPath,['--import',pathToFileURL(hook).href,script,command],{cwd:directory,windowsHide:true,env:{...env,PIPELINE_STAGE:key,GITHUB_RUN_ID:String(id),GITHUB_OUTPUT:path.join(directory,'outputs'),...extra}});
  const complete=async(key,name,id)=>{
   await fs.writeFile(eventFile,JSON.stringify({repository:{default_branch:'main'},workflow_run:{id,name,head_branch:'main',display_title:`${key} | |`}}));

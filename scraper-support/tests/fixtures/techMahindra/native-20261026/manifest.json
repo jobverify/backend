@@ -1,0 +1,68 @@
+{
+  "responses": [
+    {
+      "file": "initial.html",
+      "url": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "originalBytes": 196216,
+      "originalSha256": "2fc5caaba4bc7d7f9d868deab873fb00d1b08b2863f794f6fc158b33c67bde5c",
+      "fixtureSha256": "dc79fc6232d3163ce9418b6497c8d12519a082edc425caa0d1619849caa3b624",
+      "sanitization": "Public ASP.NET viewstate/eventvalidation values replaced. CRLF retained.",
+      "observedAt": "2026-10-26T18:34:09.841Z",
+      "status": 200,
+      "finalUrl": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "method": "GET"
+    },
+    {
+      "file": "india-search.html",
+      "url": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "originalBytes": 198855,
+      "originalSha256": "1680fa8c608342682ae832d653cf1638c92b55af01da52197ff463630df88fcc",
+      "fixtureSha256": "cc05b94a474a8dfe99c877c4ccd69254a25a280028d1233e3bb0d0bd659f1b71",
+      "sanitization": "Public ASP.NET viewstate/eventvalidation values replaced. CRLF retained.",
+      "observedAt": "2026-10-26T18:34:17.630Z",
+      "status": 200,
+      "finalUrl": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "method": "POST"
+    },
+    {
+      "file": "bps.html",
+      "url": "https://careers.techmahindra.com/BpsOpportunity.aspx",
+      "originalBytes": 117199,
+      "originalSha256": "1d0bf87b9a9f86a26ec1f4fb2661bfe722d00c3c21f022a26cee52fa645e81a8",
+      "fixtureSha256": "c03febfe5bf01ae448505e87bdf1440f944378c8b07920c5879b37756c603aa0",
+      "sanitization": "Public ASP.NET viewstate/eventvalidation values replaced. CRLF retained.",
+      "observedAt": "2026-10-26T18:34:17.764Z",
+      "status": 200,
+      "finalUrl": "https://careers.techmahindra.com/BpsOpportunity.aspx",
+      "method": "GET"
+    },
+    {
+      "file": "india-page2.html",
+      "url": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "originalBytes": 199422,
+      "originalSha256": "d73b1da324d253b0be864fe1fa26f256900a2912a53949e3b6f9ee06c88aae67",
+      "fixtureSha256": "95b081d0b5ee8b3717fa42459165522dfcc976576f58666c6cbc6a97cdee2145",
+      "sanitization": "Public ASP.NET viewstate/eventvalidation values replaced. CRLF retained.",
+      "observedAt": "2026-10-26T18:39:19.038Z",
+      "status": 200,
+      "finalUrl": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "method": "POST"
+    },
+    {
+      "file": "india-last.html",
+      "url": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "originalBytes": 161016,
+      "originalSha256": "4620880a7b9db5c887828a6db4f622459b02b8ba5a711a9a6f9b979dee6cb1cf",
+      "fixtureSha256": "6c4fdf0a703e0db2d4eb46523a6914bab763e25ef59ab46c08816bcba14d99f8",
+      "sanitization": "Public ASP.NET viewstate/eventvalidation values replaced. CRLF retained.",
+      "observedAt": "2026-10-26T18:37:42.889Z",
+      "status": 200,
+      "finalUrl": "https://careers.techmahindra.com/CurrentOpportunity.aspx",
+      "method": "POST"
+    }
+  ],
+  "captureRangeUTC": [
+    "2026-10-26T18:34:09.841Z",
+    "2026-10-26T18:39:19.038Z"
+  ]
+}

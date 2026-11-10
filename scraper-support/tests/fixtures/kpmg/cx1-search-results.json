@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 2,
+      "Limit": 24,
+      "requisitionList": [
+        {
+          "Id": "INTG10043364",
+          "Title": "Associate Consultant -Market Risk",
+          "PostedDate": "2026-06-25",
+          "PrimaryLocationCountry": "IN",
+          "PrimaryLocation": "Mumbai, Maharashtra, India",
+          "Department": null,
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "ExternalQualificationsStr": null,
+          "ShortDescriptionStr": "Support market risk engagements.",
+          "ExternalResponsibilitiesStr": "Deliver analytics and reporting."
+        },
+        {
+          "Id": "INTG10040000",
+          "Title": "Consultant - Advisory",
+          "PostedDate": "2026-06-24",
+          "PrimaryLocationCountry": "SG",
+          "PrimaryLocation": "Singapore",
+          "Department": "Advisory",
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "ExternalQualificationsStr": null,
+          "ShortDescriptionStr": "Regional advisory role.",
+          "ExternalResponsibilitiesStr": "Partner with ASEAN teams."
+        }
+      ]
+    }
+  ]
+}

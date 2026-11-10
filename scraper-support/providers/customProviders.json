@@ -11622,8 +11622,8 @@
     "adapter": "script",
     "modulePath": "../entrustsoftwareservices/script.js",
     "dryRunFile": "entrustsoftwareservices/jobs.json",
-    "homepageUrl": "https://www.entrustsoft.in/",
-    "companyCareerPage": "https://www.entrustsoft.in/",
+    "homepageUrl": "https://entrustsoft.in/",
+    "companyCareerPage": "https://entrustsoft.in/",
     "atsPlatform": "official-company-site-no-public-careers",
     "countryFilter": "India",
     "paginationStrategy": "verified-homepage-without-careers-navigation",
@@ -11631,8 +11631,8 @@
     "parser": "custom-script",
     "normalizationProfile": "engineering-default",
     "companyDomain": "entrustsoft.in",
-    "verifiedOn": "2026-07-17",
-    "verifiedSurfaceSummary": "Verified on Friday, July 17, 2026 that https://www.entrustsoft.in/ was the live first-party eNTrust homepage, that it still exposed company overview and Get in touch contact signals, and that it exposed no careers navigation, public openings index, or first-party role detail pages."
+    "verifiedOn": "2026-11-10",
+    "verifiedSurfaceSummary": "Verified November 10, 2026: the official apex https://entrustsoft.in/ serves the branded eNTrust homepage with valid HTTPS. Its www alias fails certificate hostname validation. The homepage exposes no careers navigation or authoritative vacancy inventory; company and India job totals remain unknown."
   },
   {
     "source": "envestnet",
@@ -20474,12 +20474,12 @@
     "atsPlatform": "official-company-careers",
     "countryFilter": "India",
     "paginationStrategy": "single-page-job-cards",
-    "extractionStrategy": "verified-first-party-careers-page+same-page-role-cards+first-party-apply-links",
+    "extractionStrategy": "paired-current-native-role-pages+complete-declared-pdf-descriptions+literal-own-pdf-country",
     "parser": "custom-script",
     "normalizationProfile": "engineering-default",
     "companyDomain": "logelite.com",
-    "verifiedOn": "2026-07-18",
-    "verifiedSurfaceSummary": "Verified on Saturday, July 18, 2026 that https://logelite.com/career/ was the live first-party Logelite careers page, and that it publicly exposed role cards such as Human Resource Executive, Business Development Manager, and Sales & Support Executive with Lucknow location text plus Download Details and Apply Now links.",
+    "verifiedOn": "2026-11-06",
+    "verifiedSurfaceSummary": "Current official careers cards and own role pages declare six complete native two-page PDF descriptions. Literal own PDF location labels, full criteria, employment and experience labels, original bytes and paired closing models are retained. Applications, complete company scope and cleanup remain unverified.",
     "dryRunFile": "logelite/jobs.json"
   },
   {

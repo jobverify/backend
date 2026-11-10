@@ -1,0 +1,21 @@
+{
+  "status": 0,
+  "timestamp": "2026-10-24T17:03:24.2569321Z",
+  "data": {
+    "displayTitle": "Specialist / Senior Specialist - HR IT Application",
+    "externalDescription": "<ul><li>You will be directly partnering with global stakeholders and consumers of the SAPFIM database for modifications and integration enhancements, working independently to design and meet their needs</li><li>Also, will share technical responsibility for the HR Middleware servers that manage global HR integrations</li><li>Will be responsible for the technical support of HR Linux servers in the Azure datacentre for key add-on modules of SAPHRON, namely Nakisa and Quick Document Builder (AQDB), aligning with Cloud Infrastructure Services team for lifecycle maintenance and third-party vendors for upgrades</li><li>And create and maintain integration files for TLC (top-level comparison) between SAPHRON and the North America payroll systems, UltiPro</li><li>Work on Troubleshooting, developing, and implementing resolutions to technical issues across the global HR landscape</li><li>Also, working closely with the technical teams, manage day to day incidents logged in SMAX Incident Management tool</li><li>Provide back up support for SAPHRON Externals Management functionality and process</li><li>You will also support SOX controls, audit activities, and compliance requirements related to HR applications, integrations, and employee data</li></ul>",
+    "ref": "req33395",
+    "requisitionStatusId": 2,
+    "allowApply": true,
+    "primaryLocation": {
+      "title": "Kolkata_LISKC",
+      "ref": "50119832",
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "country": "IN"
+    },
+    "additionalLocations": [],
+    "openDate": "2026-09-18T07:23:42",
+    "companyApplyUrl": "https://linde.csod.com/ux/ats/careersite/25/home/requisition/33395?c=linde"
+  }
+}

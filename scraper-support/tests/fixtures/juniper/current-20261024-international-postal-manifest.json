@@ -1,0 +1,51 @@
+{
+  "provenance": "Minimized actual anonymous HPE Juniper native listing/detail responses; not an independent whole-source publication approval",
+  "sourceCaptureRoot": "C:\\Users\\mohv\\AppData\\Local\\Temp\\codex-scraper-repair-verification-20261024\\juniper-browser-native-2026-10-24T18-14-49-933Z",
+  "listingRequestURL": "https://careers.hpe.com/widgets",
+  "listingRawSha256": "aedda081b5cd67efbd80076398711bb38c95e71bb1444405ffe584cb24bb1af7",
+  "listingReportedTotal": 378,
+  "listingRecords": 378,
+  "details": [
+    {
+      "id": "1210628",
+      "requestURL": "https://careers.hpe.com/us/en/job/1210628/Critical-Account-Team-Advanced-Customer-Engineer",
+      "status": 200,
+      "receivedAt": "2026-10-24T18:14:57.756Z",
+      "rawBodySha256": "a5b3769f74ff4ff616792cb92f857f6ffceb781cfa151d6ae7ebc32b91b43d87",
+      "bodyFile": "015.gz"
+    },
+    {
+      "id": "1207483",
+      "requestURL": "https://careers.hpe.com/us/en/job/1207483/Technical-Courseware-Developer",
+      "status": 200,
+      "receivedAt": "2026-10-24T18:14:59.864Z",
+      "rawBodySha256": "cf3ae5c26568fdc2a5782447eea583ed7420c25ded2fa161e6ef76556c5869a5",
+      "bodyFile": "032.gz"
+    },
+    {
+      "id": "1207306",
+      "requestURL": "https://careers.hpe.com/us/en/job/1207306/ASIC-Design-Verification-DV-Manager",
+      "status": 200,
+      "receivedAt": "2026-10-24T18:15:06.170Z",
+      "rawBodySha256": "cf8c2cf288a969f2224abb242beba1d168b024efe6f5813213ad6064e8c8faff",
+      "bodyFile": "077.gz"
+    },
+    {
+      "id": "1207305",
+      "requestURL": "https://careers.hpe.com/us/en/job/1207305/ASIC-Front-end-Design-engineer",
+      "status": 200,
+      "receivedAt": "2026-10-24T18:15:10.514Z",
+      "rawBodySha256": "34dd6478db14b75076779063187b10b20b82527be21770e877b0f28e7f3b94bf",
+      "bodyFile": "104.gz"
+    },
+    {
+      "id": "1207295",
+      "requestURL": "https://careers.hpe.com/us/en/job/1207295/ASIC-Design-Verification-Engineer",
+      "status": 200,
+      "receivedAt": "2026-10-24T18:15:11.568Z",
+      "rawBodySha256": "cced497c09e4d37e667d232477ebd31ee3f057c4fdaff0c04b7c6a4165477524",
+      "bodyFile": "110.gz"
+    }
+  ],
+  "fixtureSha256": "274e76dc88ce14bba9f9b71cf1465d60869bfc2add4dc1e203b8e8973eb7983c"
+}

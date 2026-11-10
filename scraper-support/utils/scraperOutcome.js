@@ -23,7 +23,11 @@ export const scraperTaskOutcome = (result = {}) => {
 export const normalizeScraperTaskResult = (result = {}) => {
   const normalized = { ...result, success: scraperTaskOutcome(result) === 'succeeded' }
   return isUnavailableZeroOutcome(result.zeroJobEvidence)
-    ? { ...normalized, softFailure: true, upstreamOutage: false, failureKind: 'coverage_gap', partial: true }
+    ? { ...normalized, softFailure: true, upstreamOutage: false, failureKind: 'coverage_gap', partial: true,
+      error: result.error || `Job inventory unavailable (${result.zeroJobEvidence}): ${
+        typeof result.inventoryEvidence?.reason === 'string' && result.inventoryEvidence.reason.trim()
+          ? result.inventoryEvidence.reason.trim().slice(0, 2048)
+          : 'A complete current job inventory could not be verified.'}` }
     : normalized
 }
 

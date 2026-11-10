@@ -1,0 +1,35 @@
+{
+  "status": 200,
+  "data": {
+    "requesterTitle": "",
+    "activeApplicationCount": 9,
+    "maxActiveApplication": 1000,
+    "reqDetailsBO": {
+      "educationList": [
+        "UG - Any"
+      ],
+      "mandatorySkillList": [
+        "Video editing"
+      ],
+      "nonMandatorySkillList": [],
+      "jdDisplay": "<p class=\"ql-align-justify\"><strong style=\"background-color: rgb(255, 255, 255);\">Who are we, and what do we do?</strong></p><p><br></p><p>ShareChat (Mohalla Tech Pvt Ltd) is India’s largest homegrown social media company and the only local player to achieve profitability in the industry, with 200+ million Monthly Monetizable Users across all its platforms.</p><p><br></p><p>Founded in 2015, ShareChat has social media brands such as the ShareChat App and Moj App and micro drama app QuickTV under its portfolio. QuickTV, the newest addition to ShareChat's family of apps, crossed the 10 million downloads mark within 3 months of launch and currently has 60Mn MAUs across the network viewing the vertical episodic content.&nbsp;</p><p><br></p><p class=\"ql-align-justify\">Today, the ShareChat network maintains a whopping 1,000 Cr ARR and is India’s leading social media platform servicing users across the country in 15 regional languages. This growth has led to a 28% YoY revenue growth in the July-Sept (2025-26) quarter and increased it by more than 60% in the Oct-Dec quarter.</p><p class=\"ql-align-justify\"><br></p><p><strong style=\"background-color: rgba(0, 0, 0, 0);\">What does the team do ?</strong></p><p><br></p><p>At QuickTV, ShareChat's short-form microdrama streaming app, the Content Operations team drives the creation and acquisition of bingeable, vertical microdramas — both live-action and AI-generated — built for mobile-first audiences. Partnering with production houses, creators, product, and feed teams, the team runs the full pipeline from script and greenlighting to production, localization, and release. It also leverages AI production tooling to turn screenplays into video faster and scale output across languages and markets.</p><p><br></p><p><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">What You’ll Do?</strong></p><p><br></p><ul><li><span style=\"background-color: transparent;\">As an Audio Specialist, you will be responsible for ensuring the technical and creative sound quality of all micro-drama episodes before release.</span></li><li><span style=\"background-color: transparent;\">Realistic AI Voice over generation and creative BGM and SFX generation that aligns with the tonality of the series and makes for an interesting storytelling experience.</span></li><li><span style=\"background-color: transparent;\">Collaborate with writers and creative directors, to translate creative ideas into striking AI-driven stories.</span></li><li><span style=\"background-color: transparent;\">Conduct end-to-end Quality Checks for audio/BGM/SFX of all episodes before delivery.</span></li><li><span style=\"background-color: transparent;\">Monitor audio levels and maintain balance across episodes.</span></li><li><span style=\"background-color: transparent;\">Identify and resolve technical glitches such as compression errors, drop frames, and subtitle sync issues.</span></li><li><span style=\"background-color: transparent;\">Analyze feedback and quickly deliver multiple refined versions optimized for platform performance and audience response.</span></li><li><span style=\"background-color: transparent;\">Contribute to the development of prompt engineering and prompting techniques</span></li><li><span style=\"background-color: transparent;\">Conduct research and experiments based on latest advancements in generative AI and develop insights to enhance the quality and efficiency of generated audio</span></li></ul><p><br></p><p><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Who You Are?</strong></p><p><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\"><span class=\"ql-cursor\">﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿</span></strong></p><ul><li><span style=\"background-color: transparent;\">Prior Sound engineering experience in OTT platforms, television, or film post-production.</span></li><li><span style=\"background-color: transparent;\">Strong knowledge of Sound Design, BGM &amp; SFX</span></li><li><span style=\"background-color: transparent;\">Strong understanding of AI generated voice over and AI workflows</span></li><li><span style=\"background-color: transparent;\">Keen eye for detail, with a passion for ensuring premium-quality content.</span></li><li><span style=\"background-color: transparent;\">Ability to work in a fast-paced environment with tight timelines.</span></li></ul><p><br></p><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Where you’ll be?</strong></p><p class=\"ql-align-justify\"><span style=\"background-color: transparent; color: rgb(0, 0, 0);\">Location - Remote</span></p><p><br></p><p><strong class=\"ql-font-arial\">What’s In It For You?</strong></p><p><br></p><ul><li class=\"ql-align-justify\"><strong>At ShareChat, our values—Ownership, Speed, User Empathy, Integrity, and First Principles</strong>—are at the core of our ways of working. We believe in hiring top talent and grooming future leaders by providing a flexible environment to aid growth and development.</li></ul><p><br></p>",
+      "fresher": false,
+      "requisitionLocationGroup": [],
+      "expMin": 1,
+      "expMax": 3,
+      "reqTitle": "AI Sound Designer",
+      "reqId": 2451,
+      "locationList": [
+        {
+          "office": "India",
+          "address": "India"
+        }
+      ],
+      "statusId": 3,
+      "requisitionPublished": true
+    }
+  },
+  "ts": 36,
+  "requestId": "0282ecbd-e5d4-4c26-8ffe-2279d48a440b",
+  "v": "d17-2r-20261024061801"
+}

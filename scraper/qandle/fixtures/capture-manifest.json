@@ -1,0 +1,167 @@
+{
+  "source": "qandle",
+  "capturedOn": "2026-10-23",
+  "evidence": [
+    {
+      "file": "employer-board.json.gz",
+      "sha256": "6865a33c3d10bffa2e335eb40e929d1b32e7603128d49c578bfbe519600ccd7b",
+      "uncompressedSha256": "089be408b2a94e8b1cf8dd3d769be96ffc3a08559f6931ef445704b8344fc9ae",
+      "responses": [
+        {
+          "url": "https://hr.qandle.com/",
+          "finalUrl": "https://hr.qandle.com/",
+          "status": 200,
+          "bodySHA256": "c109a4b70cae5508430eee468c10589386626cc3179e063d7bfce5c869616ed3",
+          "bodyBytes": 92728
+        }
+      ]
+    },
+    {
+      "file": "native-default-detail.json.gz",
+      "sha256": "f5ddefc3d9ef8d594c3fcee0ef40ee04d6e18257dca447db4d0942cc599bac5b",
+      "uncompressedSha256": "b572e5cb0d8d2b9f3f522a70c9d6ace275838ef8bca009432d86a5c28a9a1f26",
+      "responses": [
+        {
+          "url": "https://hr.qandle.com/recruitment-frontend/job-details/5f7b24f139473e585f0a38f7",
+          "finalUrl": "https://hr.qandle.com/recruitment-frontend/job-details/5f7b24f139473e585f0a38f7",
+          "status": 200,
+          "bodySHA256": "3c1cd8232fdfcb4186739ae1913945c252e426f2be4dfdde5cd851ecf0b7e903",
+          "bodyBytes": 820
+        },
+        {
+          "url": "https://hr.qandle.com/template/module/common/jobs/description.html?v=3",
+          "finalUrl": "https://hr.qandle.com/template/module/common/jobs/description.html?v=3",
+          "status": 200,
+          "bodySHA256": "88dc046db14af842a2132b8de4a1cf1fe8d6d7d8a8b77985669d361cee6d3599",
+          "bodyBytes": 10512
+        }
+      ]
+    },
+    {
+      "file": "native-portal-responses.json.gz",
+      "sha256": "f786ef52e7da3e9033ed01f74ca7c7da5556dd2eb48fa642b28572ff64eca522",
+      "uncompressedSha256": "ed82d0b0a650774b33fe98b99d3041c1bdb2a54393a2abb29138a91b4ce8ec2c",
+      "responses": [
+        {
+          "url": "https://hr.qandle.com/recruitment-frontend/external-company-job-page/2",
+          "finalUrl": "https://hr.qandle.com/recruitment-frontend/external-company-job-page/2",
+          "status": 200,
+          "bodySHA256": "85860f699806232b459559c9c2f86f928b6a7ab51758ea8ff37cc103d3c8ea86",
+          "bodyBytes": 6581
+        },
+        {
+          "url": "https://hr.qandle.com/recruitment-frontend/open-jobs",
+          "finalUrl": "https://hr.qandle.com/recruitment-frontend/open-jobs",
+          "status": 200,
+          "bodySHA256": "5f63a979ec51f16802574e4d96fa46d58f66f797ad1841bd2b73fe5df39ad436",
+          "bodyBytes": 380
+        },
+        {
+          "url": "https://hr.qandle.com/recruitment-frontend/default-job",
+          "finalUrl": "https://hr.qandle.com/recruitment-frontend/default-job",
+          "status": 200,
+          "bodySHA256": "a77e123b78ef0ecf61d1e00ec3b549e07a0917d762cf5cc11bae67759390c264",
+          "bodyBytes": 50
+        },
+        {
+          "url": "https://hr.qandle.com/js/module/common/services/recruitment-jobs.js?v=3.44",
+          "finalUrl": "https://hr.qandle.com/js/module/common/services/recruitment-jobs.js?v=3.44",
+          "status": 200,
+          "bodySHA256": "6dbae2f8e571763363a30d9406b59a79aa1e38a44b476e4f91ec6a0b51da5be3",
+          "bodyBytes": 1205
+        },
+        {
+          "url": "https://hr.qandle.com/js/module/common/controller/recruitment-jobs.js?v=3.44",
+          "finalUrl": "https://hr.qandle.com/js/module/common/controller/recruitment-jobs.js?v=3.44",
+          "status": 200,
+          "bodySHA256": "8867514360acdd2d70b412dadb9169139929b7398c3ab74dde028a2754965b2a",
+          "bodyBytes": 14670
+        },
+        {
+          "url": "https://hr.qandle.com/js/module/common/controller/jobs.js?v=3.44",
+          "finalUrl": "https://hr.qandle.com/js/module/common/controller/jobs.js?v=3.44",
+          "status": 200,
+          "bodySHA256": "0c9a02274cdeaf85e62b879ab31344535fc9f98f89c462f4e07f50b60ee056b6",
+          "bodyBytes": 31125
+        },
+        {
+          "url": "https://hr.qandle.com/js/module/common/services/jobs.js?v=3.44",
+          "finalUrl": "https://hr.qandle.com/js/module/common/services/jobs.js?v=3.44",
+          "status": 200,
+          "bodySHA256": "29c3868862a66e0070fd3d717c7d92647199718fc3867cad92a6ac4de77d31a9",
+          "bodyBytes": 8240
+        },
+        {
+          "url": "https://hr.qandle.com/template/module/frontend/recruitment/recruitment-jobs.html?v=3",
+          "finalUrl": "https://hr.qandle.com/template/module/frontend/recruitment/recruitment-jobs.html?v=3",
+          "status": 200,
+          "bodySHA256": "87f9854c7f2e9fc374455ff5c18e6f5212492518b00e8217c86cc62edd47361b",
+          "bodyBytes": 30148
+        }
+      ]
+    },
+    {
+      "file": "navigation-client.json.gz",
+      "sha256": "3e464c2072d73ebfc80f4acc9688ffb62948cdaabc8d4235dfa66a191929a45e",
+      "uncompressedSha256": "468c5321fa6ebb9ad6fea2a8cb4eff6ed1935cd82a398c56f8a2a3d9f669afb9",
+      "responses": [
+        {
+          "url": "https://www.qandle.com/js/master.js",
+          "finalUrl": "https://www.qandle.com/js/master.js",
+          "status": 200,
+          "bodySHA256": "57a2cff0a95f65bcab020764d9c1a5182cf9c237d47fde0b221fec37cf1f030d",
+          "bodyBytes": 6868
+        }
+      ]
+    },
+    {
+      "file": "navigation-responses.json.gz",
+      "sha256": "664917356d3d8c6d18e90ab5384a53f97d83acbeb8f3fbf27421711ac7ee74e8",
+      "uncompressedSha256": "af496615bb062d3f27bf0b2b9c6c485109a44122bd36ab706fbceaae114d8813",
+      "responses": [
+        {
+          "url": "https://www.qandle.com/header.html",
+          "finalUrl": "https://www.qandle.com/header.html",
+          "status": 200,
+          "bodySHA256": "4ab84aa5dbdfc34e9b94c8b4aa95328f17217c9d39db700c1e2f339a3ed915e0",
+          "bodyBytes": 110460
+        },
+        {
+          "url": "https://www.qandle.com/js/custom_internal1.js",
+          "finalUrl": "https://www.qandle.com/js/custom_internal1.js",
+          "status": 200,
+          "bodySHA256": "27cf871a827dc814eab91c02d7819ebc4edb3740961fbaf6631893f2f6237178",
+          "bodyBytes": 21366
+        }
+      ]
+    },
+    {
+      "file": "official-home.json.gz",
+      "sha256": "7ab268a544e657ba59e3a7b99719558e44b8bdc76c8637ee6fca2c050756a922",
+      "uncompressedSha256": "a6a109858646cc690b6cd12068f33dea48eb24ae765175e4e664d3017c2b6af6",
+      "responses": [
+        {
+          "url": "https://www.qandle.com/",
+          "finalUrl": "https://www.qandle.com/",
+          "status": 200,
+          "bodySHA256": "706f2e67455b7c6979deaa65f5acdb85bf9a387755177f195006e20713a1c0c1",
+          "bodyBytes": 92252
+        }
+      ]
+    },
+    {
+      "file": "wellfound-jobs.json.gz",
+      "sha256": "2eab219bc3d290aac4bd0e73ca538ebdb29ab6962824b49d280d159ba8450a12",
+      "uncompressedSha256": "34fe66ab2bcfa9c3ace23df5220ae21dc219d1ced13bf5f02931f2b748d2d896",
+      "responses": [
+        {
+          "url": "https://wellfound.com/company/qandle/jobs",
+          "finalUrl": "https://wellfound.com/company/qandle/jobs",
+          "status": 403,
+          "bodySHA256": "7d379d9b1a6080923f9fcab9f6ef6aa3c6a09ed0bb9c4596c5eb027ee99c96b3",
+          "bodyBytes": 11735
+        }
+      ]
+    }
+  ]
+}

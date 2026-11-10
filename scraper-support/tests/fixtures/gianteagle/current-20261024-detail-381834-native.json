@@ -1,0 +1,326 @@
+{
+  "jobDetail": {
+    "status": 200,
+    "hits": 1,
+    "totalHits": 1,
+    "data": {
+      "job": {
+        "teamName": "Marketing Tech Support (Aji Viswanadhan)",
+        "storeNumber": "IndiaCOR",
+        "hasSecondaryInternalQuestionnaire": "no",
+        "ml_skills": [
+          "software development",
+          "application testing",
+          "coding languages",
+          "process documentation",
+          "data flow analysis",
+          "installation and configuration",
+          "stakeholder communication",
+          "vendor-packaged application support",
+          "enhancement reporting"
+        ],
+        "companyName": "Giant Eagle",
+        "jobCode": "31240",
+        "locationType": "Corporate Office",
+        "ml_title": "Associate Software Engineer",
+        "category_raw": "Information Technology",
+        "standardisedCountry": "India",
+        "type": "Full time",
+        "descriptionTeaser": "Job SummaryAs an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems.Job DescriptionExperience",
+        "test3f": "false",
+        "state": "Karnātaka",
+        "brand": "Corporate",
+        "jobPostingSite": "Giant Eagle Bangalore",
+        "jobUpdatedDate": "2026-08-26T01:05:57.775+0000",
+        "siteType": "external",
+        "standardised_multi_location": [
+          {
+            "standardisedMapQueryLocation": "Motganhalli,Karnataka,India",
+            "standardisedStateCode": "KA",
+            "standardisedCity": "Motganhalli",
+            "latitude": "13.00445",
+            "latlong": {
+              "lon": 77.31221,
+              "lat": 13.00445
+            },
+            "isLocationStandardized": true,
+            "standardisedCountry": "India",
+            "standardisedTimezone": "+05:30 UTC",
+            "standardisedState": "Karnataka",
+            "longitude": "77.31221"
+          }
+        ],
+        "secondaryQuestionnaireId": "",
+        "aboutUS": "At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.",
+        "standardisedMapQueryLocation": "Motganhalli,Karnataka,India",
+        "jobProfile": "Engineer Associate, Software",
+        "Rate": "",
+        "uniqueValue": {
+          "jobId": "381834",
+          "refNum": "GIEAUS",
+          "locale": "hi_IN",
+          "siteType": "external"
+        },
+        "uniqueKey": "GIEAUS381834externalhi_IN",
+        "internalCategoryId": "GIEAUS_Information_Technology",
+        "jobUniqueIdentifier": "refNum,jobId,siteType,locale",
+        "primaryInternalQuestionnaireId": "QUESTIONNAIRE-3-734",
+        "ml_job_overview": {
+          "summary": "As an Associate Software Engineer at Giant Eagle, you will play a vital role in supporting the development, writing, and testing of application software for new and modified systems. This position offers the opportunity to work with various coding languages and tools, contributing to the enhancement and documentation of software applications. You will collaborate with users to resolve issues and provide technical support. Compensation for this role ranges from $809,900 to $983,450 per year, with eligibility for health, vision, and dental insurance, paid time off, a 401(k) plan, bonus potential, and paid holidays. Join a supportive team dedicated to quality, service, and everyday value.",
+          "skills": [
+            "Experience in documenting process and data flows is required.",
+            "Good communication skills with the ability to interact with various personalities at all organisational levels are essential.",
+            "Familiarity with various coding languages and tools utilized within the team for support and development purposes is necessary."
+          ],
+          "responsibilities": [
+            "Assist in the analysis and development of modifications to existing software programs.",
+            "Write and test new programs from specifications.",
+            "Modify and test existing programs from specifications.",
+            "Document new programs or modifications to existing programs according to departmental standards.",
+            "Assist users in solving programs and answer systems-related questions.",
+            "Take charge of the installation, configuration, testing, and documentation of custom-developed and vendor-packaged applications.",
+            "Provide minor development for enhancements and reporting.",
+            "Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes."
+          ],
+          "education": [
+            "A Bachelor’s Degree is required."
+          ]
+        },
+        "multi_category": [
+          {
+            "primaryLocaleCategory": "Information Technology",
+            "internalCategoryId": "GIEAUS_Information_Technology",
+            "category_raw": "Information Technology",
+            "category": "Information Technology"
+          }
+        ],
+        "reqId": "381834",
+        "ai_summary": "The Engineer Associate, Software role at Giant Eagle involves assisting in the development, writing, and testing of application software, both for new and existing systems. Responsibilities include analysing and modifying software, documenting changes, and supporting users with technical queries. Candidates should have 6 months to 1 year of relevant experience and hold a Bachelor’s degree. Familiarity with coding languages and tools is expected. The position offers a salary range of $809,900 to $983,450 per year, with additional benefits such as health insurance, paid time off, and retirement savings. The role is based in India and does not require travel.",
+        "displayCareerSite": true,
+        "standardisedTimezone": "+05:30 UTC",
+        "ml_country": "India",
+        "city": "",
+        "jobFamilyGroup": "Information Technology",
+        "visibilityLocale": [
+          "hi_IN"
+        ],
+        "latitude": "13.00445",
+        "hasSecondaryQuestionnaire": "no",
+        "multi_location": [
+          {
+            "country": "India",
+            "cityState": "Karnātaka",
+            "address": "560045, Karnātaka, India",
+            "locationName": "India Corporate Office",
+            "city": "",
+            "postalCode": "560045",
+            "latlong": {
+              "lon": 77.31221,
+              "lat": 13.00445
+            },
+            "latitude": "13.00445",
+            "stateCountry": "Karnātaka, India",
+            "locationId": "IndiaCOR",
+            "location": "India Corporate Office",
+            "state": "Karnātaka",
+            "cityCountry": "India",
+            "cityStateCountry": "Karnātaka, India",
+            "mapQueryLocation": "560045, Karnātaka, India",
+            "longitude": "77.31221"
+          }
+        ],
+        "locationId": "IndiaCOR",
+        "AdditionaAboutUs1": "",
+        "address": "560045, Karnātaka, India",
+        "locationName": "India Corporate Office",
+        "AdditionaAboutUs2": "",
+        "jobPostingSiteId": "GEBExternalcareers",
+        "isTranslated": false,
+        "hasPrimaryInternalQuestionnaire": "yes",
+        "ml_language_fullform": "english",
+        "cmsJobId": "JOB_POSTING-3-175474",
+        "applyUrl": "https://gianteagle.wd503.myworkdayjobs.com/GEBExternalcareers/job/India-Corporate-Office/Engineer-Associate--Software_381834/apply",
+        "ml_Description": "As an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems. Job Description. Experience Required: 6 months to 1 year. Experience Desired: Experience in documenting process and data flows; Good communication skills with the ability to interact with various personalities at all organizational levels. Education Desired: Bachelors Degree. Travel Required: None. Assist in the analysis and development of modifications to existing software programs. Write and test new programs from specifications. Modify and test existing programs from specifications. Document new programs or modifications to existing programs according to departmental standards. Assist users in solving programs and answer systems-related questions. Take charge of the installation, configuration, testing and documentation of custom-developed and vendor-packaged applications. Provide minor development for enhancements and reporting. Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes. ",
+        "externalApply": false,
+        "cityState": "Karnātaka",
+        "country": "India",
+        "primaryLocationReference": "India Corporate Office",
+        "postalCode": "560045",
+        "hasPrimaryQuestionnaire": "yes",
+        "timeType": "Full time",
+        "isEverGreenReq": "0",
+        "source": "WORKDAY",
+        "jobRequisitionId": "381834",
+        "indeedApplyTags": true,
+        "standardisedCity": "Motganhalli",
+        "locationAccuracyLevel": "city",
+        "jobFamily": "Software Engineering",
+        "visibilityType": "External",
+        "longitude": "77.31221",
+        "ats": "WORKDAY",
+        "isDerived": false,
+        "latlong": {
+          "lon": 77.31221,
+          "lat": 13.00445
+        },
+        "internalMobility": [
+          "external"
+        ],
+        "secondaryInternalQuestionnaireId": "",
+        "stateCountry": "Karnātaka, India",
+        "jobId": "381834",
+        "updatedByOfflineProcessing": true,
+        "refNum": "GIEAUS",
+        "profileId": "31240",
+        "topic": "Intg.JobPull.GeoLocation",
+        "primaryLocaleCategory": "Information Technology",
+        "description": "<p style=\"text-align:left\"><b>Job Summary</b></p>As an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems.<p style=\"text-align:left\"><b>Job Description</b></p><ul><li>Experience Required: 6 months to 1 year</li><li>Experience Desired: Experience in documenting process and data flows; Good communication skills with the ability to interact with various personalities at all organizational levels</li><li>Education Desired: Bachelors Degree</li><li>Travel Required: None</li></ul><p></p><p>Job Responsibilities</p><ul><li>Assist in the analysis and development of modifications to existing software programs.</li><li>Write and test new programs from specifications.</li><li>Modify and test existing programs from specifications.</li><li>Document new programs or modifications to existing programs according to departmental standards.</li><li>Assist users in solving programs and answer systems-related questions.</li><li>Take charge of the installation, configuration, testing and documentation of custom-developed and vendor-packaged applications.</li><li>Provide minor development for enhancements and reporting.</li><li>Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes.</li></ul><p style=\"text-align:left\"><b>About Us</b></p>At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.<br><br>The hiring range for this position is $809900.00– $983450.00 per hour/year. This range represents the anticipated base pay for this role. Actual compensation will be determined based on factors such as experience, skills, education, and location.\nEligible employees may be offered health, vision, and dental insurance, personal/sick paid time, 401(k) retirement savings plan, bonus potential, paid bereavement, vacation and paid holidays.<br>",
+        "locale": "hi_IN",
+        "title": "Engineer Associate, Software",
+        "jobSeqNo": "GIEAUS381834EXTERNALHIIN",
+        "postedDate": "2026-03-20T00:00:00.000+0000",
+        "postingStatus": "OPEN",
+        "ml_highlight": "Join our team as a Engineer Associate, Software, supporting the development and testing of application software. Contribute to software analysis, modification, and documentation. Ideal for candidates with 6 months to 1 year of experience and a Bachelor's degree, seeking hands-on involvement in software engineering.",
+        "dateCreated": "2026-03-20T10:15:19.181+0000",
+        "rate": "",
+        "isLocationStandardized": true,
+        "cityStateCountry": "Karnātaka, India",
+        "department": "Information Technology",
+        "hashKey": "d533b88d955ef6350840808a324fe7c13083d13e12d6584a2bd59c7ff363d321bccaef228008267eca0c18c2e46bcddfd5ef76eca6beccd37a4b2a9a017e532c",
+        "AboutUs": "At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.",
+        "parentRefNum": "GIEAUS",
+        "jobLevelId": "Non-Manager",
+        "actionType": "Refer",
+        "jobVisibility": [
+          "external",
+          "internal"
+        ],
+        "primaryQuestionnaireId": "QUESTIONNAIRE-3-734",
+        "standardisedStateCode": "KA",
+        "teamId": "S036563",
+        "isCritical": true,
+        "jobFamilyId": "Software Engineering",
+        "location": "India Corporate Office",
+        "cityCountry": "India",
+        "category": "Information Technology",
+        "mapQueryLocation": "560045, Karnātaka, India",
+        "standardisedState": "Karnataka"
+      },
+      "isMultiLocationEnabled": true,
+      "multiLocationFieldName": "multi_location",
+      "multiLocationValues": [
+        "cityState",
+        "country",
+        "address",
+        "city",
+        "clubName",
+        "latlong",
+        "branch",
+        "stateCountry",
+        "workLocation",
+        "indeedApplyTags",
+        "job_id",
+        "location",
+        "storeName",
+        "cityStateCountry",
+        "state"
+      ]
+    },
+    "eid": {
+      "eid": "6adcdabadeb7596cd2c410f5"
+    },
+    "sourceResponseTime": 3,
+    "source": "ES"
+  },
+  "alternateLinks": [
+    {
+      "rel": "canonical",
+      "lang": "",
+      "href": "https://jobs.gianteagle.com/in/hi/job/381834/Engineer-Associate-Software"
+    }
+  ],
+  "jsonLd": [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "inLanguage": "hi_in",
+      "name": "job",
+      "url": "https://jobs.gianteagle.com/in/hi/job/381834/Engineer-Associate-Software",
+      "datePublished": "2026-02-06",
+      "dateModified": "2026-02-06"
+    },
+    {
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "Giant Eagle",
+        "value": "381834"
+      },
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "Giant Eagle",
+        "sameAs": "https://jobs.gianteagle.com/in/hi",
+        "url": "https://jobs.gianteagle.com/in/hi/job/381834/Engineer-Associate-Software",
+        "logo": null
+      },
+      "jobLocation": {
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "13.00445",
+          "longitude": "77.31221"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "postalCode": "560045",
+          "addressCountry": "India",
+          "addressLocality": "",
+          "addressRegion": "Karnātaka"
+        },
+        "@type": "Place"
+      },
+      "employmentType": [
+        "FULL_TIME"
+      ],
+      "@type": "JobPosting",
+      "workHours": "40 hours per week",
+      "description": "&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job Summary&lt;/b&gt;&lt;/p&gt;As an Associate Software Engineer, you will assist in the development, writing and testing of application software from specifications for new and modified systems.&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job Description&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Experience Required: 6 months to 1 year&lt;/li&gt;&lt;li&gt;Experience Desired: Experience in documenting process and data flows; Good communication skills with the ability to interact with various personalities at all organizational levels&lt;/li&gt;&lt;li&gt;Education Desired: Bachelors Degree&lt;/li&gt;&lt;li&gt;Travel Required: None&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Job Responsibilities&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Assist in the analysis and development of modifications to existing software programs.&lt;/li&gt;&lt;li&gt;Write and test new programs from specifications.&lt;/li&gt;&lt;li&gt;Modify and test existing programs from specifications.&lt;/li&gt;&lt;li&gt;Document new programs or modifications to existing programs according to departmental standards.&lt;/li&gt;&lt;li&gt;Assist users in solving programs and answer systems-related questions.&lt;/li&gt;&lt;li&gt;Take charge of the installation, configuration, testing and documentation of custom-developed and vendor-packaged applications.&lt;/li&gt;&lt;li&gt;Provide minor development for enhancements and reporting.&lt;/li&gt;&lt;li&gt;Possess or obtain familiarity with various coding languages and tools utilized within the team for support and development purposes.&lt;/li&gt;&lt;/ul&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;About Us&lt;/b&gt;&lt;/p&gt;At Giant Eagle, we believe in nourishing life’s moments, big and small, because they matter. We strive to lead the way in quality, service, and everyday value. Most importantly, the compassion, care, and respect our Team Members show to each other and in our communities is what truly sets us apart. Here, you’ll find a place to win, grow, and be better together. If you want to make a real impact, belong to a supportive community, and build a meaningful career, we invite you to grow your future with us — because you matter.&lt;br&gt;&lt;br&gt;The hiring range for this position is $809900.00– $983450.00 per hour/year. This range represents the anticipated base pay for this role. Actual compensation will be determined based on factors such as experience, skills, education, and location.\nEligible employees may be offered health, vision, and dental insurance, personal/sick paid time, 401(k) retirement savings plan, bonus potential, paid bereavement, vacation and paid holidays.&lt;br&gt;",
+      "title": "Engineer Associate, Software",
+      "datePosted": "2026-09-17",
+      "@context": "http://schema.org",
+      "occupationalCategory": "Information Technology",
+      "directApply": false
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "inLanguage": "hi_in",
+      "name": "job",
+      "url": "https://jobs.gianteagle.com/in/hi/job/381834/Engineer-Associate-Software",
+      "datePublished": "2026-02-10",
+      "dateModified": "2026-02-10"
+    },
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://jobs.gianteagle.com/in/hi"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "search-results",
+          "item": "https://jobs.gianteagle.com/in/hi/search-results"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Engineer Associate, Software",
+          "item": "https://jobs.gianteagle.com/in/hi/job/381834/Engineer-Associate-Software"
+        }
+      ]
+    }
+  ]
+}

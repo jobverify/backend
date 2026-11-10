@@ -7,6 +7,7 @@ import {getScraperCatalog,createCatalogScraper} from '../scraper-support/provide
 import {readInventoryEvidence} from '../scraper-support/utils/inventoryEvidence.js'
 import {normalizeScrapedJob} from '../scraper-support/utils/normalizeScrapedJob.js'
 import {filterIndiaJobs} from '../scraper-support/utils/indiaLocationFilter.js'
+import {runNativeFinacus as runArchivedFinacus} from '../scraper/finacussolutions/nativeRun.js'
 
 const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/recruitmentGoal20261104/native-contract-quality.json.gz',import.meta.url))))
 const sha=value=>createHash('sha256').update(value).digest('hex')
@@ -21,7 +22,7 @@ test('native quality fixtures retain all 27 original bodies, including the actua
  assert.equal(rocket.requests[0].status,403)
 })
 
-const replay=async(source,consume)=>{
+const replay=async(source,consume,runCapturedSource)=>{
  const capture=captures.get(source),pending=new Map(),original=globalThis.fetch,calls=[]
  for(const q of capture.requests){const identity=key(q.requestedURL,q.method,q.body||''),rows=pending.get(identity)||[];rows.push(q);pending.set(identity,rows)}
  globalThis.fetch=async(url,init={})=>{
@@ -31,12 +32,15 @@ const replay=async(source,consume)=>{
   Object.defineProperty(response,'url',{value:q.finalURL});return response
  }
  const provider=getScraperCatalog().find(p=>p.source===source)
- try{await consume(()=>createCatalogScraper(provider).run({now:()=>capture.completedAt}),provider,calls)
+ const run=runCapturedSource||createCatalogScraper(provider).run
+ try{await consume(()=>run({now:()=>capture.completedAt}),provider,calls)
   assert.equal([...pending.values()].reduce((n,rows)=>n+rows.length,0),0)
  }finally{globalThis.fetch=original}
 }
 
-test('Finacus retains all 20 native descriptions and models while countries and company-wide scope stay unqualified',async()=>replay('finacussolutions',async(run,provider,calls)=>{
+// This archive predates the own country context and paired role reads. The
+// current registered contract is covered by recruitmentGoal20261107FinacusNative.
+test('Finacus archived collector retains all 20 native descriptions and models while countries and company-wide scope stay unqualified',async()=>replay('finacussolutions',async(run,provider,calls)=>{
  const jobs=await run()
  assert.equal(jobs.length,20)
  assert.equal(readInventoryEvidence(jobs).status,'coverage-gap')
@@ -56,7 +60,7 @@ test('Finacus retains all 20 native descriptions and models while countries and 
  assert.equal(filterIndiaJobs(jobs).length,0)
  assert.equal(filterIndiaJobs(jobs.map(job=>normalizeScrapedJob(job,provider))).length,0)
  assert.ok(calls.every(url=>!url.includes('#careerform')))
-}))
+},runArchivedFinacus))
 
 test('Rocket actual denied corporate response ends the registered route without ATS or application requests',async()=>replay('rocketsoftware',async(run,_provider,calls)=>{
  await assert.rejects(run(),/HTTP 403/)

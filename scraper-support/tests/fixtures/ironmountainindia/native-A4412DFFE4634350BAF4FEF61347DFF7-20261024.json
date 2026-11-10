@@ -1,0 +1,46 @@
+{
+  "guid": "A4412DFFE4634350BAF4FEF61347DFF7",
+  "entry": {
+    "url": "https://ironmountain.jobs/navi-mumbai-ind/operations-manager-imaging-operations/A4412DFFE4634350BAF4FEF61347DFF7/job/",
+    "lastmod": "2026-10-18"
+  },
+  "nativeDataUrl": "https://microsites.dejobs.org/ironmountain-jobs/data/A4412DFFE4634350BAF4FEF61347DFF7.json",
+  "nlx": {
+    "guid": "A4412DFFE4634350BAF4FEF61347DFF7",
+    "id": "seo.joblisting.A4412DFFE4634350BAF4FEF61347DFF7",
+    "title": "Operations Manager - Imaging Operations",
+    "title_slug": "operations-manager-imaging-operations",
+    "city": "Navi Mumbai",
+    "city_slug": "navi-mumbai",
+    "country": "India",
+    "country_short": "IND",
+    "company": "Iron Mountain",
+    "company_canonical_microsite": "http://ironmountain.jobs/",
+    "reqid": "J0108836",
+    "link": "https://de.jobsyn.org/A4412DFFE4634350BAF4FEF61347DFF710",
+    "is_posted": false,
+    "date_added": "2026-10-15T07:54:06.382Z",
+    "date_new": "2026-10-15T07:51:25Z",
+    "date_updated": "2026-10-15T07:51:25Z"
+  },
+  "applyReceipt": {
+    "status": 200,
+    "url": "https://ironmountain.wd5.myworkdayjobs.com/iron-mountain-jobs/job/IND--Navi-Mumbai--Innovative-Infocom--IT-Parks-Pvt-Ltd-Plot-No-Gen-711--7111-TTC-Industrial-Area/Operations-Manager---Imaging-Operations_J0108836/apply?source=",
+    "html": "<title>Iron Mountain Careers</title>"
+  },
+  "cxsUrl": "https://ironmountain.wd5.myworkdayjobs.com/wday/cxs/ironmountain/iron-mountain-jobs/job/IND--Navi-Mumbai--Innovative-Infocom--IT-Parks-Pvt-Ltd-Plot-No-Gen-711--7111-TTC-Industrial-Area/Operations-Manager---Imaging-Operations_J0108836",
+  "cxsStatus": 403,
+  "cxs": {
+    "errorCode": "S22",
+    "errorCaseId": "7B8CBFMVMQKXZ5",
+    "httpStatus": 403,
+    "message": "permission denied",
+    "messageParams": {}
+  },
+  "capturedAt": "2026-10-24T18:32:43.576Z",
+  "rawSha256": {
+    "nlx": "fa5e039c4817e8c93f13364e5ce304cc25c10a79d2a797ca1a7707a71082c2e4",
+    "apply": "ff16583976e387d553b07bc7af700ea921c90dec1a21651a2de8d7423ccb8494",
+    "cxs": "6b4646c6a23496048b6731a3e0b7a9c444105d95aca4d9eb870b201ee8416cc0"
+  }
+}

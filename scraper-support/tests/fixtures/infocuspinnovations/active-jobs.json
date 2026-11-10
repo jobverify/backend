@@ -1,0 +1,44 @@
+[
+  {
+    "id": 76348,
+    "title": "Senior Data Engineer",
+    "description": "<div><strong>About the Role</strong></div><div>We are seeking a highly skilled <strong>Senior Data Engineer</strong> with strong expertise in designing and building scalable modern data platforms.</div>",
+    "departmentName": "Software",
+    "jobLocations": [
+      {
+        "id": 301,
+        "name": "Ahmedabad",
+        "city": "Ahmedabad",
+        "state": "GJ",
+        "countryCode": "IN",
+        "countryName": "India"
+      }
+    ],
+    "jobType": 2,
+    "experience": "4+",
+    "publishedOn": "2026-06-17T04:42:36.833Z",
+    "skillNames": []
+  },
+  {
+    "id": 99001,
+    "title": "US Growth Lead",
+    "description": "<div>United States market role</div>",
+    "departmentName": "Sales",
+    "jobLocations": [
+      {
+        "id": 901,
+        "name": "Mountain View",
+        "city": "Mountain View",
+        "state": "CA",
+        "countryCode": "US",
+        "countryName": "United States"
+      }
+    ],
+    "jobType": 2,
+    "experience": "8+",
+    "publishedOn": "2026-06-20T00:00:00.000Z",
+    "skillNames": [
+      "Enterprise Sales"
+    ]
+  }
+]

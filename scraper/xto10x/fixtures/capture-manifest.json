@@ -1,0 +1,160 @@
+{
+  "capturedOn": "2026-10-23",
+  "captureMethod": "Actual isolated Chromium HTTP response bodies; no search snippets reconstructed",
+  "evidence": [
+    {
+      "file": "official-pages.json.gz",
+      "sha256": "1179089c29f01742a5f894ad76015b888a6f3b5daea0cf7eda641ca2490b3adc",
+      "uncompressedSha256": "fdd5b66ca16f1c5a53588269cbb56da08749973f29156638571b2605d240b593",
+      "responses": [
+        {
+          "url": "https://www.xto10x.com/",
+          "finalUrl": "https://www.xto10x.com/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:48:01.032Z",
+          "bodySHA256": "a26f70d77b7dbd915f8753e9c8fb21b596dbfe6fd473a1f667a384d9c8fef25d"
+        },
+        {
+          "url": "https://www.xto10x.com/about",
+          "finalUrl": "https://www.xto10x.com/about",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:48:02.914Z",
+          "bodySHA256": "20d727f83a5ee6239335f80522b9745934c06f040ca137bf6f829ebd9097de36"
+        }
+      ]
+    },
+    {
+      "file": "native-employer-jobs.json.gz",
+      "sha256": "72d93217792a8a0142774e7f80961a23821686eaf48a41752ad4fc8cb4dc052e",
+      "uncompressedSha256": "28ab4524212537ffe779cad65c4491fcb10c3596fc1fb0480b7253a000cb3c71",
+      "responses": [
+        {
+          "url": "https://www.linkedin.com/company/xto10x-tech",
+          "finalUrl": "https://www.linkedin.com/company/xto10x-tech",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:24.919Z",
+          "bodySHA256": "bb12f9c9c625f6f6fafaf93b6a07e47748928c13cfe0f27762dce4f8e0d5955c"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=India",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=India",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:27.633Z",
+          "bodySHA256": "5515701c406c06cf7b07d5b8bf8bece98e434f069b0a4f0e4b44fe6f237a164b"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=Worldwide",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=Worldwide",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:28.261Z",
+          "bodySHA256": "eb0a5913c45b3f230af884584a47f80a4e06929f813389b36d9cb975159b0c7f"
+        }
+      ]
+    },
+    {
+      "file": "native-employer-posts.json.gz",
+      "sha256": "776d78b084b283f43ad23ac9666a0f9c5336b79287f7a9ef3c28dce70fd3b281",
+      "uncompressedSha256": "8a8d8e9be0e1b284d6c876c15e9afd455489119730930e18b1077197a61cb94d",
+      "responses": [
+        {
+          "url": "https://www.iimjobs.com/j/strategy-consultant-1728041",
+          "finalUrl": "https://www.iimjobs.com/j/strategy-consultant-1728041",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:52:36.499Z",
+          "bodySHA256": "5cbd33603b2cfd23e0d553521a3c57befef72027bb76aa4d838191cb986b927d"
+        },
+        {
+          "url": "https://www.iimjobs.com/j/engagement-manager-1728042",
+          "finalUrl": "https://www.iimjobs.com/j/engagement-manager-1728042",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:52:37.358Z",
+          "bodySHA256": "dada7886ae37ac21dd7c08e9f1858b949fbeeb8c08b6fe4eb879dd3a608d3ff3"
+        }
+      ]
+    },
+    {
+      "file": "native-job-api.json.gz",
+      "sha256": "552f26fe2e050e141ec69c821349a3df57be9b79a0a08b2ea0021ac493e6bb6b",
+      "uncompressedSha256": "02b9a38ab8d918dc78bec943d136484ab389153f4a0d8e32f98dc09b679e7a7b",
+      "responses": [
+        {
+          "url": "https://gladiator.iimjobs.com/job/detail?jobcode=1728041",
+          "finalUrl": "https://gladiator.iimjobs.com/job/detail?jobcode=1728041",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:54:20.119Z",
+          "bodySHA256": "34ad9b6a3ce853cad280dbaa548b61ec368356cc0356a60bc95bd0b5eba0f3af"
+        },
+        {
+          "url": "https://gladiator.iimjobs.com/job/detail?jobcode=1728042",
+          "finalUrl": "https://gladiator.iimjobs.com/job/detail?jobcode=1728042",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:54:20.351Z",
+          "bodySHA256": "2a4a164d8a1acd7e65ec7dd97faa1dc0c52abde61aa84a4cfa53722a6519c6d4"
+        }
+      ]
+    },
+    {
+      "file": "product-home.json.gz",
+      "sha256": "947444701fdc3cf3949e3c4c620f9b24da319285c66193c295a829cde0d8afdc",
+      "uncompressedSha256": "7da252662f9155233acf516906e9094d012a431918e73c9047544f8869838647",
+      "responses": []
+    },
+    {
+      "file": "fresh-city-scope-runtime.json.gz",
+      "sha256": "971ad1671c0fae1b8eb98a0fdd81d3a41530601da7817bec32107358ce6a0ae5",
+      "uncompressedSha256": "30f93c0919ac9544b49bcaf859140f6044b10d070d78551bac3b38e516316af9",
+      "captureMethod": "Actual ordinary Node public GET responses; native APIs negotiate JSON; no form submission",
+      "responses": [
+        {
+          "url": "https://www.xto10x.com/about",
+          "finalUrl": "https://www.xto10x.com/about",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:31.399Z",
+          "bodySHA256": "20d727f83a5ee6239335f80522b9745934c06f040ca137bf6f829ebd9097de36"
+        },
+        {
+          "url": "https://www.xto10x.com/",
+          "finalUrl": "https://www.xto10x.com/",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:33.101Z",
+          "bodySHA256": "a26f70d77b7dbd915f8753e9c8fb21b596dbfe6fd473a1f667a384d9c8fef25d"
+        },
+        {
+          "url": "https://www.linkedin.com/company/xto10x-tech",
+          "finalUrl": "https://www.linkedin.com/company/xto10x-tech",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:34.278Z",
+          "bodySHA256": "3f0f993d510d7d829b52df5684cd425a8cf24f3d42acd03c9c5de2e9e9584456"
+        },
+        {
+          "url": "https://gladiator.iimjobs.com/job/detail?jobcode=1728041",
+          "finalUrl": "https://gladiator.iimjobs.com/job/detail?jobcode=1728041",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:34.734Z",
+          "bodySHA256": "1a3199d77fe887727cc64f6f49bb8988d755dada48d2ce6a7b7b69f0b96d02ee"
+        },
+        {
+          "url": "https://gladiator.iimjobs.com/job/detail?jobcode=1728042",
+          "finalUrl": "https://gladiator.iimjobs.com/job/detail?jobcode=1728042",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:34.932Z",
+          "bodySHA256": "2a4a164d8a1acd7e65ec7dd97faa1dc0c52abde61aa84a4cfa53722a6519c6d4"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=India",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=India",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:35.849Z",
+          "bodySHA256": "29783155f2ae6f9e6491aae560f4adf3004d81d0dbaafc4df0bbfc7ea57c77f5"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=Worldwide",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=14628973&location=Worldwide",
+          "status": 200,
+          "capturedAt": "2026-10-23T19:36:36.320Z",
+          "bodySHA256": "81d59651e088fa9bea2ff73e605a80e8639d65b61b284023c969e53968a57433"
+        }
+      ]
+    }
+  ]
+}

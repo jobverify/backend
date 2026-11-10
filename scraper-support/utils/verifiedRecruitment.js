@@ -21,12 +21,14 @@ import { createRecruitmentObservationAccounting, isRecruitmentIntakeTitle } from
 import { isGreenhouseProspectPost } from './greenhouseProspects.js'
 import { readSourceObservationEvidence } from './sourceObservationEvidence.js'
 import { readBreezyEmptyState } from './recruitmentBreezyEmptyState.js'
+import { activeLeverCareersFeeds } from './activeLeverCareersFeed.js'
+import { activeAshbyCareersFeeds } from './activeAshbyCareersFeed.js'
 
 export const RECRUITMENT_OBSERVATIONS = Symbol.for('jobverify.verified-recruitment-observations')
 const sha = value => createHash('sha256').update(value).digest('hex')
 const text = value => typeof value === 'string' ? value.trim() : ''
 const companyKey = value => text(value).normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]/gu, '')
-const career = /careers?|jobs?|vacanc|openings?|open[-_ /]?(?:roles?|positions?)|join[-_ /]?(?:us|the[-_ ]?team)|opportunit/i
+const career = /careers?|jobs?|vacanc|openings?|open[-_ /]?(?:roles?|positions?)|join[-_ /]?(?:us|(?:our|the)[-_ ]?team)|work[-_ /]?(?:with|for)[-_ /]?us|opportunit/i
 const recruitmentNavigation = /recruit|recrut|karrier|stellen|carri[eè]r|empleo|trabaj|trabalh|lavora|採用|求人|채용|招聘|招募|職位|加入我们/i
 const asset = /\.(?:avif|webp|png|jpe?g|gif|svg|ico|css|m?js|woff2?|ttf|otf|mp[34]|webm|pdf|zip)$/i
 const vendor = /(?:^|\.)(?:myworkdayjobs\.com|myworkdaysite\.com|greenhouse\.io|ashbyhq\.com|lever\.co|smartrecruiters\.com|workable\.com|breezy\.hr|recruitee\.com|teamtailor\.com|bamboohr\.com|applytojob\.com|jobvite\.com|icims\.com|successfactors\.com|successfactors\.eu|jobs2web\.com|oraclecloud\.com|comeet\.com|keka\.com|darwinbox\.in)$/i
@@ -561,6 +563,11 @@ export function createVerifiedRecruitmentScraper(config) {
         }
       }
       const canDelegate = companyIdentified && (corporatePage || delegatedPublisherPage)
+      if (canDelegate && config.discoverLiteralRecruitmentData === true) {
+        for (const feed of [...activeLeverCareersFeeds(doc), ...activeAshbyCareersFeeds(doc)]) {
+          bind(feed, page.url, true, 'runtime-current-careers-active-native-fetch')
+        }
+      }
       if (!corporatePage && allowed(pageURL)) {
         const empty = readBreezyEmptyState(doc, page.url, {
           companyName: config.companyName, publisherNames: config.publisherNames,

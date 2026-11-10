@@ -1,0 +1,35 @@
+{
+  "status": 200,
+  "data": {
+    "requesterTitle": "",
+    "activeApplicationCount": 27,
+    "maxActiveApplication": 1000,
+    "reqDetailsBO": {
+      "educationList": [
+        "UG - Any"
+      ],
+      "mandatorySkillList": [
+        "Creative Writing"
+      ],
+      "nonMandatorySkillList": [],
+      "jdDisplay": "<p class=\"ql-align-justify\"><strong>Who are we, and what do we do?</strong></p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">ShareChat (Mohalla Tech Pvt Ltd) is India’s largest homegrown social media company and the only local player to achieve profitability in the industry, with 200+ million Monthly Monetizable Users across all its platforms.</span></p><p><br></p><p><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Founded in 2015, ShareChat has social media brands such as the ShareChat App and Moj App and micro drama app QuickTV under its portfolio. QuickTV, the newest addition to ShareChat's family of apps, crossed the 10 million downloads mark within 3 months of launch and currently has 60Mn MAUs across the network viewing the vertical episodic content.&nbsp;</span></p><p><br></p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Today, the ShareChat network maintains a whopping 1,000 Cr ARR and is India’s leading social media platform servicing users across the country in 15 regional languages. This growth has led to a 28% YoY revenue growth in the July-Sept (2025-26) quarter and increased it by more than 60% in the Oct-Dec quarter.</span></p><p class=\"ql-align-justify\"><br></p><p><strong style=\"background-color: rgba(0, 0, 0, 0);\">What does the team do ?</strong></p><p><br></p><p>At QuickTV, ShareChat's short-form microdrama streaming app, the Content Operations team drives the creation and acquisition of bingeable, vertical microdramas — both live-action and AI-generated — built for mobile-first audiences. Partnering with production houses, creators, product, and feed teams, the team runs the full pipeline from script and greenlighting to production, localization, and release. It also leverages AI production tooling to turn screenplays into video faster and scale output across languages and markets.</p><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">What You’ll Do?&nbsp;</strong></p><p class=\"ql-align-justify\"><br></p><ul><li>Write emotionally charged, fast-paced scripts for English microdramas ensuring maximum viewer retention and binge-ability.</li><li>Write natural, colloquial American English dialogues, using current slang, idioms and cultural references that feel authentic rather than forced.</li><li>Develop cliffhanger-driven episode structures with high emotional peaks (drama, romance, revenge, comedy), hooking viewers and driving episode-to-episode engagement.</li><li>Balance emotional storytelling with commercial objectives, while maintaining narrative coherence across series arcs.</li><li>Master \"show, don't tell\" storytelling — using visual narratives and storyboarding to communicate complex emotions and plot twists.</li><li>Stay sharp on trending microdrama themes, viral plot devices, and regional preferences to create content that feels both fresh and familiar.</li><li>Monitor performance analytics and audience feedback to refine character arcs, dialogue style, and narrative hooks in real time.</li></ul><p class=\"ql-align-justify\"><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Who are you?</strong></p><p class=\"ql-align-justify\"><br></p><ul><li>Educational Background: Bachelor’s or Master’s Degree</li><li>Background in Creative Writing, Literature, Film, Journalism, or related fields</li><li>3–6 years of content writing in television, OTT, radio, digital publishing, or advertising.</li><li>Expert-level proficiency in English with the ability to write across tones — from emotional to witty to dramatic.</li><li>Strong grasp of storytelling techniques, character arcs, and promotional beats — especially in English entertainment.</li><li>Deep understanding of Indian content consumption habits and regional preferences.</li><li>Thrives in fast-paced environments, multitasks well, and delivers quality work within tight deadlines.</li></ul><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Where you’ll be?</strong></p><p class=\"ql-align-justify\"><span style=\"background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);\">Location - Remote</span></p><p><br></p><p><strong class=\"ql-font-arial\">What’s In It For You?</strong></p><p><br></p><p>At ShareChat, our values — Ownership, Speed, User Empathy, Integrity, and First Principles — are at the core of our ways of working. We believe in hiring top talent and grooming future leaders by providing a flexible environment to aid growth and development.</p>",
+      "fresher": false,
+      "requisitionLocationGroup": [],
+      "expMin": 3,
+      "expMax": 6,
+      "reqTitle": "AI Screenplay Writer",
+      "reqId": 2473,
+      "locationList": [
+        {
+          "office": "India",
+          "address": "India"
+        }
+      ],
+      "statusId": 3,
+      "requisitionPublished": true
+    }
+  },
+  "ts": 47,
+  "requestId": "c4fa346a-ec89-49db-9aae-de2ec2290c17",
+  "v": "d17-dn-20261024061742"
+}

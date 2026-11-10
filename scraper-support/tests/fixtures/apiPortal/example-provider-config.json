@@ -1,0 +1,39 @@
+{
+  "discovery": {
+    "careerPageUrl": "https://careers.example.com/jobs",
+    "listingApiUrl": "https://careers.example.com/api/jobs",
+    "mode": "direct"
+  },
+  "request": {
+    "method": "GET"
+  },
+  "pagination": {
+    "strategy": "offset-limit",
+    "pageSize": 2,
+    "offsetParam": "offset",
+    "limitParam": "limit",
+    "resultsPath": "jobs",
+    "hasMorePath": "hasMore"
+  },
+  "mapping": {
+    "title": "title",
+    "location": "location.displayName",
+    "jobId": "id",
+    "requisitionId": "requisitionId",
+    "applyUrl": "applyUrl",
+    "department": "department",
+    "employmentType": "employmentType",
+    "experienceRequired": "experienceRequired"
+  },
+  "detail": {
+    "enabled": true,
+    "urlTemplate": "https://careers.example.com/api/jobs/{{jobId}}",
+    "method": "GET",
+    "mapping": {
+      "jobDescription": "jobDescription",
+      "minimumQualification": "minimumQualification",
+      "preferredQualification": "preferredQualification",
+      "requiredSkills": "requiredSkills"
+    }
+  }
+}

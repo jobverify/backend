@@ -1,0 +1,52 @@
+{
+  "status": 0,
+  "timestamp": "2026-10-24T17:04:38.4456989Z",
+  "data": [
+    {
+      "items": [
+        {
+          "id": 1131,
+          "title": "Linde South Asia Services Pvt. Ltd.",
+          "default": false,
+          "selectable": true,
+          "sortOrder": 218
+        },
+        {
+          "id": 1132,
+          "title": "Praxair India Private Limited",
+          "default": false,
+          "selectable": true,
+          "sortOrder": 246
+        },
+        {
+          "id": 1375,
+          "title": "Linde India Limited",
+          "default": false,
+          "selectable": true,
+          "sortOrder": 180
+        },
+        {
+          "id": 2266,
+          "title": "Linde Global Support Services Pvt. Ltd",
+          "default": false,
+          "selectable": true,
+          "sortOrder": 148
+        }
+      ],
+      "id": 251,
+      "entityTypeId": 2,
+      "itemTypeId": 4,
+      "name": "Legal entity",
+      "emailTag": "",
+      "isUiReadOnly": false,
+      "dataType": 7,
+      "displayType": 3,
+      "validationCriteria": {
+        "isRequired": false,
+        "regEx": null,
+        "regExDescription": null,
+        "regExErrorMessage": null
+      }
+    }
+  ]
+}

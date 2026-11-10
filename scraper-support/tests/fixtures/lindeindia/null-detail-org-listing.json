@@ -1,0 +1,54 @@
+{
+  "messageCode": {
+    "code": 200
+  },
+  "totalRecords": 1,
+  "response": [
+    {
+      "organizationUnitComplete": "Linde Engineering India Pvt. Ltd.>Procurement>Procurement>Material Group E&I>26500",
+      "jobPostedDate": "2026-09-07",
+      "locationHierarchyComplete": "India>Gujarat>Vadodara>Vadodara",
+      "jobDetailUrl": "https://leindiacareers.peoplestrong.com/job/detail/LEI_EE_1812584",
+      "designation": "Team Member I - Material Group Electrical & Instrumentation",
+      "designationID": null,
+      "hrOrgUnitID": null,
+      "functionalAreaID": null,
+      "worksiteID": null,
+      "targetNationalityID": null,
+      "promoteEmirates": null,
+      "jurisdictionTypeID": null,
+      "authorityTypeID": null,
+      "jurisdictionType": null,
+      "authorityType": null,
+      "requisitionId": null,
+      "jobTitle": "Executive Engineer (Buyer-Indirects) - German Language Expert",
+      "jobCode": "LEI/EE/1812584",
+      "openings": null,
+      "organizationUnit": "Procurement",
+      "industry": null,
+      "functionalArea": null,
+      "role": null,
+      "jobClosureDate": "2026-10-31",
+      "locationHierarchy": "Vadodara",
+      "expRange": "3-10 years",
+      "CTCRange": null,
+      "skills": {
+        "mustTohave": [],
+        "goodtohave": [
+          "Procurement",
+          " SAP",
+          " SAP Ariba"
+        ]
+      },
+      "applied": false,
+      "programType": null,
+      "roleType": null,
+      "roleContributionType": null,
+      "employmentTenureType": null,
+      "minBudgetSalary": null,
+      "maxBudgetSalary": null,
+      "DepartmentID": null,
+      "TargetNationality": null
+    }
+  ]
+}

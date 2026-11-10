@@ -1,0 +1,119 @@
+{
+  "capturedOn": "2026-09-13",
+  "evidenceDirectory": "../artifacts/run-logs/local-scrape-20260913T134129-official-recovery/root-next-official-audit",
+  "noDownloadedCodeExecuted": true,
+  "pages": [
+    {
+      "url": "https://www.linkedin.com/company/nexie/jobs",
+      "finalUrl": "https://www.linkedin.com/company/nexie",
+      "status": 200,
+      "sourceFile": "nexie-linkedin.html",
+      "sha256": "60bbc0880035d8e0617de47d3366ba8f9afb485e60e0cf54e86ce9e7e0544c3f"
+    },
+    {
+      "url": "https://www.linkedin.com/jobs/nexie-jobs-worldwide?f_C=92610309&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "finalUrl": "https://www.linkedin.com/jobs/nexie-jobs-worldwide?f_C=92610309&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "status": 200,
+      "sourceFile": "nexie-board.html",
+      "sha256": "f05e07d1f77caeb577687b6c7bc51ba68d4d914e5e28d9dec5682ba28bcd98be"
+    },
+    {
+      "url": "https://www.ulook.space/static/js/main.1787f46e.js",
+      "finalUrl": "https://www.ulook.space/static/js/main.1787f46e.js",
+      "status": 200,
+      "sourceFile": "ulook-client.js",
+      "sha256": "e838bf687e88e68ca220b94fd13f665061b0b47c1508322de3be0ea5b8f9d012"
+    },
+    {
+      "url": "https://www.linkedin.com/company/ulooktechnologies/jobs/?viewAsMember=true",
+      "finalUrl": "https://in.linkedin.com/company/ulooktechnologies",
+      "status": 200,
+      "sourceFile": "ulook-linkedin.html",
+      "sha256": "118cd1ccebde2510dc607ab4a49ff71ce720447bcab7e5216ac2a01cae17105b"
+    },
+    {
+      "url": "https://www.linkedin.com/jobs/ulook-jobs-worldwide?f_C=108610974&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "finalUrl": "https://www.linkedin.com/jobs/ulook-jobs-worldwide?f_C=108610974&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "status": 200,
+      "sourceFile": "ulook-board.html",
+      "sha256": "cf8070bd9be52a8d0ec6487ad60d392fc9572ef5c69b67fded34eb0fdab29e3f"
+    },
+    {
+      "url": "https://www.ulook.space/",
+      "finalUrl": "https://www.ulook.space/",
+      "status": 200,
+      "sourceFile": "ulook-home.html",
+      "sha256": "1590a0c2c16c6553eddd9448569490b39c353d0b99788d3f868c137924b0b5af"
+    },
+    {
+      "url": "https://nexie.ai/",
+      "finalUrl": "https://nexie.ai/",
+      "status": 200,
+      "sourceFile": "nexie-current-home.html",
+      "sha256": "9a14e4d8566966ca540aba6ec954381fc27fd0445535b751664e853d48ae51e7"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/product-manager-agentic-ai-startup-at-nexie-4452554527?position=1&pageNum=0&refId=tspLvYetCUnTK%2Bu3IDyjyA%3D%3D&trackingId=hTcxxUxuqE5VuJYrzPOijg%3D%3D",
+      "finalUrl": "https://in.linkedin.com/jobs/view/product-manager-agentic-ai-startup-at-nexie-4452554527?position=1&pageNum=0&refId=tspLvYetCUnTK%2Bu3IDyjyA%3D%3D&trackingId=hTcxxUxuqE5VuJYrzPOijg%3D%3D",
+      "status": 200,
+      "sourceFile": "nexie-detail-4452554527.html",
+      "sha256": "6814533e8c7c480e7a833f27edaf568033d99cb3261b72687756d3a97ed53bb2"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/software-engineer-at-nexie-4421479227?position=2&pageNum=0&refId=tspLvYetCUnTK%2Bu3IDyjyA%3D%3D&trackingId=Ssq64pcHRGWTumirzirnKQ%3D%3D",
+      "finalUrl": "https://in.linkedin.com/jobs/view/software-engineer-at-nexie-4421479227?position=2&pageNum=0&refId=tspLvYetCUnTK%2Bu3IDyjyA%3D%3D&trackingId=Ssq64pcHRGWTumirzirnKQ%3D%3D",
+      "status": 200,
+      "sourceFile": "nexie-detail-4421479227.html",
+      "sha256": "9b391993e3c93efc8aca509dfb91d2b03bc752c00e4fe90465d158c1a5758828"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/mechanical-engineer-at-ulook-4459796144",
+      "finalUrl": "https://in.linkedin.com/jobs/view/mechanical-engineer-at-ulook-4459796144",
+      "status": 200,
+      "sourceFile": "ulook-detail-4459796144.html",
+      "sha256": "88a7ec937f53a4b58368c1ea9e1301a2864208d0c43cd03e9b501707882900b3"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/algorithm-engineer-at-ulook-4460922949",
+      "finalUrl": "https://in.linkedin.com/jobs/view/algorithm-engineer-at-ulook-4460922949",
+      "status": 200,
+      "sourceFile": "ulook-detail-4460922949.html",
+      "sha256": "07735f577f27c7e93f79b39db5311a5ca4ad3ad56219b4d5df0c05e63c8ef225"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/hardware-engineer-at-ulook-4454225873",
+      "finalUrl": "https://in.linkedin.com/jobs/view/hardware-engineer-at-ulook-4454225873",
+      "status": 200,
+      "sourceFile": "ulook-detail-4454225873.html",
+      "sha256": "5093c08347a2439a2f37ae52fc2b8163042f54daee70d1cfb750cd90fbf92487"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/fpga-engineer-at-ulook-4454465595",
+      "finalUrl": "https://in.linkedin.com/jobs/view/fpga-engineer-at-ulook-4454465595",
+      "status": 200,
+      "sourceFile": "ulook-detail-4454465595.html",
+      "sha256": "a46bbc4539f7b8eea0ecadd5d7cdb362830ea1c11e69c343917c44736dc5c76b"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/embedded-system-engineer-at-ulook-4458366550",
+      "finalUrl": "https://in.linkedin.com/jobs/view/embedded-system-engineer-at-ulook-4458366550",
+      "status": 200,
+      "sourceFile": "ulook-detail-4458366550.html",
+      "sha256": "d21e20956907838f5b051173dd6d64431f482fad711c7498d6ed3480ead001a2"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/radio-frequency-system-engineer-at-ulook-4459791212",
+      "finalUrl": "https://in.linkedin.com/jobs/view/radio-frequency-system-engineer-at-ulook-4459791212",
+      "status": 200,
+      "sourceFile": "ulook-detail-4459791212.html",
+      "sha256": "0b9dbc1cd61587096ade2777d6fd29b4ae4ee2603df16cda5921becb50c0c6fa"
+    },
+    {
+      "url": "https://in.linkedin.com/jobs/view/satellite-system-engineer-at-ulook-4458391175",
+      "finalUrl": "https://in.linkedin.com/jobs/view/satellite-system-engineer-at-ulook-4458391175",
+      "status": 200,
+      "sourceFile": "ulook-detail-4458391175.html",
+      "sha256": "c6b6e533a7f02bb0826ce1f3523be9314ed737ee19c5048af2d10b0ef6f0c509"
+    }
+  ]
+}

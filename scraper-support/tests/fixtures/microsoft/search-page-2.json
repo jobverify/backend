@@ -1,0 +1,31 @@
+{
+  "status": 200,
+  "error": {
+    "message": "",
+    "body": ""
+  },
+  "data": {
+    "positions": [
+      {
+        "id": 1970393556750481,
+        "displayJobId": "200024622",
+        "name": "Senior Software Engineer",
+        "locations": [
+          "India, Multiple Locations, Multiple Locations",
+          "India, Karnataka, Bangalore",
+          "India, Telangana, Hyderabad"
+        ],
+        "standardizedLocations": [
+          "IN",
+          "Bengaluru, KA, IN",
+          "Hyderabad, TS, IN"
+        ],
+        "department": "Software Engineering",
+        "postedTs": 1782281197,
+        "positionUrl": "/careers/job/1970393556750481"
+      }
+    ],
+    "count": 11
+  },
+  "metadata": null
+}

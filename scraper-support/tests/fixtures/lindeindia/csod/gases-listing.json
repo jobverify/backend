@@ -1,0 +1,977 @@
+{
+  "status": "Success",
+  "timestamp": "2026-10-24T17:19:27.0803969Z",
+  "data": {
+    "totalCount": 33,
+    "requisitions": [
+      {
+        "requisitionId": 33900,
+        "postingEffectiveDate": "10/22/2026",
+        "postingExpirationDate": "11/23/2026",
+        "displayJobTitle": "Senior Engineer O&M",
+        "locations": [
+          {
+            "city": "Dahej",
+            "state": "Gujrat",
+            "country": "IN"
+          }
+        ],
+        "externalDescription": " In this role, you will ensure safe and timely execution of the DCTL Pipeline Project by coordinating site activities, monitoring project progress, managing contractors, and ensuring compliance with quality, safety, and statutory requirements Plan and execute preventive, predictive, and corrective maintenance activities for plant equipment to ensure high reliability, availability, and operational efficiency Lead and coordinate plant shutdown activities by preparing job plans, arranging resources, monitoring execution, and ensuring completion within the approved schedule and budget You will monitor equipment performance and troubleshoot operational issues to minimize downtime, improve plant reliability, and achieve production targets Ensure compliance with EHS standards and company procedures through risk assessments, permit-to-work implementation, safety audits, and adherence to operational best practices Also, you will maintain accurate maintenance records and reports, track KPIs, manage spare parts requirements, and support continuous improvement initiatives to enhance plant performance and cost efficiency "
+      },
+      {
+        "requisitionId": 33899,
+        "postingEffectiveDate": "10/22/2026",
+        "postingExpirationDate": "11/23/2026",
+        "displayJobTitle": "Senior Engineer O&M",
+        "locations": [
+          {
+            "city": "Dahej",
+            "state": "Gujrat",
+            "country": "IN"
+          }
+        ],
+        "externalDescription": " Ensure safe and timely execution of the DCTL Pipeline Project by coordinating site activities, monitoring project progress, managing contractors, and ensuring compliance with quality, safety, and statutory requirements You will plan and execute preventive, predictive, and corrective maintenance activities for plant equipment to ensure high reliability, availability, and operational efficiency Lead and coordinate plant shutdown activities by preparing job plans, arranging resources, monitoring execution, and ensuring completion within the approved schedule and budget And you will monitor equipment performance and troubleshoot operational issues to minimize downtime, improve plant reliability, and achieve production targets Ensure compliance with EHS standards and company procedures through risk assessments, permit-to-work implementation, safety audits, and adherence to operational best practices Maintain accurate maintenance records and reports, track KPIs, manage spare parts requirements, and support continuous improvement initiatives to enhance plant performance and cost efficiency "
+      }
+    ],
+    "filters": [
+      {
+        "filterType": "Country",
+        "doLocalize": true,
+        "items": [
+          {
+            "key": "in",
+            "text": "Country.IN",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "filterType": "State",
+        "doLocalize": false,
+        "items": [
+          {
+            "key": "karnataka",
+            "text": "Karnataka",
+            "count": 14
+          },
+          {
+            "key": "maharashtra",
+            "text": "Maharashtra",
+            "count": 3
+          },
+          {
+            "key": "chattisgarh",
+            "text": "Chattisgarh",
+            "count": 2
+          },
+          {
+            "key": "gujrat",
+            "text": "Gujrat",
+            "count": 2
+          },
+          {
+            "key": "06",
+            "text": "06",
+            "count": 1
+          },
+          {
+            "key": "gujarat",
+            "text": "Gujarat",
+            "count": 1
+          },
+          {
+            "key": "haryana",
+            "text": "Haryana",
+            "count": 1
+          },
+          {
+            "key": "jharkhand",
+            "text": "Jharkhand",
+            "count": 1
+          },
+          {
+            "key": "madhya prad",
+            "text": "Madhya Prad",
+            "count": 1
+          },
+          {
+            "key": "odisha",
+            "text": "Odisha",
+            "count": 1
+          },
+          {
+            "key": "tamil nadu",
+            "text": "Tamil Nadu",
+            "count": 1
+          },
+          {
+            "key": "uttarakhand",
+            "text": "Uttarakhand",
+            "count": 1
+          },
+          {
+            "key": "west bengal",
+            "text": "West Bengal",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "filterType": "City",
+        "doLocalize": false,
+        "items": [
+          {
+            "key": "bangalore",
+            "text": "Bangalore",
+            "count": 13
+          },
+          {
+            "key": "dahej",
+            "text": "Dahej",
+            "count": 3
+          },
+          {
+            "key": "bhilai",
+            "text": "Bhilai",
+            "count": 2
+          },
+          {
+            "key": "gwalior",
+            "text": "Gwalior",
+            "count": 1
+          },
+          {
+            "key": "haridwar",
+            "text": "Haridwar",
+            "count": 1
+          },
+          {
+            "key": "jamshedpur",
+            "text": "Jamshedpur",
+            "count": 1
+          },
+          {
+            "key": "kolkata",
+            "text": "Kolkata",
+            "count": 1
+          },
+          {
+            "key": "kutch, gujrat",
+            "text": "Kutch, Gujrat",
+            "count": 1
+          },
+          {
+            "key": "maharashtra",
+            "text": "Maharashtra",
+            "count": 1
+          },
+          {
+            "key": "mumbai",
+            "text": "Mumbai",
+            "count": 1
+          },
+          {
+            "key": "nagpur",
+            "text": "Nagpur",
+            "count": 1
+          },
+          {
+            "key": "panipat",
+            "text": "Panipat",
+            "count": 1
+          },
+          {
+            "key": "pune",
+            "text": "Pune",
+            "count": 1
+          },
+          {
+            "key": "rourkela",
+            "text": "Rourkela",
+            "count": 1
+          },
+          {
+            "key": "sriperumbudur",
+            "text": "Sriperumbudur",
+            "count": 1
+          },
+          {
+            "key": "taluka, chikhli",
+            "text": "Taluka, Chikhli",
+            "count": 1
+          },
+          {
+            "key": "toranagallu",
+            "text": "Toranagallu",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "filterType": "DatePosted",
+        "doLocalize": true,
+        "items": [
+          {
+            "key": "WithinThreeDays",
+            "text": "WithinThreeDays",
+            "count": 8
+          },
+          {
+            "key": "WithinSevenDays",
+            "text": "WithinSevenDays",
+            "count": 8
+          },
+          {
+            "key": "WithinFifteenDays",
+            "text": "WithinFifteenDays",
+            "count": 10
+          },
+          {
+            "key": "WithinThirtyDays",
+            "text": "WithinThirtyDays",
+            "count": 17
+          },
+          {
+            "key": "Anytime",
+            "text": "Anytime",
+            "count": 33
+          }
+        ]
+      }
+    ],
+    "customFieldFilters": [
+      {
+        "id": "134",
+        "items": [
+          {
+            "key": "101",
+            "count": 18
+          },
+          {
+            "key": "100",
+            "count": 15
+          }
+        ]
+      },
+      {
+        "id": "139",
+        "items": [
+          {
+            "key": "133",
+            "count": 19
+          },
+          {
+            "key": "132",
+            "count": 7
+          },
+          {
+            "key": "780",
+            "count": 7
+          }
+        ]
+      },
+      {
+        "id": "140",
+        "items": [
+          {
+            "key": "143",
+            "count": 12
+          },
+          {
+            "key": "724",
+            "count": 12
+          },
+          {
+            "key": "595",
+            "count": 3
+          },
+          {
+            "key": "150",
+            "count": 2
+          },
+          {
+            "key": "160",
+            "count": 2
+          },
+          {
+            "key": "144",
+            "count": 1
+          },
+          {
+            "key": "149",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "145",
+        "items": [
+          {
+            "key": "972",
+            "count": 26
+          },
+          {
+            "key": "728",
+            "count": 3
+          },
+          {
+            "key": "136",
+            "count": 2
+          },
+          {
+            "key": "882",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "158",
+        "items": [
+          {
+            "key": "154",
+            "count": 29
+          },
+          {
+            "key": "2303",
+            "count": 3
+          },
+          {
+            "key": "153",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "159",
+        "items": [
+          {
+            "key": "155",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "183",
+        "items": [
+          {
+            "key": "181",
+            "count": 21
+          },
+          {
+            "key": "925",
+            "count": 12
+          }
+        ]
+      },
+      {
+        "id": "191",
+        "items": [
+          {
+            "key": "185",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "205",
+        "items": [
+          {
+            "key": "2023",
+            "count": 32
+          },
+          {
+            "key": "791",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "235",
+        "items": [
+          {
+            "key": "no",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "240",
+        "items": [
+          {
+            "key": "299",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "251",
+        "items": [
+          {
+            "key": "1131",
+            "count": 19
+          },
+          {
+            "key": "1132",
+            "count": 12
+          },
+          {
+            "key": "1375",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "306",
+        "items": [
+          {
+            "key": "817",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "307",
+        "items": [
+          {
+            "key": "no",
+            "count": 32
+          },
+          {
+            "key": "yes",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "308",
+        "items": [
+          {
+            "key": "yes",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "309",
+        "items": [
+          {
+            "key": "yes",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "320",
+        "items": [
+          {
+            "key": "917",
+            "count": 14
+          },
+          {
+            "key": "918",
+            "count": 7
+          },
+          {
+            "key": "919",
+            "count": 6
+          },
+          {
+            "key": "916",
+            "count": 3
+          },
+          {
+            "key": "915",
+            "count": 2
+          },
+          {
+            "key": "2016",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "344",
+        "items": [
+          {
+            "key": "998",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "347",
+        "items": [
+          {
+            "key": "1020",
+            "count": 32
+          },
+          {
+            "key": "1022",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "412",
+        "items": [
+          {
+            "key": "no",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "430",
+        "items": [
+          {
+            "key": "yes",
+            "count": 26
+          },
+          {
+            "key": "no",
+            "count": 7
+          }
+        ]
+      },
+      {
+        "id": "520",
+        "items": [
+          {
+            "key": "1757",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "521",
+        "items": [
+          {
+            "key": "1768",
+            "count": 13
+          },
+          {
+            "key": "2019",
+            "count": 10
+          },
+          {
+            "key": "1765",
+            "count": 4
+          },
+          {
+            "key": "1762",
+            "count": 2
+          },
+          {
+            "key": "1764",
+            "count": 2
+          },
+          {
+            "key": "1766",
+            "count": 1
+          },
+          {
+            "key": "1767",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "550",
+        "items": [
+          {
+            "key": "no",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "565",
+        "items": [
+          {
+            "key": "no",
+            "count": 23
+          },
+          {
+            "key": "yes",
+            "count": 10
+          }
+        ]
+      },
+      {
+        "id": "566",
+        "items": [
+          {
+            "key": "no",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "567",
+        "items": [
+          {
+            "key": "2029",
+            "count": 33
+          }
+        ]
+      },
+      {
+        "id": "564",
+        "items": [
+          {
+            "key": "2028",
+            "count": 16
+          },
+          {
+            "key": "2027",
+            "count": 15
+          },
+          {
+            "key": "2026",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "687",
+        "items": [
+          {
+            "key": "2613",
+            "count": 21
+          },
+          {
+            "key": "2595",
+            "count": 5
+          },
+          {
+            "key": "2608",
+            "count": 2
+          },
+          {
+            "key": "2612",
+            "count": 2
+          },
+          {
+            "key": "2614",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "655",
+        "items": [
+          {
+            "key": "2306",
+            "count": 29
+          }
+        ]
+      },
+      {
+        "id": "661",
+        "items": [
+          {
+            "key": "2404",
+            "count": 29
+          }
+        ]
+      },
+      {
+        "id": "662",
+        "items": [
+          {
+            "key": "2405",
+            "count": 23
+          },
+          {
+            "key": "2423",
+            "count": 3
+          },
+          {
+            "key": "2422",
+            "count": 2
+          },
+          {
+            "key": "2421",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "665",
+        "items": [
+          {
+            "key": "2644",
+            "count": 22
+          },
+          {
+            "key": "2472",
+            "count": 5
+          },
+          {
+            "key": "2477",
+            "count": 1
+          },
+          {
+            "key": "2617",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "666",
+        "items": [
+          {
+            "key": "2645",
+            "count": 22
+          },
+          {
+            "key": "2478",
+            "count": 5
+          },
+          {
+            "key": "2484",
+            "count": 2
+          }
+        ]
+      },
+      {
+        "id": "668",
+        "items": [
+          {
+            "key": "2642",
+            "count": 22
+          },
+          {
+            "key": "2489",
+            "count": 7
+          }
+        ]
+      },
+      {
+        "id": "684",
+        "items": [
+          {
+            "key": "2643",
+            "count": 22
+          },
+          {
+            "key": "2553",
+            "count": 6
+          },
+          {
+            "key": "2536",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "554",
+        "items": [
+          {
+            "key": "2011",
+            "count": 9
+          },
+          {
+            "key": "2468",
+            "count": 5
+          },
+          {
+            "key": "2467",
+            "count": 4
+          },
+          {
+            "key": "2001",
+            "count": 3
+          },
+          {
+            "key": "2469",
+            "count": 3
+          },
+          {
+            "key": "2466",
+            "count": 2
+          },
+          {
+            "key": "2276",
+            "count": 1
+          },
+          {
+            "key": "2470",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "613",
+        "items": [
+          {
+            "key": "2039",
+            "count": 28
+          }
+        ]
+      },
+      {
+        "id": "360",
+        "items": [
+          {
+            "key": "1441",
+            "count": 23
+          },
+          {
+            "key": "1438",
+            "count": 3
+          },
+          {
+            "key": "1437",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "522",
+        "items": [
+          {
+            "key": "1770",
+            "count": 17
+          },
+          {
+            "key": "1771",
+            "count": 10
+          }
+        ]
+      },
+      {
+        "id": "511",
+        "items": [
+          {
+            "key": "1775",
+            "count": 25
+          },
+          {
+            "key": "1639",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "151",
+        "items": [
+          {
+            "key": "2302",
+            "count": 10
+          },
+          {
+            "key": "142",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "667",
+        "items": [
+          {
+            "key": "2485",
+            "count": 7
+          }
+        ]
+      },
+      {
+        "id": "682",
+        "items": [
+          {
+            "key": "2514",
+            "count": 5
+          },
+          {
+            "key": "2496",
+            "count": 1
+          },
+          {
+            "key": "2515",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "686",
+        "items": [
+          {
+            "key": "2594",
+            "count": 4
+          },
+          {
+            "key": "2593",
+            "count": 2
+          },
+          {
+            "key": "2585",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "142",
+        "items": [
+          {
+            "key": "618",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "162",
+        "items": [
+          {
+            "key": "793",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "234",
+        "items": [
+          {
+            "key": "no",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "247",
+        "items": [
+          {
+            "key": "1246",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "378",
+        "items": [
+          {
+            "key": "1506",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "498",
+        "items": [
+          {
+            "key": "1623",
+            "count": 1
+          }
+        ]
+      },
+      {
+        "id": "502",
+        "items": [
+          {
+            "key": "no",
+            "count": 1
+          }
+        ]
+      }
+    ]
+  }
+}

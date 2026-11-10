@@ -1,0 +1,17 @@
+$scope.thePage.reqsListPageVars.reqList = response.data.reqDetailsBOList;
+                    if( $scope.thePage.reqsListPageVars.reqList != null &&  $scope.thePage.reqsListPageVars.reqList != undefined){
+                        $scope.thePage.pagination.totalItems = $scope.thePage.reqsListPageVars.reqList.length; 
+                        $scope.reqIdsList = $scope.thePage.reqsListPageVars.reqList.map(a => a.reqId);
+                        // $scope.generateSchemaScript($scope.thePage.reqsListPa
+careersFactory.getRequisitionList = function (input) {
+            return $http({
+                url: careersFactory.smaclifyUrl + "/careers/reqlist/get",
+                dataType: "json",
+                data: input,
+                method: "POST"
+            });
+        }
+
+        careersFactory.getReqIdsList = function (input) {
+            return $http({
+                url:  $mnh.protocol + 

@@ -1,0 +1,29 @@
+{
+  "url": "chrome-error://chromewebdata/",
+  "title": "Privacy error",
+  "text": "Your connection is not private\n\nAttackers might be trying to steal your information from www.peoplecues.com (for example, passwords, messages, or credit cards). Learn more about this warning\n\nNET::ERR_CERT_AUTHORITY_INVALID\nBack to safety\nAdvanced",
+  "links": [
+    {
+      "text": "Learn more about this warning",
+      "url": "chrome-error://chromewebdata/#"
+    },
+    {
+      "text": "URLs of some pages you visit, limited system information, and some page content",
+      "url": "chrome-error://chromewebdata/#"
+    },
+    {
+      "text": "Privacy policy",
+      "url": "chrome-error://chromewebdata/#"
+    },
+    {
+      "text": "Turn on enhanced protection",
+      "url": "chrome-error://chromewebdata/#"
+    },
+    {
+      "text": "Proceed to www.peoplecues.com (unsafe)",
+      "url": "chrome-error://chromewebdata/#"
+    }
+  ],
+  "scripts": [],
+  "network": []
+}

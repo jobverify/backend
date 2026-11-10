@@ -1,0 +1,24 @@
+{
+  "captureStartedAt": "2026-10-26T18:40:41.389Z",
+  "captureEndedAt": "2026-10-26T18:41:39.926Z",
+  "source": "persistent",
+  "originalNativeCompanyId": "16344",
+  "rawResponses": 707,
+  "rawResponseStatusCounts": {
+    "200": 93,
+    "403": 614
+  },
+  "initialNativeTotal": 622,
+  "nativeIndiaFacet": 585,
+  "successfulNativeDetails": 11,
+  "successfulVisibleRequisitionFields": 9,
+  "limitations": [
+    "Public Access Denied responses prevented complete details and closing enumeration.",
+    "Three native country contradictions independently prevent full India scope.",
+    "Search summaries cannot replace current full native details.",
+    "Final-code replay is offline and is not a fresh successful live extraction."
+  ],
+  "captureFixture": "current-native-capture.json.gz",
+  "allFixtureRawBodyHashesIncluded": true,
+  "rawCaptureDirectory": "artifacts/scraper-log-review-1b360f27/current-native/persistent-registered-native"
+}

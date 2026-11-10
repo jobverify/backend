@@ -1,0 +1,90 @@
+{
+  "origin": "Actual public BestEx native Workable listing and officially bound shortcode,2026-10-20",
+  "india": {
+    "id": 6149705,
+    "shortcode": "3B47AFBD68",
+    "title": "Senior FIX Onboarding Engineer (Electronic Trading)",
+    "accountUid": "15159d62-62e0-4df7-a2f4-f3d7d33855e5",
+    "state": "published",
+    "isInternal": false,
+    "approvalStatus": "approved",
+    "location": {
+      "city": "Bengaluru",
+      "country": "India",
+      "countryCode": "IN",
+      "region": "Karnataka"
+    },
+    "locations": [
+      {
+        "city": "Bengaluru",
+        "country": "India",
+        "countryCode": "IN",
+        "hidden": false,
+        "region": "Karnataka"
+      }
+    ],
+    "department": [],
+    "remote": false,
+    "workplace": "on_site",
+    "published": "2026-09-25T00:00:00.000Z"
+  },
+  "foreign": {
+    "id": 6160220,
+    "shortcode": "B81DCDA4AD",
+    "title": "Program Manager, Trading Technology",
+    "accountUid": "15159d62-62e0-4df7-a2f4-f3d7d33855e5",
+    "state": "published",
+    "isInternal": false,
+    "approvalStatus": "approved",
+    "location": {
+      "city": "Stamford",
+      "country": "United States",
+      "countryCode": "US",
+      "region": "Connecticut"
+    },
+    "locations": [
+      {
+        "city": "Stamford",
+        "country": "United States",
+        "countryCode": "US",
+        "hidden": false,
+        "region": "Connecticut"
+      }
+    ],
+    "department": [],
+    "remote": false,
+    "workplace": "on_site",
+    "published": "2026-09-29T00:00:00.000Z"
+  },
+  "detail": {
+    "id": 6149705,
+    "shortcode": "3B47AFBD68",
+    "title": "Senior FIX Onboarding Engineer (Electronic Trading)",
+    "accountUid": "15159d62-62e0-4df7-a2f4-f3d7d33855e5",
+    "state": "published",
+    "isInternal": false,
+    "approvalStatus": "approved",
+    "location": {
+      "city": "Bengaluru",
+      "country": "India",
+      "countryCode": "IN",
+      "region": "Karnataka"
+    },
+    "locations": [
+      {
+        "city": "Bengaluru",
+        "country": "India",
+        "countryCode": "IN",
+        "hidden": false,
+        "region": "Karnataka"
+      }
+    ],
+    "department": [],
+    "remote": false,
+    "workplace": "on_site",
+    "published": "2026-09-25T00:00:00.000Z",
+    "description": "<p><u><strong>Role summary</strong></u></p><p><strong>Client onboarding for our electronic trading platform. This role requires hands-on technical expertise in client onboarding, driving process improvements, and serving as an escalation point for complex integrations. </strong></p><p>The ideal candidate has a deep understanding of the FIX protocol, FIX Integration, certification, and electronic trading workflows, along with the client-facing skills needed to manage relationships with top-tier financial institutions.</p><p></p><p><strong>What you’ll do</strong></p><ul><li>Set up FIX connectivity and complete certification with clients.</li><li>Manage complex integrations from test to production go-live.</li><li>Validate order routing, workflows, and post-trade allocations.</li><li>Coordinate with trading desks and technical stakeholders.</li><li>Improve onboarding playbooks, timelines, and documentation.</li><li>Handle escalations.</li></ul><p></p><p><strong>Must-have</strong></p><ul><li>Bachelor’s or Master degree in Computer Science, Engineering, Finance, or related field.</li><li>5+ years in FIX integration/client onboarding.</li><li>Strong hands-on experience with FIX (4.2/4.4/5.0) and Multi-asset workflows (equities, futures, options, FX, etc.).</li><li>Deep knowledge of trading regulations, exchange rules, and evolving FIX standards to keep onboarding processes current.</li><li>Clear, confident communication with technical and business teams.</li><li>Experience across equities or futures workflows.</li><li>Problem-solving under time pressure.</li></ul><p></p><p><strong>Nice-to-have</strong></p><ul><li>Exposure to OMS/EMS tools and connectivity logs.</li><li>Basic scripting/SQL and Python Expert.</li></ul><p></p><p><strong>Benefits</strong></p><p><strong>What We Offer:</strong></p><ul><li>Competitive compensation with leadership bonus structure.</li><li>Opportunity to shape and lead the onboarding function at a growing trading technology firm.</li><li>Exposure to leading-edge trading technology, market structure, and global clients.</li><li>A collaborative, fast-paced environment where your leadership drives impact.</li></ul><p></p><p><strong>How to apply</strong></p><p>Click Apply and share a brief note on your recent onboarding wins.</p><p></p><p><strong>About BestEx Research</strong></p><p>BestEx Research builds next-generation execution algorithms and trading tools across multiple asset classes. Our cloud-based platform provides high-performance algorithmic execution services to hedge funds, CTAs, asset managers, and banks through both a traditional electronic broker and a broker-neutral Software-as-a-Service (SaaS) model. Our transparent, customizable solutions help clients reduce transaction costs and improve execution performance.</p><p>Visit&nbsp;<a href=\"https://www.bestexresearch.co\" target=\"_blank\" rel=\"nofollow noreferrer noopener\" class=\"external\">www.bestexresearch.com </a>for more information about our mission, products, research, and services.</p><p></p><p></p><p>#LI-JM1</p>",
+    "requirements": "",
+    "benefits": ""
+  }
+}

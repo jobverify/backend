@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>IoT Radio Frequency Security Consultant · Payatu Careers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+     
+    :root{color-scheme:light dark;
+      --bg:#0a0a0c;--surface:#111114;--surface-2:#15151a;--border:#1e1e24;--border-hover:#2c2c34;
+      --text:#ededf0;--text-2:#8a8a93;--text-3:#56565d;--info:#60a5fa;--success:#4ade80;--danger:#f87171;
+      --t-appsec:#60a5fa;--t-redteam:#f87171;--t-soc:#4ade80;--t-cloud:#c084fc;--t-iot:#22d3ee;--t-sales:#f59e0b;
+      --t-csm:#ec4899;--t-bd:#f97316;--t-grc:#94a3b8;--t-nontech:#9ca3af;
+      --t-marketing:#e879f9;--t-finance:#2dd4bf;--t-hr:#fbbf24;--t-ops:#a3a3a3;
+      --btn-hover-bg:#fff;}
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#fafafa;--surface:#ffffff;--surface-2:#f4f4f6;--border:#e4e4e9;--border-hover:#c8c8d0;
+        --text:#18181b;--text-2:#57575e;--text-3:#8a8a93;--info:#2563eb;--success:#15803d;--danger:#b91c1c;
+        --t-appsec:#2563eb;--t-redteam:#dc2626;--t-soc:#16a34a;--t-cloud:#9333ea;--t-iot:#0891b2;--t-sales:#b45309;
+        --t-csm:#be185d;--t-bd:#c2410c;--t-grc:#64748b;--t-nontech:#6b7280;
+        --t-marketing:#c026d3;--t-finance:#0d9488;--t-hr:#b45309;--t-ops:#6b7280;
+        --btn-hover-bg:#000;}
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:920px;margin:0 auto;padding:32px 24px}
+    header{padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:32px}
+    header h1{font-size:22px;font-weight:700;letter-spacing:-0.02em}
+    header .sub{color:var(--text-3);font-size:12px;margin-top:4px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;transition:border-color .15s}
+    .card:hover{border-color:var(--border-hover)}
+    .card h2{font-size:16px;font-weight:600;margin-bottom:6px}
+    .card .meta{color:var(--text-3);font-size:12px;margin-top:4px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--surface-2);font-size:11px;font-weight:600;border:1px solid var(--border)}
+    .pill .dot{width:6px;height:6px;border-radius:50%}
+    .pill.AppSec{color:var(--t-appsec)}.pill.AppSec .dot{background:var(--t-appsec)}
+    .pill.RedTeam, .pill.Red-Team{color:var(--t-redteam)}.pill.RedTeam .dot, .pill.Red-Team .dot{background:var(--t-redteam)}
+    .pill.SOC{color:var(--t-soc)}.pill.SOC .dot{background:var(--t-soc)}
+    .pill.Cloud{color:var(--t-cloud)}.pill.Cloud .dot{background:var(--t-cloud)}
+    .pill.IoT{color:var(--t-iot)}.pill.IoT .dot{background:var(--t-iot)}
+    .pill.Sales{color:var(--t-sales)}.pill.Sales .dot{background:var(--t-sales)}
+    .pill.CSM{color:var(--t-csm)}.pill.CSM .dot{background:var(--t-csm)}
+    .pill.BD{color:var(--t-bd)}.pill.BD .dot{background:var(--t-bd)}
+    .pill.GRC{color:var(--t-grc)}.pill.GRC .dot{background:var(--t-grc)}
+    .pill.NonTech{color:var(--t-nontech)}.pill.NonTech .dot{background:var(--t-nontech)}
+    .pill.Marketing{color:var(--t-marketing)}.pill.Marketing .dot{background:var(--t-marketing)}
+    .pill.Finance{color:var(--t-finance)}.pill.Finance .dot{background:var(--t-finance)}
+    .pill.HR{color:var(--t-hr)}.pill.HR .dot{background:var(--t-hr)}
+    .pill.Ops{color:var(--t-ops)}.pill.Ops .dot{background:var(--t-ops)}
+    .desc{margin-top:16px;color:var(--text-2);font-size:14px;line-height:1.7}
+    .desc h1,.desc h2{font-size:16px;font-weight:700;color:var(--text);margin:22px 0 8px;letter-spacing:-0.01em}
+    .desc h3,.desc h4{font-size:14px;font-weight:600;color:var(--text);margin:18px 0 6px}
+    .desc p{margin:10px 0}
+    .desc ul,.desc ol{margin:10px 0;padding-left:22px}
+    .desc li{margin:4px 0}
+    .desc strong{color:var(--text);font-weight:600}
+    .desc a{color:var(--info);text-decoration:underline}
+    .desc code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:1px 5px}
+    .desc pre{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:12px 0}
+    .desc pre code{background:none;border:none;padding:0}
+    .desc blockquote{border-left:3px solid var(--border-hover);padding-left:14px;margin:12px 0;color:var(--text-3)}
+    .desc hr{border:none;border-top:1px solid var(--border);margin:20px 0}
+    .desc table{border-collapse:collapse;margin:12px 0}
+    .desc th,.desc td{border:1px solid var(--border);padding:6px 12px;text-align:left}
+    form{margin-top:24px;display:flex;flex-direction:column;gap:14px;max-width:520px}
+    label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-2)}
+    input[type=text],input[type=email],input[type=tel],input[type=number],select{background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:6px;font-size:14px;font-family:inherit}
+    input[type=file]{font-size:12px;color:var(--text-2)}
+    input:focus,select:focus{outline:none;border-color:var(--info)}
+    button{background:var(--text);color:var(--bg);border:none;padding:12px 16px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer}
+    button:hover{background:var(--btn-hover-bg)}
+    .ok{margin-top:18px;padding:14px 16px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.4);border-radius:8px;color:var(--success);font-size:13px}
+    .err{margin-top:18px;padding:14px 16px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.4);border-radius:8px;color:var(--danger);font-size:13px}
+    .back{color:var(--text-3);font-size:12px;display:inline-block;margin-bottom:18px}
+    .back:hover{color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+<a class="back" href="./">← All open roles</a>
+<header>
+  <h1>IoT Radio Frequency Security Consultant</h1>
+  <div class="sub" style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <span class="pill IoT"><span class="dot"></span>IoT</span>
+    <span>· Consulting</span>
+    <span>· Pune</span>
+    <span>· 0–3 yrs</span>
+    
+  </div>
+</header>
+<div class="desc"><p>If you are someone who has the skills and the ability to design and conduct radio, IoT hardware attacks, paired with the knowledge and expertise of hardware attacks such as PCB reversing, Component identification, Side channel attacks, memory extraction methods, then we are looking for you. Not all superheroes wear capes, but if you do wear the cape of embedded protocols such as UART, I2C, SPI, JTAG, SWD and possible attacks on them, then don't forget to reach out to us.</p>
+<p>If you have knowledge of wireless communication, including expertise in radio protocols such as BLE and ZIGBEE, as well as familiarity with SDR and understanding of the associated attack surfaces pertaining to these wireless communication protocols, coupled with proficiency in MQTT and CoAP, along with knowledge on penetration testing of these protocols.</p>
+<p><strong>Who we are?</strong><br>
+Payatu is a ISO certified company where we strive to create a culture of excellence, growth and innovation that empowers our employees to reach new heights in their careers. We are young and passionate folks driven by the power of the latest and innovative technologies in IoT, AI/ML, Blockchain, and many other advanced technologies. We are on the mission of making Cyberworld safe for every organization, product, and individual.</p>
+<p><strong>You are a perfect technical fit if:</strong></p>
+<ul>
+<li>Strong understanding on Radio Protocol security.</li>
+<li>Familiar with the tools for the radio protocol assessment.</li>
+<li>Hands on with radio attacks on the BLE, ZIGBEE, SDR.</li>
+<li>Experience with Radio protocol attack such as BLE, WIFI, LoRa, DSP, SDR.</li>
+<li>Good to have knowledge on MQTT, CoAP and one programming language.</li>
+</ul>
+<p><strong>What we look for outside parameters:</strong></p>
+<ul>
+<li>Your publicly known contributions are your credentials.</li>
+<li>Papers/blogs you have written, tools you have developed are your references.</li>
+<li>You are learning from the community and enthusiastically contributing back. </li>
+</ul>
+<p><strong>You Have All Our Desired Qualities, if:</strong></p>
+<ul>
+<li>You have the technical skills mentioned above. </li>
+<li>You have Passion for attacking hardware. </li>
+<li>You have a history of publishing or presenting good research. </li>
+<li>You have excellent written and verbal communication skills and ability to express your thoughts clearly. </li>
+<li>You can work independently as well as within a team and meet project schedule and deadlines. </li>
+<li>You are a creative individual to think out of the box for creating different hardware attacks on product. </li>
+</ul>
+<p><strong>Your Everyday work will look like:</strong></p>
+<ul>
+<li>Create radio attacks on existing IoT products and find vulnerability.</li>
+<li>Breaking the IoT product for finding security issues in radio protocols.</li>
+<li>Sharpen your saw with continuous research, learning, training on the latest tools and techniques, keeping up with new research and sharing the same with the ecosystem.</li>
+<li>Communicate well using verbal and written skills, within and out of the team.</li>
+</ul>
+</div>
+
+<form id="apply-form" method="post" enctype="multipart/form-data" action="radio-frequency/apply">
+  <h2 id="apply" style="margin-top:24px;scroll-margin-top:24px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-2)">Apply</h2>
+  <label>First name <input type="text" name="first_name" required /></label>
+  <label>Last name <input type="text" name="last_name" required /></label>
+  <label>Email <input type="email" name="email" required /></label>
+  <label>Phone <input type="tel" name="phone" /></label>
+  <label>Current location <input type="text" name="applicant_location" placeholder="Bengaluru / Remote — India" required /></label>
+  <label>Years of experience <input type="number" name="applicant_experience_years" min="0" max="60" step="0.5" placeholder="4.5" required /></label>
+  <label>Current CTC (LPA) <input type="number" name="current_ctc_lakhs" min="0" max="999" step="0.1" placeholder="12.0" required /></label>
+  <label>Expected CTC (LPA) <input type="number" name="expected_ctc_lakhs" min="0" max="999" step="0.1" placeholder="18.0" required /></label>
+  <label>Notice period (days)
+    <select name="notice_period_days" required>
+      <option value="">— pick —</option>
+      <option value="0">Immediate (0)</option>
+      <option value="15">15 days</option>
+      <option value="30">30 days</option>
+      <option value="45">45 days</option>
+      <option value="60">60 days</option>
+      <option value="90">90 days</option>
+    </select>
+  </label>
+  <label>Last working day (optional — if you've already resigned)
+    <input type="date" name="last_working_day" />
+  </label>
+  <label>Resume (PDF, ≤ 10 MB) <input type="file" name="resume" accept=".pdf,application/pdf" required /></label>
+  
+  <button type="submit">Submit application</button>
+  <div id="msg"></div>
+</form>
+
+
+<script>
+document.getElementById('apply-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const msg = document.getElementById('msg');
+  msg.innerHTML = '';
+  const r = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+  const j = await r.json().catch(()=>({}));
+  if (r.ok) {
+    msg.innerHTML = '<div class="ok">' + (j.message || 'Thanks!') + '</div>';
+    form.reset();
+  } else {
+    msg.innerHTML = '<div class="err">' + (j.error || 'Failed to submit. Please retry.') + '</div>';
+  }
+});
+</script></div>
+</body>
+</html>

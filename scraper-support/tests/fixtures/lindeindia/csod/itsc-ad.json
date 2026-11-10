@@ -1,0 +1,23 @@
+{
+  "status": 200,
+  "timeStamp": "2026-10-24T17:19:29+0000",
+  "totalRecords": 1,
+  "data": [
+    {
+      "actions": [],
+      "items": [
+        {
+          "fields": {
+            "id": 33395,
+            "reqId": "req33395",
+            "title": "Specialist / Senior Specialist - HR IT Application",
+            "location": "Kolkata_LISKC",
+            "ad": "<p class=\"header1 header_job_title\"><font size=\"3\"><strong>Linde Global Support Services Pvt. Ltd | Business Area: Information Services (IT)<br></strong></font><span style=\"color: var(--color-blue-header); font-family: var(--font-family-Linde-bold); font-size: 2rem;\">Specialist / Senior Specialist - HR IT Application</span><br><font size=\"3\"><strong>Kolkata, West Bengal, India | Workplace Type: On-Site | Job Type: Regular / Permanent / Unlimited / FTE | Reference Code: req33395</strong></font></p>\n<ul><li>You will be directly partnering with global stakeholders and consumers of the SAPFIM database for modifications and integration enhancements, working independently to design and meet their needs</li><li>Also, will share technical responsibility for the HR Middleware servers that manage global HR integrations</li><li>Will be responsible for the technical support of HR Linux servers in the Azure datacentre for key add-on modules of SAPHRON, namely Nakisa and Quick Document Builder (AQDB), aligning with Cloud Infrastructure Services team for lifecycle maintenance and third-party vendors for upgrades</li><li>And create and maintain integration files for TLC (top-level comparison) between SAPHRON and the North America payroll systems, UltiPro</li><li>Work on Troubleshooting, developing, and implementing resolutions to technical issues across the global HR landscape</li><li>Also, working closely with the technical teams, manage day to day incidents logged in SMAX Incident Management tool</li><li>Provide back up support for SAPHRON Externals Management functionality and process</li><li>You will also support SOX controls, audit activities, and compliance requirements related to HR applications, integrations, and employee data</li></ul>",
+            "description": "You will be directly partnering with global stakeholders and consumers of the SAPFIM database for modifications and integration enhancements, working independently to design and meet their needsAlso, will share technical responsibility for the HR Middleware servers that manage global HR integrationsWill be responsible for the technical support of HR Linux servers in the Azure datacentre for key add-on modules of SAPHRON, namely Nakisa and Quick Document Builder (AQDB), aligning with Cloud Infrastructure Services team for lifecycle maintenance and third-party vendors for upgradesAnd create and maintain integration files for TLC (top-level comparison) between SAPHRON and the North America payroll systems, UltiProWork on Troubleshooting, developing, and implementing resolutions to technical issues across the global HR landscapeAlso, working closely with the technical teams, manage day to day incidents logged in SMAX Incident Management toolProvide back up support for SAPHRON Externals Management functionality and processYou will also support SOX controls, audit activities, and compliance requirements related to HR applications, integrations, and employee data"
+          },
+          "actions": []
+        }
+      ]
+    }
+  ]
+}

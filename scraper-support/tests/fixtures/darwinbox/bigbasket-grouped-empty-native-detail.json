@@ -1,0 +1,80 @@
+{
+  "status": "success",
+  "message": {
+    "job": [
+      {
+        "id": "5f18f7c94345b",
+        "designation": "5e7f81259ba43",
+        "designation_display_name": "ORDER PICK STATION",
+        "internal_job_code": "Job_41",
+        "employee_sub_type": null,
+        "experience": "1 - 2 Years",
+        "experience_from_num": 12,
+        "experience_to_num": 24,
+        "salary_currency": "INR",
+        "salary_min": "15000",
+        "salary_max": "22000",
+        "salary_range": "INR 15,000 - 22,000",
+        "salary_timeframe": null,
+        "jd": " ",
+        "designation_title": null,
+        "created_on": "2020-07-23T02:36:57.000Z",
+        "job_posting": {
+          "careers": {
+            "from": 1595442600
+          }
+        },
+        "is_remote": null,
+        "designation_name": "ORDER PICK STATION",
+        "emp_sub_type_name": "",
+        "officelocations_area": [
+          "B2B - KESHORA, Bhubaneswar, Odisha, India",
+          "DC - KOMPALLY, Hyderabad, Telangana\r, India"
+        ],
+        "officelocations_without_area": [
+          "Bhubaneswar, Odisha, India",
+          "Hyderabad, Telangana\r, India"
+        ],
+        "officelocation_arr": [
+          "5e7b91aab8220",
+          "a659be6d369a7d"
+        ],
+        "officelocation_show_arr": "Multiple locations",
+        "job_posting_on": 1595442600,
+        "department_id": "5e7b8961edae8",
+        "parent_department_list": [
+          {
+            "level": "l1",
+            "code": "SGS_KOL_B2B_WH",
+            "name": "WAREHOUSE",
+            "id": "5e7b8985aedbd"
+          },
+          {
+            "level": "l2",
+            "code": "SGS_KOL_B2B",
+            "name": "B2B",
+            "id": "5e7b8961edae8"
+          }
+        ],
+        "tool_tip_locations": [
+          "B2B - KESHORA, Bhubaneswar, Odisha, India",
+          "DC - KOMPALLY, Hyderabad, Telangana, India"
+        ],
+        "designation_name_id": "5e7f7e3ade525",
+        "posted_on": 1595442600,
+        "designation_title_name": "",
+        "timezone": "Asia/Kolkata",
+        "officelocation_show_arr_list": [
+          "Multiple locations"
+        ],
+        "locations": "Multiple Locations",
+        "department": "B2B",
+        "emp_type": "",
+        "emp_type_id": "5f06e3ba70171",
+        "functional_area_id": "",
+        "title": "ORDER PICK STATION"
+      }
+    ],
+    "isSaved": false
+  }
+}

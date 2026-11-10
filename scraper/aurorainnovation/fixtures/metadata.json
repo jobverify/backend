@@ -1,0 +1,54 @@
+{
+  "source": "aurorainnovation",
+  "captureMethod": "Official browser-network responses captured by root agent; payloads preserved verbatim in body.",
+  "inventory": {
+    "surface": "https://aurora.tech/api/jobs-index",
+    "nativeCount": 98,
+    "indiaCount": 0,
+    "completeness": "jobs IDs reconcile against native serialized search index documentCount and documentIds; all native role locations explicitly US city/state labels",
+    "scope": "India requires positive native location evidence; isRemote never grants India eligibility",
+    "clientContract": "Official /_nuxt/BhwtykDd.js jobsStore load action fetches /api/jobs-index once, assigns the complete jobs array and facets, then loads its serialized native search index with MiniSearch.loadJSON. All filtering and paging operate locally."
+  },
+  "responses": [
+    {
+      "file": "app-response.json",
+      "url": "https://aurora.tech/_nuxt/sfSVeIkU.js",
+      "finalUrl": "https://aurora.tech/_nuxt/sfSVeIkU.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T02:44:11.778Z",
+      "bodyBytes": 1347192,
+      "bodySha256": "cd34c98a9affdd1999434cf0d3ac8b3d0a6254cba33eb367588d098537d12bfa",
+      "captureSha256": "849d8cf7f030265b369948acfe6642f85f925f0b1d5a406a678bba1a194b11ee"
+    },
+    {
+      "file": "careers-response.json",
+      "url": "https://aurora.tech/careers/",
+      "finalUrl": "https://aurora.tech/careers/",
+      "status": 200,
+      "capturedAt": "2026-10-23T02:42:48.191Z",
+      "bodyBytes": 222219,
+      "bodySha256": "bafd24522986790fcca27a555b72c342effa4b3da5c5831832ebbe163975b4a7",
+      "captureSha256": "fd0d3dd293b2ef170f8a3e87fd9aa33cf44662f7d869499b56723503449f8751"
+    },
+    {
+      "file": "jobs-response.json",
+      "url": "https://aurora.tech/api/jobs-index",
+      "finalUrl": "https://aurora.tech/api/jobs-index",
+      "status": 200,
+      "capturedAt": "2026-10-23T02:43:22.003Z",
+      "bodyBytes": 1269030,
+      "bodySha256": "5f0826ddec2b34ac99e6878d1c3883933fd37bc109d6bae0c503c24fbcb3801d",
+      "captureSha256": "2dd0ea83d72c803bbfaacf34edac41858e877d8bb5907eab7a5306dd472fd6ab"
+    },
+    {
+      "file": "jobs-index-client-responses.json",
+      "responseIndex": 0,
+      "url": "https://aurora.tech/_nuxt/BhwtykDd.js",
+      "status": 200,
+      "capturedAt": "2026-10-23T02:49:40.077Z",
+      "bodyBytes": 929104,
+      "bodySha256": "ad36e1591c6fac055ef6193c41993335bba5ec0a71766a9032d0025790c93384",
+      "captureSha256": "1b7b54b811cd5c751b869fff93570cb30d1b83d7c98199fc00695ce5a3cb3686"
+    }
+  ]
+}

@@ -1,0 +1,324 @@
+{
+  "jobDetail": {
+    "status": 200,
+    "hits": 1,
+    "totalHits": 1,
+    "data": {
+      "job": {
+        "ml_skills": [
+          "vlsi design",
+          "logic design",
+          "integrated circuit layout",
+          "design verification",
+          "system simulation software",
+          "prototype fabrication",
+          "project management",
+          "people management",
+          "resource allocation",
+          "budget management",
+          "process improvement",
+          "cost optimization",
+          "performance management",
+          "coaching",
+          "cross-functional teamwork",
+          "analytical thinking",
+          "risk management",
+          "data analysis management",
+          "agile methodology",
+          "design thinking",
+          "executive communication",
+          "strategic planning",
+          "data controls",
+          "empathy"
+        ],
+        "companyName": "HPE",
+        "ml_title": "ASIC Senior Manager",
+        "category_raw": "Engineering",
+        "standardisedCountry": "India",
+        "remote": "No",
+        "type": "Full time",
+        "descriptionTeaser": "ASIC Senior Manager&nbsp;&nbsp;This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office.Who We Are:Hewlett Packard Enterprise is the global edge-to-",
+        "state": "Karnātaka",
+        "jobUpdatedDate": "2026-08-22T14:07:56.562+0000",
+        "siteType": "external",
+        "standardised_multi_location": [
+          {
+            "standardisedMapQueryLocation": "Bangalore,Karnataka,India",
+            "standardisedStateCode": "KA",
+            "standardisedCity": "Bangalore",
+            "latitude": "12.97194",
+            "latlong": {
+              "lon": 77.59369,
+              "lat": 12.97194
+            },
+            "isLocationStandardized": true,
+            "standardisedCountry": "India",
+            "standardisedTimezone": "+05:30 UTC",
+            "standardisedState": "Karnataka",
+            "longitude": "77.59369"
+          }
+        ],
+        "secondaryQuestionnaireId": "",
+        "standardisedMapQueryLocation": "Bangalore,Karnataka,India",
+        "jobProfile": "00119H - Manager, VLSI Engineering II",
+        "uniqueValue": {
+          "jobId": "1207301",
+          "refNum": "HPE1US",
+          "locale": "en_US",
+          "siteType": "external"
+        },
+        "uniqueKey": "HPE1US1207301externalen_US",
+        "internalCategoryId": "HPE1US_Engineering_QA",
+        "jobCompany": "Hewlett Packard Enterprise",
+        "jobUniqueIdentifier": "refNum,jobId,siteType,locale",
+        "ml_job_overview": {
+          "summary": "The ASIC Senior Manager at Hewlett Packard Enterprise is a leadership role responsible for overseeing the design, development, and implementation of advanced VLSI hardware systems. This position manages a large team, ensuring the successful delivery of complex products and solutions across multiple projects. The role requires expert subject matter knowledge to address the most challenging technical and business issues, while also driving process improvements and cost optimisation. The ASIC Senior Manager acts as a key advisor to senior management, influences strategic decision-making, and fosters a high-performance team environment. Comprehensive benefits and professional development programmes are offered to support both personal and career growth.",
+          "skills": [
+            "Demonstrated advanced leadership skills, including coaching, teambuilding, conflict resolution, and management.",
+            "Proven advanced project management skills, including time and risk management, resource prioritisation, and project structuring.",
+            "Excellent analytical and problem-solving abilities.",
+            "Expertise in architecture and logic design, design verification through software for component and system simulation, and building physical implementations involving complex integrated circuits.",
+            "Strong executive written and verbal communication skills, with proficiency in English and the local language.",
+            "Experience in managing direct reports and overseeing multiple VLSI projects and programmes.",
+            "Familiarity with Agile methodology, Agile Scrum Development, and cross-functional teamwork."
+          ],
+          "responsibilities": [
+            "Responsible for providing leadership and direction for a team of individual contributors and project teams focused on all stages of VLSI design and development for complex products, solutions, and platforms.",
+            "Take ownership of managing headcount, deliverables, schedules, and costs for multiple ongoing VLSI projects and programmes, ensuring resources are allocated effectively.",
+            "Manage relationships with VLSI partners and suppliers, setting expectations regarding deliverables, product quality, schedules, and costs.",
+            "Play a key role in shaping business direction and building support for organisational objectives.",
+            "Accountable for lab-wide process improvement and cost optimisation opportunities in the execution of VLSI programmes.",
+            "Collaborate cross-functionally to communicate programme status, escalate issues, and guide VLSI strategic decision-making with programme managers, marketing, supply chain, technical leaders, and executives.",
+            "Lead efforts to set and measure performance plans, coach, career development, and total rewards administration to create a high-performance team.",
+            "Help drive innovation in building the organisation's technical and management capabilities by hiring top and diverse VLSI talent.",
+            "Take ownership of lab-wide rating processes, total rewards strategy, and promotion analysis, strategy, goals, and process."
+          ],
+          "education": [
+            "A Bachelor's or Master's degree in Electrical Engineering, Computer Engineering, or equivalent is required.",
+            "An advanced university degree is preferred."
+          ]
+        },
+        "multi_category": [
+          {
+            "primaryLocaleCategory": "Engineering & QA",
+            "internalCategoryId": "HPE1US_Engineering_QA",
+            "category_raw": "Engineering",
+            "category": "Engineering & QA"
+          }
+        ],
+        "reqId": "1207301",
+        "ai_summary": "The ASIC Senior Manager at Hewlett Packard Enterprise India is responsible for leading the design, development, and evaluation of advanced VLSI components and hardware systems. This onsite role involves managing multidimensional designs, overseeing complex integrated circuit layouts, and directing teams of experts. The position requires a Bachelor’s or Master’s degree in Electrical or Computer Engineering, with at least 10 years of relevant experience, including 5 years in people management. Key responsibilities include project management, resource allocation, process improvement, and strategic planning. Advanced leadership, project management, and technical expertise in architecture and logic design are essential. The role also involves fostering a high-performance team, collaborating with cross-functional partners, and ensuring alignment with organisational goals.",
+        "displayCareerSite": true,
+        "standardisedTimezone": "+05:30 UTC",
+        "ml_country": "India",
+        "city": "Bengaluru",
+        "jobFamilyGroup": "Engineering",
+        "managementLevel": "Manager_2",
+        "visibilityLocale": [
+          "en_US"
+        ],
+        "latitude": "12.97194",
+        "hasSecondaryQuestionnaire": "no",
+        "multi_location": [
+          {
+            "country": "India",
+            "cityState": "Bengaluru, Karnātaka",
+            "address": "Hewlett Packard (India) Software Operati, STSD Campus Sy.No.192, Whitefield Road, Bengaluru- 560048, Karnātaka, India",
+            "city": "Bengaluru",
+            "postalCode": "560048",
+            "latlong": {
+              "lon": 77.59369,
+              "lat": 12.97194
+            },
+            "latitude": "12.97194",
+            "cityStateZipCode": "Bengaluru, Karnātaka, 560048",
+            "stateCountry": "Karnātaka, India",
+            "locationId": "IWF01-JPL",
+            "location": "Bengaluru, Karnātaka, 560048",
+            "state": "Karnātaka",
+            "cityCountry": "Bengaluru, India",
+            "cityStateCountry": "Bengaluru, Karnātaka, India",
+            "mapQueryLocation": "Hewlett Packard (India) Software Operati, STSD Campus Sy.No.192, Whitefield Road, Bengaluru- 560048, Karnātaka, India",
+            "locationValue": "Bengaluru, Karnātaka, India",
+            "longitude": "77.59369"
+          }
+        ],
+        "locationId": "IWF01-JPL",
+        "test123": "External Experienced",
+        "address": "Hewlett Packard (India) Software Operati, STSD Campus Sy.No.192, Whitefield Road, Bengaluru- 560048, Karnātaka, India",
+        "locationName": "Bengaluru, Karnātaka, India",
+        "jobPostingSiteId": "Jobs@hpe",
+        "isTranslated": false,
+        "ml_language_fullform": "english",
+        "cmsJobId": "",
+        "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bengaluru-Karntaka-India/ASIC-Senior-Manager_1207301-2/apply",
+        "ml_Description": "ASIC Senior Manager . This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office. Who We Are. Hewlett Packard Enterprise is the global edge-to-cloud company advancing the way people live and work. We help companies connect, protect, analyze, and act on their data and applications wherever they live, from edge to cloud, so they can turn insights into outcomes at the speed required to thrive in today’s complex world. Our culture thrives on finding new and better ways to accelerate what’s next. We know varied backgrounds are valued and succeed here. We have the flexibility to manage our work and personal needs. We make bold moves, together, and are a force for good. If you are looking to stretch and grow your career our culture will embrace you. Open up opportunities with HPE. Job Description. What you'll do. Designs, analyzes, develops, modifies and evaluates VLSI components and hardware systems. Determines architecture and logic design, design verification through software developed for component and system simulation, and builds physical implementations through development of multidimensional designs involving the layout of complex integrated circuits. Analyzes designs to establish operating data, conducts experimental tests and evaluates results to enable prototype and production VLSI solutions. May direct support personnel in the preparation of detailed design, design testing and prototype fabrication. Management Level Definition. Applies expert subject matter knowledge to manage staff activities in solving most complex business/technical issues within established policies. Manages activities of exempt individual contributors (typically Expert/Master) and/or MG1s. Has accountability for a large multi-department area(s) or location(s) with significant impact on business unit results and organizational strategy. Acts as a key advisor to senior management on the development of overall policies and long-term goals of the organization. Plans, manages, and monitors high-end operational/tactical activities of Staff. Staff members' primary focus is on either high-end tactical or broad strategic issues or a combination of both. Recruits and supports development of direct staff members. Position typically reports to Director or above. Additional Guidance/Criteria: Manages and controls activities within a sub-region or Region; Typically manages 10 or more direct reports. Span of Control guidelines may differ from these numbers. Responsibilities. Provides leadership and direction for a team of individual contributors and project teams responsible for all stages of VLSI design and development for complex products, solutions and platforms; including design, validation and testing. Self-directed in objectives and directions for major areas of responsibility including program, VLSI implementation and entire portfolio success. Manages headcount, deliverables, schedules, and costs for multiple ongoing VLSI projects and programs, ensuring that resources are appropriately allocated and that goals, objectives, timelines, risks and budgets are met in accordance with program and organizational roadmaps. Manages relationships with VLSI partners and suppliers, including setting expectations regarding deliverables, product quality, schedules, and costs; ensures that team members are effectively communicating and collaborating with VLSI partners and suppliers. Build support for business direction. Accountable for lab-wide process improvement and cost optimization opportunities in execution of VLSI programs. Engages with program managers, marketing, supply chain, technical leaders and executives to communicate VLSI program status, escalate issues, and guide and influence VLSI strategic decision-making. Ownership for setting & measuring performance plans, coaching, career development, and total rewards administration to create a high performance team. Recognizes accomplishments, focuses on morale and owns lab-wide organizational health. Accountable for building the organization's technical and management capabilities by hiring top and diverse VLSI talent. Accountable for lab-wide rating processes & results, total rewards strategy & process, and promotion analysis, strategy, goals & process. What you need to bring. Bachelor's or Master's degree in Electrical Engineering, Computer engineering or equivalent. Advanced university degree preferred. Typically 10 or more years of related work experience, including 5 or more years of people management experience. Knowledge and Skills. Advanced leadership skills, including coaching, teambuilding, conflict resolution, and management. Advanced project management skills including time and risk management, resource prioritization, and project structuring. Excellent analytical and problem solving skills. Mastery of architecture and logic design, design verification through software developed for component and system simulation, and building physical implementations through development of multidimensional designs involving the layout of complex integrated circuits. Mastery in executive written and verbal communication skills; mastery in English and local language. Additional Skills. Accountability, Accountability, Action Planning, Active Learning, Active Listening, Agile Methodology, Agile Scrum Development, Analytical Thinking, Bias, Coaching, Creativity, Critical Thinking, Cross-Functional Teamwork, Data Analysis Management, Data Collection Management (Inactive), Data Controls, Design, Design Thinking, Empathy, Follow-Through, Group Problem Solving, Growth Mindset, Intellectual Curiosity (Inactive), Long Term Planning, Managing Ambiguity {+ 5 more}. What We Can Offer You. Health & Wellbeing. We strive to provide our team members and their loved ones with a comprehensive suite of benefits that supports their physical, financial and emotional wellbeing. Personal & Professional Development. We also invest in your career because the better you are, the better we all are. We have specific programs catered to helping you reach any career goals you have — whether you want to become a knowledge expert in your field or apply your skills to another division. Unconditional Inclusion. We are unconditionally inclusive in the way we work and celebrate individual uniqueness. Let's Stay Connected. Follow @HPECareers on Instagram to see the latest on people, culture and tech at HPE. # india. # networking. Job. EngineeringJob Level. Manager_2 . HPE is an Equal Employment Opportunity/ Veterans/Disabled/LGBT employer. We do not discriminate on the basis of race, gender, or any other protected category, and all decisions we make are made on the basis of qualifications, merit, and business need. Our goal is to be one global team that is representative of our customers, in an inclusive environment where we can continue to innovate and grow together. Please click here: Equal Employment Opportunity. Hewlett Packard Enterprise is EEO Protected Veteran/ Individual with Disabilities. HPE will comply with all applicable laws related to employer use of arrest and conviction records, including laws requiring employers to consider for employment qualified applicants with criminal histories. Recruitment Fraud Alert. We have become aware of an increase in fraudulent recruitment activities in which individuals impersonate our company or authorized recruitment agencies to offer fake employment opportunities. These scams may occur through false websites, emails, social media, or chat-based applications and often aim to obtain personal information or money. Please note that Hewlett Packard Enterprise (HPE), its direct and indirect subsidiaries and affiliated companies, and its authorized recruitment agencies/vendors will never charge a candidate a registration fee, hiring fee, or any other fee in connection with its recruitment and hiring process. We also never request personal information such as back account details, Social Security numbers, or national IDs via social media or chat applications. All legitimate job opportunities will come through official company channels, and candidates are responsible for verifying the credentials of any third party claiming to represent the company. Any reliance on fraudulent communication is at the individual’s own risk, and HPE disclaims legal liability for any resulting damages. If you suspect recruitment fraud, do not share personal information or make any payments and report the incident to your local authorities immediately. ",
+        "externalApply": false,
+        "cityState": "Bengaluru, Karnātaka",
+        "country": "India",
+        "postalCode": "560048",
+        "hasPrimaryQuestionnaire": "yes",
+        "isEverGreenReq": "0",
+        "source": "WORKDAY",
+        "jobRequisitionId": "1207301",
+        "tcpFamilyValue": "1",
+        "standardisedCity": "Bangalore",
+        "locationAccuracyLevel": "city",
+        "jobFamily": "VLSI Engineering",
+        "visibilityType": "External",
+        "longitude": "77.59369",
+        "ats": "WORKDAY",
+        "isDerived": false,
+        "latlong": {
+          "lon": 77.59369,
+          "lat": 12.97194
+        },
+        "jobFamilyGroupDescriptorATS": "Engineering",
+        "jobTypeValue": "Non-US Technical Apply",
+        "stateCountry": "Karnātaka, India",
+        "jobId": "1207301",
+        "updatedByOfflineProcessing": true,
+        "refNum": "HPE1US",
+        "profileId": "00119H",
+        "topic": "Intg.JobPull.GeoLocation",
+        "primaryLocaleCategory": "Engineering & QA",
+        "description": "ASIC Senior Manager<p style=\"text-align:inherit\">&nbsp;&nbsp;</p>This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office.<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><p style=\"text-align:left\"><b>Who We Are:</b></p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><p style=\"text-align:left\">Hewlett Packard Enterprise is the global edge-to-cloud company advancing the way people live and work. We help companies connect, protect, analyze, and act on their data and applications wherever they live, from edge to cloud, so they can turn insights into outcomes at the speed required to thrive in today’s complex world. Our culture thrives on finding new and better ways to accelerate what’s next. We know varied backgrounds are valued and succeed here. We have the flexibility to manage our work and personal needs. We make bold moves, together, and are a force for good. If you are looking to stretch and grow your career our culture will embrace you. Open up opportunities with HPE.</p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Job Description:</b></p><p style=\"text-align:inherit\">&nbsp;&nbsp;&nbsp;</p><p><b>What you&#39;ll do:</b></p><p></p><p>Designs, analyzes, develops, modifies and evaluates VLSI components and hardware systems. Determines architecture and logic design, design verification through software developed for component and system simulation, and builds physical implementations through development of multidimensional designs involving the layout of complex integrated circuits. Analyzes designs to establish operating data, conducts experimental tests and evaluates results to enable prototype and production VLSI solutions. May direct support personnel in the preparation of detailed design, design testing and prototype fabrication.</p><p><b><i>Management Level Definition:</i></b></p><p>Applies expert subject matter knowledge to manage staff activities in solving most complex business/technical issues within established policies. Manages activities of exempt individual contributors (typically Expert/Master) and/or MG1s. Has accountability for a large multi-department area(s) or location(s) with significant impact on business unit results and organizational strategy. Acts as a key advisor to senior management on the development of overall policies and long-term goals of the organization. Plans, manages, and monitors high-end operational/tactical activities of Staff. Staff members&#39; primary focus is on either high-end tactical or broad strategic issues or a combination of both. Recruits and supports development of direct staff members. Position typically reports to Director or above. <br /><br />Additional Guidance/Criteria: Manages and controls activities within a sub-region or Region; Typically manages 10 or more direct reports.  Span of Control guidelines may differ from these numbers.</p><p><i><b>Responsibilities:</b></i></p><ul><li>Provides leadership and direction for a team of individual contributors and project teams responsible for all stages of VLSI design and development for complex products, solutions and platforms; including design, validation and testing.</li><li>Self-directed in objectives and directions for major areas of responsibility including program, VLSI implementation and entire portfolio success.</li><li>Manages headcount, deliverables, schedules, and costs for multiple ongoing VLSI projects and programs, ensuring that resources are appropriately allocated and that goals, objectives, timelines, risks and budgets are met in accordance with program and organizational roadmaps.</li><li>Manages relationships with VLSI partners and suppliers, including setting expectations regarding deliverables, product quality, schedules, and costs; ensures that team members are effectively communicating and collaborating with VLSI partners and suppliers.</li><li>Build support for business direction.</li><li>Accountable for lab-wide process improvement and cost optimization opportunities in execution of VLSI programs.</li><li>Engages with program managers, marketing, supply chain, technical leaders and executives to communicate VLSI program status, escalate issues, and guide and influence VLSI strategic decision-making.</li><li>Ownership for setting &amp; measuring performance plans, coaching, career development, and total rewards administration to create a high performance team. Recognizes accomplishments, focuses on morale and owns lab-wide organizational health.</li><li>Accountable for building the organization&#39;s technical and management capabilities by hiring top and diverse VLSI talent. </li><li>Accountable for lab-wide rating processes &amp; results, total rewards strategy &amp; process, and promotion analysis, strategy, goals &amp; process.</li></ul><p></p><p></p><p><b>What you need to bring:</b></p><ul><li>Bachelor&#39;s or Master&#39;s degree in Electrical Engineering, Computer engineering or equivalent.</li><li>Advanced university degree preferred.</li><li>Typically 10 or more years of related work experience, including 5 or more years of people management experience.</li></ul><p><i><b>Knowledge and Skills:</b></i></p><ul><li>Advanced leadership skills, including coaching, teambuilding, conflict resolution, and management.</li><li>Advanced project management skills including time and risk management, resource prioritization, and project structuring.</li><li>Excellent analytical and problem solving skills.</li><li>Mastery of architecture and logic design, design verification through software developed for component and system simulation, and building physical implementations through development of multidimensional designs involving the layout of complex integrated circuits.</li><li>Mastery in executive written and verbal communication skills; mastery in English and local language.</li></ul><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><div><div><div><div><div><div><div><p style=\"text-align:left\"><b>Additional Skills:</b></p></div></div></div></div></div></div></div>Accountability, Accountability, Action Planning, Active Learning, Active Listening, Agile Methodology, Agile Scrum Development, Analytical Thinking, Bias, Coaching, Creativity, Critical Thinking, Cross-Functional Teamwork, Data Analysis Management, Data Collection Management (Inactive), Data Controls, Design, Design Thinking, Empathy, Follow-Through, Group Problem Solving, Growth Mindset, Intellectual Curiosity (Inactive), Long Term Planning, Managing Ambiguity {+ 5 more}<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><p style=\"text-align:left\"><b>What We Can Offer You:</b></p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><p style=\"text-align:left\"><b>Health &amp; Wellbeing</b></p><p style=\"text-align:left\">We strive to provide our team members and their loved ones with a comprehensive suite of benefits that supports their physical, financial and emotional wellbeing.</p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Personal &amp; Professional Development</b></p><p style=\"text-align:left\">We also invest in your career because the better you are, the better we all are. We have specific programs catered to helping you reach any career goals you have — whether you want to become a knowledge expert in your field or apply your skills to another division.</p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Unconditional Inclusion</b></p><p style=\"text-align:left\">We are unconditionally inclusive in the way we work and celebrate individual uniqueness. We know varied backgrounds are valued and succeed here. We have the flexibility to manage our work and personal needs. We make bold moves, together, and are a force for good.</p><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><p style=\"text-align:left\"><b>Let&#39;s Stay Connected:</b></p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><p style=\"text-align:left\"><span>Follow <a href=\"http://instagram.com/hpecareers\" target=\"_blank\">&#64;HPECareers</a> on Instagram to see the latest on people, culture and tech at HPE. </span></p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p>#india<h3></h3><h3></h3>#networking<p style=\"text-align:inherit\"></p><p style=\"text-align:inherit\"></p><p style=\"text-align:left\"><b>Job:</b></p>Engineering<p style=\"text-align:left\"><b>Job Level:</b></p>Manager_2<p style=\"text-align:inherit\"><span><span><span><span><span><span><span><span><span><span><span><span><span><span class=\"WPL0\">    </span></span></span></span></span></span></span></span></span></span></span></span></span></span></p><p style=\"text-align:inherit\"><span><span><span><span><span><span><span><span><span><span><span><span><span><span class=\"WPL0\">    </span></span></span></span></span></span></span></span></span></span></span></span></span></span></p><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><p style=\"text-align:left\"><span>HPE is an Equal Employment Opportunity/ <span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span class=\"WPL0\">Veterans/Disabled/LGBT</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span> employer. We do not discriminate </span><span>on the basis of race, gender, or any other protected category,</span> <span>and all decisions we make are made on the basis of qualifications, merit, and business need. Our goal is to be one global team that is representative of our customers, in an inclusive environment where we can continue to innovate and grow together. Please click here: </span><a href=\"https://hr.ext.hpe.com/Equal-employment-opportunity-policy.pdf\" target=\"_blank\">Equal Employment Opportunity</a><span>.</span></p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><p style=\"text-align:left\"><b><span>Hewlett Packard Enterprise is EEO Protected Veteran/ Individual with Disabilities.</span></b></p><p style=\"text-align:inherit\">&nbsp;&nbsp;&nbsp;</p><p style=\"text-align:left\"><span>HPE will comply with all applicable laws related to employer use of arrest and conviction records, including laws requiring employers to consider for employment qualified applicants with criminal histories.</span></p><p style=\"text-align:inherit\">   </p><p><b>Recruitment Fraud Alert</b></p><p></p><p>We have become aware of an increase in fraudulent recruitment activities in which individuals impersonate our company or authorized recruitment agencies to offer fake employment opportunities. These scams may occur through false websites, emails, social media, or chat-based applications and often aim to obtain personal information or money. Please note that Hewlett Packard Enterprise (HPE), its direct and indirect subsidiaries and affiliated companies, and its authorized recruitment agencies/vendors will never charge a candidate a registration fee, hiring fee, or any other fee in connection with its recruitment and hiring process. We also never request personal information such as back account details, Social Security numbers, or national IDs via social media or chat applications.</p><p></p><p>All legitimate job opportunities will come through official company channels, and candidates are responsible for verifying the credentials of any third party claiming to represent the company. Any reliance on fraudulent communication is at the individual’s own risk, and HPE disclaims legal liability for any resulting damages. If you suspect recruitment fraud, do not share personal information or make any payments and report the incident to your local authorities immediately.</p>",
+        "cityStateZipCode": "Bengaluru, Karnātaka, 560048",
+        "locale": "en_US",
+        "title": "ASIC Senior Manager",
+        "jobSeqNo": "HPE1US1207301EXTERNALENUS",
+        "postedDate": "2026-06-23T00:00:00.000+0000",
+        "ml_highlight": "We are currently hiring a ASIC Senior Manager to lead the design, development, and evaluation of VLSI components and hardware systems. Oversee complex projects, manage multidimensional designs, and guide a team of experts. Ideal for experienced professionals with strong leadership and technical expertise in electrical or computer engineering.",
+        "dateCreated": "2026-06-23T10:05:02.857+0000",
+        "isLocationStandardized": true,
+        "cityStateCountry": "Bengaluru, Karnātaka, India",
+        "departmentalizationScopeValue": "Professional",
+        "locationValue": "Bengaluru, Karnātaka, India",
+        "recruitingInstruction": "External Experienced",
+        "workSubType": "Reg Employee",
+        "hashKey": "7792a0dd849bc8d1124b035c90b90521fcf85ed0c9017d050f95a9d7490da1f10d78dd1b4cf088395d55ca37a22bd662d16b49d5b5fbd4b41d2dfa7a8a0784f5",
+        "parentRefNum": "HPE1US",
+        "integrationLocale": [
+          "en_US"
+        ],
+        "jobVisibility": [
+          "external"
+        ],
+        "primaryQuestionnaireId": "QUESTIONNAIRE-3-454",
+        "standardisedStateCode": "KA",
+        "isCritical": false,
+        "jobFamilyId": "ENG19_020",
+        "location": "Bengaluru, Karnātaka, 560048",
+        "cityCountry": "Bengaluru, India",
+        "category": "Engineering & QA",
+        "mapQueryLocation": "Hewlett Packard (India) Software Operati, STSD Campus Sy.No.192, Whitefield Road, Bengaluru- 560048, Karnātaka, India",
+        "standardisedState": "Karnataka"
+      },
+      "isMultiLocationEnabled": true,
+      "multiLocationFieldName": "multi_location",
+      "multiLocationValues": [
+        "country",
+        "cityState",
+        "address",
+        "city",
+        "latlong",
+        "clubName",
+        "branch",
+        "stateCountry",
+        "workLocation",
+        "job_id",
+        "location",
+        "storeName",
+        "state",
+        "cityStateCountry"
+      ]
+    },
+    "eid": {
+      "eid": "6adcdab346f10ef50ef44663"
+    },
+    "sourceResponseTime": 0,
+    "source": "Cache"
+  },
+  "alternateLinks": [
+    {
+      "rel": "canonical",
+      "lang": "",
+      "href": "https://careers.hpe.com/us/en/job/1207301/ASIC-Senior-Manager"
+    }
+  ],
+  "jsonLd": [
+    {
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "HPE",
+        "value": "1207301"
+      },
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": "HPE",
+        "sameAs": "https://careers.hpe.com/us/en",
+        "url": "https://careers.hpe.com/us/en/job/1207301/ASIC-Senior-Manager",
+        "logo": "https://assets.phenompeople.com/CareerConnectResources/pp/HPE1US/images/job_logo_config--1762467301660.png"
+      },
+      "jobLocation": {
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "12.97194",
+          "longitude": "77.59369"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "postalCode": "560048",
+          "addressCountry": "India",
+          "addressLocality": "Bengaluru",
+          "addressRegion": "Karnātaka"
+        },
+        "@type": "Place"
+      },
+      "employmentType": [
+        "FULL_TIME"
+      ],
+      "@type": "JobPosting",
+      "workHours": "40 hours per week",
+      "description": "ASIC Senior Manager&lt;p style=\"text-align:inherit\"&gt;&nbsp;&nbsp;&lt;/p&gt;This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office.&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Who We Are:&lt;/b&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;Hewlett Packard Enterprise is the global edge-to-cloud company advancing the way people live and work. We help companies connect, protect, analyze, and act on their data and applications wherever they live, from edge to cloud, so they can turn insights into outcomes at the speed required to thrive in today’s complex world. Our culture thrives on finding new and better ways to accelerate what’s next. We know varied backgrounds are valued and succeed here. We have the flexibility to manage our work and personal needs. We make bold moves, together, and are a force for good. If you are looking to stretch and grow your career our culture will embrace you. Open up opportunities with HPE.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job Description:&lt;/b&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&nbsp;&nbsp;&nbsp;&lt;/p&gt;&lt;p&gt;&lt;b&gt;What you&#39;ll do:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Designs, analyzes, develops, modifies and evaluates VLSI components and hardware systems. Determines architecture and logic design, design verification through software developed for component and system simulation, and builds physical implementations through development of multidimensional designs involving the layout of complex integrated circuits. Analyzes designs to establish operating data, conducts experimental tests and evaluates results to enable prototype and production VLSI solutions. May direct support personnel in the preparation of detailed design, design testing and prototype fabrication.&lt;/p&gt;&lt;p&gt;&lt;b&gt;&lt;i&gt;Management Level Definition:&lt;/i&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Applies expert subject matter knowledge to manage staff activities in solving most complex business/technical issues within established policies. Manages activities of exempt individual contributors (typically Expert/Master) and/or MG1s. Has accountability for a large multi-department area(s) or location(s) with significant impact on business unit results and organizational strategy. Acts as a key advisor to senior management on the development of overall policies and long-term goals of the organization. Plans, manages, and monitors high-end operational/tactical activities of Staff. Staff members&#39; primary focus is on either high-end tactical or broad strategic issues or a combination of both. Recruits and supports development of direct staff members. Position typically reports to Director or above. &lt;br /&gt;&lt;br /&gt;Additional Guidance/Criteria: Manages and controls activities within a sub-region or Region; Typically manages 10 or more direct reports.  Span of Control guidelines may differ from these numbers.&lt;/p&gt;&lt;p&gt;&lt;i&gt;&lt;b&gt;Responsibilities:&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Provides leadership and direction for a team of individual contributors and project teams responsible for all stages of VLSI design and development for complex products, solutions and platforms; including design, validation and testing.&lt;/li&gt;&lt;li&gt;Self-directed in objectives and directions for major areas of responsibility including program, VLSI implementation and entire portfolio success.&lt;/li&gt;&lt;li&gt;Manages headcount, deliverables, schedules, and costs for multiple ongoing VLSI projects and programs, ensuring that resources are appropriately allocated and that goals, objectives, timelines, risks and budgets are met in accordance with program and organizational roadmaps.&lt;/li&gt;&lt;li&gt;Manages relationships with VLSI partners and suppliers, including setting expectations regarding deliverables, product quality, schedules, and costs; ensures that team members are effectively communicating and collaborating with VLSI partners and suppliers.&lt;/li&gt;&lt;li&gt;Build support for business direction.&lt;/li&gt;&lt;li&gt;Accountable for lab-wide process improvement and cost optimization opportunities in execution of VLSI programs.&lt;/li&gt;&lt;li&gt;Engages with program managers, marketing, supply chain, technical leaders and executives to communicate VLSI program status, escalate issues, and guide and influence VLSI strategic decision-making.&lt;/li&gt;&lt;li&gt;Ownership for setting &amp; measuring performance plans, coaching, career development, and total rewards administration to create a high performance team. Recognizes accomplishments, focuses on morale and owns lab-wide organizational health.&lt;/li&gt;&lt;li&gt;Accountable for building the organization&#39;s technical and management capabilities by hiring top and diverse VLSI talent. &lt;/li&gt;&lt;li&gt;Accountable for lab-wide rating processes &amp; results, total rewards strategy &amp; process, and promotion analysis, strategy, goals &amp; process.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;What you need to bring:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Bachelor&#39;s or Master&#39;s degree in Electrical Engineering, Computer engineering or equivalent.&lt;/li&gt;&lt;li&gt;Advanced university degree preferred.&lt;/li&gt;&lt;li&gt;Typically 10 or more years of related work experience, including 5 or more years of people management experience.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;i&gt;&lt;b&gt;Knowledge and Skills:&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Advanced leadership skills, including coaching, teambuilding, conflict resolution, and management.&lt;/li&gt;&lt;li&gt;Advanced project management skills including time and risk management, resource prioritization, and project structuring.&lt;/li&gt;&lt;li&gt;Excellent analytical and problem solving skills.&lt;/li&gt;&lt;li&gt;Mastery of architecture and logic design, design verification through software developed for component and system simulation, and building physical implementations through development of multidimensional designs involving the layout of complex integrated circuits.&lt;/li&gt;&lt;li&gt;Mastery in executive written and verbal communication skills; mastery in English and local language.&lt;/li&gt;&lt;/ul&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Additional Skills:&lt;/b&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;Accountability, Accountability, Action Planning, Active Learning, Active Listening, Agile Methodology, Agile Scrum Development, Analytical Thinking, Bias, Coaching, Creativity, Critical Thinking, Cross-Functional Teamwork, Data Analysis Management, Data Collection Management (Inactive), Data Controls, Design, Design Thinking, Empathy, Follow-Through, Group Problem Solving, Growth Mindset, Intellectual Curiosity (Inactive), Long Term Planning, Managing Ambiguity {+ 5 more}&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;What We Can Offer You:&lt;/b&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Health &amp; Wellbeing&lt;/b&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;We strive to provide our team members and their loved ones with a comprehensive suite of benefits that supports their physical, financial and emotional wellbeing.&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Personal &amp; Professional Development&lt;/b&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;We also invest in your career because the better you are, the better we all are. We have specific programs catered to helping you reach any career goals you have — whether you want to become a knowledge expert in your field or apply your skills to another division.&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Unconditional Inclusion&lt;/b&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;We are unconditionally inclusive in the way we work and celebrate individual uniqueness. We know varied backgrounds are valued and succeed here. We have the flexibility to manage our work and personal needs. We make bold moves, together, and are a force for good.&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Let&#39;s Stay Connected:&lt;/b&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;&lt;span&gt;Follow &lt;a href=\"http://instagram.com/hpecareers\" target=\"_blank\"&gt;&#64;HPECareers&lt;/a&gt; on Instagram to see the latest on people, culture and tech at HPE. &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;#india&lt;h3&gt;&lt;/h3&gt;&lt;h3&gt;&lt;/h3&gt;#networking&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job:&lt;/b&gt;&lt;/p&gt;Engineering&lt;p style=\"text-align:left\"&gt;&lt;b&gt;Job Level:&lt;/b&gt;&lt;/p&gt;Manager_2&lt;p style=\"text-align:inherit\"&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span class=\"WPL0\"&gt;    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span class=\"WPL0\"&gt;    &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;div&gt;&lt;p style=\"text-align:left\"&gt;&lt;span&gt;HPE is an Equal Employment Opportunity/ &lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span&gt;&lt;span class=\"WPL0\"&gt;Veterans/Disabled/LGBT&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; employer. We do not discriminate &lt;/span&gt;&lt;span&gt;on the basis of race, gender, or any other protected category,&lt;/span&gt; &lt;span&gt;and all decisions we make are made on the basis of qualifications, merit, and business need. Our goal is to be one global team that is representative of our customers, in an inclusive environment where we can continue to innovate and grow together. Please click here: &lt;/span&gt;&lt;a href=\"https://hr.ext.hpe.com/Equal-employment-opportunity-policy.pdf\" target=\"_blank\"&gt;Equal Employment Opportunity&lt;/a&gt;&lt;span&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style=\"text-align:left\"&gt;&lt;b&gt;&lt;span&gt;Hewlett Packard Enterprise is EEO Protected Veteran/ Individual with Disabilities.&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;&nbsp;&nbsp;&nbsp;&lt;/p&gt;&lt;p style=\"text-align:left\"&gt;&lt;span&gt;HPE will comply with all applicable laws related to employer use of arrest and conviction records, including laws requiring employers to consider for employment qualified applicants with criminal histories.&lt;/span&gt;&lt;/p&gt;&lt;p style=\"text-align:inherit\"&gt;   &lt;/p&gt;&lt;p&gt;&lt;b&gt;Recruitment Fraud Alert&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;We have become aware of an increase in fraudulent recruitment activities in which individuals impersonate our company or authorized recruitment agencies to offer fake employment opportunities. These scams may occur through false websites, emails, social media, or chat-based applications and often aim to obtain personal information or money. Please note that Hewlett Packard Enterprise (HPE), its direct and indirect subsidiaries and affiliated companies, and its authorized recruitment agencies/vendors will never charge a candidate a registration fee, hiring fee, or any other fee in connection with its recruitment and hiring process. We also never request personal information such as back account details, Social Security numbers, or national IDs via social media or chat applications.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;All legitimate job opportunities will come through official company channels, and candidates are responsible for verifying the credentials of any third party claiming to represent the company. Any reliance on fraudulent communication is at the individual’s own risk, and HPE disclaims legal liability for any resulting damages. If you suspect recruitment fraud, do not share personal information or make any payments and report the incident to your local authorities immediately.&lt;/p&gt;",
+      "title": "ASIC Senior Manager",
+      "datePosted": "2026-08-27",
+      "@context": "http://schema.org",
+      "occupationalCategory": "Engineering & QA",
+      "directApply": false
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "inLanguage": "en_us",
+      "name": "job",
+      "url": "https://careers.hpe.com/us/en/job/1207301/ASIC-Senior-Manager",
+      "datePublished": "2026-01-29",
+      "dateModified": "2026-01-29"
+    },
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://careers.hpe.com/us/en"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "search-results",
+          "item": "https://careers.hpe.com/us/en/search-results"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "ASIC Senior Manager",
+          "item": "https://careers.hpe.com/us/en/job/1207301/ASIC-Senior-Manager"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": 200,
+  "error": {
+    "message": "",
+    "body": ""
+  },
+  "data": {
+    "positions": [
+      {
+        "id": 1970393556911730,
+        "displayJobId": "200041085",
+        "name": "Software Engineering INTERN",
+        "locations": [
+          "India, Multiple Locations, Multiple Locations"
+        ],
+        "standardizedLocations": [
+          "IN"
+        ],
+        "department": "Software Engineering",
+        "postedTs": 1782202606,
+        "positionUrl": "/careers/job/1970393556911730"
+      }
+    ],
+    "count": 11
+  },
+  "metadata": null
+}

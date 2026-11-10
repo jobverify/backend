@@ -667,7 +667,13 @@ const createScriptScraper = (provider) => ({
       : provider.modulePath
     const module = await import(moduleSpecifier)
     const jobs = await module.run(runOptions)
-    return decorateJobsWithProviderMetadata(jobs, provider)
+    const { recoverEmptyOnlyRecruitment } = await import('../utils/emptyOnlyRecruitmentRecovery.js')
+    const recovered = await recoverEmptyOnlyRecruitment(jobs, provider, runOptions)
+    const decorated = decorateJobsWithProviderMetadata(recovered, provider)
+    if (recovered.emptyOnlyRecruitmentRecovery) Object.defineProperty(decorated, 'emptyOnlyRecruitmentRecovery', {
+      value: recovered.emptyOnlyRecruitmentRecovery, configurable: true,
+    })
+    return decorated
   },
 })
 

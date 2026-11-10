@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 174,
+      "Limit": 24,
+      "requisitionList": [
+        {
+          "Id": "74699",
+          "Title": "Senior Specialist, Full-Stack Engineer",
+          "PrimaryLocation": "Pune, MH, India",
+          "PrimaryLocationCountry": "IN",
+          "Department": null,
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "PostedDate": "2026-06-29",
+          "PostingEndDate": null,
+          "ShortDescriptionStr": "",
+          "ExternalResponsibilitiesStr": null
+        },
+        {
+          "Id": "75085",
+          "Title": "Vice President, Scrum Leader",
+          "PrimaryLocation": "Pune, MH, India",
+          "PrimaryLocationCountry": "IN",
+          "Department": null,
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "PostedDate": "2026-06-29",
+          "PostingEndDate": null,
+          "ShortDescriptionStr": "",
+          "ExternalResponsibilitiesStr": null
+        },
+        {
+          "Id": "99111",
+          "Title": "Staff Engineer",
+          "PrimaryLocation": "New York, NY, United States",
+          "PrimaryLocationCountry": "US",
+          "Department": null,
+          "JobFunction": null,
+          "JobFamily": null,
+          "StudyLevel": null,
+          "PostedDate": "2026-06-28",
+          "PostingEndDate": null,
+          "ShortDescriptionStr": "US-only role",
+          "ExternalResponsibilitiesStr": null
+        }
+      ]
+    }
+  ]
+}

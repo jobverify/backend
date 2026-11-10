@@ -1,0 +1,706 @@
+{
+  "provenance": "Actual bluealtair-native-001 public API payloads, retained contract fields only; raw original packets are separately hashed.",
+  "pages": [
+    {
+      "nextPage": "WzE3Njc2NTc2MDAwMDAsMzQ3ODQxMl0=",
+      "results": [
+        {
+          "id": 2835779,
+          "shortcode": "C0BC7ABDF3",
+          "title": "Consultant/Sr. Consultant - Apigee (INAD)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-09-17T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "API Management & Integration"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 4058317,
+          "shortcode": "93E1FC715C",
+          "title": "Analyst/Consultant - Reltio MDM (INDM)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-09-17T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Data Management"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 4815386,
+          "shortcode": "1A498176E9",
+          "title": "Analyst / Consultant - Workato (INAD)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-09-17T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "API Management & Integration"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 5504630,
+          "shortcode": "24ABD57443",
+          "title": "Lead - Apigee (INAD)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-09-17T00:00:00.000Z",
+          "location": {
+            "city": "Mumbai",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Mumbai",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "API Management & Integration"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 5525519,
+          "shortcode": "EF08B2611E",
+          "title": "Consultant - Data Governance (INDM)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-09-17T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Data Management"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 5993994,
+          "shortcode": "FA1D11B7EB",
+          "title": "Senior Accounting & Finance Manager",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-07-28T00:00:00.000Z",
+          "location": {
+            "city": "",
+            "country": "Argentina",
+            "countryCode": "AR",
+            "region": null
+          },
+          "locations": [
+            {
+              "city": "",
+              "country": "Argentina",
+              "countryCode": "AR",
+              "hidden": false,
+              "region": null
+            }
+          ],
+          "department": [
+            "Support Functions"
+          ],
+          "remote": true,
+          "workplace": "remote"
+        },
+        {
+          "id": 5730346,
+          "shortcode": "B85FFEEB4D",
+          "title": "Sr. Snowflake Developer (USDM)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-04-15T00:00:00.000Z",
+          "location": {
+            "city": "Greenwich",
+            "country": "United States",
+            "countryCode": "US",
+            "region": "Connecticut"
+          },
+          "locations": [
+            {
+              "city": "Greenwich",
+              "country": "United States",
+              "countryCode": "US",
+              "hidden": false,
+              "region": "Connecticut"
+            }
+          ],
+          "department": [],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 5396620,
+          "shortcode": "9E5E05F0D7",
+          "title": "Consultant / Sr. Consultant - Data Engineer (INDM)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-01-30T00:00:00.000Z",
+          "location": {
+            "city": "Mumbai",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Mumbai",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Data Management"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 5458122,
+          "shortcode": "9DCF355896",
+          "title": "Consultant/Sr. Consultant - AI Engineer (INAI)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-01-21T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Artificial Intelligence"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 3478412,
+          "shortcode": "DCE4E00CFF",
+          "title": "Analyst / Consultant / Sr. Consultant - Fullstack Developer (INDA)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2026-01-06T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Digital Application Development"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        }
+      ],
+      "total": 12
+    },
+    {
+      "results": [
+        {
+          "id": 5248556,
+          "shortcode": "B4E11D4F9A",
+          "title": "Lead - Full-Stack (INAD)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2025-11-16T00:00:00.000Z",
+          "location": {
+            "city": "Mumbai",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Mumbai",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Digital Application Development"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        },
+        {
+          "id": 4178982,
+          "shortcode": "0770DA56CD",
+          "title": "Analyst/Consultant - Data Engineer - Azure (INDM)",
+          "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+          "state": "published",
+          "isInternal": false,
+          "approvalStatus": "approved",
+          "published": "2025-08-12T00:00:00.000Z",
+          "location": {
+            "city": "Pune",
+            "country": "India",
+            "countryCode": "IN",
+            "region": "Maharashtra"
+          },
+          "locations": [
+            {
+              "city": "Pune",
+              "country": "India",
+              "countryCode": "IN",
+              "hidden": false,
+              "region": "Maharashtra"
+            }
+          ],
+          "department": [
+            "Data Management"
+          ],
+          "remote": false,
+          "workplace": "on_site"
+        }
+      ],
+      "total": 12
+    }
+  ],
+  "details": {
+    "C0BC7ABDF3": {
+      "id": 2835779,
+      "shortcode": "C0BC7ABDF3",
+      "title": "Consultant/Sr. Consultant - Apigee (INAD)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-09-17T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p></p><p><strong>Greetings from Blue Altair</strong><a rel=\"nofollow noreferrer noopener\" class=\"external\"></a><strong>! <br>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p><p></p><p><strong>Title: </strong>Consultant/ Sr. Consultant: Apigee Developer </p><p><strong>Experience : 3</strong>- 5 Years<br><strong>Location: </strong>Mumbai</p><p></p><p></p><p></p><p></p><p><a href=\"https://www.bluealtair.com/\" rel=\"nofollow noreferrer noopener\" class=\"external\"></a></p>",
+      "requirements": "<p></p><ul><li>Hands-on experience in front-end technical architectural and design discussions with clients for building APIs on Apigee platform.</li><li>Experience in designing API strategy and best practices for building APIs.</li><li>Comfortable understanding business requirements and designing API Interfaces using API-First approach.</li><li>Hands-on experience designing the API Proxy flow and configuration for deploying on an Apigee Platform on cloud/on-prem.</li><li>Responsible for developing and unit testing API proxies as per the design.</li><li>Experience in reviewing API implementations done by other team members.</li><li>Experience in supporting and/or executing integration and performance testing of APIs.</li><li>Experience in designing Apigee platform architecture for high availability and scalability.</li><li>Experience in designing and implementing API Security for APIs using in-built Apigee policies.</li><li>Experience in designing and setting up CI/CD processes for API deployment on Apigee using Jenkins, Maven, Grunt, etc.</li><li>Responsible for setting up Apigee on SaaS/Op-premise/Hybrid setup.</li><li>Experience developing and deploying APIs on iPaaS/SaaS cloud platforms.</li><li>Experience providing guidance for automated testing of APIs using commonly available API testing frameworks.</li><li>Good to have experience building assets and accelerators using Apigeethat can be used for client projects.</li><li>Nice to have experience on JavaScript/Python/Java.</li><li>Good to have experience working with RFPs/proposals.</li><li>Experience of API Platform and automation tool selection is a plus.</li><li>Good to have experience working closely with Business Analyst during the initial stages of project requirement and design.</li><li>Good to have knowledge/hand on Cassandra, Hadoop/MapReduce, Mongo DB.</li><li>Good understanding and experience in HTTP/HTTPS protocol, web services, and use of web servers.</li><li>Excellent communication and interpersonal skills.</li><li>Some level of experience in Stakeholder communication and status reporting.</li></ul><h3>Education and experience required:</h3><ul><li>Bachelor's or master's degree in engineering or relevant experience.</li><li>Over 2 years of experience in API management software.</li><li>Apigee or GCP certification is highly desired.</li><li>Must have at least one end to end project hands-on experience developing and deploying APIs/API Products in Apigee API Management platform - including design, development, testing, and publishing to the API developer portal.</li><li>Experience in Onsite / offshore model.</li></ul><h3>&nbsp;</h3>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "API Management & Integration"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "93E1FC715C": {
+      "id": 4058317,
+      "shortcode": "93E1FC715C",
+      "title": "Analyst/Consultant - Reltio MDM (INDM)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-09-17T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>Greetings from Blue Altair!</strong></p><p><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p>",
+      "requirements": "<p><strong>Job Overview:</strong> </p><p><strong>Title:</strong> Analyst/Consultant - Reltio MDM<br><strong>Experience:</strong> 3-6 years<br><strong>Location</strong>: Pune</p><p>The Ideal candidate will provide technical expertise in the implementation and deployment of Reltio, a cloud-based master data management platform. You will work closely with clients to define, design, and implement solutions that effectively leverage the capabilities of the Reltio platform.</p><p><strong>Responsibilities:</strong></p><ul> <li>Good MDM hands-on Experience – Data Model, Match Tuning, Integration, Survivorship.</li> <li>Must have worked on at least 2 full lifecycle Reltio MDM implementations.</li> <li>Experience with data loads, data integration, data quality, project life cycle phases, Reltio best practices and processes.</li> <li>Develop integration using ETL tools or Reltio utilities.</li> <li>Participate in requirements and design workshops.</li> <li>Contribute to and review test plans and test case development and participate in system and user acceptance testing.</li> <li>Create documentation including for requirements, data specific documentation, design and end user training documents.</li> <li>Collaborate with cross-functional teams, work closely with clients, mentor junior team members and provide guidance.</li> </ul><p></p><p><strong>Experience Required:</strong></p><ul> <li>Must have worked on at least 2 full lifecycle Reltio MDM implementations.</li> <li>Good technical knowledge of MDM architectural designs including integration approaches.</li> <li>Excellent communication skills and capability to engage with customers and stakeholders to drive MDM design decisions.</li> <li>Good to have domain knowledge.</li> </ul>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves—comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Data Management"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "1A498176E9": {
+      "id": 4815386,
+      "shortcode": "1A498176E9",
+      "title": "Analyst / Consultant - Workato (INAD)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-09-17T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p></p><p><strong>Greetings from Blue Altair! </strong></p><p><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p><p>Title: Architect – Workato Developer</p><p> Location: Pune , Bangalore</p><h3></h3>",
+      "requirements": "<p><strong>Key Responsibilities :</strong></p><p>·Design, develop, and implement integration solutions using Workato.</p><p>·Build, maintain, and monitor automated workflows in Workato for cloud and on-premise systems, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>·Troubleshoot and resolve Workato integration issues, ensuring reliability through testing and&nbsp;debugging.</p><p>·&nbsp;Stay current with Workato updates and document integration processes and best practices.</p><p>·&nbsp;Build reusable frameworks and mentor team members.</p><h3></h3><p><strong>Key Skills:</strong></p><p>·&nbsp;Minimum of 3-5 years of experience in integration development.</p><p>·&nbsp;Strong, hands-on experience with Workato integration platform.</p><p>· Familiarity with any other integration tool is an added advantage.</p><p>·&nbsp;&nbsp;Experience in designing and developing integrations with cloud-based platforms.</p><p>·&nbsp;&nbsp; Proficiency in integration patterns, including RESTful APIs, SOAP, and Webhooks.</p><p>·&nbsp; Workato certification is good to have.</p><p>·&nbsp;&nbsp; Good understanding of data mapping, transformation, and orchestration.</p><p>·&nbsp; Experience with SQL and database integration is a plus.</p><h3></h3>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "API Management & Integration"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "24ABD57443": {
+      "id": 5504630,
+      "shortcode": "24ABD57443",
+      "title": "Lead - Apigee (INAD)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-09-17T00:00:00.000Z",
+      "location": {
+        "city": "Mumbai",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Mumbai",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p>Greetings from Blue Altair<a rel=\"nofollow noreferrer noopener\" class=\"external\"></a>! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://www.linkedin.com/company/blue-altair\" rel=\"nofollow noreferrer noopener\" class=\"external\"> </a>&nbsp;&nbsp;<a href=\"https://www.bluealtair.com/\" rel=\"nofollow noreferrer noopener\" class=\"external\"> </a></p><p>&nbsp;About Blue Altair:</p><p>&nbsp;Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>&nbsp;At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>&nbsp;Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Data Science and AI. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.&nbsp;Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p><p><u></u></p><p><strong>Job Overview:</strong></p><p><strong>Title: Apigee Lead</strong></p><p><strong>Experience –10 – 12 &nbsp;Years</strong></p><p><strong>Location: Mumbai</strong></p><p></p>",
+      "requirements": "<p><strong>Required skills :</strong></p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Architect, design, develop, test, deploy, and maintain scalable and secure APIs using <strong>Apigee Edge, Apigee X and Apigee Hybrid</strong> platforms.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lead API lifecycle management including API productization, versioning, governance, and developer portal integration.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Implement and enforce API security measures such as <strong>OAuth 2.0</strong>, <strong>JWT</strong>, <strong>mTLS</strong>, API key validation, threat protection and access control.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design and configure API gateways, proxies, policies, shared flows, traffic management (quotas, spike arrest), caching, and mediation.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collaborate with solution architects, product owners, backend teams, and DevOps to ensure seamless API integration with microservices and backend systems.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Drive CI/CD automation for API deployments and configuration using tools like Jenkins, GitLab CI, GitHub Actions, etc.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Monitor, troubleshoot, performance-tune APIs, and respond to production escalations with root cause analysis.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Provide technical leadership and mentorship to mid and junior developers and contribute to architectural decisions.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Maintain API documentation and best practice guides for internal and external stakeholders.</p><p>&nbsp;</p><p><strong>Required Skills and Experience</strong></p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10–12+ years of hands-on experience in API development, integration, and management.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Strong expertise with <strong>Apigee Edge, Apigee X</strong>, and <strong>Apigee Hybrid</strong> platforms and API lifecycle tools.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Deep understanding of <strong>RESTful API design principles</strong>, OpenAPI/Swagger, JSON, XML, and best API practices.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proven experience implementing API security, authentication, authorization, and encryption.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proficient in programming languages such as <strong>Java, JavaScript, Python or Node.js</strong> for custom policies or extensions.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Experience with microservices architecture, backend integration, and cloud platforms such as <strong>Google Cloud Platform (GCP)</strong>, AWS, or Azure.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Strong hands-on experience with CI/CD pipelines, automation, containerization (Docker), and Kubernetes.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Excellent analytical, problem-solving and communication skills.</p>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves—comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "API Management & Integration"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "EF08B2611E": {
+      "id": 5525519,
+      "shortcode": "EF08B2611E",
+      "title": "Consultant - Data Governance (INDM)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-09-17T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>Greetings from Blue Altair! </strong></p><p><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p>",
+      "requirements": "<p><strong>Job Overview:</strong></p><p><strong>Title:</strong> Consultant - Data Governance<br><strong>Experience: </strong>3-6 years<br><strong>Location:</strong> Pune</p><p><strong>Roles and responsibilities:</strong></p><ul><li>Collaborate with stakeholders to define and implement data governance policies and frameworks.</li><li>Define and track data governance KPIs, integrate dashboards, and provide report overviews for leadership.</li><li>Strong knowledge of Data Quality (DQ) concepts, data profiling, and issue resolution.</li><li>Monitor, measure, and report on data quality metrics across systems.</li><li>Maintain data lineage, metadata, and master data management practices.</li><li>Ensure compliance with regulatory requirements (e.g., GDPR, HIPAA).</li><li>Partner with business and IT teams to drive data stewardship and governance best practices.</li><li>Strong analytical, problem-solving, and communication skills.</li></ul><p></p><p><strong>Requirement &amp; Qualifications:</strong></p><ul><li>Bachelor’s degree in computer science, Data Management, or related field.</li><li>Up to 3 years of experience in data governance, data quality, or data management.</li><li>Familiarity with governance tools (Collibra, Informatica, Alation, or similar) is a plus.</li><li>Knowledge of SQL and general database concepts preferred.</li></ul><p></p><p></p>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Data Management"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "9E5E05F0D7": {
+      "id": 5396620,
+      "shortcode": "9E5E05F0D7",
+      "title": "Consultant / Sr. Consultant - Data Engineer (INDM)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-01-30T00:00:00.000Z",
+      "location": {
+        "city": "Mumbai",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Mumbai",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>Greetings from Blue Altair!</strong></p><p><a href=\"https://www.bluealtair.com/\" rel=\"nofollow noreferrer noopener\" class=\"external\"></a><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow.</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.<br>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p><p>&nbsp;</p>",
+      "requirements": "<p><strong>Job Overview:</strong></p><p><strong>Title: </strong>Sr. Data Engineer<br><strong>Experience: </strong>3-5 years &amp; 6-8 years <br><strong>Location:</strong> Mumbai <br></p><p>We are looking for a Data Engineer lead who is passionate about designing and building scalable, data-driven solutions. In this role, you’ll be responsible for developing robust data pipelines, implementing cloud-based architectures, and enabling advanced analytics and machine learning initiatives. You will work closely with cross-functional teams — including data analysts, data scientists, and business stakeholders — to ensure that high-quality, secure, and well-structured data is available for insight generation and strategic decision-making. </p><p> </p><p><strong>Job Responsibilities:</strong></p><ul><li>Design, build, and optimize data pipelines and workflows across various data sources and platforms.</li><li>Architect and implement new data solutions using Azure technologies such as Azure Databricks, Azure Data Factory, and Azure DevOps.</li><li>Collaborate with stakeholders to translate business and analytical requirements into scalable technical data models.</li><li>Develop data integration strategies using Python, PySpark, and SQL to support analytics, reporting, and ML initiatives.</li><li>Contribute to data architecture design, including ingestion, transformation, and delivery layers. Participate in CI/CD pipeline development and deployment for data engineering projects.</li><li>Work independently and collaboratively in agile environments to deliver high-quality, production-ready data solutions.</li><li>Stay updated with emerging tools, frameworks, and methodologies in the data engineering ecosystem.</li></ul><p>&nbsp;</p><p><strong>Skills:</strong></p><ul><li>Proficiency in Python, PySpark, and SQL with a understanding of ML libraries.</li><li>Strong expertise in Azure cloud ecosystem — particularly Databricks, Data Factory, and DevOps.</li><li>Hands-on experience implementing CI/CD principles for data workflows.</li><li>Good understanding of API/web service and data security practices.</li><li>Experience working with relational databases (SQL Server, Oracle, MySQL, etc.).</li><li>Excellent communication, collaboration, and problem-solving skills.</li><li>Passion for innovation, automation, and continuous learning in the data domain.</li></ul><p></p>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Data Management"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "9DCF355896": {
+      "id": 5458122,
+      "shortcode": "9DCF355896",
+      "title": "Consultant/Sr. Consultant - AI Engineer (INAI)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-01-21T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!<a rel=\"nofollow noreferrer noopener\" class=\"external\"></a></p>",
+      "requirements": "<p><strong>Title: AI Engineer<br> Experience: 4-6 years<br> Location: Pune/Bangalore</strong></p><p><strong>Requirement: </strong></p><ul><li>Master’s degree or relevant degree/certification in quantitative discipline, e.g., Computer Science, Mathematics, Statistics, Artificial Intelligence.</li><li>Hands-on experience with statistical software tools. We prefer experience in Python and Python statistical libraries. Experience in R is also accepted, as is SAS, SPSS, Strata, and MATLAB.</li><li>Deep conceptual understanding of probability &amp; statistics, ML algorithm intuition, and computer science fundamentals.</li><li>Deep experience in statistical and machine learning techniques such as classification, regression, feature selection and feature engineering, hyperparameter tuning, unsupervised learning methods, time series analysis, forecasting etc.</li><li>Deep understanding of GenAI Models training and fine tuning of them.</li><li>Proven experience in Generative AI (GenAI) including model training, fine-tuning, and deployment.</li><li>Practical expertise with Large Language Models (LLMs) such as GPT, LLaMA, Mistral, Claude, etc.</li><li>Experience implementing Retrieval-Augmented Generation (RAG) pipelines using Vector Databases (e.g., Pinecone, Weaviate, Milvus, FAISS).</li><li>Strong knowledge of Embeddings (text, image, multimodal) and their application in semantic search, personalization, and recommendation systems.</li><li>Familiarity with Agentic AI frameworks (LangChain, LlamaIndex, AutoGen, CrewAI) for building autonomous and multi-agent systems.</li></ul><p></p><p><strong>Responsibilities:</strong></p><ul><li>Research, design, and implement GenAI-powered solutions for complex business problems.</li><li>Build and deploy LLM-based applications including chatbots, copilots, and autonomous agents.</li><li>Architect and optimize RAG pipelines for enterprise knowledge retrieval and augmentation.</li><li>Develop and evaluate embedding-based solutions for semantic search, personalization, and recommendation.</li><li>Experiment with agentic AI frameworks to design multi-agent workflows and autonomous decision-making systems.</li><li>Research machine learning algorithms develop solution formulations, and test on large datasets.</li><li>Given unstructured and complex business problems, design and develop tailored analytic solutions. </li><li>Design experiments, test hypotheses, and build actionable models.</li><li>Solve analytical problems and effectively communicate methodologies and results.</li><li>Draw relevant inferences and insights from data including identification of trends and anomalies.</li><li>Translate unstructured, complex business problems into abstract mathematical frameworks, making intelligent analogies and approximations to produce working algorithms at scale.</li></ul><p></p><p><strong>Preferred Experience:</strong></p><ul><li>An analytical mind with problem-solving abilities</li><li>Ability to design and optimize RAG pipelines for enterprise-scale knowledge management.</li><li>Understanding of text representation techniques (BERT, ELMo, etc.) and statistics</li><li>Deep understanding of the LSTM/CNN functionality and architecture</li><li>Experience with information extraction and retrieval techniques (e.g. Named Entity Recognition, Dependency Parsing, Coreference Resolution, etc.)</li><li>Hands-on with text mining and NLP libraries (SpaCy, NLTK, Hugging Face, OpenAI APIs).</li><li>Experience with any cloud DS/AI platforms (e.g. AWS Sage maker, Azure Machine Learning, etc.) will be a bonus.</li><li>Knowledge of multimodal AI (text, vision, speech) and emerging techniques in agentic workflows.</li><li>Experience with less common techniques, such as probabilistic graphical models, generative algorithms, genetic algorithms, reinforcement learning, etc.</li><li>Personal projects and Kaggle competition results can serve as differentiation.</li></ul><p>&nbsp;</p><p><strong>Required Soft Skills: </strong></p><ul><li>Strong interpersonal and communication skills.</li><li>Ability to explain statistical reasoning to both experts and non-experts.</li><li>Strong communication and interpersonal skills.</li><li>Ability to learn new skills/technologies quickly and independently.</li><li>Independent problem-solving skills.</li></ul>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Artificial Intelligence"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "DCE4E00CFF": {
+      "id": 3478412,
+      "shortcode": "DCE4E00CFF",
+      "title": "Analyst / Consultant / Sr. Consultant - Fullstack Developer (INDA)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2026-01-06T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>Greetings from Blue Altair! </strong></p><p><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p>",
+      "requirements": "<p><strong>Title</strong>: Sr. Consultant/ Lead - Fullstack Developer</p><p><strong>Experience</strong> - 4 - 10 Years</p><p><strong>Location</strong>: Pune, Bangalore</p><p><strong>Responsibilities</strong></p><ul><li>Work with development teams and product managers to ideate software solutions</li><li>Design client-side and server-side architecture</li><li>Build the front-end of applications through appealing visual design</li><li>Develop and manage well-functioning databases and applications</li><li>Write effective APIs</li><li>Test software to ensure responsiveness and efficiency</li><li>Troubleshoot, debug and upgrade software</li><li>Create security and data protection settings</li><li>Build features and applications with a mobile responsive design</li><li>Write technical documentation</li><li>Work with data scientists and analysts to improve software</li></ul><p></p><p><strong>Requirements and skills:</strong></p><ul><li>Proven experience as a Full Stack Developer or similar role</li><li>Experience developing desktop and mobile applications</li><li>Familiarity with common stacks</li><li>Knowledge of multiple front-end languages and libraries (e.g. HTML/ CSS, JavaScript, XML, jQuery)</li><li>Knowledge of multiple back-end languages (e.g. C#, Java, Python) and JavaScript frameworks (e.g. Angular, React, Node.js)</li><li>Familiarity with databases (e.g. MySQL, MongoDB), web servers (e.g. Apache) and UI/UX design</li><li>Excellent communication and teamwork skills</li><li>Great attention to detail</li><li>Organizational skills</li><li>An analytical mind</li><li>Degree in Computer Science, Statistics or relevant field</li></ul>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Digital Application Development"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "B4E11D4F9A": {
+      "id": 5248556,
+      "shortcode": "B4E11D4F9A",
+      "title": "Lead - Full-Stack (INAD)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2025-11-16T00:00:00.000Z",
+      "location": {
+        "city": "Mumbai",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Mumbai",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p><p><u></u></p><p><strong>Job Overview:</strong></p><p>We are seeking a seasoned Senior Full Stack Developer who will engage with clients directly, understand their business needs, translate requirements into technical solutions, and deliver robust, scalable web applications. You will work across the full stack: front-end, back-end (.NET), microservices architecture, DevOps and Cloud (preferably GCP) to build enterprise-grade solutions. You will also mentor team members, communicate status and architecture to stakeholders, and drive best practices.</p><p>&nbsp;</p><p><strong>Title: Lead – Full Stack Architect</strong></p><p><strong>Location: Bangalore, Pune</strong></p>",
+      "requirements": "<p><strong>Key Responsibilities</strong></p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Act as a client-facing technical lead: engage with customers, gather requirements, present architecture and solutions, and manage expectations.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Architect, design and develop .NET-based backend systems (e.g., C#, ASP.NET Core, Web APIs) and integrate with front-end frameworks (Angular or React).</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Build and maintain front-end applications using Angular or React, covering UI component design, state management, performance optimization and cross-browser responsiveness.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design and develop microservices: define service boundaries, implement RESTful APIs, event-driven or message-based integration, containerisation, scalability, fault-tolerance.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Work with Cloud platforms (strong preference: Google Cloud Platform) — e.g., compute, storage, serverless, managed services, monitoring, deployment pipelines.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lead DevOps/CI-CD practices: infrastructure as code, automated builds, deployments, configuration management, monitoring/alerting, container orchestration.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ensure code quality, performance, security and scalability of solutions; participate in code reviews and mentor junior engineers.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Collaborate with UX/design, product management, QA and operations to deliver end-to-end solutions with a strong user experience and business focus.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create and maintain technical documentation: architecture diagrams, service contracts, deployment guides and runbooks.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Continuously evaluate emerging technologies, frameworks and tools, and drive adoption of best practices across the team.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p><p><strong>Required Skills &amp; Experience:</strong></p><p></p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8-10 years of professional software development experience (or more) in full-stack web applications.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Strong expertise in .NET stack: C#, ASP.NET Core, Web API, MVC, Entity Framework (or equivalent ORM), SQL Server or similar RDBMS.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proven experience with front-end frameworks Angular and/or React: building complex user interfaces, component libraries, state management (Redux/ngrx), responsive design, performance tuning.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Solid experience in building microservices architecture: designing service APIs, event/message-based communication, containerisation (Docker), orchestration (Kubernetes or equivalent).</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Experience working with Cloud platforms — strong preference for Google Cloud Platform (GCP). Ability to design, deploy and operate services in cloud environments (compute, storage, networking, serverless).</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DevOps proficiency: CI/CD pipelines, build &amp; release automation (Jenkins, GitLab CI, etc.), infrastructure-as-code (Terraform, Cloud Deployment Manager), monitoring/logging (Prometheus, Stackdriver, etc.).</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Excellent communication and stakeholder-management skills — ability to engage with clients, explain technical solutions to non-technical stakeholders, and manage deliverables.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Proven track record of delivering full-lifecycle solutions: requirements gathering, architecture, development, deployment, maintenance.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Strong problem-solving skills, attention to detail, high standards around code quality and software engineering practices.</p><p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Bachelor’s degree (or higher) in Computer Science, Engineering or related field (or equivalent experience).</p><p><u></u></p>",
+      "benefits": "<p>IIn addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Digital Application Development"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    },
+    "0770DA56CD": {
+      "id": 4178982,
+      "shortcode": "0770DA56CD",
+      "title": "Analyst/Consultant - Data Engineer - Azure (INDM)",
+      "accountUid": "dfa400ea-5469-4a7e-aa7f-1956427ddc51",
+      "state": "published",
+      "isInternal": false,
+      "approvalStatus": "approved",
+      "published": "2025-08-12T00:00:00.000Z",
+      "location": {
+        "city": "Pune",
+        "country": "India",
+        "countryCode": "IN",
+        "region": "Maharashtra"
+      },
+      "locations": [
+        {
+          "city": "Pune",
+          "country": "India",
+          "countryCode": "IN",
+          "hidden": false,
+          "region": "Maharashtra"
+        }
+      ],
+      "description": "<p><strong>Greetings from Blue Altair!<br>About Blue Altair:</strong></p><p>Have you thought about the role you’ll play in the AI universe of tomorrow?</p><p>At Blue Altair, we believe each employee is a star—full of diverse elements that emit brilliant light. Just as stars illuminate the night sky, our team members light up the business and technology world with their talent, creativity, and dedication.</p><p>Blue Altair is an innovative, industry-recognized consulting firm that leverages transformative technologies to enable AI and drive digital success for its clients. Founded in 2015, our services span Assessment and Strategy, Technology Implementation, and Managed Services across API Management and Integration, Data Management, Digital Application Development, and Artificial Intelligence. We are proud to exceed industry standards for project success, thanks to our expert focus on program and project management, business analysis, and quality assurance.</p><p>Working at Blue Altair means being part of a vibrant, dynamic team that drives digital change and empowers clients to embrace AI transformations. No matter the role you fill, you'll help shape the digital future and make a real difference.</p><p>So, if you're a star ready to shine even brighter, we can't wait to meet you. Join us at Blue Altair—where we're not just transforming businesses but shaping the AI universe one star at a time!</p>",
+      "requirements": "<p><strong>Title:</strong> Analyst/Consultant - Data Engineer</p><p><strong>Experience:</strong> 3-5 years</p><p><strong>Location:</strong> Pune</p><p><strong>Roles and responsibilities:</strong></p><p><strong>Data Pipeline Development:</strong></p><ul><li>Design and implement data pipelines to efficiently deliver data to the Business Intelligence (BI) team.</li><li>Create and manage Azure Data Factory (ADF) pipelines to extract data from various sources and load it into Azure Blob Storage (Bronze layer).</li><li>Develop pipelines using Azure Databricks to process and transform data from the bronze layer into the silver layer, creating intermediate tables.</li><li>Build and maintain pipelines to transform silver layer data into Gold layer fact and dimension tables, ensuring the data is ready for analysis by the BI team.</li><li>Monitor, troubleshoot, and optimize all data pipelines to ensure they run smoothly and efficiently.</li></ul><p>&nbsp;<strong>Data Integration:</strong></p><ul><li>Integrate data from diverse sources such as databases, APIs, and third-party systems.</li><li>Develop solutions for data extraction, transformation, and loading to data warehouses or data lakes.</li></ul><p><strong>Database Management:</strong></p><ul><li>Manage and optimize databases, both relational (e.g., SQL) and NoSQL (e.g., MongoDB, Cassandra).</li><li>Implement and maintain data models and database schemas.</li></ul><p><strong>Data Governance and Security:</strong></p><ul><li>Implement and enforce data governance policies and best practices.</li><li>Ensure data security and compliance with relevant regulations.</li></ul><p></p><p><strong>Requirement:<br>Technical Skills:</strong></p><ul><li> <strong>Python</strong>: Proficiency in Python for scripting and automation tasks.</li><li> <strong>PySpark</strong>: Experience with PySpark for large-scale data processing and transformations.</li><li> <strong>Azure Data Factory (ADF):</strong> Expertise in designing and managing data workflows using Azure Data Factory.</li><li> <strong>Azure Databricks:</strong> Hands-on experience with Azure Databricks for data engineering and pipeline development.</li></ul><p></p><p><strong>Soft Skills:</strong></p><ul><li>Excellent communication and teamwork abilities.</li><li>Ability to manage multiple tasks and projects simultaneously.</li><li>Proactive and self-motivated with a continuous learning mindset.</li></ul>",
+      "benefits": "<p>In addition to a competitive compensation package, we offer abundant opportunities for you to achieve, excel, and surpass even your own expectations. Aligned with Blue Altair's challenger ethos, we present the Star Elements program, inspired by the composition of stars themselves, comprising diverse elements that give unique qualities and illuminate for thousands of years. Likewise, our initiative aims to facilitate brilliance in our employees. The Star Elements program encompasses a range of benefits, supporting our team across four pivotal facets of their lives and careers. Through Star Elements, our employees can fully realize their potential, both on personal and professional fronts.</p>",
+      "department": [
+        "Data Management"
+      ],
+      "remote": false,
+      "workplace": "on_site"
+    }
+  }
+}

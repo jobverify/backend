@@ -112,7 +112,8 @@ test('the Sattva internship body receives bounded inference despite numbers and 
   assert.ok(server.requests.every(request => request.messages.at(-1).content.length <= 900));
   assert.ok(server.requests.some(request => /25 countries and 5 continents/.test(request.messages.at(-1).content)));
   assert.ok(server.requests.some(request => /no story|not just/.test(request.messages.at(-1).content)));
-  assert.equal(response.value.parts.map(part => part.source).join(''), source);
+  // Source spans use LF even when Git checks this text fixture out with CRLF.
+  assert.equal(response.value.parts.map(part => part.source).join(''), source.replace(/\r\n?/g, '\n'));
   assert.match(checked.description, /25 countries and 5 continents/);
   assert.match(checked.description, /no story should go unheard/);
   assert.match(checked.description, /www\.sattva\.co\.in/);

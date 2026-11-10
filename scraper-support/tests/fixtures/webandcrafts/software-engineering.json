@@ -1,0 +1,97 @@
+{
+  "status": true,
+  "message": "success",
+  "results": {
+    "total_records": 2,
+    "records_filtered_count": 2,
+    "current_page": 1,
+    "total_page_count": 1,
+    "item_per_page": 50,
+    "data": [
+      {
+        "id": 64,
+        "title": "Software Engineer - React",
+        "wac_pro_job_dept": {
+          "id": 11,
+          "category_name": "Software Engineering",
+          "sequence": 9,
+          "total_openings": 2,
+          "is_active": true,
+          "total_applicants": 383
+        },
+        "department_id": {
+          "id": 21,
+          "name": "React"
+        },
+        "designation": 283,
+        "designation_data": {
+          "id": 283,
+          "name": "Software Engineer"
+        },
+        "job_type": "On-Site",
+        "about": "<p>We are looking for a skilled Frontend Developer with strong expertise in React.js and Next.js.</p>",
+        "responsibilities": "<ul><li>Design, develop, and optimize advanced front-end solutions using React.js and Next.js.</li><li>Collaborate with backend teams to design and integrate APIs.</li></ul>",
+        "requirements": "<ul><li>4+ years of experience in ReactJS.</li><li>Experience with micro frontends or large-scale React applications.</li></ul>",
+        "join_team_content": "<p>Thank you for your keen interest in becoming a part of Webandcrafts.</p>",
+        "technology": [],
+        "slug": "software-engineer-react",
+        "experience_range_from": 4,
+        "experience_range_to": null,
+        "location": "koratty",
+        "is_incremental": false,
+        "pre_requirements": "",
+        "benefits": "",
+        "number_of_openings": 1,
+        "pace": "Medium",
+        "is_active": true,
+        "requisition_id": "WAC-RACT-SOF-0645",
+        "formatted_experience_range": "4+ years",
+        "created_at": "2026-03-24T12:20:14.102695Z",
+        "updated_at": "2026-03-25T01:23:23.671585Z",
+        "total_applicants": 0
+      },
+      {
+        "id": 68,
+        "title": "Shopify Team Lead",
+        "wac_pro_job_dept": {
+          "id": 11,
+          "category_name": "Software Engineering",
+          "sequence": 9,
+          "total_openings": 2,
+          "is_active": true,
+          "total_applicants": 383
+        },
+        "department_id": {
+          "id": 35,
+          "name": "Shopify"
+        },
+        "designation": 342,
+        "designation_data": {
+          "id": 342,
+          "name": "Shopify Team Lead"
+        },
+        "job_type": "On-Site",
+        "about": "<p>As an Experienced Shopify Developer at WAC, you will lead the Shopify team.</p>",
+        "responsibilities": "<ul><li>Collaborate with design and marketing teams.</li><li>Provide technical leadership and mentorship to junior developers.</li></ul>",
+        "requirements": "<ul><li>4+ years of hands-on experience with Shopify development.</li><li>Proficiency in HTML, CSS, JavaScript, and liquid templating language.</li></ul>",
+        "join_team_content": "<p>Thank you for your keen interest in becoming a part of Webandcrafts.</p>",
+        "technology": [],
+        "slug": "shopify-team-lead",
+        "experience_range_from": 5,
+        "experience_range_to": null,
+        "location": "koratty",
+        "is_incremental": false,
+        "pre_requirements": "",
+        "benefits": "",
+        "number_of_openings": 1,
+        "pace": "Medium",
+        "is_active": true,
+        "requisition_id": "WAC-SHOP-SHO-1803",
+        "formatted_experience_range": "5+ years",
+        "created_at": "2026-03-24T12:40:13.816175Z",
+        "updated_at": "2026-03-24T12:40:13.816199Z",
+        "total_applicants": 0
+      }
+    ]
+  }
+}

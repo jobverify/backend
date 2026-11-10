@@ -1,0 +1,1251 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch-007",
+  "checkedAt": "2026-10-20T19:05:33.582Z",
+  "scope": {
+    "selection": "Current getScraperCatalog entries missing both companyCareerPage and companyDomain, alphabetically strictly after armorcode; exclude all source IDs in batches001-006 independently of current metadata.",
+    "firstInvestigatedSource": "arnahealth",
+    "lastInvestigatedSource": "astrasecurity",
+    "nextBatchInstruction": "Select unresolved catalog sources alphabetically strictly after astrasecurity, excluding every previously researched batch source ID."
+  },
+  "status": "research-complete-discovery-only",
+  "networkLimitationReference": "Known direct HTTPS network outage documented in prior discovery batches; no repeat Node fetch or escalation attempted.",
+  "directNetworkRequestsThisBatch": 0,
+  "safety": {
+    "browserUsed": false,
+    "databaseReads": false,
+    "databaseWrites": false,
+    "providerOrSourceEdits": false,
+    "productionPublication": false
+  },
+  "summary": {
+    "investigated": 19,
+    "officialIdentities": 19,
+    "officialCareerSurfaces": 16,
+    "indexedOfficialCareerSurfaceCurrentlyInaccessible": [
+      "ashlandglobal"
+    ],
+    "unresolvedIdentitySources": [
+      "arnahealth"
+    ],
+    "officialWindDownNotices": [
+      "artoo",
+      "ascendio"
+    ],
+    "verifiedExactVacancyBoardHandoffs": [
+      "asahikasei",
+      "aspentechnology",
+      "assembled",
+      "assemblyai"
+    ],
+    "verifiedATSAccountHandoffs": [
+      "arrowelectronics",
+      "arup"
+    ],
+    "verifiedRegistrationHandoffs": [
+      "asics"
+    ],
+    "verifiedVendorWithoutCompanyToken": [
+      "assurant",
+      "astellaspharma"
+    ],
+    "runtimeQualified": 0,
+    "runtimeCountsKnown": false
+  },
+  "recommendations": {
+    "currentIndiaDiscoveryLeads": [
+      "arup",
+      "asml",
+      "asmlholding",
+      "assurant",
+      "astellaspharma",
+      "astrallimited"
+    ],
+    "indexedIndiaLeadsRequiringNativeRecheck": [
+      "aspentechnology",
+      "astrasecurity"
+    ],
+    "conflictingIndiaEvidenceRequiringRecheck": [
+      "arrowelectronics",
+      "asml",
+      "asmlholding"
+    ],
+    "canonicalAliasCandidates": [
+      {
+        "sources": [
+          "asml",
+          "asmlholding"
+        ],
+        "canonicalSourceCandidate": "asml",
+        "reason": "Current ASML Holding NV corporate shareholder page links to the same ASML careers surface; maintain legal-employer distinctions and avoid double-counting the group board."
+      }
+    ],
+    "unpromotedAtsCandidates": [
+      "artafinance",
+      "ashlandglobal",
+      "astrasecurity"
+    ],
+    "scopeRisks": [
+      "Asahi Group Holdings beverage group is unrelated to Asahi Kasei.",
+      "ASICS career registration is a talent pool, not a vacancy.",
+      "ASML Gujarat role body conflicts with Singapore header metadata.",
+      "Astral group delegates multiple division portals; only Pipes role was inspected.",
+      "Astellas explicitly separates Bengaluru from Mumbai recruiting geographies.",
+      "Generic Remote roles at AssemblyAI do not establish India eligibility."
+    ]
+  },
+  "rules": [
+    "Unknown runtime counts stay null. Discovery search snippets and public page cards are not successful native extraction evidence.",
+    "An opaque ATS token is promoted only from an observed employer-owned handoff; directory names, similar brands and third-party indices do not establish the token.",
+    "An account/registration handoff is scoped as such and is not an enumerated vacancy inventory.",
+    "Current official wind-down notices and individually filled roles are recorded without inferring a verified zero for an entire source.",
+    "Every selected source ID is compared with batches001-006, independently of later metadata hydration."
+  ],
+  "records": [
+    {
+      "source": "arnahealth",
+      "companyName": "Arna Health",
+      "officialURL": null,
+      "careersURL": null,
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "ambiguous-employer-identity-unresolved",
+      "officialIdentityEvidenceStatus": null,
+      "officialCareerSurfaceVerified": false,
+      "officialMatchedLinks": [],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "No independent official company identity matching the exact catalog name Arna Health was found in bounded searches. Arna Pharma, Arna Home Health entities, Arna Softech, ArnaAI and health-related names are not proven aliases. Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "All official URLs, careers URL and ATS fields remain null; no domain or tenant was guessed.",
+        "No public job opening state can be inferred from this unresolved identity."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-01.json",
+        "proof/batch-007-search-02.json",
+        "proof/batch-007-search-07.json",
+        "proof/batch-007-search-08.json",
+        "proof/batch-007-search-17.json"
+      ]
+    },
+    {
+      "source": "arrowelectronics",
+      "companyName": "Arrow Electronics",
+      "officialURL": "https://www.arrow.com/",
+      "careersURL": "https://careers.arrow.com/us/en",
+      "ats": {
+        "kind": "workday",
+        "token": "arrow",
+        "site": "AC",
+        "host": "arrow.wd1.myworkdayjobs.com",
+        "boardURL": "https://arrow.wd1.myworkdayjobs.com/en-US/AC/login",
+        "handoffScope": "Exact official Sign In account route; this is not a vacancy-list API or a completeness claim."
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://careers.arrow.com/us/en",
+          "to": "https://arrow.wd1.myworkdayjobs.com/en-US/AC/login",
+          "evidence": "Current Sign In link8 clicked, turn413view0."
+        },
+        {
+          "from": "https://careers.arrow.com/us/en",
+          "to": "https://careers.arrow.com/us/en/apac",
+          "evidence": "Current Asia Pacific link19 clicked, turn437view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "Senior Business Analytics & Reporting Specialist",
+          "location": "Bangalore, Karnataka, India",
+          "url": "https://careers.arrow.com/us/en/job/R247728/Senior-Business-Analytics-Reporting-Specialist",
+          "jobId": "R247728",
+          "evidenceStatus": "official-page-explicitly-filled",
+          "freshnessNote": "Indexed Oct6 posting resolves to an explicit filled notice, turn448view0."
+        },
+        {
+          "title": "QA Senior Automation Engineer",
+          "location": "Ahmedabad, Gujarat, India",
+          "url": "https://careers.arrow.com/us/en/job/R249239/QA-Senior-Automation-Engineer",
+          "jobId": "R249239",
+          "evidenceStatus": "official-page-explicitly-filled",
+          "freshnessNote": "Indexed Oct12 posting resolves to an explicit filled notice, turn451view0."
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Phenom-hosted branded career pages are observed; Workday tenant/site is established through the exact login handoff only.",
+        "Neither the two filled roles nor an unrelated ArrowElectronics2 SmartRecruiters search result proves a complete India zero."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-01.json",
+        "proof/batch-007-search-11.json",
+        "proof/batch-007-search-13.json",
+        "proof/batch-007-open-01.json",
+        "proof/batch-007-open-29.json",
+        "proof/batch-007-open-31.json",
+        "proof/batch-007-click-01.json",
+        "proof/batch-007-click-15.json"
+      ]
+    },
+    {
+      "source": "artafinance",
+      "companyName": "Arta Finance",
+      "officialURL": "https://artafinance.com/",
+      "careersURL": "https://artafinance.com/careers",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Current corporate careers page is accessible, but no external job-board href is exposed by web text extraction.",
+        "An external hiring-index result suggests Ashby/artafinance. It remains an unverified candidate because no current company-owned handoff was observed."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-01.json",
+        "proof/batch-007-search-09.json",
+        "proof/batch-007-search-12.json",
+        "proof/batch-007-search-13.json",
+        "proof/batch-007-search-15.json",
+        "proof/batch-007-open-02.json"
+      ]
+    },
+    {
+      "source": "artoo",
+      "companyName": "Artoo",
+      "officialURL": "https://artoo.com/",
+      "careersURL": null,
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-wind-down-notice-no-current-career-surface",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": false,
+      "officialMatchedLinks": [
+        {
+          "from": "https://artoo.com/",
+          "to": "https://artoo.com/blog/",
+          "evidence": "Homepage's a wonderful decade link9; target fetch times out, turn461view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Current official homepage says goodbye after its 2010-2020 decade. An official indexed founder article says the decision to wind down was made in mid-2019. No current recruiting surface verified. Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Identity is the Bangalore MSME-lending SaaS company, supported by its own homepage and official company LinkedIn. Artoo Robotics and Artoo travel brands are unrelated.",
+        "The current homepage's wind-down evidence is not a native extraction or a verified zero."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-01.json",
+        "proof/batch-007-search-02.json",
+        "proof/batch-007-open-03.json",
+        "proof/batch-007-click-27.json"
+      ]
+    },
+    {
+      "source": "arup",
+      "companyName": "Arup",
+      "officialURL": "https://www.arup.com/",
+      "careersURL": "https://www.arup.com/careers/",
+      "ats": {
+        "kind": "taleo",
+        "token": "arupjobs",
+        "host": "arupjobs.taleo.net",
+        "boardURL": "https://jobs.arup.com/",
+        "accountURL": "https://arupjobs.taleo.net/careersection/profile.ftl?lang=en",
+        "handoffScope": "Official branded job portal plus exact Taleo profile tenant; profile fetch returns500, no careersection vacancy-site ID inferred."
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.arup.com/careers/",
+          "to": "https://jobs.arup.com/jobs/search/",
+          "evidence": "Search jobs link22 clicked;403 target, turn411view0. Portal root separately accessible."
+        },
+        {
+          "from": "https://jobs.arup.com/",
+          "to": "https://arupjobs.taleo.net/careersection/profile.ftl?lang=en",
+          "evidence": "Go to Profile link45 clicked; exact tenant visible despite500, turn428view0."
+        },
+        {
+          "from": "https://jobs.arup.com/page/all-jobs-in-india-468",
+          "to": "https://jobs.arup.com/jobs/transport-planner-rail-34294",
+          "evidence": "Current India listing link13 opens described Bangalore role, turn446view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "Transport Planner - Rail",
+          "location": "Bangalore, India",
+          "url": "https://jobs.arup.com/jobs/transport-planner-rail-34294",
+          "jobId": "BAN00007V",
+          "evidenceStatus": "current-official-role-detail-observed"
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "India listing also renders Mumbai and Delhi opportunities; no listing count or full enumeration is qualified."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-03.json",
+        "proof/batch-007-search-10.json",
+        "proof/batch-007-open-04.json",
+        "proof/batch-007-open-21.json",
+        "proof/batch-007-open-22.json",
+        "proof/batch-007-click-02.json",
+        "proof/batch-007-click-14.json",
+        "proof/batch-007-click-22.json"
+      ]
+    },
+    {
+      "source": "asahigroupholdings",
+      "companyName": "Asahi Group Holdings",
+      "officialURL": "https://www.asahigroup-holdings.com/en/",
+      "careersURL": "https://www.asahigroup-holdings.com/en/careers/",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.asahigroup-holdings.com/en/careers/",
+          "to": "https://www.linkedin.com/company/asahigroup-holdings/",
+          "evidence": "Current Jobs at Asahi Group Holdings link107 is the official LinkedIn company page, turn412view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Corporate page delegates detailed regional employment to Asahi Europe & International and Asahi Beverages; no one group-wide ATS token is asserted.",
+        "Asahi Group Holdings, the beverage group, is not Asahi Kasei. No India role was independently observed."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-03.json",
+        "proof/batch-007-open-05.json",
+        "proof/batch-007-click-03.json"
+      ]
+    },
+    {
+      "source": "asahikasei",
+      "companyName": "Asahi Kasei",
+      "officialURL": "https://www.asahi-kasei.com/",
+      "careersURL": "https://www.asahi-kasei-jobs.com/top.html",
+      "ats": {
+        "kind": "hrmos",
+        "token": "asahi-kasei",
+        "host": "hrmos.co",
+        "boardURL": "https://hrmos.co/pages/asahi-kasei",
+        "handoffScope": "Japanese group mid-career recruitment; not all global subsidiary openings and no India hiring conclusion."
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.asahi-kasei.co.jp/asahi/jp/",
+          "to": "https://www.asahi-kasei.com/jp",
+          "evidence": "Recruitment footer Corporate site link6 clicked; observed corporate redirect, turn443view0."
+        },
+        {
+          "from": "https://www.asahi-kasei.com/jp",
+          "to": "https://www.asahi-kasei-jobs.com/top.html",
+          "evidence": "Current corporate recruitment-site link37 clicked, turn457view0."
+        },
+        {
+          "from": "https://www.asahi-kasei-jobs.com/",
+          "to": "https://hrmos.co/pages/asahi-kasei",
+          "evidence": "Current job-list/entry link20 clicked, turn444view0; analytics query removed from canonical destination."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Exact HRMOS token is observed from official recruitment link, not inferred from the company name.",
+        "The plastics, Europe and therapeutics employers have separate regional careers surfaces; no related group inventory is automatically attributed to this source."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-03.json",
+        "proof/batch-007-search-09.json",
+        "proof/batch-007-search-11.json",
+        "proof/batch-007-search-14.json",
+        "proof/batch-007-open-06.json",
+        "proof/batch-007-open-26.json",
+        "proof/batch-007-click-19.json",
+        "proof/batch-007-click-20.json",
+        "proof/batch-007-click-23.json"
+      ]
+    },
+    {
+      "source": "ascendio",
+      "companyName": "Ascend.io",
+      "officialURL": "https://www.ascend.io/",
+      "careersURL": null,
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-winding-down-notice-no-current-career-surface",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": false,
+      "officialMatchedLinks": [],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Current official homepage says Ascend is winding down operations and replaces prior corporate navigation with that notice. Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [
+        {
+          "name": "Ascension Labs, Inc",
+          "relationship": "legal entity named in current official footer",
+          "source": "https://www.ascend.io/"
+        }
+      ],
+      "notes": [
+        "Old company LinkedIn career posts and ascend.io/careers mentions are historical discovery only; no current ATS handoff was verified.",
+        "Do not substitute unrelated Ascend companies or turn the notice into an extracted zero."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-03.json",
+        "proof/batch-007-search-07.json",
+        "proof/batch-007-open-07.json"
+      ]
+    },
+    {
+      "source": "ashlandglobal",
+      "companyName": "Ashland Global",
+      "officialURL": "https://www.ashland.com/",
+      "careersURL": "https://www.ashland.com/about/careers",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-indexed-career-surface-current-fetch-inaccessible",
+      "officialIdentityEvidenceStatus": "indexed-official-company-pages",
+      "officialCareerSurfaceVerified": false,
+      "officialMatchedLinks": [],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Ashland's primary and origin careers URLs time out or return502 in this web client; indexed official careers/hiring-process pages establish the discovery URL, but no current page-to-native handoff was inspectable. Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Official indexed pages are on ashland.com and origin-www.ashland.com. The legacy catalog label Ashland Global is preserved.",
+        "A current indexed ashland.wd12.myworkdayjobs.com/ashlandcareers1 role is only an unpromoted ATS candidate; no company-owned careers handoff was observed.",
+        "An official document's generic Workday HR use is not recruiting-board proof."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-04.json",
+        "proof/batch-007-search-07.json",
+        "proof/batch-007-search-09.json",
+        "proof/batch-007-search-14.json",
+        "proof/batch-007-search-15.json",
+        "proof/batch-007-open-08.json",
+        "proof/batch-007-open-19.json",
+        "proof/batch-007-open-27.json",
+        "proof/batch-007-open-32.json"
+      ]
+    },
+    {
+      "source": "asics",
+      "companyName": "Asics",
+      "officialURL": "https://corp.asics.com/en",
+      "careersURL": "https://corp.asics.com/en/career",
+      "ats": {
+        "kind": "successfactors",
+        "token": "S003910448P",
+        "host": "career5.successfactors.eu",
+        "boardURL": "https://career5.successfactors.eu/sfcareer/jobreqcareerpvt?company=S003910448P&jobId=35425",
+        "handoffScope": "ASICS Corporation career-registration requisition35425, not a live vacancy list or India role. Public share-token query is redacted from proof."
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://corp.asics.com/en/career",
+          "to": "https://corp.asics.com/en/career/job_and_people/midcareer",
+          "evidence": "Experienced Professionals link39 clicked, turn409view0."
+        },
+        {
+          "from": "https://corp.asics.com/en/career/job_and_people/midcareer",
+          "to": "https://career5.successfactors.eu/sfcareer/jobreqcareerpvt?company=S003910448P&jobId=35425",
+          "evidence": "Career Registration link50 clicked; exact company token, requisition and ASICS Corporation observed, turn421view0. Public st token removed here."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "This is explicitly registration for consideration when matching future roles arise; it is not an India job opening.",
+        "The separate current-position LinkedIn link points to an admin/posted-jobs route blocked by robots; no global or regional inventory inferred."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-04.json",
+        "proof/batch-007-open-10.json",
+        "proof/batch-007-click-04.json",
+        "proof/batch-007-click-10.json",
+        "proof/batch-007-click-24.json"
+      ]
+    },
+    {
+      "source": "asml",
+      "companyName": "ASML",
+      "officialURL": "https://www.asml.com/",
+      "careersURL": "https://www.asml.com/en/careers",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.asml.com/en/careers",
+          "to": "https://www.asml.com/en/careers/find-your-job",
+          "evidence": "Search jobs link23 clicked, turn410view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "CS Site Manager (Based in Gujarat, India)",
+          "location": "Gujarat, Dholera, India; header metadata says Singapore, Singapore",
+          "url": "https://www.asml.com/en/careers/find-your-job/cs-site-manager-based-in-gujarat-india-j00344213",
+          "jobId": "J-00344213",
+          "evidenceStatus": "current-official-role-body-observed",
+          "freshnessNote": "Body explicitly stations the role in Gujarat and describes establishing ASML's first India site; header location is Singapore. Country attribution requires resolving this conflict during extraction."
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [
+        {
+          "source": "asmlholding",
+          "relationship": "same corporate group and same official careers surface",
+          "canonicalSourceCandidate": "asml",
+          "careersURL": "https://www.asml.com/en/careers",
+          "reviewOnly": true
+        }
+      ],
+      "notes": [
+        "No exact opaque native ATS handoff is exposed in this web extraction; vendor/token remain null despite historical .workday directory.",
+        "Group careers scope does not establish ASML Holding NV as legal employer of every listed role.",
+        "ASML Holding shareholder page links to this exact careers URL; review one canonical inventory to avoid duplication."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-04.json",
+        "proof/batch-007-search-12.json",
+        "proof/batch-007-search-14.json",
+        "proof/batch-007-open-11.json",
+        "proof/batch-007-open-23.json",
+        "proof/batch-007-open-34.json",
+        "proof/batch-007-click-05.json",
+        "proof/batch-007-click-28.json"
+      ]
+    },
+    {
+      "source": "asmlholding",
+      "companyName": "ASML Holding",
+      "officialURL": "https://www.asml.com/",
+      "careersURL": "https://www.asml.com/en/careers",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.asml.com/en/company/governance/shareholders/shareholder-meetings/agm-2026",
+          "to": "https://www.asml.com/en/careers",
+          "evidence": "Current official page explicitly names ASML Holding NV; Careers overview link22 opens same group career surface, turn459view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "CS Site Manager (Based in Gujarat, India)",
+          "location": "Gujarat, Dholera, India; header metadata says Singapore, Singapore",
+          "url": "https://www.asml.com/en/careers/find-your-job/cs-site-manager-based-in-gujarat-india-j00344213",
+          "jobId": "J-00344213",
+          "evidenceStatus": "current-official-role-body-observed",
+          "freshnessNote": "Body explicitly stations the role in Gujarat and describes establishing ASML's first India site; header location is Singapore. Country attribution requires resolving this conflict during extraction."
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [
+        {
+          "source": "asml",
+          "relationship": "same official group recruiting surface; holding-company name is established by the current corporate shareholder page",
+          "canonicalSourceCandidate": "asml",
+          "reviewOnly": true
+        }
+      ],
+      "notes": [
+        "This catalog identity is the ASML Holding group, not a separate vacancy inventory. Preserve one canonical recruitment scope pending integration review.",
+        "Do not assign all ASML subsidiary positions to the holding company as a legal hiring employer.",
+        "The same Gujarat-body/Singapore-header location conflict applies to the shared India lead."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-04.json",
+        "proof/batch-007-search-12.json",
+        "proof/batch-007-search-14.json",
+        "proof/batch-007-open-11.json",
+        "proof/batch-007-open-23.json",
+        "proof/batch-007-open-30.json",
+        "proof/batch-007-open-34.json",
+        "proof/batch-007-click-05.json",
+        "proof/batch-007-click-28.json"
+      ]
+    },
+    {
+      "source": "aspentechnology",
+      "companyName": "Aspen Technology",
+      "officialURL": "https://www.aspentech.com/",
+      "careersURL": "https://www.aspentech.com/en/careers",
+      "ats": {
+        "kind": "workday",
+        "token": "aspentech",
+        "site": "aspentech",
+        "host": "aspentech.wd5.myworkdayjobs.com",
+        "boardURL": "https://aspentech.wd5.myworkdayjobs.com/aspentech"
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.aspentech.com/en/careers",
+          "to": "https://aspentech.wd5.myworkdayjobs.com/aspentech",
+          "evidence": "Join Us link105 clicked, turn414view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "Principal Software Developer",
+          "location": "Pune (EMR)",
+          "url": "https://aspentech.wd5.myworkdayjobs.com/aspentech/job/Principal-Software-Developer_R9325",
+          "jobId": "R9325",
+          "evidenceStatus": "indexed-native-role-not-rendered-in-fresh-open",
+          "freshnessNote": "Official linked Workday tenant has a recent indexed Pune role. Fresh detail open returns zero text lines; description, openness and detail health not validated."
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [
+        {
+          "name": "AspenTech",
+          "relationship": "current official brand for Aspen Technology",
+          "source": "https://www.aspentech.com/en/careers"
+        }
+      ],
+      "notes": [
+        "Exclude unrelated aspentech.in and aspentechaz.net companies from this identity.",
+        "Pune role is a candidate for a native audit, not a verified successful extraction."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-search-12.json",
+        "proof/batch-007-search-14.json",
+        "proof/batch-007-search-16.json",
+        "proof/batch-007-open-12.json",
+        "proof/batch-007-open-33.json",
+        "proof/batch-007-click-06.json"
+      ]
+    },
+    {
+      "source": "assembled",
+      "companyName": "Assembled",
+      "officialURL": "https://www.assembled.com/",
+      "careersURL": "https://www.assembled.com/careers-at-assembled",
+      "ats": {
+        "kind": "ashby",
+        "token": "assembledhq",
+        "host": "jobs.ashbyhq.com",
+        "boardURL": "https://jobs.ashbyhq.com/assembledhq"
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.assembled.com/",
+          "to": "https://www.assembled.com/careers-at-assembled",
+          "evidence": "Current company Careers link26 clicked, turn415view0."
+        },
+        {
+          "from": "https://www.assembled.com/careers-at-assembled",
+          "to": "https://jobs.ashbyhq.com/assembledhq",
+          "evidence": "See all roles link55 clicked, turn420view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Exact Ashby token is assembledhq, observed through corporate navigation rather than guessed from the source name.",
+        "Ashby renders a JavaScript-required message in this client. No current India eligibility or job count inferred.",
+        "Do not merge unrelated Assembly, AssemblyAI or Assured employers."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-open-13.json",
+        "proof/batch-007-click-07.json",
+        "proof/batch-007-click-11.json"
+      ]
+    },
+    {
+      "source": "assemblyai",
+      "companyName": "AssemblyAI",
+      "officialURL": "https://www.assemblyai.com/",
+      "careersURL": "https://www.assemblyai.com/careers",
+      "ats": {
+        "kind": "greenhouse",
+        "token": "assemblyai",
+        "host": "job-boards.greenhouse.io",
+        "boardURL": "https://job-boards.greenhouse.io/assemblyai"
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.assemblyai.com/careers",
+          "to": "https://job-boards.greenhouse.io/assemblyai",
+          "evidence": "View all roles on Greenhouse link86 clicked, turn416view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Official career page and board show location-limited and some generically Remote positions. A remote-first company statement does not establish that a specific role accepts India.",
+        "No current India-specific vacancy was independently verified; this is unknown, not a verified zero."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-open-14.json",
+        "proof/batch-007-click-08.json"
+      ]
+    },
+    {
+      "source": "assurant",
+      "companyName": "Assurant",
+      "officialURL": "https://www.assurant.com/",
+      "careersURL": "https://jobs.assurant.com/en/",
+      "ats": {
+        "kind": "workday",
+        "token": null,
+        "boardURL": "https://jobs.assurant.com/en/",
+        "handoffScope": "Official FAQ states offers use Workday; career site footer identifies Beamery. No exact opaque Workday tenant/handoff was exposed."
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://jobs.assurant.com/en/locations/india/",
+          "to": "https://jobs.assurant.com/en/jobs/job/it-auditor-4-years-in-it-audit-sox-cloud-platform-and-infra-internal-audit-bengaluru-r-115921/",
+          "evidence": "Current India role link28 clicked; detail Cache miss, turn445view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "IT Auditor (4+ Years in IT audit + SOX + Cloud platform and infra + internal Audit)",
+          "location": "Bengaluru, Karnataka, India",
+          "url": "https://jobs.assurant.com/en/jobs/job/it-auditor-4-years-in-it-audit-sox-cloud-platform-and-infra-internal-audit-bengaluru-r-115921/",
+          "jobId": "R-115921",
+          "evidenceStatus": "current-official-India-listing-detail-inaccessible"
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Official India page also lists finance-system and software-engineer opportunities. No displayed total or regional role count is a native runtime count.",
+        "Workday vendor naming in FAQ does not authorize a guessed tenant; Beamery is the observed career-site presentation vendor."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-05.json",
+        "proof/batch-007-search-10.json",
+        "proof/batch-007-open-15.json",
+        "proof/batch-007-open-24.json",
+        "proof/batch-007-click-21.json"
+      ]
+    },
+    {
+      "source": "astellaspharma",
+      "companyName": "Astellas Pharma",
+      "officialURL": "https://www.astellas.com/en",
+      "careersURL": "https://www.astellas.com/en/careers",
+      "ats": {
+        "kind": "successfactors",
+        "token": null,
+        "host": "careers.astellas.com",
+        "boardURL": "https://careers.astellas.com/",
+        "handoffScope": "Official branded career root serves assets from rmkcdn.successfactors.com; no opaque company token exposed. Corporate geography-selector handoff remains unexposed."
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://careers.astellas.com/job/Mumbai-Head,-Market-Access-&-Government-Affairs,-India-MH-400069/1433303100/",
+          "to": "https://careers.astellas.com/talentcommunity/apply/1433303100/?locale=en_GB",
+          "evidence": "Current role Apply now link4 clicked; Cache miss, turn442view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "Head, Market Access & Government Affairs, India",
+          "location": "Mumbai, Maharashtra, India",
+          "url": "https://careers.astellas.com/job/Mumbai-Head,-Market-Access-&-Government-Affairs,-India-MH-400069/1433303100/",
+          "jobId": "1433303100",
+          "evidenceStatus": "current-official-role-description-observed",
+          "freshnessNote": "Official role dates24Sept2026 and explicitly requires on-site Mumbai; application fetch unavailable."
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Corporate careers page explicitly separates India Bengaluru from Asia including India Mumbai. Do not assume they share one native board or count all regions together.",
+        "The first-party careers.astellas.com role is independently observed; the corporate country selector is not exposed as an inspectable href in web text.",
+        "Current first-party career root explicitly loads SuccessFactors CDN content, turn462view0. Vendor is observed; company token is not inferred."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-06.json",
+        "proof/batch-007-search-10.json",
+        "proof/batch-007-open-16.json",
+        "proof/batch-007-open-25.json",
+        "proof/batch-007-click-18.json",
+        "proof/batch-007-open-35.json",
+        "proof/batch-007-click-29.json"
+      ]
+    },
+    {
+      "source": "astrallimited",
+      "companyName": "Astral Limited",
+      "officialURL": "https://www.astralltd.com/",
+      "careersURL": "https://www.astralltd.com/current-openings/",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.astralltd.com/current-openings/",
+          "to": "https://www.astralpipes.com/careers/",
+          "evidence": "Astral Pipes and Tanks Apply Here link23 clicked; observed redirect, turn422view0."
+        },
+        {
+          "from": "https://www.astralpipes.com/careers/",
+          "to": "https://www.astralpipes.com/all-opening/",
+          "evidence": "View All Openings link61 clicked, turn455view0."
+        },
+        {
+          "from": "https://www.astralpipes.com/all-opening/",
+          "to": "https://www.astralpipes.com/allopenings/senior-assistant/",
+          "evidence": "Senior Assistant Apply now link68 opens first-party application form, turn460view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [
+        {
+          "title": "Senior Assistant — Marketing (Projects)",
+          "location": "Ahmednagar, Maharashtra, India",
+          "url": "https://www.astralpipes.com/allopenings/senior-assistant/",
+          "jobId": null,
+          "evidenceStatus": "current-official-division-listing-and-application-form-observed",
+          "freshnessNote": "Listing includes sales/project responsibilities and a first-party resume form but no posting date. Detail health/freshness policy must be checked before qualification."
+        }
+      ],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Group careers page delegates separate Pipes, Adhesives, Paints and Bathware surfaces. The observed role is Astral Pipes scope only; other divisions were not enumerated.",
+        "No external ATS vendor/token is established; do not guess Workday from the catalog directory suffix."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-06.json",
+        "proof/batch-007-open-17.json",
+        "proof/batch-007-click-12.json",
+        "proof/batch-007-click-25.json",
+        "proof/batch-007-click-26.json"
+      ]
+    },
+    {
+      "source": "astrasecurity",
+      "companyName": "Astra Security",
+      "officialURL": "https://www.getastra.com/",
+      "careersURL": "https://www.getastra.com/team-and-culture",
+      "ats": {
+        "kind": null,
+        "token": null,
+        "boardURL": null
+      },
+      "checkedAt": "2026-10-20T19:05:33.582Z",
+      "disposition": "official-surface-verified-discovery-only",
+      "officialIdentityEvidenceStatus": "current-official-page",
+      "officialCareerSurfaceVerified": true,
+      "officialMatchedLinks": [
+        {
+          "from": "https://www.getastra.com/team-and-culture",
+          "to": "https://jobs.getastra.com/jobs/Careers",
+          "evidence": "View open positions link0 clicked, turn408view0."
+        }
+      ],
+      "currentExtraction": {
+        "status": "not-run-discovery-only",
+        "verifiedPublicJobCount": null,
+        "verifiedIndiaJobCount": null,
+        "runtimeQualified": false
+      },
+      "observedIndiaRoles": [],
+      "blockedReason": "Discovery only: no runtime extraction, completeness gate, native detail-health check or production publication validation was run; runtime counts remain unknown.",
+      "aliases": [],
+      "notes": [
+        "Identity is the getastra.com cybersecurity brand. Physical-security employers astrasec.com, astrasecuritysystems.com, astrasecurity.rs and Astra space company are unrelated.",
+        "Current own-domain jobs portal exposes only inputs in this web client. Indexed official portal snippets mention India jobs, without independently inspected role details; no count or current extraction qualified.",
+        "Third-party Zoho Recruit attributions are unverified vendor candidates; exact vendor and opaque org token remain null."
+      ],
+      "proofFiles": [
+        "proof/batch-007-search-06.json",
+        "proof/batch-007-search-09.json",
+        "proof/batch-007-search-12.json",
+        "proof/batch-007-search-13.json",
+        "proof/batch-007-search-16.json",
+        "proof/batch-007-search-17.json",
+        "proof/batch-007-open-18.json",
+        "proof/batch-007-open-28.json",
+        "proof/batch-007-click-09.json"
+      ]
+    }
+  ],
+  "proofManifest": [
+    "proof/batch-007-selection.json",
+    "proof/batch-007-search-01.json",
+    "proof/batch-007-search-02.json",
+    "proof/batch-007-search-07.json",
+    "proof/batch-007-search-08.json",
+    "proof/batch-007-search-17.json",
+    "proof/batch-007-search-11.json",
+    "proof/batch-007-search-13.json",
+    "proof/batch-007-open-01.json",
+    "proof/batch-007-open-29.json",
+    "proof/batch-007-open-31.json",
+    "proof/batch-007-click-01.json",
+    "proof/batch-007-click-15.json",
+    "proof/batch-007-search-09.json",
+    "proof/batch-007-search-12.json",
+    "proof/batch-007-search-15.json",
+    "proof/batch-007-open-02.json",
+    "proof/batch-007-open-03.json",
+    "proof/batch-007-click-27.json",
+    "proof/batch-007-search-03.json",
+    "proof/batch-007-search-10.json",
+    "proof/batch-007-open-04.json",
+    "proof/batch-007-open-21.json",
+    "proof/batch-007-open-22.json",
+    "proof/batch-007-click-02.json",
+    "proof/batch-007-click-14.json",
+    "proof/batch-007-click-22.json",
+    "proof/batch-007-open-05.json",
+    "proof/batch-007-click-03.json",
+    "proof/batch-007-search-14.json",
+    "proof/batch-007-open-06.json",
+    "proof/batch-007-open-26.json",
+    "proof/batch-007-click-19.json",
+    "proof/batch-007-click-20.json",
+    "proof/batch-007-click-23.json",
+    "proof/batch-007-open-07.json",
+    "proof/batch-007-search-04.json",
+    "proof/batch-007-open-08.json",
+    "proof/batch-007-open-19.json",
+    "proof/batch-007-open-27.json",
+    "proof/batch-007-open-32.json",
+    "proof/batch-007-open-09.json",
+    "proof/batch-007-open-20.json",
+    "proof/batch-007-click-13.json",
+    "proof/batch-007-click-16.json",
+    "proof/batch-007-click-17.json",
+    "proof/batch-007-open-10.json",
+    "proof/batch-007-click-04.json",
+    "proof/batch-007-click-10.json",
+    "proof/batch-007-click-24.json",
+    "proof/batch-007-open-11.json",
+    "proof/batch-007-open-23.json",
+    "proof/batch-007-open-34.json",
+    "proof/batch-007-click-05.json",
+    "proof/batch-007-click-28.json",
+    "proof/batch-007-open-30.json",
+    "proof/batch-007-search-05.json",
+    "proof/batch-007-search-16.json",
+    "proof/batch-007-open-12.json",
+    "proof/batch-007-open-33.json",
+    "proof/batch-007-click-06.json",
+    "proof/batch-007-open-13.json",
+    "proof/batch-007-click-07.json",
+    "proof/batch-007-click-11.json",
+    "proof/batch-007-open-14.json",
+    "proof/batch-007-click-08.json",
+    "proof/batch-007-open-15.json",
+    "proof/batch-007-open-24.json",
+    "proof/batch-007-click-21.json",
+    "proof/batch-007-search-06.json",
+    "proof/batch-007-open-16.json",
+    "proof/batch-007-open-25.json",
+    "proof/batch-007-click-18.json",
+    "proof/batch-007-open-35.json",
+    "proof/batch-007-click-29.json",
+    "proof/batch-007-open-17.json",
+    "proof/batch-007-click-12.json",
+    "proof/batch-007-click-25.json",
+    "proof/batch-007-click-26.json",
+    "proof/batch-007-open-18.json",
+    "proof/batch-007-open-28.json",
+    "proof/batch-007-click-09.json"
+  ],
+  "proofRedactions": [
+    {
+      "file": "proof/batch-007-search-02.json",
+      "publicURLTokenRedactions": 0,
+      "unrelatedIndividualResultsSuppressed": 1
+    },
+    {
+      "file": "proof/batch-007-search-08.json",
+      "publicURLTokenRedactions": 0,
+      "unrelatedIndividualResultsSuppressed": 1
+    },
+    {
+      "file": "proof/batch-007-search-15.json",
+      "publicURLTokenRedactions": 0,
+      "unrelatedIndividualResultsSuppressed": 12
+    },
+    {
+      "file": "proof/batch-007-click-19.json",
+      "publicURLTokenRedactions": 2,
+      "unrelatedIndividualResultsSuppressed": 0
+    },
+    {
+      "file": "proof/batch-007-click-10.json",
+      "publicURLTokenRedactions": 1,
+      "unrelatedIndividualResultsSuppressed": 0
+    }
+  ],
+  "proofIntegrity": [
+    {
+      "path": "proof/batch-007-search-10.json",
+      "sha256": "cdf366ac10e13cca3be70f1476eb182c010b27201cba704716ac4cb44df13638",
+      "bytes": 32899
+    },
+    {
+      "path": "proof/batch-007-search-04.json",
+      "sha256": "15e3bf71f8c43a45851715758bba356d95e4e1e70136d6061664a2d39480e83b",
+      "bytes": 37549
+    },
+    {
+      "path": "proof/batch-007-search-06.json",
+      "sha256": "a550e114078605f6eeb323af9282ddaf7740f99871bee919d1e3757f482d1357",
+      "bytes": 36612
+    },
+    {
+      "path": "proof/batch-007-open-16.json",
+      "sha256": "1c39942fbc3523cedf9f7f79ca7c8f6361687cb0c975e2dc771da4c0240bd46a",
+      "bytes": 18787
+    },
+    {
+      "path": "proof/batch-007-open-25.json",
+      "sha256": "9d442821c92b483d72372c2ae1bc72aeea86f59ade930c30de31f761975fd300",
+      "bytes": 17602
+    },
+    {
+      "path": "proof/batch-007-click-18.json",
+      "sha256": "31edd3415f6a230dd8a4f1a65aa7463e9f890efc7cb625ed2af8435455f93edc",
+      "bytes": 561
+    },
+    {
+      "path": "proof/batch-007-open-35.json",
+      "sha256": "e80d3c62aa303629958e7605623964549bad9ceefe9640c3964f79d50023be6a",
+      "bytes": 9576
+    },
+    {
+      "path": "proof/batch-007-click-29.json",
+      "sha256": "977764253696a4543a474a7ac215779b7a17badd3b2b4260a4187770ee5c60e5",
+      "bytes": 9555
+    }
+  ],
+  "proofValidation": {
+    "checkedAt": "2026-10-20T19:10:44.780Z",
+    "status": "passed",
+    "recordCount": 20,
+    "uniqueSourceCount": 20,
+    "sourceOrderVerified": true,
+    "matchesFrozenCatalogSelection": true,
+    "previousResearchExcludedBySourceID": true,
+    "priorResearchSources": 120,
+    "priorBatchHashReceiptsMatch": true,
+    "referencedProofCount": 82,
+    "savedProofCount": 82,
+    "allReferencedProofsExist": true,
+    "allProofFilesParse": true,
+    "proofHashesSaved": 82,
+    "officialIdentities": 19,
+    "freshCareerSurfaces": 16,
+    "allPublicRuntimeJobCountsNull": true,
+    "allIndiaRuntimeJobCountsNull": true,
+    "runtimeQualifiedRecords": 0,
+    "allMatchedLinkDestinationsRepresentedInProof": true,
+    "noUnredactedPublicUrlJWTs": true,
+    "nextCursor": "astrasecurity"
+  }
+}

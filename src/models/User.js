@@ -199,14 +199,24 @@ const UserSchema = new Schema(
   },
 );
 
-// Mongoose includes hydrated defaults in an existing document's save. A stale
-// legacy document must not write its absent-version default over a concurrent
-// password reset. Explicit increments and defaults on new accounts still save.
-UserSchema.pre('save', function preserveSessionRevocation() {
-  if (!this.isNew && this.$isDefault('sessionVersion')) this.$ignore('sessionVersion');
-  // Do not let an in-flight save of a legacy account persist a hydrated default
-  // over an administrator's concurrent Telegram access change.
-  if (!this.isNew && this.$isDefault('telegramAlertsAllowed')) this.$ignore('telegramAlertsAllowed');
+// Hydrated defaults are a read view for legacy documents. Persisting them during
+// an unrelated save can overwrite newer permissions, purchases or bookmarks.
+// Explicit modifications and defaults on new accounts still persist normally.
+UserSchema.pre('save', function preserveStoredAccountState() {
+  if (this.isNew) return;
+  const preserveDefaults = (document, schema, prefix = '') => {
+    schema.eachPath((field, type) => {
+      if (field === '_id' || field === schema.options.versionKey) return;
+      const path = `${prefix}${field}`;
+      if (this.$isDefault(path)) this.$ignore(path);
+      if (document !== this && document.$isDefault(field)) document.$ignore(field);
+      const nested = document.get(field);
+      if (type.schema && nested?.$isDefault) {
+        preserveDefaults(nested, type.schema, `${path}.`);
+      }
+    });
+  };
+  preserveDefaults(this, UserSchema);
 });
 
 UserSchema.index({ role: 1 });

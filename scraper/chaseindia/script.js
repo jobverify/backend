@@ -338,6 +338,7 @@ export const createChaseIndiaScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
   fetchText = defaultFetchText,
   fetchJson = defaultFetchJson,
+  detailConcurrency = 4,
   now = () => new Date().toISOString(),
   signal,
 } = {}) => ({
@@ -357,7 +358,7 @@ export const createChaseIndiaScraper = ({
 
     const jobs = await collectOracleRequisitionJobs({
       source: SOURCE, siteNumber: SITE_NUMBER, buildSearchUrl, buildJobDetailApiUrl,
-      extractSearchResults, extractJobDetail, maxPages, maxJobs, signal, fetchJson,
+      extractSearchResults, extractJobDetail, maxPages, maxJobs, signal, fetchJson, detailConcurrency,
     })
     for (const job of jobs) Object.assign(job, {
       scrapedAt: now(), companyCareerPage: CORPORATE_CAREERS_URL,

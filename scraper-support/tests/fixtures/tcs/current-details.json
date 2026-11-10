@@ -1,0 +1,374 @@
+[
+  {
+    "id": "434952J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/434952",
+    "fetchedAt": "2026-10-08T19:05:18.460Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 434952,
+        "title": ".NET",
+        "location": "Pune",
+        "qualifications": "Undergraduate",
+        "skilldetail": ".NET | Azure | DevOps",
+        "experience": "6 - 12 Years",
+        "role": "Developer",
+        "description": " <span data-teams=\"true\">\r\n<p><strong>Job Details</strong></p>\r\n<p><strong>Job Title: .NET</strong></p>\r\n<p><strong>Location: Pune Kharadi</strong></p>\r\n<p><strong>Experience Range: 6+Years Must</strong></p>\r\n<p>Share your updated resumes at <a aria-label=\"Link jadhav.kashmira@tcs.com\" id=\"menur745\" href=\"mailto:kumar.rahul116@tcs.com\" rel=\"noreferrer noopener\" target=\"_blank\" class=\"fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn\" title=\"mailto:kumar.rahul116@tcs.com\"><strong>jadhav.kashmira@tcs.com</strong></a><strong>     </strong></p>\r\n<p><strong>Job Description</strong></p>\r\n<p>TCS has been a great pioneer in feeding the fire of young Techies like you. We are a global leader in the technology arena and there’s nothing that can stop us from growing together.</p>\r\n<p><strong>What we are looking for</strong></p>\r\n<p> <strong>Coding experience in Azure .NET, FSD. Strong hands-on experience in .NET/.NET Core</strong></p>\r\n<p><span data-teams=\"true\"></span></p>\r\n<ul>\r\n <li>Expertise in <strong>Microsoft Azure</strong> (App Services, Functions, Service Bus, Storage, CI/CD)</li>\r\n <li>Experience in developing <strong>REST APIs and Microservices</strong></li>\r\n <li>Strong understanding of OOP, SOLID principles, and design patterns</li>\r\n</ul></span>",
+        "country": "India",
+        "functionName": "TECHNOLOGY",
+        "applyby": "2026-12-31 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "16091",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "434977J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/434977",
+    "fetchedAt": "2026-10-08T19:05:18.455Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 434977,
+        "title": "Automation Testing",
+        "location": "Pune",
+        "qualifications": "Undergraduate",
+        "skilldetail": "Automation Testing | Java | Jenkins | Python | TypeScript",
+        "experience": "6 - 12 Years",
+        "role": "Developer",
+        "description": " <span data-teams=\"true\">\r\n<p><strong>Job Details</strong></p>\r\n<p><strong>Job Title: Automation Testing</strong></p>\r\n<p><strong>Location: Pune Kharadi</strong></p>\r\n<p><strong>Experience Range: 6+Years Must</strong></p>\r\n<p>Share your updated resumes at <a aria-label=\"Link jadhav.kashmira@tcs.com\" id=\"menur5av\" href=\"mailto:kumar.rahul116@tcs.com\" rel=\"noreferrer noopener\" target=\"_blank\" class=\"fui-Link ___1q1shib f2hkw1w f3rmtva f1ewtqcl fyind8e f1k6fduh f1w7gpdv fk6fouc fjoy568 figsok6 f1s184ao f1mk8lai fnbmjn9 f1o700av f13mvf36 f1cmlufx f9n3di6 f1ids18y f1tx3yz7 f1deo86v f1eh06m1 f1iescvh fhgqx19 f1olyrje f1p93eir f1nev41a f1h8hb77 f1lqvz6u f10aw75t fsle3fq f17ae5zn\" title=\"mailto:kumar.rahul116@tcs.com\"><strong>jadhav.kashmira@tcs.com</strong></a><strong>     </strong></p>\r\n<p><strong>Job Description</strong></p>\r\n<p>TCS has been a great pioneer in feeding the fire of young Techies like you. We are a global leader in the technology arena and there’s nothing that can stop us from growing together.</p>\r\n<p><strong>What we are looking for</strong></p>\r\n<p><span data-teams=\"true\"></span></p>\r\n<ul>\r\n <li>Java / Python</li>\r\n <li><span >Playwright</span></li>\r\n <li>Typescript</li>\r\n</ul></span>",
+        "country": "India",
+        "functionName": "TECHNOLOGY",
+        "applyby": "2026-12-31 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "16091",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "435472J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/435472",
+    "fetchedAt": "2026-10-08T19:05:18.455Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 435472,
+        "title": "Java Fullstack Developer",
+        "location": "Pune",
+        "qualifications": "BACHELOR OF COMPUTER APPLICATION, BACHELOR OF COMPUTER SCIENCE, BACHELOR OF ENGINEERING, BACHELOR OF SCIENCE ( B.Sc Degree ), M.SC.",
+        "skilldetail": "Java | Kafka | Core JAVA | React JS",
+        "experience": "6 - 10 Years",
+        "role": "Developer",
+        "description": " <div>Hi,\r\n</div>\r\n<div>Greetings From TCS!!!\r\n</div>\r\n<div><br />\r\n</div>\r\n<div>Job Details\r\n</div>\r\n<div><br />\r\n</div>\r\n<div>Job Title : Java FullstacK Developer \r\n</div>\r\n<div>Location :  Pune\r\n</div>\r\n<div>Experience Range: 6+ Years\r\n</div>\r\n<div>Notice Period: Immediate/ 30 days/ 60 Days.\r\n</div>\r\n<div><br />\r\n</div>\r\n<div>Job Description : \r\n</div>\r\n<div><br />\r\n</div>\r\n<div>TCS has been a great pioneer in feeding the fire of young Techies like you. We are a global leader in the technology arena and there’s nothing that can stop us from growing together. \r\n</div>\r\n<div><br />\r\n</div>\r\n<div>Skills Required: <span lang=\"EN-US\">Spring Boot, Java Front End, Java Backend, Java FSD, React JS, Flowable, Java, Kafka, Microservices Architecture, Databases, </span><span lang=\"EN-US\" >Azure</span>\r\n</div>\r\n<p listparagraph\"=\"\" style=\"margin:0cm;mso-add-space:auto;line-height:\r\n110%\"><span lang=\"EN-US\"></span></p>\r\n<div><br />\r\n</div>\r\n<div>Share your updated resumes at: b.sangeetha6@tcs.com\r\n</div>",
+        "country": "India",
+        "functionName": "IT INFRASTRUCTURE SERVICES",
+        "applyby": "2026-10-31 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "16091",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "143361W",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/walkin/143361",
+    "fetchedAt": "2026-10-08T19:05:18.449Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 143361,
+        "title": "Walkin Drive ID for GM India",
+        "walkInVenue": "Tata Consultancy Services, Yantra Park, Opp. Voltas HRD Trg Center, Subhash Nagar, Pokhran Road No. 2, Thane (West) - 400601, Maharashtra, India",
+        "walkInRegTime": "09:00 - 18:00",
+        "location": "Mumbai",
+        "qualifications": "Eligibility Criteria :\r\n1.BE/B.Tech/MCA/M.Sc/MS with minimum 3 years of relevant experience post Qualification IT- Experience.\r\n2.Bsc Graduates with minimum 4+ years of relevant experience post qualification IT Experience.\r\n3.Only Full Time courses would be considered.\r\n4.Consistent academic records Class X onwards (Minimum 50%)\r\n5.Candidate who have attended TCS interview in the last 6 months need not apply.\r\n\r\nDocuments to be carried for the walk-in:\r\n1.TCS Online Application Form\r\n2.Resume\r\n3.One Photograph (Passport Size)\r\n4.Original and Copy of Government Photo ID Proof (PAN Card/Driving License/Passport)\r\n5.Last 3 months pay-slip\r\n6.Latest Compensation Letter\r\n7.Relieving Letter (Current Company if applicable)\r\n8.Experience/Service Certificate for all previous employment and appointment letter for current organization, clearly mentioning the Joining & Release dates\r\n9.Class 12 Mark-Sheet\r\n10.Class 10 Mark-Sheet\r\n11.UG Mark-Sheets & Degree  Certificates\r\n12.PG Mark-Sheets & Degree Certificates\r\n\r\nTo help us expedite the process, kindly register at our Careers Portal, create a profile and provide us with your registration number and a copy of your completed application form along with the other documents at the time of interview. Registered candidates will be given priority for the interview.",
+        "skilldetail": "Java",
+        "experience": "2 - 10 Years & Above",
+        "description": "<span data-teams=\"true\">Walkin Drive ID for GM India</span>",
+        "country": "India",
+        "functionName": "CONSULTANCY",
+        "applyby": "2026-10-10 00:00:00",
+        "quizFlag": "N",
+        "latitude": "19.215858",
+        "longitude": "72.972948",
+        "applied": false,
+        "locationId": "16092",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "143360W",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/walkin/143360",
+    "fetchedAt": "2026-10-08T19:05:18.721Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 143360,
+        "title": "Virtual Drive ID for GM India",
+        "walkInVenue": "Tata Consultancy Services, Yantra Park, Opp. Voltas HRD Trg Center, Subhash Nagar, Pokhran Road No. 2, Thane (West) - 400601, Maharashtra, India",
+        "walkInRegTime": "09:00 - 18:00",
+        "location": "Mumbai",
+        "qualifications": "Eligibility Criteria :\r\n1.BE/B.Tech/MCA/M.Sc/MS with minimum 3 years of relevant experience post Qualification IT- Experience.\r\n2.Bsc Graduates with minimum 4+ years of relevant experience post qualification IT Experience.\r\n3.Only Full Time courses would be considered.\r\n4.Consistent academic records Class X onwards (Minimum 50%)\r\n5.Candidate who have attended TCS interview in the last 6 months need not apply.\r\n\r\nDocuments to be carried for the walk-in:\r\n1.TCS Online Application Form\r\n2.Resume\r\n3.One Photograph (Passport Size)\r\n4.Original and Copy of Government Photo ID Proof (PAN Card/Driving License/Passport)\r\n5.Last 3 months pay-slip\r\n6.Latest Compensation Letter\r\n7.Relieving Letter (Current Company if applicable)\r\n8.Experience/Service Certificate for all previous employment and appointment letter for current organization, clearly mentioning the Joining & Release dates\r\n9.Class 12 Mark-Sheet\r\n10.Class 10 Mark-Sheet\r\n11.UG Mark-Sheets & Degree  Certificates\r\n12.PG Mark-Sheets & Degree Certificates\r\n\r\nTo help us expedite the process, kindly register at our Careers Portal, create a profile and provide us with your registration number and a copy of your completed application form along with the other documents at the time of interview. Registered candidates will be given priority for the interview.",
+        "skilldetail": "Java",
+        "experience": "2 - 10 Years & Above",
+        "description": "Virtual Drive ID for GM India",
+        "country": "India",
+        "functionName": "CONSULTANCY",
+        "applyby": "2026-10-10 00:00:00",
+        "quizFlag": "N",
+        "latitude": "19.215858",
+        "longitude": "72.972948",
+        "applied": false,
+        "locationId": "16092",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "143359W",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/walkin/143359",
+    "fetchedAt": "2026-10-08T19:05:18.577Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 143359,
+        "title": "Virtual Drive ID for GM India",
+        "walkInVenue": "Tata Consultancy Services, Yantra Park, Opp. Voltas HRD Trg Center, Subhash Nagar, Pokhran Road No. 2, Thane (West) - 400601, Maharashtra, India",
+        "walkInRegTime": "09:00 - 18:00",
+        "location": "Mumbai",
+        "qualifications": "Eligibility Criteria :\r\n1.BE/B.Tech/MCA/M.Sc/MS with minimum 3 years of relevant experience post Qualification IT- Experience.\r\n2.Bsc Graduates with minimum 4+ years of relevant experience post qualification IT Experience.\r\n3.Only Full Time courses would be considered.\r\n4.Consistent academic records Class X onwards (Minimum 50%)\r\n5.Candidate who have attended TCS interview in the last 6 months need not apply.\r\n\r\nDocuments to be carried for the walk-in:\r\n1.TCS Online Application Form\r\n2.Resume\r\n3.One Photograph (Passport Size)\r\n4.Original and Copy of Government Photo ID Proof (PAN Card/Driving License/Passport)\r\n5.Last 3 months pay-slip\r\n6.Latest Compensation Letter\r\n7.Relieving Letter (Current Company if applicable)\r\n8.Experience/Service Certificate for all previous employment and appointment letter for current organization, clearly mentioning the Joining & Release dates\r\n9.Class 12 Mark-Sheet\r\n10.Class 10 Mark-Sheet\r\n11.UG Mark-Sheets & Degree  Certificates\r\n12.PG Mark-Sheets & Degree Certificates\r\n\r\nTo help us expedite the process, kindly register at our Careers Portal, create a profile and provide us with your registration number and a copy of your completed application form along with the other documents at the time of interview. Registered candidates will be given priority for the interview.",
+        "skilldetail": "Java",
+        "experience": "2 - 10 Years & Above",
+        "description": "Virtual Drive ID for GM India",
+        "country": "India",
+        "functionName": "CONSULTANCY",
+        "applyby": "2026-10-09 00:00:00",
+        "quizFlag": "N",
+        "latitude": "19.215858",
+        "longitude": "72.972948",
+        "applied": false,
+        "locationId": "16092",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "143358W",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/walkin/143358",
+    "fetchedAt": "2026-10-08T19:05:18.576Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 143358,
+        "title": "Virtual Drive ID for GM India",
+        "walkInVenue": "Tata Consultancy Services, Yantra Park, Opp. Voltas HRD Trg Center, Subhash Nagar, Pokhran Road No. 2, Thane (West) - 400601, Maharashtra, India",
+        "walkInRegTime": "09:00 - 18:00",
+        "location": "Mumbai",
+        "qualifications": "Eligibility Criteria :\r\n1.BE/B.Tech/MCA/M.Sc/MS with minimum 3 years of relevant experience post Qualification IT- Experience.\r\n2.Bsc Graduates with minimum 4+ years of relevant experience post qualification IT Experience.\r\n3.Only Full Time courses would be considered.\r\n4.Consistent academic records Class X onwards (Minimum 50%)\r\n5.Candidate who have attended TCS interview in the last 6 months need not apply.\r\n\r\nDocuments to be carried for the walk-in:\r\n1.TCS Online Application Form\r\n2.Resume\r\n3.One Photograph (Passport Size)\r\n4.Original and Copy of Government Photo ID Proof (PAN Card/Driving License/Passport)\r\n5.Last 3 months pay-slip\r\n6.Latest Compensation Letter\r\n7.Relieving Letter (Current Company if applicable)\r\n8.Experience/Service Certificate for all previous employment and appointment letter for current organization, clearly mentioning the Joining & Release dates\r\n9.Class 12 Mark-Sheet\r\n10.Class 10 Mark-Sheet\r\n11.UG Mark-Sheets & Degree  Certificates\r\n12.PG Mark-Sheets & Degree Certificates\r\n\r\nTo help us expedite the process, kindly register at our Careers Portal, create a profile and provide us with your registration number and a copy of your completed application form along with the other documents at the time of interview. Registered candidates will be given priority for the interview.",
+        "skilldetail": "Java",
+        "experience": "2 - 10 Years & Above",
+        "description": "Virtual Drive ID for GM India",
+        "country": "India",
+        "functionName": "CONSULTANCY",
+        "applyby": "2026-10-08 00:00:00",
+        "quizFlag": "N",
+        "latitude": "19.215858",
+        "longitude": "72.972948",
+        "applied": false,
+        "locationId": "16092",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "435465J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/435465",
+    "fetchedAt": "2026-10-08T19:05:18.592Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 435465,
+        "title": "Hadoop",
+        "location": "Chennai",
+        "qualifications": "BACHELOR OF TECHNOLOGY",
+        "skilldetail": "Big Data | Hadoop | Spark",
+        "experience": "6 - 12 Years",
+        "role": "Developer",
+        "description": " <div class=\"OutlineElement Ltr SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; font-family: \"Segoe UI\", \"Segoe UI Web\", Arial, Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">\r\n<p class=\"Paragraph SCXW123828725 BCX8\" paraid=\"825072853\" paraeid=\"{576c0b37-99c3-4bae-9deb-49097b3e7ec6}{12}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;\"><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif; font-weight: bold;\">Key Responsibilities: </span><span class=\"EOP Selected SCXW123828725 BCX8\" data-ccp-props=\"{}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: default; background-color: rgb(198, 198, 198) !important; border-color: rgb(198, 198, 198) !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\"> </span></p>\r\n</div>\r\n<div class=\"OutlineElement Ltr SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; font-family: \"Segoe UI\", \"Segoe UI Web\", Arial, Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">\r\n<p class=\"Paragraph SCXW123828725 BCX8\" paraid=\"1038505036\" paraeid=\"{576c0b37-99c3-4bae-9deb-49097b3e7ec6}{14}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;\"><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\">- Collaborate with senior team members to Requirements Gathering and design</span><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif; font-weight: bold;\">.</span><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\"> </span><span class=\"EOP Selected SCXW123828725 BCX8\" data-ccp-props=\"{}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor:  default; background-color: rgb(198, 198, 198) !important; border-color: rgb(198, 198, 198) !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\"> </span></p>\r\n</div>\r\n<div class=\"OutlineElement Ltr SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; font-family: \"Segoe UI\", \"Segoe UI Web\", Arial, Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">\r\n<p class=\"Paragraph SCXW123828725 BCX8\" paraid=\"1211938031\" paraeid=\"{576c0b37-99c3-4bae-9deb-49097b3e7ec6}{16}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;\"><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\">- Assist in the development and implementation of Creating data processing framework based on Spark with Java. </span><span class=\"EOP Selected SCXW123828725 BCX8\" data-ccp-props=\"{}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: default; background-color: rgb(198, 198, 198) !important; border-color: rgb(198, 198, 198) !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\"> </span></p>\r\n</div>\r\n<div class=\"OutlineElement Ltr SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; font-family: \"Segoe UI\", \"Segoe UI Web\", Arial, Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">\r\n<p class=\"Paragraph SCXW123828725 BCX8\" paraid=\"1542856716\" paraeid=\"{576c0b37-99c3-4bae-9deb-49097b3e7ec6}{18}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;\"><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\">- Work with other team members to ensure project deadlines are met. </span><span class=\"EOP Selected SCXW123828725 BCX8\" data-ccp-props=\"{}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: default; background-color: rgb(198, 198, 198) !important; border-color: rgb(198, 198, 198) !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\"> </span></p>\r\n</div>\r\n<div class=\"OutlineElement Ltr SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible ; position: relative; direction: ltr; font-family: \"Segoe UI\", \"Segoe UI Web\", Arial, Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">\r\n<p class=\"Paragraph SCXW123828725 BCX8\" paraid=\"205013870\" paraeid=\"{576c0b37-99c3-4bae-9deb-49097b3e7ec6}{20}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;\"><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\">- Conduct research and development to improve [Insert Relevant Processes or Technologies]. </span><span class=\"EOP Selected SCXW123828725 BCX8\" data-ccp-props=\"{}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; cursor: default; background-color: rgb(198, 198, 198) !important; border-color: rgb(198, 198, 198) !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\"> </span></p>\r\n</div>\r\n<div class=\"OutlineElement Ltr SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; clear: both; cursor: text; overflow: visible; position: relative; direction: ltr; font-family: \"Segoe UI\", \"Segoe UI Web\", Arial, Verdana, sans-serif; font-size: 12px; background-color: rgb(255, 255, 255);\">\r\n<p class=\"Paragraph SCXW123828725 BCX8\" paraid=\"1702856955\" paraeid=\"{576c0b37-99c3-4bae-9deb-49097b3e7ec6}{22}\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px 0px 10.6667px; padding: 0px; user-select: text; overflow-wrap: break-word; vertical-align: baseline; font-kerning: none; background-color: transparent; color: windowtext;\"><span data-contrast=\"auto\" xml:lang=\"EN-US\" lang=\"EN-US\" class=\"TextRun SCXW123828725 BCX8\" style=\"-webkit-user-drag: none; -webkit-tap-highlight-color: transparent; margin: 0px; padding: 0px; user-select: text; font-variant-ligatures: none !important; font-size: 12pt; line-height: 20.85px; font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, sans-serif;\">- Participate in team meetings to discuss project updates and progress.</span></p>\r\n</div",
+        "country": "India",
+        "functionName": "IT INFRASTRUCTURE SERVICES",
+        "applyby": "2026-12-31 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "42218",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "435469J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/435469",
+    "fetchedAt": "2026-10-08T19:05:18.683Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 435469,
+        "title": "Business Analysis",
+        "location": "Mumbai",
+        "qualifications": "BACHELOR OF ENGINEERING",
+        "skilldetail": "Business Analysis",
+        "experience": "5 - 15 Years",
+        "role": "Developer",
+        "description": " <p listparagraphcxspfirst\"=\"\" style=\"margin-left:.25in;mso-add-space:auto;\r\ntext-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->1.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Requirement Gathering from business users</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->2.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Initial Analysis and query resolution</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->3.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Collaboration with development team for System\r\nAnalysis and Design Discussions</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->4.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Review of system analysis and design from\r\nfunctional perspective</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->5.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Creation of Analysis Document and Concept Note</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->6.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Concept Note discussions with stakeholders\r\n(Business Users, IT)</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->7.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-lan guage-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Interface with users and development team for\r\nstatus update, query resolution, etc.</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->8.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->System Testing</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->a.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Scenario preparation for functional test cases</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->b.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Review of Test Cases prepared by tester</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->c.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Review of test data</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->d.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Co-ordination with tester for execution of test\r\ncases</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->e.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Verification o f results</p>\r\n\r\n<p listparagraphcxsplast\"=\"\" style=\"margin-left:.75in;mso-add-space:auto;\r\ntext-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->f.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">       \r\n</span><!--[endif]-->Defect Management </p",
+        "country": "India",
+        "functionName": "IT INFRASTRUCTURE SERVICES",
+        "applyby": "2027-02-27 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "16092",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "435464J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/435464",
+    "fetchedAt": "2026-10-08T19:05:18.688Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 435464,
+        "title": "Business anylysis",
+        "location": "Mumbai",
+        "qualifications": "BACHELOR OF ENGINEERING",
+        "skilldetail": "Business Analysis",
+        "experience": "5 - 15 Years",
+        "role": "Developer",
+        "description": " <p listparagraphcxspfirst\"=\"\" style=\"margin-left:.25in;mso-add-space:auto;\r\ntext-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->1.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Requirement Gathering from business users</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->2.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Initial Analysis and query resolution</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->3.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Collaboration with development team for System\r\nAnalysis and Design Discussions</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->4.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Review of system analysis and design from\r\nfunctional perspective</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->5.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Creation of Analysis Document and Concept Note</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->6.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Concept Note discussions with stakeholders\r\n(Business Users, IT)</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->7.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-lan guage-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Interface with users and development team for\r\nstatus update, query resolution, etc.</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.25in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]-->8.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->System Testing</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->a.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Scenario preparation for functional test cases</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->b.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Review of Test Cases prepared by tester</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->c.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Review of test data</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->d.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Co-ordination with tester for execution of test\r\ncases</p>\r\n\r\n<p listparagraphcxspmiddle\"=\"\" style=\"margin-left:.75in;mso-add-space:\r\nauto;text-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->e.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">      \r\n</span><!--[endif]-->Verification o f results</p>\r\n\r\n<p listparagraphcxsplast\"=\"\" style=\"margin-left:.75in;mso-add-space:auto;\r\ntext-indent:-.25in;mso-list:l0 level2 lfo1\"><!--[if !supportLists]-->f.<span style=\"font-style: normal; font-variant: normal; font-size-adjust: none; font-language-override: normal; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">       \r\n</span><!--[endif]-->Defect Management </p",
+        "country": "India",
+        "functionName": "IT INFRASTRUCTURE SERVICES",
+        "applyby": "2027-02-27 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "16092",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "379526J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/379526",
+    "fetchedAt": "2026-10-08T19:06:45.708Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 379526,
+        "title": "Technical architect",
+        "location": "Bengaluru",
+        "qualifications": "BACHELOR OF ENGINEERING",
+        "skilldetail": "Java | Microservices | Cloud AWS/Amazon | Cloud Azure",
+        "experience": "8 - 12 Years",
+        "role": "Technical Architect",
+        "description": " <p normal\"=\"\"><span style=\"font-size:8.0pt;line-height:115%;font-family:\r\n\"Calibri\",sans-serif\">Location: Gurgaon/NCR/Bangalore </span></p>\r\n<p normal\"=\"\"><span style=\"font-size:8.0pt;line-height:115%;font-family:\r\n\"Calibri\",sans-serif\">Required Technical Skillset:</span></p>\r\n<p normal\"=\"\" style=\"margin-left:.75in;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]--><span style=\"font-size:9.0pt;line-height:115%;font-family:Symbol;mso-fareast-font-family:\r\nSymbol;mso-bidi-font-family:Symbol\">·<span style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">        \r\n</span></span><!--[endif]--><span style=\"font-size:9.0pt;line-height:115%;\r\nfont-family:\"Calibri\",sans-serif\">Strong Technical background on Java based\r\nPlatforms including microservices, Cloud Nativity. </span></p>\r\n<p normal\"=\"\" style=\"margin-left:.75in;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]--><span style=\"font-size:9.0pt;line-height:115%;font-family:Symbol;mso-fareast-font-family:\r\nSymbol;mso-bidi-font-family:Symbol\">·<span style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">        \r\n</span></span><!--[endif]--><span style=\"font-size:9.0pt;line-height:115%;\r\nfont-family:\"Calibri\",sans-serif\">Hands on exposure of managing\r\nthe end-to-end architecture of the mid/large size programs in\r\npayments/banking area. </span></p>\r\n<p normal\"=\"\" style=\"margin-left:.75in;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]--><span style=\"font-size:9.0pt;line-height:115%;font-family:Symbol;mso-fareast-font-family:\r\nSymbol;mso-bidi-font-family:Symbol\">·<span style=\"font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-size-adjust: none; font-kerning: auto; font-optical-sizing: auto; font-feature-settings: normal; font-variation-settings: normal; font-variant-position: normal; font-variant-emoji: normal; font-stretch: normal; font-size: 7pt; line-height: normal; font-family: \"Times New Roman\";\">        \r\n</span></span><!--[endif]--><span style=\"font-size:9.0pt;line-height:115%;\r\nfont-family:\"Calibri\",sans-serif\">Working knowledge of architecture,\r\ndeployment, hardware sizing related aspects </span></p>\r\n<p normal\"=\"\"><span style=\"font-size:8.0pt;line-height:115%;font-family:\r\n\"Calibri\",sans-serif\">\r\n\r\n\r\n\r\n\r\n\r\n<span >AWS/AZURE, GCP cloud\r\nexposure </span></span></p>\r\n<p normal\"=\"\"><span style=\"font-size:8.0pt;line-height:115%;font-family:\r\n\"Calibri\",sans-serif\"><span >\r\n</span></span></p>\r\n<p normal\"=\"\"><span style=\"font-size:9.0pt;line-height:115%;font-family:\r\n\"Calibri\",sans-serif\">Must Have:</span></p>\r\n\r\n<p normal\"=\"\" style=\"margin-left:.75in;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]--><span style=\"font-size:9.0pt;line-height:115%;font-fami ly:Symbol;mso-fareast-font-family:\r\nSymbol;mso-bidi-font-family:Symbol\"><span style=\"mso-list:Ignore\">·<span style=\"font:7.0pt \"Times New Roman\"\">        \r\n</span></span></span><!--[endif]--><span style=\"font-size:9.0pt;line-height:115%;\r\nfont-family:\"Calibri\",sans-serif\">Strong Technical background on Java based\r\nPlatforms including microservices, Cloud Nativity. </span></p>\r\n\r\n<p normal\"=\"\" style=\"margin-left:.75in;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]--><span style=\"font-size:9.0pt;line-height:115%;font-family:Symbol;mso-fareast-font-family:\r\nSymbol;mso-bidi-font-family:Symbol\"><span style=\"mso-list:Ignore\">·<span style=\"font:7.0pt \"Times New Roman\"\">        \r\n</span></span></span><!--[endif]--><span style=\"font-size:9.0pt;line-height:115%;\r\nfont-family:\"Calibri\",sans-serif\">Hands on exposure of managing\r\nthe end-to-end architecture of the mid/large size programs in\r\npayments/banking area. </span></p>\r\n\r\n<p normal\"=\"\" style=\"margin-left:.75in;text-indent:-.25in;mso-list:l0 level1 lfo1\"><!--[if !supportLists]--><span style=\"font-size:9.0pt;line-height:115%;font-family:Symbol;mso-fareast-font-family:\r\nSymbol;mso-bidi-font-family:Symbol\"><span style=\"mso-list:Ignore\">·<span style=\"font:7.0pt \"Times New Roman\"\">        \r\n</span></span></span><!--[endif]--><span style=\"font-size:9.0pt;line-height:115%;\r\nfont-family:\"Calibri\",sans-serif\">Working knowledge of architecture,\r\ndeployment, hardware sizing related aspects </span></p><br /",
+        "country": "India",
+        "functionName": "IT INFRASTRUCTURE SERVICES",
+        "applyby": "2026-11-04 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "22597",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  },
+  {
+    "id": "435433J",
+    "url": "https://ibegin.tcsapps.com/candidate/next/api/en-IN/job/desc/435433",
+    "fetchedAt": "2026-10-08T19:05:19.352Z",
+    "response": {
+      "result": true,
+      "status": 200,
+      "message": "Ok",
+      "payload": {
+        "jobId": 435433,
+        "title": "OTC",
+        "location": "Kolkata",
+        "qualifications": "BACHELOR OF ARTS, BACHELOR OF BUSINESS ADMINISTRATION, BACHELOR OF BUSINESS MANAGEMENT, BACHELOR OF BUSINESS STUDIES, BACHELOR OF COMMERCE",
+        "skilldetail": "Finance and Accounting",
+        "experience": "1 - 7 Years",
+        "role": "Executive",
+        "description": "",
+        "country": "India",
+        "functionName": "BUSINESS PROCESS SERVICES",
+        "applyby": "2026-11-09 00:00:00",
+        "quizFlag": "N",
+        "applied": false,
+        "locationId": "22599",
+        "quizMandatory": "N",
+        "languageId": 0,
+        "quizGiven": "N",
+        "countryMatch": "Y"
+      }
+    }
+  }
+]

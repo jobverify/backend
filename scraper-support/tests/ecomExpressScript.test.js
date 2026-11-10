@@ -66,16 +66,6 @@ test('Ecom Express helpers stay pinned to the verified merger landing page and r
   assert.equal(ecomExpress.hasMergerLandingSignal(mergerLandingHtml), true)
   assert.equal(ecomExpress.hasPublicJobsSignal(mergerLandingHtml), false)
   assert.equal(ecomExpress.hasPublicJobsSignal(publicJobsHtml), true)
-  assert.equal(
-    ecomExpress.isRecoverableCertificateError({
-      message: 'fetch failed',
-      cause: {
-        code: 'CERT_HAS_EXPIRED',
-        message: 'certificate has expired',
-      },
-    }),
-    true,
-  )
 })
 
 test('Ecom Express returns [] only while the homepage, common careers routes, robots.txt, and sitemap.xml all serve the same merger landing page', async () => {
@@ -97,37 +87,18 @@ test('Ecom Express returns [] only while the homepage, common careers routes, ro
   assert.deepEqual(jobs, [])
 })
 
-test('Ecom Express falls back to an expired-certificate fetch only for the verified first-party landing pages', async () => {
+test('Ecom Express fails closed on expired certificates without an insecure retry', async () => {
   const ecomExpress = await loadEcomExpressModule()
-  const primaryRequests = []
-  const insecureRequests = []
-
-  const jobs = await ecomExpress.createEcomExpressScraper().run({
-    fetchPage: async (url) => {
-      primaryRequests.push(url)
-      throw Object.assign(new TypeError('fetch failed'), {
-        cause: {
-          code: 'CERT_HAS_EXPIRED',
-          message: 'certificate has expired',
-        },
-      })
-    },
-    fetchPageAllowingExpiredCertificate: async (url) => {
-      insecureRequests.push(url)
-      return { status: 200, url, html: mergerLandingHtml }
-    },
-  })
-
-  assert.deepEqual(primaryRequests, [
-    ...ecomExpress.CHECKED_LANDING_PAGE_URLS,
-    ecomExpress.ROBOTS_TXT_URL,
-    ecomExpress.SITEMAP_URL,
-  ])
-  assert.deepEqual(insecureRequests, primaryRequests)
-  assert.deepEqual(jobs, [])
+  let calls = 0
+  const certificateError = Object.assign(new Error('certificate has expired'), { code: 'CERT_HAS_EXPIRED' })
+  await assert.rejects(ecomExpress.createEcomExpressScraper().run({ fetchPage: async () => {
+    calls++
+    throw certificateError
+  } }), error => error === certificateError)
+  assert.equal(calls, 1)
 })
 
-test('Ecom Express expired-certificate fetch disables TLS rejection only in the fallback path', async () => {
+test('Ecom Express transport always verifies TLS', async () => {
   const ecomExpress = await loadEcomExpressModule()
   const originalRequest = https.request
   const observedOptions = []
@@ -153,10 +124,10 @@ test('Ecom Express expired-certificate fetch disables TLS rejection only in the 
   }
 
   try {
-    const page = await ecomExpress.fetchPageAllowingExpiredCertificate(ecomExpress.HOMEPAGE_URL)
+    const page = await ecomExpress.fetchEcomExpressPage(ecomExpress.HOMEPAGE_URL)
 
     assert.equal(observedOptions.length, 1)
-    assert.equal(observedOptions[0].options.rejectUnauthorized, false)
+    assert.equal(observedOptions[0].options.rejectUnauthorized, true)
     assert.equal(page.status, 200)
     assert.equal(page.html, mergerLandingHtml)
   } finally {

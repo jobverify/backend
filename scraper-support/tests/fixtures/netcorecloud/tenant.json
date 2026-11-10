@@ -1,0 +1,29 @@
+{
+  "clientId": 1127,
+  "clientName": "Netcore AI",
+  "companyWebsite": "https://netcore.ai/",
+  "tenantPreferencesMap": {
+    "career_page_url": {
+      "url": [
+        {
+          "url": "https://netcorecloud.com/careers-list",
+          "pageType": "application",
+          "displayName": "Application",
+          "openInNewTab": false
+        },
+        {
+          "url": "https://netcorecloud.com/careers-list",
+          "pageType": "jd",
+          "displayName": "Job Description",
+          "openInNewTab": false
+        },
+        {
+          "url": "https://netcorecloud.com/careers-list",
+          "pageType": "list",
+          "displayName": "Requisition List",
+          "openInNewTab": false
+        }
+      ]
+    }
+  }
+}

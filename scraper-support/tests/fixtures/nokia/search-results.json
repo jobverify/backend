@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "SearchId": 1,
+      "Location": "India",
+      "Offset": 0,
+      "Limit": 24,
+      "TotalJobsCount": 214,
+      "SiteNumber": "CX_1",
+      "requisitionList": [
+        {
+          "Id": "31228",
+          "Title": "Technical Lead",
+          "PostedDate": "2026-06-26",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "IN",
+          "JobFamily": null,
+          "JobFunction": null,
+          "Department": null,
+          "ShortDescriptionStr": "This opening is for Core Wifi SW developers having experience in embedded SW development in Linux environment.",
+          "PrimaryLocation": "India",
+          "WorkplaceType": "",
+          "ExternalQualificationsStr": null,
+          "ExternalResponsibilitiesStr": null,
+          "secondaryLocations": []
+        },
+        {
+          "Id": "34654",
+          "Title": "Project Manager- IPN & TXN Networks",
+          "PostedDate": "2026-06-25",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "IN",
+          "JobFamily": null,
+          "JobFunction": null,
+          "Department": null,
+          "ShortDescriptionStr": "The Managed Services Delivery Manager manages efficient and effective managed services to meet customer agreed service levels, through continually assuring process performance, and optimising delivery resources.",
+          "PrimaryLocation": "India",
+          "WorkplaceType": "Onsite",
+          "ExternalQualificationsStr": null,
+          "ExternalResponsibilitiesStr": null,
+          "secondaryLocations": []
+        },
+        {
+          "Id": "99111",
+          "Title": "Senior Architect",
+          "PostedDate": "2026-06-20",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "US",
+          "JobFamily": "Engineering",
+          "JobFunction": null,
+          "Department": null,
+          "ShortDescriptionStr": "US-only requisition that should be filtered out.",
+          "PrimaryLocation": "Dallas, Texas, United States",
+          "WorkplaceType": "Hybrid",
+          "ExternalQualificationsStr": "Bachelor's degree",
+          "ExternalResponsibilitiesStr": null,
+          "secondaryLocations": []
+        }
+      ]
+    }
+  ]
+}

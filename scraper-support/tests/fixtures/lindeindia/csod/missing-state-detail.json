@@ -1,0 +1,26 @@
+{
+  "status": 0,
+  "data": {
+    "displayTitle": "Senior Engineer – Operations and Maintenance-Ecover ROC",
+    "externalDescription": "<ul><li>In this role, you will be responsible for participating in daily field routine jobs and inspection of Mechanical &nbsp;issue. Also, during any abnormalities highlight the issue with reliability team and take corrective actions. Updating in EAM book &amp; reporting in LiDAP.</li><li>Further, you will be responsible for day-to-day plant operation, production etc. preparation DPR.</li><li>Furthermore, you will be responsible for any maintenance activities in the field, discussed with the maintenance people, identify the hazard related to that job, purging (if required), marking that line/ equipment’s in P&amp;ID, maintaining LOTO system for isolation after zero energy verification and then after PTW issued.</li><li>Moreover, you will be responsible of different PT, FT calibration and record keeping.</li><li>Additionally, you will be responsible for vendor management.</li><li>In this role you will be responsible for spare procurement. Handling of SAP and SRM.</li><li>Further you will be responsible for maintaining all safety standards.</li></ul>",
+    "ref": "req33817",
+    "requisitionStatusId": 2,
+    "allowApply": true,
+    "primaryLocation": {
+      "title": "Nagpur",
+      "ref": "50812950",
+      "city": "Maharashtra",
+      "state": null,
+      "country": "IN",
+      "geocode": {
+        "latitude": 20.5936832,
+        "longitude": 78.96288
+      },
+      "postalCode": "441108",
+      "line1": "Plot No. A 67, Additional MIDC"
+    },
+    "additionalLocations": [],
+    "openDate": "2026-10-07T13:13:51",
+    "companyApplyUrl": "https://linde.csod.com/ux/ats/careersite/25/home/requisition/33817?c=linde"
+  }
+}

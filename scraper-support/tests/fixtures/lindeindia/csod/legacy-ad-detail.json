@@ -1,0 +1,26 @@
+{
+  "status": 0,
+  "data": {
+    "displayTitle": "Software Engineer - AI Hub",
+    "externalDescription": "<ul><li>In this role you will design and develop scalable business applications that deliver outstanding user experiences</li><li>Further you will build secure and reliable solutions across user interface, server-side services and databases</li><li>Furthermore,, you will translate business requirements into practical digital solutions that create measurable value</li><li>Moreover, you will develop and maintain application interfaces that connect enterprise systems and platforms</li><li>Further, you will create cloud-based solutions using Microsoft Azure services and modern development technologies</li><li>Thereafter, you will ensure high levels of application performance, security, quality and reliability</li><li>Furthermore, you will drive continuous improvement through automated testing, deployment and monitoring practices</li><li>Moreover, you will troubleshoot complex technical challenges and deliver sustainable long-term solutions</li><li>Further, you will collaborate closely with product owners, business analysts, designers and architects to deliver successful outcomes</li><li>Additionally, you will contribute to the evolution of digital platforms and help shape the future of business applications across Linde</li></ul>",
+    "ref": "req32733",
+    "requisitionStatusId": 2,
+    "allowApply": true,
+    "primaryLocation": {
+      "title": "Bangalore",
+      "ref": "50632509",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "country": "IN",
+      "geocode": {
+        "latitude": 12.9827509,
+        "longitude": 77.59405
+      },
+      "postalCode": "560001",
+      "line1": "Level 6, Prestige Khoday Tower"
+    },
+    "additionalLocations": [],
+    "openDate": "2026-08-25T12:02:43",
+    "companyApplyUrl": "https://linde.csod.com/ux/ats/careersite/25/home/requisition/32733?c=linde"
+  }
+}

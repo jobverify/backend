@@ -1,0 +1,2295 @@
+[
+  {
+    "result": true,
+    "status": 200,
+    "message": "Ok",
+    "payload": {
+      "facets": {
+        "locations": [
+          {
+            "value": "bengaluru",
+            "count": 698
+          },
+          {
+            "value": "chennai",
+            "count": 286
+          },
+          {
+            "value": "hyderabad",
+            "count": 238
+          },
+          {
+            "value": "mumbai",
+            "count": 236
+          },
+          {
+            "value": "delhi",
+            "count": 117
+          },
+          {
+            "value": "pune",
+            "count": 90
+          },
+          {
+            "value": "kolkata",
+            "count": 67
+          },
+          {
+            "value": "trivandrum",
+            "count": 59
+          },
+          {
+            "value": "ncr",
+            "count": 56
+          },
+          {
+            "value": "indor",
+            "count": 25
+          },
+          {
+            "value": "kochi",
+            "count": 23
+          },
+          {
+            "value": "nagpur",
+            "count": 13
+          },
+          {
+            "value": "bhubaneshwar",
+            "count": 10
+          },
+          {
+            "value": "ahmedabad",
+            "count": 8
+          },
+          {
+            "value": "visakhapatnam",
+            "count": 5
+          },
+          {
+            "value": "gandhinagar",
+            "count": 4
+          },
+          {
+            "value": "bhopal",
+            "count": 1
+          },
+          {
+            "value": "coimbator",
+            "count": 1
+          },
+          {
+            "value": "lucknow",
+            "count": 1
+          },
+          {
+            "value": "patna",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "value": "2137",
+            "count": 955
+          },
+          {
+            "value": "2132",
+            "count": 479
+          },
+          {
+            "value": "2134",
+            "count": 423
+          },
+          {
+            "value": "2136",
+            "count": 78
+          },
+          {
+            "value": "2130",
+            "count": 2
+          },
+          {
+            "value": "2133",
+            "count": 1
+          },
+          {
+            "value": "2135",
+            "count": 1
+          },
+          {
+            "value": "2131",
+            "count": 0
+          }
+        ],
+        "experiences": [
+          {
+            "value": "entry_level",
+            "count": 1137
+          },
+          {
+            "value": "middle_level",
+            "count": 1897
+          },
+          {
+            "value": "senior_level",
+            "count": 511
+          }
+        ],
+        "skills": [
+          {
+            "value": "Finance and Accounting",
+            "count": 154
+          },
+          {
+            "value": "Oracle",
+            "count": 34
+          },
+          {
+            "value": "Salesforce(SFDC)",
+            "count": 32
+          },
+          {
+            "value": "Java",
+            "count": 28
+          },
+          {
+            "value": "Service Now",
+            "count": 24
+          },
+          {
+            "value": "Artificial Intelligence",
+            "count": 23
+          },
+          {
+            "value": "Customer Service",
+            "count": 23
+          },
+          {
+            "value": "HRO Payroll",
+            "count": 23
+          },
+          {
+            "value": "Python",
+            "count": 23
+          },
+          {
+            "value": "HRO Compensation & Benefits",
+            "count": 18
+          },
+          {
+            "value": "Project Management",
+            "count": 18
+          },
+          {
+            "value": "SAP AII",
+            "count": 17
+          },
+          {
+            "value": "Automation Testing",
+            "count": 16
+          },
+          {
+            "value": "Microservices , Java , Spring Boot",
+            "count": 14
+          },
+          {
+            "value": "Workday Integration",
+            "count": 14
+          },
+          {
+            "value": "Human Resource",
+            "count": 13
+          },
+          {
+            "value": "Informatica",
+            "count": 13
+          },
+          {
+            "value": "Oracle Fusion Financials",
+            "count": 13
+          },
+          {
+            "value": "SAP ABAP",
+            "count": 13
+          },
+          {
+            "value": "SAP ABAP HANA",
+            "count": 13
+          },
+          {
+            "value": "SAP BASIS",
+            "count": 13
+          },
+          {
+            "value": "Azure",
+            "count": 11
+          },
+          {
+            "value": "Sales",
+            "count": 11
+          },
+          {
+            "value": "Business Analysis",
+            "count": 10
+          },
+          {
+            "value": "HRO Recruitment & Staffing",
+            "count": 10
+          },
+          {
+            "value": "Pega",
+            "count": 10
+          },
+          {
+            "value": "Java , Spring Boot",
+            "count": 9
+          },
+          {
+            "value": "SCM",
+            "count": 9
+          },
+          {
+            "value": "VLSI",
+            "count": 9
+          },
+          {
+            "value": "Administration",
+            "count": 8
+          },
+          {
+            "value": "Operations",
+            "count": 8
+          },
+          {
+            "value": "Oracle , Oracle Fusion Financials",
+            "count": 8
+          },
+          {
+            "value": "Presales",
+            "count": 8
+          },
+          {
+            "value": "Python , Artificial Intelligence",
+            "count": 8
+          },
+          {
+            "value": ".NET",
+            "count": 7
+          },
+          {
+            "value": "Oracle eBS Financials",
+            "count": 7
+          },
+          {
+            "value": "Presales , Google Analytics",
+            "count": 7
+          },
+          {
+            "value": "SAP CO",
+            "count": 7
+          },
+          {
+            "value": "SAP FICO",
+            "count": 7
+          },
+          {
+            "value": "SAP SD",
+            "count": 7
+          },
+          {
+            "value": "Sharepoint",
+            "count": 7
+          },
+          {
+            "value": "Telecom Networks - Wireless Network",
+            "count": 7
+          },
+          {
+            "value": "Web Content Management",
+            "count": 7
+          },
+          {
+            "value": "Machine Learning , Artificial Intelligence",
+            "count": 6
+          },
+          {
+            "value": "Mainframe",
+            "count": 6
+          },
+          {
+            "value": "Microsoft Azure",
+            "count": 6
+          },
+          {
+            "value": "PLSQL",
+            "count": 6
+          },
+          {
+            "value": "SAP MDG",
+            "count": 6
+          },
+          {
+            "value": ".NET , Azure",
+            "count": 5
+          },
+          {
+            "value": "Adobe",
+            "count": 5
+          },
+          {
+            "value": "Autosar",
+            "count": 5
+          },
+          {
+            "value": "Core JAVA",
+            "count": 5
+          },
+          {
+            "value": "DevOps",
+            "count": 5
+          },
+          {
+            "value": "Digital : SAP Cloud Platform Integration (CPI)",
+            "count": 5
+          },
+          {
+            "value": "Domain : Industry Advisory",
+            "count": 5
+          },
+          {
+            "value": "ETL Testing",
+            "count": 5
+          },
+          {
+            "value": "Helpdesk Solution",
+            "count": 5
+          },
+          {
+            "value": "Linux",
+            "count": 5
+          },
+          {
+            "value": "Payment",
+            "count": 5
+          },
+          {
+            "value": "Presales , GCP - IT Service Management Consulting",
+            "count": 5
+          },
+          {
+            "value": "Quality Management",
+            "count": 5
+          },
+          {
+            "value": "Risk AML",
+            "count": 5
+          },
+          {
+            "value": "SAP Business Technology Platform (BTP) - Cloud Application Programming Model (CAPM)",
+            "count": 5
+          },
+          {
+            "value": "SAP EWM",
+            "count": 5
+          },
+          {
+            "value": "SAP FI",
+            "count": 5
+          },
+          {
+            "value": "SAP Hana",
+            "count": 5
+          },
+          {
+            "value": "SAP MM",
+            "count": 5
+          },
+          {
+            "value": "SAP SuccessFactors",
+            "count": 5
+          },
+          {
+            "value": "ServiceNow_ITAM (IT Asset Management) , Service Now",
+            "count": 5
+          },
+          {
+            "value": "Supply Chain",
+            "count": 5
+          },
+          {
+            "value": "Team Leader",
+            "count": 5
+          },
+          {
+            "value": "AWS",
+            "count": 4
+          },
+          {
+            "value": "Automation Testing , Java , Selenium",
+            "count": 4
+          },
+          {
+            "value": "Automation Testing , Selenium",
+            "count": 4
+          },
+          {
+            "value": "Business analyst",
+            "count": 4
+          },
+          {
+            "value": "Capital Markets and Financial Services",
+            "count": 4
+          },
+          {
+            "value": "Citrix",
+            "count": 4
+          },
+          {
+            "value": "DataStage",
+            "count": 4
+          },
+          {
+            "value": "Dell Boomi",
+            "count": 4
+          },
+          {
+            "value": "Finance ",
+            "count": 4
+          },
+          {
+            "value": "GCP - IT Service Management Consulting",
+            "count": 4
+          },
+          {
+            "value": "IBM Filenet",
+            "count": 4
+          },
+          {
+            "value": "Java , API Microservices",
+            "count": 4
+          },
+          {
+            "value": "Java Architecture",
+            "count": 4
+          },
+          {
+            "value": "Leadership",
+            "count": 4
+          },
+          {
+            "value": "Master Data Management",
+            "count": 4
+          },
+          {
+            "value": "Master Data Management (MDM)",
+            "count": 4
+          },
+          {
+            "value": "Node JS",
+            "count": 4
+          },
+          {
+            "value": "OpenText",
+            "count": 4
+          },
+          {
+            "value": "Operations Manager",
+            "count": 4
+          },
+          {
+            "value": "Oracle HCM",
+            "count": 4
+          },
+          {
+            "value": "Product Engineering",
+            "count": 4
+          },
+          {
+            "value": "Python , Azure",
+            "count": 4
+          },
+          {
+            "value": "SAP FIORI",
+            "count": 4
+          },
+          {
+            "value": "SAP IBP",
+            "count": 4
+          },
+          {
+            "value": "SAP PLM",
+            "count": 4
+          },
+          {
+            "value": "SAP QM : Quality Management , SAP PP",
+            "count": 4
+          },
+          {
+            "value": "Teamcentre",
+            "count": 4
+          },
+          {
+            "value": "API(Application programming interface)",
+            "count": 3
+          },
+          {
+            "value": "AWS solution architect",
+            "count": 3
+          }
+        ]
+      },
+      "content": [
+        {
+          "id": "434952J",
+          "title": ".NET",
+          "location": "Pune",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            ".NET , DevOps , Azure"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "434977J",
+          "title": "Automation Testing",
+          "location": "Pune",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Automation Testing , Python , Java , Jenkins , TypeScript"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435472J",
+          "title": "Java Fullstack Developer",
+          "location": "Pune",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-10-31T23:59:59+05:30",
+          "skills": [
+            "Kafka , Java , Core JAVA , React JS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "143361W",
+          "title": "Walkin Drive ID for GM India",
+          "location": "Mumbai",
+          "domain": "CONSULTANCY",
+          "minimumExperienceInYears": 2,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-10-10T00:00:00+05:30",
+          "skills": [
+            "Java"
+          ],
+          "walkIn": true
+        },
+        {
+          "id": "143360W",
+          "title": "Virtual Drive ID for GM India",
+          "location": "Mumbai",
+          "domain": "CONSULTANCY",
+          "minimumExperienceInYears": 2,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-10-10T00:00:00+05:30",
+          "skills": [
+            "Java"
+          ],
+          "walkIn": true
+        },
+        {
+          "id": "143359W",
+          "title": "Virtual Drive ID for GM India",
+          "location": "Mumbai",
+          "domain": "CONSULTANCY",
+          "minimumExperienceInYears": 2,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-10-09T00:00:00+05:30",
+          "skills": [
+            "Java"
+          ],
+          "walkIn": true
+        },
+        {
+          "id": "143358W",
+          "title": "Virtual Drive ID for GM India",
+          "location": "Mumbai",
+          "domain": "CONSULTANCY",
+          "minimumExperienceInYears": 2,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-10-08T00:00:00+05:30",
+          "skills": [
+            "Java"
+          ],
+          "walkIn": true
+        },
+        {
+          "id": "435465J",
+          "title": "Hadoop",
+          "location": "Chennai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Hadoop , Spark , Big Data"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435469J",
+          "title": "Business Analysis",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2027-02-27T23:59:59+05:30",
+          "skills": [
+            "Business Analysis"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435464J",
+          "title": "Business anylysis",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2027-02-27T23:59:59+05:30",
+          "skills": [
+            "Business Analysis"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435468J",
+          "title": "Developer",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Java , API Microservices"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435463J",
+          "title": "Developer",
+          "location": "Chennai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Java , API Microservices"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435460J",
+          "title": "Snowflake",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "SNOW"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435459J",
+          "title": "C++",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 17,
+          "applyBy": "2027-02-27T23:59:59+05:30",
+          "skills": [
+            "Pro*C"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435461J",
+          "title": "Java Developer",
+          "location": "Hyderabad",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Java , Spring Boot"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435457J",
+          "title": "Java Developer",
+          "location": "Kolkata",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Java , Spring Boot"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435458J",
+          "title": "Java full stack with React JS",
+          "location": "Pune",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Java , React JS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435453J",
+          "title": "AZURE",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2027-02-27T23:59:59+05:30",
+          "skills": [
+            "Azure"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435452J",
+          "title": "AWS",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "AWS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435450J",
+          "title": "Service Management",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Service Management"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435451J",
+          "title": "Mobile Automation Testing Appium",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Appium , Android , Mobile Application Testing"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435447J",
+          "title": "MySQL",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "MySql "
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435445J",
+          "title": "Windows",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Windows"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435444J",
+          "title": "Citrix",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Citrix"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435443J",
+          "title": "Leadership",
+          "location": "Chennai",
+          "domain": "BUSINESS PROCESS SERVICES",
+          "minimumExperienceInYears": 15,
+          "maximumExperienceInYears": 25,
+          "applyBy": "2026-12-06T23:59:59+05:30",
+          "skills": [
+            "Leadership"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435441J",
+          "title": "Rockwell FTPC",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 6,
+          "applyBy": "2026-11-06T23:59:59+05:30",
+          "skills": [
+            "Rockwell MES"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435440J",
+          "title": "Siemens OpCenter",
+          "location": "Pune",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-11-06T23:59:59+05:30",
+          "skills": [
+            "Camster MES"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435429J",
+          "title": "Dotnet Fullstack Developer",
+          "location": "Chennai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Web API , Javascript , .NET , Jquery , CSS3 , MVC , HTML5 , React JS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435439J",
+          "title": "Master Data Specialist- SAP MM",
+          "location": "Hyderabad",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 8,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-11-06T23:59:59+05:30",
+          "skills": [
+            "SAP MM"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "434555J",
+          "title": "Automation QA Engineer ",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Automation Testing , Selenium"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435438J",
+          "title": "IOS Swift ui developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Ios-Swift"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435433J",
+          "title": "OTC",
+          "location": "Kolkata",
+          "domain": "BUSINESS PROCESS SERVICES",
+          "minimumExperienceInYears": 1,
+          "maximumExperienceInYears": 7,
+          "applyBy": "2026-11-09T23:59:59+05:30",
+          "skills": [
+            "Finance and Accounting"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435430J",
+          "title": "RTR",
+          "location": "Kolkata",
+          "domain": "BUSINESS PROCESS SERVICES",
+          "minimumExperienceInYears": 1,
+          "maximumExperienceInYears": 7,
+          "applyBy": "2026-11-09T23:59:59+05:30",
+          "skills": [
+            "Finance and Accounting"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "433273J",
+          "title": "Pega Developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 8,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-10-10T23:59:59+05:30",
+          "skills": [
+            "Pega"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "143344W",
+          "title": "A&I Chennai",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 2,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-10-08T00:00:00+05:30",
+          "skills": [
+            "Azure,Artificial Intelligence,Python,Informatica"
+          ],
+          "walkIn": true
+        },
+        {
+          "id": "435428J",
+          "title": "Windows Admin",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Windows Administrator"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435427J",
+          "title": "Adobe Marketo",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Adobe"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435422J",
+          "title": "Red Hat OpenShift Administrator ",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "AWS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435421J",
+          "title": "Adobe workfront",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Adobe"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435420J",
+          "title": "React JS Developer",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "ReactJS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435408J",
+          "title": "Data Scientist",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Python , Data Science , Machine Learning , SQL"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435415J",
+          "title": "Storage Administrator",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Storage Admin"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435398J",
+          "title": "React Native Developer",
+          "location": "Chennai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Javascript , TypeScript , React JS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435410J",
+          "title": "Azure",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Azure"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435409J",
+          "title": "Architect - Embedded Cyber Security Architecture Support",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 7,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Cyber Security , Data Warehouse , Cloud Security"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435413J",
+          "title": "Cloud platform engineer (GCP) support ",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 7,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "GCP - IT Service Management Consulting"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435404J",
+          "title": "Veeva QMS Support Analyst",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 6,
+          "applyBy": "2026-11-06T23:59:59+05:30",
+          "skills": [
+            "VEEVA CRM"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435407J",
+          "title": "Java Backend Developer ",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Microservices , Java , Spring Boot"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435403J",
+          "title": "AWS Platform Administrator",
+          "location": "Mumbai",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "AWS Admin"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "435401J",
+          "title": "GCP Data Engineer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 6,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "MySql  , Python , GCP - IT Service Management Consulting"
+          ],
+          "walkIn": false
+        }
+      ],
+      "pageable": {
+        "pageNumber": 0,
+        "pageSize": 50,
+        "sort": {
+          "sorted": false,
+          "unsorted": true,
+          "empty": true
+        },
+        "offset": 0,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": false,
+      "totalPages": 39,
+      "totalElements": 1939,
+      "first": true,
+      "numberOfElements": 50,
+      "size": 50,
+      "number": 0,
+      "sort": {
+        "sorted": false,
+        "unsorted": true,
+        "empty": true
+      },
+      "empty": false
+    }
+  },
+  {
+    "result": true,
+    "status": 200,
+    "message": "Ok",
+    "payload": {
+      "facets": {
+        "locations": [
+          {
+            "value": "bengaluru",
+            "count": 698
+          },
+          {
+            "value": "chennai",
+            "count": 286
+          },
+          {
+            "value": "hyderabad",
+            "count": 238
+          },
+          {
+            "value": "mumbai",
+            "count": 236
+          },
+          {
+            "value": "delhi",
+            "count": 117
+          },
+          {
+            "value": "pune",
+            "count": 90
+          },
+          {
+            "value": "kolkata",
+            "count": 67
+          },
+          {
+            "value": "trivandrum",
+            "count": 59
+          },
+          {
+            "value": "ncr",
+            "count": 56
+          },
+          {
+            "value": "indor",
+            "count": 25
+          },
+          {
+            "value": "kochi",
+            "count": 23
+          },
+          {
+            "value": "nagpur",
+            "count": 13
+          },
+          {
+            "value": "bhubaneshwar",
+            "count": 10
+          },
+          {
+            "value": "ahmedabad",
+            "count": 8
+          },
+          {
+            "value": "visakhapatnam",
+            "count": 5
+          },
+          {
+            "value": "gandhinagar",
+            "count": 4
+          },
+          {
+            "value": "bhopal",
+            "count": 1
+          },
+          {
+            "value": "coimbator",
+            "count": 1
+          },
+          {
+            "value": "lucknow",
+            "count": 1
+          },
+          {
+            "value": "patna",
+            "count": 1
+          }
+        ],
+        "domains": [
+          {
+            "value": "2137",
+            "count": 955
+          },
+          {
+            "value": "2132",
+            "count": 479
+          },
+          {
+            "value": "2134",
+            "count": 423
+          },
+          {
+            "value": "2136",
+            "count": 78
+          },
+          {
+            "value": "2130",
+            "count": 2
+          },
+          {
+            "value": "2133",
+            "count": 1
+          },
+          {
+            "value": "2135",
+            "count": 1
+          },
+          {
+            "value": "2131",
+            "count": 0
+          }
+        ],
+        "experiences": [
+          {
+            "value": "entry_level",
+            "count": 1137
+          },
+          {
+            "value": "middle_level",
+            "count": 1897
+          },
+          {
+            "value": "senior_level",
+            "count": 511
+          }
+        ],
+        "skills": [
+          {
+            "value": "Finance and Accounting",
+            "count": 154
+          },
+          {
+            "value": "Oracle",
+            "count": 34
+          },
+          {
+            "value": "Salesforce(SFDC)",
+            "count": 32
+          },
+          {
+            "value": "Java",
+            "count": 28
+          },
+          {
+            "value": "Service Now",
+            "count": 24
+          },
+          {
+            "value": "Artificial Intelligence",
+            "count": 23
+          },
+          {
+            "value": "Customer Service",
+            "count": 23
+          },
+          {
+            "value": "HRO Payroll",
+            "count": 23
+          },
+          {
+            "value": "Python",
+            "count": 23
+          },
+          {
+            "value": "HRO Compensation & Benefits",
+            "count": 18
+          },
+          {
+            "value": "Project Management",
+            "count": 18
+          },
+          {
+            "value": "SAP AII",
+            "count": 17
+          },
+          {
+            "value": "Automation Testing",
+            "count": 16
+          },
+          {
+            "value": "Microservices , Java , Spring Boot",
+            "count": 14
+          },
+          {
+            "value": "Workday Integration",
+            "count": 14
+          },
+          {
+            "value": "Human Resource",
+            "count": 13
+          },
+          {
+            "value": "Informatica",
+            "count": 13
+          },
+          {
+            "value": "Oracle Fusion Financials",
+            "count": 13
+          },
+          {
+            "value": "SAP ABAP",
+            "count": 13
+          },
+          {
+            "value": "SAP ABAP HANA",
+            "count": 13
+          },
+          {
+            "value": "SAP BASIS",
+            "count": 13
+          },
+          {
+            "value": "Azure",
+            "count": 11
+          },
+          {
+            "value": "Sales",
+            "count": 11
+          },
+          {
+            "value": "Business Analysis",
+            "count": 10
+          },
+          {
+            "value": "HRO Recruitment & Staffing",
+            "count": 10
+          },
+          {
+            "value": "Pega",
+            "count": 10
+          },
+          {
+            "value": "Java , Spring Boot",
+            "count": 9
+          },
+          {
+            "value": "SCM",
+            "count": 9
+          },
+          {
+            "value": "VLSI",
+            "count": 9
+          },
+          {
+            "value": "Administration",
+            "count": 8
+          },
+          {
+            "value": "Operations",
+            "count": 8
+          },
+          {
+            "value": "Oracle , Oracle Fusion Financials",
+            "count": 8
+          },
+          {
+            "value": "Presales",
+            "count": 8
+          },
+          {
+            "value": "Python , Artificial Intelligence",
+            "count": 8
+          },
+          {
+            "value": ".NET",
+            "count": 7
+          },
+          {
+            "value": "Oracle eBS Financials",
+            "count": 7
+          },
+          {
+            "value": "Presales , Google Analytics",
+            "count": 7
+          },
+          {
+            "value": "SAP CO",
+            "count": 7
+          },
+          {
+            "value": "SAP FICO",
+            "count": 7
+          },
+          {
+            "value": "SAP SD",
+            "count": 7
+          },
+          {
+            "value": "Sharepoint",
+            "count": 7
+          },
+          {
+            "value": "Telecom Networks - Wireless Network",
+            "count": 7
+          },
+          {
+            "value": "Web Content Management",
+            "count": 7
+          },
+          {
+            "value": "Machine Learning , Artificial Intelligence",
+            "count": 6
+          },
+          {
+            "value": "Mainframe",
+            "count": 6
+          },
+          {
+            "value": "Microsoft Azure",
+            "count": 6
+          },
+          {
+            "value": "PLSQL",
+            "count": 6
+          },
+          {
+            "value": "SAP MDG",
+            "count": 6
+          },
+          {
+            "value": ".NET , Azure",
+            "count": 5
+          },
+          {
+            "value": "Adobe",
+            "count": 5
+          },
+          {
+            "value": "Autosar",
+            "count": 5
+          },
+          {
+            "value": "Core JAVA",
+            "count": 5
+          },
+          {
+            "value": "DevOps",
+            "count": 5
+          },
+          {
+            "value": "Digital : SAP Cloud Platform Integration (CPI)",
+            "count": 5
+          },
+          {
+            "value": "Domain : Industry Advisory",
+            "count": 5
+          },
+          {
+            "value": "ETL Testing",
+            "count": 5
+          },
+          {
+            "value": "Helpdesk Solution",
+            "count": 5
+          },
+          {
+            "value": "Linux",
+            "count": 5
+          },
+          {
+            "value": "Payment",
+            "count": 5
+          },
+          {
+            "value": "Presales , GCP - IT Service Management Consulting",
+            "count": 5
+          },
+          {
+            "value": "Quality Management",
+            "count": 5
+          },
+          {
+            "value": "Risk AML",
+            "count": 5
+          },
+          {
+            "value": "SAP Business Technology Platform (BTP) - Cloud Application Programming Model (CAPM)",
+            "count": 5
+          },
+          {
+            "value": "SAP EWM",
+            "count": 5
+          },
+          {
+            "value": "SAP FI",
+            "count": 5
+          },
+          {
+            "value": "SAP Hana",
+            "count": 5
+          },
+          {
+            "value": "SAP MM",
+            "count": 5
+          },
+          {
+            "value": "SAP SuccessFactors",
+            "count": 5
+          },
+          {
+            "value": "ServiceNow_ITAM (IT Asset Management) , Service Now",
+            "count": 5
+          },
+          {
+            "value": "Supply Chain",
+            "count": 5
+          },
+          {
+            "value": "Team Leader",
+            "count": 5
+          },
+          {
+            "value": "AWS",
+            "count": 4
+          },
+          {
+            "value": "Automation Testing , Java , Selenium",
+            "count": 4
+          },
+          {
+            "value": "Automation Testing , Selenium",
+            "count": 4
+          },
+          {
+            "value": "Business analyst",
+            "count": 4
+          },
+          {
+            "value": "Capital Markets and Financial Services",
+            "count": 4
+          },
+          {
+            "value": "Citrix",
+            "count": 4
+          },
+          {
+            "value": "DataStage",
+            "count": 4
+          },
+          {
+            "value": "Dell Boomi",
+            "count": 4
+          },
+          {
+            "value": "Finance ",
+            "count": 4
+          },
+          {
+            "value": "GCP - IT Service Management Consulting",
+            "count": 4
+          },
+          {
+            "value": "IBM Filenet",
+            "count": 4
+          },
+          {
+            "value": "Java , API Microservices",
+            "count": 4
+          },
+          {
+            "value": "Java Architecture",
+            "count": 4
+          },
+          {
+            "value": "Leadership",
+            "count": 4
+          },
+          {
+            "value": "Master Data Management",
+            "count": 4
+          },
+          {
+            "value": "Master Data Management (MDM)",
+            "count": 4
+          },
+          {
+            "value": "Node JS",
+            "count": 4
+          },
+          {
+            "value": "OpenText",
+            "count": 4
+          },
+          {
+            "value": "Operations Manager",
+            "count": 4
+          },
+          {
+            "value": "Oracle HCM",
+            "count": 4
+          },
+          {
+            "value": "Product Engineering",
+            "count": 4
+          },
+          {
+            "value": "Python , Azure",
+            "count": 4
+          },
+          {
+            "value": "SAP FIORI",
+            "count": 4
+          },
+          {
+            "value": "SAP IBP",
+            "count": 4
+          },
+          {
+            "value": "SAP PLM",
+            "count": 4
+          },
+          {
+            "value": "SAP QM : Quality Management , SAP PP",
+            "count": 4
+          },
+          {
+            "value": "Teamcentre",
+            "count": 4
+          },
+          {
+            "value": "API(Application programming interface)",
+            "count": 3
+          },
+          {
+            "value": "AWS solution architect",
+            "count": 3
+          }
+        ]
+      },
+      "content": [
+        {
+          "id": "395074J",
+          "title": "ServiceNow developer- CSM",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-02-06T23:59:59+05:30",
+          "skills": [
+            "Digital : ServiceNow_Customer Service Management , Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "394705J",
+          "title": "Regional Administration Manager",
+          "location": "Delhi",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 8,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Vendor Management , Administration"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "394708J",
+          "title": "Regional Capacity Lead",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Administration , Capacity Management"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "394704J",
+          "title": "Zonal Sales Head",
+          "location": "Kolkata",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 12,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "394703J",
+          "title": "Presales & Bid Management",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 2,
+          "maximumExperienceInYears": 5,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Presales , Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "394702J",
+          "title": "Regional Operation Manager",
+          "location": "Coimbatore",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Operations , Team Leader"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "394701J",
+          "title": "Enterprise Sales Manager",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "390771J",
+          "title": "Visual Design",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 6,
+          "applyBy": "2026-10-31T23:59:59+05:30",
+          "skills": [
+            "CUE- Visual Design , UX/UI Design"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "379430J",
+          "title": "Linux OS Developer",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 3,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Linux"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "379432J",
+          "title": "Game Designer",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Game Designer"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "389855J",
+          "title": "MRO- Repair Engineer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 3,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "MRO"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "377084J",
+          "title": "Subject Matter Expert",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Accessibility Assessment and Evaluation Techniques , TCS Assessment Framework"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "379435J",
+          "title": "Regional Lead",
+          "location": "Bhopal",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 7,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "376700J",
+          "title": "SME Engagement Manager",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Employee Engagement"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "376660J",
+          "title": "Subject Matter Expert",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 20,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Accessibility Assessment and Evaluation Techniques , TCS Assessment Framework"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "376658J",
+          "title": "Subject Matter Expert",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 20,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Accessibility Assessment and Evaluation Techniques , TCS Assessment Framework"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "389019J",
+          "title": "Regional Lead",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 7,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "389011J",
+          "title": "Operation Support Staff",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 6,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Operation Support"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "389003J",
+          "title": "Motion Graphics Designer",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 6,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Motion Graphics"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "388989J",
+          "title": "Visual Designer",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 6,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "CUE- Visual Design"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "388962J",
+          "title": "Presales & Bid Management",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 3,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Presales , Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "388951J",
+          "title": "Software Developer",
+          "location": "Mumbai",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 3,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "388923J",
+          "title": "Zonal Sales Head",
+          "location": "Kolkata",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 12,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Sales"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "388855J",
+          "title": "Regional Operation Manager",
+          "location": "Patna",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 10,
+          "maximumExperienceInYears": 15,
+          "applyBy": "2026-11-30T23:59:59+05:30",
+          "skills": [
+            "Operations , Team Leader"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387800J",
+          "title": "ServiceNow SPM Developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387799J",
+          "title": "ServiceNow SecOps Developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387798J",
+          "title": "ServiceNow CMDB ",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387797J",
+          "title": "ServiceNow ITOM Developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "ServiceNow"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387795J",
+          "title": "ServiceNow Architect",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 8,
+          "maximumExperienceInYears": 16,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387789J",
+          "title": "ServiceNow HRSD Developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "Digital : ServiceNow_Human Resource Service Delivery , Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387786J",
+          "title": "ServiceNow ITSM Developer",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 14,
+          "applyBy": "2027-01-01T23:59:59+05:30",
+          "skills": [
+            "Digital : ServiceNow_IT Service Management , Service Now"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "387277J",
+          "title": "Dot Net Developer with Python",
+          "location": "Hyderabad",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Python , Angularjs , .NET , React JS"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "386196J",
+          "title": "Adobe customer journey analyser",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-02T23:59:59+05:30",
+          "skills": [
+            "Adobe"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "385232J",
+          "title": " SAP SuccessFactors",
+          "location": "Kochi",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 7,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "SAP SuccessFactors"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "385104J",
+          "title": "SAP ARIBA",
+          "location": "Bengaluru",
+          "domain": "TECHNOLOGY",
+          "minimumExperienceInYears": 7,
+          "maximumExperienceInYears": 11,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "SAP Ariba"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "384674J",
+          "title": "RMG Business Partner",
+          "location": "Delhi",
+          "domain": "HUMAN RESOURCES",
+          "minimumExperienceInYears": 5,
+          "maximumExperienceInYears": 8,
+          "applyBy": "2026-12-31T23:59:59+05:30",
+          "skills": [
+            "Resource Management"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "384365J",
+          "title": "Snowflake Developer",
+          "location": "Bhubaneshwar",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-05T23:59:59+05:30",
+          "skills": [
+            "Data Modeling , SNOW , Azure"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "384357J",
+          "title": "Java Developer",
+          "location": "Bhubaneshwar",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 4,
+          "maximumExperienceInYears": 10,
+          "applyBy": "2026-12-05T23:59:59+05:30",
+          "skills": [
+            "Microservices , Java , Spring Boot"
+          ],
+          "walkIn": false
+        },
+        {
+          "id": "379526J",
+          "title": "Technical architect",
+          "location": "Bengaluru",
+          "domain": "IT INFRASTRUCTURE SERVICES",
+          "minimumExperienceInYears": 8,
+          "maximumExperienceInYears": 12,
+          "applyBy": "2026-11-04T23:59:59+05:30",
+          "skills": [
+            "Microservices , Java , Cloud AWS/Amazon , Cloud Azure"
+          ],
+          "walkIn": false
+        }
+      ],
+      "pageable": {
+        "pageNumber": 38,
+        "pageSize": 50,
+        "sort": {
+          "sorted": false,
+          "unsorted": true,
+          "empty": true
+        },
+        "offset": 1900,
+        "paged": true,
+        "unpaged": false
+      },
+      "last": true,
+      "totalPages": 39,
+      "totalElements": 1939,
+      "first": false,
+      "numberOfElements": 39,
+      "size": 50,
+      "number": 38,
+      "sort": {
+        "sorted": false,
+        "unsorted": true,
+        "empty": true
+      },
+      "empty": false
+    }
+  }
+]

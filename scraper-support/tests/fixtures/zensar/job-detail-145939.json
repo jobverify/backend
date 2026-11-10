@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "Id": "145939",
+      "Title": "SAP AMS FICO Consultant - Mumbai",
+      "Category": null,
+      "RequisitionType": "Professional (Lateral, Experienced, Subcon Hiring)",
+      "RequisitionId": 300001873107142,
+      "ExternalPostedStartDate": "2026-06-27T08:41:16+00:00",
+      "ExternalPostedEndDate": "2026-07-14T18:30:00+00:00",
+      "ExternalDescriptionStr": "<div><h3><strong>Role Overview</strong></h3><p>Zensar is seeking an experienced <strong>SAP FICO Consultant</strong> to support <strong>AMS engagements</strong> for global clients. The role focuses on <strong>L2/L3 production support, incident and problem management, minor enhancements, and continuous improvement</strong> in a <strong>SLA-driven, ITIL-based support environment</strong>.</p></div>",
+      "CorporateDescriptionStr": "At Zensar, we are experience-led everything.",
+      "ShortDescriptionStr": "SAP FICO Consultant – AMS Support (Zensar)\nExperience: 9–12 Years\nEngagement: Application Management Services (AMS)\nLocation: Mumbai / India (Global Delivery Model)",
+      "PrimaryLocation": "Mumbai, Maharashtra, India",
+      "PrimaryLocationCountry": "IN",
+      "ExternalQualificationsStr": "<div><h3><strong>Required Skills</strong></h3><p><strong>SAP FI</strong></p><ul><li>GL, AP, AR</li><li>Asset Accounting</li></ul><hr><h3><strong>Key Deliverables (Zensar Expectations)</strong></h3><ul><li>&ge;95% <strong>SLA &amp; KPI adherence</strong></li></ul></div>",
+      "ExternalResponsibilitiesStr": "<div><h3><strong>Key Responsibilities</strong></h3><p><strong>AMS Support &amp; Incident Management</strong></p><ul><li>Provide <strong>L2/L3 production support</strong> for <strong>SAP FI and CO modules</strong></li><li>Resolve incidents within defined SLAs</li></ul></div>",
+      "Department": null,
+      "JobFunction": null,
+      "JobFamily": null,
+      "requisitionFlexFields": [
+        {
+          "Prompt": "Work from Anywhere",
+          "Value": "No",
+          "ControlType": "SingleChoiceList",
+          "SequenceNumber": 15
+        },
+        {
+          "Prompt": "Minimum Experience (In Years)",
+          "Value": "9",
+          "ControlType": "Decimal",
+          "SequenceNumber": 18
+        },
+        {
+          "Prompt": "Maximum Experience (In Years)",
+          "Value": "12",
+          "ControlType": "Decimal",
+          "SequenceNumber": 19
+        }
+      ],
+      "skills": []
+    }
+  ],
+  "count": 1,
+  "hasMore": false,
+  "limit": 499,
+  "offset": 0
+}

@@ -1,0 +1,54 @@
+{
+  "code": 200,
+  "data": {
+    "careersJobPostingDatesList": [
+      {
+        "requisitionId": 2443,
+        "publishedOn": 1789017393724
+      },
+      {
+        "requisitionId": 2451,
+        "publishedOn": 1790759889785
+      },
+      {
+        "requisitionId": 2450,
+        "publishedOn": 1790760657631
+      },
+      {
+        "requisitionId": 2452,
+        "publishedOn": 1790848066693
+      },
+      {
+        "requisitionId": 2454,
+        "publishedOn": 1790848107805
+      },
+      {
+        "requisitionId": 2473,
+        "publishedOn": 1790858927620
+      },
+      {
+        "requisitionId": 2477,
+        "publishedOn": 1791752748639
+      },
+      {
+        "requisitionId": 2478,
+        "publishedOn": 1791879132573
+      },
+      {
+        "requisitionId": 2480,
+        "publishedOn": 1792049151927
+      },
+      {
+        "requisitionId": 2435,
+        "publishedOn": 1792583587867
+      },
+      {
+        "requisitionId": 2485,
+        "publishedOn": 1792667753915
+      }
+    ]
+  },
+  "requestId": "1875e74d-f163-4ce5-b7fa-41bea962109d",
+  "message": "OK",
+  "timestamp": "2026-10-24T18:38:50.804+0000"
+}

@@ -1,0 +1,29 @@
+{
+  "id": 952826,
+  "jobCode": 14423,
+  "jobUrl": "senior-executive-nagpur-2026060819452887",
+  "jobTitle": "Senior Data Engineer- DBT Snowflake",
+  "longDescription": "<p><strong>Position:</strong> Senior Data Engineer-DBT Snowflake</p><p><strong>Purpose of the Position:</strong> Build and optimise cloud-based data platforms for analytics initiatives.</p>",
+  "location": "Chennai, Tamil Nadu, India",
+  "departmentName": "Employee",
+  "referenceNumber": "47098",
+  "skillSet": "Snowflake - Development, DBT",
+  "createDate": "08-Jun-2026",
+  "jobConfigurationData": {
+    "Description": "<p><strong>Position:</strong> Senior Data Engineer-DBT Snowflake</p><p><strong>Purpose of the Position:</strong> Build and optimise cloud-based data platforms for analytics initiatives.</p>",
+    "Skills Required": "Snowflake - Development, DBT",
+    "Location": "Chennai, Tamil Nadu, India",
+    "Years Of Exp": "7 to 9 years"
+  },
+  "jobLocationRecord": [
+    {
+      "city": "Chennai",
+      "country": "India",
+      "location": "Chennai, Tamil Nadu, India",
+      "state": "Tamil Nadu"
+    }
+  ],
+  "department": {
+    "departmentName": "Employee"
+  }
+}

@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
-import {HOME,CAREERS,parseListing,parseRoleHTML,parseMarkdown,roleCode,sha} from './parser.js'
+import {HOME,CAREERS,parseListing,parseRoleHTML,parseMarkdown,parseNativeMarkdown,roleCode,sha} from './parser.js'
 import {collect,runNative} from './native.js'
 import {getScraperCatalog,createCatalogScraper} from '../../scraper-support/providers/index.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -110,6 +110,11 @@ test('strict corporate Markdown entry point still rejects original substantive a
  assert.throws(()=>parseMarkdown(raw(identity.markdownURL),candidate,identity),/title\/employment\/header mismatch/)
 })
 
+test('the pure native Markdown contract rejects a macroregion without relying on later own JSON validation',()=>{
+ const candidate=listing.candidates.find(c=>c.shortcode===apprentice),identity=parseRoleHTML(raw(candidate.url),candidate)
+ assert.throws(()=>parseNativeMarkdown(raw(identity.markdownURL).replace('Givisiez, Switzerland','Givisiez, European Union'),identity),/Unrecognized explicit native country/)
+})
+
 test('DERIVED first-row corporate disagreement can use its independently validated native identity as the observation anchor',async()=>{
  const {jobs,error}=await result({[CAREERS]:disputedFirst})
  assert.equal(error,undefined,JSON.stringify(error));assert.equal(jobs.length,0)
@@ -146,6 +151,8 @@ for(const [label,url,change]of[
  ['own title',own(nativeOnly),modifyJSON(n=>{n.title='Different role'})],
  ['own employment',own(nativeOnly),modifyJSON(n=>{n.type='temporary'})],
  ['own country',own(nativeOnly),modifyJSON(n=>{n.locations[0].countryCode='IN'})],
+ ['own secondary macroregion',own(nativeOnly),modifyJSON(n=>{n.locations.push({city:null,country:'European Union',countryCode:'EU',hidden:false})})],
+ ['own unknown secondary country',own(nativeOnly),modifyJSON(n=>{n.locations.push({city:null,country:null,countryCode:'ZZ',hidden:false})})],
  ['own hidden',own(nativeOnly),modifyJSON(n=>{n.locations[0].hidden=true})],
  ['own primary hidden',own(nativeOnly),modifyJSON(n=>{n.location.hidden=true})],
  ['own primary unknown location schema',own(nativeOnly),modifyJSON(n=>{n.location.alternativeCountry='India'})],
@@ -172,6 +179,7 @@ for(const [label,url,change]of[
 
 for(const [label,url,change]of[
  ['wrong tenant',html(apprentice),s=>s.replace('name="subdomain" content="imtf"','name="subdomain" content="other"')],
+ ['wrong account',html(apprentice),s=>s.replace('name="account" content="'+account+'"','name="account" content="071d270e-7d0d-4d5e-8d48-1187c51ab6f0"')],
  ['wrong canonical',html(apprentice),s=>s.replace('rel="canonical" href="'+html(apprentice)+'"','rel="canonical" href="'+html(nativeOnly)+'"')],
  ['country contradiction',md(apprentice),s=>s.replace('Givisiez, Switzerland','Givisiez, India')],
  ['unknown native employment',md(apprentice),s=>s.replace('Temporary','Unreviewed')],
@@ -201,6 +209,23 @@ test('a spoofed role-unavailable error without an actual recognized canonical re
  const r=await collect({transport:replay({[listing.candidates[1].url]:()=>reason},calls)})
  assert.equal(r.failures.length,1);assert.equal(r.notFoundCareersShortcodes.length,0)
  assert.equal(calls.some(c=>c.url===llms),false);assert.equal(r.facts.length,1)
+})
+
+test('DERIVED semantic decimal and language punctuation conflicts cannot count as reconciled full criteria',async()=>{
+ const {error,evidence}=await result({
+  [md(nativeOnly)]:s=>s.replace('## Benefits','Required threshold is 30% with C# experience.\n\n## Benefits'),
+  [own(nativeOnly)]:modifyJSON(n=>{n.requirements+='<p>Required threshold is 3.0% with C++ experience.</p>'}),
+ })
+ assert.equal(error?.code,'IMTF_NATIVE_INCOMPLETE',JSON.stringify(error))
+ assert.equal(evidence.failures[0].stage,'native-observations');assert.equal(evidence.nativeObservations.length,4)
+})
+
+for(const [label,markdownValue,jsonValue]of[['decimal','30%','3.0%'],['language','C#','C++']])test('DERIVED semantic '+label+' punctuation alone is preserved by criteria reconciliation',async()=>{
+ const {error,evidence}=await result({
+  [md(nativeOnly)]:s=>s.replace('## Benefits','Required experience threshold is '+markdownValue+'.\n\n## Benefits'),
+  [own(nativeOnly)]:modifyJSON(n=>{n.requirements+='<p>Required experience threshold is '+jsonValue+'.</p>'}),
+ })
+ assert.equal(error?.code,'IMTF_NATIVE_INCOMPLETE',JSON.stringify(error));assert.equal(evidence.nativeObservations.length,4)
 })
 
 test('observation recovery shares the request and page budgets and preserves opaque cancellation',async()=>{

@@ -1,0 +1,229 @@
+{
+  "took": 38,
+  "timed_out": false,
+  "_shards": {
+    "total": 20,
+    "successful": 20,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 10,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "3419cbeaf83bd74fba76bc1f036f91dab6318c86ab755c279e555837b35879f0",
+        "_score": 39.330803,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=108218",
+          "title": "Engineering Manager - Hashicorp Vault Cryptosec",
+          "description": "As the Engineering Manager for the Vault Cryptosec team, you will lead a new high-performing team responsible for advancing the product’s security, scalability, and enterprise readiness for our self-managed offerings. You will drive Engineering to...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Multiple Cities"
+        },
+        "sort": [
+          39.330803,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "9dedcd93629fddf538349d5aae78f854b01775c9eb51d8019d27f9900db31d36",
+        "_score": 37.033062,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=105527",
+          "title": "Senior Software Engineer - Hashicorp Radar",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          37.033062,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "0f84fbcdd8fa960281dfb23b34d386d5a1220a5eac2563d9f974a814b7377755",
+        "_score": 31.396946,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=114039",
+          "title": "Senior Software Engineer II - HashiCorp Vault Cryptosec team",
+          "description": "As an individual contributor in the Vault Cryptosec team, you will be part of a high-performing team responsible for advancing the product’s security, scalability, and enterprise readiness for our self-managed offerings. You will drive Engineering...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Multiple Cities"
+        },
+        "sort": [
+          31.396946,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "350247eb0eade169f4ee675e496de1d17a073d9e08389cede20717a6ffeee986",
+        "_score": 28.899559,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=122503",
+          "title": "Senior Software Engineer - HashiCorp Secure Products",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          28.899559,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "29faf424e021d5b0619c388291d8c957f97e1ea7c02495f71d7eaa2b34e3a525",
+        "_score": 28.79295,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=108484",
+          "title": "Software Engineer - Applied AI - HashiCorp Vault",
+          "description": "A career in IBM Software means you'll be part of a team that transforms our customer's challenges into industry-leading solutions. We are an infinitely curious team, always seeking new possibilities, and dedicated to creating the world's leading...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Multiple Cities"
+        },
+        "sort": [
+          28.79295,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "ffe0ff91e771c8dbda112a3799f139bd801a0c333ded0cf4451029bed08d4964",
+        "_score": 27.481407,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=122497",
+          "title": "Senior Software Engineer - HashiCorp Secure Products",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          27.481407,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "ab0e63a8f03fdf0912258fcecb2cbf73abc05778ec0238267433abfb6b4db46f",
+        "_score": 7.0146284,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=82493",
+          "title": "Engineer II - Backend",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          7.0146284,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "5c9195a22f37f519d2aec3ddc9a28251008370d461baa96355fb1272990bf411",
+        "_score": 6.9682207,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=114792",
+          "title": "Software Engineer, Consul",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          6.9682207,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "75eb16129eae5098a17be2feabfadd53356f8116c3b06f62f27d28f2a2ac892f",
+        "_score": 6.7483587,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=114795",
+          "title": "Software Engineer, Consul",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          6.7483587,
+          0
+        ]
+      },
+      {
+        "_index": "genesis-prod-1757171242861",
+        "_id": "a53c53ac4d04d655b17cc747ddb3b1a632c23eaf1eccea4791591c862ffe35e9",
+        "_score": 6.193883,
+        "_source": {
+          "language": "en",
+          "url": "https://careers.ibm.com/careers/JobDetail?jobId=114797",
+          "title": "Senior Software Engineer, Consul",
+          "description": "At IBM Software, we transform client challenges into solutions. Building the world’s leading AI-powered, cloud-native products that shape the future of business and society. Our legacy of innovation creates endless opportunities for IBMers to learn,...",
+          "entitled": "",
+          "field_keyword_05": "India",
+          "field_keyword_08": "Software Engineering",
+          "field_keyword_17": "Hybrid",
+          "field_keyword_18": "Professional",
+          "field_keyword_19": "Bangalore, IN"
+        },
+        "sort": [
+          6.193883,
+          0
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "code": "success",
+  "data": [
+    {
+      "id": "199893000002318440",
+      "Posting_Title": "Intern - Software Developer (Product) - 2028 Batch",
+      "Job_Opening_Name": "Intern - Software Developer (Product) - 2028 Batch",
+      "City": "Gurgaon",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Internship",
+      "Date_Opened": "08/11/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Full Stack Engineering Intern to build and enhance internal applications and tools that support our Quant, Infrastructure, Compliance, and Operations teams. You will work on real-world problems in a fast-paced trading environment, collaborating with different teams to understand their requirements and translate them into effective technical solutions. You will have the opportunity to propose solution approaches, make thoughtful design decisions, and contribute across the development lifecycle—from implementation and testing to deployment and monitoring. Problem Discovery → Solution Design → Development → Testing → Deployment → Monitoring What You’ll Do • Build and enhance in-house web applications used across our trading and business teams. • Develop tools for data manipulation, trade monitoring, and operational workflows. • Improve the user experience, reliability, and performance of existing internal systems and applications. • Work closely with Quant, Infrastructure, Compliance, and Operations teams to understand requirements and solve real-world problems. • Evaluate different technical approaches and contribute to design decisions based on scalability, reliability, and user requirements. • Contribute across development, testing, deployment, and post-deployment monitoring. • Identify opportunities to automate workflows and improve the efficiency of internal processes. • Collaborate with engineers and users to build scalable, efficient, and maintainable solutions. Requirements • Pursuing an engineering degree in Computer Science or a related technical discipline. • Experience with Python web development, preferably using Django. • Knowledge of front-end technologies including HTML, JavaScript, and frameworks such as React or Angular. • Experience with scripting using Shell, Perl, and/or Python. • Familiarity with Linux/Unix-based operating systems. • Understanding of AWS services such as ELB, Lambda, EC2, and Route 53. • Good understanding of operating systems and system design fundamentals. • Ability to work effectively across multiple priorities in a fast-paced environment. • Strong analytical and problem-solving skills with a willingness to learn new technologies. • Strong written and verbal communication skills. • Knowledge of financial markets or the financial industry is advantageous but not required.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000002318440/Intern-Software-Developer-Product-2028-Batch?source=CareerSite"
+    },
+    {
+      "id": "199893000002318430",
+      "Posting_Title": "Intern - Systems Engineer - 2028 Batch",
+      "Job_Opening_Name": "Intern - Systems Engineer - 2028 Batch",
+      "City": "Gurgaon",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Internship",
+      "Date_Opened": "06/29/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Systems Engineering Intern to join our Latency Systems team and work on the high-performance technology that powers our trading operations. You will work at the intersection of operating systems, networking, CPU architecture, and high-performance software, contributing to real-time systems engineered for nanosecond-level latency. You will learn how to identify performance bottlenecks, optimize critical execution paths, and build reliable systems where every CPU cycle matters. You will work closely with systems engineers, quantitative researchers, traders, and infrastructure teams while contributing across the systems engineering lifecycle: Design → Development → Performance Engineering → Testing → Deployment → Optimization What You’ll Do • Design and develop components for real-time trade execution and risk management systems with stringent latency and reliability requirements. • Profile critical execution paths to identify bottlenecks and improve system latency, throughput, and predictability. • Optimize performance across CPU utilization, memory management, cache behavior, operating systems, and compiler-level execution. • Explore low-latency systems concepts including kernel internals, CPU affinity, interrupts, clock sources, NUMA, and CPU microarchitecture. • Research and experiment with high-performance networking stacks and kernel bypass technologies. • Design and optimize algorithms and cache-efficient data structures for performance-critical workloads. • Explore lock-free and wait-free approaches where appropriate for latency-sensitive systems. • Build monitoring and diagnostic tools to analyze CPU cycles, network throughput, memory allocation, and system latency. • Contribute across requirements gathering, system design, implementation, testing, deployment, and production monitoring. • Collaborate with engineers, quantitative researchers, traders, and infrastructure teams to improve the performance and reliability of our trading systems. Requirements • Pursuing a degree in Computer Science, Computer Engineering, or a closely related technical discipline, preferably from a leading academic institution. • Strong foundation in data structures, algorithms, and object-oriented programming. • Strong programming skills in C++ or C. • Good understanding of operating systems, Linux, and system-level programming concepts. • Strong analytical and problem-solving skills with an interest in understanding systems at a low level. • Curiosity about performance engineering, operating system internals, networking, and computer architecture. • Familiarity with low-level debugging, profiling, or performance analysis tools is advantageous. • Knowledge of Python, Perl, R, or other scripting languages is a plus. • Ability to work effectively on multiple priorities in a fast-paced technical environment. • Strong communication and collaboration skills with a willingness to learn quickly and take ownership. Benefits",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000002318430/Intern-Systems-Engineer-2028-Batch?source=CareerSite"
+    },
+    {
+      "id": "199893000002318371",
+      "Posting_Title": "Intern - Quant Strategist - 2028 Batch",
+      "Job_Opening_Name": "Intern - Quant Strategist - 2028 Batch",
+      "City": "Gurgaon",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Internship",
+      "Date_Opened": "06/29/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for sharp, curious, and driven Quantitative Strategist Interns to work at the intersection of mathematics, programming, and financial markets. You will conduct hands-on quantitative research, analyze market data, and contribute to ideas that can directly influence our trading strategies and the technology powering our live trading systems. This internship is designed for students who enjoy analytical thinking, problem-solving, quantitative research, and coding, and want to apply these skills to real-world financial markets. You will work in a fast-paced, collaborative environment where you can take ownership of meaningful problems and see your ideas translate into real trading impact. Research → Data Analysis → Signal Development → Backtesting → Implementation → Trading Impact What You’ll Do • Conduct quantitative research using mathematical, statistical, and programming techniques to explore trading opportunities. • Explore financial research and market literature to generate new trading ideas and rigorously backtest them. • Analyze large-scale datasets, market patterns, market microstructure, and strategy performance to generate actionable insights. • Develop and test quantitative models and signals that can contribute to systematic trading strategies. • Improve existing research methodologies, tools, and technology to make the research process more robust and efficient. • Build models and tools that support current and future trading requirements. • Develop functionality and features that contribute to Quadeye’s research and trading systems. • Collaborate with quantitative researchers and engineers to translate promising research ideas into practical implementations Requirements • Pursuing an engineering degree in Computer Science or a related quantitative discipline, preferably from a leading academic institution. • Strong quantitative aptitude with excellent analytical and problem-solving skills. • Solid foundation in data structures, algorithms, and object-oriented programming. • Strong programming fundamentals, preferably in C++ or C. • Strong interest in quantitative research, financial markets, and systematic trading. • Ability to approach complex problems independently and translate ideas into testable solutions. • Familiarity with Linux-based environments is advantageous. • Knowledge of Python, Perl, or R is a plus. • Ability to manage multiple priorities and work effectively in a fast-paced environment. • Strong communication and collaboration skills with a willingness to learn and take ownership.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000002318371/Intern-Quant-Strategist-2028-Batch?source=CareerSite"
+    },
+    {
+      "id": "199893000001828092",
+      "Posting_Title": "Intern - Quant Researcher",
+      "Job_Opening_Name": "Intern - Quant Researcher",
+      "City": "New York",
+      "State": "New York",
+      "Country": "United States",
+      "Job_Location": [
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Internship",
+      "Date_Opened": "09/08/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for sharp, curious, and driven Quantitative Strategist Interns to work at the intersection of mathematics, programming, and financial markets. You will conduct hands-on quantitative research, analyze market data, and develop ideas that can contribute directly to our trading strategies and the technology powering our live trading systems. You will explore financial literature, test hypotheses, build quantitative models, and learn how research ideas are evaluated and translated into real-world trading applications. This internship is designed for students who enjoy analytical thinking, problem-solving, quantitative research, and coding, and want to apply these skills to challenging problems in financial markets. Research → Data Analysis → Signal Development → Backtesting → Implementation → Trading Impact What You’ll Do • Conduct quantitative research using mathematical, statistical, and programming techniques to explore trading opportunities. • Explore financial research and market literature to generate new trading ideas and hypotheses. • Design and run backtests to evaluate the performance and robustness of research ideas. • Analyze large-scale datasets, market patterns, market microstructure, and strategy performance. • Develop quantitative models and tools that support current and future trading requirements. • Improve existing research methodologies, tools, and technology to make the research process more robust and efficient. • Develop functionality and features that contribute to Quadeye’s research and trading systems. • Collaborate with quantitative researchers and engineers to translate promising research ideas into practical implementations. Requirements • Pursuing an engineering degree in Computer Science or a related quantitative discipline, preferably from a leading academic institution. • Strong quantitative aptitude with excellent analytical and problem-solving skills. • Solid foundation in data structures, algorithms, and object-oriented programming. • Strong programming fundamentals, preferably in C++ or C. • Strong interest in quantitative research, financial markets, and systematic trading. • Ability to approach complex problems analytically and translate ideas into testable solutions. • Ability to manage multiple priorities and work effectively in a fast-paced environment. • Strong communication and collaboration skills with a willingness to learn and take ownership. • Knowledge of Linux, Python, Perl, or R is advantageous.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000001828092/Intern-Quant-Researcher?source=CareerSite"
+    },
+    {
+      "id": "199893000000742323",
+      "Posting_Title": "Trade Monitoring Engineer",
+      "Job_Opening_Name": "Trade Monitoring Engineer",
+      "City": "Gurgaon Kty.",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "07/23/2026",
+      "Job_Description": "About the Company Quadeye is an algorithmic trading firm operating across all major financial markets and exchanges. We specialize in transforming deep market insights into sophisticated, automated trading strategies across diverse asset classes. By combining advanced mathematical models with cutting-edge technology, we build scalable, resilient, and high-performance trading systems. Our meritocratic culture empowers engineers and researchers to take complete ownership, drive innovation, and make a direct impact on trading performance. With access to world-class infrastructure, mentorship, and real-time feedback, our team thrives on solving some of the toughest problems in quantitative finance. Role Overview We are looking to hire engineers for Quadeye’s High Frequency Trading environment to monitor the trading strategies for our global electronic markets. \"Working in rotational shifts will be required in this position. Shift Timings: 3:00 AM - 11:00 AM / 4:00 AM - 12:00 PM / 4:00 PM - 12:00 AM / 8:00 PM - 4:00 AM\" What You’ll Work On Being In-charge of morning startup or evening shutdown of Quadeye’s automated trading systems and applications Support and monitor the live trading environment in various markets by quickly responding/updating about external market alerts/outages and interfacing with exchange for different trading teams. Working in high paced competitive stock trading environment with scripting , data interpretation and manipulation What We’re Looking For Engineering degree in Computer Science (preferred) or any other discipline Total experience between 1-3 years with 1 year of relevant experience Experience in Unix environment Hands on experience in Monitoring Tools, preferably in the financial industry Ability to work in fast paced environment under pressure and manage multiple high priority projects Willingness to learn and work on new technologies Good communication skills",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000742323/Trade-Monitoring-Engineer?source=CareerSite"
+    },
+    {
+      "id": "199893000000707783",
+      "Posting_Title": "Graduate-Trading Technology & Research Engineer",
+      "Job_Opening_Name": "Graduate-Trading Technology & Research Engineer",
+      "City": "Gurugram",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "04/20/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Roles We are looking for exceptional individuals to join Quadeye across two high-impact tracks: Systems Engineer and Quantitative Strategist. Both roles offer the opportunity to solve challenging problems at the intersection of technology, quantitative research, and financial markets. Systems Engineer As a Systems Engineer, you will design, build, and optimize the high-performance systems that power our proprietary trading strategies. You will work on real-time infrastructure engineered for nanosecond-level latency, solving complex performance challenges across operating systems, kernels, networking, CPU architecture, and software. Design → Development → Performance Engineering → Testing → Production → Optimization What You’ll Do – Systems Engineer • Design and implement real-time trade execution and risk systems with nanosecond-level latency requirements. • Identify, analyze, and eliminate performance bottlenecks to make systems faster and more efficient. • Research and implement opportunities to reduce latency across operating systems, kernels, and networking stacks. • Explore performance optimization techniques involving kernel bypass, CPU architecture, algorithms, and cache-efficient data structures. • Collaborate closely with engineers and quantitative researchers to build robust, scalable, and performance-critical system components. Quantitative Strategist As a Quantitative Strategist, you will research, develop, and implement automated trading strategies across different exchanges, asset classes, and trading frequencies. You will work with large-scale market datasets, apply advanced statistical and machine learning techniques to identify trading opportunities, and translate successful research into highly optimized strategies for live trading. You will collaborate closely with quantitative researchers and software engineers to solve challenging problems across research, modeling, and implementation. Research → Signal Development → Backtesting → Implementation → Production → Optimization What You’ll Do – Quantitative Strategist • Apply advanced statistical and machine learning techniques to identify trading opportunities from large-scale market datasets. • Research and develop systematic trading strategies across different exchanges, asset classes, and frequencies. • Design and implement strategies in highly optimized, production-quality code. • Take successful research from prototyping and testing through live production deployment. • Analyze live strategy performance and continuously develop new approaches to improve the speed and accuracy of predictions. Requirements Systems Engineer • Strong foundation in data structures, algorithms, and object-oriented programming. • Strong programming fundamentals, preferably in C++ or C. • Excellent analytical and problem-solving skills. • Interest in high-performance systems, low-latency engineering, operating systems, networking, and computer architecture. • Working knowledge of Linux-based environments. • Familiarity with Python, Perl, R, or functional programming is advantageous. • Ability to manage multiple priorities and work effectively in a fast-paced, dynamic environment. • Strong communication and collaboration skills with a high degree of ownership. Quantitative Strategist • Strong quantitative aptitude with excellent analytical and problem-solving skills. • Strong foundation in data structures, algorithms, and object-oriented programming. • Strong programming fundamentals, preferably in C++ or C. • Strong interest in financial markets, quantitative research, and systematic trading. • Working knowledge of Linux-based environments. • Knowledge of Python, Perl, R, or functional programming is advantageous. • Ability to manage multiple priorities and thrive in a fast-paced environment. • Strong communication and collaboration skills with a high degree of ownership. Eligibility Criteria • Eligible programs: B.Tech Computer Science & Engineering, B.Tech Mathematics & Computing, B.Tech Electrical Engineering, and Dual Degree programs in these disciplines. • Minimum CGPA: 8.5 • No active backlogs at the time of application or during the selection process.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000707783/Graduate-Trading-Technology-Research-Engineer?source=CareerSite"
+    },
+    {
+      "id": "199893000000440330",
+      "Posting_Title": "Quantitative Strategist - All Asset Classes",
+      "Job_Opening_Name": "Quantitative Strategist - All Asset Classes",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram",
+        "Singapore",
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quantitative Strategist to design, implement, and optimize data-driven trading strategies across Asian financial markets. You will work with large-scale datasets, apply advanced statistical, mathematical, and machine learning techniques to identify trading opportunities and generate predictive signals, and translate research ideas into optimized, production-quality trading strategies. This is a high-ownership role with involvement across the full strategy lifecycle, from research and signal development to back testing, implementation, production, and continuous optimization. Research → Signal Development → Back testing → Implementation → Production → Optimization What You’ll Do Analyze large-scale financial and market datasets to identify patterns and trading opportunities across Asian markets. Research and develop quantitative trading strategies using statistical, mathematical, and machine learning techniques. Develop, test, and evaluate predictive signals and features for alpha generation. Design and implement trading strategies in highly optimized, production-quality code. Build and maintain robust research pipelines and back testing frameworks. Perform rigorous back testing and evaluate strategy performance across different market conditions. Translate research ideas and predictive signals into robust, production-ready trading strategies. Deploy strategies into production, monitor live performance, and continuously refine models to improve predictive accuracy. Explore new datasets, signals, models, and predictive features to enhance alpha generation. Investigate strategy behavior and identify opportunities to improve performance and robustness. Evaluate the scalability and reliability of strategies before and after production deployment. Collaborate closely with engineering teams to ensure the robustness, scalability, and performance of production systems. Take end-to-end ownership of research and strategy development from initial hypothesis through implementation, production, and optimization. Requirements Engineering degree in Computer Science or an equivalent discipline from a premier institution. Strong problem-solving skills and quantitative aptitude. Excellent understanding of data structures, algorithms, and object-oriented programming. Experience with C++ or C is preferred. Working knowledge of Linux environments. Ability to work effectively in a fast-paced environment and manage multiple priorities. Strong work ethic and communication skills. Familiarity with Python, R, or Perl is a plus. Interest or experience in Asian financial markets is an advantage.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000440330/Quantitative-Strategist-All-Asset-Classes?source=CareerSite"
+    },
+    {
+      "id": "199893000000440283",
+      "Posting_Title": "Operations Engineer",
+      "Job_Opening_Name": "Operations Engineer",
+      "City": "Gurugram",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "09/03/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for an Operations Engineer to support and enhance the reliability and operational efficiency of our high-frequency trading environment. You will monitor production trading systems, troubleshoot operational issues, automate workflows, and work closely with developers and traders to ensure reliable day-to-day trading operations. This is a hands-on role that combines production support, automation, monitoring, and deployment in a fast-paced, production-critical environment. What You’ll Do Monitor day-to-day operations of production trading systems and ensure their reliability and availability. Monitor system health, performance, and operational workflows across the trading environment. Identify system and process issues, investigate causes, and ensure timely resolution. Investigate production alerts, incidents, and system anomalies and coordinate appropriate remediation. Develop Python and Shell/Bash scripts to automate repetitive operational tasks and improve efficiency. Build and improve automation tools that support production trading workflows. Implement, test, deploy, and maintain operational tools and utilities. Support production deployments and help ensure smooth and reliable releases of trading systems. Maintain and enhance monitoring dashboards to improve visibility into production systems. Identify operational bottlenecks and opportunities to improve system reliability and efficiency. Troubleshoot production issues and support rapid resolution in time-sensitive trading environments. Work closely with developers and traders to resolve operational and production bottlenecks. Continuously improve monitoring, automation, and operational processes across the trading environment. Requirements Engineering degree, preferably in Computer Science or a related field. Good knowledge of Python and Shell/Bash scripting. Experience working with Linux environments. Strong analytical, troubleshooting, and problem-solving skills. Ability to work effectively in a fast-paced, high-pressure, production-critical environment. Familiarity with Pandas and NumPy is an advantage. Good written and verbal communication skills. Ability to collaborate effectively with developers, traders, and other technical teams.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000440283/Operations-Engineer?source=CareerSite"
+    },
+    {
+      "id": "199893000002926019",
+      "Posting_Title": "Linux Engineer - L2/ L3",
+      "Job_Opening_Name": "Linux Engineer - L2/ L3",
+      "City": null,
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "07/21/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Linux Engineer to support and optimize our production and live trading infrastructure. You will provide hands-on technical support across Linux systems and related technologies, working across trading, office, and data center environments. This role involves monitoring and troubleshooting production systems, administering infrastructure and security components, supporting hardware and software changes, and optimizing servers for low-latency performance. What You’ll Do Provide direct technical support for Linux systems and related technologies in a production/live trading environment. Provide hands-on support for production issues across colocation, trading, office, and data center environments. Support and administer firewall environments. Monitor and troubleshoot Linux-based servers, including supporting hardware changes, software installations, and upgrades. Tune and optimize servers for low-latency performance. Requirements 3+ years of relevant industry experience. Engineering degree in Computer Science or a related discipline. Hands-on experience installing and troubleshooting Linux environments, including CentOS and Ubuntu. Experience with firewalls and security. Strong knowledge of shell scripting and Python. Hands-on experience with monitoring and automation tools such as Ansible and Zabbix. Hands-on experience with AWS services, including EC2 and S3. Ability to work effectively under pressure and manage multiple high-priority projects. Ability to learn new technologies quickly. Good communication and collaboration skills.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000002926019/Linux-Engineer-L2-L3?source=CareerSite"
+    },
+    {
+      "id": "199893000002560787",
+      "Posting_Title": "Quantitative Developer",
+      "Job_Opening_Name": "Quantitative Developer",
+      "City": "Gurugram",
+      "State": "Haryana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "09/09/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quant Developer with 1+ years of relevant experience to join our high-performance trading team and build robust tools and systems that support our trading and research workflows. You will work closely with traders, researchers, and engineers to automate pre- and post-trading processes, build trading analytics, monitor production systems, and solve operational and technical challenges in a fast-paced, low-latency trading environment. This is a high-ownership role where you will contribute across the trading technology lifecycle: Trading Workflows → Automation → Analytics → Production Monitoring → Troubleshooting → Optimization What You’ll Do • Develop and maintain pre-trading setup pipelines, including trading file generation and validation. • Build and automate post-trading reports and analytics to support trading and research teams. • Develop production tools and utilities to improve the efficiency and reliability of trading workflows. • Monitor trading systems and investigate production alerts, failures, and operational issues. • Work closely with traders, researchers, and engineers to translate requirements into robust technical solutions. • Troubleshoot issues across applications, data pipelines, and Linux-based production environments. • Improve existing processes through automation and eliminate repetitive manual workflows. • Contribute to the reliability, scalability, and performance of trading infrastructure. Requirements • 1+ years of relevant experience in software development, quant development, trading infrastructure, production engineering, or a related role. • Strong programming skills in Python and/or C++. • Good understanding of Linux/Unix environments and shell scripting. • Experience developing automation scripts, production utilities, or data-processing workflows. • Strong analytical, debugging, and problem-solving skills. • Familiarity with Git and software development best practices. • Ability to work effectively in a fast-paced, production-critical environment. • Strong written and verbal communication skills.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000002560787/Quantitative-Developer?source=CareerSite"
+    },
+    {
+      "id": "199893000001636214",
+      "Posting_Title": "Quantitative Strategist -  APAC & EMEA",
+      "Job_Opening_Name": "Quantitative Strategist -  APAC & EMEA",
+      "City": "Queensway",
+      "State": "Queensway",
+      "Country": "Singapore",
+      "Job_Location": [
+        "Hong Kong",
+        "Singapore",
+        "South Korea"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "04/28/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quantitative Researcher to develop and enhance data-driven trading strategies across global financial markets. You will work with large-scale datasets, apply statistical and quantitative techniques to generate predictive signals, and collaborate closely with trading and engineering teams to improve strategy performance and scalability. This is a high-ownership role with end-to-end involvement in quantitative research and strategy development. What You’ll Do Research and develop data-driven quantitative trading strategies. Analyze large-scale financial and market datasets to identify patterns and trading opportunities. Develop and evaluate predictive signals using statistical and quantitative techniques. Apply probability, statistics, and data analysis to research and strategy development. Translate research ideas into robust and scalable trading strategies. Collaborate closely with trading and engineering teams to improve strategy performance and scalability. Take ownership of research projects from initial analysis through implementation and evaluation. Requirements Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, or a related quantitative field. Strong problem-solving and quantitative skills. Solid understanding of probability, statistics, and data analysis. Proficiency in Python; knowledge of C++ is an advantage. Strong knowledge of data structures and algorithms. Experience working in Linux/Unix environments. Ability to work effectively in a fast-paced, research-driven environment. Strong communication skills and a high degree of ownership.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000001636214/Quantitative-Strategist-APAC-EMEA?source=CareerSite"
+    },
+    {
+      "id": "199893000001635119",
+      "Posting_Title": "Quantitative Researcher  USA",
+      "Job_Opening_Name": "Quantitative Researcher  USA",
+      "City": null,
+      "State": null,
+      "Country": "United States",
+      "Job_Location": [
+        "New York",
+        "Chicago"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "04/28/2026",
+      "Job_Description": "Quadeye is an algorithmic trading firm operating across global financial markets. We specialize in building data-driven, automated trading strategies by combining deep market insights with advanced mathematical models and cutting-edge technology. Our meritocratic culture empowers researchers and engineers to take ownership, innovate, and directly impact trading performance. With world-class infrastructure and real-time feedback, we tackle some of the most challenging problems in quantitative finance. We are looking for a Quantitative Researcher to develop and enhance data-driven trading strategies for US financial markets. In this role, you will analyze large datasets, generate predictive signals, and collaborate closely with trading and engineering teams to improve performance and scalability. You will have end-to-end ownership of research and strategy development. This role is ideal for candidates looking to gain hands-on exposure to US financial markets while working on high-impact trading strategies. Requirements Bachelor’s/Master’s in Computer Science, Mathematics, Statistics, or related field Strong problem-solving and quantitative skills Solid understanding of probability, statistics, and data analysis Proficiency in Python (must-have) and/or C++ Strong knowledge of data structures and algorithms Experience working in Linux/Unix environments Ability to work in a fast-paced, research-driven environment Strong communication and ownership mindset Benefits Work on cutting-edge problems in quantitative finance Opportunity to gain exposure to US financial markets High ownership and impact-driven work environment Access to world-class infrastructure and datasets Collaborative and meritocratic culture Continuous learning and growth opportunities",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000001635119/Quantitative-Researcher-USA?source=CareerSite"
+    },
+    {
+      "id": "199893000000497003",
+      "Posting_Title": "Network Engineer",
+      "Job_Opening_Name": "Network Engineer",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/15/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Network Engineer with 2–5 years of relevant experience to optimize and maintain our low-latency network infrastructure across trading, data center, and office environments. You will work closely with systems, infrastructure, and trading teams to manage network configurations, troubleshoot production issues, automate network operations, and ensure high availability and performance across our infrastructure. This is a high-ownership role where you will work across the network infrastructure lifecycle: Design → Configuration → Monitoring → Troubleshooting → Automation → Optimization What You’ll Do • Monitor and optimize network performance, troubleshoot network issues and outages, and plan upgrades to maintain high availability and low latency. • Configure, install, and manage network devices and services, including routers, switches, firewalls, load balancers, VPNs, and QoS. • Provide hands-on network support for production issues across co-location/trading, data center, and office environments. • Build and maintain network automation for deploying and updating configurations across infrastructure devices. • Administer and support firewall environments and network security infrastructure. • Upgrade network equipment and maintain stable firmware releases across the environment. • Provide technical support for Linux systems and networking issues in production and live trading environments. • Configure and troubleshoot multicast networking, including PIM and IGMP protocols. • Monitor and troubleshoot Linux-based servers, including supporting hardware changes, software installations, and upgrades. • Collaborate with systems and trading teams to improve the reliability, performance, and scalability of our network infrastructure. Requirements • Engineering degree in Computer Science or a related discipline, with 2–5 years of relevant experience. • CCNP certification or equivalent networking expertise. • Strong experience with routing and switching, including VLANs, inter-VLAN routing, VTP, STP, EtherChannel, Layer 3 networking, BGP, static routing, and dynamic routing protocols. • Hands-on experience with firewalls and network security, including Cisco ASA and Palo Alto. • Experience configuring and troubleshooting VPN technologies, including IPsec VPN, SSL VPN, and site-to-site VPN. • Knowledge of multicast networking and protocols such as PIM and IGMP. • Good understanding of Linux networking and Linux-based production environments. • Experience with Shell and/or Python scripting for network automation. • Hands-on experience with network and infrastructure monitoring tools. • Exposure to AWS or cloud networking is advantageous. • Ability to configure and troubleshoot server hardware and related infrastructure. • Strong analytical and troubleshooting skills with the ability to work effectively in a production-critical environment. • Ability to manage multiple high-priority tasks and learn new technologies quickly.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000497003/Network-Engineer?source=CareerSite"
+    },
+    {
+      "id": "199893000003455803",
+      "Posting_Title": "Quantitative Researcher - USA",
+      "Job_Opening_Name": "Quantitative Researcher - USA",
+      "City": "New York",
+      "State": "New York",
+      "Country": "United States",
+      "Job_Location": [
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "09/08/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for Quantitative Researchers with 1+ years of relevant experience to develop, implement, and optimize data-driven trading strategies across global markets. You will work with large-scale datasets, apply statistical and machine learning techniques to identify trading opportunities, and translate research ideas into robust, high-performance production systems. This is a high-ownership role where you will be involved across the full strategy lifecycle: Research → Signal Development → Back testing → Implementation → Production → Optimization What You’ll Do Research and develop quantitative trading strategies using large-scale financial and market datasets. Apply statistical modeling, machine learning, and quantitative techniques to identify and exploit market opportunities. Develop robust and efficient trading models and translate research ideas into production-ready systems. Write clean, optimized, and scalable code for live trading environments. Analyze strategy performance and continuously identify opportunities to improve prediction accuracy, execution, and performance. Work closely with quantitative researchers, traders, and engineers to develop and deploy new strategies. Investigate live strategy behavior, diagnose performance issues, and iterate rapidly based on real-time feedback. Requirements 1+ years of professional experience in quantitative trading, quantitative research, systematic trading, financial modeling, or a closely related field. Bachelor’s, Master’s, or PhD in Mathematics, Statistics, Electrical Engineering, Physics, or a related quantitative discipline. Strong academic background from a top-tier university or equivalent institution. Exceptional quantitative aptitude and problem-solving skills. Strong programming skills in C++ or C; proficiency in Python is a plus. Solid understanding of statistical modeling, probability, and data analysis. Experience working with large datasets and developing data-driven models. Working knowledge of Linux/Unix environments. Ability to work independently, manage multiple priorities, and perform effectively in a fast-paced environment. Strong communication skills, intellectual curiosity, and a high degree of ownership.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000003455803/Quantitative-Researcher-USA?source=CareerSite"
+    },
+    {
+      "id": "199893000000864279",
+      "Posting_Title": "Quantitative Strategist - China, Cypto and Options",
+      "Job_Opening_Name": "Quantitative Strategist - China, Cypto and Options",
+      "City": null,
+      "State": null,
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "01/23/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quantitative Strategist to design, implement, and optimize data-driven trading strategies across Asian markets. You will work with large-scale financial datasets, apply statistical and machine learning techniques to identify trading opportunities and generate predictive signals, and translate research ideas into robust, high-performance trading strategies. This is a high-ownership role with involvement across the full strategy lifecycle, from research and signal development to backtesting, implementation, production, and continuous optimization. Research → Signal Development → Back testing → Implementation → Production → Optimization What You’ll Do Analyze large-scale financial and market datasets to identify patterns and trading opportunities across Asian markets. Research and develop quantitative trading strategies using statistical, mathematical, and machine learning techniques. Develop, test, and evaluate predictive signals and features for alpha generation. Design and implement trading strategies in highly optimized, production-quality code. Build and maintain robust research pipelines and back testing frameworks. Perform rigorous back testing and evaluate strategy performance across different market conditions. Translate research ideas and predictive signals into production-ready trading strategies. Monitor live strategy performance and continuously refine models to improve predictive accuracy and robustness. Explore new datasets, signals, and quantitative techniques to enhance alpha generation. Analyze live trading behavior and identify opportunities for strategy optimization. Collaborate closely with engineering teams to ensure the robustness, scalability, and performance of production systems. Take ownership of research and strategy development from initial hypothesis through implementation and production. Requirements Engineering degree in Computer Science or a related quantitative discipline from a premier institution. Strong problem-solving skills and quantitative aptitude. Excellent understanding of data structures, algorithms, and object-oriented programming. Proficiency in C++ or C. Working knowledge of Linux environments. Ability to work effectively in a fast-paced environment and manage multiple priorities. Strong work ethic and communication skills. Familiarity with Python, R, or Perl is a plus. Interest or experience in Asian financial markets is an advantage.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000864279/Quantitative-Strategist-China-Cypto-and-Options?source=CareerSite"
+    },
+    {
+      "id": "199893000000441154",
+      "Posting_Title": "Quantitative Researcher - Romania",
+      "Job_Opening_Name": "Quantitative Researcher - Romania",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Romania"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quantitative Researcher to join our research team and develop data-driven trading strategies across global financial markets. You will work across the full quantitative research lifecycle—from idea generation and alpha discovery to statistical modeling, validation, production deployment, and performance optimization. You will use large-scale market and alternative datasets, advanced statistical techniques, and machine learning to identify trading opportunities and translate research insights into robust production strategies. This is a high-ownership role where you will contribute across the entire strategy lifecycle: Research → Alpha & Feature Development → Modeling → Validation → Production → Optimization What You’ll Do • Research, develop, and enhance alpha signals and predictive features using large-scale market and alternative datasets. • Explore new research directions and datasets to identify actionable market insights and trading opportunities. • Build and refine statistical and machine learning models across the full research lifecycle, including data preprocessing, feature selection, model development, and validation. • Apply techniques such as regularization, cross-validation, ensemble methods, model averaging, and stacking to improve model robustness and performance. • Design rigorous backtests and validation frameworks to evaluate strategies across different market conditions and regimes. • Analyze live trading performance, conduct post-trade diagnostics, and continuously optimize models and strategies. • Translate successful research ideas into robust, scalable production trading strategies. • Work closely with traders and engineers to improve research methodologies, data pipelines, and quantitative infrastructure. • Contribute to a collaborative research environment through experimentation, knowledge sharing, and continuous improvement. Requirements • Strong background in statistical modeling, machine learning, and quantitative data analysis applied to real-world problems. • Degree in a quantitative discipline such as Mathematics, Statistics, Computer Science, Physics, AI/ML, Engineering, or a related field. • Strong mathematical and statistical foundation with excellent analytical and problem-solving skills. • Proficiency in Python, C++, R, or similar programming languages. • Hands-on experience with quantitative and machine learning libraries such as NumPy, Pandas, SciPy, scikit-learn, TensorFlow, or PyTorch. • Experience working with large-scale datasets and developing rigorous data analysis and modeling workflows. • Understanding of time-series analysis and techniques relevant to quantitative modeling. • Experience with financial markets, market data, or market microstructure is highly desirable. • Ability to translate research ideas into robust, testable, and production-ready solutions. • Strong communication skills and the ability to collaborate effectively with researchers, traders, and engineers.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000441154/Quantitative-Researcher-Romania?source=CareerSite"
+    },
+    {
+      "id": "199893000000441108",
+      "Posting_Title": "Software Developer - Fullstack",
+      "Job_Opening_Name": "Software Developer - Fullstack",
+      "City": null,
+      "State": null,
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram",
+        "Hong Kong",
+        "Singapore",
+        "New York",
+        "Chicago"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "01/22/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Full Stack Engineer with 5+ years of relevant experience to build and enhance applications and tools that support our Quant, Infrastructure, Compliance, and Operations teams. You will work closely with users to understand real-world problems, evaluate potential solutions, and take ownership of implementation from design and development through testing, deployment, and post-deployment monitoring. You will build reliable, intuitive systems that improve internal workflows and support critical trading operations in a fast-paced environment. This is a high-ownership role where you will contribute across the full development lifecycle: Problem Discovery → Solution Design → Development → Testing → Deployment → Monitoring & Improvement What You’ll Do • Design, build, and maintain in-house web applications and software that support trading and business-critical workflows. • Work closely with Quant, Infrastructure, Compliance, and Operations teams to understand requirements and translate them into effective technical solutions. • Develop full-stack solutions across backend services, web applications, scripting, and data-driven workflows. • Build intuitive and efficient user experiences for internal systems and applications used by trading and other teams. • Improve existing tools and trade-monitoring systems to make them more robust, reliable, and scalable. • Evaluate different technical approaches and make thoughtful design decisions based on performance, maintainability, and user requirements. • Own solutions across development, testing, deployment, and post-deployment monitoring. • Troubleshoot production issues and continuously improve application performance and reliability. Requirements • 5+ years of relevant software engineering experience, preferably within an HFT or algorithmic trading environment. • Engineering degree in Computer Science or a related technical discipline. • Strong experience with Python web application development, preferably using Django. • Experience with front-end technologies including HTML, JavaScript, and modern frameworks such as React or Angular. • Experience with Shell, Perl, and/or Python scripting. • Strong working knowledge of Linux/Unix-based operating systems. • Good understanding of operating systems, application architecture, and system design. • Experience with AWS services such as ELB, Lambda, EC2, and Route 53. • Ability to design, develop, test, deploy, and monitor reliable production applications. • Experience or knowledge of financial markets or the financial industry is advantageous. • Ability to work effectively in a fast-paced environment and manage multiple high-priority projects. • Strong problem-solving skills with the ability to learn and work with new technologies quickly. • Excellent written and verbal communication skills.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000441108/Software-Developer-Fullstack?source=CareerSite"
+    },
+    {
+      "id": "199893000000441067",
+      "Posting_Title": "Quantitative Researcher - Machine Learning / Data Science",
+      "Job_Opening_Name": "Quantitative Researcher - Machine Learning / Data Science",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for Quantitative Researchers who can apply advanced mathematical, statistical, and machine learning techniques to develop systematic trading strategies and uncover opportunities within large-scale market datasets. You will combine data-driven analysis with quantitative intuition to identify market patterns, formulate research hypotheses, and translate successful ideas into production-ready trading strategies. You will contribute across alpha generation, portfolio construction, regime identification, backtesting, and strategy optimization. This is a high-ownership role where you will contribute across the entire quantitative research lifecycle: Research → Alpha Generation → Modeling → Backtesting → Production → Optimization What You’ll Do • Apply advanced statistical and machine learning techniques to identify, model, and test patterns in financial markets. • Develop novel applications and formulations of machine learning techniques to generate trading signals around fundamental economic and market concepts. • Conduct research across alpha generation, portfolio construction and optimization, and market regime identification. • Design and run rigorous backtests to evaluate the robustness and performance of trading ideas. • Translate successful research models into reliable, production-ready code. • Deploy strategies into production, analyze live performance, and continuously investigate opportunities for better and faster predictions. • Build scalable research infrastructure and tools around successful prototypes for broader use across the team. • Work closely with researchers, traders, and engineers to take ideas from initial research through production implementation. Requirements • Engineering or advanced quantitative degree in Computer Science, Mathematics, Statistics, or a related discipline, preferably from a leading academic institution. • Strong quantitative aptitude with excellent analytical and problem-solving skills. • Strong foundation in data structures, algorithms, and object-oriented programming. • Proficiency in C++ or C, with the ability to write efficient and reliable code. • Strong working knowledge of Python and/or R for quantitative research and data analysis. • Understanding of statistical modeling, machine learning, and their application to large-scale datasets. • Experience with popular machine learning libraries and frameworks is advantageous. • Familiarity with cloud infrastructure for quantitative or machine learning workloads is a plus. • Working knowledge of Linux-based environments. • Ability to translate research prototypes into robust, production-ready implementations. • Strong communication and collaboration skills. • Ability to manage multiple research and development priorities in a fast-paced environment.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000441067/Quantitative-Researcher-Machine-Learning-Data-Science?source=CareerSite"
+    },
+    {
+      "id": "199893000000441036",
+      "Posting_Title": "Quantitative Strategist - Commodity, Derivatives , Crypto and India Options",
+      "Job_Opening_Name": "Quantitative Strategist - Commodity, Derivatives , Crypto and India Options",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for experienced Quantitative Strategists to research, design, implement, and optimize systematic trading strategies across global financial markets. You will work with large-scale market datasets, apply advanced statistical and machine learning techniques to identify trading opportunities, and translate successful research into highly optimized production code. You will have ownership across the strategy lifecycle, from developing and testing ideas to deploying them in live markets and continuously improving their performance. This is a high-ownership role where you will contribute across the entire strategy lifecycle: Research → Signal Development → Backtesting → Implementation → Production → Optimization What You’ll Do • Analyze large-scale market datasets using advanced statistical and machine learning techniques to identify systematic trading opportunities. • Research and develop predictive signals and data-driven trading strategies across global financial markets. • Design, implement, and optimize trading strategies in high-performance, production-ready code. • Build rigorous backtests to evaluate strategy performance and robustness across different market conditions. • Take successful strategies from research and prototyping through implementation and live production deployment. • Monitor live strategy performance, investigate outcomes, and identify opportunities for continuous improvement. • Develop new approaches to improve the accuracy, speed, and efficiency of trading predictions. • Collaborate with researchers, traders, and engineers to improve strategy performance and the supporting research and trading infrastructure. Requirements • Engineering degree in Computer Science or a related quantitative discipline, preferably from a leading academic institution. • Strong quantitative aptitude with excellent analytical and problem-solving skills. • Strong foundation in data structures, algorithms, and object-oriented programming. • Proficiency in C++ or C, with the ability to write efficient, high-performance code. • Understanding of statistical analysis and quantitative methods for working with large-scale datasets. • Working knowledge of Linux-based environments. • Knowledge of Python, R, or Perl for quantitative analysis and research is advantageous. • Exposure to statistical modeling or machine learning techniques is desirable. • Ability to translate quantitative ideas into robust, production-ready implementations. • Ability to manage multiple priorities and work effectively in a fast-paced environment. • Strong communication and collaboration skills with a high degree of ownership.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000441036/Quantitative-Strategist-Commodity-Derivatives-Crypto-and-India-Options?source=CareerSite"
+    },
+    {
+      "id": "199893000000441005",
+      "Posting_Title": "Quantitative Strategist - Global Equities and Options and Crypto",
+      "Job_Opening_Name": "Quantitative Strategist - Global Equities and Options and Crypto",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for Quantitative Strategists with 3+ years of relevant experience who are passionate about financial markets, quantitative research, and building data-driven trading strategies. You will work across the complete strategy lifecycle—from research and idea generation to implementation, production deployment, and continuous optimization. You will analyze large-scale market and alternative datasets, develop predictive models, and translate research insights into highly optimized strategies for live trading across global markets. This is a high-ownership role where you will contribute across the entire strategy lifecycle: Research → Signal Development → Backtesting → Implementation → Production → Optimization What You’ll Do • Research and develop quantitative trading strategies using large-scale market and alternative datasets. • Apply advanced statistical, mathematical, and machine learning techniques to identify systematic trading opportunities. • Develop predictive signals and models to capture patterns and opportunities across financial markets. • Design and implement strategies in high-performance, production-quality code. • Backtest, evaluate, and optimize strategies across different market conditions and regimes. • Take successful research from prototype to production and continuously monitor and improve live strategies. • Analyze live trading performance and latency to identify opportunities for further optimization. • Collaborate closely with researchers, traders, and engineers to develop new ideas and improve existing strategies. Requirements • 3+ years of relevant professional experience in quantitative research, systematic trading, quantitative development, or a related field. • Bachelor’s or Master’s degree in Computer Science, Mathematics, Engineering, or a related quantitative discipline, preferably from a leading academic institution. • Strong quantitative aptitude with excellent analytical and problem-solving skills. • Excellent understanding of data structures, algorithms, and object-oriented programming. • Strong programming skills in C++ or C, with the ability to write efficient, production-quality code. • Strong interest in financial markets, systematic strategies, and quantitative trading. • Ability to work with large-scale datasets and independently solve complex quantitative problems. • Good working knowledge of Linux-based environments. • Experience with Python, R, or Perl is advantageous. • Ability to work effectively in a fast-paced, high-ownership environment. • Strong communication skills, attention to detail, and a collaborative mindset.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000441005/Quantitative-Strategist-Global-Equities-and-Options-and-Crypto?source=CareerSite"
+    },
+    {
+      "id": "199893000000440465",
+      "Posting_Title": "Systems Engineer - (C++ Developer)",
+      "Job_Opening_Name": "Systems Engineer - (C++ Developer)",
+      "City": "Gurugram",
+      "State": "Hariyana",
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram",
+        "Singapore",
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "01/23/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Systems Engineer to design, develop, and optimize robust, resilient, and high-performance trading systems that directly power Quadeye’s proprietary trading strategies. You will work on real-time trade execution and risk management systems while solving complex engineering challenges across low-latency and high-performance computing environments. This is a high-ownership role where you will work closely with engineers, quantitative researchers, and traders and contribute across the full development lifecycle—from system design and implementation to testing, deployment, monitoring, and performance optimization. What You’ll Do Design and implement real-time trade execution and risk management systems with nanosecond-level latency sensitivity. Develop robust, reliable, and scalable systems for production trading environments. Identify performance bottlenecks and optimize code to achieve lower latency and higher throughput. Take end-to-end ownership of modules, including requirements gathering, design, implementation, testing, and deployment. Research and experiment with techniques to reduce latency across the operating system, kernel, and networking stack. Explore kernel bypass, system tuning, CPU architecture, and cache-efficient data structures to improve system performance. Design and implement scalable algorithms for latency-sensitive trading applications. Develop and deploy performance monitoring tools for CPU, network, and memory utilization. Analyze system performance and identify opportunities to improve latency, throughput, reliability, and resource utilization. Troubleshoot performance and reliability issues in production-critical systems. Continuously improve the efficiency, robustness, and scalability of trading infrastructure. Collaborate closely with engineers, quantitative researchers, and traders to deliver high-performance and highly reliable trading systems. Requirements Engineering degree in Computer Science or an equivalent discipline from a premier institution. Strong problem-solving skills and quantitative aptitude. Solid understanding of data structures, algorithms, and object-oriented programming. Experience with C++ or C is preferred. Working knowledge of Linux systems. Ability to multitask and perform effectively in a fast-paced environment. Strong work ethic and communication skills. Knowledge of Python or Perl is a plus.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000440465/Systems-Engineer-C-Developer?source=CareerSite"
+    },
+    {
+      "id": "199893000000440427",
+      "Posting_Title": "Quantitative Strategist - Derivatives and Crypto",
+      "Job_Opening_Name": "Quantitative Strategist - Derivatives and Crypto",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram",
+        "Singapore",
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quantitative Strategist to design, implement, and optimize data-driven trading strategies across global markets, with a focus on derivatives and crypto markets. You will work with large-scale datasets, apply advanced statistical and machine learning techniques to identify trading opportunities, and translate research ideas into optimized, production-quality strategies. This is a high-ownership role with involvement across the full strategy lifecycle, from research and signal development to back testing, implementation, production, and continuous optimization. Research → Signal Development → Back testing → Implementation → Production → Optimization What You’ll Do Research and develop quantitative trading strategies using large-scale financial and market datasets. Apply advanced statistical and machine learning techniques to identify patterns, signals, and potential trading opportunities. Research predictive signals and features to support alpha generation and strategy development. Design, test, and implement trading strategies in optimized, production-quality code. Perform rigorous back testing and evaluate strategy performance across different market conditions. Translate research ideas and predictive components into robust, production-ready trading strategies. Deploy strategies into production, monitor live performance, and continuously refine predictive components. Analyze strategy behavior and investigate anomalies to identify potential performance improvements. Explore new datasets, signals, models, and research ideas to enhance strategy performance. Evaluate the robustness and scalability of research ideas before and after production deployment. Iterate rapidly based on research findings and live trading feedback. Collaborate with quantitative researchers, traders, and engineers across the strategy development lifecycle. Take end-to-end ownership of research and strategy development from initial hypothesis through production and optimization. Requirements Engineering degree in Computer Science or a related field from a premier institution. Strong problem-solving skills and quantitative aptitude. Solid understanding of data structures, algorithms, and object-oriented programming. Experience with C++ or C is preferred. Working knowledge of Linux environments. Ability to manage multiple priorities and perform effectively in a fast-paced environment. Strong communication skills and work ethic. Familiarity with R, Python, or Perl is a plus. Open to candidates with up to 1 year of relevant technical experience in technology firms or product companies. Exposure to Asian, US, or other non-European financial markets is a plus.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000440427/Quantitative-Strategist-Derivatives-and-Crypto?source=CareerSite"
+    },
+    {
+      "id": "199893000000440389",
+      "Posting_Title": "Quantitative Strategist - Equities, stock futures, stock options, index futures, index options",
+      "Job_Opening_Name": "Quantitative Strategist - Equities, stock futures, stock options, index futures, index options",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram",
+        "Singapore",
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across all major financial markets and exchanges. We specialize in transforming deep market insights into sophisticated, automated trading strategies across diverse asset classes. By combining advanced mathematical models with cutting-edge technology, we build scalable, resilient, and high-performance trading systems. Our meritocratic culture empowers engineers and researchers to take complete ownership, drive innovation, and make a direct impact on trading performance. With access to world-class infrastructure, mentorship, and real-time feedback, our team thrives on solving some of the toughest problems in quantitative finance. Role Overview We are seeking talented Quantitative Strategists to research, design, and implement data-driven trading strategies. The ideal candidate brings experience working with Indian markets and preferably exposure to global or non-Indian markets. You will analyze large datasets, apply advanced statistical and machine learning techniques, and develop high-performance code for both research and live deployment. This role offers full ownership of the strategy lifecycle within a fast-paced, collaborative environment. What You’ll Work On • Analyze large datasets to identify trading opportunities in Indian and global markets • Apply statistical, mathematical, and machine learning methods to develop predictive signals • Design and implement trading strategies in optimized, production-quality code • Build and maintain research pipelines and back testing frameworks • Deploy strategies into production, monitor performance, and refine models • Explore new datasets and features to enhance predictive accuracy and strategy robustness • Collaborate with engineering teams to ensure scalability, reliability, and high performance What We’re Looking For • Engineering degree in Computer Science (preferred) or a related quantitative field • Experience with Indian financial markets; exposure to global or non-Indian markets is a strong advantage • Strong quantitative aptitude and analytical problem-solving skills • Excellent understanding of data structures, algorithms, and object-oriented programming • Proficiency in C++ or C preferred • Working knowledge of Linux environments • Ability to thrive in a fast-paced environment and manage multiple priorities • Strong work ethic and communication skills • Familiarity with Python, R, or Perl is a plus Benefits",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000440389/Quantitative-Strategist-Equities-stock-futures-stock-options-index-futures-index-options?source=CareerSite"
+    },
+    {
+      "id": "199893000000440363",
+      "Posting_Title": "Quantitative Strategist - Derivatives",
+      "Job_Opening_Name": "Quantitative Strategist - Derivatives",
+      "City": null,
+      "State": null,
+      "Country": "India",
+      "Job_Location": [
+        "Gurugram",
+        "Singapore",
+        "New York"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "12/09/2025",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for a Quantitative Strategist to design, implement, and optimize data-driven trading strategies across Asian financial markets. You will work with large-scale datasets, apply advanced statistical, mathematical, and machine learning techniques to identify trading opportunities and generate predictive signals, and translate research ideas into optimized, production-quality trading strategies. This is a high-ownership role with involvement across the full strategy lifecycle, from research and signal development to backtesting, implementation, production, and continuous optimization. Research → Signal Development → Backtesting → Implementation → Production → Optimization What You’ll Do Analyze large-scale financial and market datasets to identify patterns and trading opportunities across Asian markets. Research and develop quantitative trading strategies using statistical, mathematical, and machine learning techniques. Develop, test, and evaluate predictive signals and features for alpha generation. Design and implement trading strategies in highly optimized, production-quality code. Build and maintain robust research pipelines and backtesting frameworks. Perform rigorous backtesting and evaluate strategy performance across different market conditions. Translate research ideas and predictive signals into robust, production-ready trading strategies. Deploy strategies into production, monitor live performance, and continuously refine models to improve predictive accuracy. Explore new datasets, signals, models, and predictive features to enhance alpha generation. Investigate strategy behavior and identify opportunities to improve performance and robustness. Evaluate the scalability and reliability of strategies before and after production deployment. Collaborate closely with engineering teams to ensure the robustness, scalability, and performance of production systems. Take end-to-end ownership of research and strategy development from initial hypothesis through implementation, production, and optimization. Requirements Engineering degree in Computer Science or an equivalent discipline from a premier institution. Strong problem-solving skills and quantitative aptitude. Excellent understanding of data structures, algorithms, and object-oriented programming. Experience with C++ or C is preferred. Working knowledge of Linux environments. Ability to work effectively in a fast-paced environment and manage multiple priorities. Strong work ethic and communication skills. Familiarity with Python, R, or Perl is a plus. Interest or experience in Asian financial markets is an advantage.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000440363/Quantitative-Strategist-Derivatives?source=CareerSite"
+    },
+    {
+      "id": "199893000000419219",
+      "Posting_Title": "Quantitative Strategist - All asset classes | All geographies",
+      "Job_Opening_Name": "Quantitative Strategist - All asset classes | All geographies",
+      "City": null,
+      "State": null,
+      "Country": null,
+      "Job_Location": [
+        "Gurugram"
+      ],
+      "Industry": "Quant Firms/HFT",
+      "Job_Type": "Full time",
+      "Date_Opened": "01/08/2026",
+      "Job_Description": "About Quadeye Quadeye is an algorithmic trading firm operating across major global financial markets and exchanges. We combine quantitative research, advanced mathematical modeling, and high-performance technology to develop sophisticated automated trading strategies across diverse asset classes. Our teams work at the intersection of markets, mathematics, statistics, and technology, with significant ownership across the entire strategy lifecycle—from research and ideation to implementation, deployment, and optimization. We offer a highly meritocratic environment where talented researchers and engineers have the opportunity to work on challenging problems, access world-class infrastructure, and see the direct impact of their work on live trading performance. The Role We are looking for experienced Quantitative Strategists to research, design, implement, and optimize data-driven trading strategies across global financial markets. You will work with large-scale datasets, apply advanced statistical and machine learning techniques to identify trading opportunities, and translate successful research into high-performance strategies for live deployment. You will have ownership across the strategy lifecycle, from developing and testing ideas to deploying them in production and continuously improving their performance. Research → Signal Development → Backtesting → Implementation → Production → Optimization What You’ll Do • Analyze large-scale market datasets using advanced statistical and machine learning techniques to identify trading opportunities. • Research and develop predictive signals and systematic trading strategies across global financial markets. • Design and implement trading strategies in highly optimized, production-quality code. • Build and run rigorous backtests to evaluate strategy performance and robustness across different market conditions. • Take successful strategies from research and prototyping through implementation and live production deployment. • Monitor live strategy performance, investigate outcomes, and continuously optimize models and strategies. • Develop new approaches to improve the accuracy, speed, and efficiency of trading predictions. • Collaborate with researchers, traders, and engineers to improve strategies and the supporting research and trading infrastructure. Requirements • Engineering degree in Computer Science or a related quantitative discipline, preferably from a leading academic institution. • Strong quantitative aptitude and excellent analytical and problem-solving skills. • Strong foundation in data structures, algorithms, and object-oriented programming. • Strong programming skills in C++ or C, with the ability to write efficient, high-performance code. • Understanding of statistical analysis and quantitative methods for working with large-scale datasets. • Working knowledge of Linux-based environments. • Knowledge of Python, R, or Perl is advantageous. • Ability to translate quantitative ideas into robust, production-ready implementations. • Ability to manage multiple priorities and work effectively in a fast-paced, high-ownership environment. • Strong communication and collaboration skills.",
+      "Publish": true,
+      "Is_Locked": false,
+      "$url": "https://career.quadeye.com/jobs/Careers/199893000000419219/Quantitative-Strategist-All-asset-classes-All-geographies?source=CareerSite"
+    }
+  ],
+  "info": {
+    "layout": 3,
+    "keys": {
+      "_job": "{0} Job",
+      "_no_result": "There are no results that match your search.",
+      "_closed_jobs": "Position filled",
+      "_jobs": "{0} Jobs",
+      "_search2": "City, state/province or country",
+      "_search1": "Job title or skill",
+      "_search3": "Search",
+      "_all": "All",
+      "_remote_job_title": "Remote Job"
+    },
+    "page_name": "Careers",
+    "brand_color": "#6875E2",
+    "fields": [
+      {
+        "api_name": "Job_Opening_Name",
+        "field_label": "Posting Title"
+      },
+      {
+        "api_name": "City",
+        "field_label": "City"
+      },
+      {
+        "api_name": "State",
+        "field_label": "State/Province"
+      },
+      {
+        "api_name": "Country",
+        "field_label": "Country"
+      },
+      {
+        "api_name": "Industry",
+        "field_label": "Industry"
+      },
+      {
+        "api_name": "Job_Type",
+        "field_label": "Job Type"
+      },
+      {
+        "api_name": "Work_Experience",
+        "field_label": "Work Experience"
+      },
+      {
+        "api_name": "Date_Opened",
+        "field_label": "Date Opened"
+      },
+      {
+        "api_name": "Job_Description",
+        "field_label": "Job Description"
+      },
+      {
+        "api_name": "Remote_Job",
+        "field_label": "Remote Job"
+      }
+    ],
+    "facets": [
+      {
+        "api_name": "Job_Location",
+        "field_label": "Job Location"
+      }
+    ]
+  }
+}

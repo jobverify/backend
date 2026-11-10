@@ -1,0 +1,1084 @@
+{
+  "offset": 10,
+  "limit": 10,
+  "totalFound": 22,
+  "content": [
+    {
+      "id": "744000130768189",
+      "name": "Sr Pricing Analyst",
+      "uuid": "9bed60ba-79c2-4125-8ec8-407c94b82347",
+      "jobAdId": "8aa22a3e-7db3-484b-a982-598cf4ad2ecd",
+      "defaultJobAd": true,
+      "refNumber": "JB0073374",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-06-08T10:39:42.982Z",
+      "location": {
+        "city": "Hyderabad",
+        "region": "Telangana",
+        "country": "in",
+        "address": "Salarpuria Sattva Knowledge City Knowledge City, Unit II, 17 to 10 Floor Survey No. 83/1, Serilingampally Mandal",
+        "postalCode": "500081",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Hyderabad, Telangana, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294208",
+        "label": "Sales"
+      },
+      "function": {
+        "id": "marketing",
+        "label": "Marketing"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_HYD002",
+          "valueLabel": "Knowledge City, Unit II, 17 to 10 Floor, Survey No. 83/1, Serilingampally Mandal, Hyderabad- 500081, Telangana, India(L_HYD002)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294208",
+          "valueLabel": "Sales"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC3145",
+          "valueLabel": "3145 Pricing Strategy"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "e5efb1ea-f0e1-4bc5-94b6-d5072787c528",
+          "valueLabel": "Required in Office"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000130768189",
+      "creator": {
+        "name": "Kiran Dawale"
+      },
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000129443659",
+      "name": "Principal Product Designer, Moveworks",
+      "uuid": "ed7bdd7b-a997-4cd2-8a32-7e082084473d",
+      "jobAdId": "92b098d5-30d3-455f-b4cc-a18a9e481919",
+      "defaultJobAd": true,
+      "refNumber": "JB0072991",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-06-01T09:37:38.553Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "Embassy Golf Links Business Park 1 Pebble Beach",
+        "postalCode": "560071",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2907670",
+        "label": "User Experience Design"
+      },
+      "function": {
+        "id": "design",
+        "label": "Design"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR009",
+          "valueLabel": "Embassy Golf Links Business Park, Bangalore, 560071, India(L_BLR009)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2907670",
+          "valueLabel": "User Experience Design"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC6753",
+          "valueLabel": "6753 MVW Design"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "e5efb1ea-f0e1-4bc5-94b6-d5072787c528",
+          "valueLabel": "Required in Office"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000129443659",
+      "creator": {
+        "name": "Triveni Devabathina"
+      },
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000128189969",
+      "name": "Staff Software Engineer, Core Infra- Moveworks",
+      "uuid": "8eba4729-3892-41b8-b1c0-0f58b0caccf1",
+      "jobAdId": "29ee1770-5480-4f39-b09e-817c3a58730a",
+      "defaultJobAd": true,
+      "refNumber": "JB0070856",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-25T07:14:32.344Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "The Fairway 6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta Next to Embassy Golf Links, Domlur",
+        "postalCode": "500071",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294038",
+        "label": "Engineering, Infrastructure and Operations"
+      },
+      "function": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR009",
+          "valueLabel": "Embassy Golf Links Business Park, Bangalore, 560071, India(L_BLR009)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294038",
+          "valueLabel": "Engineering, Infrastructure and Operations"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC6751",
+          "valueLabel": "6751 MVW Engineering"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "e5efb1ea-f0e1-4bc5-94b6-d5072787c528",
+          "valueLabel": "Required in Office"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000128189969",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000128189379",
+      "name": "Advisory Solution Architect",
+      "uuid": "4140614d-9a19-4caa-b872-d014ef5bd142",
+      "jobAdId": "7daf7b0b-9158-4ccb-9d62-a2787dd05233",
+      "defaultJobAd": true,
+      "refNumber": "JB0069816",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-25T07:09:06.010Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "The Fairway 6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta Next to Embassy Golf Links, Domlur",
+        "postalCode": "560071",
+        "remote": false,
+        "hybrid": true,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294208",
+        "label": "Sales"
+      },
+      "function": {
+        "id": "consulting",
+        "label": "Consulting"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "mid_senior_level",
+        "label": "Mid-Senior Level"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR004",
+          "valueLabel": "6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta, Bangalore, Karnataka, 560071, India(L_BLR004)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294208",
+          "valueLabel": "Sales"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC3320",
+          "valueLabel": "3320 SC Alliances & Channels"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "bf7551c6-9b06-4e7c-8217-3baf43edd060",
+          "valueLabel": "Flexible"
+        },
+        {
+          "fieldId": "690cc0e8c682c3dbadaa7d73",
+          "fieldLabel": "Job Posting Type",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000128189379",
+      "creator": {
+        "name": "Kiran Dawale"
+      },
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000128184769",
+      "name": "Sr Staff Software Engineer - Core Infra Engineering - Moveworks",
+      "uuid": "bccd5d09-fe85-4845-af6b-d14c65183f70",
+      "jobAdId": "652ff276-fcf5-4aae-a5f0-00d243d7dfe2",
+      "defaultJobAd": true,
+      "refNumber": "JB0073353",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-25T06:07:06.889Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "The Fairway 6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta Next to Embassy Golf Links, Domlur",
+        "postalCode": "560071",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294038",
+        "label": "Engineering, Infrastructure and Operations"
+      },
+      "function": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR004",
+          "valueLabel": "6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta, Bangalore, Karnataka, 560071, India(L_BLR004)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294038",
+          "valueLabel": "Engineering, Infrastructure and Operations"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC6751",
+          "valueLabel": "6751 MVW Engineering"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "e5efb1ea-f0e1-4bc5-94b6-d5072787c528",
+          "valueLabel": "Required in Office"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000128184769",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000127631869",
+      "name": "Staff Software Engineer - Moveworks",
+      "uuid": "c5df95f8-7ac4-4322-a2a6-826d8f700374",
+      "jobAdId": "3b8e377e-418b-4c96-b70c-dfa0888e5044",
+      "defaultJobAd": true,
+      "refNumber": "JB0073307",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-21T09:59:47.237Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "The Fairway 6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta Next to Embassy Golf Links, Domlur",
+        "postalCode": "560071",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294038",
+        "label": "Engineering, Infrastructure and Operations"
+      },
+      "function": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR004",
+          "valueLabel": "6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta, Bangalore, Karnataka, 560071, India(L_BLR004)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294038",
+          "valueLabel": "Engineering, Infrastructure and Operations"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC6751",
+          "valueLabel": "6751 MVW Engineering"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "e5efb1ea-f0e1-4bc5-94b6-d5072787c528",
+          "valueLabel": "Required in Office"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000127631869",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000127582580",
+      "name": "Mgr, Software Engrg Mgmt",
+      "uuid": "76b83c7f-66a8-43dd-a241-9eb4907e02de",
+      "jobAdId": "8f3fd684-b11d-4842-9504-bb07db15ca47",
+      "defaultJobAd": true,
+      "refNumber": "JB0073236",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-21T06:30:19.696Z",
+      "location": {
+        "city": "Hyderabad",
+        "country": "in",
+        "address": "Salarpuria Sattva Knowledge City Knowledge City, Unit II, 17 to 10 Floor Survey No. 83/1, Serilingampally Mandal",
+        "postalCode": "500081",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Hyderabad, , India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294038",
+        "label": "Engineering, Infrastructure and Operations"
+      },
+      "function": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_HYD002",
+          "valueLabel": "Knowledge City, Unit II, 17 to 10 Floor, Survey No. 83/1, Serilingampally Mandal, Hyderabad- 500081, Telangana, India(L_HYD002)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294038",
+          "valueLabel": "Engineering, Infrastructure and Operations"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC6190",
+          "valueLabel": "6190 Sec Ops Engineering"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "bf7551c6-9b06-4e7c-8217-3baf43edd060",
+          "valueLabel": "Flexible"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000127582580",
+      "creator": {
+        "name": "Prashanthi shadipuram"
+      },
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000127578599",
+      "name": "Senior Staff AI-Native Software Engineer – Agentic Systems",
+      "uuid": "fee631a0-60e5-494a-b004-c2d4f1595abc",
+      "jobAdId": "d3c4e5da-60cb-4d10-905d-cde4224e9bd4",
+      "defaultJobAd": true,
+      "refNumber": "JB0073238",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-21T05:37:01.959Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "The Fairway 6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta Next to Embassy Golf Links, Domlur",
+        "postalCode": "560071",
+        "remote": false,
+        "hybrid": true,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294174",
+        "label": "Product"
+      },
+      "function": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR004",
+          "valueLabel": "6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta, Bangalore, Karnataka, 560071, India(L_BLR004)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294174",
+          "valueLabel": "Product"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC6307",
+          "valueLabel": "6307 Platform Engineering Workflow Automation"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "5530c877-6b63-4bf5-bde8-215ef35bf172",
+          "valueLabel": "Flexible or Remote"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000127578599",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000126980662",
+      "name": "Senior Manager, Expert Services (CRM and Industry Workflows)",
+      "uuid": "12f20ab6-060e-47e8-b7b8-37813e981122",
+      "jobAdId": "3cd2c999-0c75-429f-b513-b864e85e0f24",
+      "defaultJobAd": true,
+      "refNumber": "JB0073154",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-18T12:09:12.992Z",
+      "location": {
+        "city": "Bangalore",
+        "region": "Karnataka",
+        "country": "in",
+        "address": "The Fairway 6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta Next to Embassy Golf Links, Domlur",
+        "postalCode": "560071",
+        "remote": false,
+        "hybrid": false,
+        "fullLocation": "Bangalore, Karnataka, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "11717291",
+        "label": "Customer Excellence HQ"
+      },
+      "function": {
+        "id": "consulting",
+        "label": "Consulting"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_BLR004",
+          "valueLabel": "6th Floor, Survey No 10/1, 11/2 and 12/2B, Challaghatta, Bangalore, Karnataka, 560071, India(L_BLR004)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "11717291",
+          "valueLabel": "Customer Excellence HQ"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC2760",
+          "valueLabel": "2760 Expert Services PLD CSM"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "bf7551c6-9b06-4e7c-8217-3baf43edd060",
+          "valueLabel": "Flexible"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000126980662",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    },
+    {
+      "id": "744000125806590",
+      "name": "Staff Inbound Product Manager - CRM Contact Center Omni-Channel - Workforce Engagement Management(WEM)",
+      "uuid": "7296647c-83b9-491a-a32e-d9494a563705",
+      "jobAdId": "e1ea1514-1467-4c10-a6dd-802b8a017617",
+      "defaultJobAd": true,
+      "refNumber": "JB0073162",
+      "company": {
+        "identifier": "ServiceNow",
+        "name": "ServiceNow"
+      },
+      "releasedDate": "2026-05-11T10:49:05.069Z",
+      "location": {
+        "city": "Hyderabad",
+        "region": "Telangana",
+        "country": "in",
+        "address": "Salarpuria Sattva Knowledge City Knowledge City, Unit II, 17 to 10 Floor Survey No. 83/1, Serilingampally Mandal",
+        "postalCode": "500081",
+        "remote": false,
+        "hybrid": true,
+        "fullLocation": "Hyderabad, Telangana, India"
+      },
+      "industry": {
+        "id": "it_and_services",
+        "label": "Information Technology And Services"
+      },
+      "department": {
+        "id": "2294174",
+        "label": "Product"
+      },
+      "function": {
+        "id": "engineering",
+        "label": "Engineering"
+      },
+      "typeOfEmployment": {
+        "id": "permanent",
+        "label": "Full-time"
+      },
+      "experienceLevel": {
+        "id": "not_applicable",
+        "label": "Not Applicable"
+      },
+      "customField": [
+        {
+          "fieldId": "60345fa28b4ba8595bef1863",
+          "fieldLabel": "Recruiting Team",
+          "valueId": "professional",
+          "valueLabel": "Professional"
+        },
+        {
+          "fieldId": "60345d5c5165a31b17288279",
+          "fieldLabel": "Region",
+          "valueId": "858884996eea4a49baa6231279f39054",
+          "valueLabel": "APAC - Asia Pacific"
+        },
+        {
+          "fieldId": "6034601b43915a29a4b3389b",
+          "fieldLabel": "Job Location",
+          "valueId": "L_HYD002",
+          "valueLabel": "Knowledge City, Unit II, 17 to 10 Floor, Survey No. 83/1, Serilingampally Mandal, Hyderabad- 500081, Telangana, India(L_HYD002)"
+        },
+        {
+          "fieldId": "60345e1a0b24a127cbdfa148",
+          "fieldLabel": "Employee Type",
+          "valueId": "0082f6cbe6154da19322cbab1f6aa5af",
+          "valueLabel": "Regular"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2b",
+          "fieldLabel": "Department",
+          "valueId": "2294174",
+          "valueLabel": "Product"
+        },
+        {
+          "fieldId": "COUNTRY",
+          "fieldLabel": "Country/Region",
+          "valueId": "in",
+          "valueLabel": "India"
+        },
+        {
+          "fieldId": "5f63a78f1dae5c5c4e54ba2a",
+          "fieldLabel": "Brands",
+          "valueId": "default",
+          "valueLabel": "ServiceNow"
+        },
+        {
+          "fieldId": "603462175165a31b1728827d",
+          "fieldLabel": "Cost Center",
+          "valueId": "CC5810",
+          "valueLabel": "5810 Talent Acquisition"
+        },
+        {
+          "fieldId": "618ed92b8f5e5f110e5bfb95",
+          "fieldLabel": "Work Persona",
+          "valueId": "bf7551c6-9b06-4e7c-8217-3baf43edd060",
+          "valueLabel": "Flexible"
+        }
+      ],
+      "visibility": "PUBLIC",
+      "ref": "https://api.smartrecruiters.com/v1/companies/ServiceNow/postings/744000125806590",
+      "language": {
+        "code": "en",
+        "label": "English",
+        "labelNative": "English (US)"
+      }
+    }
+  ]
+}

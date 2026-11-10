@@ -1,0 +1,80 @@
+{
+  "capturedOn": "2026-10-24",
+  "captureMethod": "Headless Chromium public employer-linked portal, no authentication",
+  "bundle": "newvision-chunk-JDYUWVO3.js",
+  "bundleSha256": "2b782a4428d5f70be135e9303ea8b5f0faf19ceeada1f2c5671b86a802390a2b",
+  "fixtureScope": "First public listing page (20 of 177 records) and one matching India and US detail; incidental personal fields omitted.",
+  "nativeClientEvidence": [
+    "ructureConfig(){return this.makeRecruitGetReq(\"jobs/newOrgStructure/config/0/\")}getJobDetails(t,r,o){return o===void 0&&(o=!1),this.sessionService.isAuthenticated?this.makeSecuredGetReq(\"job/\"+t+\"/v2?part=\"+r+\"&isReqId=\"+o):this.makeGetReq(\"job/\"+t+\"/v2?part=\"+r+\"&isReqId=\"+o)}getUserDetails(t){return this.makeSecuredGetReq(\"user/details?part=\"+t)}getConsentDetails(t){return t!"
+  ],
+  "publicSources": {
+    "publisher": "https://newvision-software.com/careers/",
+    "listing": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=20",
+    "indiaDetail": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/job/NVS_SRD_1875599/v2?part=basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied&isReqId=false"
+  },
+  "capturedAt": "2026-10-24T15:44:50.519Z",
+  "officialBinding": "The live first-party careers page at https://newvision-software.com/careers/ links See Open Roles to https://careers-newvision.peoplestrong.com/. That public tenant UI issues the native listing/detail requests below. Matching public details identify legal employer New Vision Softcom & Consultancy Pvt. Ltd, entityID 1397.",
+  "nativeRequests": [
+    {
+      "method": "POST",
+      "url": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=20",
+      "body": {}
+    },
+    {
+      "method": "GET",
+      "url": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/job/NVS_SRD_1875599/v2?part=basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied&isReqId=false"
+    }
+  ],
+  "sampledEvidence": {
+    "reportedTotal": 177,
+    "nativeListingRecords": 20,
+    "explicitIndiaRecords": 12,
+    "explicitUsRecords": 8,
+    "nativeIndiaDetailRecords": 1,
+    "nativeUsDetailRecords": 1,
+    "boundedVerification": {
+      "bounded": true,
+      "productionWrites": false,
+      "jobs": [
+        {
+          "jobId": "NVS/SRD/1875599",
+          "title": "Senior RPA Developer",
+          "location": "Pune, Maharashtra, India",
+          "country": "India",
+          "descriptionLength": 2108,
+          "applyUrl": "https://careers-newvision.peoplestrong.com/job/detail/NVS_SRD_1875599",
+          "sourceListingComplete": false
+        }
+      ],
+      "inventory": {
+        "status": "discovery-only",
+        "surface": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=1",
+        "firstParty": true,
+        "listingComplete": false,
+        "pagesFetched": 1,
+        "reportedTotal": 177,
+        "indiaFacetCount": null,
+        "verifiedAt": "2026-10-24T15:57:34.950Z",
+        "reason": "Caller limited the listing; positive India details were verified but complete inventory was not established."
+      },
+      "requests": [
+        {
+          "url": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1?offset=0&limit=1",
+          "method": "POST"
+        },
+        {
+          "url": "https://careers-newvision.peoplestrong.com/api/cp/rest/altone/cp/job/NVS_SRD_1875599/v2?part=basic,organisational,descriprion,workflow,skill,qualification,certification,language,applied&isReqId=false",
+          "method": "GET"
+        }
+      ]
+    }
+  },
+  "limitations": "Only the first 20 of 177 listing records and one India plus one US detail were captured. A subsequent bounded source run fetched limit=1 and one matching India detail, returned discovery-only, and wrote no database. This does not prove full current source recovery or public publication.",
+  "targetedVerification": {
+    "command": "node --test scraper-support/tests/greytHrScript.test.js scraper-support/tests/greytHrCatalog.test.js scraper-support/tests/greytHrDescriptionRecovery.test.js scraper-support/tests/NewVisionSoftwareConsultancy.test.js scraper-support/tests/newVisionDescriptionRecovery.test.js",
+    "passedTests": 22,
+    "failedTests": 0,
+    "verifiedAt": "2026-10-24T16:02:07.406Z",
+    "scope": "Focused source tests only. Full repository suite not rerun; earlier broad run had 481 failures, not all attributed."
+  }
+}

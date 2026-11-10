@@ -190,6 +190,7 @@ export function parseDetail(html, row) {
 }
 export const CONFIG = {
   source: 'fynd', companyName: 'Fynd', boardURL: BOARD, validateURL, parseListing, parseDetail,
+  detailConcurrency: 3,
   handoffs: [{ url: CAREERS, verify: verifyCorporateHandoff }],
   sameReadIdentity: (left, right) => { const a = validateURL(left), b = validateURL(right); return a.origin === b.origin && a.pathname.replace(/\/$/, '') === b.pathname.replace(/\/$/, ''); },
   candidateForIndia: row => !row.geography.country || row.geography.country === 'India',

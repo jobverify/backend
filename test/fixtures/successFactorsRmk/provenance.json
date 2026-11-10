@@ -1,0 +1,25 @@
+{
+  "origin": "Actual native HTTP captures, exact-byte copies; test fixtures do not establish live freshness",
+  "receipts": [
+    {
+      "file": "astellaspharma-native-session-http.json",
+      "sourceArtifact": "../artifacts/full-catalog/successfactors-native-001/astellaspharma-native-session-http.json",
+      "sha256": "83b1824efa2d666d95690182bf8d1bf3f2b97bf670130a92ffb62c4cceede774"
+    },
+    {
+      "file": "astellaspharma-sample-detail-http.json",
+      "sourceArtifact": "../artifacts/full-catalog/successfactors-native-001/astellaspharma-sample-detail-http.json",
+      "sha256": "70daa859a243f4fbb111af24e16a41ee18aead5eb1edcef365411d4204d8b1c4"
+    },
+    {
+      "file": "astellaspharma-en_GB-search-http.json",
+      "sourceArtifact": "../artifacts/full-catalog/successfactors-native-001/astellaspharma-en_GB-search-http.json",
+      "sha256": "d1a8d88b8a577e424562e2289b26e72d9e3ade0119dcd867037facdebbc49489"
+    },
+    {
+      "file": "astellaspharma-capture-001/http-0003.json",
+      "sourceArtifact": "../artifacts/full-catalog/successfactors-native-001/astellaspharma-capture-001/http-0003.json",
+      "sha256": "0030975b8549fcdb03a65a2c4706d2c00cc7be8f40bc3354f77bac7f5b5fe087"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "source": "starhealth",
+  "verifiedPublicJobCount": null,
+  "verifiedIndiaJobCount": null,
+  "sourceListingComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "firstParty": false,
+  "nativeRecoveredIndiaCount": 2,
+  "evidence": [
+    {
+      "file": "official-careers.json.gz",
+      "sha256": "ca8f5993fe0be1da27aa9240375982206bd05991cf603ef5a4484d58e8b76b3f",
+      "uncompressedSha256": "e63c353dc806bd3113087e30398ff81252a3306335d61288f6fdd2e28e0c7d8a",
+      "responses": [
+        {
+          "url": "https://www.starhealth.in/careers/",
+          "finalUrl": "https://www.starhealth.in/careers/",
+          "status": 403,
+          "capturedAt": "2026-10-23T07:48:06.764Z",
+          "bodySHA256": "e02d697d18c266c6f205cf2c0b6e20e197f972a513734bd093e3610ee883bfc5"
+        }
+      ]
+    },
+    {
+      "file": "native-employer-jobs.json.gz",
+      "sha256": "8068d5545f24179d3436a56a549b16507bd3714543c9991a91e4e1b05b3d4d3b",
+      "uncompressedSha256": "99979f93f22508aa578aa9c1f0d6178a990a17088b3d704c4536cdd5347597af",
+      "responses": [
+        {
+          "url": "https://www.linkedin.com/company/star-health-and-allied-insurance-co--ltd/",
+          "finalUrl": "https://www.linkedin.com/company/star-health-and-allied-insurance-co--ltd/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:31.261Z",
+          "bodySHA256": "66ba226cd386841f2154240f05d9beb764016f2e5f0edf684400cfa5dad3d583"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=521366&location=India",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=521366&location=India",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:36.855Z",
+          "bodySHA256": "bdd04de2c922fc25c46f0b97380df3c94ea312f8162b224ac4001d79f0d6ecf0"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/search/?f_C=521366&location=Worldwide",
+          "finalUrl": "https://www.linkedin.com/jobs/search/?f_C=521366&location=Worldwide",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:38.425Z",
+          "bodySHA256": "c2dfe1cb4c488accb9225613059a497b5ff57d634939ed3fbcc5df4ca80b0544"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/view/telesales-executive-at-star-health-and-allied-insurance-co-ltd-4479493315",
+          "finalUrl": "https://www.linkedin.com/jobs/view/telesales-executive-at-star-health-and-allied-insurance-co-ltd-4479493315",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:40.296Z",
+          "bodySHA256": "a9350e05531ef02dd8a793c9ec27e4994a627a6351a85c2f468bb886ef436335"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/view/telesales-executive-at-star-health-and-allied-insurance-co-ltd-4479493315?position=1&pageNum=0&refId=xdNvUg%2B%2BSH7TRHWo3zt1vQ%3D%3D&trackingId=UzTWs%2BGOlRLr3w0JSeyyRg%3D%3D",
+          "finalUrl": "https://www.linkedin.com/jobs/view/telesales-executive-at-star-health-and-allied-insurance-co-ltd-4479493315?position=1&pageNum=0&refId=xdNvUg%2B%2BSH7TRHWo3zt1vQ%3D%3D&trackingId=UzTWs%2BGOlRLr3w0JSeyyRg%3D%3D",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:41.566Z",
+          "bodySHA256": "3f7c60b139ef8bf9d330a58bd7c30315fe2708d2589f5a380d5ab1b24ffc757f"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/view/sales-manager-at-star-health-and-allied-insurance-co-ltd-4481318868?position=2&pageNum=0&refId=xdNvUg%2B%2BSH7TRHWo3zt1vQ%3D%3D&trackingId=P1AshyKTOw%2FvEp%2BpVYhVWQ%3D%3D",
+          "finalUrl": "https://www.linkedin.com/jobs/view/sales-manager-at-star-health-and-allied-insurance-co-ltd-4481318868?position=2&pageNum=0&refId=xdNvUg%2B%2BSH7TRHWo3zt1vQ%3D%3D&trackingId=P1AshyKTOw%2FvEp%2BpVYhVWQ%3D%3D",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:43.295Z",
+          "bodySHA256": "eab9074613fec020228892cd173296bb4073f958601995adbf4751e12388a44c"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/view/telesales-executive-at-star-health-and-allied-insurance-co-ltd-4479493315?position=1&pageNum=0&refId=oErhCGUEFVcRgZaSM%2FgIwA%3D%3D&trackingId=PLlsbUqyn3JdJyRy1M6VfA%3D%3D",
+          "finalUrl": "https://www.linkedin.com/jobs/view/telesales-executive-at-star-health-and-allied-insurance-co-ltd-4479493315?position=1&pageNum=0&refId=oErhCGUEFVcRgZaSM%2FgIwA%3D%3D&trackingId=PLlsbUqyn3JdJyRy1M6VfA%3D%3D",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:44.907Z",
+          "bodySHA256": "f2d83a17e79a24f50ef18f4a855e65ba70d220b829af0a05798f9b75a4b08d7c"
+        },
+        {
+          "url": "https://www.linkedin.com/jobs/view/sales-manager-at-star-health-and-allied-insurance-co-ltd-4481318868?position=2&pageNum=0&refId=oErhCGUEFVcRgZaSM%2FgIwA%3D%3D&trackingId=6Rtsr%2B4vi8oEUSLvXqNz6A%3D%3D",
+          "finalUrl": "https://www.linkedin.com/jobs/view/sales-manager-at-star-health-and-allied-insurance-co-ltd-4481318868?position=2&pageNum=0&refId=oErhCGUEFVcRgZaSM%2FgIwA%3D%3D&trackingId=6Rtsr%2B4vi8oEUSLvXqNz6A%3D%3D",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:50:46.733Z",
+          "bodySHA256": "63d227c09a8f9ce26dc02226a213f6a271085473f8abbbe23e23a1e7d6e89c79"
+        }
+      ]
+    }
+  ],
+  "navigationObservations": [
+    {
+      "file": "employer-website-redirect.dom.json.gz",
+      "sha256": "0b4058a1a4ca9c443cf4f4178a5ffd7762fd72b8a24649b1683f2d00c51312a5",
+      "uncompressedSha256": "678e8e38e795f916fcf7a72e4310a6c4bfa3b1b4049f308cf7e3601b3d37611d",
+      "kind": "browser-navigation-observation-not-http-receipt",
+      "requestedUrl": "http://starhl.in/9Lukp7",
+      "finalUrl": "https://www.starhealth.in/?utm_source=linkedin&utm_medium=osocial&utm_campaign=brand_starhealth_homepage_osocial_linkedin_bio&utm_content=linkedinbio&utm_geo=all&utm_language=all"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "account": {
+    "directory_path": "https://careers.hire.rekrutek.ai/cms/a9218256-8fbf-40ab-936b-49ff5ff7c900",
+    "external_id": "3291bef4-3bf7-4a36-ac47-463d538699d2",
+    "name": "CMS"
+  },
+  "brand": {
+    "external_id": "a9218256-8fbf-40ab-936b-49ff5ff7c900",
+    "name": "CMS",
+    "slug": "cms"
+  },
+  "funnel": {
+    "title": "Chennai - Project Manager-chennai",
+    "external_id": "b775b39d-2a57-4954-b232-0d460503938b",
+    "slug": "chennai-project-manager-chennai",
+    "active": true,
+    "country_code": "IN",
+    "position_description_html": "",
+    "location": {
+      "name": "Karnataka",
+      "external_id": "3be8ace7-17f7-4530-9df7-819c45e3b7a0"
+    },
+    "position_name": "Project Manager-chennai"
+  }
+}

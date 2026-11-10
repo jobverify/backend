@@ -12,6 +12,13 @@ const WIDGET_SHA = 'ccbb518a08c80678c93c6028fc38579edc3edf0da0b03fd34a5d6834186a
 // The current advertised client reads page/pageSize from the URL and uses the
 // unfiltered native board query. Requalify that delegation when it changes.
 const CLIENT_SHA = 'd520877b89186e74f70527e109523145b718d64fe71e7f882ac1c89bc32f5150'
+// Nov10 advertises the same pagination implementation under a new deployment
+// chunk. Review keeps exact whole bytes/URLs; unseen builds remain unavailable.
+const CLIENT_PROFILES = [
+  { url: CLIENT, sha256: CLIENT_SHA },
+  { url: 'https://ats.us1.rippling.com/_next/static/chunks/387-80356090a770fa21.js',
+    sha256: '0d9f90c6a41441ccf8c5b4595c628716cdb50eb185178a21f7113cbff477fc51' },
+]
 const PROOF = Symbol.for('jobverify.official-ats-discovery')
 const uuid = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/
 const longCountries = new Intl.DisplayNames(['en'], { type: 'region' })
@@ -229,8 +236,11 @@ export async function runNativeEvidation({ signal: callerSignal, now = () => new
     const binding = corporate(await get(CAREERS))
     need(hash(await get(WIDGET)) === WIDGET_SHA, 'current widget delegation contract changed')
     const first = listing(await get(frameURL(0)), 0, pageSize)
-    need(first.d.nodes(node => node.tag === 'script' && node.attrs.src === CLIENT).length === 1, 'current advertised pagination client missing')
-    need(hash(await get(CLIENT)) === CLIENT_SHA, 'current pagination client contract changed')
+    const declaredClients = CLIENT_PROFILES.filter(profile => first.d.nodes(node => node.tag === 'script' && node.attrs.src === profile.url).length > 0)
+    need(declaredClients.length === 1
+      && first.d.nodes(node => node.tag === 'script' && node.attrs.src === declaredClients[0].url).length === 1, 'current advertised pagination client missing')
+    const client = declaredClients[0]
+    need(hash(await get(client.url)) === client.sha256, 'current pagination client contract changed')
     const total = first.value.totalItems, totalPages = first.value.totalPages
     need(total <= 10000 && totalPages <= maxPages, 'page limit leaves incomplete native inventory')
     const rows = [...first.value.items]

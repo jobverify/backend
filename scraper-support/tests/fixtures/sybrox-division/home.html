@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sybrox Tech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="Image/Sybrox logo New.png">
+
+<link rel="icon" type="image/png" href="Image/Sybrox logo New.png" />
+<meta name="description" content="Sybrox Tech is a fast-growing IT startup committed to building innovative mobile apps, software solutions and next-generation digital platforms." />
+
+<link rel="icon" href="https://sybrox.com/sybrox-favicon.png" sizes="512x512">
+
+  <link rel="stylesheet" href="Styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="Image/Sybrox Logo_PNG.png" alt="Sybrox Logo" />
+    </div>
+
+   
+    <div class="menu-toggle" id="menu-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a class='active' href='/'>Home</a></li>
+      <li><a href='/about'>Who We Are</a></li>
+      
+      
+      <li class="dropdown">
+        <a href="#">Our Services ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href='/cloud'>Cloud & Infrastructure</a></li>
+          <li><a href='/website'>Web & App Development</a></li>
+          <li><a href="IT Support.html">IT Support & Consulting</a></li>
+        </ul>
+      </li>
+
+      <li><a href="Sybrox Careers.html">Careers</a></li>
+
+      <!-- <li class="dropdown">
+        <a href="#">Careers ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="Sybrox Careers.html">Sybrox</a></li>
+           <li><a href="RPO Partner Vacancies.html">Our Clients Vacancies</a></li> 
+          
+        </ul>
+      </li>  -->
+
+       <!-- <li><a href="Intenship.html">Internship & Training</a></li>
+      <li><a href="Staffing.html">Staffing & RPO</a></li> -->
+     
+      <li><a class='contact-btn' href='/contact'>Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+  </script>
+
+
+
+
+
+<section class="hero">
+  
+  <video class="hero-video" autoplay loop muted playsinline>
+    <source src="Image/home hero.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  
+  <div class="hero-content">
+    <h1>
+      Empowering Businesses with <br />
+      <span>Innovation & Technology</span>
+    </h1>
+    <p>
+      We enable organizations to stay ahead in a fast-changing world through
+      end-to-end cloud management, application development, IT consulting,
+      and talent development. At Sybrox, technology becomes your competitive
+      advantage.
+    </p>
+    
+  </div>
+</section>
+
+
+
+
+  <section class="about">
+    <div class="about-title">
+      <h1>ABOUT US</h1>
+    </div>
+
+    <div class="about-container">
+      <div class="about-image">
+        <img src="Image/About.jpg" alt="About Us">
+      </div>
+      <div class="about-content">
+        <h2>
+          Empowering businesses through innovative 
+          <span class="highlight">IT solutions</span>
+        </h2>
+        <p>
+          Sybrox is a next-generation IT training and career-launch platform built for the real world.
+          We exist to bridge the gap between what students learn in classrooms and what companies
+          expect on the job. Our focus is simple: teach only what’s relevant, deliver it through
+          hands-on learning, and back it up with real project experience and placement support.
+        </p>
+        <a class='btn' href='/about'>Know More</a>
+      </div>
+    </div>
+  </section>
+
+
+
+   <section class="reasons">
+    <div class="reasons-title">
+      <h1>4-REASONS</h1>
+      <p>to Trust Our Expertise</p>
+    </div>
+
+    <div class="reasons-grid">
+      
+      <div class="reason-card text-card">
+        <h2>Learn Industry Tools</h2>
+        <p>Gain hands-on experience with the latest technologies and tools used by leading companies. Our programs are built around real industry practices, not outdated theories.</p>
+      </div>
+      <div class="reason-card img-card">
+        <img src="Image/Reason1.jpg" alt="Industry Tools">
+      </div>
+
+      
+      <div class="reason-card text-card">
+        <h2>Work on Real Projects</h2>
+        <p>Apply your learning to live projects guided by professionals. You'll gain practical exposure, build a strong portfolio, and develop the confidence to take on real-world challenges.</p>
+      </div>
+      <div class="reason-card img-card">
+        <img src="Image/Reason2.jpg" alt="Real Projects">
+      </div>
+
+     
+      <div class="reason-card img-card">
+        <img src="Image/Reason3.jpg" alt="Paid Internships">
+      </div>
+      <div class="reason-card text-card">
+        <h2>Paid Internships</h2>
+        <p>Our internship programs provide stipends, certification, and 100% placement assistance. We connect you with trusted companies that value your skills and growth potential.</p>
+      </div>
+
+    
+      <div class="reason-card img-card">
+        <img src="Image/Reason4.jpg" alt="Mentorship Guidance">
+      </div>
+      <div class="reason-card text-card">
+        <h2>Mentorship & Guidance</h2>
+        <p>Learn directly from experienced industry mentors who guide you through every step — from concept to execution — ensuring your learning path is clear, structured, and impactful.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="container">
+    <h1>Our Services</h1>
+    <div class="services">
+      <div class="card">
+        <h2><span>01.</span>Cloud & Infrastructure</h2>
+        <p>Our cloud and infrastructure services help businesses migrate, manage, and optimize their IT environment. We ensure reliability, high performance, and data security for companies of all sizes.</p>
+      </div>
+
+      <div class="card">
+        <h2><span>02.</span>Web & App Development</h2>
+        <p>We design and develop websites and mobile applications that are visually appealing, fast, and scalable. Our focus is on performance, usability, and seamless user experiences.</p>
+      </div>
+
+      <div class="card">
+        <h2><span>03.</span>IT Support & Consulting</h2>
+        <p>Our IT consulting and managed support services help organizations align their technology with business objectives. We focus on efficiency, scalability, and risk management.</p>
+      </div>
+
+      <div class="card">
+        <h2><span>04.</span>Internship & Training</h2>
+        <p>We provide hands-on internships and skill-building programs with real projects, expert mentorship, and placement support to prepare students and professionals for industry success.</p>
+      </div>
+
+      <div class="card">
+        <h2><span>05.</span>Staffing & RPO</h2>
+        <p>Our Staffing and Recruitment Process Outsourcing (RPO) services help businesses hire top talent efficiently. We manage the recruitment process end-to-end, ensuring the right fit for your organization.</p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <div class="section-header">Internship &<br>Training Highlights</div>
+
+  <div class="highlight-section">
+    <div class="highlight-text">
+      <h2>Empowering the <span>Next Generation</span></h2>
+      <p>
+        We offer industry-focused internship and training programs designed to help students and professionals build practical skills, gain real-world project experience, and confidently enter the workforce. Through expert mentorship, live project exposure, and placement support, we ensure every learner is job-ready.
+      </p>
+       <!-- <a href="Intenship.html">Know More</a> -->
+    </div>
+    <div class="highlight-image">
+       <img src="Image/Intenship.jpg" alt="Internship Training Team" />
+    </div>
+  </div>
+
+
+
+
+<section class="growth-section">
+  <div class="growth-content">
+    <div class="text-area">
+      <h2>Ready to Grow Your Business or Career?</h2>
+      <p>
+        Partner with Sybrox to access technology solutions, consulting services, 
+        or internship opportunities that take you to the next level.
+      </p>
+      <div class="btn-group">
+        <a class='btn btn-primary' href='/contact'>Contact Us</a>
+        <!--<a href="Intenship.html" class="btn btn-outline">Join Our Internship</a> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+ <footer class="footer">
+    <div class="footer-container">
+      
+      
+      <div class="footer-col1">
+        <img src="Image/Sybrox Logo_PNG.png" alt="Sybrox Logo" class="footer-logo">
+        <p class="footer-about">
+          Sybrox Tech Pvt. Ltd. is a fast-growing IT startup committed to building innovative 
+          mobile apps, software solutions and next-generation digital platforms.
+        </p>
+      </div>
+
+      
+      <div class="footer-col">
+        <h3>Our Company</h3>
+        <ul>
+          <li><a href='/'>Home</a></li>
+          <li><a href='/about'>Who We Are</a></li>
+          <li><a href="Sybrox Careers.html">Careers</a></li>
+          <li><a href='/contact'>Contact Us</a></li>
+          
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href='/cloud'>Cloud & Infrastructure</a></li>
+          <li><a href='/website'>Web & App Development</a></li>
+          <li><a href="IT Support.html">IT Support & Consulting</a></li>
+          <!--<li><a href="Intenship.html">Internship & Training</a></li>
+          <li><a href="Staffing.html">Staffing & RPO</a></li>> -->
+        </ul>
+      </div>
+
+
+<div class="footer-col">
+  <h3>Contact Info</h3>
+  <ul>
+    <li>
+      <i class="fa-solid fa-envelope"></i>
+      <a href="mailto:info@sybrox.com">info@sybroxtech.com</a>
+    </li>
+
+        <li>
+      <i class="fa-solid fa-envelope"></i>
+      <a href="mailto:careers@sybrox.com">careers@sybroxtech.com</a>
+    </li>
+
+      
+
+  </ul>
+</div>
+
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>©2025 Sybrox Tech Pvt. Ltd. | All Rights Reserved</p>
+    </div>
+  </footer>
+</body>
+</html>

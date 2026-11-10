@@ -1,0 +1,36 @@
+{
+  "status": 200,
+  "data": {
+    "requesterTitle": "",
+    "activeApplicationCount": 1,
+    "maxActiveApplication": 1000,
+    "reqDetailsBO": {
+      "educationList": [
+        "UG - Any"
+      ],
+      "mandatorySkillList": [
+        "machine learning",
+        "golang"
+      ],
+      "nonMandatorySkillList": [],
+      "jdDisplay": "<h2>About Us</h2><p><br></p><p>ShareChat (Mohalla Tech Pvt Ltd) is India's largest homegrown social media company and the only local player to achieve profitability in the industry, with 200+ million Monthly Monetizable Users across all its platforms.</p><p><br></p><p>Founded in 2015, ShareChat has social media brands such as the ShareChat App and Moj App and micro drama app QuickTV under its portfolio. QuickTV, the newest addition to ShareChat's family of apps, crossed the 10 million downloads mark within 3 months of launch and currently has 60Mn MAUs across the network viewing the vertical episodic content.</p><p><br></p><p>Today, the ShareChat network maintains a whopping 1,000 Cr ARR and is India's leading social media platform servicing users across the country in 15 regional languages. This growth has led to a 28% YoY revenue growth in the July-Sept (2025-26) quarter and increased it by more than 60% in the Oct-Dec quarter.</p><p><br></p><h2>What does the team do?</h2><p><br></p><p>Serving recommendations to 200+ million users entails developing large-scale personalization and recommendation models that understand user needs and preferences in real-time, while also helping creators grow their audiences on our platforms.</p><p><br></p><p>Underpinning all of this is a horizontal AI Infrastructure team that owns the systems every product surface depends on — training pipelines, inference infrastructure, and data pipelines spanning feed and ads. This is where you come in.</p><p><br></p><h2>What you will do</h2><p><br></p><ul><li><strong>Distributed training at recommender scale.</strong> Our models are embedding-heavy — ID vocabularies in the 10⁷–10⁸ range, sharded across workers and churning constantly. That makes training a different problem from most deep learning: embedding placement and sharding strategy, eviction, multi-host data-parallel throughput, and holding cost per experiment down across ~35 models in daily training. We run on TensorFlow today and are moving to the PyTorch ecosystem.</li><li><strong>Inference optimization across hardware and runtimes.</strong> Serving is the largest line in our infrastructure cost. We run TensorFlow Serving and OpenVINO today, across CPU and GPU; testing further runtimes — ONNX Runtime, Triton, TensorRT — is on the roadmap. The work is measurement-driven: find where cost and latency actually go, then move them.</li><li><strong>Expand the GPU serving path.</strong> We run a GPU/CPU hybrid deployment today, but only for a subset of models. Extending it — and making it the obvious choice wherever it wins on cost or unlocks models CPU can't serve — is open work.</li><li><strong>Orchestration and observability for dozens of training pipelines</strong> across feed and ads, running on Flyte and Kubernetes.</li><li><strong>Work horizontally</strong> across feed and ads, and raise the ceiling around you through design review and pairing.</li></ul><p><br></p><h2>Who you are</h2><p><br></p><ul><li>8+ years of professional software engineering experience — we care about the depth of what you've built more than the count. Fast progressors are very much welcome.</li><li><strong>Depth in at least one of: distributed training, model serving and inference optimization, or ML platform / MLOps — with working knowledge of the others.</strong> We're looking for T-shaped, not a tour of all three.</li><li>You've <strong>owned or substantially rebuilt</strong> a piece of production ML infrastructure, not only operated one someone else built. For example: changed how a training job was parallelized, moved a model between serving runtimes and measured the result, built eval and release gating for a model fleet, or debugged a distributed training failure to root cause.</li><li>Comfortable in framework internals — PyTorch, TensorFlow, TorchRec, TF Serving / ONNX Runtime / Triton / OpenVINO — not only their APIs.</li><li>You reason about performance from measurement: profiles, utilization, where the time actually goes.</li><li>Strong software engineering fundamentals — distributed systems, system design, building for scale and reliability.</li><li>Comfortable as a senior individual contributor, owning complex problems end to end with minimal hand-holding.</li><li><strong>We welcome candidates from software engineering, ML engineering, and ML platform backgrounds.</strong> We care what you've built, not which track you sat on.</li></ul><p><br></p><h2>Where Will You Be?</h2><p><br></p><p>Bangalore (Hybrid)</p><p><br></p><h2>What's In It For You?</h2><p><br></p><p>At ShareChat, our values — Ownership, Speed, User Empathy, Integrity, and First Principles — are at the core of our ways of working. We believe in hiring top talent and grooming future leaders by providing a flexible environment to aid growth and development.</p><p><br></p><p>Our Elite Benefits Suite:</p><p><br></p><ul><li>Wealth &amp; Security: ESOPs and comprehensive insurance coverage.</li><li>Lifestyle: Hybrid working culture, Gym allowance, and Zomato coupons.</li><li>Family Support: Monthly childcare allowance for women employees.</li><li>And many more…</li></ul><p><br></p><p><br></p>",
+      "fresher": false,
+      "requisitionLocationGroup": [],
+      "expMin": 8,
+      "expMax": 15,
+      "reqTitle": "Senior Staff Engineer",
+      "reqId": 2435,
+      "locationList": [
+        {
+          "office": "Bangalore",
+          "address": "1st Floor, Sona Towers, Hosur Rd, next to Nexa Showroom, Chikku Lakshmaiah Layout, S.G. Palya, Bengaluru, Karnataka 560029"
+        }
+      ],
+      "statusId": 3,
+      "requisitionPublished": true
+    }
+  },
+  "ts": 34,
+  "requestId": "e58fb0a0-e6bb-421b-a6b1-83f8a2a69e42",
+  "v": "d17-2r-20261024061801"
+}

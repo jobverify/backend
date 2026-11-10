@@ -1,0 +1,99 @@
+{
+  "source": "juniper",
+  "capturedAt": "2026-10-24T16:18:57.115Z",
+  "landingURL": "https://careers.hpe.com/juniper",
+  "reportedTotal": 378,
+  "listedRolesCaptured": 10,
+  "method": "Bounded read-only Playwright HTML and native model capture; selected role details only, no scraper execution or database writes",
+  "samples": [
+    {
+      "listing": {
+        "type": "Full time",
+        "descriptionTeaser": "We are currently hiring a ASIC Senior Manager to lead the design, development, and evaluation of VLSI components and hardware systems. Oversee complex projects, manage multidimensional designs, and guide a team of experts. Ideal for experienced professionals with strong leadership and technical expertise in electrical or computer engineering.",
+        "state": "Karnātaka",
+        "siteType": "external",
+        "multi_category": [
+          "Engineering & QA"
+        ],
+        "reqId": "1207301",
+        "city": "Bengaluru",
+        "latitude": "12.97194",
+        "multi_location": [
+          "Bengaluru, Karnātaka, 560048"
+        ],
+        "address": "Hewlett Packard (India) Software Operati, STSD Campus Sy.No.192, Whitefield Road, Bengaluru- 560048, Karnātaka, India",
+        "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bengaluru-Karntaka-India/ASIC-Senior-Manager_1207301-2/apply",
+        "externalApply": false,
+        "cityState": "Bengaluru, Karnātaka",
+        "country": "India",
+        "visibilityType": "External",
+        "longitude": "77.59369",
+        "jobId": "1207301",
+        "locale": "en_US",
+        "title": "ASIC Senior Manager",
+        "jobSeqNo": "HPE1US1207301EXTERNALENUS",
+        "postedDate": "2026-06-23T00:00:00.000+0000",
+        "dateCreated": "2026-06-23T10:05:02.857+0000",
+        "cityStateCountry": "Bengaluru, Karnātaka, India",
+        "jobVisibility": [
+          "external"
+        ],
+        "location": "Bengaluru, Karnātaka, 560048",
+        "category": "Engineering & QA",
+        "ml_skills": [
+          "vlsi design",
+          "logic design",
+          "integrated circuit layout",
+          "design verification",
+          "system simulation software",
+          "prototype fabrication",
+          "project management",
+          "people management",
+          "resource allocation",
+          "budget management",
+          "process improvement",
+          "cost optimization",
+          "performance management",
+          "coaching",
+          "cross-functional teamwork",
+          "analytical thinking",
+          "risk management",
+          "data analysis management",
+          "agile methodology",
+          "design thinking",
+          "executive communication",
+          "strategic planning",
+          "data controls",
+          "empathy"
+        ],
+        "ml_job_parser": {
+          "descriptionTeaser": "We are currently hiring a ASIC Senior Manager to lead the design, development, and evaluation of VLSI components and hardware systems. Oversee complex projects, manage multidimensional designs, and guide a team of experts. Ideal for experienced professionals with strong leadership and technical expertise in electrical or computer engineering.",
+          "descriptionTeaser_keyword": "ASIC Senior Manager. This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office. Who We Are. Hewlett Packard Enterprise is the global edge-to-cloud co...",
+          "descriptionTeaser_ats": "ASIC Senior Manager  This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office.Who We Are . Hewlett Packard Enterprise is the global edge-to-",
+          "descriptionTeaser_first200": "ASIC Senior Manager . This role has been designed as ‘’Onsite’ with an expectation that you will primarily work from an HPE office. Who We Are. Hewlett Packard Enterprise is the global edge-to-clou..."
+        },
+        "isMultiLocation": true,
+        "multi_location_array": [
+          {
+            "latlong": {
+              "lon": 77.59369,
+              "lat": 12.97194
+            },
+            "location": "Bengaluru, Karnātaka, 560048"
+          }
+        ],
+        "isMultiCategory": true,
+        "multi_category_array": [
+          {
+            "category": "Engineering & QA"
+          }
+        ],
+        "badge": ""
+      },
+      "detailHtml": "current-20261024-detail-1207301.html",
+      "detailNative": "current-20261024-detail-1207301-native.json",
+      "nativeDetailURL": "https://careers.hpe.com/us/en/job/1207301/ASIC-Senior-Manager",
+      "htmlSha256": "e165250fa390ac2cd0451911c5e23aaef0b02e714fa17754e9b4fb2e53b34626"
+    }
+  ]
+}

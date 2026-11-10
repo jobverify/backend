@@ -5,6 +5,7 @@ const PROVIDER_METADATA = { ...{
   "source": "fynd",
   "companyName": "Fynd",
   "adapter": "script",
+  "scraperTimeoutMs": 570000,
   "modulePath": "../fynd/script.js",
   "dryRunFile": "fynd/jobs.json",
   "catalogOverride": true,

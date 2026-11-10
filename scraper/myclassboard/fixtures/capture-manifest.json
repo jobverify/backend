@@ -1,0 +1,852 @@
+{
+  "source": "myclassboard",
+  "evidence": [
+    {
+      "file": "current-corporate-pages.json.gz",
+      "sha256": "0d839653edea8dc303e12d45e962e74b21a18f2718338698e76073d5a2c128fe",
+      "uncompressedSha256": "3cc8aa970c63c1804a1c2d1fc0d23544f26a4ae9019d2db0575e68ca2ef3341d",
+      "responses": [
+        {
+          "url": "https://www.mcbapp.com/",
+          "finalUrl": "https://www.mcbapp.com/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:17:18.839Z",
+          "bodySHA256": "7b401bcd594254f78ba056f71f6e1d7035ac2e045529b58714c068db4a8690ce"
+        },
+        {
+          "url": "https://www.mcbapp.com/careers/",
+          "finalUrl": "https://www.mcbapp.com/careers/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:17:23.339Z",
+          "bodySHA256": "60446d156bb267ebdfbdcaa0786ccd53f9797214c601364f67a833f4defae175"
+        },
+        {
+          "url": "https://www.mcbapp.com/about-us/",
+          "finalUrl": "https://www.mcbapp.com/about-us/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:17:27.628Z",
+          "bodySHA256": "a3b4c2f54f1da859177775f340b9fe2550839317ca7500d58606a58af7cc450c"
+        }
+      ]
+    },
+    {
+      "file": "keka-native-board.json.gz",
+      "sha256": "b42c7ef9221f6e9aa7abdf82d49b67642b3069e9ce2a0d02acfd102fc7259c75",
+      "uncompressedSha256": "0e5f05b0d729684b2254eea3df229400e1c12a96201cd77093a3fe1943c70094",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/ats/documents/209582f5-2061-48a9-8889-d5d389ef7194/careerportal/26a80160e3fa44e78329726e0eb412ee.html",
+          "finalUrl": "https://mcb.keka.com/ats/documents/209582f5-2061-48a9-8889-d5d389ef7194/careerportal/26a80160e3fa44e78329726e0eb412ee.html",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:19:22.053Z",
+          "bodySHA256": "eb2efcd7d8331f39ca844f49fa00a2009cb2e8014d7b0b56537429c5b36e6643"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/organization/default/careerportalinfo",
+          "finalUrl": "https://mcb.keka.com/careers/api/organization/default/careerportalinfo",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:19:22.167Z",
+          "bodySHA256": "ece738ca6b7429a7d91b620e257df8226a6f872916b39b55197d2c80a25dfd68"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/embedjobs/grouplinkstatus/209582f5-2061-48a9-8889-d5d389ef7194",
+          "finalUrl": "https://mcb.keka.com/careers/api/embedjobs/grouplinkstatus/209582f5-2061-48a9-8889-d5d389ef7194",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:19:22.304Z",
+          "bodySHA256": "e6df21daeeed53bbd52bd27f01cdde394a06139d1dfdd9cec5463752abda95b0"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/embedjobs/default/active/209582f5-2061-48a9-8889-d5d389ef7194",
+          "finalUrl": "https://mcb.keka.com/careers/api/embedjobs/default/active/209582f5-2061-48a9-8889-d5d389ef7194",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:19:22.498Z",
+          "bodySHA256": "b97f509b6aa5d23183236852415ce59a1c5d3f6d33e3b57456fd7c93462e9bf5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/embedjobs/js/209582f5-2061-48a9-8889-d5d389ef7194",
+          "finalUrl": "https://mcb.keka.com/careers/api/embedjobs/js/209582f5-2061-48a9-8889-d5d389ef7194",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:19:22.701Z",
+          "bodySHA256": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b"
+        }
+      ]
+    },
+    {
+      "file": "keka-shell.json.gz",
+      "sha256": "c4d6a056c47cae68764346d08fe0e62c26afa4123944440a1d1d8f89d70bec3c",
+      "uncompressedSha256": "b79225587c48500ab1e5f0793dada26d83a882fcf0fa0c6b935a7e2a5b6e14bd",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/careers",
+          "finalUrl": "https://mcb.keka.com/careers",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:19:04.841Z",
+          "bodySHA256": "0eb055ebd748f6b955f104e9c4758c0e435b5a19a99be004dcc67bfd3eb50cce"
+        }
+      ]
+    },
+    {
+      "file": "native-application-sample.json.gz",
+      "sha256": "0e60a1e5f7ff1785a3c5ada44c3bb7232446d4a43b25108778cc20c55836902b",
+      "uncompressedSha256": "bca7c058156baa265f50e9638a42c4dd5454331763d77aaec86945c9abda255e",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141228",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141228",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:22:26.375Z",
+          "bodySHA256": "d71133f0c4f65a14e1809f0371adfb3d3130f300c9a1490c064b3837ef9c4ec7"
+        }
+      ]
+    },
+    {
+      "file": "native-applications-and-client.json.gz",
+      "sha256": "eec7e5cc5c695dcb0bcbb60e282cdc24dc90576ef354c9a30cf64121533276ec",
+      "uncompressedSha256": "2143cccb5affe9c58e72cdddf7614cb559b6f43dd3809e9064319e62ab4cefa7",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/143683",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/143683",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:22:59.362Z",
+          "bodySHA256": "c6be80ddd59d7f5e3d1d6569d2cbbc58a43cf1be78a12a5f4a5ba608128b63c9"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/143062",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/143062",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:22:59.526Z",
+          "bodySHA256": "1dc9157b966239d05a3f0c541a7f38b6a5292e9f1ce1b47171d645a897525ae4"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/142099",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/142099",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:22:59.896Z",
+          "bodySHA256": "2fe8bbf9a7b9f9a7bab747709018ec7bb3e73f6bfc084dfd420fc3886b43d1cd"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141701",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141701",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:00.043Z",
+          "bodySHA256": "d23444230759df3d4474e5440caa938e69ff753240c63d8fef2cc9f0211338a3"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141693",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141693",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:00.229Z",
+          "bodySHA256": "d60b7b8d0d9b4c32ec066393b01d8826be452cc0bc14eca24758b3695c9512df"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141689",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141689",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:00.387Z",
+          "bodySHA256": "6a25b1c385466c204b38ada23a8e77726b224fe9c01fd13820f3e5f37c69cf69"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141685",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141685",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:00.566Z",
+          "bodySHA256": "245833880e153f717c78aaa8834ef356944b54e11afc2c9d10ac2c89fe6eb07e"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141680",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141680",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:00.799Z",
+          "bodySHA256": "58ce0398c51218b9db143a1fa044e51893b815d1c60bafb4549445283cae51e5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141291",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141291",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:01.019Z",
+          "bodySHA256": "ee3d9276a5c3b7c3b967e3921bd29bf7a643f2d2b340b426ab0c7c1023ba1d64"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141287",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141287",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:01.177Z",
+          "bodySHA256": "bbf770690403b214a8120a3c13dc7aad608e0ad69813cc958d0703d8a3860626"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141278",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141278",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:01.358Z",
+          "bodySHA256": "8419eb72970e21fa6416a12dbbac1f1c6de863cf2fb942a4abd734a2d9d1b376"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141238",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141238",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:01.518Z",
+          "bodySHA256": "0aad59ceca2fd4dde6497038e3c299305f6d60137a6c3d3eef2fbd67509a53ff"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141228",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141228",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:01.746Z",
+          "bodySHA256": "d71133f0c4f65a14e1809f0371adfb3d3130f300c9a1490c064b3837ef9c4ec7"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/137150",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/137150",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:02.067Z",
+          "bodySHA256": "d2a68b1dfa2bde36ae7673884326d114bdeed36007882bbb4d22fb391fb6a1b5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/135633",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/135633",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:02.230Z",
+          "bodySHA256": "a124d33b1e851a45d663668a7a838c16a9f77b27fbfb0ff213452a481e5e22a5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/135556",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/135556",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:02.428Z",
+          "bodySHA256": "c14925d8da21123886053ee591f877b91bf3e7ac892f7f666ee123eda9e27549"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/134903",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/134903",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:02.677Z",
+          "bodySHA256": "96b3ae345d060613744a5002fd76c09beddcd875bee83aac1647bc5d77f8b513"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59685",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59685",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:02.842Z",
+          "bodySHA256": "f3544174e62f4ad83a86e2088e7c287afec2875006e1ed3ae1ee133991405003"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59679",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59679",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:02.995Z",
+          "bodySHA256": "fbfca65221fd139b0b5b131a30a38d2639a9f4c90f0e3f73fc10f7c488e67361"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59073",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59073",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:03.135Z",
+          "bodySHA256": "7cffd0b7c552284ac78d248cd08128f23dc9114c412bab311a6d450dfe2ffd95"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/50237",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/50237",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:03.324Z",
+          "bodySHA256": "4b4caaca067a71f71b4c538011f7ffc87bad25d7da6d11766607a350b1bcca71"
+        },
+        {
+          "url": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+          "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:23:03.338Z",
+          "bodySHA256": "e2585ba1c4a259792330b7524042e3376994836454234a6da414eb1eeaaf315f"
+        }
+      ]
+    },
+    {
+      "file": "native-job-details.json.gz",
+      "sha256": "bb9a6eac3e0e94c21e297e3fc67993f976da43b5d190909806d33fe462d36f9e",
+      "uncompressedSha256": "0b62b80ca3cade89b85ba778ac903bbe770ec76609c08dcec2aac2de5941dda8",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/143683",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/143683",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:09.233Z",
+          "bodySHA256": "69a39a0fc10aa0cb1e135963e3751fb8bf19f858882e7f9dbb0fea3547fb2b03"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/143062",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/143062",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:09.393Z",
+          "bodySHA256": "783bc8fc9aba16d5d7c79da9e5b85b16384e4fc4f8cdd0a34835630194542d65"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/142099",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/142099",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:09.529Z",
+          "bodySHA256": "e186bd8b53d23508525379226e5d90ab14fc79cb8abef4f716418caf74efaa7b"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141701",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141701",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:09.883Z",
+          "bodySHA256": "e08c1f508c9a8570041d2154fe3fef3c56ad61fc5a92f35331c0365445a3c235"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141693",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141693",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:10.039Z",
+          "bodySHA256": "efd1c21aba14023b776830643933ac10f953d40d58e2b77410fc55b780a36556"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141689",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141689",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:10.178Z",
+          "bodySHA256": "3e028d3c5c35e29b96650a245e94e1322f7e6de3a4312fb84bea0252daf81a4c"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141685",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141685",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:10.345Z",
+          "bodySHA256": "99fb0d560fbe0534059bb3ae597ce6f4e3e8ff6ffec17db7ef8af0a047c30ce5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141680",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141680",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:10.561Z",
+          "bodySHA256": "916c49e37ec87d4afa6fc9fc1b58600049c5fc53a5c4be22afdb5f39fe1d230e"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141291",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141291",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:10.690Z",
+          "bodySHA256": "f019d006d4b0650eb9ef17eb6b4bdda93357e35de77d898012bf26a63de14b98"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141287",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141287",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:10.851Z",
+          "bodySHA256": "a8f3f033a04527e88332e4300074e536012e4141da6fab807c049e17b7aff6d2"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141278",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141278",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.004Z",
+          "bodySHA256": "3690b210d64588016202f1c8c30cbb79e3700afb89a879877f7c85e56ad69ad9"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141238",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141238",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.180Z",
+          "bodySHA256": "bd4493c8b25900a9fc3a8e17287712ce14f2534001cffe3da9da316db624ed42"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141228",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141228",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.325Z",
+          "bodySHA256": "3dbf961fb4fd10f31ddf62b48c91a0d133935cdffc588138685d2e1c445b7928"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/137150",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/137150",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.492Z",
+          "bodySHA256": "e2d68292b94fb4bef07aa27ec46fd2928f44b8c770e02678964df3048884f792"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/135633",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/135633",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.642Z",
+          "bodySHA256": "dcf29ec39cda3223058593f3a5cd3e4b78a6cb51ba753056301f96539e629dda"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/135556",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/135556",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.799Z",
+          "bodySHA256": "e61deb32f25eb70c613f87ace162f55965ff790446ab67820a1a04e1168f5b10"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/134903",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/134903",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:11.937Z",
+          "bodySHA256": "f6a576d938d236e8c5ff972fe76c9ab92f1d720376b80b675a3f86c8ff182c85"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59685",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59685",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:12.088Z",
+          "bodySHA256": "789beea7eff93bbba3091fe94530a3e09a0a4fe4d18052b59dca73cd46ec04dc"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59679",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59679",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:12.625Z",
+          "bodySHA256": "d2a2f3259e13dcfcd28baf35925429fb2d7efc4443616d5234a60e68407a7cff"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59073",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59073",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:12.763Z",
+          "bodySHA256": "7f09db9e519047b495a7c1e3cfdcb07734f109cdb3fa4195031e735a6dbae05c"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/50237",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/50237",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:13.029Z",
+          "bodySHA256": "3c65e9b35c212ace7539e72f3dc7eb911f36b353d3bced00f96addbc6f392a96"
+        }
+      ]
+    },
+    {
+      "file": "official-pages.json.gz",
+      "sha256": "a6560a664f0edc5529ea269a243743ebf2e849c906bdba863907e8963bfd98d7",
+      "uncompressedSha256": "23c726f0d462d8d44517620031ba0f48653832ef74a36ac033f4d9a1dc83e606",
+      "responses": [
+        {
+          "url": "https://www.myclassboard.com/",
+          "finalUrl": "https://www.myclassboard.com/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:16:58.009Z",
+          "bodySHA256": "ffe1cb25efd2d49e4a328c85157eb47155266de01f5ae830d897f140656fa900"
+        },
+        {
+          "url": "https://www.myclassboard.com/careers/",
+          "finalUrl": "https://www.myclassboard.com/careers/",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:16:58.152Z",
+          "bodySHA256": "6a9615bbab95e0564d1b1d654f69735c8e2c4354bdfbc8740c054d4aeacd0787"
+        }
+      ]
+    },
+    {
+      "file": "related-jobs-api.json.gz",
+      "sha256": "db78c3e846c9b7cafd52010cbb9ce52171196fb5ff474544242503cc9b09a162",
+      "uncompressedSha256": "c61fe6222b5e364ce7caaed5859e793673c640671a11a2461894fa9f013a2ec5",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/careers/api/jobs/default/other/141228/3a1a0451-8ea8-4b96-8173-b5224e5b8b5e",
+          "finalUrl": "https://mcb.keka.com/careers/api/jobs/default/other/141228/3a1a0451-8ea8-4b96-8173-b5224e5b8b5e",
+          "status": 200,
+          "capturedAt": "2026-10-23T07:20:17.140Z",
+          "bodySHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ]
+    },
+    {
+      "file": "fresh-native-comparison.json.gz",
+      "sha256": "45d5f16c89d92dbebbf2b2b3954ee5509cb5254ada916d66d615113f0833ab10",
+      "uncompressedSha256": "72d61b37b9525c0c4717a64df8508c09a8af0e468a06f1f1ae5d77a4694c966a",
+      "responses": [
+        {
+          "url": "https://mcb.keka.com/careers/api/jobs/default/active",
+          "finalUrl": "https://mcb.keka.com/careers/api/jobs/default/active",
+          "status": 200,
+          "capturedAt": "2026-10-23T17:53:18.594Z",
+          "bodySHA256": "546a2fe55f97e1459208bcd7037de94e0e29e593f20989f8db068b619325ee93"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/embedjobs/default/active/209582f5-2061-48a9-8889-d5d389ef7194",
+          "finalUrl": "https://mcb.keka.com/careers/api/embedjobs/default/active/209582f5-2061-48a9-8889-d5d389ef7194",
+          "status": 200,
+          "capturedAt": "2026-10-23T17:53:18.794Z",
+          "bodySHA256": "546a2fe55f97e1459208bcd7037de94e0e29e593f20989f8db068b619325ee93"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/organization/default/careerportalinfo",
+          "finalUrl": "https://mcb.keka.com/careers/api/organization/default/careerportalinfo",
+          "status": 200,
+          "capturedAt": "2026-10-23T17:53:18.895Z",
+          "bodySHA256": "ece738ca6b7429a7d91b620e257df8226a6f872916b39b55197d2c80a25dfd68"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59073",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59073",
+          "status": 200,
+          "capturedAt": "2026-10-23T17:53:19.054Z",
+          "bodySHA256": "7f09db9e519047b495a7c1e3cfdcb07734f109cdb3fa4195031e735a6dbae05c"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59073",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59073",
+          "status": 200,
+          "capturedAt": "2026-10-23T17:53:19.205Z",
+          "bodySHA256": "7cffd0b7c552284ac78d248cd08128f23dc9114c412bab311a6d450dfe2ffd95"
+        }
+      ]
+    },
+    {
+      "file": "fresh-runtime-responses.json.gz",
+      "sha256": "5459dd4e4edb8e4e96571d6ca158ba3b373e631975c6689bf9f5e6735cb42097",
+      "uncompressedSha256": "88005365ac485d6e373ae678eb8757d06f59fea7bdf9159542ea10e6b2f12dc3",
+      "responses": [
+        {
+          "url": "https://www.mcbapp.com/",
+          "finalUrl": "https://www.mcbapp.com/",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:41.692Z",
+          "bodySHA256": "bc1a48eb50fba9881b58293217fa64e8291c74343080b3564d82cbae4838bb80"
+        },
+        {
+          "url": "https://www.mcbapp.com/careers/",
+          "finalUrl": "https://www.mcbapp.com/careers/",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:43.483Z",
+          "bodySHA256": "0bc3fb19ec6e2c1161778197a8df1ba33de19060e0abb3d8de7ff0895b6b0aa7"
+        },
+        {
+          "url": "https://mcb.keka.com/careers",
+          "finalUrl": "https://mcb.keka.com/careers",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:43.836Z",
+          "bodySHA256": "0eb055ebd748f6b955f104e9c4758c0e435b5a19a99be004dcc67bfd3eb50cce"
+        },
+        {
+          "url": "https://mcb.keka.com/ats/documents/209582f5-2061-48a9-8889-d5d389ef7194/careerportal/26a80160e3fa44e78329726e0eb412ee.html",
+          "finalUrl": "https://mcb.keka.com/ats/documents/209582f5-2061-48a9-8889-d5d389ef7194/careerportal/26a80160e3fa44e78329726e0eb412ee.html",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:43.981Z",
+          "bodySHA256": "eb2efcd7d8331f39ca844f49fa00a2009cb2e8014d7b0b56537429c5b36e6643"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/organization/default/careerportalinfo",
+          "finalUrl": "https://mcb.keka.com/careers/api/organization/default/careerportalinfo",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:44.286Z",
+          "bodySHA256": "ece738ca6b7429a7d91b620e257df8226a6f872916b39b55197d2c80a25dfd68"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/embedjobs/grouplinkstatus/209582f5-2061-48a9-8889-d5d389ef7194",
+          "finalUrl": "https://mcb.keka.com/careers/api/embedjobs/grouplinkstatus/209582f5-2061-48a9-8889-d5d389ef7194",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:44.396Z",
+          "bodySHA256": "e6df21daeeed53bbd52bd27f01cdde394a06139d1dfdd9cec5463752abda95b0"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/api/embedjobs/default/active/209582f5-2061-48a9-8889-d5d389ef7194",
+          "finalUrl": "https://mcb.keka.com/careers/api/embedjobs/default/active/209582f5-2061-48a9-8889-d5d389ef7194",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:44.574Z",
+          "bodySHA256": "546a2fe55f97e1459208bcd7037de94e0e29e593f20989f8db068b619325ee93"
+        },
+        {
+          "url": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+          "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:44.817Z",
+          "bodySHA256": "e2585ba1c4a259792330b7524042e3376994836454234a6da414eb1eeaaf315f"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/143683",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/143683",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:44.939Z",
+          "bodySHA256": "69a39a0fc10aa0cb1e135963e3751fb8bf19f858882e7f9dbb0fea3547fb2b03"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/143683",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/143683",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.092Z",
+          "bodySHA256": "c6be80ddd59d7f5e3d1d6569d2cbbc58a43cf1be78a12a5f4a5ba608128b63c9"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/143062",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/143062",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.223Z",
+          "bodySHA256": "783bc8fc9aba16d5d7c79da9e5b85b16384e4fc4f8cdd0a34835630194542d65"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/143062",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/143062",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.357Z",
+          "bodySHA256": "1dc9157b966239d05a3f0c541a7f38b6a5292e9f1ce1b47171d645a897525ae4"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/142099",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/142099",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.490Z",
+          "bodySHA256": "e186bd8b53d23508525379226e5d90ab14fc79cb8abef4f716418caf74efaa7b"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/142099",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/142099",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.624Z",
+          "bodySHA256": "2fe8bbf9a7b9f9a7bab747709018ec7bb3e73f6bfc084dfd420fc3886b43d1cd"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141701",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141701",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.742Z",
+          "bodySHA256": "e08c1f508c9a8570041d2154fe3fef3c56ad61fc5a92f35331c0365445a3c235"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141701",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141701",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:45.871Z",
+          "bodySHA256": "d23444230759df3d4474e5440caa938e69ff753240c63d8fef2cc9f0211338a3"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141693",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141693",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.056Z",
+          "bodySHA256": "efd1c21aba14023b776830643933ac10f953d40d58e2b77410fc55b780a36556"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141693",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141693",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.202Z",
+          "bodySHA256": "d60b7b8d0d9b4c32ec066393b01d8826be452cc0bc14eca24758b3695c9512df"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141689",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141689",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.404Z",
+          "bodySHA256": "3e028d3c5c35e29b96650a245e94e1322f7e6de3a4312fb84bea0252daf81a4c"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141689",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141689",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.537Z",
+          "bodySHA256": "6a25b1c385466c204b38ada23a8e77726b224fe9c01fd13820f3e5f37c69cf69"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141685",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141685",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.654Z",
+          "bodySHA256": "99fb0d560fbe0534059bb3ae597ce6f4e3e8ff6ffec17db7ef8af0a047c30ce5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141685",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141685",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.787Z",
+          "bodySHA256": "245833880e153f717c78aaa8834ef356944b54e11afc2c9d10ac2c89fe6eb07e"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141680",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141680",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:46.914Z",
+          "bodySHA256": "916c49e37ec87d4afa6fc9fc1b58600049c5fc53a5c4be22afdb5f39fe1d230e"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141680",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141680",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.062Z",
+          "bodySHA256": "58ce0398c51218b9db143a1fa044e51893b815d1c60bafb4549445283cae51e5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141291",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141291",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.185Z",
+          "bodySHA256": "f019d006d4b0650eb9ef17eb6b4bdda93357e35de77d898012bf26a63de14b98"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141291",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141291",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.325Z",
+          "bodySHA256": "ee3d9276a5c3b7c3b967e3921bd29bf7a643f2d2b340b426ab0c7c1023ba1d64"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141287",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141287",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.465Z",
+          "bodySHA256": "a8f3f033a04527e88332e4300074e536012e4141da6fab807c049e17b7aff6d2"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141287",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141287",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.590Z",
+          "bodySHA256": "bbf770690403b214a8120a3c13dc7aad608e0ad69813cc958d0703d8a3860626"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141278",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141278",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.734Z",
+          "bodySHA256": "3690b210d64588016202f1c8c30cbb79e3700afb89a879877f7c85e56ad69ad9"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141278",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141278",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.866Z",
+          "bodySHA256": "8419eb72970e21fa6416a12dbbac1f1c6de863cf2fb942a4abd734a2d9d1b376"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141238",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141238",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:47.980Z",
+          "bodySHA256": "bd4493c8b25900a9fc3a8e17287712ce14f2534001cffe3da9da316db624ed42"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141238",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141238",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:48.157Z",
+          "bodySHA256": "0aad59ceca2fd4dde6497038e3c299305f6d60137a6c3d3eef2fbd67509a53ff"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/141228",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/141228",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:48.374Z",
+          "bodySHA256": "3dbf961fb4fd10f31ddf62b48c91a0d133935cdffc588138685d2e1c445b7928"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/141228",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/141228",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:48.489Z",
+          "bodySHA256": "d71133f0c4f65a14e1809f0371adfb3d3130f300c9a1490c064b3837ef9c4ec7"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/137150",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/137150",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:48.639Z",
+          "bodySHA256": "e2d68292b94fb4bef07aa27ec46fd2928f44b8c770e02678964df3048884f792"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/137150",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/137150",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:48.770Z",
+          "bodySHA256": "d2a68b1dfa2bde36ae7673884326d114bdeed36007882bbb4d22fb391fb6a1b5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/135633",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/135633",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:48.907Z",
+          "bodySHA256": "dcf29ec39cda3223058593f3a5cd3e4b78a6cb51ba753056301f96539e629dda"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/135633",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/135633",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.046Z",
+          "bodySHA256": "a124d33b1e851a45d663668a7a838c16a9f77b27fbfb0ff213452a481e5e22a5"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/135556",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/135556",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.171Z",
+          "bodySHA256": "e61deb32f25eb70c613f87ace162f55965ff790446ab67820a1a04e1168f5b10"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/135556",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/135556",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.319Z",
+          "bodySHA256": "c14925d8da21123886053ee591f877b91bf3e7ac892f7f666ee123eda9e27549"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/134903",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/134903",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.430Z",
+          "bodySHA256": "f6a576d938d236e8c5ff972fe76c9ab92f1d720376b80b675a3f86c8ff182c85"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/134903",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/134903",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.548Z",
+          "bodySHA256": "96b3ae345d060613744a5002fd76c09beddcd875bee83aac1647bc5d77f8b513"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59685",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59685",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.664Z",
+          "bodySHA256": "789beea7eff93bbba3091fe94530a3e09a0a4fe4d18052b59dca73cd46ec04dc"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59685",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59685",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.803Z",
+          "bodySHA256": "f3544174e62f4ad83a86e2088e7c287afec2875006e1ed3ae1ee133991405003"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59679",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59679",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:49.917Z",
+          "bodySHA256": "d2a2f3259e13dcfcd28baf35925429fb2d7efc4443616d5234a60e68407a7cff"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59679",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59679",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:50.043Z",
+          "bodySHA256": "fbfca65221fd139b0b5b131a30a38d2639a9f4c90f0e3f73fc10f7c488e67361"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/59073",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/59073",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:50.163Z",
+          "bodySHA256": "7f09db9e519047b495a7c1e3cfdcb07734f109cdb3fa4195031e735a6dbae05c"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/59073",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/59073",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:50.276Z",
+          "bodySHA256": "7cffd0b7c552284ac78d248cd08128f23dc9114c412bab311a6d450dfe2ffd95"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/jobdetails/50237",
+          "finalUrl": "https://mcb.keka.com/careers/jobdetails/50237",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:50.394Z",
+          "bodySHA256": "84644e61c280e6b213abba41f297694642485077f0d028a4a7030230b7309402"
+        },
+        {
+          "url": "https://mcb.keka.com/careers/applyjob/50237",
+          "finalUrl": "https://mcb.keka.com/careers/applyjob/50237",
+          "status": 200,
+          "capturedAt": "2026-10-23T18:00:50.529Z",
+          "bodySHA256": "4b4caaca067a71f71b4c538011f7ffc87bad25d7da6d11766607a350b1bcca71"
+        }
+      ]
+    }
+  ]
+}

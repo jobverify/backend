@@ -1,0 +1,60 @@
+{
+  "capturedOn": "2026-10-24",
+  "captureMethod": "Headless Chromium public employer-linked portal, no authentication",
+  "bundle": "greythr-_gt_zaire_static_static_Main_3468_app_dist_careerbuild_5baae4db2e813b68c7af_js.js",
+  "bundleSha256": "8565a6ebeca69506f3662eda43ca1c5802d84bfb0a4df7785e40784465cb1184",
+  "fixtureScope": "One actual listing record, its matching published detail and full category dictionary; application form and incidental personal fields omitted.",
+  "nativeClientEvidence": [
+    "s,n=this.$route.path.split(\"/\")[2];if(n){this.jobloaded=!1;var i=\"/api/sourcing/get_job/\"+n+\"/\",r={applicant:this.applicant_id||void 0};this.$param_api.get(i,{params:r}).then(function(n){t.job=n.data.job,localStorage.setItem(\"PM_LastJobVisited\",JSON.stringify(t.job)),t.hiring_events=n.data.hiring_event_details||[],t.is_candidate_portal_enabled&&t.check_applied(n.data.job.id),t.",
+    "emp_category={}),n.emp_category[t]=e.applied_filters[t])}),If.post(\"/api/career/published_jobs/\",n).then(function(e){t.filtered_job_data=null==e?void 0:e.data,t.jobloaded=!0,t.num_jobs=t.filtered_job_data.length},function(e){t.jobloaded=!0,console.log(\"error\")})},get_location_values:function(e,t){var n,i=null===(n=JSON.parse(sessionStorage.getItem(\"emp_cache\")))||void 0===n?voi",
+    "=t.filtered_job_data.length},function(e){t.jobloaded=!0,console.log(\"error\")})},get_location_values:function(e,t){var n,i=null===(n=JSON.parse(sessionStorage.getItem(\"emp_cache\")))||void 0===n?void 0:n.value;return null!=e&&e.length&&i?e.map(function(e){var t;return null==i||null===(t=i.value[e])||void 0===t?void 0:t.name}).join(\", \"):t?\"Anywhere\":void 0},toggle_expand:function",
+    "get_experience\",function(e){return\"years\"===e.experience_units?e.min_exp===e.max_exp?(e.min_exp/12).toFixed(0)+\" Years\":e.min_exp===e.max_exp&&0===e.min_exp&&0===e.max_exp?\"-\":(e.min_exp/12).toFixed(0)+\" - \"+(e.max_exp/12).toFixed(0)+\" Years\":\"hours\"===e.experience_units?e.experience_hours[1]?e.experience_hours[0]+\" - \"+e.experience_hours[1]+\" Hours\":\"Min. \"+e.experience_hours[0]+\" Hours\":e.min_exp===e.max_exp?e.min_exp+\" Months\":e.min_exp===e.max_exp&&0===e.min_exp"
+  ],
+  "publicSources": {
+    "publisher": "https://www.greythr.com/company/careers/",
+    "listing": "https://greytip.greythr.com/hire/api/career/published_jobs/",
+    "categories": "https://greytip.greythr.com/hire/api/greythr/emp-category/",
+    "detail": "https://greytip.greythr.com/hire/api/sourcing/get_job/associate-product-manager-817/"
+  },
+  "capturedAt": "2026-10-24T15:44:39.723Z",
+  "officialBinding": "The live first-party careers page at https://www.greythr.com/company/careers/ links directly to https://greytip.greythr.com/hire/jobs/. That public tenant UI issues the native listing, category and detail requests below.",
+  "nativeRequests": [
+    {
+      "method": "POST",
+      "url": "https://greytip.greythr.com/hire/api/career/published_jobs/",
+      "body": {}
+    },
+    {
+      "method": "GET",
+      "url": "https://greytip.greythr.com/hire/api/greythr/emp-category/"
+    },
+    {
+      "method": "GET",
+      "url": "https://greytip.greythr.com/hire/api/sourcing/get_job/associate-product-manager-817/"
+    }
+  ],
+  "sampledEvidence": {
+    "nativeListingRecords": 34,
+    "nativeListingDescriptions": 34,
+    "nativeDetailRecords": 1,
+    "fixtureListingRecords": 1,
+    "fixtureDetailRecords": 1,
+    "parsedIndiaSupportedRecordsFromCapturedListing": 34,
+    "parsedDescriptionsFromCapturedListing": 34,
+    "indiaLocationLabels": [
+      "Bangalore",
+      "Mumbai",
+      "Delhi",
+      "Hyderabad"
+    ],
+    "mixedScopeRole": "Associate Manager-Custome Success: source IDs 4 and 1029 resolve to Bangalore and Dubai; only the Bangalore location is retained for India scope."
+  },
+  "limitations": "This is a single public listing capture and one native detail capture, followed by offline parser replay. No production persistence, visibility query, full pipeline scrape, deployment or claim that all 34 records are currently public was performed. The native fallback was contract-tested, not fetched for all roles.",
+  "targetedVerification": {
+    "command": "node --test scraper-support/tests/greytHrScript.test.js scraper-support/tests/greytHrCatalog.test.js scraper-support/tests/greytHrDescriptionRecovery.test.js scraper-support/tests/NewVisionSoftwareConsultancy.test.js scraper-support/tests/newVisionDescriptionRecovery.test.js",
+    "passedTests": 22,
+    "failedTests": 0,
+    "verifiedAt": "2026-10-24T16:02:07.403Z",
+    "scope": "Focused source tests only. Full repository suite not rerun; earlier broad run had 481 failures, not all attributed."
+  }
+}

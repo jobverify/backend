@@ -1,0 +1,31 @@
+{
+  "message": "Ok.",
+  "result": "Y",
+  "data": {
+    "totalJobs": 4154,
+    "jobs": [
+      {
+        "id": "419133J",
+        "jobTitle": "Middleware Support Engineer",
+        "location": "Bengaluru",
+        "functionName": "TECHNOLOGY",
+        "experience": "3-8",
+        "applyByDate": "04-JUL-2026 11:59:59 PM",
+        "skills": "Middleware",
+        "walkin": "J",
+        "url": null
+      },
+      {
+        "id": "419132J",
+        "jobTitle": "Automation Testing - Java, Selenium",
+        "location": "Pune",
+        "functionName": "TECHNOLOGY",
+        "experience": "3-10",
+        "applyByDate": "04-JUL-2026 11:59:59 PM",
+        "skills": "Automation Testing , Java , Selenium",
+        "walkin": "J",
+        "url": null
+      }
+    ]
+  }
+}

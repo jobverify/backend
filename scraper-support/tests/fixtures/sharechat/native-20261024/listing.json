@@ -1,0 +1,183 @@
+{
+  "data": {
+    "careersList": [
+      {
+        "title": "Content & Operations",
+        "data": [
+          {
+            "requisitionId": 2478,
+            "requisitionTitle": "Intern - Content Moderation (Hindi & Punjabi)",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "Bangalore"
+            ],
+            "yrsOfExpMax": 0,
+            "yrsOfExpMin": 0,
+            "designation": "Intern - Content Moderation (Hindi & Punjabi)",
+            "employmentType": "intern",
+            "createdDate": 1791813264311,
+            "approvedDate": 1791876350971
+          },
+          {
+            "requisitionId": 2473,
+            "requisitionTitle": "AI Screenplay Writer",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 6,
+            "yrsOfExpMin": 3,
+            "designation": "AI Screenplay Writer",
+            "employmentType": "contract",
+            "createdDate": 1790847205063,
+            "approvedDate": 1790857894209
+          },
+          {
+            "requisitionId": 2454,
+            "requisitionTitle": "AI Creative Director",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 8,
+            "yrsOfExpMin": 5,
+            "designation": "AI Creative Director",
+            "employmentType": "full_time",
+            "createdDate": 1790846473891,
+            "approvedDate": 1790846765185
+          },
+          {
+            "requisitionId": 2452,
+            "requisitionTitle": "AI Video Editor",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 6,
+            "yrsOfExpMin": 3,
+            "designation": "AI Video Editor",
+            "employmentType": "contract",
+            "createdDate": 1790757569017,
+            "approvedDate": 1790757855039
+          },
+          {
+            "requisitionId": 2451,
+            "requisitionTitle": "AI Sound Designer",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 3,
+            "yrsOfExpMin": 1,
+            "designation": "AI Sound Designer",
+            "employmentType": "contract",
+            "createdDate": 1790757505419,
+            "approvedDate": 1790757815846
+          },
+          {
+            "requisitionId": 2450,
+            "requisitionTitle": "AI Animator",
+            "orgUnitName": "Content & Operations",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 1,
+            "yrsOfExpMin": 0,
+            "designation": "AI Animator",
+            "employmentType": "contract",
+            "createdDate": 1790757308886,
+            "approvedDate": 1790757792511
+          }
+        ]
+      },
+      {
+        "title": "Marketing",
+        "data": [
+          {
+            "requisitionId": 2485,
+            "requisitionTitle": "Creative Producer - Marketing",
+            "orgUnitName": "Marketing",
+            "officeLocationNames": [
+              "Bangalore"
+            ],
+            "yrsOfExpMax": 3,
+            "yrsOfExpMin": 1,
+            "designation": "Creative Producer - Marketing",
+            "employmentType": "full_time",
+            "createdDate": 1792664583742,
+            "approvedDate": 1792666089042
+          }
+        ]
+      },
+      {
+        "title": "Business Development",
+        "data": [
+          {
+            "requisitionId": 2480,
+            "requisitionTitle": "Consultant -Tamil - Business Development(Sales)",
+            "orgUnitName": "Business Development",
+            "officeLocationNames": [
+              "Bangalore"
+            ],
+            "yrsOfExpMax": 0,
+            "yrsOfExpMin": 0,
+            "designation": "Intern-BD (Tamil)",
+            "employmentType": "contract",
+            "createdDate": 1792040311100,
+            "approvedDate": 1792040752059
+          },
+          {
+            "requisitionId": 2477,
+            "requisitionTitle": "Associate Director - Micro Drama (Sales)",
+            "orgUnitName": "Business Development",
+            "officeLocationNames": [
+              "India"
+            ],
+            "yrsOfExpMax": 12,
+            "yrsOfExpMin": 8,
+            "designation": "Associate Director - Micro Drama (Sales)",
+            "employmentType": "full_time",
+            "createdDate": 1791527753641,
+            "approvedDate": 1791527908605
+          },
+          {
+            "requisitionId": 2443,
+            "requisitionTitle": "Associate Director - Clients (CPG)",
+            "orgUnitName": "Business Development",
+            "officeLocationNames": [
+              "Mumbai"
+            ],
+            "yrsOfExpMax": 9,
+            "yrsOfExpMin": 0,
+            "designation": "Associate Director - Clients (CPG)",
+            "employmentType": "full_time",
+            "createdDate": 1788951392785,
+            "approvedDate": 1788960713667
+          }
+        ]
+      },
+      {
+        "title": "Artificial Intelligence",
+        "data": [
+          {
+            "requisitionId": 2435,
+            "requisitionTitle": "Senior Staff Engineer",
+            "orgUnitName": "Artificial Intelligence",
+            "officeLocationNames": [
+              "Bangalore"
+            ],
+            "yrsOfExpMax": 15,
+            "yrsOfExpMin": 8,
+            "designation": "Senior Staff Engineer",
+            "employmentType": "full_time",
+            "createdDate": 1788343348061,
+            "approvedDate": 1788409516107
+          }
+        ]
+      }
+    ],
+    "offsetToken": null,
+    "count": 11,
+    "hasNext": false
+  }
+}

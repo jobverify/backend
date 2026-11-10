@@ -15,7 +15,7 @@ import {
 } from '../scripts/resilientLocalScrape.js'
 
 const supervisorScript = fileURLToPath(new URL('../scripts/resilientLocalScrape.js', import.meta.url))
-const childFixture = fileURLToPath(new URL('./fixtures/resilientScrapeChild.js', import.meta.url))
+const childFixture = fileURLToPath(new URL('./helpers/resilientScrapeChild.js', import.meta.url))
 
 test('resilient launcher parses a bounded live parallel run', () => {
   const options = parseArgs([

@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "Location": "India",
+      "Offset": 0,
+      "Limit": 24,
+      "TotalJobsCount": 517,
+      "SiteNumber": "CX_1",
+      "requisitionList": [
+        {
+          "Id": "US_001",
+          "Title": "US Cloud Engineer",
+          "PostedDate": "2026-06-24",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "US",
+          "PrimaryLocation": "Dallas, Texas, United States",
+          "StudyLevel": "Bachelor's Degree",
+          "ShortDescriptionStr": "US-only role.",
+          "ExternalResponsibilitiesStr": "Support cloud platforms."
+        },
+        {
+          "Id": "145939",
+          "Title": "SAP AMS FICO Consultant - Mumbai",
+          "PostedDate": "2026-06-27",
+          "PostingEndDate": null,
+          "PrimaryLocationCountry": "IN",
+          "PrimaryLocation": "Mumbai, Maharashtra, India",
+          "StudyLevel": null,
+          "ShortDescriptionStr": "SAP FICO Consultant – AMS Support (Zensar)\nExperience: 9–12 Years\nEngagement: Application Management Services (AMS)\nLocation: Mumbai / India (Global Delivery Model)",
+          "ExternalResponsibilitiesStr": null,
+          "Department": null,
+          "JobFunction": null,
+          "JobFamily": null
+        }
+      ]
+    }
+  ],
+  "count": 1,
+  "hasMore": false,
+  "limit": 200,
+  "offset": 0
+}

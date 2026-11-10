@@ -6,9 +6,7 @@
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import BlacklistedToken from "../models/BlacklistedToken.js";
-import Subscription from "../models/Subscription.js";
 import { getRequestAuthToken, clearAuthCookie } from "../utils/authCookies.js";
-import { applyExpiredAccessDowngrade } from "../utils/accessControl.js";
 
 if (!process.env.JWT_SECRET) {
   console.error("[Config Error] JWT_SECRET is not defined or cannot be accessed in the .env configuration.");
@@ -40,14 +38,6 @@ const requireSession = async (req, res, next, storageFailureStatus = 401) => {
 
     if ((decoded.sessionVersion ?? 0) !== (req.user.sessionVersion ?? 0)) {
       return res.status(401).json({ message: "Not authorized, token revoked" });
-    }
-
-    if (applyExpiredAccessDowngrade(req.user)) {
-      await Subscription.updateOne(
-        { user: req.user._id },
-        { $set: { isActive: false } },
-      ).catch(() => null);
-      await req.user.save();
     }
 
     if (req.user.deactivated) {
@@ -90,13 +80,6 @@ export const optionalProtect = async (req, res, next) => {
           && !user.deactivated
           && (decoded.sessionVersion ?? 0) === (user.sessionVersion ?? 0)
         ) {
-          if (applyExpiredAccessDowngrade(user)) {
-            await Subscription.updateOne(
-              { user: user._id },
-              { $set: { isActive: false } },
-            ).catch(() => null);
-            await user.save();
-          }
           req.user = user;
         }
       }

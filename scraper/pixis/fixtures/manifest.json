@@ -1,0 +1,39 @@
+{
+  "source": "pixis",
+  "company": "Pixis",
+  "verifiedOn": "2026-10-23",
+  "verificationDisposition": "current-first-party-explicit-no-vacancies",
+  "verifiedPublicJobCount": 0,
+  "verifiedIndiaJobCount": 0,
+  "listingComplete": true,
+  "emptyStateContainer": "section#vacancies.job-listing > .job-listing__container > .job-listing__no-jobs-text",
+  "playbackInventoryEvidence": {
+    "status": "verified-empty",
+    "surface": "https://pixis.ai/careers/",
+    "firstParty": true,
+    "listingComplete": true,
+    "pagesFetched": 1,
+    "reportedTotal": 0,
+    "indiaFacetCount": 0,
+    "verifiedAt": "2026-10-23T03:10:42.053Z",
+    "reason": "closed-native-open-roles-section-explicit-empty-with-error-free-cms-state"
+  },
+  "evidence": [
+    {
+      "file": "careers-response.json",
+      "sha256": "d4a12cfecb0d00e38ca79f3cddb43c0ca8397ed56d26d9418a14459e6863fbb7",
+      "sourceUrl": "https://pixis.ai/careers/",
+      "capturedAt": "2026-10-23T03:07:20.949Z",
+      "finalUrl": "https://pixis.ai/careers/",
+      "status": 200,
+      "bodySha256": "1aa44f297cb2b23f414dc3b3b53c65a9319c1bf99a8bdfcb5461cb9007236bed"
+    },
+    {
+      "file": "rendered-observation.json",
+      "sha256": "0ba131a3346e6d3e24a82e4a1b75416c481cbe5f6cbf4263c5a65dbf2e14082b",
+      "sourceUrl": "https://pixis.ai/careers/",
+      "capturedAt": null,
+      "representation": "browser-rendered links, iframe and native-feed resource observation"
+    }
+  ]
+}

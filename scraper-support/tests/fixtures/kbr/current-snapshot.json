@@ -1,0 +1,33 @@
+{
+  "generated_at": "2026-10-08",
+  "source": "workday_raas",
+  "total_jobs": 3,
+  "jobs": [
+    {
+      "id": "R2109999",
+      "title": "Senior Associate Designer",
+      "department": "Engineering",
+      "location": "IND, Chennai, Engineering Centre",
+      "employment_type": "Full time",
+      "is_remote": "No",
+      "requisition_status": "Open",
+      "application_url": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chennai-Tamil-Nadu-India/Designer_R2109999"
+    },
+    {
+      "id": "R2111111",
+      "title": "Engineer",
+      "department": "Engineering",
+      "location": "GBR, London, Engineering Centre",
+      "requisition_status": "Open",
+      "application_url": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/London-United-Kingdom/Engineer_R2111111"
+    },
+    {
+      "id": "R2121383",
+      "title": "Sr Designer",
+      "department": "Engineering",
+      "location": "IND, Chennai, Engineering Centre",
+      "requisition_status": "Open",
+      "application_url": null
+    }
+  ]
+}

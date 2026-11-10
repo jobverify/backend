@@ -1,0 +1,45 @@
+{
+  "items": [
+    {
+      "TotalJobsCount": 3,
+      "Limit": 24,
+      "requisitionList": [
+        {
+          "Id": "158536",
+          "Title": "Software Engineer II",
+          "Organization": "Engineering",
+          "PrimaryLocation": "Bengaluru, Karnataka, India",
+          "PrimaryLocationCountry": "IN",
+          "PostedDate": "2026-07-07",
+          "JobSchedule": "Full-time",
+          "ShortDescriptionStr": "Build reliable products for Uber customers.",
+          "ExternalResponsibilitiesStr": "Collaborate with cross-functional teams.",
+          "secondaryLocations": []
+        },
+        {
+          "Id": "158537",
+          "Title": "Product Manager",
+          "PrimaryLocation": "New York, New York, United States",
+          "PrimaryLocationCountry": "US",
+          "PostedDate": "2026-07-06",
+          "ShortDescriptionStr": "Lead a global product area.",
+          "secondaryLocations": [
+            {
+              "Name": "Hyderabad, Telangana, India",
+              "CountryCode": "IN"
+            }
+          ]
+        },
+        {
+          "Id": "158538",
+          "Title": "US Operations Manager",
+          "PrimaryLocation": "Chicago, Illinois, United States",
+          "PrimaryLocationCountry": "US",
+          "PostedDate": "2026-07-05",
+          "ShortDescriptionStr": "This role is not in India.",
+          "secondaryLocations": []
+        }
+      ]
+    }
+  ]
+}

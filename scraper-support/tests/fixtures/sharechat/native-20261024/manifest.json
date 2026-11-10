@@ -1,0 +1,244 @@
+{
+  "capturedAt": "2026-10-24T18:38:55.294Z",
+  "transport": "isolated browser cookie-free native API receipts plus one origin setup",
+  "ordinaryHttpAvailabilityVerified": false,
+  "rows": [
+    {
+      "name": "listing",
+      "requestUrl": "https://sharechat.com/api/careersList?limit=100",
+      "status": 200,
+      "finalUrl": "https://sharechat.com/api/careersList?limit=100",
+      "receivedAt": "2026-10-24T18:38:45.636Z",
+      "bytes": 7170,
+      "sha256": "eb62b2c7fede7f19907d55a2a822f78181bd343ef8edcde067768bf29ca9c856",
+      "bodyFile": "listing.txt.gz"
+    },
+    {
+      "name": "tenant",
+      "requestUrl": "https://sharechat.mynexthire.com/employer/jobboard/details_by_shortname/get/sharechat/",
+      "method": "GET",
+      "requestBody": null,
+      "status": 200,
+      "finalUrl": "https://sharechat.mynexthire.com/employer/jobboard/details_by_shortname/get/sharechat/",
+      "receivedAt": "2026-10-24T18:38:48.388Z",
+      "bytes": 29616,
+      "sha256": "eb1c088e1383c8e585176b1ed34690de2d2bd5ee2101c9073b158e70f2f2f028",
+      "bodyFile": "tenant.txt.gz"
+    },
+    {
+      "name": "publication-dates",
+      "requestUrl": "https://sharechat.mynexthire.com/ats/public-apis/v1/careers/job-posting-dates/list",
+      "method": "POST",
+      "requestBody": {
+        "srcShortName": "careers",
+        "requisitionIdList": [
+          2478,
+          2473,
+          2454,
+          2452,
+          2451,
+          2450,
+          2485,
+          2480,
+          2477,
+          2443,
+          2435
+        ]
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.mynexthire.com/ats/public-apis/v1/careers/job-posting-dates/list",
+      "receivedAt": "2026-10-24T18:38:48.762Z",
+      "bytes": 722,
+      "sha256": "3f3a2e406b8b625eeb832b9d412f637f8d540cb05aa16b77275380e28012ec8c",
+      "bodyFile": "publication-dates.txt.gz"
+    },
+    {
+      "name": "role-2478",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2478
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:50.269Z",
+      "bytes": 3881,
+      "sha256": "f96050a350a2e853f7af0f6b89dc12b24b9e9ffc946a170926e16755b1496de9",
+      "bodyFile": "role-2478.txt.gz"
+    },
+    {
+      "name": "role-2473",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2473
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:50.646Z",
+      "bytes": 5288,
+      "sha256": "f34f856e69761497f1cdd36eb7d5c515465d97da931bc5ea482af781d16c2278",
+      "bodyFile": "role-2473.txt.gz"
+    },
+    {
+      "name": "role-2454",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2454
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:51.135Z",
+      "bytes": 6472,
+      "sha256": "96b60b6aa15039aac096f8589690f34440c2673451c454aff810ba4fc95e0957",
+      "bodyFile": "role-2454.txt.gz"
+    },
+    {
+      "name": "role-2452",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2452
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:51.647Z",
+      "bytes": 5175,
+      "sha256": "062210e6425c6ab82c14e97f3fcd6ee71e151d02d181ffad31bbd182b0b51941",
+      "bodyFile": "role-2452.txt.gz"
+    },
+    {
+      "name": "role-2451",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2451
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:52.169Z",
+      "bytes": 5654,
+      "sha256": "e2fa35890ed8ef22f8b957b03282bd2455e9da0b2c139b6e6b3c9bf46fb09b43",
+      "bodyFile": "role-2451.txt.gz"
+    },
+    {
+      "name": "role-2450",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2450
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:52.676Z",
+      "bytes": 5700,
+      "sha256": "cea470ec4976b339f020d8b1f6b74fdf6c0add4ac49092c2d3803a80b8935bb3",
+      "bodyFile": "role-2450.txt.gz"
+    },
+    {
+      "name": "role-2485",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2485
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:53.198Z",
+      "bytes": 4702,
+      "sha256": "cbfcddd76316b7432285f50ae9d743ea9dcc9a51b680c7063261dbfe8a84ed44",
+      "bodyFile": "role-2485.txt.gz"
+    },
+    {
+      "name": "role-2480",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2480
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:53.699Z",
+      "bytes": 4713,
+      "sha256": "3c771d5dafac52c2f53286cea8a69b861aeceed243c49919e20359bda53a6373",
+      "bodyFile": "role-2480.txt.gz"
+    },
+    {
+      "name": "role-2477",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2477
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:54.196Z",
+      "bytes": 8686,
+      "sha256": "42620bf4c27afff095e723f9b710968b5411416af8ebbc03a0cd8a29d1c7fdfc",
+      "bodyFile": "role-2477.txt.gz"
+    },
+    {
+      "name": "role-2443",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2443
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:54.704Z",
+      "bytes": 6022,
+      "sha256": "8ab7cca2b595ea6ff3c684769afb155afa000c6aadf65c59684800afb9987f1b",
+      "bodyFile": "role-2443.txt.gz"
+    },
+    {
+      "name": "role-2435",
+      "requestUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "method": "POST",
+      "requestBody": {
+        "source": "careers",
+        "id": "",
+        "code": "",
+        "reqId": 2435
+      },
+      "status": 200,
+      "finalUrl": "https://sharechat.prod.us1.mynexthire.io/d17/careers/requisition/object",
+      "receivedAt": "2026-10-24T18:38:55.202Z",
+      "bytes": 5853,
+      "sha256": "e998f434190ee3a01b52b70a5b8eb0f549e94ecac62f55a3be327c9297ee963a",
+      "bodyFile": "role-2435.txt.gz"
+    }
+  ],
+  "fixtureMinimization": "Native per-role detail object and original JD retained; tenant form definitions, cookie settings and unrelated employee/workflow IDs omitted. Native status, final URLs, request bodies, original sizes and body hashes retained as capture provenance. This is browser-captured data and does not establish ordinary Node HTTP availability."
+}

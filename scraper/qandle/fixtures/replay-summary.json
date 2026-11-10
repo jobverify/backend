@@ -1,0 +1,29 @@
+{
+  "inventoryEvidence": {
+    "status": "discovery-only",
+    "surface": "https://hr.qandle.com/#/jobs",
+    "firstParty": true,
+    "listingComplete": false,
+    "pagesFetched": 8,
+    "reportedTotal": null,
+    "indiaFacetCount": null,
+    "verifiedAt": "2026-10-23T07:06:22.819Z",
+    "reason": "Officially linked native board has one generic talent-pool resume invitation, excluded as not a specific job; Remote (Anywhere) supplies no explicit India country. Native open-jobs one record; default-job null. Whole-company scope remains unverified; cleanup disabled."
+  },
+  "recoveredJobs": 0,
+  "completeDescriptionCount": 0,
+  "nativeCollectionEvidence": {
+    "nativeRecordCount": 1,
+    "exclusions": [
+      {
+        "id": "5f7b24f139473e585f0a38f7",
+        "title": "Drop your Resume for us !",
+        "reason": "generic-talent-pool-not-a-specific-job",
+        "location": "Remote (Anywhere)",
+        "nativePostingDate": "2022-05-26"
+      }
+    ],
+    "lifecycleCleanupAllowed": false
+  },
+  "jobs": []
+}

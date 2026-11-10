@@ -1,0 +1,618 @@
+{
+  "records": [
+    {
+      "id": 4718,
+      "date": "2026-05-05T12:52:37",
+      "date_gmt": "2026-05-05T12:52:37",
+      "guid": {
+        "rendered": "https://dev.eridium.com/?post_type=awsm_job_openings&#038;p=4718"
+      },
+      "modified": "2026-05-05T12:52:38",
+      "modified_gmt": "2026-05-05T12:52:38",
+      "slug": "service-desk-executive-l3",
+      "status": "publish",
+      "type": "awsm_job_openings",
+      "link": "https://www.allieddigital.net/jobs/service-desk-executive-l3/",
+      "title": {
+        "rendered": "SERVICE DESK EXECUTIVE L3"
+      },
+      "content": {
+        "rendered": "",
+        "protected": false
+      },
+      "excerpt": {
+        "rendered": "",
+        "protected": false
+      },
+      "author": 1,
+      "template": "",
+      "meta": {
+        "_acf_changed": false,
+        "_eb_attr": "",
+        "_templately_pack_id": "",
+        "_templately_imported_at": "",
+        "_templately_source": "",
+        "_templately_import_session_id": "",
+        "awsm_set_exp_list": "",
+        "awsm_job_expiry": "",
+        "awsm_exp_list_display": ""
+      },
+      "class_list": [
+        "post-4718",
+        "awsm_job_openings",
+        "type-awsm_job_openings",
+        "status-publish",
+        "hentry",
+        "job-category-csd",
+        "job-type-full-time",
+        "job-location-navi-mumbai"
+      ],
+      "acf": [],
+      "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>SERVICE DESK EXECUTIVE L3 - Allied Digital</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://www.allieddigital.net/jobs/service-desk-executive-l3/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"SERVICE DESK EXECUTIVE L3 - Allied Digital\" />\n<meta property=\"og:url\" content=\"https://www.allieddigital.net/jobs/service-desk-executive-l3/\" />\n<meta property=\"og:site_name\" content=\"Allied Digital\" />\n<meta property=\"article:modified_time\" content=\"2026-05-05T12:52:38+00:00\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/service-desk-executive-l3\\/\",\"url\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/service-desk-executive-l3\\/\",\"name\":\"SERVICE DESK EXECUTIVE L3 - Allied Digital\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#website\"},\"datePublished\":\"2026-05-05T12:52:37+00:00\",\"dateModified\":\"2026-05-05T12:52:38+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/service-desk-executive-l3\\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/www.allieddigital.net\\/jobs\\/service-desk-executive-l3\\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/service-desk-executive-l3\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.allieddigital.net\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Job Openings\",\"item\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"SERVICE DESK EXECUTIVE L3\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#website\",\"url\":\"https:\\/\\/www.allieddigital.net\\/\",\"name\":\"Allied Digital\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.allieddigital.net\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#organization\",\"name\":\"Allied Digital\",\"url\":\"https:\\/\\/www.allieddigital.net\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/www.allieddigital.net\\/wp-content\\/uploads\\/2026\\/03\\/logo-allied-color-full-1.svg\",\"contentUrl\":\"https:\\/\\/www.allieddigital.net\\/wp-content\\/uploads\\/2026\\/03\\/logo-allied-color-full-1.svg\",\"width\":120,\"height\":96,\"caption\":\"Allied Digital\"},\"image\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO plugin. -->",
+      "yoast_head_json": {
+        "title": "SERVICE DESK EXECUTIVE L3 - Allied Digital",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "canonical": "https://www.allieddigital.net/jobs/service-desk-executive-l3/",
+        "og_locale": "en_US",
+        "og_type": "article",
+        "og_title": "SERVICE DESK EXECUTIVE L3 - Allied Digital",
+        "og_url": "https://www.allieddigital.net/jobs/service-desk-executive-l3/",
+        "og_site_name": "Allied Digital",
+        "article_modified_time": "2026-05-05T12:52:38+00:00",
+        "twitter_card": "summary_large_image",
+        "schema": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://www.allieddigital.net/jobs/service-desk-executive-l3/",
+              "url": "https://www.allieddigital.net/jobs/service-desk-executive-l3/",
+              "name": "SERVICE DESK EXECUTIVE L3 - Allied Digital",
+              "isPartOf": {
+                "@id": "https://www.allieddigital.net/#website"
+              },
+              "datePublished": "2026-05-05T12:52:37+00:00",
+              "dateModified": "2026-05-05T12:52:38+00:00",
+              "breadcrumb": {
+                "@id": "https://www.allieddigital.net/jobs/service-desk-executive-l3/#breadcrumb"
+              },
+              "inLanguage": "en-US",
+              "potentialAction": [
+                {
+                  "@type": "ReadAction",
+                  "target": [
+                    "https://www.allieddigital.net/jobs/service-desk-executive-l3/"
+                  ]
+                }
+              ]
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://www.allieddigital.net/jobs/service-desk-executive-l3/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.allieddigital.net/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Job Openings",
+                  "item": "https://www.allieddigital.net/jobs/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "SERVICE DESK EXECUTIVE L3"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://www.allieddigital.net/#website",
+              "url": "https://www.allieddigital.net/",
+              "name": "Allied Digital",
+              "description": "",
+              "publisher": {
+                "@id": "https://www.allieddigital.net/#organization"
+              },
+              "potentialAction": [
+                {
+                  "@type": "SearchAction",
+                  "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://www.allieddigital.net/?s={search_term_string}"
+                  },
+                  "query-input": {
+                    "@type": "PropertyValueSpecification",
+                    "valueRequired": true,
+                    "valueName": "search_term_string"
+                  }
+                }
+              ],
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://www.allieddigital.net/#organization",
+              "name": "Allied Digital",
+              "url": "https://www.allieddigital.net/",
+              "logo": {
+                "@type": "ImageObject",
+                "inLanguage": "en-US",
+                "@id": "https://www.allieddigital.net/#/schema/logo/image/",
+                "url": "https://www.allieddigital.net/wp-content/uploads/2026/03/logo-allied-color-full-1.svg",
+                "contentUrl": "https://www.allieddigital.net/wp-content/uploads/2026/03/logo-allied-color-full-1.svg",
+                "width": 120,
+                "height": 96,
+                "caption": "Allied Digital"
+              },
+              "image": {
+                "@id": "https://www.allieddigital.net/#/schema/logo/image/"
+              }
+            }
+          ]
+        }
+      },
+      "_links": {
+        "self": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings/4718",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings"
+          }
+        ],
+        "about": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/types/awsm_job_openings"
+          }
+        ],
+        "author": [
+          {
+            "embeddable": true,
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/users/1"
+          }
+        ],
+        "wp:attachment": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/media?parent=4718"
+          }
+        ],
+        "curies": [
+          {
+            "name": "wp",
+            "href": "https://api.w.org/{rel}",
+            "templated": true
+          }
+        ]
+      }
+    },
+    {
+      "id": 4717,
+      "date": "2026-05-05T12:47:46",
+      "date_gmt": "2026-05-05T12:47:46",
+      "guid": {
+        "rendered": "https://dev.eridium.com/?post_type=awsm_job_openings&#038;p=4717"
+      },
+      "modified": "2026-05-05T12:49:36",
+      "modified_gmt": "2026-05-05T12:49:36",
+      "slug": "endpoint-administrator",
+      "status": "publish",
+      "type": "awsm_job_openings",
+      "link": "https://www.allieddigital.net/jobs/endpoint-administrator/",
+      "title": {
+        "rendered": "Endpoint Administrator"
+      },
+      "content": {
+        "rendered": "",
+        "protected": false
+      },
+      "excerpt": {
+        "rendered": "",
+        "protected": false
+      },
+      "author": 1,
+      "template": "",
+      "meta": {
+        "_acf_changed": false,
+        "_eb_attr": "",
+        "_templately_pack_id": "",
+        "_templately_imported_at": "",
+        "_templately_source": "",
+        "_templately_import_session_id": "",
+        "awsm_set_exp_list": "",
+        "awsm_job_expiry": "",
+        "awsm_exp_list_display": ""
+      },
+      "class_list": [
+        "post-4717",
+        "awsm_job_openings",
+        "type-awsm_job_openings",
+        "status-publish",
+        "hentry",
+        "job-category-csd",
+        "job-type-full-time",
+        "job-location-navi-mumbai"
+      ],
+      "acf": [],
+      "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>Endpoint Administrator - Allied Digital</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://www.allieddigital.net/jobs/endpoint-administrator/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Endpoint Administrator - Allied Digital\" />\n<meta property=\"og:url\" content=\"https://www.allieddigital.net/jobs/endpoint-administrator/\" />\n<meta property=\"og:site_name\" content=\"Allied Digital\" />\n<meta property=\"article:modified_time\" content=\"2026-05-05T12:49:36+00:00\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/endpoint-administrator\\/\",\"url\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/endpoint-administrator\\/\",\"name\":\"Endpoint Administrator - Allied Digital\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#website\"},\"datePublished\":\"2026-05-05T12:47:46+00:00\",\"dateModified\":\"2026-05-05T12:49:36+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/endpoint-administrator\\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/www.allieddigital.net\\/jobs\\/endpoint-administrator\\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/endpoint-administrator\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.allieddigital.net\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Job Openings\",\"item\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Endpoint Administrator\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#website\",\"url\":\"https:\\/\\/www.allieddigital.net\\/\",\"name\":\"Allied Digital\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.allieddigital.net\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#organization\",\"name\":\"Allied Digital\",\"url\":\"https:\\/\\/www.allieddigital.net\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/www.allieddigital.net\\/wp-content\\/uploads\\/2026\\/03\\/logo-allied-color-full-1.svg\",\"contentUrl\":\"https:\\/\\/www.allieddigital.net\\/wp-content\\/uploads\\/2026\\/03\\/logo-allied-color-full-1.svg\",\"width\":120,\"height\":96,\"caption\":\"Allied Digital\"},\"image\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO plugin. -->",
+      "yoast_head_json": {
+        "title": "Endpoint Administrator - Allied Digital",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "canonical": "https://www.allieddigital.net/jobs/endpoint-administrator/",
+        "og_locale": "en_US",
+        "og_type": "article",
+        "og_title": "Endpoint Administrator - Allied Digital",
+        "og_url": "https://www.allieddigital.net/jobs/endpoint-administrator/",
+        "og_site_name": "Allied Digital",
+        "article_modified_time": "2026-05-05T12:49:36+00:00",
+        "twitter_card": "summary_large_image",
+        "schema": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://www.allieddigital.net/jobs/endpoint-administrator/",
+              "url": "https://www.allieddigital.net/jobs/endpoint-administrator/",
+              "name": "Endpoint Administrator - Allied Digital",
+              "isPartOf": {
+                "@id": "https://www.allieddigital.net/#website"
+              },
+              "datePublished": "2026-05-05T12:47:46+00:00",
+              "dateModified": "2026-05-05T12:49:36+00:00",
+              "breadcrumb": {
+                "@id": "https://www.allieddigital.net/jobs/endpoint-administrator/#breadcrumb"
+              },
+              "inLanguage": "en-US",
+              "potentialAction": [
+                {
+                  "@type": "ReadAction",
+                  "target": [
+                    "https://www.allieddigital.net/jobs/endpoint-administrator/"
+                  ]
+                }
+              ]
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://www.allieddigital.net/jobs/endpoint-administrator/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.allieddigital.net/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Job Openings",
+                  "item": "https://www.allieddigital.net/jobs/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Endpoint Administrator"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://www.allieddigital.net/#website",
+              "url": "https://www.allieddigital.net/",
+              "name": "Allied Digital",
+              "description": "",
+              "publisher": {
+                "@id": "https://www.allieddigital.net/#organization"
+              },
+              "potentialAction": [
+                {
+                  "@type": "SearchAction",
+                  "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://www.allieddigital.net/?s={search_term_string}"
+                  },
+                  "query-input": {
+                    "@type": "PropertyValueSpecification",
+                    "valueRequired": true,
+                    "valueName": "search_term_string"
+                  }
+                }
+              ],
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://www.allieddigital.net/#organization",
+              "name": "Allied Digital",
+              "url": "https://www.allieddigital.net/",
+              "logo": {
+                "@type": "ImageObject",
+                "inLanguage": "en-US",
+                "@id": "https://www.allieddigital.net/#/schema/logo/image/",
+                "url": "https://www.allieddigital.net/wp-content/uploads/2026/03/logo-allied-color-full-1.svg",
+                "contentUrl": "https://www.allieddigital.net/wp-content/uploads/2026/03/logo-allied-color-full-1.svg",
+                "width": 120,
+                "height": 96,
+                "caption": "Allied Digital"
+              },
+              "image": {
+                "@id": "https://www.allieddigital.net/#/schema/logo/image/"
+              }
+            }
+          ]
+        }
+      },
+      "_links": {
+        "self": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings/4717",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings"
+          }
+        ],
+        "about": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/types/awsm_job_openings"
+          }
+        ],
+        "author": [
+          {
+            "embeddable": true,
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/users/1"
+          }
+        ],
+        "wp:attachment": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/media?parent=4717"
+          }
+        ],
+        "curies": [
+          {
+            "name": "wp",
+            "href": "https://api.w.org/{rel}",
+            "templated": true
+          }
+        ]
+      }
+    },
+    {
+      "id": 4596,
+      "date": "2026-05-04T14:30:09",
+      "date_gmt": "2026-05-04T14:30:09",
+      "guid": {
+        "rendered": "https://dev.eridium.com/?post_type=awsm_job_openings&#038;p=4596"
+      },
+      "modified": "2026-05-06T09:40:12",
+      "modified_gmt": "2026-05-06T09:40:12",
+      "slug": "network-engineer-l3",
+      "status": "publish",
+      "type": "awsm_job_openings",
+      "link": "https://www.allieddigital.net/jobs/network-engineer-l3/",
+      "title": {
+        "rendered": "NETWORK ENGINEER L3"
+      },
+      "content": {
+        "rendered": "\n<details class=\"wp-block-details is-layout-flow wp-block-details-is-layout-flow\"><summary><strong>Job Summary </strong><br>We are looking for a highly skilled <strong>Network Engineer (L3)</strong> who will be responsible for <strong>designing, implementing, managing, and troubleshooting enterprise-level network infrastructure</strong>. The candidate must have strong hands-on experience in <strong>routing, switching, firewall, VPN, WAN, LAN, wireless, and network security</strong>, along with the ability to handle escalated (L3) issues and provide long-term solutions.<br>The Network Engineer L3 will work closely with internal IT teams, security teams, vendors, and customers to ensure <strong>high availability, performance, and security</strong> of network systems.</summary>\n<p class=\"wp-block-paragraph\"><strong>Job Description – Network Engineer L3</strong></p>\n\n\n\n<h3 class=\"wp-block-heading\"><strong>Key Responsibilities</strong></h3>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Handle <strong>L3 escalation support</strong> for complex network issues and outages.</li>\n\n\n\n<li>Design, configure, and maintain <strong>LAN/WAN infrastructure</strong>.</li>\n\n\n\n<li>Troubleshoot advanced routing and switching issues in production networks.</li>\n\n\n\n<li>Implement and manage <strong>network security solutions</strong> including firewall rules, VPNs, and ACLs.</li>\n\n\n\n<li>Configure and manage <strong>routers, switches, and firewalls</strong> (Cisco, Fortinet, Palo Alto, Juniper, etc.).</li>\n\n\n\n<li>Manage <strong>BGP, OSPF, EIGRP, VLAN, STP, HSRP/VRRP, NAT, QoS</strong> configurations.</li>\n\n\n\n<li>Perform network performance monitoring and capacity planning.</li>\n\n\n\n<li>Configure and troubleshoot <strong>site-to-site VPN and remote access VPN</strong>.</li>\n\n\n\n<li>Maintain and support <strong>wireless networks</strong> (Access Points, Controllers).</li>\n\n\n\n<li>Work on <strong>network upgrades, migrations, and deployment projects</strong>.</li>\n\n\n\n<li>Ensure compliance with <strong>security policies and best practices</strong>.</li>\n\n\n\n<li>Coordinate with vendors and service providers for issue resolution.</li>\n\n\n\n<li>Prepare network documentation such as topology diagrams, configuration backups, and SOPs.</li>\n\n\n\n<li>Participate in <strong>24/7 on-call support</strong> and provide root cause analysis (RCA) for incidents.</li>\n\n\n\n<li>Automate routine network tasks using scripts/tools (preferred).</li>\n</ul>\n\n\n\n<hr class=\"wp-block-separator has-alpha-channel-opacity\"/>\n\n\n\n<h3 class=\"wp-block-heading\"><strong>Required Skills</strong></h3>\n\n\n\n<p class=\"wp-block-paragraph\">Strong troubleshooting and analytical skills.</p>\n\n\n\n<p class=\"wp-block-paragraph\">Strong knowledge of <strong>TCP/IP, DNS, DHCP, NAT, VLAN, Subnetting</strong></p>\n\n\n\n<p class=\"wp-block-paragraph\">Expertise in <strong>Routing &amp; Switching</strong></p>\n\n\n\n<p class=\"wp-block-paragraph\">Hands-on experience with:</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>Cisco / Juniper / Fortinet / Palo Alto</strong> devices (any preferred)</p>\n\n\n\n<p class=\"wp-block-paragraph\">Good understanding of:</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>Firewall policies, IDS/IPS, VPN tunnels</strong></p>\n\n\n\n<p class=\"wp-block-paragraph\">Experience with network monitoring tools:</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>SolarWinds, PRTG, Nagios, Zabbix</strong> or similar</p>\n\n\n\n<p class=\"wp-block-paragraph\">Knowledge of <strong>ITIL process</strong> (Incident/Change/Problem management)</p>\n</details>\n\n\n\n<h2 class=\"wp-block-heading\"></h2>\n",
+        "protected": false
+      },
+      "excerpt": {
+        "rendered": "",
+        "protected": false
+      },
+      "author": 1,
+      "template": "",
+      "meta": {
+        "_acf_changed": false,
+        "_eb_attr": "",
+        "_templately_pack_id": "",
+        "_templately_imported_at": "",
+        "_templately_source": "",
+        "_templately_import_session_id": "",
+        "awsm_set_exp_list": "",
+        "awsm_job_expiry": "",
+        "awsm_exp_list_display": ""
+      },
+      "class_list": [
+        "post-4596",
+        "awsm_job_openings",
+        "type-awsm_job_openings",
+        "status-publish",
+        "hentry",
+        "job-category-csd",
+        "job-type-full-time",
+        "job-location-navi-mumbai"
+      ],
+      "acf": [],
+      "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.6 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>NETWORK ENGINEER L3 - Allied Digital</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://www.allieddigital.net/jobs/network-engineer-l3/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"NETWORK ENGINEER L3 - Allied Digital\" />\n<meta property=\"og:url\" content=\"https://www.allieddigital.net/jobs/network-engineer-l3/\" />\n<meta property=\"og:site_name\" content=\"Allied Digital\" />\n<meta property=\"article:modified_time\" content=\"2026-05-06T09:40:12+00:00\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:label1\" content=\"Est. reading time\" />\n\t<meta name=\"twitter:data1\" content=\"1 minute\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/network-engineer-l3\\/\",\"url\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/network-engineer-l3\\/\",\"name\":\"NETWORK ENGINEER L3 - Allied Digital\",\"isPartOf\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#website\"},\"datePublished\":\"2026-05-04T14:30:09+00:00\",\"dateModified\":\"2026-05-06T09:40:12+00:00\",\"breadcrumb\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/network-engineer-l3\\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/www.allieddigital.net\\/jobs\\/network-engineer-l3\\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/network-engineer-l3\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/www.allieddigital.net\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Job Openings\",\"item\":\"https:\\/\\/www.allieddigital.net\\/jobs\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"NETWORK ENGINEER L3\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#website\",\"url\":\"https:\\/\\/www.allieddigital.net\\/\",\"name\":\"Allied Digital\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/www.allieddigital.net\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#organization\",\"name\":\"Allied Digital\",\"url\":\"https:\\/\\/www.allieddigital.net\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/www.allieddigital.net\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/www.allieddigital.net\\/wp-content\\/uploads\\/2026\\/03\\/logo-allied-color-full-1.svg\",\"contentUrl\":\"https:\\/\\/www.allieddigital.net\\/wp-content\\/uploads\\/2026\\/03\\/logo-allied-color-full-1.svg\",\"width\":120,\"height\":96,\"caption\":\"Allied Digital\"},\"image\":{\"@id\":\"https:\\/\\/www.allieddigital.net\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO plugin. -->",
+      "yoast_head_json": {
+        "title": "NETWORK ENGINEER L3 - Allied Digital",
+        "robots": {
+          "index": "index",
+          "follow": "follow",
+          "max-snippet": "max-snippet:-1",
+          "max-image-preview": "max-image-preview:large",
+          "max-video-preview": "max-video-preview:-1"
+        },
+        "canonical": "https://www.allieddigital.net/jobs/network-engineer-l3/",
+        "og_locale": "en_US",
+        "og_type": "article",
+        "og_title": "NETWORK ENGINEER L3 - Allied Digital",
+        "og_url": "https://www.allieddigital.net/jobs/network-engineer-l3/",
+        "og_site_name": "Allied Digital",
+        "article_modified_time": "2026-05-06T09:40:12+00:00",
+        "twitter_card": "summary_large_image",
+        "twitter_misc": {
+          "Est. reading time": "1 minute"
+        },
+        "schema": {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://www.allieddigital.net/jobs/network-engineer-l3/",
+              "url": "https://www.allieddigital.net/jobs/network-engineer-l3/",
+              "name": "NETWORK ENGINEER L3 - Allied Digital",
+              "isPartOf": {
+                "@id": "https://www.allieddigital.net/#website"
+              },
+              "datePublished": "2026-05-04T14:30:09+00:00",
+              "dateModified": "2026-05-06T09:40:12+00:00",
+              "breadcrumb": {
+                "@id": "https://www.allieddigital.net/jobs/network-engineer-l3/#breadcrumb"
+              },
+              "inLanguage": "en-US",
+              "potentialAction": [
+                {
+                  "@type": "ReadAction",
+                  "target": [
+                    "https://www.allieddigital.net/jobs/network-engineer-l3/"
+                  ]
+                }
+              ]
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://www.allieddigital.net/jobs/network-engineer-l3/#breadcrumb",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.allieddigital.net/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Job Openings",
+                  "item": "https://www.allieddigital.net/jobs/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "NETWORK ENGINEER L3"
+                }
+              ]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://www.allieddigital.net/#website",
+              "url": "https://www.allieddigital.net/",
+              "name": "Allied Digital",
+              "description": "",
+              "publisher": {
+                "@id": "https://www.allieddigital.net/#organization"
+              },
+              "potentialAction": [
+                {
+                  "@type": "SearchAction",
+                  "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://www.allieddigital.net/?s={search_term_string}"
+                  },
+                  "query-input": {
+                    "@type": "PropertyValueSpecification",
+                    "valueRequired": true,
+                    "valueName": "search_term_string"
+                  }
+                }
+              ],
+              "inLanguage": "en-US"
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://www.allieddigital.net/#organization",
+              "name": "Allied Digital",
+              "url": "https://www.allieddigital.net/",
+              "logo": {
+                "@type": "ImageObject",
+                "inLanguage": "en-US",
+                "@id": "https://www.allieddigital.net/#/schema/logo/image/",
+                "url": "https://www.allieddigital.net/wp-content/uploads/2026/03/logo-allied-color-full-1.svg",
+                "contentUrl": "https://www.allieddigital.net/wp-content/uploads/2026/03/logo-allied-color-full-1.svg",
+                "width": 120,
+                "height": 96,
+                "caption": "Allied Digital"
+              },
+              "image": {
+                "@id": "https://www.allieddigital.net/#/schema/logo/image/"
+              }
+            }
+          ]
+        }
+      },
+      "_links": {
+        "self": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings/4596",
+            "targetHints": {
+              "allow": [
+                "GET"
+              ]
+            }
+          }
+        ],
+        "collection": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/awsm_job_openings"
+          }
+        ],
+        "about": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/types/awsm_job_openings"
+          }
+        ],
+        "author": [
+          {
+            "embeddable": true,
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/users/1"
+          }
+        ],
+        "wp:attachment": [
+          {
+            "href": "https://www.allieddigital.net/wp-json/wp/v2/media?parent=4596"
+          }
+        ],
+        "curies": [
+          {
+            "name": "wp",
+            "href": "https://api.w.org/{rel}",
+            "templated": true
+          }
+        ]
+      }
+    }
+  ],
+  "total": 3,
+  "totalPages": 1
+}

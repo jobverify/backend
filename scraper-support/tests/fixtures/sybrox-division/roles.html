@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Sybrox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <link rel="icon" type="image/png" href="Image/Sybrox logo New.png">
+
+  <link rel="stylesheet" href="Explore Sybrox.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="Image/Sybrox Logo_PNG.png" alt="Sybrox Logo" />
+    </div>
+
+   
+    <div class="menu-toggle" id="menu-toggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href='/'>Home</a></li>
+      <li><a href='/about'>Who We Are</a></li>
+      
+      
+      <li class="dropdown">
+        <a href="#">Our Services ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href='/cloud'>Cloud & Infrastructure</a></li>
+          <li><a href='/website'>Web & App Development</a></li>
+          <li><a href="IT Support.html">IT Support & Consulting</a></li>
+        </ul>
+      </li>
+
+      <li><a href="Sybrox Careers.html" class="active">Careers</a></li>
+
+      <!-- <li class="dropdown">
+        <a href="#">Careers ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="Sybrox Careers.html">Sybrox</a></li>
+           <li><a href="RPO Partner Vacancies.html">Our Clients Vacancies</a></li> 
+          
+        </ul>
+      </li>  -->
+
+       <!-- <li><a href="Intenship.html">Internship & Training</a></li>
+      <li><a href="Staffing.html">Staffing & RPO</a></li> -->
+     
+      <li><a class='contact-btn' href='/contact'>Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+    });
+  </script>
+
+<section class="hero">
+  <!-- Background Image -->
+  <img src="Image/sybrox vacancy.jpg" alt="About Us Background" class="hero-image">
+
+  <!-- Text Content -->
+  <div class="hero-content">
+    <h1>Opportunities at Sybrox<br><span>Together, We Build What’s Next</span></h1>
+  </div>
+</section>
+
+
+
+
+<section class="job-listings">
+
+  <!-- Frontend Developer Job Card -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Frontend Developer</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 3–5 years</p>
+        <span>Required Skill: <strong>React.js, JavaScript, HTML5, CSS3</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+
+    <div class="job-details">
+      <p><strong>Job:</strong> Frontend Application Developer</p>
+      <p><strong>Job Number:</strong> STIT-FDWD-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> Frontend Developer<br>
+        <strong>Role Description:</strong> Build and optimize user interfaces, ensuring responsive design and seamless user experiences.<br>
+        <strong>Must have skills:</strong> React.js, JavaScript (ES6+), HTML5, CSS3, REST APIs<br>
+        <strong>Good to have skills:</strong> Next.js, TypeScript, Tailwind CSS<br>
+        <strong>Experience:</strong> Minimum 3 years required<br><br>
+        As a Frontend Developer, you will collaborate with designers and backend teams to deliver high-performing, modern web applications.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+
+    </div>
+  </div>
+
+  <!-- Backend Developer Job Card -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Backend Developer</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 3–5 years</p>
+        <span>Required Skill: <strong>Node.js, Express.js, REST API, SQL/NoSQL</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+
+    <div class="job-details">
+      <p><strong>Job:</strong> Backend Application Developer</p>
+      <p><strong>Job Number:</strong>STIT-BD-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> Backend Developer<br>
+        <strong>Role Description:</strong> Design and implement scalable server-side logic and APIs, ensuring reliability and security.<br>
+        <strong>Must have skills:</strong> Node.js, Express.js, RESTful API, PostgreSQL/MySQL, MongoDB<br>
+        <strong>Good to have skills:</strong> AWS, Docker, GraphQL<br>
+        <strong>Experience:</strong> Minimum 3 years required<br><br>
+        As a Backend Developer, you will build efficient, secure, and maintainable backend systems that power business applications.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- Full Stack Developer Job Card -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Full Stack Developer</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 5–8 years</p>
+        <span>Required Skill: <strong>React.js, Node.js, MongoDB, AWS</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+
+    <div class="job-details">
+      <p><strong>Job:</strong> Full Stack Application Lead</p>
+      <p><strong>Job Number:</strong> STIT-FSWD-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> Full Stack Developer<br>
+        <strong>Role Description:</strong> Lead development across frontend and backend, ensuring seamless integration and performance.<br>
+        <strong>Must have skills:</strong> React.js, Node.js, Express, MongoDB, REST APIs<br>
+        <strong>Good to have skills:</strong> TypeScript, Docker, AWS, CI/CD pipelines<br>
+        <strong>Experience:</strong> Minimum 5 years required<br><br>
+        As a Full Stack Developer, you will design, build, and deploy full-stack applications with scalable architecture and maintain high code quality standards.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- Flutter Mobile App Developer Job Card -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Flutter Mobile App Developer</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 5+ years</p>
+        <span>Required Skill: <strong>Flutter, Dart, Firebase, REST APIs</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+
+    <div class="job-details">
+      <p><strong>Job:</strong> Senior Flutter Mobile App Developer</p>
+      <p><strong>Job Number:</strong> STIT-FMAD-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> Flutter Developer<br>
+        <strong>Role Description:</strong> Design and build cross-platform mobile applications using Flutter, ensuring smooth performance and exceptional user experience.<br>
+        <strong>Must have skills:</strong> Flutter, Dart, RESTful APIs, Firebase, State Management (Provider / Bloc)<br>
+        <strong>Good to have skills:</strong> Android/iOS Native, CI/CD for Mobile, Cloud Integration (AWS / GCP)<br>
+        <strong>Experience:</strong> Minimum 5 years required<br><br>
+        As a Flutter Developer, you will lead mobile app development from concept to deployment, collaborating with designers and backend teams.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- UI/UX Designer Job Card -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>UI/UX Designer</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 4–6 years</p>
+        <span>Required Skill: <strong>Figma, Adobe XD, Wireframing, Prototyping</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+
+    <div class="job-details">
+      <p><strong>Job:</strong> UI/UX Design Specialist</p>
+      <p><strong>Job Number:</strong> STIT-UIUX-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> UI/UX Designer<br>
+        <strong>Role Description:</strong> Design engaging user interfaces and seamless experiences for web and mobile apps, ensuring usability and brand consistency.<br>
+        <strong>Must have skills:</strong> Figma, Adobe XD, User Flow Design, Wireframing, Prototyping<br>
+        <strong>Good to have skills:</strong> Motion Design, Frontend Understanding (HTML/CSS), Usability Testing<br>
+        <strong>Experience:</strong> Minimum 4 years required<br><br>
+        As a UI/UX Designer, you will collaborate with product managers and developers to create user-centered digital experiences.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+   <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Database Administrator (DBA)</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 4–6 years</p>
+        <span>Required Skill: <strong>MySQL, Oracle, Backup & Recovery, Performance Tuning</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> Database Administrator</p>
+      <p><strong>Job Number:</strong> STIT-DB-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> Database Administrator<br>
+        <strong>Role Description:</strong> Manage database systems, ensure uptime, optimize performance, and secure data integrity.<br>
+        <strong>Must have skills:</strong> SQL, Oracle, MySQL, Backup, Recovery, Troubleshooting<br>
+        <strong>Good to have skills:</strong> AWS RDS, NoSQL, Database Security<br>
+        <strong>Experience:</strong> Minimum 4 years required<br><br>
+        As a DBA, you will handle database performance, security, and optimization across multiple environments.
+      </p>
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+    <!-- QA Tester Job Card -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>QA Tester</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 3–6 years</p>
+        <span>Required Skill: <strong>Manual Testing, Automation, Selenium, Test Cases</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> Software Quality Assurance Engineer</p>
+      <p><strong>Job Number:</strong> STIT-QTAD-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Project Role:</strong> QA Tester<br>
+        <strong>Role Description:</strong> Test software applications for functionality, reliability, and performance before release.<br>
+        <strong>Must have skills:</strong> Manual Testing, Automation Testing, Test Scripts, Defect Tracking<br>
+        <strong>Good to have skills:</strong> Selenium, JIRA, API Testing, Postman<br>
+        <strong>Experience:</strong> Minimum 3 years required<br><br>
+        As a QA Tester, you will ensure the quality of software through detailed test plans, scripts, and execution in Agile environments.
+      </p>
+<div class="job-actions">
+  <a href="https://forms.gle/zifYrSZj4MA1utAq8" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- HR Executive -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>HR Executive</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 4–5 years</p>
+        <span>Required Skill: <strong>Employee Relations, HR Operations, Policy Management</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> HR Executive</p>
+      <p><strong>Job Number:</strong> STHR-EX-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Role Description:</strong> Manage HR operations, employee onboarding, attendance, and payroll coordination.<br>
+        <strong>Must have skills:</strong> HRMS Tools, Attendance Management, Employee Relations<br>
+        <strong>Good to have skills:</strong> Payroll, Performance Management, Compliance<br>
+        <strong>Experience:</strong> Minimum 4 years required<br><br>
+        As an HR Executive, you will support daily HR activities and ensure smooth functioning of HR processes.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/ZBGy9QEpq4xupnQC6" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- HR Recruiter -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>HR Recruiter</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 3–5 years</p>
+        <span>Required Skill: <strong>Talent Sourcing, Screening, Interview Coordination</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> HR Recruiter</p>
+      <p><strong>Job Number:</strong> STHR-RC-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Role Description:</strong> Handle end-to-end recruitment for non-technical roles, ensuring smooth hiring operations.<br>
+        <strong>Must have skills:</strong> Sourcing, Interviewing, Recruitment Coordination<br>
+        <strong>Good to have skills:</strong> ATS Tools, Campus Hiring, Offer Management<br>
+        <strong>Experience:</strong> Minimum 3 years required<br><br>
+        As an HR Recruiter, you will manage hiring needs, maintain candidate databases, and coordinate interviews.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/ZBGy9QEpq4xupnQC6" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- IT Recruiter -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>IT Recruiter</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 4–5 years</p>
+        <span>Required Skill: <strong>Technical Recruitment, Sourcing, Stakeholder Management</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> IT Recruitment Specialist</p>
+      <p><strong>Job Number:</strong> STHR-ITRC-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Role Description:</strong> Manage end-to-end recruitment for IT positions, ensuring technical fit and cultural alignment.<br>
+        <strong>Must have skills:</strong> LinkedIn Recruiting, Technical Screening, Client Coordination<br>
+        <strong>Good to have skills:</strong> Employer Branding, Market Mapping<br>
+        <strong>Experience:</strong> Minimum 4 years required<br><br>
+        As an IT Recruiter, you will identify top talent for technology teams and ensure a smooth hiring experience.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/ZBGy9QEpq4xupnQC6" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- Finance Recruiter -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Finance Recruiter</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 3–6 years</p>
+        <span>Required Skill: <strong>Finance Hiring, Stakeholder Coordination, Payroll Knowledge</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> Finance Recruitment Executive</p>
+      <p><strong>Job Number:</strong> STHR-FIRC-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Role Description:</strong> Source and recruit finance and accounting professionals for corporate roles.<br>
+        <strong>Must have skills:</strong> Talent Sourcing, Interview Coordination, Finance Domain Knowledge<br>
+        <strong>Good to have skills:</strong> Payroll Recruitment, Excel Reporting, Client Engagement<br>
+        <strong>Experience:</strong> Minimum 3 years required<br><br>
+        As a Finance Recruiter, you will manage end-to-end finance hiring cycles and coordinate with stakeholders for seamless onboarding.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/ZBGy9QEpq4xupnQC6" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+  <!-- Talent Acquisition Specialist -->
+  <div class="job-card">
+    <div class="job-header">
+      <div class="job-info">
+        <h3>Talent Acquisition Specialist</h3>
+        <p>Chennai &nbsp;|&nbsp; Full time &nbsp;|&nbsp; Experience: 4–7 years</p>
+        <span>Required Skill: <strong>Recruitment Strategy, Talent Mapping, HR Analytics</strong></span>
+      </div>
+      <button class="expand-btn">+</button>
+    </div>
+    <div class="job-details">
+      <p><strong>Job:</strong> Talent Acquisition Lead</p>
+      <p><strong>Job Number:</strong> STHR-TA-001</p>
+
+      <h4>Job Description</h4>
+      <p>
+        <strong>Role Description:</strong> Develop and execute recruitment strategies, manage hiring pipelines, and improve hiring metrics.<br>
+        <strong>Must have skills:</strong> Sourcing Strategy, Recruitment Marketing, Data-Driven Hiring<br>
+        <strong>Good to have skills:</strong> HR Analytics, Employer Branding, Vendor Management<br>
+        <strong>Experience:</strong> Minimum 4 years required<br><br>
+        As a Talent Acquisition Specialist, you will optimize hiring processes and build a strong talent pipeline aligned with business goals.
+      </p>
+
+<div class="job-actions">
+  <a href="https://forms.gle/ZBGy9QEpq4xupnQC6" target="_blank" class="apply-btn">Apply Now</a>
+</div>
+    </div>
+  </div>
+
+</section>
+
+
+<script>
+  document.querySelectorAll('.job-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Ignore clicks on specific elements
+      if (
+        e.target.classList.contains('expand-btn') ||
+        e.target.classList.contains('apply-btn')
+      ) return;
+
+      const isActive = card.classList.contains('active');
+
+      // Close others
+      document.querySelectorAll('.job-card').forEach(c => {
+        c.classList.remove('active');
+        c.querySelector('.expand-btn').textContent = '+';
+      });
+
+      // Toggle current
+      if (!isActive) {
+        card.classList.add('active');
+        card.querySelector('.expand-btn').textContent = '−';
+      }
+    });
+
+    // Expand button logic
+    const btn = card.querySelector('.expand-btn');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      card.classList.toggle('active');
+      btn.textContent = card.classList.contains('active') ? '−' : '+';
+    });
+  });
+</script>
+
+
+
+
+ <footer class="footer">
+    <div class="footer-container">
+      
+      
+      <div class="footer-col1">
+        <img src="Image/Sybrox Logo_PNG.png" alt="Sybrox Logo" class="footer-logo">
+        <p class="footer-about">
+          Sybrox Tech Pvt. Ltd. is a fast-growing IT startup committed to building innovative 
+          mobile apps, software solutions and next-generation digital platforms.
+        </p>
+      </div>
+
+      
+      <div class="footer-col">
+        <h3>Our Company</h3>
+        <ul>
+          <li><a href='/'>Home</a></li>
+          <li><a href='/about'>Who We Are</a></li>
+          <li><a href="Sybrox Careers.html">Careers</a></li>
+          <li><a href='/contact'>Contact Us</a></li>
+          
+        </ul>
+      </div>
+
+      
+      <div class="footer-col">
+        <h3>Our Services</h3>
+        <ul>
+          <li><a href='/cloud'>Cloud & Infrastructure</a></li>
+          <li><a href='/website'>Web & App Development</a></li>
+          <li><a href="IT Support.html">IT Support & Consulting</a></li>
+          <!--<li><a href="Intenship.html">Internship & Training</a></li>
+          <li><a href="Staffing.html">Staffing & RPO</a></li>> -->
+        </ul>
+      </div>
+
+
+<div class="footer-col">
+  <h3>Contact Info</h3>
+  <ul>
+    <li>
+      <i class="fa-solid fa-envelope"></i>
+      <a href="mailto:info@sybrox.com">info@sybroxtech.com</a>
+    </li>
+
+        <li>
+      <i class="fa-solid fa-envelope"></i>
+      <a href="mailto:careers@sybrox.com">careers@sybroxtech.com</a>
+    </li>
+
+      
+
+  </ul>
+</div>
+
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>©2025 Sybrox Tech Pvt. Ltd. | All Rights Reserved</p>
+    </div>
+  </footer>
+
+
+</body>
+</html>

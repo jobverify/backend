@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "Id": "134637",
+      "Title": "Oracle Recruiting Cloud(ORC) Functional",
+      "RequisitionId": 300001062512880,
+      "PrimaryLocation": "Telangana, India",
+      "PrimaryLocationCountry": "IN",
+      "ExternalPostedStartDate": "2026-10-23T15:12:43+00:00",
+      "ExternalPostedEndDate": "2026-10-30T18:30:00+00:00",
+      "ExternalDescriptionStr": "<ul>\n <li>Configurations of Job Requisition Templates, Geography Hierarchies, Candidate Selection Process (CSP) and CSP reasons, Job Application Flows, Career Site (Candidate Experience)</li>\n <li>Configurations of Recruiting Content Library such as Job Offer Templates, Disqualification questionnaire, Job specific questionnaire and Interview questionnaire, Involved in Requisition and Offer Approval Rules</li>\n <li>Experience in Career site configurations and Integrations with 3rd party applications</li>\n <li>Redwood UI transformation experience with hands on VB Studio</li>\n <li>Contextualize Journeys</li>\n <li>Guided Journeys</li>\n <li>Display properties for UI Changes</li>\n <li>Configurations of On-Boarding Check lists for Pre-Hire, New Hire</li>\n <li>Troubleshoot and optimize Redwood UX components and workflows.</li>\n <li>Provide end-user training, documentation, and post-implementation support.</li>\n <li>Participate in quarterly upgrade cycles and change control meetings.</li>\n <li>Excellent communication and stakeholder management skills</li>\n</ul>",
+      "ExternalResponsibilitiesStr": "",
+      "ShortDescriptionStr": "We are seeking an experienced Oracle Recruiting Cloud Functional Consultant with hands-on expertise in Oracle HCM Cloud and Redwood UI. The ideal candidate will lead the implementation, customization, and optimization of Oracle Recruiting Cloud (ORC) solutions, leveraging Redwood UX and Visual Builder Cloud Service (VBCS) to enhance user experience and streamline recruitment processes.",
+      "ExternalQualificationsStr": "",
+      "StudyLevel": null
+    }
+  ]
+}

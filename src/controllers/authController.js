@@ -9,7 +9,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import BlacklistedToken from "../models/BlacklistedToken.js";
-import Subscription from "../models/Subscription.js";
 import { sendValidationError } from "../middleware/validateRequest.js";
 import {
   sendPasswordResetEmail,
@@ -32,7 +31,7 @@ import {
   normalizeEmailAddress,
 } from "../utils/authSecurity.js";
 import {
-  applyExpiredAccessDowngrade,
+  isAccessExpired,
   buildAccessSummary,
 } from "../utils/accessControl.js";
 import { googleIdentity } from "../utils/googleAuth.js";
@@ -47,7 +46,7 @@ const buildSessionUserPayload = (user) => ({
   id: user._id,
   email: user.email,
   role: user.role,
-  accessRole: user.accessRole,
+  accessRole: buildAccessSummary(user).accessRole,
   access: buildAccessSummary(user),
   profile: user.profile,
   onboardingCompleted: user.onboardingCompleted,
@@ -113,13 +112,7 @@ const issueAuthenticatedSession = async (user, res, successMessage = "Logged in 
       sessionVersion: sessionVersion === 0 ? { $in: [0, null] } : sessionVersion,
       deactivated: { $ne: true } };
   }
-  const accessChanged = applyExpiredAccessDowngrade(user);
-  if (accessChanged) {
-    await Subscription.updateOne(
-      { user: user._id },
-      { $set: { isActive: false } },
-    ).catch(() => null);
-  }
+  const accessChanged = isAccessExpired(user);
 
   user.lastLoginAt = new Date();
   try {

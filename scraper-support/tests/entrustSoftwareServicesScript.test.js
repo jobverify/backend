@@ -44,8 +44,8 @@ test('eNTrust Software & Services helpers stay pinned to the verified homepage w
 
   assert.equal(entrust.SOURCE, 'entrustsoftwareservices')
   assert.equal(entrust.COMPANY, 'eNTrust Software & Services')
-  assert.equal(entrust.HOMEPAGE_URL, 'https://www.entrustsoft.in/')
-  assert.equal(entrust.VERIFIED_ON, '2026-07-17')
+  assert.equal(entrust.HOMEPAGE_URL, 'https://entrustsoft.in/')
+  assert.equal(entrust.VERIFIED_ON, '2026-11-10')
   assert.equal(entrust.hasVerifiedHomepageSignal(verifiedHomepageHtml), true)
   assert.equal(entrust.hasCareerNavigationSignal(verifiedHomepageHtml), false)
   assert.equal(entrust.hasPublicJobListingSignal(verifiedHomepageHtml), false)

@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "data": [
+    {
+      "jobpostingID": "JOB_POSTING-3-5203",
+      "jobcode": "Technical Lead  -Data Engineer - Azure",
+      "designation": "Technical Lead - Software Engineering ( B2 )",
+      "jobdescription": "Design and implement scalable and secure data pipelines using Azure Data Factory and Azure Databricks (Spark).\nUtilize Azure cloud services such as Blob Storage, Azure Functions, and API Gateway to build and maintain robust data solutions.\nDevelop and maintain code using Python or similar programming languages to support ETL workflows and data transformation processes.\nCollaborate with DevOps teams to set up and manage CI/CD pipelines using Azure DevOps or equivalent toolsets.\nEnsure high code and data quality standards through performance tuning, testing, and documentation.\nWork across the full development lifecycle, from design through deployment and maintenance of distributed systems.\nLeverage knowledge of SQL and NoSQL databases to design effective data models and ensure data reliability.\nApply Object-Oriented Programming and ETL best practices to develop modular and reusable components.\nTroubleshoot and resolve cloud networking and connectivity issues in collaboration with infrastructure teams.\nTranslate complex technical problems into simple and scalable solutions, aligning with architectural best practices.\nAdvocate for and implement data governance, monitoring, and quality frameworks to ensure the integrity of business-critical data.",
+      "experience": "",
+      "job_url": "https://diconium.wd3.myworkdayjobs.com/Embitel_Technologies/job/Bangalore/Technical-Lead---Data-Engineer---Azure_JR100869",
+      "bu": "Digital Solutions",
+      "posted": "Y",
+      "timestamp": "2026-10-06T00:42:03.325-07:00",
+      "competency hub": "CO-TYPE1",
+      "delivery_hub": "DH-CO-BU-DS",
+      "location": "Bangalore"
+    },
+    {
+      "jobpostingID": "JOB_POSTING-3-2892",
+      "jobcode": "Technical Lead - E2E Testing",
+      "designation": "Technical Lead - Software Engineering ( B2 )",
+      "jobdescription": "Expertise in Automotive Domain with strong Coding /Functional /People managemnet skills",
+      "experience": "",
+      "job_url": "https://diconium.wd3.myworkdayjobs.com/Embitel_Technologies/job/Bangalore/Technical-Lead---E2E-Testing_JR100651",
+      "bu": "Cariad",
+      "posted": "Y",
+      "timestamp": "2026-04-17T08:06:39.142-07:00",
+      "competency hub": "CO-TYPE2",
+      "delivery_hub": "DH-CO-BU-PEC.CC",
+      "location": "Bangalore"
+    }
+  ]
+}

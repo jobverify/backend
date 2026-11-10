@@ -1,0 +1,26 @@
+{
+  "status": 0,
+  "data": {
+    "displayTitle": "Associate Manager Operations & Maintenance - Onsite Operations",
+    "externalDescription": "<ul><li>In this role you will be responsible\r\n     for plant maintenance activities, planned and unplanned shutdowns\r\n     activities.</li><li>Further you will supervise the installation, calibration, and\r\n     commissioning of instruments like pressure transmitters, flow meters, and\r\n     control valves etc.</li><li>Additionally, you will be responsible for troubleshooting and fixing faulty instruments to minimize downtime and optimize existing\r\n     systems for better efficiency.</li><li>Furthermore, you will supervise scheduled calibration of sensors, valves, and transmitters (pressure,\r\n     temperature, flow, and level) to ensure high-accuracy data. </li><li>Executing PM programs to proactively identify drift, wear, or potential instrument\r\n     failures before they disrupt plant operations is a part of your responsibility.</li><li>Moreover, you are in charge for identifying and maintaining minimum stock levels of critical spares and consumables for reducing downtime.</li></ul>",
+    "ref": "req31768",
+    "requisitionStatusId": 2,
+    "allowApply": true,
+    "primaryLocation": {
+      "title": "Kalinganagar",
+      "ref": "50235288",
+      "city": "",
+      "state": "",
+      "country": "IN",
+      "geocode": {
+        "latitude": 29.3080254,
+        "longitude": 78.50331
+      },
+      "postalCode": "",
+      "line1": ""
+    },
+    "additionalLocations": [],
+    "openDate": "2026-08-02T19:29:12",
+    "companyApplyUrl": "https://linde.csod.com/ux/ats/careersite/25/home/requisition/31768?c=linde"
+  }
+}

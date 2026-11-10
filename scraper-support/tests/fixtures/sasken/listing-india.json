@@ -1,0 +1,79 @@
+{
+  "status": "success",
+  "jobs": {
+    "requirements": [
+      {
+        "_id": 20222001,
+        "user_id": 151227,
+        "title": "LEAD ENGINEER - PS MODEM",
+        "created_at": "2026-06-23T09:46:50Z",
+        "atsreqid": "17763",
+        "jdText": "<p><strong>Job Summary</strong></p><p>We are seeking a Satellite Communication Engineer with strong expertise in satellite communication systems and data networking technologies.</p><p><strong>Key Responsibilities</strong></p><ul><li>Design, deploy, and maintain satellite communication networks and ground segment infrastructure.</li><li>Configure and troubleshoot VSAT systems.</li><li>Implement and manage IP-based data communication services.</li></ul><p>Experience: 3-8 Years</p><p>Education: Bachelor's or Master's degree in Computer Science, Engineering, or related field.</p><p>Location: Bangalore</p>",
+        "jd_primary_skills": [
+          "VSAT Systems",
+          "iDirect Modems",
+          "Link Budget",
+          "OSPF",
+          "BGP"
+        ],
+        "jd_secondary_skills": [
+          "Ground Segment",
+          "VSAT Troubleshooting",
+          "MPLS VPN",
+          "Network Monitoring",
+          "IPv6",
+          "TCP/IP",
+          "QoS",
+          "RIP",
+          "GEO Networks",
+          "IPv4"
+        ],
+        "jd_summary": "Seeking a Satellite Communication Engineer to design, deploy, and maintain satellite-based data networks and ground-segment infrastructure, ensuring reliable, mission-critical connectivity in Bangalore.",
+        "referralpostpublic": true,
+        "jobURL": "https://www.hirewand.com/apply/job/detail?jid=20222001&sid=5c7d312c5e5efc0654130f23&src=jobpost&uid=151227&cpid=2022"
+      },
+      {
+        "_id": 20222017,
+        "user_id": 147415,
+        "title": "ASSISTANT MANAGER- HR (RECRUITMENT)",
+        "created_at": "2026-06-25T10:30:16Z",
+        "jdText": "<p>Test</p>",
+        "jd_primary_skills": [
+          "ATS",
+          "Boolean Search",
+          "Candidate Screening",
+          "Interview Scheduling",
+          "Hiring Coordination"
+        ],
+        "jd_secondary_skills": [
+          "Onboarding",
+          "Offer Management",
+          "Employer Branding",
+          "HRIS",
+          "Data Analytics",
+          "Excel",
+          "Recruitment Marketing",
+          "Candidate Experience",
+          "Compliance",
+          "Vendor Management"
+        ],
+        "jd_summary": "Looking for a Recruiter to manage end-to-end recruitment across departments, from sourcing and screening to offers and onboarding.",
+        "referralpostpublic": true,
+        "jobURL": "https://www.hirewand.com/apply/job/detail?jid=20222017&sid=5c7d312c5e5efc0654130f23&src=jobpost&uid=147415&cpid=2022"
+      },
+      {
+        "_id": 20220000,
+        "title": "ARCHIVED ROLE",
+        "created_at": "2026-05-01T10:00:00Z",
+        "jdText": "<p>Location: Bangalore</p>",
+        "jd_primary_skills": [
+          "Legacy"
+        ],
+        "jd_secondary_skills": [],
+        "jd_summary": "Closed opening kept here to prove the extractor filters it out.",
+        "referralpostpublic": false,
+        "jobURL": null
+      }
+    ]
+  }
+}

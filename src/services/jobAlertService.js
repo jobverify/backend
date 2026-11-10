@@ -202,18 +202,41 @@ const processRecords = async (user, records) => {
   }
 };
 
-export const stageJobAlertDeliveries = async (jobs = [], { session } = {}) => {
+const eligibleRecipientFilter = siteSettings => ({
+  deactivated: { $ne: true },
+  accountDeletingAt: null,
+  "premium.telegramAlertsEnabled": true,
+  telegramAlertsAllowed: { $ne: false },
+  ...(siteSettings.billingEnabled ? { $or: [{ role: "admin" }, { "premium.status": "active" }] } : {}),
+});
+
+// Only alert eligibility, matching and identity fields enter the outbox worker.
+// Keep this projection aligned with canUseTelegramAlerts and saved filters.
+const RECIPIENT_PROJECTION = '_id role accessRole deactivated accountDeletingAt telegramAlertsAllowed '
+  + 'premium.planId premium.status premium.expiresAt premium.telegramAlertsEnabled '
+  + 'telegram.chatId telegram.linkedAt telegram.optedOutAt '
+  + 'profile.branch profile.passingYear profile.telegramAlertFilters';
+
+export const findJobAlertRecipientPage = async ({ session, after, through, descending = false, limit = 100 } = {}) => {
+  const siteSettings = await getSiteSettings();
+  const bounds = { ...(after ? { $gt: after } : {}), ...(through ? { $lte: through } : {}) };
+  const query = User.find({ ...eligibleRecipientFilter(siteSettings), ...(Object.keys(bounds).length ? { _id: bounds } : {}) })
+    .select(RECIPIENT_PROJECTION).sort({ _id: descending ? -1 : 1 }).limit(Math.max(1, Math.min(100, limit)));
+  if (session) query.session(session);
+  return query.lean().exec();
+};
+
+export const stageJobAlertDeliveries = async (jobs = [], { session, recipients } = {}) => {
   if (!Array.isArray(jobs) || !jobs.length) return [];
   const siteSettings = await getSiteSettings();
-  const query = User.find({
-    deactivated: false,
-    accountDeletingAt: null,
-    "premium.telegramAlertsEnabled": true,
-    telegramAlertsAllowed: { $ne: false },
-    ...(siteSettings.billingEnabled ? { $or: [{ role: "admin" }, { "premium.status": "active" }] } : {}),
-  });
-  if (session) query.session(session);
-  const users = await query.lean().exec();
+  let users = recipients;
+  if (users === undefined) {
+    // Legacy direct callers retain their full-audience behavior. The outbox
+    // always supplies a bounded page and never enters this branch.
+    const query = User.find(eligibleRecipientFilter(siteSettings));
+    if (session) query.session(session);
+    users = await query.lean().exec();
+  }
   const batches = [];
   // MongoDB sessions do not support parallel operations within a transaction.
   for (const user of users) {
@@ -226,7 +249,7 @@ export const stageJobAlertDeliveries = async (jobs = [], { session } = {}) => {
     if (session) {
       // Serialize fanout with account deletion so it cannot recreate private
       // delivery/subscription rows after the account cleanup has finished.
-      const owner = await User.updateOne({ _id: user._id, deactivated: false, accountDeletingAt: null },
+      const owner = await User.updateOne({ _id: user._id, deactivated: { $ne: true }, accountDeletingAt: null },
         { $inc: { __v: 1 } }, { session });
       if (!owner.matchedCount) continue;
     }

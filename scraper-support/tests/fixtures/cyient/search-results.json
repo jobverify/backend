@@ -1,0 +1,71 @@
+{
+  "code": 200,
+  "data": {
+    "data": [
+      {
+        "_source": {
+          "jobTitle": "Process Engineer- Level 1",
+          "jobCode": 29631,
+          "referenceNumber": "JR-069804",
+          "experienceUIField": null,
+          "DepartmentName": "Transportation (NAM) Associate",
+          "jobUrl": "process-engineer-level-2-jupiter-florida-2026051219011821",
+          "location": "Jupiter, Florida, United States of America",
+          "locAgg": "Jupiter, Florida, United States of America",
+          "text3": "United States of America",
+          "jobLocationRecord": [
+            {
+              "country": "United States",
+              "city": "Jupiter",
+              "formattedLocation": "Jupiter, Florida, United States",
+              "location": "Jupiter, Florida, United States of America",
+              "state": "Florida"
+            }
+          ],
+          "shortDescription": "<p>Support generation of assembly, test and ship work instructions using Solumina.</p>",
+          "mandatorySkills": [
+            "Solumina",
+            "Auditing Operations",
+            "Engines",
+            "Work Instructions"
+          ],
+          "createDate": "12-May-2026"
+        }
+      },
+      {
+        "_source": {
+          "jobTitle": "Technical Writer",
+          "jobCode": 29748,
+          "referenceNumber": "JR-069965",
+          "experienceUIField": "1-3 years",
+          "DepartmentName": "Automotive & Mobility (India) Associate",
+          "jobUrl": "technical-writer-pune-india-2026051517003855",
+          "location": "Pune, Mahārāshtra, India",
+          "locAgg": "Pune, Mahārāshtra, India",
+          "text3": "India",
+          "jobLocationRecord": [
+            {
+              "country": "India",
+              "city": "Pune",
+              "formattedLocation": "Pune, Maharashtra, India",
+              "location": "Pune, Maharashtra, India",
+              "state": "Maharashtra"
+            }
+          ],
+          "shortDescription": "<p><b>Roles &amp; Responsibilities</b>:</p><p>Create/author Technical Manuals such as Operators Manauls, Maintenance Manuals, Parts Catalogs&nbsp; for automotive and agriculture products and systems.</p>",
+          "mandatorySkills": [
+            "PTC Creo",
+            "PTC Arbortext Editor",
+            "Arbortext IsoDraw"
+          ],
+          "createDate": "15-May-2026"
+        }
+      }
+    ],
+    "totalCount": 132,
+    "hasMoreData": true,
+    "facetedSearchConfig": {
+      "paginationHowMuch": "10"
+    }
+  }
+}

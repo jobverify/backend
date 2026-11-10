@@ -8,7 +8,9 @@
     "start": "node server.js",
     "e2e:local-stack": "node scripts/startLocalE2EStack.js",
     "clean:workspace": "node scripts/cleanWorkspace.js",
-    "lint": "node scripts/lintSyntax.js",
+    "lint": "npm run lint:syntax && npm run lint:semantic",
+    "lint:syntax": "node scripts/lintSyntax.js",
+    "lint:semantic": "eslint server.js loadEnv.js eslint.config.js src db scripts scraper-support --no-warn-ignored",
     "seo:keyword": "node scripts/checkIndexedKeyword.js",
     "audit:dependencies": "node scripts/auditDependencies.js",
     "test": "node --test --test-concurrency=4 \"test/**/*.test.js\" \"scraper/**/*.test.js\" \"scraper-support/**/*.test.js\"",
@@ -58,7 +60,7 @@
     "jobs:profile:local": "node scripts/profileLocalJobQueries.js",
     "test:api": "node --test --test-concurrency=4 \"test/**/*.test.js\"",
     "test:scraper": "node --test --test-concurrency=4 \"scraper/**/*.test.js\" \"scraper-support/**/*.test.js\"",
-    "check": "npm run lint && npm run test:api",
+    "check": "npm run lint && npm test",
     "test:integration": "node --test test/integration/*.integration.js",
     "test:provision-mongo": "node scripts/provisionTestMongo.js",
     "resume:setup": "node scripts/setupResumeRuntime.js",
@@ -103,14 +105,18 @@
     "playwright": "1.60.0",
     "razorpay": "^2.9.8",
     "tesseract.js": "^7.0.0",
-    "undici": "^7.30.1",
+    "undici": "^7.30.2",
     "word-extractor": "^1.0.4"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^16.5.0",
     "mongodb-memory-server": "^11.2.0",
     "nodemon": "^3.1.14"
   },
   "overrides": {
+    "minimatch": "^11.0.1",
     "nodemon": {
       "minimatch": "^11.0.1"
     }

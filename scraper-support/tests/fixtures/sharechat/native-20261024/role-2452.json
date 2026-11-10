@@ -1,0 +1,35 @@
+{
+  "status": 200,
+  "data": {
+    "requesterTitle": "",
+    "activeApplicationCount": 48,
+    "maxActiveApplication": 1000,
+    "reqDetailsBO": {
+      "educationList": [
+        "UG - Any"
+      ],
+      "mandatorySkillList": [
+        "Video editing"
+      ],
+      "nonMandatorySkillList": [],
+      "jdDisplay": "<p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Who are we, and what do we do?</strong></p><p><br></p><p>ShareChat (Mohalla Tech Pvt Ltd) is India’s largest homegrown social media company and the only local player to achieve profitability in the industry, with 200+ million Monthly Monetizable Users across all its platforms.</p><p><br></p><p>Founded in 2015, ShareChat has social media brands such as the ShareChat App and Moj App and micro drama app QuickTV under its portfolio. QuickTV, the newest addition to ShareChat's family of apps, crossed the 10 million downloads mark within 3 months of launch and currently has 60Mn MAUs across the network viewing the vertical episodic content.&nbsp;</p><p><br></p><p>Today, the ShareChat network maintains a whopping 1,000 Cr ARR and is India’s leading social media platform servicing users across the country in 15 regional languages. This growth has led to a 28% YoY revenue growth in the July-Sept (2025-26) quarter and increased it by more than 60% in the Oct-Dec quarter.</p><p><br></p><p class=\"ql-align-justify\"><strong>What does the team do ?&nbsp;</strong></p><p><br></p><p class=\"ql-align-justify\">At QuickTV, ShareChat's short-form microdrama streaming app, the Content Operations team drives the creation and acquisition of bingeable, vertical microdramas — both live-action and AI-generated — built for mobile-first audiences. Partnering with production houses, creators, product, and feed teams, the team runs the full pipeline from script and greenlighting to production, localization, and release. It also leverages AI production tooling to turn screenplays into video faster and scale output across languages and markets.</p><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">What You’ll Do?&nbsp;</strong></p><p class=\"ql-align-justify\"><br></p><ul><li><span style=\"background-color: transparent;\">Collaborate with writers, creative directors and AI video animators, to create strong edits that translate creative ideas into visually striking AI-driven microdrama stories</span></li><li><span style=\"background-color: transparent;\">Maintain consistency in visual identity, tone, and messaging across all content formats.</span></li><li><span style=\"background-color: transparent;\">Analyze feedback and quickly deliver multiple refined versions optimized for platform performance and audience response.</span></li><li><span style=\"background-color: transparent;\">Conduct research and experiments and develop insights to enhance the quality and efficiency of final edits of series. </span></li><li><span style=\"background-color: transparent;\">Contribute innovative ideas and creative solutions to enhance team processes</span></li></ul><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Who are you?</strong></p><p><br></p><ul><li><span style=\"background-color: transparent;\">Degree or diploma in Film Editing, Mass Communication, Multimedia, or related fields.</span></li><li><span style=\"background-color: transparent;\">Proficient in tools such as Adobe Premiere Pro, Final Cut Pro, After Effects, and basic color correction and sound balancing.</span></li><li><span style=\"background-color: transparent;\">Strong storytelling skills with proven film making/ad film samples</span></li><li><span style=\"background-color: transparent;\">4-5 years in video editing for entertainment, digital media, television, or marketing agencies — especially in Hindi content.</span></li><li><span style=\"background-color: transparent;\">Comfortable working under tight deadlines and shifting priorities in a dynamic content environment.</span></li><li><span style=\"background-color: transparent;\">Deep understanding of Indian audiences, regional nuances, and content consumption behavior.</span></li></ul><p><br></p><p class=\"ql-align-justify\"><strong style=\"background-color: transparent; color: rgb(0, 0, 0);\">Where you’ll be?</strong></p><p class=\"ql-align-justify\"><span style=\"background-color: transparent; color: rgb(0, 0, 0);\">Location - Remote</span></p><p><br></p><p><strong class=\"ql-font-arial\">What’s In It For You?</strong></p><p><br></p><ul><li class=\"ql-align-justify\"><strong>At ShareChat, our values—Ownership, Speed, User Empathy, Integrity, and First Principles</strong>—are at the core of our ways of working. We believe in hiring top talent and grooming future leaders by providing a flexible environment to aid growth and development.</li></ul><p><br></p>",
+      "fresher": false,
+      "requisitionLocationGroup": [],
+      "expMin": 3,
+      "expMax": 6,
+      "reqTitle": "AI Video Editor",
+      "reqId": 2452,
+      "locationList": [
+        {
+          "office": "India",
+          "address": "India"
+        }
+      ],
+      "statusId": 3,
+      "requisitionPublished": true
+    }
+  },
+  "ts": 35,
+  "requestId": "a1e8532e-4c53-41b5-b80d-d8538bd57965",
+  "v": "d17-dn-20261024061742"
+}

@@ -128,7 +128,10 @@ const boardPassiveDataClass=d=>{
   programs.add(n)
  }
  const frame=passiveCarrierFrame(d,overrides)
- need(['bc802332e4fafa7379dc5a603c1263a99e5133eee0fcdc607d58cf65b64f887d','5ec1947df9e932620f571fa797cd276b8abf250ab3b07d56c77e9fd51949fb31'].includes(frame.sha256),'Unreviewed complete board data carrier layout',frame)
+ // Synthetic combination of the reviewed47-carrier board layout and the
+ // already allowed override URI i=565448483. The retained genuine fixture
+ // declares i=1008964815; no live closing observation is claimed here.
+ need(['bc802332e4fafa7379dc5a603c1263a99e5133eee0fcdc607d58cf65b64f887d','5ec1947df9e932620f571fa797cd276b8abf250ab3b07d56c77e9fd51949fb31','710f3a302145393cc0c53fce604222947b3eb4d224504a5e4638c3692789344e','1128cd20a9b434ffe95317b97bccf237d079ac60580d9b5d1b3a197d05a9ce0a'].includes(frame.sha256),'Unreviewed complete board data carrier layout',frame)
  return{frame,programs}
 }
 // Finite, unexecuted literal use-sites. Complete program and carrier context
@@ -138,11 +141,18 @@ const typedPassivePlans={"listing":{"count":50,"sites":[{"index":35,"path":["bod
 // Exact AST paths, quotes, complete program bytes and all43 carrier contexts
 // stay bound. Values never construct native requests, credentials or job fields.
 typedPassivePlans.corporate={"count":43,"sites":[{"index":25,"path":["body","2","expression","right","properties","0","value"],"type":"corporate-form-data","quote":"'","marker":"\"<PASSIVE_FORM_DATA>\""},{"index":25,"path":["body","2","expression","right","properties","1","value"],"type":"corporate-form-data","quote":"'","marker":"\"<PASSIVE_FORM_DATA>\""},{"index":28,"path":["body","0","declarations","0","init","properties","5","value"],"type":"corporate-form-data","quote":"\"","marker":"\"<PASSIVE_FORM_DATA>\""},{"index":29,"path":["body","0","declarations","0","init","properties","5","value"],"type":"corporate-form-data","quote":"\"","marker":"\"<PASSIVE_FORM_DATA>\""},{"index":31,"path":["body","0","declarations","0","init","properties","9","value","properties","0","value"],"type":"corporate-form-data","quote":"\"","marker":"\"<PASSIVE_FORM_DATA>\""},{"index":31,"path":["body","0","declarations","0","init","properties","9","value","properties","1","value"],"type":"corporate-form-data","quote":"\"","marker":"\"<PASSIVE_FORM_DATA>\""},{"index":37,"path":["body","0","declarations","0","init","properties","1","value"],"type":"corporate-form-data","quote":"\"","marker":"\"<PASSIVE_FORM_DATA>\""}],"programFrames":{"25":"88acda07d82bad5988a9a70ac0fbdeb2184d9436e7e090107dd9dc85809abad0","28":"586e47aa9e2070ce2a697bf1d6d4e3cdcb9d2cd71d44420f3d1b841a491c1ddf","29":"586e47aa9e2070ce2a697bf1d6d4e3cdcb9d2cd71d44420f3d1b841a491c1ddf","31":"2a775f62f8a6d3c2b72d1009b4886ea627a5ed665a0662e03e0dea6c9abd5f77","37":"440937ebf26307db484283bc965d22f38a8edbb361a9bf2d845425ecfe744ec9"},"frames":["bee9124f1b3c8e07682adb43be917d66f965ab5a8253dbf67ee42b5ca46a80fd"]}
-// This one passive privacy URL is data only, never requested or job authority.
-// Only the two observed spellings at this exact use-site are supported. Keep
-// the old URL as the frame spelling so every other byte/all43 contexts stay bound.
+// This is complianz.page_links.us['privacy-statement-children'].url, a cached
+// cookie-consent fallback with an empty sibling title. Actual privacy-policy
+// links remain fixed by the whole program hash. This one passive value never
+// supplies requests or job authority. Its bounded same-origin WP slug type is
+// checked at the exact AST site; every other byte/all43 contexts remain bound.
 typedPassivePlans.corporate.sites.push({index:33,path:['body',0,'declarations',0,'init','properties',26,'value','properties',1,'value','properties',2,'value','properties',1,'value'],type:'corporate-privacy-url',marker:'"https://www.providence.in/"'})
 typedPassivePlans.corporate.programFrames[33]='da906c4a4e472448d5959ae4aa060640cd35ae8ab81c0da3369cbcf47624d961'
+// Genuine Nov10 uses the already reviewed ace48 stylesheet declaration with
+// the present privacy program. Replacing that single declaration by reviewed
+// 3fab bytes exactly recovers bee912's complete43-carrier context. Admit this
+// finite vector only; every typed program/authority/other carrier stays bound.
+typedPassivePlans.corporate.frames.push('4b087b71413ea3d931e353187193c23683811d5426a44281b6df6ffdf7e8abde')
 const typedPassiveDataClass=(d,kind,publicId,listingContext=null)=>{
  let plan=typedPassivePlans[kind]
  need(plan,'Unreviewed passive data kind',{kind})
@@ -173,7 +183,7 @@ const typedPassiveDataClass=(d,kind,publicId,listingContext=null)=>{
   }else if(spec.type==='corporate-form-data'){
    need(kind==='corporate'&&typeof value==='string'&&/^[0-9a-f]{10}$/.test(value)&&raw===spec.quote+value+spec.quote,'Unreviewed corporate passive form data',{kind,index:spec.index})
   }else if(spec.type==='corporate-privacy-url'){
-   need(kind==='corporate'&&typeof value==='string'&&['https://www.providence.in/','https://www.providence.in/early-careers/'].includes(value)&&raw==='"'+value+'"','Unreviewed corporate passive privacy URL',{kind,index:spec.index})
+   need(kind==='corporate'&&typeof value==='string'&&value.length<=256&&/^https:\/\/www\.providence\.in\/(?:[a-z0-9]+(?:-[a-z0-9]+)*\/)?$/.test(value)&&raw==='"'+value+'"','Unreviewed corporate passive privacy URL',{kind,index:spec.index})
   }else if(spec.type==='public-number')need(Number.isSafeInteger(value)&&value>0&&String(value)===publicId&&raw===String(value),'Typed passive public number mismatch',{index:spec.index})
   else if(spec.type==='public-string')need(typeof value==='string'&&value===publicId&&raw==="'"+value+"'",'Typed passive public string mismatch',{index:spec.index})
   else{need(spec.type==='opaque-internal'&&typeof value==='string'&&/^[0-9]{4}-en_US$/.test(value)&&raw===JSON.stringify(value),'Unreviewed opaque internal data',{index:spec.index});opaqueInternalId=value}
@@ -216,10 +226,10 @@ const typedPassiveDataClass=(d,kind,publicId,listingContext=null)=>{
  const frame=passiveCarrierFrame(d,overrides),knownFrame=plan.frames.includes(frame.sha256)
  let listingAlias=false
  if(kind==='listing'&&!knownFrame){
-  const n=nodes[47],oldURI='/js/override.js?locale=en_US&i=585000988',newURI='/js/override.js?locale=en_US&i=745724182'
-  // Only this empty, lexical whole tag may use the two observed declarations.
+  const n=nodes[47],oldURI='/js/override.js?locale=en_US&i=585000988',newURI='/js/override.js?locale=en_US&i=745724182',currentURI='/js/override.js?locale=en_US&i=565448483',fourthURI='/js/override.js?locale=en_US&i=1008964815'
+  // Only this empty, lexical whole tag may use the four observed declarations.
   // Compare virtual records; never rewrite the DOM/Response or fetch this URL.
-  if(n?.tag==='script'&&!n.inactive&&n.raw===''&&n.attrs.type==='text/javascript'&&Object.keys(n.attrs).length===2&&n.attributeTokens.length===2&&(n.attrs.src===oldURI||n.attrs.src===newURI)){
+  if(n?.tag==='script'&&!n.inactive&&n.raw===''&&n.attrs.type==='text/javascript'&&Object.keys(n.attrs).length===2&&n.attributeTokens.length===2&&(n.attrs.src===oldURI||n.attrs.src===newURI||n.attrs.src===currentURI||n.attrs.src===fourthURI)){
    const rawURI=n.attrs.src.replace('&','&amp;'),outer=d.outer(n)
    if(outer==='<script type="text/javascript" src="'+rawURI+'"></script>'){
     const virtualOuter=new Map(overrides),virtualAttributes=new Map(virtualListingAttributes)
@@ -301,6 +311,12 @@ const formattingLength=(value,units,min,max,zero=true)=>{
 const formattingWidth=v=>['thin','medium','thick'].includes(v)||formattingLength(v,['pt'],0,2.25)
 const formattingValue=(property,value)=>{
  const v=value.trim(),words=v.split(/ +/)
+ // Exact witnessed Word indentation in role56770644. Keep the general px24
+ // cap and all other tuples unchanged; preserve original criteria/style bytes.
+ if(property==='margin'&&v==='0.0cm 0.0cm 0.0cm 32.0px')return true
+ // The witnessed zero-inch indentation is passive layout, with no added unit
+ // range or alternate value admitted by this exact spelling.
+ if(property==='text-indent'&&v==='0.0in')return true
  if(Object.hasOwn(formattingCaps,property)){
   if(words.length<1||words.length>(['margin','padding'].includes(property)?4:1))return false
   return words.every(token=>{const m=token.match(formattingDimension);if(!m||!formattingDecimal(m[1]))return false;const number=m[1],unit=(m[2]||'').toLowerCase();if(!unit)return !number.startsWith('-')&&formattingCompare(number,0)===0;const caps=formattingCaps[property];if(!Object.hasOwn(caps,unit))return false;return caps[unit]<0?formattingCompare(number,caps[unit])===0:!number.startsWith('-')&&formattingCompare(number,0)>=0&&formattingCompare(number,caps[unit])<=0})
@@ -686,6 +702,13 @@ export const createProvidenceReader=(options={})=>{
 // Authored section-label data only. The whole native field is already checked
 // by parseProvidenceRoleHTML before this additional bounded marker branch.
 const authoredLabelPatterns=Object.entries({"responsibility-label":"(?:(?:key|core|main|essential|primary|job|role|principal|specific|major|typical|general|position|functional|technical)\\s+){0,2}(?:responsibilities|accountabilities|duties)(?:\\s*(?:&|and|/)\\s*(?:duties|responsibilities|accountabilities))?\\s*:","responsibility-label-no-colon":"(?:(?:key|core|main|essential|primary|job|role|principal|specific|major|typical|general|position|functional|technical)\\s+){0,2}(?:responsibilities|accountabilities|duties)(?:\\s*(?:&|and|/)\\s*(?:duties|responsibilities|accountabilities))?","qualification-label":"(?:(?:minimum|required|preferred|basic|essential|desired|mandatory|professional|technical|key|additional|educational)\\s+){0,2}qualifications(?:\\s*(?:&|and|/)\\s*(?:experience|skills))?\\s*:?","experience-label":"(?:(?:minimum|required|preferred|desired|relevant|professional|technical|key|additional|educational|work)\\s+){0,2}(?:experience|skills)(?:\\s*(?:&|and|/)\\s*(?:experience|skills))?\\s*:?","summary-label":"(?:position|job|role)\\s+summary\\s*:?"}).map(([family,pattern])=>({family,re:new RegExp('^(?:'+pattern+')$','i')}))
+// Employer-authored question headings are still complete standalone labels
+// inside the validated native criteria field, never substring/prose matches.
+const authoredQuestionLabelPatterns=[
+ {family:'responsibility-question-label',re:/^what will you be responsible for\?$/i},
+ {family:'qualification-question-label',re:/^who (?:are we|we are) looking for\?$/i},
+]
+authoredLabelPatterns.push(...authoredQuestionLabelPatterns)
 const authoredLabelWrappers=new Set(['p','div','span','strong','b','em','u','br'])
 const authoredCriteriaLabels=(d,native)=>{
  const nodes=descendants(native),projected=new Map(),safe=new Map()
@@ -702,7 +725,7 @@ const authoredCriteriaLabels=(d,native)=>{
  for(const n of nodes){
   if(n===native||!['p','div','strong','b'].includes(n.tag)||!safe.get(n))continue
   const label=projected.get(n)
-  if(!label||!/^[A-Za-z &/:]+$/.test(label))continue
+  if(!label||!/^[A-Za-z &/:?]+$/.test(label))continue
   const families=authoredLabelPatterns.filter(x=>x.re.test(label)).map(x=>x.family)
   if(!families.length)continue
   const block=['p','div'].includes(n.tag)&&label.length<=80
@@ -738,7 +761,7 @@ const currentRole=(html,row,now)=>{
  const native=one(d.nodes.filter(n=>n.attrs.itemprop==='description'),'native description')
  const heldBeforeCriteriaMarker=result.held
  const headers=descendants(native).filter(n=>/^h[1-4]$/.test(n.tag)).map(text)
- if(!headers.some(v=>/responsibilit|qualification|requirement|experience|what you|position summary/i.test(v))){result.held=true;result.reasons.push('native-full-role-criteria-markers-unproven')}
+ if(!headers.some(v=>/responsibilit|qualification|requirement|experience|what you|position summary/i.test(v)||authoredQuestionLabelPatterns.some(({re})=>re.test(v)))){result.held=true;result.reasons.push('native-full-role-criteria-markers-unproven')}
  if(reviewedOwner&&result.reasons.includes('native-full-role-criteria-markers-unproven')){
   const authoredCriteriaLabelEvidence=authoredCriteriaLabels(d,native)
   if(authoredCriteriaLabelEvidence.length){

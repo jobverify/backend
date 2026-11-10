@@ -273,7 +273,21 @@ export const extractJobDetail = (html, listing = {}) => {
 function boundNativeDetail(html,listing) {
   const document=readNativeDocument(html),visible=readVisibleNativeDocument(html,{strict:true})
   const field=id=>{
-    const nodes=visible.nodes(node=>node.tag==='p'&&node.attrs.id===id)
+    // Current Talentsoft descriptions are divs containing nested paragraphs;
+    // identity and workplace fields remain scalar paragraphs.
+    const description=/^fldjobdescription_(?:description1|longtext2|description2)$/.test(id)
+    const ownsField=node=>(node.tag==='p'||description&&node.tag==='div')&&node.attrs.id===id
+    const nodes=visible.nodes(ownsField)
+    if(description){
+      // The active reader omits inert nodes from nodes(); inspect the original
+      // tree too so a hidden field or subtree cannot silently lose criteria.
+      const original=[]
+      const reveal=node=>typeof node==='string'?node:{...node,inert:false,children:node.children.map(reveal)}
+      const visit=node=>{if(typeof node==='string')return;if(ownsField(node))original.push(reveal(node));node.children.forEach(visit)}
+      document.nodes(node=>node.tag==='root').forEach(visit)
+      if(original.length!==nodes.length||normalizeWhitespace(original.map(node=>document.text(node)).join(' '))
+        !==normalizeWhitespace(nodes.map(node=>visible.text(node)).join(' ')))throw Error('Safran detail contains hidden native description criteria')
+    }
     if(nodes.length>1)throw Error('Safran detail identity has duplicate native fields')
     return nodes.length===1?normalizeWhitespace(visible.text(nodes[0])):null
   }

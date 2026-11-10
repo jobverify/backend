@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Intern - Marketing (SM) · Payatu Careers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+     
+    :root{color-scheme:light dark;
+      --bg:#0a0a0c;--surface:#111114;--surface-2:#15151a;--border:#1e1e24;--border-hover:#2c2c34;
+      --text:#ededf0;--text-2:#8a8a93;--text-3:#56565d;--info:#60a5fa;--success:#4ade80;--danger:#f87171;
+      --t-appsec:#60a5fa;--t-redteam:#f87171;--t-soc:#4ade80;--t-cloud:#c084fc;--t-iot:#22d3ee;--t-sales:#f59e0b;
+      --t-csm:#ec4899;--t-bd:#f97316;--t-grc:#94a3b8;--t-nontech:#9ca3af;
+      --t-marketing:#e879f9;--t-finance:#2dd4bf;--t-hr:#fbbf24;--t-ops:#a3a3a3;
+      --btn-hover-bg:#fff;}
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#fafafa;--surface:#ffffff;--surface-2:#f4f4f6;--border:#e4e4e9;--border-hover:#c8c8d0;
+        --text:#18181b;--text-2:#57575e;--text-3:#8a8a93;--info:#2563eb;--success:#15803d;--danger:#b91c1c;
+        --t-appsec:#2563eb;--t-redteam:#dc2626;--t-soc:#16a34a;--t-cloud:#9333ea;--t-iot:#0891b2;--t-sales:#b45309;
+        --t-csm:#be185d;--t-bd:#c2410c;--t-grc:#64748b;--t-nontech:#6b7280;
+        --t-marketing:#c026d3;--t-finance:#0d9488;--t-hr:#b45309;--t-ops:#6b7280;
+        --btn-hover-bg:#000;}
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:920px;margin:0 auto;padding:32px 24px}
+    header{padding-bottom:24px;border-bottom:1px solid var(--border);margin-bottom:32px}
+    header h1{font-size:22px;font-weight:700;letter-spacing:-0.02em}
+    header .sub{color:var(--text-3);font-size:12px;margin-top:4px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;transition:border-color .15s}
+    .card:hover{border-color:var(--border-hover)}
+    .card h2{font-size:16px;font-weight:600;margin-bottom:6px}
+    .card .meta{color:var(--text-3);font-size:12px;margin-top:4px}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:var(--surface-2);font-size:11px;font-weight:600;border:1px solid var(--border)}
+    .pill .dot{width:6px;height:6px;border-radius:50%}
+    .pill.AppSec{color:var(--t-appsec)}.pill.AppSec .dot{background:var(--t-appsec)}
+    .pill.RedTeam, .pill.Red-Team{color:var(--t-redteam)}.pill.RedTeam .dot, .pill.Red-Team .dot{background:var(--t-redteam)}
+    .pill.SOC{color:var(--t-soc)}.pill.SOC .dot{background:var(--t-soc)}
+    .pill.Cloud{color:var(--t-cloud)}.pill.Cloud .dot{background:var(--t-cloud)}
+    .pill.IoT{color:var(--t-iot)}.pill.IoT .dot{background:var(--t-iot)}
+    .pill.Sales{color:var(--t-sales)}.pill.Sales .dot{background:var(--t-sales)}
+    .pill.CSM{color:var(--t-csm)}.pill.CSM .dot{background:var(--t-csm)}
+    .pill.BD{color:var(--t-bd)}.pill.BD .dot{background:var(--t-bd)}
+    .pill.GRC{color:var(--t-grc)}.pill.GRC .dot{background:var(--t-grc)}
+    .pill.NonTech{color:var(--t-nontech)}.pill.NonTech .dot{background:var(--t-nontech)}
+    .pill.Marketing{color:var(--t-marketing)}.pill.Marketing .dot{background:var(--t-marketing)}
+    .pill.Finance{color:var(--t-finance)}.pill.Finance .dot{background:var(--t-finance)}
+    .pill.HR{color:var(--t-hr)}.pill.HR .dot{background:var(--t-hr)}
+    .pill.Ops{color:var(--t-ops)}.pill.Ops .dot{background:var(--t-ops)}
+    .desc{margin-top:16px;color:var(--text-2);font-size:14px;line-height:1.7}
+    .desc h1,.desc h2{font-size:16px;font-weight:700;color:var(--text);margin:22px 0 8px;letter-spacing:-0.01em}
+    .desc h3,.desc h4{font-size:14px;font-weight:600;color:var(--text);margin:18px 0 6px}
+    .desc p{margin:10px 0}
+    .desc ul,.desc ol{margin:10px 0;padding-left:22px}
+    .desc li{margin:4px 0}
+    .desc strong{color:var(--text);font-weight:600}
+    .desc a{color:var(--info);text-decoration:underline}
+    .desc code{font-family:'JetBrains Mono',monospace;font-size:12.5px;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:1px 5px}
+    .desc pre{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;overflow-x:auto;margin:12px 0}
+    .desc pre code{background:none;border:none;padding:0}
+    .desc blockquote{border-left:3px solid var(--border-hover);padding-left:14px;margin:12px 0;color:var(--text-3)}
+    .desc hr{border:none;border-top:1px solid var(--border);margin:20px 0}
+    .desc table{border-collapse:collapse;margin:12px 0}
+    .desc th,.desc td{border:1px solid var(--border);padding:6px 12px;text-align:left}
+    form{margin-top:24px;display:flex;flex-direction:column;gap:14px;max-width:520px}
+    label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-2)}
+    input[type=text],input[type=email],input[type=tel],input[type=number],select{background:var(--surface-2);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:6px;font-size:14px;font-family:inherit}
+    input[type=file]{font-size:12px;color:var(--text-2)}
+    input:focus,select:focus{outline:none;border-color:var(--info)}
+    button{background:var(--text);color:var(--bg);border:none;padding:12px 16px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer}
+    button:hover{background:var(--btn-hover-bg)}
+    .ok{margin-top:18px;padding:14px 16px;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.4);border-radius:8px;color:var(--success);font-size:13px}
+    .err{margin-top:18px;padding:14px 16px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.4);border-radius:8px;color:var(--danger);font-size:13px}
+    .back{color:var(--text-3);font-size:12px;display:inline-block;margin-bottom:18px}
+    .back:hover{color:var(--text)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+<a class="back" href="./">← All open roles</a>
+<header>
+  <h1>Intern - Marketing (SM)</h1>
+  <div class="sub" style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <span class="pill Marketing"><span class="dot"></span>Marketing</span>
+    <span>· Marketing</span>
+    <span>· Pune</span>
+    <span>· 0–0 yrs</span>
+    
+  </div>
+</header>
+<div class="desc"><p>We seek a dynamic and motivated Social Media Marketing Intern to join our team. As a<br>
+Social Media Marketing Intern, you will gain hands-on experience creating and<br>
+managing content across social platforms for a B2B cybersecurity brand, while also<br>
+getting exposure to broader digital marketing execution and AI-driven marketing<br>
+workflows. This position is ideal for someone who is passionate about social media and<br>
+content, curious about how AI is reshaping marketing, eager to learn, and looking to<br>
+kickstart their career in marketing.</p>
+<p><strong>Who are we?</strong><br>
+Payatu is an ISO certified company where we strive to create a culture of excellence,<br>
+growth and innovation that empowers our employees to reach new heights in their<br>
+careers. We are young and passionate folks driven by the power of the latest and<br>
+innovative technologies in IoT, AI/ML, Blockchain, and many other advanced<br>
+technologies. We are on the mission of making Cyberworld safe for every organization,<br>
+product, and individual.</p>
+<p><strong>Who are you?</strong><br>
+You are a charismatic young creative hustler who loves to learn and grow. You realize<br>
+that business is more about helping a customer and solving their problem than only<br>
+making a profit. You want to grow your career in the hyper-growing IT / Cybersecurity<br>
+industry.</p>
+<p><strong>Your everyday work will look like:</strong><br>
+<strong>Social Media Marketing (primary focus)</strong><br>
+• Plan, create, and schedule engaging content for LinkedIn, X (Twitter), Instagram,<br>
+and other relevant platforms, tailored to a B2B cybersecurity audience.<br>
+• Draft copy for posts, carousels, polls, and threads that translate technical<br>
+security topics (CVEs, research findings, compliance updates) into audience<br>
+friendly content.<br>
+• Use AI tools (e.g., ChatGPT, Claude, Canva AI) to speed up ideation, drafting,<br>
+and repurposing of content while keeping Payatu's brand voice and factual<br>
+accuracy intact.<br>
+• Actively monitor social media trends to create timely, relevant content.<br>
+• Coordinate with designers and subject matter experts to turn blogs, case<br>
+studies, webinars, and research into social-ready assets.<br>
+• Monitor social channels daily, respond to comments/DMs, track mentions, and<br>
+flag engagement opportunities.<br>
+• Track and report on social media performance (reach, engagement, follower<br>
+growth, click-throughs) and suggest improvements based on data.<br>
+• Stay on top of platform trends, algorithm changes, and competitor social activity<br>
+in the cybersecurity/IT space, including how competitors are using AI in their<br>
+content.<br>
+• Support employer branding and event-related social content.<br>
+• Support basic SEO and AEO (Answer Engine Optimization) tasks such as<br>
+keyword tagging and on-page optimization for social-linked content (blogs,<br>
+landing pages), keeping in mind how AI search/answer engines surface content.<br>
+• Help maintain content calendars that align social media with broader digital<br>
+marketing and campaign timelines.<br>
+• Explore and suggest AI-powered marketing tools/workflows (content generation,<br>
+scheduling, analytics, image generation) that could improve team efficiency.<br>
+• Comfort experimenting with AI writing/design tools as part of the content<br>
+workflow.<br>
+• Interest in cybersecurity and willingness to learn industry-specific terminology.</p>
+<p><strong>Eligibility Criteria:</strong><br>
+• Currently pursuing or recently completed a degree in Marketing,<br>
+Communications, or a related field.<br>
+• Strong interest in social media and digital marketing, with a desire to learn and<br>
+grow in this field.<br>
+• Curiosity about AI tools and how they're changing content creation and<br>
+marketing workflows.<br>
+• Familiarity with major social media platforms, content scheduling tools, and<br>
+basic content management systems.<br>
+• Excellent written and verbal communication skills able to write crisp,<br>
+engaging copy (with or without AI assistance).<br>
+• A good eye for content, trends, and what makes people stop scrolling.<br>
+• Strong attention to detail and ability to multitask across platforms and<br>
+campaigns.<br>
+• Analytical mindset with the ability to interpret basic performance data and<br>
+identify actionable insights.<br>
+• Proactive approach and eagerness to learn, especially in the fast-evolving fields<br>
+of social media, AI, and cybersecurity.<br>
+• Ability to work collaboratively with cross-functional teams and adapt to a<br>
+dynamic consulting environment.<br>
+• Creativity in problem-solving and proposing new ideas for social growth and<br>
+engagement.</p>
+<p><strong>Tool Knowledge:</strong><br>
+<strong>Proficiency or familiarity with:</strong><br>
+• Social media platforms (LinkedIn, X/Twitter, Instagram) and native/third-party<br>
+scheduling tools.<br>
+• AI tools for content/design (e.g., ChatGPT, Claude, Canva AI, or similar).<br>
+• Basic design tools (Canva or similar) for quick content mockups.</p>
+</div>
+
+<form id="apply-form" method="post" enctype="multipart/form-data" action="intern-marketing-sm/apply">
+  <h2 id="apply" style="margin-top:24px;scroll-margin-top:24px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-2)">Apply</h2>
+  <label>First name <input type="text" name="first_name" required /></label>
+  <label>Last name <input type="text" name="last_name" required /></label>
+  <label>Email <input type="email" name="email" required /></label>
+  <label>Phone <input type="tel" name="phone" /></label>
+  <label>Current location <input type="text" name="applicant_location" placeholder="Bengaluru / Remote — India" required /></label>
+  <label>Years of experience <input type="number" name="applicant_experience_years" min="0" max="60" step="0.5" placeholder="4.5" required /></label>
+  <label>Current CTC (LPA) <input type="number" name="current_ctc_lakhs" min="0" max="999" step="0.1" placeholder="12.0" required /></label>
+  <label>Expected CTC (LPA) <input type="number" name="expected_ctc_lakhs" min="0" max="999" step="0.1" placeholder="18.0" required /></label>
+  <label>Notice period (days)
+    <select name="notice_period_days" required>
+      <option value="">— pick —</option>
+      <option value="0">Immediate (0)</option>
+      <option value="15">15 days</option>
+      <option value="30">30 days</option>
+      <option value="45">45 days</option>
+      <option value="60">60 days</option>
+      <option value="90">90 days</option>
+    </select>
+  </label>
+  <label>Last working day (optional — if you've already resigned)
+    <input type="date" name="last_working_day" />
+  </label>
+  <label>Resume (PDF, ≤ 10 MB) <input type="file" name="resume" accept=".pdf,application/pdf" required /></label>
+  
+  <button type="submit">Submit application</button>
+  <div id="msg"></div>
+</form>
+
+
+<script>
+document.getElementById('apply-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.currentTarget;
+  const msg = document.getElementById('msg');
+  msg.innerHTML = '';
+  const r = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+  const j = await r.json().catch(()=>({}));
+  if (r.ok) {
+    msg.innerHTML = '<div class="ok">' + (j.message || 'Thanks!') + '</div>';
+    form.reset();
+  } else {
+    msg.innerHTML = '<div class="err">' + (j.error || 'Failed to submit. Please retry.') + '</div>';
+  }
+});
+</script></div>
+</body>
+</html>

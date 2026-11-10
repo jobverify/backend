@@ -57,6 +57,7 @@ import {
   readJobDatasetSummary,
 } from "../services/jobDatasetSummaryService.js";
 import { buildJobFilterConditions } from "../services/jobFilterMatcher.js";
+import { parseLegacyJobPagination } from "../utils/legacyJobPagination.js";
 
 const MAX_REGEX_FILTER_LENGTH = 80;
 const MAX_TEXT_QUERY_LENGTH = 200;
@@ -199,7 +200,7 @@ const toValidDate = (value) => {
 const resolvePublicJobDatasetSummary = async (siteSettings = {}) => {
   // Stored summaries include all categories. Filtered views query their own scope.
   if (siteSettings.experiencedJobsEnabled === false) return null;
-  const summary = await readJobDatasetSummary();
+  const summary = await readJobDatasetSummary({ maxTimeMS: MAX_QUERY_EXECUTION_MS });
   const now = new Date();
   const refreshedAt = normalizeLifecycleDate(summary?.refreshedAt);
   const nextClosingAt = normalizeLifecycleDate(summary?.nextClosingAt);
@@ -224,7 +225,7 @@ const resolvePublicJobDatasetSummary = async (siteSettings = {}) => {
     return summary;
   }
 
-  return refreshJobDatasetSummary();
+  return refreshJobDatasetSummary({ maxTimeMS: MAX_QUERY_EXECUTION_MS });
 };
 
 const resolvePublicJobDatasetTotals = async (siteSettings) => {
@@ -1295,93 +1296,45 @@ export const getAllJobs = async (req, res) => {
     const filters = applyPublicJobVisibility(filterConditions, req.siteSettings);
     const hasTextSearch = Boolean(filters.$text);
 
-    const DEFAULT_PAGE = 1;
-    const DEFAULT_LIMIT = JOB_CARD_PAGE_LIMIT;
-    const MAX_LIMIT = MAX_JOB_CARD_PAGE_LIMIT;
-
-    let pageNum = Math.max(1, parseInt(page) || DEFAULT_PAGE);
-    let limitNum = Math.min(MAX_LIMIT, Math.max(1, parseInt(limit) || DEFAULT_LIMIT));
-    if (sort === "recommended") {
-      limitNum = Math.min(limitNum, JOB_CARD_PAGE_LIMIT);
+    const pagination = parseLegacyJobPagination({ page, limit, sort });
+    if (!pagination) {
+      return res.status(400).json({ success: false,
+        message: "Pagination exceeds the supported range. Use /api/jobs/search for deeper results." });
     }
-    const skip = (pageNum - 1) * limitNum;
+    const { page: pageNum, limit: limitNum, offset: skip } = pagination;
+    const queryOptions = { maxTimeMS: MAX_QUERY_EXECUTION_MS };
 
     const sortOption = resolveJobListSortOption({ sort, hasTextSearch });
     const canUseSummaryTotals = isDefaultPublicJobListFilter(filterConditions);
+    let jobsQuery;
     if (sort === "recommended") {
       const recommendationPipeline = buildRecommendationPipeline(
         filters,
         req.user?.profile,
         { skip, limit: limitNum },
       );
-      const summaryTotalsPromise = canUseSummaryTotals
+      jobsQuery = Job.aggregate(recommendationPipeline, queryOptions);
+    } else {
+      jobsQuery = applyJobListProjection(Job.find(filters, null, queryOptions),
+        { includeTextScore: hasTextSearch && !sort })
+        .sort(sortOption).skip(skip).limit(limitNum).lean();
+    }
+
+    // Consume the query immediately: a fast rejection must not wait for the
+    // summary before a handler is attached (Node treats it as process-fatal).
+    const [jobs, summaryTotals] = await Promise.all([
+      jobsQuery.exec(),
+      canUseSummaryTotals
         ? resolvePublicJobDatasetTotals(req.siteSettings).catch(() => null)
-        : Promise.resolve(null);
-      const jobsPromise = Job.aggregate(recommendationPipeline).exec();
-      const summaryTotals = await summaryTotalsPromise;
-
-      if (summaryTotals) {
-        const jobs = await jobsPromise;
-
-        return sendJobsResponse(
-          res,
-          jobs,
-          pageNum,
-          limitNum,
-          summaryTotals.total,
-          summaryTotals.totalCompanies,
-        );
-      }
-
-      const [total, companies, jobs] = await Promise.all([
-        Job.countDocuments(filters),
-        Job.distinct("company", filters),
-        jobsPromise,
-      ]);
-
-      return sendJobsResponse(
-        res,
-        jobs,
-        pageNum,
-        limitNum,
-        total,
-        new Set(companies.filter(Boolean)).size,
-      );
+        : Promise.resolve(null),
+    ]);
+    if (summaryTotals) {
+      return sendJobsResponse(res, jobs, pageNum, limitNum,
+        summaryTotals.total, summaryTotals.totalCompanies);
     }
-
-    const findQuery = applyJobListProjection(
-      Job.find(filters),
-      { includeTextScore: hasTextSearch && !sort },
-    );
-
-    const jobsPromise = findQuery
-      .sort(sortOption)
-      .skip(skip)
-      .limit(limitNum)
-      .lean()
-      .exec();
-
-    if (canUseSummaryTotals) {
-      const summaryTotals = await resolvePublicJobDatasetTotals(req.siteSettings).catch(() => null);
-
-      if (summaryTotals) {
-        const jobs = await jobsPromise;
-
-        return sendJobsResponse(
-          res,
-          jobs,
-          pageNum,
-          limitNum,
-          summaryTotals.total,
-          summaryTotals.totalCompanies,
-        );
-      }
-    }
-
-    const [total, companies, jobs] = await Promise.all([
-      Job.countDocuments(filters),
-      Job.distinct("company", filters),
-      jobsPromise,
+    const [total, companies] = await Promise.all([
+      Job.countDocuments(filters, queryOptions),
+      Job.distinct("company", filters, queryOptions),
     ]);
 
     return sendJobsResponse(
@@ -1393,6 +1346,10 @@ export const getAllJobs = async (req, res) => {
       new Set(companies.filter(Boolean)).size,
     );
   } catch (error) {
+    if (error?.code === 50) {
+      return res.status(408).json({ success: false,
+        message: "Job search timed out. Narrow your filters or use /api/jobs/search." });
+    }
     console.error("Error in getAllJobs:", error);
     return res.status(500).json({
       code: 500,

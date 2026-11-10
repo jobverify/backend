@@ -1,0 +1,299 @@
+{
+  "cat_extfield": {
+    "department": "2",
+    "location": "1"
+  },
+  "cat": {
+    "1": "Location",
+    "2": "Department"
+  },
+  "value": {
+    "1": {
+      "cat_id": "1",
+      "name": "Mumbai"
+    },
+    "2": {
+      "cat_id": "1",
+      "name": "Delhi"
+    },
+    "3": {
+      "cat_id": "1",
+      "name": "Chennai"
+    },
+    "4": {
+      "cat_id": "1",
+      "name": "Bangalore"
+    },
+    "18": {
+      "cat_id": "1",
+      "name": "Hyderabad"
+    },
+    "26": {
+      "cat_id": "2",
+      "name": "Sales"
+    },
+    "27": {
+      "cat_id": "2",
+      "name": "Finance"
+    },
+    "28": {
+      "cat_id": "2",
+      "name": "HR"
+    },
+    "29": {
+      "cat_id": "2",
+      "name": "Product and Engineering"
+    },
+    "47": {
+      "cat_id": "2",
+      "name": "Management"
+    },
+    "100": {
+      "cat_id": "1",
+      "name": "Jaipur"
+    },
+    "101": {
+      "cat_id": "1",
+      "name": "Pune"
+    },
+    "102": {
+      "cat_id": "2",
+      "name": "Admin"
+    },
+    "103": {
+      "cat_id": "2",
+      "name": "Help Desk"
+    },
+    "104": {
+      "cat_id": "2",
+      "name": "Implementation"
+    },
+    "105": {
+      "cat_id": "2",
+      "name": "AI Enablement"
+    },
+    "121": {
+      "cat_id": "1",
+      "name": "Coimbatore"
+    },
+    "128": {
+      "cat_id": "1",
+      "name": "Ahmedabad"
+    },
+    "132": {
+      "cat_id": "1",
+      "name": "Kolkata"
+    },
+    "134": {
+      "cat_id": "2",
+      "name": "Customer Success"
+    },
+    "135": {
+      "cat_id": "2",
+      "name": "Product Management"
+    },
+    "157": {
+      "cat_id": "2",
+      "name": "Marketing"
+    },
+    "158": {
+      "cat_id": "2",
+      "name": "I.T"
+    },
+    "208": {
+      "cat_id": "2",
+      "name": "Customer Relation"
+    },
+    "211": {
+      "cat_id": "2",
+      "name": "Implementation-LBU"
+    },
+    "212": {
+      "cat_id": "2",
+      "name": "Help Desk - LBU"
+    },
+    "340": {
+      "cat_id": "2",
+      "name": "AR"
+    },
+    "354": {
+      "cat_id": "2",
+      "name": "Academy"
+    },
+    "414": {
+      "cat_id": "2",
+      "name": "Customer Experience"
+    },
+    "634": {
+      "cat_id": "2",
+      "name": "Help Desk-LBU"
+    },
+    "635": {
+      "cat_id": "2",
+      "name": "Help Desk-SBU"
+    },
+    "636": {
+      "cat_id": "2",
+      "name": "Help Desk-MBU"
+    },
+    "639": {
+      "cat_id": "1",
+      "name": "Chandigarh"
+    },
+    "710": {
+      "cat_id": "2",
+      "name": "Implementation-Global"
+    },
+    "711": {
+      "cat_id": "2",
+      "name": "Helpdesk-Global"
+    },
+    "713": {
+      "cat_id": "1",
+      "name": "Noida"
+    },
+    "766": {
+      "cat_id": "2",
+      "name": "Associate Interaction Designer"
+    },
+    "809": {
+      "cat_id": "2",
+      "name": "LBU Delivery"
+    },
+    "810": {
+      "cat_id": "2",
+      "name": "ME-Pre-Sales"
+    },
+    "890": {
+      "cat_id": "2",
+      "name": "Global"
+    },
+    "955": {
+      "cat_id": "2",
+      "name": "Sales-SMB"
+    },
+    "956": {
+      "cat_id": "2",
+      "name": "Sales Ops & Enablement"
+    },
+    "957": {
+      "cat_id": "2",
+      "name": "Help Desk-ME"
+    },
+    "958": {
+      "cat_id": "2",
+      "name": "Sales-ME"
+    },
+    "959": {
+      "cat_id": "2",
+      "name": "Help Desk-SMB"
+    },
+    "960": {
+      "cat_id": "2",
+      "name": "Sales-LBU"
+    },
+    "961": {
+      "cat_id": "2",
+      "name": "Customer Success-SMB"
+    },
+    "962": {
+      "cat_id": "2",
+      "name": "Sales-Global"
+    },
+    "963": {
+      "cat_id": "2",
+      "name": "Implementation-SMB"
+    },
+    "964": {
+      "cat_id": "2",
+      "name": "Customer Success-LBU"
+    },
+    "1007": {
+      "cat_id": "2",
+      "name": "Help Desk-Global"
+    },
+    "1010": {
+      "cat_id": "2",
+      "name": "Sales-General"
+    },
+    "1029": {
+      "cat_id": "1",
+      "name": "Dubai"
+    },
+    "1030": {
+      "cat_id": "1",
+      "name": "Indonesia"
+    },
+    "1043": {
+      "cat_id": "2",
+      "name": "General Manager-Inbound"
+    },
+    "1045": {
+      "cat_id": "2",
+      "name": "Implementation-ME"
+    },
+    "1056": {
+      "cat_id": "2",
+      "name": "Product Marketing"
+    }
+  },
+  "value_description_to_id": {
+    "associate interaction designer": "766",
+    "ai enablement": "105",
+    "product and engineering": "29",
+    "implementation-lbu": "211",
+    "help desk-lbu": "634",
+    "help desk-sbu": "635",
+    "help desk-mbu": "636",
+    "i.t": "158",
+    "implementation-global": "710",
+    "helpdesk-global": "711",
+    "finance": "27",
+    "sales": "26",
+    "hr": "28",
+    "customer success": "134",
+    "admin": "102",
+    "help desk": "103",
+    "implementation": "104",
+    "product management": "135",
+    "marketing": "157",
+    "customer relation": "208",
+    "help desk - lbu": "212",
+    "academy": "354",
+    "ar": "340",
+    "customer experience": "414",
+    "lbu delivery": "809",
+    "me-pre-sales": "810",
+    "global": "890",
+    "sales-smb": "955",
+    "sales ops & enablement": "956",
+    "help desk-me": "957",
+    "sales-me": "958",
+    "help desk-smb": "959",
+    "sales-lbu": "960",
+    "customer success-smb": "961",
+    "sales-global": "962",
+    "implementation-smb": "963",
+    "customer success-lbu": "964",
+    "help desk-global": "1007",
+    "sales-general": "1010",
+    "management": "47",
+    "general manager-inbound": "1043",
+    "implementation-me": "1045",
+    "product marketing": "1056",
+    "hyderabad": "18",
+    "chennai": "3",
+    "mumbai": "1",
+    "delhi": "2",
+    "jaipur": "100",
+    "chandigarh": "639",
+    "bangalore": "4",
+    "noida": "713",
+    "coimbatore": "121",
+    "kolkata": "132",
+    "ahmedabad": "128",
+    "pune": "101",
+    "dubai": "1029",
+    "indonesia": "1030"
+  }
+}

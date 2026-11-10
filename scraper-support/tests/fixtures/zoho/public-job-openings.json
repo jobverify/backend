@@ -1,0 +1,99 @@
+{
+  "code": "success",
+  "data": [
+    {
+      "Job_Description": "Provide voice-based support to international/domestic customers over the phone (Inbound and Outbound). Build a rapport with customers with clear and concise communication.",
+      "Job_Type": "Full time",
+      "Job_Opening_Name": "Technical Support Engineers",
+      "Posting_Title": "Technical Support Engineers",
+      "Country1": "India",
+      "$url": "https://careers.zohocorp.com/jobs/Careers/193779000024445975/Technical-Support-Engineers?source=CareerSite",
+      "Is_Locked": false,
+      "id": "193779000024445975",
+      "Publish": true,
+      "Keep_on_Career_Site": false
+    },
+    {
+      "Job_Description": "Build rapport with contacts and understand where the prospect is in the buying process. Identify opportunities that meet a minimum qualification criteria.",
+      "Job_Type": "Full time",
+      "Job_Opening_Name": "Sales Executives",
+      "Posting_Title": "Sales Executives",
+      "Country1": "India",
+      "$url": "https://careers.zohocorp.com/jobs/Careers/193779000024446028/Sales-Executives?source=CareerSite",
+      "Is_Locked": false,
+      "id": "193779000024446028",
+      "Publish": true,
+      "Keep_on_Career_Site": false
+    },
+    {
+      "Job_Description": "Support enterprise customers from Texas.",
+      "Job_Type": "Full time",
+      "Job_Opening_Name": "Customer Success Specialist",
+      "Posting_Title": "Customer Success Specialist",
+      "Country1": "United States",
+      "$url": "https://careers.zohocorp.com/jobs/Careers/193779000099999999/Customer-Success-Specialist?source=CareerSite",
+      "Is_Locked": false,
+      "id": "193779000099999999",
+      "Publish": true,
+      "Keep_on_Career_Site": false
+    }
+  ],
+  "info": {
+    "layout": 2,
+    "keys": {
+      "_job": "{0} Job",
+      "_no_result": "There are no results that match your search.",
+      "_closed_jobs": "Position filled",
+      "_jobs": "{0} Jobs",
+      "_search2": "City, state/province or country",
+      "_search1": "Job title or skill",
+      "_search3": "Search",
+      "_all": "All",
+      "_remote_job_title": "Remote Job"
+    },
+    "page_name": "Careers",
+    "groups": [
+      {
+        "api_name": "Job_Type",
+        "field_label": "Job Type"
+      }
+    ],
+    "brand_color": "#E96064",
+    "fields": [
+      {
+        "api_name": "Job_Opening_Name",
+        "field_label": "Posting Title"
+      },
+      {
+        "api_name": "City",
+        "field_label": "Region"
+      },
+      {
+        "api_name": "Country1",
+        "field_label": "Country"
+      },
+      {
+        "api_name": "Job_Type",
+        "field_label": "Job Type"
+      },
+      {
+        "api_name": "Date_Opened",
+        "field_label": "Date Opened"
+      },
+      {
+        "api_name": "Job_Description",
+        "field_label": "Job Description"
+      },
+      {
+        "api_name": "Remote_Job",
+        "field_label": "Remote Job"
+      }
+    ],
+    "facets": [
+      {
+        "api_name": "Remote_Job",
+        "field_label": "Remote Job"
+      }
+    ]
+  }
+}

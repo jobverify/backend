@@ -5,9 +5,12 @@ export const TAILORED_RESUME_WORKFLOW = 'tailored-resumes.yml';
 const waitingStatuses = new Set(['queued', 'waiting', 'pending', 'requested']);
 const dispatches = new Map();
 
+// Resume workers can live separately from the scraper workflows.
+const resumeRepository = () => process.env.TAILORED_RESUME_GITHUB_REPO ?? process.env.GITHUB_REPO;
+
 export function tailoredResumeActionsConfigured() {
   return process.env.TAILORED_RESUME_ACTIONS_ENABLED !== 'false' && Boolean(process.env.GITHUB_PAT)
-    && /^[-\w.]+\/[-\w.]+$/.test(process.env.GITHUB_REPO || '');
+    && /^[-\w.]+\/[-\w.]+$/.test(resumeRepository() || '');
 }
 
 export function requireTailoredResumeActions() {
@@ -36,7 +39,7 @@ async function dispatch(repo, request, reuseRunning) {
 
 export async function dispatchTailoredResumes({ request = githubRequest, reuseRunning = false } = {}) {
   requireTailoredResumeActions();
-  const repo = process.env.GITHUB_REPO;
+  const repo = resumeRepository();
   // Coalesce clicks while GitHub has not made the accepted run visible yet.
   if (dispatches.has(repo)) return dispatches.get(repo);
   const pending = dispatch(repo, request, reuseRunning);

@@ -1,0 +1,776 @@
+{
+  "status": 1,
+  "data": {
+    "widgets": {
+      "40bef639-b4af-4953-bb78-5de275c4b2d5": {
+        "status": 1,
+        "data": {
+          "app": "job-board",
+          "settings": {
+            "jobs": [
+              {
+                "id": "6d4abdbc-8985-4353-bbe2-3215da7c2f20",
+                "title": "Infor ERP Super End User O2C",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=113.+Infor+ERP+Super+End+User+O2C",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=113.+Infor+ERP+Super+End+User+O2C",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2-5 years</strong></div><br><div><strong>Key Responsibilities:</strong></div><br><div>Daily operational execution and management of manufacturing Order-to-Cash (O2C) workflows.</div><br><div>Complete O2C cycle knowledge include core tasks of sales orders, order confirmations, invoicing, etc.</div><br><div>Handling end-to-end order processing, customer invoicing, and cash application within a major enterprise ERP.</div><br><div>Collaborating with remote and on-site company experts to quickly master and adapt to our Infor COM platform.</div><br><div>Maintaining clear, proactive communication regarding order statuses and tracking metrics.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "ecc52ab9-754e-4b57-ba0f-9309b26fa5a1",
+                "title": "eCommerce & Digital Manager (Bangalore based)",
+                "company": "",
+                "department": "",
+                "location": "PAN India",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=125.+eCommerce+%26+Digital+Manager+(Bangalore-based)",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=125.+eCommerce+%26+Digital+Manager+(Bangalore-based)",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 5-8 years</strong></div><br><div><strong>Key Accountabilities</strong></div><br><div>1. eCommerce Sales Growth</div><br><div> Develop and execute the India eCommerce sales strategy to achieve revenue and profitability targets.</div><br><div> Drive sales performance across online marketplaces, distributor websites, and other digital sales channels.</div><br><div> Monitor daily, weekly, and monthly sales performance, identifying opportunities to improve conversion and revenue.</div><br><div> Collaborate with marketing teams to plan and execute promotional campaigns, product launches, and seasonal sales events.</div><br><div> Ensure product listings are accurate, optimised, and maintained with high-quality content.</div><br><div> Monitor pricing, promotions, competitor activity, and market trends to maintain competitiveness.</div><br><div> Identify opportunities to expand distribution across new digital platforms and online retailers.</div><br><div> Analyse sales performance, customer behaviour, and marketplace analytics to identify growth opportunities.</div><br><div>2. Marketplace &amp;amp; Distributor Management</div><br><div> Build strong working relationships with eCommerce marketplace partners and distributor teams.</div><br><div> Develop joint business plans with key partners to deliver sustainable sales growth.</div><br><div><strong>Position Description</strong>: eCommerce &amp; Digital Manager</div><br><div> Coordinate forecasting, inventory planning, and promotional activities with distributors.</div><br><div> Ensure strong product availability and minimise stock shortages across online channels.</div><br><div> Review sales reports and provide recommendations to improve channel performance.</div><br><div>3. Website &amp; Digital Experience</div><br><div> Oversee the performance and continuous improvement of OM SYSTEM &amp; digital presence in India.</div><br><div> Ensure website content, product pages, landing pages, and campaign assets remain current and optimised.</div><br><div> Improve the customer journey through ongoing optimisation of user experience and conversion pathways.</div><br><div> Coordinate digital assets and content with regional and global marketing teams.</div><br><div> Monitor website analytics and customer behaviour to identify opportunities for improvement.</div><br><div>4. Cross-Functional Collaboration</div><br><div> Work closely with Marketing, Product, Operations, and Distributor teams to execute integrated sales initiatives.</div><br><div> Support new product launches with coordinated online and retail activities.</div><br><div> Ensure consistent brand representation across all customer touchpoints.</div><br><div> Contribute to annual sales planning, forecasting, and budgeting processes.</div><br><div><strong>Skills and Qualifications:</strong></div><br><div> 5–8 years &amp; experience in eCommerce, digital marketing, or online commercial management.</div><br><div> Experience within consumer electronics, imaging, premium technology, or related industries is highly desirable.</div><br><div> Proven experience managing major online marketplaces including Amazon India.</div><br><div> Strong understanding of digital marketing including SEO, SEM, paid social, display advertising, email marketing, and performance marketing.</div><br><div> Experience using website analytics platforms such as Google Analytics.</div><br><div> Strong commercial acumen with the ability to translate digital activity into measurable sales outcomes.</div><br><div> Excellent analytical, reporting, and problem-solving skills.</div><br><div> Strong project management and stakeholder management capabilities.</div><br><div> Advanced Microsoft Excel and data analysis skills.</div><br><div> Excellent communication and presentation skills.</div><br><div> Willingness to travel occasionally as required.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "b36348e2-5d82-49b3-a3b0-1a7dd74be374",
+                "title": "Community & Experience Specialist (Pan India)",
+                "company": "",
+                "department": "",
+                "location": "PAN India",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=123.+Community+%26+Experience+Specialist+(Pan+India)",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=123.+Community+%26+Experience+Specialist+(Pan+India)",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3-6 years</strong></div><br><div><strong>Key Accountabilities:</strong></div><br><div>1. Community Engagement &amp;amp; Growth</div><br><div> Develop and execute strategies to grow OM SYSTEM&amp;#39;s photography community</div><br><div>across India.</div><br><div> Build strong relationships with photographers, ambassadors, photography clubs,</div><br><div>educational institutions, and industry organisations.</div><br><div> Foster an active and engaged customer community through regular</div><br><div>communication and ongoing engagement initiatives.</div><br><div> Identify emerging photographers and creators who align with the OM SYSTEM</div><br><div>brand.</div><br><div> Support community growth through both online and in-person engagement</div><br><div>opportunities.</div><br><div>2. Events &amp;amp; Brand Experiences</div><br><div> Plan and deliver photography workshops, photowalks, product experience days,</div><br><div>launch events, exhibitions, and community gatherings.</div><br><div> Create premium customer experiences that showcase OM SYSTEM products in</div><br><div>real-world shooting environments.</div><br><div> Coordinate event logistics including venues, presenters, registrations, budgets,</div><br><div>equipment, and post-event reporting.</div><br><div> Work with dealers and distributors to support local retail activations and customer events.</div><br><div> Measure attendance, customer satisfaction, lead generation, and return on investment for all events.</div><br><div><strong>Position Description:</strong><br>Community &amp; Experience Specialist</div><br><div>3. Ambassador &amp; Educator Programs</div><br><div> Recruit, manage, and support OM SYSTEM ambassadors and educators.</div><br><div> Develop ongoing engagement programs that encourage advocacy and long-term partnerships.</div><br><div> Ensure ambassadors and educators represent the OM SYSTEM brand professionally and consistently.</div><br><div> Encourage and curate ambassador content showcasing OM SYSTEM products.</div><br><div>4. Cross-Functional Collaboration</div><br><div> Work closely with Sales, Marketing, Product, eCommerce, and distributor teams to align community initiatives with business objectives.</div><br><div> Support product launches through community-first experiences and creator engagement.</div><br><div> Collaborate with retail partners to deliver educational workshops and customer events.</div><br><div> Assist with regional and global community initiatives where required.</div><br><div> Ensure consistent brand messaging and customer experience across all activities.</div><br><div><strong>Skills and Qualifications</strong></div><br><div> 3–6 years &amp; experience in community management, events, experiential marketing, brand engagement, or related roles.</div><br><div> Passion for photography and a strong understanding of the imaging industry.</div><br><div> Experience planning and delivering customer events and workshops.</div><br><div> Excellent relationship-building and networking skills.</div><br><div> Confident public speaker with strong presentation and facilitation abilities.</div><br><div> Experience working with brand ambassadors is highly desirable.</div><br><div> Strong project management and organisational skills.</div><br><div> Excellent written and verbal communication skills.</div><br><div> Ability to work independently while managing multiple projects simultaneously.</div><br><div> Experience with social media platforms and community engagement tools is desirable.</div><br><div> Willingness to travel frequently throughout India, including weekends when required for events.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "32623543-8fcd-44d6-aee8-5337e44480a3",
+                "title": "Cad Admin",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=124.+Cad+Admin",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=124.+Cad+Admin",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2+ years</strong></div><br><div><strong>Main Responsibilities</strong></div><br><div> Responsible for implementing and supporting the internal tools and systems environment that supports a forward-thinking product development group using Autospool and other software tools for CAD data and engineering documentation management. </div><br><div> Work closely with engineering teams to implement customized workflows to support engineering data management solutions and process improvements.</div><br><div>  Prepares requirements and provide technical expertise in evaluating, integrating, and deploying CAD system solutions. </div><br><div> Logically and efficiently analyze, test, and diagnose PCF files to isolate problems and report if necessary.</div><br><div>  Document, report and track identified issues to resolution with / through the Software company </div><br><div> Work as part of a team to share skill sets, lessons, and technical knowledge to maintain a well-rounded detail engineering team. As well as a contributor to technical support documentation. </div><br><div> Strive to become an expert in the tools used by our Engineering teams. </div><br><div> Take ownership of process improvements and drive to successful implementation. </div><br><div> Develop best practices, define standards for data management including system and process documentation. </div><br><div>  Configure new projects. </div><br><div> Accuracy - Ability to perform work accurately and thoroughly.   </div><br><div> Self-Motivated - Ability to be internally inspired to perform a task to the best of one’s ability using his or her own drive or initiative.   </div><br><div> Working Under Pressure - Ability to complete assigned tasks under stressful situations.   </div><br><div> Organized - Possessing the trait of being organized or following a systematic method of performing a task.  </div><br><div>  Demonstrated competence with AutoCAD, Navisworks, and 3D piping fabrication software. Working knowledge Autospool is preferred.  </div><br><div> Excellent verbal and written communication skills </div><br><div> Proficient in Microsoft Office Word and Excel</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "5a503175-2e59-4267-8ecf-a79bea20611f",
+                "title": "Pipe support Checker & Pipe support checker- Senior",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=114.+Pipe+support+Checker+(Junior)+%26+Pipe+support+checker+(Senior)",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=114.+Pipe+support+Checker+(Junior)+%26+Pipe+support+checker+(Senior)",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2+ years</strong></div><br><div><strong>Job Description:</strong></div><br><div><strong>Main Responsibilities :</strong></div><br><div> Familiarity with client project scope and specifications.</div><br><div> Check pipe support drawings used for fabrication by shop against client drawings, scope, and specifications for accuracy and manufacturability, mark-up errors, and re-check corrections made by drafter before being released to shop for fabrication.</div><br><div> Familiar with and utilize department standards, procedures, and guidelines.</div><br><div> Understand shop methods used in the fabrication of pipe spool.</div><br><div><strong>Competency Requirement:</strong></div><br><div> Accuracy - Ability to perform work accurately and thoroughly.</div><br><div> Self-Motivated - Ability to be internally inspired to perform a task to the best of one’s ability using his or her own drive or initiative.</div><br><div> Detail Oriented - Ability to pay attention to the minute details of a project or task.</div><br><div> Good technical knowledge in pipe support detail engineering. Review Piping Isometric and Spool drawing.</div><br><div> Working Under Pressure - Ability to complete assigned tasks under stressful situations.</div><br><div> Organized - Possessing the trait of being organized or following a systematic method of performing a task.</div><br><div> Reliability - The trait of being dependable and trustworthy.</div><br><div> Communication, Oral - Ability to communicate effectively with others using the spoken word.</div><br><div> Communication, Written - Ability to communicate in writing clearly and concisely.</div><br><div> Familiar with ACAD application</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "f9a28d9d-92fe-443d-a50b-ddb6116fcb04",
+                "title": "Product Data Specialist",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=115.+Product+Data+Specialist",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=115.+Product+Data+Specialist",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2-5 years</strong></div><br><div><strong>Job Description:</strong></div><br><div><strong>Role: Product Data Specialist</strong></div><br><div><strong>About the Role:</strong></div><br><div>The Product Data Specialist is responsible for creating, structuring, and maintaining the quality of product data within our ERP and PIM systems.</div><br><div>The role supports the integration of new product ranges into the global catalogue, working closely with local and international teams to ensure correct SKU codification, completeness of attributes, and reliability of information published to internal and digital systems (eCommerce, etc.).</div><br><div>This position directly contributes to structuring the product offering and to the continuous improvement of data management processes.</div><br><div><strong>Key Responsibilities</strong></div><br><div>SKU Creation &amp; Management</div><br><div>Create new SKUs in the ERP in line with established rules</div><br><div>Apply codification and nomenclature standard</div><br><div>Update existing product records</div><br><div>Verify data consistency before validation</div><br><div>Integration of New Product Ranges</div><br><div>Support the onboarding of new product lines into the global catalogue</div><br><div>Understand the technical characteristics and structure of products</div><br><div>Adapt data models and attributes where required</div><br><div>Ensure consistency with the existing product offering</div><br><div>PIM Operations</div><br><div>Create and maintain product records in the PIM</div><br><div>Complete and verify mandatory attributes</div><br><div>Help structure product categories and families</div><br><div>Ensure ERP ↔ PIM synchronisation</div><br><div>Data Quality &amp; Reliability</div><br><div>Monitor data completeness and consistency</div><br><div>Identify and correct errors</div><br><div>Track data quality metrics (KPIs)</div><br><div>Contribute to improving product creation workflows</div><br><div>Cross-functional Coordination</div><br><div>Collaborate with Marketing, eCommerce, and Supply Chain teams</div><br><div>Work with local and regional teams to collect product data</div><br><div>Ensure alignment of product information across regions</div><br><div>Gather inputs needed for product enrichment</div><br><div>Participate in projects to evolve tools and processes</div><br><div><strong>Candidate Profile Required</strong></div><br><div>Bachelor's degree (B.E. / B.Tech / B.Sc. / B.Com or equivalent)</div><br><div>2–5 years of experience in product data management / master data / ERP environments</div><br><div>Strong ability to understand technical products</div><br><div>High attention to detail and a rigorous, methodical approach</div><br><div>Advanced proficiency in MS Excel (lookups, pivot tables, data cleansing)</div><br><div>Strong written and verbal English, with the ability to work in international teams</div><br><div><strong>Preferred / Good to Have</strong></div><br><div>Hands-on experience with an ERP system (SAP MM / S/4HANA preferred; experience with other ERPs also valued)</div><br><div>Working knowledge of a PIM tool (Akeneo, Salsify, inRiver, Pimcore, etc.)</div><br><div>Comfort coordinating with European teams (some overlap with [CET / European] working hours may be required)</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "bb00bc1b-632e-4261-9820-434b8b1a2a9c",
+                "title": "Infor ERP Super End User P2P",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=126.+Infor+ERP+Super+End+User+P2P",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=126.+Infor+ERP+Super+End+User+P2P",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2-5 years</strong></div><br><div><strong>Job Description :-</strong></div><br><div>Experience: 2 to 5 years managing manufacturing P2P workflows (e.g., plastics, automotive, chemicals).</div><br><div>ERP Experience: Strong operational experience as an end user in any major manufacturing ERP (such as SAP MM, Oracle, NetSuite, Dynamics).</div><br><div>Note on Technology: Prior experience specifically with Infor is not mandatory. Our European team can provide  training. We need a strong P2P end user who is technically adaptable and can quickly pick up our specialized interface (Infor COM 7.1).</div><br><div><strong>Key Responsibilities:</strong></div><br><div>Converting manufacturing requisitions to systematic POs.</div><br><div>Performing 3-way matching (PO, GRN, and vendor invoices) to clear backlogs.</div><br><div>Tracking supplier pipelines and managing international vendor communication.</div><br><div>Master data maintenance experience</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "e4a8cc21-1909-4cfb-b00a-1b4e19168dd5",
+                "title": "Fullstack Engineer - Backend/ Frontend focused",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=122.+Full-Stack+Engineer+%E2%80%93+Backend+/+Frontend+Focused",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=122.+Full-Stack+Engineer+%E2%80%93+Backend+/+Frontend+Focused",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 8-15 years</strong></div><br><div>1) Front-End–oriented Full Stack Engineer</div><br><div><strong>Responsibilities:</strong></div><br><div>● Build rich, interactive UIs using ReactJS, Redux, AMCharts, Google Maps, and other data visualization tools.</div><br><div>● Translate Figma or equivalent UX prototypes into responsive, production-grade components and design systems.</div><br><div>● Collaborate directly with product and design teams to co-create wireframes, flows, and prototypes for IIoT monitoring, alerting, and management.</div><br><div>● Integrate frontend applications with backend APIs developed using Java Spring Boot and contribute backend enhancements as needed.</div><br><div>● Ensure frontend performance, accessibility, consistency, and maintainability.</div><br><div>● Deploy features using modern DevOps practices, including CI/CD pipelines (Jenkins, Argo CD) and containerized workloads (EKS, DockerHub).</div><br><div>● Support authentication and SSO integration via Clerk or other Identity provider, and help build secure user experiences.</div><br><div><strong>Must-Have Skills:</strong></div><br><div>● Strong command of ReactJS (v18), Redux, JavaScript/TypeScript, HTML/CSS, and component architecture.</div><br><div>● Proven experience building and owning UX workflows, including prototyping in Figma, and iterating with product teams.</div><br><div>● Familiarity with backend development using Java Spring Boot, including API integration and occasional service-level contributions.</div><br><div>● Hands-on experience with AWS cloud services (S3, EC2, Secret Manager, EKS), Docker, and Git-based workflows.</div><br><div>● Practical understanding of data visualization (AMCharts), mapping tools (Google Maps),</div><br><div>and iconography (FontAwesome).</div><br><div><strong>Bonus Points:</strong></div><br><div>● Background in IIoT, or device telemetry dashboards.</div><br><div>● Experience using GrowthBook (feature flags), SonarQube (code quality), Mend</div><br><div>(security), and observability tools (Grafana, Prometheus).</div><br><div>● Exposure to PDF rendering tools (WeasyPrint/iText) or SMS/email flows (Pinpoint, SES).</div><br><div>● Strong eye for design systems, UI polish, and attention to responsive behavior across</div><br><div>devices.</div><br><div>2) Full Stack Engineer- Backend focused</div><br><div><strong>Responsibilities:</strong></div><br><div>● Develop and maintain scalable backend services built using Java Spring Boot, Kafka, Redis, and PostgreSQL.</div><br><div>● Build APIs and service orchestration layers that connect with Spark-based data processing pipelines and real-time event workflows.</div><br><div>● Contribute to building user interfaces and dashboards using ReactJS and Redux, integrating with RESTful APIs.</div><br><div>● Work closely with DevOps to implement CI/CD pipelines (Jenkins, Argo CD) and support cloud deployment (EKS, EC2, DockerHub).</div><br><div>● Support secure integration via Keycloak and manage cloud secrets through AWS Secret Manager.</div><br><div>● Collaborate with frontend, UX, and product teams to translate complex backend logic into clear and functional UI features.</div><br><div><strong>Must-Have Skills:</strong></div><br><div>● Strong command of Java, Spring Boot, REST API design, and distributed backend systems.</div><br><div>● Solid understanding of messaging systems (Kafka), caching (Redis), and relational DBs (PostgreSQL).</div><br><div>● Practical experience in building and integrating frontend components using ReactJS and Redux.</div><br><div>● Comfortable with cloud deployments on AWS (EKS, EC2, NLB, VPC).</div><br><div>● Familiar with DevOps and GitOps workflows using Jenkins, Argo CD, DockerHub, and Bitbucket.</div><br><div><strong>Bonus Points:</strong></div><br><div>● Experience in time-series data systems (MongoDB), PDF generation (WeasyPrint, iText), and map/visualization libraries (AMCharts, Google Maps).</div><br><div>● Exposure to GrowthBook (feature flags), monitoring tools (Prometheus, Grafana), and security scanning (SonarQube, Mend).</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "7688a96d-9c93-44bf-81c2-e08ee0e6fb54",
+                "title": "Sales and Product Specialist - Mumbai",
+                "company": "",
+                "department": "",
+                "location": "Mumbai",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=120.+Sales+and+Product+Specialist+%E2%80%93+Mumbai",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=120.+Sales+and+Product+Specialist+%E2%80%93+Mumbai",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3-6 years</strong></div><br><div><strong>Key Accountabilities </strong></div><br><div> 1. Local Events &amp; Activation</div><br><div>Plan and execute local events including workshops, demo days, photo walks, and retail activations in alignment with Marketing team</div><br><div>Partner with dealers, colleges, and communities to host events</div><br><div>Ensure high-quality customer experiences that drive product trials and engagement</div><br><div>Manage event logistics, budgets, and post-event reporting</div><br><div>Track leads, conversions, and ROI from all activations</div><br><div>2. Sales Facilitation &amp; Revenue Growth</div><br><div>Drive regional sales growth by leading end-to-end conversion initiatives, from customer acquisition to final purchase</div><br><div>Support retail partners during key sales periods, launches, and promotions </div><br><div>Generate and convert leads from events and local marketing activities </div><br><div>Work closely with sales teams and distributors to meet regional targets </div><br><div>Identify new business opportunities within the territory</div><br><div>3. Retail &amp; Partner Relationship Management</div><br><div>Build and maintain strong relationships with key dealers and retail staff</div><br><div>Train retail teams on product features, positioning, and selling techniques</div><br><div>Ensure strong in-store brand presence and visibility</div><br><div><strong>Skills and Qualifications</strong></div><br><div>3-6 years of experience in sales, retail, or field marketing (imaging or consumer electronics preferred) </div><br><div>Strong understanding of photography products and technology</div><br><div>Proven ability to drive sales and manage local activations </div><br><div>Able to hold photography workshops with a group of people</div><br><div>Experience working with dealer/distributor networks </div><br><div>Excellent communication and presentation skills </div><br><div>Comfortable with frequent travel within the region</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "6c70cbbe-577a-4059-9030-80e828974f79",
+                "title": "North – Sales & Technical Support (Delhi)",
+                "company": "",
+                "department": "",
+                "location": "Delhi",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=116.+North+%E2%80%93+Sales+%26+Technical+Support+(Delhi)",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=116.+North+%E2%80%93+Sales+%26+Technical+Support+(Delhi)",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 4-8 years</strong></div><br><div><strong>Key Accountabilities</strong></div><br><div><strong>1. Regional Sales Leadership</strong></div><br><div>·         Execute the regional sales strategy across North India in partnership with distributors and the APAC leadership team.</div><br><div>·         Support achievement of regional sales, market share, and profitability objectives.</div><br><div>·         Identify new business opportunities, strategic dealers, and growth markets throughout the region.</div><br><div>·         Provide leadership and guidance for regional sales initiatives and promotional campaigns.</div><br><div>·         Support product launches and major retail activations across North India.</div><br><div><strong>2. Delhi Territory Management</strong></div><br><div>·         Directly manage dealer relationships and sales development within Delhi.</div><br><div>·         Build strong relationships with key retail partners and photography specialists.</div><br><div>·         Identify opportunities to grow market share and strengthen brand presence.</div><br><div>·         Support dealers with product demonstrations, merchandising, and sales initiatives.</div><br><div>·         Monitor local market activity and competitor performance.</div><br><div><strong>3. Events &amp; Customer Engagement</strong></div><br><div>·         Lead the planning and execution of regional workshops, product launches, photo walks, dealer events, and exhibitions.</div><br><div>·         Work closely with the Community &amp; Experience Specialist and Marketing team to deliver premium customer experiences.</div><br><div>·         Partner with photography clubs, educational institutions, and industry organisations.</div><br><div>·         Manage event budgets, logistics, reporting, and lead follow-up.</div><br><div>·         Measure customer engagement, event ROI, and sales outcomes.</div><br><div><strong>4. Dealer &amp; Distributor Relationship Management</strong></div><br><div>·         Build long-term relationships with key dealers and distributor partners throughout North India.</div><br><div>·         Conduct regular dealer visits to identify business opportunities and provide commercial support.</div><br><div>·         Ensure consistent merchandising, product availability, and brand representation.</div><br><div>·         Support dealer business planning and promotional activities.</div><br><div>·         Provide market intelligence and customer feedback to the wider business.</div><br><div><strong>Skills and Qualifications</strong></div><br><div>·         5–8 years' experience in sales, technical support, retail, or field marketing within consumer electronics, imaging, or premium technology brands.</div><br><div>·         Strong understanding of photography equipment and imaging technology.</div><br><div>·         Demonstrated experience managing dealer and distributor relationships.</div><br><div>·         Proven ability to deliver product training and technical presentations to varied audiences.</div><br><div>·         Experience planning and executing customer events and retail activations.</div><br><div>·         Strong commercial awareness and sales acumen.</div><br><div>·         Excellent presentation, communication, and relationship management skills.</div><br><div>·         Ability to work independently while coordinating activities across multiple territories.</div><br><div>·         Strong organisational and reporting skills.</div><br><div>·         Willingness to travel extensively throughout North India.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "b47d247f-16ff-4576-be9e-9dec2d27abd9",
+                "title": "Timeline Business Process Associate (P2P)",
+                "company": "",
+                "department": "",
+                "location": "PAN India",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=118.+Timeline+Business+Process+Associate+(P2P)",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=118.+Timeline+Business+Process+Associate+(P2P)",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3-7 years</strong></div><br><div><strong>Role Overview</strong></div><br><div>We are looking for a highly capable and proactive Business Process Associate(P2P) with strong, hands-on experience in Timeline ERP within a manufacturing environment. The ideal candidate will possess in-depth knowledge of Timeline ERP modules for procurement, Warehouse Management Systems (WMS), and Material Requirements Planning (MRP) engines.</div><br><div><strong>Key Responsibilities</strong></div><br><div>Process Optimization: Manage and optimize end-to-end business processes using Timeline ERP.</div><br><div>Material &amp; Supply Planning: Handle procurement, inventory management, and material planning activities.</div><br><div>ERP Data Integrity: Ensure accurate ERP transactions related to purchase orders, goods receipts, and stock transfers, including the maintenance of master data.</div><br><div>Cross-Functional Coordination: Collaborate closely with the production, warehousing, procurement, and planning departments to ensure a smooth operational flow.</div><br><div>Continuous Improvement: Monitor process efficiency and identify opportunities for improvement within ERP-driven workflows.</div><br><div>Operations Support: Support manufacturing operations by ensuring timely data accuracy and efficient process execution in the ERP system.</div><br><div>Problem Solving: Independently resolve operational issues and take full ownership of assigned processes.</div><br><div><strong>Required Experience &amp; Skills</strong></div><br><div>ERP Expertise: Solid working experience with Timeline ERP specifically within a manufacturing setup.</div><br><div>Operations Knowledge: Proven experience in material management, inventory control, and procurement coordination.</div><br><div>Autonomy: Ability to function independently with minimal supervision.</div><br><div>Ownership: Quick decision-making capabilities combined with a strong sense of accountability.</div><br><div>Proactive Mindset: A forward-thinking approach toward problem-solving and process improvement.</div><br><div>Communication: Excellent interpersonal, coordination, and communication skills across multiple departments.</div><br><div>Adaptability: Comfortable working in a fast-paced, dynamic manufacturing environment.</div><br><div><strong>Preferred Candidate Profile</strong></div><br><div><strong>Experience:</strong> 2–4 years of relevant experience.</div><br><div><strong>Industry Background:</strong> Prior experience in manufacturing sectors such as engineering, plastics, automotive, FMCG, or industrial production environments.</div><br><div><strong>Attributes:</strong> Strong analytical mindset with operational ownership capabilities; a reliable, disciplined, and execution-focused professional.</div><br><div><strong>Language Skills:</strong> Fluent in both written and spoken English.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "e10cd203-5f7d-427a-9e07-7fc6d7ee5de8",
+                "title": "Digital Commerce Specialist",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=119.+Digital+Commerce+Specialist",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=119.+Digital+Commerce+Specialist",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 1-3 years</strong></div><br><div><strong>Job Description:</strong></div><br><div>candidates having Magento, Open Source, PWA experience</div><br><div>Should have Adobe certificate professional</div><br><div>Good in communication</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "010ae775-b818-428a-8c81-9a9bb8700e47",
+                "title": "Piping Checker",
+                "company": "",
+                "department": "",
+                "location": "PAN India",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=127.+Piping+Checker",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=127.+Piping+Checker",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2-7 years</strong></div><br><div><strong>Main Responsibilities:</strong></div><br><div>Familiarity with client project scope and specifications.</div><br><div>Check the pipe spool drawings used for fabrication by shop against client drawings, scope, and specifications for accuracy and manufacturability, mark-up errors, and re-check corrections made by drafter before being released to shop for fabrication.</div><br><div>Familiar with and utilize department standards, procedures, andguidelines.</div><br><div>Understand the shop methods used in pipe spool fabrication.</div><br><div><strong>Competency Requirement</strong></div><br><div> Accuracy - Ability to perform work accurately and thoroughly.</div><br><div> Self-Motivated - Ability to be internally inspired to perform a task to the best of one’s ability using his or her own drive or initiative.</div><br><div> Detail Oriented - Ability to pay attention to the minute details of a project or task.</div><br><div> Good technical knowledge in piping detail engineering. Review Piping Isometric and Spool drawing.</div><br><div> Working Under Pressure - Ability to complete assigned tasks under stressful situations.</div><br><div> Organized: Possessing the trait of being organized or following asystematic method of performing a task.</div><br><div> Reliability - The trait of being dependable and trustworthy.</div><br><div> Communication, Oral - Ability to communicate effectively with others using the spoken word.</div><br><div> Communication, Written - Ability to communicate in writing clearly and concisely.</div><br><div> Familiar with ACAD application</div><br><div><strong>Experienced Technical </strong></div><br><div>Minimum of 1 Years in Piping Design Engineering</div><br><div><strong>Education</strong></div><br><div>Minimum academic education: Diploma level in Mechanical Engineering</div><br><div>Linguistic Skill </div><br><div>Fluency in English is Mandatory.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "9a90db90-50c9-4eed-ad59-05389a5a87c2",
+                "title": "New Product Introduction Buyer",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=102.+New+Product+Introduction+Buyer",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=102.+New+Product+Introduction+Buyer",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3+ years</strong></div><br><div><strong>Main responsibilities:</strong></div><br><div>New Product Introduction Buyer will be performing the following responsibilities and duties:</div><br><div>• Manage new parts and part changes from quote to customer approval and shipment</div><br><div>• Communicate and follow up with cross functional team to manage parts through the New</div><br><div>Item Implementation or Product Realization stages.</div><br><div>• Review customer documents and specifications as provided by sales, project team and the</div><br><div>NBS team.</div><br><div>• Place POs based on company guidelines and obtain PO approvals.</div><br><div>• Work with Suppliers to manage Minimum Order Quantity, Lead time and Inventory.</div><br><div>• Ensure POs are acknowledged to meet terms and conditions. Communicate any.</div><br><div>changes associated with the project team.</div><br><div>• Follow up /expedite to ensure on time delivery of samples and production parts</div><br><div>• Work through issues and gaps associated with the implementation.</div><br><div>• Coordinate with the Optimas support teams to ensure parts are received, inspected and approved for sale. Help provide phase-in/phase-out information for resource orders.</div><br><div>• Interface with NBS team to continue to enhance sourcing effectiveness and customer</div><br><div>implementation timelines.</div><br><div>• Manage &amp; lead introduction/implementation phase on new part &amp; projects.</div><br><div><strong>Key Competencies:</strong></div><br><div>The ideal candidate should have the following competencies:</div><br><div>Strategic Vision.</div><br><div>Building organizational capacity.</div><br><div>Results driven.</div><br><div>Embrace change.</div><br><div>Collaboration and Influence.</div><br><div>Entrepreneurial spirit.</div><br><div>Customer value and Market focus.</div><br><div><strong>Skills and Qualifications:</strong></div><br><div>Excellent computer skills and proficiency with Microsoft Office Excel and Word.</div><br><div>● Demonstrable analytical and problem-solving skills.</div><br><div>● Ability to comply with company procedures and policies.</div><br><div>● Excellent Communication skills – verbal and written.</div><br><div>● Interpersonal Skills. </div><br><div>● Excellent organizational skills</div><br><div>● Excellent time management</div><br><div>● Excellent Team working</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "26d5dd3b-b40f-4201-b018-3d36f9e25663",
+                "title": "Finance Manager",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=105.+Finance+Manager",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=105.+Finance+Manager",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 4-8 years</strong></div><br><div><strong>Role Overview</strong></div><br><div>We are looking for a highly capable Accounting Professional to manage financial statements, lead closing activities, and handle day-to-day finance operations in SAP. This role will function as a key support to the Financial Controller, acting as their right hand in ensuring accurate reporting, operational efficiency, and financial control across the organization.</div><br><div><strong>Key Responsibilities</strong></div><br><div>Manage end-to-end financial closing activities (monthly, quarterly, and year-end)</div><br><div>Prepare and review financial statements (P&amp;L, Balance Sheet, Cash Flow) with high accuracy</div><br><div>Perform daily finance and accounting operations in SAP (FICO), including postings, reconciliations, and issue resolution</div><br><div>Ensure timely and accurate execution of routine accounting activities and transactions</div><br><div>Act as a key support to the Financial Controller in all finance-related matters</div><br><div>Assist the Controller in reporting, analysis, and decision support</div><br><div>Perform account reconciliations and investigate discrepancies proactively</div><br><div>Maintain and ensure integrity of financial data within SAP</div><br><div>Coordinate with auditors and support internal/external audit processes</div><br><div>Ensure compliance with accounting standards, internal controls, and statutory requirements</div><br><div>Drive improvements in closing cycles, reporting accuracy, and finance processes</div><br><div><strong>Key Requirements</strong></div><br><div>5–10 years of experience in accounting and financial reporting</div><br><div>Strong experience in managing monthly, quarterly, and year-end closings independently</div><br><div>Hands-on experience and strong competencies in SAP FICO with strong exposure to daily transactional activities</div><br><div>Proven ability to manage both operational accounting and reporting responsibilities</div><br><div>Strong understanding of financial statements and accounting principles (IFRS/GAAP/local standards)</div><br><div>Ability to work closely with senior stakeholders, especially supporting a Financial Controller</div><br><div>High attention to detail with strong ownership and accountability</div><br><div>Ability to work under tight deadlines and manage multiple priorities</div><br><div>Strong analytical and problem-solving skills</div><br><div>Excellent communication and coordination skills - fluency in english (written + spoken), conversational proficiency in German is preferred.</div><br><div><strong>Preferred Qualifications</strong></div><br><div>CA / CPA / ACCA or equivalent qualification</div><br><div>Experience in manufacturing or multi-entity environments</div><br><div>Exposure to SAP S/4HANA</div><br><div>Experience working in a fast-paced, process-driven organization</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "9fc37820-e50e-4944-8aee-905b588f0138",
+                "title": "Supply Continuity Analyst",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=111.+Supply+Continuity+Analyst",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=111.+Supply+Continuity+Analyst",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3-5 years</strong></div><br><div><strong>Main Responsibilities: </strong></div><br><div>•        Prepare, analyze, and action Days On Hand supply reports to identify and resolve potential supply gaps. </div><br><div>•        Work directly with vendors on key procurement activities, including purchase order expediting and ship date confirmations. </div><br><div>•        Partner and communicate with customer facing teams around at-risk items with clear, detailed updates and information. </div><br><div>•        Review inventory positions to ensure that gap and expedite purchases are minimized. </div><br><div>•        Collaborate with Sourcing and Supply Chain teams around at-risk item trends by vendor. </div><br><div>•        Ensure a seamless supply of inventory is available to customers. </div><br><div>•        Develop reports by gathering and analyzing business techniques to be used in business planning and strategic development. </div><br><div>•        Synthesize data and identify data integrity issues through operations and financial analysis to drive performance. </div><br><div>•        Monitor trends in data and vendor performance to anticipate and resolve issues proactively. </div><br><div><strong>Skills </strong></div><br><div>•        Detail oriented, analytical, organized, and objective. </div><br><div>•        Be able to analyze data quickly and develop action plan based on that data. </div><br><div>•        Possess financial acumen and negotiation experience </div><br><div>•        Be very proficient in Microsoft Office Suite (Excel-excellent, Word / Power Point/ Access - strong) </div><br><div>•        Proven ability to develop and implement robust, sustainable processes and practices </div><br><div>•        Possess sound judgment relative to deadlines </div><br><div>•        Possess strong communication skills both oral and written </div><br><div>•        Have the ability to collaborate with various levels of suppliers, customers, employees and senior staff (Phone, eMail, and in-person)  </div><br><div><strong>Experience </strong></div><br><div>•        Minimum of 3-5 years in a similar purchasing/supply chain/operations function </div><br><div>•        Experience with vendor sourcing </div><br><div>•        Experience with negotiations </div><br><div>•        2-4 years data and financial analysis experience </div><br><div>•        Experience in executing “Continuous Improvement” projects </div><br><div>•        4 year degree from accredited college/university in related field </div><br><div>•        Open-minded, trustworthy, flexible, adaptable and team oriented. </div><br><div>•        Strong initiative to manage independently and to partner effectively with internal and external stakeholders. </div><br><div>•        Proven ability to influence others in a professional manner </div><br><div>•        Demonstrated ability to adapt to changing priorities and provide proactive, effective leadership. </div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "a04cc958-f499-40e8-b729-49e16bb0fa4e",
+                "title": "Pipe Support Detailer",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=110.+Pipe+Support+Detailer",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=110.+Pipe+Support+Detailer",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2+ years</strong></div><br><div><strong>Job Description:</strong></div><br><div> Familiarity with client project scope and specifications.</div><br><div> Check pipe support drawings used for fabrication by shop against client</div><br><div>drawings, scope, and specifications for accuracy and manufacturability,</div><br><div>mark-up errors, and re-check corrections made by drafter before being</div><br><div>released to shop for fabrication.</div><br><div> Familiar with and utilize department standards, procedures, and</div><br><div>guidelines.</div><br><div> Understand shop methods used in the fabrication of pipe spool.</div><br><div><strong>Competency Requirement</strong></div><br><div> Accuracy - Ability to perform work accurately and thoroughly.</div><br><div> Self-Motivated - Ability to be internally inspired to perform a task to the best of one’s ability using his or her own drive or initiative.</div><br><div> Detail Oriented - Ability to pay attention to the minute details of a project or task.</div><br><div> Good technical knowledge in pipe support detail engineering. Review Piping Isometric and Spool drawing.</div><br><div> Working Under Pressure - Ability to complete assigned tasks under stressful situations.</div><br><div> Organized - Possessing the trait of being organized or following a systematic method of performing a task.</div><br><div> Reliability - The trait of being dependable and trustworthy.</div><br><div> Communication, Oral - Ability to communicate effectively with others using the spoken word.</div><br><div> Communication, Written - Ability to communicate in writing clearly and concisely.</div><br><div> Familiar with ACAD application</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "103afaaf-14b2-4baa-9cd7-766beccddc77",
+                "title": "Piping Detailer - Senior",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=107.+Piping+Detailer+%E2%80%93+Senior",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=107.+Piping+Detailer+%E2%80%93+Senior",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 5+ years</strong></div><br><div><strong>Main Responsibilities:</strong></div><br><div>  Produce detailed fabrication drawings, including piping spools and support fabrication details.</div><br><div>  Generate reports necessary to support estimating, material buyout, fabrication, QA, and field productivity tracking. </div><br><div>These may include bills of material, quantity takeoffs, cut lists, weld lists, and system reports. </div><br><div> Assist in the generation of work packages and drawing document control tracking.</div><br><div>  Familiarity with client project scope and specifications.  Prepare detail drawing in ACAD application.</div><br><div>  Check pipe spool drawings used for fabrication by shop against client drawings, scope, and specifications for accuracy and manufacturability, mark-up errors, and re-check corrections made by drafter before being released to shop for fabrication.  Familiar with and utilize department standards, procedures, and guidelines.</div><br><div>  Understand shop methods used in the fabrication of pipe spool. </div><br><div><strong>Competency Requirement</strong> </div><br><div> Accuracy - Ability to perform work accurately and thoroughly.   </div><br><div> Self Motivated - Ability to be internally inspired to perform a task to the best of one’s ability using his or her own drive or initiative.  </div><br><div>  Detail Oriented - Ability to pay attention to the minute details of a project or task. </div><br><div>   Working Under Pressure - Ability to complete assigned tasks under stressful situations. </div><br><div>   Organized - Possessing the trait of being organized or following a systematic method of performing a task. </div><br><div>   Reliability - The trait of being dependable and trustworthy. </div><br><div>   Communication, Oral - Ability to communicate effectively with others using the spoken word.  </div><br><div>  Communication, Written - Ability to communicate in writing clearly and concisely.</div><br><div>   Demonstrated competence with AutoCAD, Navisworks, and 3D piping fabrication software. Working knowledge Autospool is preferred. </div><br><div><strong>Experienced Technical</strong></div><br><div>  Minimum of 3+ Years in Piping Detail Engineering  Education</div><br><div>  Academic Education to  ITI – Mechanical Drafting / Diploma Level in Mechanical Engineering Linguistic Skill </div><br><div> Fluency in English is Mandatory</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "72bbb899-d7f0-48f6-a19b-269ff68c97e9",
+                "title": "Piping Detailer",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=108.+Piping+Detailer",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=108.+Piping+Detailer",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 1-5 years</strong></div><br><div><strong>Main Responsibilities</strong></div><br><div>  Produce detailed fabrication drawings, including piping spools, support fabrication details.</div><br><div><strong>  </strong>Generate reports necessary to support estimating, material buyout, fabrication, QA, and field productivity tracking. </div><br><div><strong>  </strong>These may include bills of material, quantity takeoffs, cut lists, weld lists, and system reports</div><br><div> Assist in the generation of work packages and drawing document control tracking.</div><br><div>  Familiarity with client project scope and specifications.  Prepare detail drawing in ACAD application.</div><br><div>  Check pipe spool drawings used for fabrication by shop against client drawings, scope, and specifications for accuracy and manufacturability, mark-up errors, and re-check corrections made by drafter before being released to shop for fabrication.  Familiar with and utilize department standards, procedures, and guidelines.</div><br><div>  Understand shop methods used in the fabrication of pipe spool. </div><br><div> <strong>Competency Requirement </strong><br> Accuracy - Ability to perform work accurately and thoroughly.   </div><br><div> Self Motivated - Ability to be internally inspired to perform a task to the best of one’s ability using his or her own drive or initiative.  </div><br><div>  Detail Oriented - Ability to pay attention to the minute details of a project or task. </div><br><div>   Working Under Pressure - Ability to complete assigned tasks under stressful situations. </div><br><div>   Organized - Possessing the trait of being organized or following a systematic method of performing a task. </div><br><div>   Reliability - The trait of being dependable and trustworthy. </div><br><div>   Communication, Oral - Ability to communicate effectively with others using the spoken word.  </div><br><div>  Communication, Written - Ability to communicate in writing clearly and concisely.</div><br><div>   Demonstrated competence with AutoCAD, Navisworks, and 3D piping fabrication software. Working knowledge Autospool is preferred. </div><br><div><strong>Experienced Technical</strong></div><br><div>  Minimum of 1 Years in Piping Detail Engineering  Education</div><br><div>  Academic Education to  ITI – Mechanical Drafting / Diploma Level in Mechanical Engineering Linguistic Skill </div><br><div> Fluency in English is Mandatory</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "2afbd5b2-a8d3-4ba7-be9b-59c3650ebec9",
+                "title": "SAP Functional & Technical Expert",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=109.+SAP+Functional+%26+Technical+Expert",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=109.+SAP+Functional+%26+Technical+Expert",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 8-15 years</strong></div><br><div><strong>Key Responsibilities :- </strong></div><br><div>Lead and support end-to-end SAP S/4HANA rollout + possible Migration ECC → S4/Hana</div><br><div>Act as a cross-functional SAP expert with strong understanding of multiple modules (FICO, MM, SD, PP, etc.)</div><br><div>Drive FICO design, configuration, and implementation aligned with business requirements</div><br><div>Develop, debug, and enhance ABAP programs, reports, interfaces, conversions, and enhancements</div><br><div>Collaborate with business stakeholders to gather requirements and translate them into SAP solutions</div><br><div>Ensure seamless integration between FICO and other SAP modules</div><br><div>Support data migration, testing (unit, integration, UAT), and go-live activities</div><br><div>Troubleshoot and resolve complex functional and technical issues</div><br><div>Work closely with global teams, vendors, and implementation partners</div><br><div>Provide post-go-live support and continuous improvement recommendations</div><br><div><strong>Key Requirements :- </strong></div><br><div>8–15 years of experience in SAP, with strong exposure across multiple modules</div><br><div>Deep expertise in SAP FICO (GL, AP, AR, Asset Accounting, Costing, etc.)</div><br><div>Strong hands-on experience in ABAP development (RICEFW objects, debugging, enhancements, interfaces)</div><br><div>Proven experience in at least one SAP S/4HANA implementation or rollout project</div><br><div>Strong understanding of end-to-end business processes across finance, procurement, and manufacturing</div><br><div>Experience supporting factory/site rollouts or greenfield implementations is highly preferred</div><br><div>Ability to work as a techno-functional expert bridging business and IT</div><br><div>Strong problem-solving skills and ability to handle complex scenarios independently</div><br><div>Excellent stakeholder management and communication skills</div><br><div>Experience working in global or cross-cultural environments is a plus</div><br><div><strong>Preferred Qualifications :- </strong></div><br><div>SAP S/4HANA certification (especially in FICO)</div><br><div>Experience with data migration tools (LSMW, LTMC, Migration Cockpit)</div><br><div>Exposure to integration tools (IDocs, APIs, EDI)</div><br><div>Knowledge of SAP best practices and rollout methodologies (Activate, ASAP)</div><br><div>Strong communication skills</div><br><div>Ownership, fast decision making and Innovation.</div><br><div>Fluency (spoken and written) in English, Conversational German skills are a big plus.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "d1c89c9c-0824-440c-a3cd-87ef1eb01ad3",
+                "title": "Application Engineer EMA",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=106.+Application+Engineer+EMA",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=106.+Application+Engineer+EMA",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3-6 years</strong></div><br><div><strong>Position Overview</strong></div><br><div>The Application Engineer – Motors is responsible for providing technical and commercial support for Low Voltage (LV), Medium Voltage (MV), and High Voltage (HV) electric motors. The role involves interpreting customer specifications, developing engineered motor solutions, supporting salesactivities, and coordinating with internal engineering teams to deliver competitive and compliant proposals.</div><br><div><strong>Key Responsibilities:</strong></div><br><div>Technical &amp; Engineering Support</div><br><div>• Review and interpret customer technical specifications, datasheets, drawings, andapplicable standards.</div><br><div>• Select and configure LV / MV / HV motor solutions based on application, duty,environmental conditions, and customer requirements.</div><br><div>• Perform key electrical and mechanical calculations, including motor sizing, thermal nalysis, starting methods (DOL, soft starter, VFD), efficiency and power factor evaluation, and torsional/shaft analysis as required.</div><br><div>• Prepare and review technical documentation such as motor datasheets, GA and outline drawings, and technical deviations or compliance statements.</div><br><div>• Ensure compliance with IEC, NEMA MG1, IEEE 841, and project-specific requirements.</div><br><div>• Apply practical knowledge of electric motors, including cooling methods, insulation systems, protection classes, and key mechanical aspects.</div><br><div>• Consider hazardous area requirements (ATEX / IECEx) where applicable.</div><br><div>Commercial &amp; Proposal Support</div><br><div>• Handle technical inquiry evaluation and support quotation preparation.Customer &amp; Sales Coordination</div><br><div>• Act as the primary technical contact for customers during the inquiry and quotation stage.</div><br><div>• Participate in technical meetings, clarification discussions, and presentations with</div><br><div>customers. (as required)</div><br><div>• Follow up on open technical queries and support Sales in closing opportunities.</div><br><div>• Provide post-quotation technical support until order finalization.</div><br><div>Documentation &amp; Data Management</div><br><div>• Maintain organized electronic records of all inquiry, quotation, and order documentation.</div><br><div>• Ensure proper document control in accordance with company procedures.</div><br><div>• Support handover of technical information from sales to order execution teams.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "4b5f6819-6e71-4edf-b777-f0ca321aaf52",
+                "title": "Sourcing support Analyst",
+                "company": "Optimas Solutions",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=103.+Sourcing+Support+Analyst",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=103.+Sourcing+Support+Analyst",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3-6 years</strong></div><br><div><strong>Position overview:</strong></div><br><div>As a Sourcing Support Analyst at Optimas you will play a crucial role in driving the success and growth of our organization. This position requires flexibility to handle ad-hoc projects as well as a regular stream of sourcing work. In this position, you will collaborate with various teams, including Sourcing, Sales, Quality and Engineering to ensure effective project delivery and alignment with our strategic objectives. You will be part of the Strategic Sourcing Team and report to the Sr. Strategic Sourcing Manager, with functional responsibilities overseen by a Senior Sourcing Manager responsible for a spend category. If you are looking for an opportunity to make a significant contribution to a global organization with a challenging and fast-paced atmosphere, this is the place!</div><br><div><strong>Responsibilities:</strong></div><br><div>The Sourcing Support Analyst will have two primary areas of responsibility: </div><br><div>1. Support for Sr. Sourcing Managers (US) within a specific spend category</div><br><div>Assist with projects as defined by the Sr. Sourcing Manager</div><br><div>Communicate with suppliers about schedules, quotations, and deliveries.</div><br><div>Expedite shipments on behalf of the Supply Chain organization.</div><br><div>Assist with problem resolution and financial recovery for defective goods.</div><br><div>Key in data for our various IT systems</div><br><div>2. Preparation and execution of Strategic Sourcing tenders</div><br><div>Continuing workflow of spend analysis and quotation (rotating categories)</div><br><div>Obtain prints and relevant specifications for parts chosen to tender.</div><br><div>Research new and existing vendors for the total vendor pool.</div><br><div>Key in data for quotation and issue RFQ</div><br><div>Evaluate results and prepare recommendations.</div><br><div>Present outcomes to management as required.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "f76b5cf4-55a1-4179-b2a4-a8d5abc4496f",
+                "title": "SAP Lead ",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=104.+SAP+Lead",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=104.+SAP+Lead",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 5+ years</strong></div><br><div><strong>Key Responsibilities:</strong></div><br><div>Experienced SAP End User.</div><br><div>Sound transactional SCM knowledge (Especially: Purchasing and Order management)</div><br><div>Must be adept with reporting through SAP</div><br><div>Strong command over the MS office suite, excellent proficiency with excel</div><br><div>Strong leadership skills - Must have experience leading teams.</div><br><div>Excellent communication - Native/Bilingual Proficiency in English.</div><br><div>Preferred - Intermediate proficiency in Solidworks</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "47455b0e-b14d-41fb-bacb-5798f9dc8f68",
+                "title": "Supply chain Buyer",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=112.+Supply+Chain+Buyer",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=112.+Supply+Chain+Buyer",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 2-4 years</strong></div><br><div><strong>Key responsibilities:</strong></div><br><div>Communicating effectively with suppliers to maintain a strong relationship.</div><br><div>Actioning order planning/purchasing signals and the acknowledgement process, keeping the orderbook aligned with system requirements, and efficiently resolving any day-to-day supply issues.</div><br><div>Identifying and resolving potential supply risks, expediting parts where needed to ensure continued supply of parts to our customers</div><br><div>Manage inventory levels by actioning messages in DOB (expedite, cancel, and defer).       </div><br><div>Monitor supplier compliance to agreed terms in the system (costs, lead-times and moq’s).Communicating effectively with the Operations team to ensure timely receipt of parts and swift resolution of shipping and invoice queries.</div><br><div>Collaborate with the Technical Service Department and external suppliers on Quality issues.</div><br><div>Collaborate with Sales, Supply Chain Analysts, and the Demand Planning Team, identifying issues and performing root cause analysis to improve the system forecast.</div><br><div>Utilize Daily, Weekly, and Monthly reporting to optimize inventory investment.</div><br><div>Other tasks and duties as assigned. </div><br><div><strong>Skills and Qualifications:</strong></div><br><div>Minimum of 3-5 years’ experience in purchasing in a manufacturing environment/working directly with industrial manufacturing suppliers OR</div><br><div>Degree in Supply Chain Management, Management, or similar field combined with a minimum of two (2) years’ experience in purchasing in a manufacturing environment/working directly with industrial manufacturing suppliers.Working knowledge of purchasing and supply chain concepts ,with APICS, CPIM, NAPM certification and/or association a plus. </div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "81a32bbd-4124-4c4d-b922-f054a56f3f57",
+                "title": "Business System Analyst",
+                "company": "",
+                "department": "",
+                "location": "Pune",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=128.+Business+System+Analyst",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=128.+Business+System+Analyst",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3+ years</strong></div><br><div><strong>Job Description:</strong></div><br><div><strong>About the Role</strong></div><br><div>We are seeking a Business Systems Analyst to join our global IT team. This role is responsible for bridging the gap between business needs and technical solutions, ensuring that systems, processes, and data deliver maximum value to the organization. This employee will work with senior leadership and end users to design and deliver solutions and embody our core values - THREAD: Trust, Honesty, Respect, Excellence, Accountability, and Drive.</div><br><div>The ideal candidate will have strong analytical skills, experience working with stakeholders, and the ability to translate requirements into actionable solutions. Demonstrated success in driving project momentum, leading successful changes, and managing a broad project portfolio is strongly desired.</div><br><div>This role is open to candidates across experience levels (junior, mid, or senior). Responsibilities and leadership opportunities will be aligned to the candidate’s background and expertise.</div><br><div><strong>Key Responsibilities</strong></div><br><div>Collaborate with business stakeholders to gather, analyze, and document detailed requirements for new systems or enhancements.</div><br><div>Act as an internal consultant for software and process best practices, advising senior leadership and end users.</div><br><div>Create process flows, data models, mock-ups, and user interface designs to guide development teams.</div><br><div>Support the full Software Development Life Cycle (SDLC), including requirement management, testing, implementation, and training.</div><br><div>Perform data analysis to support decision-making, ensuring accuracy, integrity, and quality of business data.</div><br><div>Evaluate new technologies, trends, and best practices, recommending improvements to business processes and IT systems.</div><br><div>Document current and future state business processes and system designs.</div><br><div>Partner with IT teams to design, configure, and test Saas and proprietary business applications.</div><br><div>Develop and maintain functional documentation, including operating procedures and knowledge articles.</div><br><div>Provide training and support to end-users on new or updated systems and processes.</div><br><div>Participate in Agile/Iterative practices (sprint planning, stand-ups, retrospectives) to ensure continuous improvement and delivery.</div><br><div>For experienced candidates: lead or mentor junior team members, manage medium to large projects, and contribute to strategic roadmaps.</div><br><div><strong>Experience</strong></div><br><div>Bachelor’s degree in Computer Science, Information Technology, Engineering, Business, or a related field (or equivalent work experience).</div><br><div>Experience as a Business Analyst, Systems Analyst, Functional Consultant, or similar role (level of responsibility will vary depending on years of experience):</div><br><div>Junior: 1–3 years of experience, strong analytical and documentation skills.</div><br><div>Mid-level: 4–7 years of experience, ability to manage projects and lead requirement workshops.</div><br><div>Senior: 8+ years of experience, proven leadership, strategic influence, and mentoring capabilities.</div><br><div>Strong understanding of business processes and IT systems, ideally including ERPs, integration tools such as Boomi, SQL Databases, and proprietary business applications.</div><br><div>Experience with SDLC, Agile methodologies, and project management practices.</div><br><div>Proficiency in data analysis and reporting tools. SQL profiency preferred.</div><br><div>Excellent communication and stakeholder management skills, with the ability to work across cultures and time zones.</div><br><div>Familiarity with design and collaboration tools such as Jira, Lucid Chart, Smartsheet, or similar platforms is an advantage.</div><br><div>For senior candidates: experience with master data management, incident/problem management, or IT application architecture design is preferred.</div><br><div> </div><br><div><strong>Preferred Certifications (not required)</strong></div><br><div>CCBA, CBAP, PMI-PBA, or PMP.</div><br><div>SCRUM Master or Agile certifications.</div><br><div>NetSuite ERP Consultant or other similar certifications</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "da443a04-c13c-40e2-95e3-e96b42af6db5",
+                "title": "Operational Lead",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=129.+Operational+Lead",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=129.+Operational+Lead",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required:</strong> <strong>1- 5 years</strong></div><br><div>This is a hybrid operations role with a 70/30 time split:</div><br><div>70% DOLT (supply chain + retail operations + EU/global expansion)</div><br><div>30% personal/household administrative support</div><br><div>Supply Chain &amp; Manufacturing (50%)</div><br><div>Identify, evaluate, and manage jewelry manufacturers and finishing vendors in India.</div><br><div>Coordinate sampling, quotations, MOQs, cost sheets, and production documentation.</div><br><div>Track manufacturing timelines and oversee QC for accuracy, consistency, and finishing.</div><br><div>Oversee export coordination from India, including:</div><br><div>Verifying HS codes, valuations, and factory paperwork</div><br><div>Consolidating shipments across multiple vendors</div><br><div>Coordinating with a US freight forwarder for customs clearance and final fulfillment</div><br><div>Maintaining and updating SKU sheets, BOMs, vendor directories, SOPs, and production trackers.</div><br><div>Support preparation for European expansion by researching EU import rules and logistics.</div><br><div>(Jewelry, fashion, accessories, or manufacturing experience strongly preferred.</div><br><div>Retail Operations &amp; Expansion Support (20%)</div><br><div>Support development of DOLT’s retail expansion strategy via structured research and insights.</div><br><div>Build and manage lists of boutiques, LGBT-forward stores, and wholesale partners (US + EU).</div><br><div>Assist with outreach and communication to buyers and wholesalers.</div><br><div>Create and update line sheets, wholesale packets, pricing tools, and retailer decks.</div><br><div>Coordinate sample shipments to retailers and stylists.</div><br><div>Assist with reviewing and coordinating wholesaler agreements and contracts.</div><br><div>SECONDARY RESPONSIBILITIES (30% Personal Administrative Support)</div><br><div>Manage utilities, payments, recurring household tasks, and general organization.</div><br><div>Support coordination with contractors, architects, and engineers for the Victorian home renovation.</div><br><div>Prepare notes, track quotes, research materials/vendors, and maintain project timelines.</div><br><div>Assist with personal CRM, document management, scheduling, and travel planning.</div><br><div></div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "70e263d1-8b95-4ce4-be9c-ac1ededac054",
+                "title": "Design Engineer",
+                "company": "",
+                "department": "",
+                "location": "Remote",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=121.+Design+Engineer",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=121.+Design+Engineer",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 3+ years</strong></div><br><div><strong>Essential Duties &amp; Responsibilities:</strong></div><br><div> Prepare accurate 2D and 3D drawings based on requirements provided by senior designers and/or clients.</div><br><div> Revise drawings to incorporate changes or feedback from designers, engineers, and clients.</div><br><div> Develop computer-based technical drawings using AutoCAD.</div><br><div> Complete 3D printing tasks as required.</div><br><div> Ensure timely completion and delivery of assigned projects.</div><br><div> Provide clear and consistent communication regarding project status.</div><br><div> Serve as a liaison between the design team and engineering to support project needs.</div><br><div> Produce detailed visual representations for client review and approval.</div><br><div> Maintain and update the CAD drawing library.</div><br><div><strong>Qualifications &amp; Skills:</strong></div><br><div> Associate’s degree in drafting, design, or related field; or equivalent technical training/experience.</div><br><div> 3+ years of professional experience as an AutoCAD Drafter.</div><br><div> Expert proficiency in AutoCAD 2D and 3D.</div><br><div> Familiarity with SketchUp, Fusion, and 3D printing (preferred).</div><br><div> Proficiency with Microsoft Office Suite.</div><br><div> Strong understanding of architectural and shop drawings.</div><br><div> Excellent attention to detail and accuracy.</div><br><div> Strong organizational, problem-solving, and time-management skills.</div><br><div> Effective communication skills in English, both written and verbal.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "943f18d0-c1d3-4357-a07f-16a387a60655",
+                "title": "Civil Draftsman",
+                "company": "",
+                "department": "",
+                "location": "Hyderabad",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "Negotiable",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=117.+Civil+Draftsman",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=117.+Civil+Draftsman",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 0-5 years</strong> </div><br><div><strong>Key Responsibilities:</strong></div><br><div>• Prepare detailed civil engineering drawings and plans using AutoCAD and other drafting software.</div><br><div>• Ability to take direction from senior engineers and project managers.</div><br><div>• Collaborate with engineers and project managers to ensure accuracy and completeness of drawings.</div><br><div>• Assist in the development of project documentation and technical specifications.</div><br><div>• Review and modify designs based on feedback and project requirements.</div><br><div>• Ensure compliance with relevant standards and meet the company’s set quality objectives.  </div><br><div>• Maintain organized project files and documentation.</div><br><div><strong>Qualifications:</strong></div><br><div>• Bachelor’s degree in civil engineering or a related field.</div><br><div>• Minimum 3+ years of experience in civil drafting, for intermediate 5+, and for Senior 8+ years.</div><br><div>• Proficiency in AutoCAD and/or other drafting software.</div><br><div>• Familiarity or exposure to Civil 3D, but not mandatory.</div><br><div>• Must have exposure to civil projects and be familiar with earthworks, drainage, and roading plans.</div><br><div>• Strong understanding of civil engineering concepts and design principles.</div><br><div>• Excellent attention to detail and accuracy.</div><br><div>• Ability to work in a team.</div>",
+                "skills": [],
+                "visible": true
+              },
+              {
+                "id": "e96c6132-b577-4be5-a54d-fed7920cea45",
+                "title": "Engineer 1",
+                "company": "Remuanance",
+                "department": "IT",
+                "location": "Goa",
+                "salary": {
+                  "type": "none",
+                  "amount": 1000,
+                  "customSalary": "",
+                  "currency": "USD",
+                  "period": "year",
+                  "minSalary": 1000,
+                  "maxSalary": 1200
+                },
+                "typeOfContract": "Full Time",
+                "link": {
+                  "value": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=101.+Engineer+I",
+                  "rawValue": "https://docs.google.com/forms/d/e/1FAIpQLSeuCGvNqzuMCKEzkJt1QvwZ4nqNZ-GG0qSCHGh1sEFvSWCfpw/viewform?usp=pp_url&entry.1796069548=101.+Engineer+I",
+                  "target": "_blank",
+                  "type": "url"
+                },
+                "description": "<div><strong>Experience required: 1-3 years</strong></div><br><div></div><ul><li><div>Engineer tower and compound locations (i.e. site layout, grading, stormwater management design, and culvert design) with<br>an understanding in structural engineering concepts</div></li><li><div>Develop construction plans for telecommunications client equipment upgrades and modifications</div></li><li><div>Prepare and review construction drawings for completeness before final PE review</div></li><li><div>Design of new conduit routes for fiber optic utility companies from existing infrastructure to proposed destination in public<br>right-of-way and private property</div></li><li><div>Design of existing fiber optic facilities within the public right-of-way for permanent or temporary relocation</div></li><li><div>Analyze and design all types of structural support designs using building materials such as steel, concrete, masonry, light-<br>gage, and wood</div></li><li><div>Perform calculations conforming to building code requirements for structural design and analysis</div></li><li><div>Interact with<br>internal multi-disciplinary team members to expedite project completion and approvals</div></li><li><div>Create an effective job flow by tracking assigned tasks and prioritizing completion of assignments accordingly</div></li><li><div>Maintain CAD standards and templates</div></li><li><div>Routinely produce accurate drawings promptly and efficiently</div></li><li><div>Learn telecommunications equipment and client-specific equipment and their usage</div></li><li><div>Learn conduit design from client-specific standards</div></li><li><div>Evaluate designs for constructability</div></li></ul><div><strong>Qualifications:</strong></div><br><div>Critical thinking and problem-solving for complex designs</div><br><div>B.E./<a href=\"http://B.Tech\">B.Tech</a> Civil/Structural Engineering or Engineering Technology</div><br><div>0 to 3 years of engineering experience required</div><br><div>AutoCAD required, Civil 3D preferred</div><br><div>Proficiency in Microsoft Office Suite</div><br><div>Structural engineering software experience required (RISA 3D, Enercalc, tnxTower, Mathcad)</div><br><div>Understanding in the principles of the following knowledge area: transportation, civil (grading and site analysis), stormwater<br>management design, culvert design, structural, and geotechnical</div><br><div>Ability to interpret complex building, tower, and other structural drawings</div><br><div>Engineering design principles and applicable design guides and standards</div><br><div>Ability to review and analyze site documentation and gather necessary information to complete the assignment</div>",
+                "skills": [
+                  {
+                    "id": "80b08d1d-4ecd-43ca-bd90-b35bbdb30c58",
+                    "name": ""
+                  }
+                ],
+                "visible": true
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

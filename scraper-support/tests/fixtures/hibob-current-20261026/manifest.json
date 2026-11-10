@@ -1,0 +1,42 @@
+{
+  "sapiens-career-site.json": {
+    "originalSHA256": "78403a18e5737576f7683c29597e7ecc8b09c927f9ece5dc88421c7ad7ea9552",
+    "fixtureSHA256": "7023bf769a8f938ef0677b4d1d04b387625884d56e50f00e9eb943b371e26f6e",
+    "sanitizedUnusedMediaQueries": true
+  },
+  "sapiens-job-ad.json": {
+    "originalSHA256": "74f2385387899712cc1d107d8685c8bbb237c3a168188135e6aa6dd688597699",
+    "fixtureSHA256": "74f2385387899712cc1d107d8685c8bbb237c3a168188135e6aa6dd688597699",
+    "sanitizedUnusedMediaQueries": false
+  },
+  "snowplow-career-site.json": {
+    "originalSHA256": "adb1e97ee0a6798b04ad2fecca3689203701f48bfa8f557747d5875844a0e7be",
+    "fixtureSHA256": "f9e0eb3a3fc4eb73ef374bd19cea063adfbfc30f4ec84a5b0996067ec783b351",
+    "sanitizedUnusedMediaQueries": true
+  },
+  "snowplow-job-ad.json": {
+    "originalSHA256": "e4037415ca33bc9f0a5c3ecaaaff6fad4fd6f843c23285de5fa453370313fd42",
+    "fixtureSHA256": "e4037415ca33bc9f0a5c3ecaaaff6fad4fd6f843c23285de5fa453370313fd42",
+    "sanitizedUnusedMediaQueries": false
+  },
+  "sapiens-careers.html": {
+    "originalSHA256": "a8d7c3e7766857bcd39ab6541bf416dc81d765ee3c065f9966848cc9ffed3d14",
+    "fixtureSHA256": "a8d7c3e7766857bcd39ab6541bf416dc81d765ee3c065f9966848cc9ffed3d14",
+    "sanitizedUnusedMediaQueries": false
+  },
+  "snowplow-careers.html": {
+    "originalSHA256": "6d062f5d2631e4e112aba026d38057829ea39121073ebbcd3f1189a6f8cd3de7",
+    "fixtureSHA256": "6d062f5d2631e4e112aba026d38057829ea39121073ebbcd3f1189a6f8cd3de7",
+    "sanitizedUnusedMediaQueries": false
+  },
+  "sapiens-first-form.json": {
+    "originalSHA256": "969a6c011babad81fffdad83a666a5550a4d33a1d95f76849163a503885dded3",
+    "fixtureSHA256": "969a6c011babad81fffdad83a666a5550a4d33a1d95f76849163a503885dded3",
+    "sanitizedUnusedMediaQueries": false
+  },
+  "sapiens-additional-form.json": {
+    "originalSHA256": "eb7b8ea87f3b258cda05b2e5babc67adb40dca7776a668dadc47e6f202f75119",
+    "fixtureSHA256": "eb7b8ea87f3b258cda05b2e5babc67adb40dca7776a668dadc47e6f202f75119",
+    "sanitizedUnusedMediaQueries": false
+  }
+}

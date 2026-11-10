@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { randomBytes } from "node:crypto";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { login } from "../src/controllers/authController.js";
@@ -92,6 +93,12 @@ test('pending registrations never receive the account-does-not-exist warning', a
 
 
 test('a valid password still creates a private versioned session', async t => {
+  const originalJwtSecret = process.env.JWT_SECRET;
+  process.env.JWT_SECRET = randomBytes(32).toString('hex');
+  t.after(() => {
+    if (originalJwtSecret === undefined) delete process.env.JWT_SECRET;
+    else process.env.JWT_SECRET = originalJwtSecret;
+  });
   const user = new User({ email: 'valid.account@gmail.com',
     password: await bcrypt.hash('CorrectPassword123', 4), sessionVersion: 3, isVerified: true });
   user.isNew = false;

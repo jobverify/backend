@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Current Openings</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap & DataTables CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .job-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .job-title {
+            font-weight: bold;
+            color: #034ea2;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .location,
+        .exp {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .vac-id {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .apply-btn {
+            background-color: #033766;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .apply-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .job-description {
+            background-color: #f1f1f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 3px solid #034ea2;
+            border-radius: 5px;
+            display: none;
+            white-space: pre-line;
+        }
+
+        .dataTables_filter input {
+            border-radius: 5px;
+            margin-left: 0.5rem;
+        }
+    </style>
+
+<script type="text/javascript" class="flasher-js">(function() {    var rootScript = 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.3.2/dist/flasher.min.js';    var FLASHER_FLASH_BAG_PLACE_HOLDER = {};    var options = mergeOptions([], FLASHER_FLASH_BAG_PLACE_HOLDER);    function mergeOptions(first, second) {        return {            context: merge(first.context || {}, second.context || {}),            envelopes: merge(first.envelopes || [], second.envelopes || []),            options: merge(first.options || {}, second.options || {}),            scripts: merge(first.scripts || [], second.scripts || []),            styles: merge(first.styles || [], second.styles || []),        };    }    function merge(first, second) {        if (Array.isArray(first) && Array.isArray(second)) {            return first.concat(second).filter(function(item, index, array) {                return array.indexOf(item) === index;            });        }        return Object.assign({}, first, second);    }    function renderOptions(options) {        if(!window.hasOwnProperty('flasher')) {            console.error('Flasher is not loaded');            return;        }        requestAnimationFrame(function () {            window.flasher.render(options);        });    }    function render(options) {        if ('loading' !== document.readyState) {            renderOptions(options);            return;        }        document.addEventListener('DOMContentLoaded', function() {            renderOptions(options);        });    }    if (1 === document.querySelectorAll('script.flasher-js').length) {        document.addEventListener('flasher:render', function (event) {            render(event.detail);        });        document.addEventListener('livewire:navigating', function () {    var elements = document.querySelectorAll('.fl-no-cache');    for (var i = 0; i < elements.length; i++) {        elements[i].remove();    }});    }    if (window.hasOwnProperty('flasher') || !rootScript || document.querySelector('script[src="' + rootScript + '"]')) {        render(options);    } else {        var tag = document.createElement('script');        tag.setAttribute('src', rootScript);        tag.setAttribute('type', 'text/javascript');        tag.onload = function () {            render(options);        };        document.head.appendChild(tag);    }})();</script>
+</head>
+
+<body>
+
+    <div class="container py-4">
+        <p>
+            If there are no relevant jobs to apply, please
+            <a href="https://careerxai.kgisl.com/resume/webportal_add_resume" class="text-primary fw-bold">
+                Click here
+            </a>
+
+            to register yourself.
+        </p>
+        <div class="table-responsive">
+            <table id="jobCardTable" class="table d-none">
+                <thead style="display: none;">
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                                                            <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100889</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 26-Jun-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Sr.associate - Senior Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p>We are seeking a <strong>Senior Associate – Full Stack Developer</strong> with strong expertise in <strong>Java, Spring Boot, Angular, and PostgreSQL</strong> to design, develop, and maintain scalable, high-performance enterprise applications.<br><br>The ideal candidate should demonstrate ownership, technical leadership, and a proactive approach to solving complex business and technical challenges while delivering high-quality software solutions within project timelines.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 5 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 8 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDg4OQ=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100887</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 25-Jun-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Project Manager - Project Manager
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p>8-20 years of experience with 5+ years in project management, preferably in the financial services industry / Understanding of Insurance domain</p><p>Strong proficiency in Agile, Scrum, Waterfall methodologies</p><p>PMP, PRINCE2, SAFe, or Agile certification</p><p>Proficiency in project management tools such as JIRA, Zoho, MSP or equivalent</p><p>Lead project lifecycles from initiation to closure, using methodologies like Agile/Scrum or Waterfall.</p><p>Strong understanding of change management principles, including assessment, planning, execution, monitoring &amp; control phases.</p><p>Experience in managing large-scale projects involving complex technical requirements using Agile/Scrum framework</p><p>Work with the business and project team to elicit, validate, and categorize requirements and document data flows</p><p>Lead projects from requirements definition through deployment, identifying schedules, scopes, budget estimations, and implementation plans.</p><p>Own client relationships and executive-level communications, including status cadences, business reviews, and deliverable acceptance.</p><p>Help manage the cross-functional strategic planning and business planning process, leading conversations with key stakeholders to develop concepts for strategic initiatives, and developing those into detailed program/project plans (including roadmaps, funding planning, resource planning and hiring goals).</p><p>Proficiency in project management tools such as JIRA, Zoho, MSP or equivalent</p><p>Manage multiple projects simultaneously, ensuring timely completion and meeting client expectations.</p><p>Develop and implement project plans, resource allocation, and risk management strategies.</p><p>Collaborate with cross-functional teams to identify business requirements and develop solutions.</p><p>Ensure compliance with organizational processes, policies, and procedures.</p><p>Identify potential improvement opportunities and take responsibility to drive them to completion.<br>&nbsp;</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 8 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 20 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDg4Nw=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100883</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 24-Jun-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Business Analyst - Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <ol><li>Acquire a complete knowledge of the GL system and its links to the Core Insurance system</li><li>Able to qualify requests raised by clients.</li><li>Able to walkthrough the system features with clients and provide necessary clarifications when required.</li><li>Able to run basic queries to extract data and check the data.</li><li>Able to keep track of deliveries to client and support the team in meeting SLA.</li><li>Perform internal quality checks to make sure the delivery is as per client's expectation.</li></ol>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 2 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 3 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDg4Mw=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100882</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 24-Jun-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Pmo Analyst - Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <ul><li>Project coordination, planning and tracking experience</li><li>Understanding of Project Financial management</li><li>Knowledge of Project Management Tools</li><li>Good facilitator, able to drive collaboration across the teams</li><li>Identify and liaise with project stakeholders across the business and agree appropriate support required</li><li>Coordinate with various Project stakeholders to facilitate and follow up action</li><li>Monitor and collate information to accurately capture progress for individual projects</li><li>Coordinate and oversee Project/Program health checks to ensure adherence to standard project processes and controls</li><li>Validate Timesheets/Financial reports/high-level project status reports, risk issue reports</li><li>Should have a passion for data gathering, analysis and information sharing, preparing PPTs and Reporting.</li><li>Stakeholder management</li><li>Maintain all work according to program office procedures and policies.</li><li>Perform regular project status calls on weekly and monthly basis.</li><li>Able to develop and manage portfolio risk registers and project or program governance</li><li>Able to assist in benefits management frameworks or applying benefits realization plans</li><li>Advanced written and verbal communication, including presentation skills</li></ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 3 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 10 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDg4Mg=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100859</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 11-Jun-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Developer - Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p><strong>Backend (Spring Boot)</strong></p><ul><li>Design, develop, and deploy Java applications using Spring Boot, including microservices architecture and RESTful APIs.</li><li>Conduct code reviews, write unit/integration tests, troubleshoot issues.</li><li>Handle exception management and logging.</li><li>Ensure application security, scalability, and monitoring while staying updated on Spring ecosystem trends.</li></ul><p><strong>Database (PostgreSQL)&nbsp;</strong></p><ul><li>Integrate and optimize PostgreSQL databases with Spring Data JPA/Hibernate for efficient data access, schema design, and query performance.</li><li>Data consistency and performance.</li></ul><p><strong>General Responsibilities</strong></p><ul><li>Write clean, maintainable, and testable code.</li><li>Analyze code scan reports and remediate identified security vulnerabilities and code quality issues.</li><li>Participate in code reviews and sprint planning.</li><li>Troubleshoot and debug application issues.</li><li>Follow best coding and security practices.</li></ul><p><strong>Required Skills</strong></p><ul><li>Strong experience with Java (8+) and Spring Boot</li><li>Experience with REST APIs</li><li>Good knowledge of PostgreSQL&nbsp;</li><li>Familiarity with Jenkins, Git</li></ul><p><strong>Good to Have</strong></p><ul><li>Experience with Spring Security (JWT/OAuth)</li><li>Knowledge of Docker &amp; CI/CD</li><li>Cloud experience (AWS/Azure/GCP)</li><li>Familiarity with API testing tools (Postman, Swagger)</li></ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 3 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 6 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDg1OQ=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100837</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 26-May-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Business Analyst - Senior Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <figure class="table"><table><tbody><tr><td><h2>Capital Market Business Analyst</h2><p>Requirements &amp; Regulatory Engagement&nbsp; |&nbsp; 5–8 Years Experience&nbsp; |&nbsp; &nbsp;Full-Time</p></td></tr></tbody></table></figure><p>&nbsp;</p><h2>Role Summary</h2><p>Be the bridge between capital markets business stakeholders, regulators, and technology teams. Own the end-to-end requirements lifecycle — from discovery workshops with broking clients and clearing members through to BRD and FSD sign-off — while maintaining active engagement with SEBI, NSE, BSE, and other regulatory bodies to translate regulatory mandates into precise product specifications. Work cross-functionally with back-office vendors and internal development teams to ensure delivered features are compliant, accurate, and production-ready.</p><figure class="table"><table><tbody><tr><td><p>Experience</p><p><strong>5 – 8 Years</strong></p></td><td><p>Domain</p><p><strong>Capital Markets</strong></p></td><td><p>Client Facing</p><p><strong>Yes — Regulatory &amp; Client</strong></p></td></tr></tbody></table></figure><p>&nbsp;</p><h2>Key Responsibilities</h2><p><strong>A. Client Requirements &amp; Discovery</strong></p><ul><li><strong>Requirements Workshops:&nbsp;</strong>Conduct structured discovery sessions with broking firms, clearing members, and institutional clients to elicit functional and regulatory requirements across trade lifecycle, risk, clearing, and settlement domains.</li><li><strong>BRD Preparation:&nbsp;</strong>Author comprehensive Business Requirements Documents capturing business objectives, functional scope, process flows, data mappings, and acceptance criteria — reviewed and signed off by client stakeholders.</li><li><strong>FSD Authoring:&nbsp;</strong>Translate approved BRDs into Functional Specification Documents with detailed screen-level, workflow-level, and interface-level specifications for the development and QA teams.</li><li><strong>Gap Analysis:&nbsp;</strong>Analyse client's existing back-office processes and system capabilities against the target solution to identify functional gaps, workarounds, and phased delivery options.</li><li><strong>Stakeholder Management:&nbsp;</strong>Manage requirements sign-off across client operations heads, compliance officers, technology teams, and senior management — ensuring alignment before development begins.</li></ul><p>&nbsp;</p><p><strong>B. Regulatory Engagement</strong></p><ul><li><strong>SEBI Regulatory Interface:&nbsp;</strong>Engage directly with SEBI on regulatory circulars, compliance mandates, and reporting frameworks — interpreting guidelines and translating them into actionable product requirements.</li><li><strong>Exchange Liaison — NSE &amp; BSE:&nbsp;</strong>Coordinate with NSE and BSE technical and business teams on exchange connectivity specifications, file formats (SPAN, bhavcopy, obligation files, UCC), and regulatory change timelines.</li><li><strong>Regulatory Change Management:&nbsp;</strong>Monitor SEBI circulars, NSE/BSE notices, and IRDAI/RBI guidelines relevant to broking back-office operations; assess product impact and initiate change requests within defined timelines.</li><li><strong>Compliance Specification:&nbsp;</strong>Document regulatory requirements as formal functional specifications — margin computation rules, settlement cycle changes (T+1), reporting formats, and audit trail requirements — ensuring product compliance ahead of effective dates.</li><li><strong>Regulatory UAT Coordination:&nbsp;</strong>Coordinate User Acceptance Testing for regulatory change releases — prepare test cases aligned to regulatory specifications and drive sign-off with client compliance teams.</li></ul><p>&nbsp;</p><p><strong>C. Back-Office Vendor &amp; Integration Management</strong></p><ul><li><strong>Vendor Requirements Discussion:&nbsp;</strong>Engage with third-party back-office vendors (depositories, clearing corporations, custodians, payment gateways) to align integration requirements, file format specifications, and API contracts.</li><li><strong>Interface Specifications:&nbsp;</strong>Prepare interface and integration specification documents covering data exchange formats (fixed-width, CSV, XML, JSON), field mappings, frequency, error handling, and reconciliation rules.</li><li><strong>Cross-Vendor Reconciliation Issues:&nbsp;</strong>Work with vendors and clients to resolve data reconciliation discrepancies — trade obligations, securities positions, margin shortfalls, and depository holding mismatches.</li></ul><p>&nbsp;</p><p><strong>D. Delivery &amp; Quality Assurance</strong></p><ul><li><strong>Sprint &amp; Backlog Management:&nbsp;</strong>Work with the Product Owner and development team in an Agile environment — writing user stories with clear acceptance criteria, managing the backlog, and participating in sprint planning and review ceremonies.</li><li><strong>Functional Test Support:&nbsp;</strong>Review functional test cases prepared by QA, validate test coverage against FSDs, and support UAT execution with clients — tracking defects to closure.</li><li><strong>Training &amp; Handover:&nbsp;</strong>Prepare functional training materials and conduct knowledge-transfer sessions for client operations teams and internal support staff post go-live.</li><li><strong>Knowledge Base:&nbsp;</strong>Maintain a repository of BRDs, FSDs, regulatory mapping documents, and exchange specifications for internal reference and audit purposes.</li></ul><p>&nbsp;</p><h2>Capital Markets Domain Knowledge Required</h2><p>The candidate must have hands-on functional knowledge across the following capital markets domains:</p><figure class="table"><table><tbody><tr><td><strong>Domain Area</strong></td><td><strong>Key Concepts</strong></td></tr><tr><td><strong>Trade Lifecycle</strong></td><td>Order management, trade execution, give-up trades, trade confirmation, allocation</td></tr><tr><td><strong>Clearing &amp; Settlement</strong></td><td>Pay-in / pay-out, obligation computation, settlement cycle (T+1), shortages &amp; auctions, DVP/non-DVP</td></tr><tr><td><strong>Margin Management</strong></td><td>SPAN margin, VaR margin, exposure margin, MTM, margin calls, peak margin reporting</td></tr><tr><td><strong>Depository Operations</strong></td><td>NSDL/CDSL account types, DIS, DP transactions, demat debit/credit, pledge &amp; hypothecation</td></tr><tr><td><strong>Risk Management</strong></td><td>Position limits, client-level risk controls, RMS parameters, pre-trade risk checks</td></tr><tr><td><strong>Regulatory Reporting</strong></td><td>SEBI reports, exchange MIS, client-wise position reports, UCC, KYC linkage</td></tr><tr><td><strong>Exchange Segments</strong></td><td>NSE/BSE Cash, F&amp;O, Currency; MCX/NCDEX Commodity; Institutional (FPI, FII) segments</td></tr><tr><td><strong>Back-Office Operations</strong></td><td>Brokerage computation, ledger management, fund transfer, bank reconciliation, DEMAT reconciliation</td></tr></tbody></table></figure><p>&nbsp;</p><h2>Skills &amp; Qualifications</h2><figure class="table"><table><tbody><tr><td><strong>Must-Have</strong></td><td><strong>Good to Have</strong></td></tr><tr><td><ul><li>5–8 years of business analysis experience in a capital markets product company, broking firm, or financial technology organisation</li><li>Proven experience authoring BRDs and FSDs for capital markets back-office systems</li><li>Direct engagement experience with SEBI, NSE, BSE — participating in regulatory discussions, responding to exchange queries, or managing compliance change timelines</li><li>Strong understanding of NSE/BSE exchange file formats — SPAN, bhavcopy, obligation, pay-in/pay-out, UCC, and TBT data</li><li>Experience working with back-office vendors — depositories (NSDL/CDSL), clearing corporations (NSCCL/ICCL), payment gateways, or custodians</li><li>Ability to write precise, unambiguous functional specifications that can be directly used by developers and QA engineers</li><li>SQL proficiency — ability to write and validate queries for data verification, reconciliation checks, and requirement validation</li><li>Agile/Scrum experience — user story writing, acceptance criteria, backlog grooming, and sprint ceremonies</li><li>Strong communication skills — capable of presenting to C-level client stakeholders and engaging technically with exchange officials and regulators</li></ul></td><td><ul><li>Prior experience at capital markets product firms: TCS Financial Solutions (TCS BaNCS Precision), Comtec Systems, Secmark Consultancy, Tech Excel, or Rupeeseed</li><li>Hands-on familiarity with back-office platforms — Dolphin, TCS BaNCS, Comtek, Rupeesoft, Tech Excel, NSEIT, or equivalent broking BO solutions</li><li>NISM Certifications — Series VII (Securities Operations &amp; Risk Management), Series VIII (Equity Derivatives), or Series XII (Securities Markets Foundation)</li><li>Experience with FPI/FII onboarding requirements, omnibus account structures, or institutional settlement workflows</li><li>Exposure to T+1 settlement transition, peak margin reporting framework, or other recent SEBI regulatory changes</li><li>Knowledge of depository participant (DP) module requirements — account opening, eDIS, DDPI, pledge &amp; margin pledge workflows</li><li>Familiarity with API-based integration specifications — REST/XML for exchange and third-party connectivity</li><li>CBAP, PMI-PBA, or equivalent business analysis certification</li></ul></td></tr></tbody></table></figure><p>&nbsp;</p><h2>Preferred Background — Employers &amp; Platforms</h2><p>Candidates with prior experience at the following capital markets technology firms are strongly preferred:</p><figure class="table"><table><tbody><tr><td><strong>Organisation</strong></td><td><strong>Platform / Product</strong></td><td><strong>Domain Focus</strong></td></tr><tr><td><strong>TCS Financial Solutions</strong></td><td>TCS BaNCS Precision</td><td>Institutional &amp; retail back-office, clearing</td></tr><tr><td><strong>Comtec Systems</strong></td><td>Comtek Back-Office Suite</td><td>Broking back-office, margin, settlement</td></tr><tr><td><strong>Secmark Consultancy</strong></td><td>Secmark BO Platform</td><td>Clearing, settlement, depository operations</td></tr><tr><td><strong>Tech Excel</strong></td><td>Tech Excel Back-Office</td><td>Multi-exchange broking operations</td></tr><tr><td><strong>Rupeeseed</strong></td><td>Rupeeseed Platform</td><td>Retail &amp; sub-broker back-office, reporting</td></tr></tbody></table></figure><p>&nbsp;</p><h2>Educational Qualifications</h2><ul><li>B.E. / B.Tech / BCA / B.Sc (Computer Science or IT) — with strong capital markets functional knowledge</li><li>MBA (Finance) or B.Com / M.Com — candidates from a finance background with technology exposure are equally considered</li><li>NISM certifications are an advantage — Series VII, VIII, or XII</li><li>CBAP, PMI-PBA, or ECBA certification is an added preference</li></ul><p>&nbsp;</p><h2>Behavioural Competencies</h2><ul><li>Highly analytical — able to break down complex regulatory circulars and multi-stakeholder processes into structured, actionable specifications</li><li>Detail-oriented — produces error-free BRDs and FSDs that leave no room for developer interpretation ambiguity</li><li>Proactive regulatory awareness — tracks SEBI, NSE, BSE, and IRDAI announcements without being prompted and flags product impact immediately</li><li>Collaborative — works fluidly across client operations, exchange officials, third-party vendors, and internal product &amp; engineering teams</li><li>Composed under pressure — manages tight regulatory compliance deadlines and multiple concurrent client requirements without dropping quality</li><li>Excellent written and verbal communication — equally comfortable drafting a formal FSD and presenting in a client boardroom</li></ul><p>&nbsp;</p><p><i>Interested candidates may share their updated profiles highlighting relevant regulatory engagement experience, platforms handled, and specific capital markets domains covered.</i></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 3 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 5 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDgzNw=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100836</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 26-May-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Project Manager - Project Manager
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p><strong>JOB DESCRIPTION</strong></p><p><strong>Project Manager</strong></p><p><i>Stakeholder Engagement&nbsp;•&nbsp; Communication&nbsp; •&nbsp;Project Tracking&nbsp; •&nbsp; Documentation</i></p><p>&nbsp;</p><figure class="table"><table><tbody><tr><td><strong>Department</strong></td><td>Project Management Office (PMO)</td></tr><tr><td><strong>Reports To</strong></td><td>Head of PMO / VP of Operations</td></tr><tr><td><strong>Employment Type</strong></td><td>Full-Time</td></tr><tr><td><strong>Experience Required</strong></td><td>8–10 Years in Project Management</td></tr><tr><td><strong>Preferred Certifications</strong></td><td>PMP, PRINCE2, Agile / Scrum Master</td></tr><tr><td><strong>Work Mode</strong></td><td>Hybrid / On-Site</td></tr></tbody></table></figure><p>&nbsp;</p><h2>Role Overview</h2><p>We are seeking a highly organized and results-driven Project Manager to lead complex, cross-functional projects from inception to successful delivery. This role demands an individual who can seamlessly navigate multi-stakeholder environments, maintain rigorous project governance, and serve as the central communication hub for all project activities. The ideal candidate will be a proactive problem-solver with exceptional organizational skills and a passion for delivering excellence.</p><h2>Key Responsibilities</h2><h2>1. Stakeholder Management</h2><ul><li>Identify, map, and engage all project stakeholders — internal teams, executive sponsors, vendors, and external partners.</li><li>Build and maintain strong relationships across business units to align priorities and resolve conflicts proactively.</li><li>Conduct regular stakeholder workshops, presentations, and review meetings to ensure continued alignment.</li><li>Manage stakeholder expectations throughout the project lifecycle with transparency and empathy.</li><li>Serve as the primary point of contact for all project-related queries and escalations.</li></ul><h2>2. Communication Management</h2><ul><li>Design and implement a comprehensive communication plan tailored to each stakeholder group.</li><li>Facilitate daily stand-ups, weekly syncs, sprint reviews, and steering committee meetings.</li><li>Prepare clear, concise, and visually compelling meeting agendas, minutes, and action trackers.</li><li>Ensure timely, accurate, and consistent communication of project information to all parties.</li><li>Translate complex technical information into business-friendly language for senior leadership.</li><li>Proactively flag risks, blockers, and dependencies before they impact delivery timelines.</li></ul><h2>3. Project Tracker Maintenance</h2><ul><li>Set up and continuously maintain project management tools (JIRA, Asana, MS Project, Smartsheet, or similar).</li><li>Define and track tasks, milestones, dependencies, owners, and deadlines with precision.</li><li>Monitor task completion rates, update burn-down charts, and ensure the tracker reflects ground-level reality.</li><li>Perform regular audits of the tracker to resolve data discrepancies and maintain data integrity.</li><li>Onboard and guide team members on tracker usage and best practices.</li></ul><h2>4. Project Status Reporting</h2><ul><li>Produce weekly and monthly project status reports (RAG dashboards, executive summaries).</li><li>Track KPIs, OKRs, milestones, budget utilization, and delivery health indicators.</li><li>Prepare and present compelling progress decks for steering committee and leadership reviews.</li><li>Maintain project dashboards with real-time visibility into schedule, scope, cost, and quality.</li><li>Analyze variances from baseline and recommend corrective actions.</li></ul><h2>5. Project Document Maintenance</h2><ul><li>Create, version-control, and maintain all core project artifacts: Project Charter, RAID Log, RACI Matrix, BRD, SOW, Change Requests, Lessons Learned, and Closure Reports.</li><li>Enforce documentation standards and naming conventions across the project repository.</li><li>Ensure all documents are reviewed, approved, and stored in designated repositories (SharePoint, Confluence, Google Drive).</li><li>Maintain an audit trail for all decisions, approvals, and scope changes.</li><li>Develop and update process flows, SOPs, and knowledge-base articles as required.</li></ul><h2>6. Risk &amp; Issue Management</h2><ul><li>Identify, assess, document, and track risks and issues in the RAID log.</li><li>Develop mitigation strategies and contingency plans in collaboration with stakeholders.</li><li>Escalate critical risks to appropriate leadership with recommended action plans.</li><li>Conduct periodic risk reviews and update risk ratings and response plans accordingly.</li></ul><h2>7. Project Governance &amp; Quality</h2><ul><li>Ensure adherence to organizational project management methodologies (Agile, Waterfall, or hybrid).</li><li>Conduct project phase-gate reviews and obtain necessary approvals before phase transitions.</li><li>Monitor scope creep and manage change through formal change control processes.</li><li>Coordinate with QA teams to ensure deliverables meet defined acceptance criteria.</li></ul><h2>Qualifications &amp; Requirements</h2><h2>Education</h2><ul><li>Bachelor’s degree in Business Administration, Engineering, Computer Science, or a related field.</li><li>Master’s degree (MBA or equivalent) is a plus.</li></ul><h2>Experience</h2><ul><li>8–10 years of proven experience managing large-scale, high-complexity projects end-to-end across multiple business domains.</li><li>Experience working in a matrix organization with multiple stakeholders across geographies.</li><li>Hands-on experience with Agile/Scrum ceremonies and Waterfall project frameworks.</li><li>Prior experience in IT, software delivery, or digital transformation projects is preferred.</li></ul><h2>Certifications (Preferred)</h2><ul><li>PMP (Project Management Professional) — PMI</li><li>PRINCE2 Practitioner</li><li>Certified Scrum Master (CSM) or SAFe Agilist</li><li>ITIL Foundation (advantageous for IT projects)</li></ul><h2>Skills &amp; Competencies</h2><h2>Technical Skills</h2><ul><li><strong>Proficiency in JIRA, Asana, MS Project, Smartsheet, or Monday.com.&nbsp;</strong>Project Management Tools:</li><li><strong>Advanced MS Excel, Power BI, or Tableau for dashboards and reporting.&nbsp;</strong>Reporting &amp; Analytics:</li><li><strong>Confluence, SharePoint, Notion, Google Workspace.&nbsp;</strong>Collaboration Platforms:</li><li><strong>MS Teams, Slack, Zoom — skilled in facilitating virtual and in-person sessions.&nbsp;</strong>Communication Tools:</li></ul><h2>Soft Skills</h2><ul><li>Exceptional verbal and written communication skills across all organizational levels.</li><li>Strong negotiation, influencing, and conflict-resolution abilities.</li><li>Highly detail-oriented with outstanding organizational and time-management skills.</li><li>Comfortable working under ambiguity and adapting plans in fast-changing environments.</li><li>Collaborative mindset with natural leadership presence.</li><li>Analytical thinking with a structured approach to problem-solving.</li></ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 8 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 10 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDgzNg=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100819</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 19-May-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Associate - Senior Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p>- Design and develop applications utilizing Java and Angular technologies<br>- Analyze and translate business requirements into technical specifications.<br>- Conduct code reviews to ensure adherence to best practices and maintain high-quality standards.<br>- Knowledge in JIRA and GIT for version control.<br>- Hands-on experience in developing and integrating APIs<br>- Strong understanding of UI design principles and front-end development<br>- Minimum 1 year of Insurance domain experience with exposure will be added advantage<br>- Strong analytical, troubleshooting, and communication skills.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 6 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 8 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDgxOQ=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100816</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 19-May-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            L3 Support Engineer - Project Lead
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p><strong>Role Summary</strong><br>Own end-to-end production stability — from hotfix delivery to root-cause closure. Serve as the final escalation point for critical incidents, with deep system knowledge to diagnose fast and ship safe fixes under pressure.</p><p><br><strong>Key Responsibilities</strong><br>•Production Hotfixes: Own the full diagnosis-to-deployment lifecycle; coordinate emergency releases with zero ambiguity.<br>•Deep-Dive Troubleshooting: Investigate complex, intermittent, and data-related issues across services, databases, and infra.<br>•SLA Ownership: Ensure P1/P2 tickets are resolved within agreed SLAs; escalate proactively when needed.<br>•Code &amp; Patch Delivery: Write, review, and deploy targeted hotfix code to production-grade quality standards.<br>•RCA &amp; Post-Mortems: Document thorough root-cause analyses with structured preventive action items.<br>•Change Advisory: Evaluate risk of hotfixes; liaise with release and CAB processes.<br>•Runbooks &amp; SOPs: Maintain and improve operational runbooks for known failure patterns.</p><h2><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong></h2><figure class="table"><table><tbody><tr><td><strong>Must-Have</strong></td><td><strong>Good to Have</strong></td></tr><tr><td><ul><li>Java / Spring Boot or equivalent backend stack</li><li>SQL — complex query debugging, execution plan analysis</li><li>Log analysis — &lt;&gt;</li><li>REST API troubleshooting &amp; integration debugging</li><li>Git-based hotfix &amp; branching workflows</li><li>Linux / bash — process, memory, I/O diagnostics</li><li>Incident &amp; change management (ITIL awareness)</li><li>Cloud infra basics — Azure / AWS monitoring tools</li></ul></td><td><ul><li>Microservices &amp; event-driven architecture (ASB / Kafka)</li><li>Container platforms — Docker / Kubernetes</li><li>CI/CD pipelines — GitHub Actions / Jenkins</li><li>Performance profiling &amp; thread-dump analysis</li><li>APM tools — Dynatrace, New Relic, App Insights</li><li>Payment domain / PCI compliance awareness</li><li>Scripting — Python or shell for automation</li></ul></td></tr></tbody></table></figure>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 7 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 10 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDgxNg=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100815</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 19-May-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Implementation Engineer - Senior Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <h2>Role Summary</h2><p>Bridge the gap between product and production. Own end-to-end implementation of the Dolphin platform for capital markets clients — from requirement gathering to go-live — bringing both technical configuration expertise and deep functional knowledge of trading, clearing, settlement, and margin workflows. The ideal candidate understands how the business works, not just how the system is configured.</p><figure class="table"><table><tbody><tr><td><strong>Attribute</strong></td><td><strong>Details</strong></td></tr><tr><td>Experience</td><td>4 – 6 Years</td></tr><tr><td>Role Type</td><td>Implementation / Delivery</td></tr><tr><td>Client Facing</td><td>Yes</td></tr><tr><td>Domain</td><td>Capital Markets (Preferred)</td></tr><tr><td>Environment</td><td>On-prem &amp; Cloud</td></tr><tr><td>Preferred Prior Employers</td><td>TCS, Comtec, Class, Rupesheed, Tech Excel, Sec Mark</td></tr></tbody></table></figure><h2>Key Responsibilities</h2><p><strong>Requirement Gathering &amp; Functional Analysis</strong></p><ul><li>Conduct functional workshops with client business users to capture requirements across trade lifecycle, order management, and position/cash management</li><li>Translate business requirements from trading desks, operations, and risk teams into technical implementation plans for Dolphin</li><li>Perform gap analysis between client workflows and product’s out-of-the-box capabilities; document findings and escalate scope changes</li><li>Advise clients on best-practice configuration aligned with market conventions (exchange connectivity, margin methodologies, settlement cycles)</li></ul><p><strong>Domain-Driven Configuration &amp; Setup</strong></p><ul><li>Configure Dolphin modules aligned with client-specific workflows &nbsp;</li><li>Set up static and reference data &nbsp;</li><li>Map client trade flow (pre-trade, execution, post-trade) into Dolphin's system configuration&nbsp;</li><li>Support integration of Dolphin with upstream/downstream systems such as OMS, risk engines, clearing platforms, and market data feeds</li></ul><p><strong>Technical Environment Setup</strong></p><ul><li><strong>Environment Setup:&nbsp;</strong>Configure and deploy Dolphin application stacks on client environments — on-prem, cloud, or hybrid</li><li><strong>Docker &amp; Containers:&nbsp;</strong>Build, deploy, and manage Docker containers; maintain docker-compose / Helm configs per client setup</li><li><strong>Log Monitoring:&nbsp;</strong>Monitor application and system logs; identify, triage, and resolve environment-specific issues</li><li><strong>Integration &amp; APIs:&nbsp;</strong>Set up integrations with third-party systems, APIs, and middleware per client specifications</li></ul><p><strong>Testing, UAT &amp; Go-Live</strong></p><ul><li>Prepare and execute functional test cases covering trade flow, margin computation (SPAN/TIMS), settlement, P&amp;L, and regulatory reporting scenarios</li><li>Support and guide client UAT sessions, translating business user feedback into actionable configuration fixes</li><li>Manage cutover activities, data migration validation, smoke testing, and hypercare period post go-live</li><li>Coordinate with Dev, QA, and L3 teams to resolve functional and technical blockers and ensure on-time delivery</li></ul><p><strong>Client Handover &amp; Documentation</strong></p><ul><li>Deliver runbooks, configuration guides, business process maps, and training sessions to client operations and IT teams</li><li>Create functional specification documents, data mapping sheets, and user acceptance sign-off packs</li><li>Maintain implementation trackers and provide status updates to project managers and client stakeholders</li></ul><h2>Skills &amp; Qualifications</h2><p><strong>Functional / Domain Knowledge &nbsp;</strong></p><figure class="table"><table><tbody><tr><td><strong>Domain Area</strong></td><td><strong>Expected Knowledge</strong></td></tr><tr><td>Trade Lifecycle</td><td>Pre-trade, execution, allocation, confirmation, settlement across equities, derivatives, and fixed income</td></tr><tr><td>Order Management</td><td>DMA/OMS workflows, order routing, execution reporting, FIX protocol basics</td></tr><tr><td>Margin &amp; Collateral</td><td>SPAN margin methodology, initial/variation margin, CME/exchange margin files</td></tr><tr><td>Clearing &amp; Settlement</td><td>CCP clearing workflows, DVP/FOP settlement, T+1/T+2 cycles, nostro/cash reconciliation</td></tr><tr><td>Position Management</td><td>Intraday position tracking, end-of-day reconciliation, corporate actions basics</td></tr><tr><td>Risk &amp; Reporting</td><td>P&amp;L attribution, regulatory reporting concepts (MiFID II, EMIR), client reporting formats</td></tr><tr><td>Market Data</td><td>Reference data management, pricing feeds, instrument master setup</td></tr></tbody></table></figure><p><strong>Technical Skills</strong></p><figure class="table"><table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>Docker — image builds, container lifecycle, networking</td><td>Kubernetes / Helm — basic pod and service management</td></tr><tr><td>Linux / bash — file system, process management, cron</td><td>CI/CD pipelines — GitHub Actions, Jenkins</td></tr><tr><td>Log analysis — reading app logs, identifying root causes</td><td>Cloud platforms — OCI / Azure / AWS basics</td></tr><tr><td>Application configuration &amp; environment variables</td><td>Monitoring tools — Grafana, Kibana, ELK stack</td></tr><tr><td>REST API basics — testing via Postman / curl</td><td>Scripting — Python or shell for deployment automation</td></tr><tr><td>SQL — data verification and reconciliation queries</td><td>Message queues — RabbitMQ / Azure Service Bus</td></tr><tr><td>Git — branching, version-controlled config management</td><td>ITIL fundamentals — change and incident management</td></tr></tbody></table></figure>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 4 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 8 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDgxNQ=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100810</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 18-May-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Sme For General Insurance - Program Manager
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p>* Strong experience in General Insurance Core Product Development.<br>* Expertise in Policy, Underwriting, Claims, Renewal, and Endorsement modules.<br>* Experience in Insurance product configuration, rating, premium calculation, and UW rules.<br>* Strong knowledge of General Insurance business processes and policy lifecycle end to end.<br>* Ability to prepare FSD, BRD, user stories, and process flow documents.<br>* Experience in requirement gathering, gap analysis, and solution design.<br>* Experience working with Development, QA, SIT, UAT, and client stakeholders.<br>* Good understanding in Core System integrations and product implementation activities<br>* Strong analytical, communication, and stakeholder management skills.<br>&nbsp;</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 15 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 20 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDgxMA=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100770</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 27-Apr-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Business Analyst - Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p>Business Analyst - General Insurance Domain with minimum 3 years experience for handling L1 Support<br>Client Co-ordination&nbsp;<br>Project Co-Ordinator&nbsp;<br>Insurance Application<br>SDLC Process<br>Business Operations&nbsp;</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 2 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 3 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDc3MA=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100713</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 27-Mar-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Full Stack Developer - Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p><strong>Job Description:</strong><br>Full Stack Developer (4+ yrs) with experience in Java 8+, Spring Boot/MVC, AngularJS, and RDBMS. Responsible for development and <strong>production support (AMC)</strong> of enterprise applications.</p><p><strong>Primary Responsibilities:</strong></p><ol><li>Develop backend services using Java, Spring Boot/MVC</li><li>Build UI using AngularJS</li><li>Design/consume REST APIs and manage DB interactions</li><li>Perform unit testing and support SIT/UAT</li><li>Debug and fix defects across layers</li><li>Insurance domain experience</li></ol><p><strong>Secondary Responsibilities:</strong></p><ol><li>Support production issues, CRs and enhancements</li><li>Participate in code reviews, deployment, code merge&nbsp;</li><li>Optimize performance and maintain documentation</li><li>Mentor junior/trainees in the team</li><li>AMC, Agile and Waterfall experience</li><li>SLA awareness</li></ol><p><strong>Key Competencies:</strong></p><ol><li>Java 8+, Spring Boot/MVC, AngularJS</li><li>RDBMS, SQL, REST APIs</li><li>Hibernate, jQuery, ReactJS (good to have)</li><li>Strong debugging, problem-solving</li><li>SDLC understanding, support experience</li></ol>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 4 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 9 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDcxMw=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100704</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 22-Mar-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Technical Lead - Tech Lead
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p><strong>Must have:</strong></p><ul><li>Strong experience with Java and Spring Boot Framework.</li><li>Experience with RESTful web services and API development.&nbsp;</li><li>Hands on experience in developing Micro services.</li><li>Experience with containerization and orchestration, such as Docker and Kubernetes.</li><li>Experience with Azure cloud.</li><li>Familiarity with version control systems, such as Git.</li><li>Experience with automated testing frameworks, such as JUnit or Mockito.</li><li>Strong problem-solving and analytical skills.</li></ul><p><strong>Nice to have:</strong></p><ul><li>Knowledge of database design and SQL.</li><li>Familiarity with Azure DevOps practices and tools.</li><li>Experience with front-end technologies such as ReactJS / React Native.&nbsp;</li></ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 8 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 10 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDcwNA=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100676</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 11-Mar-2026</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Presales Executive (demo Specialist) - Associate
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p>Looking for a Demo Specialist to join our Presales team, responsible for delivering impactful product demonstrations for our Capital Markets solutions to prospective clients. The role requires a strong understanding of capital markets operations, brokerage back-office processes, and trading lifecycle, along with excellent presentation and communication skills.</p><p>The ideal candidate will be able to translate complex product capabilities into clear business value for institutional and retail brokerage firms, supporting the sales team in converting opportunities into successful deals.</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 3 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 20 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDY3Ng=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                        <tr>
+                        <td>
+                            <div class="job-card">
+                                <div class="row align-items-center">
+                                    <!-- Vacancy Info -->
+                                    <div class="col-md-4">
+                                        <div class="vac-id mb-1">Vacancy ID: V100427</div>
+                                        <!-- <div class="text-muted mb-2">Posted on: 29-Sep-2025</div> -->
+
+                                        <!-- Toggle title -->
+                                        <div class="job-title toggle-description">
+                                            Microsoft - Solution Architect - Solution Architect
+                                        </div>
+
+                                        <!-- Hidden description -->
+                                        <div class="job-description">
+                                            <p><strong>Job Summary:</strong></p><p>We are looking for a <strong>highly experienced and customer-facing Solution Architect</strong> with deep technical knowledge in <strong>Microsoft Azure</strong>, <strong>Power Platform (Power Apps, Power Automate, Power BI, Power Pages)</strong>, and <strong>Dynamics 365 CRM</strong>. The ideal candidate should be capable of leading complex digital transformation engagements, shaping technical solutions, driving architecture decisions, and guiding teams through successful delivery and governance.</p><p><strong>Key Responsibilities:</strong></p><p><strong>Solution Architecture &amp; Design:</strong></p><ul><li>Lead the end-to-end solution design across Power Platform, Azure, and Dynamics 365 CRM.</li><li>Translate business requirements into scalable, secure, and performant technical solutions.</li><li>Develop architecture blueprints, system integration diagrams, security &amp; access models.</li><li>Define reusable components, design patterns, and frameworks for application development.</li></ul><p><strong>Power Platform &amp; CRM Expertise:</strong></p><ul><li>Architect and govern enterprise-grade <strong>Power Apps</strong> (Canvas &amp; Model-driven), <strong>Power Pages</strong>, <strong>Power Automate workflows</strong>, <strong>AI Builder</strong>, <strong>Dataverse</strong>, and <strong>Power BI dashboards</strong>.</li><li>Design customizations, extensions, plugins, workflows, and integrations in <strong>Dynamics 365 Customer Engagement (Sales, Service, Marketing, Field Service)</strong>.</li><li>Drive <strong>ALM (Application Lifecycle Management)</strong> using Azure DevOps and Git.</li></ul><p><strong>Azure Cloud:</strong></p><ul><li>Architect cloud-native integrations using <strong>Azure Functions, Logic Apps, API Management, Azure Service Bus, Key Vault, App Insights, etc.</strong></li><li>Design secure, scalable, and resilient cloud-hosted environments.</li><li>Ensure compliance with Azure governance, networking, and identity (AAD/B2C).</li></ul><p><strong>&nbsp;AI &amp; Intelligent Automation</strong></p><ul><li>Exposure to integrating with <strong>AI/ML</strong>, <strong>Chatbots (Copilot Studio)</strong>, and <strong>Document Automation (AI Builder / Azure Form Recognizer / Azure OpenAI)</strong> is desirable.</li></ul><p><strong>Client Engagement &amp; Presales:</strong></p><ul><li>Collaborate with sales/pre-sales teams to craft winning proposals, solution demos, RFP responses, and estimations.</li><li>Conduct workshops and technical discovery sessions with client stakeholders.</li><li>Support go-to-market strategy and accelerators with reusable assets.</li></ul><p><strong>Mentoring &amp; Governance:</strong></p><ul><li>Guide development teams with best practices, coding standards, and design reviews.</li><li>Govern Power Platform environments, license utilization, security model, and DLP policies.</li><li>Conduct UAT support, performance optimization, and solution validation.</li></ul><p>&nbsp;</p><p><strong>✅ Mandatory Skills:</strong></p><figure class="table"><table><thead><tr><th><strong>Skill Area</strong></th><th><strong>Required Expertise</strong></th></tr></thead><tbody><tr><td><strong>Power Platform</strong></td><td>Power Apps (Canvas + Model), Power Automate (Cloud/Desktop), Power Pages, Dataverse, AI Builder</td></tr><tr><td><strong>Dynamics 365 CRM</strong></td><td>Sales, Customer Service, Plugins, Workflows, Entity Model, Solution Deployment</td></tr><tr><td><strong>Azure</strong></td><td>Azure Logic Apps, Functions, API Management, Service Bus, AD B2C, Key Vault</td></tr><tr><td><strong>Integration</strong></td><td>REST/SOAP APIs, SharePoint, SQL, Excel, SAP/Oracle (preferred)</td></tr><tr><td><strong>Security</strong></td><td>Azure AD, Role-Based Access Control (RBAC), OAuth, Environment Security</td></tr><tr><td><strong>DevOps</strong></td><td>Azure DevOps Pipelines, Git, CI/CD, Power Platform CLI</td></tr></tbody></table></figure><p>&nbsp;</p><p><strong>Preferred Candidate Profile:</strong></p><ul><li>Microsoft Certified: <strong>PL-600 / PL-400 / PL-200 / AZ-305 / MB-600</strong></li><li>Excellent verbal and written communication skills</li><li>Strong stakeholder management and presentation abilities</li><li>Experience working in Agile/Scrum-based delivery</li><li>Past experience in BFSI/Insurance/Manufacturing clients a plus</li></ul><p><strong>Additional Advantages:</strong></p><ul><li>Experience with <strong>agentic/LLM automation</strong> (e.g., Copilot Studio, Azure OpenAI).</li><li>Familiarity with <strong>UiPath / ABBYY / RPA tools</strong> is a plus.</li><li>Hands-on with <strong>Data migration</strong>, <strong>ETL</strong>, <strong>DevOps</strong>.</li><li>Background in legacy system modernization.</li></ul><p>&nbsp;</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Location -->
+                                    <div class="col-md-3">
+                                        <div class="location mb-1">
+                                            <i class="bi bi-geo-alt-fill text-danger"></i>
+                                            COIMBATORE-INDIA
+                                        </div>
+                                    </div>
+
+                                    <!-- Experience -->
+                                    <div class="col-md-3">
+                                        <div class="exp">
+                                            <i class="bi bi-briefcase-fill text-success"></i>
+                                            Min Exp: 6 Yrs <br>
+                                            &nbsp; &nbsp; Max Exp: 9 Yrs
+                                        </div>
+                                    </div>
+
+
+                                    <!-- Apply button -->
+                                    <div class="col-md-2">
+                                        <a href="https://careerxai.kgisl.com/resume/webportal_vacancy_apply_resume/VjEwMDQyNw=="
+                                            class="btn apply-btn text-white">
+                                            Apply
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                    </tr>
+                                                        </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <!-- JS Logic -->
+    <script>
+        $(document).ready(function() {
+
+            // Step 1: make the table visible
+            $('#jobCardTable').removeClass('d-none');
+
+            // Step 2: now initialize DataTable
+            $('#jobCardTable').DataTable({
+                searching: true,
+                paging: true,
+                ordering: false,
+                info: true,
+                pageLength: 7, // your 7 entries per page
+                lengthMenu: [7, 10, 25, 50, 100], // <== DROP-DOWN OPTIONS
+                dom: '<"top"l f>rt<"bottom"ip><"clear">',
+                columnDefs: [{
+                    targets: 0,
+                    searchable: true
+                }]
+            });
+
+        });
+    </script>
+
+
+</body>
+
+</html>

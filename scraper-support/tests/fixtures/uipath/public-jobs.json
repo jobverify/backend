@@ -1,0 +1,62 @@
+{
+  "apiVersion": "1",
+  "jobs": [
+    {
+      "id": "india-primary",
+      "title": "Senior Software Engineer",
+      "location": "Bengaluru, India",
+      "department": "Engineering",
+      "team": "Platform",
+      "employmentType": "FullTime",
+      "isListed": true,
+      "jobUrl": "https://jobs.ashbyhq.com/uipath/india-primary",
+      "applyUrl": "https://jobs.ashbyhq.com/uipath/india-primary/application",
+      "descriptionHtml": "<p>Build automation software.</p>",
+      "publishedAt": "2026-06-01T10:00:00.000Z",
+      "address": {
+        "postalAddress": {
+          "addressLocality": "Bengaluru",
+          "addressRegion": "Karnataka",
+          "addressCountry": "India"
+        }
+      }
+    },
+    {
+      "id": "india-secondary",
+      "title": "Solutions Architect",
+      "location": "New York, United States",
+      "secondaryLocations": [
+        {
+          "location": "Mumbai, India",
+          "address": {
+            "addressLocality": "Mumbai",
+            "addressRegion": "Maharashtra",
+            "addressCountry": "India"
+          }
+        }
+      ],
+      "department": "Customer Engineering",
+      "employmentType": "FullTime",
+      "isListed": true,
+      "jobUrl": "https://jobs.ashbyhq.com/uipath/india-secondary",
+      "applyUrl": "https://jobs.ashbyhq.com/uipath/india-secondary/application"
+    },
+    {
+      "id": "united-states",
+      "title": "Account Executive",
+      "location": "Austin, United States",
+      "department": "Sales",
+      "isListed": true,
+      "jobUrl": "https://jobs.ashbyhq.com/uipath/united-states",
+      "applyUrl": "https://jobs.ashbyhq.com/uipath/united-states/application"
+    },
+    {
+      "id": "unlisted-india",
+      "title": "Internal Engineering Role",
+      "location": "Bengaluru, India",
+      "isListed": false,
+      "jobUrl": "https://jobs.ashbyhq.com/uipath/unlisted-india",
+      "applyUrl": "https://jobs.ashbyhq.com/uipath/unlisted-india/application"
+    }
+  ]
+}

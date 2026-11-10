@@ -241,7 +241,7 @@ test("getSavedJobs returns the public job card shape instead of raw job document
   }
 });
 
-test("saveJob adds a job only once and returns the updated overview count", async () => {
+test("saveJob adds a job only once and returns the updated overview count", async (t) => {
   const { saveJob } = await import("../src/controllers/userController.js");
   const originalUserFindById = User.findById;
   const originalJobFindById = Job.findById;
@@ -257,6 +257,11 @@ test("saveJob adds a job only once and returns the updated overview count", asyn
   };
 
   User.findById = async () => user;
+  t.mock.method(User, 'findOneAndUpdate', async (_filter, update) => {
+    const id = String(update.$addToSet.savedJobs);
+    if (!user.savedJobs.includes(id)) user.savedJobs.push(id);
+    return user;
+  });
   Job.findById = async (jobId) => (jobId === "507f191e810c19729de860ea" ? { _id: jobId } : null);
   Job.findOne = async (filter) => (
     filter?._id === "507f191e810c19729de860ea"
@@ -364,6 +369,10 @@ test("removeSavedJob removes the saved job and returns the updated overview coun
   };
 
   User.findById = async () => user;
+  t.mock.method(User, 'findOneAndUpdate', async (_filter, update) => {
+    user.savedJobs = user.savedJobs.filter(id => id !== String(update.$pull.savedJobs));
+    return user;
+  });
   Job.countDocuments = async () => user.savedJobs.length;
 
   try {

@@ -1,0 +1,20 @@
+{
+  "capturedAt": "2026-10-08T20:35:59.956Z",
+  "strictTls": true,
+  "systemCA": true,
+  "authorityPost": {
+    "url": "https://www.linkedin.com/posts/bmw-techworks-india_bmwtechworksindia-bmwgroup-hiring-activity-7356277931834253313-1uyS",
+    "publishedAt": "2025-07-30T11:02:11.953Z",
+    "note": "Publisher identity and original recruitment links retained; comments and tracking markup omitted."
+  },
+  "portal": "https://careers-bmwtechworks.peoplestrong.com/",
+  "api": "https://careers-bmwtechworks.peoplestrong.com/api/cp/rest/altone/cp/jobs/v1",
+  "totalRecords": 116,
+  "pages": [
+    45,
+    45,
+    26
+  ],
+  "details": 116,
+  "note": "Listing payloads and published descriptions retained; unused hiring-manager personal fields excluded from detail fixtures."
+}

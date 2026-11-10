@@ -9,7 +9,8 @@ const isConfigurationError = error => {
   const seen = new Set()
   for (let current = error; current && typeof current === 'object' && !seen.has(current) && seen.size < 8; current = current.cause) {
     seen.add(current)
-    if (current.failureKind === 'configuration_error' || CONFIGURATION_ERROR_CODES.has(current.code)) return true
+    if (current.failureKind === 'configuration_error' || CONFIGURATION_ERROR_CODES.has(current.code)
+      || /^Invalid (?:verified ATS|Air India) request deadline$/.test(current.message || '')) return true
   }
   return false
 }
@@ -93,7 +94,9 @@ export const classifyScraperError = (error = {}) => {
     }
   }
 
-  if (NETWORK_OR_TIMEOUT_PATTERN.test(text) || /(?:read|body)[^\n]{0,40}deadline (?:exceeded|expired)/i.test(text)) {
+  if (NETWORK_OR_TIMEOUT_PATTERN.test(text)
+    || /\bLYRA_NATIVE_REQUEST_DEADLINE\b/.test(text)
+    || /(?:read|body)[^\n]{0,40}deadline (?:exceeded|expired)/i.test(text)) {
     return {
       softFailure: true,
       upstreamOutage: true,

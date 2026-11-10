@@ -1,0 +1,39 @@
+{
+  "status": 0,
+  "data": {
+    "id": 25,
+    "active": true,
+    "header": {
+      "imagePath": "/clientimg/linde/logo/Careersite_Linde_plc_logo_1_176x88_5e7a706b-1fe6-4c3e-9f71-f136e2cd126b.png"
+    },
+    "allowedLanguages": [
+      {
+        "cultureId": 1,
+        "displayTitle": "English (US)"
+      }
+    ],
+    "currentLanguage": {
+      "cultureId": 1,
+      "cultureName": "en-US",
+      "isRightToLeft": false
+    },
+    "customFields": [
+      {
+        "fieldId": 140,
+        "allowMultiSelect": true,
+        "includeInMainSearch": false
+      },
+      {
+        "fieldId": 139,
+        "allowMultiSelect": true,
+        "includeInMainSearch": false
+      },
+      {
+        "fieldId": 251,
+        "allowMultiSelect": true,
+        "includeInMainSearch": false
+      }
+    ],
+    "defaultCultureId": 1
+  }
+}

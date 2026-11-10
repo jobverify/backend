@@ -193,7 +193,7 @@ test('ArthaYantra returns [] only while the verified broken first-party surface 
   assert.deepEqual(jobs, [])
 })
 
-test('ArthaYantra default fetch tolerates the verified expired certificate while validating official pages', async () => {
+test('ArthaYantra default fetch validates TLS on every official redirect', async () => {
   const arthaYantra = await loadArthaYantraModule()
   const originalRequest = https.request
   const observedRequests = []
@@ -241,7 +241,7 @@ test('ArthaYantra default fetch tolerates the verified expired certificate while
     assert.ok(observedRequests.length > 0)
     assert.deepEqual(
       [...new Set(observedRequests.map((request) => request.options.rejectUnauthorized))],
-      [false],
+      [true],
     )
   } finally {
     https.request = originalRequest

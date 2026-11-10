@@ -1,0 +1,1443 @@
+{
+  "captureSource": "Public native Workable API captured 2026-10-20; first-party Allucent binding batch004.",
+  "pages": [
+    {
+      "request": {
+        "query": "",
+        "location": [],
+        "department": [],
+        "worktype": [],
+        "remote": []
+      },
+      "payload": {
+        "nextPage": "WzE3OTA4OTkyMDAwMDAsNjE2OTU1Ml0=",
+        "results": [
+          {
+            "id": 6211169,
+            "shortcode": "74C77A448B",
+            "title": "Clinical Research Associate (France)",
+            "remote": false,
+            "location": {
+              "city": "Paris",
+              "country": "France",
+              "countryCode": "FR",
+              "region": "Île-de-France",
+              "display": "Paris, Île-de-France, France"
+            },
+            "locations": [
+              {
+                "city": "Paris",
+                "country": "France",
+                "countryCode": "FR",
+                "hidden": false,
+                "region": "Île-de-France"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "CRA",
+            "published": "2026-10-20T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6195957,
+            "shortcode": "A6F4A8B8A9",
+            "title": "Regulatory Affairs Scientist I",
+            "remote": false,
+            "location": {
+              "city": "Cary",
+              "country": "United States",
+              "countryCode": "US",
+              "region": "North Carolina",
+              "display": "Cary, North Carolina, United States"
+            },
+            "locations": [
+              {
+                "city": "Cary",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": "North Carolina"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-14T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Strategy (PDS)",
+              "Regulatory & Drug Development Consulting (RDC)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 5837124,
+            "shortcode": "0A4B1A2D0D",
+            "title": "Sr. Clinical Project Manager (Europe)",
+            "remote": false,
+            "location": {
+              "city": "Amsterdam",
+              "country": "Netherlands",
+              "countryCode": "NL",
+              "region": "North Holland",
+              "display": "Amsterdam, North Holland, Netherlands"
+            },
+            "locations": [
+              {
+                "city": "Amsterdam",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "hidden": false,
+                "region": "North Holland"
+              },
+              {
+                "city": "Madrid",
+                "country": "Spain",
+                "countryCode": "ES",
+                "hidden": false,
+                "region": "Community of Madrid"
+              },
+              {
+                "city": "Milan",
+                "country": "Italy",
+                "countryCode": "IT",
+                "hidden": false,
+                "region": "Metropolitan City of Milan"
+              },
+              {
+                "city": "Bracknell",
+                "country": "United Kingdom",
+                "countryCode": "GB",
+                "hidden": false,
+                "region": "England"
+              },
+              {
+                "city": "Belgrade",
+                "country": "Serbia",
+                "countryCode": "RS",
+                "hidden": false,
+                "region": "Vojvodina"
+              },
+              {
+                "city": "Warsaw",
+                "country": "Poland",
+                "countryCode": "PL",
+                "hidden": false,
+                "region": "Masovian Voivodeship"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-10-13T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Project Leadership (GPL)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6194574,
+            "shortcode": "6E851C33E5",
+            "title": "Sr Clinical Research Associate Contractor (Belarus)",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "Belarus",
+              "countryCode": "BY",
+              "region": null,
+              "display": "Belarus"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "Belarus",
+                "countryCode": "BY",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "CRA",
+            "published": "2026-10-13T00:00:00.000Z",
+            "type": "part",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 4505830,
+            "shortcode": "2590190814",
+            "title": "Sr. Clinical Data Manager (Europe)",
+            "remote": false,
+            "location": {
+              "city": "Amsterdam",
+              "country": "Netherlands",
+              "countryCode": "NL",
+              "region": "North Holland",
+              "display": "Amsterdam, North Holland, Netherlands"
+            },
+            "locations": [
+              {
+                "city": "Amsterdam",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "hidden": false,
+                "region": "North Holland"
+              },
+              {
+                "city": "Ireland",
+                "country": "United Kingdom",
+                "countryCode": "GB",
+                "hidden": false,
+                "region": "England"
+              },
+              {
+                "city": "Munich",
+                "country": "Germany",
+                "countryCode": "DE",
+                "hidden": false,
+                "region": "Bavaria"
+              },
+              {
+                "city": "Paris",
+                "country": "France",
+                "countryCode": "FR",
+                "hidden": false,
+                "region": "Île-de-France"
+              },
+              {
+                "city": "Testelt",
+                "country": "Belgium",
+                "countryCode": "BE",
+                "hidden": false,
+                "region": "Flemish Region"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "DM",
+            "published": "2026-10-12T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Biometrics & Data Operations (BIO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6165677,
+            "shortcode": "FA0784B6A8",
+            "title": "Project Manager II, Global Project Leadership",
+            "remote": true,
+            "location": {
+              "city": null,
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": null,
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-08T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Project Leadership (GPL)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 6129082,
+            "shortcode": "31B8B4F7A6",
+            "title": "Account Development Manager",
+            "remote": true,
+            "location": {
+              "city": null,
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": null,
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-07T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Administration (ADMIN)",
+              "Business Development"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 3111312,
+            "shortcode": "4ED5F176E1",
+            "title": "Sr. Director, Business Development",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-02T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Administration (ADMIN)",
+              "Business Development"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 5435807,
+            "shortcode": "B98C9530F1",
+            "title": "Clinical Research Associate",
+            "remote": true,
+            "location": {
+              "city": null,
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": null,
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-02T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 6169552,
+            "shortcode": "55BF7078F8",
+            "title": "VP, Quality Assurance",
+            "remote": false,
+            "location": {
+              "city": "Cary",
+              "country": "United States",
+              "countryCode": "US",
+              "region": "North Carolina",
+              "display": "Cary, North Carolina, United States"
+            },
+            "locations": [
+              {
+                "city": "Cary",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": "North Carolina"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-02T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Quality Assurance (QA)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          }
+        ],
+        "total": 32
+      }
+    },
+    {
+      "request": {
+        "query": "",
+        "location": [],
+        "department": [],
+        "worktype": [],
+        "remote": [],
+        "token": "WzE3OTA4OTkyMDAwMDAsNjE2OTU1Ml0="
+      },
+      "payload": {
+        "nextPage": "WzE3OTAwMzUyMDAwMDAsNTgyNTMyOV0=",
+        "results": [
+          {
+            "id": 6169570,
+            "shortcode": "3D4451E657",
+            "title": "Start-Up Associate II (Italy)",
+            "remote": false,
+            "location": {
+              "city": "Milan",
+              "country": "Italy",
+              "countryCode": "IT",
+              "region": "Metropolitan City of Milan",
+              "display": "Milan, Lombardy, Italy"
+            },
+            "locations": [
+              {
+                "city": "Milan",
+                "country": "Italy",
+                "countryCode": "IT",
+                "hidden": false,
+                "region": "Metropolitan City of Milan"
+              },
+              {
+                "city": "Rome",
+                "country": "Italy",
+                "countryCode": "IT",
+                "hidden": false,
+                "region": "Metropolitan City of Rome Capital"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "LSSU",
+            "published": "2026-10-02T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6169582,
+            "shortcode": "C8AB38E7C2",
+            "title": "Start-Up Associate Contractor (Bulgaria)",
+            "remote": false,
+            "location": {
+              "city": "Sofia",
+              "country": "Bulgaria",
+              "countryCode": "BG",
+              "region": "Sofia City Province",
+              "display": "Sofia, Sofia City Province, Bulgaria"
+            },
+            "locations": [
+              {
+                "city": "Sofia",
+                "country": "Bulgaria",
+                "countryCode": "BG",
+                "hidden": false,
+                "region": "Sofia City Province"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "LSSU",
+            "published": "2026-10-02T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6169817,
+            "shortcode": "A314C6A42D",
+            "title": "VP, Quality Assurance",
+            "remote": false,
+            "location": {
+              "city": "Amsterdam",
+              "country": "Netherlands",
+              "countryCode": "NL",
+              "region": "North Holland",
+              "display": "Amsterdam, North Holland, Netherlands"
+            },
+            "locations": [
+              {
+                "city": "Amsterdam",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "hidden": false,
+                "region": "North Holland"
+              },
+              {
+                "city": "Madrid",
+                "country": "Spain",
+                "countryCode": "ES",
+                "hidden": false,
+                "region": "Community of Madrid"
+              },
+              {
+                "city": "Munich",
+                "country": "Germany",
+                "countryCode": "DE",
+                "hidden": false,
+                "region": "Bavaria"
+              },
+              {
+                "city": "Paris",
+                "country": "France",
+                "countryCode": "FR",
+                "hidden": false,
+                "region": "Île-de-France"
+              },
+              {
+                "city": "Bracknell",
+                "country": "United Kingdom",
+                "countryCode": "GB",
+                "hidden": false,
+                "region": "England"
+              },
+              {
+                "city": "Belgrade",
+                "country": "Serbia",
+                "countryCode": "RS",
+                "hidden": false,
+                "region": "Vojvodina"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-10-02T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Quality Assurance (QA)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6166711,
+            "shortcode": "6418FEAF25",
+            "title": "Start-Up Associate Contractor (Spain)",
+            "remote": false,
+            "location": {
+              "city": "Madrid",
+              "country": "Spain",
+              "countryCode": "ES",
+              "region": "Community of Madrid",
+              "display": "Madrid, Community of Madrid, Spain"
+            },
+            "locations": [
+              {
+                "city": "Madrid",
+                "country": "Spain",
+                "countryCode": "ES",
+                "hidden": false,
+                "region": "Community of Madrid"
+              },
+              {
+                "city": "Barcelona",
+                "country": "Spain",
+                "countryCode": "ES",
+                "hidden": false,
+                "region": "Catalonia"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "LSSU",
+            "published": "2026-10-01T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6004289,
+            "shortcode": "60FDD24367",
+            "title": "Sr. Medical Director (Neurologist)",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-09-30T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Office of CMO (CMO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 6157598,
+            "shortcode": "B6B68C46EE",
+            "title": "Sr. Payroll Specialist",
+            "remote": false,
+            "location": {
+              "city": "Cary",
+              "country": "United States",
+              "countryCode": "US",
+              "region": "North Carolina",
+              "display": "Cary, North Carolina, United States"
+            },
+            "locations": [
+              {
+                "city": "Cary",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": "North Carolina"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-09-28T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Administration (ADMIN)",
+              "Finance"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "on_site"
+          },
+          {
+            "id": 5808560,
+            "shortcode": "2CB75723C0",
+            "title": "Strategic Feasibility Manager II",
+            "remote": false,
+            "location": {
+              "city": "Belgrade",
+              "country": "Serbia",
+              "countryCode": "RS",
+              "region": "Vojvodina",
+              "display": "Vojvodina, Serbia"
+            },
+            "locations": [
+              {
+                "city": "Belgrade",
+                "country": "Serbia",
+                "countryCode": "RS",
+                "hidden": false,
+                "region": "Vojvodina"
+              },
+              {
+                "city": "Prague",
+                "country": "Czechia",
+                "countryCode": "CZ",
+                "hidden": false,
+                "region": "Prague"
+              },
+              {
+                "city": "Warsaw",
+                "country": "Poland",
+                "countryCode": "PL",
+                "hidden": false,
+                "region": "Masovian Voivodeship"
+              },
+              {
+                "city": "Bratislava",
+                "country": "Slovakia",
+                "countryCode": "SK",
+                "hidden": false,
+                "region": "Bratislava Region"
+              },
+              {
+                "city": "Budapest",
+                "country": "Hungary",
+                "countryCode": "HU",
+                "hidden": false,
+                "region": "Budapest"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "GFL",
+            "published": "2026-09-25T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 5279775,
+            "shortcode": "3D996FDF25",
+            "title": "Therapeutic Strategy Head - Oncology",
+            "remote": false,
+            "location": {
+              "city": "Cary",
+              "country": "United States",
+              "countryCode": "US",
+              "region": "North Carolina",
+              "display": "Cary, North Carolina, United States"
+            },
+            "locations": [
+              {
+                "city": "Cary",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": "North Carolina"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-09-23T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 5309859,
+            "shortcode": "C5A03658A5",
+            "title": "Therapeutic Strategy Head - Oncology",
+            "remote": false,
+            "location": {
+              "city": "Amsterdam",
+              "country": "Netherlands",
+              "countryCode": "NL",
+              "region": "North Holland",
+              "display": "Amsterdam, North Holland, Netherlands"
+            },
+            "locations": [
+              {
+                "city": "Amsterdam",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "hidden": false,
+                "region": "North Holland"
+              },
+              {
+                "city": "Bracknell",
+                "country": "United Kingdom",
+                "countryCode": "GB",
+                "hidden": false,
+                "region": "England"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-09-23T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 5825329,
+            "shortcode": "B9315C1E3A",
+            "title": "Project Director (Oncology)",
+            "remote": true,
+            "location": {
+              "city": null,
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": null,
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-09-22T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Project Leadership (GPL)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          }
+        ],
+        "total": 32
+      }
+    },
+    {
+      "request": {
+        "query": "",
+        "location": [],
+        "department": [],
+        "worktype": [],
+        "remote": [],
+        "token": "WzE3OTAwMzUyMDAwMDAsNTgyNTMyOV0="
+      },
+      "payload": {
+        "nextPage": "WzE3ODU4ODgwMDAwMDAsNjAxMzAxNF0=",
+        "results": [
+          {
+            "id": 4167697,
+            "shortcode": "CDEA096CB7",
+            "title": "Clinical Research Associate (Belgium, Netherlands)",
+            "remote": false,
+            "location": {
+              "city": "Amsterdam",
+              "country": "Netherlands",
+              "countryCode": "NL",
+              "region": "North Holland",
+              "display": "Amsterdam, North Holland, Netherlands"
+            },
+            "locations": [
+              {
+                "city": "Amsterdam",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "hidden": false,
+                "region": "North Holland"
+              },
+              {
+                "city": "Scherpenheuvel",
+                "country": "Belgium",
+                "countryCode": "BE",
+                "hidden": false,
+                "region": "Flanders"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "CRA",
+            "published": "2026-09-14T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "hybrid"
+          },
+          {
+            "id": 6091448,
+            "shortcode": "BF0B9ECB8B",
+            "title": "Director, Pharmacometrics",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "United Kingdom",
+              "countryCode": "GB",
+              "region": null,
+              "display": "United Kingdom"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "United Kingdom",
+                "countryCode": "GB",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Spain",
+                "countryCode": "ES",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Netherlands",
+                "countryCode": "NL",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Switzerland",
+                "countryCode": "CH",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "France",
+                "countryCode": "FR",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Italy",
+                "countryCode": "IT",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-09-10T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Strategy (PDS)",
+              "Clinical Pharmacology, Modeling & Simulation (CPMS)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 5104881,
+            "shortcode": "AC57503A69",
+            "title": "Director, Regulatory Affairs",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "United Kingdom",
+              "countryCode": "GB",
+              "region": null,
+              "display": "United Kingdom"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "United Kingdom",
+                "countryCode": "GB",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Ireland",
+                "countryCode": "IE",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-09-03T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Product Development Strategy (PDS)",
+              "Regulatory & Drug Development Consulting (RDC)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 5788146,
+            "shortcode": "52D18CB3E4",
+            "title": "Director, Pharmacometrics",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "United States",
+              "countryCode": "US",
+              "region": null,
+              "display": "United States"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "United States",
+                "countryCode": "US",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": null,
+            "published": "2026-08-24T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Strategy (PDS)",
+              "Clinical Pharmacology, Modeling & Simulation (CPMS)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 5799708,
+            "shortcode": "7E7D623226",
+            "title": "Directeur Pharmacométricien (Director Pharmacometrician)",
+            "remote": true,
+            "location": {
+              "city": "Montreal",
+              "country": "Canada",
+              "countryCode": "CA",
+              "region": "Quebec",
+              "display": "Montreal, Quebec, Canada"
+            },
+            "locations": [
+              {
+                "city": "Montreal",
+                "country": "Canada",
+                "countryCode": "CA",
+                "hidden": false,
+                "region": "Quebec"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-08-24T00:00:00.000Z",
+            "type": "full",
+            "language": "fr",
+            "department": [
+              "Product Development Strategy (PDS)",
+              "Clinical Pharmacology, Modeling & Simulation (CPMS)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 6008558,
+            "shortcode": "A2FC46E741",
+            "title": "Senior Clinical Data Manager - I",
+            "remote": false,
+            "location": {
+              "city": "Bengaluru",
+              "country": "India",
+              "countryCode": "IN",
+              "region": "Karnataka",
+              "display": "Bengaluru, Karnataka, India"
+            },
+            "locations": [
+              {
+                "city": "Bengaluru",
+                "country": "India",
+                "countryCode": "IN",
+                "hidden": false,
+                "region": "Karnataka"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-08-11T00:00:00.000Z",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Biometrics & Data Operations (BIO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "on_site"
+          },
+          {
+            "id": 6022283,
+            "shortcode": "7D42FF554B",
+            "title": "Directeur médical adjoint-oncologie/ Associate Medical Director-Oncology (CAN)",
+            "remote": true,
+            "location": {
+              "city": "Montreal",
+              "country": "Canada",
+              "countryCode": "CA",
+              "region": "Quebec",
+              "display": "Montreal, Quebec, Canada"
+            },
+            "locations": [
+              {
+                "city": "Montreal",
+                "country": "Canada",
+                "countryCode": "CA",
+                "hidden": false,
+                "region": "Quebec"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-08-10T00:00:00.000Z",
+            "type": "full",
+            "language": "fr",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Office of CMO (CMO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 4149337,
+            "shortcode": "D62741E9C6",
+            "title": "Local Contact Person for Pharmacovigilance (LCPPV) - Freelance",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "Poland",
+              "countryCode": "PL",
+              "region": null,
+              "display": "Poland"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "Poland",
+                "countryCode": "PL",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Finland",
+                "countryCode": "FI",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Norway",
+                "countryCode": "NO",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Sweden",
+                "countryCode": "SE",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Iceland",
+                "countryCode": "IS",
+                "hidden": false,
+                "region": null
+              },
+              {
+                "city": "",
+                "country": "Denmark",
+                "countryCode": "DK",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-08-07T00:00:00.000Z",
+            "type": "temporary",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Office of CMO (CMO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 6016019,
+            "shortcode": "C080047879",
+            "title": "Clinical Project Manager (Australia)",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "Australia",
+              "countryCode": "AU",
+              "region": null,
+              "display": "Australia"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "Australia",
+                "countryCode": "AU",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "PM",
+            "published": "2026-08-06T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Project Leadership (GPL)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 6013014,
+            "shortcode": "ECE0F88C83",
+            "title": "Directeur médical / Directeur médical principal - Neurologue",
+            "remote": true,
+            "location": {
+              "city": "Montreal",
+              "country": "Canada",
+              "countryCode": "CA",
+              "region": "Quebec",
+              "display": "Montreal, Quebec, Canada"
+            },
+            "locations": [
+              {
+                "city": "Montreal",
+                "country": "Canada",
+                "countryCode": "CA",
+                "hidden": false,
+                "region": "Quebec"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-08-05T00:00:00.000Z",
+            "type": "full",
+            "language": "fr",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Office of CMO (CMO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          }
+        ],
+        "total": 32
+      }
+    },
+    {
+      "request": {
+        "query": "",
+        "location": [],
+        "department": [],
+        "worktype": [],
+        "remote": [],
+        "token": "WzE3ODU4ODgwMDAwMDAsNjAxMzAxNF0="
+      },
+      "payload": {
+        "results": [
+          {
+            "id": 4192837,
+            "shortcode": "CE06B92C38",
+            "title": "Associate Medical Director / Medical Director Oncologist (Brazil)",
+            "remote": true,
+            "location": {
+              "city": "São Paulo",
+              "country": "Brazil",
+              "countryCode": "BR",
+              "region": "State of São Paulo",
+              "display": "São Paulo, State of São Paulo, Brazil"
+            },
+            "locations": [
+              {
+                "city": "São Paulo",
+                "country": "Brazil",
+                "countryCode": "BR",
+                "hidden": false,
+                "region": "State of São Paulo"
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "",
+            "published": "2026-07-31T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Office of CMO (CMO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          },
+          {
+            "id": 5787867,
+            "shortcode": "371F5DADE5",
+            "title": "Clinical Research Associate (Germany)",
+            "remote": true,
+            "location": {
+              "city": "",
+              "country": "Germany",
+              "countryCode": "DE",
+              "region": null,
+              "display": "Germany"
+            },
+            "locations": [
+              {
+                "city": "",
+                "country": "Germany",
+                "countryCode": "DE",
+                "hidden": false,
+                "region": null
+              }
+            ],
+            "state": "published",
+            "isInternal": false,
+            "code": "CRA",
+            "published": "2026-05-04T00:00:00.000Z",
+            "type": "full",
+            "language": "en",
+            "department": [
+              "Product Development Operations (PDO)",
+              "Global Clinical Operations (GCO)"
+            ],
+            "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+            "approvalStatus": "approved",
+            "workplace": "remote"
+          }
+        ],
+        "total": 32
+      }
+    }
+  ],
+  "detail": {
+    "id": 6008558,
+    "shortcode": "A2FC46E741",
+    "title": "Senior Clinical Data Manager - I",
+    "remote": false,
+    "location": {
+      "city": "Bengaluru",
+      "country": "India",
+      "countryCode": "IN",
+      "display": "Bengaluru, Karnataka, India",
+      "region": "Karnataka"
+    },
+    "locations": [
+      {
+        "city": "Bengaluru",
+        "country": "India",
+        "countryCode": "IN",
+        "hidden": false,
+        "region": "Karnataka"
+      }
+    ],
+    "state": "published",
+    "isInternal": false,
+    "code": "",
+    "published": "2026-08-11T00:00:00.000Z",
+    "language": "en",
+    "department": [
+      "Product Development Operations (PDO)",
+      "Biometrics & Data Operations (BIO)"
+    ],
+    "accountUid": "7e3163b7-6595-472a-8fb6-7424218ed72b",
+    "approvalStatus": "approved",
+    "workplace": "on_site",
+    "description": "<p>At Allucent™, we are dedicated to helping small-medium biopharmaceutical companies efficiently navigate the complex world of clinical trials to bring life-changing therapies to patients in need across the globe.</p><p>Senior Clinical Data Manager I (SrCDM1) leads data management activities of the Allucent Data Management (DM) department. </p><p>This position manages, coordinates, reviews and approves DM deliverables from database design &amp; set-up, through cleaning and reporting to database locking, ensuring that the completeness, accuracy and consistency of clinical data meet the quality standards and regulatory requirements for analysis and reporting.   </p><p>This position also provides expertise in relevant data management areas and cross-functional initiatives, including the development of departmental processes, tools, and training of staff.</p><p>The SrCDM1 provides support in Request for Proposals (RFPs) and presents at Business Development (BD) Meetings.</p><p>The SrCDM1 is a member of the Data Management staff.</p><ul><li>Lead and serve as primary contact for DM with all relevant parties both internally (e.g. Clinical Programmers, Data Scientists, Project Management, Clinical Operations/Monitoring, Clinical Monitoring, Biostatistics and other functional groups) and externally (e.g. sponsors, vendors (EDC, external data), and investigational sites)&nbsp;&nbsp; </li><li> Plan and project the resources required including management of tasks, timelines, risk and quality&nbsp; </li><li> Monitor tasks against and keep track on budget, forecasts and manage changes of scope, budget, revenue recognition. </li><li> Develop, review and maintain project-specific DM documents including data management plan (DMP), eCRF specifications, data validation plan (DVP) and external data transfer agreements throughout the lifecycle of the project and ensure adherence to the project requirements&nbsp;</li><li>&nbsp; Lead and coordinate the development of clinical study database set-up, including eCRF design and database validation requirements&nbsp; </li><li>&nbsp; Participate in the review of study documents (e.g. protocol, Project Plan, safety plans/manuals and statistical analysis plan), lead and coordinate the review of (electronic) case report forms (eCRFs)&nbsp; </li><li>Coordinate, oversee and ensure the database User Acceptance Testing (UAT) related tasks are successfully completed</li><li> Create training materials for EDC users and provide project-specific training as required&nbsp;</li><li> Lead and oversee the review and validation of clinical data to ensure consistency, accuracy, integrity and completeness&nbsp; &nbsp; Lead and serve as primary contact for DM with all relevant parties both internally (e.g. Clinical Programmers, Data Scientists, Project Management, Clinical Operations/Monitoring, Clinical Monitoring, Biostatistics and other functional groups) and externally (e.g. sponsors, vendors (EDC, external data), and investigational sites)&nbsp;&nbsp; </li><li>  Plan and project the resources required including management of tasks, timelines, risk and quality&nbsp; </li><li> Monitor tasks against and keep track on budget, forecasts and manage changes of scope, budget, revenue recognition. </li><li> Develop, review and maintain project-specific DM documents including data management plan (DMP), eCRF specifications, data validation plan (DVP) and external data transfer agreements throughout the lifecycle of the project and ensure adherence to the project requirements&nbsp;</li><li>  Lead and coordinate the development of clinical study database set-up, including eCRF design and database validation requirements&nbsp; </li><li> Participate in the review of study documents (e.g. protocol, Project Plan, safety plans/manuals and statistical analysis plan), lead and coordinate the review of (electronic) case report forms (eCRFs)&nbsp; </li><li> Coordinate, oversee and ensure the database User Acceptance Testing (UAT) related tasks are successfully completed</li><li> Create training materials for EDC users and provide project-specific training as required&nbsp;</li><li>  Lead and oversee the review and validation of clinical data to ensure consistency, accuracy, integrity and completeness&nbsp;</li><li> Create data cleaning strategy in consultation with applicable functional groups and oversee data releases (such as for DETC/DSMB/IDMC, interim and final locks, updates after lock)</li><li>  Perform and/or coordinate various data transfers and reconciliation activities including (but not limited to) SAE, PK, and (other) external laboratory data&nbsp;</li><li> Provide project metric reports, status updates, study progress, feedback and advice to project team on site performance issues, data trends and protocol non-compliance</li><li> Organize and lead Quality Review activities during stud</li><li>&nbsp;Assist in project-related contracts negotiation and contracting process with vendors (EDC, IRT, eCOA)</li><li> Manage the database maintenance, lock and close-out processes and procedure</li><li> Participate in conference calls and/or meetings with vendors and sponsors</li><li> Recognize and solve potential problems and evaluate effectiveness</li><li>Maintain DM study documentation on an ongoing basis and ensure that all filing is up to date&nbsp; </li><li>Plan and create necessary documentation to support internal and external audits; may participate in such audits assigned</li><li> Help to align data management and clinical programming best practices, standards and conventions within the company</li><li> Provide leadership, expertise and support to other department members.&nbsp;</li><li> Propose and support initiatives for improving efficiency</li><li> Actively support to staff learning &amp; development within the company</li><li> Share relevant information at applicable DM departmental meetings and organize and lead DM-related meetings and discussions&nbsp;</li><li> Represent the company at professional meetings, webinars or seminars</li><li> Train and mentor data management&nbsp;staff, support in development of new training material and provide training to relevant staff</li><li> Participate in the interview process for new recruits&nbsp;</li><li> Proactively track Data Management related regulatory development trends and updates, in consultation with department Global Head and/or Director, for further alignment and improvement of current processes&nbsp;</li><li> Contribute as Clinical Data Management Subject Matter Expert (SME) to the evaluation/improvement/drafting of processes and procedures within the Quality Management System</li><li> Assure good communication and relationships with (future) clients</li><li> Contribute to and take part in client evaluations and visits</li><li> Support in preparation of new proposals and budgets for Data Management services</li></ul><p> </p>",
+    "requirements": "<ul><li>  Life science, healthcare degree and/or combination of education and experience</li><li> Minimum 5 years of relevant work experience as Clinical Data Manager</li><li> Minimum 5 years of experience in drug development and/or clinical research&nbsp;</li><li> Thorough knowledge and understanding of ICH-GCP,&nbsp; 21CFR11 data privacy (GDPR/HIPPA) guidelines and awareness of local/regional requirements</li><li> Good understanding of Medical Terminology</li><li> &nbsp; Experience with electronic data capture (EDC) software systems and other tools for managing clinical studies, including IRT and eCOA&nbsp;&nbsp;</li><li> Experience as DM lead on several studies, preferably in different Therapeutic Areas and clinical development phases. Experience in covering all phases of a clinical study (start up, conduct and database lock).</li><li> Thorough understanding of relational database components and experience in technical data management practices (validation plans, testing, and documentation</li><li>  Experienced in CDISC conventions, i.e., CDASH, TAUG models and hands on experience implementing these models&nbsp;</li><li>Experience in developing data management standards</li></ul><p>   </p>",
+    "benefits": "<p><strong>Benefits of working at Allucent include:</strong></p><ul><li>Comprehensive benefits package per location</li><li>Competitive salaries per location </li><li>Departmental Study/Training Budget for furthering professional development </li><li>Flexible Working hours (within reason) </li><li>Leadership and mentoring opportunities </li><li>Participation in our enriching Buddy Program as a new or existing employee</li><li>Internal growth opportunities and career progression </li><li>Financially rewarding internal employee referral program </li><li>Access to online soft-skills and technical training via GoodHabitz and internal platforms</li><li>Eligibility for our Spot Bonus Award Program in recognition of going above and beyond on projects </li><li>Eligibility for our Loyalty Award Program in recognition of loyalty and commitment of longstanding employees.</li></ul><p></p><p></p><p><strong>About Allucent</strong></p><p>Our mission is to help bring new therapies to light. When you work at Allucent, that means applying your unique skill set, expertise, and knowledge to build partnerships with our clients in their pursuit to develop new, life-improving treatments.</p><p>If you're passionate about helping customers develop new pharmaceuticals and biologics; have an entrepreneurial spirit; and ready to join other science, business, and operations leaders, we would love to get to learn more about how we can help each other grow.</p><p>Together we <a href=\"https://www.allucent.com/company/about-us/mission-vision-values\" target=\"_blank\" rel=\"nofollow noreferrer noopener\" class=\"external\">SHINE.</a> find more information about our values. </p><p></p><p><strong>Apply now!</strong></p><p>If you’re ready to bring your passion for clinical development and business growth to Allucent, apply today or reach out to Monica Grace  (monica.grace@allucent.com) for more information.</p><p></p><p><strong>Disclaimers:</strong></p><p>*Our in-office work policy encourages a dynamic work environment, prescribing 2 days in office per week for employees within reasonable distance from one of our global offices. </p><p> </p><p><em>“The Allucent Talent Acquisition team manages the recruitment and employment process for Allucent (US) LLC and its affiliates (collectively “Allucent”). Allucent does not accept unsolicited resumes from third-party recruiters or uninvited requests for collaboration on any of our open roles. Unsolicited resumes sent to Allucent employees will not obligate Allucent to the future employment of those individuals or potential remuneration to any third-party recruitment agency. Candidates should never be submitted directly to our hiring managers, employees, or human resources.”</em></p><p></p><p><em>Kindly share your CV to monica.grace@allucent.com </em></p>"
+  }
+}

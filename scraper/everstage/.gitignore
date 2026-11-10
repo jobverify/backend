@@ -1,6 +1,3 @@
 !fixtures/
 !fixtures/current-client-boundary-20261107.json.gz
 !fixtures/current-full-native-20261107.json.gz
-
-# Keep saved fixtures local; exclude them from Git and deployment.
-/fixtures/

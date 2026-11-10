@@ -1,0 +1,79 @@
+{
+  "response": {
+    "gradeID": null,
+    "minimumExp": "6",
+    "isCampusJob": false,
+    "jobTitle": "Senior RPA Developer",
+    "entityID": "1397",
+    "requisitionCode": "NVS/SRD/1875599",
+    "jurisdictionTypeID": null,
+    "maximumExp": "7",
+    "skills": [
+      {
+        "text": "RPA",
+        "mandatory": false
+      },
+      {
+        "text": "Uipath",
+        "mandatory": false
+      }
+    ],
+    "qualifications": [
+      "Graduation/Equivalent Course"
+    ],
+    "CandidatePortalStartDate": "2026-10-22 00:00:00.0",
+    "confidential": false,
+    "noOfOpening": "1",
+    "payGroupID": null,
+    "CandidatePortalEndDate": "2027-10-22 00:00:00.0",
+    "tat": "0",
+    "minSalary": "900000",
+    "employmentTenureType": null,
+    "campusSysContentType": "NON_CAMPUS",
+    "RoleName": null,
+    "maxBudgetSalary": "0",
+    "functionalArea": null,
+    "JobFamilyCode": null,
+    "jobDescription": "<ul type=\"disc\"><li><h3 data-pasted=\"true\">Experience</h3><ul data-spread=\"false\"><li><strong>6&ndash;8 years of overall IT experience</strong>, with a minimum of <strong>6 years of hands-on experience in UiPath development</strong>.</li><li><br></li></ul></li><li><h3>Key Responsibilities &amp; Technical Skills</h3><ul data-spread=\"false\"><li>Advanced hands-on experience in&nbsp;<strong>UiPath Studio, Orchestrator, Action Center, UiPath Apps, and Modern Activities</strong>.</li><li>Strong expertise in designing and developing enterprise-grade&nbsp;<strong>RPA solutions using UiPath</strong>.</li><li>Strong experience with&nbsp;<strong>REFramework</strong> is mandatory.</li><li>Experience in&nbsp;<strong>Database Automation, API Automation, Document Understanding, and reusable/custom activities</strong>.</li><li>Good programming/scripting knowledge in&nbsp;<strong>C#, .NET, VB/VBScript, and Java</strong>.</li><li>Experience with&nbsp;<strong>UiPath Orchestrator</strong>, including deployment, scheduling, monitoring, queues, assets, and automation management.</li><li>Experience with&nbsp;<strong>Action Center and Action Center Modern Activities</strong>.</li><li>Knowledge of&nbsp;<strong>UiPath Test Automation</strong> is an added advantage but not mandatory.</li><li>Analyze business requirements and translate them into scalable and maintainable&nbsp;<strong>RPA/automation solutions</strong>.</li><li>Create and maintain project documentation, including&nbsp;<strong>PDDs, User Stories, As-Is and To-Be process documents, and solution design documents</strong>.</li><li>Provide&nbsp;<strong>solution design and technical recommendations</strong> to customers and stakeholders.</li><li>Work closely with&nbsp;<strong>Business Analysts, customers, developers, and Operations teams</strong> throughout the automation lifecycle.</li><li>Participate in requirement gathering, solution design, development, testing, and&nbsp;<strong>UAT</strong> activities.</li><li>Support customers during&nbsp;<strong>UAT, deployment, and rollout phases</strong> and coordinate with Operations teams for production deployment.</li><li>Provide&nbsp;<strong>production support and troubleshooting</strong> for deployed automations as required.</li><li>Follow RPA development standards, coding best practices, exception handling, logging, and reusable component development.</li><li>Identify opportunities for process improvement and automation.</li><li>Demonstrate strong&nbsp;<strong>analytical, problem-solving, communication, and stakeholder-management skills</strong>.</li></ul></li><li><h3>Preferred Skills</h3><ul data-spread=\"false\"><li>Experience working in enterprise/client-facing RPA projects.</li><li>Experience in mentoring junior developers and providing technical guidance.</li><li>UiPath certifications are an added advantage.</li></ul></li></ul>",
+    "designation": "Senior Software Engineer",
+    "CampusType": "Non-Campus",
+    "shiftTo": null,
+    "maxSalary": "2400000",
+    "designationID": "855685",
+    "WorkflowName": "Workflow- Applicant",
+    "roleType": "Critical",
+    "locationHierarchyComplete": "APAC>India>Pune>Hybrid>Pune office Standard>Maharashtra",
+    "requisitionId": "1875599",
+    "orgUnitCode": "RPA",
+    "Onsite": null,
+    "organizationUnitComplete": "NewVison>New Vision Softcom & Consultancy Pvt. Ltd>Business Units (BU)>RPA>RPA",
+    "hrOrgUnitID": "2618369",
+    "requisitionType": "New",
+    "currency": "INR (Rupees)",
+    "departmentHierarchy": null,
+    "industryName": null,
+    "roleContributionType": null,
+    "programType": null,
+    "jobTitleID": "0",
+    "languages": [],
+    "employmentType": "Full Time",
+    "joiningLocation": "Pune",
+    "EducationSepecializationID": null,
+    "employeeCategoryTypeID": null,
+    "internalJobDescription": null,
+    "educationSepecialization": null,
+    "certifications": [],
+    "authorityTypeID": null,
+    "minBudgetSalary": "0",
+    "requisitionStatus": "OPEN",
+    "shiftFrom": null,
+    "bandId": null,
+    "worksiteID": "850038",
+    "functionalDesignationID": "0",
+    "jobRoleID": null
+  },
+  "messageCode": {
+    "code": 200,
+    "messages": "success"
+  }
+}

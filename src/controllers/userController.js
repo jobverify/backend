@@ -3,9 +3,9 @@
  * @module controllers/userController
  */
 
+import mongoose from 'mongoose';
 import Job from "../models/Job.js";
 import TailoredResume from '../models/TailoredResume.js';
-import Subscription from "../models/Subscription.js";
 import TelegramLinkToken from "../models/TelegramLinkToken.js";
 import User from "../models/User.js";
 import { BROADCAST_TOKENS, DEFAULT_BROADCAST_TEMPLATE, BROADCAST_SAMPLE_JOBS, renderBroadcastTemplate, validateBroadcastTemplate } from '../services/telegramBroadcastTemplate.js';
@@ -16,7 +16,7 @@ import {
   normalizeProfilePreferenceFilters,
 } from "../utils/profilePreferenceFilters.js";
 import {
-  applyExpiredAccessDowngrade,
+  getEffectiveAccess,
   buildAccessSummary,
   canUseTelegramAlerts,
 } from "../utils/accessControl.js";
@@ -56,7 +56,10 @@ const normalizePassingYear = (value) => {
   return Number.isInteger(year) ? year : undefined;
 };
 
-const getSavedJobIds = (user) => (user.savedJobs ?? []).map((jobId) => String(jobId));
+const getSavedJobIds = (user) => [...new Set((user.savedJobs ?? []).map((jobId) => String(jobId).toLowerCase()))];
+
+const parseSavedJobId = (value) => typeof value === 'string' && /^[a-f0-9]{24}$/i.test(value)
+  ? new mongoose.Types.ObjectId(value) : null;
 
 const buildSavedJobsFilter = (savedJobIds, siteSettings) => applyPublicJobVisibility({
   _id: { $in: savedJobIds },
@@ -116,8 +119,8 @@ const hasTelegramEligibility = (user, siteSettings) =>
   siteSettings?.billingEnabled === false
   || user.role === "admin"
   || (
-    TELEGRAM_ELIGIBLE_ACCESS_ROLES.has(user.accessRole)
-    && user.premium?.status === "active"
+    TELEGRAM_ELIGIBLE_ACCESS_ROLES.has(getEffectiveAccess(user).accessRole)
+    && getEffectiveAccess(user).status === "active"
   );
 
 const hasLinkedTelegram = (user) => {
@@ -134,17 +137,6 @@ const hasLinkedTelegram = (user) => {
   );
 };
 
-const persistExpiredAccessDowngrade = async (user) => {
-  if (!applyExpiredAccessDowngrade(user)) return false;
-
-  await Subscription.updateOne(
-    { user: user._id },
-    { $set: { isActive: false } },
-  ).catch(() => null);
-  await user.save();
-  return true;
-};
-
 const buildTelegramAlertSettingsData = (user, siteSettings) => ({
   template: user.profile?.telegramAlertTemplate || DEFAULT_BROADCAST_TEMPLATE,
   defaultTemplate: DEFAULT_BROADCAST_TEMPLATE,
@@ -155,7 +147,7 @@ const buildTelegramAlertSettingsData = (user, siteSettings) => ({
   optedOutAt: user.telegram?.optedOutAt ?? null,
   enabled: Boolean(user.premium?.telegramAlertsEnabled),
   canUseTelegramAlerts: canUseTelegramAlerts(user, new Date(), siteSettings),
-  accessRole: user.accessRole,
+  accessRole: getEffectiveAccess(user).accessRole,
   access: buildAccessSummary(user),
   telegramAlertFilters: normalizeProfilePreferenceFilters(
     user.profile?.telegramAlertFilters,
@@ -169,7 +161,7 @@ const buildProfilePayload = (user, savedJobsCount) => ({
   id: user._id,
   email: user.email,
   role: user.role,
-  accessRole: user.accessRole,
+  accessRole: getEffectiveAccess(user).accessRole,
   access: buildAccessSummary(user),
   profile: user.profile,
   profileOverview: buildProfileOverview(user, savedJobsCount),
@@ -183,14 +175,6 @@ export const getUserProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if (user) {
-      if (applyExpiredAccessDowngrade(user)) {
-        await Subscription.updateOne(
-          { user: user._id },
-          { $set: { isActive: false } },
-        ).catch(() => null);
-        await user.save();
-      }
-
       const savedJobsCount = await countAvailableSavedJobs(user, req.siteSettings);
 
       res.status(200).json(buildProfilePayload(user, savedJobsCount));
@@ -243,12 +227,6 @@ export const updateUserProfile = async (req, res) => {
         user.profile.preferredJobTypes?.length > 0 &&
         user.profile.locationPreference?.length > 0
       );
-      if (applyExpiredAccessDowngrade(user)) {
-        await Subscription.updateOne(
-          { user: user._id },
-          { $set: { isActive: false } },
-        ).catch(() => null);
-      }
       const updatedUser = await user.save();
       const savedJobsCount = await countAvailableSavedJobs(updatedUser, req.siteSettings);
 
@@ -343,7 +321,9 @@ export const getSavedJobs = async (req, res) => {
 
 export const saveJob = async (req, res) => {
   try {
-    const { jobId } = req.params;
+    const objectId = parseSavedJobId(req.params.jobId);
+    if (!objectId) return res.status(400).json({ success: false, message: 'Invalid job ID' });
+    const jobId = String(objectId);
     const [user, job] = await Promise.all([
       User.findById(req.user._id),
       Job.findOne(applyPublicJobVisibility({ _id: jobId, status: "active" }, req.siteSettings)),
@@ -371,10 +351,10 @@ export const saveJob = async (req, res) => {
       (savedJobId) => String(savedJobId) === jobId,
     );
 
-    if (!hasSavedJob) {
-      user.savedJobs.push(job._id);
-      await user.save();
-    }
+    const updatedUser = await User.findOneAndUpdate({ _id: user._id,
+      deactivated: { $ne: true }, accountDeletingAt: null },
+    { $addToSet: { savedJobs: objectId } }, { new: true, runValidators: true });
+    if (!updatedUser) return res.status(404).json({ code: 404, success: false, message: 'User not found' });
 
     // A purge can delete this job after the public lookup and before save.
     // Its post-delete sweep covers earlier writes; this check covers late ones.
@@ -383,7 +363,7 @@ export const saveJob = async (req, res) => {
       return res.status(404).json({ code: 404, success: false, message: 'Job not found' });
     }
 
-    const savedJobsCount = await countAvailableSavedJobs(user, req.siteSettings);
+    const savedJobsCount = await countAvailableSavedJobs(updatedUser, req.siteSettings);
 
     res.status(200).json({
       code: 200,
@@ -400,7 +380,9 @@ export const saveJob = async (req, res) => {
 
 export const removeSavedJob = async (req, res) => {
   try {
-    const { jobId } = req.params;
+    const objectId = parseSavedJobId(req.params.jobId);
+    if (!objectId) return res.status(400).json({ success: false, message: 'Invalid job ID' });
+    const jobId = String(objectId);
     const user = await User.findById(req.user._id);
 
     if (!user) {
@@ -412,10 +394,6 @@ export const removeSavedJob = async (req, res) => {
       return;
     }
 
-    const nextSavedJobs = (user.savedJobs ?? []).filter(
-      (savedJobId) => String(savedJobId) !== jobId,
-    );
-
     // Invalidate before removing membership so a remove/re-save race cannot
     // revive a queued request or let an old worker publish its result.
     await TailoredResume.updateMany({ user: user._id, job: jobId, status: { $in: ['queued', 'running'] } }, {
@@ -423,12 +401,10 @@ export const removeSavedJob = async (req, res) => {
       $inc: { revision: 1 }, $unset: { leaseOwner: 1, leaseUntil: 1 },
     });
 
-    if (nextSavedJobs.length !== user.savedJobs.length) {
-      await User.updateOne({ _id: user._id }, { $pull: { savedJobs: jobId } });
-      user.savedJobs = nextSavedJobs;
-    }
-
-    const savedJobsCount = await countAvailableSavedJobs(user, req.siteSettings);
+    const updatedUser = await User.findOneAndUpdate({ _id: user._id },
+      { $pull: { savedJobs: objectId } }, { new: true });
+    if (!updatedUser) return res.status(404).json({ code: 404, success: false, message: 'User not found' });
+    const savedJobsCount = await countAvailableSavedJobs(updatedUser, req.siteSettings);
 
     res.status(200).json({
       code: 200,
@@ -454,8 +430,6 @@ export const createTelegramAlertLink = async (req, res) => {
         message: "User not found",
       });
     }
-
-    await persistExpiredAccessDowngrade(user);
 
     if (!hasTelegramEligibility(user, req.siteSettings)) {
       return res.status(403).json({
@@ -510,8 +484,6 @@ export const getTelegramAlertSettings = async (req, res) => {
       });
     }
 
-    await persistExpiredAccessDowngrade(user);
-
     return res.status(200).json({
       code: 200,
       success: true,
@@ -538,8 +510,6 @@ export const updateTelegramAlertSettings = async (req, res) => {
         message: "User not found",
       });
     }
-
-    await persistExpiredAccessDowngrade(user);
 
     if (req.body.enabled === true && !hasLinkedTelegram(user)) {
       return res.status(400).json({

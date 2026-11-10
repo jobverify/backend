@@ -1,6 +1,6 @@
 import { readInventoryEvidence, isFreshCompleteInventoryEvidence } from '../scraper-support/utils/inventoryEvidence.js'
 import { analyzePublishableJobs } from '../scraper-support/utils/publishableJobMetrics.js'
-import { extractionFailureDetails } from './catalogExtractionFailureEvidence.js'
+import { extractionFailureDetails, extractionFailureReason } from './catalogExtractionFailureEvidence.js'
 import { extractionDetailHealth } from '../scraper-support/utils/extractionDetailHealth.js'
 import { retainNativeFailureArtifact } from './catalogExtractionFailureArtifacts.js'
 import { createPublicAtsAuditCapture } from './catalogExtractionPublicAtsCapture.js'
@@ -50,6 +50,7 @@ export async function auditExtraction(provider, { outputDirectory, capturePublic
       attemptedAt, completedAt,
       outcome: ['ERR_ACCESS_DENIED', 'ERR_DLOPEN_DISABLED'].includes(error?.code) ? 'audit-permission-blocked' : 'extraction-failed',
       ...extractionFailureDetails(error),
+      failureReason: extractionFailureReason(error),
       ...(retainedFailureEvidence ? { retainedFailureEvidence } : {}),
       ...(capture ? { retainedNativeApiEvidence: capture.evidence } : {}),
       failureCode: /^[A-Z_0-9]{1,80}$/.test(error?.code || '') ? error.code : 'EXTRACTION_OR_UPSTREAM_ERROR',

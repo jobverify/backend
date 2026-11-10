@@ -61,7 +61,7 @@ for (const scenario of ['configured', 'bypass', 'disabled', 'invalid', 'runner-s
           applyUrl:'https://example.test/jobs/proxy-role',description:'Build and maintain software for customers.'}];
       }`)
       if (scenario.startsWith('runner-')) {
-        const fixture = fileURLToPath(new URL('./fixtures/scraperProxyRunner.js', import.meta.url))
+        const fixture = fileURLToPath(new URL('./helpers/scraperProxyRunner.js', import.meta.url))
         const result = await new Promise((resolve, reject) => {
           const child = spawn(process.execPath, [fixture, `http://127.0.0.1:${port}/jobs`,
             ...(scenario === 'runner-parallel' ? ['--parallel'] : [])], { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] })

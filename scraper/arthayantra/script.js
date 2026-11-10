@@ -1,5 +1,4 @@
-import http from 'node:http'
-import https from 'node:https'
+import { fetchVerifiedHttpsPage } from '../../scraper-support/utils/verifiedHttps.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -32,9 +31,6 @@ export const BROKEN_CAREER_ROUTE_URLS = [
 
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
-const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308])
-const MAX_REDIRECTS = 10
 
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
@@ -152,51 +148,10 @@ export const isVerifiedBrokenWordPressRoute = (page = {}) => {
     && !hasPublicJobsSignal(rawHtml)
 }
 
-const requestPage = (url, redirectCount = 0) =>
-  new Promise((resolve, reject) => {
-    const targetUrl = new URL(url)
-    const transport = targetUrl.protocol === 'http:' ? http : https
-
-    const request = transport.request(targetUrl, {
-      method: 'GET',
-      headers: {
-        'User-Agent': USER_AGENT,
-        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.7',
-      },
-      rejectUnauthorized: false,
-    }, (response) => {
-      const chunks = []
-
-      response.on('data', (chunk) => chunks.push(chunk))
-      response.on('end', async () => {
-        const status = response.statusCode ?? 0
-        const location = response.headers.location
-
-        if (REDIRECT_STATUSES.has(status) && location && redirectCount < MAX_REDIRECTS) {
-          try {
-            const nextUrl = new URL(location, targetUrl).toString()
-            resolve(await requestPage(nextUrl, redirectCount + 1))
-            return
-          } catch (error) {
-            reject(error)
-            return
-          }
-        }
-
-        resolve({
-          status,
-          url: targetUrl.toString(),
-          headers: response.headers,
-          html: Buffer.concat(chunks).toString('utf8'),
-        })
-      })
-    })
-
-    request.on('error', reject)
-    request.end()
-  })
-
-const defaultFetchPage = async (url) => requestPage(url)
+const defaultFetchPage = url => fetchVerifiedHttpsPage(url, {
+  allowedOrigins: ['https://arthayantra.com', 'https://www.arthayantra.com', 'https://arthos.arthayantra.com'],
+  headers: { 'User-Agent': USER_AGENT },
+})
 
 export const createArthaYantraScraper = () => ({
   async run({ fetchPage = defaultFetchPage } = {}) {
