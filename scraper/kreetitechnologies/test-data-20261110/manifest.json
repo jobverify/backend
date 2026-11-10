@@ -1,0 +1,139 @@
+{
+  "capturedAt": "2026-11-10T09:50:47.296Z",
+  "source": "kreetitechnologies",
+  "records": [
+    {
+      "id": "opening-company",
+      "file": "opening-company.json.gz",
+      "requestUrl": "https://www.kreeti.com/",
+      "finalUrl": "https://www.kreeti.com/",
+      "status": 200,
+      "contentType": "text/html",
+      "byteLength": 78427,
+      "sha256": "a649437a026e6a3aae164e9f14f2cf267c6c2c9804cd35e9cd8795f58343049d",
+      "observedAt": "2026-11-10T09:44:59.526Z"
+    },
+    {
+      "id": "opening-home",
+      "file": "opening-home.json.gz",
+      "requestUrl": "https://careers.kreeti.com/",
+      "finalUrl": "https://careers.kreeti.com/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "byteLength": 15803,
+      "sha256": "f9d83110f1068a2177d6389a1c98c3a072a8b992df31d69b3b9f89206a608b76",
+      "observedAt": "2026-11-10T09:45:00.106Z"
+    },
+    {
+      "id": "opening-students",
+      "file": "opening-students.json.gz",
+      "requestUrl": "https://careers.kreeti.com/students",
+      "finalUrl": "https://careers.kreeti.com/students",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "byteLength": 43283,
+      "sha256": "a2d25102c28c17ec4400469ec5d40fb84a40ea3924696d19e060731c719e4fc5",
+      "observedAt": "2026-11-10T09:47:10.340Z"
+    },
+    {
+      "id": "opening-jobs",
+      "file": "opening-jobs.json.gz",
+      "requestUrl": "https://careers.kreeti.com/candidates",
+      "finalUrl": "https://careers.kreeti.com/candidates",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "byteLength": 82391,
+      "sha256": "8e0d1cf5b9c9fd9c20ee603f3782f1ce52ef51cf44e68fa74125a019c2d98b53",
+      "observedAt": "2026-11-10T09:47:10.550Z"
+    },
+    {
+      "id": "opening-renderer",
+      "file": "opening-renderer.json.gz",
+      "requestUrl": "https://assets.kreeti.com/assets/new_style-4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508.js",
+      "finalUrl": "https://assets.kreeti.com/assets/new_style-4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "byteLength": 1191472,
+      "sha256": "4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508",
+      "observedAt": "2026-11-10T09:48:48.965Z"
+    },
+    {
+      "id": "closing-jobs",
+      "file": "closing-jobs.json.gz",
+      "requestUrl": "https://careers.kreeti.com/candidates",
+      "finalUrl": "https://careers.kreeti.com/candidates",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "byteLength": 82391,
+      "sha256": "e9ad7cd87249213ab8f5fcb9f5e97b12a0a39087159334f60f56104618384b90",
+      "observedAt": "2026-11-10T09:50:15.518Z"
+    },
+    {
+      "id": "closing-students",
+      "file": "closing-students.json.gz",
+      "requestUrl": "https://careers.kreeti.com/students",
+      "finalUrl": "https://careers.kreeti.com/students",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "byteLength": 43283,
+      "sha256": "7961fd43773dfd4673b44877b40ba1cdc2b3670ce46c5f7b38ba3d94fa9462a4",
+      "observedAt": "2026-11-10T09:50:15.682Z"
+    },
+    {
+      "id": "closing-home",
+      "file": "closing-home.json.gz",
+      "requestUrl": "https://careers.kreeti.com/",
+      "finalUrl": "https://careers.kreeti.com/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "byteLength": 15803,
+      "sha256": "1c99d5b062120e52975c6b7a5a4898843345d2e834f3b2b448623092bb43529c",
+      "observedAt": "2026-11-10T09:50:15.835Z"
+    },
+    {
+      "id": "closing-company",
+      "file": "closing-company.json.gz",
+      "requestUrl": "https://www.kreeti.com/",
+      "finalUrl": "https://www.kreeti.com/",
+      "status": 200,
+      "contentType": "text/html",
+      "byteLength": 78427,
+      "sha256": "a649437a026e6a3aae164e9f14f2cf267c6c2c9804cd35e9cd8795f58343049d",
+      "observedAt": "2026-11-10T09:50:16.232Z"
+    },
+    {
+      "id": "closing-renderer",
+      "file": "closing-renderer.json.gz",
+      "requestUrl": "https://assets.kreeti.com/assets/new_style-4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508.js",
+      "finalUrl": "https://assets.kreeti.com/assets/new_style-4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "byteLength": 1191472,
+      "sha256": "4f16618285ef460033908b1082716f19d5a8ad213abf20cffe1c17acd4803508",
+      "observedAt": "2026-11-10T09:50:17.272Z"
+    },
+    {
+      "id": "opening-style",
+      "file": "opening-style.json.gz",
+      "requestUrl": "https://assets.kreeti.com/assets/new_style-09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac.css",
+      "finalUrl": "https://assets.kreeti.com/assets/new_style-09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac.css",
+      "status": 200,
+      "contentType": "text/css",
+      "byteLength": 134985,
+      "sha256": "09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac",
+      "observedAt": "2026-11-10T09:53:59.676Z"
+    },
+    {
+      "id": "closing-style",
+      "file": "closing-style.json.gz",
+      "requestUrl": "https://assets.kreeti.com/assets/new_style-09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac.css",
+      "finalUrl": "https://assets.kreeti.com/assets/new_style-09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac.css",
+      "status": 200,
+      "contentType": "text/css",
+      "byteLength": 134985,
+      "sha256": "09f06ccdf71f5a3893f5a7719bcf1ef95c7356625b36bd0557a36f5ce5a47dac",
+      "observedAt": "2026-11-10T09:53:59.676Z"
+    }
+  ],
+  "replayNote": "The immutable reviewed stylesheet response is replayed for both fixture phases; fresh registered execution rechecks it independently."
+}

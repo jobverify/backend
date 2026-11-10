@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { normalizeScrapedJob } from '../../scraper-support/utils/normalizeScrapedJob.js'
+import { runCurrentKreetiEmpty } from './currentEmpty20261110.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -241,7 +242,7 @@ export const createKreetiTechnologiesScraper = ({ maxJobs = null } = {}) => ({
   },
 })
 
-export const run = async (options = {}) => createKreetiTechnologiesScraper().run(options)
+export const run = async (options = {}) => runCurrentKreetiEmpty(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

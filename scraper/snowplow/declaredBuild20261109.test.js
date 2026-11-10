@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto'
 import {createCatalogScraper,getScraperCatalog} from '../../scraper-support/providers/index.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {inventoryCleanupOptions} from '../../scraper-support/utils/scraperOutcome.js'
+import {deniedTypographyPacket} from './typography20261110.fixture.js'
 
 const sha=value=>createHash('sha256').update(value).digest('hex')
 const read=name=>JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/'+name,import.meta.url))))
@@ -54,11 +55,12 @@ test('all92 literal current resources reconstruct full reviewed behavior with on
 
 // Only the corporate/board/assets are current originals. Native feed/form and
 // external stylesheet packets are explicitly retained Nov6 controls here.
+// Newly probed unresolved typography uses an explicit Nov10 denial control.
 async function replay(mutate=()=>{},options={}){
  let audit
  const calls=[]
  const jobs=await source().run({onAudit:value=>{audit=value},fetchPage:async url=>{
-  const packet=url===corporateURL?{...corporate,url:corporate.finalUrl}:url===boardURL?board:assetMap.get(url)||oldMap.get(url)
+  const packet=url===corporateURL?{...corporate,url:corporate.finalUrl}:url===boardURL?board:assetMap.get(url)||oldMap.get(url)||deniedTypographyPacket(url)
   assert.ok(packet,'Only literally declared captured endpoints: '+url)
   const response={status:packet.status,url:packet.url,contentType:packet.contentType,body:packet.body}
   mutate(response,url,calls)

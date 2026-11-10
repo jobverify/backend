@@ -241,7 +241,11 @@ test('observation recovery shares the request and page budgets and preserves opa
 for(const [label,options,code]of[
  ['read',{readTimeoutMs:15},'IMTF_READ_TIMEOUT'],
  ['source',{sourceTimeoutMs:150},'IMTF_SOURCE_TIMEOUT'],
-])test('signal-ignoring native observation acquisition remains bounded by the existing '+label+' deadline',async()=>{
+])test('signal-ignoring native observation acquisition remains bounded by the existing '+label+' deadline',async t=>{
+ // This case isolates the timer interrupting a signal-ignoring transport.
+ // Parsing the preceding captured pages must not consume its deliberately
+ // tiny monotonic budget when other test files contend for the CPU.
+ t.mock.method(performance,'now',()=>0)
  const io=replay(),calls=[]
  await assert.rejects(runNative({...options,transport:async(url,init)=>{calls.push(url);if(url===own(nativeOnly))return new Promise(()=>{});return io(url,init)}}),error=>{
   assert.equal(error.code,code);assert.equal(error.nativeEvidence.cleanupAllowed,false)

@@ -20,18 +20,21 @@ test('unsupported partition counts fail before reading the database', () => {
   }
 });
 
-test('the observed queue gets a full dynamic matrix rather than four fixed workers', async () => {
+test('automatic queue planning uses up to 32 parallel runners', async () => {
   const { buildRewritePlan } = await import('../rewriting/partitioning.js').catch(() => ({}));
   assert.equal(typeof buildRewritePlan, 'function');
   const plan = buildRewritePlan(27660);
   assert.equal(plan.shardCount, 32);
-  assert.equal(plan.maxParallel, 4);
+  assert.equal(plan.maxParallel, 32);
   assert.equal(plan.estimatedJobsPerShard, 865);
   assert.deepEqual(plan.matrix.shard, Array.from({ length: 32 }, (_, index) => index));
   assert.equal(buildRewritePlan(0).shardCount, 1);
   assert.equal(buildRewritePlan(1000).shardCount, 1);
   assert.equal(buildRewritePlan(1001).shardCount, 2);
+  assert.equal(buildRewritePlan(0).maxParallel, 1);
+  assert.equal(buildRewritePlan(1001).maxParallel, 2);
   assert.equal(buildRewritePlan(1000000).shardCount, 256);
+  assert.equal(buildRewritePlan(1000000).maxParallel, 32);
   assert.equal(buildRewritePlan(1000000).capacityLimited, true);
   for (const queued of [-1, 1.5, NaN, Infinity]) assert.throws(() => buildRewritePlan(queued), /queue/i);
   assert.throws(() => buildRewritePlan(10, { jobsPerShard: 0 }), /partition/i);

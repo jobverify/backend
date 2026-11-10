@@ -25,6 +25,25 @@ export function preload(body){
  check(d.maintenanceMode===false&&d.schedulingMaintenanceMode===false,'Native service unavailable')
  return d
 }
+function secondaryCountryScope(record,brief){
+ check(Array.isArray(record.secondaryLocations)&&Array.isArray(brief.secondaryLocations),'Changed secondary scope requires qualification')
+ if(record.secondaryLocations.length===0&&brief.secondaryLocations.length===0)return
+ // The current board independently names this US secondary location; its
+ // own API record supplies the postal country. This foreign-only contract
+ // cannot extend an India role or qualify another country/remote label.
+ const fields=(value,allowed)=>value&&typeof value==='object'&&!Array.isArray(value)&&Object.keys(value).every(key=>allowed.includes(key))
+ const native=record.secondaryLocations[0],publicLocation=brief.secondaryLocations[0]
+ check(record.secondaryLocations.length===1&&brief.secondaryLocations.length===1
+  &&['USA Remote (East Coast Time Zone Preferred)','USA Remote (Pacific Time Zone Preferred)'].includes(record.location)
+  &&record.address?.postalAddress?.addressCountry==='United States'
+  &&fields(native,['location','address'])&&native.location==='USA Remote'
+  &&fields(native.address,['postalAddress'])&&fields(native.address.postalAddress,['addressCountry'])
+  &&native.address.postalAddress.addressCountry==='United States'
+  &&fields(publicLocation,['locationId','locationName','__typename'])
+  &&typeof publicLocation.locationId==='string'&&/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/.test(publicLocation.locationId)
+  &&publicLocation.locationName===native.location&&publicLocation.__typename==='JobPostingSecondaryLocation',
+ 'Changed secondary country scope requires qualification')
+}
 export function validateInventory(payload,board,now){
  envelope(payload);check(payload.apiVersion==='1'&&Array.isArray(payload.jobs)&&payload.jobs.length<=200,'Native listing schema/count unqualified')
  check(payload.hasMore==null||payload.hasMore===false,'Native pagination incomplete');check(payload.total==null||Number.isSafeInteger(payload.total)&&payload.total===payload.jobs.length,'Native count mismatch')
@@ -38,7 +57,7 @@ export function validateInventory(payload,board,now){
   check(r.workplaceType==='Remote'?r.isRemote===true:r.workplaceType===null&&r.isRemote===null,'Native remote/workplace contradiction')
   check(r.jobUrl===BOARD+'/'+r.id&&r.applyUrl===r.jobUrl+'/application','Native apply identity mismatch')
   nativeDate(r.publishedAt,now)
-  check(Array.isArray(r.secondaryLocations)&&r.secondaryLocations.length===0&&Array.isArray(b.secondaryLocations)&&b.secondaryLocations.length===0,'Changed secondary scope requires qualification')
+  secondaryCountryScope(r,b)
   const country=r.address?.postalAddress?.addressCountry
   if(r.location==='India Remote'){check(country==='India'&&Object.keys(r.address.postalAddress).every(k=>k==='addressCountry'),'Conflicting or new India address scope');check(!/future\s+(?:hiring|opportunities)|talent\s+(?:community|network|pool)|general\s+application|speculative|submit\s+your\s+resume/i.test(r.title),'Talent pool is not a current vacancy');india.push(r)}
   else if(['USA Remote (East Coast Time Zone Preferred)','USA Remote (Pacific Time Zone Preferred)'].includes(r.location))check(country==='United States','Contradictory foreign scope')

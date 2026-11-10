@@ -21,7 +21,7 @@ export const WORKDAY_PARTIAL_CONTRACTS = Object.freeze({
 })
 const DISCOVERY_SHA='84d794fa440c68e4ef3bdeecf5469199031fd36fd1fb9a8ea1c281868a13e4ec'
 const REVIEW_SHA='9163e54a5169de3ac3e4e50ad02d5886ee285cf029b8f9bbe56a61217a4f4ab6'
-const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..')
+const repoRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..')
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex')
 const proof=(ok,message)=>{if(!ok)throw new Error('Workday partial proof: '+message)}
 const canonical=value=>JSON.stringify(value,(_key,item)=>item&&typeof item==='object'&&!Array.isArray(item)
@@ -80,8 +80,10 @@ export async function deriveWorkdayPartialEvidence({source,httpEvidence,readEvid
   for(const entry of codes){
     const expected=manifest.codeReceipts.find(c=>c.file===entry.receipt.sourcePath)
     proof(expected&&expected.sha256===entry.receipt.sha256&&expected.frozenCopy.sha256===expected.sha256,'captured extraction code hash mismatch')
-    const current=path.resolve(repoRoot,expected.file),relative=path.relative(path.join(repoRoot,'jobverify-backend'),current)
-    proof(relative&&!relative.startsWith('..')&&!path.isAbsolute(relative)&&hash(fs.readFileSync(current))===expected.sha256,'current extraction/config code differs from reviewed native replay')
+    // Reviewed receipts retain their historical project prefix; the checkout
+    // directory itself can have any name.
+    const current=path.resolve(repoRoot,expected.file.replace(/^jobverify-backend\//,'')),relative=path.relative(repoRoot,current)
+    proof(expected.file.startsWith('jobverify-backend/')&&relative&&!relative.startsWith('..')&&!path.isAbsolute(relative)&&fs.existsSync(current)&&hash(fs.readFileSync(current))===expected.sha256,'current extraction/config code differs from reviewed native replay')
   }
   const native=grouped.get('native')||[],packets=[]
   proof(native.length===manifest.receipts.length&&new Set(native.map(r=>r.receipt.originFile)).size===native.length,'every exact original runtime response required')

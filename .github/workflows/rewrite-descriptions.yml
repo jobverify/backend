@@ -83,9 +83,9 @@ jobs:
         id: plan
         run: node scripts/planDescriptionRewrites.js
         env:
-          JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ vars.JOB_DESCRIPTION_REWRITE_SHARD_COUNT || '16' }}
+          JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ vars.JOB_DESCRIPTION_REWRITE_SHARD_COUNT || '32' }}
           JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD: ${{ vars.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD || '1000' }}
-          JOB_DESCRIPTION_REWRITE_MAX_PARALLEL: ${{ vars.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || '16' }}
+          JOB_DESCRIPTION_REWRITE_MAX_PARALLEL: ${{ vars.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || '32' }}
       - name: Cache portable AVX2 CPU runtime
         id: portable_runtime
         if: steps.description_queue.outputs.queued != '0'

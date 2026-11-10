@@ -44,15 +44,16 @@ function modules(body) {
 
 export function faireAssets(html) {
   const doc = readNativeDocument(html)
-  const urls = doc.nodes(node => node.tag === 'script' && node.attrs.src && !Object.hasOwn(node.attrs, 'nomodule')
+  const urls = doc.nodes(node => node.tag === 'script' && !node.inert && node.attrs.src && !Object.hasOwn(node.attrs, 'nomodule')
     && /^(?:|module|(?:text|application)\/javascript)$/i.test(node.attrs.type || ''))
     .map(node => node.attrs.src).filter(value => {
       try { const url = new URL(value); return url.href.startsWith(ASSETS) && !url.username && !url.password && !url.search && !url.hash } catch { return false }
     })
   const page = one(urls.filter(url => /\/careers\/openings\/page-[a-f\d]+\.js$/.test(url)), 'current careers page module')
-  // This reviewed shared careers chunk is advertised by the current page.
-  // A new chunk layout requires review instead of guessing a native tenant.
-  const shared = one(urls.filter(url => /\/43927-[a-f\d]+\.js$/.test(url)), 'current shared careers module')
+  // November 10's declared 18522 layout retains JobOpenings -> imported hook ->
+  // employee/consultant public GET data flow checked below. Keep the earlier
+  // reviewed 43927 layout; a new layout still requires review.
+  const shared = one(urls.filter(url => /\/(?:43927|18522)-[a-f\d]+\.js$/.test(url)), 'current shared careers module')
   return { page, shared }
 }
 

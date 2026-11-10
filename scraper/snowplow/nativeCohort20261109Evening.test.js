@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import {createHash} from 'node:crypto'
+import {deniedTypographyPacket} from './typography20261110.fixture.js'
 import {createCurrentSnowplowScraper} from './currentNative.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -26,6 +27,7 @@ const expectedLocation={sourceType:'site',locationId:2470142,name:'Massachusetts
 // These are original current native packets. The separately captured same-build
 // resources and retained external style are explicit replay controls; only the
 // fresh default public run can prove they still respond with reviewed bytes.
+// Newly probed unresolved typography uses an explicit Nov10 denial control.
 async function replay(mutate=()=>{},options={}){
  const calls=[]
  let audit
@@ -34,7 +36,7 @@ async function replay(mutate=()=>{},options={}){
   if(url.startsWith(board+'api/'))assert.equal(init.headers.companyIdentifier,'snowplow')
   const matches=native.packets.filter(packet=>packet.url===url)
   const occurrence=calls.filter(value=>value===url).length
-  const packet=matches.length?matches[Math.min(occurrence,matches.length-1)].response:assetMap.get(url)||archiveMap.get(url)
+  const packet=matches.length?matches[Math.min(occurrence,matches.length-1)].response:assetMap.get(url)||archiveMap.get(url)||deniedTypographyPacket(url)
   assert.ok(packet,'Only original captured endpoint: '+url)
   const response={status:packet.status,url:packet.url,contentType:packet.contentType,body:packet.body,bodyComplete:packet.bodyComplete??true}
   mutate(response,url,calls)

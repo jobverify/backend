@@ -19,6 +19,20 @@ const reviewedNovember6Evening = JSON.parse(fs.readFileSync(new URL('./reviewedN
 const reviewedNovember9 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109.json', import.meta.url), 'utf8'))
 const reviewedNovember9Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109Evening.json', import.meta.url), 'utf8'))
 const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening]
+// The current board still declares this public alias. November 10 original
+// manual GETs proved the exact publisher redirect and the full font-only CSS
+// already reviewed in the earlier deployment. Historical unresolved captures
+// remain unchanged; each current supplement must acquire both originals again.
+const currentTypography = {
+  url: 'https://cloud.typography.com/7991694/6984012/css/fonts.css',
+  finalUrl: 'https://fonts.hibob.com/870469/CD5654E174C36B3AC.css',
+  contentType: 'text/css',
+  sha256: '49d5c040ebcab1b54ee2e69e6264e52d54d57ad87c97341ab75d194177daadb6',
+  requestHeaders: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36',
+    Accept: 'text/css,*/*;q=0.1', Referer: 'https://snowplow.careers.hibob.com/'},
+}
+const currentTypographyFor = (review, url) => review.boardBodySha256 === 'ec96c9b440727c141df06efb91ae34ea34dc734314f2095d7fc40d1d5baaa137'
+  && url === currentTypography.url && review.unresolvedResources.some(resource => resource.url === url) ? currentTypography : null
 const applicationMetadataHashes = new Set(reviewedDeployments.flatMap(review => Object.values(review.forms).map(form => form.metadataSha256)))
 const applicationSupportingHashes = new Set(reviewedDeployments.flatMap(review => Object.values(review.forms).map(form => form.otherDataSha256)))
 const openingMetadataSha256 = '855ad3bfbcbe8284059b22003ca974281dfbaedb3cb58534bd3f0d6ae6d92fc6'
@@ -244,7 +258,7 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
   }
   const fetchPage = async (url, init) => {
     settings.signal?.throwIfAborted()
-    const resource=review.resources.find(item=>item.url===url)
+    const resource=review.resources.find(item=>item.url===url)||(!mode.diagnostic&&currentTypographyFor(review,url))
     let response = await load(url, init)
     settings.signal?.throwIfAborted()
     if(!mode.diagnostic&&resource?.finalUrl&&resource.finalUrl!==url&&[301,302,303,307,308].includes(response?.status)){
@@ -362,9 +376,23 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
       for(const reason of actual)if(reason!=='public-client-contract-changed')noteGap('base-engine-scope-unresolved:'+reason)
     }
     for (const resource of review.resources) requireProof(hash(await get(resource.url, 'program', resource)) === resource.sha256, 'declared native renderer/style/program changed: ' + resource.url)
-    // Retain every unresolved declaration from the reviewed deployment as a
-    // gap. Data-only native inspection cannot certify this renderer or cleanup.
-    for (const resource of review.unresolvedResources) noteGap('unreviewed-declared-stylesheet:' + resource.url)
+    const resolvedStylesheets = []
+    for (const resource of review.unresolvedResources) {
+      const supplement = !mode.diagnostic && currentTypographyFor(review,resource.url)
+      if (supplement) {
+        try {
+          await get(supplement.url,'program',supplement)
+          resolvedStylesheets.push(supplement)
+          continue
+        } catch (error) {
+          // An unavailable formerly unresolved declaration stays an explicit
+          // gap with its original response. Contract/redirect/body changes and
+          // caller bounds still fail closed; they never borrow the old proof.
+          if(error.code!=='SNOWPLOW_HTTP_ERROR'||![401,403,404,429,451].includes(error.status))throw error
+        }
+      }
+      noteGap('unreviewed-declared-stylesheet:' + resource.url)
+    }
     requireProof(hash(stable(audit.rawOpeningSite)) === review.siteCanonicalSha256, 'native employer configuration/side channels changed')
     for (const group of Object.values(audit.rawOpeningFeed.filterGroups)) requireProof(Array.isArray(group)
       && group.every(item => keysAre(item, ['serverId', 'value']) && ['string', 'number'].includes(typeof item.serverId)
@@ -437,6 +465,7 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
     // Re-read the actual complete activated/reachable cohort, including the
     // unversioned typography alias. Version-looking URLs are not freshness proof.
     for (const resource of review.resources) requireProof(hash(await get(resource.url, 'program', resource)) === resource.sha256, 'closing declared native renderer/style/program changed: ' + resource.url)
+    for (const resource of resolvedStylesheets) requireProof(hash(await get(resource.url, 'program', resource)) === resource.sha256, 'closing declared native renderer/style/program changed: ' + resource.url)
     // Positive India jobs need the strongest engine's current application proof
     // plus a separately reviewed criteria projection before supplementing scope.
     if (countryProofs.some(row => row.countryCodes.includes('IN'))) noteGap('India-application-criteria-projection-unreviewed')

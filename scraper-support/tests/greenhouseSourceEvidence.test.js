@@ -27,7 +27,7 @@ for (const source of ['tripadvisor', 'dataiku', 'sigmacomputing', 'buildkite']) 
   const provider = ['tripadvisor','buildkite','sigmacomputing'].includes(source) ? {...currentProvider,sourceScopeComplete:undefined} : currentProvider
   const sharedMapping = true
   const scraper = source === 'dataiku' ? createDataikuScraper()
-    : createPublishingGapAtsScraper({ ...provider, boardToken: source })
+    : createPublishingGapAtsScraper({ ...provider, atsPlatform: 'greenhouse', boardToken: source })
   const run = payload => scraper.run({
     fetchJson: async () => structuredClone(payload), fetchText: async () => careersHtml[source],
   })
@@ -175,7 +175,7 @@ test('Sigma advertised native role identities must reconcile before empty invent
 
 test('Tripadvisor legacy inner mapper does not treat Indiana or Indianapolis as India', async () => {
   const provider = catalog.find(p => p.source === 'tripadvisor')
-  const jobs = await createPublishingGapAtsScraper({...provider,boardToken:'tripadvisor',sourceScopeComplete:undefined}).run({ fetchJson: async () => ({
+  const jobs = await createPublishingGapAtsScraper({...provider,atsPlatform:'greenhouse',boardToken:'tripadvisor',sourceScopeComplete:undefined}).run({ fetchJson: async () => ({
     jobs: [record('tripadvisor', 1, 'Indiana, United States'),
       { ...record('tripadvisor', 2, 'Indianapolis, United States'), metadata: [{ name: 'Country', value: 'United States' }] }],
     meta: { total: 2 },

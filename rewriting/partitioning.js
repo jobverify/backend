@@ -1,4 +1,5 @@
 export const MAX_REWRITE_SHARDS = 256;
+export const DEFAULT_REWRITE_MAX_PARALLEL = 32;
 
 export function validateRewriteShard(shard, shardCount) {
   if (!Number.isSafeInteger(shardCount) || shardCount < 1 || shardCount > MAX_REWRITE_SHARDS
@@ -18,7 +19,7 @@ export function rewriteShardFilter(shard, shardCount) {
 }
 
 /** Plan all partitions in one workflow, optionally using a fixed shard count. */
-export function buildRewritePlan(queued, { jobsPerShard = 1000, maxParallel = 4, shardCount } = {}) {
+export function buildRewritePlan(queued, { jobsPerShard = 1000, maxParallel = DEFAULT_REWRITE_MAX_PARALLEL, shardCount } = {}) {
   if (!Number.isSafeInteger(queued) || queued < 0) throw new Error('Invalid rewrite queue count');
   if (!Number.isSafeInteger(jobsPerShard) || jobsPerShard < 1) throw new Error('Invalid rewrite partition target');
   if (!Number.isSafeInteger(maxParallel) || maxParallel < 1 || maxParallel > MAX_REWRITE_SHARDS) throw new Error('Invalid rewrite parallel runner limit');

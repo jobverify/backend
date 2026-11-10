@@ -19,6 +19,7 @@ const response = () => ({ statusCode: 200, status(code) { this.statusCode = code
 test('a save completing after a purge removes its late job reference', async t => {
   const user = { _id: 'user-1', savedJobs: [], async save() {} };
   t.mock.method(User, 'findById', async () => user);
+  const save = t.mock.method(User, 'findOneAndUpdate', async () => user);
   let reads = 0;
   t.mock.method(Job, 'findOne', async () => ++reads === 1 ? { _id: jobId } : null);
   t.mock.method(Job, 'countDocuments', async () => 1);
@@ -27,6 +28,8 @@ test('a save completing after a purge removes its late job reference', async t =
   const res = response();
   await saveJob({ user: { _id: user._id }, params: { jobId } }, res);
   assert.equal(res.statusCode, 404);
+  assert.equal(save.mock.calls.length, 1);
+  assert.equal(String(save.mock.calls[0].arguments[1].$addToSet.savedJobs), jobId);
   assert.deepEqual(writes.at(-1), { filter: { _id: user._id }, update: { $pull: { savedJobs: jobId } } });
 });
 

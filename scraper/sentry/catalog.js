@@ -28,7 +28,7 @@ export const SENTRY_CATALOG = {
   sourceListingComplete: false,
   lifecycleCleanupAllowed: false,
   verifiedSurfaceSummary:
-    'Current Sentry corporate careers publishes its active OpeningsStickySection Astro model with employer-bound Ashby application links and full visible job criteria. Runtime reconciles all corporate and native posting identities, countries, full descriptions and publishedAt dates, then verifies closing native and corporate inventories before caps. Missing role-owned native countries remain unresolved; neither a city nor employer headquarters authorizes a verified India zero or source cleanup.',
+    'Current Sentry corporate careers publishes its active OpeningsStickySection Astro model with employer-bound Ashby application links and full visible job criteria. Runtime retains both inventories, reconciles shared posting identities, countries, full descriptions and publishedAt dates, and reports unmatched native or corporate IDs as unresolved coverage. Only reconciled roles can be selected after closing both complete observed models before caps. Missing role-owned native countries remain unresolved; neither a city nor employer headquarters authorizes a verified India zero or source cleanup.',
 }
 
 export default SENTRY_CATALOG
