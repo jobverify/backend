@@ -244,7 +244,20 @@ const verifyPublicShell = (body) => {
     || !/<ib-root\b/i.test(body)) throw new Error('TCS current public iBegin shell no longer matches its verified surface')
 }
 
-const createPublicClient = ({ fetchImpl, signal, requestTimeoutMs }) => {
+const readWithCancellation = (operation, signal, callerSignal) => new Promise((resolve, reject) => {
+  const cleanup = () => signal.removeEventListener('abort', abort)
+  const abort = () => { cleanup(); reject(signal.reason) }
+  if (signal.aborted) return abort()
+  signal.addEventListener('abort', abort, { once: true })
+  Promise.resolve().then(async () => {
+    signal.throwIfAborted()
+    const value = await operation()
+    cleanup()
+    resolve({ __proto__: null, value })
+  }).catch((error) => { cleanup(); reject(error) })
+}).finally(() => callerSignal?.throwIfAborted())
+
+const createPublicClient = ({ fetchImpl, signal, callerSignal, requestTimeoutMs }) => {
   const cookies = new Map()
   let csrf = null
   const request = async (url, { method = 'GET', body, text = false } = {}) => {
@@ -260,10 +273,11 @@ const createPublicClient = ({ fetchImpl, signal, requestTimeoutMs }) => {
       if (!csrf) throw new Error('TCS public search bootstrap did not supply its client CSRF header')
       Object.assign(headers, { 'Content-Type': 'application/json', Origin: 'https://ibegin.tcsapps.com', 'NEXT-XSRF-TOKEN': csrf })
     }
-    const response = await fetchImpl(url, {
+    const requestOptions = {
       method, headers, body: body == null ? undefined : JSON.stringify(body), redirect: 'manual',
       signal: AbortSignal.any([signal, AbortSignal.timeout(requestTimeoutMs)]),
-    })
+    }
+    const response = (await readWithCancellation(() => fetchImpl(url, requestOptions), requestOptions.signal, callerSignal)).value
     signal.throwIfAborted()
     for (const entry of publicOrigin ? (response.headers.getSetCookie?.() || []) : []) {
       const pair = entry.split(';')[0]
@@ -271,7 +285,11 @@ const createPublicClient = ({ fetchImpl, signal, requestTimeoutMs }) => {
       if (equals > 0) cookies.set(pair.slice(0, equals), pair.slice(equals + 1))
     }
     if (publicOrigin) csrf = response.headers.get('x-next-xsrf-token') || csrf
-    const content = await response.text()
+    const content = (await readWithCancellation(() => {
+      const method = response.text
+      requestOptions.signal.throwIfAborted()
+      return Reflect.apply(method, response, [])
+    }, requestOptions.signal, callerSignal)).value
     signal.throwIfAborted()
     failForMaintenance(content)
     if (!text && ((response.url === CAREER_PAGE_URL && /<ib-root\b/i.test(content))
@@ -317,7 +335,7 @@ export const createTcsScraper = ({
     const cancellation = new AbortController()
     const signal = options.signal ? AbortSignal.any([options.signal, cancellation.signal]) : cancellation.signal
     signal.throwIfAborted()
-    const clientOptions = { fetchImpl: options.fetch || globalThis.fetch, signal, requestTimeoutMs }
+    const clientOptions = { fetchImpl: options.fetch || globalThis.fetch, signal, callerSignal: options.signal, requestTimeoutMs }
     const listingClient = createPublicClient(clientOptions)
     verifyIndiaCareersHandoff(await listingClient.request(OFFICIAL_INDIA_CAREERS_URL, { text: true }))
     await listingClient.bootstrap()
@@ -350,6 +368,7 @@ export const createTcsScraper = ({
     if (listings.length === 0) return []
     const jobs = new Array(listings.length)
     let cursor = 0
+    let firstFailure
     const workers = Array.from({ length: Math.min(detailConcurrency, listings.length) }, async () => {
       try {
         // The upstream service returned a wrong requisition once under concurrent requests in one session.
@@ -365,13 +384,13 @@ export const createTcsScraper = ({
           jobs[index] = { ...detail, source: 'tcs', link: detail.applyUrl, scrapedAt: new Date().toISOString() }
         }
       } catch (error) {
-        if (!cancellation.signal.aborted) cancellation.abort(error)
+        if (!cancellation.signal.aborted) { firstFailure = error; cancellation.abort(error) }
         throw error
       }
     })
     const results = await Promise.allSettled(workers)
     const rejected = results.find((result) => result.status === 'rejected')
-    if (rejected) throw cancellation.signal.reason || rejected.reason
+    if (rejected) { options.signal?.throwIfAborted(); throw firstFailure }
     signal.throwIfAborted()
     if (jobs.filter(Boolean).length !== expectedCount) throw new Error('TCS detail coverage is incomplete')
     return jobs

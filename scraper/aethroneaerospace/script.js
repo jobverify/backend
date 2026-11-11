@@ -84,6 +84,9 @@ const extractInternshipJob = (bundle) => {
     rawPpoText,
     rawVerticalsText,
   ] = match
+  void rawPrefix
+  void rawMiddle
+  void rawSuffix
 
   const qualification = normalizeWhitespace(rawQualification)
   const duration = normalizeWhitespace(rawDuration)?.replace(/^duration of\s*/i, '')
@@ -205,7 +208,7 @@ export const createAethroneAerospaceScraper = ({
   },
 })
 
-export const run = async () => createAethroneAerospaceScraper().run()
+export const run = async (options) => createAethroneAerospaceScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

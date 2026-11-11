@@ -1,5 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { readCurrentLennoxListings, readCurrentLennoxDetail } from './currentNative20261111.js'
+import { runCurrentLennox } from './currentRuntime20261111.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -272,7 +274,7 @@ export const hasOfficialJobsPageSignal = (html = '') => {
     && (/\biCIMS_JobsTableRow\b/i.test(source) || /globalcareers-lennox\.icims\.com\/jobs\/search/i.test(source))
 }
 
-export const extractJobListings = (html = '') => getRows(html)
+const extractLegacyJobListings = (html = '') => getRows(html)
   .map((row) => {
     const linkMatch = row.match(/<a[^>]+href=["']([^"']*\/jobs\/\d+\/[^"'?#\s<>]+\/job[^"']*)["'][^>]*>([\s\S]*?)<\/a>/i)
     const title = stripTags(linkMatch?.[2])
@@ -307,7 +309,11 @@ export const extractJobListings = (html = '') => getRows(html)
   })
   .filter(Boolean)
 
+export const extractJobListings = (html = '') => String(html).includes('iCIMS_JobCardItem')
+  ? readCurrentLennoxListings(html) : extractLegacyJobListings(html)
+
 export const extractJobDetail = (html = '', listing = {}) => {
+  if (String(html).includes('iCIMS_InfoField_Job')) return readCurrentLennoxDetail(html, listing)
   const lines = htmlToLines(html)
   const pathInfo = extractJobPathInfo(listing.sourceUrl)
   const locationInfo = parseLocation(
@@ -368,10 +374,10 @@ export const createLennoxScraper = ({
   maxPages = Number.POSITIVE_INFINITY,
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({
-    fetchText: overrideFetchText,
-    maxPages: overrideMaxPages = maxPages,
-  } = {}) {
+  async run(options = {}) {
+    const { fetchText: overrideFetchText, maxPages: overrideMaxPages = maxPages } = options
+    if (!overrideFetchText && fetchText === defaultFetchText) return runCurrentLennox({ ...options,
+      maxPages: overrideMaxPages === Number.POSITIVE_INFINITY ? undefined : overrideMaxPages, now })
     const fetchTextImpl = overrideFetchText || fetchText
     const jobs = []
     const seenJobIds = new Set()
@@ -382,6 +388,7 @@ export const createLennoxScraper = ({
       pageCount += 1
 
       const listingHtml = await fetchTextImpl(nextPageUrl)
+      if (String(listingHtml).includes('iCIMS_JobCardItem')) throw new Error('[lennox] Current native HTTP response metadata required; use fetchImpl for current publisher fixtures')
       if (pageCount === 1 && !hasOfficialJobsPageSignal(listingHtml)) {
         throw new Error('Lennox careers page no longer matches the verified official public jobs surface')
       }

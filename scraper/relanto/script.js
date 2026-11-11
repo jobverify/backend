@@ -239,7 +239,7 @@ export const createRelantoScraper = ({
   },
 })
 
-export const run = async () => createRelantoScraper().run()
+export const run = async (options) => createRelantoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -68,10 +68,10 @@ export function createSourceChecks({ cache = mongoCache, fetchPage = fetchPublic
         // Check the exact host and subdomains only down to the actual registrable domain.
         const labels = hostname.split('.');
         const lowest = domain ? domain.split('.').length : labels.length;
-        const hit = labels.some((_, index) => labels.length - index >= lowest && hosts.has(labels.slice(index).join('.')));
-        return { id: 'phishing', phase: 'risk', title: 'Phishing reputation', status: 'completed', outcome: hit ? 'threat' : 'neutral',
-          detail: hit ? 'This host or its registrable parent appears in the current Phishing.Database feed.' : 'No match was found in the checked Phishing.Database feed. This is not proof of safety.',
-          sourceUrl: PHISHING_FEED, observedAt: source.observedAt, excerpt: `${hostname} · ${hit ? 'listed' : 'not listed'} · Phishing.Database (MIT)` };
+        const matched = labels.map((_, index) => labels.length - index >= lowest ? labels.slice(index).join('.') : null).find(host => host && hosts.has(host));
+        return { id: 'phishing', phase: 'risk', title: 'Phishing reputation', status: 'completed', outcome: matched ? 'threat' : 'neutral',
+          detail: matched ? `${matched} appears in the current Phishing.Database feed. The checked link uses this host or a subdomain.` : 'No match was found in the checked Phishing.Database feed. This is not proof of safety.',
+          sourceUrl: PHISHING_FEED, observedAt: source.observedAt, excerpt: `${hostname} · ${matched ? `matched entry: ${matched}` : 'not listed'} · Phishing.Database (MIT)` };
       } catch { return { id: 'phishing', phase: 'risk', title: 'Phishing reputation', status: 'unavailable', outcome: 'neutral', detail: 'A current phishing feed was unavailable. This check cannot establish whether the host is listed.', sourceUrl: PHISHING_FEED, observedAt: now().toISOString() }; }
     };
     const registration = async () => {

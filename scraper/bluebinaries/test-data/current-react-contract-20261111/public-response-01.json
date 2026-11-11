@@ -1,0 +1,96 @@
+{
+  "number": 1,
+  "startedAt": "2026-11-11T13:45:44.808537+00:00",
+  "url": "https://www.bluebinaries.com/",
+  "method": "GET",
+  "origin": "https://www.bluebinaries.com",
+  "provenance": {
+    "source": "bluebinaries",
+    "basis": "existing source HOMEPAGE_URL"
+  },
+  "requestHeaders": {
+    "Accept": "text/html,application/javascript;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0"
+  },
+  "redirectPolicy": "manual; no redirects followed",
+  "cookiesSent": false,
+  "authenticationSent": false,
+  "strictTLS": true,
+  "maximumBodyBytes": 5000000,
+  "status": 200,
+  "reason": "OK",
+  "headers": [
+    [
+      "Date",
+      "Wed, 11 Nov 2026 13:46:16 GMT"
+    ],
+    [
+      "Content-Type",
+      "text/html"
+    ],
+    [
+      "Transfer-Encoding",
+      "chunked"
+    ],
+    [
+      "Connection",
+      "keep-alive"
+    ],
+    [
+      "cf-cache-status",
+      "HIT"
+    ],
+    [
+      "Last-Modified",
+      "Fri, 06 Nov 2026 06:31:27 GMT"
+    ],
+    [
+      "Vary",
+      "Accept-Encoding"
+    ],
+    [
+      "Server",
+      "cloudflare"
+    ],
+    [
+      "X-Powered-By",
+      "ASP.NET"
+    ],
+    [
+      "X-Powered-By-Plesk",
+      "PleskWin"
+    ],
+    [
+      "set-cookie",
+      "__cf_bm=xr7ggW.BF0aTCqH68EzQ96._aSpU9ePyGj6k.Hdt_tA-1794404776.6689105-1.0.1.1-0MvbDbV1b2jbeAVbXlulEEG8pDEe1vkb_YzWFp1t41Z1bXx5p_z5_1_11vHqMcJvL85geLkv4AX2D9EGHHl2hsV0TjD_8Rp7uAgglblTSSLGijkCQpiQDvPiDtvM5xvQ; HttpOnly; SameSite=None; Partitioned; Secure; Path=/; Domain=www.bluebinaries.com; Expires=Wed, 11 Nov 2026 14:16:16 GMT"
+    ],
+    [
+      "Age",
+      "6418"
+    ],
+    [
+      "expires",
+      "Thu, 11 Nov 2027 13:46:16 GMT"
+    ],
+    [
+      "Cache-Control",
+      "public, max-age=31536000"
+    ],
+    [
+      "CF-RAY",
+      "a58dbdfe2cf9779c-LHR"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "location": null,
+  "contentType": "text/html",
+  "bodyFile": "public-response-01.body.bin",
+  "bytes": 727,
+  "bodySHA256": "a3e848ae1fdc2b30fd1fb91b73226c806b36a1f488d1059afd91a1f5a9bbeea3",
+  "truncated": false,
+  "stopOrigin": false,
+  "completedAt": "2026-11-11T13:45:46.126169+00:00"
+}

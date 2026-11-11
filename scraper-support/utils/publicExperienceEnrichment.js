@@ -52,13 +52,11 @@ export const resolvePublicExperienceFetchTimeoutMs = (
   return parsed
 }
 
-const getAbortReason = (signal, fallbackMessage) => (
-  signal?.reason || new Error(fallbackMessage)
-)
+const getAbortReason = signal => signal.reason
 
-const throwIfAborted = (signal, fallbackMessage = 'Public experience enrichment aborted') => {
+const throwIfAborted = (signal) => {
   if (signal?.aborted) {
-    throw getAbortReason(signal, fallbackMessage)
+    throw getAbortReason(signal)
   }
 }
 
@@ -86,10 +84,10 @@ const createLinkedRequestSignal = ({
 
   if (signal) {
     if (signal.aborted) {
-      abort(getAbortReason(signal, 'Public experience enrichment aborted'))
+      abort(getAbortReason(signal))
     } else {
       const onParentAbort = () => {
-        abort(getAbortReason(signal, 'Public experience enrichment aborted'))
+        abort(getAbortReason(signal))
       }
       signal.addEventListener('abort', onParentAbort, { once: true })
       removeParentAbort = () => signal.removeEventListener('abort', onParentAbort)
@@ -782,11 +780,6 @@ const findComparableTextIndex = (haystack, needle) => {
 
 const textContainsComparable = (haystack, needle) => {
   return findComparableTextIndex(haystack, needle) !== -1
-}
-
-const countMatches = (pattern, value) => {
-  const matches = String(value ?? '').match(pattern)
-  return matches ? matches.length : 0
 }
 
 const countPatternHits = (patterns, value) => patterns.reduce(
@@ -1561,7 +1554,7 @@ export const inferExperienceFromPublicPageHtml = (job = {}, html) => {
   const pageTextHasSmartRecruitersMotivationalShell =
     looksLikeNagarroMotivationalShell(pageText)
     && isSmartRecruitersPublicJobUrl(publicJobUrl)
-  const pageTextLooksLikeGenericShell = looksLikeGenericPublicJobShell(pageText)
+  looksLikeGenericPublicJobShell(pageText)
   const pageSummaryLooksLikeGenericShell = looksLikeGenericPublicJobShell(pageSummary)
   const relevantPageText = hasRelevantJobContent(pageText) || explicitExperience
     ? (extractRelevantJobSectionText(pageText) || pageText)
@@ -1741,8 +1734,8 @@ export const enrichJobWithPublicExperience = async (job = {}, {
       rawFetchedHtml = await fetchImpl(jobUrl)
       enriched = inferExperienceFromPublicPageHtml(promotedJob, rawFetchedHtml)
     }
-  } catch (error) {
-    if (signal?.aborted) throw getAbortReason(signal, error?.message || 'Public experience enrichment aborted')
+  } catch {
+    if (signal?.aborted) throw getAbortReason(signal)
     enriched = promotedJob
   }
 
@@ -1761,14 +1754,15 @@ export const enrichJobWithPublicExperience = async (job = {}, {
     try {
       throwIfAborted(signal)
       const embeddedHtml = await fetchImpl(embeddedPublicJobUrl)
+      throwIfAborted(signal)
       enriched = inferExperienceFromPublicPageHtml({
         ...enriched,
         sourceUrl: embeddedPublicJobUrl,
         applyUrl: embeddedPublicJobUrl,
         link: embeddedPublicJobUrl,
       }, embeddedHtml)
-    } catch (error) {
-      if (signal?.aborted) throw getAbortReason(signal, error?.message || 'Public experience enrichment aborted')
+    } catch {
+      if (signal?.aborted) throw getAbortReason(signal)
       // Keep the wrapper-page result when the embedded board cannot be fetched.
     }
   }
@@ -1814,9 +1808,11 @@ export const enrichJobWithPublicExperience = async (job = {}, {
   try {
     throwIfAborted(signal)
     const browserFetchImpl = fetchBrowserText || await getBrowserText?.()
+    throwIfAborted(signal)
     if (!browserFetchImpl) return enriched
 
     const browserHtml = await browserFetchImpl(jobUrl)
+    throwIfAborted(signal)
     let browserEnriched = inferExperienceFromPublicPageHtml(enriched, browserHtml)
 
     if (
@@ -1824,22 +1820,26 @@ export const enrichJobWithPublicExperience = async (job = {}, {
       && looksLikeTransientBrowserRenderShell(publicPageHtml(browserHtml), jobUrl)
     ) {
       const retriedBrowserHtml = await browserFetchImpl(jobUrl)
+      throwIfAborted(signal)
       browserEnriched = inferExperienceFromPublicPageHtml(browserEnriched, retriedBrowserHtml)
     }
 
     return preserveListingOnlyPublicVerification(job, promotedJob, browserEnriched)
-  } catch (error) {
-    if (signal?.aborted) throw getAbortReason(signal, error?.message || 'Public experience enrichment aborted')
+  } catch {
+    if (signal?.aborted) throw getAbortReason(signal)
     return enriched
   }
 }
 
 export const enrichJobsWithPublicExperience = async (jobs = [], options = {}) => {
+  throwIfAborted(options.signal)
   const concurrency = Math.max(1, Number.isInteger(options.concurrency) ? options.concurrency : 4)
   const providerCaches = createProviderCaches()
   const results = new Array(jobs.length)
   let cursor = 0
   let browserFallback = null
+  let browserFallbackPromise = null
+  let stopping = false
 
   const getBrowserFallback = async () => {
     if (options.fetchBrowserText) {
@@ -1853,8 +1853,12 @@ export const enrichJobsWithPublicExperience = async (jobs = [], options = {}) =>
       return null
     }
 
-    if (browserFallback) return browserFallback
+    if (stopping) return null
+    if (!browserFallbackPromise) browserFallbackPromise = createBrowserFallback()
+    return browserFallbackPromise
+  }
 
+  const createBrowserFallback = async () => {
     const browserFallbackSessionCount = Math.max(
       1,
       Math.min(
@@ -1865,19 +1869,38 @@ export const enrichJobsWithPublicExperience = async (jobs = [], options = {}) =>
           : DEFAULT_BROWSER_FALLBACK_SESSION_LIMIT,
       ),
     )
-    const sessions = await Promise.all(
-      Array.from({ length: browserFallbackSessionCount }, () => createBrowserFetchSession({
+    const acquired = await Promise.allSettled(
+      Array.from({ length: browserFallbackSessionCount }, () => Promise.resolve().then(() => createBrowserFetchSession({
         userAgent: USER_AGENT,
         timeoutMs: 60000,
         waitUntil: BROWSER_FALLBACK_WAIT_UNTIL,
         settleTimeMs: BROWSER_FALLBACK_SETTLE_TIME_MS,
-      })),
+        signal: options.signal,
+      }))),
     )
+    const sessions = acquired.filter(result => result.status === 'fulfilled').map(result => result.value)
+    let closePromise = null
+    const closeSessions = () => closePromise ||= Promise.allSettled(
+      sessions.map(session => Promise.resolve().then(() => session.close())),
+    )
+    const failed = acquired.find(result => result.status === 'rejected')
+    if (failed || options.signal?.aborted || stopping) {
+      await closeSessions()
+      throwIfAborted(options.signal)
+      if (failed) throw failed.reason
+      return null
+    }
+    const checkBrowser = () => {
+      throwIfAborted(options.signal)
+      if (stopping) throw new Error('Browser fallback pool has closed')
+    }
     const queues = sessions.map(() => Promise.resolve())
     const warmedUrlsBySession = sessions.map(() => new Set())
     let sessionCursor = 0
     const fetchBrowserPage = async (sessionIndex, url) => {
-      const page = await sessions[sessionIndex].fetchPage(url)
+      checkBrowser()
+      const page = await sessions[sessionIndex].fetchPage(url, { signal: options.signal })
+      checkBrowser()
       if (!(page.status >= 200 && page.status < 300)) throw new Error(`HTTP ${page.status} for ${url}`)
       return page
     }
@@ -1887,22 +1910,26 @@ export const enrichJobsWithPublicExperience = async (jobs = [], options = {}) =>
       sessionCursor += 1
       const next = queues[sessionIndex].then(
         async () => {
+          checkBrowser()
           if (
             shouldWarmBrowserFallbackSession(url)
             && !warmedUrlsBySession[sessionIndex].has(url)
           ) {
-            await sessions[sessionIndex].fetchPage(url)
+            await sessions[sessionIndex].fetchPage(url, { signal: options.signal })
+            checkBrowser()
             warmedUrlsBySession[sessionIndex].add(url)
           }
 
           return fetchBrowserPage(sessionIndex, url)
         },
         async () => {
+          checkBrowser()
           if (
             shouldWarmBrowserFallbackSession(url)
             && !warmedUrlsBySession[sessionIndex].has(url)
           ) {
-            await sessions[sessionIndex].fetchPage(url)
+            await sessions[sessionIndex].fetchPage(url, { signal: options.signal })
+            checkBrowser()
             warmedUrlsBySession[sessionIndex].add(url)
           }
 
@@ -1915,16 +1942,14 @@ export const enrichJobsWithPublicExperience = async (jobs = [], options = {}) =>
 
     browserFallback = {
       fetchBrowserText,
-      close: async () => {
-        await Promise.allSettled(sessions.map((session) => session.close()))
-      },
+      close: closeSessions,
     }
 
     return browserFallback
   }
 
   const worker = async () => {
-    while (cursor < jobs.length) {
+    while (!stopping && cursor < jobs.length) {
       throwIfAborted(options.signal)
       const currentIndex = cursor
       cursor += 1
@@ -1948,10 +1973,13 @@ export const enrichJobsWithPublicExperience = async (jobs = [], options = {}) =>
       Array.from({ length: Math.min(concurrency, jobs.length) }, () => worker()),
     )
   } finally {
-    if (browserFallback) {
-      await browserFallback.close()
+    stopping = true
+    if (browserFallbackPromise) {
+      const acquired = await browserFallbackPromise.catch(() => null)
+      if (acquired) await acquired.close()
     }
   }
 
+  throwIfAborted(options.signal)
   return results
 }

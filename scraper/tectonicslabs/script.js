@@ -49,7 +49,7 @@ export const createTectonicsLabsScraper = ({
   },
 })
 
-export const run = async () => createTectonicsLabsScraper().run()
+export const run = async (options) => createTectonicsLabsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -1,86 +1,166 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import fs from 'node:fs/promises'
-import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import fs from 'node:fs'
+import { gunzipSync } from 'node:zlib'
+import { readInventoryEvidence, sourceLifecycleCleanupForbidden } from '../../scraper-support/utils/inventoryEvidence.js'
+import { analyzePublishableJobs } from '../../scraper-support/utils/publishableJobMetrics.js'
+import { MAIN, CONFIG, usernameBytes, clientWith, careers, client, config, expectedBody } from '../../test/helpers/rebitProtocolControl20261111.js'
 import * as source from './script.js'
-const fixture=async name=>fs.readFile(new URL('./fixtures/'+name,import.meta.url),'utf8')
-const careers=await fixture('current-careers.html'),client=await fixture('current-client.js.txt'),config=await fixture('current-config.js.txt')
-const openings=JSON.parse(await fixture('current-openings.json'))
-const expectedBody=()=>{const m=client.match(/let n=(\[[\d,]+\]),r=(\[[\d,]+\]),s=pe\(n\),a=pe\(r\)/);return {username:Buffer.from(JSON.parse(m[1])).toString('base64'),password:Buffer.from(JSON.parse(m[2])).toString('base64')}}
-const fetchText=async url=>url===source.CAREERS_URL?careers:url==='https://rebit.org.in/main-O5QYG73Y.js'?client:url==='https://rebit.org.in/chunk-DFJHAP4Q.js'?config:assert.fail('Unexpected source URL '+url)
-const run=(overrides={})=>source.run({fetchText,postJson:async()=>({status:'success',access_token:'test-token'}),fetchJson:async()=>structuredClone(openings),...overrides})
-test('ReBIT uses the current published anonymous bootstrap and exports all14 verified openings',async()=>{
-  const calls=[]
-  const jobs=await run({postJson:async(url,body)=>{calls.push({url,body});assert.deepEqual(body,expectedBody());return {status:'success',access_token:'test-token'}}})
-  assert.equal(calls.length,1);assert.equal(calls[0].url,source.CAREERS_LOGIN_API_URL)
-  assert.equal(jobs.length,14);assert.equal(new Set(jobs.map(j=>j.jobId)).size,14)
-  assert.ok(jobs.every(j=>j.country==='India'&&new URL(j.applyUrl).hostname==='rebithr.darwinbox.in'))
-  assert.equal(readInventoryEvidence(jobs)?.reportedTotal,14)
-  assert.equal(readInventoryEvidence(jobs)?.listingComplete,true)
+
+// These complete protocol models are authored controls, not recovered historical
+// responses or observations of a current ReBIT API. No login/network is used.
+// The genuine retained current page is tested separately at the end of the file.
+const openings = Array.from({ length: 14 }, (_, index) => ({
+  id: 'control-record-' + (index + 1), job_title: 'Synthetic control role ' + (index + 1),
+  job_status: true, location: 'Bengaluru, Karnataka, India', department: 'Synthetic department',
+  apply_now_link: 'https://rebithr.darwinbox.in/ms/candidatev2/main/careers/jobDetails/control' + (index + 1),
+  job_desc: null, job_experience: null,
+}))
+const fetchText = async url => url === source.CAREERS_URL ? careers
+  : url === MAIN ? client : url === CONFIG ? config : assert.fail('Unexpected controlled source URL ' + url)
+const run = (overrides = {}) => source.run({
+  now: () => '2026-11-11T00:00:00.000Z', fetchText,
+  postJson: async () => ({ status: 'success', access_token: 'synthetic-offline-token' }),
+  fetchJson: async () => structuredClone(openings), ...overrides,
 })
-test('ReBIT resolves changing public payloads from the bound login client rather than a cached constant',async()=>{
-  const alternate=client.replace('let n=[238,213,121,35,86,106,211,160,11,125,20,188,219,62,158,29]','let n=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]')
-  assert.notEqual(alternate,client)
-  await run({fetchText:async url=>url.endsWith('main-O5QYG73Y.js')?alternate:fetchText(url),postJson:async(url,body)=>{assert.equal(body.username,Buffer.from([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]).toString('base64'));return {access_token:'test-token'}}})
-})
-test('ReBIT rejects foreign client URLs and API base changes before sending the anonymous login',async()=>{
-  let posts=0;const postJson=async()=>{posts++;return {access_token:'test-token'}}
-  await assert.rejects(run({postJson,fetchText:async()=>careers.replace('src="main-O5QYG73Y.js"','src="https://foreign.example/main-O5QYG73Y.js"')}),/client|first-party/i)
-  await assert.rejects(run({postJson,fetchText:async url=>url.endsWith('chunk-DFJHAP4Q.js')?config.replace('https://rebit.org.in/web/api','https://foreign.example/web/api'):fetchText(url)}),/API|configuration/i)
-  assert.equal(posts,0)
-})
-test('ReBIT rejects changed bootstrap encodings and out-of-range published bytes before login',async()=>{
-  let posts=0;const postJson=async()=>{posts++;return {access_token:'test-token'}}
-  for(const altered of [client.replace('return btoa(o)','return o'),client.replace('let n=[238,','let n=[999,')]){
-    assert.notEqual(altered,client)
-    await assert.rejects(run({postJson,fetchText:async url=>url.endsWith('main-O5QYG73Y.js')?altered:fetchText(url)}),/bootstrap|payload|encoding/i)
-  }
-  assert.equal(posts,0)
-})
-test('ReBIT refuses duplicate IDs, foreign application links and countryless remote roles',async()=>{
-  for(const rows of [[openings[0],openings[0]],[{...openings[0],apply_now_link:'https://foreign.example/apply'}],[{...openings[0],location:'Remote'}]]){
-    await assert.rejects(run({fetchJson:async()=>rows}),/identity|duplicate|location|country|scope|payload/i)
-  }
-})
-test('ReBIT authoritative empty API inventory retains verified-empty evidence',async()=>{
-  const jobs=await run({fetchJson:async()=>[]})
-  assert.equal(jobs.length,0);assert.equal(readInventoryEvidence(jobs)?.status,'verified-empty')
-  assert.equal(readInventoryEvidence(jobs)?.reportedTotal,0)
+const assertHeld = jobs => {
+  const inventory = readInventoryEvidence(jobs)
+  assert.equal(inventory.status, 'coverage-gap')
+  assert.equal(inventory.firstParty, false)
+  assert.equal(inventory.listingComplete, false)
+  assert.equal(inventory.reportedTotal, null)
+  assert.equal(inventory.indiaFacetCount, null)
+  assert.equal(sourceLifecycleCleanupForbidden(jobs), true)
+  assert.equal(jobs.nativeCollectionEvidence.sourceScopeComplete, false)
+}
+
+test('synthetic ReBIT protocol binds the anonymous bootstrap and retains fourteen unqualified observations', async () => {
+  const calls = []
+  const jobs = await run({ postJson: async (url, body) => {
+    calls.push(url); assert.deepEqual(body, expectedBody())
+    return { status: 'success', access_token: 'synthetic-offline-token' }
+  } })
+  assert.deepEqual(calls, [source.CAREERS_LOGIN_API_URL])
+  assert.equal(jobs.length, 14)
+  assert.equal(new Set(jobs.map(job => job.jobId)).size, 14)
+  assert.ok(jobs.every(job => job.country === 'India' && new URL(job.applyUrl).hostname === 'rebithr.darwinbox.in'))
+  assertHeld(jobs)
+  assert.ok(jobs.every(job => job.jobDescription === null && job.nativeLegalEmployer === null))
 })
 
-test('ReBIT rejects malformed array entries and missing active-status semantics',async()=>{
-  for(const rows of [[null],[{...openings[0],job_status:undefined}],[{...openings[0],job_status:'active'}]]){
-    await assert.rejects(run({fetchJson:async()=>rows}),/payload|status|inventory/i)
-  }
-})
-test('ReBIT does not manufacture full descriptions from listing metadata',async()=>{
-  const jobs=await run()
-  assert.ok(jobs.every(job=>job.jobDescription===null))
+test('synthetic ReBIT bootstrap resolves changing bound bytes instead of a cached constant', async () => {
+  const changed = usernameBytes.map(value => value + 16)
+  const alternate = clientWith(changed)
+  assert.notEqual(alternate, client)
+  await run({ fetchText: async url => url === MAIN ? alternate : fetchText(url),
+    postJson: async (_url, body) => {
+      assert.deepEqual(body, expectedBody(changed)); return { access_token: 'synthetic-offline-token' }
+    } })
 })
 
-test('ReBIT keeps nullable fields absent and rejects missing titles or IDs',async()=>{
-  const jobs=await run({fetchJson:async()=>[{...openings[0],job_desc:null,job_experience:null}]})
-  assert.equal(jobs[0].jobDescription,null);assert.equal(jobs[0].experienceRequired,null)
-  for(const row of [{...openings[0],id:null},{...openings[0],job_title:null}]){
-    await assert.rejects(run({fetchJson:async()=>[row]}),/payload|identity/i)
+test('synthetic ReBIT rejects foreign client URLs and API bases before any anonymous login', async () => {
+  let posts = 0
+  const postJson = async () => { posts++; return { access_token: 'synthetic-offline-token' } }
+  await assert.rejects(run({ postJson, fetchText: async () => careers.replace('src="main-CONTROL20261111.js"', 'src="https://foreign.example/main-CONTROL20261111.js"') }), /client|first-party/i)
+  await assert.rejects(run({ postJson, fetchText: async url => url === CONFIG ? config.replace('https://rebit.org.in/web/api', 'https://foreign.example/web/api') : fetchText(url) }), /API|configuration/i)
+  assert.equal(posts, 0)
+})
+
+test('synthetic ReBIT rejects changed encoding and out-of-range bytes before login', async () => {
+  let posts = 0
+  const postJson = async () => { posts++; return { access_token: 'synthetic-offline-token' } }
+  for (const altered of [client.replace('return btoa(o)', 'return o'), clientWith([999, ...usernameBytes.slice(1)])]) {
+    assert.notEqual(altered, client)
+    await assert.rejects(run({ postJson, fetchText: async url => url === MAIN ? altered : fetchText(url) }), /bootstrap|payload|encoding/i)
+  }
+  assert.equal(posts, 0)
+})
+
+test('synthetic ReBIT rejects duplicate identities and holds untrusted links or countryless roles', async () => {
+  await assert.rejects(run({ fetchJson: async () => [openings[0], openings[0]] }), /duplicate|identity/i)
+  const foreign = { ...openings[0], apply_now_link: 'https://foreign.example/apply' }
+  const rejected = await run({ fetchJson: async () => [foreign] })
+  assert.equal(rejected.length, 0)
+  assert.deepEqual(rejected.nativeCollectionEvidence.candidateListingRecords, [foreign])
+  assertHeld(rejected)
+  const unknown = await run({ fetchJson: async () => [{ ...openings[0], location: 'Remote' }] })
+  assert.equal(unknown.length, 1)
+  assert.equal(unknown[0].country, null)
+  assert.equal(analyzePublishableJobs(unknown).indiaJobs.length, 0)
+  assertHeld(unknown)
+})
+
+test('synthetic empty ReBIT API response cannot establish a verified empty inventory', async () => {
+  const jobs = await run({ fetchJson: async () => [] })
+  assert.equal(jobs.length, 0)
+  assertHeld(jobs)
+})
+
+test('synthetic ReBIT rejects malformed entries and missing boolean active-status semantics', async () => {
+  for (const rows of [[null], [{ ...openings[0], job_status: undefined }], [{ ...openings[0], job_status: 'active' }]]) {
+    await assert.rejects(run({ fetchJson: async () => rows }), /payload|status|inventory/i)
   }
 })
-test('ReBIT rejects inherited city-map keys and unverified application origins',async()=>{
-  for(const row of [{...openings[0],location:'constructor'},{...openings[0],apply_now_link:openings[0].apply_now_link.replace('rebithr.darwinbox.in','rebithr.darwinbox.in:8443')}]){
-    await assert.rejects(run({fetchJson:async()=>[row]}),/country|scope|identity|payload/i)
+
+test('synthetic ReBIT listing metadata cannot manufacture full own descriptions', async () => {
+  const jobs = await run()
+  assert.ok(jobs.every(job => job.jobDescription === null && job.sourceDetailComplete === false))
+})
+
+test('synthetic ReBIT preserves nullable fields and retains malformed identities only as raw observations', async () => {
+  const jobs = await run({ fetchJson: async () => [{ ...openings[0], job_desc: null, job_experience: null }] })
+  assert.equal(jobs[0].jobDescription, null)
+  assert.equal(jobs[0].experienceRequired, null)
+  for (const row of [{ ...openings[0], id: null }, { ...openings[0], job_title: null }]) {
+    const held = await run({ fetchJson: async () => [row] })
+    assert.equal(held.length, 0)
+    assert.deepEqual(held.nativeCollectionEvidence.candidateListingRecords, [row])
+    assert.equal(held.nativeCollectionEvidence.failures.length, 1)
+    assertHeld(held)
   }
 })
-test('ReBIT default transport rejects foreign final response identities at every stage',async()=>{
-  const savedFetch=globalThis.fetch
-  try{
-    for(const changedUrl of [source.CAREERS_URL,'https://rebit.org.in/main-O5QYG73Y.js','https://rebit.org.in/chunk-DFJHAP4Q.js',source.CAREERS_LOGIN_API_URL,source.CURRENT_OPENINGS_API_URL]){
-      const calls=[]
-      globalThis.fetch=async(url,options)=>{
-        calls.push({url,redirect:options.redirect})
-        return {ok:true,status:200,url:url===changedUrl?'https://foreign.example/copied-surface':url,headers:{get:()=>url.includes('/web/api/')?'application/json':'text/html'},text:()=>fetchText(url),json:async()=>url===source.CAREERS_LOGIN_API_URL?{access_token:'test-token'}:structuredClone(openings)}
+
+test('synthetic ReBIT cannot infer country from inherited keys or trust an alternate application port', async () => {
+  const unknown = await run({ fetchJson: async () => [{ ...openings[0], location: 'constructor' }] })
+  assert.equal(unknown[0].country, null)
+  assert.equal(analyzePublishableJobs(unknown).indiaJobs.length, 0)
+  assertHeld(unknown)
+  const foreign = { ...openings[0], apply_now_link: openings[0].apply_now_link.replace('rebithr.darwinbox.in', 'rebithr.darwinbox.in:8443') }
+  const held = await run({ fetchJson: async () => [foreign] })
+  assert.equal(held.length, 0)
+  assert.deepEqual(held.nativeCollectionEvidence.candidateListingRecords, [foreign])
+  assertHeld(held)
+})
+
+test('synthetic ReBIT default transport rejects foreign final identities at every controlled stage', async () => {
+  const savedFetch = globalThis.fetch
+  try {
+    for (const changedUrl of [source.CAREERS_URL, MAIN, CONFIG, source.CAREERS_LOGIN_API_URL, source.CURRENT_OPENINGS_API_URL]) {
+      const calls = []
+      globalThis.fetch = async (url, options) => {
+        calls.push({ url, redirect: options.redirect })
+        const json = url === source.CAREERS_LOGIN_API_URL ? { access_token: 'synthetic-offline-token' } : openings
+        const body = url.includes('/web/api/') ? JSON.stringify(json) : await fetchText(url)
+        const response = new Response(body, { status: 200, headers: { 'content-type': url.includes('/web/api/') ? 'application/json' : 'text/html' } })
+        Object.defineProperty(response, 'url', { value: url === changedUrl ? 'https://foreign.example/copied-surface' : url })
+        return response
       }
-      await assert.rejects(source.run(),/redirect|identity|first-party/i)
-      assert.ok(calls.every(call=>call.redirect==='manual'))
+      await assert.rejects(source.run(), /redirect|identity|first-party/i)
+      assert.ok(calls.length > 0 && calls.every(call => call.redirect === 'manual'))
+      assert.equal(calls.at(-1).url, changedUrl)
     }
-  }finally{globalThis.fetch=savedFetch}
+  } finally { globalThis.fetch = savedFetch }
+})
+
+test('genuine current ReBIT page remains rejected before client, login or API access', async () => {
+  const fixture = JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-data/fields-20261111.json.gz', import.meta.url))))
+  const html = Buffer.from(fixture.packet.bodyBase64, 'base64').toString('utf8')
+  let gets = 0, posts = 0, apis = 0
+  await assert.rejects(run({ fetchText: async url => { gets++; assert.equal(url, source.CAREERS_URL); return html },
+    postJson: async () => { posts++; assert.fail('Unexpected login') },
+    fetchJson: async () => { apis++; assert.fail('Unexpected API request') } }), /trusted first-party SPA contract/)
+  assert.equal(gets, 1)
+  assert.equal(posts, 0)
+  assert.equal(apis, 0)
+  assert.equal(fixture.nativeAPIPayloads.length, 0)
 })

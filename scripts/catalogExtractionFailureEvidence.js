@@ -61,7 +61,7 @@ const reasonText = value => value ? [value.name, value.message, value.code, reas
 export { reason as extractionFailureReason }
 
 // Internal audit diagnostics only. Qualified counts remain null in the worker.
-export function extractionFailureDetails(error) {
+function nativeFailureDetails(error) {
   const nativeProperty = property(error, 'nativeEvidence')
   const native = nativeProperty?.value
   const privileged = ['AUDIT_DATABASE_BLOCKED', 'ERR_ACCESS_DENIED', 'ERR_DLOPEN_DISABLED'].includes(error?.code)
@@ -114,4 +114,51 @@ export function extractionFailureDetails(error) {
     failureKind: privileged ? fallback() : classified === 'hard_failure' ? 'surface_drift_or_fail_closed' : classified,
     failureEvidence,
   }
+}
+
+const recruitmentFailureSummary = error => {
+  const observed = field(error, 'recruitmentObservations')
+  if (!record(observed)) return null
+  const listCount = value => array(value) ? count(field(value, 'length')) : null
+  const longList = value => array(value) && Number.isSafeInteger(field(value, 'length')) && field(value, 'length') > MAX_SCAN
+  const unresolved = field(observed, 'unresolved'), boards = field(observed, 'boards')
+  const failures = field(observed, 'failures'), receipts = field(observed, 'receipts')
+  let truncated = false
+  const kinds = (values, read) => {
+    const result = new Set()
+    if (longList(values)) truncated = true
+    for (const value of dataElements(values)) {
+      const kind = read(value)
+      if (!kind || result.has(kind)) continue
+      if (result.size < MAX_REASONS) result.add(kind)
+      else truncated = true
+    }
+    return [...result]
+  }
+  const unresolvedKinds = kinds(unresolved, value => typeof value === 'string' ? stage(value.split(':', 1)[0]) : null)
+  const nativeBoardKinds = kinds(boards, value => stage(field(value, 'kind')))
+  const failureStages = kinds(failures, value => stage(field(value, 'stage')))
+  const sampledHttpStatusCounts = {}
+  if (longList(receipts)) truncated = true
+  for (const receipt of dataElements(receipts)) {
+    const status = field(receipt, 'status')
+    if (Number.isInteger(status) && status >= 100 && status <= 599) sampledHttpStatusCounts[status] = (sampledHttpStatusCounts[status] || 0) + 1
+  }
+  return {
+    type: 'recruitment-failure-summary', source: identifier(field(observed, 'source'), /^[a-z0-9][a-z0-9_-]*$/),
+    observedNativeRecords: count(field(observed, 'nativeRecords')), observedRecordType: 'native-records-unqualified',
+    requestCount: count(field(observed, 'requestCount')), nativeBoardCount: listCount(boards),
+    // Earlier page warnings can coexist with later publisher matches. Count
+    // source-reported evidence records without reading names or URL contents;
+    // this is diagnostic context, not independent publisher verification.
+    corporateIdentityEvidenceCount: listCount(field(observed, 'corporateIdentityEvidence')),
+    nativeInventoryReadCount: listCount(field(observed, 'nativeInventoryReads')), failureCount: listCount(failures), receiptCount: listCount(receipts),
+    unresolvedKinds, nativeBoardKinds, failureStages, sampledHttpStatusCounts, summaryTruncated: truncated,
+    inventoryComplete: false, lifecycleCleanupAllowed: false, firstParty: null,
+  }
+}
+
+export function extractionFailureDetails(error) {
+  const details = nativeFailureDetails(error), recruitmentFailureEvidence = recruitmentFailureSummary(error)
+  return { ...details, ...(recruitmentFailureEvidence ? { recruitmentFailureEvidence } : {}) }
 }

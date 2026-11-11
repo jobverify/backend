@@ -238,7 +238,7 @@ export const createC3iHubScraper = ({
   },
 })
 
-export const run = async () => createC3iHubScraper().run()
+export const run = async (options) => createC3iHubScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

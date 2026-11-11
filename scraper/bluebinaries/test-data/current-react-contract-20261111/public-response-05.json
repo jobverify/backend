@@ -1,0 +1,124 @@
+{
+  "number": 5,
+  "startedAt": "2026-11-11T13:51:16.602538+00:00",
+  "url": "https://www.appsecure.security/",
+  "method": "GET",
+  "origin": "https://www.appsecure.security",
+  "provenance": {
+    "source": "appsecure",
+    "basis": "existing source HOME URL"
+  },
+  "requestHeaders": {
+    "Accept": "text/html,application/javascript;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0"
+  },
+  "redirectPolicy": "manual; no redirects followed",
+  "cookiesSent": false,
+  "authenticationSent": false,
+  "strictTLS": true,
+  "maximumBodyBytes": 5000000,
+  "status": 200,
+  "reason": "OK",
+  "headers": [
+    [
+      "Date",
+      "Wed, 11 Nov 2026 13:51:48 GMT"
+    ],
+    [
+      "Content-Type",
+      "text/html; charset=utf-8"
+    ],
+    [
+      "Transfer-Encoding",
+      "chunked"
+    ],
+    [
+      "Connection",
+      "keep-alive"
+    ],
+    [
+      "x-lambda-id",
+      "3f4c0f8b-dff0-428b-8560-c85f2fee764c"
+    ],
+    [
+      "x-wf-region",
+      "us-east-1"
+    ],
+    [
+      "set-cookie",
+      "_cfuvid=klDs01IB8a50fIwevdPh0S9oRnhwSQ5Bluvos2LrnqI-1794405108.4779198-1.0.1.1-8AFZoBCQ1hobtnGcQZ0Dg1RiqL.D4Od9BtyYEAucKIE; HttpOnly; SameSite=None; Secure; Path=/; Domain=www.appsecure.security"
+    ],
+    [
+      "cf-cache-status",
+      "DYNAMIC"
+    ],
+    [
+      "Age",
+      "160094"
+    ],
+    [
+      "Last-Modified",
+      "Mon, 09 Nov 2026 17:49:21 GMT"
+    ],
+    [
+      "Link",
+      "<https://cdn.prod.website-files.com>; rel=preconnect; crossorigin, <https://cdn.prod.website-files.com/677e5264542a5dc0baefed6a/css/app-secure.webflow.shared.bd7728e1d.min.css>; rel=preload; as=style; crossorigin; integrity=\"sha384-vXco4d+vCHpPT6Eq2FRfaGlVE2LhK+oH1ZK6rW7mbZhSYRTKFYXCoycWMcQy4TDV\", <https://cdn.prod.website-files.com/677e5264542a5dc0baefed6a/css/app-secure.webflow.677e5264542a5dc0baefee19.833346c60.opt.min.css>; rel=preload; as=style; crossorigin; integrity=\"sha384-gzNGxg6JBa+OdWJuoUvyVuIghSXJY0PJwtNIi3hekZsUgB7tpSt2BZLiWcjg89iq\", <https://www.googletagmanager.com>; rel=preconnect"
+    ],
+    [
+      "Server",
+      "cloudflare"
+    ],
+    [
+      "strict-transport-security",
+      "max-age=31536000; includeSubDomains; preload"
+    ],
+    [
+      "Vary",
+      "accept-encoding"
+    ],
+    [
+      "X-Content-Type-Options",
+      "nosniff"
+    ],
+    [
+      "content-security-policy",
+      "frame-ancestors 'self'"
+    ],
+    [
+      "o2o-cache-status",
+      "HIT"
+    ],
+    [
+      "surrogate-control",
+      "max-age=432000"
+    ],
+    [
+      "surrogate-key",
+      "www.appsecure.security 677e5264542a5dc0baefed6a pageId:677e5264542a5dc0baefee19 67826569b6738408414148c2 687918fe9ca9d85b037bbee5 687f6cd7007e3ee5212b91dc 687fcf34c4dd4ddc3ae8c678 6984563198ae77bd5f459f3f 6a1fbe10961cf83ec40d739e 679e47552e8b2b320f199410 sp:075c2da3691cc838dcc06a5fc0289ae5"
+    ],
+    [
+      "x-frame-options",
+      "SAMEORIGIN"
+    ],
+    [
+      "Nel",
+      "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+    ],
+    [
+      "Report-To",
+      "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ZeBFJjSAaIfI%2FdlwmW83lzdmj48f5T5pKyWVhhWdEanpTUgl5sN5caZ%2FIjNccqupB2q%2BcEw%2FiTNEI%2FxcS63WdAx7ZqZkVJrZybG3BjyCHQLINBo30%2Bn8jQ6Q8SD%2FByW1eZXGRKocwUo%3D\"}]}"
+    ],
+    [
+      "CF-RAY",
+      "a58dc617be309425-LHR"
+    ]
+  ],
+  "location": null,
+  "contentType": "text/html; charset=utf-8",
+  "bodyFile": "public-response-05.body.bin",
+  "bytes": 372287,
+  "bodySHA256": "052403fd4ae6073d3a4266124432e22f21c0add865c2bcc91aae535c17827377",
+  "truncated": false,
+  "stopOrigin": false,
+  "completedAt": "2026-11-11T13:51:19.778616+00:00"
+}

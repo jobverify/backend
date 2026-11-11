@@ -93,4 +93,4 @@ export const createFlowserveScraper = () => ({
   },
 })
 
-export const run = async () => createFlowserveScraper().run()
+export const run = async (options) => createFlowserveScraper().run(options)

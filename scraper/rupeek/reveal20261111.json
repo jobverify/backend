@@ -1,0 +1,41 @@
+{
+  "kind": "reviewed current Rupeek React server reveal; no downloaded code execution",
+  "reviewedOn": "2026-11-11",
+  "externalScripts": [
+    "/_next/static/chunks/0kax51l-3kxb9.js",
+    "/_next/static/chunks/1fgvbv2_lx1m5.js",
+    "/_next/static/chunks/1d-y-k9h7hojf.js",
+    "/_next/static/chunks/turbopack-2c3mg3r-05n1w.js",
+    "/_next/static/chunks/0a-rekt06v0sv.js",
+    "/_next/static/chunks/2rppyl81badn3.js",
+    "/_next/static/chunks/2zs0e0xkm0vhr.js",
+    "/_next/static/chunks/1g4c5rs1b8gy0.js",
+    "/_next/static/chunks/394v_5gp7ydus.js",
+    "/_next/static/chunks/3rv3ygn7v_hrj.js",
+    "/_next/static/chunks/2bz6slco3oj_l.js",
+    "/_next/static/chunks/2dttk8783_h4y.js",
+    "/_next/static/chunks/2hce3lvoykwb5.js",
+    "/_next/static/chunks/0vartwldx72qs.js",
+    "/_next/static/chunks/186m3c-pet-xz.js",
+    "/_next/static/chunks/2wvtje4yjy85-.js",
+    "/_next/static/chunks/1w8jhlr1o3yv3.js",
+    "/_next/static/chunks/36ce-cz57d2o2.js",
+    "/_next/static/chunks/0kfl-8298n14r.js",
+    "/_next/static/chunks/3vk-ab7z0ng_3.js",
+    "/_next/static/chunks/3aop70mv9xcza.js",
+    "/js/runtime-config.js",
+    "/_next/static/chunks/0cz1d0mv5g_q7.js",
+    "/_next/static/chunks/1wa54aalcj3_c.js"
+  ],
+  "inlineProgramSHA256": [
+    "ee6bb81f4e9fc030a39a7c71affc4d1f2b900baa4b4c7af83361388d7c39599b",
+    "304316a41481e9922995bd7977cf64bd1c55f431dcf4f316888b578d52372133",
+    "4009527b06902e2fcd3c2ce78c0652caf43bda1783d1577198d0c3919782c607",
+    "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea",
+    "a7b184efc6db3070eb138216ce988c4adb40b13a54bbbc308b9ff0be71f9e0eb"
+  ],
+  "revealProgramSHA256": "4009527b06902e2fcd3c2ce78c0652caf43bda1783d1577198d0c3919782c607",
+  "revealCall": "$RC(\"B:1\",\"S:1\")",
+  "placeholderID": "B:1",
+  "sourceID": "S:1"
+}

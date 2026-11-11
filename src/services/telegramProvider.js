@@ -6,7 +6,7 @@
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
 
 export const isTelegramDeliveryEnabled = () =>
-  TRUE_VALUES.has(String(process.env.TELEGRAM_ENABLED || "false").trim().toLowerCase());
+  TRUE_VALUES.has(String(process.env.TELEGRAM_ENABLED || "true").trim().toLowerCase());
 
 const createTelegramProvider = () => ({
   name: "telegram",

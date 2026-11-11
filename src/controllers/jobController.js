@@ -44,6 +44,7 @@ import { withEmployerDisclosures } from "../utils/employerDisclosures.js";
 import { getValidIndiaCityForJob } from "../utils/publicJobLocationScope.js";
 import { normalizeLifecycleDate, startOfUtcDay } from "../utils/jobLifecycle.js";
 import { safeSourceUrl } from '../utils/jobProvenance.js';
+import { publicDescriptionFields } from '../utils/jobDescriptionDisplay.js';
 import { hasWorkdayOutageSignal } from "../../scraper-support/myworkday/engine.js";
 import {
   SearchInputError,
@@ -137,7 +138,8 @@ const JOB_LIST_CARD_FIELDS = Object.freeze([
 ]);
 const JOB_LIST_CURSOR_FIELDS = Object.freeze(["sortDate", "clickCount"]);
 const JOB_LIST_QUERY_FIELDS = Object.freeze([
-  ...new Set([...JOB_LIST_CARD_FIELDS, ...JOB_LIST_CURSOR_FIELDS, 'classification', 'employmentType', 'experienceLevel']),
+  ...new Set([...JOB_LIST_CARD_FIELDS, ...JOB_LIST_CURSOR_FIELDS, 'classification', 'employmentType', 'experienceLevel',
+    'sourceRemoteStatusUnresolved', 'remoteStatus']),
 ]);
 const JOB_LIST_CARD_PROJECTION = JOB_LIST_QUERY_FIELDS.join(" ");
 const JOB_LIST_CARD_TEXT_PROJECTION = Object.freeze(
@@ -736,12 +738,13 @@ export const normalizeResponseJob = (job) => {
 
   return withEmployerDisclosures({
     ...publicJob,
+    ...publicDescriptionFields(job),
     location: location || null,
     city: sanitizeStoredLocationValue(publicJob.city),
     locations,
     experienceLevel: normalizeResponseExperienceLevel(job),
     jobType: normalizeResponseJobType(job),
-    workArrangement: normalizePublicWorkArrangement(job.workArrangement),
+    workArrangement: normalizePublicWorkArrangement(job.workArrangement, job),
     ...buildApplicationState(job),
   });
 };
@@ -935,7 +938,7 @@ const resolveJobListSortOption = ({ sort, hasTextSearch = false } = {}) => {
   return { sortDate: -1, _id: -1 };
 };
 
-const resolveNumberedJobQueryOptions = (filters) => {
+const resolveNumberedJobQueryOptions = (filters, sort) => {
   const options = { maxTimeMS: MAX_NUMBERED_QUERY_EXECUTION_MS };
   // Semantic visibility expressions make trial plans expensive. Start with the
   // existing equality-key index instead of trialling unrelated multikey indexes.
@@ -946,6 +949,17 @@ const resolveNumberedJobQueryOptions = (filters) => {
       isPublicIndia: 1,
       ...(filters.companyKey ? { companyKey: 1 } : {}),
       ...(filters.locationKeys ? { locationKeys: 1 } : {}),
+      sortDate: -1,
+      _id: -1,
+    };
+  } else if (!filters.$text && sort !== "recommended") {
+    // Broad pages need the ordered index too: trialling the many unrelated
+    // indexes can consume the time budget before returning even the first page.
+    // Mongo can scan the date index backwards for oldest-first navigation.
+    options.hint = {
+      status: 1,
+      isPublicIndia: 1,
+      ...(sort === "popularity" ? { clickCount: -1 } : {}),
       sortDate: -1,
       _id: -1,
     };
@@ -1343,7 +1357,7 @@ export const getAllJobs = async (req, res) => {
         message: "Pagination exceeds the supported range. Use /api/jobs/search for deeper results." });
     }
     const { page: pageNum, limit: limitNum, offset: skip } = pagination;
-    const queryOptions = resolveNumberedJobQueryOptions(filters);
+    const queryOptions = resolveNumberedJobQueryOptions(filters, sort);
 
     const sortOption = resolveJobListSortOption({ sort, hasTextSearch });
     const canUseSummaryTotals = isDefaultPublicJobListFilter(filterConditions);
@@ -1817,7 +1831,7 @@ export const getJobMeta = async (req, res) => {
           : ROLE_DOMAIN_OPTIONS,
         seniorityLevels: SENIORITY_LEVELS,
         workArrangements: hasScopedFilters
-          ? filterSupportedOptions(workArrangements.map(normalizePublicWorkArrangement), WORK_ARRANGEMENT_OPTIONS)
+          ? filterSupportedOptions(workArrangements.filter(value => value != null).map(normalizePublicWorkArrangement), WORK_ARRANGEMENT_OPTIONS)
           : WORK_ARRANGEMENT_OPTIONS,
         datePostedOptions,
       },

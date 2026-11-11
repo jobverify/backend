@@ -99,7 +99,7 @@ const normalizeSlots = (tree, declaration, manifest, currentPublicProfile) => {
 // change the fingerprint. Parser offsets and Literal raw spelling are metadata;
 // all other fields, including template raw/cooked and regex/bigint data, remain.
 function canonicalFingerprint(tree, check) {
-  const hash = createHash('sha256'), pending = [tree], tokens = [], cache = new Map()
+  const hash = createHash('sha256'), pending = [tree], tokens = [], cache = new Map(), keySchemas = new Map()
   let fields = 0, nodes = 0, chars = 0
   const flush = () => { if (tokens.length) { hash.update(tokens.join('')); tokens.length = 0; chars = 0 } }
   const emit = token => { tokens.push(token); chars += token.length; if (tokens.length >= 2048 || chars >= 65536) flush() }
@@ -125,14 +125,31 @@ function canonicalFingerprint(tree, check) {
       continue
     }
     need(++nodes <= maxNodes, 'program AST node bound exceeded')
-    const keys = Object.keys(value).filter(key => !(typeof value.type === 'string' && ['start', 'end'].includes(key))
-      && !(value.type === 'Literal' && key === 'raw')).sort()
+    const ownKeys = Object.keys(value), type = typeof value.type === 'string' ? value.type : null
+    const known = keySchemas.get(type)
+    let same = Boolean(known && ownKeys.length === known.ownKeys.length)
+    for (let index = 0; same && index < ownKeys.length; index++) if (ownKeys[index] !== known.ownKeys[index]) same = false
+    let keys
+    if (same) keys = known.keys
+    else {
+      keys = ownKeys.filter(key => !(type !== null && (key === 'start' || key === 'end')) && !(type === 'Literal' && key === 'raw')).sort()
+      if (keySchemas.size < 128 || keySchemas.has(type)) keySchemas.set(type, { ownKeys, keys })
+    }
     emit('object:' + keys.length + ';')
     for (let index = keys.length - 1; index >= 0; index--) { pending.push(value[keys[index]]); pending.push(keys[index]) }
   }
   flush(); check()
   return { normalizedProgramASTSHA256: hash.digest('hex'), semanticStreamFields: fields, astObjects: nodes }
 }
+
+// Reuse the parser class so successive full-module parses keep the same method
+// shapes. Each parser still owns its attempt's construction counter and checks.
+const BoundedParser = Parser.extend(Base => class extends Base {
+  #constructing
+  constructor(options, input, constructing) { super(options, input); this.#constructing = constructing }
+  startNode() { this.#constructing(); return super.startNode() }
+  startNodeAt(position, location) { this.#constructing(); return super.startNodeAt(position, location) }
+})
 
 export function verifyNativeFrontend(declaration, manifest, response, check) {
   check()
@@ -142,12 +159,8 @@ export function verifyNativeFrontend(declaration, manifest, response, check) {
   check()
   let constructedNodes = 0
   const constructing = () => { need(++constructedNodes <= maxNodes, 'program AST construction bound exceeded'); if ((constructedNodes & 1023) === 0) check() }
-  const BoundedParser = Parser.extend(Base => class extends Base {
-    startNode() { constructing(); return super.startNode() }
-    startNodeAt(position, location) { constructing(); return super.startNodeAt(position, location) }
-  })
   let tree
-  try { tree = BoundedParser.parse(response.body, { ecmaVersion: 'latest', sourceType: 'module' }) }
+  try { tree = new BoundedParser({ ecmaVersion: 'latest', sourceType: 'module' }, response.body, constructing).parse() }
   catch (error) { check(); if (error?.failureKind === 'coverage_gap') throw error; need(false, 'program AST parse contract changed') }
   check()
   need(!tree.body.some(node => node.type === 'ImportDeclaration'), 'unreviewed static program imports')

@@ -4,7 +4,8 @@ import { fileURLToPath } from 'node:url'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
-import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { decodeHTML } from 'entities'
+import { getSourceDescription, hasSourceDescription } from '../../src/utils/jobSourceContent.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -78,6 +79,51 @@ const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
   signal,
 })
 
+const isWholeDescriptionPlaceholder = value => typeof value === 'string'
+  && /^test[.!:\u2026]*$/i.test(decodeHTML(value
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<(?:script|style)\b[^>]*>[\s\S]*?<\/(?:script|style)\s*>/gi, ' ')
+    .replace(/<[^>]*>/g, ' '))
+    .replace(/[\s\u200b-\u200d\ufeff]+/g, ' ').trim())
+
+// Keep the exact result array: inventory, observation and native audit metadata
+// can be non-enumerable or held in a WeakMap keyed by this array.
+export const qualifyBrigadeDescriptions = (jobs, scrapedAt) => {
+  for (let index = 0; index < jobs.length; index++) {
+    const job = jobs[index]
+    const placeholderFields = Object.fromEntries(
+      ['sourceDescription', 'sourceDescriptionHTML', 'jobDescription', 'description']
+        .filter(field => isWholeDescriptionPlaceholder(job[field]))
+        .map(field => [field, job[field]]),
+    )
+    const hasPlaceholder = Object.keys(placeholderFields).length > 0
+    const qualified = {
+      ...job,
+      ...Object.fromEntries(Object.keys(placeholderFields).map(field => [field, null])),
+    }
+    const incomplete = hasPlaceholder && (isWholeDescriptionPlaceholder(getSourceDescription(job))
+      || !hasSourceDescription(qualified))
+    jobs[index] = {
+      ...qualified,
+      scrapedAt,
+      ...(hasPlaceholder ? {
+        sourceNativeDescriptionPlaceholder: isWholeDescriptionPlaceholder(getSourceDescription(job))
+          ? getSourceDescription(job) : Object.values(placeholderFields)[0],
+        sourceNativeDescriptionPlaceholderFields: {
+          ...job.sourceNativeDescriptionPlaceholderFields,
+          ...placeholderFields,
+        },
+      } : {}),
+      ...(incomplete ? {
+        sourceDetailComplete: false,
+        sourceDescriptionMissing: true,
+        sourceDetailFailureKind: job.sourceDetailFailureKind || 'missing-content',
+      } : {}),
+    }
+  }
+  return jobs
+}
+
 export const createBrigadeGroupScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
   now = () => new Date().toISOString(),
@@ -105,10 +151,7 @@ export const createBrigadeGroupScraper = ({
     })
     const scrapedAt = now()
 
-    return attachInventoryEvidence(jobs.map((job) => ({
-      ...job,
-      scrapedAt,
-    })), readInventoryEvidence(jobs))
+    return qualifyBrigadeDescriptions(jobs, scrapedAt)
   },
 })
 

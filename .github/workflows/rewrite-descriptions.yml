@@ -83,9 +83,9 @@ jobs:
         id: plan
         run: node scripts/planDescriptionRewrites.js
         env:
-          JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ vars.JOB_DESCRIPTION_REWRITE_SHARD_COUNT || '32' }}
-          JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD: ${{ vars.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD || '1000' }}
-          JOB_DESCRIPTION_REWRITE_MAX_PARALLEL: ${{ vars.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || '32' }}
+          JOB_DESCRIPTION_REWRITE_SHARD_COUNT: ${{ vars.JOB_DESCRIPTION_REWRITE_SHARD_COUNT || '' }}
+          JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD: ${{ vars.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD || 'auto' }}
+          JOB_DESCRIPTION_REWRITE_MAX_PARALLEL: ${{ vars.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || '64' }}
       - name: Cache portable AVX2 CPU runtime
         id: portable_runtime
         if: steps.description_queue.outputs.queued != '0'
@@ -188,9 +188,9 @@ jobs:
         uses: actions/cache/restore@v6
         with:
           path: .cache/description-rewrites
-          key: description-lfm12b-rewrites-${{ runner.os }}-v29-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: description-lfm12b-rewrites-${{ runner.os }}-v30-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            description-lfm12b-rewrites-${{ runner.os }}-v29-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-
+            description-lfm12b-rewrites-${{ runner.os }}-v30-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-
       - name: Prepare native crash diagnostics
         if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
         run: |
@@ -210,7 +210,7 @@ jobs:
         uses: actions/cache/save@v6
         with:
           path: .cache/description-rewrites
-          key: description-lfm12b-rewrites-${{ runner.os }}-v29-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: description-lfm12b-rewrites-${{ runner.os }}-v30-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Upload generation quality and capacity diagnostics
         if: always()
         uses: actions/upload-artifact@v7
@@ -218,6 +218,7 @@ jobs:
           name: description-rewrite-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             .cache/scraper-actions/description-summary-${{ matrix.shard }}.json
+            .cache/scraper-actions/description-summary-${{ matrix.shard }}.md
             .cache/scraper-actions/description-worker-${{ matrix.shard }}.log
             .cache/scraper-actions/description-worker-${{ matrix.shard }}.log.native.json
             .cache/scraper-actions/description-rejections-${{ matrix.shard }}.json
@@ -258,6 +259,7 @@ jobs:
           name: description-rewrite-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             .cache/scraper-actions/description-summary.json
+            .cache/scraper-actions/description-summary.md
             .cache/scraper-actions/description-plan.json
           include-hidden-files: true
           if-no-files-found: warn

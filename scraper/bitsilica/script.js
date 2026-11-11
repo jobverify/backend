@@ -78,7 +78,7 @@ const ensureIndiaLocation = (value) => {
 const inferCity = (location) => {
   const normalized = normalizeWhitespace(location)?.replace(/,\s*India$/i, '')?.replace(/\.+$/g, '')
   if (!normalized) return null
-  if (/[\/|]/.test(normalized) || /\s+and\s+/i.test(normalized)) return null
+  if (/[/|]/.test(normalized) || /\s+and\s+/i.test(normalized)) return null
   return normalized
 }
 
@@ -255,7 +255,7 @@ export const createBITSILICAScraper = ({
   },
 })
 
-export const run = async () => createBITSILICAScraper().run()
+export const run = async (options) => createBITSILICAScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

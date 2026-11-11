@@ -6,8 +6,9 @@ import { buildRewritePlan, DEFAULT_REWRITE_MAX_PARALLEL } from '../rewriting/par
 const summary = JSON.parse(await fs.readFile(process.argv[2] || '.cache/scraper-actions/description-summary.json', 'utf8'));
 const queueAsOf = summary.queueAsOf || summary.startedAt;
 if (!Number.isFinite(Date.parse(queueAsOf))) throw new Error('Invalid rewrite queue cutoff');
+const jobsPerShard = process.env.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD?.trim();
 const plan = { ...buildRewritePlan(summary.queued, {
-  jobsPerShard: Number(process.env.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD || 1000),
+  jobsPerShard: !jobsPerShard || /^(auto|automatic)$/i.test(jobsPerShard) ? 'auto' : Number(jobsPerShard),
   maxParallel: Number(process.env.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL || DEFAULT_REWRITE_MAX_PARALLEL),
   shardCount: process.env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT
     ? Number(process.env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT) : undefined,

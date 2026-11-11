@@ -27,4 +27,4 @@ export const createCyeproScraper = () => ({
   },
 })
 
-export const run = async () => createCyeproScraper().run()
+export const run = async (options) => createCyeproScraper().run(options)

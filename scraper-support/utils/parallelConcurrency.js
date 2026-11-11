@@ -1,4 +1,4 @@
-export const FALLBACK_PARALLEL_SCRAPER_CONCURRENCY = 1
+export const FALLBACK_PARALLEL_SCRAPER_CONCURRENCY = 5
 
 const parsePositiveConcurrency = (value) => {
   const parsed = Number.parseInt(value, 10)

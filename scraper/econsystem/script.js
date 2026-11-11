@@ -37,13 +37,6 @@ const decodeHtml = (value) => String(value ?? '')
   .replace(/Â®/g, '®')
   .replace(/Â/g, ' ')
 
-const slugify = (value) => normalizeWhitespace(decodeHtml(value))
-  .normalize('NFKD')
-  .replace(/[^\w\s-]/g, '')
-  .toLowerCase()
-  .replace(/[\s_-]+/g, '-')
-  .replace(/^-+|-+$/g, '')
-
 const getSection = (html, jobId) => {
   const page = String(html ?? '')
   const wrappedSections = [...page.matchAll(/<section[^>]*class=["'][^"']*career-opening[^"']*["'][^>]*>[\s\S]*?<\/section>/gi)]
@@ -236,7 +229,7 @@ export const createEconSystemScraper = ({
   },
 })
 
-export const run = async () => createEconSystemScraper().run()
+export const run = async (options) => createEconSystemScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

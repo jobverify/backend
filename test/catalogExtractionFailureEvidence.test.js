@@ -164,3 +164,62 @@ test('failure and packet lists read bounded own data elements without getters or
     assert.equal(extractionFailureDetails(wrapped({ [key]: malformed })).failureKind, 'surface_drift_or_fail_closed')
   }
 })
+
+test('recruitment failures preserve bounded reasons for unavailable inventory without qualifying zero jobs', () => {
+  const error = Object.assign(new Error('Current verified recruitment inventory is unavailable'), { softFailure:true, failureKind:'coverage_gap',
+    recruitmentObservations:{source:'fixture',requestCount:2,nativeRecords:0,returnedIndiaJobs:0,
+      unresolved:['current-corporate-publisher-identity-unqualified','current-native-recruitment-contract-not-discovered'],
+      boards:[],nativeInventoryReads:[],failures:[],receipts:[{status:200,body:'PRIVATE_BODY',url:'https://example.test/?token=PRIVATE_TOKEN'}],
+      sourceScopeComplete:true,lifecycleCleanupAllowed:true} })
+  const result = extractionFailureDetails(error)
+  assert.equal(result.failureKind,'coverage_gap')
+  assert.deepEqual(result.recruitmentFailureEvidence,{
+    type:'recruitment-failure-summary',source:'fixture',observedNativeRecords:0,observedRecordType:'native-records-unqualified',
+    requestCount:2,nativeBoardCount:0,corporateIdentityEvidenceCount:null,nativeInventoryReadCount:0,failureCount:0,receiptCount:1,
+    unresolvedKinds:['current-corporate-publisher-identity-unqualified','current-native-recruitment-contract-not-discovered'],
+    nativeBoardKinds:[],failureStages:[],sampledHttpStatusCounts:{200:1},summaryTruncated:false,
+    inventoryComplete:false,lifecycleCleanupAllowed:false,firstParty:null,
+  })
+  assert.doesNotMatch(JSON.stringify(result),/PRIVATE_|rawJobs|eligibleJobs|returnedIndiaJobs|https?:|body|receipts/)
+})
+
+test('recruitment diagnostics read bounded own data without invoking source accessors', () => {
+  const unresolved=['country-conflict:PRIVATE_LOCATION',...Array.from({length:40},(_,index)=>'unresolved-kind-'+index)]
+  Object.defineProperty(unresolved,0,{get(){throw Error('array getter executed')}})
+  const observations={source:'fixture',nativeRecords:7,requestCount:1e20,unresolved,boards:[{kind:'oracle',url:'PRIVATE_URL'}],
+    failures:[{stage:'native-oracle',message:'PRIVATE_ERROR'}],nativeInventoryReads:[{records:'PRIVATE_RECORD'}],receipts:[{status:403,headers:{cookie:'PRIVATE_COOKIE'}}]}
+  for(const key of ['returnedIndiaJobs','sourceScopeComplete'])Object.defineProperty(observations,key,{get(){throw Error('source getter executed')}})
+  const error=Object.assign(new Error('HTTP403'),{recruitmentObservations:observations})
+  const result=extractionFailureDetails(error),summary=result.recruitmentFailureEvidence
+  assert.equal(result.failureKind,'blocked_or_access_denied')
+  assert.equal(summary.observedNativeRecords,7)
+  assert.equal(summary.requestCount,null)
+  assert.equal(summary.unresolvedKinds.length,8)
+  assert.deepEqual(summary.nativeBoardKinds,['oracle'])
+  assert.deepEqual(summary.failureStages,['native-oracle'])
+  assert.deepEqual(summary.sampledHttpStatusCounts,{403:1})
+  assert.equal(summary.summaryTruncated,true)
+  assert.equal(summary.inventoryComplete,false)
+  assert.doesNotMatch(JSON.stringify(summary),/PRIVATE_|returnedIndiaJobs|"records"|headers|"message"/i)
+})
+
+test('malformed recruitment diagnostics cannot replace the original source failure classification', () => {
+  for(const observations of [null,3,'unknown',[],undefined]){
+    const error=Object.assign(new Error('HTTP403'),{recruitmentObservations:observations})
+    assert.deepEqual(extractionFailureDetails(error),{failureKind:'blocked_or_access_denied'})
+  }
+  const error=new Error('HTTP403')
+  Object.defineProperty(error,'recruitmentObservations',{get(){throw Error('root getter executed')}})
+  assert.deepEqual(extractionFailureDetails(error),{failureKind:'blocked_or_access_denied'})
+})
+test('over-cap recruitment list lengths still disclose bounded scanning', () => {
+  for(const key of ['unresolved','boards','failures','receipts']){
+    const values=new Array(1000001)
+    values[0]=key==='unresolved'?'country-conflict:private':key==='boards'?{kind:'oracle'}:key==='failures'?{stage:'native-oracle'}:{status:403}
+    const error=Object.assign(new Error('Current inventory unavailable'),{recruitmentObservations:{[key]:values}})
+    const summary=extractionFailureDetails(error).recruitmentFailureEvidence
+    assert.equal(summary.summaryTruncated,true,key)
+    const countKey={boards:'nativeBoardCount',failures:'failureCount',receipts:'receiptCount'}[key]
+    if(countKey)assert.equal(summary[countKey],null)
+  }
+})

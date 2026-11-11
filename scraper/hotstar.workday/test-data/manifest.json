@@ -1,0 +1,1136 @@
+{
+  "productionWrites": false,
+  "capturedAt": "2026-11-10T17:46:10.180Z",
+  "scope": "JioHotstar current keyworded native Workday inventory and its own role payloads; corporate source completeness unqualified",
+  "sha256": "91b83b5b1dd9ad64bb148fb2d2f28b64dec853156b35fa20c1cb60632ce57e33",
+  "responses": [
+    {
+      "requestedURL": "https://www.hotstar.com/",
+      "method": "GET",
+      "at": "2026-11-10T17:46:10.401Z",
+      "requestBody": null,
+      "finalURL": "https://www.hotstar.com/in",
+      "status": 200,
+      "contentType": "text/html",
+      "bodyFile": "001.body",
+      "bodyBytes": 426718,
+      "sha256": "1313fe2eb2de4f71991bc849688fc0f116ee3f69f3fe9187ce5214a5965075f2"
+    },
+    {
+      "requestedURL": "https://www.jiostar.com/",
+      "method": "GET",
+      "at": "2026-11-10T17:46:11.146Z",
+      "requestBody": null,
+      "finalURL": "https://www.jiostar.com/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bodyFile": "002.body",
+      "bodyBytes": 64872,
+      "sha256": "275f7cd556e71ed414cf6fbb483be83bfea10d0938e1f5b94a95272b56adc986"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/JioStar",
+      "method": "GET",
+      "at": "2026-11-10T17:46:11.393Z",
+      "requestBody": null,
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/JioStar",
+      "status": 200,
+      "contentType": "text/html",
+      "bodyFile": "003.body",
+      "bodyBytes": 7226,
+      "sha256": "bb4e77f0cc5ae57c83b0d19e3d616efbc18b816383241970f97990f2a580180b"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:46:11.929Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "004.body",
+      "bodyBytes": 6300,
+      "sha256": "4c450bdb565acb6be9b3045bd864efeb4c415708bc0b0b34bfce2846ead194a8"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:46:12.385Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "005.body",
+      "bodyBytes": 4909,
+      "sha256": "d1a2d3bf25c500e86ae9a63155bf95e3a061d55749efcb06500de3d7e1de3aaf"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:46:12.772Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "006.body",
+      "bodyBytes": 4784,
+      "sha256": "ce33c9e6c65b9de600a04168f1d964442fd319c46699665f79d36ff354e1a365"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:46:13.166Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "007.body",
+      "bodyBytes": 5027,
+      "sha256": "b1d7ab2aba02c3f5f065b43b91ec007c53e21c81a106bab429015f16b8ce4feb"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:46:13.535Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":80,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "008.body",
+      "bodyBytes": 4449,
+      "sha256": "eabc6ee7f6dd67dd612959d4de7fecc863b7861da0d9ea0a83c7362d805182a5"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:46:13.904Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":100,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "009.body",
+      "bodyBytes": 1107,
+      "sha256": "1be1f31241d0dbdea37d1f84ffd069128f5a02ff025d176a40aee44a14ccbeb2"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-UXR_JR10255",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-UXR_JR10255",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:32.538Z",
+      "bodySHA256": "b6d2a5744d4c252cf1a22b0d473b14a6ee210fdfbe5e281a4ad6bae1ace63fdc",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Software-Development-Engineer---Trust-Engineering_JR10469",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Software-Development-Engineer---Trust-Engineering_JR10469",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:32.674Z",
+      "bodySHA256": "d3bd235b4180fb94bc02e3a34af37072a2bca27552f9c5f15f8b057e591f746b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Architect---Data-Engineering_JR10042",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Architect---Data-Engineering_JR10042",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:32.677Z",
+      "bodySHA256": "b117b92f9ce1aba92ff46fecbae85cc2b3c6ca6a9a693e44729c74577b4baf08",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Content-Designer_JR10346",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Content-Designer_JR10346",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.274Z",
+      "bodySHA256": "6ae6acbcbcff05e6a35deab74f32cc833aefeb6710d32996a1a4eaf2fffc1142",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Architect---Viewer-experience_JR10275",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Architect---Viewer-experience_JR10275",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.277Z",
+      "bodySHA256": "74fc0fc580727516b2da35536e629df1e57f07585053721a87a73461655c5634",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Manager---Analytics_JR10336",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Manager---Analytics_JR10336",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.279Z",
+      "bodySHA256": "8c4b35fb4ea53f46a873a371d1c5fdc711c8c5bc78eac3e72bde8dcea6d6c672",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Staff-Software-Development-Engineer_JR12392",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Staff-Software-Development-Engineer_JR12392",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.568Z",
+      "bodySHA256": "474b4a178681ea9f9714787097b0a19fa30aaef37e49780ee86bed430d27f865",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Director---Entertainment-Client-Strategy---Solutions_JR12523",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Director---Entertainment-Client-Strategy---Solutions_JR12523",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.569Z",
+      "bodySHA256": "53a908446d685b8257d091be8f57a47eee44d7fb38d9c31143bbad025db8ab22",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Intern---E-Commerce_JR12525",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Intern---E-Commerce_JR12525",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.574Z",
+      "bodySHA256": "d99a3515cd0d5928e0d962cd9c119eacfdacb12e2d5b9881e84f48f186a2dbb2",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Assistant-Manager---Entertainment-Ad-Sales--YME_JR10540",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Assistant-Manager---Entertainment-Ad-Sales--YME_JR10540",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.792Z",
+      "bodySHA256": "5c708e9f3c9500b5423c08d1a1386569ae53375eb3d9e09ccfb771a6844b23e2",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Senior-Director---Entertainment-Pricing--Planning--Supply-and-Ad-Products--Digital_JR12403",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Senior-Director---Entertainment-Pricing--Planning--Supply-and-Ad-Products--Digital_JR12403",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.874Z",
+      "bodySHA256": "89c3a1ecf14449faa3acae28bf2f8b78bec5a2a04bb2c4990e869de71220bb01",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Director---Engineering_JR12393",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Director---Engineering_JR12393",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:33.892Z",
+      "bodySHA256": "e3cf9e274009c02f12774212496c55353328606717c4f9771bc5e107dacf842b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR11953",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR11953",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.080Z",
+      "bodySHA256": "a53c347bfdb0303be75fb689c32c4ac5f4657c9bdfa574cd1cbe9d56d5da11f4",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---OUC/Manager---Sports-Subscriptions---Monetization-Strategy--Sports_JR12255",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---OUC/Manager---Sports-Subscriptions---Monetization-Strategy--Sports_JR12255",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.168Z",
+      "bodySHA256": "88baa3aa27e2f4b4fa267f58f4d36a86a05f8df2fd025e58c7a8707118bf30bc",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Director-Product-Management---Viewer-Experience_JR10261",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Director-Product-Management---Viewer-Experience_JR10261",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.186Z",
+      "bodySHA256": "9f0560480662071c46578cf9d7a49c24e30bbce4b774aaa4f8d8284dfb586d2f",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Director---Entertainment-Ad-Sales--Digital--LCS_JR12546",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Director---Entertainment-Ad-Sales--Digital--LCS_JR12546",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.365Z",
+      "bodySHA256": "6795842e4a2170cb6b4d5deb13734c339f707e623e93adcc1ba38296db165680",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Backend-_JR10517-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Backend-_JR10517-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.376Z",
+      "bodySHA256": "9ea44d67687ef8f0fe72e52a473c29f7f040c7049df333bde7cb75c99ca8e275",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Associate-Director---Entertainment-Ad-Sales--HGEC-Pay_JR12305",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Associate-Director---Entertainment-Ad-Sales--HGEC-Pay_JR12305",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.459Z",
+      "bodySHA256": "68449a81dcaee07995e785dd1b3e54b5d7d6def31a0efa3a0b991ff028d1abf1",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II--Web----VX_JR10213",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II--Web----VX_JR10213",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.678Z",
+      "bodySHA256": "539c721df9fde19b93e49578ae143b55095b75e51101c1240158c586b4c3f384",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Visual-Designer-II_JR12331",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Visual-Designer-II_JR12331",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.680Z",
+      "bodySHA256": "4ef2fa4a76c8ecbb7475e8d65204ec5c4a53133aaa92e88f6aac83947221da84",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--Digital_JR12436",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--Digital_JR12436",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.758Z",
+      "bodySHA256": "c79caeff5cf017b760fc84279fd89eea9374ac54c8912b6b808e901cc92ca238",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Director---Entertainment-Ad-Sales--Digital--LCS_JR12514",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Director---Entertainment-Ad-Sales--Digital--LCS_JR12514",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.912Z",
+      "bodySHA256": "a72b732b5a3c176f81d417ef363e773d84cc797e6b4355f01710a65a076e701f",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Manager---Entertainment-Ad-Sales--Digital--LCS_JR12544",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Manager---Entertainment-Ad-Sales--Digital--LCS_JR12544",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.968Z",
+      "bodySHA256": "e5bfd1772f50fe35958ff1b52a7a16df94c68e7fb386ad54c7ac046b56148be3",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Manager---Entertainment-Ad-Sales--Digital--LCS_JR12543",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Manager---Entertainment-Ad-Sales--Digital--LCS_JR12543",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:34.989Z",
+      "bodySHA256": "2cc1bb829c41d101bc3158fac12e03e01aa585e9e36c7332ce84514117cfdd68",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Associate-Director---Entertainment-Ad-Sales--Digital--LCS_JR12364",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Associate-Director---Entertainment-Ad-Sales--Digital--LCS_JR12364",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.205Z",
+      "bodySHA256": "a26f18d1c8de973984f077e7faceacdb66986b9fe52e69354ddbb477d8e6a8f1",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Associate-Director---Entertainment-Ad-Sales---Digital--LCS_JR12365-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Associate-Director---Entertainment-Ad-Sales---Digital--LCS_JR12365-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.260Z",
+      "bodySHA256": "e9871d2915578ff6c41972e847e468199d83bab9fe5607ef5ae02ccc76c7d1b0",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Associate-Director---Entertainment-Ad-Sales--Digital--LCS_JR12430",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Associate-Director---Entertainment-Ad-Sales--Digital--LCS_JR12430",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.285Z",
+      "bodySHA256": "24eb5f835d0339ac5b846463f113537af7c5004f7beb441b379c11038da243d1",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Associate-Director---Entertainment-Ad-Sales--Digital--LCS_JR12429",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Associate-Director---Entertainment-Ad-Sales--Digital--LCS_JR12429",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.502Z",
+      "bodySHA256": "d7c964867e62e2b9775f81d3d6fd629c7344763a50ea2e5764157990eb15ae16",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Associate-Director---Entertainment-Ad-Sales--Digital_JR12457",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Associate-Director---Entertainment-Ad-Sales--Digital_JR12457",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.509Z",
+      "bodySHA256": "d6cfcaab200125aca3318916bb2ad7763b8a406ee984e6183ee9b6c08ca3bb4f",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR11982",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR11982",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.567Z",
+      "bodySHA256": "0af3ed7f009e2f918768e58296e5b8ca6d0e76b2676782bc51902561a399384d",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12029",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12029",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.793Z",
+      "bodySHA256": "9b8887693facec81ed23d9b16e16cbb0676bf9494274682d599c40f9395fb29b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Staff-Software-Development-Engineer_JR10380-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Staff-Software-Development-Engineer_JR10380-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.817Z",
+      "bodySHA256": "f11eb06687e68bb8eb58e8334eaa68abc19adf86f9e03ab47b446b8cdfa3727f",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12453-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12453-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:35.888Z",
+      "bodySHA256": "a6bfad2356a5dde6bd3f7aab14ca3fd4370d2640728c2ed9f9aa5f05053324bf",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12483-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12483-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.083Z",
+      "bodySHA256": "950b834f463556ff0a8cbc8e974deb21d558fbdb30ef099b0e13b91f8fee5132",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12422-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12422-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.112Z",
+      "bodySHA256": "60ce7719d189e17ab916156989e358f08432820a68dae5cb2d2045c71210ca95",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12487",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12487",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.189Z",
+      "bodySHA256": "1d14bbdc4257913a582e57089b8050dfb5a0e644a4a39a82d5e5784b030a1b36",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Manager-Analytics---Ads_JR10179",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Manager-Analytics---Ads_JR10179",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.391Z",
+      "bodySHA256": "d5415a761fefeda1ef8e009566f537741dcef840f8bd3374d654ed83d36bd872",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Product-Designer_JR12067",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Product-Designer_JR12067",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.407Z",
+      "bodySHA256": "b8e356f079f03123a700a2a0e84e4ec3c064313ca608838b5b8074e676d7c6d7",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12406",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12406",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.493Z",
+      "bodySHA256": "4bdcb61547ee0f3ceb9e62c67a2f1d3676bc23f2240bce0abac50afdf6ae8c2b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12389-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12389-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.680Z",
+      "bodySHA256": "9bee3c52d7d8df12cc8992507fd44c0510dc436770d5e5cdcfb3491f27352039",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Product-Manager---Viewer-Experience_JR10389",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Product-Manager---Viewer-Experience_JR10389",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.686Z",
+      "bodySHA256": "264515a1c2eab2c34b87d6eba648bd5210eef3338099f4939e13505bde2e137d",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Product-Manager_JR12065",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Product-Manager_JR12065",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.780Z",
+      "bodySHA256": "972a952a907b1de0cfae11ba501e3e4b06f4a0b59f96495c248f5824bb46acd1",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Manager---Product---Revenue-Strategy--Narratives---Sports_JR10194",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Manager---Product---Revenue-Strategy--Narratives---Sports_JR10194",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.969Z",
+      "bodySHA256": "5a421220b32e249d070eff92a7bf89bf4ec09bd2411c8bf32cdb13467d1330de",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Senior-Director---Entertainment-Ad-Sales--Digital--LCS_JR12439",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Senior-Director---Entertainment-Ad-Sales--Digital--LCS_JR12439",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:36.989Z",
+      "bodySHA256": "8262aa0e0307c612d54cba29fdd6f05c99eed9f36e6540704d74686e6edf19ec",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Data-Scientist_JR12150",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Data-Scientist_JR12150",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.047Z",
+      "bodySHA256": "c44a1d45c263ff2a5a25e35a7888589dd4ef95e7b1854f907042e02bf6e01f80",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Product-Designer---Design-Systems_JR10176",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Product-Designer---Design-Systems_JR10176",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.274Z",
+      "bodySHA256": "e98934af15052879353d7835b68ecdf5ea6da72e81f6262821a5ccb86fe89aed",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Principal-Data-Scientist_JR12231",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru---EGL/Principal-Data-Scientist_JR12231",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.297Z",
+      "bodySHA256": "bf2cc418e7124e4d19b3846a4a57770ae2275d4f18f0983114d8ba1fec91fb25",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Product-Manager--Recommendations-_JR10153",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Product-Manager--Recommendations-_JR10153",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.346Z",
+      "bodySHA256": "0e7f06ccbffaf047a9e3f9a38b744c5b426e36d45a816bf966fd5706dc80c8e9",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---OUC/Associate-Creative-Director---Original-IPs--Sports_JR12362",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---OUC/Associate-Creative-Director---Original-IPs--Sports_JR12362",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.566Z",
+      "bodySHA256": "dae25fd4cd9cf83500d0c2903d5937ed146b572350efa9e90021234575cdb9cb",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Software-Development-Engineer-II---Data-Engineering_JR10348",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Software-Development-Engineer-II---Data-Engineering_JR10348",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.571Z",
+      "bodySHA256": "e56ef9d72acceb6534678ac9a3008af5168e0ce1182966fff67a7b10d81353eb",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Product-Manager_JR12086",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Product-Manager_JR12086",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.633Z",
+      "bodySHA256": "a16aeb37d0f3661678545338a051da9b2c93fa04ff6b686b6af40bd72f53b5ff",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Assistant-Manager---Product---Revenue-Strategy--Sports_JR10539",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Assistant-Manager---Product---Revenue-Strategy--Sports_JR10539",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.872Z",
+      "bodySHA256": "5f7d4f919fe085b49784ffd3db5238c0e43b5c58047fa5c4a59356e3aa7e391c",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12478-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12478-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.874Z",
+      "bodySHA256": "843534fbae6d9ff2e40e165bbac535e5b8b54fb5fe56d35defc835d449bd8222",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12038",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12038",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:37.938Z",
+      "bodySHA256": "8b2e8717b4e441f8020f99b020234911bbef33dd2675cef1c2751c3dc98a9355",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12037-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12037-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.181Z",
+      "bodySHA256": "393b28e34db242bac474ff23b5e3e45a486367b20a22b833260f0772558499b4",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12035",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12035",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.192Z",
+      "bodySHA256": "9bea327edeaf534b329ec797ca02f0ed9fc557098fd135bb491fa7f144b77d61",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Manager---Entertainment-Ad-Sales--Digital--LCS_JR12112",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Manager---Entertainment-Ad-Sales--Digital--LCS_JR12112",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.219Z",
+      "bodySHA256": "0ac13cced5684399a62c77569c7eade22298f9c9dd295c092f292e60b3869e05",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12159",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12159",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.458Z",
+      "bodySHA256": "3678a0f6b65a88334248e6487bdbae4c2b45c47e154f01e8ab7128579ed3e283",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Assistant-Manager---Entertainment-Ad-Sales_JR10070",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Assistant-Manager---Entertainment-Ad-Sales_JR10070",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.533Z",
+      "bodySHA256": "c67d5e3603b7f2ff2c0fcb256eb4c8b2510606753fa81db2994b89d8ef4d1a02",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12158",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12158",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.534Z",
+      "bodySHA256": "1b9792d1015a6a963a671dd7934633617f33dcb605cd1dc06b56c1603c78c752",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12157",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12157",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.758Z",
+      "bodySHA256": "48bab6195697d87bc418a3998e8ae2d539ced121f1eb38b7aaf85a73fb728cf6",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12192",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Manager---Entertainment-Ad-Sales--HGEC-Pay_JR12192",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.820Z",
+      "bodySHA256": "74f036c030d3352d4b972ef0bd94fb9bed75e57c199e5cc8abde2bf77fe8647b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Backend----Viewer-Experience_JR10189",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Backend----Viewer-Experience_JR10189",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:38.822Z",
+      "bodySHA256": "82b43da743dbee90e396bc46911b019cb2366624345bb889f4fa946405a311f7",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Assistant-Manager---Entertainment-Ad-Sales--Telugu_JR11860",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Assistant-Manager---Entertainment-Ad-Sales--Telugu_JR11860",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.072Z",
+      "bodySHA256": "e92c3a046edcfe7925cd283a0fe3667775a9fce74403d2408310c1ebf261de9a",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Senior-Executive---Entertainment-Ad-Sales--Bangla-and-Oriya_JR11864",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Senior-Executive---Entertainment-Ad-Sales--Bangla-and-Oriya_JR11864",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.099Z",
+      "bodySHA256": "c70acda0529f98ac65e9ffda1c6b7d48dca0e40f3ce7a5dbdbdaaa05178d5277",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR11875",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--HGEC-Pay_JR11875",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.105Z",
+      "bodySHA256": "5c753fd7144cefa7ad39acf2aefc094479d0a0ed061f2e7c29369e13e5521f8b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Associate-Director---Entertainment-Pricing--Planning--Supply-and-Ad-Products--Digital_JR11929",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Associate-Director---Entertainment-Pricing--Planning--Supply-and-Ad-Products--Digital_JR11929",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.359Z",
+      "bodySHA256": "37c137cb1a7e455da02dc1391626a8abf917f184a6fcbc938663255a42fcab3a",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer---Golang_JR10175",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer---Golang_JR10175",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.391Z",
+      "bodySHA256": "e56e5b860fb622f99f20834f2da62692468c21c2e07427234cc467e6c41af11b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Video-Engineering-_JR10048",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Video-Engineering-_JR10048",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.427Z",
+      "bodySHA256": "09d55fef5b51a8cb2b9bdd1a4ac26b980c5268d041de9416627fbc64786b264c",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--Tamil_JR12323",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Gurugram---Star-Center/Assistant-Manager---Entertainment-Ad-Sales--Tamil_JR12323",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.663Z",
+      "bodySHA256": "aadd81b59488581ce5d4889e1efe5789694424f5820c09cc984bbc1f638ed3c9",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Product-Designer_JR12066",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Product-Designer_JR12066",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.733Z",
+      "bodySHA256": "d6e57ef2ba23039debfad1ee4f2ed43143b9dcf9498616171f3c573c61572b87",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Staff-Software-Development-Engineer--Backend----Viewer-Experience_JR10016",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Staff-Software-Development-Engineer--Backend----Viewer-Experience_JR10016",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.832Z",
+      "bodySHA256": "96d5cc2557527c25a86f9c1620a1072814b7b15d34f01cc837ed157cb7d4a31a",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Engineering-Manager---GenAI-studios_JR10107",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Engineering-Manager---GenAI-studios_JR10107",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:39.940Z",
+      "bodySHA256": "c9fb663001fd96a7420019e36bb7e210ecbb91b483b31873cfc91008eb61af59",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Staff-Software-Development-Engineer--Video-Engineering-_JR10049",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Staff-Software-Development-Engineer--Video-Engineering-_JR10049",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.024Z",
+      "bodySHA256": "472f796d4b1b0cb471058e7736c2045cb2d7581494a0fa36bedd34bd2959c7cb",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12421",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Software-Development-Engineer-II_JR12421",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.140Z",
+      "bodySHA256": "f33fd88e3b3d3de951bad76b0089b7264f6149600614964295ba467479d7c311",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Director---Technical-Program-Management_JR11960-1",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Director---Technical-Program-Management_JR11960-1",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.206Z",
+      "bodySHA256": "4647733851b7401857822dcaae36c8404cf257fd9ca2229452a5b0d815e180dd",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12220",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12220",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.304Z",
+      "bodySHA256": "0a340c14a1f857680d549a4d6215cfdb3c47f626859a8e6f17c976a30ac85fa9",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Product-Manager--Ads-_JR10114",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Product-Manager--Ads-_JR10114",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.448Z",
+      "bodySHA256": "094ff7badbf32b65187af5a0868e04708384ca4bd2a266dc4f977f0f57a7b079",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Full-stack---GenAI-studios_JR10015",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Staff-Software-Development-Engineer--Full-stack---GenAI-studios_JR10015",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.479Z",
+      "bodySHA256": "c9a12630d729b39005b3864f37776fa6f2222750dd55dd57d760fd8f8d24d4a2",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Engineering-Manager_JR12425",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Engineering-Manager_JR12425",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.633Z",
+      "bodySHA256": "498eddda9274efafba4479ca516e8054271ff4e3f7fdf5269fd3a9cfdcd27558",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR11959",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR11959",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.758Z",
+      "bodySHA256": "128e56676a7e46865995e4ef39c52770a6df140538a46db7d220c7362eafdc98",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR11955",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR11955",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.774Z",
+      "bodySHA256": "8a4a223067025148aa0054391ebc9801c82ef6be3be3fc1fbdc2465fd282e7e4",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR11958",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR11958",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:40.920Z",
+      "bodySHA256": "9ed0b5e41de5e5c3df0bb786c68ac43a56ddb415dbbad8e9a02793f513925d8b",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Software-Development-Engineer----GoLang-_JR10339",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Software-Development-Engineer----GoLang-_JR10339",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.022Z",
+      "bodySHA256": "d4c2cfabcf8836a82599dc96da6d88da58493d6f2b4158edea8df2a04baf7e69",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12404",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12404",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.070Z",
+      "bodySHA256": "f3aeabb6d1316de949846469c8b3d51fbc5e9ede336541f92bec711cbcf1158e",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR12528",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer_JR12528",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.221Z",
+      "bodySHA256": "599ee5331625b9eee35cfe382490d9e3c562b6666a8e5aeb4a19383f27a6959c",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer-Live-Streaming_JR10041",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer-Live-Streaming_JR10041",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.339Z",
+      "bodySHA256": "7020711134e5ebf0a68f3ae66ab8db5707a07be687b0331caa043dd4ce191739",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Product-Manager_JR12415",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Product-Manager_JR12415",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.380Z",
+      "bodySHA256": "3d2fc5741744ef075afe7cc384ee68d7949ace7e8c2019a711637b8a8f1b0945",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Director---Cybersecurity--Product-Security_JR10152",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai/Director---Cybersecurity--Product-Security_JR10152",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.545Z",
+      "bodySHA256": "d61fb3baeea7cdbfee19a027becc663b0ce7fb321f9ef2ad0941bbcdd479cc50",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Machine-Learning-Engineer_JR12527",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Machine-Learning-Engineer_JR12527",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.671Z",
+      "bodySHA256": "da35ff63b9000f97217c5b8a402d2f61c38b142acf5144c2dbfe6913f6af7314",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Manager---Entertainment-Customer-Marketing_JR12532",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Mumbai---Urmi/Manager---Entertainment-Customer-Marketing_JR12532",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.721Z",
+      "bodySHA256": "d0369bf3bcd17af23060c0183dfb976f14c62ccbb6ac223eb95d24000b6eea34",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer-Test-II_JR10381",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer-Test-II_JR10381",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.839Z",
+      "bodySHA256": "e8aa18139df9423eb3a52e4fab01cf9960be59dae4847d5b424cc697ede9bdb0",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Data-Scientist_JR11897",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Data-Scientist_JR11897",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:41.968Z",
+      "bodySHA256": "a5210f8312d820e1ae8ad77d0f27a0f40d89a0b37321904f64dcc1f22811ed7e",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Staff-Software-Development-Engineer_JR12125",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Staff-Software-Development-Engineer_JR12125",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.027Z",
+      "bodySHA256": "9598159db86918768cbca2a3fa2a3b3f01975d7fecc363add770c8f4e932d7e0",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Software-Development-Engineer---Android_JR10347",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Senior-Software-Development-Engineer---Android_JR10347",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.132Z",
+      "bodySHA256": "e88365d78574eb743fc5fe3b98b60f1b4c8cf18046f25d50a34e7bc96fcdbc2e",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Architect_JR12360",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Architect_JR12360",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.281Z",
+      "bodySHA256": "64c515fab3cd1e9bc338bb21c252006872d7a0cab42912a8282f9ce4829cc404",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12516",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Software-Development-Engineer_JR12516",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.333Z",
+      "bodySHA256": "a07af910ca76d8609482cd93d1c7306eea6c6eaa765612a675f7497b710d624e",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Engineering-Manager---Viewer-Experience_JR10212-2",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru/Engineering-Manager---Viewer-Experience_JR10212-2",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.437Z",
+      "bodySHA256": "805a61db1ce088acd57aad7fc55b85f6b937d0c8d86ca98f43c13fafeb05b165",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12013",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12013",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.612Z",
+      "bodySHA256": "0a35e79fd24382e920e4ec41d977b872f1bfb10b99c1d184a7c6af8383bf79dc",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12015",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Technical-Program-Manager_JR12015",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.631Z",
+      "bodySHA256": "8d17c593c6080c84d7a1a264b8a82cff23784bf06bb8fb8b39371eb8f1aae63a",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Staff-Data-Scientist-I_JR12347",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Staff-Data-Scientist-I_JR12347",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.731Z",
+      "bodySHA256": "9502153b67de6ac8da1145df52bdae070d5d9d22f66b0758f5911cfd5ad5b359",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer---Data-Platforms_JR12016",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Staff-Software-Development-Engineer---Data-Platforms_JR12016",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.918Z",
+      "bodySHA256": "dff41ea5dda37e5ae84ac23607a2cfdaf9d01b1de1523932152f6df639eca6e1",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Staff-Software-Development-Engineer--Devops----Cloud-Infra_JR10020",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Bengaluru--We-Work/Senior-Staff-Software-Development-Engineer--Devops----Cloud-Infra_JR10020",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:42.926Z",
+      "bodySHA256": "12dbebfafc98fae074a7061a43c076ec18bdc540d7693e60e096bd74945d97b5",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Chennai---Kochar-Jade/Senior-Vice-President---Entertainment-PRS--South-Regionals_JR12519",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/job/Chennai---Kochar-Jade/Senior-Vice-President---Entertainment-PRS--South-Regionals_JR12519",
+      "status": 200,
+      "contentType": "application/json",
+      "at": "2026-11-10T17:51:43.027Z",
+      "bodySHA256": "f8e613beb05fca62430bd206a0da31e38062ecfb68ce55d48d9fcf0693be0cd3",
+      "method": "GET"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:56:13.792Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":0,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "closing-0.body",
+      "bodyBytes": 6300,
+      "sha256": "4c450bdb565acb6be9b3045bd864efeb4c415708bc0b0b34bfce2846ead194a8"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:56:14.165Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":20,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "closing-1.body",
+      "bodyBytes": 4909,
+      "sha256": "d1a2d3bf25c500e86ae9a63155bf95e3a061d55749efcb06500de3d7e1de3aaf"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:56:14.532Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":40,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "closing-2.body",
+      "bodyBytes": 4784,
+      "sha256": "ce33c9e6c65b9de600a04168f1d964442fd319c46699665f79d36ff354e1a365"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:56:14.900Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":60,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "closing-3.body",
+      "bodyBytes": 5027,
+      "sha256": "b1d7ab2aba02c3f5f065b43b91ec007c53e21c81a106bab429015f16b8ce4feb"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:56:15.274Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":80,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "closing-4.body",
+      "bodyBytes": 4449,
+      "sha256": "eabc6ee7f6dd67dd612959d4de7fecc863b7861da0d9ea0a83c7362d805182a5"
+    },
+    {
+      "requestedURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "method": "POST",
+      "at": "2026-11-10T17:56:15.601Z",
+      "requestBody": "{\"appliedFacets\":{},\"limit\":20,\"offset\":100,\"searchText\":\"JioHotstar\"}",
+      "finalURL": "https://jiostar.wd102.myworkdayjobs.com/wday/cxs/jiostar/JioStar/jobs",
+      "status": 200,
+      "contentType": "application/json",
+      "bodyFile": "closing-5.body",
+      "bodyBytes": 1107,
+      "sha256": "1be1f31241d0dbdea37d1f84ffd069128f5a02ff025d176a40aee44a14ccbeb2"
+    },
+    {
+      "url": "https://www.jiostar.com/portfolio/",
+      "finalURL": "https://www.jiostar.com/portfolio/",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "capturedAt": "2026-11-10T17:59:12.094Z",
+      "file": "corporate-portfolio.html",
+      "bytes": 163062,
+      "sha256": "82c0a375e16290499780426df817d806141bc76b4b2fe120d6741f56bf850603",
+      "requestedURL": "https://www.jiostar.com/portfolio/",
+      "at": "2026-11-10T17:59:12.094Z"
+    }
+  ]
+}

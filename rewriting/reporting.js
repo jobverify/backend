@@ -3,9 +3,31 @@ import { validateRewriteShard } from './partitioning.js';
 import { summarizeRewriteCapacity } from './capacity.js';
 export { summarizeRewriteCapacity } from './capacity.js';
 
+/** A publication count is not a count of successful wording rewrites. */
+export function formatRewriteReport(summary = {}) {
+  const capacity = summary.capacity || {};
+  const count = value => Number.isFinite(value) ? String(value) : 'Not measured';
+  const rate = (value, fraction) => Number.isFinite(fraction) ? `${count(value)} (${(fraction * 100).toFixed(1)}%)` : 'Not measured';
+  const wordingMeasured = summary.published > 0 && capacity.wordingMetricsRecordedDescriptions === summary.published;
+  const rows = [
+    ['Queued', count(summary.queued)], ['Published', count(summary.published)],
+    ['Pending estimate', count(summary.pendingEstimate)], ['Interrupted attempts', count(summary.interruptedAttempts)],
+    ['Wording edits', wordingMeasured ? rate(capacity.modelWordingEditedDescriptions, capacity.modelWordingEditRate) : 'Not measured'],
+    ['Model layout edits only', wordingMeasured ? rate(capacity.modelLayoutOnlyDescriptions, capacity.modelLayoutOnlyRate) : 'Not measured'],
+    ['Published with source fallback', count(summary.sourceFallbackDescriptions)],
+    ['Correction acceptance', rate(capacity.correctionsAccepted, capacity.correctionAcceptanceRate)],
+    ['Peak active processing runners', count(capacity.peakActiveRunners)], ['Processing runner hours', count(capacity.runnerHours)],
+    ['Published per processing runner hour', count(capacity.publishedPerRunnerHour)],
+  ];
+  return `## Description rewrite results\n\nProcessing: ${summary.processingStatus || 'not measured'}; handoff: ${summary.handoffReady ? 'ready' : 'not ready'}.\n\n`
+    + '| Metric | Result |\n| --- | --- |\n' + rows.map(([label, value]) => `| ${label} | ${value} |`).join('\n')
+    + '\n\nPublished includes validated source fallback and formatting. Wording edits are measured changes, not a semantic quality score. '
+    + 'Runner timings cover rewrite processing only; they exclude setup and artifact upload and are not billed runner usage.\n';
+}
+
 const counters = ['queued', 'attempted', 'published', 'failed', 'skipped', 'queueRepairs',
   'staleSources', 'concurrentChanges', 'sourceFallbackDescriptions', 'sourceFallbackBlocks',
-  'warnings', 'pendingEstimate', 'stale'];
+  'warnings', 'pendingEstimate', 'stale', 'interruptedAttempts'];
 const flags = ['interrupted', 'budgetExhausted', 'qualityStopped', 'cancelled'];
 
 const validWorkerSummary = part => {
@@ -71,6 +93,19 @@ export function aggregateRewriteSummaries(parts, { shardCount = 4 } = {}) {
   summary.capacity = summarizeRewriteCapacity(parts.flatMap(part => part.results || []), {
     startedAt: summary.startedAt, finishedAt: summary.finishedAt, attempted: summary.attempted,
   });
+  const intervals = parts.map(part => [Date.parse(part.startedAt), Date.parse(part.finishedAt)])
+    .filter(([start, end]) => Number.isFinite(start) && Number.isFinite(end) && end > start);
+  const runnerSeconds = intervals.reduce((total, [start, end]) => total + (end - start) / 1000, 0);
+  const events = intervals.flatMap(([start, end]) => [[start, 1], [end, -1]])
+    .sort((left, right) => left[0] - right[0] || left[1] - right[1]);
+  let active = 0, peak = 0;
+  for (const [, change] of events) { active += change; peak = Math.max(peak, active); }
+  const timingComplete = !summary.missingShards.length && intervals.length === parts.length && intervals.length > 0;
+  Object.assign(summary.capacity, { runnerTimingSamples: intervals.length, runnerTimingBasis: 'rewrite_process',
+    runnerHours: timingComplete ? runnerSeconds / 3600 : null,
+    peakActiveRunners: timingComplete ? peak : null,
+    averageActiveRunners: timingComplete && summary.capacity.elapsedSeconds ? runnerSeconds / summary.capacity.elapsedSeconds : null,
+    publishedPerRunnerHour: timingComplete && runnerSeconds ? summary.published / runnerSeconds * 3600 : null });
   if (summary.cancelled) Object.assign(summary, { reason: 'interrupted', stopReason: 'cancelled' });
   else if (summary.budgetExhausted || parts.some(part => part.stopReason === 'budget_exhausted' || part.reason === 'workflow_budget_exhausted')) {
     Object.assign(summary, { reason: 'workflow_budget_exhausted', stopReason: 'budget_exhausted', budgetExhausted: true });

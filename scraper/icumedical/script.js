@@ -305,7 +305,7 @@ export const createIcuMedicalScraper = ({
   },
 })
 
-export const run = async () => createIcuMedicalScraper().run()
+export const run = async (options) => createIcuMedicalScraper(options).run()
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

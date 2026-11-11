@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildSourceFacts, buildPreparationPrompt, buildLatexTailoringPrompt, buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, buildResumeJobSnapshot, resumeJobHash } from '../src/services/resumeLatexContent.js';
+import { RESUME_LATEX_PREAMBLE, preserveResumeSourceLinks, resumeLatexLinkTarget } from '../src/utils/resumeLatexFormat.js';
 
 const source = { text: `Asha Rao
 asha@example.test | +91 98765 43210
@@ -36,6 +37,46 @@ test('protected facts retain the candidate identity, each employer, dates, degre
   assert.ok(facts.metrics.includes('20%'));
   assert.deepEqual(buildSourceFacts(source), facts);
   assert.equal(fidelity(source.text).valid, true);
+});
+
+test('line-wrapped original URLs do not create numeric achievement claims', () => {
+  const link = 'https://www.linkedin.com/posts/example%5Fperson_activity-7654321098765432109-ABCD?utm_source=share';
+  const original = { ...source, links: [...source.links, link] };
+  const facts = buildSourceFacts(original);
+  const wrapped = link.replace('7654321098765432109', '7654321098\n765432109');
+  const text = `${source.text}\nADDITIONAL INFORMATION\n${wrapped}`;
+  assert.deepEqual(validateResumeFidelity({ facts, text, links: original.links }).issues, []);
+  const invented = validateResumeFidelity({ facts, text: `${text}\nDelivered 7654321098765432109 projects.`, links: original.links });
+  assert.ok(invented.issues.includes('Unsupported number or metric: 7654321098765432109.'),
+    'an actual numerical claim remains unsupported even when its digits occur in a source URL');
+});
+
+test('wrapped visible source URLs are not protected as candidate metrics', () => {
+  const link = 'https://example.test/certificates/7654321098765432109';
+  const original = { ...source, text: source.text + '\nADDITIONAL INFORMATION\n' + link.replace('/7654', '/\n7654'), links: [...source.links, link] };
+  const facts = buildSourceFacts(original);
+  assert.deepEqual(facts.metrics, ['20%']);
+  assert.deepEqual(validateResumeFidelity({ facts, text: source.text, links: original.links }).issues, []);
+});
+
+test('shared URL prefixes cannot expose resource IDs as candidate numbers in either link order', () => {
+  const short = 'https://example.test/';
+  const long = short + 'certificates/7654321098765432109';
+  for (const links of [[short, long], [long, short]]) {
+    for (const visible of [long, long.replace('765432', '765432\n')]) {
+      const original = { ...source, text: source.text + '\nADDITIONAL INFORMATION\n' + visible, links: [...source.links, ...links] };
+      const facts = buildSourceFacts(original);
+      assert.deepEqual(facts.metrics, ['20%']);
+      assert.deepEqual(validateResumeFidelity({ facts, text: original.text, links: original.links }).issues, []);
+    }
+  }
+});
+
+test('a skill name in a source URL cannot support a new candidate skill', () => {
+  const link = 'https://example.test/certificates/Java/7654321098765432109';
+  const original = { ...source, text: source.text + '\nADDITIONAL INFORMATION\n' + link, links: [...source.links, link] };
+  const result = validateResumeFidelity({ facts: buildSourceFacts(original), text: source.text + '\nSKILLS\nJava', links: original.links });
+  assert.ok(result.issues.includes('Unsupported candidate skill: Java.'));
 });
 
 test('an unbulleted documentation achievement cannot become the following employer identity', () => {
@@ -193,6 +234,19 @@ test('generation and independent comparison prompts ground facts in untrusted so
 
 test('LaTeX validation accepts a complete standalone readable document', () => {
   assert.equal(validateLatexSource(latex), latex);
+});
+
+test('the constrained compiler format passes the model-output preflight', () => {
+  const document = RESUME_LATEX_PREAMBLE + 'Readable candidate document.\n\\end{document}';
+  assert.equal(validateLatexSource(document), document);
+});
+
+test('retaining source destinations preserves literal dollar replacement syntax', () => {
+  const link = "https://example.test/path?literal=$'&prefix=$`&cash=$$";
+  const output = preserveResumeSourceLinks(latex, [link]);
+  assert.ok(output.includes('\\href{' + resumeLatexLinkTarget(link) + '}'));
+  assert.equal(validateLatexSource(output), output);
+  assert.equal(output.match(/\\documentclass/g).length, 1);
 });
 
 test('a single Markdown fence is removed without changing the LaTeX document', () => {

@@ -150,7 +150,7 @@ export const createBorgwarnerScraper = ({
   },
 })
 
-export const run = async () => createBorgwarnerScraper().run()
+export const run = async (options) => createBorgwarnerScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

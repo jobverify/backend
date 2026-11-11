@@ -156,9 +156,12 @@ export const activeScripts = (html, options) => all(dom(html, options),n=>n.tag=
 
 // An active iframe can delegate navigation, while its raw fallback body cannot
 // supply visible description text or activate nested frames.
-export const activeIframeSources = (html, options) => {
- const frames=node=>node.activeFrame?(Object.hasOwn(node.attrs,'srcdoc')?[]:[node.attrs.src]):node.inert?[]:node.children.filter(child=>typeof child!=='string').flatMap(frames)
- return frames(dom(html, options)).filter(value=>typeof value==='string'&&value.trim())
+export const activeIframeDeclarations = (html, options) => {
+ const frames=node=>node.activeFrame?(Object.hasOwn(node.attrs,'srcdoc')?[]:[node]):node.inert?[]:node.children.filter(child=>typeof child!=='string').flatMap(frames)
+ return frames(dom(html, options)).filter(node=>typeof node.attrs.src==='string'&&node.attrs.src.trim()).map(node=>({
+  href:node.attrs.src,label:['title','aria-label','name'].map(key=>node.attrs[key]||'').join(' ').trim(),
+ }))
 }
+export const activeIframeSources = (html, options) => activeIframeDeclarations(html,options).map(frame=>frame.href)
 
 export const readNativeDocument=(html,options)=>{const root=dom(html,options);return{nodes:(predicate,subtree=root)=>all(subtree,predicate),text,hasClass:cls}}

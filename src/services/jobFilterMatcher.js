@@ -213,7 +213,7 @@ export const jobMatchesSavedFilters = ({ job, filters, userProfile = {}, now = n
     && (normalized.location.length === 0 || normalized.location.some((value) => location.includes(String(value).toLowerCase())))
     && experienceMatches
     && (normalized.roleDomain.length === 0 || normalized.roleDomain.includes(job.primaryRoleDomain))
-    && (normalized.workArrangement.length === 0 || normalized.workArrangement.includes(normalizePublicWorkArrangement(job.workArrangement)))
+    && (normalized.workArrangement.length === 0 || normalized.workArrangement.includes(normalizePublicWorkArrangement(job.workArrangement, job)))
     && (normalized.datePostedDays.length === 0 || normalized.datePostedDays.some((value) => (
       value === DATE_POSTED_NA_VALUE
         ? !job.postedAt

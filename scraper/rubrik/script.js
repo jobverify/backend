@@ -140,8 +140,21 @@ const resolvePositiveInteger = (value, fallback) => {
 
 const throwIfAborted = (signal) => {
   if (!signal?.aborted) return
-  throw signal.reason || new DOMException('The operation was aborted', 'AbortError')
+  throw signal.reason
 }
+
+const readWithCancellation = (operation, signal) => new Promise((resolve, reject) => {
+  const cleanup = () => signal?.removeEventListener('abort', abort)
+  const abort = () => { cleanup(); reject(signal.reason) }
+  if (signal?.aborted) return abort()
+  signal?.addEventListener('abort', abort, { once: true })
+  Promise.resolve().then(async () => {
+    throwIfAborted(signal)
+    const value = await operation()
+    cleanup()
+    resolve({ __proto__: null, value })
+  }).catch((error) => { cleanup(); reject(error) })
+}).finally(() => throwIfAborted(signal))
 
 const mapWithConcurrency = async (items, limit, iteratee) => {
   const concurrency = Math.max(1, Number.isInteger(limit) ? limit : 1)
@@ -315,7 +328,7 @@ export const createRubrikScraper = ({
     now = () => new Date().toISOString(),
     signal = undefined,
   } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL, { signal })
+    const careersHtml = (await readWithCancellation(() => fetchText(CAREERS_URL, { signal }), signal)).value
 
     if (!hasOfficialCareersSignal(careersHtml)) {
       throw new Error('Rubrik careers page no longer matches the verified official public surface')
@@ -331,7 +344,7 @@ export const createRubrikScraper = ({
       resolvePositiveInteger(departmentPageConcurrency, DEPARTMENT_PAGE_CONCURRENCY),
       async (department) => {
         throwIfAborted(signal)
-        const departmentHtml = await fetchText(department.url, { signal })
+        const departmentHtml = (await readWithCancellation(() => fetchText(department.url, { signal }), signal)).value
         return {
           department,
           jobLinks: extractJobLinks(departmentHtml),
@@ -355,7 +368,7 @@ export const createRubrikScraper = ({
       resolvePositiveInteger(jobDetailPageConcurrency, JOB_DETAIL_PAGE_CONCURRENCY),
       async ({ department, jobLink }) => {
         throwIfAborted(signal)
-        const jobHtml = await fetchText(jobLink.url, { signal })
+        const jobHtml = (await readWithCancellation(() => fetchText(jobLink.url, { signal }), signal)).value
         const job = extractJobFromHtml({
           html: jobHtml,
           department: department.name,

@@ -89,8 +89,10 @@ const oracleDescriptionEmployerLabels = blocks => blocks.flatMap((value, index) 
 // stricter terminal label/value structure used to establish positive proof.
 const oracleActiveEmployerBlocks = value => {
   const doc = readNativeDocument(normalizeNativeAttributeBoundaries(value || ''))
-  const blocked = new Set(['blockquote', 'q', 'pre', 'code', 'template', 'aside', 'object', 'iframe', 'noscript', 'script', 'style'])
-  const boundary = new Set(['p', 'div', 'li', 'td', 'tr', 'section', 'article', 'header', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br'])
+  const blocked = new Set(['blockquote', 'q', 'pre', 'code', 'template', 'object', 'iframe', 'noscript', 'script', 'style'])
+  const boundary = new Set(['address','article','aside','body','br','caption','center','dd','details','dialog','div','dl','dt',
+    'fieldset','figcaption','figure','footer','form','h1','h2','h3','h4','h5','h6','header','hgroup','hr','html','li',
+    'main','menu','nav','ol','p','section','search','summary','table','tbody','td','tfoot','th','thead','tr','ul'])
   const active = node => {
     if (typeof node === 'string') return node
     if (node.inert || blocked.has(node.tag)) return ''
@@ -257,6 +259,9 @@ export async function readOracleRecruitment(board, io) {
       const ownEmployer=oracleRecruitmentEmployer(detail,{companyFlexField:io.companyEmployerFlexField,
         brandEmploymentDeclaration:io.brandEmploymentDeclaration,descriptionEmployerDeclaration:io.descriptionEmployerDeclaration,
         roleWorkplaceDeclarations:io.roleWorkplaceDeclarations})
+      if (io.reviewedPublisherEmployerName && oracleDescriptionEmployerConflict(detail, io.reviewedPublisherEmployerName)) {
+        io.unresolved('native-employer-contradiction'); continue
+      }
       const employer = ownEmployer.employer
       if (employer && !io.matchingEmployer(employer.name) || !employer && (io.requireNativeEmployerName || !publisher)) {
         io.unresolved('native-employer-mismatch'); continue

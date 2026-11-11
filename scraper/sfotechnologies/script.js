@@ -391,7 +391,7 @@ export const createSfoTechnologiesScraper = ({
   },
 })
 
-export const run = async () => createSfoTechnologiesScraper().run()
+export const run = async (options) => createSfoTechnologiesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

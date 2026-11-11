@@ -345,13 +345,17 @@ const defaultFetchPage = async (url) => {
 
   for (let redirectCount = 0; redirectCount < 8; redirectCount += 1) {
     const timeout = createFetchTimeoutController()
-    const response = await fetch(currentUrl, {
-      headers: buildHeaders(buildCookieHeader(cookiePairs)),
-      redirect: 'manual',
-      signal: timeout.signal,
-    })
-    const page = await readPageResponse(response, currentUrl)
-    timeout.cancel()
+    let page
+    try {
+      const response = await fetch(currentUrl, {
+        headers: buildHeaders(buildCookieHeader(cookiePairs)),
+        redirect: 'manual',
+        signal: timeout.signal,
+      })
+      page = await readPageResponse(response, currentUrl)
+    } finally {
+      timeout.cancel()
+    }
     const nextCookiePairs = mergeCookiePairs(cookiePairs, getSetCookieValues(page.headers))
     cookiePairs.splice(0, cookiePairs.length, ...nextCookiePairs)
 
@@ -634,7 +638,7 @@ export const createGlobalLogicScraper = ({
   },
 })
 
-export const run = async () => createGlobalLogicScraper().run()
+export const run = async (options) => createGlobalLogicScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

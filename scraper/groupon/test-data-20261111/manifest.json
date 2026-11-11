@@ -1,0 +1,13 @@
+{
+  "source": "groupon",
+  "fixture": "current-graph-and-native.json.gz",
+  "sha256": "3e3843d717cd5bb2d319fc7ccf192f398743e838594202574e604ff807cc06cc",
+  "bytes": 1101956,
+  "graphOriginalResponses": 7,
+  "nativeOriginalResponses": 50,
+  "firstCapture": "2026-11-11T04:32:29.828Z",
+  "lastNativeCapture": "2026-11-11T04:36:30.973Z",
+  "nativeObservedRoleCount": 24,
+  "productionDatabaseWrites": false,
+  "warning": "Finite native observations do not confer whole-company India-zero or cleanup authority."
+}

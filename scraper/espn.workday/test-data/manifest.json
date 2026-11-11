@@ -1,0 +1,54 @@
+{
+  "capturedAt": "2026-11-10T17:22:50.588Z",
+  "productionWrites": false,
+  "scope": "current exact ESPN brand-filtered TalentBrew public search, not company-wide inventory",
+  "sha256": "597a9cea3e79d4d701be44aad9f9499a787c216e0b4ad9920b51c58921b06ae5",
+  "responses": [
+    {
+      "url": "https://www.disneycareers.com/en/search-jobs?acm=ALL&alrpm=ALL&ascf=%5B%7B%22key%22:%22custom_fields.IndustryCustomField%22,%22value%22:%22ESPN%22%7D%5D",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://www.disneycareers.com/en/search-jobs?acm=ALL&alrpm=ALL&ascf=%5B%7B%22key%22:%22custom_fields.IndustryCustomField%22,%22value%22:%22ESPN%22%7D%5D",
+      "contentType": "text/html; charset=utf-8",
+      "capturedAt": "2026-11-10T17:22:50.588Z",
+      "bodyFile": "opening.body",
+      "bytes": 421057,
+      "sha256": "08005593c0346748e1e4da682e4465f56c697271212b3e39f215ac364a218cbd"
+    },
+    {
+      "url": "https://www.disneycareers.com/en/search-jobs/resultspost",
+      "method": "POST",
+      "requestBody": "{\"ActiveFacetID\":0,\"CurrentPage\":2,\"RecordsPerPage\":10,\"TotalContentResults\":162,\"Distance\":50,\"RadiusUnitType\":0,\"Keywords\":\"\",\"Location\":\"\",\"Latitude\":null,\"Longitude\":null,\"ShowRadius\":false,\"IsPagination\":\"True\",\"CustomFacetName\":null,\"FacetTerm\":null,\"FacetType\":0,\"FacetFilters\":[{\"ID\":\"ESPN\",\"FacetType\":5,\"Count\":15,\"Display\":\"ESPN\",\"IsApplied\":true,\"FieldName\":\"custom_fields.IndustryCustomField\"}],\"SearchResultsModuleName\":\"Search Results\",\"SearchFiltersModuleName\":\"Search Filters\",\"SortCriteria\":0,\"SortDirection\":1,\"SearchType\":6,\"CategoryFacetTerm\":null,\"CategoryFacetType\":null,\"LocationFacetTerm\":null,\"LocationFacetType\":null,\"KeywordType\":null,\"LocationType\":null,\"LocationPath\":null,\"OrganizationIds\":null,\"RefinedKeywords\":[],\"PostalCode\":null,\"ResultsType\":1,\"fc\":\"\",\"fl\":\"\",\"fcf\":\"\",\"afc\":\"\",\"afl\":\"\",\"afcf\":\"\"}",
+      "status": 200,
+      "finalURL": "https://www.disneycareers.com/en/search-jobs/resultspost",
+      "contentType": "application/json; charset=utf-8",
+      "capturedAt": "2026-11-10T17:22:51.699Z",
+      "bodyFile": "page2.body",
+      "bytes": 48452,
+      "sha256": "375a23d664be23871b9e5457b2b54fdf145d42253aa39293fe0cd14a12e5f642"
+    },
+    {
+      "url": "https://www.disneycareers.com/en/search-jobs?acm=ALL&alrpm=ALL&ascf=%5B%7B%22key%22:%22custom_fields.IndustryCustomField%22,%22value%22:%22ESPN%22%7D%5D",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://www.disneycareers.com/en/search-jobs?acm=ALL&alrpm=ALL&ascf=%5B%7B%22key%22:%22custom_fields.IndustryCustomField%22,%22value%22:%22ESPN%22%7D%5D",
+      "contentType": "text/html; charset=utf-8",
+      "capturedAt": "2026-11-10T17:22:51.825Z",
+      "bodyFile": "closing1.body",
+      "bytes": 421057,
+      "sha256": "08005593c0346748e1e4da682e4465f56c697271212b3e39f215ac364a218cbd"
+    },
+    {
+      "url": "https://www.disneycareers.com/en/search-jobs/resultspost",
+      "method": "POST",
+      "requestBody": "{\"ActiveFacetID\":0,\"CurrentPage\":2,\"RecordsPerPage\":10,\"TotalContentResults\":162,\"Distance\":50,\"RadiusUnitType\":0,\"Keywords\":\"\",\"Location\":\"\",\"Latitude\":null,\"Longitude\":null,\"ShowRadius\":false,\"IsPagination\":\"True\",\"CustomFacetName\":null,\"FacetTerm\":null,\"FacetType\":0,\"FacetFilters\":[{\"ID\":\"ESPN\",\"FacetType\":5,\"Count\":15,\"Display\":\"ESPN\",\"IsApplied\":true,\"FieldName\":\"custom_fields.IndustryCustomField\"}],\"SearchResultsModuleName\":\"Search Results\",\"SearchFiltersModuleName\":\"Search Filters\",\"SortCriteria\":0,\"SortDirection\":1,\"SearchType\":6,\"CategoryFacetTerm\":null,\"CategoryFacetType\":null,\"LocationFacetTerm\":null,\"LocationFacetType\":null,\"KeywordType\":null,\"LocationType\":null,\"LocationPath\":null,\"OrganizationIds\":null,\"RefinedKeywords\":[],\"PostalCode\":null,\"ResultsType\":1,\"fc\":\"\",\"fl\":\"\",\"fcf\":\"\",\"afc\":\"\",\"afl\":\"\",\"afcf\":\"\"}",
+      "status": 200,
+      "finalURL": "https://www.disneycareers.com/en/search-jobs/resultspost",
+      "contentType": "application/json; charset=utf-8",
+      "capturedAt": "2026-11-10T17:22:52.310Z",
+      "bodyFile": "closing2.body",
+      "bytes": 48452,
+      "sha256": "375a23d664be23871b9e5457b2b54fdf145d42253aa39293fe0cd14a12e5f642"
+    }
+  ]
+}

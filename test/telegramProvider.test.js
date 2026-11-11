@@ -49,7 +49,7 @@ test("Telegram provider posts a text message and returns Telegram's message id",
   }
 });
 
-test("Telegram delivery is disabled unless TELEGRAM_ENABLED is truthy", () => {
+test("Telegram delivery can be explicitly disabled", () => {
   const originalEnabled = process.env.TELEGRAM_ENABLED;
   process.env.TELEGRAM_ENABLED = "false";
 

@@ -38,7 +38,7 @@ export const createDiatozScraper = () => ({
   },
 })
 
-export const run = async () => createDiatozScraper().run()
+export const run = async (options) => createDiatozScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

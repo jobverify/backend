@@ -1,11 +1,12 @@
 import {createHash} from 'node:crypto'
 import {isDeepStrictEqual} from 'node:util'
 import {parseNativeJSON} from '../aecom.workday/nativeJSON.js'
-import {document,one,all,within,cls,norm,flow,snapshot,byClass,childByClass} from './currentHtml.js'
+import {document,one,within,cls,norm,flow,snapshot,byClass,childByClass} from './currentHtml.js'
 import {INLINE_STYLE_CONTRACT,STYLESHEET_DECLARATIONS,CSS_CONTRACT} from './currentStyleContract.js'
 import {CRITICAL_ANCESTRY,STYLE_ATTRIBUTES} from './currentRendererContract.js'
 import {need,failure} from './currentErrors.js'
 export {need,failure,isFailure} from './currentErrors.js'
+const profileNeed=(value,message)=>{if(!value)throw Object.assign(failure(message),{softFailure:true,upstreamOutage:false,failureKind:'surface_drift_or_fail_closed'})}
 export const HOME='https://www.mygreatlearning.com/',CAREERS=HOME+'careers',COMPANY='Great Learning'
 export const sha=bytes=>createHash('sha256').update(bytes).digest('hex')
 export const json=value=>{try{return parseNativeJSON(value)}catch(error){throw failure('JSON: '+error.message)}}
@@ -15,17 +16,18 @@ export function readJSONLD(doc,kind){
  return one(models,'active native '+kind)
 }
 export function verifyStyles(doc,kind){
+ const profileCheck=typeof kind==='string'&&Object.hasOwn(INLINE_STYLE_CONTRACT,kind)?profileNeed:need
  // Styles and stylesheet links apply even inside a visually hidden parent.
  // Their own visual inert flag cannot select CSS metadata. Template/noscript
  // contents, however, are outside the normal static document's style inputs.
  const semantic=node=>typeof node==='string'||['template','noscript','object','iframe','script','textarea'].includes(node.tag)?[]:[node,...node.children.flatMap(semantic)]
- const root=one(doc.nodes(n=>n.tag==='root'),'renderer document'),nodes=semantic(root),styleNodes=nodes.filter(n=>n.tag==='style'),styles=styleNodes.map(n=>sha(n.raw||''));need(isDeepStrictEqual(styles,INLINE_STYLE_CONTRACT[kind]),'unreviewed '+kind+' renderer style inputs')
- const nonces=styleNodes.filter(n=>Object.hasOwn(n.attrs,'nonce')).map(n=>n.attrs.nonce);need(nonces.every(v=>/^[a-f0-9]{24}$/.test(v))&&new Set(nonces).size===1,'unreviewed document style nonce carrier')
- const styleAttributes=styleNodes.map(n=>Object.fromEntries(Object.entries(n.attrs).map(([k,v])=>[k,k==='nonce'?'<per-document-style-nonce>':v])));need(isDeepStrictEqual(styleAttributes,STYLE_ATTRIBUTES[kind]),'unreviewed style-element attributes')
- const links=nodes.filter(n=>n.tag==='link'&&(n.attrs.rel||'').split(/[\t\n\f\r ]+/).some(v=>v.toLowerCase()==='stylesheet')).map(n=>({...n.attrs}));need(isDeepStrictEqual(links,STYLESHEET_DECLARATIONS[kind]),'unreviewed stylesheet declarations')
+ const root=one(doc.nodes(n=>n.tag==='root'),'renderer document'),nodes=semantic(root),styleNodes=nodes.filter(n=>n.tag==='style'),styles=styleNodes.map(n=>sha(n.raw||''));profileCheck(isDeepStrictEqual(styles,INLINE_STYLE_CONTRACT[kind]),'unreviewed '+kind+' renderer style inputs')
+ const nonces=styleNodes.filter(n=>Object.hasOwn(n.attrs,'nonce')).map(n=>n.attrs.nonce);profileCheck(nonces.every(v=>/^[a-f0-9]{24}$/.test(v))&&new Set(nonces).size===1,'unreviewed document style nonce carrier')
+ const styleAttributes=styleNodes.map(n=>Object.fromEntries(Object.entries(n.attrs).map(([k,v])=>[k,k==='nonce'?'<per-document-style-nonce>':v])));profileCheck(isDeepStrictEqual(styleAttributes,STYLE_ATTRIBUTES[kind]),'unreviewed style-element attributes')
+ const links=nodes.filter(n=>n.tag==='link'&&(n.attrs.rel||'').split(/[\t\n\f\r ]+/).some(v=>v.toLowerCase()==='stylesheet')).map(n=>({...n.attrs}));profileCheck(isDeepStrictEqual(links,STYLESHEET_DECLARATIONS[kind]),'unreviewed stylesheet declarations')
  const target=kind==='home'?one(doc.nodes(n=>n.tag==='body'),'native body'):byClass(doc,kind==='careers'?'career-openings__list':'job-opening-container')
- const pathTo=node=>{if(node===target)return[node];for(const c of node.children||[])if(typeof c!=='string'){const path=pathTo(c);if(path)return[node,...path]}return null},criticalAncestry=pathTo(root)?.map(n=>({tag:n.tag,attrs:{...n.attrs}}));need(isDeepStrictEqual(criticalAncestry,CRITICAL_ANCESTRY[kind]),'unreviewed critical renderer ancestry')
- need(nodes.filter(n=>n.tag==='base').length===0,'unreviewed document base');return{inlineStyleSHA256:styles,inlineStyleAttributes:styleAttributes,styleNoncePolicy:'one-consistent-public-nonce-per-document-normalized-after-format-validation',criticalAncestry,declaredStylesheets:links,reviewedRoleScreenStylesheet:kind==='home'?null:{...CSS_CONTRACT},staticDOMMode:'normal-static-document-no-program-execution',programsExecuted:false}
+ const pathTo=node=>{if(node===target)return[node];for(const c of node.children||[])if(typeof c!=='string'){const path=pathTo(c);if(path)return[node,...path]}return null},criticalAncestry=pathTo(root)?.map(n=>({tag:n.tag,attrs:{...n.attrs}}));profileCheck(isDeepStrictEqual(criticalAncestry,CRITICAL_ANCESTRY[kind]),'unreviewed critical renderer ancestry')
+ profileCheck(nodes.filter(n=>n.tag==='base').length===0,'unreviewed document base');return{inlineStyleSHA256:styles,inlineStyleAttributes:styleAttributes,styleNoncePolicy:'one-consistent-public-nonce-per-document-normalized-after-format-validation',criticalAncestry,declaredStylesheets:links,reviewedRoleScreenStylesheet:kind==='home'?null:{...CSS_CONTRACT},staticDOMMode:'normal-static-document-no-program-execution',programsExecuted:false}
 }
 export function readPublisher(html,url){
  const doc=document(html),model=readJSONLD(doc,'Organization'),kind=url===HOME?'home':'careers',styles=verifyStyles(doc,kind)

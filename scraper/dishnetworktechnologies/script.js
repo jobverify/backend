@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { runCurrentDishInventory } from './currentNative20261111.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -128,7 +129,9 @@ const defaultFetchText = async (url) => {
 }
 
 export const createDishNetworkTechnologiesScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchText = defaultFetchText, maxPages = Number.POSITIVE_INFINITY } = {}) {
+  async run(options = {}) {
+    const { fetchText, maxPages = Number.POSITIVE_INFINITY } = options
+    if (!fetchText) return runCurrentDishInventory({ now, ...options })
     const jobs = []
     const seenJobIds = new Set()
 
@@ -157,7 +160,7 @@ export const createDishNetworkTechnologiesScraper = ({ now = () => new Date().to
   },
 })
 
-export const run = async () => createDishNetworkTechnologiesScraper().run()
+export const run = async (options = {}) => createDishNetworkTechnologiesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

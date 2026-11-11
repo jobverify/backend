@@ -62,7 +62,7 @@ const buildAbsoluteUrl = (value) => {
 
 const normalizeListedLocationCodes = (value) => {
   const codes = normalizeWhitespace(value)
-    ?.split(/[\/,|]/)
+    ?.split(/[/,|]/)
     .map((part) => normalizeWhitespace(part)?.toUpperCase())
     .filter(Boolean) || []
 
@@ -305,7 +305,7 @@ export const createDeShawScraper = () => ({
   },
 })
 
-export const run = async () => createDeShawScraper().run()
+export const run = async (options) => createDeShawScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

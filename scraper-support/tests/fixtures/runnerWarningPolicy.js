@@ -93,6 +93,10 @@ globalThis.runnerWarningFixture = {
   status: name => ({ isActive: !(scenario === 'inactive' && name === 'broken') }),
 }
 const stubs = new Map([
+  [new URL('../../../db/db.js', import.meta.url).href,
+    'export default async () => {}'],
+  [new URL('../../../src/pipeline/scraperConcurrency.js', import.meta.url).href,
+    'export const standaloneScraperEnvironment = async () => ({ SCRAPER_CONCURRENCY: process.env.SCRAPER_CONCURRENCY })'],
   [new URL('../../providers/index.js', import.meta.url).href,
     'export const buildScrapers = () => globalThis.runnerWarningFixture.build()'],
   [new URL('../../utils/saveToDB.js', import.meta.url).href, `

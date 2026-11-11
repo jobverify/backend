@@ -192,7 +192,7 @@ export const createAxisMyIndiaScraper = ({
   },
 })
 
-export const run = async () => createAxisMyIndiaScraper().run()
+export const run = async (options) => createAxisMyIndiaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

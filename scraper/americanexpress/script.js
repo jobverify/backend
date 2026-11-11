@@ -217,7 +217,7 @@ export const createAmericanExpressScraper = ({
       const pageJobs = extractSearchResults(payload)
 
       for (const listing of pageJobs) {
-        let detail = listing
+        let detail
 
         try {
           const detailPayload = await fetchJson(buildJobDetailApiUrl(listing.jobId))
@@ -248,7 +248,7 @@ export const createAmericanExpressScraper = ({
   },
 })
 
-export const run = async () => createAmericanExpressScraper().run()
+export const run = async (options) => createAmericanExpressScraper(options).run()
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -1,0 +1,76 @@
+{
+  "source": "bluebinaries",
+  "basis": "Immutable exact copies of six authorized genuine public GET response envelopes and raw bytes from the frozen fourth triage. Responses5 and6 belong to other employers and exist only as foreign-data negative controls.",
+  "triageReviewSHA256": "8cfbd0127b66ac6222fbead44f00a3446e8b9d12fb7301b6a90fb68ff1dd5de2",
+  "packets": [
+    {
+      "number": 1,
+      "metadata": "public-response-01.json",
+      "metadataSHA256": "faef65cf3370ff7e783b005da82d7b6023697ea0b7ddfd3a882e92fd9f32e824",
+      "url": "https://www.bluebinaries.com/",
+      "status": 200,
+      "bodyFile": "public-response-01.body.bin",
+      "bodySHA256": "a3e848ae1fdc2b30fd1fb91b73226c806b36a1f488d1059afd91a1f5a9bbeea3",
+      "bytes": 727,
+      "capturedAt": "2026-11-11T13:45:46.126169+00:00"
+    },
+    {
+      "number": 2,
+      "metadata": "public-response-02.json",
+      "metadataSHA256": "3fc57d565ae8206a514984ee38196bd1ff201439131e313aded006eda963549f",
+      "url": "https://www.bluebinaries.com/static/js/main.726414c5.js",
+      "status": 200,
+      "bodyFile": "public-response-02.body.bin",
+      "bodySHA256": "f015404118bbc6eb96824698308aaa440e7f99c3033282b8ebfee32fc66bce53",
+      "bytes": 958844,
+      "capturedAt": "2026-11-11T13:47:11.006435+00:00"
+    },
+    {
+      "number": 3,
+      "metadata": "public-response-03.json",
+      "metadataSHA256": "d151f749b1f80eccc191e1c5c401e434f0cc12fc29dad698db0e117c0091f811",
+      "url": "https://www.bluebinaries.com/become-a-bluebee/",
+      "status": 200,
+      "bodyFile": "public-response-03.body.bin",
+      "bodySHA256": "41b09ca9a02c03cdb862bebb94773e76328bdd59339ce5cba33454a3532e36b8",
+      "bytes": 72574,
+      "capturedAt": "2026-11-11T13:49:38.358089+00:00"
+    },
+    {
+      "number": 4,
+      "metadata": "public-response-04.json",
+      "metadataSHA256": "0280232c2f0789277d33bd9e0461a43e697bfc149f1011c03da278651ec302cf",
+      "url": "https://www.bluebinaries.com/static/css/main.ee20edae.css",
+      "status": 200,
+      "bodyFile": "public-response-04.body.bin",
+      "bodySHA256": "100c730a97294198da1bfff73e00e29b14e1f36e0af5776d9d384b38467ef517",
+      "bytes": 68810,
+      "capturedAt": "2026-11-11T13:50:33.505495+00:00"
+    },
+    {
+      "number": 5,
+      "metadata": "public-response-05.json",
+      "metadataSHA256": "1e04ff4ac1a143887af402df724953d1a51e0f0a7d1aad363bca59de7938221e",
+      "url": "https://www.appsecure.security/",
+      "status": 200,
+      "bodyFile": "public-response-05.body.bin",
+      "bodySHA256": "052403fd4ae6073d3a4266124432e22f21c0add865c2bcc91aae535c17827377",
+      "bytes": 372287,
+      "capturedAt": "2026-11-11T13:51:19.778616+00:00"
+    },
+    {
+      "number": 6,
+      "metadata": "public-response-06.json",
+      "metadataSHA256": "b50ce5b42b4a12be4be9d7cba8c121c9244d59024164caf8018cbdc35b0449eb",
+      "url": "https://www.affordmed.com/careers",
+      "status": 200,
+      "bodyFile": "public-response-06.body.bin",
+      "bodySHA256": "b26551ded1ca6a27fff607191470e4db91cabc72282a61663799b39cd10b5e0e",
+      "bytes": 4308,
+      "capturedAt": "2026-11-11T13:51:30.032564+00:00"
+    }
+  ],
+  "closingReplayLimit": "There is one genuine opening acquisition per listed response. Tests make distinct opening/closing logical requests but return the same retained packets; this is not a separate or contemporaneous live closing capture.",
+  "derivedExpectedData": "derived-native-literal-models.json",
+  "newNativeIndiaVacancyFacts": 0
+}

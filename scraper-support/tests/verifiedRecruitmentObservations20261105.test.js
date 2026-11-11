@@ -15,6 +15,7 @@ import { extractionDetailHealth } from '../utils/extractionDetailHealth.js'
 import { jobIdentityHashes } from '../utils/jobYield.js'
 import { decorateJobsWithProviderMetadata, getScraperCatalog, createCatalogScraper } from '../providers/index.js'
 import * as exported2u from '../../scraper/2u/script.js'
+import {createTwoUOriginalReader} from '../../test/helpers/twoUCurrentFixture20261110.js'
 
 // Controls are synthetic except the explicitly identified original 2U public
 // response replay. Synthetic controls make no current employer inventory claim.
@@ -28,7 +29,7 @@ const posting = (id, country = 'US', change = {}) => ({ '@type': 'JobPosting', i
   jobLocation: { address: { addressCountry: country, addressLocality: country === 'IN' ? 'Bengaluru' : 'San Francisco' } }, ...change })
 const schemaHtml = rows => '<h1>' + rows[0].title + '</h1>' + description
   + '<script type="application/ld+json">' + JSON.stringify(rows) + '</script>'
-const htmlTransport = (rows, { extraLinks = [], changes = new Map(), root = config.companyCareerPage } = {}) => async url => ({
+const htmlTransport = (rows, { extraLinks = [], changes = new Map() } = {}) => async url => ({
   status: changes.has(url) ? changes.get(url).status : 200, url,
   html: changes.has(url) ? changes.get(url).html : rows.some(row => row.url === url)
     ? schemaHtml(rows.filter(row => row.url === url))
@@ -467,7 +468,7 @@ test('an existing source export and its actual registered adapter preserve posit
   assert.ok(provider)
   // The current 2U export uses original publication bytes. Keep this same
   // positive foreign-vacancy/empty-India contract on its real public model.
-  const directory = new URL('./fixtures/twoUCurrent20261107C31/', import.meta.url)
+  const directory = new URL('./fixtures/twoUCurrent20261110/', import.meta.url)
   const manifest = JSON.parse(readFileSync(new URL('manifest.json', directory), 'utf8'))
   const pages = new Map(manifest.records.map(record => {
     const body = gunzipSync(readFileSync(new URL(record.bodyFile, directory)))
@@ -476,36 +477,46 @@ test('an existing source export and its actual registered adapter preserve posit
     return [record.requestedUrl, { url: record.finalUrl, status: record.status, headers: record.headers,
       bodyBase64: body.toString('base64'), requestedAt: record.sourceRequestedAt, completedAt: record.sourceCompletedAt }]
   }))
+  const currentClock = manifest.captureCompletedAt
   const calls = []
-  const options = { now: () => clock,
+  const options = () => {
+    const readOriginal = createTwoUOriginalReader()
+    return { now: () => currentClock,
     fetchPage: async (url, init) => {
       assert.ok(pages.has(url), 'Only exact original 2U publication URLs may run')
       assert.equal(init.method, 'GET'); assert.equal(init.redirect, 'manual'); assert.equal(init.credentials, 'omit')
       calls.push(url)
-      return structuredClone(pages.get(url))
+      return readOriginal(url)
     },
+    }
   }
-  const exported = await exported2u.run(options), registered = await createCatalogScraper(provider).run(options)
-  assert.equal(calls.length, 32)
+  const exported = await exported2u.run(options()), registered = await createCatalogScraper(provider).run(options())
+  assert.equal(calls.length, 36)
   assert.equal(exported.length, 0)
   assert.equal(registered.length, 0)
-  const expected = { source: provider.source, recordKind: 'vacancy-rows', observedRecordCount: 1, observedVacancyCount: 1,
+  const expected = { source: provider.source, recordKind: 'vacancy-rows', observedRecordCount: 2, observedVacancyCount: 2,
     sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null }
   for (const jobs of [exported, registered]) {
+    const audit = jobs.sourceAudit || jobs.nativeCollectionEvidence
+    for (const [index, page] of audit.originalPages.entries()) {
+      assert.equal(page.requestedURL, manifest.records[index].requestedUrl)
+      assert.equal(page.requestedAt, manifest.records[index].sourceRequestedAt)
+      assert.equal(page.completedAt, manifest.records[index].sourceCompletedAt)
+    }
     assert.deepEqual(readSourceObservationEvidence(jobs, provider.source), expected)
     const inventory = readInventoryEvidence(jobs)
     assert.equal(inventory.status, 'coverage-gap'); assert.equal(inventory.listingComplete, false)
     assert.equal(inventory.reportedTotal, null); assert.equal(inventory.indiaFacetCount, null)
-    assert.equal(inventory.verifiedAt, clock)
-    assert.equal(extractionRawJobMetrics(provider, jobs, inventory).rawJobs, 1)
+    assert.equal(inventory.verifiedAt, currentClock)
+    assert.equal(extractionRawJobMetrics(provider, jobs, inventory).rawJobs, 2)
   }
   assert.equal(exported.sourceAudit.lifecycleCleanupAllowed, false)
   assert.equal(exported.sourceAudit.sourceScopeComplete, false)
-  assert.equal(exported.sourceAudit.observedAt, clock)
+  assert.equal(exported.sourceAudit.observedAt, currentClock)
   assert.equal(exported.sourceAudit.observations[0].country, 'United States')
   assert.equal(exported.sourceAudit.observations[0].sourceDetailComplete, true)
   const result = diagnostics(registered, undefined, provider)
-  assert.equal(result.rawRecords, 1)
+  assert.equal(result.rawRecords, 2)
   assert.equal(result.jobs, 0)
   assert.equal(result.eligibleJobs, 0)
   assert.deepEqual(result.sourceObservations, expected)

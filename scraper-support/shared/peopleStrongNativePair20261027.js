@@ -114,20 +114,28 @@ export function mapPeopleStrongPairRole(source,listing,detail,organization,{orga
  return{source,company:s.company,nativeRoleCompany:company,brand:s.employers.some(x=>key(x)===key(company))?s.employers[0]:company,legalEmployer:null,targetEmployer:s.employers.some(x=>key(x)===key(company)),title:norm(detail.jobTitle),department:typed(organization.orgUnitHierarchy,['Department']),jobId:id,postingId:id,requisitionId:String(detail.requisitionId),sourceRequisitionID:String(detail.requisitionId),requisitionCode:id,sourceUrl:url,applyUrl:url,link:url,applicationIdentity:{publicPostingCode:id,formalRequisitionId:String(detail.requisitionId),entityID:String(detail.entityID),hrOrgUnitID:String(detail.hrOrgUnitID),worksiteID:String(detail.worksiteID)},country,city,location:[worksite,city,state,country].filter(Boolean).join(', '),sourceCountryEvidence:countryEvidence,sourceCountryUnknownReason:country?null:'missing-ambiguous-or-conflicting-native-role-country',employmentType:norm(detail.employmentType),workMode:null,workplaceType:null,experienceRequired:experience,minimumQualification:qualifications.join('; ')||null,preferredQualification:null,requiredSkills:skills,nativeSkills:detail.skills??[],qualifications,certifications,languages,sourceAdditionalCriteria:additional,postingDate:posted,postedAt:posted,closingDate:closing,nativePublicationPrecision:posted?'day':null,nativeExpiryPrecision:closing?'day':null,sourceClosingDateIsExact:false,firstEverPublication:null,sourceDescription:content,jobDescription:content,nativePublicFields,nativeOrganizationHierarchy:organization.orgUnitHierarchy,nativeWorksiteHierarchy:organization.workSiteHierarchy,nativeRequisitionStatus:norm(detail.requisitionStatus),sourceDetailComplete:complete,sourceDetailStatus:complete?'complete':'partial',sourceListingComplete:false,sourceScopeComplete:false,sourceLocationCorroborationComplete:Boolean(country),lifecycleCleanupAllowed:false,scrapedAt:new Date(now).toISOString()}
 }
 
+const cancelLateResponse=value=>{try{Promise.resolve(value?.body?.cancel?.()).catch(()=>{})}catch{}}
+const withCaller=(start,signal,late)=>new Promise((resolve,reject)=>{
+ let settled=false
+ const finish=(bad,value)=>{if(settled){if(!bad)late?.(value);return}settled=true;signal?.removeEventListener('abort',abort);if(signal?.aborted){if(!bad)late?.(value);reject(signal.reason)}else bad?reject(value):resolve(value)}
+ const abort=()=>finish(true,signal.reason)
+ signal?.addEventListener('abort',abort,{once:true})
+ Promise.resolve().then(()=>{signal?.throwIfAborted();return start()}).then(value=>finish(false,value),error=>finish(true,error))
+ if(signal?.aborted)abort()
+})
 function reader(source,options){
  const s=spec(source)
  return async(url,request={})=>{
   const method=request.method??'GET';proof(method==='GET'||method==='POST'&&url.startsWith(s.origin+'/api/cp/rest/altone/cp/jobs/v1?')&&/^offset=\d+&limit=45$/.test(url.split('?')[1])&&request.body==='{}','Unreviewed public request')
   options.signal?.throwIfAborted();const controller=new AbortController(),abort=()=>controller.abort(options.signal.reason);options.signal?.addEventListener('abort',abort,{once:true});let timer
   const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(Object.assign(Error('PeopleStrong native timeout'),{code:'ETIMEDOUT'}))},options.timeoutMs??30000)})
-  const cancelled=new Promise((_,reject)=>controller.signal.addEventListener('abort',()=>reject(controller.signal.reason??Error('Aborted public read')),{once:true}))
   try{
    const init={method,credentials:'omit',redirect:'manual',signal:controller.signal,headers:{Accept:'text/html,application/json',...(method==='POST'?{'Content-Type':'application/json'}:{})},...(method==='POST'?{body:request.body}:{})}
-   const result=await Promise.race([(async()=>{if(options.fetchPage)return options.fetchPage(url,init);const r=await fetch(url,init);return{status:r.status,url:r.url,body:await r.text()}})(),deadline,cancelled]);options.signal?.throwIfAborted()
+   const result=await Promise.race([withCaller(async()=>{if(options.fetchPage)return options.fetchPage(url,init);const r=await withCaller(()=>fetch(url,init),controller.signal,cancelLateResponse);return{status:r.status,url:r.url,body:await withCaller(()=>r.text(),controller.signal)}},controller.signal),deadline]);options.signal?.throwIfAborted()
    proof(result?.status===200||result?.status===404&&source==='amararajaenergymobility'&&url===s.origin+s.shell,'HTTP '+result?.status+' at public careers stage')
    proof(new URL(result.url??url).href===new URL(url).href,'Unexpected public redirect');const raw=result.body??result.html;proof(typeof raw==='string'||Buffer.isBuffer(raw),'Missing public response');proof(Buffer.byteLength(raw)<=16*1024*1024,'Oversize public response');const body=String(raw)
    proof(!/<title[^>]*>\s*(?:just a moment|access denied|attention required)|<(?:h1|p)\b[^>]*>\s*(?:captcha challenge|verify you are human)/i.test(body),'Explicit public access gate');return body
-  }finally{clearTimeout(timer);options.signal?.removeEventListener('abort',abort)}
+  }catch(error){options.signal?.throwIfAborted();throw error}finally{clearTimeout(timer);options.signal?.removeEventListener('abort',abort)}
  }
 }
 async function corporate(source,read){
@@ -173,8 +181,8 @@ async function client(source,read){
  return{main,jobModule:module,initialSearchBody:'{}',emptyInitialFilterVerified:true}
 }
 export const createPeopleStrongPairScraper=(source,defaults={})=>({async run(runOptions={}){
- const options={...defaults,...runOptions},s=spec(source);proof(!options.fetchJson||options.fetchPage,'Listing-only injection requires current fetchPage transport');proof(!options.fetchText||options.fetchPage,'Legacy transport requires current fetchPage transport')
- const read=reader(source,options),now=new Date(typeof options.now==='function'?options.now():options.now??Date.now()).toISOString(),delegation=await corporate(source,read),protocol=await client(source,read)
+ const options={...defaults,...runOptions};options.signal?.throwIfAborted();const s=spec(source);proof(!options.fetchJson||options.fetchPage,'Listing-only injection requires current fetchPage transport');proof(!options.fetchText||options.fetchPage,'Legacy transport requires current fetchPage transport')
+ const read=reader(source,options),now=new Date(await withCaller(()=>typeof options.now==='function'?options.now():options.now??Date.now(),options.signal)).toISOString(),delegation=await corporate(source,read),protocol=await client(source,read)
  const traverse=async()=>{
   const rows=[],pages=[];let total=null
   for(let offset=0;offset<=100035;offset+=45){const p=json(await read(buildPairListUrl(source,offset),{method:'POST',body:'{}'}));proof(p.messageCode?.code===200&&Number.isSafeInteger(p.totalRecords)&&p.totalRecords>=0&&p.totalRecords<=100000,'Missing native search total');proof(Array.isArray(p.response)||p.response===null,'Missing native response');const a=p.response??[];proof(a.length<=45,'Native page overflow');if(total===null)total=p.totalRecords;proof(total===p.totalRecords,'Native total changed');pages.push({offset,rows:a.length});rows.push(...a);if(offset>=total){proof(a.length===0,'Native terminal page not empty');return{rows,pages,total}}}
@@ -190,6 +198,7 @@ export const createPeopleStrongPairScraper=(source,defaults={})=>({async run(run
  const verifiedZeroInventory=scopeComplete&&!limited&&derivedTargetRawJobs===0
  const report={source,status:scopeComplete&&!limited?'complete':'partial',surface:s.careers,protocol,delegation,delegationMatches,reportedNativeTotal:initial.total,nativeGroupReportedTotal,derivedTargetRawJobs,observedNativeRecords:seen.size,pages:initial.pages,closingPages:closing.pages,closingMatches,nativeInventoryComplete,fullNativeDetails:roles.length,renderedFullDetails:roles.filter(j=>j.sourceDetailComplete).length,targetEmployerCount:roles.filter(j=>j.targetEmployer).length,excludedEmployerCount:excluded.length,excludedEmployers:excluded.map(j=>({postingId:j.jobId,nativeRoleCompany:j.nativeRoleCompany})),unknownCountryCount:unknown.length,unknownCountryIds:unknown.map(j=>j.jobId),partialDetailIds:partial.map(j=>j.jobId),closedIds:closed.map(j=>j.jobId),advertisedCountMismatch,failures,observedIndiaJobs:all.length,observedEligibleJobs:eligibility.eligibleJobs.length,eligibilityFilterCounts:eligibility.filterCounts,rawJobs:derivedTargetRawJobs,indiaJobs:scopeComplete?all.length:null,eligibleJobs:scopeComplete?eligibility.eligibleJobs.length:null,sourceScopeComplete:scopeComplete,sourceListingComplete:scopeComplete&&!limited,cleanupAllowed:false,verifiedZeroInventory,limited,checkedAt:now,roles}
  for(const j of jobs){j.sourceScopeComplete=scopeComplete;j.sourceListingComplete=scopeComplete&&!limited}
- if(typeof options.onReport==='function')await options.onReport(report)
+ if(typeof options.onReport==='function')await withCaller(()=>options.onReport(report),options.signal)
+ options.signal?.throwIfAborted()
  return attachInventoryEvidence(jobs,{status:scopeComplete&&!limited?(verifiedZeroInventory?'verified-empty':'complete-inventory'):'discovery-only',surface:s.careers,firstParty:true,listingComplete:scopeComplete&&!limited,pagesFetched:initial.pages.length+closing.pages.length,reportedTotal:derivedTargetRawJobs,indiaFacetCount:scopeComplete?all.length:null,verifiedAt:now,reason:scopeComplete?'native-inventory-and-full-details':'native-scope-or-corporate-count-incomplete'})
 }})

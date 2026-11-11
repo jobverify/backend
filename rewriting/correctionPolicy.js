@@ -21,7 +21,7 @@ export const createCorrectionPolicy = ({ mode = 'adaptive' } = {}) => {
       if (probe) state.probing = false;
       if (accepted === null) return; // Transport failure/cancellation is not a factual rejection.
       if (accepted) { state.failures = 0; state.remaining = 0; }
-      else if (++state.failures >= 3) state.remaining = 8;
+      else if (++state.failures >= 3) state.remaining = Math.min(64, 8 * 2 ** Math.min(3, state.failures - 3));
     } };
   } };
 };

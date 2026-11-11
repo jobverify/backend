@@ -159,7 +159,7 @@ export const createProseRewriteClient = ({ endpoint, model, requestMs, planCache
     // The server alias changes at every startup. Content identity must instead
     // use the pinned model/policy and the exact text that enters generation.
     const sourceHash = createHash('sha256').update(source).digest('hex');
-    const cacheKey = createHash('sha256').update(JSON.stringify(['prose-source-cache-v4', REWRITE_MODEL, sourceHash, allowSourceFallback, correctionMode])).digest('hex');
+    const cacheKey = createHash('sha256').update(JSON.stringify(['prose-source-cache-v5', REWRITE_MODEL, sourceHash, allowSourceFallback, correctionMode])).digest('hex');
     const cacheFile = planCacheDir && path.join(path.resolve(planCacheDir), cacheKey + '.json');
     const partialFile = cacheFile && cacheFile + '.partial';
     let generationRequests = 0, transportRetries = 0, rawText, diagnostic;

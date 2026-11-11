@@ -8,7 +8,7 @@ import { getPipelineSchedule, savePipelineSchedule } from '../controllers/pipeli
 import { updateSiteSettings } from "../controllers/siteSettingsController.js";
 import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs } from '../controllers/adminTelegramAlertsController.js';
 import { getPipelineStatus, savePipelineConfiguration, getPipelineCapabilities, triggerPipeline, getPipelineRuns, getPipelineRun, getPipelineLog, downloadPipeline, retiredPipelineControl, stopPipeline, stopAllPipelines } from '../controllers/pipelineController.js';
-import { getUserSuggestions } from "../controllers/userSuggestionController.js";
+import { getUserSuggestions, resolveUserSuggestion, deleteUserSuggestion } from "../controllers/userSuggestionController.js";
 import { purgeScraperJobs } from "../controllers/scraperMaintenanceController.js";
 import {
   getDashboardStats,
@@ -125,6 +125,9 @@ router.get(
   validateRequest,
   getUserSuggestions,
 );
+
+router.put("/suggestions/:id/resolve", mongoIdParamValidation("id", "suggestion ID"), validateRequest, resolveUserSuggestion);
+router.delete("/suggestions/:id", mongoIdParamValidation("id", "suggestion ID"), validateRequest, deleteUserSuggestion);
 
 // Job Listing Management
 router.get("/jobs", adminJobsQueryValidation, validateRequest, getJobsTable);

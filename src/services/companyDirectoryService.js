@@ -1,5 +1,6 @@
 import Job from "../models/Job.js";
 import { applyPublicJobVisibility } from "../utils/publicJobVisibility.js";
+import { normalizePublicWorkArrangement, PUBLIC_WORK_ARRANGEMENT_EXPRESSION } from '../utils/publicWorkArrangement.js';
 
 export const DEFAULT_COMPANY_PAGE_SIZE = 24;
 export const MAX_COMPANY_PAGE_SIZE = 48;
@@ -15,6 +16,8 @@ const RECENT_JOB_FIELDS = [
   "jobType",
   "primaryRoleDomain",
   "workArrangement",
+  "remoteStatus",
+  "sourceRemoteStatusUnresolved",
   "postedAt",
   "sortDate",
 ].join(" ");
@@ -106,7 +109,9 @@ const companyGroupStages = () => [
       locationSets: { $addToSet: "$companyDirectoryLocations" },
       jobTypes: { $addToSet: "$jobType" },
       roleDomains: { $addToSet: "$primaryRoleDomain" },
-      workArrangements: { $addToSet: "$workArrangement" },
+      workArrangements: { $addToSet: { $cond: [
+        { $eq: ['$sourceRemoteStatusUnresolved', true] }, PUBLIC_WORK_ARRANGEMENT_EXPRESSION, '$workArrangement',
+      ] } },
       latestPostedAt: { $max: { $ifNull: ["$postedAt", "$sortDate"] } },
     },
   },
@@ -166,7 +171,8 @@ const normalizeRecentJob = (job) => ({
   locations: cleanStringList(job?.locations),
   jobType: cleanString(job?.jobType),
   roleDomain: cleanString(job?.primaryRoleDomain),
-  workArrangement: cleanString(job?.workArrangement),
+  workArrangement: job?.sourceRemoteStatusUnresolved === true
+    ? normalizePublicWorkArrangement(job.workArrangement, job) : cleanString(job?.workArrangement),
   postedAt: job?.postedAt ?? job?.sortDate ?? null,
 });
 

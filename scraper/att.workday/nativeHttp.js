@@ -48,20 +48,29 @@ export async function getAttNative(url, options = {}) {
 async function getAttNativeAttempt(url, {requestImpl = https.request, timeoutMs = 20000, signal} = {}) {
   allowedUrl(url)
   if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 20000) throw error('Invalid request timeout bound')
-  if (signal?.aborted) throw signal.reason ?? error('Request aborted')
+  if (signal?.aborted) throw signal.reason
   const controller = new AbortController()
-  const stop = () => controller.abort(signal.reason ?? error('Request aborted'))
+  const stop = () => controller.abort(signal.reason)
   signal?.addEventListener('abort', stop, {once: true})
   const timer = setTimeout(() => controller.abort(error('Request timeout')), timeoutMs)
   let request, response, abortListener
   try {
     return await new Promise((resolve, reject) => {
       let settled = false
+      const disposed = new WeakSet()
+      const ignoreLateError = () => {}
+      const dispose = owned => {
+        if (!owned || !['object', 'function'].includes(typeof owned) || disposed.has(owned)) return
+        disposed.add(owned)
+        // Disposal is best effort; terminal handle errors cannot replace the primary.
+        try { owned.on('error', ignoreLateError) } catch {}
+        try { owned.destroy() } catch {}
+      }
       const fail = failure => {
         if (settled) return
         settled = true
-        response?.destroy()
-        request?.destroy()
+        dispose(response)
+        dispose(request)
         if (controller.signal.aborted) { reject(controller.signal.reason); return }
         const code = permanentTlsCode(failure)
         if (code) {
@@ -74,13 +83,14 @@ async function getAttNativeAttempt(url, {requestImpl = https.request, timeoutMs 
         // source transport errors cannot conceal programmer errors or causes.
         reject(failure)
       }
-      abortListener = () => fail(controller.signal.reason ?? error('Request aborted'))
+      abortListener = () => fail(controller.signal.reason)
       controller.signal.addEventListener('abort', abortListener, {once: true})
       try {
         request = requestImpl(url, {
           method: 'GET', maxHeaderSize: 65536, signal: controller.signal,
           headers: {Accept: 'text/html,application/javascript,application/json', 'User-Agent': 'Mozilla/5.0'},
         }, incoming => {
+          if (settled) { dispose(incoming); return }
           response = incoming
           if (incoming.statusCode !== 200 || incoming.headers.location) {
             const statusError = error('Native HTTP status/redirect unavailable: ' + incoming.statusCode)
@@ -117,8 +127,9 @@ async function getAttNativeAttempt(url, {requestImpl = https.request, timeoutMs 
             resolve({body, url, status: 200, contentType})
           })
         })
+        if (settled) { dispose(request); return }
         request.once('error', fail)
-        request.end()
+        if (!settled) request.end()
       } catch (failure) { fail(failure) }
     })
   } finally {

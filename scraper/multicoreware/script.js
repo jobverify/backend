@@ -200,7 +200,7 @@ export const createMulticorewareScraper = ({
   },
 })
 
-export const run = async () => createMulticorewareScraper().run()
+export const run = async (options) => createMulticorewareScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

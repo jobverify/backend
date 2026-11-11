@@ -115,7 +115,7 @@ export const createConfluentScraper = () => ({
   },
 })
 
-export const run = async () => createConfluentScraper().run()
+export const run = async (options) => createConfluentScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

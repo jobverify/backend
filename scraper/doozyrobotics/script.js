@@ -42,7 +42,7 @@ export const createDoozyRoboticsScraper = () => ({
   },
 })
 
-export const run = async () => createDoozyRoboticsScraper().run()
+export const run = async (options) => createDoozyRoboticsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

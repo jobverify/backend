@@ -10,6 +10,7 @@ import { rewriteDeadline, rewriteStopDetails, rewriteQueueQuery, rewriteQueuePag
 import { prepareRewriteRuntime, startRewriteWorker, workerMemoryBytes, rewriteWorkerConfiguration, rewriteGpuLayers, collectRewriteRuntimeDiagnostics } from '../rewriting/worker.js';
 import { createRewriteDiagnostics } from '../rewriting/diagnostics.js';
 import { summarizeRewriteCapacity } from '../rewriting/capacity.js';
+import { formatRewriteReport } from '../rewriting/reporting.js';
 import { CORRECTION_MODES } from '../rewriting/correctionPolicy.js';
 import { createProgressLogger } from './lib/progressLogger.js';
 
@@ -56,8 +57,8 @@ const budgetSignal = AbortSignal.timeout(Math.max(1, Math.floor(deadline - Date.
 const signal = AbortSignal.any([controller.signal, budgetSignal]);
 let worker, jobs, phase = 'configuration';
 const progress = createProgressLogger('rewrite', () => ({
-  mode: summary.mode, shard, shardCount, queued: summary.queued, processed: summary.results?.length || 0,
-  remaining: summary.queued === undefined ? undefined : Math.max(0, summary.queued - (summary.results?.length || 0)),
+  mode: summary.mode, shard, shardCount, queued: summary.queued, processed: summary.results?.filter(result => !result.interrupted).length || 0,
+  remaining: summary.queued === undefined ? undefined : Math.max(0, summary.queued - (summary.results?.filter(result => !result.interrupted).length || 0)),
 }));
 const setPhase = value => { phase = value; progress.phase(value); };
 try {
@@ -154,5 +155,10 @@ try {
   }
   await fs.writeFile(summaryFile + '.tmp', JSON.stringify(summary, null, 2) + '\n');
   await fs.rename(summaryFile + '.tmp', summaryFile);
+  if (apply) {
+    const report = formatRewriteReport(summary);
+    await fs.writeFile(path.join(path.dirname(summaryFile), path.parse(summaryFile).name + '.md'), report);
+    if (process.env.GITHUB_STEP_SUMMARY) await fs.appendFile(process.env.GITHUB_STEP_SUMMARY, report);
+  }
   console.log(JSON.stringify({ ...summary, results: summary.results?.length }));
 }

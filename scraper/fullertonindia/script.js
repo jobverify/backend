@@ -2,8 +2,10 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { FULLERTON_INDIA_CATALOG } from './catalog.js'
-import {declaredRoleDescription,readDescriptionPDF,fetchDescriptionPDF} from './nativeDetails.js'
+import {declaredRoleDescription,readDescriptionPDF,fetchDescriptionPDF,nativePDFRoleIdentity} from './nativeDetails.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -68,6 +70,7 @@ const stripTagsToText = (value) => normalizeWhitespace(
 )
 
 const normalizeField = (value) => normalizeWhitespace(value) || null
+const nativeCountryLabelOf = record => typeof record?.Country_Name==='string'?normalizeField(record.Country_Name):null
 
 const toAbsoluteUrl = (value, baseUrl = JOBS_BOARD_URL) => {
   if (!value) return null
@@ -137,7 +140,9 @@ const normalizeDate = (value) => {
   const month = MONTHS[monthText.toLowerCase()]
   if (!month) return null
 
-  return `${year}-${month}-${day.padStart(2, '0')}`
+  const candidate=`${year}-${month}-${day.padStart(2, '0')}`
+  const parsed=new Date(candidate+'T00:00:00Z')
+  return Number.isFinite(parsed.getTime())&&parsed.toISOString().slice(0,10)===candidate?candidate:null
 }
 
 const uniqueParts = (parts) => {
@@ -159,7 +164,7 @@ const uniqueParts = (parts) => {
 }
 
 const buildLocation = (record) => {
-  const country = normalizeField(record?.Country_Name) || 'India'
+  const country = nativeCountryLabelOf(record)
   const locationName = normalizeField(record?.LOCATIONNAME || record?.Field2)
   const state = normalizeField(record?.State_Name)
   const parts = uniqueParts([locationName, state, country])
@@ -206,7 +211,7 @@ const getTrackToken = (recordOrTrackToken) => {
 const getSearchKeyword = (record) => normalizeField(record?.SearchKeyWord)
 
 const isIndiaListingRecord = (record) => {
-  const country = normalizeField(record?.Country_Name)
+  const country = nativeCountryLabelOf(record)
   return typeof country==='string'&&/^India$/i.test(country)
 }
 
@@ -291,6 +296,8 @@ export const mapListingRecordToJob = (record, { scrapedAt = new Date().toISOStri
   const sourceUrl = buildDetailUrl(record)
   const applyUrl = buildApplyUrl(record)
   const city = normalizeField(record?.LOCATIONNAME || record?.Field2)
+  const nativeCountryLabel=nativeCountryLabelOf(record)
+  const country=nativeCountryName(nativeCountryLabel)
 
   if (!title || !requisitionId || !sourceUrl || !applyUrl) {
     return null
@@ -302,7 +309,9 @@ export const mapListingRecordToJob = (record, { scrapedAt = new Date().toISOStri
     department: normalizeField(record?.FunName) || normalizeField(record?.Field1),
     location: buildLocation(record),
     city,
-    country: normalizeField(record?.Country_Name) || 'India',
+    country,
+    sourceNativeCountryLabel:nativeCountryLabel,
+    sourceCountryScopeUnresolved:country===null,
     sourceUrl,
     applyUrl,
     jobId: `${SOURCE}-${requisitionId}`,
@@ -316,7 +325,11 @@ export const mapListingRecordToJob = (record, { scrapedAt = new Date().toISOStri
     compensation: null,
     postingDate: normalizeDate(record?.PublishDate),
     closingDate: null,
-    jobDescription: buildJobDescription(record),
+    jobDescription: null,
+    sourceDescription:null,
+    sourceListingSummary:buildJobDescription(record),
+    sourceDetailComplete:false,
+    sourceDetailFailureKind:'native-description-not-read',
     source: SOURCE,
     companyCareerPage: CAREERS_URL,
     companyDomain: PROVIDER_METADATA.companyDomain,
@@ -378,7 +391,7 @@ export const createFullertonIndiaScraper = ({
 
     const scrapedAt = now()
 
-    const jobs=[],failures=[],seen=new Set(),pdfs=new Map(),records=extractListingRecords(payload)
+    const jobs=[],failures=[],detailFailures=[],seen=new Set(),pdfs=new Map(),records=extractListingRecords(payload)
     for(const record of records.filter(isIndiaListingRecord)){
       signal?.throwIfAborted()
       const job=mapListingRecordToJob(record,{scrapedAt})
@@ -394,16 +407,24 @@ export const createFullertonIndiaScraper = ({
         const declared=declaredRoleDescription(page,record)
         if(!pdfs.has(declared.url))pdfs.set(declared.url,fetchPDF(declared.url,{signal}).then(bytes=>readDescriptionPDF(bytes,{signal})))
         const pdf=await pdfs.get(declared.url)
-        jobs.push({...job,country:'India',jobDescription:pdf.text,sourceDescription:pdf.text,sourceScopeComplete:false,sourceListingComplete:false,
+        const identity=nativePDFRoleIdentity(pdf,record)
+        if(!identity.complete)failures.push(identity.failureKind)
+        jobs.push({...job,country:'India',jobDescription:identity.complete?pdf.text:null,sourceDescription:identity.complete?pdf.text:null,
+          sourceDetailComplete:identity.complete,sourceDetailFailureKind:identity.failureKind,
+          sourceDescriptionIdentityComplete:identity.complete,sourceNativePDFTitle:identity.title,sourceScopeComplete:false,sourceListingComplete:false,
           lifecycleCleanupAllowed:false,applicationVisited:false,nativeSourceRecord:{listing:record,detail:declared,pdf},
           nativeEmployerBinding:{method:'current-corporate-handoff-and-role-brand',brand:'SMFG India Credit',legalEmployer:null}})
       }catch(error){
         signal?.throwIfAborted();failures.push(String(error.message||error).slice(0,250))
+        detailFailures.push({stage:'native-detail',message:String(error.message||error).slice(0,250),cause:error})
         if(/HTTP (?:401|403|429|451)\b/.test(String(error.message||error)))break
       }
     }
-    if(!jobs.length&&failures.length)throw Object.assign(Error('Fullerton India current native role descriptions unavailable'),{failureKind:'coverage_gap',nativeFailures:failures,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
-    return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:JOBS_BOARD_URL,firstParty:true,listingComplete:false,pagesFetched:3+seen.size,
+    if(!jobs.length&&failures.length)throw Object.assign(Error('Fullerton India current native role descriptions unavailable',{cause:detailFailures[0]?.cause}),{
+      failureKind:'coverage_gap',nativeFailures:failures,nativeEvidence:{source:SOURCE,observedListingCount:records.length,records,jobs,failures:detailFailures},sourceScopeComplete:false,lifecycleCleanupAllowed:false})
+    attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:records.length,observedVacancyCount:records.length,
+      sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
+    return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:JOBS_BOARD_URL,firstParty:fetchPage===defaultFetchPage&&fetchJson===defaultFetchJson&&fetchPDF===fetchDescriptionPDF,listingComplete:false,pagesFetched:3+seen.size,
       reportedTotal:null,indiaFacetCount:null,verifiedAt:scrapedAt,reason:'current-native-India-roles-and-linked-full-PDF-descriptions;company-scope-incomplete;failures='+failures.length})
   },
 })

@@ -185,7 +185,7 @@ export const createNeeyamoScraper = ({
   },
 })
 
-export const run = async () => createNeeyamoScraper().run()
+export const run = async (options) => createNeeyamoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

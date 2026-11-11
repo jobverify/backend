@@ -22,7 +22,7 @@ export async function run(options = {}) {
   const controller = new AbortController()
   const signal = options.signal ? AbortSignal.any([options.signal, controller.signal]) : controller.signal
   const timer = setTimeout(() => controller.abort(Error('AT&T native: Source deadline exceeded')), sourceTimeoutMs)
-  const abort = () => { if (signal.aborted) throw signal.reason ?? Error('AT&T native: Source aborted') }
+  const abort = () => { if (signal.aborted) throw signal.reason }
   async function get(url) {
     abort()
     if (!options.fetch) return (await getAttNative(url, {timeoutMs, signal, requestImpl: options.requestImpl})).body
@@ -33,6 +33,7 @@ export async function run(options = {}) {
     const timeout = setTimeout(() => requestController.abort(Error('AT&T native: Request timeout')), timeoutMs)
     let listener
     const operation = Promise.resolve().then(async () => {
+      abort()
       const response = await options.fetch(url, {method: 'GET', redirect: 'manual', signal: requestSignal, headers: {Accept: 'text/html,application/javascript,application/json', 'User-Agent': 'Mozilla/5.0'}})
       abort()
       need(response?.status === 200 && response.url === url, 'Native HTTP status/redirect unavailable')
@@ -43,7 +44,7 @@ export async function run(options = {}) {
     })
     try {
       return await Promise.race([operation, new Promise((_, reject) => {
-        listener = () => reject(requestSignal.reason ?? Error('AT&T native: Request aborted'))
+        listener = () => reject(requestSignal.reason)
         requestSignal.addEventListener('abort', listener, {once: true})
         if (requestSignal.aborted) listener()
       })])

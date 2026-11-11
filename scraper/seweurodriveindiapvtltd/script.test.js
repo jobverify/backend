@@ -52,7 +52,7 @@ const careersHtml = `
 </html>
 `
 
-test('SEW-EURODRIVE accepts the current title-less first-party careers surface', async () => {
+test('SEW-EURODRIVE parses the existing synthetic title-less careers fixture', async () => {
   const sew = await loadSeweurodriveModule()
 
   assert.equal(sew.SOURCE, 'seweurodriveindiapvtltd')
@@ -65,7 +65,7 @@ test('SEW-EURODRIVE accepts the current title-less first-party careers surface',
   assert.equal(sew.extractOpenings(careersHtml).length, 2)
 })
 
-test('SEW-EURODRIVE run returns normalized India openings from the verified table surface', async () => {
+test('SEW-EURODRIVE synthetic city-only rows retain raw location and unresolved country', async () => {
   const sew = await loadSeweurodriveModule()
   const requestedUrls = []
 
@@ -79,6 +79,10 @@ test('SEW-EURODRIVE run returns normalized India openings from the verified tabl
   assert.deepEqual(requestedUrls, [sew.CAREERS_URL])
   assert.equal(jobs.length, 2)
   assert.equal(jobs[0].title, 'Executive/Assistant Manager - Technical Sales')
-  assert.equal(jobs[0].location, 'Mumbai, India')
+  assert.equal(jobs[0].location, 'Mumbai')
+  assert.equal(jobs[0].country, null)
+  assert.equal(jobs[0].sourceCountryScopeUnresolved, true)
+  assert.equal(jobs[0].requisitionId, null)
+  assert.equal(jobs[0].jobDescription, null)
   assert.equal(jobs[0].applyUrl, 'https://www.seweurodriveindia.com/meta_seiten/web_online_contact_form_career.html')
 })

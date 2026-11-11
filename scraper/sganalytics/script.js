@@ -12,11 +12,6 @@ const SOURCE = 'sganalytics'
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
-const normalizeWhitespace = (value) => String(value ?? '')
-  .replace(/\u00a0/g, ' ')
-  .replace(/\s+/g, ' ')
-  .trim()
-
 export const hasOfficialCareersSignal = (html) =>
   /Current Opening/i.test(html || '')
   && /(Job Function|Business Insights|Technology Services)/i.test(html || '')
@@ -69,7 +64,7 @@ export const createSgAnalyticsScraper = () => ({
   },
 })
 
-export const run = async () => createSgAnalyticsScraper().run()
+export const run = async (options) => createSgAnalyticsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

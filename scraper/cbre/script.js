@@ -139,4 +139,4 @@ export const createCbreScraper = () => ({
   },
 })
 
-export const run = async () => createCbreScraper().run()
+export const run = async (options) => createCbreScraper().run(options)

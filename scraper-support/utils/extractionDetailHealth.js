@@ -1,4 +1,15 @@
-import { hasSourceDescription } from '../../src/utils/jobSourceContent.js'
+import { getSourceDescription, hasSourceDescription } from '../../src/utils/jobSourceContent.js'
+import { buildSourceDescriptionDisplay } from '../../src/utils/jobDescriptionDisplay.js'
+
+const hasDisplayableSourceDescription = job => {
+  if (!hasSourceDescription(job)) return false
+  try {
+    const display = buildSourceDescriptionDisplay(getSourceDescription(job))
+    return hasSourceDescription({ sourceDescription: display.description })
+  } catch {
+    return false
+  }
+}
 
 const data = (value, key) => {
   if (!value || typeof value !== 'object') return undefined
@@ -109,7 +120,7 @@ export function extractionDetailHealth(jobs = []) {
   let missingDescriptions = 0
   const failureKinds = {}
   for (const job of jobs) {
-    const missing = !hasSourceDescription(job)
+    const missing = !hasDisplayableSourceDescription(job)
     if (missing) missingDescriptions++
     if (missing || job.sourceDetailComplete === false || job.sourceListingComplete === false) {
       incompleteJobs++

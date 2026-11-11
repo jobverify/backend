@@ -54,7 +54,7 @@ export const createDiyaEdulabsScraper = () => ({
   },
 })
 
-export const run = async () => createDiyaEdulabsScraper().run()
+export const run = async (options) => createDiyaEdulabsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

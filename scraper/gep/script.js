@@ -42,7 +42,7 @@ export const createGepScraper = ({
   },
 })
 
-export const run = async () => createGepScraper().run()
+export const run = async (options) => createGepScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

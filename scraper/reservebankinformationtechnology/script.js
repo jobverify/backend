@@ -1,11 +1,9 @@
 import path from 'node:path'
-import { CANONICAL_CITIES } from '../../scraper-support/utils/cities.js'
-import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import {normalizeNativeLocation,strictCreatedCalendarDate,attachUnqualifiedApiObservations,literalApiText,literalApiRecordID} from './nativeFields20261111.js'
 import { resolvePublishedMainClient, parsePublishedAnonymousBootstrap, assertPublishedApiBase } from './publicBootstrap.js'
 import { fileURLToPath } from 'node:url'
 
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-import { enrichJobsWithPublicExperience } from '../../scraper-support/utils/publicExperienceEnrichment.js'
 
 import { RESERVE_BANK_INFORMATION_TECHNOLOGY_CATALOG } from './catalog.js'
 
@@ -23,22 +21,6 @@ export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-const DEFAULT_EXPERIENCE_ENRICHMENT_CONCURRENCY = 4
-const MONTHS = {
-  january: '01',
-  february: '02',
-  march: '03',
-  april: '04',
-  may: '05',
-  june: '06',
-  july: '07',
-  august: '08',
-  september: '09',
-  october: '10',
-  november: '11',
-  december: '12',
-}
-
 const normalizeWhitespace = (value = '') => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
   .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
@@ -61,63 +43,10 @@ const toAbsoluteUrl = (value, baseUrl = CAREERS_URL) => {
   }
 }
 
-const normalizeLocation = (value) => {
-  const normalized = normalizeWhitespace(value)
-  if (!normalized) {
-    return {
-      location: null,
-      city: null,
-      state: null,
-      country: null,
-    }
-  }
-
-
-  const parts = normalized.split(',').map((part) => part.trim()).filter(Boolean)
-  if (/india$/i.test(normalized) && parts.length >= 3) {
-    const [city, state] = parts
-    return {
-      location: normalized,
-      city,
-      state,
-      country: 'India',
-    }
-  }
-
-  const explicitIndia = /\bIndia$/i.test(normalized)
-  const namedIndiaCities = parts.every(part => {
-    const key = part.toLowerCase()
-    const city = Object.hasOwn(CANONICAL_CITIES, key) ? CANONICAL_CITIES[key] : null
-    return typeof city === 'string' && !['None', 'Remote'].includes(city)
-  })
-  if (!explicitIndia && !namedIndiaCities) {
-    const error = new Error('ReBIT incomplete country scope: unverified location ' + normalized)
-    error.softFailure = true
-    error.failureKind = 'incomplete_location_scope'
-    error.abortRetries = true
-    throw error
-  }
-
-  if (parts.length > 1) {
-    return {
-      location: normalized,
-      city: null,
-      state: null,
-      country: 'India',
-    }
-  }
-
-  return {
-    location: `${normalized}, India`,
-    city: normalized,
-    state: null,
-    country: 'India',
-  }
-}
-
 const normalizeExperience = (value) => {
-  const normalized = normalizeWhitespace(value)
+  const normalized = literalApiText(value)
   if (!normalized) return null
+  if (/&(?:#\d+|#x[\da-f]+|[a-z]+);/i.test(normalized)) return null
 
   const rangeMatch = normalized.match(/^(\d+(?:\+)?)\s*-\s*(\d+)\s*(?:years?)?$/i)
   if (rangeMatch) {
@@ -130,20 +59,6 @@ const normalizeExperience = (value) => {
   }
 
   return normalized.replace(/\byears?\b/i, 'Years')
-}
-
-const parsePostingDate = (value) => {
-  const normalized = normalizeWhitespace(value)
-  if (!normalized) return null
-
-  const match = normalized.match(/^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$/)
-  if (!match) return null
-
-  const [, day, monthName, year] = match
-  const month = MONTHS[monthName.toLowerCase()]
-  if (!month) return null
-
-  return `${year}-${month}-${day.padStart(2, '0')}`
 }
 
 const parseCurrentOpeningsPayload = (payload) => {
@@ -163,15 +78,6 @@ export const hasOfficialCareersSignal = (html = '') => {
     && /google\.com\/recaptcha\/api\.js\?render=explicit/i.test(page)
     && /<app-root/i.test(page)
     && /src="[^"]*main-[^"]+\.js"/i.test(page)
-}
-
-const buildJobDescription = (job, apiDescription = null) => {
-  const normalizedApiDescription = normalizeWhitespace(apiDescription)
-  if (normalizedApiDescription) {
-    return normalizedApiDescription
-  }
-
-  return null
 }
 
 const guardedFirstPartyFetch = async (url, options = {}) => {
@@ -229,16 +135,19 @@ const defaultFetchJson = (url, { accessToken } = {}) => fetchJsonWithRetry(url, 
 export const extractIndiaJobsFromCurrentOpeningsPayload = (
   payload,
   { scrapedAt = new Date().toISOString() } = {},
-) => parseCurrentOpeningsPayload(payload)
+) => {
+  const records = parseCurrentOpeningsPayload(payload)
+  const jobs = records
   .filter((record) => record && typeof record === 'object')
   .filter((record) => record.job_status !== false)
-  .map((record) => {
-    const title = normalizeWhitespace(record.job_title)
-    const department = normalizeWhitespace(record.department) || null
-    const locationDetails = normalizeLocation(record.location)
-    const applyUrl = toAbsoluteUrl(record.apply_now_link)
-    const experienceRequired = normalizeExperience(record.job_experience)
-    const jobId = normalizeWhitespace(record.id)
+  .flatMap((record) => {
+    const title = literalApiText(record.job_title)
+    const department = literalApiText(record.department)
+    const locationDetails = normalizeNativeLocation(record.location, record)
+    const applyUrl = literalApiText(record.apply_now_link) ? toAbsoluteUrl(record.apply_now_link) : null
+    const rawExperience = literalApiText(record.job_experience) ? normalizeExperience(record.job_experience) : null
+    const experienceRequired = rawExperience && !/^(?:n\/?a|none|null|unknown|tbd|not (?:specified|available))$/i.test(rawExperience) ? rawExperience : null
+    const jobId = literalApiRecordID(record.id)
 
     let trustedApplication = false
     try {
@@ -247,8 +156,8 @@ export const extractIndiaJobsFromCurrentOpeningsPayload = (
         && /^\/ms\/candidatev2\/main\/careers\/jobDetails\/[a-z0-9]+$/.test(url.pathname)
         && !url.username && !url.password
     } catch {}
-    if (!title || !locationDetails.location || !trustedApplication || !jobId) {
-      throw new Error('Reserve Bank Information Technology current openings payload changed materially')
+    if (!title || !trustedApplication || !jobId) {
+      return []
     }
 
     const job = {
@@ -257,7 +166,13 @@ export const extractIndiaJobsFromCurrentOpeningsPayload = (
       department,
       ...locationDetails,
       jobId,
-      requisitionId: jobId,
+      requisitionId: null,
+      nativeJobId: null,
+      nativeRequisitionId: null,
+      sourceNativeAPIRecord: structuredClone(record),
+      sourceInternalIdBasis: 'native-api-record-id-not-formal-requisition',
+      sourceRecordKind: 'api-role-observation',
+      nativeLegalEmployer: null,
       sourceUrl: applyUrl,
       applyUrl,
       employmentType: null,
@@ -265,30 +180,44 @@ export const extractIndiaJobsFromCurrentOpeningsPayload = (
       minimumQualification: null,
       preferredQualification: null,
       requiredSkills: [],
-      postingDate: parsePostingDate(record.created_on),
+      postingDate: null,
+      sourceNativeCreatedOn: record.created_on ?? null,
+      sourceNativeCreatedDate: strictCreatedCalendarDate(record.created_on),
+      sourceNativeCreatedDateKind: 'api-record-creation-not-employer-publication',
       closingDate: null,
-      remoteStatus: 'On-site',
+      remoteStatus: null,
       source: SOURCE,
       link: applyUrl,
       scrapedAt,
-      publicExperienceChecked: Boolean(experienceRequired),
+      publicExperienceChecked: false,
+      sourceExperienceScopeUnresolved: !experienceRequired,
+      skipPublicExperienceEnrichment: true,
+      sourceDetailComplete: false,
+      sourceDetailFailureKind: 'current-native-api-program-unqualified',
+      sourceScopeComplete: false,
+      sourceListingComplete: false,
+      lifecycleCleanupAllowed: false,
+      companyIndiaTotal: null,
+      companyGlobalTotal: null,
     }
 
     return {
       ...job,
-      jobDescription: buildJobDescription(job, record.job_desc),
+      jobDescription: null,
+      sourceDescription: null,
+      description: null,
     }
   })
+  return attachUnqualifiedApiObservations(jobs,records,{source:SOURCE,surface:CURRENT_OPENINGS_API_URL,scrapedAt})
+}
 
 export const createReserveBankInformationTechnologyScraper = ({
   now: defaultNow = () => new Date().toISOString(),
-  experienceEnrichmentConcurrency = DEFAULT_EXPERIENCE_ENRICHMENT_CONCURRENCY,
 } = {}) => ({
   async run({
     fetchText = defaultFetchText,
     postJson = defaultPostJson,
     fetchJson = defaultFetchJson,
-    fetchPublicJobText = null,
     now = defaultNow,
   } = {}) {
     const careersHtml = await fetchText(CAREERS_URL)
@@ -312,38 +241,8 @@ export const createReserveBankInformationTechnologyScraper = ({
       throw new Error('ReBIT current openings contain duplicate job identity')
     }
 
-    const shouldEnrichPublicDetails =
-      collectedJobs.some((job) => !job.experienceRequired)
-      && (typeof fetchPublicJobText === 'function' || fetchText === defaultFetchText)
-    const enrichedPublicJobs = shouldEnrichPublicDetails
-      ? await enrichJobsWithPublicExperience(collectedJobs.filter(job => !job.experienceRequired), {
-          ...(typeof fetchPublicJobText === 'function'
-            ? {
-                fetchText: fetchPublicJobText,
-                useBrowserFallback: false,
-              }
-            : {}),
-          concurrency: Math.min(
-            experienceEnrichmentConcurrency,
-            Math.max(1, collectedJobs.length),
-          ),
-        })
-      : []
-    const enrichedById = new Map(enrichedPublicJobs.map(job => [job.jobId, job]))
-    const jobsWithPublicDetails = collectedJobs.map(job => enrichedById.get(job.jobId) || job)
-
-    const jobs = jobsWithPublicDetails
-      .map((job) => ({
-        ...job,
-        publicExperienceChecked: job.publicExperienceChecked === true || Boolean(job.experienceRequired),
-      }))
-      .sort((left, right) => left.title.localeCompare(right.title))
-    return attachInventoryEvidence(jobs, {
-      status: openingsPayload.length ? 'complete-inventory' : 'verified-empty',
-      surface: CURRENT_OPENINGS_API_URL, firstParty: true, listingComplete: true,
-      pagesFetched: 1, reportedTotal: openingsPayload.length, indiaFacetCount: jobs.length,
-      verifiedAt: scrapedAt, reason: 'Published anonymous SPA bootstrap and unpaginated first-party current-openings inventory. Missing descriptions remain null.'
-    })
+    const jobs = collectedJobs.sort((left,right)=>left.title.localeCompare(right.title))
+    return jobs
   },
 })
 

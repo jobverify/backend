@@ -1,0 +1,112 @@
+{
+  "source": "decimalai",
+  "fixture": {
+    "path": "test/fixtures/decimalai-current-programme-20261111.json.gz",
+    "sha256": "ae8b1f3078c3c42c50f10492c6aee6cc6fb8e582ec53d99eeb9d6dfa32aae4dd",
+    "bytes": 351155
+  },
+  "capturedAtFirst": "2026-11-11T08:29:14.654Z",
+  "capturedAtLast": "2026-11-11T08:38:17.294Z",
+  "responses": [
+    {
+      "requestedURL": "https://www.decimal.app/",
+      "finalURL": "https://www.decimal.app/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:29:14.654Z",
+      "completedAt": "2026-11-11T08:29:16.213Z",
+      "bodyBytes": 122143,
+      "bodySHA256": "e710a7d566de1f6e73573573af74d439207451fac28f13f9e8e57fcf09d406ae"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers",
+      "finalURL": "https://www.decimal.app/careers",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:29:16.214Z",
+      "completedAt": "2026-11-11T08:29:16.545Z",
+      "bodyBytes": 105271,
+      "bodySHA256": "ef8e33c79dfd6e791f8ba0bf5375fd24ce2311a73a7b3581af80eb1d2fc6b8f5"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers/sales-development-representative",
+      "finalURL": "https://www.decimal.app/careers/sales-development-representative",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:32:31.919Z",
+      "completedAt": "2026-11-11T08:32:33.257Z",
+      "bodyBytes": 108394,
+      "bodySHA256": "b062a882fc51b96f2dc095863a60176a4ed576ecdb593bfde9511488aafa9af7"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers/account-executive",
+      "finalURL": "https://www.decimal.app/careers/account-executive",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:32:33.257Z",
+      "completedAt": "2026-11-11T08:32:33.928Z",
+      "bodyBytes": 108825,
+      "bodySHA256": "26da53c9cb69929fefec4045793a89e7e382b17e186329c2f40b65ac40d23ca7"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers/staff-software-engineer",
+      "finalURL": "https://www.decimal.app/careers/staff-software-engineer",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:32:33.928Z",
+      "completedAt": "2026-11-11T08:32:34.356Z",
+      "bodyBytes": 108267,
+      "bodySHA256": "6dd68c78713e7f1ef15b06ce1e9d5184f1f1c4302fe4f1f4380d33b99cf8ebae"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers/sales-development-representative",
+      "finalURL": "https://www.decimal.app/careers/sales-development-representative",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:38:14.798Z",
+      "completedAt": "2026-11-11T08:38:16.160Z",
+      "bodyBytes": 108394,
+      "bodySHA256": "b062a882fc51b96f2dc095863a60176a4ed576ecdb593bfde9511488aafa9af7"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers/account-executive",
+      "finalURL": "https://www.decimal.app/careers/account-executive",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:38:16.162Z",
+      "completedAt": "2026-11-11T08:38:16.439Z",
+      "bodyBytes": 108825,
+      "bodySHA256": "26da53c9cb69929fefec4045793a89e7e382b17e186329c2f40b65ac40d23ca7"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers/staff-software-engineer",
+      "finalURL": "https://www.decimal.app/careers/staff-software-engineer",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:38:16.441Z",
+      "completedAt": "2026-11-11T08:38:16.737Z",
+      "bodyBytes": 108267,
+      "bodySHA256": "6dd68c78713e7f1ef15b06ce1e9d5184f1f1c4302fe4f1f4380d33b99cf8ebae"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/careers",
+      "finalURL": "https://www.decimal.app/careers",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:38:16.738Z",
+      "completedAt": "2026-11-11T08:38:17.006Z",
+      "bodyBytes": 105271,
+      "bodySHA256": "ef8e33c79dfd6e791f8ba0bf5375fd24ce2311a73a7b3581af80eb1d2fc6b8f5"
+    },
+    {
+      "requestedURL": "https://www.decimal.app/",
+      "finalURL": "https://www.decimal.app/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "requestedAt": "2026-11-11T08:38:17.008Z",
+      "completedAt": "2026-11-11T08:38:17.294Z",
+      "bodyBytes": 122143,
+      "bodySHA256": "e710a7d566de1f6e73573573af74d439207451fac28f13f9e8e57fcf09d406ae"
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRecruitmentBatchSource } from '../../scraper-support/utils/recruitmentBatch20261103.js'
+import { runCurrentDecimalProgramme } from './currentProgramme.js'
 
 export const SOURCE = "decimalai"
 export const COMPANY = "Decimal AI"
 export const CAREERS_URL = "https://www.decimal.app/careers"
 export const DISPOSITION = 'runtime-verified-recruitment'
-export const run = options => runRecruitmentBatchSource(SOURCE, options)
+export const run = options => runCurrentDecimalProgramme(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

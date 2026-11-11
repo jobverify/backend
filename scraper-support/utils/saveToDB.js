@@ -8,7 +8,7 @@ import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 import { fileURLToPath } from 'url'
-import { normalizeCity } from './cityNormalizer.js'
+import './cityNormalizer.js'
 import { filterIndiaJobs } from './indiaLocationFilter.js'
 import { extractionDetailHealth } from './extractionDetailHealth.js'
 import { sourceLifecycleCleanupForbidden } from './inventoryEvidence.js'
@@ -27,6 +27,7 @@ import {
   resolveJobMissesBeforeExpiry,
 } from '../../src/utils/jobLifecycle.js'
 import { resolveJobPublicationDate } from '../../src/utils/jobPublicationDate.js'
+import { explicitNativeWorkArrangement, normalizePublicWorkArrangement } from '../../src/utils/publicWorkArrangement.js'
 import { normalizeScrapedJob, resolveJobType } from './normalizeScrapedJob.js'
 import { applicationIdentityLookup, applicationPersistenceFilter, coalesceApplicationIdentities, generateFingerprint, resolveApplicationIdentities } from './applicationIdentity.js'
 export { generateFingerprint } from './applicationIdentity.js'
@@ -212,13 +213,19 @@ const emitStage = (source, onStage, event = {}) => {
   })
 }
 
-const getAbortReason = (signal, fallbackMessage) => (
-  signal?.reason || new Error(fallbackMessage)
-)
+const getAbortReason = signal => signal.reason
 
-const throwIfAborted = (signal, fallbackMessage = 'Scraper persistence aborted') => {
+const throwIfAborted = (signal) => {
   if (signal?.aborted) {
-    throw getAbortReason(signal, fallbackMessage)
+    throw getAbortReason(signal)
+  }
+}
+
+const checkedStageCallback = (callback, signal) => {
+  if (typeof callback !== 'function') return callback
+  return event => {
+    try { return callback(event) }
+    finally { throwIfAborted(signal) }
   }
 }
 
@@ -241,6 +248,7 @@ const runStage = async (source, onStage, stage, operation, details = {}, { signa
       durationMs: Date.now() - startedAt,
       ...details,
     })
+    throwIfAborted(signal)
     return result
   } catch (error) {
     emitStage(source, onStage, {
@@ -250,15 +258,24 @@ const runStage = async (source, onStage, stage, operation, details = {}, { signa
       error: error?.message || String(error),
       ...details,
     })
+    throwIfAborted(signal)
     throw error
   }
 }
 
 export const saveToDB = async (jobs, source, options = {}) => {
-  await ensureConnected()
-  const JobModel = await getJobModel()
-  const onStage = options.onStage
   const signal = options.signal || null
+  throwIfAborted(signal)
+  let JobModel
+  try {
+    await ensureConnected()
+    throwIfAborted(signal)
+    JobModel = await getJobModel()
+  } catch (error) {
+    throwIfAborted(signal)
+    throw error
+  }
+  const onStage = checkedStageCallback(options.onStage, signal)
   throwIfAborted(signal)
 
   const now = normalizeLifecycleDate(options.now) || new Date()
@@ -300,16 +317,31 @@ export const saveToDB = async (jobs, source, options = {}) => {
       )
   throwIfAborted(signal)
 
-  const normalizedJobs = enrichedJobs.map(job => normalizeScrapedJob(job, { source }))
+  // Retain incoming evidence before legacy normalization can invent a city
+  // default. The private symbol survives identity coalescing, never JSON/DB.
+  const incomingWorkMode = Symbol('incoming-native-work-mode')
+  const normalizedJobs = enrichedJobs.map(job => ({ ...normalizeScrapedJob(job, { source }),
+    [incomingWorkMode]: { hasExplicitFlag: typeof job.sourceRemoteStatusUnresolved === 'boolean',
+      explicitStatus: explicitNativeWorkArrangement(job), location: job.location, locations: job.locations },
+  }))
   const rewriteMode = options.descriptionRewriteMode || process.env.JOB_DESCRIPTION_REWRITE_MODE || 'off'
   if (!['off', 'publish'].includes(rewriteMode)) throw new Error('JOB_DESCRIPTION_REWRITE_MODE must be off or publish')
   const existingJobs = enrichedJobs.length === 0 || (rewriteMode === 'off' && !hasLiveDatabaseHandle())
     ? []
     : await JobModel.find(applicationIdentityLookup(normalizedJobs))
-      .select('fingerprint jobId requisitionId applicationUrlIsGeneric applyUrl sourceUrl city classification postClassification scrapedAt scrapedTimestamp title originalTitle company location salary description sourceDescription sourceContentHash sourceContentHashVersion descriptionFormat descriptionRewrite minimumQualification preferredQualification requiredSkills publicExperienceChecked sourceEmploymentType sourceExperienceRequired employerExperienceLevel employerStreetAddress postedAt sortDate postedAtProvenance postedAtProvenanceValue eligibleBatches eligibleBatchesProvenance jobType employmentType experienceRequired experienceLevel seniority experienceYears experienceBucket experienceProfile')
+      .select('fingerprint jobId requisitionId applicationUrlIsGeneric applyUrl sourceUrl city classification postClassification scrapedAt scrapedTimestamp title originalTitle company location salary description sourceDescription sourceContentHash sourceContentHashVersion descriptionFormat descriptionRewrite minimumQualification preferredQualification requiredSkills publicExperienceChecked sourceEmploymentType sourceExperienceRequired sourceNativeExperienceConflict employerExperienceLevel employerStreetAddress postedAt sortDate postedAtProvenance postedAtProvenanceValue eligibleBatches eligibleBatchesProvenance jobType employmentType experienceRequired experienceLevel seniority experienceYears experienceBucket experienceProfile sourceRemoteStatusUnresolved remoteStatus workArrangement')
       .lean().exec()
   const identities = coalesceApplicationIdentities(resolveApplicationIdentities(normalizedJobs, existingJobs))
   const existingByKey = new Map(identities.filter(identity => identity.previous).map(identity => [identity.fingerprint, identity.previous]))
+  const retainedNativeWorkMode = (job, previous) => {
+    const incoming = job[incomingWorkMode]
+    if (previous?.sourceRemoteStatusUnresolved !== true || !incoming || incoming.hasExplicitFlag) return {}
+    const literalStatus = normalizeScrapedJob({ location: incoming.location, locations: incoming.locations,
+      remoteStatus: null, sourceRemoteStatusUnresolved: true }).remoteStatus
+    return { sourceRemoteStatusUnresolved: true,
+      remoteStatus: incoming.explicitStatus || literalStatus || previous.remoteStatus || null,
+      workArrangement: previous.workArrangement }
+  }
   const sourceJobs = identities.map(({ job, previous }) => {
     if (job.preserveExistingSourceContent !== true
       && job.preserveExistingSourceDescription === true && !hasSourceDescription(job) && previous) {
@@ -322,6 +354,8 @@ export const saveToDB = async (jobs, source, options = {}) => {
         sourceDescription, jobDescription: sourceDescription,
         sourceEmploymentType: job.sourceEmploymentType ?? previous.sourceEmploymentType,
         sourceExperienceRequired: job.sourceExperienceRequired ?? previous.sourceExperienceRequired,
+        sourceNativeExperienceConflict: Object.hasOwn(job, 'sourceNativeExperienceConflict')
+          ? job.sourceNativeExperienceConflict : previous.sourceNativeExperienceConflict,
         employerExperienceLevel: job.employerExperienceLevel ?? previous.employerExperienceLevel,
         employerStreetAddress: job.employerStreetAddress ?? previous.employerStreetAddress,
         minimumQualification: job.minimumQualification ?? previous.minimumQualification,
@@ -333,16 +367,18 @@ export const saveToDB = async (jobs, source, options = {}) => {
         experienceRequired: hasFreshExperience ? job.sourceExperienceRequired : previous.experienceRequired,
         publicExperienceChecked: job.publicExperienceChecked === true || previous.publicExperienceChecked === true,
         salary: job.salary ?? previous.salary,
+        ...retainedNativeWorkMode(job, previous),
       }
     }
     if (job.preserveExistingSourceContent !== true) return job
     // A fresh detail response supersedes the fallback flag and prior decision.
     if (hasSourceDescription(job)) return { ...job, preserveExistingSourceContent: false }
     if (!previous) return job
-    return { ...previous, ...job,
+    return { ...previous, ...job, ...retainedNativeWorkMode(job, previous),
       sourceDescription: getSourceDescription(previous), jobDescription: getSourceDescription(previous),
       sourceEmploymentType: previous.sourceEmploymentType,
       sourceExperienceRequired: previous.sourceExperienceRequired,
+      sourceNativeExperienceConflict: previous.sourceNativeExperienceConflict,
       employerExperienceLevel: previous.employerExperienceLevel,
       employerStreetAddress: previous.employerStreetAddress,
       minimumQualification: previous.minimumQualification,
@@ -438,6 +474,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
           ...descriptionUpdates,
           sourceEmploymentType: normalizedJob.sourceEmploymentType || null,
           sourceExperienceRequired: normalizedJob.sourceExperienceRequired ?? null,
+          sourceNativeExperienceConflict: normalizedJob.sourceNativeExperienceConflict ?? null,
           ...normalizeEmployerDisclosures(normalizedJob),
           eligibleBatches: normalizedJob.eligibleBatches || [],
           eligibleBatchesProvenance: normalizedJob.eligibleBatchesProvenance === 'source' ? 'source' : null,
@@ -452,7 +489,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
           seniority: normalizedJob.seniority || 'Unknown',
           primaryRoleDomain: normalizedJob.primaryRoleDomain || 'Other',
           secondaryRoleDomains: normalizedJob.secondaryRoleDomains || [],
-          workArrangement: normalizedJob.workArrangement || 'On-site',
+          workArrangement: normalizePublicWorkArrangement(normalizedJob.workArrangement, normalizedJob),
           skillIds: normalizedJob.skillIds || [],
           requiredSkillIds: normalizedJob.requiredSkillIds || [],
           preferredSkillIds: normalizedJob.preferredSkillIds || [],
@@ -496,6 +533,10 @@ export const saveToDB = async (jobs, source, options = {}) => {
             state: normalizedJob.state,
             country: normalizedJob.country,
             remoteStatus: normalizedJob.remoteStatus,
+            sourceRemoteStatusUnresolved: normalizedJob.sourceRemoteStatusUnresolved === true,
+            ...(normalizedJob.sourceRemoteStatusUnresolved === true ? {
+              workArrangement: normalizePublicWorkArrangement(normalizedJob.workArrangement, normalizedJob),
+            } : {}),
             source: normalizedJob.source || source,
             sourceUrl,
             applyUrl,
@@ -612,9 +653,10 @@ export const saveToDB = async (jobs, source, options = {}) => {
   const incompleteListing = jobs.some((job) => job?.sourceListingComplete === false)
   // Missing descriptions no longer reject otherwise eligible jobs. Incomplete
   // detail collection still cannot authorize cleanup of previous vacancies.
+  const detailHealth = extractionDetailHealth(indiaJobs)
   const incompleteDetails = jobs.some((job) => job?.sourceDetailComplete === false)
-    || indiaJobs.some((job) => !hasSourceDescription(job))
-    || extractionDetailHealth(indiaJobs).nativeCollections?.some((collection) => !collection.complete) === true
+    || detailHealth.missingDescriptions > 0
+    || detailHealth.nativeCollections?.some((collection) => !collection.complete) === true
   const cleanupForbidden = sourceLifecycleCleanupForbidden(jobs)
   const incompleteSource = incompleteListing || incompleteDetails || cleanupForbidden
   const authorizedEmptyLifecycle = currentFingerprints.length === 0
@@ -814,7 +856,7 @@ const writeDryRunSnapshotIfChanged = async (filePath, content, options = {}) => 
 export const saveDryRunSnapshot = async (jobs, filePath, options = {}) => {
   const signal = options.signal || null
   const source = options.source || jobs[0]?.source || 'dry-run'
-  const onStage = options.onStage
+  const onStage = checkedStageCallback(options.onStage, signal)
   throwIfAborted(signal)
   const filteredJobs = filterIndiaJobs(jobs)
   const hasTargetedSelection = typeof options.shouldEnrichJob === 'function'

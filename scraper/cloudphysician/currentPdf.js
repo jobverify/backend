@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
-import { getDocument, VerbosityLevel } from 'pdfjs-dist/legacy/build/pdf.mjs'
+import { extractPdfTextWorkerCore } from '../../scraper-support/shared/pdfTextWorkerCore.js'
+import { createNativePdfTextContext } from '../../scraper-support/shared/nativePdfTextContext20261111.js'
 import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
@@ -36,23 +37,22 @@ function listing(html) {
 }
 
 async function pdfDocument(bytes, signal) {
-  const task = getDocument({data: new Uint8Array(bytes), useWorkerFetch: false, isEvalSupported: false, verbosity: VerbosityLevel.ERRORS})
+  const context = createNativePdfTextContext({signal})
   try {
-    const pdf = await task.promise
-    need(pdf.numPages > 0 && pdf.numPages <= 16, 'native PDF page count outside bounds')
-    const pages = [], applications = []
-    for (let index = 1; index <= pdf.numPages; index++) {
-      signal.throwIfAborted()
-      const page = await pdf.getPage(index)
-      const content = await page.getTextContent()
-      const text = content.items.filter(item => typeof item.str === 'string')
-        .map(item => item.str + (item.hasEOL ? '\n' : ' ')).join('').trim()
-      need(text.length >= 40, 'native PDF has missing or unreadable criteria pages')
-      pages.push(text)
-      for (const annotation of await page.getAnnotations()) if (annotation.url === APPLICATION) applications.push(annotation.url)
+    const native = await extractPdfTextWorkerCore(bytes, {...context, maxPages: 16, includePageLinks: true})
+    need(native.numPages > 0 && native.numPages <= 16, 'native PDF page count outside bounds')
+    const pages = native.pageTexts
+    need(Array.isArray(pages) && pages.length === native.numPages && Array.isArray(native.pageLinkUrls)
+      && native.pageLinkUrls.length === native.numPages, 'native PDF page or annotation results incomplete')
+    const applications = []
+    for (let index = 0; index < pages.length; index++) {
+      need(typeof pages[index] === 'string' && pages[index].length >= 40, 'native PDF has missing or unreadable criteria pages')
+      need(Array.isArray(native.pageLinkUrls[index]), 'native PDF annotation results incomplete')
+      for (const url of native.pageLinkUrls[index]) if (url === APPLICATION) applications.push(url)
     }
+    context.check()
     return {pages, text: pages.join('\n\n'), applications, sha256: sha(bytes)}
-  } finally { await task.destroy() }
+  } finally { context.close() }
 }
 
 export async function runCurrentCloudphysician(options = {}) {

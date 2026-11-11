@@ -109,7 +109,7 @@ export const createCgPowerScraper = ({
   },
 })
 
-export const run = async () => createCgPowerScraper().run()
+export const run = async (options) => createCgPowerScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

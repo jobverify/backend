@@ -69,7 +69,7 @@ export const createZomatoScraper = () => ({
   },
 })
 
-export const run = async () => createZomatoScraper().run()
+export const run = async (options) => createZomatoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

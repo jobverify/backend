@@ -49,7 +49,7 @@ export const createRVSystemsScraper = ({
   },
 })
 
-export const run = async () => createRVSystemsScraper().run()
+export const run = async (options) => createRVSystemsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

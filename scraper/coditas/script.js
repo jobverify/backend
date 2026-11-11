@@ -100,7 +100,7 @@ export const createCoditasScraper = () => ({
   },
 })
 
-export const run = async () => createCoditasScraper().run()
+export const run = async (options) => createCoditasScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -135,7 +135,7 @@ export const createDecimalPointScraper = ({
   },
 })
 
-export const run = async () => createDecimalPointScraper().run()
+export const run = async (options) => createDecimalPointScraper(options).run()
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -5,7 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import companyAliases from '../providers/companyAliases.json' with { type: 'json' }
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
-import { hydrateProviderCatalogEntry } from '../providers/index.js'
+import { getScraperCatalog, hydrateProviderCatalogEntry } from '../providers/index.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const modulePath = path.resolve(currentDir, '../../scraper/rupeek/script.js')
@@ -42,20 +42,28 @@ test('Rupeek local catalog captures the verified first-party careers page and Li
   assert.equal(provider.companyDomain, 'rupeek.com')
   assert.equal(provider.atsPlatform, 'linkedin-company-jobs')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-public-page')
+  assert.equal(provider.paginationStrategy, 'bounded-corporate-page+up-to20-own-details+closing-corporate-and-role-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-careers-page+html-job-cards+linkedin-apply-links',
+    'reviewed-corporate-react-reveal+explicit-country-labels+own-linkedin-identity-publisher-full-criteria',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
-  assert.equal(provider.verifiedOn, '2026-07-17')
+  assert.equal(provider.verifiedOn, '2026-11-11')
+  assert.equal(provider.sourceScopeComplete, false)
+  assert.equal(provider.lifecycleCleanupAllowed, false)
+  assert.equal(provider.verifiedPublicJobCount, null)
+  assert.equal(provider.verifiedIndiaJobCount, null)
+  assert.equal(provider.nativeLegalEmployer, null)
+  assert.equal(provider.verificationDisposition, 'current-corporate-role-cards-own-detail-read-rate-limited-incomplete')
   assert.match(provider.dryRunFile, /rupeek[\\/]jobs\.json$/i)
   assert.equal(provider.modulePath, modulePath)
-  assert.match(provider.verifiedSurfaceSummary, /Friday, July 17, 2026/i)
+  assert.match(provider.verifiedSurfaceSummary, /November 11, 2026/i)
   assert.match(provider.verifiedSurfaceSummary, /https:\/\/rupeek\.com\/about\/careers/i)
   assert.match(provider.verifiedSurfaceSummary, /https:\/\/rupeek\.com\/careers/i)
-  assert.match(provider.verifiedSurfaceSummary, /Open Positions/i)
+  assert.match(provider.verifiedSurfaceSummary, /15 corporate role cards/i)
+  assert.match(provider.verifiedSurfaceSummary, /429/i)
+  assert.match(provider.verifiedSurfaceSummary, /no actual closing/i)
   assert.match(provider.verifiedSurfaceSummary, /LinkedIn/i)
   assert.equal(Object.prototype.hasOwnProperty.call(companyAliases, 'Rupeek'), false)
 
@@ -91,4 +99,13 @@ test('Rupeek hydrated local catalog stays script-runner compatible for central r
   assert.match(provider.modulePath, /rupeek[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /rupeek[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')
+  // Rupeek's local catalog is not one of index.js's automatic source-owned
+  // overlays. The coordinator applies metadata to the shared provider object
+  // separately; verify routing identity without claiming that propagation.
+  const active = getScraperCatalog().find((item) => item.source === 'rupeek')
+  assert.ok(active)
+  for (const field of ['source', 'companyName', 'companyDomain', 'adapter', 'countryFilter', 'parser']) {
+    assert.equal(active[field], provider[field])
+  }
+  assert.equal(active.modulePath, provider.modulePath)
 })

@@ -7,7 +7,8 @@ export const isUnavailableZeroOutcome = outcome => (
 // Upserts may proceed for partial results; retiring unseen vacancies needs a
 // current complete source inventory and complete role details before the save.
 export const inventoryCleanupOptions = diagnostics => (
-  diagnostics?.staleCheckSkipped !== true && isCompleteScraperAttempt({ success: true, ...diagnostics })
+  diagnostics?.inventoryEvidence?.lifecycleCleanupAllowed !== false
+    && diagnostics?.staleCheckSkipped !== true && isCompleteScraperAttempt({ success: true, ...diagnostics })
     ? {} : { replaceExisting: false }
 )
 

@@ -1,3 +1,5 @@
+import { FALLBACK_PARALLEL_SCRAPER_CONCURRENCY } from '../../scraper-support/utils/parallelConcurrency.js';
+
 export const STAGES = ['scraper', 'rewrite', 'classification'];
 export const WORKFLOWS = { scraper: 'scraper.yml', rewrite: 'rewrite-descriptions.yml', classification: 'classify-jobs.yml' };
 export const WORKFLOW_NAMES = { 'Jobverify Scraper Cron': 'scraper', 'Jobverify Description Rewrite': 'rewrite', 'Jobverify Post-scrape Classification': 'classification' };
@@ -9,7 +11,7 @@ export function validateScraperConcurrency(value) {
 }
 export const defaultScraperConcurrency = () => {
   const value=Number(process.env.SCRAPER_CONCURRENCY);
-  return Number.isSafeInteger(value)&&value>0?value:1;
+  return Number.isSafeInteger(value)&&value>0?value:FALLBACK_PARALLEL_SCRAPER_CONCURRENCY;
 };
 export const defaultConfiguration = () => ({ stages: STAGES.map(key => ({ key, enabled: true })), scraperConcurrency:defaultScraperConcurrency() });
 export function validateConfiguration(value) {
@@ -46,13 +48,18 @@ export function stageOutcome(key, summary={}, code=0) {
 export const isTerminal = status => ['completed','failed','incomplete','cancelled','interrupted'].includes(status);
 
 /** A successful handoff may still leave queue work and rejected items. */
-export const describeStageCompletion = (key, summary = {}, outcome) => ({
+export const describeStageCompletion = (key, summary = {}, outcome) => {
+ const processingComplete = outcome === 'completed' && !summary.interrupted && !summary.budgetExhausted && !summary.qualityStopped
+    && summary.stopReason !== 'budget_exhausted' && summary.reason !== 'workflow_budget_exhausted'
+    && !(summary.pendingEstimate > 0) && !(summary.leased > 0);
+ return {
   ...summary,
   handoffReady: outcome === 'completed',
-  processingComplete: outcome === 'completed' && !summary.interrupted && !summary.budgetExhausted && !summary.qualityStopped
-    && summary.stopReason !== 'budget_exhausted' && summary.reason !== 'workflow_budget_exhausted'
-    && !(summary.pendingEstimate > 0) && !(summary.leased > 0),
+  processingComplete,
+  ...(key === 'rewrite' ? { processingStatus: outcome === 'failed' ? 'failed'
+    : summary.cancelled || summary.stopReason === 'cancelled' ? 'cancelled' : processingComplete ? 'complete' : 'partial' } : {}),
   ...(key === 'rewrite' && Number.isFinite(summary.queued) ? {
     unpublishedEstimate: Math.max(0, summary.queued - (summary.published || 0)),
   } : {}),
-});
+ };
+};

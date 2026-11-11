@@ -58,7 +58,7 @@ export const createAcceleroIsaScraper = () => ({
   },
 })
 
-export const run = async () => createAcceleroIsaScraper().run()
+export const run = async (options) => createAcceleroIsaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

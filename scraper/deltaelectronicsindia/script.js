@@ -35,7 +35,7 @@ export const createDeltaElectronicsIndiaScraper = () => ({
   },
 })
 
-export const run = async () => createDeltaElectronicsIndiaScraper().run()
+export const run = async (options) => createDeltaElectronicsIndiaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

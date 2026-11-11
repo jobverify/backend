@@ -273,34 +273,48 @@ export const extractSearchResults = ({
 }
 
 const throwIfAborted = (signal) => {
-  if (signal?.aborted) throw signal.reason || new Error('Bosch scrape cancelled')
+  if (signal?.aborted) throw signal.reason
 }
 
+const waitForCancellation = (action, signal) => new Promise((resolve, reject) => {
+  const cleanup = () => signal?.removeEventListener('abort', stop)
+  const stop = () => { cleanup();reject(signal.reason) }
+  if (signal?.aborted) { stop();return }
+  signal?.addEventListener('abort', stop, { once: true })
+  Promise.resolve().then(() => {
+    throwIfAborted(signal)
+    return action()
+  }).then(value => { cleanup();resolve(value) }, error => { cleanup();reject(error) })
+})
+
 const mapWithConcurrency = async (items, concurrency, task, signal) => {
-  let nextIndex = 0
-  let firstError = null
+  const controller = new AbortController()
+  const activeSignal = signal ? AbortSignal.any([signal, controller.signal]) : controller.signal
+  let nextIndex = 0, stopPeers
+  let firstError, failed = false
   const worker = async () => {
-    while (!firstError && nextIndex < items.length) {
+    while (!failed && nextIndex < items.length) {
       try {
         throwIfAborted(signal)
       } catch (error) {
-        firstError ||= error
+        if (!failed) { failed = true;firstError = error;stopPeers = setImmediate(() => controller.abort(error)) }
         return
       }
       const item = items[nextIndex]
       nextIndex += 1
       try {
-        await task(item)
+        await task(item, activeSignal)
       } catch (error) {
-        firstError ||= error
+        if (!failed) { failed = true;firstError = error;stopPeers = setImmediate(() => controller.abort(error)) }
         return
       }
     }
   }
   const workerCount = Math.min(items.length, concurrency)
-  await Promise.all(Array.from({ length: workerCount }, () => worker()))
-  if (firstError) throw firstError
+  try { await Promise.all(Array.from({ length: workerCount }, () => worker())) }
+  finally { clearImmediate(stopPeers) }
   throwIfAborted(signal)
+  if (failed) throw firstError
 }
 
 export const createBoschGlobalSoftwareTechnologiesScraper = ({
@@ -318,7 +332,10 @@ export const createBoschGlobalSoftwareTechnologiesScraper = ({
 
     for (let page = 1; ; page += 1) {
       throwIfAborted(signal)
-      const listingPayload = await fetchJson(buildSearchUrl({ page, pageSize }), { signal })
+      let listingPayload
+      try { listingPayload = await waitForCancellation(() => fetchJson(buildSearchUrl({ page, pageSize }), { signal }), signal) }
+      catch (error) { throwIfAborted(signal);throw error }
+      throwIfAborted(signal)
       const resultSet = extractSearchResultSet(listingPayload)
       const listings = filterListings(resultSet.data || [])
 
@@ -337,10 +354,10 @@ export const createBoschGlobalSoftwareTechnologiesScraper = ({
     const selectedListings = maxJobs ? allListings.slice(0, maxJobs) : allListings
     const detailPayloadByRef = {}
 
-    await mapWithConcurrency(selectedListings, concurrency, async (listing) => {
-      detailPayloadByRef[listing.refNumber] = await fetchJson(
-        buildDetailUrl(listing.refNumber),
-        { signal },
+    await mapWithConcurrency(selectedListings, concurrency, async (listing, activeSignal) => {
+      detailPayloadByRef[listing.refNumber] = await waitForCancellation(
+        () => fetchJson(buildDetailUrl(listing.refNumber), { signal }),
+        activeSignal,
       )
     }, signal)
 

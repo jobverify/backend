@@ -213,7 +213,7 @@ export const createAttentiveAiScraper = ({
   },
 })
 
-export const run = async () => createAttentiveAiScraper().run()
+export const run = async (options) => createAttentiveAiScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

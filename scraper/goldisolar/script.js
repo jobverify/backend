@@ -163,7 +163,7 @@ export const createGoldiSolarScraper = ({
   },
 })
 
-export const run = async () => createGoldiSolarScraper().run()
+export const run = async (options) => createGoldiSolarScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

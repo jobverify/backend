@@ -25,6 +25,7 @@ const UserSuggestionSchema = new Schema(
         message: `Suggestion must contain between 1 and ${MAX_SUGGESTION_CHARACTERS} characters.`,
       },
     },
+    resolved: { type: Boolean, default: false },
     submittedDay: {
       type: String,
       required: true,

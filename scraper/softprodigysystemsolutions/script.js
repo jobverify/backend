@@ -1,5 +1,7 @@
 ﻿import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
+import { runCurrentSoftProdigyKeka } from './nativeKeka.js'
+
 export const SOURCE = 'softprodigysystemsolutions'
 export const COMPANY = 'SoftProdigy System Solutions'
 export const HOMEPAGE_URL = 'https://softprodigy.com/'
@@ -131,8 +133,14 @@ export const extractJobCards = (payload) => {
 export const run = async ({
   fetchText = defaultFetchText,
   fetchJson = defaultFetchJson,
+  fetchImpl,
+  signal,
+  onAudit,
   now = () => new Date().toISOString(),
 } = {}) => {
+  if (fetchImpl || fetchText === defaultFetchText && fetchJson === defaultFetchJson) {
+    return runCurrentSoftProdigyKeka({ fetchImpl, signal, now, onAudit })
+  }
   const homepageHtml = await fetchText(HOMEPAGE_URL)
 
   if (!hasOfficialHomepageSignal(homepageHtml) || extractKekaBoardUrl(homepageHtml) !== KEKA_BOARD_URL) {

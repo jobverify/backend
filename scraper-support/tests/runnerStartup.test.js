@@ -74,9 +74,16 @@ test('direct CLI persists recovery state and exits 75 when a live owner remains'
   const hook = path.join(directory, 'lease-held.mjs')
   const mongooseUrl = pathToFileURL(fileURLToPath(new URL('../../node_modules/mongoose/index.js', import.meta.url))).href
   await fs.writeFile(hook, `import mongoose from ${JSON.stringify(mongooseUrl)};
+mongoose.set('bufferCommands', false);
 mongoose.connect = async () => {
 Object.defineProperty(mongoose.connection, 'readyState', { value: 1 });
 mongoose.connection.db = { collection(name) {
+  if (name === 'pipelineconfigurations') return {
+    async findOne(query) {
+      if (JSON.stringify(query) !== '{"_id":"global"}') throw new Error('Unexpected concurrency metadata query');
+      return { _id: 'global', scraperConcurrency: 2 };
+    },
+  };
   if (name !== 'scraper_run_leases') throw new Error('Source database access before acquiring a lease');
   return {
     async findOneAndUpdate() { throw Object.assign(new Error('duplicate key'), { code: 11000 }); },

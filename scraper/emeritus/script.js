@@ -169,7 +169,7 @@ export const createEmeritusScraper = ({
   },
 })
 
-export const run = async () => createEmeritusScraper().run()
+export const run = async (options) => createEmeritusScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

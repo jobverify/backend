@@ -17,7 +17,7 @@ export const hasOfficialSiteSignal = (html) => OFFICIAL_SITE_SIGNAL.test(String(
 
 export const createCubiquitousScraper = () => ({
   async run({ fetchText = defaultFetchText } = {}) {
-    let html = ''
+    let html
 
     try {
       html = await fetchText(CAREER_PAGE_URL)
@@ -32,4 +32,4 @@ export const createCubiquitousScraper = () => ({
   },
 })
 
-export const run = async () => createCubiquitousScraper().run()
+export const run = async (options) => createCubiquitousScraper().run(options)

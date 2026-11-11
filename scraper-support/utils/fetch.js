@@ -162,32 +162,73 @@ const fetchWithRetry = async (url, {
         if (callerSignal?.aborted) throwCallerAbort()
         attemptSignal?.throwIfAborted()
       }
+      const waitForAttempt = (operation) => new Promise((resolve, reject) => {
+        const signals = [...new Set([callerSignal, attemptSignal].filter(Boolean))]
+        let settled = false
+        const finish = (failed, value) => {
+          if (settled) return
+          settled = true
+          for (const signal of signals) signal.removeEventListener('abort', onAbort)
+          try { checkAttemptAbort() } catch (error) { reject(error); return }
+          if (failed) reject(value)
+          else {
+            const result = Object.create(null)
+            result.value = value
+            resolve(result)
+          }
+        }
+        const onAbort = () => {
+          try { checkAttemptAbort() } catch (error) { finish(true, error) }
+        }
+        const observe = async (pending) => {
+          try { finish(false, await pending) } catch (error) { finish(true, error) }
+        }
+        try {
+          checkAttemptAbort()
+          for (const signal of signals) {
+            signal.addEventListener('abort', onAbort)
+            checkAttemptAbort()
+          }
+          const pending = operation()
+          // Start observing the produced promise before checking cancellation.
+          void observe(pending)
+          checkAttemptAbort()
+        } catch (error) {
+          finish(true, error)
+        }
+      })
       try {
-        const response = await fetchImpl(url, {
+        const response = (await waitForAttempt(() => fetchImpl(url, {
           ...requestInit,
           signal: attemptSignal,
-        })
+        }))).value
         checkAttemptAbort()
+        const readBody = (name) => {
+          checkAttemptAbort()
+          const method = response[name]
+          checkAttemptAbort()
+          return Reflect.apply(method, response, [])
+        }
 
         if (!response.ok) {
           throw buildHttpError(response, url)
         }
 
         if (parse === 'text') {
-          const html = await response.text()
+          const html = (await waitForAttempt(() => readBody('text'))).value
           checkAttemptAbort()
           return includeResponseMetadata ? { html, status: response.status, url: response.url } : html
         }
 
         const contentType = response.headers?.get?.('content-type') || ''
         if (/text\/html/i.test(contentType)) {
-          const html = await response.text().catch(() => '')
+          const html = (await waitForAttempt(() => readBody('text').catch(() => ''))).value
           checkAttemptAbort()
           throw buildHtmlInsteadOfJsonError(url, html)
         }
 
         let payload
-        try { payload = await response.json() } catch (error) {
+        try { payload = (await waitForAttempt(() => readBody('json'))).value } catch (error) {
           checkAttemptAbort()
           if (error instanceof SyntaxError) {
             error.abortRetries = true

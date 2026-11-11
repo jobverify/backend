@@ -117,7 +117,7 @@ export const createFevIndiaScraper = () => ({
   },
 })
 
-export const run = async () => createFevIndiaScraper().run()
+export const run = async (options) => createFevIndiaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

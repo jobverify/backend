@@ -56,7 +56,7 @@ export const createEramScraper = () => ({
   },
 })
 
-export const run = async () => createEramScraper().run()
+export const run = async (options) => createEramScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

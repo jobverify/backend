@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<link rel="profile" href="https://gmpg.org/xfn/11">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" type="image/x-icon" href="https://www.bluebinaries.com/favicon.ico" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+		<link rel="stylesheet" href="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/css/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/css/owl.carousel.min.css" type="text/css" />
+		<link rel="stylesheet" href="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/css/owl.theme.default.min.css" />
+		<link rel="stylesheet" href="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/css/swiper-bundle.min.css" />
+		<link rel="stylesheet" href="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/css/common.css?v=134321" type="text/css" />
+		<link rel="stylesheet" href="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/css/style.css?v=134321" type="text/css" />
+		<script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/jquery-3.7.0.js"></script>
+		
+		<title>Become A Bluebee &#8211; BlueBinaries</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel="alternate" type="application/rss+xml" title="BlueBinaries &raquo; Feed" href="https://www.bluebinaries.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="BlueBinaries &raquo; Comments Feed" href="https://www.bluebinaries.com/comments/feed/" />
+<script>
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.bluebinaries.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=6.4.2"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+</script>
+<style id='wp-emoji-styles-inline-css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.bluebinaries.com/wp-includes/css/dist/block-library/style.min.css?ver=6.4.2' media='all' />
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='bluebinaries-style-css' href='https://www.bluebinaries.com/wp-content/themes/bluebinaries/style.css?ver=1.0' media='all' />
+<link rel='stylesheet' id='bluebinaries-print-style-css' href='https://www.bluebinaries.com/wp-content/themes/bluebinaries/print.css?ver=1.0' media='print' />
+<script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/index.js?ver=1.0" id="bluebinaries-js-js"></script>
+<link rel="https://api.w.org/" href="https://www.bluebinaries.com/wp-json/" /><link rel="alternate" type="application/json" href="https://www.bluebinaries.com/wp-json/wp/v2/pages/17" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.bluebinaries.com/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.4.2" />
+<link rel="canonical" href="https://www.bluebinaries.com/become-a-bluebee/" />
+<link rel='shortlink' href='https://www.bluebinaries.com/?p=17' />
+<link rel="alternate" type="application/json+oembed" href="https://www.bluebinaries.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bluebinaries.com%2Fbecome-a-bluebee%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.bluebinaries.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.bluebinaries.com%2Fbecome-a-bluebee%2F&#038;format=xml" />
+	</head>
+	<body class="page-template page-template-templates page-template-become-a-bluebee page-template-templatesbecome-a-bluebee-php page page-id-17 wp-embed-responsive">
+				<header class="site-header">
+			<div class="container">
+				<div class="header-wrapper d-flex flex-wrap justify-content-between align-items-center">
+					<h1 class="logo-holder">
+						<a href="https://www.bluebinaries.com/" title="BlueBinaries">
+						<img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/logo.svg" alt="logo"/>
+						</a>
+					</h1>
+
+											<a href="https://www.bluebinaries.com/" class="back">
+							<span class="d-sm-none d-lg-inline">BACK TO HOME</span>
+							<i class="fa-solid fa-house d-lg-none d-md-none d-sm-inline"></i>
+						</a>
+					
+					<div class="menu-holder">
+						<div class="search-form">
+							<form class="header-search d-flex align-items-center">
+								<input type="search" placeholder="Search"/>
+								<input type="submit" value="search"/>
+							</form>
+						</div>
+						<a href="javascript:void(0);" class="menu-trigger not-active">
+						<span></span>
+						<span></span>
+						<span></span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="main-menu">
+				<ul>
+					<li><a href="https://www.bluebinaries.com/who-we-are/">Who We Are</a></li>
+					<li><a href="https://www.bluebinaries.com/what-we-do/">What We Do</a></li>
+					<li><a href="https://www.bluebinaries.com/become-a-bluebee/">Become A BlueBee</a></li>
+					<li><a href="https://www.bluebinaries.com/insights-we-share/">Insights We Share</a></li>
+					<li><a href="https://www.bluebinaries.com/connect-to-us/">Connect To Us</a></li>
+					
+					<!--<li><a href="https://www.bluebinaries.com/?page_id=15">Solutions For FUTURE</a></li>
+					<li><a href="https://www.bluebinaries.com/?page_id=19">Trust Earned</a></li>-->
+					
+					
+				</ul>
+			</div>
+		</header>
+	<main id="site-content"><section class="blubee-banner">
+    <img src="https://www.bluebinaries.com/wp-content/uploads/2023/02/Become-A-Bluebee-banner.jpg" alt="bluebee">
+
+    <div class="container">
+        <div class="blueebee-bannercontnt">
+            <h1>JOIN US!</h1>
+			<h2>BECOME A <span>BLUEBEE</span></h2>
+            <p>Join the force and build the future that keeps us mobile and connected.</p>
+<p><a class="commonbtn2" href="#job-posts-container">SEE JOB OPENINGS</a></p>
+        </div>
+    </div>
+</section>
+
+
+<section class="lifebluebee-sec">
+    <div class="container">
+        <p>BlueBinaries is a powerhouse of passionate automotive engineers connected through the rhythm of - ‘We Initiate. We Inspire. We Innovate.’</p>
+
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 bluebee-txt">
+                <h2>Life at <span>BlueBinaries</span></h2>
+                <p>At BlueBinaries, we celebrate life and technology with focus on balance, diversity and future where passion is made integral part of the organization. We have our days starting with purpose and ends with fulfilment with a spectrum of exchanges with our experts, learning platforms and access to knowledge and mentorship mapped to trajectory of growth.</p>
+<p>Our rigorous cycles of feedback incorporation and the anonymity of each person’s feedback enables us to respect every word of our employees and constantly improve to nourish the health of our environment.</p>
+<p>The BlueBinaries momentum is solely attributed to the aspiration of each one of us to engineer visionary technologies that integrate futuristic intelligence into mobility.</p>
+            </div>
+
+            <div class="col-lg-6 col-md-12 col-sm-12 bluebee-img">
+                <img src="https://www.bluebinaries.com/wp-content/uploads/2023/02/team-1.png" alt="bluebee">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="job-posts" id="job-posts-container">
+    <div class="container">
+	<div class="job-post-title">
+      <h2>Job Openings</h2>
+	  <p>Interested in any of the below opportunities, please reach out to <a href="/cdn-cgi/l/email-protection#501331223535222310123c253512393e31223935237e333f3d"><span class="__cf_email__" data-cfemail="7a391b081f1f08093a38160f1f3813141b08131f0954191517">[email&#160;protected]</span></a></p>
+	 </div>
+	 <div class="acc-job-post">
+        <div class="job-details" data-attribute="smqe">
+          <div class="job-role">
+            <h3>Software Developer</h3>
+            <span>Posted on 01-Mar-2024</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="smqe">
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <ul>
+                <li>Configuring project specific settings, compiler, software component files using make files to set up build system integrator for building software.</li>
+				<li>Analysis of HSI, microcontroller schematics and datasheet to configure MCAL.</li>
+				<li>Board bring-up and build system integration.</li>
+				<li>Configuration of BSW/MCAL using Davinci Configurator and EB Tresos.</li>
+				<li>BSW generation and integration.</li>
+				<li>Firmware development adhering to MISRA-C guidelines and ISO26262 based specifications. </li>
+				<li>Customer specific library integration in Build system.</li>
+				<li>CAPL scripting and GUI creation in CANoe for testing system behavior</li>
+				<li>Perform Integration testing and System testing.</li>
+				<li>Creation and execution of Unit test cases in Tessy and vTestStudio.</li>
+				<li>Setting up Polyspace to get code metrics and MISRA violations.</li> 
+				<li>Creation of Design Documents and Software Architecture using Doxygen markdown docs. </li>
+				<li>Responsible for configuration management, creating and managing branch strategy. Creation of release branches and merging pull request using GIT.</li>
+				<li>Responsible for Customer Interaction and co-ordination in technical topics. Setting up defect control meetings to review defect status with customer and plan bugfix releases.</li>
+				<li>Responsible for Traceability Matrix creation and Software delivery.</li>
+				<li>Project Specific detailed time plan with respect to Software Development Milestones</li>
+				<li>Team building/Training for new team members.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+	  
+	  <div class="acc-job-post">
+        <div class="job-details" data-attribute="jp-2">
+          <div class="job-role">
+            <h3>Electronics Design Engineer</h3>
+            <span>Posted on 01-Mar-2024</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="jp-2">
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <ul>
+                <li><b>Lead and Supervise:</b> Lead a team of engineers and technicians responsible for E/E integration testing.</li>
+				<li><b>Mentor and Develop:</b> Provide mentorship and professional development opportunities to team members.</li>
+				<li><b>Performance Management:</b> Conduct performance reviews and manage team productivity.</li>
+				<li><b>Create Test Plans:</b> Develop comprehensive test plans for E/E system integration, ensuring all components work together seamlessly.</li>
+				<li><b>Define Objectives:</b> Set clear testing objectives, standards, and deliverables for the team.</li>
+				<li><b>Resource Allocation:</b> Allocate resources and manage testing schedules to meet project timelines.</li>
+				<li><b>Oversee Test Execution:</b> Manage the execution of integration tests, including functional, regression, and performance testing.</li>
+				<li><b>Monitor and Evaluate:</b> Monitor test processes, evaluate test results, and ensure thorough documentation of findings.</li>
+				<li><b>Issue Resolution:</b> Identify, track, and manage the resolution of integration issues and defects</li>
+				<li><b>Cross-functional Collaboration:</b> Work closely with design, development, and quality assurance teams to understand system requirements and integration points.</li>
+				<li><b>Stakeholder Communication:</b> Communicate test progress, risks, and issues to stakeholders, including senior management and project teams.</li>
+				<li><b>Vendor Coordination:</b> Collaborate with external vendors and suppliers to ensure integration requirements are met.</li>
+				<li><b>Process Enhancement:</b> Identify opportunities for improving testing processes, tools, and methodologies.</li>
+				<li><b>Implement Best Practices:</b> Promote and implement best practices in E/E integration testing.</li>
+				<li><b>Comprehensive Reporting:</b> Prepare detailed test reports, documentation, and metrics for review by stakeholders.</li>
+				<li><b>Maintain Records:</b> Ensure all testing activities are well-documented and maintain comprehensive records for future reference.</li>
+				<li><b>Project Planning:</b> Participate in project planning sessions, providing input on integration testing timelines and resource needs.</li>
+				<li><b>Budget Management:</b> Manage the budget for integration testing activities, ensuring efficient use of resources.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+	  
+	  <div class="acc-job-post">
+        <div class="job-details" data-attribute="jp-3">
+          <div class="job-role">
+            <h3>Software Developer</h3>
+            <span>Posted on 01-Mar-2024</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="jp-3">
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+			                <p><b>1. CAN DEVELOPMENT</b><p>
+
+            <ul>
+			<li>Lead the development and integration of Controller Area Network (CAN) Communication protocol for various automotive applications e.g BMS, CCM, Infotainment system.</li>
+			<li>Design and Implement CAN network configurations, including message scheduling and Bus arbitration.</li>
+			<li>Perform CAN network diagnostics, fault handling and ensure robust communication between ECUs.</li>
+			</ul>
+			<p><b>2. Basic Software AUTOSAR</b></p>
+			<ul>
+			<li>Develop and maintain AUTOSAR based basic software modules ensuring, compliance with AUTOSAR standards and guidelines.</li>
+			<li>Configure and integrate AUTOSAR BSW stack components, including COM, PDU Router, CanIf, CAN and Diagnostic Event Manager (DEM).</li>
+			<li>Collaborate with cross-functional teams to ensure seamless integration of AUTOSAR software components into the overall vehicle architecture.</li>
+			</ul>
+			<p><b>3. Network Management</b></p>
+			<ul>
+			<li>Design and implement network management strategies for automotive systems, ensuring optimal network performance and reliability.</li>
+			<li>Configure and manage network management protocols, including Startup, Shutdown and Sleep/wake- Up sequences.</li>
+			<li>Perform Network performance analysis and optimization to meet stringent automotive industry standards.</li>
+			<li>Handle Partial Networking to ensure power saving in the network.</li>
+			</ul>
+			<p><b>4. Requirement Writing</b></p>
+			<ul>
+			<li>Develop detailed software requirements for Level 3 and Level 4 automotive software components, ensuring clarity, completeness and traceability.</li>
+			<li>Collaborate with system engineers and stakeholders to capture and refine requirements, ensuring alignment with overall system architecture and design.</li>
+			<li>Use Doors Next Gen to maintain and track requirements changes and their impact on software development lifecycles.</li>
+			</ul>
+			<p><b>5. Functional Safety (ISO 26262)</b></p>
+			<ul>
+			<li>Support functional safety activities in accordance with ISO 26262 standards including hazard analysis and risk assessment (HARA).</li>
+			<li>Assist in the development of safety requirements and safety cases for automotive software components.</li>
+			</ul>
+			<p><b>6. Agile Methodology</b></p>
+			<ul>
+			<li>Actively participate in Agile development processes, including sprint planning, daily stand-ups, and retrospectives.</li>
+			<li>Collaborate in a cross-functional agile team to deliver quality software within define sprint cycle.</li>
+			<li>Adapt and respond to changes in project scope and priorities in an Agile environment, ensuring timely delivery of project milestones.</li>
+			</ul>
+			<p><b>7. V-Model Development </b></p>
+			<ul>
+			<li>Apply V-Model development processes to ensure comprehensive testing and validation at each stage of the software development lifecycle.</li>
+			<li>Develop and execute test cases and validation plans corresponding to each phase of the V-Model, ensuring through verification and validation of software components.</li>
+			<li>Document and trace software requirements and test results, ensuring compliance with the V-Model framework and industry standards.</li>
+			</ul>
+			<p><b>8. Project Leadership and Collaboration</b></p>
+			<ul>
+			<li>Mentor junior engineers, providing technical guidance and ensuring adherence to best practices and industry standards.</li>
+			<li>Coordinate with cross-functional teams, including hardware, system, and validation engineers, to ensure successful project execution.</li>
+			<li>Participate in project planning, status meetings, and technical reviews, contributing to project risk management and mitigation strategies.</li>
+			</ul>
+			<p><b>9. Unit Testing and Development</b></p>
+			<ul>
+			<li>Develop and execute unit tests for CAN bus software components, ensuring functionality and performance with respect to design specifications.</li>
+			<li>Debugging and root cause analysis of software problems using Trace 32.</li>
+			<li>Validation of CAN network communication to ensure software robustness.</li>
+			<li>Maintain documentation of test results and debugging activities.</li>
+			</ul>
+			<p><b>10. Documentation and reporting</b></p>
+			<ul>
+			<li>Prepare and maintain comprehensive documentation for all phases of software development, including design specifications, test plans and user manuals.</li>
+			<li>Generate and present technical reports and progress updates to stakeholders and management.</li>
+			<li>Ensure compliance with industry standards, company policies, and regulatory requirements throughout the software development process.</li>
+			</ul>
+
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+	  
+	  <div class="acc-job-post">
+        <div class="job-details" data-attribute="jp-4">
+          <div class="job-role">
+            <h3>Senior Software Architect</h3>
+            <span>Posted on 01-Mar-2024</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="jp-4">
+            <p>Requirement as Bachelor's degree in Electrical Engineering or a closely related field</p>
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <p><b>1. RFQ and Proposal Management:</b></p>
+			<ul>
+			<li>Develop and submit technical proposals for all incoming Requests for Quotations (RFQs).</li>
+			<li>Provide accurate estimates for project resources and timelines.</li>
+			</ul>
+			<p><b>2.	Project Management:</b></p>
+			<ul>
+			<li>Oversee customer projects to ensure successful and timely execution.</li>
+			<li>Lead project management activities, including planning, execution, and monitoring.</li>
+			<li>Ensure smooth day-to-day operations for ongoing projects.</li>
+			<li>Perform customer demonstrations to showcase project progress and functionality.</li>
+			<li>Engage with customers to gather feedback, address concerns, and ensure satisfaction.</li>
+			</ul>
+			<p><b>3.	Technical Leadership:</b></p>
+			<ul>
+			<li>Write detailed technical specifications for Backend systems, APIs and Databases.</li>
+			<li>Design architecture for applications, ensuring scalability and efficiency.</li>
+			<li>Lead the development of applications, ensuring high-quality deliverables.</li>
+			<li>Lead and manage cloud migration projects to ensure seamless transitions.</li>
+			<li>Implement DevOps practices to improve development and operational efficiency.</li>
+			<li>Set up and maintain Continuous Integration and Continuous Deployment (CI/CD) pipelines.</li>
+			</ul>
+			<p><b>4.	Team Management and Mentorship:</b></p>
+			<ul>
+			<li>Manage the Scrum team to ensure adherence to Agile practices and successful sprint completions.</li>
+			<li>Mentor team members, providing guidance and support for their professional growth.</li>
+			<li>Conduct performance appraisals for team members, providing feedback and setting development goals.</li>
+			<li>Train the team on new technologies, methodologies, and best practices.</li>
+			<li>Onboard and integrate Agile practices within the team and project workflows.</li>
+			</ul>
+			<p><b>5.	Cross-Functional Collaboration:</b></p>
+			<ul>
+			<li>Act as a liaison with the vehicle engineering team to ensure alignment and collaboration.</li>
+			<li>Lead the process of gathering and documenting project requirements.</li>
+			</ul>
+        </div>
+      </div>
+	  
+	  <div class="acc-job-post">
+        <div class="job-details" data-attribute="jp-5">
+          <div class="job-role">
+            <h3>HR Specialist</h3>
+            <span>Posted on 01-Mar-2024</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="jp-5">
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <p><b>Talent Acquisition:</b></p>
+				<ul>
+				• Develop pre-engagement framework for new hires, collaborate with managers to ensure execution
+				• Conduct induction and facilitate the on-boarding of new hires
+				• Structured connects with new hires to understand their assimilation in to the teams and organization
+				</ul>
+				<p><b>Talent Management:</b></p>
+				<ul>
+				• Structured connects (team, 1:1, Diversity, top talent, technical, manager, high risk pool)
+				• Team composition, Team structure, Spans & layers, Job level pyramid
+				• Engage in talent reviews and succession planning discussions and monitor the progress on individual development plans
+				• Manage performance & compensation reviews (bonus payouts, off cycle corrections, promotions)
+				• Develops complex processes or protocols that comply with and support broader HR and organizational policy.
+				• Coach employees / managers on the career path / progression for deeper engagement
+				</ul>
+				<p><b>Talent Retention:</b></p>
+				<ul>
+				• Proactive engagement with managers to understand challenges and employee concerns
+				• Partner with manager to devise appropriate solutions / address concerns
+				• Conduct Talent retention discussions with the employee and manager and attempt to retain
+				• Conduct exit interviews and draw conclusions
+				</ul>
+				<p><b>Employee Engagement:</b></p>
+				<ul>
+				• Roll out employee engagement surveys and prepare action plan to address the concerns
+				• Plan, Implement and facilitate all activities and projects related to employee and work-place Wellness programs
+				• Support site specific events / cultural fest
+				• Resolve employee concerns and issues and take disciplinary actions wherever required
+				</ul>
+				<p><b>As Location HR</b></p>
+				<ul>
+				• Induction & New Hire experience 
+				• Support site specific events / cultural fest
+				• Employee grievances / concerns / POSH
+				• Review of Exit process for employees at site
+				• Support internal / external audits
+				</ul>
+        </div>
+      </div>
+      <div class="acc-job-post">
+        <div class="job-details" data-attribute="smqe">
+          <div class="job-role">
+            <h3>Senior Manager -  Quality Engineering</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="smqe">
+            <p>Requirement as Bachelor's degree in Electrical Engineering or a closely related field</p>
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <ul>
+                <li> Leading System Integration, Testing & Validation of Systems, Diagnostics & troubleshooting, Test Case Design, writing & execution for Automotive Systems of Passenger Vehicles.</li>
+                <li>Project Specific detailed time plan with respect to Vehicle Development Milestones</li>
+                <li>Requirement Gathering, analysis of requirement specifications & design of Integration Test plan & Test Instruction preparation.</li>
+                <li>Review of Design related Documents, Test Case Documents & Testing procedures, and execution</li>
+                <li>Responsible for Customer Interaction and co-ordination in technical topics.</li>
+                <li> Leading team to co-ordinate other module team to build Labcar and execute Testing and validation on Labcar and Vehicle.</li>
+                <li>Responsible for Function validation of Various Electronic control units of Vehicle on Labcar and Vehicle Environments.</li>
+                <li>Configuration/Parametrization of variants in Testing Vehicle, Labcar and EOL.</li>
+                <li>Experience on Task planning and Execution status reporting (Scheduling review meeting with Management)</li>
+                <li>Responsible for delivering In Vehicle Testing (IVN) test execution vehicle EE Architecture for Physical layer, Network Layer, Application Layer.</li>
+                <li>Generating Product Test Report and Document</li>
+                <li>Open points discussion for software delivery with designers/supplier for timely delivery as per vehicle-built plan.</li>
+                <li>Test issue discussion with ECU function owners and issue analysis in Mint issue tracker system till it's closer.</li>
+                <li>Support for Proto vehicles & EOL for flashing, Variant Coding, Diagnostic's & vehicle trouble shooting.</li>
+                <li>Configuration and Testing on Labcar and Vehicle using Vector CANoe/ Canalyzer ,data logger, CP tool.</li>
+                <li>Develop technical training programs and conduct training sessions for team members.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+	 <div class="acc-job-post">
+        <div class="job-details" data-attribute="smse">
+          <div class="job-role">
+            <h3>Senior Manager - Systems Engineering </h3>
+            <span>Posted on 31-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span>BlueBinaries Engineering and Solutions Ltd, Woking, UK</span>
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="smse">
+            <p>Bachelor’s in Electrical / Electronics engineering or Masters in any Electrical / Electronic specialization</p>
+            <p><b>Work Experience required</b> - 10 to 14 years</p>
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <ul>
+                <li>System design, Requirements and development.</li>
+                <li>Act as a single point contact for infotainment across V cycle.</li>
+                <li>Ensuring and driving cross functional Electrical Electronics and Software system compatibility.</li>
+                <li>Drive functional integration and system compatibility reviews.</li>
+                <li>Prepare test cases, test scripts and execute infotainment tests across rigs, labcar, prototype cars and productions vehicles.</li>
+                <li>Identify defects and work closely with the design team for its closure.</li>
+            </ul>
+			<p><b>Competencies / Skills:</b></p>
+            <ul>
+               	<li>Must have Experience in automotive electronics preferably in Body Control Module (BCM), Vehicle Access Systems, Climate Control System, etc</li>
+				<li>Experience in creating test cases, executing tests either through Automation or Manual</li>
+				<li>Hands on experience conducting functional and regression testing</li>
+				<li>Strong working experience on System Interfaces, Network Data Measurement & Analysis</li>
+				<li>Must have Experience in Ethernet, CAN, LIN, Gateway, Diagnostic protocols (UDS on CAN), Wake-Up & Sleep Strategies</li>
+				<li>Must have Knowledge on requirements/Defect management tool – DOORS & JIRA</li>
+				<li>Must have Experience in using Vector tools like CANOe, vTest Studio and VT System</li>
+				<li>Knowledge of ECU testing methods and quality practices</li>
+				<li>Experience in HIL & Vehicle Validation and strong abilities in Root Cause Analysis</li>
+				<li>Must have Experience in design and development of E&E Architecture, Systems Engineering and System Integration.</li>
+				<li>Involved in  E/E SW Project and release management for multiple vehicle programs</li>
+				<li>Must have Experience in Creation of Network System Diagrams and high-level requirements of the new E/E systems.</li>
+				<li>Must have Experience in Design Network Synoptics and EE System Diagrams of the BEV EE systems.</li> 
+				<li>Must have EE Function development of different Vehicle domains</li>
+            </ul>
+			<p><b>General Requirements:</b></p>
+            <ul>
+				<li>Ability to handle multiple projects</li>
+				<li>Quality consciousness & customer focus</li>
+				<li>Strong Analytical skills</li>
+				<li>Self-driven & passion to deliver</li>
+				<li>Team enabler</li>
+				<li>Willingness to learn & improve</li>
+				<li>Willing to travel to interact with Customers/Supplier locations</li>
+</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+	  
+	  <div class="acc-job-post">
+        <div class="job-details" data-attribute="eead">
+          <div class="job-role">
+            <h3>E/E Architecture Design</h3>
+            <span>Posted on 08-Nov-2023</span>
+          </div>
+          <div class="job-location">
+            <span>BlueBinaries Engineering and Solutions Ltd, Woking, UK</span>
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="eead">
+            <p>Bachelor’s in Electrical / Electronics engineering or Masters in any Electrical / Electronic specialization</p>
+            <p><b>Work Experience required</b> - 3 to 8 years</p>
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <ul>
+                <li>System design, Requirements and development.</li>
+                <li>Lead design, development and Verification and Validation of Automotive Features and Functions distributed across ECUs like Body Control Module, Instrument Cluster, Braking Control Systems, etc.</li>
+				<li>Design, Preparation & adaptation of Test Infrastructure for relevant System Testing Develop and Maintain Functional /Sanity/Stability and Performance test scripts and test cases.</li>
+				<li>Execution of Functional / Sanity/Stability and Performance test and maintain test results Perform testing on test benches or development vehicles.</li>
+				<li>Ensure the quality of the system through testing Improve testing efficiency by identifying test automation as much as possible Identify defects and work closely with the design teams for its closure.</li>
+            </ul>
+			<p><b>Competencies / Skills:</b></p>
+            <ul>
+               	<li>Experienced in Interactive Flow of Circuit Design</li>
+				<li>Experienced in Generative Flow of Circuit Design</li>
+				<li>Experienced with RFQ Release process & Complexity creation process</li>
+            </ul>
+			<p><b>General Requirements:</b></p>
+            <ul>
+				<li>Ability to handle multiple projects</li>
+				<li>Quality consciousness & customer focus</li>
+				<li>Strong Analytical skills</li>
+				<li>Self-driven & passion to deliver</li>
+				<li>Team enabler</li>
+				<li>Willingness to learn & improve</li>
+				<li>Willing to travel to interact with Customers/Supplier locations</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+
+	   <div class="acc-job-post">
+        <div class="job-details" data-attribute="seeea">
+          <div class="job-role">
+            <h3>Senior Engineer - E/E Architect</h3>
+            <span>Posted on 22-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span>BlueBinaries Engineering and Solutions GmbH, Graz, Austria</span>
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="seeea">
+            <p>Requirement as Bachelor's degree in Electrical Engineering or a closely related field</p>
+			<p><b>Work Experience required</b> - 4 to 5 years</p>
+            <p><b>Responsibilities & Key Deliverables:</b></p>
+            <ul>
+                <li>Design, development, maintenance, and optimization of the E-Powertrain components.</li>
+				<li>System architecture on BEV e-Powertrain Systems design, Network architecture design, Functional safety, Fault management, Requirements engineering.</li>
+				<li>E/E architecture design and integrating new function over current architecture.</li>
+				<li>Management of product life circle from conception to delivery.</li>
+				<li>Ensuring stakeholder engagement throughout the product lifecycle.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>-->
+        </div>
+      </div>
+     <!-- <div class="acc-job-post">
+        <div class="job-details" data-attribute="smee">
+          <div class="job-role">
+            <h3>Senior Manager Electrical Engineering</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="smee">
+            <p>Job Duties:</p>
+            <ul>
+                <li>Responsible for Engineering activities for customer projects on automotive electrification - working with OEMs across the globe.</li>
+                <li>Systems Requirements Engineering – Functional requirement writing, analysis and review.</li>
+                <li>Epowertrain Testing and Validation activities at customer location / offshore support</li>
+                <li>Epowertrain system Design for passenger vehicles (Hybrid and electric vehicle - xEVs) - Component sizing, system design, integration in vehicle</li>
+                <li>EV Charging systems design and testing according to various standards (CCS1, CCS2, GB/T) - Functional and Performance testing.</li>
+                <li>Homologation support for validation of ePowertrain components (Battery, BMS, ECUs)</li>
+                <li>Functional Safety (ISO 26262) Analysis - HARA, FTA, Fishbone Diagram for ASIL level calculation</li>
+                <li>Design FailurvehiclesEffect Analysis (DFMEA) of ePowertrain System of hybrid and electric vehicle. Coordination with vendors / suppliers for sub component level DFMEA analysis</li>
+                <li>Quality management - 8 Dimensional (8-D) method for problem solving - Problem statement definition, report preparation, Engineering support</li>
+                <li>Report Preparation, documentation of Tests, DVP</li>
+                <li>Supporting cross functional teams for project activities - Design, packaging (CAD), vendor development, Engineering support</li>
+                <li>Team Engagement along with learning and development in the area of electrification and new technology trends like Na-Ion battery, high efficiency drives, safe and cost effective systems, etc.</li>
+                <li>Team empowerment</li>
+                <li>Capability building - Infrastructure, business development.</li>
+                <li>Helping organization grow with the new skills through new team members recruitment.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>
+        </div>
+      </div>
+      <!--<div class="acc-job-post">
+        <div class="job-details" data-attribute="smede">
+          <div class="job-role">
+            <h3>Senior Manager Electronics Design Engineering</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="smede">
+            <p>Job Duties:</p>
+            <ul>
+                <li>Responsible for EE architecture design services for Domain based, zonal based and SDV based architecture technologies for automotive passenger cars across the globe.</li>
+                <li>Project and delivery management of EE architecture projects for multiple OEMs across the globe. Responsible for setting up delivery teams, competency, and practices for delivery.</li>
+                <li>EE architecture design activities constitute requirement engineering, System design and development, functional architecture, logical architecture, network & communication design (CAN/LIN/Ethernet), Software and Hardware requirements and specification for EV powered SUVs and Sedan.</li>
+                <li>Model based architecture design using PREEvision design tool from product goal definition, use case diagram, activity diagrams, system requirements, functional architecture, logical architecture, network architecture, software architecture and communication design layer.</li>
+                <li>Verification of EE architecture using PREEvision inbuild consistency checks and customized checks.</li>
+                <li>System and Electronic control unit software development with suppliers across the globe for different systems adhering project timelines.</li>
+                <li>Systems Requirements Engineering – Functional requirement writing, analysis and review.</li>
+                <li>Functional Safety (ISO 26262) Analysis – HARA, FTA, Fishbone Diagram for ASIL level calculation</li>
+                <li>Supporting cross functional teams for project activities – Technical alignment on architecture requirements with different engineering stakeholders and suppliers.</li>
+                <li>Team Engagement along with learning and development in the area of EE architecture and new technology trends like Zonal based architecture, Software defined vehicle (SDV) architecture.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>
+        </div>
+      </div>
+      <div class="acc-job-post">
+        <div class="job-details" data-attribute="ede">
+          <div class="job-role">
+            <h3>Electrical Design Engineer</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="ede">
+            <p>Job Duties:</p>
+            <ul>
+                <li>System level Functional Design, Development & Verification for Features and Functions of Body Control Module / Automatic Parking Assist/ Collision Avoidance in ADAS Domain.</li>
+                <li>Architecture Design, feature wise Benchmarking and Functional understanding of different functions (Power seats, Power Windows, Child Presence detection, Pedestrian detection, Parking assist, emergency Steering etc.), Sensors & Actuators design & Signal Interfaces etc. </li>
+                <li>Requirements Specification Preparation for System functions, Architecture domains and Creation of network topologies etc.</li>
+                <li>System Architecture design and database creation in tools like Canoe, PREEVision</li>
+                <li>Understanding of the CAN and LIN protocols, System specific requirements for supplier nominations.</li>
+                <li>Experience in developing Network Architecture for BEV program. </li>
+                <li>Handled CAN network for different ECU's in BEV architecture.</li>
+                <li>Handled CAN Database for ECU's such as VCU, VIS (PDU), ABS, Airbag, Cluster, Inverter Motor, Toggle Unit, etc. </li>
+                <li>Handled and Analysed Gateway specification for VCU by aligning signals with respect to dbc file and categorizing based on understanding the concept of signal gateway, frame gateway and diagnostic gateway. </li>
+                <li>Implementation of safety critical signals with Checksum and counter logic and also calculating check Init constant value following consistency check with other respective receiving ECUs.</li>
+                <li>Creation of Master DBC file for various networks like ePWT, VEH, Chassis, INFO CAN networks for testing and validation of software based on configuration.</li>
+                <li>Hands On experience in Vector CANoe for Vehicle Log analysis, Developing and maintaining DBC files throughout the development phase, Simulation of Logs for analyzing the vehicle issue.</li>
+                <li>Aligning the CAN signals with the system design and functional requirements. </li>
+                <li>Responsible for making sure the signals are aligned for global architecture requirements. </li>
+                <li>Creation of new CAN signals and frames based on new functional requirements.</li>
+                <li>Worked on optimizing the bus load to keep it under the System limit.</li>
+                <li>Perform Design Reviews, Component, System & Vehicle level DFMEA, DRBFM </li>
+                <li>Handle stakeholder meetings and track the project tasks.</li>
+                <li>Support testing teams in Design, Preparation & adaptation of Test Infrastructure for relevant System/SW Test execution.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>
+        </div>
+      </div>
+      <div class="acc-job-post">
+        <div class="job-details" data-attribute="sd">
+          <div class="job-role">
+            <h3>Software Developer</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="sd">
+            <p>Job Duties:</p>
+            <ul>
+                <li>Responsible for designing, developing, and maintaining software applications that meet the clients' needs will play a crucial role in the entire software development life cycle (SDLC)</li>
+                <li>Work collaboratively with cross-functional teams to deliver high-quality solutions.  </li>
+                <li>Work on Agile methodologies, possess technical leadership qualities, and be familiar with DevOps practices. </li>
+            </ul>
+            <p>Roles and Responsibilities</p>
+            <ul>
+                <li>Design and develop innovative, scalable, and high-performance web applications using cutting-edge technologies.</li>
+                <li>Collaborate with product managers, business analysts, and stakeholders to gather requirements and understand project objectives.</li>
+                <li>Participate in the entire software development life cycle (SDLC), including analysis, design, coding, testing, debugging, and deployment.</li>
+                <li>Create and maintain well-structured, efficient, and maintainable codebase following best practices and coding standards.</li>
+                <li>Integrate front-end and back-end functionalities, ensuring seamless data flow and user experience.</li>
+                <li>Troubleshoot and resolve issues in production and development environments promptly.</li>
+                <li>Conduct code reviews and provide constructive feedback to team members, promoting code quality and consistency.</li>
+                <li>Mentor junior developers and assist them in their professional growth.</li>
+                <li>Collaborate with UI/UX designers to implement visually appealing and user-friendly interfaces.</li>
+                <li>Promote a culture of innovation, continuous improvement, and knowledge sharing within the development team.</li>
+                <li>Assist in the implementation of DevOps practices, including continuous integration, continuous deployment, and automated testing.</li>
+            </ul>
+            <p>Agile Methodologies and SDLC</p>
+            <ul>
+                <li>Adopt and follow industry standard Software Development Life Cycle (SDLC) practices to ensure the timely and successful delivery of projects.</li>
+                <li>Participate in sprint planning, daily stand-ups, sprint reviews, and retrospectives as part of Agile development methodology.</li>
+                <li>Collaborate with cross-functional teams, including QA engineers, product owners, and business stakeholders, to prioritize and deliver features in each sprint.</li>
+                <li>Adapt to changing project requirements and contribute to Agile ceremonies to maintain project visibility and progress tracking.</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>
+        </div>
+      </div>
+    <div class="acc-job-post">
+        <div class="job-details" data-attribute="gmbd">
+          <div class="job-role">
+            <h3>General Manager - Business Development</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png" />
+          </div>
+        </div>
+        <div class="job-requirements"  id="gmbd">
+            <p>Job Duties:</p>
+            <ul>
+                <li>Establish and maintain the company's presence in target markets for major automotive OEM's and Tier1's</li>
+                <li>Conduct comprehensive market research and analysis to identify potential new geographies for business expansion.</li>
+                <li>Assess market trends, customer needs, Competitive landscape, regulatory environments and economic factors to inform strategic decisions.</li>
+                <li>Develop market entry and growth strategies based on data-driven insights and market potential.</li>
+                <li>Lead efforts to identify and pursue potential clients, partners and key stakeholders in the new geography.</li>
+                <li>Develop and maintain strong relationships with key clients, ensuring exceptional customer satisfaction and retention.</li>
+                <li>Drive sales activities to achieve revenue targets in the new geography.</li>
+                <li>Monitor sales pipeline, track progress and implement corrective actions to ensure the achievement of sales goals.</li>
+                <li>Responsible for achieving sales & collection targets (monthly, quarterly, and annually). </li>
+                <li>Collaborate with the marketing team to develop and implement marketing strategies to build brand awareness and promote company’s products/services in the new geography.</li>
+                <li>Leverage marketing campaigns to generate leads and support the sales efforts.</li>
+                <li>Automotive Knowledge and Prior experience in selling engineering services in the automotive domain.</li>
+                <li>Knowledge of B2B sales cycle, Bid management.</li>
+                <li>Knowledge of emerging technologies for digital mobility</li>
+                <li>Presentation and dashboarding skills</li>
+                <li>Working knowledge of CRM tools like Salesforce as end user for opportunity reporting & tracking</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>
+        </div>
+      </div>
+ 
+ 
+      <div class="acc-job-post">
+        <div class="job-details" data-attribute="csa">
+          <div class="job-role">
+            <h3>Computer Systems Analyst</h3>
+            <span>Posted on 04-Oct-2023</span>
+          </div>
+          <div class="job-location">
+            <span
+              >BlueBinaries Engineering and Solutions Inc., Troy, MI</span
+            >
+            <img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/down-arrow.png " />
+          </div>
+        </div>
+        <div class="job-requirements"  id="csa">
+            <p>Job Duties:</p>
+            <ul>
+                <li>Facilitate the understanding and agreement between stakeholders from all involved areas, such as business, engineering, and quality </li>
+                <li>Test and verify that the software meets requirements specification</li>
+                <li>Contribute to interdisciplinary agile development teams and participate in the team rituals</li>
+                <li>Make sure other teams can reuse developed requirements and specifications for their products.</li>
+                <li>Validate test cases as per Requirement specification and modify the test cases as per the requirement vehicle level.</li>
+                <li>Understanding on Software development life cycle and Software Testing life cycle</li>
+                <li>Manual Testing of Applications, executing Test Cases, and error defect Reporting & Tracking. </li>
+                <li>Performing Flashing test for the ECUs on each software update using OTA and OBD flashing.</li>
+                <li>Support the relative automation test bench setup and script development.</li>
+                <li>Understanding the Infotainment & Cluster Bench setup along with the connections.</li>
+                <li>Validating diagnostics services with DIDs for each ECUs to detect the error bugs and analyze the CAN logs.</li>
+                <li>Performing Flashing and Provisioning of Infotainment systems for each software release.</li>
+                <li>Detect bug issues and prepare file defect reports and report test progress </li>
+                <li>Performing defect analysis of each defect to find out the root cause.</li>
+                <li>Reviewing the test cases as per the requirements and verify that test results match with the expected output. </li>
+                <li>Reporting the bugs using JIRA when error defect occurs and monitor the issue for the solution.</li>
+                <li>Issue reproduction and analysing root cause of bugs reopened</li>
+                <li>Working on different modules of Infotainment and Cluster features like Media, Remote controls, Voice recognition, USB, Bluetooth, Android Auto, Tell-tales, Chimes and Warnings. </li>
+                <li>Using Testing tools such as Vehicle Spy, CANoe, vFlash Tool, NI Test stand, PCAN View (Peak), DOORS, JIRA, JAMA, ECU-Test.</li>
+                <li>Contribute to the definition, improvement, and documentation of Requirements Engineering practices, processes, and tools</li>
+                <li>Create and maintain traceability between user- product requirement specifications, test cases and risks</li>
+            </ul>
+            <!--<a class="commonbtn2" href="#" target="_blank">Click Here To Apply</a>
+        </div>-->
+      </div>
+    </div>
+  </section>
+
+<section class="writeus-sec">
+    <div class="container">
+        <p>For Academia Commune we have enabled for the final year engineering students to engage with Industry Experts, Leaders &amp; participate in contests posted by Business teams connecting on <a href="/cdn-cgi/l/email-protection#e9aa8884999c9adbaa869b99869b889d8ca9ab859c8cab8087889b808c9ac78a8684"><span class="__cf_email__" data-cfemail="8ecdefe3fefbfdbccde1fcfee1fceffaebcecce2fbebcce7e0effce7ebfda0ede1e3">[email&#160;protected]</span> </a></p>
+    </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+            $(".job-details").on( "click", function( event ) {
+                $("#"+$(this).attr("data-attribute")).toggle(500);
+            });
+			
+			$('a[href^="#"]').on('click',function (e) {
+			  var target = this.hash,
+				  $target = $(target);
+
+			  $('html, body').stop().animate({
+				'scrollTop': $target.offset().top-70
+			  }, 300, 'swing', function () {
+				window.location.hash = target;
+			  });
+			});
+        </script>
+		
+			
+		<section class="newsletter-section">
+			<div class="container d-flex flex-wrap align-items-center justify-content-between">
+				<h3>Subscribe to our newsletter</h3>
+				<form class="news-form d-flex flex-wrap align-items-center">
+				<input type="email" placeholder="Enter your email here"/>
+				<label>
+					<input type="submit" value="subscribe"/>
+				</label>
+				</form>
+			</div>
+		</section>
+			</main>
+				<footer class="site-footer">
+			<div class="footer-top">
+			<div class="container" style="background:none !important;">
+				<div class="footer-columns d-flex flex-wrap">
+				<div class="footer-column">
+					<div class="ft-logo">
+					<a href="https://www.bluebinaries.com/">
+						<img src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/images/logo.png" alt="logo"/>
+					</a>
+					</div>
+					<h5>Connect To Us</h5>
+					<ul>
+					<li><a href="/cdn-cgi/l/email-protection#642d0a020b2426081101260d0a05160d01174a070b09"><span class="__cf_email__" data-cfemail="a8e1c6cec7e8eac4ddcdeac1c6c9dac1cddb86cbc7c5">[email&#160;protected]</span></a></li>
+					<!--<li>Tel : <a href="tel:914440015858">+91 44 4001 5858</a></li>-->
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h5>Home</h5>
+					<ul>
+						<li><a href="https://www.bluebinaries.com/who-we-are/">Who We Are</a></li>
+						<li><a href="https://www.bluebinaries.com/what-we-do/">What We Do</a></li>
+						<li><a href="https://www.bluebinaries.com/become-a-bluebee/">Become A BlueBee</a></li>
+						<li><a href="https://www.bluebinaries.com/insights-we-share/">Insights We Share</a></li>
+						<li><a href="https://www.bluebinaries.com/connect-to-us/">Connect To Us</a></li>
+						
+						<!--<li><a href="https://www.bluebinaries.com/?page_id=15">Solutions For FUTURE</a></li>
+						<li><a href="https://www.bluebinaries.com/?page_id=19">Trust Earned</a></li>-->
+						
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h5>Locations</h5>
+					<ul>
+					<li>India</li>
+					<li>United Kingdom</li>
+					<li>Germany</li>
+					<li>Austria</li>
+					<li>USA</li>
+					
+					</ul>
+				</div>
+				<div class="footer-column">
+					<h5>Careers</h5>
+					<p>
+					Write to us? <strong><a href="/cdn-cgi/l/email-protection#2c6f4d5e49495e5f6c6e4059496e45424d5e45495f024f4341"><span class="__cf_email__" data-cfemail="793a180b1c1c0b0a393b150c1c3b1017180b101c0a571a1614">[email&#160;protected]</span></a></strong>
+					</p>
+					<ul class="ft-social d-flex flex-wrap align-items-center">
+					<li><a href="https://www.facebook.com/BlueBinaries" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+					<li><a href="https://www.linkedin.com/company/13468330/" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+					<li><a href="https://twitter.com/BlueBinaries" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+					<li><a href="https://www.youtube.com/c/BlueBinaries" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+					<!--<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>-->
+					</ul>
+				</div>
+				</div>
+			</div>
+			</div>
+			<div class="footer-copy-right">
+			<div class="container d-flex flex-wrap align-items-center justify-content-between" style="background: none !important;">
+				<p>
+				&copy; BlueBinaries 2026. All Rights Reserved
+				</p>
+				<ul class="d-flex flex-wrap align-items-center">
+				<li><a href="https://www.bluebinaries.com/terms-and-conditions/">Terms & Conditions</a></li>
+				<li><a href="https://www.bluebinaries.com/privacy-policy/">Privacy Policy</a></li>
+				</ul>
+			</div>
+			</div>
+		</footer>
+						<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/jquery-3.4.1.min.js"></script>
+		<script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/bootstrap.bundle.min.js"></script>
+		<script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/swiper-bundle.min.js"></script>
+		<script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/owl.carousel.min.js"></script>
+		<script src="https://www.bluebinaries.com/wp-content/themes/bluebinaries/assets/js/main.js?v=431321"></script>
+	</body>
+</html>

@@ -5,8 +5,9 @@ import {gunzipSync} from 'node:zlib'
 import {run} from '../../scraper/2u/script.js'
 import {getScraperCatalog,createCatalogScraper} from '../providers/index.js'
 import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.js'
+import {createTwoUOriginalReader} from '../../test/helpers/twoUCurrentFixture20261110.js'
 
-const folder=new URL('./fixtures/twoUCurrent20261107C31/',import.meta.url)
+const folder=new URL('./fixtures/twoUCurrent20261110/',import.meta.url)
 const manifest=JSON.parse(fs.readFileSync(new URL('manifest.json',folder),'utf8'))
 const originals=new Map(manifest.records.map(row=>[row.requestedUrl,{url:row.finalUrl,status:row.status,headers:row.headers,
  bodyBase64:gunzipSync(fs.readFileSync(new URL(row.bodyFile,folder))).toString('base64'),requestedAt:row.sourceRequestedAt,completedAt:row.sourceCompletedAt}]))
@@ -15,12 +16,12 @@ const QUERY='https://2u.com/page-data/sq/d/1843004117.json',OFFICES='https://2u.
 const text=page=>Buffer.from(page.bodyBase64,'base64').toString('utf8')
 const changed=(page,body)=>({...page,bodyBase64:Buffer.from(body).toString('base64')})
 const caught=async promise=>{try{return{resolved:true,value:await promise}}catch(reason){return{resolved:false,reason}}}
-function reader(mutate){const calls=[];return{calls,fetchPage:async(url,init)=>{
+function reader(mutate){const calls=[],readOriginal=createTwoUOriginalReader();return{calls,fetchPage:async(url,init)=>{
  calls.push(url);assert.equal(init.redirect,'manual');assert.ok(originals.has(url),'Only original public fixture requests')
- const page=structuredClone(originals.get(url));return mutate?mutate(page,url):page
+ const page=readOriginal(url);return mutate?mutate(page,url):page
 }}}
 const india=(page,url,{visible=true,title=true}={})=>{
- if(url===QUERY){const v=JSON.parse(text(page));v.data.greenhouseJobs.jobs[0].offices[0].name='India Remote';return changed(page,JSON.stringify(v))}
+ if(url===QUERY){const v=JSON.parse(text(page));v.data.greenhouseJobs.jobs.find(row=>row.alternative_id===8871017002).offices[0].name='India Remote';return changed(page,JSON.stringify(v))}
  if(url===OFFICES){const v=JSON.parse(text(page)),o=v.data.cms.pages.find(r=>r.id==='215');o.abbreviation='IN';if(title)o.title='Remote: India';return changed(page,JSON.stringify(v))}
  return visible&&url===ROLE?changed(page,text(page).replaceAll('Remote: US, US','Remote: India, IN')):page
 }
@@ -28,15 +29,15 @@ const india=(page,url,{visible=true,title=true}={})=>{
 test('conflicting visible US role cannot become an India vacancy from native models alone',async()=>{
  const jobs=await run(reader((page,url)=>india(page,url,{visible:false})))
  assert.equal(jobs.length,0)
- assert.equal(jobs.sourceAudit.observations[0].sourceCountryComplete,false)
- assert.equal(jobs.sourceAudit.observations[0].visibleCountryMatch,false)
+ assert.equal(jobs.sourceAudit.observations.find(row=>row.id==='8871017002').sourceCountryComplete,false)
+ assert.equal(jobs.sourceAudit.observations.find(row=>row.id==='8871017002').visibleCountryMatch,false)
  assert.ok(jobs.sourceAudit.originalPages.find(p=>p.requestedURL===ROLE).originalText.includes('Remote: US, US'))
 })
 
 test('CMS title and abbreviation country contradictions remain unresolved',async()=>{
  const jobs=await run(reader((page,url)=>india(page,url,{title:false})))
  assert.equal(jobs.length,0)
- const row=jobs.sourceAudit.observations[0]
+ const row=jobs.sourceAudit.observations.find(row=>row.id==='8871017002')
  assert.equal(row.sourceCountryComplete,false)
  assert.equal(row.sourceNativeCountryEvidence[0].countryConflict,true)
  assert.equal(row.sourceNativeCountryEvidence[0].nativeCMSOffice.title,'Remote: US')
@@ -79,12 +80,12 @@ test('native denied headers retain HTTP403 and cancel a hung entity without read
 })
 
 test('a synchronously blocking audit sink cannot pass its elapsed deadline',async()=>{
- const result=await caught(run({...reader(),auditTimeoutMs:1,onAudit:()=>{const at=performance.now();while(performance.now()-at<20){}}}))
+ const result=await caught(run({...reader(),auditTimeoutMs:1,onAudit:()=>{const at=performance.now();while(performance.now()-at<20){ /* Deliberately stall the event loop to test the elapsed deadline. */ }}}))
  assert.equal(result.resolved,false);assert.equal(result.reason.code,'TWO_U_PUBLIC_AUDIT_TIMEOUT')
 })
 
 test('a synchronously blocking injected read cannot pass its elapsed source deadline',async()=>{
- const result=await caught(run({sourceTimeoutMs:1,fetchPage:()=>{const at=performance.now();while(performance.now()-at<20){};return structuredClone(originals.get(CAREERS))}}))
+ const result=await caught(run({sourceTimeoutMs:1,fetchPage:()=>{const at=performance.now();while(performance.now()-at<20){ /* Deliberately stall the event loop to test the elapsed deadline. */ };return structuredClone(originals.get(CAREERS))}}))
  assert.equal(result.resolved,false);assert.equal(result.reason.code,'TWO_U_PUBLIC_SOURCE_TIMEOUT')
 })
 
@@ -110,12 +111,18 @@ test('default catalog preserves complete US positive and original bytes/clocks w
  const jobs=await createCatalogScraper(provider).run(reader())
  assert.equal(jobs.length,0)
  const audit=jobs.nativeCollectionEvidence
- assert.equal(audit.source,'2u');assert.equal(audit.observations.length,1)
- assert.equal(audit.observations[0].id,'8871017002');assert.equal(audit.observations[0].country,'United States')
- assert.equal(audit.observations[0].sourceDetailComplete,true)
- assert.equal(audit.originalPages.length,16)
- for(const page of audit.originalPages){const original=originals.get(page.requestedURL);assert.equal(page.bodyBase64,original.bodyBase64);assert.equal(page.completedAt,original.completedAt)}
- assert.equal(readSourceObservationEvidence(jobs,'2u').observedVacancyCount,1)
+ assert.equal(audit.source,'2u');assert.equal(audit.observations.length,2)
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').id,'8871017002');assert.equal(audit.observations.find(row=>row.id==='8871017002').country,'United States')
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').sourceDetailComplete,true)
+ assert.equal(audit.originalPages.length,18)
+ for(const [index,page]of audit.originalPages.entries()){
+  const original=originals.get(page.requestedURL)
+  assert.equal(page.bodyBase64,original.bodyBase64)
+  assert.equal(page.requestedURL,manifest.records[index].requestedUrl)
+  assert.equal(page.requestedAt,manifest.records[index].sourceRequestedAt)
+  assert.equal(page.completedAt,manifest.records[index].sourceCompletedAt)
+ }
+ assert.equal(readSourceObservationEvidence(jobs,'2u').observedVacancyCount,2)
  assert.equal(audit.companyGlobalTotal,null);assert.equal(audit.companyIndiaTotal,null);assert.equal(audit.lifecycleCleanupAllowed,false)
 })
 
@@ -134,8 +141,8 @@ test('a closing-only visible country conflict cannot reuse a qualified opening I
  assert.equal(result.resolved,false)
  assert.match(result.reason.message,/closing.*changed/i)
  const audit=result.reason.sourceAudit
- assert.equal(audit.observations[0].country,'India')
- assert.equal(audit.observations[0].visibleCountryMatch,true)
- assert.equal(audit.closing.observations[0].visibleCountryMatch,false)
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').country,'India')
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').visibleCountryMatch,true)
+ assert.equal(audit.closing.observations.find(row=>row.id==='8871017002').visibleCountryMatch,false)
  assert.equal(audit.closingMatches,false);assert.equal(audit.sourceScopeComplete,false)
 })

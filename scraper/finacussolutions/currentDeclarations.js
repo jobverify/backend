@@ -3,6 +3,7 @@ import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNati
 import {decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {need,failure} from './currentErrors.js'
 export {need,failure,isFailure} from './currentErrors.js'
+const profileNeed=(ok,message)=>{if(!ok)throw Object.assign(failure(message),{softFailure:true,upstreamOutage:false,failureKind:'surface_drift_or_fail_closed'})}
 
 export const HOME='https://www.finacus.co.in/',CAREERS=HOME+'careers/',ABOUT=HOME+'about/',AJAX=HOME+'wp-admin/admin-ajax.php',APPLY=CAREERS+'#careerform'
 export const BRAND='Finacus Solutions Private Limited'
@@ -42,7 +43,7 @@ export function readCareers(html){
  one(doc.nodes(n=>n.tag==='h2'&&norm(flow(n))==='Current Openings'),'current openings heading')
  const scripts=doc.nodes(n=>n.tag==='script'),standard=n=>[undefined,'','text/javascript','application/javascript'].includes(n.attrs.type)&&!Object.hasOwn(n.attrs,'nomodule')
  const loader=one(scripts.filter(n=>standard(n)&&n.attrs.src==='/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js'),'declared active loader'),settings=loader.attrs['data-cf-settings']?.match(/^([a-f0-9]{24}-)\|\d+$/)
- need(settings,'unreviewed native loader settings')
+ profileNeed(settings,'unreviewed native loader settings')
  const effective=scripts.filter(n=>!Object.hasOwn(n.attrs,'nomodule')&&(standard(n)||n.attrs.type===settings[1]+'text/javascript'))
  const clients=['simple-ajax-careers-position.js','main.js'].map(file=>{
   const n=one(effective.filter(n=>n.attrs.src?.startsWith(HOME+'wp-content/themes/finacus/js/'+file+'?ver=')),'declared '+file),url=new URL(n.attrs.src)

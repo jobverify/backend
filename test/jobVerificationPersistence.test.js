@@ -40,6 +40,15 @@ test('private verification persistence, queue leases and account limits', { time
       await assert.rejects(service.get(owner, items[0].id), { status: 404 });
       assert.equal((await service.list(owner)).items.length, 0);
     });
+    await t.test('submission and the durable worker preserve a slash-significant request URL', async () => {
+      const submittedUrl = 'https://example.com/jobs/slash-significant/';
+      const item = await service.submit(other, { url: submittedUrl });
+      assert.equal(item.submittedUrl, submittedUrl);
+      await service.tick();
+      const saved = await Report.findById(item.id).lean();
+      assert.equal(saved.input.url, submittedUrl);
+      assert.equal(saved.report.submittedUrl, submittedUrl);
+    });
     await t.test('twenty new checks are allowed and a twenty-first is refused', async () => {
       await Report.deleteMany({});
       const { default: Bucket } = await import('../src/models/RateLimitBucket.js');
@@ -116,6 +125,16 @@ test('private verification persistence, queue leases and account limits', { time
       const row = await Job.findOne({ jobId: '123' }).lean();
       assert.equal(row.sourceUrl, sourceUrl);
       assert.ok(row.verificationKeys.includes('role:greenhouse:global:acme:123'));
+    });
+    await t.test('an exact role is not crowded out by forty other roles from the same ATS tenant', async () => {
+      const { default: Job } = await import('../src/models/Job.js');
+      const { findVerificationCandidates } = await import('../src/jobVerification/repository.js');
+      const { verificationKeys } = await import('../src/jobVerification/urls.js');
+      const records = Array.from({ length: 45 }, (_, index) => ({ title: `Engineer ${index}`, company: 'Acme', sourceUrl: `https://jobs.lever.co/acme/role-${index}`, jobId: `role-${index}` }));
+      await Job.collection.insertMany(records.map(row => ({ ...row, fingerprint: row.sourceUrl, verificationKeys: verificationKeys(row) })));
+      const candidates = await findVerificationCandidates({ urls: [records.at(-1).sourceUrl] });
+      assert.equal(candidates[0].sourceUrl, records.at(-1).sourceUrl);
+      assert.ok(candidates.length <= 40);
     });
     await t.test('the durable queue refuses a hundred-and-first pending investigation', async () => {
       await Report.deleteMany({});

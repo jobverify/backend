@@ -252,7 +252,7 @@ export const createIndiumSoftwareScraper = ({
   },
 })
 
-export const run = async () => createIndiumSoftwareScraper().run()
+export const run = async (options) => createIndiumSoftwareScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

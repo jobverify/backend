@@ -22,30 +22,36 @@ export const fetchVerifiedHttpsPage = async (url, {
       let handle;
       let incoming;
       let settled = false;
-      const finish = (error, value) => {
+      let stopped = false;
+      let stopReason;
+      const finish = (failed, value) => {
         if (settled) return;
         settled = true;
         clearTimeout(timer);
         signal?.removeEventListener('abort', abort);
-        if (error) reject(error); else resolve(value);
+        if (failed) reject(value); else resolve(value);
       };
       const stop = error => {
-        finish(error);
+        if (settled) return;
+        stopped = true;
+        stopReason = error;
+        finish(true, error);
         handle?.destroy?.(error);
         incoming?.destroy?.();
       };
-      const abort = () => stop(signal.reason || new Error('HTTPS request aborted'));
+      const abort = () => stop(signal.reason);
       const timer = setTimeout(() => stop(new Error('HTTPS request deadline exceeded')), remaining);
       signal?.addEventListener('abort', abort, { once: true });
       try {
         handle = request(target.toString(), { method: 'GET', headers, rejectUnauthorized: true }, response => {
+          if (settled) { response.destroy?.(); return; }
           incoming = response;
           response.on('error', error => stop(error));
           response.on('aborted', () => stop(new Error('HTTPS response aborted')));
           const status = Number(response.statusCode ?? 0);
           const location = response.headers?.location;
           if (REDIRECTS.has(status) && location) {
-            finish(null, { redirect: location });
+            finish(false, { redirect: location });
             // Do not drain a potentially unbounded redirect body.
             response.destroy?.();
             return;
@@ -63,12 +69,13 @@ export const fetchVerifiedHttpsPage = async (url, {
             if (bytes > maxBytes) { stop(new Error('HTTPS response exceeds the byte limit')); return; }
             chunks.push(buffer);
           });
-          response.on('end', () => finish(null, { status, url: target.toString(), headers: response.headers,
+          response.on('end', () => finish(false, { status, url: target.toString(), headers: response.headers,
             html: Buffer.concat(chunks).toString('utf8') }));
           response.on('close', () => { if (!settled) stop(new Error('HTTPS response closed before completion')); });
         });
-        handle.on('error', error => finish(error));
-        handle.end();
+        handle.on('error', error => stop(error));
+        if (stopped) handle.destroy?.(stopReason);
+        else if (!settled) handle.end();
       } catch (error) { stop(error); }
     });
     if (!page.redirect) return page;

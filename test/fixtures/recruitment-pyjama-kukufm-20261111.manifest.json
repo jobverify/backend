@@ -1,0 +1,274 @@
+{
+  "capturedAt": "2026-11-11T03:29:51.448Z",
+  "transport": {
+    "mode": "runtime-configured",
+    "httpProxyConfigured": false,
+    "httpsProxyConfigured": true,
+    "noProxyConfigured": true
+  },
+  "publisherURL": "https://kukuapp.in/careers/open-roles/",
+  "boardURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&company_uuid=8B92017E1E&isHeaderVisible=true&is_careers_page=true",
+  "companyIdentity": {
+    "id": 9713,
+    "uuid": "8B92017E1E",
+    "name": "Kuku FM",
+    "url": "https://kukufm.com",
+    "slug": "kuku-fm"
+  },
+  "reportedTotal": 79,
+  "observedRecords": 79,
+  "pages": 8,
+  "selectedIds": [
+    425673,
+    425392,
+    425389,
+    425354,
+    424561
+  ],
+  "responses": [
+    {
+      "requestedURL": "https://kukuapp.in/careers/open-roles/",
+      "finalURL": "https://kukuapp.in/careers/open-roles/",
+      "status": 200,
+      "contentType": "text/html",
+      "startedAt": "2026-11-11T03:29:47.471Z",
+      "completedAt": "2026-11-11T03:29:48.205Z",
+      "bytes": 60608,
+      "sha256": "53fb4ac34f134c098d6bf2e1700d690e4fd56fa9af97308abe6c5b1fce78bf88",
+      "file": "001.html"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&company_uuid=8B92017E1E&isHeaderVisible=true&is_careers_page=true",
+      "finalURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&company_uuid=8B92017E1E&isHeaderVisible=true&is_careers_page=true",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-11T03:29:48.222Z",
+      "completedAt": "2026-11-11T03:29:48.598Z",
+      "bytes": 29976,
+      "sha256": "e5d15aa484e9e919f1b8ad88c1d9c30faadf65a0d7757e18a6c3d18dc1c99f18",
+      "file": "002.html"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+      "finalURL": "https://app.pyjamahr.com/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=UTF-8",
+      "startedAt": "2026-11-11T03:29:48.607Z",
+      "completedAt": "2026-11-11T03:29:48.920Z",
+      "bytes": 870266,
+      "sha256": "f841c4112bc24caeb45737ae58aa543ddba6eae57caae48af60d0371832e5213",
+      "file": "003.js"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/pages/careers-16f2c2af341241eb34d3.js",
+      "finalURL": "https://app.pyjamahr.com/_next/static/chunks/pages/careers-16f2c2af341241eb34d3.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=UTF-8",
+      "startedAt": "2026-11-11T03:29:48.928Z",
+      "completedAt": "2026-11-11T03:29:49.016Z",
+      "bytes": 62342,
+      "sha256": "94adf09cc9598b297db5e2b3621e247215cdc0d8b613e5830df032cd68ac17b6",
+      "file": "004.js"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&page=1&is_careers_page=true",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&page=1&is_careers_page=true",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:49.024Z",
+      "completedAt": "2026-11-11T03:29:49.619Z",
+      "bytes": 3142,
+      "sha256": "85faa811f2526a4148d0eea9199501fd3a0ae5b40d5a06a0284b0e24bfbce456",
+      "file": "005.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=2",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=2",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:49.622Z",
+      "completedAt": "2026-11-11T03:29:49.895Z",
+      "bytes": 3210,
+      "sha256": "ab435553e07fb86dfdfe4e7a0abeb24cd10ea1d407e5ab60e37356dca082e8d0",
+      "file": "006.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=3",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=3",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:49.898Z",
+      "completedAt": "2026-11-11T03:29:49.980Z",
+      "bytes": 3184,
+      "sha256": "95891d3e217d6926ee3d33b101ced80ed4fe5fdc68010767c6bfb660516f79a5",
+      "file": "007.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=4",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=4",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:49.984Z",
+      "completedAt": "2026-11-11T03:29:50.054Z",
+      "bytes": 3306,
+      "sha256": "24c6777f3a14da04e0bc84e3abb6b09ba56662a0c3cd28c892da0e4717487376",
+      "file": "008.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=5",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=5",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.059Z",
+      "completedAt": "2026-11-11T03:29:50.141Z",
+      "bytes": 3153,
+      "sha256": "19e569435e6703ab72b8b78c9b5ec1d013ebf2150d25c7ae7dd0f730f7c5f753",
+      "file": "009.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=6",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=6",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.144Z",
+      "completedAt": "2026-11-11T03:29:50.232Z",
+      "bytes": 3350,
+      "sha256": "fccc52333365f62cb648ba5ecef9061bfef9d1e8960c505d366a3c800770008a",
+      "file": "010.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=7",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=7",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.241Z",
+      "completedAt": "2026-11-11T03:29:50.323Z",
+      "bytes": 3304,
+      "sha256": "46062279a3054cd5a32b2d05c2c8c4ab6475684637187e6855f6422e993aedf4",
+      "file": "011.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=8",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=8",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.330Z",
+      "completedAt": "2026-11-11T03:29:50.427Z",
+      "bytes": 2833,
+      "sha256": "2e3e2f9e35f13f84543426460c0db47dad4965adf7aedb7ec8acdfbb775fc28c",
+      "file": "012.json"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425673/?company_uuid=8B92017E1E&is_careers_page=false",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/425673/?company_uuid=8B92017E1E&is_careers_page=false",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.434Z",
+      "completedAt": "2026-11-11T03:29:50.522Z",
+      "bytes": 3716,
+      "sha256": "cc84273961b43a878b4c78db4fa0e1ee1f849625d7c75cdcea8d4f6ae223f0de",
+      "file": "013.json"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425673&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "finalURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425673&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-11T03:29:50.529Z",
+      "completedAt": "2026-11-11T03:29:50.626Z",
+      "bytes": 22946,
+      "sha256": "2d7069c228e1baa0d3bdd9061b1b0ace0224c882ee0ab1f7546a25ea4e6fc09a",
+      "file": "014.html"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425392/?company_uuid=8B92017E1E&is_careers_page=false",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/425392/?company_uuid=8B92017E1E&is_careers_page=false",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.636Z",
+      "completedAt": "2026-11-11T03:29:50.727Z",
+      "bytes": 4421,
+      "sha256": "6d2822ec37b7caf5211ef80e0c567c626394b636028c0911f60615a66063e326",
+      "file": "015.json"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425392&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "finalURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425392&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-11T03:29:50.734Z",
+      "completedAt": "2026-11-11T03:29:50.844Z",
+      "bytes": 23740,
+      "sha256": "ccf721a4799f344edca77ff6ef824ae83580f1585c255bb70faac7a3edc37298",
+      "file": "016.html"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425389/?company_uuid=8B92017E1E&is_careers_page=false",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/425389/?company_uuid=8B92017E1E&is_careers_page=false",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:50.853Z",
+      "completedAt": "2026-11-11T03:29:50.939Z",
+      "bytes": 4304,
+      "sha256": "296cba5a2836010dd021afcc7f04f08c5e86a240577c9abc8d43aa911a6b711f",
+      "file": "017.json"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425389&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "finalURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425389&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-11T03:29:50.946Z",
+      "completedAt": "2026-11-11T03:29:51.033Z",
+      "bytes": 23641,
+      "sha256": "786733041f3c6d5c9156f4251793544cf13841f72ff123561fe12d1128a89e26",
+      "file": "018.html"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425354/?company_uuid=8B92017E1E&is_careers_page=false",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/425354/?company_uuid=8B92017E1E&is_careers_page=false",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:51.041Z",
+      "completedAt": "2026-11-11T03:29:51.128Z",
+      "bytes": 4184,
+      "sha256": "f393d0e7ae383732cbd16851c864f1a68eab4da8396b25338dcc57cce084067f",
+      "file": "019.json"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425354&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "finalURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425354&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-11T03:29:51.135Z",
+      "completedAt": "2026-11-11T03:29:51.237Z",
+      "bytes": 23459,
+      "sha256": "ed9e17a85822e005ac7e93c2921b95da6821b589b89ac8d195c6db3ecd6eca78",
+      "file": "020.html"
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/424561/?company_uuid=8B92017E1E&is_careers_page=false",
+      "finalURL": "https://api.pyjamahr.com/api/career/jobs/424561/?company_uuid=8B92017E1E&is_careers_page=false",
+      "status": 200,
+      "contentType": "application/json",
+      "startedAt": "2026-11-11T03:29:51.249Z",
+      "completedAt": "2026-11-11T03:29:51.328Z",
+      "bytes": 4614,
+      "sha256": "b234034c6655980d876ca9228c70ca8059670e547090a0d34c9c51771c349081",
+      "file": "021.json"
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=424561&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "finalURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=424561&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-11T03:29:51.337Z",
+      "completedAt": "2026-11-11T03:29:51.439Z",
+      "bytes": 25366,
+      "sha256": "159bd90af6a192bdf33a9705bb4c8d2223a66dd883d752c915ebf1d75b2fa6c9",
+      "file": "022.html"
+    }
+  ],
+  "fixture": "recruitment-pyjama-kukufm-20261111.json.gz",
+  "fixtureSHA256": "1cc3160f616006a67a3359c02b045c4c112dccab23bf965e53c89ce82c30ed9a"
+}

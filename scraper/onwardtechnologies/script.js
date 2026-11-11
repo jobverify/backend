@@ -217,7 +217,7 @@ export const createOnwardTechnologiesScraper = () => ({
   },
 })
 
-export const run = async () => createOnwardTechnologiesScraper().run()
+export const run = async (options) => createOnwardTechnologiesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

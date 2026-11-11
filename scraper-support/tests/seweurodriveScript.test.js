@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { normalizeScrapedJob } from '../utils/normalizeScrapedJob.js'
+import { analyzePublishableJobs } from '../utils/publishableJobMetrics.js'
+import { extractionDetailHealth } from '../utils/extractionDetailHealth.js'
 
 const loadModule = async () => {
   try {
@@ -63,54 +66,47 @@ const careersHtml = `
   </html>
 `
 
-test('extractOpenings parses the verified SEW-EURODRIVE India careers table and shared application handoff', async () => {
+test('extractOpenings preserves SEW listing candidates without inventing country, requisitions or descriptions', async () => {
   const seweurodrive = await loadModule()
 
   assert.equal(seweurodrive.CAREERS_URL, 'https://www.seweurodriveindia.com/career/your_career/your_career.html')
   assert.equal(seweurodrive.hasOfficialCareersSignal(careersHtml), true)
   assert.equal(seweurodrive.extractApplicationFormUrl(careersHtml), 'https://www.seweurodriveindia.com/meta_seiten/web_online_contact_form_career.html')
-  assert.deepEqual(seweurodrive.extractOpenings(careersHtml), [
-    {
-      title: 'Executive/Assistant Manager - Technical Sales',
-      company: 'SEW-Eurodrive India Pvt Ltd',
-      department: 'Sales',
-      location: 'Sriperumbudur/ Electronic city- Bangalore/Navi Mumbai, India',
-      city: null,
-      country: 'India',
-      jobId: 'seweurodriveindiapvtltd-executive-assistant-manager-technical-sales-sales-sriperumbudur-electronic-city-bangalore-navi-mumbai',
-      requisitionId: 'seweurodriveindiapvtltd-executive-assistant-manager-technical-sales-sales-sriperumbudur-electronic-city-bangalore-navi-mumbai',
-      sourceUrl: 'https://media.sew-eurodrive.com/download/pdf/12345_Executive_Assistant_Manager_Technical_Sales.pdf',
-      applyUrl: 'https://www.seweurodriveindia.com/meta_seiten/web_online_contact_form_career.html',
-      employmentType: null,
-      experienceRequired: null,
-      minimumQualification: null,
-      preferredQualification: null,
-      requiredSkills: [],
-      postingDate: null,
-      closingDate: null,
-      jobDescription: 'Official SEW-Eurodrive India Pvt Ltd opening for Executive/Assistant Manager - Technical Sales in Sales at Sriperumbudur/ Electronic city- Bangalore/Navi Mumbai, India. Refer to the first-party job description PDF for role details and apply through the official SEW-EURODRIVE India application form.',
-    },
-    {
-      title: 'Deputy Manager - Technical Sales( Resident)',
-      company: 'SEW-Eurodrive India Pvt Ltd',
-      department: 'Sales',
-      location: 'Ludhiana, India',
-      city: 'Ludhiana',
-      country: 'India',
-      jobId: 'seweurodriveindiapvtltd-deputy-manager-technical-sales-resident-sales-ludhiana',
-      requisitionId: 'seweurodriveindiapvtltd-deputy-manager-technical-sales-resident-sales-ludhiana',
-      sourceUrl: 'https://www.seweurodriveindia.com/download/pdf/98765_Deputy_Manager_Technical_Sales_Resident.pdf',
-      applyUrl: 'https://www.seweurodriveindia.com/meta_seiten/web_online_contact_form_career.html',
-      employmentType: null,
-      experienceRequired: null,
-      minimumQualification: null,
-      preferredQualification: null,
-      requiredSkills: [],
-      postingDate: null,
-      closingDate: null,
-      jobDescription: 'Official SEW-Eurodrive India Pvt Ltd opening for Deputy Manager - Technical Sales( Resident) in Sales at Ludhiana, India. Refer to the first-party job description PDF for role details and apply through the official SEW-EURODRIVE India application form.',
-    },
+  const jobs = seweurodrive.extractOpenings(careersHtml)
+  assert.equal(jobs.length, 2)
+  assert.deepEqual(jobs.map(job => job.title), [
+    'Executive/Assistant Manager - Technical Sales',
+    'Deputy Manager - Technical Sales( Resident)',
   ])
+  assert.deepEqual(jobs.map(job => job.jobId), [
+    'seweurodriveindiapvtltd-executive-assistant-manager-technical-sales-sales-sriperumbudur-electronic-city-bangalore-navi-mumbai',
+    'seweurodriveindiapvtltd-deputy-manager-technical-sales-resident-sales-ludhiana',
+  ])
+  assert.deepEqual(jobs.map(job => job.location), [
+    'Sriperumbudur/ Electronic city- Bangalore/Navi Mumbai', 'Ludhiana',
+  ])
+  assert.deepEqual(jobs.map(job => job.sourceUrl), [
+    'https://media.sew-eurodrive.com/download/pdf/12345_Executive_Assistant_Manager_Technical_Sales.pdf',
+    'https://www.seweurodriveindia.com/download/pdf/98765_Deputy_Manager_Technical_Sales_Resident.pdf',
+  ])
+  for (const job of jobs) {
+    assert.equal(job.company, 'SEW-Eurodrive India Pvt Ltd')
+    assert.equal(job.department, 'Sales')
+    assert.equal(job.applyUrl, seweurodrive.extractApplicationFormUrl(careersHtml))
+    assert.equal(job.country, null)
+    assert.equal(job.sourceCountryScopeUnresolved, true)
+    assert.equal(job.requisitionId, null)
+    assert.equal(job.nativeLegalEmployer, null)
+    assert.equal(job.jobDescription, null)
+    assert.equal(job.sourceDescription, null)
+    assert.equal(job.sourceDetailComplete, false)
+    assert.ok(job.listingSummary.includes(job.title))
+    assert.equal(job.lifecycleCleanupAllowed, false)
+  }
+  const normalized = jobs.map(job => normalizeScrapedJob(job, { country: 'India', locationCountry: 'India' }))
+  assert.equal(analyzePublishableJobs(normalized).indiaJobs.length, 0)
+  assert.equal(analyzePublishableJobs(normalized).eligibleJobs.length, 0)
+  assert.equal(extractionDetailHealth(jobs).missingDescriptions, 2)
 })
 
 test('run fetches the official SEW-EURODRIVE India careers page and decorates jobs for persistence', async () => {
@@ -131,7 +127,7 @@ test('run fetches the official SEW-EURODRIVE India careers page and decorates jo
   assert.match(jobs[0].scrapedAt, /^\d{4}-\d{2}-\d{2}T/)
 })
 
-test('run enriches SEW-EURODRIVE jobs from first-party PDF descriptions when public experience is present', async () => {
+test('run retains metadata-free PDF callback diagnostics without promoting text to verified native criteria', async () => {
   const seweurodrive = await loadModule()
   const requestedListingUrls = []
   const requestedDetailUrls = []
@@ -169,13 +165,20 @@ test('run enriches SEW-EURODRIVE jobs from first-party PDF descriptions when pub
     'https://media.sew-eurodrive.com/download/pdf/12345_Executive_Assistant_Manager_Technical_Sales.pdf',
     'https://www.seweurodriveindia.com/download/pdf/98765_Deputy_Manager_Technical_Sales_Resident.pdf',
   ])
-  assert.equal(jobs[0].experienceRequired, '2+ years')
-  assert.equal(jobs[0].publicExperienceChecked, true)
-  assert.equal(jobs[1].experienceRequired, '3-5 years')
-  assert.equal(jobs[1].publicExperienceChecked, true)
+  for (const job of jobs) {
+    assert.equal(job.experienceRequired, null)
+    assert.notEqual(job.publicExperienceChecked, true)
+    assert.equal(job.jobDescription, null)
+    assert.equal(job.sourceDetailComplete, false)
+    assert.equal(job.skipPublicExperienceEnrichment, true)
+    assert.equal(job.country, null)
+    assert.equal(job.requisitionId, null)
+    assert.ok(job.sourceUnverifiedDetailDiagnostic.textBytes > 0)
+    assert.match(job.sourceUnverifiedDetailDiagnostic.textSHA256, /^[a-f0-9]{64}$/)
+  }
 })
 
-test('run preserves verified-missing public evidence when the first-party PDF omits an experience requirement', async () => {
+test('run keeps incomplete and empty PDF diagnostics unqualified and preserves every candidate', async () => {
   const seweurodrive = await loadModule()
 
   const jobs = await seweurodrive.createSeweurodriveIndiaScraper().run({
@@ -193,8 +196,17 @@ test('run preserves verified-missing public evidence when the first-party PDF om
     },
   })
 
-  assert.equal(jobs[0].experienceRequired, null)
-  assert.equal(jobs[0].publicExperienceChecked, true)
+  assert.equal(jobs.length, 2)
+  for (const job of jobs) {
+    assert.equal(job.experienceRequired, null)
+    assert.notEqual(job.publicExperienceChecked, true)
+    assert.equal(job.jobDescription, null)
+    assert.equal(job.sourceDetailComplete, false)
+    assert.ok(job.sourceDetailFailure)
+  }
+  assert.equal(jobs[0].sourceUnverifiedDetailDiagnostic.textBytes > 0, true)
+  assert.equal(jobs[1].sourceUnverifiedDetailDiagnostic.textBytes, 0)
+  assert.equal(extractionDetailHealth(jobs).missingDescriptions, 2)
 })
 
 test('extractOpenings rejects an unexpected SEW-EURODRIVE India careers page shape', async () => {

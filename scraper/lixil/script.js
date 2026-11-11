@@ -242,7 +242,7 @@ export const createLixilScraper = () => ({
   },
 })
 
-export const run = async () => createLixilScraper().run()
+export const run = async (options) => createLixilScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

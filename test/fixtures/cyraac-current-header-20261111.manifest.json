@@ -1,0 +1,45 @@
+{
+  "createdAt": "2026-11-11T15:21:35.856Z",
+  "fixture": "cyraac-current-header-20261111.json.gz",
+  "SHA256": "c46140ffc417cdff2c407471bc46189c520f60ceb58f0f071badc36aee05afe7",
+  "bytes": 158848,
+  "sourceReceipt": "runtime-discovery/cyraac-current-own-20261111m/receipts.json",
+  "sourceReceiptSHA256": "148da23d95124ea12614f283a457d2faea8e4f7a9009faff2d71fd6e3ade09b1",
+  "noNewHTTP": true,
+  "limits": "Current HOME and one actual own-role opening/closing only. No current final index or complete collection. Raw Cloudflare-script differences remain original; no execution/normalization.",
+  "packets": [
+    {
+      "requestedURL": "https://cyraacs.com/careers/",
+      "finalURL": "https://cyraacs.com/careers/",
+      "status": 200,
+      "phase": "current-careers",
+      "bodySHA256": "a634fbd82fd46ee6dda920da2197b5ea6533539a707a729c7fefa9095f6ba7a3",
+      "bodyBytes": 602603,
+      "requestedAt": "2026-11-11T15:12:46.111Z",
+      "completedAt": "2026-11-11T15:12:48.348Z",
+      "httpHeadersAvailable": true
+    },
+    {
+      "requestedURL": "https://cyraacs.com/job-description-technical-architect/",
+      "finalURL": "https://cyraacs.com/job-description-technical-architect/",
+      "status": 200,
+      "phase": "own-opening",
+      "bodySHA256": "389aa0688f043c4a491716b9258481193c9be8ef2f6ac7732c4f331e4c0e534a",
+      "bodyBytes": 169079,
+      "requestedAt": "2026-11-11T15:12:49.248Z",
+      "completedAt": "2026-11-11T15:12:49.853Z",
+      "httpHeadersAvailable": true
+    },
+    {
+      "requestedURL": "https://cyraacs.com/job-description-technical-architect/",
+      "finalURL": "https://cyraacs.com/job-description-technical-architect/",
+      "status": 200,
+      "phase": "own-closing",
+      "bodySHA256": "4266e14eaadbc536b6f8c894e675c60208237f91cdf4011b1e3bcdafca432c8c",
+      "bodyBytes": 169079,
+      "requestedAt": "2026-11-11T15:12:50.257Z",
+      "completedAt": "2026-11-11T15:12:50.860Z",
+      "httpHeadersAvailable": true
+    }
+  ]
+}

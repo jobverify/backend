@@ -170,4 +170,4 @@ export const createRadwareScraper = (options = {}) => ({
   },
 })
 
-export const run = async () => createRadwareScraper().run()
+export const run = async (options) => createRadwareScraper(options).run()

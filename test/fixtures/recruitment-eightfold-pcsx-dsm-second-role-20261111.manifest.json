@@ -1,0 +1,117 @@
+{
+  "source": "dsmfirmenich",
+  "roleID": 562949978264545,
+  "compressedSHA256": "d2eed7298713ccbce43b1a27267aa4befdef7551876f30e7b3817418a9311145",
+  "noSourceRecoveryClaim": true,
+  "responses": [
+    {
+      "phase": "opening",
+      "label": "roleAPI2",
+      "requestedURL": "https://jobs.dsm-firmenich.com/api/pcsx/position_details?position_id=562949978264545&domain=dsm.com&hl=en",
+      "finalURL": "https://jobs.dsm-firmenich.com/api/pcsx/position_details?position_id=562949978264545&domain=dsm.com&hl=en",
+      "url": "https://jobs.dsm-firmenich.com/api/pcsx/position_details?position_id=562949978264545&domain=dsm.com&hl=en",
+      "status": 200,
+      "method": "GET",
+      "capturedAt": "2026-11-11T06:08:16.473Z",
+      "bodySHA256": "dc54e2781065cf65ea023181694897035495fa5673b167de60a994b45c70c6c5",
+      "bodyBytes": 29134,
+      "bodyFile": "opening-roleAPI2.body",
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 06:08:46 GMT"
+      }
+    },
+    {
+      "phase": "opening",
+      "label": "role2",
+      "requestedURL": "https://jobs.dsm-firmenich.com/careers/job/562949978264545",
+      "finalURL": "https://jobs.dsm-firmenich.com/careers/job/562949978264545",
+      "url": "https://jobs.dsm-firmenich.com/careers/job/562949978264545",
+      "status": 200,
+      "method": "GET",
+      "capturedAt": "2026-11-11T06:08:17.089Z",
+      "bodySHA256": "951d61b61b9a57e1c105eb1eb195db7fd6b87aa1cf05204f1ae1248a56b31d2e",
+      "bodyBytes": 202632,
+      "bodyFile": "opening-role2.body",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 06:08:46 GMT"
+      }
+    },
+    {
+      "phase": "opening",
+      "label": "overrides2",
+      "requestedURL": "https://jobs.dsm-firmenich.com/api/pcsx/overrides?position_id=562949978264545&domain=dsm.com&hl=en",
+      "finalURL": "https://jobs.dsm-firmenich.com/api/pcsx/overrides?position_id=562949978264545&domain=dsm.com&hl=en",
+      "url": "https://jobs.dsm-firmenich.com/api/pcsx/overrides?position_id=562949978264545&domain=dsm.com&hl=en",
+      "status": 200,
+      "method": "GET",
+      "capturedAt": "2026-11-11T06:08:17.419Z",
+      "bodySHA256": "887694615d3a98620e65d4ae2f937808e86d10d5edf319424e8fad1bf339039d",
+      "bodyBytes": 640,
+      "bodyFile": "opening-overrides2.body",
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 06:08:47 GMT"
+      }
+    },
+    {
+      "phase": "closing",
+      "label": "roleAPI2",
+      "requestedURL": "https://jobs.dsm-firmenich.com/api/pcsx/position_details?position_id=562949978264545&domain=dsm.com&hl=en",
+      "finalURL": "https://jobs.dsm-firmenich.com/api/pcsx/position_details?position_id=562949978264545&domain=dsm.com&hl=en",
+      "url": "https://jobs.dsm-firmenich.com/api/pcsx/position_details?position_id=562949978264545&domain=dsm.com&hl=en",
+      "status": 200,
+      "method": "GET",
+      "capturedAt": "2026-11-11T06:08:17.763Z",
+      "bodySHA256": "dc54e2781065cf65ea023181694897035495fa5673b167de60a994b45c70c6c5",
+      "bodyBytes": 29134,
+      "bodyFile": "closing-roleAPI2.body",
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 06:08:47 GMT"
+      }
+    },
+    {
+      "phase": "closing",
+      "label": "role2",
+      "requestedURL": "https://jobs.dsm-firmenich.com/careers/job/562949978264545",
+      "finalURL": "https://jobs.dsm-firmenich.com/careers/job/562949978264545",
+      "url": "https://jobs.dsm-firmenich.com/careers/job/562949978264545",
+      "status": 200,
+      "method": "GET",
+      "capturedAt": "2026-11-11T06:08:18.188Z",
+      "bodySHA256": "b4b681dfdc838c7db20973879a8ffad667770dcea4970ce688aeb16bd9245fbb",
+      "bodyBytes": 202632,
+      "bodyFile": "closing-role2.body",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 06:08:47 GMT"
+      }
+    },
+    {
+      "phase": "closing",
+      "label": "overrides2",
+      "requestedURL": "https://jobs.dsm-firmenich.com/api/pcsx/overrides?position_id=562949978264545&domain=dsm.com&hl=en",
+      "finalURL": "https://jobs.dsm-firmenich.com/api/pcsx/overrides?position_id=562949978264545&domain=dsm.com&hl=en",
+      "url": "https://jobs.dsm-firmenich.com/api/pcsx/overrides?position_id=562949978264545&domain=dsm.com&hl=en",
+      "status": 200,
+      "method": "GET",
+      "capturedAt": "2026-11-11T06:08:18.541Z",
+      "bodySHA256": "887694615d3a98620e65d4ae2f937808e86d10d5edf319424e8fad1bf339039d",
+      "bodyBytes": 640,
+      "bodyFile": "closing-overrides2.body",
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 06:08:48 GMT"
+      }
+    }
+  ],
+  "note": "Actual second current role, never fabricated. Used with the original selected listing, corporate/native carrier and reviewed client evidence. No independent browser or complete-source claim."
+}

@@ -49,14 +49,16 @@ export async function runNativeCargill(options={}){
   prove(JSON.stringify(rows)===JSON.stringify(final),'Native full India-filter inventory drift');abort()
   const withdrawnRoles=heldRoles.filter(hold=>hold.withdrawalProof)
   const incompleteOfficeRoles=heldRoles.filter(hold=>hold.code==='CARGILL_SAME_COUNTRY_PUBLIC_OFFICE_INCOMPLETE')
-  for(const hold of incompleteOfficeRoles){
+  const worksiteDisagreementRoles=heldRoles.filter(hold=>hold.code==='CARGILL_SAME_COUNTRY_WORKSITE_DISAGREEMENT')
+  for(const hold of [...incompleteOfficeRoles,...worksiteDisagreementRoles]){
+   const HoldType=hold.code==='CARGILL_SAME_COUNTRY_PUBLIC_OFFICE_INCOMPLETE'?CargillSameCountryPublicOfficeIncomplete:CargillSameCountryWorksiteDisagreement
    const publicClosing=await get(hold.row.sourceUrl,'official')
    const closingOfficial=parseCargillAtStage(()=>parseCargillOfficialRole(publicClosing.body,hold.row,{now,deferIncompletePublicOffice:true}),'official')
    prove(JSON.stringify(closingOfficial)===JSON.stringify(hold.officialModel),'Incomplete public office model changed at closing')
    const nativeClosing=await get(closingOfficial.applicationURL,'sap')
    let closingModel
    try{parseCargillAtStage(()=>parseCargillRmkDetail(nativeClosing.body,nativeClosing.url,closingOfficial,{now}),'sap')}
-   catch(error){if(!(error instanceof CargillSameCountryPublicOfficeIncomplete))throw error;closingModel=error.validatedModel}
+   catch(error){if(!(error instanceof HoldType))throw error;closingModel=error.validatedModel}
    prove(closingModel&&JSON.stringify(closingModel)===JSON.stringify(hold.validatedModel),'Incomplete public office native proof changed at closing')
    hold.publicClosingResponse={url:publicClosing.url,body:publicClosing.body,receipt:publicClosing.receipt.sequence}
    hold.nativeClosingResponse={url:nativeClosing.url,body:nativeClosing.body,receipt:nativeClosing.receipt.sequence}

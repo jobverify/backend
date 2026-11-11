@@ -1,0 +1,96 @@
+{
+  "source": "branch",
+  "capturedOn": "2026-11-11",
+  "fixture": "recruitment-rippling-branch-20261111.json.gz",
+  "fixtureSHA256": "a066cc1322c3a4c5d8ba66984d1f3bbba6dda9e83de71c7f760c17b1c890a8eb",
+  "responses": [
+    {
+      "requestedURL": "https://www.branch.io/wp-content/plugins/branch-rippling-careers/assets/js/view.js?ver=1788895891",
+      "startedAt": "2026-11-11T03:08:54.892Z",
+      "finalURL": "https://www.branch.io/wp-content/plugins/branch-rippling-careers/assets/js/view.js?ver=1788895891",
+      "status": 200,
+      "contentType": "application/javascript",
+      "file": "b24414471dab9253.js",
+      "bodyBytes": 26312,
+      "bodySHA256": "c682b0fc1afc2103d6affbad8014a2afa23f0c6f53f3ba313803e330ab761fce",
+      "completedAt": "2026-11-11T03:08:55.384Z"
+    },
+    {
+      "requestedURL": "https://ats.rippling.com/api/v2/board/branch/jobs?groupJobsByLocation=false&page=0&pageSize=1000",
+      "startedAt": "2026-11-11T03:08:55.385Z",
+      "finalURL": "https://ats.rippling.com/api/v2/board/branch/jobs?groupJobsByLocation=false&page=0&pageSize=1000",
+      "status": 200,
+      "contentType": "application/json",
+      "file": "eefdc3662338aa35.json",
+      "bodyBytes": 7243,
+      "bodySHA256": "0b5a58f92808726c137b083bee19858a16e26dc43ce53f5b99b13c3871e78297",
+      "completedAt": "2026-11-11T03:08:56.302Z"
+    },
+    {
+      "requestedURL": "https://ats.rippling.com/branch/jobs/454f3d28-ca85-4640-9cfe-c48f1931cfdc",
+      "startedAt": "2026-11-11T03:09:58.964Z",
+      "finalURL": "https://ats.rippling.com/branch/jobs/454f3d28-ca85-4640-9cfe-c48f1931cfdc",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "file": "8d075ad74a536db2.html",
+      "bodyBytes": 192921,
+      "bodySHA256": "e5c2dd10c035a3b01c1949c1bfdd21793aef9da660216ff5658fa9842079c41f",
+      "completedAt": "2026-11-11T03:09:59.981Z"
+    },
+    {
+      "requestedURL": "https://ats.rippling.com/branch/jobs/736cd9d9-935d-4eff-9359-3437ac66eff1",
+      "startedAt": "2026-11-11T03:12:06.657Z",
+      "finalURL": "https://ats.rippling.com/branch/jobs/736cd9d9-935d-4eff-9359-3437ac66eff1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "file": "388f7f1f1041f4a7.html",
+      "bodyBytes": 197874,
+      "bodySHA256": "899db9bccad5cfc16e90a9faf5ca998303dd95c4d35c7ba7443f6dbd35efba5b",
+      "completedAt": "2026-11-11T03:12:07.525Z"
+    },
+    {
+      "requestedURL": "https://ats.rippling.com/branch/jobs/14034902-e87c-4cdc-a07b-46260a42d095",
+      "startedAt": "2026-11-11T03:12:07.525Z",
+      "finalURL": "https://ats.rippling.com/branch/jobs/14034902-e87c-4cdc-a07b-46260a42d095",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "file": "b4a9088d2f7c0cec.html",
+      "bodyBytes": 201269,
+      "bodySHA256": "cff7f2018872c2c233b484a4067f08d49aaaf937cb387e539ebfdfa9a7498db9",
+      "completedAt": "2026-11-11T03:12:08.022Z"
+    },
+    {
+      "requestedURL": "https://ats.rippling.com/branch/jobs/d69a1abd-a1b2-4a2e-a73b-57fd5769ce83",
+      "startedAt": "2026-11-11T03:12:08.022Z",
+      "finalURL": "https://ats.rippling.com/branch/jobs/d69a1abd-a1b2-4a2e-a73b-57fd5769ce83",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "file": "58c6639e561a4606.html",
+      "bodyBytes": 214329,
+      "bodySHA256": "21eb62e9a3ba22335bcec87c82817efc3151ca4109faaedd8a375bbc5004cd9f",
+      "completedAt": "2026-11-11T03:12:08.531Z"
+    },
+    {
+      "requestedURL": "https://ats.rippling.com/branch/jobs/dd6618ff-342f-4a05-a258-96bb8d347be8",
+      "startedAt": "2026-11-11T03:12:08.532Z",
+      "finalURL": "https://ats.rippling.com/branch/jobs/dd6618ff-342f-4a05-a258-96bb8d347be8",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "file": "db3b3261f2e5fa77.html",
+      "bodyBytes": 196970,
+      "bodySHA256": "5b4ed5975fd34476443c9c86329ceee1a896af887c31bf1fc4d2b1eeea88c7a0",
+      "completedAt": "2026-11-11T03:12:09.011Z"
+    },
+    {
+      "requestedURL": "https://www.branch.io/careers/",
+      "method": "GET",
+      "startedAt": "2026-11-11T03:07:14.438Z",
+      "status": 200,
+      "finalURL": "https://www.branch.io/careers/",
+      "contentType": "text/html; charset=UTF-8",
+      "file": "002.html",
+      "bodyBytes": 224040,
+      "bodySHA256": "0b5c54e85b1bc59b20f9d63a992625b18efdf7d239dda7ca1010a2ae1712e8a9"
+    }
+  ]
+}

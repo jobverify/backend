@@ -103,7 +103,7 @@ export const createCoinSwitchScraper = () => ({
   },
 })
 
-export const run = async () => createCoinSwitchScraper().run()
+export const run = async (options) => createCoinSwitchScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

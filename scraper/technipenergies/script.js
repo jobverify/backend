@@ -301,7 +301,7 @@ export const createTechnipEnergiesScraper = ({
   },
 })
 
-export const run = async () => createTechnipEnergiesScraper().run()
+export const run = async (options) => createTechnipEnergiesScraper(options).run()
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

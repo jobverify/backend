@@ -240,4 +240,4 @@ export const createTigerAnalyticsScraper = ({
   },
 })
 
-export const run = async () => createTigerAnalyticsScraper().run()
+export const run = async (options) => createTigerAnalyticsScraper().run(options)

@@ -1,4 +1,5 @@
 import { normalizePublicJobCategory } from '../utils/publicJobNormalization.js';
+import { normalizePublicWorkArrangement } from '../utils/publicWorkArrangement.js';
 import { telegramJobLink } from './jobAlertService.js';
 
 export const BROADCAST_TOKENS = [
@@ -58,7 +59,8 @@ function valuesFor(job) {
     experience = Number.isFinite(max) && max >= min && max <= 40 && max !== min ? `${min}–${max} years` : `${min}${profile.isOpenEnded ? '+' : ''} years`;
   }
   const raw = { company: job.company, title: job.title, jobType: /^full[ -]time/i.test(category) ? 'Full time' : category,
-    location: job.city || job.location, batch: batches, experience, workMode: job.workArrangement,
+    location: job.city || job.location, batch: batches, experience,
+    workMode: job.sourceRemoteStatusUnresolved === true ? normalizePublicWorkArrangement(job.workArrangement, job) : job.workArrangement,
     skills: Array.isArray(job.requiredSkills) ? job.requiredSkills.join(', ') : '', salary: job.salary,
     jobUrl: telegramJobLink(job) };
   return Object.fromEntries(Object.entries(raw).map(([name, value]) => [name, clean(value, limits[name])]));

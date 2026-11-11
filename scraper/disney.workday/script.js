@@ -11,11 +11,13 @@ export async function run(options={}){
  if(!Number.isFinite(timeout)||timeout<=0||timeout>60000)throw Error('Invalid Disney request timeout')
  const cap=(value,name)=>{if(value!==undefined&&(!Number.isSafeInteger(value)||value<1))throw Error('Invalid Disney '+name);return value??Infinity}
  const maxJobs=cap(options.maxJobs,'job cap'),maxPages=cap(options.maxPages,'page cap')
- function aborted(){if(signal?.aborted)throw signal.reason??Error('Disney extraction aborted')}
+ function aborted(){if(signal?.aborted)throw signal.reason}
  async function get(url){
   aborted();const controller=new AbortController();let timer,onAbort
-  const stopped=new Promise((_,reject)=>{onAbort=()=>{const reason=signal?.reason??Error('Disney extraction aborted');controller.abort(reason);reject(reason)};signal?.addEventListener('abort',onAbort,{once:true});timer=setTimeout(()=>{const reason=Error('Disney native HTTP timeout');controller.abort(reason);reject(reason)},timeout)})
-  try{return await Promise.race([(async()=>{const response=await fetcher(url,{method:'GET',signal:controller.signal,headers:{accept:'text/html, application/json'}});aborted();if(response?.status!==200||response.url!==url)throw Error('Disney native HTTP status/redirect unavailable');const body=await response.text();aborted();if(typeof body!=='string'||!body.trim())throw Error('Disney native empty response');return body})(),stopped])}
+  const check=()=>{aborted();if(controller.signal.aborted)throw controller.signal.reason}
+  const stopped=new Promise((_,reject)=>{onAbort=()=>{const reason=signal.reason;controller.abort(reason);reject(reason)};signal?.addEventListener('abort',onAbort,{once:true});timer=setTimeout(()=>{const reason=Error('Disney native HTTP timeout');controller.abort(reason);reject(reason)},timeout)})
+  try{return await Promise.race([(async()=>{const response=await fetcher(url,{method:'GET',signal:controller.signal,headers:{accept:'text/html, application/json'}});check();if(response?.status!==200||response.url!==url)throw Error('Disney native HTTP status/redirect unavailable');const body=await response.text();check();if(typeof body!=='string'||!body.trim())throw Error('Disney native empty response');return body})(),stopped])}
+  catch(error){aborted();throw error}
   finally{clearTimeout(timer);signal?.removeEventListener('abort',onAbort)}
  }
  const discovery=inspectSearch(await get(SEARCH_URL)),firstUrl=listingUrl(discovery,1),firstBody=await get(firstUrl)

@@ -40,6 +40,9 @@ const PARSER_OR_CONTRACT_PATTERN =
   /http[\s_:-]*(?:400|422)\b|bad request|unprocessable|selector|parse|expected json|cannot read|undefined|not a function|not iterable/i
 
 export const classifyScraperError = (error = {}) => {
+  if (error === null) {
+    return { softFailure: false, upstreamOutage: false, failureKind: 'hard_failure' }
+  }
   if (isMongoOperationalError(error, { networkCodes: false })) {
     return { softFailure: true, upstreamOutage: false, failureKind: 'database_unavailable' }
   }

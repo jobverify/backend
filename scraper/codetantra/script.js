@@ -60,4 +60,4 @@ export const createCodetantraScraper = () => ({
   },
 })
 
-export const run = async () => createCodetantraScraper().run()
+export const run = async (options) => createCodetantraScraper().run(options)

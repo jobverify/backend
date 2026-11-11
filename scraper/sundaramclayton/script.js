@@ -67,4 +67,4 @@ export const createSundaramClaytonScraper = () => ({
   },
 })
 
-export const run = async () => createSundaramClaytonScraper().run()
+export const run = async (options) => createSundaramClaytonScraper().run(options)

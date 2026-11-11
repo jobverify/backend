@@ -245,7 +245,7 @@ export const createEgisScraper = ({
   },
 })
 
-export const run = async () => createEgisScraper().run()
+export const run = async (options) => createEgisScraper(options).run()
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

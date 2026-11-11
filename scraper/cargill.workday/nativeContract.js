@@ -15,7 +15,8 @@ function failure(p){prove(p&&typeof p==='object'&&!Array.isArray(p),'Native enve
 function day(value,now){prove(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value),'Native day unavailable');const d=new Date(value+'T00:00:00.000Z');prove(Number.isFinite(+d)&&d.toISOString().slice(0,10)===value&&+d<=Date.parse(now),'Invalid/future native day');return d.toISOString()}
 function rmkDate(value,now,publication){prove(typeof value==='string','Native timestamp unavailable');const m=value.match(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{2}) (\d{2}):(\d{2}):(\d{2}) UTC (\d{4})$/);prove(m,'Native timestamp format changed');const d=new Date(value);prove(Number.isFinite(+d)&&d.getUTCDate()===Number(m[3])&&d.getUTCFullYear()===Number(m[7])&&d.getUTCHours()===Number(m[4])&&d.getUTCMinutes()===Number(m[5])&&d.getUTCSeconds()===Number(m[6])&&(!publication||+d<=Date.parse(now)),'Invalid/future native timestamp');return d.toISOString()}
 const cityKey=s=>norm(s).toLowerCase().replace(/^bengaluru$/,'bangalore')
-const countryCodes={India:'IN',Malaysia:'MY',Singapore:'SG',China:'CN'}
+const countryCodes={India:'IN',Malaysia:'MY',Singapore:'SG',China:'CN',Poland:'PL'}
+const postalPatterns={India:/^\d{6}$/,Malaysia:/^\d{5}$/,Singapore:/^\d{6}$/,China:/^\d{6}$/,Poland:/^\d{2}-\d{3}$/}
 const sameRegion=(country,city,left,right)=>norm(left)===norm(right)||country==='China'&&cityKey(city)==='shanghai'&&[left,right].every(value=>['Shanghai','Shanghai Municipality'].includes(norm(value)))
 export class CargillSameCountryWorksiteDisagreement extends Error {
  constructor(validatedModel){
@@ -154,7 +155,7 @@ export function parseCargillRmkDetail(html,finalURL,official,{now=new Date().toI
  const title=d.text(one(d.nodes(n=>n.attrs.itemprop==='title'),'native title'));prove(title===official.title,'Native role title mismatch')
  const meta=key=>d.nodes(n=>n.tag==='meta'&&n.attrs.itemprop===key).map(n=>n.attrs.content),employers=meta('hiringOrganization');prove(employers.length===1&&employers[0]==='cargill','Native employer mismatch')
  const locations=d.nodes(n=>d.hasClass(n,'jobGeoLocation')).map(n=>d.text(n));prove(locations.length>0&&new Set(locations).size===locations.length,'Native role locations missing or duplicated')
- const offices=locations.map(location=>{const parts=location.split(',').map(norm),country=Object.keys(countryCodes).find(name=>parts[2]===countryCodes[name]+' '+name);prove(parts.length===4&&country&&(country==='Malaysia'?/^\d{5}$/:/^\d{6}$/).test(parts[3]),'Native role country or postal identity unavailable');const address=official.addresses.find(a=>a.addressCountry===country&&cityKey(a.addressLocality)===cityKey(parts[0])&&sameRegion(country,parts[0],a.addressRegion,parts[1]));return{address,country,code:countryCodes[country],parts}})
+ const offices=locations.map(location=>{const parts=location.split(',').map(norm),country=Object.keys(countryCodes).find(name=>parts[2]===countryCodes[name]+' '+name);prove(parts.length===4&&country&&postalPatterns[country].test(parts[3]),'Native role country or postal identity unavailable');const address=official.addresses.find(a=>a.addressCountry===country&&cityKey(a.addressLocality)===cityKey(parts[0])&&sameRegion(country,parts[0],a.addressRegion,parts[1]));return{address,country,code:countryCodes[country],parts}})
  const countries=meta('addressCountry');prove(countries.length>0&&countries.every(c=>typeof c==='string'&&offices.some(o=>o.code===c))&&offices.every(o=>countries.includes(o.code)),'Native country missing or conflicting')
  const normalized=offices.map(o=>[o.parts[0],o.parts[1],o.code,o.parts[3]].join(', ')),indiaLocations=official.addresses.filter(a=>a.addressCountry==='India').map(a=>{const o=offices.find(o=>o.address===a);return[a.addressLocality,a.addressRegion,'India',...(o?[o.parts[3]]:[])].join(', ')}),nativePostedAt=rmkDate(one(meta('datePosted'),'native publication'),now,true),ends=meta('validThrough');prove(ends.length<=1,'Native expiry ambiguous');const closingDate=ends.length?rmkDate(ends[0],now,false):null;prove(!closingDate||Date.parse(closingDate)>=Date.parse(nativePostedAt),'Native expiry precedes publication')
  const full=one(d.nodes(n=>n.attrs.itemprop==='description'),'native full description'),text=d.text(full)
@@ -164,19 +165,22 @@ export function parseCargillRmkDetail(html,finalURL,official,{now=new Date().toI
  const meaningful=substantive.replace(/\b(?:Job Purpose and Impact|Key Accountabilities|Qualifications|Minimum Qualifications|Preferred Qualifications|Apply now|Sample|Job Description|Coming soon|Read more)\b/gi,'').replace(/[^\p{L}]/gu,'');const description=meaningful.length>=40&&extractActiveDescription(text)?text:null
  // Native addresses repeat the explicit country code and name. Normalize
  // only those already-validated geo spans for the existing RMK adapter.
- const adapterHtml=html.replace(/(<span\b[^>]*class="jobGeoLocation"[^>]*>)([\s\S]*?)(<\/span>)/g,(_m,a,b,c)=>a+b.replace(/\b(IN India|MY Malaysia|SG Singapore|CN China)\b/g,value=>value.slice(0,2))+c)
+ const adapterHtml=html.replace(/(<span\b[^>]*class="jobGeoLocation"[^>]*>)([\s\S]*?)(<\/span>)/g,(_m,a,b,c)=>a+b.replace(/\b(IN India|MY Malaysia|SG Singapore|CN China|PL Poland)\b/g,value=>value.slice(0,2))+c)
  const mapped=parseRmkDetail(adapterHtml,{jobId:publicId,title:official.title,sourceUrl:finalURL,locations:normalized,expectedLocationCount:normalized.length,country:offices[0].country},{source:'cargill',companyName:'Cargill',origin:NATIVE,companyToken:'cargill'})
  const postedAt=new Date(Math.min(Date.parse(official.publicPostedAt),Date.parse(nativePostedAt))).toISOString()
  const model={...mapped,jobId:official.requisitionId,requisitionId:official.requisitionId,nativeRmkPublicId:publicId,nativePublicJobId:official.publicJobId,nativePublicRoleURL:official.sourceUrl,nativeSapApplicationURL:official.applicationURL,nativePublicPostedAt:official.publicPostedAt,nativeRmkPostedAt:nativePostedAt,nativeLocations:locations,nativePublicLocations:official.addresses,nativeListingLocation:official.nativeListingLocation,sourceLocationCorroborationComplete:offices.length===official.addresses.length,locations:indiaLocations,location:indiaLocations.join(' / '),country:'India',city:indiaLocations.length===1?indiaLocations[0].split(',')[0].trim():null,nativeEmployer:'cargill',postedAt,postingDate:postedAt,closingDate,sourceClosingDateIsExact:Boolean(closingDate),jobDescription:description,sourceDescription:description,sourceDetailComplete:Boolean(description),sourceDetailStatus:description?'complete':'native-full-description-missing',sourceListingComplete:false,sourceScopeComplete:false,scrapedAt:now}
  if(offices.some(office=>!office.address)||official.incompletePublicOffices?.length){
   // Only a complete, otherwise validated same-country role can become a hold.
-  // Country disagreement, unknown/incomplete offices and missing criteria are
-  // still fatal. No changed city/region is accepted or assigned an alias.
+  // Every native primary country must be explicitly present in the own public
+  // posting. Additional public offices do not resolve a native locality clash:
+  // this model stays held, never returned as a qualified role or office alias.
+  // Unknown countries, incomplete native offices and missing criteria fail.
   const publicCountries=new Set(official.addresses.map(address=>address.addressCountry)),nativeCountries=new Set(offices.map(office=>office.country))
-  prove(offices.every(office=>plain(office.parts[0])&&plain(office.parts[1]))&&publicCountries.size===nativeCountries.size
+  prove(offices.every(office=>plain(office.parts[0])&&plain(office.parts[1]))
+   &&(!official.incompletePublicOffices?.length||publicCountries.size===nativeCountries.size)
    &&[...nativeCountries].every(country=>publicCountries.has(country)),'Native role country/city/state mismatch')
   prove(description,'Native full description missing during worksite conflict')
-  const validatedModel={...model,sourceLocationCorroborationComplete:false,
+  const validatedModel={...model,sourceLocationCorroborationComplete:false,nativeWholeCriteriaSHA256:hash(description),
    nativeCountryMetadata:[...countries],validatedNativeOffices:offices.map(({country,code,parts})=>({country,code,parts:[...parts]}))}
   if(official.incompletePublicOffices?.length)throw new CargillSameCountryPublicOfficeIncomplete(validatedModel)
   throw new CargillSameCountryWorksiteDisagreement(validatedModel)

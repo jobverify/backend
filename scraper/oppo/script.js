@@ -238,7 +238,7 @@ const collectPaginatedJobs = async ({
 }) => {
   const jobs = []
   let pageNum = 1
-  let totalPages = 1
+  let totalPages
 
   do {
     const body = buildBody(pageNum, pageSize)
@@ -301,7 +301,7 @@ export const createOppoScraper = ({ pageSize = 100 } = {}) => ({
   },
 })
 
-export const run = async () => createOppoScraper().run()
+export const run = async (options) => createOppoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

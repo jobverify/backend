@@ -52,7 +52,7 @@ import {
 } from './utils/runLease.js'
 import { refreshJobDatasetSummary } from '../src/services/jobDatasetSummaryService.js'
 import { isMongoOperationalError, retryMongoOperation } from '../src/utils/mongoOperationalError.js'
-import { DEFAULT_JOB_RETENTION_DAYS } from '../src/utils/jobLifecycle.js'
+import '../src/utils/jobLifecycle.js'
 import ScraperStatus from '../src/models/ScraperStatus.js'
 import { buildScrapers } from './providers/index.js'
 import {
@@ -69,6 +69,17 @@ import { initializeScraperProxyEnvironment } from './utils/proxyEnvironment.js'
 const isDryRun = process.argv.includes('--dry-run')
 const isParallel = process.argv.includes('--parallel')
 
+const readOwnRecoveryDiagnostics = (jobs, provider, key) => {
+  const source = Object.getOwnPropertyDescriptor(provider, 'source')?.value
+  if (typeof source !== 'string' || !source.trim()) return {}
+  const descriptor = Object.getOwnPropertyDescriptor(jobs, key)
+  if (!descriptor || !Object.hasOwn(descriptor, 'value')) return {}
+  const recovery = descriptor.value
+  if (!recovery || typeof recovery !== 'object' || Array.isArray(recovery)
+    || Object.getOwnPropertyDescriptor(recovery, 'source')?.value !== source) return {}
+  return { [key]: recovery }
+}
+
 export const buildScraperAttemptDiagnostics = (jobs, analysis = analyzePublishableJobs(jobs), provider = {}) => ({
   rawRecords: extractionRawJobMetrics(provider, jobs, readInventoryEvidence(jobs)).rawJobs,
   jobs: analysis.indiaJobs.length,
@@ -82,10 +93,8 @@ export const buildScraperAttemptDiagnostics = (jobs, analysis = analyzePublishab
   filteredNonJob: analysis.filterCounts.nonJob,
   inventoryEvidence: readInventoryEvidence(jobs),
   detailHealth: extractionDetailHealth(analysis.indiaJobs),
-  ...(Object.getOwnPropertyDescriptor(jobs, 'emptyOnlyRecruitmentRecovery')?.value?.source === provider.source
-    ? { emptyOnlyRecruitmentRecovery: Object.getOwnPropertyDescriptor(jobs, 'emptyOnlyRecruitmentRecovery').value } : {}),
-  ...(Object.getOwnPropertyDescriptor(jobs, 'softFailureRecruitmentRecovery')?.value?.source === provider.source
-    ? { softFailureRecruitmentRecovery: Object.getOwnPropertyDescriptor(jobs, 'softFailureRecruitmentRecovery').value } : {}),
+  ...readOwnRecoveryDiagnostics(jobs, provider, 'emptyOnlyRecruitmentRecovery'),
+  ...readOwnRecoveryDiagnostics(jobs, provider, 'softFailureRecruitmentRecovery'),
   ...(readInventoryDelegationEvidence(jobs)
     ? { inventoryDelegationEvidence: readInventoryDelegationEvidence(jobs) } : {}),
   ...(readSourceObservationEvidence(jobs, provider.source)
@@ -342,7 +351,12 @@ export const shouldIgnoreUnhandledRejection = (reason) => (
   || classifyScraperError(reason).softFailure === true
 )
 
-process.on('unhandledRejection', (reason) => {
+const runnerRejectionHandlerKey = Symbol.for('jobverify.runner.unhandledRejectionHandler')
+const previousRunnerRejectionHandler = process[runnerRejectionHandlerKey]
+if (typeof previousRunnerRejectionHandler === 'function') {
+  process.off('unhandledRejection', previousRunnerRejectionHandler)
+}
+const handleUnhandledRejection = (reason) => {
   if (isLatePuppeteerTargetClose(reason)) {
     console.error('[runner] Ignored late Puppeteer browser-close rejection:', reason.message || reason)
     return
@@ -363,7 +377,9 @@ process.on('unhandledRejection', (reason) => {
   }
 
   throw reason
-})
+}
+process[runnerRejectionHandlerKey] = handleUnhandledRejection
+process.on('unhandledRejection', handleUnhandledRejection)
 
 const normalizeRequestedSource = (value) => String(value || '').trim().toLowerCase()
 
@@ -1106,6 +1122,7 @@ const runScraperAttemptWithRetryPolicy = async (scraper, { signal = null } = {})
   try {
     return await runScraperWithTimeout(scraper, undefined, { signal })
   } catch (error) {
+    throwIfAborted(signal)
     throw applyRetryPolicyToScraperError(error)
   }
 }
@@ -1302,7 +1319,7 @@ export const runAll = async ({ stopSignal = null, preparedRun = null } = {}) => 
 
     if (isDryRun) clearDryRunArtifact(scraper.dryRunFile)
     let rawCaptureFile = null
-    let capturedAt = null
+    let capturedAt
     let processingStarted = false
     let attemptDiagnostics = {}
     let scrapeOperation
@@ -1500,7 +1517,7 @@ export const runScraper = async (
 
   if (isDryRun) clearDryRunArtifact(scraper.dryRunFile)
   let rawCaptureFile = null
-  let capturedAt = null
+  let capturedAt
   let processingStarted = false
   let attemptDiagnostics = {}
   let scrapeOperation
@@ -1596,7 +1613,9 @@ export const runScraper = async (
 
     return { name: scraper.name, ...successResult }
   } catch (err) {
+    throwIfAborted(lifecycleSignal)
     await saveRawSourceFailure(err, { source: scraper.name, dryRun: isDryRun, captureFile: rawCaptureFile })
+    throwIfAborted(lifecycleSignal)
     if (err instanceof LocalJobOutboxPersistenceError) throw err
     const fatalPersistenceError = toFatalScraperPersistenceError(
       `[pipeline] MongoDB writes are blocked while persisting jobs for [${scraper.name}]; aborting run`,
@@ -1691,6 +1710,7 @@ const runAllParallel = async ({
           { signal: pipelineController.signal },
         )
       } catch (error) {
+        if (stopSignal?.aborted) break
         const failureResult = {
           name: scraper.name,
           success: false,
@@ -1822,7 +1842,7 @@ if (resolveExecutionPath(process.argv[1]) === directExecutionModulePath) {
     }
 
     const summary = await runAll({ stopSignal: shutdown.signal, preparedRun })
-    const tableData = Object.keys(summary).map((source) => {
+    Object.keys(summary).map((source) => {
       const result = summary[source]
 
       return {

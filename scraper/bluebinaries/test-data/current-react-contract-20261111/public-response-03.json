@@ -1,0 +1,112 @@
+{
+  "number": 3,
+  "startedAt": "2026-11-11T13:49:36.945453+00:00",
+  "url": "https://www.bluebinaries.com/become-a-bluebee/",
+  "method": "GET",
+  "origin": "https://www.bluebinaries.com",
+  "provenance": {
+    "source": "bluebinaries",
+    "basis": "existing source CAREER_PAGE_URL"
+  },
+  "requestHeaders": {
+    "Accept": "text/html,application/javascript;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0"
+  },
+  "redirectPolicy": "manual; no redirects followed",
+  "cookiesSent": false,
+  "authenticationSent": false,
+  "strictTLS": true,
+  "maximumBodyBytes": 5000000,
+  "status": 200,
+  "reason": "OK",
+  "headers": [
+    [
+      "Date",
+      "Wed, 11 Nov 2026 13:50:08 GMT"
+    ],
+    [
+      "Content-Type",
+      "text/html; charset=UTF-8"
+    ],
+    [
+      "Transfer-Encoding",
+      "chunked"
+    ],
+    [
+      "Connection",
+      "keep-alive"
+    ],
+    [
+      "vary",
+      "Accept-Encoding"
+    ],
+    [
+      "Server",
+      "cloudflare"
+    ],
+    [
+      "x-frame-options",
+      "DENY"
+    ],
+    [
+      "content-security-policy",
+      "frame-ancestors 'none';"
+    ],
+    [
+      "link",
+      "<https://www.bluebinaries.com/wp-json/>; rel=\"https://api.w.org/\""
+    ],
+    [
+      "link",
+      "<https://www.bluebinaries.com/wp-json/wp/v2/pages/17>; rel=\"alternate\"; type=\"application/json\""
+    ],
+    [
+      "link",
+      "<https://www.bluebinaries.com/?p=17>; rel=shortlink"
+    ],
+    [
+      "x-powered-by",
+      "ASP.NET"
+    ],
+    [
+      "x-powered-by-plesk",
+      "PleskWin"
+    ],
+    [
+      "set-cookie",
+      "__cf_bm=LXf.ucW7QjligKqYbK0Z6.xoDkA7w3zgRpv5hZUgKNw-1794405008.244682-1.0.1.1-4dqPNIyuVlEY8eLV7msU.IL1VOuEoXwXeLki1Ap9LvgyirSz4mCsok0y8qjkCmc6pzXJV6xdcZNfJsBZXt8FgmwcXVqxoA690T.Kk_sNDGP8a7S5sBuxUk0dUDR2PoG7; HttpOnly; SameSite=None; Partitioned; Secure; Path=/; Domain=www.bluebinaries.com; Expires=Wed, 11 Nov 2026 14:20:08 GMT"
+    ],
+    [
+      "last-modified",
+      "Wed, 11 Nov 2026 13:50:08 GMT"
+    ],
+    [
+      "expires",
+      "Thu, 11 Nov 2027 13:50:08 GMT"
+    ],
+    [
+      "Cache-Control",
+      "public, max-age=31536000"
+    ],
+    [
+      "cf-cache-status",
+      "HIT"
+    ],
+    [
+      "CF-RAY",
+      "a58dc3a58e58a6e8-LHR"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "location": null,
+  "contentType": "text/html; charset=UTF-8",
+  "bodyFile": "public-response-03.body.bin",
+  "bytes": 72574,
+  "bodySHA256": "41b09ca9a02c03cdb862bebb94773e76328bdd59339ce5cba33454a3532e36b8",
+  "truncated": false,
+  "stopOrigin": false,
+  "completedAt": "2026-11-11T13:49:38.358089+00:00"
+}

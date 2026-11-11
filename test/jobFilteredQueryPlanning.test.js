@@ -9,6 +9,8 @@ import { getAllJobs } from '../src/controllers/jobController.js';
 const locationIndex = { status: 1, isPublicIndia: 1, locationKeys: 1, sortDate: -1, _id: -1 };
 const companyIndex = { status: 1, isPublicIndia: 1, companyKey: 1, sortDate: -1, _id: -1 };
 const companyLocationIndex = { status: 1, isPublicIndia: 1, companyKey: 1, locationKeys: 1, sortDate: -1, _id: -1 };
+const dateIndex = { status: 1, isPublicIndia: 1, sortDate: -1, _id: -1 };
+const popularityIndex = { status: 1, isPublicIndia: 1, clickCount: -1, sortDate: -1, _id: -1 };
 
 const response = () => ({
   statusCode: 200, body: null, set() { return this; },
@@ -22,6 +24,11 @@ const queryChain = exec => ({
 });
 
 for (const { name, query, hint } of [
+  { name: 'default public page', query: {}, hint: dateIndex },
+  { name: 'latest deep page', query: { page: '1851', sort: 'latest' }, hint: dateIndex },
+  { name: 'oldest page', query: { sort: 'oldest' }, hint: dateIndex },
+  { name: 'trending page', query: { sort: 'popularity' }, hint: popularityIndex },
+  { name: 'recommended without equality keys', query: { sort: 'recommended' }, hint: undefined },
   { name: 'profile internship and city', query: { city: 'Bangalore', jobType: 'Intern', sort: 'latest' }, hint: locationIndex },
   { name: 'legacy location selection', query: { location: 'Bangalore' }, hint: locationIndex },
   { name: 'company selection', query: { company: 'Acme' }, hint: companyIndex },
@@ -29,7 +36,8 @@ for (const { name, query, hint } of [
   { name: 'multiple companies and cities', query: { company: ['Acme', 'Beta'], city: ['Bangalore', 'Pune'] }, hint: companyLocationIndex },
   { name: 'recommended city results', query: { city: 'Bangalore', sort: 'recommended' }, hint: locationIndex },
   { name: 'text search with city', query: { query: 'engineer', city: 'Bangalore' }, hint: undefined },
-  { name: 'category without equality keys', query: { jobType: 'Intern' }, hint: undefined },
+  { name: 'text search without equality keys', query: { query: 'engineer' }, hint: undefined },
+  { name: 'category without equality keys', query: { jobType: 'Intern' }, hint: dateIndex },
 ]) {
   test(`numbered ${name} uses a selective index for listings and both exact totals`, async t => {
     const observed = [];
@@ -46,7 +54,7 @@ for (const { name, query, hint } of [
     t.mock.method(console, 'error', () => {});
 
     const res = response();
-    await getAllJobs({ query, user: { role: 'admin' } }, res);
+    await getAllJobs({ query, user: { role: 'admin' }, siteSettings: { experiencedJobsEnabled: false } }, res);
 
     assert.equal(res.statusCode, 200);
     assert.deepEqual(observed, ['listings', 'job_total', 'company_total']);
@@ -119,4 +127,14 @@ test('filtered listings and exact totals still work against Mongo before indexes
   assert.equal(res.statusCode, 200);
   assert.deepEqual(res.body.data.map(job => job.title), ['Engineering Intern']);
   assert.deepEqual(res.body.pagination, { total: 1, totalCompanies: 1, page: 1, limit: 12, totalPages: 1 });
+
+  for (const sort of ['latest', 'oldest', 'popularity']) {
+    const unfiltered = response();
+    await getAllJobs({ query: { sort }, user: { role: 'admin' },
+      siteSettings: { experiencedJobsEnabled: false } }, unfiltered);
+    assert.equal(unfiltered.statusCode, 200, sort);
+    assert.equal(unfiltered.body.data.length, 2, sort);
+    assert.equal(unfiltered.body.pagination.total, 2, sort);
+    assert.equal(unfiltered.body.pagination.totalCompanies, 2, sort);
+  }
 });

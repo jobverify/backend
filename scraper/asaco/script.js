@@ -81,7 +81,7 @@ export const createAsacoScraper = ({
   },
 })
 
-export const run = async () => createAsacoScraper().run()
+export const run = async (options) => createAsacoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

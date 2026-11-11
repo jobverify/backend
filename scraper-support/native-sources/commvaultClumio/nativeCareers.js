@@ -7,6 +7,22 @@ import { attachInventoryEvidence } from '../../utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../utils/sourceObservationEvidence.js'
 import { PROFILE as profile, primaryModel, ownRole, combinedGeography, combinedFields } from './nativeData.js'
 
+// Own observer promises before choosing caller cancellation over callback errors.
+const checkedObserver = (start, signal) => new Promise((resolve, reject) => {
+  let settled = false
+  const finish = (failed, value) => {
+    if (settled) return
+    settled = true;signal?.removeEventListener('abort', abort)
+    if (signal?.aborted) reject(signal.reason)
+    else if (failed) reject(value)
+    else resolve(value)
+  }
+  const abort = () => finish(true, signal.reason)
+  signal?.addEventListener('abort', abort, { once: true })
+  Promise.resolve().then(() => { signal?.throwIfAborted();return start() }).then(value => finish(false, value), error => finish(true, error))
+  if (signal?.aborted) abort()
+})
+
 const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b)
 const hostStarts = new Map()
 const waitForHost = async (url, signal) => {
@@ -31,7 +47,9 @@ export const createCommvaultClumioScraper = (defaults = {}) => ({ name: profile.
   signal?.throwIfAborted()
   requireNative(maxJobs === null || Number.isSafeInteger(maxJobs) && maxJobs >= 0, 'maxJobs must be a nonnegative safe integer or null')
   requireNative(!(options.fetchText || options.fetchJson) || options.fetchPage || options.fetchImpl, 'Parsed/text-only injection has no original HTTP provenance')
-  const observedAt = now();requireNative(typeof observedAt === 'string' && Number.isFinite(Date.parse(observedAt)), 'Invalid observation clock')
+  let observedAt
+  try { signal?.throwIfAborted();observedAt = now() } finally { signal?.throwIfAborted() }
+  requireNative(typeof observedAt === 'string' && Number.isFinite(Date.parse(observedAt)), 'Invalid observation clock')
   const base = profile.publicAPIBase, feedURL = base + '/jobs?content=true', officesURL = base + '/offices', ownURL = id => base + '/jobs/' + id + '?pay_transparency=true'
   const allowedURLs = new Set([profile.primaryURL, base, feedURL, officesURL]), held = new Set()
   const allowed = url => allowedURLs.has(url.href) && !held.has(url.hostname)
@@ -145,8 +163,8 @@ export const createCommvaultClumioScraper = (defaults = {}) => ({ name: profile.
     }, signal)
     return result
   }
-  let opening, closing, fatal
-  try { opening = await collect('opening');signal?.throwIfAborted();closing = await collect('closing') } catch (error) { fatal = error }
+  let opening, closing, fatal, collectionFailed = false
+  try { opening = await collect('opening');signal?.throwIfAborted();closing = await collect('closing') } catch (error) { collectionFailed = true;fatal = error }
   const before = new Set(opening?.nativePostIds || []), after = new Set(closing?.nativePostIds || [])
   for (const [id, job] of observations) if (!closing?.publisherQualified || !before.has(id) || !after.has(id)) Object.assign(job, {
     sourceCurrentNativePostingIdentityQualified: false, sourceCurrentNativeRoleQualified: false, sourceNativeTemporalQualification: 'paired-own-identity-and-current-closing-publisher-required' })
@@ -154,7 +172,9 @@ export const createCommvaultClumioScraper = (defaults = {}) => ({ name: profile.
   const audit = { source: profile.source, countryFilter: profile.countryFilter, opening, closing, observations: all, observationHistory: history, rawPages: io.rawPages, issues: io.issues,
     sourceScopeComplete: false, lifecycleCleanupAllowed: false, authoritativeSourceTotal: null, authoritativeIndiaFacetCount: null,
     qualification: 'Corporate and native original public models before role-brand/country selection. Whole employer, exclusive brand/legal employer, recruitment, application activation, database and publication remain unqualified.' }
-  await onAudit(structuredClone(audit));await onRecords(structuredClone(all));signal?.throwIfAborted();if (fatal) throw fatal
+  await checkedObserver(() => { const detached = structuredClone(audit);signal?.throwIfAborted();return onAudit(detached) }, signal)
+  await checkedObserver(() => { const detached = structuredClone(all);signal?.throwIfAborted();return onRecords(detached) }, signal)
+  signal?.throwIfAborted();if (collectionFailed) throw fatal
   const candidates = all.filter(job => job.sourceCurrentNativePostingIdentityQualified && job.sourceBrandScopeQualified && job.sourceNativePostKind === 'job' && job.jobDescription)
   const jobs = (maxJobs === null ? candidates : candidates.slice(0, maxJobs)).map(job => ({ ...job, scrapedAt: observedAt }))
   Object.defineProperty(jobs, 'sourceAudit', { value: audit })

@@ -40,6 +40,10 @@ const terms = (text, boundaries = false) => (normalize(text).match(boundaries
   .map(word => aliases.get(word) || (word.length > 3 && word.endsWith('s') && !/(?:ss|us|is)$/.test(word) ? word.slice(0, -1) : word));
 
 const statements = (text, inheritedRole = 'neutral') => {
+  // Normalize only reproduced editorial seams, never arbitrary repeated facts
+  // or sentence boundaries (which can attach a duty to a different actor).
+  text = text.replace(/\b(The work model for the role is:)[ \t]+(?:The work model for the role is:[ \t]+)+/gi, '$1 ')
+    .replace(/\b(Recruitment Fraud Warning)\.[ \t\n]+(?=\S)/g, '$1: ');
   const result = [];
   let role = inheritedRole;
   const pieces = [];

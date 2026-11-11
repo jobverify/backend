@@ -4,7 +4,7 @@ import { prepareResumeRuntime, processResumeDocument } from '../resume-tailoring
 import { preparationMetadata, requirePreparedResume } from '../src/services/resumePreparationService.js';
 
 const source = { text: 'Alex Example\nalex@example.com\nEXPERIENCE\nExample Corp\nSoftware Engineer | Jan 2022 - Present\nDeveloped Java services and automated tests.\nEDUCATION\nExample University\nBSc Computer Science | 2018 - 2022', links: ['mailto:alex@example.com'] };
-const latex = '\\documentclass[11pt]{article}\n\\begin{document}\nAlex Example\\end{document}';
+const latex = '\\documentclass[11pt]{article}\n\\usepackage{hyperref}\n\\begin{document}\nAlex Example\n\\href{mailto:alex@example.com}{alex@example.com}\n\\end{document}';
 const compiled = { pdf: Buffer.from('%PDF-test'), text: source.text, links: source.links, pageCount: 2 };
 const supported = JSON.stringify({ evidence: 'All generated claims match the original source facts.', supported: true, missingFacts: [], unsupportedClaims: [] });
 
@@ -18,6 +18,30 @@ test('pipeline separately compares source claims and returns only validated docu
   assert.equal(result.pageCount, 2);
   assert.equal(result.latex, latex);
   assert.ok(result.facts);
+});
+
+test('original destinations omitted by generation are retained before compilation and factual audit', async () => {
+  const links = [...source.links, 'https://example.test/profile_name?ref=resume&v=$&original', 'mailto:legacy@example.test'];
+  let generations = 0;
+  const result = await processResumeDocument({ mode: 'base', source: { ...source, links } }, {
+    generate: async (prompt, options) => {
+      if (options.comparison) {
+        assert.deepEqual(JSON.parse(prompt.split('\n').at(-1)).generatedPdf.links, links);
+        return supported;
+      }
+      generations++;
+      return latex;
+    },
+    compile: async document => {
+      assert.ok(document.includes('\\href{https://example.test/profile\\_name?ref=resume\\&v=\\$\\&original}'));
+      assert.ok(document.includes('\\href{mailto:legacy@example.test}'));
+      assert.equal(document.split('\\href{mailto:alex@example.com}').length - 1, 1, 'existing links are not duplicated');
+      assert.ok(document.endsWith('\\end{document}'));
+      return { ...compiled, links };
+    },
+  });
+  assert.equal(generations, 1);
+  assert.ok(result.latex.includes('profile\\_name'));
 });
 
 test('failed factual validation reports safe issue categories for both bounded attempts', async () => {

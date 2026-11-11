@@ -19,14 +19,15 @@ const pause=(milliseconds,signal)=>new Promise((resolve,reject)=>{
  signal?.addEventListener('abort',abort,{once:true});if(signal?.aborted)abort()
 })
 // A signal alone cannot settle an injected collaborator that ignores it.
-const within=(promise,signal,milliseconds=15000)=>new Promise((resolve,reject)=>{
+const within=(start,signal,milliseconds=15000,late)=>new Promise((resolve,reject)=>{
  let finished=false
- const finish=(callback,value)=>{if(finished)return;finished=true;clearTimeout(timer);signal?.removeEventListener('abort',abort);callback(value)}
- const abort=()=>finish(reject,signal.reason||Error('Public GET aborted'))
- const timer=setTimeout(()=>finish(reject,Error('Public GET timeout')),milliseconds)
+ const finish=(bad,value)=>{if(finished){if(!bad)late?.(value);return}finished=true;clearTimeout(timer);signal?.removeEventListener('abort',abort);if(signal?.aborted){if(!bad)late?.(value);reject(signal.reason)}else bad?reject(value):resolve(value)}
+ const abort=()=>finish(true,signal.reason)
+ const timer=setTimeout(()=>finish(true,Error('Public GET timeout')),milliseconds)
  signal?.addEventListener('abort',abort,{once:true})
- Promise.resolve(promise).then(value=>finish(resolve,value),error=>finish(reject,error));if(signal?.aborted)abort()
+ Promise.resolve().then(()=>{signal?.throwIfAborted();return start()}).then(value=>finish(false,value),error=>finish(true,error));if(signal?.aborted)abort()
 })
+const cancelLateResponse=value=>{try{within(()=>value?.body?.cancel?.(),undefined,1000).catch(()=>{})}catch{}}
 
 // Direct sockets use validated DNS and peer addresses. An explicitly configured
 // Node proxy CONNECTs to a validated IP with the original Host and TLS identity.
@@ -43,44 +44,60 @@ export const pinnedHTTPSFetch=(value,init)=>new Promise((resolve,reject)=>{
   if(options.all)callback(null,candidates.map(a=>({...a})))
   else callback(null,candidates[0].address,candidates[0].family)
  }
- let request,proxy,connected=false
- const abort=()=>fail(init.signal.reason||Error('Public GET aborted'))
- const cleanup=()=>{init.signal?.removeEventListener('abort',abort);proxy?.agent.destroy()}
- const fail=error=>{request?.destroy(error);cleanup();reject(error)}
+ let request,proxy,incomingOwned,connectionNotification=Promise.resolve(),connected=false,settled=false,failed=false,primary,requestDestroyed=false,proxyDestroyed=false
+ const abort=()=>fail(init.signal.reason)
+ const cleanup=()=>{init.signal?.removeEventListener('abort',abort);if(proxy&&!proxyDestroyed){proxyDestroyed=true;try{Promise.resolve(proxy.agent.destroy()).catch(()=>{})}catch{}}}
+ const destroyedIncoming=new WeakSet()
+ const destroyIncoming=incoming=>{if(!incoming||destroyedIncoming.has(incoming))return;destroyedIncoming.add(incoming);try{incoming.destroy(primary)}catch{}}
+ const destroyRequest=()=>{if(!request||requestDestroyed)return;requestDestroyed=true;try{request.destroy(primary)}catch{}}
+ const fail=(error,rawRequest=false)=>{
+  if(!failed){failed=true;primary=init.signal?.aborted?init.signal.reason:rawRequest&&proxy?publicProxyError(error):error}
+  if(init.signal?.aborted)primary=init.signal.reason
+  if(!settled){settled=true;reject(primary)}
+  destroyRequest();destroyIncoming(incomingOwned);cleanup()
+ }
+ const active=()=>{if(init.signal?.aborted){fail(init.signal.reason);return false}return!failed}
+ const notifyConnection=info=>{connected=true;connectionNotification=within(()=>init.onConnected?.(info),init.signal);connectionNotification.catch(error=>fail(error));return true}
  const inspectSocket=socket=>{
+  if(!active())return false
   if(proxy){
    if(socket.encrypted!==true||socket.authorized!==true){fail(Error('Origin TLS certificate was not verified'));return false}
-   connected=true;init.onConnected?.({url:url.href,connectionMode:'validated-public-ip-connect',pinnedAddress:proxy.address,
-    validatedAddresses:addresses.map(a=>({...a})),originCertificateVerified:true,publicDestinationBound:true});return true
+   return notifyConnection({url:url.href,connectionMode:'validated-public-ip-connect',pinnedAddress:proxy.address,
+    validatedAddresses:addresses.map(a=>({...a})),originCertificateVerified:true,publicDestinationBound:true})
   }
   const address=socket.remoteAddress,family=isIP(address||'')
   if(!family||!isPublicAddress(address)||!allowed.check(address,family===6?'ipv6':'ipv4')){fail(Error('Socket destination is outside the validated public set'));return false}
-  connected=true;init.onConnected?.({url:url.href,remoteAddress:address,validatedAddresses:addresses.map(a=>({...a})),publicDestinationBound:true});return true
+  return notifyConnection({url:url.href,remoteAddress:address,validatedAddresses:addresses.map(a=>({...a})),publicDestinationBound:true})
  }
+ init.signal?.addEventListener('abort',abort,{once:true})
  try{
   proxy=createPinnedProxyAgent(url,addresses)
+  if(!active()){cleanup();return}
   const headersForOrigin=new Headers(init.headers);if(proxy)headersForOrigin.set('Host',url.host)
   request=https.request({protocol:'https:',hostname:proxy?proxy.address:host,port:url.port||443,path:url.pathname+url.search,method:'GET',headers:proxy?Object.fromEntries(headersForOrigin):init.headers,agent:proxy?proxy.agent:false,
    ...(!proxy?{lookup:pinnedLookup,autoSelectFamily:true}:{}),servername:isIP(host)?undefined:host,rejectUnauthorized:true,
    checkServerIdentity:(_hostname,certificate)=>checkServerIdentity(host,certificate),signal:init.signal},incoming=>{
    try{
-    if(proxy)incoming.once('close',cleanup)
-    if(!connected&&!inspectSocket(incoming.socket)){incoming.destroy();return}
+    incoming.on('error',error=>fail(error));incoming.once('close',cleanup)
+    if(!active()){destroyIncoming(incoming);return}
+    incomingOwned=incoming
+    if(!connected&&!inspectSocket(incoming.socket)){destroyIncoming(incoming);return}
     const headers=new Headers()
     for(const [name,value] of Object.entries(incoming.headers))if(value!=null){if(Array.isArray(value))for(const item of value)headers.append(name,item);else headers.set(name,String(value))}
     // R1: notify the denial/receipt observer before constructing or reading body.
-    Promise.resolve(init.onResponseHeaders?.({url:url.href,status:incoming.statusCode,headers:Object.fromEntries(headers),httpVersion:incoming.httpVersion})).then(()=>{
+    within(()=>connectionNotification,init.signal).then(()=>within(()=>init.onResponseHeaders?.({url:url.href,status:incoming.statusCode,headers:Object.fromEntries(headers),httpVersion:incoming.httpVersion}),init.signal)).then(()=>{
      try{
+      if(!active()){destroyIncoming(incoming);return}
       const empty=[204,205,304].includes(incoming.statusCode);if(empty)incoming.resume()
       const response=new Response(empty?null:toWeb(incoming),{status:incoming.statusCode,headers})
-      Object.defineProperty(response,'url',{value:url.href});Object.defineProperty(response,rawEncodedBody,{value:true});resolve(response)
-     }catch(error){incoming.destroy(error);fail(error)}
-    },error=>{incoming.destroy(error);fail(error)})
-   }catch(error){incoming.destroy(error);fail(error)}
+      Object.defineProperty(response,'url',{value:url.href});Object.defineProperty(response,rawEncodedBody,{value:true});settled=true;resolve(response)
+     }catch(error){fail(error)}
+    },error=>fail(error))
+   }catch(error){incomingOwned=incoming;fail(error)}
   })
-  request.once('error',error=>{cleanup();reject(proxy?publicProxyError(error):error)})
-  request.on('socket',socket=>{if(socket.connecting||(proxy&&socket.secureConnecting))socket.once(proxy?'secureConnect':'connect',()=>inspectSocket(socket));else inspectSocket(socket)})
-  if(proxy){init.signal?.addEventListener('abort',abort,{once:true});if(init.signal?.aborted){abort();return}}
+  request.on('error',error=>fail(error,true))
+  request.on('socket',socket=>{try{if(!active())return;if(socket.connecting||(proxy&&socket.secureConnecting))socket.once(proxy?'secureConnect':'connect',()=>{try{inspectSocket(socket)}catch(error){fail(error)}});else inspectSocket(socket)}catch(error){fail(error)}})
+  if(!active()){destroyRequest();return}
   request.end()
  }catch(error){fail(error)}
 })
@@ -104,16 +121,16 @@ export const createPublicPageReader=(options={})=>{
  let count=0
  const refuse=(url,reason)=>{events.push({url,reason,HTTPResponseFabricated:false});throw Error('Public GET withheld: '+reason)}
  const read=async value=>{
-  signal?.throwIfAborted();const url=new URL(value),host=url.hostname.replace(/^\[|\]$/g,'')
+  signal?.throwIfAborted();try{const url=new URL(value),host=url.hostname.replace(/^\[|\]$/g,'')
   if(url.protocol!=='https:'||url.username||url.password||/\/(?:apply|application|applications|login|sign-in|sign_in|register|consent|form|forms|signup|sign-up)(?:\/|$)/i.test(url.pathname))refuse(url.href,'prohibited HTTP/auth/form route')
   if(held.has(host))refuse(url.href,'held host')
   if(isIP(host)&&!isPublicAddress(host))refuse(url.href,'no public destination')
   if(++count>128)refuse(url.href,'source request limit')
   let page
-  if(options.fetchPage)page=await within(options.fetchPage(url.href,{signal}),signal)
+  if(options.fetchPage)page=await within(()=>options.fetchPage(url.href,{signal}),signal,15000,cancelLateResponse)
   else{
    // Refresh each request; the resulting set also controls the actual socket.
-   const resolved=isIP(host)?[{address:host,family:isIP(host)}]:await within(Promise.resolve().then(()=>resolveHost(host)),signal)
+   const resolved=isIP(host)?[{address:host,family:isIP(host)}]:await within(()=>resolveHost(host),signal)
    const addresses=Array.isArray(resolved)?resolved.map(a=>({address:a.address,family:isIP(a.address)})):[]
    const publicOnly=addresses.length>0&&addresses.every(a=>isPublicAddress(a.address));events.push({host,addresses,publicOnly,HTTPResponseFabricated:false})
    if(!publicOnly)refuse(url.href,'no public destination');signal?.throwIfAborted()
@@ -121,27 +138,29 @@ export const createPublicPageReader=(options={})=>{
    if(start>Date.now())await pause(start-Date.now(),signal);signal?.throwIfAborted();if(held.has(host))refuse(url.href,'held host while queued')
    const requestSignal=AbortSignal.any([AbortSignal.timeout(15000),...(signal?[signal]:[])])
    const request={url:url.href,method:'GET',requestBody:null,authenticationOrCookiesSent:false,requestedAt:new Date().toISOString(),validatedAddresses:addresses}
-   await within(Promise.resolve(options.onRequest?.(structuredClone(request))),requestSignal)
+   await within(()=>options.onRequest?.(structuredClone(request)),requestSignal)
    let headerSeen=false
    const headersReceived=info=>{
     if(headerSeen)return;headerSeen=true
     if([401,403,429].includes(info.status)){held.add(host);events.push({kind:'denial-headers',url:url.href,host,status:info.status,headersReceived:true,bodyReadBeforeHold:false,HTTPResponseFabricated:false})}
     return options.onResponseHeaders?.(structuredClone(info))
    }
-   const response=await within(fetchImpl(url,{method:'GET',redirect:'manual',signal:requestSignal,validatedAddresses:addresses,
+   const response=await within(()=>fetchImpl(url,{method:'GET',redirect:'manual',signal:requestSignal,validatedAddresses:addresses,
     headers:{Accept:'text/html,application/json,text/markdown,*/*;q=0.5','Accept-Encoding':'identity','User-Agent':'Mozilla/5.0 (compatible; Jobverify scraper)'},
-    onResponseHeaders:headersReceived,onConnected:info=>{events.push({kind:'connected-public-destination',...info});options.onConnected?.(structuredClone(info))}}),requestSignal)
+    onResponseHeaders:headersReceived,onConnected:info=>{events.push({kind:'connected-public-destination',...info});return options.onConnected?.(structuredClone(info))}}),requestSignal,15000,cancelLateResponse)
    if(injected)events.push({kind:'test-only-injected-transport',url:url.href,currentNetworkProof:false})
-   await within(Promise.resolve(headersReceived({url:url.href,status:response.status,headers:Object.fromEntries(response.headers)})),requestSignal)
+   await within(()=>headersReceived({url:url.href,status:response.status,headers:Object.fromEntries(response.headers)}),requestSignal)
    const chunks=[];let total=0,body
    try{
     body=decodedBody(response)
     if(body?.getReader){
      const reader=body.getReader()
-     try{for(;;){requestSignal.throwIfAborted();const {done,value}=await within(reader.read(),requestSignal);if(done)break;total+=value.byteLength;if(total>16*1024*1024)throw Error('Public GET entity exceeds16MB');chunks.push(Buffer.from(value))}}
-     catch(error){await within(reader.cancel(error),undefined,1000).catch(()=>{});throw error}finally{reader.releaseLock()}
-    }else{const bytes=Buffer.from(await within(response.arrayBuffer(),requestSignal));if(bytes.length>16*1024*1024)throw Error('Public GET entity exceeds16MB');chunks.push(bytes)}
-   }catch(error){if(!body&&response.body)await within(response.body.cancel(error),undefined,1000).catch(()=>{});throw error}
+     let readFailed=false,readFailure
+     try{for(;;){requestSignal.throwIfAborted();const {done,value}=await within(()=>reader.read(),requestSignal);if(done)break;total+=value.byteLength;if(total>16*1024*1024)throw Error('Public GET entity exceeds16MB');chunks.push(Buffer.from(value))}}
+     catch(error){readFailed=true;readFailure=error;await within(()=>reader.cancel(error),undefined,1000).catch(()=>{})}finally{try{reader.releaseLock()}catch(error){if(!readFailed){readFailed=true;readFailure=error}}}
+     if(readFailed)throw readFailure
+    }else{const bytes=Buffer.from(await within(()=>response.arrayBuffer(),requestSignal));if(bytes.length>16*1024*1024)throw Error('Public GET entity exceeds16MB');chunks.push(bytes)}
+   }catch(error){if(!body&&response.body)await within(()=>response.body.cancel(error),undefined,1000).catch(()=>{});throw error}
    page={url:response.url||url.href,status:response.status,headers:Object.fromEntries(response.headers),bodyBase64:Buffer.concat(chunks).toString('base64')}
   }
   signal?.throwIfAborted()
@@ -151,6 +170,7 @@ export const createPublicPageReader=(options={})=>{
    held.add(host);events.push({url:url.href,reason:'original security/consent gate; no activation',status:page.status});return {...page,transportQualified:false}
   }
   return page
+  }catch(error){signal?.throwIfAborted();throw error}
  }
  return {read,events,held,get remainingRequests(){return Math.max(0,128-count)}}
 }

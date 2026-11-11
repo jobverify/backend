@@ -2,6 +2,29 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createGenerationPool } from '../rewriting/sharedGeneration.js';
 
+test('external cancellation reports the cost of shared work once without mutating the shared reason', async () => {
+  const controller = new AbortController();
+  const reason = Object.freeze(Object.assign(new Error('budget exhausted'), { name: 'AbortError' }));
+  let start;
+  const ready = new Promise(resolve => { start = resolve; });
+  const costs = [];
+  const generate = createGenerationPool({ requestMs: 1000, keyFor: () => 'same', bindResult: value => value,
+    generate: async (_input, { signal, onProgress }) => {
+      onProgress({ generationRequests: 3, correctionRequests: 1, correctionsRejected: 1 }); start();
+      await new Promise(resolve => signal.addEventListener('abort', resolve, { once: true }));
+      signal.throwIfAborted();
+    } });
+  const work = [0, 1].map(() => generate({}, { signal: controller.signal, onInterrupted: cost => costs.push(cost) }));
+  const rejected = work.map(promise => assert.rejects(promise, error => error === reason));
+  await ready;
+  controller.abort(reason);
+  await Promise.all(rejected);
+  assert.equal(costs.length, 2);
+  assert.equal(costs.reduce((sum, cost) => sum + cost.generationRequests, 0), 3);
+  assert.equal(costs.reduce((sum, cost) => sum + cost.correctionRequests, 0), 1);
+  assert.equal(reason.generationRequests, undefined);
+});
+
 test('caller-owned immutable cancellation reasons cannot break shared-work cleanup', { timeout: 1000 }, async () => {
   const controller = new AbortController();
   const reason = Object.freeze(Object.assign(new Error('cancelled by caller'), { name: 'AbortError' }));

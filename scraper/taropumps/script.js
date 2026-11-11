@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { createBrowserFetchSession } from '../../scraper-support/shared/browserFetch.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runNativeTexmoInventory } from './nativePagination.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -263,6 +264,12 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
   timeoutMs: 15000,
 })
 
+const defaultCreateBrowserSession = async () => createBrowserFetchSession({
+  userAgent: USER_AGENT,
+  timeoutMs: 90000,
+  settleTimeMs: 2000,
+})
+
 export const hasConnectTimeoutFailure = (error) => {
   const code = String(error?.cause?.code ?? error?.code ?? '')
   const message = String(error?.cause?.message ?? error?.message ?? error ?? '')
@@ -281,14 +288,17 @@ export const hasRecoverableBrandedCareersFailure = (error) => {
 export const createTaroPumpsScraper = () => ({
   async run({
     fetchText = defaultFetchText,
+    fetchImpl,
+    signal,
+    maxPages,
+    maxDetails,
     fetchBrowserText,
-    createBrowserSession = async () => createBrowserFetchSession({
-      userAgent: USER_AGENT,
-      timeoutMs: 90000,
-      settleTimeMs: 2000,
-    }),
+    createBrowserSession = defaultCreateBrowserSession,
     now = () => new Date().toISOString(),
   } = {}) {
+    if (fetchImpl || fetchText === defaultFetchText && createBrowserSession === defaultCreateBrowserSession && !fetchBrowserText) {
+      return runNativeTexmoInventory({ fetchImpl, signal, maxPages, maxDetails, now })
+    }
     let browserSession = null
 
     const getBrowserSession = async () => {

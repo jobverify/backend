@@ -6,7 +6,7 @@ import Queue from '../models/JobVerificationQueue.js';
 import User from '../models/User.js';
 import { MongoRateLimitStore } from '../utils/mongoRateLimitStore.js';
 import { investigateJob, summarizeReport } from './engine.js';
-import { normalizeJobUrl, redactText } from './urls.js';
+import { verificationRequestUrl, redactText } from './urls.js';
 import { findVerificationCandidates } from './repository.js';
 import { sourceChecks } from './sources.js';
 
@@ -31,7 +31,7 @@ export function createVerificationService({ enabled = verificationEnabled, engin
   async function submit(owner, body) {
     if (!enabled()) throw error(503, 'verification_disabled', 'Job verification is not enabled yet.');
     if (!body || typeof body !== 'object' || Object.keys(body).some(key => !['url', 'company', 'title'].includes(key))) throw error(400, 'invalid_input', 'Provide a job URL and optional company and title.');
-    const url = normalizeJobUrl(body.url);
+    const url = verificationRequestUrl(body.url);
     for (const key of ['company', 'title']) if (body[key] != null && (typeof body[key] !== 'string' || body[key].length > 200)) throw error(400, 'invalid_context', 'Company and title must be text of at most 200 characters.');
     await requireAccount(owner);
     let item;

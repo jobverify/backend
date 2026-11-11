@@ -72,4 +72,4 @@ export const createDhanalaxmiBankScraper = () => ({
   },
 })
 
-export const run = async () => createDhanalaxmiBankScraper().run()
+export const run = async (options) => createDhanalaxmiBankScraper().run(options)

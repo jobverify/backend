@@ -4,7 +4,7 @@ import { runRemainingRecruitmentBatchSource } from '../../scraper-support/utils/
 
 export const SOURCE = "pncfinancial"
 export const COMPANY = "PNC Financial"
-export const CAREERS_URL = "https://jobs.opennash.com/companies/pnc-financial-services/jobs/b542a778f5721b5efbd1/"
+export const CAREERS_URL = 'https://careers.pnc.com/global/en'
 export const DISPOSITION = 'runtime-verified-recruitment'
 export const VERIFIED_ON = null
 export const VERIFIED_SURFACE_SUMMARY = 'Current extraction is implemented; complete and empty company inventories remain unverified.'

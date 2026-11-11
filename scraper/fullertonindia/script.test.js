@@ -65,7 +65,7 @@ const payload = {
   },
 }
 
-test('Fullerton India accepts the current direct SMFG homepage and ampersand-encoded careers title', async () => {
+test('Fullerton India accepts SMFG surfaces and retains the linked PDF with unresolved native title identity', async () => {
   assert.equal(hasOfficialHomepageSignal(homepageHtml), true)
   assert.equal(hasOfficialCareersSignal(careersHtml), true)
   assert.equal(hasOfficialJobsBoardSignal(jobsBoardHtml), true)
@@ -89,5 +89,9 @@ test('Fullerton India accepts the current direct SMFG homepage and ampersand-enc
 
   assert.equal(jobs.length, 1)
   assert.equal(jobs[0].title, worklineFixture.record.Position_Name)
-  assert.ok(jobs[0].jobDescription.length>7000)
+  assert.equal(jobs[0].jobDescription,null)
+  assert.equal(jobs[0].sourceDetailComplete,false)
+  assert.equal(jobs[0].sourceDetailFailureKind,'native-description-role-title-unreconciled')
+  assert.equal(jobs[0].sourceNativePDFTitle,'Business Manager')
+  assert.ok(jobs[0].nativeSourceRecord.pdf.text.length>7000)
 })

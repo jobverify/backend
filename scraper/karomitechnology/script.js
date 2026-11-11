@@ -232,7 +232,7 @@ export const createKaromiTechnologyScraper = ({
   },
 })
 
-export const run = async () => createKaromiTechnologyScraper().run()
+export const run = async (options) => createKaromiTechnologyScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

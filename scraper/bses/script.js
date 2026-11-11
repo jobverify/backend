@@ -60,4 +60,4 @@ export const createBsesScraper = () => ({
   },
 })
 
-export const run = async () => createBsesScraper().run()
+export const run = async (options) => createBsesScraper().run(options)

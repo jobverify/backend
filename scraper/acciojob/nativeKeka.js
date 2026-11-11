@@ -24,7 +24,7 @@ const visible=(html,label)=>{
   // Parse both quoted and valid unquoted attributes; HTML entities are decoded
   // before CSS checks. Comments/escapes must not disguise hiding declarations.
   for(const match of String(html).matchAll(/<[a-z][^"'>]*(?:(?:"[^"]*"|'[^']*')[^"'>]*)*>/gi)) {
-    const attributes=[...match[0].replace(/^<[a-z][\w:-]*/i,'').matchAll(/([^\s"'<>\/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)]
+    const attributes=[...match[0].replace(/^<[a-z][\w:-]*/i,'').matchAll(/([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)]
     const seen=new Set()
     for(const attribute of attributes) {
       const key=attribute[1].toLowerCase(),value=decode(attribute[2]??attribute[3]??attribute[4]??'')
@@ -134,15 +134,16 @@ export const buildActiveJobsUrl=(input,c)=>input?.identifier===c.identifier&&inp
 
 export async function runNativeKeka(c,options={}) {
   check(['acciojob','openfinancialtechnologies'].includes(c.source),'unsupported employer')
-  const now=typeof options.now==='function'?options.now():options.now??new Date().toISOString(),maxJobs=options.maxJobs??Infinity,interval=options.requestIntervalMs??1000,timeout=options.timeoutMs??150000
-  check(Number.isFinite(+new Date(now)),'invalid verification clock');check(maxJobs===Infinity||Number.isSafeInteger(maxJobs)&&maxJobs>=0,'invalid caller cap')
+  const checkedCaller=operation=>{options.signal?.throwIfAborted();try{return operation()}finally{options.signal?.throwIfAborted()}}
+  const now=checkedCaller(()=>typeof options.now)==='function'?checkedCaller(()=>Reflect.apply(checkedCaller(()=>options.now),options,[])):checkedCaller(()=>options.now)??new Date().toISOString(),maxJobs=options.maxJobs??Infinity,interval=options.requestIntervalMs??1000,timeout=options.timeoutMs??150000
+  checkedCaller(()=>check(Number.isFinite(+new Date(now)),'invalid verification clock'));check(maxJobs===Infinity||Number.isSafeInteger(maxJobs)&&maxJobs>=0,'invalid caller cap')
   check(Number.isSafeInteger(interval)&&interval>=0&&(interval>=1000||options.fetchImpl),'invalid request pacing')
   check(Number.isSafeInteger(timeout)&&timeout>0&&timeout<=300000,'invalid source deadline')
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(Error('Keka bounded source deadline exceeded')),timeout)
   const signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal,receipts=[],previous=new Map(),allowedDetails=new Set()
   const activeUrl=buildActiveJobsUrl({identifier:c.identifier,domain:c.root,portalName:'default'},c),infoUrl=c.root+'api/organization/default/careerportalinfo',groupUrl=c.root+'api/embedjobs/grouplinkstatus/'+c.identifier,embedUrl=c.root+'api/embedjobs/js/'+c.identifier
   const allowed=new Set([c.officialUrl,c.shellUrl,c.documentUrl,embedUrl,infoUrl,groupUrl,activeUrl,DETAIL_CLIENT_URL,...c.styles.map(([url])=>url)])
-  const bounded=operation=>new Promise((resolve,reject)=>{const abort=()=>{cleanup();reject(signal.reason??Error('Keka aborted'))},cleanup=()=>signal.removeEventListener('abort',abort);if(signal.aborted)return abort();signal.addEventListener('abort',abort,{once:true});Promise.resolve().then(operation).then(v=>{cleanup();resolve(v)},e=>{cleanup();reject(e)})})
+  const bounded=operation=>new Promise((resolve,reject)=>{const abort=()=>{cleanup();reject(signal.reason)},cleanup=()=>signal.removeEventListener('abort',abort);if(signal.aborted)return abort();signal.addEventListener('abort',abort,{once:true});Promise.resolve().then(()=>{signal.throwIfAborted();return operation()}).then(v=>{cleanup();resolve(v)},e=>{cleanup();reject(e)})})
   const get=async(url,json=false)=>{
     signal.throwIfAborted();check(allowed.has(url)||allowedDetails.has(url),'request outside public read-only native contract')
     const origin=new URL(url).origin,wait=interval-(Date.now()-(previous.get(origin)??0));if(wait>0)await delay(wait,undefined,{signal});previous.set(origin,Date.now())
@@ -151,7 +152,7 @@ export async function runNativeKeka(c,options={}) {
     check(!response.url||response.url===url,'public redirect identity changed')
     const mime=response.headers?.get?.('content-type')??'',js=url===embedUrl||url===DETAIL_CLIENT_URL,css=c.styles.some(([value])=>value===url)
     check(!mime||(json?/\b(?:application|text)\/[^;]*json/i:js?/\b(?:application|text)\/(?:x-)?(?:javascript|ecmascript|js)/i:css?/\btext\/css/i:/\btext\/html/i).test(mime),'public response MIME changed')
-    const body=await bounded(()=>response.text());check(typeof body==='string'&&Buffer.byteLength(body)<=5000000,'oversized/invalid native response')
+    const body=await bounded(()=>{const method=response.text;signal.throwIfAborted();return Reflect.apply(method,response,[])});check(typeof body==='string'&&Buffer.byteLength(body)<=5000000,'oversized/invalid native response')
     receipts.push({url,method:'GET',status:response.status,bodySHA256:sha256(body),bodyBytes:Buffer.byteLength(body),observedAt:new Date().toISOString()})
     return json?JSON.parse(body):body
   }
@@ -189,5 +190,5 @@ export async function runNativeKeka(c,options={}) {
     const jobs=healthy.slice(0,maxJobs).map(job=>({...job,sourceScopeComplete:complete,sourceListingComplete:complete,lifecycleCleanupAllowed:complete,sourceObservedGlobalJobCount:opening.rows.length,sourceObservedIndiaJobCount:healthy.length,nativeCollectionEvidence:evidence}))
     Object.defineProperty(jobs,'nativeInventoryEvidence',{value:evidence})
     return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:c.officialUrl,firstParty:true,listingComplete:complete,pagesFetched:receipts.length,reportedTotal:opening.rows.length,indiaFacetCount:healthy.length,verifiedAt:now,reason:complete?'complete-native-opening-details-and-closing-snapshot':evidence.reasons.join(';')})
-  }catch(error){if(/fetch failed|timeout|timed out|deadline|socket|econn|enotfound|tls/i.test(error.message))Object.assign(error,{abortRetries:true,softFailure:true,upstreamOutage:true,failureKind:'network_or_timeout'});throw error}finally{clearTimeout(timer)}
+  }catch(error){if(checkedCaller(()=>Object.isExtensible(error)&&/fetch failed|timeout|timed out|deadline|socket|econn|enotfound|tls/i.test(error?.message)))for(const [key,value]of Object.entries({abortRetries:true,softFailure:true,upstreamOutage:true,failureKind:'network_or_timeout'}))checkedCaller(()=>Object.assign(error,{[key]:value}));throw error}finally{clearTimeout(timer)}
 }

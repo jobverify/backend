@@ -39,6 +39,8 @@ const originalMethods = {
   blacklistFindOne: BlacklistedToken.findOne,
   suggestionCount: UserSuggestion.countDocuments,
   suggestionFind: UserSuggestion.find,
+  suggestionUpdate: UserSuggestion.findByIdAndUpdate,
+  suggestionDelete: UserSuggestion.findByIdAndDelete,
   userFindById: User.findById,
 };
 
@@ -100,6 +102,8 @@ test.after(async () => {
   BlacklistedToken.findOne = originalMethods.blacklistFindOne;
   UserSuggestion.countDocuments = originalMethods.suggestionCount;
   UserSuggestion.find = originalMethods.suggestionFind;
+  UserSuggestion.findByIdAndUpdate = originalMethods.suggestionUpdate;
+  UserSuggestion.findByIdAndDelete = originalMethods.suggestionDelete;
   User.findById = originalMethods.userFindById;
   await new Promise((resolve, reject) => {
     server.close((error) => (error ? reject(error) : resolve()));
@@ -146,10 +150,55 @@ test("admin suggestions return stable newest-first populated rows", async () => 
     id: "suggestion-21",
     message: "Please add Example Company.",
     createdAt: "2026-09-13T12:00:00.000Z",
+    resolved: false,
     user: {
       id: memberId,
       email: "member@example.com",
       profile: { name: "Member Name" },
     },
   }]);
+});
+
+const suggestionId = "507f1f77bcf86cd799439013";
+const mutateSuggestion = (method, authorization, id = suggestionId) => fetch(
+  `${baseUrl}/api/admin/suggestions/${id}${method === 'PUT' ? '/resolve' : ''}`,
+  { method, headers: authorization ? { authorization } : {} },
+);
+
+test("only administrators can resolve or delete suggestions", async () => {
+  for (const method of ['PUT', 'DELETE']) {
+    assert.equal((await mutateSuggestion(method)).status, 401);
+    assert.equal((await mutateSuggestion(method, tokenFor(memberId))).status, 403);
+    assert.equal((await mutateSuggestion(method, tokenFor(adminId), 'invalid')).status, 400);
+  }
+});
+
+test("resolving saves the resolved status and returns it", async () => {
+  UserSuggestion.findByIdAndUpdate = async (id, update, options) => {
+    assert.equal(id, suggestionId);
+    assert.deepEqual(update, { $set: { resolved: true } });
+    assert.equal(options.new, true);
+    return { _id: suggestionId, resolved: true };
+  };
+  const response = await mutateSuggestion('PUT', tokenFor(adminId));
+  assert.equal(response.status, 200);
+  assert.deepEqual((await response.json()).data, { id: suggestionId, resolved: true });
+});
+
+test("deleting removes the requested suggestion", async () => {
+  UserSuggestion.findByIdAndDelete = async (id) => {
+    assert.equal(id, suggestionId);
+    return { _id: suggestionId };
+  };
+  const response = await mutateSuggestion('DELETE', tokenFor(adminId));
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).data.id, suggestionId);
+});
+
+test("missing suggestions return 404 for either action", async () => {
+  UserSuggestion.findByIdAndUpdate = async () => null;
+  UserSuggestion.findByIdAndDelete = async () => null;
+  for (const method of ['PUT', 'DELETE']) {
+    assert.equal((await mutateSuggestion(method, tokenFor(adminId))).status, 404);
+  }
 });

@@ -5,10 +5,10 @@ import {CAREER_PAGE_URL,BOARD_URL,DASHBOARD_URL,NATIVE_ORIGIN,API_ORIGIN,ORG_ID,
 const reviewed=JSON.parse(readFileSync(new URL('./reviewedSurfaces.json',import.meta.url)))
 const bounded=(operation,signal)=>new Promise((resolve,reject)=>{
  const cleanup=()=>signal.removeEventListener('abort',abort)
- const abort=()=>{cleanup();reject(signal.reason||Error('Monocept aborted'))}
+ const abort=()=>{cleanup();reject(signal.reason)}
  if(signal.aborted)return abort()
  signal.addEventListener('abort',abort,{once:true})
- Promise.resolve().then(operation).then(value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)})
+ Promise.resolve().then(()=>{signal.throwIfAborted();return operation()}).then(value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)})
 })
 export async function runNativeMonocept(options={}){
  const now=typeof options.now==='function'?options.now():options.now||new Date().toISOString(),maxJobs=options.maxJobs??Infinity,interval=options.requestIntervalMs??1000,timeout=options.timeoutMs??240000
@@ -33,7 +33,7 @@ export async function runNativeMonocept(options={}){
   if(status!==200)throw Object.assign(Error('Monocept public HTTP '+status+'; stopped without retry'),{code:'MONOCEPT_PUBLIC_HTTP',status,abortRetries:true,softFailure:true,upstreamOutage:true,failureKind:[401,403,429].includes(status)?'public_access_denied':'network_or_timeout'})
   check((response.url||response.finalUrl)===url,'public response redirect changed')
   check(!contentType||(json?/(?:application|text)\/[^;]*json/i:url.endsWith('.js')?/(?:application|text)\/(?:x-)?(?:java|ecma)script/i:url.endsWith('.css')?/text\/css/i:/text\/html/i).test(contentType),'public response MIME changed')
-  const text=await bounded(()=>typeof response.body==='string'?response.body:typeof response.html==='string'?response.html:response.text(),signal)
+  const text=await bounded(()=>{if(typeof response.body==='string')return response.body;if(typeof response.html==='string')return response.html;const method=response.text;signal.throwIfAborted();return Reflect.apply(method,response,[])},signal)
   check(typeof text==='string'&&Buffer.byteLength(text)<=15000000,'oversized/invalid public response')
   retainedResponses.push({url,method,status,contentType,bodyBytes:Buffer.byteLength(text),bodySHA256:sha256(text),observedAt:new Date().toISOString(),anonymousSession:anonymous})
   if(anonymous){const v=JSON.parse(text);check(typeof v.access_token==='string'&&v.access_token.length>0&&v.token_type?.toLowerCase()==='bearer'&&typeof v.expires_in==='number'&&v.expires_in>0&&v.ShouldRedirect===false,'unexpected anonymous public session contract');token=v.access_token;return null}
@@ -97,5 +97,5 @@ export async function runNativeMonocept(options={}){
   Object.defineProperty(jobs,'nativeInventoryEvidence',{value:evidence,enumerable:false});signal.throwIfAborted()
   Object.defineProperty(jobs,Symbol.for('jobverify.verified-recruitment-observations'),{value:{...evidence,nativeRecords:evidence.observedGlobalRecords,unresolved:evidence.reasons}})
   return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:CAREER_PAGE_URL,firstParty:true,listingComplete:complete,pagesFetched:retainedResponses.length,reportedTotal:opening.listing.total,indiaFacetCount:healthy.length,verifiedAt:now,reason:complete?'complete-native-global-opening-and-closing-snapshots-reconciled':evidence.reasons.join(';')})
- }catch(error){if(/timed? out|timeout|fetch failed|connect|socket|econn|enotfound|eai_again|tls|deadline/i.test(String(error?.message)))Object.assign(error,{softFailure:true,upstreamOutage:true,abortRetries:true,failureKind:'network_or_timeout'});throw error}finally{token=null;clearTimeout(timer)}
+ }catch(error){options.signal?.throwIfAborted();if(/timed? out|timeout|fetch failed|connect|socket|econn|enotfound|eai_again|tls|deadline/i.test(String(error?.message)))Object.assign(error,{softFailure:true,upstreamOutage:true,abortRetries:true,failureKind:'network_or_timeout'});throw error}finally{token=null;clearTimeout(timer)}
 }

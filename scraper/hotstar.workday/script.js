@@ -2,11 +2,10 @@ import { assertWorkdayPageAvailable } from '../../scraper-support/myworkday/page
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { shouldContinueWorkdayJobsApiPagination } from '../../scraper-support/myworkday/engine.js'
-import { fetchJsonWithRetry } from '../../scraper-support/utils/fetch.js'
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
 
 import { HOTSTAR_CATALOG } from './catalog.js'
+import { collectHotstarNative } from './nativeDetails.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -26,8 +25,6 @@ export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
 
 const PAGE_SIZE = 20
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 const HOMEPAGE_ACCEPTED_URLS = [
   HOMEPAGE_URL,
   'https://www.hotstar.com/in',
@@ -76,53 +73,7 @@ const isAcceptedHomepageUrl = (value) =>
 const isAcceptedWorkdayBoardUrl = (value) =>
   WORKDAY_BOARD_ACCEPTED_URLS.some((candidate) => sameUrl(value, candidate))
 
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
 const getFinalUrl = (page, fallbackUrl) => page?.url || page?.finalUrl || fallbackUrl
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'Accept-Language': 'en-US,en;q=0.9',
-    },
-    redirect: 'follow',
-    signal: createTimeoutSignal(20000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
-const defaultFetchJson = (url, body) => fetchJsonWithRetry(url, {
-  method: 'POST',
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json',
-    'content-type': 'application/json',
-  },
-  body,
-  attempts: 3,
-  baseDelayMs: 2000,
-  timeoutMs: 20000,
-  label: SOURCE,
-})
 
 export const hasOfficialHomepageSignal = (html = '') => {
   const page = String(html ?? '')
@@ -312,83 +263,18 @@ export const createHotstarScraper = ({
   maxJobs = null,
 } = {}) => ({
   async run({
-    fetchPage = defaultFetchPage,
-    fetchJson = defaultFetchJson,
+    fetchPage,
+    fetchJson,
     now = defaultNow,
+    ...options
   } = {}) {
-    const homepagePage = await fetchPage(HOMEPAGE_URL)
-    if (
-      homepagePage.status !== 200
-      || !isAcceptedHomepageUrl(homepagePage.url)
-      || !hasOfficialHomepageSignal(homepagePage.html)
-    ) {
-      throw new Error('Hotstar verified homepage surface changed materially')
-    }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-    const hasVerifiedBlockedCareersPage = careersPage.status === 403
-      && sameUrl(careersPage.url, CAREERS_URL)
-      && hasBlockedJiostarCareersSignal(careersPage.html)
-    const hasVerifiedLiveCareersPage = careersPage.status === 200
-      && sameUrl(careersPage.url, CAREERS_URL)
-      && hasOfficialCareersSignal(careersPage.html)
-
-    if (!hasVerifiedBlockedCareersPage && !hasVerifiedLiveCareersPage) {
-      throw new Error('Hotstar verified JioStar careers surface changed materially')
-    }
-
-    if (hasVerifiedLiveCareersPage) {
-      const verifiedWorkdayBoardUrl = extractVerifiedWorkdayBoardUrl(careersPage.html)
-      if (!sameUrl(verifiedWorkdayBoardUrl, WORKDAY_BOARD_URL)) {
-        throw new Error('Hotstar verified Workday careers handoff changed materially')
-      }
-    }
-
-    const workdayBoardPage = await fetchPage(WORKDAY_BOARD_URL)
-    assertWorkdayPageAvailable(workdayBoardPage, { source: SOURCE, url: WORKDAY_BOARD_URL })
-    if (!hasOfficialWorkdayBoardSignal(workdayBoardPage)) {
-      throw new Error('Hotstar verified public Workday board changed materially')
-    }
-
-    const scrapedAt = now()
-    const jobs = []
-    const seenJobIds = new Set()
-    let offset = 0
-
-    for (let page = 1; page <= maxPages; page += 1) {
-      const payload = await fetchJson(
-        JOBS_API_URL,
-        buildKeywordSearchRequestBody({ offset }),
-      )
-      const postings = Array.isArray(payload?.jobPostings) ? payload.jobPostings : []
-
-      if (page === 1 && postings.length === 0) {
-        return []
-      }
-
-      for (const job of extractJobsFromPayload(payload, scrapedAt)) {
-        if (seenJobIds.has(job.jobId)) continue
-
-        seenJobIds.add(job.jobId)
-        jobs.push(job)
-      }
-
-      offset += postings.length
-      if (maxJobs && jobs.length >= maxJobs) {
-        return jobs.slice(0, maxJobs)
-      }
-
-      if (!shouldContinueWorkdayJobsApiPagination({
-        jobsCount: postings.length,
-        offsetAfterPage: offset,
-        payloadTotal: payload?.total || 0,
-        pageSize: PAGE_SIZE,
-      })) {
-        break
-      }
-    }
-
-    return jobs
+    return collectHotstarNative({options:{...options,fetchPage,fetchJson,now,maxPages,maxJobs:maxJobs??10000},
+      metadata:{homepage:HOMEPAGE_URL,careers:CAREERS_URL,board:WORKDAY_BOARD_URL,jobsAPI:JOBS_API_URL,searchText:VERIFIED_KEYWORD},
+      normalizePosting,
+      validators:{homepage:page=>{if(page.status!==200||!isAcceptedHomepageUrl(page.url)||!hasOfficialHomepageSignal(page.html))throw new Error('Hotstar verified homepage surface changed materially')},
+        careers:page=>{if(page.status!==200||!sameUrl(page.url,CAREERS_URL)||!hasOfficialCareersSignal(page.html)
+          ||!sameUrl(extractVerifiedWorkdayBoardUrl(page.html),WORKDAY_BOARD_URL))throw new Error('Hotstar current corporate Careers delegation changed')},
+        board:page=>{assertWorkdayPageAvailable(page,{source:SOURCE,url:WORKDAY_BOARD_URL});if(!hasOfficialWorkdayBoardSignal(page))throw new Error('Hotstar verified public Workday board changed materially')}}})
   },
 })
 

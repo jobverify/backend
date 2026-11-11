@@ -1,0 +1,232 @@
+{
+  "receipts": [
+    {
+      "requestedURL": "https://echostar.com/",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://echostar.com/",
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:22:49 GMT",
+        "etag": "\"1226a-65e5ebfcfd0e1-gzip\"",
+        "last-modified": "Wed, 21 Oct 2026 19:28:18 GMT"
+      },
+      "startedAt": "2026-11-11T04:22:18.252Z",
+      "completedAt": "2026-11-11T04:22:20.155Z",
+      "bodyBytes": 74346,
+      "bodySHA256": "ba6a11470610bc588c4d9654578387e391227ce17f9ee173ed2ca0af6e936232",
+      "bodyFile": "01-echostar.com-ea16706b65.html",
+      "fixture": "corporate-home-20261111.gz"
+    },
+    {
+      "requestedURL": "https://echostar.com/careers",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://echostar.com/careers",
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:22:50 GMT",
+        "etag": "\"28a79-65e5ec22864ff-gzip\"",
+        "last-modified": "Wed, 21 Oct 2026 19:28:57 GMT"
+      },
+      "startedAt": "2026-11-11T04:22:20.159Z",
+      "completedAt": "2026-11-11T04:22:20.990Z",
+      "bodyBytes": 166521,
+      "bodySHA256": "b387419ec5a0fdc15f93b0509cf1169052b6f95e2a1c4f521ba46648164ae7b4",
+      "bodyFile": "02-echostar.com-4bb0268d21.html",
+      "fixture": "corporate-careers-20261111.gz"
+    },
+    {
+      "requestedURL": "https://echostar.com/careers/locations/india",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://echostar.com/careers/locations/india",
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:01:30 GMT",
+        "etag": "\"2051e-65e5ef1044ac2-gzip\"",
+        "last-modified": "Wed, 21 Oct 2026 19:42:03 GMT"
+      },
+      "startedAt": "2026-11-11T04:00:59.711Z",
+      "completedAt": "2026-11-11T04:01:01.392Z",
+      "bodyBytes": 132382,
+      "bodySHA256": "f9fed1f56936434ab7c9c0420fe0d94627f3f599012d6d5a61428544893cf520",
+      "bodyFile": "02-echostar.com-8d949148cc.html",
+      "fixture": "corporate-india-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/jobs?location=India&woe=12&stretchUnit=MILES&stretch=10&sortBy=distance_from&page=1",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/jobs?location=India&woe=12&stretchUnit=MILES&stretch=10&sortBy=distance_from&page=1",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:22:52 GMT",
+        "etag": "W/\"78b7f-fh5dQnhTb8dDcQwHRC8CP4BiKOQ\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:22:20.993Z",
+      "completedAt": "2026-11-11T04:22:23.887Z",
+      "bodyBytes": 494463,
+      "bodySHA256": "15d6da0ddf3d06f6806b0f403c4932ec07eab0df7bf20dc0cc49c636e8ba1036",
+      "bodyFile": "03-jobs.echostar.com-dd056ca7ef.html",
+      "fixture": "native-search-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/jobs?location=India&page=1&sortBy=distance_from&stretch=10&stretchUnit=MILES&woe=12",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/jobs?location=India&page=1&sortBy=distance_from&stretch=10&stretchUnit=MILES&woe=12",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:32:26 GMT",
+        "etag": "W/\"78b7f-JqhmWkHWHMJq2UbHXLWc+AopBk8\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:31:55.316Z",
+      "completedAt": "2026-11-11T04:31:57.838Z",
+      "bodyBytes": 494463,
+      "bodySHA256": "f5cd91f139713cbe0adef686978b9b681851c01a3788a2685656b9847f9dbdd1",
+      "bodyFile": "01-jobs.echostar.com-7d0a466b3c.html",
+      "fixture": "legacy-search-20261111.gz"
+    },
+    {
+      "requestedURL": "https://app.jibecdn.com/prod/search/4.11.225/main.js",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://app.jibecdn.com/prod/search/4.11.225/main.js",
+      "headers": {
+        "content-type": "application/javascript",
+        "location": null,
+        "date": "Fri, 16 Oct 2026 04:26:23 GMT",
+        "etag": "\"4ce3b3fb2c537aa5b9d85865ef08fc23\"",
+        "last-modified": "Fri, 16 Oct 2026 04:14:52 GMT"
+      },
+      "startedAt": "2026-11-11T04:24:37.922Z",
+      "completedAt": "2026-11-11T04:24:40.668Z",
+      "bodyBytes": 614834,
+      "bodySHA256": "8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f",
+      "bodyFile": "02-app.jibecdn.com-5ea8075ca8.html",
+      "fixture": "search-client-20261111.gz"
+    },
+    {
+      "requestedURL": "https://app.jibecdn.com/prod/descriptions/1.1.100/main.js",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://app.jibecdn.com/prod/descriptions/1.1.100/main.js",
+      "headers": {
+        "content-type": "application/javascript",
+        "location": null,
+        "date": "Mon, 09 Nov 2026 15:15:30 GMT",
+        "etag": "\"7320399ed3e62a68ef7670a655146986\"",
+        "last-modified": "Mon, 26 Oct 2026 06:28:44 GMT"
+      },
+      "startedAt": "2026-11-11T04:28:23.020Z",
+      "completedAt": "2026-11-11T04:28:26.363Z",
+      "bodyBytes": 1406939,
+      "bodySHA256": "fc31de5557e316926aaa23755d10152e33f418ebbbdb731fd20b32023a93d880",
+      "bodyFile": "01-app.jibecdn.com-cbba940d60.html",
+      "fixture": "description-client-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/api/jobs?location=India&woe=12&stretchUnit=MILES&stretch=10&sortBy=distance_from%28%27India%27%29&page=1&internal=false&separator=%257C&facetField=tags4%257Ctags1",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/api/jobs?location=India&woe=12&stretchUnit=MILES&stretch=10&sortBy=distance_from%28%27India%27%29&page=1&internal=false&separator=%257C&facetField=tags4%257Ctags1",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:25:07 GMT",
+        "etag": "W/\"250ac-k45wgFC8W1blL9ioB2kv5QM9Z8s\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:24:36.206Z",
+      "completedAt": "2026-11-11T04:24:37.913Z",
+      "bodyBytes": 151724,
+      "bodySHA256": "b9e041012ea6db0f0da2031bc6dd0332486dedcd12b61ee2957ad7ce082debca",
+      "bodyFile": "01-jobs.echostar.com-f36278b3eb.html",
+      "fixture": "native-api-page-1-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/jobs/98606?lang=en-us",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/jobs/98606?lang=en-us",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:26:39 GMT",
+        "etag": "W/\"863ea-FGcUO+rrecM5iDavceYFrqTAEwU\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:26:08.364Z",
+      "completedAt": "2026-11-11T04:26:10.468Z",
+      "bodyBytes": 549866,
+      "bodySHA256": "53841fc36699cc1a9cabc83af1126b390a619b31fd5b73628a226e403ec14073",
+      "bodyFile": "01-jobs.echostar.com-31eefc8ff9.html",
+      "fixture": "native-role-98606-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/jobs/97540?lang=en-us",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/jobs/97540?lang=en-us",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:26:40 GMT",
+        "etag": "W/\"96d28-teZsxVl952cITS0EXr7EkdPRRug\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:26:10.473Z",
+      "completedAt": "2026-11-11T04:26:11.487Z",
+      "bodyBytes": 617768,
+      "bodySHA256": "bce7434b3fce8b77e656f113ff1f7d5f44be75d63b9b0f60db005583fafd6257",
+      "bodyFile": "02-jobs.echostar.com-a250054aff.html",
+      "fixture": "native-role-97540-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/jobs/95713?lang=en-us",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/jobs/95713?lang=en-us",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:26:41 GMT",
+        "etag": "W/\"8c637-akohVJMo/Yf69Mz9QihlRjCT+tI\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:26:11.504Z",
+      "completedAt": "2026-11-11T04:26:12.456Z",
+      "bodyBytes": 575031,
+      "bodySHA256": "153e29b276a327d7b8fc36cfdae9409e30a6f968187ef4e31a8427205e29e4f6",
+      "bodyFile": "03-jobs.echostar.com-14a691d7dc.html",
+      "fixture": "native-role-95713-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.echostar.com/jobs/97514?lang=en-us",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.echostar.com/jobs/97514?lang=en-us",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:26:42 GMT",
+        "etag": "W/\"8d1d6-f4cZw0f3NAeESHyq/Uuz8Lk4BHs\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:26:12.469Z",
+      "completedAt": "2026-11-11T04:26:12.999Z",
+      "bodyBytes": 578006,
+      "bodySHA256": "8e8a90bc90ea4063c76285f1ffe3f51339b350105637624225bf6d82661ad673",
+      "bodyFile": "04-jobs.echostar.com-bec9fb72c9.html",
+      "fixture": "native-role-97514-20261111.gz"
+    }
+  ]
+}

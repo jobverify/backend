@@ -66,7 +66,7 @@ const extractCity = (location) => {
 
   return normalized
     .replace(/,?\s*India$/i, '')
-    .split(/[\/,]/)
+    .split(/[/,]/)
     .map((part) => normalizeWhitespace(part))
     .filter(Boolean)[0] || null
 }
@@ -195,7 +195,7 @@ export const createAvinSystemsScraper = ({
   },
 })
 
-export const run = async () => createAvinSystemsScraper().run()
+export const run = async (options) => createAvinSystemsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

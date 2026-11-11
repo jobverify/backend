@@ -60,5 +60,5 @@ test('resilient launcher leaves unset concurrency available for .env and runner 
   assert.ok(concurrency == null || concurrency === '')
   const inherited = concurrency ? { SCRAPER_CONCURRENCY: concurrency } : {}
   assert.equal(buildLocalScrapeRunEnv(inherited, { SCRAPER_CONCURRENCY: '7' }).SCRAPER_CONCURRENCY, '7')
-  assert.equal(resolveConfiguredParallelScraperConcurrency(buildLocalScrapeRunEnv(inherited, {}).SCRAPER_CONCURRENCY ?? ''), 1)
+  assert.equal(resolveConfiguredParallelScraperConcurrency(buildLocalScrapeRunEnv(inherited, {}).SCRAPER_CONCURRENCY ?? ''), 5)
 })

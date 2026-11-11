@@ -12,6 +12,22 @@ import { text, plain, requireNative, roleURL, criteria, geography, literalFields
 import {currentNuxtRoutes,groupedPostDeclarations,corroborateCurrentWorksites,collectionEnvelopeError} from '../publicLeverChannels/routeEvidence.js'
 import {reviewedAstroAssetURLs,selectReviewedAstroAsset} from './reviewedAstroAssets.js'
 
+// Own observer promises before choosing caller cancellation over callback errors.
+const checkedObserver = (start, signal) => new Promise((resolve, reject) => {
+  let settled = false
+  const finish = (failed, value) => {
+    if (settled) return
+    settled = true;signal?.removeEventListener('abort', abort)
+    if (signal?.aborted) reject(signal.reason)
+    else if (failed) reject(value)
+    else resolve(value)
+  }
+  const abort = () => finish(true, signal.reason)
+  signal?.addEventListener('abort', abort, { once: true })
+  Promise.resolve().then(() => { signal?.throwIfAborted();return start() }).then(value => finish(false, value), error => finish(true, error))
+  if (signal?.aborted) abort()
+})
+
 export const DECLARED_JOB_FEED_PROFILES = JSON.parse(readFileSync(new URL('./profiles.json', import.meta.url)))
 const equal = (a, b) => JSON.stringify(a) === JSON.stringify(b)
 const equalNativeFields=(a,b)=>{
@@ -70,7 +86,8 @@ export const createDeclaredJobFeedScraper = (profile, defaults = {}) => ({ name:
     await onRecords(detachedRecords)
     check()
   } })
-  const observedAt = typeof now === 'function' ? now() : now
+  let observedAt
+  try { signal?.throwIfAborted();observedAt = typeof now === 'function' ? now() : now } finally { signal?.throwIfAborted() }
   requireNative(typeof observedAt === 'string' && Number.isFinite(Date.parse(observedAt)), 'Invalid observation clock')
   const allowedURLs = new Set([...profile.primaryPages, ...(profile.identityPages||[]), profile.publicAPIURL, profile.boardURL,
     ...(['active-declared-external-profile', 'active-declared-astro-component'].includes(profile.declaration.kind) ? [profile.declaration.scriptURL] : [])])
@@ -344,8 +361,8 @@ export const createDeclaredJobFeedScraper = (profile, defaults = {}) => ({ name:
     if(profile.nativeLocationCountryCorroboration)corroborateCurrentWorksites(profile,result,observations,history)
     return result
   }
-  let opening, closing, fatal
-  try { opening = await collect('opening');signal?.throwIfAborted();closing = await collect('closing') } catch (error) { fatal = error }
+  let opening, closing, fatal, collectionFailed = false
+  try { opening = await collect('opening');signal?.throwIfAborted();closing = await collect('closing') } catch (error) { collectionFailed = true;fatal = error }
   const before = new Set(opening?.nativePostIds || []), after = new Set(closing?.nativePostIds || [])
   for (const [id, job] of observations) if (!closing?.publisherQualified || !before.has(id) || !after.has(id)) Object.assign(job, {
     sourceCurrentNativeRoleQualified: false, sourceCurrentNativePostingIdentityQualified: false, sourceNativeTemporalQualification: 'not-present-in-both-phases-or-closing-publisher-unqualified' })
@@ -354,7 +371,9 @@ export const createDeclaredJobFeedScraper = (profile, defaults = {}) => ({ name:
   const audit = { source: profile.source, countryFilter, opening, closing, observations: all, observationHistory: history, rawPages: io.rawPages, issues: io.issues,
     sourceScopeComplete: false, lifecycleCleanupAllowed: false, authoritativeSourceTotal: null, authoritativeIndiaFacetCount: null,
     qualification: 'Original public native models before country/brand selection. Whole-employer/India-zero, active recruitment, applications, database persistence and publication remain unqualified.' }
-  await onAudit(structuredClone(audit));await onRecords(structuredClone(all));signal?.throwIfAborted();if (fatal) throw fatal
+  await checkedObserver(() => { const detached = structuredClone(audit);signal?.throwIfAborted();return onAudit(detached) }, signal)
+  await checkedObserver(() => { const detached = structuredClone(all);signal?.throwIfAborted();return onRecords(detached) }, signal)
+  signal?.throwIfAborted();if (collectionFailed) throw fatal
   const eligible = all.filter(job => job.sourceBrandScopeQualified && job.jobDescription && (countryFilter === 'Global'
     ? job.sourceCurrentNativePostingIdentityQualified
     : job.sourceCurrentNativeRoleQualified && !job.sourceNativeCountryConflict && (job.country === 'India' || job.sourceCountryScopeUnresolved)))

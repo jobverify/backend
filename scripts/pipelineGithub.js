@@ -8,7 +8,7 @@ import { directConfiguration, stageOutcome, describeStageCompletion, WORKFLOWS, 
 import { createDirectGithubPipeline, dispatchGithubStage, githubRequest, matchesGithubStage } from '../src/pipeline/github.js';
 import { redactLog } from '../src/pipeline/local.js';
 import { aggregateClassificationSummaries } from '../classification/reporting.js';
-import { aggregateRewriteSummaries } from '../rewriting/reporting.js';
+import { aggregateRewriteSummaries, formatRewriteReport } from '../rewriting/reporting.js';
 import { validateRewriteShard } from '../rewriting/partitioning.js';
 import { scraperRunEnvironment } from '../src/pipeline/scraperConcurrency.js';
 
@@ -78,6 +78,9 @@ try {
     if(key==='rewrite') {
       await fs.mkdir('.cache/scraper-actions',{recursive:true});
       await fs.writeFile('.cache/scraper-actions/description-summary.json',JSON.stringify(summary,null,2)+'\n');
+      const report=formatRewriteReport(summary);
+      await fs.writeFile('.cache/scraper-actions/description-summary.md',report);
+      if(process.env.GITHUB_STEP_SUMMARY)await fs.appendFile(process.env.GITHUB_STEP_SUMMARY,report);
     }
     await recordStageResult(run._id,key,{outcome,summary});
     console.log(`Pipeline stage ${key} outcome: ${outcome}; summary: ${redactLog(JSON.stringify(summary))}`);

@@ -81,7 +81,7 @@ test('a budget-stopped shard saves its own summary and rejection diagnostics', a
   assert.equal(summary.shardCount, 4);
   assert.equal(summary.rejectionDiagnostics.file, 'description-rejections-2.json');
   assert.deepEqual((await fs.readdir(path.join(cwd, '.cache/scraper-actions'))).sort(),
-    ['description-rejections-2.json', 'description-summary-2.json']);
+    ['description-rejections-2.json', 'description-summary-2.json', 'description-summary-2.md']);
 });
 
 test('a one-partition workflow keeps the same suffixed filenames as larger matrices', async t => {
@@ -94,5 +94,7 @@ test('a one-partition workflow keeps the same suffixed filenames as larger matri
   const summary = JSON.parse(stdout.trim().split('\n').at(-1));
   assert.equal(summary.rejectionDiagnostics.file, 'description-rejections-0.json');
   assert.deepEqual((await fs.readdir(path.join(cwd, '.cache/scraper-actions'))).sort(),
-    ['description-rejections-0.json', 'description-summary-0.json']);
+    ['description-rejections-0.json', 'description-summary-0.json', 'description-summary-0.md']);
+  assert.equal(summary.processingStatus, 'partial');
+  assert.match(await fs.readFile(path.join(cwd, '.cache/scraper-actions/description-summary-0.md'), 'utf8'), /Processing: partial/);
 });

@@ -54,13 +54,6 @@ const findInputTag = (html, id) => new RegExp(
 
 const hasInputWithId = (html, id) => Boolean(findInputTag(html, id))
 
-const extractInputValue = (html, id) => {
-  const tag = findInputTag(html, id)
-  const match = tag ? /\bvalue=(["'])([\s\S]*?)\1/i.exec(tag) : null
-
-  return match ? decodeHtmlEntities(match[2]) : null
-}
-
 const buildJobSlug = (title) => {
   const normalized = normalizeWhitespace(title)
   if (!normalized) return ''
@@ -239,7 +232,7 @@ export const createProlificsCorporationLtdScraper = ({
   },
 })
 
-export const run = async () => createProlificsCorporationLtdScraper().run()
+export const run = async (options) => createProlificsCorporationLtdScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

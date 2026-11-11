@@ -166,4 +166,4 @@ export const createVestasScraper = () => ({
   },
 })
 
-export const run = async () => createVestasScraper().run()
+export const run = async (options) => createVestasScraper().run(options)
