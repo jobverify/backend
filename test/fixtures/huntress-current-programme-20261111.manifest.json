@@ -1,0 +1,51 @@
+{
+  "source": "huntress",
+  "fixture": "test/fixtures/huntress-current-programme-20261111.json.gz",
+  "fixtureSHA256": "8b67eb40b6babe9bfb0777ea654b3718f1b6ab94c05e90ced3034cf5f7339962",
+  "fixtureBytes": 592393,
+  "originalTransaction": "reports/soft-failures-1000-2026-11-11/ats-contract/huntress-current-transaction-20261111a",
+  "originalGETs": 6,
+  "captureStartedAt": "2026-11-11T10:20:29.058Z",
+  "captureCompletedAt": "2026-11-11T10:20:47.359Z",
+  "bodyHashes": [
+    {
+      "index": 1,
+      "url": "https://www.huntress.com/company/careers",
+      "bodySHA256": "80737381cc3a83ddf881f38ea3d135efce47102662d6630a4b947e81852254ff",
+      "bodyBytes": 349636
+    },
+    {
+      "index": 2,
+      "url": "https://job-boards.greenhouse.io/huntress",
+      "bodySHA256": "616f600be3e37e41892f349192f189ba679391c403306b7e500d1da0595ebc43",
+      "bodyBytes": 73912
+    },
+    {
+      "index": 3,
+      "url": "https://boards-api.greenhouse.io/v1/boards/huntress/jobs?content=true",
+      "bodySHA256": "7177a35e45495f4b1386f03e9729b87b05fbf1d58740c8eb8c50f6fc09888711",
+      "bodyBytes": 583650
+    },
+    {
+      "index": 4,
+      "url": "https://boards-api.greenhouse.io/v1/boards/huntress/jobs?content=true",
+      "bodySHA256": "7177a35e45495f4b1386f03e9729b87b05fbf1d58740c8eb8c50f6fc09888711",
+      "bodyBytes": 583650
+    },
+    {
+      "index": 5,
+      "url": "https://job-boards.greenhouse.io/huntress",
+      "bodySHA256": "616f600be3e37e41892f349192f189ba679391c403306b7e500d1da0595ebc43",
+      "bodyBytes": 73912
+    },
+    {
+      "index": 6,
+      "url": "https://www.huntress.com/company/careers",
+      "bodySHA256": "7873354a4b3045750b13982bd6b99e62a36b73303907f634f66964e8fb939edd",
+      "bodyBytes": 350730
+    }
+  ],
+  "corporateRepresentationApprovalEvidence": "reports/soft-failures-1000-2026-11-11/ats-contract/huntress-current-transaction-20261111a/corporate-projection-proof.json",
+  "applicationScreeningOrOwnSchemaClaim": false,
+  "registeredProcessingOrRecoveryClaim": false
+}

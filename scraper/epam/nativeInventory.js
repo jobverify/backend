@@ -9,10 +9,13 @@ const INDIA = '4060741400035606931'
 const TENANTS = new Set(['anywhere', 'epamgdo', 'careers-india'])
 // Exact original public clients. The second release removes SELECTED_FILTERS
 // from its constants module; the remaining parsed program is unchanged.
+// The November 11 client adds initial facet context and changes application
+// analytics/logging; the reviewed native search transport remains unchanged.
 // Unknown programs still cannot establish the native search contract.
 const CONTROLLER_SHA256S = new Set([
   '66f26b113cd0ae5c02536ebfaab2826ed4f17b85d567319a7af6edb0db9f9678',
   'dec7833162b39f8f5c3aa8dc876875c7982775d0e8b724dd254b178ca3e52d12',
+  'c6769eb0c0fdf432f63afb1204e9c9b81594ebaea3fc4144e0c0039aeebe6c4b',
 ])
 const EVIDENCE = Symbol.for('jobverify.epam-native-inventory')
 export const NATIVE_PAGE_SIZE = 50
@@ -182,6 +185,23 @@ function fullDescription(record) {
   return [text, ...supplements].join('\n\n')
 }
 
+function nativeWorkArrangement(record) {
+  // Pinned client module 34123 distinguishes Office, Remote and Hybrid in its
+  // JobPosting producer. Reconcile the raw value with its native English label;
+  // new or contradictory workplace representations remain explicitly unknown.
+  const label = record.vacancy_type, localized = record.metadata?.vacancy_type
+  const workplaceKey = /remote|hybrid|arrangement|work[_-]?(?:mode|place|from[_-]?home)|telecommut|onsite|on_site|vacancy[_-]?type/i
+  if (!['Office', 'Remote', 'Hybrid'].includes(label)
+    || !record.metadata || typeof record.metadata !== 'object' || Array.isArray(record.metadata)
+    || Object.keys(record).some(key => key !== 'vacancy_type' && workplaceKey.test(key))
+    || Object.keys(record.metadata).some(key => key !== 'vacancy_type' && workplaceKey.test(key))
+    || !Array.isArray(localized) || localized.length !== 1
+    || !localized[0] || typeof localized[0] !== 'object' || Array.isArray(localized[0])
+    || Object.keys(localized[0]).some(key => !['title', 'locale'].includes(key))
+    || localized[0].title !== label || localized[0].locale !== 'en-us') return null
+  return { Office: 'On-site', Remote: 'Remote', Hybrid: 'Hybrid' }[label]
+}
+
 function limit(options, name, fallback) {
   const value = options[name] ?? fallback
   if (!Number.isSafeInteger(value) || value <= 0) throw new RangeError(`Invalid EPAM ${name}`)
@@ -212,6 +232,7 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
     cleanupAllowed: false, complete: false, requests: 0, aggregateBytes: 0,
     passes: [], failures: [], bodyGaps: [], retainedResponses: [], invalidRecords: [] }
   const jobsByID = new Map()
+  const closingWorkArrangements = new Map()
   const fail = (stage, error, extra = {}) => result.failures.push({ stage,
     code: typeof error?.code === 'string' ? error.code : 'native-read-failed',
     message: String(error?.message || error).slice(0, 240), ...extra })
@@ -300,6 +321,14 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
         if (pass.rawCount > opening.total) fail(name, { code: 'native-count-overflow', message: 'Native rows exceed reported total' })
         for (const raw of data.jobs) {
           const record = freeze(structuredClone(raw))
+          let closingMode
+          if (name === 'closing' && typeof record?.uid === 'string') {
+            closingMode = closingWorkArrangements.get(record.uid) || { observations: 0 }
+            closingMode.observations++
+            closingMode.nativeUniqueId = null
+            closingMode.remoteStatus = null
+            closingWorkArrangements.set(record.uid, closingMode)
+          }
           if (typeof record?.unique_id === 'string' && record.unique_id) rawIdentities.add(record.unique_id)
           try {
             const key = identity(record)
@@ -309,6 +338,10 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
             publicIdentities.add(key.url)
             pass.records.set(key.id, sha(stable(record)))
             const geography = locations(record)
+            if (closingMode?.observations === 1) {
+              closingMode.nativeUniqueId = key.id
+              closingMode.remoteStatus = nativeWorkArrangement(record)
+            }
             let description = null, detailComplete = true
             try { description = fullDescription(record) }
             catch (error) {
@@ -319,7 +352,8 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
             if (name === 'opening') {
               const projected = project(record)
               requireNative(projected, 'native-role-projection-failed')
-              jobsByID.set(key.id, { ...projected, sourceUrl: key.url, applyUrl: key.url, country: 'India',
+              jobsByID.set(key.id, { ...projected, remoteStatus: nativeWorkArrangement(record), sourceRemoteStatusUnresolved: true,
+                sourceUrl: key.url, applyUrl: key.url, country: 'India',
                 location: geography.location, city: geography.indiaCities[0] || null,
                 jobDescription: description, sourceDetailComplete: detailComplete,
                 nativeRecord: record, nativeUniqueId: key.id, nativeDeclaredCountries: geography.countries })
@@ -364,9 +398,13 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
   } finally { clearTimeout(timer) }
   callerSignal?.throwIfAborted()
   const complete = result.complete
-  const jobs = [...jobsByID.values()].slice(0, requestedMaxJobs ?? jobsByID.size).map(job => ({ ...job,
+  const jobs = [...jobsByID.values()].slice(0, requestedMaxJobs ?? jobsByID.size).map(job => {
+    const closingMode = closingWorkArrangements.get(job.jobId)
+    return { ...job, remoteStatus: closingMode?.observations === 1
+      && closingMode.nativeUniqueId === job.nativeUniqueId && closingMode.remoteStatus === job.remoteStatus ? job.remoteStatus : null,
     source: 'epam', link: job.applyUrl, scrapedAt: new Date().toISOString(),
-    sourceListingComplete: complete, sourceScopeComplete: complete, lifecycleCleanupAllowed: complete }))
+    sourceListingComplete: complete, sourceScopeComplete: complete, lifecycleCleanupAllowed: complete }
+  })
   result.passes = result.passes.map(({ records, ...pass }) => ({ ...pass, fingerprints: Object.fromEntries(records) }))
   const verifiedAt = complete ? result.retainedResponses.at(-1).completedAt : null
   result.verifiedAt = verifiedAt

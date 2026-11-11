@@ -274,4 +274,4 @@ export const createMercedesBenzScraper = (options = {}) => ({
   },
 })
 
-export const run = async () => createMercedesBenzScraper().run()
+export const run = async (options) => createMercedesBenzScraper(options).run()

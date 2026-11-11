@@ -172,7 +172,7 @@ export const createCriodoScraper = () => ({
   },
 })
 
-export const run = async () => createCriodoScraper().run()
+export const run = async (options) => createCriodoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

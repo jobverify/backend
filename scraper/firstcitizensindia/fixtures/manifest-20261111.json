@@ -1,0 +1,214 @@
+{
+  "capturedFrom": "Current public first-party declaration chain and currently declared native search client",
+  "receipts": [
+    {
+      "requestedURL": "https://www.firstcitizens.com/",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://www.firstcitizens.com/",
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:02:26 GMT",
+        "etag": null,
+        "last-modified": "Wed, 11 Nov 2026 04:00:07 GMT"
+      },
+      "startedAt": "2026-11-11T04:01:55.344Z",
+      "completedAt": "2026-11-11T04:01:57.146Z",
+      "bodyBytes": 424443,
+      "bodySHA256": "03dcf67106f18c335a923b70e7dbf66e8bec54c474d5aa49765db5b74c287e21",
+      "bodyFile": "02-www.firstcitizens.com-d9c2585935.html",
+      "fixture": "corporate-home-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:01:28 GMT",
+        "etag": "W/\"6abaa-uzf9ZLWf3YcnNzFnAKPS41qJLqM\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:00:57.116Z",
+      "completedAt": "2026-11-11T04:00:59.704Z",
+      "bodyBytes": 437162,
+      "bodySHA256": "4289ea7e444e9dae44319f13d7da4b88098cb120c8fb85b2dbb95fe36095d4f5",
+      "bodyFile": "01-jobs.firstcitizens.com-7104e54393.html",
+      "fixture": "career-home-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/jobs",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/jobs",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:02:24 GMT",
+        "etag": "W/\"635d3-k+xqEPFEdlU8WL21WhSi7+vii3Y\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:01:54.185Z",
+      "completedAt": "2026-11-11T04:01:55.340Z",
+      "bodyBytes": 406995,
+      "bodySHA256": "08853aa54d90afc1536cdd27564306064c46d36604cc4a194cb30e1a9bb1cbb6",
+      "bodyFile": "01-jobs.firstcitizens.com-266bc4ca73.html",
+      "fixture": "career-search-20261111.gz"
+    },
+    {
+      "requestedURL": "https://app.jibecdn.com/prod/search/4.11.225/main.js",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://app.jibecdn.com/prod/search/4.11.225/main.js",
+      "headers": {
+        "content-type": "application/javascript",
+        "location": null,
+        "date": "Fri, 16 Oct 2026 04:23:06 GMT",
+        "etag": "\"4ce3b3fb2c537aa5b9d85865ef08fc23\"",
+        "last-modified": "Fri, 16 Oct 2026 04:14:52 GMT"
+      },
+      "startedAt": "2026-11-11T04:02:28.822Z",
+      "completedAt": "2026-11-11T04:02:29.881Z",
+      "bodyBytes": 614834,
+      "bodySHA256": "8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f",
+      "bodyFile": "01-app.jibecdn.com-5ea8075ca8.html",
+      "fixture": "search-client-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=1&country=India",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=1&country=India",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:03:36 GMT",
+        "etag": "W/\"14b-nklsWQ+6bgDXKCP6sSpDdKd2evE\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:03:05.972Z",
+      "completedAt": "2026-11-11T04:03:06.627Z",
+      "bodyBytes": 331,
+      "bodySHA256": "7a064696c221bb41900baf4de3a7dee6b2581cbf65158299b9a1c05c63325e0c",
+      "bodyFile": "01-jobs.firstcitizens.com-b1336aaf7f.html",
+      "fixture": "india-empty-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=1&limit=100&country=United+States",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=1&limit=100&country=United+States",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:07:28 GMT",
+        "etag": "W/\"16c567-XtdkF9DTvKeW6IursiyyMC7527Y\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:06:58.005Z",
+      "completedAt": "2026-11-11T04:06:58.993Z",
+      "bodyBytes": 1492327,
+      "bodySHA256": "70144e76e347224ab72fc86989852d7acd3bead7f4b92140e5d23b880d658fac",
+      "bodyFile": "06-jobs.firstcitizens.com-46b7a783b7.html",
+      "fixture": "native-country-control-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=1&limit=100",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=1&limit=100",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:07:22 GMT",
+        "etag": "W/\"16bec3-0efmqtuZa1l10yKaUKZhZdoRkdM\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:06:51.752Z",
+      "completedAt": "2026-11-11T04:06:53.461Z",
+      "bodyBytes": 1490627,
+      "bodySHA256": "23c476b935a918873f182b6c00a6a848b139863240ed38e01606a69afb7dd75d",
+      "bodyFile": "01-jobs.firstcitizens.com-e7461caa02.html",
+      "fixture": "global-page-1-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=2&limit=100",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=2&limit=100",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:07:24 GMT",
+        "etag": "W/\"164bf8-YTNunBXuWc5LGH3kIAZ0r83COVY\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:06:53.467Z",
+      "completedAt": "2026-11-11T04:06:55.213Z",
+      "bodyBytes": 1461240,
+      "bodySHA256": "64485d8a69bff83be6c891ad1790b148c81be7f0f7e202acef0c5425eb2897db",
+      "bodyFile": "02-jobs.firstcitizens.com-fa36b1a40e.html",
+      "fixture": "global-page-2-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=3&limit=100",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=3&limit=100",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:07:25 GMT",
+        "etag": "W/\"1a518a-Mpj4Hqc8V8yNWpa9CZzcI1pT8Vw\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:06:55.233Z",
+      "completedAt": "2026-11-11T04:06:56.404Z",
+      "bodyBytes": 1724810,
+      "bodySHA256": "b68f085ec84731c6167aab0c7e12b99f309668b0439906a64490d5e2c3f4491e",
+      "bodyFile": "03-jobs.firstcitizens.com-970c2b7797.html",
+      "fixture": "global-page-3-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=4&limit=100",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=4&limit=100",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:07:26 GMT",
+        "etag": "W/\"166d71-mvoIGKcm48MNA4OPII7CiUgq0kc\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:06:56.427Z",
+      "completedAt": "2026-11-11T04:06:57.501Z",
+      "bodyBytes": 1469809,
+      "bodySHA256": "e0de78f6cff19f63df97e3cd5baa5f3a37b48ce1a32cf3dfc12abbee64ba825a",
+      "bodyFile": "04-jobs.firstcitizens.com-c6a82ed31a.html",
+      "fixture": "global-page-4-20261111.gz"
+    },
+    {
+      "requestedURL": "https://jobs.firstcitizens.com/api/jobs?page=5&limit=100",
+      "method": "GET",
+      "status": 200,
+      "finalURL": "https://jobs.firstcitizens.com/api/jobs?page=5&limit=100",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 04:07:27 GMT",
+        "etag": "W/\"14b6a-fa5mmCz9P5yY9EDgb+HgQY1h+6o\"",
+        "last-modified": null
+      },
+      "startedAt": "2026-11-11T04:06:57.542Z",
+      "completedAt": "2026-11-11T04:06:57.992Z",
+      "bodyBytes": 84842,
+      "bodySHA256": "de909ed97d1fbf170d01cd4c6f8e2a1f4e2b0937ad284ebfe560eb02f7b9e239",
+      "bodyFile": "05-jobs.firstcitizens.com-84adc6d5f3.html",
+      "fixture": "global-page-5-20261111.gz"
+    }
+  ]
+}

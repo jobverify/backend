@@ -74,7 +74,7 @@ const defaultFetchPortalForm = async (jobId) => {
   })
 
   const bodyText = await response.text()
-  let payload = null
+  let payload
 
   try {
     payload = JSON.parse(bodyText)
@@ -377,7 +377,7 @@ export const createCmsComputersScraper = ({
   },
 })
 
-export const run = async () => createCmsComputersScraper().run()
+export const run = async (options) => createCmsComputersScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

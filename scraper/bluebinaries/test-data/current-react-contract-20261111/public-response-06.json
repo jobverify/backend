@@ -1,0 +1,64 @@
+{
+  "number": 6,
+  "startedAt": "2026-11-11T13:51:28.312978+00:00",
+  "url": "https://www.affordmed.com/careers",
+  "method": "GET",
+  "origin": "https://www.affordmed.com",
+  "provenance": {
+    "source": "affordmed",
+    "basis": "existing source configured careers URL"
+  },
+  "requestHeaders": {
+    "Accept": "text/html,application/javascript;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0"
+  },
+  "redirectPolicy": "manual; no redirects followed",
+  "cookiesSent": false,
+  "authenticationSent": false,
+  "strictTLS": true,
+  "maximumBodyBytes": 5000000,
+  "status": 200,
+  "reason": "OK",
+  "headers": [
+    [
+      "Date",
+      "Wed, 11 Nov 2026 13:52:00 GMT"
+    ],
+    [
+      "Content-Type",
+      "text/html"
+    ],
+    [
+      "Content-Length",
+      "4308"
+    ],
+    [
+      "Connection",
+      "keep-alive"
+    ],
+    [
+      "Last-Modified",
+      "Fri, 22 May 2026 03:17:28 GMT"
+    ],
+    [
+      "ETag",
+      "\"6a0fcac8-10d4\""
+    ],
+    [
+      "Accept-Ranges",
+      "bytes"
+    ],
+    [
+      "Strict-Transport-Security",
+      "max-age=15724800; includeSubDomains"
+    ]
+  ],
+  "location": null,
+  "contentType": "text/html",
+  "bodyFile": "public-response-06.body.bin",
+  "bytes": 4308,
+  "bodySHA256": "b26551ded1ca6a27fff607191470e4db91cabc72282a61663799b39cd10b5e0e",
+  "truncated": false,
+  "stopOrigin": false,
+  "completedAt": "2026-11-11T13:51:30.032564+00:00"
+}

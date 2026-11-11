@@ -158,7 +158,7 @@ export const createINELScraper = ({
   },
 })
 
-export const run = async () => createINELScraper().run()
+export const run = async (options) => createINELScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -1,0 +1,139 @@
+{
+  "source": "lennoxinternational",
+  "reviewedCapture": "2026-11-10 UTC / 2026-11-11 IST",
+  "corporateURLs": [
+    "https://www.lennox.com/in",
+    "https://www.lennox.com/in/life-at-lennox-india/"
+  ],
+  "shellURL": "https://globalcareers-lennox.icims.com/jobs/search?ss=1&searchLocation=13228--Chennai",
+  "frameURL": "https://globalcareers-lennox.icims.com/jobs/search?ss=1&searchLocation=13228--Chennai&in_iframe=1",
+  "shellCanonical": "https://www.lennox.com/careers/",
+  "listingCanonical": "https://globalcareers-lennox.icims.com/jobs/search?searchLocation=13228--Chennai&ss=1",
+  "shellScripts": [
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "https://js-cdn.dynatrace.com/jstag/1619ed8a359/bf17847xxx/f84cd4b274be3134_complete.js",
+        "crossorigin": "anonymous"
+      }
+    },
+    {
+      "attributes": {},
+      "sha256": "41e430ef29add98883135101f91b47049b70579bffb273632dea66ed8e703bfe"
+    },
+    {
+      "attributes": {
+        "src": "//code.jquery.com/jquery-3.7.1.min.js"
+      }
+    },
+    {
+      "attributes": {
+        "referrerpolicy": "no-referrer-when-downgrade",
+        "type": "text/javascript",
+        "src": "https://www.onelink-edge.com/moxie.min.js",
+        "data-oljs": "PD55E-126C-52DB-58A0"
+      }
+    },
+    {
+      "attributes": {},
+      "sha256": "f6f7c039f57799bd74e107a834db5d3245e557470a00e9ab01cad8b824cb2127"
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "https://cdn02.icims.com/a/images.icims.com/content/platform_189.1.1.261106-f304818e678-11-pg-0/script/lib/domreplacement/domReplacement.js"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "https://cdn02.icims.com/a/images.icims.com/content/platform_189.1.1.261106-f304818e678-11-pg-0/script/common/icims.js"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "https://cdn02.icims.com/a/images.icims.com/content/platform_189.1.1.261106-f304818e678-11-pg-0/script/portal/utils.js"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript"
+      },
+      "sha256": "245f21b4125b894747eb70b2a41c411c342b46bd1330f64bc84844380fba9a11"
+    },
+    {
+      "attributes": {
+        "type": "text/javascript"
+      },
+      "sha256": "a086f77690f673e076eb5523747965ef831abeddfbe91a046e065a7b53a7d9e7"
+    },
+    {
+      "attributes": {},
+      "sha256": "fe70e73238ae4fcb7ac8a866a215d951dd1fa105116f95fca1018145ab8141f9"
+    },
+    {
+      "attributes": {},
+      "sha256": "fe70e73238ae4fcb7ac8a866a215d951dd1fa105116f95fca1018145ab8141f9"
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "//cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js",
+        "defer": "defer"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "//cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js",
+        "defer": "defer"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
+        "defer": "defer"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "//shared.lennox.com/application/themes/lennox-v2/js/main.js?v=0.0.1",
+        "defer": "defer"
+      }
+    },
+    {
+      "attributes": {
+        "type": "text/javascript",
+        "src": "//cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"
+      }
+    },
+    {
+      "attributes": {},
+      "sha256": "e450f1c7967fd1df670b150d8274d452a20664773d067730a028d9684de1285a"
+    }
+  ],
+  "shellHandlers": [
+    {
+      "tag": "button",
+      "handlers": {
+        "onclick": "scrollToTop()"
+      }
+    },
+    {
+      "tag": "button",
+      "handlers": {
+        "onclick": "scrollToTop()"
+      }
+    },
+    {
+      "tag": "a",
+      "handlers": {
+        "onclick": "setLangSelectedCookie('fr')"
+      }
+    }
+  ],
+  "shellAssetBaseHref": "https://c-4388-20240508-www-lennox-com.i.icims.com"
+}

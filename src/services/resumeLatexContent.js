@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { normalizePublicWorkArrangement } from '../utils/publicWorkArrangement.js';
 import { MAX_RESUME_TEXT_BYTES, tailoringError } from './resumeTailoringContent.js';
 import { normalizeResumeLinks, resumeLinksFromText } from './resumeSource.js';
 import { RESUME_LATEX_PACKAGES, RESUME_LATEX_REASONS } from '../utils/resumeLatexValidation.js';
@@ -99,16 +100,28 @@ function metricTokens(text) {
   return unique([...value.matchAll(/(?<![\p{L}\d])(?:[$₹€£]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*%|\s*[xX]\b)?/gu)].map(match => match[0].replace(/[\s,]/g, '')));
 }
 
+// Original link destinations are references, not candidate claims. A PDF may
+// wrap a destination anywhere, including inside its numeric resource ID.
+function resumeClaimText(text, links = []) {
+  let value = String(text || '');
+  for (const link of normalizeResumeLinks(links).filter(link => /^https?:/i.test(link)).sort((a, b) => b.length - a.length)) {
+    const pattern = Array.from(link, character => character.replace(/[.*+?^$()|[\]{}\\]/g, '\\$&')).join('\\s*');
+    value = value.replace(new RegExp(pattern, 'g'), '');
+  }
+  return value.replace(/https?:\/\/\S+/gi, '');
+}
+
 /** Deterministic anchors complement the independent semantic comparison. */
 export function buildSourceFacts(source) {
   const sourceText = clean(typeof source === 'string' ? source : source?.text);
   if (sourceText.length < 40 || Buffer.byteLength(sourceText) > MAX_RESUME_TEXT_BYTES) throw tailoringError('Use a readable, shorter resume so all original candidate facts can be preserved.', 422);
   const links = normalizeResumeLinks(source?.links);
-  const emails = unique([...(sourceText.match(emailPattern) || []), ...links.filter(link => /^mailto:/i.test(link)).map(link => decodeURIComponent(new URL(link).pathname))].map(value => value.toLowerCase()));
-  const phones = unique([...phoneNumbers(sourceText).map(phoneKey), ...links.filter(link => /^tel:/i.test(link)).map(phoneKey)]);
-  const lines = sourceText.split('\n').map(clean).filter(Boolean);
+  const claims = resumeClaimText(sourceText, [...links, ...resumeLinksFromText(sourceText)]);
+  const emails = unique([...(claims.match(emailPattern) || []), ...links.filter(link => /^mailto:/i.test(link)).map(link => decodeURIComponent(new URL(link).pathname))].map(value => value.toLowerCase()));
+  const phones = unique([...phoneNumbers(claims).map(phoneKey), ...links.filter(link => /^tel:/i.test(link)).map(phoneKey)]);
+  const lines = claims.split('\n').map(clean).filter(Boolean);
   const name = lines.slice(0, 5).map(line => line.split(/\s*[|•]\s*|\s+[–—-]\s+/)[0].replace(/^(?:name|resume|curriculum vitae)\s*:\s*/i, '').trim()).find(line => !headingType(line) && !actionStart.test(line) && !line.includes('@') && !/https?:|mailto:|tel:|\d/i.test(line) && !titleWords.test(line) && line.split(/\s+/).length >= 2 && line.split(/\s+/).length <= 7) || '';
-  const sections = sectionLines(sourceText);
+  const sections = sectionLines(claims);
   const header = line => !actionStart.test(line) && line.split(/\s+/).length <= 30;
   const employment = factualRecords(sections.employment, 'employment');
   const education = factualRecords(sections.education, 'education');
@@ -116,7 +129,7 @@ export function buildSourceFacts(source) {
   if (!employment.length) for (const line of lines) if (header(line) && titleWords.test(line) && (datesIn(line).length || /\|/.test(line))) employment.push(recordFact(line, 'employment'));
   if (!education.length) for (const line of lines) if (header(line) && (institutionWords.test(line) || degreeWords.test(line))) education.push(recordFact(line, 'education'));
   const skills = unique(sections.skills.flatMap(line => line.replace(/^[\w /+-]+:\s*/, '').split(/[,;|•]/)).map(clean));
-  return { version: 1, sourceText, name, emails, phones, links, employment, education, dates: datesIn(sourceText), metrics: metricTokens(sourceText), skills };
+  return { version: 1, sourceText, name, emails, phones, links, employment, education, dates: datesIn(claims), metrics: metricTokens(claims), skills };
 }
 
 export function resumeLinkDestinations(facts) {
@@ -224,18 +237,20 @@ const occurrences = (text, phrase) => (` ${canonical(text)} `).split(` ${canonic
 
 export function validateResumeFidelity({ facts, text, links = [], tailored = false }) {
   const issues = [];
-  const generated = clean(text);
+  const sourceLinks = [...(facts?.links || []), ...resumeLinksFromText(facts?.sourceText)];
+  const original = resumeClaimText(facts?.sourceText, sourceLinks);
+  const generated = clean(resumeClaimText(text, sourceLinks));
   if (!facts?.sourceText || generated.length < 40) return { valid: false, issues: ['The generated PDF is empty or original candidate facts are unavailable.'] };
   if (facts.name && !hasPhrase(generated, facts.name)) issues.push('Missing or changed candidate name.');
   const outputEmails = unique((generated.match(emailPattern) || []).map(value => value.toLowerCase()));
   const actualLinks = normalizeResumeLinks(links);
   if (!Array.isArray(links) || actualLinks.length < unique(links.map(link => typeof link === 'string' ? link : link?.url || link?.href || '')).length) issues.push('Invalid or unsafe generated link destination.');
   const linkedEmails = actualLinks.filter(link => /^mailto:/i.test(link)).map(link => decodeURIComponent(new URL(link).pathname).toLowerCase());
-  for (const email of unique((facts.sourceText.match(emailPattern) || []).map(value => value.toLowerCase()))) if (!outputEmails.includes(email)) issues.push(`Missing original visible email: ${email}.`);
+  for (const email of unique((original.match(emailPattern) || []).map(value => value.toLowerCase()))) if (!outputEmails.includes(email)) issues.push(`Missing original visible email: ${email}.`);
   for (const email of [...outputEmails, ...linkedEmails]) if (!(facts.emails || []).includes(email)) issues.push(`Unsupported or changed email: ${email}.`);
   const outputPhones = phoneNumbers(generated).map(phoneKey);
   const linkedPhones = actualLinks.filter(link => /^tel:/i.test(link)).map(phoneKey);
-  for (const phone of phoneNumbers(facts.sourceText).map(phoneKey)) if (!outputPhones.includes(phone)) issues.push('Missing original visible phone number.');
+  for (const phone of phoneNumbers(original).map(phoneKey)) if (!outputPhones.includes(phone)) issues.push('Missing original visible phone number.');
   for (const phone of [...outputPhones, ...linkedPhones]) if (!(facts.phones || []).includes(phone)) issues.push('Unsupported or changed phone number.');
   // Visible text cannot hide a changed destination. Existing source links survive.
   for (const link of facts.links || []) if (!actualLinks.includes(link)) issues.push(`Missing or changed original link: ${link}.`);
@@ -247,7 +262,7 @@ export function validateResumeFidelity({ facts, text, links = [], tailored = fal
   for (const [kind, entries] of [['employment', facts.employment || []], ['education', facts.education || []]]) for (const entry of entries) {
     for (const anchor of entry.anchors || []) if (!hasPhrase(generated, anchor)) issues.push(`Missing or changed ${kind}: ${anchor}.`);
     const identity = kind === 'education' ? entry.institution || entry.qualification : entry.employer;
-    if (identity && occurrences(generated, identity) > occurrences(facts.sourceText, identity)) issues.push(`Duplicated ${kind} entry: ${identity}.`);
+    if (identity && occurrences(generated, identity) > occurrences(original, identity)) issues.push(`Duplicated ${kind} entry: ${identity}.`);
     if (identity && entry.dates?.length) {
       const generatedLines = generated.split('\n');
       const index = generatedLines.findIndex(line => hasPhrase(line, identity));
@@ -267,12 +282,12 @@ export function validateResumeFidelity({ facts, text, links = [], tailored = fal
   const outputMetrics = metricTokens(generated);
   for (const metric of outputMetrics) if (!(facts.metrics || []).includes(metric)) issues.push(`Unsupported number or metric: ${metric}.`);
   if (!tailored) for (const metric of facts.metrics || []) if (!outputMetrics.includes(metric)) issues.push(`Missing original metric: ${metric}.`);
-  for (const skill of technicalSkills) if (hasPhrase(generated, skill) && !hasPhrase(facts.sourceText, skill)) issues.push(`Unsupported candidate skill: ${skill}.`);
-  for (const line of sectionLines(generated).skills) for (const skill of line.replace(/^[\w /+-]+:\s*/, '').split(/[,;|•]/).map(clean).filter(Boolean)) if (!hasPhrase(facts.sourceText, skill)) issues.push(`Unsupported candidate skill: ${skill}.`);
+  for (const skill of technicalSkills) if (hasPhrase(generated, skill) && !hasPhrase(original, skill)) issues.push(`Unsupported candidate skill: ${skill}.`);
+  for (const line of sectionLines(generated).skills) for (const skill of line.replace(/^[\w /+-]+:\s*/, '').split(/[,;|•]/).map(clean).filter(Boolean)) if (!hasPhrase(original, skill)) issues.push(`Unsupported candidate skill: ${skill}.`);
   // Candidate headings and job history must not adopt a target role or seniority.
   for (const line of generated.split('\n').map(clean)) if (titleWords.test(line) && !actionStart.test(line) && line.split(/\s+/).length <= 15) {
     const title = line.split(/[|\t]/).find(part => titleWords.test(part));
-    if (title && !hasPhrase(facts.sourceText, title.trim()) && /\b(?:senior|staff|principal|lead|agentic|director|head)\b/i.test(title)) issues.push(`Unsupported candidate title: ${title.trim()}.`);
+    if (title && !hasPhrase(original, title.trim()) && /\b(?:senior|staff|principal|lead|agentic|director|head)\b/i.test(title)) issues.push(`Unsupported candidate title: ${title.trim()}.`);
   }
   return { valid: issues.length === 0, issues: unique(issues) };
 }
@@ -289,7 +304,9 @@ function stableValue(value) {
 
 export function buildResumeJobSnapshot(job = {}) {
   const snapshot = { snapshotVersion: 1 };
-  for (const field of jobFields) if (field !== 'source' && job[field] !== undefined && job[field] !== null) snapshot[field] = stableValue(job[field]);
+  const publicJob = job.sourceRemoteStatusUnresolved === true
+    ? { ...job, workArrangement: normalizePublicWorkArrangement(job.workArrangement, job) } : job;
+  for (const field of jobFields) if (field !== 'source' && publicJob[field] !== undefined && publicJob[field] !== null) snapshot[field] = stableValue(publicJob[field]);
   if (Array.isArray(job.jobSkills)) snapshot.jobSkills = job.jobSkills.map(skill => ({ canonicalName: skill.canonicalName, required: Boolean(skill.required), preferred: Boolean(skill.preferred) })).filter(skill => typeof skill.canonicalName === 'string');
   return snapshot;
 }

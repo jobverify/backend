@@ -55,19 +55,22 @@ const matchesExpectedUrl = (value, expected) => {
 }
 
 const defaultFetchPage = async (url, { signal } = {}) => {
-  const response = await fetch(url, {
+  const response = await withCallerAbort(signal, () => fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
     redirect: 'follow',
     signal: composeAbortSignals(signal, AbortSignal.timeout(FETCH_TIMEOUT_MS)),
-  })
+  }))
 
   return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
+    status: checkedCaller(signal, () => response.status),
+    url: checkedCaller(signal, () => response.url),
+    html: await withCallerAbort(signal, () => {
+      const readText = checkedCaller(signal, () => response.text)
+      return Reflect.apply(readText, response, [])
+    }),
   }
 }
 
@@ -244,48 +247,77 @@ export const extractIndiaJobsFromGreenhousePayload = (
 
 const throwIfAborted = (signal) => {
   if (signal?.aborted) {
-    throw signal.reason || new DOMException('The operation was aborted', 'AbortError')
+    throw signal.reason
   }
 }
 
-export const createSukiScraper = () => ({
-  async run({
-    fetchPage = defaultFetchPage,
-    fetchJson = defaultFetchJson,
-    now = () => new Date().toISOString(),
-    signal,
-  } = {}) {
+const checkedCaller = (signal, operation) => {
+  throwIfAborted(signal)
+  try { return operation() } finally { throwIfAborted(signal) }
+}
+
+const withCallerAbort = (signal, operation) => new Promise((resolve, reject) => {
+  let settled = false
+  const finish = (failed, value) => {
+    if (settled) return
+    settled = true
+    signal?.removeEventListener('abort', onAbort)
+    if (signal?.aborted) reject(signal.reason)
+    else if (failed) reject(value)
+    else resolve(value)
+  }
+  const onAbort = () => finish(true, signal.reason)
+  try {
     throwIfAborted(signal)
-    const careersPage = await fetchPage(CAREERS_PAGE_URL, { signal })
+    signal?.addEventListener('abort', onAbort, { once: true })
+    throwIfAborted(signal)
+    const pending = Promise.resolve(operation())
+    // Own a returned promise before checking cancellation after its factory.
+    Promise.prototype.then.call(pending, value => finish(false, value), error => finish(true, error))
+    if (signal?.aborted) onAbort()
+  } catch (error) {
+    finish(true, error)
+  }
+})
+
+export const createSukiScraper = () => ({
+  async run(options = {}) {
+    const signal = options.signal
+    const readOption = name => checkedCaller(signal, () => options[name])
+    const { fetchPage = defaultFetchPage, fetchJson = defaultFetchJson, now = () => new Date().toISOString() } = {
+      fetchPage: readOption('fetchPage'), fetchJson: readOption('fetchJson'), now: readOption('now'),
+    }
+    throwIfAborted(signal)
+    const careersPage = await withCallerAbort(signal, () => fetchPage(CAREERS_PAGE_URL, { signal }))
     throwIfAborted(signal)
 
     if (
-      Number(careersPage?.status) !== 200
-      || !matchesExpectedUrl(careersPage?.url, CAREERS_PAGE_URL)
-      || !hasOfficialCareersSignal(careersPage?.html)
+      checkedCaller(signal, () => Number(careersPage?.status)) !== 200
+      || !checkedCaller(signal, () => matchesExpectedUrl(careersPage?.url, CAREERS_PAGE_URL))
+      || !checkedCaller(signal, () => hasOfficialCareersSignal(careersPage?.html))
     ) {
       throw new Error('The verified Suki careers page changed materially')
     }
 
-    if (extractOpenPositionsHandoffUrl(careersPage?.html) !== OFFICIAL_CAREERS_HANDOFF_URL) {
+    if (checkedCaller(signal, () => extractOpenPositionsHandoffUrl(careersPage?.html)) !== OFFICIAL_CAREERS_HANDOFF_URL) {
       throw new Error('The verified Suki open positions handoff changed materially')
     }
 
-    const handoffPage = await fetchPage(OFFICIAL_CAREERS_HANDOFF_URL, { signal })
+    const handoffPage = await withCallerAbort(signal, () => fetchPage(OFFICIAL_CAREERS_HANDOFF_URL, { signal }))
     throwIfAborted(signal)
 
     if (
-      Number(handoffPage?.status) !== 200
-      || !matchesExpectedUrl(handoffPage?.url, OFFICIAL_CAREERS_HANDOFF_URL)
-      || !hasVerifiedGreenhouseShell(handoffPage?.html)
+      checkedCaller(signal, () => Number(handoffPage?.status)) !== 200
+      || !checkedCaller(signal, () => matchesExpectedUrl(handoffPage?.url, OFFICIAL_CAREERS_HANDOFF_URL))
+      || !checkedCaller(signal, () => hasVerifiedGreenhouseShell(handoffPage?.html))
     ) {
       throw new Error('The verified Suki open positions surface changed materially')
     }
 
-    const payload = await fetchJson(GREENHOUSE_JOBS_API_URL, { signal })
+    const payload = await withCallerAbort(signal, () => fetchJson(GREENHOUSE_JOBS_API_URL, { signal }))
     throwIfAborted(signal)
 
-    return extractIndiaJobsFromGreenhousePayload(payload, { scrapedAt: now() })
+    return checkedCaller(signal, () => extractIndiaJobsFromGreenhousePayload(payload, { scrapedAt: checkedCaller(signal, now) }))
   },
 })
 

@@ -6,8 +6,9 @@ import {createHash} from 'node:crypto'
 import {run,CAREERS_URL} from '../../scraper/2u/script.js'
 import {readInventoryEvidence} from '../utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.js'
+import {createTwoUOriginalReader} from '../../test/helpers/twoUCurrentFixture20261110.js'
 
-const folder=new URL('./fixtures/twoUCurrent20261107C31/',import.meta.url)
+const folder=new URL('./fixtures/twoUCurrent20261110/',import.meta.url)
 const manifest=JSON.parse(fs.readFileSync(new URL('manifest.json',folder),'utf8'))
 const sha=b=>createHash('sha256').update(b).digest('hex')
 const original=new Map(manifest.records.map(row=>{
@@ -19,17 +20,16 @@ const original=new Map(manifest.records.map(row=>{
 const JOBS='https://2u.com/careers/jobs/',ROLE=JOBS+'8871017002/'
 const QUERY='https://2u.com/page-data/sq/d/1843004117.json'
 const CLIENT='https://2u.com/careers-teams-locations-f81784e5e6f699b2511b.js'
-const APP='https://2u.com/app-ebba611b9c6f19868c0a.js'
 const LOCATIONS='https://2u.com/page-data/sq/d/3494932948.json'
-const stamp='2026-11-06T21:25:00.000Z'
+const stamp=manifest.captureCompletedAt
 const flush=async()=>{for(let i=0;i<30;i++)await Promise.resolve()}
 const changed=(page,body)=>({...page,html:body,bodyBase64:Buffer.from(body).toString('base64')})
 function reader(mutate){
- const calls=[]
+ const calls=[],readOriginal=createTwoUOriginalReader()
  return{calls,fetchPage:async(url,init)=>{
   calls.push({url,init})
   assert.ok(original.has(url),'No implicit network or invented endpoint: '+url)
-  const row=structuredClone(original.get(url))
+  const row=readOriginal(url)
   return mutate?mutate(row,url,calls):row
  }}
 }
@@ -42,8 +42,10 @@ async function replay(options={},mutate){
 test('current original public models retain the complete US vacancy observation without company zero',async()=>{
  const {jobs,audit,calls}=await replay()
  assert.equal(jobs.length,0)
- assert.equal(audit.source,'2u');assert.equal(audit.observations.length,1)
- const role=audit.observations[0]
+ assert.equal(audit.source,'2u');assert.equal(audit.observations.length,2)
+ assert.deepEqual(audit.observations.map(row=>row.id),['8933549002','8871017002'])
+ for(const row of audit.observations){assert.equal(row.country,'United States');assert.equal(row.nativeCriteriaComplete,true);assert.equal(row.visibleCriteriaMatch,true);assert.equal(row.sourceDetailComplete,true)}
+ const role=audit.observations.find(row=>row.id==='8871017002')
  assert.equal(role.id,'8871017002');assert.equal(role.title,'Senior Manager, Corporate FP&A')
  assert.equal(role.country,'United States');assert.deepEqual(role.sourceNativeCountries,['United States'])
  assert.equal(role.sourceCountryComplete,true);assert.equal(role.vacancy,true)
@@ -53,22 +55,24 @@ test('current original public models retain the complete US vacancy observation 
  assert.equal(role.postingDate,null);assert.equal(role.nativeUpdatedAt,'2026-10-26T16:31:47-04:00')
  assert.equal(audit.sourceScopeComplete,false);assert.equal(audit.lifecycleCleanupAllowed,false)
  assert.equal(audit.companyGlobalTotal,null);assert.equal(audit.companyIndiaTotal,null)
- assert.equal(audit.closingMatches,true);assert.equal(audit.originalPages.length,16)
- assert.equal(calls.length,16);assert.ok(calls.every(r=>r.url!=='https://2u.com/'))
+ assert.equal(audit.closingMatches,true);assert.equal(audit.originalPages.length,18)
+ assert.equal(calls.length,18);assert.ok(calls.every(r=>r.url!=='https://2u.com/'))
  assert.equal(readInventoryEvidence(jobs).status,'coverage-gap')
  assert.equal(readInventoryEvidence(jobs).reportedTotal,null)
  assert.equal(readInventoryEvidence(jobs).indiaFacetCount,null)
- assert.equal(readSourceObservationEvidence(jobs,'2u').observedVacancyCount,1)
+ assert.equal(readSourceObservationEvidence(jobs,'2u').observedVacancyCount,2)
  assert.equal(jobs.sourceAudit,audit)
 })
 
 test('original public bytes and original acquisition clocks survive an offline replay',async()=>{
  const {audit}=await replay()
- for(const page of audit.originalPages){
+ for(const [index,page] of audit.originalPages.entries()){
   const fixture=original.get(page.requestedURL),body=Buffer.from(fixture.bodyBase64,'base64')
+  assert.equal(page.requestedURL,manifest.records[index].requestedUrl)
+  assert.equal(page.requestedAt,manifest.records[index].sourceRequestedAt)
+  assert.equal(page.completedAt,manifest.records[index].sourceCompletedAt)
   assert.equal(page.bodySHA256,sha(body));assert.equal(page.bytes,body.length)
   assert.equal(page.bodyBase64,fixture.bodyBase64)
-  assert.equal(page.requestedAt,fixture.requestedAt);assert.equal(page.completedAt,fixture.completedAt)
   assert.notEqual(page.completedAt,stamp)
  }
 })
@@ -128,14 +132,14 @@ test('unqualified fetchText is rejected before invoking any callback',async()=>{
 test('complete visible criteria must match every native character apart from whitespace',async()=>{
  let audit
  await assert.rejects(replay({onAudit:value=>{audit=value}},(row,url)=>url===ROLE?changed(row,row.html.replace('10+ years','2+ years')):row),/visible.*criteria/i)
- assert.equal(audit.observations[0].nativeCriteriaComplete,true)
- assert.equal(audit.observations[0].visibleCriteriaMatch,false)
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').nativeCriteriaComplete,true)
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').visibleCriteriaMatch,false)
  assert.equal(audit.sourceScopeComplete,false)
 })
 
 test('duplicate native role IDs are rejected without losing the original native model',async()=>{
  let audit
- const transport=reader((row,url)=>{if(url!==QUERY)return row;const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs.push(structuredClone(model.data.greenhouseJobs.jobs[0]));return changed(row,JSON.stringify(model))})
+ const transport=reader((row,url)=>{if(url!==QUERY)return row;const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs.push(structuredClone(model.data.greenhouseJobs.jobs.find(row=>row.alternative_id===8871017002)));return changed(row,JSON.stringify(model))})
  await assert.rejects(run({...transport,onAudit:value=>{audit=value}}),/duplicate.*identity/i)
  assert.ok(audit.originalPages.find(r=>r.requestedURL===QUERY))
 })
@@ -144,7 +148,7 @@ test('a closing native model change preserves the observed positive and stays in
  let count=0,audit
  const transport=reader((row,url)=>{if(url!==QUERY||++count===1)return row;const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs=[];return changed(row,JSON.stringify(model))})
  await assert.rejects(run({...transport,onAudit:value=>{audit=value}}),/closing.*changed/i)
- assert.equal(audit.observations.length,1);assert.equal(audit.closingMatches,false)
+ assert.equal(audit.observations.length,2);assert.equal(audit.closingMatches,false)
  assert.equal(audit.companyGlobalTotal,null);assert.equal(audit.lifecycleCleanupAllowed,false)
 })
 
@@ -232,7 +236,7 @@ test('maxJobs zero skips native acquisition without claiming an empty inventory'
 
 test('synthetic explicit India office control returns full matching criteria while keeping company scope incomplete',async()=>{
  const {jobs,audit}=await replay({},(row,url)=>{
-  if(url===QUERY){const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs[0].offices[0].name='India Remote';return changed(row,JSON.stringify(model))}
+  if(url===QUERY){const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs.find(row=>row.alternative_id===8871017002).offices[0].name='India Remote';return changed(row,JSON.stringify(model))}
   if(url===LOCATIONS){const model=JSON.parse(row.html),office=model.data.cms.pages.find(r=>r.id==='215');office.title='Remote: India';office.abbreviation='IN';return changed(row,JSON.stringify(model))}
   if(url===ROLE)return changed(row,row.html.replaceAll('Remote: US, US','Remote: India, IN'))
   return row
@@ -240,21 +244,21 @@ test('synthetic explicit India office control returns full matching criteria whi
  assert.equal(jobs.length,1);assert.equal(jobs[0].country,'India')
  assert.equal(jobs[0].jobId,'8871017002');assert.equal(jobs[0].postingDate,null)
  assert.equal(jobs[0].sourceDetailComplete,true);assert.equal(jobs[0].sourceScopeComplete,false)
- assert.equal(jobs[0].jobDescription,audit.observations[0].jobDescription)
+ assert.equal(jobs[0].jobDescription,audit.observations.find(row=>row.id==='8871017002').jobDescription)
  assert.equal(readInventoryEvidence(jobs).reportedTotal,null)
 })
 
 test('synthetic general application remains a hiring signal rather than a vacancy',async()=>{
  const title='General Application - Talent Community'
  const {jobs,audit}=await replay({},(row,url)=>{
-  if(url===QUERY){const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs[0].title=title;return changed(row,JSON.stringify(model))}
+  if(url===QUERY){const model=JSON.parse(row.html);model.data.greenhouseJobs.jobs.find(row=>row.alternative_id===8871017002).title=title;return changed(row,JSON.stringify(model))}
   if(url===ROLE)return changed(row,row.html.replaceAll('Senior Manager, Corporate FP&amp;A',title))
   return row
  })
- assert.equal(jobs.length,0);assert.equal(audit.observations.length,1)
- assert.equal(audit.observations[0].vacancy,false)
- assert.equal(readSourceObservationEvidence(jobs,'2u').observedVacancyCount,0)
- assert.equal(readSourceObservationEvidence(jobs,'2u').recordKind,'hiring-signals')
+ assert.equal(jobs.length,0);assert.equal(audit.observations.length,2)
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').vacancy,false)
+ assert.equal(readSourceObservationEvidence(jobs,'2u').observedVacancyCount,1)
+ assert.equal(readSourceObservationEvidence(jobs,'2u').recordKind,'mixed')
 })
 
 test('source deadline bounds a signal-ignoring native fetch independently of its read deadline',async t=>{

@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -246,15 +248,27 @@ export const createGateScraper = ({
       jobs.push({
         title: normalizeWhitespace(row.public_title), company: COMPANY, department: categories.get(row.job_category_code),
         location: normalizeWhitespace(row.location), city: /^remote$/i.test(row.location) ? null : extractCity(row.location), country: null,
+        // The native global search program supplies a work-mode/location
+        // label, not a country or worldwide applicant-eligibility contract.
+        sourceCountryScopeUnresolved: true,
+        sourceNativeLocationLabel: row.location, sourceNativeWorkMode: row.work_mode,
         jobId: String(row.position_id), requisitionId: String(row.position_id), sourceUrl, applyUrl: sourceUrl,
         employmentType: employmentTypes.get(row.employment_type_code), experienceRequired: null, minimumQualification: null,
         preferredQualification: null, requiredSkills: [], postingDate: null, closingDate: null, jobDescription: description,
         remoteStatus: toRemoteStatus(row.work_mode), source: SOURCE, link: sourceUrl, scrapedAt: now(),
         companyCareerPage: OFFICIAL_CAREERS_URL, companyDomain: 'gate.com', atsPlatform: 'official-first-party-careers-api',
-        ...(selected.length < positions.size ? { sourceListingComplete: false } : {}),
+        sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
       })
     }
-    return jobs
+    attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows',
+      observedRecordCount: positions.size, observedVacancyCount: positions.size,
+      sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
+    return attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: OFFICIAL_CAREERS_URL,
+      // Current reader seams return bare text/JSON, without final URL/MIME
+      // receipts. Publisher identity is retained, transport proof stays held.
+      firstParty: false, listingComplete: false, lifecycleCleanupAllowed: false,
+      reportedTotal: null, indiaFacetCount: null, pagesFetched: Math.ceil(positions.size / pageSize),
+      verifiedAt: now(), reason: 'native-global-search-role-observations;country-and-worldwide-applicant-scope-unresolved;transport-metadata-unverified;cleanup-forbidden' })
   },
 })
 export const run = async (options = {}) => createGateScraper(options).run(options)

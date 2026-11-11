@@ -131,11 +131,13 @@ export async function runBlackRockEarlyCareers({fetchText,signal,now=()=>new Dat
  if(signal?.aborted)abort();else signal?.addEventListener('abort',abort,{once:true})
  const get=async url=>{
   controller.signal.throwIfAborted()
-  let rejectAbort;const cancelled=new Promise((_,reject)=>{rejectAbort=()=>reject(controller.signal.reason||new Error('Aborted'));controller.signal.addEventListener('abort',rejectAbort,{once:true})})
+  let rejectAbort;const cancelled=new Promise((_,reject)=>{rejectAbort=()=>reject(controller.signal.reason);controller.signal.addEventListener('abort',rejectAbort,{once:true})})
   try{
    const result=await Promise.race([Promise.resolve().then(async()=>{
+    controller.signal.throwIfAborted()
     if(fetchText)return fetchText(url,{signal:controller.signal})
-    const response=await fetch(url,{signal:controller.signal,redirect:'follow'});return {status:response.status,finalURL:response.url,body:await response.text()}
+    const response=await fetch(url,{signal:controller.signal,redirect:'follow'});controller.signal.throwIfAborted()
+    const body=await response.text();controller.signal.throwIfAborted();return {status:response.status,finalURL:response.url,body}
    }),cancelled])
    controller.signal.throwIfAborted()
    if(typeof result==='string')return result

@@ -218,7 +218,7 @@ export const createAxtriaScraper = ({
   },
 })
 
-export const run = async () => createAxtriaScraper().run()
+export const run = async (options) => createAxtriaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

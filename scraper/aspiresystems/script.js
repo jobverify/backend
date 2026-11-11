@@ -183,7 +183,7 @@ export const createAspireSystemsScraper = ({
   },
 })
 
-export const run = async () => createAspireSystemsScraper().run()
+export const run = async (options) => createAspireSystemsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

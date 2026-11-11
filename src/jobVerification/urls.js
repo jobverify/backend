@@ -19,6 +19,12 @@ export function normalizeJobUrl(value) {
   return url.href;
 }
 
+export function verificationRequestUrl(value) {
+  const validated = new URL(normalizeJobUrl(value));
+  validated.pathname = new URL(value.trim()).pathname;
+  return validated.href;
+}
+
 export function redactUrl(value) {
   try {
     const url = new URL(value);

@@ -2,14 +2,16 @@ import {HOME,CAREERS,CLIENT,verifyExperionInventory,validateExperionDetail} from
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const check=(ok,message)=>{if(!ok)throw new Error('Experion current native inventory: '+message)}
 export async function runNativeExperion(options={}){
+ options.signal?.throwIfAborted()
  const {fetchImpl=globalThis.fetch}=options,timeoutMs=options.timeoutMs??90000,cap=options.maxJobs??Infinity
  check(Number.isInteger(timeoutMs)&&timeoutMs>0&&timeoutMs<=180000,'Invalid bounded deadline')
  check(cap===Infinity||Number.isInteger(cap)&&cap>=0,'Invalid job cap')
- const now=typeof options.now==='function'?options.now():options.now??new Date().toISOString();check(Number.isFinite(Date.parse(now)),'Invalid check time')
+ const now=(()=>{try{return typeof options.now==='function'?options.now():options.now??new Date().toISOString()}finally{options.signal?.throwIfAborted()}})();check(Number.isFinite(Date.parse(now)),'Invalid check time')
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(new Error('Experion source deadline')),timeoutMs),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
- const abort=()=>{if(signal.aborted)throw signal.reason||new Error('Caller aborted')}
- async function bounded(fn){abort();let listener;try{return await Promise.race([Promise.resolve().then(fn),new Promise((_,reject)=>{listener=()=>reject(signal.reason||new Error('Caller aborted'));signal.addEventListener('abort',listener,{once:true})})])}finally{signal.removeEventListener('abort',listener);abort()}}
- async function get(url){const response=await bounded(()=>fetchImpl(url,{signal,redirect:'follow',headers:{Accept:'text/html,application/javascript'}}));check(response.status===200&&response.url===url,'Native HTTP status or URL changed');return bounded(()=>response.text())}
+ const abort=()=>{if(signal.aborted)throw signal.reason}
+ async function bounded(fn){abort();let listener;try{return await Promise.race([Promise.resolve().then(()=>{abort();return fn()}),new Promise((_,reject)=>{listener=()=>reject(signal.reason);signal.addEventListener('abort',listener,{once:true})})])}finally{signal.removeEventListener('abort',listener);abort()}}
+ function readBody(response,kind){const method=response[kind];abort();return Reflect.apply(method,response,[])}
+ async function get(url){const response=await bounded(()=>fetchImpl(url,{signal,redirect:'follow',headers:{Accept:'text/html,application/javascript'}}));check(response.status===200&&response.url===url,'Native HTTP status or URL changed');return bounded(()=>readBody(response,'text'))}
  try{
   const home=await get(HOME),html=await get(CAREERS),client=await get(CLIENT),rows=verifyExperionInventory(home,html,client),jobs=[]
   for(let start=0;start<rows.length;start+=2)jobs.push(...await Promise.all(rows.slice(start,start+2).map(async row=>validateExperionDetail(await get(row.sourceUrl),row,{now}))))
@@ -18,5 +20,5 @@ export async function runNativeExperion(options={}){
   const remote=rows.some(j=>j.nativeRemoteScopeUnknown),capped=cap<jobs.length,complete=!remote&&!capped
   abort()
   return attachInventoryEvidence(jobs.slice(0,cap).map(j=>({...j,sourceListingComplete:complete})),{status:complete?'complete-inventory':'coverage-gap',surface:CAREERS,firstParty:true,listingComplete:complete,pagesFetched:2,reportedTotal:rows.length,indiaFacetCount:rows.length,verifiedAt:now,reason:remote?'native-remote-country-scope-unresolved':capped?'caller-cap':'current-native-client-side-enumeration-and-stable-details'})
- }finally{clearTimeout(timer)}
+ }catch(error){abort();controller.abort(error);options.signal?.throwIfAborted();throw error}finally{clearTimeout(timer)}
 }

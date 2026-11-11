@@ -1,232 +1,90 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {createHash} from 'node:crypto'
 import test from 'node:test'
+import * as rupeek from '../../scraper/rupeek/script.js'
+import {readRole} from '../../scraper/rupeek/native20261111.js'
+import {normalizeScrapedJob} from '../utils/normalizeScrapedJob.js'
+import {analyzePublishableJobs} from '../utils/publishableJobMetrics.js'
 
-const FIXED_SCRAPED_AT = '2026-07-17T00:00:00.000Z'
+const discovery=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/rupeek/fixtures/discovery20261111.json.gz',import.meta.url))))
+const partial=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/rupeek/fixtures/partial20261111.json.gz',import.meta.url))))
+const html=packet=>Buffer.from(packet.rawBodyBase64,'base64').toString('utf8')
+const corporate=html(discovery.packets[0]),detail=html(discovery.packets[1])
+const response=(packet,body=Buffer.from(packet.rawBodyBase64,'base64'))=>{const result=new Response(body,{status:packet.status,headers:packet.headers});Object.defineProperty(result,'url',{value:packet.requestedUrl??packet.url});return result}
+const controlledCard=(id,title,location)=>'<a href="https://www.linkedin.com/jobs/view/controlled-at-rupeek-'+id+'"><p>'+title+'</p><p>Location: '+location+'</p><p>1 day ago</p></a>'
+// Historical inline fixtures were authored controls, not retained July HTTP
+// bytes. Keep their India/city-only/foreign distinctions explicitly controlled.
+const controlledLegacy='<html><head><title>Join our team | Rupeek | Careers</title><link rel="canonical" href="https://rupeek.com/careers"></head><body><h2>Why join Us?</h2><h2>Engineering at Rupeek</h2><div>Open Positions</div>'+controlledCard('9000000001','Taxation Analyst','Bengaluru, Karnataka, India')+controlledCard('9000000002','Back Office Executive','Greater Bengaluru Area')+controlledCard('9000000003','Growth Manager','Singapore')+'</body></html>'
 
-const verifiedCareersHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Join our team | Rupeek | Careers</title>
-    <link rel="canonical" href="https://rupeek.com/careers" />
-  </head>
-  <body>
-    <section>
-      <h2>Why join Us?</h2>
-      <h2>Engineering at Rupeek</h2>
-      <div>Open Positions</div>
-      <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6 mt-7 text-left">
-        <a href="https://www.linkedin.com/jobs/view/assistant-manager-taxation-at-rupeek-4440699084" target="_blank">
-          <div>
-            <p>Assistant Manager - Taxation</p>
-            <p>Location: Bengaluru, Karnataka, India</p>
-            <p>13 hours ago</p>
-          </div>
-        </a>
-        <a href="https://www.linkedin.com/jobs/view/back-office-executive-at-rupeek-4437967359" target="_blank">
-          <div>
-            <p>Back Office Executive</p>
-            <p>Location: Greater Bengaluru Area</p>
-            <p>6 days ago</p>
-          </div>
-        </a>
-        <a href="https://www.linkedin.com/jobs/view/growth-manager-at-rupeek-9999999999" target="_blank">
-          <div>
-            <p>Growth Manager</p>
-            <p>Location: Singapore</p>
-            <p>1 day ago</p>
-          </div>
-        </a>
-      </div>
-    </section>
-  </body>
-</html>
-`
-
-const currentCareersHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Join our team | Rupeek | Careers</title>
-    <link rel="canonical" href="https://rupeek.com/careers"/>
-  </head>
-  <body>
-    <div>loading...</div>
-    <section>
-      <div>Excellent Growth</div>
-      <div>Wealth creation</div>
-      <div>Work that matters</div>
-      <div>Passionate, Energetic People</div>
-      <div>Innovation</div>
-    </section>
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-6 mt-7 text-left">
-      <a href="https://www.linkedin.com/jobs/view/assistant-manager-taxation-at-rupeek-4440699084" target="_blank">
-        <div>
-          <p>Assistant Manager - Taxation</p>
-          <p>Location: Bengaluru, Karnataka, India</p>
-          <p>13 hours ago</p>
-        </div>
-      </a>
-    </div>
-  </body>
-</html>
-`
-
-const assistantManagerDetailHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Rupeek hiring Assistant Manager - Taxation in Bengaluru, Karnataka, India | LinkedIn</title>
-    <meta
-      name="description"
-      content="Requirements and skills: Proven work experience as a Tax Accountant or Tax Analyst. 3 years of experience in direct and indirect taxation."
-    />
-  </head>
-  <body>
-    <main>
-      <h1>Assistant Manager - Taxation</h1>
-      <section>
-        <h2>About the job</h2>
-        <p>Requirements and skills:</p>
-        <p>Proven work experience as a Tax Accountant or Tax Analyst.</p>
-        <p>3 years of experience in direct and indirect taxation.</p>
-        <p>Strong Excel, reconciliation, and statutory compliance skills.</p>
-      </section>
-    </main>
-  </body>
-</html>
-`
-
-const backOfficeDetailHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Rupeek hiring Back Office Executive in Bengaluru, Karnataka, India | LinkedIn</title>
-    <meta
-      name="description"
-      content="Coordinate customer documentation, maintain audit records, and support branch operations."
-    />
-  </head>
-  <body>
-    <main>
-      <h1>Back Office Executive</h1>
-      <section>
-        <h2>Job Description</h2>
-        <p>Coordinate customer documentation and maintain branch audit records.</p>
-        <p>Support gold loan disbursal operations, reconcile case queues, and work with sales and credit teams.</p>
-        <p>Ensure accurate status updates, follow-up tracking, and daily operational reporting.</p>
-      </section>
-    </main>
-  </body>
-</html>
-`
-
-const loadRupeekModule = async () => {
-  try {
-    return await import('../../scraper/rupeek/script.js')
-  } catch {
-    assert.fail('Expected Rupeek scraper module at ../../scraper/rupeek/script.js')
-  }
-}
-
-test('Rupeek helpers stay pinned to the verified official careers page structure', async () => {
-  const rupeek = await loadRupeekModule()
-
-  assert.equal(rupeek.SOURCE, 'rupeek')
-  assert.equal(rupeek.COMPANY_NAME, 'Rupeek')
-  assert.equal(rupeek.OFFICIAL_BRAND_NAME, 'Rupeek')
-  assert.equal(rupeek.VERIFIED_ON, '2026-07-17')
-  assert.equal(rupeek.OFFICIAL_CAREERS_URL, 'https://rupeek.com/about/careers')
-  assert.equal(rupeek.OFFICIAL_CAREERS_CANONICAL_URL, 'https://rupeek.com/careers')
-  assert.equal(rupeek.hasOfficialRupeekCareersSignals(verifiedCareersHtml), true)
-  assert.equal(
-    rupeek.hasOfficialRupeekCareersSignals(
-      verifiedCareersHtml.replace('Open Positions', 'Open Roles'),
-    ),
-    false,
-  )
-  assert.deepEqual(rupeek.extractJobCardsFromCareersHtml(verifiedCareersHtml), [
-    {
-      title: 'Assistant Manager - Taxation',
-      location: 'Bengaluru, Karnataka, India',
-      city: 'Bengaluru',
-      country: 'India',
-      jobId: '4440699084',
-      requisitionId: null,
-      sourceUrl: 'https://www.linkedin.com/jobs/view/assistant-manager-taxation-at-rupeek-4440699084',
-      applyUrl: 'https://www.linkedin.com/jobs/view/assistant-manager-taxation-at-rupeek-4440699084',
-      postingDate: '13 hours ago',
-    },
-    {
-      title: 'Back Office Executive',
-      location: 'Greater Bengaluru Area',
-      city: 'Bengaluru',
-      country: 'India',
-      jobId: '4437967359',
-      requisitionId: null,
-      sourceUrl: 'https://www.linkedin.com/jobs/view/back-office-executive-at-rupeek-4437967359',
-      applyUrl: 'https://www.linkedin.com/jobs/view/back-office-executive-at-rupeek-4437967359',
-      postingDate: '6 days ago',
-    },
-  ])
+test('Rupeek helpers remain pinned to the official publisher while preserving candidate country distinctions',()=>{
+ assert.equal(rupeek.SOURCE,'rupeek');assert.equal(rupeek.COMPANY_NAME,'Rupeek');assert.equal(rupeek.OFFICIAL_BRAND_NAME,'Rupeek')
+ assert.equal(rupeek.VERIFIED_ON,'2026-11-11')
+ assert.equal(rupeek.OFFICIAL_CAREERS_URL,'https://rupeek.com/about/careers')
+ assert.equal(rupeek.OFFICIAL_CAREERS_CANONICAL_URL,'https://rupeek.com/careers')
+ assert.equal(rupeek.hasOfficialRupeekCareersSignals(controlledLegacy),true)
+ assert.equal(rupeek.hasOfficialRupeekCareersSignals(controlledLegacy.replace('Open Positions','Open Roles')),false)
+ const rows=rupeek.extractJobCardsFromCareersHtml(controlledLegacy)
+ assert.equal(rows.length,3);assert.deepEqual(rows.map(r=>r.country),['India',null,'Singapore'])
+ assert.ok(rows.every(r=>r.requisitionId===null));assert.equal(rows[1].sourceCountryScopeUnresolved,true)
+ const normalized=rows.map(r=>normalizeScrapedJob({...r,source:'rupeek',company:'Rupeek'},{countryFilter:'India',country:'India'}))
+ assert.equal(analyzePublishableJobs(normalized).indiaJobs.length,1)
 })
 
-test('Rupeek accepts the current official careers page value-prop copy', async () => {
-  const rupeek = await loadRupeekModule()
-
-  assert.equal(rupeek.hasOfficialRupeekCareersSignals(currentCareersHtml), true)
+test('Rupeek accepts genuine current official copy only through its bound React reveal',()=>{
+ assert.equal(rupeek.hasOfficialRupeekCareersSignals(corporate),true)
+ const rows=rupeek.extractJobCardsFromCareersHtml(corporate)
+ assert.equal(rows.length,15);assert.equal(new Set(rows.map(r=>r.jobId)).size,15)
+ assert.ok(rows.every(r=>r.country==='India'&&r.location==='Bengaluru, Karnataka, India'))
+ assert.equal(rows[0].jobId,'4486374940')
+ assert.equal(rupeek.hasOfficialRupeekCareersSignals(corporate.replace('$RC("B:1","S:1")','$RC("B:1","other")')),false)
 })
 
-test('Rupeek run validates the official careers page before returning the verified India subset', async () => {
-  const { createRupeekScraper } = await loadRupeekModule()
-  const scraper = createRupeekScraper({
-    now: () => FIXED_SCRAPED_AT,
+test('Rupeek run validates original current publisher and native responses and stops at genuine first429',async()=>{
+ let ordinal=0,globalCalls=0
+ const originalFetch=globalThis.fetch;globalThis.fetch=()=>{globalCalls++;throw Error('unexpected real network')}
+ try{
+  await assert.rejects(rupeek.createRupeekScraper().run({fetchImpl:async(url,init)=>{
+   const packet=partial.nativeEvidence.transportPackets[ordinal++]
+   assert.ok(packet);assert.equal(url,packet.url);assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit')
+   return response(packet)
+  }}),error=>{
+   assert.equal(error.status,429);assert.equal(error.abortRetries,true);assert.equal(ordinal,12)
+   assert.equal(error.nativeEvidence.observedCorporateRoleCards,15)
+   assert.equal(error.nativeEvidence.observedListingCount,null)
+   assert.equal(error.nativeEvidence.sourceScopeComplete,false);assert.equal(error.nativeEvidence.lifecycleCleanupAllowed,false)
+   for(let i=0;i<12;i++){
+    const retained=error.nativeEvidence.transportPackets[i],original=partial.nativeEvidence.transportPackets[i]
+    assert.equal(retained.rawBodyBase64,original.rawBodyBase64);assert.equal(retained.status,original.status)
+    assert.equal(retained.bodySHA256,createHash('sha256').update(Buffer.from(original.rawBodyBase64,'base64')).digest('hex'))
+   }
+   return true
   })
-  const requestedUrls = []
-
-  const jobs = await scraper.run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === 'https://rupeek.com/about/careers') return verifiedCareersHtml
-      if (url === 'https://www.linkedin.com/jobs/view/assistant-manager-taxation-at-rupeek-4440699084') {
-        return assistantManagerDetailHtml
-      }
-      if (url === 'https://www.linkedin.com/jobs/view/back-office-executive-at-rupeek-4437967359') {
-        return backOfficeDetailHtml
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    'https://rupeek.com/about/careers',
-    'https://www.linkedin.com/jobs/view/assistant-manager-taxation-at-rupeek-4440699084',
-    'https://www.linkedin.com/jobs/view/back-office-executive-at-rupeek-4437967359',
-  ])
-  assert.equal(jobs.length, 2)
-  assert.equal(jobs[0].experienceRequired, '3 years')
-  assert.equal(jobs[0].publicExperienceChecked, true)
-  assert.match(jobs[0].jobDescription || '', /Tax Accountant/i)
-  assert.equal(jobs[0].source, 'rupeek')
-  assert.equal(jobs[0].scrapedAt, FIXED_SCRAPED_AT)
-  assert.equal(jobs[1].experienceRequired, null)
-  assert.equal(jobs[1].publicExperienceChecked, true)
-  assert.match(jobs[1].jobDescription || '', /branch audit records/i)
-  assert.equal(jobs[1].source, 'rupeek')
-  assert.equal(jobs[1].scrapedAt, FIXED_SCRAPED_AT)
+ }finally{globalThis.fetch=originalFetch}
+ assert.equal(globalCalls,0)
 })
 
-test('Rupeek fails closed when the verified first-party careers page drifts', async () => {
-  const { createRupeekScraper } = await loadRupeekModule()
-  const scraper = createRupeekScraper({
-    now: () => FIXED_SCRAPED_AT,
-  })
+test('Rupeek fails closed on current publisher drift before any detail read',async()=>{
+ let calls=0
+ await assert.rejects(rupeek.createRupeekScraper().run({fetchImpl:async url=>{
+  calls++;assert.equal(url,rupeek.OFFICIAL_CAREERS_URL)
+  return response(discovery.packets[0],corporate.replace('Join our team | Rupeek | Careers','Other publisher'))
+ }}),/verified official careers page/)
+ assert.equal(calls,1)
+})
 
-  await assert.rejects(
-    scraper.run({
-      fetchText: async () => verifiedCareersHtml.replace('Engineering at Rupeek', 'Team Rupeek'),
-    }),
-    /verified official careers page/i,
-  )
+test('Rupeek body-only callbacks fail before callback or generic network invocation',async()=>{
+ let calls=0;const unexpected=async()=>{calls++;throw Error('unexpected request')}
+ await assert.rejects(rupeek.createRupeekScraper().run({fetchText:unexpected,fetchImpl:unexpected}),/complete native HTTP responses/)
+ assert.equal(calls,0)
+})
+
+test('Rupeek own200 detail can prove only its exact native role and full criteria without generic composition',()=>{
+ const row=rupeek.extractJobCardsFromCareersHtml(corporate)[0],proof=readRole(detail,row)
+ assert.equal(proof.sourceDetailComplete,true);assert.match(proof.jobDescription,/Commerce is mandatory/)
+ assert.match(proof.jobDescription,/Employment type: Full-time/)
+ assert.equal(proof.nativeLegalEmployer,null);assert.equal(proof.skipPublicExperienceEnrichment,true)
+ assert.throws(()=>readRole(detail,{...row,jobId:'9000000000'}),/ID mismatch/)
+ assert.throws(()=>readRole(detail.replaceAll('Associate','Unrelated Role').replaceAll('Rupeek','Other Corporation'),row))
 })

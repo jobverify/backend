@@ -30,6 +30,19 @@ const serverFor = async (t, { tokens = () => 300, complete, stream = false } = {
   return { endpoint: `http://127.0.0.1:${server.address().port}`, requests };
 };
 
+test('reproduced work-model duplication is cleaned through inference and final assembly without fallback', async t => {
+  const original = 'The work model for the role is: The work model for the role is: #Li_Onsite.';
+  const server = await serverFor(t, { complete: () => ({ text: 'The work model for the role is: #Li_Onsite.' }) });
+  const input = inputFor(original);
+  const response = await createRewriteClient(server).generate(input, { allowSourceFallback: false });
+  const checked = validateProseRewrite(response.value, input, 'stop');
+  assert.equal(response.generationRequests, 1);
+  assert.equal(checked.ok, true);
+  assert.equal(checked.quality.sourceFallbackBlocks, 0);
+  assert.equal(checked.quality.modelWordingEditedBlocks, 1);
+  assert.equal(checked.description, 'The work model for the role is: #Li_Onsite.');
+});
+
 test('inline employer metadata is preserved without depending on model inference', async t => {
   const original = 'Position: DFT Engineer Job Description: Location: IN-KA-Bangalore, India Time Type: Full time Job Category: Engineering Services';
   const server = await serverFor(t);

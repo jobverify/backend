@@ -1,6 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createOfficialAtsRecoveryScraper } from '../../scraper-support/utils/officialAtsRecovery.js'
+import { runWithCurrentProgrammeZero } from '../../scraper-support/utils/currentProgrammeZeroRecovery.js'
+import { runCurrentHousecallProgramme } from './currentProgramme.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const provider = {
@@ -16,7 +18,10 @@ export const SOURCE = provider.source
 export const COMPANY = provider.companyName
 export const CAREERS_URL = provider.companyCareerPage
 export const DISPOSITION = 'runtime-official-ats-recovery'
-export const run = options => createOfficialAtsRecoveryScraper(provider).run(options)
+export const run = options => runWithCurrentProgrammeZero(options, {
+  source: SOURCE, runPrimary: primaryOptions => createOfficialAtsRecoveryScraper(provider).run(primaryOptions),
+  runProgramme: runCurrentHousecallProgramme,
+})
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -7,6 +7,7 @@ import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEv
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 
 import { CALENDLY_CATALOG } from './catalog.js'
+import { runCurrentCalendlyAstro } from './currentAstro.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -296,10 +297,15 @@ export const createCalendlyScraper = () => ({
     fetchText = defaultFetchText,
     fetchJson = defaultFetchJson,
     fetchPage = defaultFetchPage,
+    fetchImpl,
+    onAudit,
     now = () => new Date().toISOString(),
     signal,
   } = {}) {
     signal?.throwIfAborted()
+    if (fetchImpl || fetchText === defaultFetchText && fetchJson === defaultFetchJson && fetchPage === defaultFetchPage) {
+      return runCurrentCalendlyAstro({ fetchImpl, signal, now, onAudit })
+    }
     let pagesFetched = 0
     const readText = async url => { signal?.throwIfAborted(); pagesFetched++; const value = await fetchText(url, { signal }); signal?.throwIfAborted(); return value }
     const readJson = async url => { signal?.throwIfAborted(); pagesFetched++; const value = await fetchJson(url, signal ? { method: 'GET', signal } : { method: 'GET' }); signal?.throwIfAborted(); return value }

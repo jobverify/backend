@@ -87,7 +87,7 @@ export const createDanaIncorporatedScraper = ({ maxJobs = null } = {}) => ({
   },
 })
 
-export const run = async () => createDanaIncorporatedScraper().run()
+export const run = async (options) => createDanaIncorporatedScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

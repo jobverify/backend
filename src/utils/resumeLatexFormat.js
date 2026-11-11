@@ -1,5 +1,8 @@
 import { normalizeResumeLinks } from '../services/resumeSource.js';
 
+const resumeUrlBreaks = Array.from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./-?&=#_~:!,;()[]'+",
+  character => '\\do' + (/[0-9]/.test(character) ? '' : '\\') + character).join('');
+
 // Decode into the same cached compiler format on every attempt. Candidate prose,
 // section order, achievements and job-specific wording still come from the model.
 export const RESUME_LATEX_PREAMBLE = String.raw`\documentclass[11pt,a4paper]{article}
@@ -7,7 +10,10 @@ export const RESUME_LATEX_PREAMBLE = String.raw`\documentclass[11pt,a4paper]{art
 \usepackage[T1]{fontenc}
 \usepackage{lmodern,enumitem,hyperref}
 \pagestyle{empty}
+\setcounter{secnumdepth}{0}
 \hypersetup{hidelinks}
+\renewcommand{\UrlBreaks}{${resumeUrlBreaks}}
+\hyphenpenalty=10000
 \setlength{\parindent}{0pt}
 \setlist[itemize]{leftmargin=*,nosep}
 \renewcommand{\\}[1][0pt]{\par}
@@ -23,6 +29,18 @@ const bodyCommands = ['section', 'subsection', 'subsubsection', 'paragraph', 'te
 const environments = ['center', 'flushleft', 'itemize', 'enumerate', 'description'];
 const alternatives = values => values.map(value => JSON.stringify(value)).join(' | ');
 export const resumeLatexLinkTarget = value => value.replace(/[&%_$#{}]/g, character => `\\${character}`);
+
+// Keep annotation-only references even when generation omits their destinations.
+// Labels carry no candidate claims; the PDF's actual targets are still audited.
+export function preserveResumeSourceLinks(latex, links = []) {
+  const commands = latex.replace(/(?<!\\)%[^\n]*/g, '');
+  const present = [...commands.matchAll(/\\(?:href|url)\s*\{((?:\\.|[^}])*)\}/g)]
+    .map(match => match[1].replace(/\\([&%_$#{}])/g, '$1'));
+  const missing = normalizeResumeLinks(links).filter(link => !present.includes(link));
+  if (!missing.length) return latex;
+  const references = missing.map(link => `\\href{${resumeLatexLinkTarget(link)}}{Original link}`).join('\n');
+  return latex.replace(/\\end\s*\{document\}\s*$/, () => `\n\\section*{Links}\n${references}\n\\end{document}`);
+}
 
 // Word commands require a delimiter: otherwise an allowed accent such as \c
 // followed by plain text could admit a forbidden command such as \catcode.

@@ -447,7 +447,7 @@ export const createCognizantScraper = ({
   },
 })
 
-export const run = async () => createCognizantScraper().run()
+export const run = async (options) => createCognizantScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

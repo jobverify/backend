@@ -188,7 +188,7 @@ export const createTestVagrantTechnologiesScraper = ({
   },
 })
 
-export const run = async () => createTestVagrantTechnologiesScraper().run()
+export const run = async (options) => createTestVagrantTechnologiesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

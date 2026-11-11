@@ -93,7 +93,7 @@ export const createInnovaSolutionsScraper = () => ({
   },
 })
 
-export const run = async () => createInnovaSolutionsScraper().run()
+export const run = async (options) => createInnovaSolutionsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

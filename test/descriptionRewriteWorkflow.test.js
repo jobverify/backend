@@ -51,20 +51,23 @@ test('rewrite sizes its runner matrix from the queue between one registration an
  assert.equal((workflow.match(/pipelineGithub.js report/g)||[]).length,1);
 });
 
-test('rewrite repository variables default to 32 runners and configure CPU threads and slots',()=>{
+test('rewrite repository variables default to 64 runners and configure CPU threads and slots',()=>{
  const workflow=read('rewrite-descriptions.yml');
  const register=workflow.split('  register:\n')[1].split('  rewrite_descriptions:\n')[0];
  const shards=workflow.split('  rewrite_descriptions:\n')[1].split('  report:\n')[0];
  const planFor = variables => buildRewritePlan(27660, {
-  shardCount: Number(environmentValue(register, 'JOB_DESCRIPTION_REWRITE_SHARD_COUNT', variables)),
+  shardCount: environmentValue(register, 'JOB_DESCRIPTION_REWRITE_SHARD_COUNT', variables)
+   ? Number(environmentValue(register, 'JOB_DESCRIPTION_REWRITE_SHARD_COUNT', variables)) : undefined,
+  jobsPerShard: /^(auto|automatic)$/.test(environmentValue(register, 'JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD', variables))
+   ? 'auto' : Number(environmentValue(register, 'JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD', variables)),
   maxParallel: Number(environmentValue(register, 'JOB_DESCRIPTION_REWRITE_MAX_PARALLEL', variables)),
  });
  const workerFor = variables => rewriteWorkerConfiguration({ availableCpus: 64,
   threads: Number(environmentValue(shards, 'JOB_DESCRIPTION_REWRITE_CPU_THREADS', variables)),
   parallelism: Number(environmentValue(shards, 'JOB_DESCRIPTION_REWRITE_CONCURRENCY', variables)),
  });
- assert.equal(planFor({}).shardCount,32);
- assert.equal(planFor({}).maxParallel,32);
+ assert.equal(planFor({}).shardCount,128);
+ assert.equal(planFor({}).maxParallel,64);
  assert.deepEqual(workerFor({}),{threads:4,parallelism:4,contextTokens:32768});
  const variables={JOB_DESCRIPTION_REWRITE_SHARD_COUNT:'64',JOB_DESCRIPTION_REWRITE_MAX_PARALLEL:'24',
   JOB_DESCRIPTION_REWRITE_CPU_THREADS:'12',JOB_DESCRIPTION_REWRITE_CONCURRENCY:'8'};

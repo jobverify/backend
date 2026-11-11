@@ -36,25 +36,46 @@ test('queue planning honors a configured 32-shard plan and runner limit with one
   assert.deepEqual(JSON.parse(await fs.readFile(path.join(cwd, '.cache/scraper-actions/description-plan.json'))), plan);
 });
 
-test('queue planning defaults to 32 parallel runners with automatic shard sizing', async t => {
+test('queue planning defaults to 64 parallel runners with automatic shard sizing', async t => {
   const cwd = await fs.mkdtemp(path.join(tmpdir(), 'rewrite-plan-32-'));
   t.after(() => fs.rm(cwd, { recursive: true, force: true }));
   const summary = path.join(cwd, 'preview.json'), output = path.join(cwd, 'outputs');
   await fs.writeFile(summary, JSON.stringify({ queued: 27660, queueAsOf: '2026-11-07T10:00:00.000Z' }));
   const env = {
-    ...process.env, GITHUB_OUTPUT: output, JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD: '1000',
+    ...process.env, GITHUB_OUTPUT: output,
   };
   delete env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT;
   delete env.JOB_DESCRIPTION_REWRITE_MAX_PARALLEL;
+  delete env.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD;
   const { stdout } = await exec(process.execPath, [script, summary], { cwd, windowsHide: true, env });
   const plan = JSON.parse(stdout.trim());
-  assert.equal(plan.shardCount, 32);
-  assert.equal(plan.maxParallel, 32);
-  assert.equal(plan.estimatedJobsPerShard, 865);
+  assert.equal(plan.shardCount, 128);
+  assert.equal(plan.maxParallel, 64);
+  assert.equal(plan.estimatedJobsPerShard, 217);
+  assert.equal(plan.jobsPerShard, 217);
+  assert.equal(plan.partitionSizing, 'automatic');
   const fields = Object.fromEntries((await fs.readFile(output, 'utf8')).trim().split('\n').map(line => {
     const at = line.indexOf('='); return [line.slice(0, at), line.slice(at + 1)];
   }));
-  assert.equal(fields.shard_count, '32');
-  assert.equal(fields.max_parallel, '32');
-  assert.deepEqual(JSON.parse(fields.matrix).shard, Array.from({ length: 32 }, (_, index) => index));
+  assert.equal(fields.shard_count, '128');
+  assert.equal(fields.max_parallel, '64');
+  assert.deepEqual(JSON.parse(fields.matrix).shard, Array.from({ length: 128 }, (_, index) => index));
+});
+
+test('planning CLI accepts explicit auto and automatic values and computes the target from runner capacity', async t => {
+  const cwd = await fs.mkdtemp(path.join(tmpdir(), 'rewrite-plan-auto-'));
+  t.after(() => fs.rm(cwd, { recursive: true, force: true }));
+  const summary = path.join(cwd, 'preview.json');
+  await fs.writeFile(summary, JSON.stringify({ queued: 12800, queueAsOf: '2026-11-11T10:00:00.000Z' }));
+  for (const value of ['auto', ' AUTOMATIC ', ' ']) {
+    const env = { ...process.env, JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD: value, JOB_DESCRIPTION_REWRITE_MAX_PARALLEL: '8' };
+    delete env.JOB_DESCRIPTION_REWRITE_SHARD_COUNT;
+    delete env.GITHUB_OUTPUT;
+    const { stdout } = await exec(process.execPath, [script, summary], { cwd, windowsHide: true, env });
+    const plan = JSON.parse(stdout.trim());
+    assert.equal(plan.shardCount, 16);
+    assert.equal(plan.maxParallel, 8);
+    assert.equal(plan.jobsPerShard, 800);
+    assert.equal(plan.partitionSizing, 'automatic');
+  }
 });

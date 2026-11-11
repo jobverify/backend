@@ -125,6 +125,13 @@ export const JobSchema = new Schema(
       }, { _id: false }), default: undefined,
     },
     sourceExperienceRequired: { type: String, trim: true, default: null },
+    sourceNativeExperienceConflict: {
+      type: new Schema({
+        kind: { type: String, enum: ['native-sidebar-and-own-role-description'], required: true },
+        sidebar: { type: String, required: true, maxlength: 2000 },
+        ownRoleRequirement: { type: String, required: true, maxlength: 2000 },
+      }, { _id: false }), default: undefined,
+    },
     location: { type: String, trim: true },
     city: { type: String, trim: true },
     // Stable source identity address, separate from corrected work locations.
@@ -134,6 +141,7 @@ export const JobSchema = new Schema(
     state: { type: String, trim: true, default: null },
     country: { type: String, trim: true, default: null },
     remoteStatus: { type: String, trim: true, default: null },
+    sourceRemoteStatusUnresolved: { type: Boolean },
     locations: { type: [String], default: [] },
     locationKeys: { type: [String], default: [] },
     department: { type: String, trim: true },

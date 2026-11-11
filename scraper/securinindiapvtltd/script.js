@@ -177,7 +177,7 @@ export const createSecurinIndiaScraper = ({
   },
 })
 
-export const run = async () => createSecurinIndiaScraper().run()
+export const run = async (options) => createSecurinIndiaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

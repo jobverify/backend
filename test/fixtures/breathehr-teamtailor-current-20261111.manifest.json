@@ -1,0 +1,42 @@
+{
+  "source": "breathehr",
+  "file": "test/fixtures/breathehr-teamtailor-current-20261111.json.gz",
+  "sha256": "a61a4f4495fdfb28c9fafc413e819fe341ef95b4b9294b0f0198efa978ee22eb",
+  "bytes": 608055,
+  "decodedSHA256": "33593cda30da2ad8e5793b16d2eaf18ebea1c3eaa4b9ff5b0529c20bb824c291",
+  "decodedBytes": 2548996,
+  "actualResponses": 18,
+  "expected": {
+    "nativeReportedTotal": 5,
+    "observedVacancies": 5,
+    "indiaCount": 0,
+    "employers": {
+      "8494958": "Breathe HR",
+      "8494968": "Breathe HR",
+      "8569272": "ELMOgroup",
+      "8580266": "Breathe HR",
+      "8623775": "Breathe HR"
+    },
+    "countries": {
+      "8494958": [
+        "GB"
+      ],
+      "8494968": [
+        "GB"
+      ],
+      "8569272": [
+        "GB"
+      ],
+      "8580266": [
+        "GB"
+      ],
+      "8623775": [
+        "GB"
+      ]
+    }
+  },
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "applicationVisited": false,
+  "screeningCriteriaAcquired": false
+}

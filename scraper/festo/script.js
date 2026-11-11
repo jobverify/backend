@@ -119,7 +119,7 @@ export const createFestoScraper = () => ({
   },
 })
 
-export const run = async () => createFestoScraper().run()
+export const run = async (options) => createFestoScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

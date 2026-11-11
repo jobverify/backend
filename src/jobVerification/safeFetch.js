@@ -1,10 +1,11 @@
 import { lookup as dnsLookup } from 'node:dns/promises';
 import { isIP } from 'node:net';
 import { Agent, request as httpRequest } from 'undici';
-import { isPublicAddress, normalizeJobUrl } from './urls.js';
+import { isPublicAddress, verificationRequestUrl } from './urls.js';
 
 export const verificationError = (code, message, status = 422) => Object.assign(new Error(message), { code, status });
 const unsafe = () => verificationError('unsafe_destination', 'This link does not lead to a permitted public website.');
+const CONNECTION_FAILURES = new Set(['UND_ERR_CONNECT_TIMEOUT', 'ECONNREFUSED', 'ENETUNREACH', 'EHOSTUNREACH', 'ETIMEDOUT']);
 
 async function boundedBody(body, maxBytes, signal) {
   if (typeof body === 'string' || Buffer.isBuffer(body)) {
@@ -28,7 +29,7 @@ async function boundedBody(body, maxBytes, signal) {
 async function transport(url, { address, family, signal, maxBytes, accept }) {
   // Keep the original hostname for TLS validation; only the connection lookup is pinned.
   const dispatcher = new Agent({ connect: {
-    timeout: 8000,
+    timeout: 3000,
     lookup: (_host, options, callback) => options.all
       ? callback(null, [{ address, family }]) : callback(null, address, family),
   } });
@@ -57,7 +58,7 @@ function abortable(promise, signal) {
 export function createGuardedFetcher({ lookup = dnsLookup, request = transport } = {}) {
   return async function fetchPublic(input, { signal: parentSignal, timeoutMs = 12_000, maxBytes = 1_000_000, maxRedirects = 5, accept = 'text/html,application/json,text/plain;q=0.8' } = {}) {
     const signal = AbortSignal.any([AbortSignal.timeout(timeoutMs), ...(parentSignal ? [parentSignal] : [])]);
-    let url = normalizeJobUrl(input);
+    let url = verificationRequestUrl(input);
     const redirects = [];
     try {
       for (let hop = 0; hop <= maxRedirects; hop++) {
@@ -68,12 +69,23 @@ export function createGuardedFetcher({ lookup = dnsLookup, request = transport }
         const answers = isIP(host) ? [{ address: host, family: isIP(host) }]
           : await abortable(lookup(host, { all: true, verbatim: true }), signal);
         if (!answers.length || answers.some(({ address }) => !isPublicAddress(address))) throw unsafe();
-        const { address, family } = answers[0];
-        const response = await request(url, { address, family, signal, maxBytes, accept });
+        let response;
+        // Try a bounded subset of the same validated DNS snapshot. Every attempt
+        // remains pinned; certificate/HTTP/content failures are never retried.
+        for (const { address, family } of answers.slice(0, 3)) {
+          signal.throwIfAborted();
+          try {
+            response = await request(url, { address, family, signal, maxBytes, accept });
+            break;
+          } catch (error) {
+            if (!CONNECTION_FAILURES.has(error.code) || signal.aborted) throw error;
+          }
+        }
+        if (!response) throw verificationError('source_unavailable', 'This source could not be reached securely.');
         const body = await boundedBody(response.body, maxBytes, signal);
         if ([301, 302, 303, 307, 308].includes(response.status)) {
           if (!response.headers?.location || hop === maxRedirects) throw verificationError('redirect_limit', 'The link has an incomplete or excessive redirect chain.');
-          const next = normalizeJobUrl(new URL(response.headers.location, url).href);
+          const next = verificationRequestUrl(new URL(response.headers.location, url).href);
           redirects.push({ from: url, to: next, status: response.status });
           url = next;
           continue;

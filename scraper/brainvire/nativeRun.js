@@ -5,10 +5,10 @@ import { CAREERS_URL, canonical, inspectNativeInventory, sha256 } from './native
 const check = (ok,message) => { if (!ok) throw Error('Brainvire current native inventory: '+message) }
 const bounded = (operation,signal) => new Promise((resolve,reject) => {
   const cleanup=()=>signal.removeEventListener('abort',abort)
-  const abort=()=>{cleanup();reject(signal.reason || Error('Brainvire request aborted'))}
+  const abort=()=>{cleanup();reject(signal.reason)}
   if(signal.aborted){abort();return}
   signal.addEventListener('abort',abort,{once:true})
-  Promise.resolve().then(operation).then(value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)})
+  Promise.resolve().then(()=>{signal.throwIfAborted();return operation()}).then(value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)})
 })
 export async function runNativeBrainvire(options={}) {
   const maxJobs=options.maxJobs ?? Infinity, timeoutMs=options.timeoutMs ?? 45000
@@ -35,7 +35,7 @@ export async function runNativeBrainvire(options={}) {
       check(response.url===CAREERS_URL,'official response URL changed')
       const mime=response.headers?.get?.('content-type')
       check(!mime || /text\/html/i.test(mime),'native response content type changed')
-      html=await bounded(()=>response.text(),signal)
+      html=await bounded(()=>{const method=response.text;signal.throwIfAborted();return Reflect.apply(method,response,[])},signal)
     }
     check(typeof html === 'string' && Buffer.byteLength(html) <= 3000000,'invalid or oversized native response')
     return {html,sha256:sha256(html),observedAt:new Date().toISOString()}

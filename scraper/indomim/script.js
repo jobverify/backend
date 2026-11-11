@@ -66,7 +66,7 @@ export const createIndoMimScraper = () => ({
   },
 })
 
-export const run = async () => createIndoMimScraper().run()
+export const run = async (options) => createIndoMimScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

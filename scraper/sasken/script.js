@@ -77,7 +77,7 @@ const extractLocation = (...values) => {
   const normalized = normalizeWhitespace(values.filter(Boolean).join(' '))
   if (!normalized) return { location: 'India', city: null }
 
-  const match = normalized.match(/\bLocation\s*[:\-]\s*([A-Za-z][A-Za-z .,&/-]*)\b/i)
+  const match = normalized.match(/\bLocation\s*[:-]\s*([A-Za-z][A-Za-z .,&/-]*)\b/i)
   const city = normalizeWhitespace(match?.[1])
 
   if (!city) return { location: 'India', city: null }
@@ -212,7 +212,7 @@ export const createSaskenScraper = ({
   },
 })
 
-export const run = async () => createSaskenScraper().run()
+export const run = async (options) => createSaskenScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -130,7 +130,7 @@ export const createDassaultSystemsScraper = ({
   },
 })
 
-export const run = async () => createDassaultSystemsScraper().run()
+export const run = async (options) => createDassaultSystemsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

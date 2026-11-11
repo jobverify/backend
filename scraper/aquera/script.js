@@ -57,7 +57,7 @@ export const createAqueraScraper = () => ({
       throw new Error('Aquera homepage no longer matches the verified official public site')
     }
 
-    let careersHtml = null
+    let careersHtml
 
     try {
       careersHtml = await fetchText(CAREERS_PAGE_URL)
@@ -82,7 +82,7 @@ export const createAqueraScraper = () => ({
   },
 })
 
-export const run = async () => createAqueraScraper().run()
+export const run = async (options) => createAqueraScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

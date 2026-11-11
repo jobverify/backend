@@ -10,6 +10,21 @@ const open = policy => {
   }
 };
 
+test('repeated failed probes back off to 16 then 32 skips while successful recovery resets the policy', async () => {
+  const { createCorrectionPolicy } = await import('../rewriting/correctionPolicy.js');
+  const policy = createCorrectionPolicy();
+  open(policy);
+  for (const skips of [8, 16, 32, 64, 64]) {
+    for (let i = 0; i < skips; i++) assert.equal(policy.acquire(context).retry, false);
+    const probe = policy.acquire(context);
+    assert.equal(probe.retry, true);
+    probe.finish(false);
+  }
+  for (let i = 0; i < 64; i++) policy.acquire(context);
+  policy.acquire(context).finish(true);
+  assert.equal(policy.acquire(context).retry, true);
+});
+
 test('a correction cooldown skips eight matching failures and allows one concurrent probe', async () => {
   const { createCorrectionPolicy } = await import('../rewriting/correctionPolicy.js');
   const policy = createCorrectionPolicy();

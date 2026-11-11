@@ -1,0 +1,8 @@
+{
+  "capturedAt": "2026-11-10T19:17:08.299Z",
+  "sha256": "5295062de26c7b227a1ca0080f20396756ed7fb68306f5fcb0354edbb7e336ea",
+  "packets": 97,
+  "baselineRoleContentSHA256": "9388d13c4306e697b3061a3a181e2278c08c934a37decc5e26fbd30d58cce339",
+  "readOnly": true,
+  "provenance": "Full current native corporate/taxonomy/2listing/91detail/2ownroleHTML responses, with exact methods, URLs, status/MIME/finalURL and SHA. country-evidence-inspection.json documents all91 criteria. baselineRoleContentSHA256 is the original source output captured before the country-marker-only repair."
+}

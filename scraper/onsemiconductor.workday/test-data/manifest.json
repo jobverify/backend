@@ -1,0 +1,9 @@
+{
+  "source": "onsemiconductor",
+  "fixture": "native-20261110.json.gz",
+  "sha256": "bd9ab93635df1e19a2df561c022e490fed7930f6b6ef7838aef03d822ee35da0",
+  "originalPackets": 88,
+  "runtimeOriginalPackets": 83,
+  "supplementalOriginalPackets": 5,
+  "notes": "Exact actual registered runtime occurrences retain original bytes/status/URL/MIME/time/SHA. Opening and no-store closing each consume their own captured occurrence; no packet is reused as a fresh read. Five supplemental packets establish current company/redirect/shipped-client evidence and are disclosed as outside runtime."
+}

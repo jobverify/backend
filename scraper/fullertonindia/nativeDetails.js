@@ -1,11 +1,32 @@
 import {parse} from 'acorn'
 import {createHash} from 'node:crypto'
 import {readNativeDocument,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
+import {extractPdfTextWorkerCore} from '../../scraper-support/shared/pdfTextWorkerCore.js'
+import {createNativePdfTextContext} from '../../scraper-support/shared/nativePdfTextContext20261111.js'
 
 const need=(ok,message)=>{if(!ok)throw Error('Workline public role: '+message)}
 const text=value=>typeof value==='string'?value.trim():''
 const origin='https://app52.workline.hr'
 const hash=value=>createHash('sha256').update(value).digest('hex')
+
+// A linked PDF belongs to the employer's native role, but its explicit title
+// can still describe a broader template. Preserve that document and hold the
+// unresolved identity instead of inventing an equivalence between job titles.
+export function nativePDFRoleIdentity(pdf,record){
+ const lines=Array.isArray(pdf?.pages)?pdf.pages.flatMap(page=>typeof page==='string'?page.split(/\r?\n/):[]).map(value=>value.replace(/\s+/g,' ').trim()).filter(Boolean):[]
+ const titles=[]
+ for(let index=0;index<lines.length;index++){
+  const match=lines[index].match(/^Job\s+Title(?:\s*[:：]\s*|\s+)(.+)$/i)
+  if(match)titles.push(match[1].trim())
+  else if(/^Job\s+Title\s*[:：]?$/i.test(lines[index])&&lines[index+1])titles.push(lines[index+1])
+ }
+ const key=value=>text(value).normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim()
+ const distinct=new Map(titles.map(title=>[key(title),title]))
+ const title=distinct.size===1?[...distinct.values()][0]:null
+ const complete=Boolean(title&&key(title)&&key(title)===key(record?.Position_Name))
+ return {title,complete,failureKind:complete?null:'native-description-role-title-unreconciled',
+  qualification:'Explicit employer-linked PDF title compared with native vacancy; no title aliases inferred.'}
+}
 
 export function declaredRoleDescription(page,record){
  const doc=readNativeDocument(page.html),expected=new URL(page.url)
@@ -52,29 +73,23 @@ export function declaredRoleDescription(page,record){
 
 export async function readDescriptionPDF(bytes,{signal}={}){
  signal?.throwIfAborted()
- const data=Buffer.from(bytes)
- need(data.length>100&&data.length<=4e6&&data.subarray(0,5).toString()==='%PDF-','missing or oversized PDF bytes')
- const {getDocument}=await import('pdfjs-dist/legacy/build/pdf.mjs')
- signal?.throwIfAborted()
- const task=getDocument({data:new Uint8Array(data),isEvalSupported:false,useWorkerFetch:false,useSystemFonts:false,disableFontFace:true,stopAtErrors:true,verbosity:0})
- const abort=()=>{void task.destroy().catch(()=>{})}
- signal?.addEventListener('abort',abort,{once:true})
+ const context=createNativePdfTextContext({signal})
  try{
-  const pdf=await task.promise
-  need(Number.isInteger(pdf.numPages)&&pdf.numPages>0&&pdf.numPages<=30,'native PDF page bound')
-  const pages=[]
-  for(let n=1;n<=pdf.numPages;n++){
-   signal?.throwIfAborted()
-   const page=await pdf.getPage(n),content=await page.getTextContent()
-   const body=content.items.filter(item=>typeof item.str==='string').map(item=>item.str+(item.hasEOL?'\n':' ')).join(' ')
-    .replace(/[ \t]+/g,' ').replace(/ *\n */g,'\n').replace(/\n{3,}/g,'\n\n').trim()
-   need(body.length>30,'a native PDF page has no complete extractable text')
-   pages.push(body)
-  }
+  const data=Buffer.from(bytes)
+  need(data.length>100&&data.length<=4e6&&data.subarray(0,5).toString()==='%PDF-','missing or oversized PDF bytes')
+  const native=await extractPdfTextWorkerCore(data,{...context,maxPages:30,includePageTextItems:true})
+  need(Number.isInteger(native.numPages)&&native.numPages>0&&native.numPages<=30,'native PDF page bound')
+  need(Array.isArray(native.pageTextItems)&&native.pageTextItems.length===native.numPages,'native PDF pages are incomplete')
+  // Retain the source's original item/EOL layout. Blank EOL items delimit
+  // employer title fields and cannot be dropped by a general text formatter.
+  const pages=native.pageTextItems.map(items=>items.map(item=>item.str+(item.hasEOL?'\n':' ')).join(' ')
+   .replace(/[ \t]+/g,' ').replace(/ *\n */g,'\n').replace(/\n{3,}/g,'\n\n').trim())
+  for(const body of pages)need(typeof body==='string'&&body.length>30,'a native PDF page has no complete extractable text')
   const description=pages.join('\n\n')
   need(description.length>=100&&description.length<=300000,'native PDF description bound')
+  context.check()
   return {text:description,pages,sha256:hash(data)}
- }finally{signal?.removeEventListener('abort',abort);await task.destroy()}
+ }finally{context.close()}
 }
 
 export async function fetchDescriptionPDF(url,{signal}={}){

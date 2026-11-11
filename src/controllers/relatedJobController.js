@@ -7,7 +7,7 @@ import { safeSourceUrl } from '../utils/jobProvenance.js';
 const RESULT_LIMIT = 3;
 const CANDIDATE_LIMIT = 12;
 const QUERY_TIMEOUT_MS = 1500;
-const CARD_FIELDS = 'title company companyKey city location locations jobType employmentType experienceLevel experienceRequired classification primaryRoleDomain skillIds workArrangement salary postedAt closingDate status applyUrl sourceUrl workdayApplicationStatus workdayApplicationStatusReason workdayApplicationStatusCheckedAt';
+const CARD_FIELDS = 'title company companyKey city location locations jobType employmentType experienceLevel experienceRequired classification primaryRoleDomain skillIds workArrangement remoteStatus sourceRemoteStatusUnresolved salary postedAt closingDate status applyUrl sourceUrl workdayApplicationStatus workdayApplicationStatusReason workdayApplicationStatusCheckedAt';
 
 // Compact projections omit the source text used by the public taxonomy. Retain
 // Mongo's effective category instead of inferring it again from partial fields.

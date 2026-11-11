@@ -120,7 +120,7 @@ export const createEclipse360Scraper = () => ({
   },
 })
 
-export const run = async () => createEclipse360Scraper().run()
+export const run = async (options) => createEclipse360Scraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

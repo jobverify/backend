@@ -1,5 +1,5 @@
 import { DOMParser } from '@xmldom/xmldom';
-import { normalizeJobUrl, redactText } from './urls.js';
+import { verificationRequestUrl, redactText } from './urls.js';
 
 const empty = () => ({ title: '', company: '', roleIds: [], links: [], text: '', validThrough: null, structured: false, blocked: false });
 const values = value => Array.isArray(value) ? value : [value];
@@ -31,10 +31,12 @@ export function readJobPage(body, url) {
     result.roleIds = values(posting.identifier).map(item => typeof item === 'object' ? item?.value : item).filter(value => typeof value === 'string' || typeof value === 'number').map(String).slice(0, 5);
     result.validThrough = posting.validThrough || null;
   }
-  result.title ||= redactText(document.getElementsByTagName('h1')[0]?.textContent || document.getElementsByTagName('title')[0]?.textContent, 200);
+  const heading = document.getElementsByTagName('h1')[0]?.textContent?.trim();
+  const genericHeading = /^(?:job (?:details|description|application)|apply(?: for (?:this )?job)?)$/i.test(heading || '');
+  result.title ||= redactText((genericHeading ? '' : heading) || document.getElementsByTagName('title')[0]?.textContent, 200);
   const links = new Set();
   for (const anchor of Array.from(document.getElementsByTagName('a')).slice(0, 300)) {
-    try { links.add(normalizeJobUrl(new URL(anchor.getAttribute('href'), url).href)); } catch { /* No executable/private links. */ }
+    try { links.add(verificationRequestUrl(new URL(anchor.getAttribute('href'), url).href)); } catch { /* No executable/private links. */ }
   }
   result.links = [...links].slice(0, 120);
   const stack = [document.documentElement];
@@ -53,13 +55,23 @@ export function readJobPage(body, url) {
 
 export function suspiciousRequests(text) {
   const patterns = [
-    ['Up-front payment request', /\b(?:pay|send|transfer|deposit)\b.{0,55}\b(?:processing fee|registration fee|activation fee|security deposit|crypto|bitcoin|usdt)\b/i],
-    ['Equipment purchase request', /\b(?:buy|purchase)\b.{0,45}\b(?:equipment|laptop|gift cards?)\b.{0,65}\b(?:our vendor|this link|reimburs)/i],
-    ['Off-platform interview request', /\b(?:interview|contact|message|continue|reach)\b.{0,40}\b(?:telegram|whatsapp)\b/i],
+    ['Up-front payment request', 'The posting asks for payment or a recruitment fee.', /\b(?:pay|send|transfer|deposit)\b[^.!?;\n]{0,65}\b(?:(?:processing|registration|activation|application|placement|training|background[- ]check) fee|security deposit)\b/gi],
+    ['Cryptocurrency payment request', 'The posting asks for a cryptocurrency transfer as part of getting the job or interview.', /\b(?:pay|send|transfer|deposit)\b[^.!?;\n]{0,45}\b(?:USDT|USDC|BTC|Bitcoin|ETH|Ethereum|crypto(?:currency)?)\b[^.!?;\n]{0,100}\b(?:interview|(?:employment|job) offer|(?:secure|activate|start|unlock)(?:\s+\w+){0,3}\s+(?:job|employment|tasks?|earnings?))\b/gi],
+    ['Equipment purchase request', 'The posting asks you to buy equipment through a specified vendor or reimbursement link.', /\b(?:buy|purchase)\b[^.!?;\n]{0,45}\b(?:equipment|laptop|computer)\b[^.!?;\n]{0,65}\b(?:our vendor|this link|reimburs)/gi],
+    ['Cheque or overpayment request', 'The posting asks you to deposit a cheque and return money, a common overpayment tactic.', /\b(?:deposit|cash)\s+(?:(?:the|this|our|a)\s+)?(?:check|cheque)\b[^.!?\n]{0,160}\b(?:send\s+(?:back\s+)?(?:the\s+)?(?:difference|excess|balance)|send\s+back\b[^.!?\n]{0,30}\b(?:difference|excess|money)|return\s+(?:the\s+)?(?:difference|excess|balance|money)|(?:transfer|wire)\b[^.!?\n]{0,40}\b(?:difference|excess|balance|remaining money))\b/gi],
+    ['Deposit to unlock earnings', 'The posting asks you to deposit money to unlock tasks or withdraw earnings.', /\b(?:recharge|deposit|pay|transfer)\b[^.!?;\n]{0,100}\b(?:unlock (?:tasks?|commissions?|earnings?)|withdraw (?:your )?(?:earnings|money|commission))\b/gi],
+    ['Gift-card payment request', 'The posting asks you to purchase gift cards and provide their codes.', /\b(?:buy|purchase|send)\b[^.!?;\n]{0,35}\bgift cards?\b[^.!?;\n]{0,90}\b(?:codes?|pins?)\b/gi],
+    ['Off-platform interview request', 'The posting directs the interview or recruitment conversation to WhatsApp or Telegram.', /\b(?:interview|contact|message|continue|reach)\b[^.!?;\n]{0,40}\b(?:telegram|whatsapp)\b/gi],
   ];
-  return patterns.flatMap(([title, pattern]) => {
-    const match = pattern.exec(text || '');
-    if (!match || /\b(?:never|do not|don't|will not|won't|no need to)\b/i.test(text.slice(Math.max(0, match.index - 80), match.index))) return [];
-    return [{ title, excerpt: redactText(match[0], 240) }];
+  return patterns.flatMap(([title, detail, pattern]) => {
+    for (const match of String(text || '').matchAll(pattern)) {
+      const before = text.slice(Math.max(0, match.index - 120), match.index).split(/[.!?;\n]|,\s+|\b(?:but|however|instead)\b/i).at(-1);
+      if (/\b(?:never|do not|don't|does not|doesn't|will not|won't|no need to|not (?:asked|required) to|not ask|beware|avoid|scams? (?:that|which|may))\b/i.test(before)) continue;
+      if (['Up-front payment request', 'Cryptocurrency payment request'].includes(title)
+        && /\b(?:we|(?:the|our) (?:company|employer))\s+(?:(?:will|shall|can|may|also|always)\s+){0,3}$/i.test(before)) continue;
+      if (title === 'Off-platform interview request' && /\b(?:not|never)\b[^.!?;\n]{0,25}\b(?:whatsapp|telegram)\b/i.test(match[0])) continue;
+      return [{ title, detail, excerpt: redactText(`${before}${match[0]}`.trim(), 240) }];
+    }
+    return [];
   });
 }

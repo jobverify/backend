@@ -321,18 +321,6 @@ const hasVerifiedEmptyProviderSnapshot = (provider = {}) => (
   && Boolean(provider.verifiedOn)
 )
 
-const buildVerifiedEmptyProviderEvidence = (provider = {}) => ({
-  status: 'verified-empty',
-  surface: provider.companyCareerPage,
-  firstParty: true,
-  listingComplete: true,
-  pagesFetched: 1,
-  reportedTotal: 0,
-  indiaFacetCount: 0,
-  verifiedAt: provider.verifiedOn,
-  reason: provider.verifiedSurfaceSummary || `verified-empty-provider-snapshot:${provider.source}`,
-})
-
 const hasCompleteInventoryZeroIndiaSnapshotDisposition = (provider = {}) => {
   const inventoryMetadata = [
     provider.atsPlatform,
@@ -352,18 +340,6 @@ const hasCompleteInventoryZeroIndiaProviderSnapshot = (provider = {}) => (
   && Boolean(provider.companyCareerPage)
   && Boolean(provider.verifiedOn)
 )
-
-const buildCompleteInventoryZeroIndiaProviderEvidence = (provider = {}) => ({
-  status: 'complete-inventory',
-  surface: provider.companyCareerPage,
-  firstParty: true,
-  listingComplete: true,
-  pagesFetched: 1,
-  reportedTotal: Number(provider.verifiedPublicJobCount),
-  indiaFacetCount: 0,
-  verifiedAt: provider.verifiedOn,
-  reason: provider.verifiedSurfaceSummary || `complete-inventory-zero-india-provider-snapshot:${provider.source}`,
-})
 
 const hasDiscoveryOnlySnapshotDisposition = (provider = {}) => {
   const inventoryMetadata = [
@@ -735,7 +711,17 @@ export const createPublicAtsCatalogScraper = (provider) => ({
     const factory = provider.runtimeInventoryVerification
       ? (await import('../utils/publicAtsRuntimeInventory.js')).createRuntimeVerifiedPublicAtsScraper
       : (await import('../utils/publishingGapAts.js')).createPublishingGapAtsScraper
-    const jobs = await factory(provider).run(options)
+    let jobs
+    if (provider.currentProgrammeZeroProfile === 'datafold-current-20261111') {
+      if (provider.source !== 'datafold' || provider.atsPlatform !== 'ashby' || provider.boardToken !== 'datafold'
+        || provider.companyCareerPage !== 'https://www.datafold.com/careers/') throw new Error('Invalid current Datafold programme profile')
+      const { runWithCurrentProgrammeZero } = await import('../utils/currentProgrammeZeroRecovery.js')
+      const { runCurrentDatafoldProgramme } = await import('../../scraper/datafold/currentProgramme.js')
+      jobs = await runWithCurrentProgrammeZero(options, {
+        source: provider.source, maxSourceTimeoutMs: 180000,
+        runPrimary: primaryOptions => factory(provider).run(primaryOptions), runProgramme: runCurrentDatafoldProgramme,
+      })
+    } else jobs = await factory(provider).run(options)
     return decorateJobsWithProviderMetadata(jobs, provider)
   },
 })

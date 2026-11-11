@@ -205,7 +205,7 @@ export const createFlamScraper = ({
   },
 })
 
-export const run = async () => createFlamScraper().run()
+export const run = async (options) => createFlamScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

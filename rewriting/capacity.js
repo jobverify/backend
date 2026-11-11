@@ -1,7 +1,7 @@
 /** Whole-description latency of fresh inference, separate from copying/reuse. */
 export function summarizeRewriteCapacity(results, { startedAt, finishedAt, attempted = results.length } = {}) {
   const seconds = Math.max(0, (Date.parse(finishedAt) - Date.parse(startedAt)) / 1000) || 0;
-  const fresh = results.filter(result => result.generationRequests > 0 && !result.modelPlanCached);
+  const fresh = results.filter(result => !result.interrupted && result.generationRequests > 0 && !result.modelPlanCached);
   const durations = fresh.map(result => result.durationMs).filter(ms => Number.isFinite(ms) && ms > 0).sort((a, b) => a - b);
   const published = results.filter(result => result.ok && result.published !== false);
   const sum = key => published.reduce((total, result) => total + (result.quality?.[key] || 0), 0);
@@ -15,6 +15,7 @@ export function summarizeRewriteCapacity(results, { startedAt, finishedAt, attem
     p50DurationMs: durations[Math.floor(durations.length * .5)] ?? null,
     p95DurationMs: durations[Math.min(durations.length - 1, Math.floor(durations.length * .95))] ?? null,
     freshInferenceDescriptions: fresh.length,
+    interruptedDescriptions: results.filter(result => result.interrupted).length,
     renderedWithoutInference: published.filter(result => result.renderedWithoutInference).length,
     cachedDescriptions: published.filter(result => result.modelPlanCached).length,
     modelEditedDescriptions: published.filter(result => (result.quality?.modelEditedBlocks ?? result.quality?.modelEditedItems ?? 0) > 0).length,
@@ -32,6 +33,11 @@ export function summarizeRewriteCapacity(results, { startedAt, finishedAt, attem
   };
   capacity.modelEditedDescriptionsPerHour = seconds ? capacity.modelEditedDescriptions / seconds * 3600 : 0;
   const wordingComplete = capacity.wordingMetricsRecordedDescriptions === published.length;
+  capacity.modelWordingEditRate = wordingComplete && published.length ? capacity.modelWordingEditedDescriptions / published.length : null;
+  capacity.modelLayoutOnlyRate = wordingComplete && published.length ? capacity.modelLayoutOnlyDescriptions / published.length : null;
+  capacity.sourceFallbackRate = published.length && published.every(result => Number.isInteger(result.quality?.sourceFallbackBlocks))
+    ? published.filter(result => result.quality.sourceFallbackBlocks > 0).length / published.length : null;
+  capacity.correctionAcceptanceRate = capacity.correctionRequests ? capacity.correctionsAccepted / capacity.correctionRequests : null;
   capacity.modelWordingEditedDescriptionsPerHour = !wordingComplete ? null : seconds ? capacity.modelWordingEditedDescriptions / seconds * 3600 : 0;
   capacity.modelLayoutOnlyDescriptionsPerHour = !wordingComplete ? null : seconds ? capacity.modelLayoutOnlyDescriptions / seconds * 3600 : 0;
   if (published.some(result => Number.isInteger(result.quality?.modelEditedItems))) {

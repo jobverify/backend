@@ -1,7 +1,7 @@
 /** Share identical work without sharing a caller's cancellation or deadline. */
 export const createGenerationPool = ({ generate, keyFor, bindResult, requestMs }) => {
   const pending = new Map();
-  return async (input, { signal, remainingMs = requestMs, share = true, ...options } = {}) => {
+  return async (input, { signal, remainingMs = requestMs, share = true, onInterrupted, ...options } = {}) => {
     const timeout = AbortSignal.timeout(Math.max(1, Math.floor(Math.min(remainingMs, requestMs))));
     const caller = signal ? AbortSignal.any([signal, timeout]) : timeout;
     caller.throwIfAborted();
@@ -28,14 +28,17 @@ export const createGenerationPool = ({ generate, keyFor, bindResult, requestMs }
       };
       const abort = () => {
         if (!entry.waiters.has(waiter)) return;
+        const ownsCost = entry.waiters.size === 1 && !entry.accounted;
+        if (ownsCost) entry.accounted = true;
+        const cost = { generationRequests: ownsCost ? entry.progress?.generationRequests || 0 : 0,
+          ...Object.fromEntries(['correctionRequests', 'correctionsAccepted', 'correctionsRejected', 'correctionsSkipped', 'transportRetries']
+            .map(key => [key, ownsCost ? entry.progress?.[key] || 0 : 0])) };
+        // Workflow abort reasons are shared and may be frozen. Report each
+        // caller's cost separately without changing that error's identity.
+        try { onInterrupted?.(cost); } catch { /* Observers cannot block cleanup. */ }
         if (!signal?.aborted && caller.reason && typeof caller.reason === 'object') {
-          const ownsCost = entry.waiters.size === 1 && !entry.accounted;
-          if (ownsCost) entry.accounted = true;
           try { Object.assign(caller.reason, { rawText: entry.progress?.rawText,
-            generationRequests: ownsCost ? entry.progress?.generationRequests || 0 : 0,
-            ...Object.fromEntries(['correctionRequests', 'correctionsAccepted', 'correctionsRejected', 'correctionsSkipped']
-              .map(key => [key, ownsCost ? entry.progress?.[key] || 0 : 0])),
-            transportRetries: ownsCost ? entry.progress?.transportRetries || 0 : 0 }); } catch { /* Caller-owned reasons may be immutable. */ }
+            ...cost }); } catch { /* Caller-owned reasons may be immutable. */ }
         }
         cleanup(); reject(caller.reason);
       };

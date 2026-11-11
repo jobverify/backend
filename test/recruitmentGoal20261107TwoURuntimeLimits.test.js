@@ -7,22 +7,23 @@ import {createCurrentScraper} from '../scraper/2u/currentNative.js'
 import {getScraperCatalog,createCatalogScraper} from '../scraper-support/providers/index.js'
 import {readInventoryEvidence} from '../scraper-support/utils/inventoryEvidence.js'
 import {readSourceObservationEvidence} from '../scraper-support/utils/sourceObservationEvidence.js'
+import {createTwoUOriginalReader} from './helpers/twoUCurrentFixture20261110.js'
 
 const provider=getScraperCatalog().find(p=>p.source==='2u')
 const registered=options=>createCatalogScraper(provider).run(options)
-const folder=new URL('../scraper-support/tests/fixtures/twoUCurrent20261107C31/',import.meta.url)
+const folder=new URL('../scraper-support/tests/fixtures/twoUCurrent20261110/',import.meta.url)
 const fixture=JSON.parse(fs.readFileSync(new URL('manifest.json',folder),'utf8'))
 const originals=new Map(fixture.records.map(row=>{
  const body=gunzipSync(fs.readFileSync(new URL(row.bodyFile,folder)))
  assert.equal(body.length,row.bytes);assert.equal(createHash('sha256').update(body).digest('hex'),row.sha256)
  return[row.requestedUrl,{url:row.finalUrl,status:row.status,headers:row.headers,bodyBase64:body.toString('base64'),requestedAt:row.sourceRequestedAt,completedAt:row.sourceCompletedAt}]
 }))
-const now=()=> '2026-11-07T06:00:00.000Z'
+const now=()=>fixture.captureCompletedAt
 const noReads=()=>assert.fail('Caller limits must prevent public acquisition')
-const reader=()=>{const calls=[];return{calls,fetchPage:async(url,init)=>{
+const reader=()=>{const calls=[],readOriginal=createTwoUOriginalReader();return{calls,fetchPage:async(url,init)=>{
  assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit')
  assert.ok(originals.has(url),'Only retained original public endpoints: '+url)
- calls.push(url);return structuredClone(originals.get(url))
+ calls.push(url);return readOriginal(url)
 }}}
 const assertSkip=jobs=>{
  assert.equal(jobs.length,0)
@@ -50,9 +51,9 @@ for(const option of ['maxJobs','maxPages']){
  })
  test('2U explicit null '+option+' removes only its factory zero cap',async()=>{
   const io=reader(),jobs=await createCurrentScraper({[option]:0}).run({...io,[option]:null,now})
-  assert.equal(io.calls.length,16);assert.equal(jobs.nativeCollectionEvidence.observations.length,1)
-  assert.equal(jobs.nativeCollectionEvidence.observations[0].country,'United States')
-  assert.equal(jobs.nativeCollectionEvidence.observations[0].sourceDetailComplete,true)
+  assert.equal(io.calls.length,18);assert.equal(jobs.nativeCollectionEvidence.observations.length,2)
+  assert.equal(jobs.nativeCollectionEvidence.observations.find(row=>row.id==='8871017002').country,'United States')
+  assert.equal(jobs.nativeCollectionEvidence.observations.find(row=>row.id==='8871017002').sourceDetailComplete,true)
   assert.equal(jobs.nativeCollectionEvidence.closingMatches,true);assert.equal(jobs.nativeCollectionEvidence.sourceScopeComplete,false)
  })
 }
@@ -94,18 +95,23 @@ test('2U page budget15 retains its opening positive without closing or inventory
  const io=reader();let audit
  await assert.rejects(registered({...io,maxPages:15,now,onAudit:value=>{audit=value}}),e=>e.code==='TWO_U_PUBLIC_PAGE_BUDGET')
  assert.equal(io.calls.length,15);assert.equal(audit.originalPages.length,15)
- assert.equal(audit.observations.length,1);assert.equal(audit.observations[0].id,'8871017002')
- assert.equal(audit.observations[0].country,'United States');assert.equal(audit.observations[0].sourceDetailComplete,true)
+ assert.equal(audit.observations.length,2);assert.equal(audit.observations.find(row=>row.id==='8871017002').id,'8871017002')
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').country,'United States');assert.equal(audit.observations.find(row=>row.id==='8871017002').sourceDetailComplete,true)
  assert.equal(audit.closingMatches,false);assert.equal(audit.companyGlobalTotal,null);assert.equal(audit.lifecycleCleanupAllowed,false)
 })
-test('2U page budget16 closes all retained current models and full role criteria',async()=>{
- const io=reader(),jobs=await registered({...io,maxPages:16,maxJobs:1,now})
- assert.equal(io.calls.length,16);assert.equal(jobs.length,0)
+test('2U page budget18 closes all retained current models and full role criteria',async()=>{
+ const io=reader(),jobs=await registered({...io,maxPages:18,maxJobs:1,now})
+ assert.equal(io.calls.length,18);assert.equal(jobs.length,0)
  const audit=jobs.nativeCollectionEvidence
- assert.equal(audit.closingMatches,true);assert.equal(audit.observations.length,1)
- assert.equal(audit.observations[0].sourceDetailComplete,true)
- assert.ok(audit.observations[0].jobDescription.includes('2U is an equal opportunity employer'))
- assert.equal(audit.observations[0].country,'United States')
+ assert.equal(audit.closingMatches,true);assert.equal(audit.observations.length,2)
+ for(const [index,page]of audit.originalPages.entries()){
+  assert.equal(page.requestedURL,fixture.records[index].requestedUrl)
+  assert.equal(page.requestedAt,fixture.records[index].sourceRequestedAt)
+  assert.equal(page.completedAt,fixture.records[index].sourceCompletedAt)
+ }
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').sourceDetailComplete,true)
+ assert.ok(audit.observations.find(row=>row.id==='8871017002').jobDescription.includes('2U is an equal opportunity employer'))
+ assert.equal(audit.observations.find(row=>row.id==='8871017002').country,'United States')
  assert.equal(audit.sourceScopeComplete,false);assert.equal(audit.lifecycleCleanupAllowed,false)
 })
 test('2U finite page cap cannot bypass the independent lower request ceiling',async()=>{

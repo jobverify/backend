@@ -1,4 +1,5 @@
 import { withSourceDescription } from './jobSourceContent.js';
+import { explicitNativeWorkArrangement } from './publicWorkArrangement.js';
 import { mainExperienceRequirement, alternativeExperienceRequirement } from './mainExperienceRequirement.js';
 import { JOB_CLASSIFICATION_POLICY_VERSION } from './jobClassificationVersion.js';
 import {
@@ -240,7 +241,7 @@ const normalizeText = (value) =>
 const unique = (values = []) => [...new Set(values.filter(Boolean))];
 const escapeRegex = (value) => String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const NON_NUMERIC_EXPERIENCE_CONTEXT_EXCLUSION_PATTERN = /\b(?:customer|candidate|employee|guest|post-booking|real[- ]world|user)\s+experience\b|\bexperience\s+(?:charter|platform|the\s+world|the\s+perfect\s+blend)\b|\bwork\s+experience\s*\(in\s+years\)\b|\byears?\s+of\s+profitability\b|\bhistory\s+spanning\s+over\b|\bretained\s+for\s+a\s+period\b|\bannual\s+ctc\b|\bupload\s+cv\b/i;
-const NON_NUMERIC_EXPERIENCE_REQUIREMENT_CONTEXT_PATTERN = /\b(?:requirements?|role requirements?|qualifications?|required skills?|preferred qualifications?|must-haves?|what you(?:'ll| will)\s+bring|who we are looking for|experience\s*[:\-])\b/i;
+const NON_NUMERIC_EXPERIENCE_REQUIREMENT_CONTEXT_PATTERN = /\b(?:requirements?|role requirements?|qualifications?|required skills?|preferred qualifications?|must-haves?|what you(?:'ll| will)\s+bring|who we are looking for|experience\s*[:-])\b/i;
 const GENERIC_EXPLICIT_EXPERIENCE_LABEL_PATTERN = /^(?:experienced(?: professionals?)?|entry[- ]level|junior level|mid(?:-| )level|senior(?:-| )level|associate(?: level)?)$/i;
 const NON_NUMERIC_EXPERIENCE_PATTERNS = [
   {
@@ -267,7 +268,7 @@ const hasLateExplicitExperienceRequirement = (value = "") => (
       && /\b(?:\d+(?:\.\d+)?(?:\s*(?:\+|plus|(?:-|to|~)\s*\d+(?:\.\d+)?))?|no experience|freshers?)\b/i.test(value)
     )
     || (
-      /\bexperience\s*[:\-]\b/i.test(value)
+      /\bexperience\s*[:-]\b/i.test(value)
       && /\b(?:\d+(?:\.\d+)?(?:\s*(?:\+|plus|(?:-|to|~)\s*\d+(?:\.\d+)?))?\s*(?:months?|years?|yrs?|yr)\b|no experience|freshers?)\b/i.test(value)
     )
   )
@@ -278,7 +279,7 @@ const hasLateExplicitExperienceRequirement = (value = "") => (
 );
 
 const normalizeNonNumericExperienceEvidence = (value = "") => normalizeText(value)
-  ?.replace(/^(?:qualifications?|required skills|good to have|responsibilities?|role requirements?)\s*[:\-]?\s*/i, "")
+  ?.replace(/^(?:qualifications?|required skills|good to have|responsibilities?|role requirements?)\s*[:-]?\s*/i, "")
   .replace(/[;:,.\s]+$/g, "")
   || null;
 
@@ -351,18 +352,6 @@ const normalizeExperienceNumberForms = (value = "") => normalizeNumberWords(Stri
     /\b(\d+(?:\.\d+)?)\s*\(\s*(\d+(?:\.\d+)?)\s*\)(?=\s*(?:\+|plus|\b(?:months?|years?|yrs?)\b|(?:-|to)\b))/gi,
     (match, primaryValue, parenthesizedValue) => parenthesizedValue || primaryValue,
   );
-
-const formatExperienceYears = (value, { openEnded = false } = {}) => {
-  const numericValue = Number.parseFloat(value);
-  if (!Number.isFinite(numericValue)) return null;
-
-  const normalizedValue = Number.isInteger(numericValue)
-    ? String(numericValue)
-    : String(numericValue).replace(/(?:\.0+|(\.\d*?)0+)$/, "$1");
-  const unit = numericValue === 1 && !openEnded ? "year" : "years";
-
-  return `${normalizedValue}${openEnded ? "+" : ""} ${unit}`;
-};
 
 const formatExperienceValue = (value) => {
   const numericValue = Number.parseFloat(value);
@@ -609,7 +598,28 @@ const collectStructuredSkillMatches = (values, options) => {
   return matches;
 };
 
+// An explicitly reconciled native conflict carries both original requirements.
+// General incomplete-source flags do not activate this contract.
+export const nativeExperienceConflictEvidence = (job = {}) => {
+  const value = job.sourceNativeExperienceConflict;
+  if (!value || Array.isArray(value) || value.kind !== 'native-sidebar-and-own-role-description'
+    || typeof value.sidebar !== 'string' || typeof value.ownRoleRequirement !== 'string'
+    || !value.sidebar.trim() || !value.ownRoleRequirement.trim()
+    || value.sidebar.length > 2000 || value.ownRoleRequirement.length > 2000) return null;
+  return { kind: value.kind, sidebar: value.sidebar.trim(), ownRoleRequirement: value.ownRoleRequirement.trim() };
+};
+
+export const unresolvedNativeExperienceFields = (evidence) => ({
+  experienceRequired: null, experienceYears: [], experienceBucket: 'unspecified',
+  experienceBasis: 'native_conflict', experiencePolicy: 'not_stated',
+  experienceProfile: { rawText: `${evidence.sidebar}\n${evidence.ownRoleRequirement}`,
+    minimumYears: null, maximumYears: null, isOpenEnded: false, preferredMinimumYears: null,
+    hasExplicitExperience: false, confidence: 'low', evidence: null, experienceBucket: 'unspecified' },
+});
+
 const parseExperienceProfile = (job = {}) => {
+  const nativeConflict = nativeExperienceConflictEvidence(job);
+  if (nativeConflict) return unresolvedNativeExperienceFields(nativeConflict).experienceProfile;
   const titleText = normalizeText(job.title);
   const explicitExperienceField = normalizeExperienceNumberForms(
     normalizeText(job.experienceRequired),
@@ -625,7 +635,7 @@ const parseExperienceProfile = (job = {}) => {
       .map((value) => stripTrailingCompanyNarrative(value, job.company))
       .filter(Boolean),
   ).join(" ");
-  const titleAndExplicitText = normalizeExperienceNumberForms(
+  normalizeExperienceNumberForms(
     [titleText, explicitText]
       .filter(Boolean)
       .join(" "),
@@ -694,7 +704,7 @@ const parseExperienceProfile = (job = {}) => {
     const suffix = upperOpenRangeText.slice(upperOpenRangeMatch.index + upperOpenRangeMatch[0].length);
     const context = `${prefix}${upperOpenRangeMatch[0]}`;
     const experienceContext = Boolean(explicitExperienceField)
-      || /\b(?:experience|exp\.?)\s*[:\-]\s*[^.;\n]{0,100}$|\bexperience\s*$/i.test(prefix)
+      || /\b(?:experience|exp\.?)\s*[:-]\s*[^.;\n]{0,100}$|\bexperience\s*$/i.test(prefix)
       || /^\s+(?:of\s+)?(?:[a-z-]+\s+){0,6}(?:experience|exp\.?)\b/i.test(suffix);
     const companyHistory = /\b(?:(?:our|the|this)\s+(?:company|business|organization|organisation)|we)\s+(?:has|have|with|brings?)\b/i.test(prefix);
     const unrelatedDuration = !explicitExperienceField && /\b(?:ages?|aged|after|within)\s*\(?\s*$/i.test(prefix);
@@ -850,7 +860,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const labeledRangeMatch = combinedText.match(
-    /\b((?:(?:required|minimum|preferred|total)\s+)?(?:years?|months?)\s+of\s+experience|(?:required|minimum|preferred|total)\s+experience|experience\s+required)\b\s*[:\-]?\s*(?:min(?:imum)?(?:\s+of)?|at[\s-]*least)?\s*(\d+(?:\.\d+)?)\s*(?:-|~|to)\s*(\d+(?:\.\d+)?)(?:\s*(months?|years?|yrs?))?\b/i,
+    /\b((?:(?:required|minimum|preferred|total)\s+)?(?:years?|months?)\s+of\s+experience|(?:required|minimum|preferred|total)\s+experience|experience\s+required)\b\s*[:-]?\s*(?:min(?:imum)?(?:\s+of)?|at[\s-]*least)?\s*(\d+(?:\.\d+)?)\s*(?:-|~|to)\s*(\d+(?:\.\d+)?)(?:\s*(months?|years?|yrs?))?\b/i,
   );
   if (labeledRangeMatch) {
     const unit = resolveContextualExperienceUnit(labeledRangeMatch[1], labeledRangeMatch[4]);
@@ -873,7 +883,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const labeledValueMatch = combinedText.match(
-    /\b((?:(?:required|minimum|preferred|total)\s+)?(?:years?|months?)\s+of\s+experience|(?:required|minimum|preferred|total)\s+experience|experience\s+required)\b\s*[:\-]?\s*(?:min(?:imum)?(?:\s+of)?|at[\s-]*least)?\s*(\d+(?:\.\d+)?)(?:\s*(\+|plus))?(?:\s*(months?|years?|yrs?))?\b/i,
+    /\b((?:(?:required|minimum|preferred|total)\s+)?(?:years?|months?)\s+of\s+experience|(?:required|minimum|preferred|total)\s+experience|experience\s+required)\b\s*[:-]?\s*(?:min(?:imum)?(?:\s+of)?|at[\s-]*least)?\s*(\d+(?:\.\d+)?)(?:\s*(\+|plus))?(?:\s*(months?|years?|yrs?))?\b/i,
   );
   if (labeledValueMatch) {
     const unit = resolveContextualExperienceUnit(labeledValueMatch[1], labeledValueMatch[4]);
@@ -920,7 +930,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const bareExperienceLabelValueMatch = combinedText.match(
-    /\b(?:experience|exp\.?)\s*[:\-]\s*(\d+(?:\.\d+)?)(?:\s*(\+|plus))?\b/i,
+    /\b(?:experience|exp\.?)\s*[:-]\s*(\d+(?:\.\d+)?)(?:\s*(\+|plus))?\b/i,
   );
   // A complete year interval in this same label is not an exact lower value.
   // Reuse the canonical range reader without changing other field precedence.
@@ -966,7 +976,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const labeledMinMaxRangeMatch = combinedText.match(
-    /\b(?:min(?:imum)?|minimum|required)\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)?\b[^.]{0,40}?\b(?:max(?:imum|x)?|up\s+to)\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b/i,
+    /\b(?:min(?:imum)?|minimum|required)\s*[:-]?\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)?\b[^.]{0,40}?\b(?:max(?:imum|x)?|up\s+to)\s*[:-]?\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b/i,
   );
   if (labeledMinMaxRangeMatch) {
     const startUnit = labeledMinMaxRangeMatch[2] || labeledMinMaxRangeMatch[4];
@@ -1132,7 +1142,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const experienceRequirementValueMatch = combinedText.match(
-    /\b(?:minimum\s+)?experience\s+requirement\b\s*[:\-]?\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b/i,
+    /\b(?:minimum\s+)?experience\s+requirement\b\s*[:-]?\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b/i,
   );
   if (experienceRequirementValueMatch) {
     const exactYears = convertExperienceValueToYears(
@@ -1268,7 +1278,7 @@ const parseExperienceProfile = (job = {}) => {
   }
 
   const labeledOpenEndedMatch = combinedText.match(
-    /\b(?:years?\s+of\s+experience|(?:relevant\s+)?experience|exp\.?)\s*[:;\-]{0,2}\s*(?:>|>=|more than|over)\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b/i,
+    /\b(?:years?\s+of\s+experience|(?:relevant\s+)?experience|exp\.?)\s*[:;-]{0,2}\s*(?:>|>=|more than|over)\s*(\d+(?:\.\d+)?)\s*(months?|years?|yrs?)\b/i,
   );
   if (labeledOpenEndedMatch) {
     const minimumYears = convertExperienceValueToYears(labeledOpenEndedMatch[1], labeledOpenEndedMatch[2]);
@@ -1999,7 +2009,7 @@ const parseExperienceProfile = (job = {}) => {
     },
     {
       match: combinedText.match(
-        /(?:at[\s-]*least|min(?:imum)?(?:\s+of)?|required|preferred)\s*[:\-]?\s*(?:full[- ]time\s+)?(\d+(?:\.\d+)?)\s*[- ]?\s*(months?|years?|yrs?)\b(?:\s+(?:of\s+[^.]{0,80}?\bexperience|experience))?/i,
+        /(?:at[\s-]*least|min(?:imum)?(?:\s+of)?|required|preferred)\s*[:-]?\s*(?:full[- ]time\s+)?(\d+(?:\.\d+)?)\s*[- ]?\s*(months?|years?|yrs?)\b(?:\s+(?:of\s+[^.]{0,80}?\bexperience|experience))?/i,
       ),
       valueIndex: 1,
       unitIndex: 2,
@@ -2230,6 +2240,7 @@ const classifyRoleDomain = (job = {}, skillIds = []) => {
 };
 
 const detectWorkArrangement = (job = {}) => {
+  if (job.sourceRemoteStatusUnresolved === true) return explicitNativeWorkArrangement(job);
   const explicit = normalizeText(job.workArrangement || job.remoteStatus);
   if (explicit) {
     if (/hybrid/i.test(explicit)) return "Hybrid";
@@ -2341,19 +2352,19 @@ export const extractJobFilterSignals = (job = {}) => {
     secondaryRoleDomains: unique(
       roleDomain.secondaryRoleDomains.filter((value) => ROLE_DOMAIN_OPTIONS.includes(value)),
     ),
-    workArrangement: clampWorkArrangement(workArrangement),
+    workArrangement: job.sourceRemoteStatusUnresolved === true ? workArrangement : clampWorkArrangement(workArrangement),
     filterSignals: {
       confidence: {
         experience: experienceProfile.confidence,
         seniority: seniority.confidence,
         roleDomain: roleDomain.confidence,
-        workArrangement: workArrangement === "Not specified" ? "low" : "high",
+        workArrangement: workArrangement == null || workArrangement === "Not specified" ? "low" : "high",
       },
     },
     taxonomyVersion: TAXONOMY_VERSION,
     extractionVersion: EXTRACTION_VERSION,
     extractedAt: new Date(),
-    ...(job.classification?.authoritative === true && ['enforce', 'policy'].includes(job.classification.mode)
+    ...(!nativeExperienceConflictEvidence(job) && job.classification?.authoritative === true && ['enforce', 'policy'].includes(job.classification.mode)
       && job.classification.policyVersion === JOB_CLASSIFICATION_POLICY_VERSION
       && ['accepted', 'uncertain', 'fallback'].includes(job.classification.status)
       && ['Intern', 'Full-time Fresher', 'Full-time Experienced', 'Contract', 'Others', 'Unspecified'].includes(job.classification.resolved?.jobType)

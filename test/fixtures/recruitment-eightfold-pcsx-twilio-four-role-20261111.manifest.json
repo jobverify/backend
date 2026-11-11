@@ -1,0 +1,816 @@
+{
+  "source": "twilio",
+  "fixture": "recruitment-eightfold-pcsx-twilio-four-role-20261111.json.gz",
+  "sha256": "9eb935eba6b1efdd8fc34df3f849c4de9c663ab9339b956fafd309f38115ceff",
+  "proof": {
+    "source": "twilio",
+    "qualifiedCurrentFourRoleProof": true,
+    "roles": [
+      {
+        "roleID": 1099556746356,
+        "title": "Principal Engineer (L5)",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "wholePrimaryCriteriaAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4894,
+        "serializedPrimaryCharacters": 4470
+      },
+      {
+        "roleID": 1099556883308,
+        "title": "Phone Number specialist 1",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "wholePrimaryCriteriaAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 3944,
+        "serializedPrimaryCharacters": 3521
+      },
+      {
+        "roleID": 1099553745549,
+        "title": "Tech Lead /Sr. Principal Engineer (L6)",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "wholePrimaryCriteriaAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 5469,
+        "serializedPrimaryCharacters": 4882
+      },
+      {
+        "roleID": 1099556432090,
+        "title": "HR Partner",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": [
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": {
+                "@type": "Country",
+                "name": "IN"
+              },
+              "addressLocality": "",
+              "addressRegion": ""
+            }
+          },
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": {
+                "@type": "Country",
+                "name": "IN"
+              },
+              "addressLocality": "Bengaluru",
+              "addressRegion": "KA,IN"
+            }
+          }
+        ],
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "wholePrimaryCriteriaAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4603,
+        "serializedPrimaryCharacters": 4044
+      }
+    ],
+    "allOpeningBeforeAllClosing": true,
+    "lastOpeningAt": "2026-11-11T07:59:44.783Z",
+    "firstClosingAt": "2026-11-11T08:05:18.405Z",
+    "bothNativePagesCoherentBeforeAndAfter": true,
+    "nativeCount": 14,
+    "allCountryRepresentationsExplicitIN": true,
+    "allAuthorityAndCarriersAndRenderersClosingStable": true,
+    "additionalOwnSchemaAddressSHA256": "f6a47c20228b65510c48015a668da317163c72d8b6e33d6e283129a2e4febc8d",
+    "additionalOwnSchemaAddress": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": {
+          "@type": "Country",
+          "name": "IN"
+        },
+        "addressLocality": "Bengaluru",
+        "addressRegion": "KA,IN"
+      }
+    },
+    "exactStateRestriction": "only in Karnataka, Tamil Nadu, Telangana, Maharashtra, Delhi",
+    "publicNativeLocationPreserved": "Remote - India",
+    "additionalSchemaAddressRetainedSeparately": true,
+    "remoteStateToAdditionalAddressRelationshipUnqualified": true,
+    "noLocationIdentityOrAllIndiaEligibilityClaim": true,
+    "sourceScopeComplete": false,
+    "listingComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "noRecoveryOrZeroClaim": true
+  },
+  "responses": [
+    {
+      "ordinal": 1,
+      "phase": "opening",
+      "requestedURL": "https://www.twilio.com/en-us/careers",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T07:59:31.177Z",
+      "completedAt": "2026-11-11T07:59:33.356Z",
+      "status": 200,
+      "finalURL": "https://www.twilio.com/en-us/careers",
+      "contentType": "text/html;charset=utf-8",
+      "bodyFile": "001.html",
+      "bodySHA256": "963ec3e6e8893e90b79d2c9a05971e8ae237b96707d4ad6be5812ce148a65ff3",
+      "bodyBytes": 729435,
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:02 GMT",
+        "etag": "\"b215b-65ffa6354adcf-gzip\"",
+        "last-modified": "Wed, 11 Nov 2026 06:34:33 GMT"
+      },
+      "label": "corporate",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 2,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T07:59:33.369Z",
+      "completedAt": "2026-11-11T07:59:35.336Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "002.html",
+      "bodySHA256": "10ec38e26bdbf11c1f8f5a93bfa3102f7e4aa88b4596aa43a947af6dd5270778",
+      "bodyBytes": 150578,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:04 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "board",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 3,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "method": "GET",
+      "kind": "renderer",
+      "startedAt": "2026-11-11T07:59:36.128Z",
+      "completedAt": "2026-11-11T07:59:37.050Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "contentType": "text/javascript",
+      "bodyFile": "003.js",
+      "bodySHA256": "c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111",
+      "bodyBytes": 716693,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Fri, 06 Nov 2026 12:35:06 GMT",
+        "etag": "W/\"36d27f29d5cb16f603d2a82cade84963\"",
+        "last-modified": "Fri, 06 Nov 2026 05:48:51 GMT"
+      },
+      "label": "entry",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 4,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "method": "GET",
+      "kind": "renderer",
+      "startedAt": "2026-11-11T07:59:37.087Z",
+      "completedAt": "2026-11-11T07:59:37.430Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "contentType": "text/javascript",
+      "bodyFile": "004.js",
+      "bodySHA256": "48ab46e9fdd729f1117dc855913b9eff925eff8996519686eb31ed25d89eb385",
+      "bodyBytes": 84276,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Wed, 04 Nov 2026 16:01:10 GMT",
+        "etag": "W/\"429d37af34152726c8bac6897850090f\"",
+        "last-modified": "Wed, 04 Nov 2026 12:51:53 GMT"
+      },
+      "label": "roleRenderer",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 5,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T07:59:37.447Z",
+      "completedAt": "2026-11-11T07:59:37.994Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "contentType": "application/json",
+      "bodyFile": "005.json",
+      "bodySHA256": "1fc890e5d95edc5ada6daea219eda052542bede079d25e1681d6de171578ec3e",
+      "bodyBytes": 9462,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:07 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "selected0",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 6,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T07:59:38.027Z",
+      "completedAt": "2026-11-11T07:59:38.799Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "contentType": "application/json",
+      "bodyFile": "006.json",
+      "bodySHA256": "8355fe15c7221a63a9dc194144cf7a13520a8adf75e9f50671cd48923a02f2f7",
+      "bodyBytes": 6721,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:08 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "selected10",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 7,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T07:59:38.815Z",
+      "completedAt": "2026-11-11T07:59:39.337Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "007.json",
+      "bodySHA256": "7e496eba3014ee7a7932f04fd2422f1beb30e8ab12146058376723e071f50122",
+      "bodyBytes": 8397,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:09 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI1",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 8,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T07:59:39.383Z",
+      "completedAt": "2026-11-11T07:59:39.922Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "008.html",
+      "bodySHA256": "8bf68f68176907c88035c0423126d8eedd597a767b44054f0af7c8353d6d2c77",
+      "bodyBytes": 158499,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:09 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role1",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 9,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T07:59:40.091Z",
+      "completedAt": "2026-11-11T07:59:40.824Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "009.json",
+      "bodySHA256": "d13c183e1d60642614089efdbf015e5592c4ff3f64e67d665ee5d3e61cddd550",
+      "bodyBytes": 7482,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:10 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI2",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 10,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T07:59:40.843Z",
+      "completedAt": "2026-11-11T07:59:41.419Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "010.html",
+      "bodySHA256": "f10ccdfeb9f4426045a8b0f17d17a237c5a8ad0ec7b67b3cb58f7e1f5dcd6859",
+      "bodyBytes": 157165,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:11 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role2",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 11,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T07:59:41.554Z",
+      "completedAt": "2026-11-11T07:59:42.312Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "011.json",
+      "bodySHA256": "4c4de1b87bfa899e0a32b70d9ab7d0d3ed17c3ad15199618d0980959c94db8c6",
+      "bodyBytes": 8987,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:12 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI3",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 12,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T07:59:42.339Z",
+      "completedAt": "2026-11-11T07:59:43.255Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "012.html",
+      "bodySHA256": "d066f11613c210fb2ee6fd8aa59f172bb479320de2743214eca4f3d90f92af35",
+      "bodyBytes": 161065,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:12 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role3",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 13,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T07:59:43.382Z",
+      "completedAt": "2026-11-11T07:59:43.874Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "013.json",
+      "bodySHA256": "f8fcdf6f231344cd92e5919a1be3898cc52d31a60e46bbcd3abe05e3361b775c",
+      "bodyBytes": 8100,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:13 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI4",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "ordinal": 14,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T07:59:43.892Z",
+      "completedAt": "2026-11-11T07:59:44.783Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "014.html",
+      "bodySHA256": "ec6c279ce3019f0f5e6db18006c73d81f7acb5c67891223a04db08ba5e7ebb83",
+      "bodyBytes": 157934,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:00:14 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role4",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "roleAPI1",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:18.405Z",
+      "completedAt": "2026-11-11T08:05:20.277Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "roleAPI1.body",
+      "bodySHA256": "7e496eba3014ee7a7932f04fd2422f1beb30e8ab12146058376723e071f50122",
+      "bodyBytes": 8397,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:50 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "role1",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:20.290Z",
+      "completedAt": "2026-11-11T08:05:20.816Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "role1.body",
+      "bodySHA256": "db2e373d20ec7c59c3383de9a8e2bebe62d93946ea231b2fcf922f48f6e8aa5a",
+      "bodyBytes": 158499,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:50 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "roleAPI2",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:20.831Z",
+      "completedAt": "2026-11-11T08:05:21.331Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "roleAPI2.body",
+      "bodySHA256": "d13c183e1d60642614089efdbf015e5592c4ff3f64e67d665ee5d3e61cddd550",
+      "bodyBytes": 7482,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:51 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "role2",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:21.384Z",
+      "completedAt": "2026-11-11T08:05:22.308Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "role2.body",
+      "bodySHA256": "fc16f118718844873800796450cb844f2e54255fd0f1b1080d9dc50ad32d7643",
+      "bodyBytes": 157165,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:51 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "roleAPI3",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:22.360Z",
+      "completedAt": "2026-11-11T08:05:23.092Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "roleAPI3.body",
+      "bodySHA256": "4c4de1b87bfa899e0a32b70d9ab7d0d3ed17c3ad15199618d0980959c94db8c6",
+      "bodyBytes": 8987,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:52 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "role3",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:23.140Z",
+      "completedAt": "2026-11-11T08:05:24.050Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "role3.body",
+      "bodySHA256": "c5999baa040c8ee63d1b270afedf17a9c5fd930bb5c799a162aab48ba01e13db",
+      "bodyBytes": 159411,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:53 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "roleAPI4",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:24.102Z",
+      "completedAt": "2026-11-11T08:05:24.812Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "roleAPI4.body",
+      "bodySHA256": "f8fcdf6f231344cd92e5919a1be3898cc52d31a60e46bbcd3abe05e3361b775c",
+      "bodyBytes": 8100,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:54 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "role4",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:24.846Z",
+      "completedAt": "2026-11-11T08:05:25.782Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "role4.body",
+      "bodySHA256": "3d46775c72002c7c2e9106327ee215de83167610099857413488191b5bcef3d9",
+      "bodyBytes": 159588,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:55 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "selected0",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:25.809Z",
+      "completedAt": "2026-11-11T08:05:26.527Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "contentType": "application/json",
+      "bodyFile": "selected0.body",
+      "bodySHA256": "1fc890e5d95edc5ada6daea219eda052542bede079d25e1681d6de171578ec3e",
+      "bodyBytes": 9462,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:56 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "selected10",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:26.555Z",
+      "completedAt": "2026-11-11T08:05:27.287Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "contentType": "application/json",
+      "bodyFile": "selected10.body",
+      "bodySHA256": "8355fe15c7221a63a9dc194144cf7a13520a8adf75e9f50671cd48923a02f2f7",
+      "bodyBytes": 6721,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:57 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "board",
+      "requestedURL": "https://jobs.twilio.com/careers",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:27.333Z",
+      "completedAt": "2026-11-11T08:05:28.792Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "board.body",
+      "bodySHA256": "b3798d8e076357c475e508fffd94a88cd0f860f4f36798dbde05188a7fdfafff",
+      "bodyBytes": 152299,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:05:58 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "corporate",
+      "requestedURL": "https://www.twilio.com/en-us/careers",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:28.862Z",
+      "completedAt": "2026-11-11T08:05:30.630Z",
+      "status": 200,
+      "finalURL": "https://www.twilio.com/en-us/careers",
+      "contentType": "text/html;charset=utf-8",
+      "bodyFile": "corporate.body",
+      "bodySHA256": "bf0e73d6315709a3a897c46825d1e8e660d612028d9319fdac05bb3d68b01a3e",
+      "bodyBytes": 729435,
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:06:00 GMT",
+        "etag": "\"b215b-65ffa19f600fc-gzip\"",
+        "last-modified": "Wed, 11 Nov 2026 06:14:02 GMT"
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "entry",
+      "requestedURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:30.694Z",
+      "completedAt": "2026-11-11T08:05:31.573Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "contentType": "text/javascript",
+      "bodyFile": "entry.body",
+      "bodySHA256": "c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111",
+      "bodyBytes": 716693,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Fri, 06 Nov 2026 12:35:06 GMT",
+        "etag": "W/\"36d27f29d5cb16f603d2a82cade84963\"",
+        "last-modified": "Fri, 06 Nov 2026 05:48:51 GMT"
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    },
+    {
+      "phase": "closing",
+      "label": "roleRenderer",
+      "requestedURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "method": "GET",
+      "startedAt": "2026-11-11T08:05:31.641Z",
+      "completedAt": "2026-11-11T08:05:31.885Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "contentType": "text/javascript",
+      "bodyFile": "roleRenderer.body",
+      "bodySHA256": "48ab46e9fdd729f1117dc855913b9eff925eff8996519686eb31ed25d89eb385",
+      "bodyBytes": 84276,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Wed, 04 Nov 2026 16:01:10 GMT",
+        "etag": "W/\"429d37af34152726c8bac6897850090f\"",
+        "last-modified": "Wed, 04 Nov 2026 12:51:53 GMT"
+      },
+      "sourceReceipt": "twilio-four-role-closing-20261111a/receipts.json"
+    }
+  ]
+}

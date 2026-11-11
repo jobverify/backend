@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "source": "cloudinary",
+  "fixture": "cloudinary-current-programme-20261111.json.gz",
+  "fixtureSHA256": "0d71cbc5ae03bb29e4df788f7e159e4d8d10ec3516cf4bee2ef7d4c82fb5fcff",
+  "fixtureBytes": 264196,
+  "capturedAtFirst": "2026-11-11T10:20:38.779Z",
+  "capturedAtLast": "2026-11-11T10:21:12.195Z",
+  "packets": [
+    {
+      "phase": "opening-corporate",
+      "requestedURL": "https://cloudinary.com/careers",
+      "finalURL": "https://cloudinary.com/careers",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 145593,
+      "bodySHA256": "0a527b131c0956f8a2193e7a400d2b5646c8c49b9b4be67105b9bc331afef83a",
+      "requestedAt": "2026-11-11T10:20:38.779Z",
+      "completedAt": "2026-11-11T10:20:40.458Z"
+    },
+    {
+      "phase": "opening-jobs",
+      "requestedURL": "https://cloudinary.com/careers/jobs",
+      "finalURL": "https://cloudinary.com/careers/jobs",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 117636,
+      "bodySHA256": "510b8d13b88d9b1e71c263ac6aac2242f4a90646253e36c26df9b7fa5399656a",
+      "requestedAt": "2026-11-11T10:20:41.151Z",
+      "completedAt": "2026-11-11T10:20:43.112Z"
+    },
+    {
+      "phase": "opening-native",
+      "requestedURL": "https://api.lever.co/v0/postings/cloudinary?mode=json",
+      "finalURL": "https://api.lever.co/v0/postings/cloudinary?mode=json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 145220,
+      "bodySHA256": "723db75786a8e0b9215c8704f0ca66984601c4a87f1b0d3a64477999ff4a358b",
+      "requestedAt": "2026-11-11T10:20:43.600Z",
+      "completedAt": "2026-11-11T10:21:01.842Z"
+    },
+    {
+      "phase": "closing-native",
+      "requestedURL": "https://api.lever.co/v0/postings/cloudinary?mode=json",
+      "finalURL": "https://api.lever.co/v0/postings/cloudinary?mode=json",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "bodyBytes": 145220,
+      "bodySHA256": "723db75786a8e0b9215c8704f0ca66984601c4a87f1b0d3a64477999ff4a358b",
+      "requestedAt": "2026-11-11T10:21:03.167Z",
+      "completedAt": "2026-11-11T10:21:06.845Z"
+    },
+    {
+      "phase": "closing-jobs",
+      "requestedURL": "https://cloudinary.com/careers/jobs",
+      "finalURL": "https://cloudinary.com/careers/jobs",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 117636,
+      "bodySHA256": "1e25c9843795c9246ab2442813deed1bbe471068c240bd0c32809afc44ae5ad2",
+      "requestedAt": "2026-11-11T10:21:07.173Z",
+      "completedAt": "2026-11-11T10:21:10.337Z"
+    },
+    {
+      "phase": "closing-corporate",
+      "requestedURL": "https://cloudinary.com/careers",
+      "finalURL": "https://cloudinary.com/careers",
+      "status": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "bodyBytes": 145593,
+      "bodySHA256": "63caf1af2ea2814a92fc9956bd22d78d9c609f75c020d4a76b02c489459768fe",
+      "requestedAt": "2026-11-11T10:21:10.882Z",
+      "completedAt": "2026-11-11T10:21:12.195Z"
+    }
+  ],
+  "scope": "Six actual original current corporate/jobs/flat-native API opening and closing HTTP packets; no synthetic positive records",
+  "expected": {
+    "nativeRecords": 8,
+    "indiaCount": 0,
+    "nativeCountries": {
+      "US": 2,
+      "IL": 5,
+      "GB": 1
+    },
+    "nativeIDs": [
+      "79bfaff4-eabd-40a8-975d-d6be4b06a09f",
+      "f4f6b55a-2344-423f-a207-a9119ff67f3f",
+      "7f3812ca-d4c6-4d7f-acb0-9206c2984a64",
+      "8fcca800-21a0-4cdb-99c3-22edcf0fa400",
+      "58464bf0-84a9-4b6a-91e1-9b0844475583",
+      "7d5a3660-5cba-4b63-876a-77096b072e8c",
+      "d797b9c7-5fe7-45f7-a80e-9bbc7db82ef3",
+      "e8b76222-c0ac-40c5-b589-81a26f1830e7"
+    ],
+    "clientSHA256": "c838d69f95171af41e1e568dc7e90fb01a67117732854e12c22c50444ea3ce57",
+    "CFStaticProfile": "39a2aba8d50e14ae303a5be75faf626dbd5f50aa3c575ed6c387082c57a44692",
+    "corporateOutsideCFProfile": "c568ceaff9b7ce86f09a8072623f6747f3366e069a1b6add4fdcf110b4142edf",
+    "jobsOutsideCFProfile": "d79692eb98d7bc9c8c62c38846056e8d8f3003afad40b2ac68f3618e12f01c03",
+    "publisherBrand": "Cloudinary",
+    "perRoleNativeEmployerField": null,
+    "legalEmployerQualified": false,
+    "ownUIQualified": false,
+    "screeningQualified": false,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false
+  }
+}

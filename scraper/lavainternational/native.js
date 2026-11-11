@@ -26,7 +26,7 @@ export function inspectLavaSurfaces(surfaces){
   const hrefs=doc.nodes(n=>n.tag==='a'&&n.attrs.href).map(n=>{try{return new URL(n.attrs.href,URLS[name]).href}catch{return null}}).filter(Boolean)
   check(hrefs.includes(URLS.careers)&&hrefs.includes(URLS.listing),'current careers handoff missing: '+name)
   for(const url of hrefs.filter(url=>/\/careers?\b|\/jobs?\b|\/positions?\b|greenhouse|lever\.co|workable|teamtailor|recruitee|oraclecloud|workday/i.test(url)))contexts.add(url)
-  for(const frame of doc.nodes(n=>['iframe','object'].includes(n.tag)))reasons.push('unreviewed-native-frame-or-object:'+name)
+  for(const frame of doc.nodes(n=>['iframe','object'].includes(n.tag))){void frame;reasons.push('unreviewed-native-frame-or-object:'+name)}
   if(name==='listing')for(const key of Object.keys(HASHES)){
    check(doc.nodes(n=>executable(n)&&new URL(n.attrs.src,URLS.listing).href===URLS[key]).length===1,'current '+key+' delegation missing')
    check(typeof surfaces[key]==='string'&&sha256(surfaces[key])===HASHES[key],'reviewed '+key+' contract changed')
@@ -85,9 +85,9 @@ export function projectLavaRole(row,detail,pdfText,now){
   sourceDetailComplete:true,fullNativeCriteriaAvailable:true,sourceAvailabilityVerified:true,scrapedAt:now}
 }
 const bounded=(operation,signal)=>new Promise((resolve,reject)=>{
- const cleanup=()=>signal.removeEventListener('abort',abort),abort=()=>{cleanup();reject(signal.reason||Error('Lava request aborted'))}
+ const cleanup=()=>signal.removeEventListener('abort',abort),abort=()=>{cleanup();reject(signal.reason)}
  if(signal.aborted){abort();return}signal.addEventListener('abort',abort,{once:true})
- Promise.resolve().then(operation).then(value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)})
+ Promise.resolve().then(()=>{signal.throwIfAborted();return operation()}).then(value=>{cleanup();resolve(value)},error=>{cleanup();reject(error)})
 })
 export async function runNativeLava(options={}){
  const cap=options.maxJobs??Infinity,timeout=options.timeoutMs??120000,interval=options.requestIntervalMs??500
@@ -104,7 +104,7 @@ export async function runNativeLava(options={}){
   const r=await bounded(()=>load(url,{method:'GET',redirect:'manual',signal,headers:{Accept:pdf?'application/pdf':url.includes('/api/')?'application/json':'text/html,application/javascript'}}),signal)
   if(r.status!==200)throw Object.assign(Error('Lava public HTTP '+r.status+'; stopped without retry'),{status:r.status,abortRetries:true,softFailure:true,upstreamOutage:true})
   check(r.url===url,'public response redirected outside advertised native binding')
-  const bytes=Buffer.from(await bounded(()=>r.arrayBuffer(),signal));signal.throwIfAborted()
+  const bytes=Buffer.from(await bounded(()=>{const method=r.arrayBuffer;signal.throwIfAborted();return Reflect.apply(method,r,[])},signal));signal.throwIfAborted()
   check(bytes.length<=(pdf?12000000:3000000),'native response exceeds budget')
   if(pdf)check(bytes.subarray(0,5).toString('ascii')==='%PDF-'&&/application\/pdf/i.test(r.headers.get('content-type')||''),'native full description is not a public PDF')
   receipts.push({url,method:'GET',status:200,sha256:sha256(bytes),bytes:bytes.length,at:new Date().toISOString()})
@@ -114,7 +114,7 @@ export async function runNativeLava(options={}){
   const surfaces={};for(const key of ['about','careers','listing','client','detailClient','applicationClient'])surfaces[key]=await get(URLS[key])
   const binding=inspectLavaSurfaces(surfaces)
   const body=await get(URLS.positions)
-  let raw;try{raw=JSON.parse(body)}catch(error){throw Error('Lava native listing JSON: '+error.message)}
+  let raw;try{raw=JSON.parse(body)}catch(error){throw Error('Lava native listing JSON: '+error.message,{cause:error})}
   return{binding,rows:inspectLavaPayload(raw)}
  }
  try{

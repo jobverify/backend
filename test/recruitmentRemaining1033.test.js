@@ -11,8 +11,8 @@ import {currentCatalogBindingDates,currentModuleBindingDates,assertSpecializedBa
 const batch = remainingRecruitmentBatchProviders()
 const catalog = getScraperCatalog()
 const current = new Map(catalog.map(provider => [provider.source, provider]))
-const currentNativeSources=new Set(['lyrahealth','unosecur','kkr','precisely','mannhummel','moodyscorporation','stantec','synchronyfinancial','xerox','ncs','bilt','reuters','adityabirlarealestate','moodys','jabil','bigeye'])
-const currentParserBindings = Object.freeze({ moodys: 'current-corporate-bound-talentbrew-country-inventory', jabil: 'current-declared-first-party-jobs-feed' })
+const currentNativeSources=new Set(['lyrahealth','unosecur','kkr','precisely','mannhummel','moodyscorporation','stantec','synchronyfinancial','xerox','ncs','bilt','reuters','adityabirlarealestate','moodys','jabil','bigeye','onsemiconductor','lennoxinternational'])
+const currentParserBindings = Object.freeze({ moodys: 'current-corporate-bound-talentbrew-country-inventory', jabil: 'current-declared-first-party-jobs-feed', lennoxinternational: 'custom-script' })
 const description = '<p>Build and operate production software services, investigate distributed system failures, review API contracts and collaborate with the engineering team on reliable delivery.</p>'
 const escape = text => text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
 
@@ -23,9 +23,12 @@ test('the remaining 1033 source routes are unique, implemented and keep static i
   for (const provider of batch) {
     const selected = current.get(provider.source)
     assert.equal(classifyProviderImplementation(selected).type, 'script', provider.source)
-    assert.equal(selected.parser, currentParserBindings[provider.source] ?? 'runtime-verified-recruitment', provider.source)
-    // A reviewed native binding date is historical metadata, never inventory authority.
-    assert.equal(selected.verifiedOn, currentCatalogBindingDates[provider.source]??null)
+    assert.equal(selected.parser,provider.catalogOverride===true
+      ?provider.parser:currentParserBindings[provider.source]??'runtime-verified-recruitment',provider.source)
+    // An explicit batch override controls registered binding metadata. The
+    // module can retain a historical review date without certifying inventory.
+    assert.equal(selected.verifiedOn, provider.catalogOverride===true
+      ?provider.verifiedOn:currentCatalogBindingDates[provider.source]??null,provider.source)
     assert.equal(selected.verifiedIndiaJobCount, null)
     assert.equal(selected.verifiedPublicJobCount, null)
     assert.equal(selected.sourceScopeComplete, false)

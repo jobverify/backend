@@ -143,4 +143,4 @@ export const createGenesysScraper = ({ pageSize = 20 } = {}) => ({
   },
 })
 
-export const run = async () => createGenesysScraper().run()
+export const run = async (options) => createGenesysScraper(options).run(options)

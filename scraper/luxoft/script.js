@@ -243,7 +243,7 @@ export const createLuxoftScraper = ({
         if (seenJobIds.has(listing.jobId)) continue
         seenJobIds.add(listing.jobId)
 
-        let job = listing
+        let job
         try {
           const detailHtml = await fetchText(listing.sourceUrl)
           job = {
@@ -275,7 +275,7 @@ export const createLuxoftScraper = ({
   },
 })
 
-export const run = async () => createLuxoftScraper().run()
+export const run = async (options) => createLuxoftScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

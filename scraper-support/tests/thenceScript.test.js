@@ -1,353 +1,173 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
 import test from 'node:test'
-
+import { gunzipSync } from 'node:zlib'
 import { normalizeScrapedJob } from '../utils/normalizeScrapedJob.js'
+import { analyzePublishableJobs } from '../utils/publishableJobMetrics.js'
+import { extractionDetailHealth } from '../utils/extractionDetailHealth.js'
+import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
+import { enrichJobWithPublicExperience, enrichJobsWithPublicExperience } from '../utils/publicExperienceEnrichment.js'
 
-const loadThenceModule = async () => {
-  try {
-    return await import('../../scraper/thence/script.js')
-  } catch {
-    assert.fail('Expected Thence scraper module at ../../scraper/thence/script.js')
+const thence = await import('../../scraper/thence/script.js')
+const capture = JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/thence/fixtures/live20261111.json.gz', import.meta.url))))
+const home = Buffer.from(capture.originalPages[2].rawBodyBase64, 'base64').toString('utf8')
+const careers = Buffer.from(capture.originalPages[3].rawBodyBase64, 'base64').toString('utf8')
+
+// The positive replay uses the actual eight distinct opening/closing responses.
+// Optional mutations below are controlled negative cases, never native captures.
+function replay(change) {
+  const used = []
+  return {
+    used,
+    fetchImpl: async (url, init) => {
+      const index = used.length
+      const packet = capture.originalPages[index]
+      assert.ok(packet, 'unexpected request beyond captured opening and closing reads')
+      assert.equal(url, packet.url)
+      assert.equal(init.method, 'GET')
+      assert.equal(init.redirect, 'manual')
+      assert.equal(init.credentials, 'omit')
+      used.push(packet)
+      let body = Buffer.from(packet.rawBodyBase64, 'base64')
+      if (change) body = change(body, index)
+      const response = new Response(body, { status: packet.status, headers: packet.headers })
+      Object.defineProperty(response, 'url', { value: packet.finalUrl })
+      return response
+    },
   }
 }
 
-const officialHomepageHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Thence Digital</title>
-  </head>
-  <body>
-    <nav>
-      <a href="https://thence.digital/blogs">Blogs</a>
-      <a href="https://thence.digital/careers">Careers</a>
-      <a href="https://thence.digital/contact-us">Contact us</a>
-    </nav>
-  </body>
-</html>
-`
-
-const officialCareersHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Careers</title>
-    <link rel="canonical" href="https://www.thence.digital/careers"/>
-  </head>
-  <body>
-    <main>
-      <h1>Solve for Change, Craft a better you.</h1>
-      <p>
-        Join Thence and be part of a top UI/UX design agency.
-        Explore career opportunities to create innovative digital experiences.
-      </p>
-      <a href="#section-contact-us-form">See Open Roles</a>
-      <a href="#section-contact-us-form">Apply Now</a>
-
-      <form id="job-application-form">
-        <div class="form-input-row">
-          <input id="jaf-full_name" name="Full-name" type="text"/>
-          <select id="jaf-select_role" name="Select-role" required="">
-            <option value="-">Select role</option>
-            <option value="Product Data Analyst">Product Data Analyst</option>
-            <option value="UI Tester">UI Tester</option>
-            <option value="Engineering Head">Engineering Head</option>
-            <option value="UI Designer">UI Designer</option>
-            <option value="Account Executive - Sales">Account Executive - Sales</option>
-            <option value="Asst. Manager - Founder&#x27;s Office">Asst. Manager - Founder&#x27;s Office</option>
-            <option value="Front-end Developer">Front-end Developer</option>
-            <option value="Senior Manager - Business Content &amp; Communication">Senior Manager - Business Content &amp; Communication</option>
-            <option value="UX Intern">UX Intern</option>
-            <option value="UX Designer">UX Designer</option>
-            <option value="Project Manager - Engineering">Project Manager - Engineering</option>
-            <option value="UX Researcher">UX Researcher</option>
-            <option value="Senior UX Designer">Senior UX Designer</option>
-            <option value="Product Consultant/APC">Product Consultant/APC</option>
-            <option value="Sales Manager - Tech">Sales Manager - Tech</option>
-            <option value="PMO - CEO&#x27;s Office">PMO - CEO&#x27;s Office</option>
-          </select>
-        </div>
-        <input id="jaf-current_ctc" name="Current-CTC-LPA-INR" type="number"/>
-        <input
-          id="jaf-experience"
-          name="Relevant-years-of-experience"
-          placeholder="Relevant years of experience"
-          type="number"
-        />
-        <select id="jaf-job_type" name="Current-job-type" required="">
-          <option value="-">Current job type</option>
-          <option value="Full-time">Full-time</option>
-          <option value="Internship">Internship</option>
-        </select>
-        <select id="jad-reference" name="How-did-you-know-about-this-opportunity" required="">
-          <option value="-">How did you know about this opportunity</option>
-          <option value="Linked In - Job Posting">Linked In - Job Posting</option>
-          <option value="Thence Website">Thence Website</option>
-        </select>
-      </form>
-    </main>
-  </body>
-</html>
-`
-
-const liveSharedFormCareersHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Careers</title>
-  </head>
-  <body>
-    <main>
-      <h1>Solve for Change, Craft a better you.</h1>
-      <p>Join Thence and be part of a top UI/UX design agency.</p>
-      <form id="job-application-form">
-        <input id="jaf-full_name" name="Full-name" type="text"/>
-        <select id="jaf-select_role" name="Select-role" required="">
-          <option value="-">Select role</option>
-          <option value="Product Data Analyst">Product Data Analyst</option>
-          <option value="UX Intern">UX Intern</option>
-        </select>
-        <input id="jaf-current_ctc" name="Current-CTC-LPA-INR" type="number"/>
-        <input
-          id="jaf-experience"
-          name="Relevant-years-of-experience"
-          placeholder="Relevant years of experience"
-          type="number"
-        />
-        <label for="jaf-duration">Duration</label>
-        <select id="jaf-duration" name="Notice-period-duration">
-          <option value="0 Days">0 Days</option>
-          <option value="Less than 7 Days">Less than 7 Days</option>
-          <option value="Less than 15 Days">Less than 15 Days</option>
-          <option value="Less than 20 Days">Less than 20 Days</option>
-          <option value="Less than 30 Days">Less than 30 Days</option>
-          <option value="Less than 45 Days">Less than 45 Days</option>
-          <option value="Less than 60 Days">Less than 60 Days</option>
-          <option value="Less than 75 Days">Less than 75 Days</option>
-          <option value="Less than 90 Days">Less than 90 Days</option>
-        </select>
-        <label for="jaf-negotiable">Is it negotiable?</label>
-        <select id="jaf-negotiable" name="Is-it-negotiable">
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-        <select id="jad-reference" name="How-did-you-know-about-this-opportunity" required="">
-          <option value="Linked In - Informed by HR">Linked In - Informed by HR</option>
-          <option value="Linked In - Job Posting">Linked In - Job Posting</option>
-          <option value="Indeed">Indeed</option>
-          <option value="Hirist">Hirist</option>
-          <option value="Crew Karma">Crew Karma</option>
-          <option value="Glassdoor">Glassdoor</option>
-          <option value="Wellfound: Naukari Behance Internshala">Wellfound: Naukari Behance Internshala</option>
-          <option value="Thence Website">Thence Website</option>
-          <option value="Other/Design Institutes/Reference">Other/Design Institutes/Reference</option>
-        </select>
-      </form>
-    </main>
-    <p>
-      By using this website and submitting your information, you consent to the
-      collection, processing and storage of your personal data in accordance with our Privacy Policy.
-    </p>
-    <footer>
-      <p>To be updated with our latest insights join us</p>
-      <p>Cookie settings</p>
-      <p>Accept all cookies</p>
-      <p>Thank you! Your submission has been received!</p>
-      <p>Oops! Something went wrong while submitting the form.</p>
-      <p>
-        about us As a Product Success Company, Thence works with leaders of Fortune500s
-        to identify innovation opportunities by building/disrupting products to deliver
-        business impact.
-      </p>
-      <p>Links Careers Contact us Privacy Policy Practices Consulting Research Design Engineering Analytics</p>
-      <p>Our presence Singapore UAE USA India</p>
-      <p>Say hello connect@thence.co</p>
-      <p>2025. All Rights Reserved</p>
-      <p>Strictly necessary (always active)</p>
-      <p>Marketing</p>
-      <p>Personalization</p>
-      <p>Analytics</p>
-      <p>Deny Save settings</p>
-    </footer>
-  </body>
-</html>
-`
-
-test('Thence scraper validates the official homepage handoff and extracts public role options from the careers form', async () => {
-  const thence = await loadThenceModule()
-
+test('Thence validates its current corporate handoff and preserves all sixteen native application choices', () => {
   assert.equal(thence.SOURCE, 'thence')
   assert.equal(thence.COMPANY, 'Thence Private Limited')
   assert.equal(thence.HOMEPAGE_URL, 'https://thence.co')
-  assert.equal(thence.CAREERS_URL, 'https://thence.digital/careers')
-  assert.equal(thence.APPLY_URL, 'https://thence.digital/careers#section-contact-us-form')
-  assert.equal(thence.hasOfficialHomepageSignal(officialHomepageHtml), true)
-  assert.equal(thence.extractCareersUrlFromHomepage(officialHomepageHtml), thence.CAREERS_URL)
-  assert.equal(thence.hasOfficialCareersSignal(officialCareersHtml), true)
-
-  const jobs = thence.extractOpenRoles(officialCareersHtml)
-  assert.equal(jobs.length, 16)
-  assert.deepEqual(
-    jobs.map((job) => job.title),
-    [
-      'Product Data Analyst',
-      'UI Tester',
-      'Engineering Head',
-      'UI Designer',
-      'Account Executive - Sales',
-      "Asst. Manager - Founder's Office",
-      'Front-end Developer',
-      'Senior Manager - Business Content & Communication',
-      'UX Intern',
-      'UX Designer',
-      'Project Manager - Engineering',
-      'UX Researcher',
-      'Senior UX Designer',
-      'Product Consultant/APC',
-      'Sales Manager - Tech',
-      "PMO - CEO's Office",
-    ],
-  )
-  assert.deepEqual(jobs[0], {
-    title: 'Product Data Analyst',
-    company: 'Thence Private Limited',
-    department: null,
-    location: 'India',
-    city: null,
-    country: 'India',
-    jobId: 'thence-product-data-analyst',
-    requisitionId: 'thence-product-data-analyst',
-    sourceUrl: 'https://thence.digital/careers',
-    applyUrl: 'https://thence.digital/careers#section-contact-us-form',
-    employmentType: null,
-    experienceRequired: null,
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: null,
-    publicExperienceChecked: true,
-    remoteStatus: null,
-  })
-})
-
-test('Thence treats the shared public application form as verified experience evidence without inventing a requirement', async () => {
-  const thence = await loadThenceModule()
-
-  const jobs = thence.extractOpenRoles(officialCareersHtml)
-  const analyst = jobs.find((job) => job.title === 'Product Data Analyst')
-
-  assert.equal(analyst?.experienceRequired, null)
-  assert.equal(analyst?.publicExperienceChecked, true)
-  assert.ok(jobs.every((job) => job.publicExperienceChecked === true))
-})
-
-test('Thence normalization keeps shared-form roles verified-missing instead of inferring zero experience from generic applicant fields', async () => {
-  const thence = await loadThenceModule()
-  const analyst = thence.extractOpenRoles(liveSharedFormCareersHtml)
-    .find((job) => job.title === 'Product Data Analyst')
-
-  const normalized = normalizeScrapedJob({
-    ...analyst,
-    source: thence.SOURCE,
-    link: thence.APPLY_URL,
-    scrapedAt: '2026-08-06T00:00:00.000Z',
-  }, {
-    source: thence.SOURCE,
-    companyName: thence.COMPANY,
-    companyCareerPage: thence.CAREERS_URL,
-  })
-
-  assert.equal(analyst?.jobDescription, null)
-  assert.equal(normalized.publicExperienceChecked, true)
-  assert.equal(normalized.jobDescription, null)
-  assert.equal(normalized.experienceRequired, null)
-})
-
-test('Thence run validates the official homepage and careers page before decorating the public role list', async () => {
-  const thence = await loadThenceModule()
-  const requestedUrls = []
-
-  const jobs = await thence.createThenceScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === thence.HOMEPAGE_URL) return officialHomepageHtml
-      if (url === thence.CAREERS_URL) return officialCareersHtml
-
-      throw new Error(`Unexpected Thence fixture URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    thence.HOMEPAGE_URL,
-    thence.CAREERS_URL,
+  assert.equal(thence.CAREERS_URL, 'https://www.thence.digital/careers')
+  assert.equal(thence.APPLY_URL, 'https://www.thence.digital/careers#section-contact-us-form')
+  assert.equal(thence.hasOfficialHomepageSignal(home), true)
+  assert.equal(thence.extractCareersUrlFromHomepage(home), thence.CAREERS_URL)
+  assert.equal(thence.hasOfficialCareersSignal(careers), true)
+  const choices = thence.extractOpenRoles(careers)
+  assert.deepEqual(choices.map(choice => choice.title), [
+    'Product Data Analyst', 'UI Tester', 'Engineering Head', 'UI Designer',
+    'Account Executive - Sales', "Asst. Manager - Founder's Office", 'Front-end Developer',
+    'Senior Manager - Business Content & Communication', 'UX Intern', 'UX Designer',
+    'Project Manager - Engineering', 'UX Researcher', 'Senior UX Designer',
+    'Product Consultant/APC', 'Sales Manager - Tech', "PMO - CEO's Office",
   ])
-  assert.equal(jobs.length, 16)
-  assert.equal(jobs[0].company, 'Thence Private Limited')
-  assert.equal(jobs[0].source, 'thence')
-  assert.equal(jobs[0].country, 'India')
-  assert.equal(jobs[0].link, thence.APPLY_URL)
-  assert.equal(jobs[0].experienceRequired, null)
-  assert.ok(jobs.every((job) => job.publicExperienceChecked === true))
-  assert.equal(typeof jobs[0].scrapedAt, 'string')
-  assert.notEqual(jobs[0].jobId, jobs[1].jobId)
+  assert.equal(choices[0].jobId, 'thence-product-data-analyst')
+  assert.equal(new Set(choices.map(choice => choice.jobId)).size, 16)
+  for (const choice of choices) {
+    assert.equal(choice.sourceRecordKind, 'application-role-choice')
+    assert.equal(choice.sourceNativeVacancyConfirmed, false)
+    assert.equal(choice.country, null)
+    assert.equal(choice.location, null)
+    assert.equal(choice.requisitionId, null)
+    assert.equal(choice.nativeLegalEmployer, null)
+    assert.equal(choice.jobDescription, null)
+  }
 })
 
-test('Thence fails closed when the verified homepage handoff or careers form changes', async () => {
-  const thence = await loadThenceModule()
+test('Thence shared applicant salary, experience and job-type inputs do not establish vacancy requirements', () => {
+  assert.match(careers, /Current-CTC-LPA-INR/)
+  assert.match(careers, /Relevant-years-of-experience/)
+  assert.match(careers, /Current-job-type/)
+  const choices = thence.extractOpenRoles(careers)
+  assert.equal(choices.length, 16)
+  for (const choice of choices) {
+    assert.equal(choice.experienceRequired, null)
+    assert.equal(choice.employmentType, null)
+    assert.equal(choice.minimumQualification, null)
+    assert.deepEqual(choice.requiredSkills, [])
+    assert.equal(choice.sourceExperienceEvidenceKind, 'shared-applicant-intake-not-own-role-requirement')
+    assert.equal(choice.sourceDetailComplete, false)
+  }
+})
 
-  await assert.rejects(
-    thence.createThenceScraper().run({
-      fetchText: async (url) => {
-        if (url === thence.HOMEPAGE_URL) {
-          return '<html><head><title>Unexpected</title></head><body></body></html>'
-        }
+test('Thence normalization preserves unknown country and missing criteria against an India provider default', () => {
+  const choices = thence.extractOpenRoles(careers)
+  const normalized = choices.map(choice => normalizeScrapedJob(choice, {
+    source: thence.SOURCE, companyName: thence.COMPANY,
+    companyCareerPage: thence.CAREERS_URL, countryFilter: 'India', country: 'India',
+  }))
+  assert.equal(normalized.length, 16)
+  for (const choice of normalized) {
+    assert.equal(choice.country, null)
+    assert.equal(choice.jobDescription, null)
+    assert.equal(choice.experienceRequired, null)
+    assert.equal(choice.requisitionId, null)
+  }
+  assert.equal(analyzePublishableJobs(normalized).indiaJobs.length, 0)
+  assert.equal(analyzePublishableJobs(normalized).eligibleJobs.length, 0)
+  assert.equal(extractionDetailHealth(choices).missingDescriptions, 16)
+})
 
-        throw new Error(`Unexpected Thence fixture URL: ${url}`)
-      },
-    }),
-    /verified official homepage/i,
-  )
+test('Thence run checks distinct current opening and closing responses while retaining application candidates', async () => {
+  const r = replay()
+  const choices = await thence.createThenceScraper().run({ fetchImpl: r.fetchImpl })
+  assert.equal(r.used.length, 8)
+  assert.deepEqual(r.used.map(packet => packet.url), capture.originalPages.map(packet => packet.url))
+  assert.equal(choices.length, 16)
+  assert.equal(choices[0].source, thence.SOURCE)
+  assert.equal(choices[0].link, thence.APPLY_URL)
+  assert.match(choices[0].scrapedAt, /^\d{4}-\d{2}-\d{2}T/)
+  assert.equal(choices.sourceAudit.observedApplicationRoleChoices, 16)
+  assert.equal(choices.sourceAudit.confirmedNativeVacancyTotal, null)
+  assert.equal(choices.sourceAudit.confirmedIndiaVacancyTotal, null)
+  assert.equal(choices.sourceAudit.closingCorporateMatches, true)
+  assert.equal(choices.sourceAudit.closingApplicationChoicesMatch, true)
+  assert.deepEqual(choices.sourceAudit.originalPages.map(packet => packet.rawBodyBase64), r.used.map(packet => packet.rawBodyBase64))
+  const inventory = readInventoryEvidence(choices)
+  assert.equal(inventory.listingComplete, false)
+  assert.equal(inventory.lifecycleCleanupAllowed, false)
+  assert.equal(inventory.reportedTotal, null)
+  assert.equal(analyzePublishableJobs(choices).indiaJobs.length, 0)
+})
 
-  await assert.rejects(
-    thence.createThenceScraper().run({
-      fetchText: async (url) => {
-        if (url === thence.HOMEPAGE_URL) {
-          return officialHomepageHtml.replace(
-            'https://thence.digital/careers',
-            'https://jobs.example.com/thence',
-          )
-        }
+test('Thence fails closed when its current publisher, careers handoff or application selector changes', async () => {
+  const changedPublisher = replay((body, index) => index === 2
+    ? Buffer.from(body.toString('utf8').replace('<title>Thence Digital</title>', '<title>Another Company</title>')) : body)
+  await assert.rejects(thence.createThenceScraper().run({ fetchImpl: changedPublisher.fetchImpl }), /publisher/)
+  assert.equal(changedPublisher.used.length, 3)
+  const changedHandoff = replay((body, index) => index === 2
+    ? Buffer.from(body.toString('utf8').replaceAll('href="/careers"', 'href="https://jobs.example.com/thence"')) : body)
+  await assert.rejects(thence.createThenceScraper().run({ fetchImpl: changedHandoff.fetchImpl }), /careers handoff/)
+  assert.equal(changedHandoff.used.length, 3)
+  const changedForm = replay((body, index) => index === 3
+    ? Buffer.from(body.toString('utf8').replace('id="jaf-select_role"', 'id="other-selector"')) : body)
+  await assert.rejects(thence.createThenceScraper().run({ fetchImpl: changedForm.fetchImpl }), /role selector/)
+  assert.equal(changedForm.used.length, 4)
+})
 
-        throw new Error(`Unexpected Thence fixture URL: ${url}`)
-      },
-    }),
-    /verified official careers handoff/i,
-  )
+test('Thence rejects metadata-free callbacks before they can imply verified redirects or an empty inventory', async () => {
+  let reads = 0
+  await assert.rejects(thence.createThenceScraper().run({
+    fetchText: async () => { reads++; return home },
+  }), /HTTP response metadata required/)
+  assert.equal(reads, 0)
+})
 
-  await assert.rejects(
-    thence.createThenceScraper().run({
-      fetchText: async (url) => {
-        if (url === thence.HOMEPAGE_URL) return officialHomepageHtml
-        if (url === thence.CAREERS_URL) {
-          return `
-            <html>
-              <head><title>Careers</title></head>
-              <body>
-                <main>
-                  <h1>Solve for Change, Craft a better you.</h1>
-                  <a href="#section-contact-us-form">Apply Now</a>
-                </main>
-              </body>
-            </html>
-          `
-        }
-
-        throw new Error(`Unexpected Thence fixture URL: ${url}`)
-      },
-    }),
-    /verified official public careers surface/i,
-  )
+test('Thence shared application candidates bypass generic enrichment without inventing zero experience', async () => {
+  const normalized = thence.extractOpenRoles(careers).map(choice => normalizeScrapedJob(choice, {
+    source: thence.SOURCE, companyName: thence.COMPANY, countryFilter: 'India',
+  }))
+  let reads = 0
+  const options = {
+    fetchText: async () => { reads++; return { html: careers, status: 200, url: thence.CAREERS_URL } },
+    fetchJson: async () => { reads++; return {} },
+    fetchBrowserText: async () => { reads++; return { html: careers, status: 200, url: thence.CAREERS_URL } },
+  }
+  const analyst = await enrichJobWithPublicExperience(normalized[0], options)
+  assert.equal(analyst.experienceRequired, null)
+  assert.equal(reads, 0)
+  const choices = await enrichJobsWithPublicExperience(normalized, options)
+  assert.equal(choices.length, 16)
+  assert.equal(reads, 0)
+  for (const choice of choices) {
+    assert.equal(choice.experienceRequired, null)
+    assert.equal(choice.jobDescription, null)
+    assert.equal(choice.country, null)
+    assert.equal(choice.requisitionId, null)
+    assert.equal(choice.publicExperienceChecked, false)
+    assert.equal(choice.skipPublicExperienceEnrichment, true)
+  }
 })

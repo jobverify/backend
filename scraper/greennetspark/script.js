@@ -211,7 +211,7 @@ export const createGreenNetSparkScraper = ({
   },
 })
 
-export const run = async () => createGreenNetSparkScraper().run()
+export const run = async (options) => createGreenNetSparkScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

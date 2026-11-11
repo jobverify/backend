@@ -1,12 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRecruitmentBatchSource } from '../../scraper-support/utils/recruitmentBatch20261103.js'
+import {createHdfcBankScraper} from './native20261110.js'
 
 export const SOURCE = "hdfcbank"
 export const COMPANY = "HDFC Bank"
 export const CAREERS_URL = "https://www.hdfc.bank.in/careers"
 export const DISPOSITION = 'runtime-verified-recruitment'
-export const run = options => runRecruitmentBatchSource(SOURCE, options)
+export const run = options => createHdfcBankScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

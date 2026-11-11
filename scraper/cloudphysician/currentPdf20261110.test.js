@@ -18,7 +18,7 @@ const packets = readdirSync(directory).filter(file => file.endsWith('.json.gz'))
 const original = new Map(packets.map(packet => [packet.requestUrl, packet]))
 const careers = 'https://www.cloudphysician.net/careers/'
 const indiaPdf = 'https://www.cloudphysician.net/assets/jds/20220331_BusinessDevelopment%20Manager.pdf'
-const transport = (change = (_, packet) => packet, calls = []) => async (url, options) => {
+const transport = (change = (_, packet) => packet, calls = []) => async (url) => {
   calls.push(url)
   const packet = original.get(url)
   assert.ok(packet, 'Only currently advertised URLs are allowed: ' + url)
@@ -69,11 +69,11 @@ test('changed closing role declarations cannot authorize publication', async () 
   /Cloudphysician.*(?:closing|snapshot|changed)/i)
 })
 
-const negativePdf = async text => {
+const negativePdf = async (text, {applicationLink = 'mailto:careers@cloudphysician.net'} = {}) => {
   const chunks = [], document = new PDFDocument({size: 'A4', margin: 40})
   const complete = new Promise(resolve => document.on('end', () => resolve(Buffer.concat(chunks))))
   document.on('data', chunk => chunks.push(chunk))
-  document.fontSize(10).text(text).text('careers@cloudphysician.net', {link: 'mailto:careers@cloudphysician.net'})
+  document.fontSize(10).text(text).text('careers@cloudphysician.net', applicationLink === null ? {} : {link: applicationLink})
   document.end()
   return complete
 }
@@ -138,3 +138,14 @@ test('pre-aborted caller retains its reason and makes no native request', async 
   await assert.rejects(source.run({signal: controller.signal, fetchImpl: transport(undefined, calls)}), error => error === reason)
   assert.equal(calls.length, 0)
 })
+
+for (const applicationLink of [null, 'mailto:another-employer@example.test']) {
+  test('synthetic native PDF email text cannot replace its exact application annotation: ' + applicationLink, async () => {
+    const text = 'Business Development Manager (India)\nCLOUDPHYSICIAN\n'
+      + 'JOB DESCRIPTION\nWork with clients and develop sales relationships. '.repeat(30)
+      + '\nPREFERRED QUALIFICATIONS\nMBA and sales experience.\nHow to apply\ncareers@cloudphysician.net\nCloudphysician Healthcare Pvt. Ltd.'
+    const bytes = await negativePdf(text, {applicationLink})
+    await assert.rejects(source.run({fetchImpl: transport((url, packet) => url === indiaPdf ? {...packet, bytes} : packet)}),
+      /Cloudphysician.*application binding unavailable/i)
+  })
+}

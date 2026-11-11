@@ -1,15 +1,16 @@
 import {isDeepStrictEqual} from 'node:util'
 import {createHash} from 'node:crypto'
 import {parseNativeJSON} from '../aecom.workday/nativeJSON.js'
-import {document,all,one,cls,norm,flow,snapshot} from './currentHtml.js'
+import {document,one,cls,norm,flow,snapshot} from './currentHtml.js'
 import {need,failure} from './currentErrors.js'
 import {OUTSIDE_CRITERIA_TEMPLATE} from './currentTemplateContract.js'
 export {need,failure,isFailure} from './currentErrors.js'
+const profileNeed=(value,message)=>{if(!value)throw Object.assign(failure(message),{softFailure:true,upstreamOutage:false,failureKind:'surface_drift_or_fail_closed'})}
 export const HOME='https://anandengg.in/',CAREERS=HOME+'open-positions/',BRAND='Anand Engineering'
 export const sha=v=>createHash('sha256').update(v).digest('hex')
 export const json=v=>{try{return parseNativeJSON(v)}catch(e){throw failure('JSON: '+e.message)}}
 export function schema(doc){
- const models=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json'&&!n.attrs.src).flatMap(n=>{const m=json(n.raw||'');need(m&&typeof m==='object'&&!Array.isArray(m),'unreviewed native schema shape');return m['@graph']||[m]})
+ const models=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json'&&!n.attrs.src).flatMap(n=>{const m=json(n.raw||'');profileNeed(m&&typeof m==='object'&&!Array.isArray(m),'unreviewed native schema shape');return m['@graph']||[m]})
  need(models.every(m=>m&&typeof m==='object'&&!Array.isArray(m)),'invalid schema graph');return models
 }
 export function publisher(doc){const org=one(schema(doc).filter(m=>m['@type']==='Organization'),'own publisher Organization');need(org.name===BRAND&&org.url===HOME&&org['@id']===HOME+'#organization','native publisher identity differs');return org}
@@ -32,7 +33,7 @@ export function readRoleDeclaration(html,card,org){
  const region=one(doc.nodes(n=>n.attrs['data-id']==='2615a90',root),'complete authored job-facts column');need(doc.nodes(n=>n.tag==='form',region).length===0,'application form entered criteria scope');need(doc.nodes(n=>n.tag==='h3'&&norm(flow(n))==='Job Description',region).length===1,'whole job-description section missing')
  const forms=doc.nodes(n=>n.tag==='form',root);need(forms.length===1&&forms[0].attrs.name==='Career Form','current application declaration differs')
  const outside=node=>{if(typeof node==='string')return node;if(node.attrs['data-id']==='2615a90')return{nativeCriteriaColumn:true};if(node.tag==='form')return{unvisitedApplicationForm:true};const attrs={...node.attrs};if(attrs.class)attrs.class=attrs.class.replace('post-'+card.postID,'post-<current>');return{tag:node.tag,attrs,children:(node.raw===undefined?node.children:node.raw?[node.raw]:[]).map(outside)}}
- need(isDeepStrictEqual(outside(root),OUTSIDE_CRITERIA_TEMPLATE),'unreviewed native template outside complete criteria column')
+ profileNeed(isDeepStrictEqual(outside(root),OUTSIDE_CRITERIA_TEMPLATE),'unreviewed native template outside complete criteria column')
  const link=one(doc.nodes(n=>n.tag==='link'&&(n.attrs.rel||'').toLowerCase()==='alternate'&&n.attrs.type==='application/json'),'declared own native JSON'),jsonURL=link.attrs.href;need(jsonURL===HOME+'wp-json/wp/v2/job-opening/'+card.postID,'native CMS counterpart differs')
  return{doc,root,region,models,jsonURL,canonicalURL:canonical.attrs.href,titleTree:snapshot(title),publisher:own}
 }

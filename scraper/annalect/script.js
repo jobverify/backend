@@ -247,7 +247,7 @@ export const createAnnalectScraper = ({
   },
 })
 
-export const run = async () => createAnnalectScraper().run()
+export const run = async (options) => createAnnalectScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -1,0 +1,9 @@
+{
+  "capturedAt": "2026-11-10T19:46:21.914Z",
+  "sha256": "aa2da03d8485353f9017848277354e9b8c8ad1be8c1e0752ab5d3f843426bb7b",
+  "packets": 7,
+  "readOnly": true,
+  "rawResponseBytes": true,
+  "communicatorSHA256": "cc4b46b6997e24a44c24764292e71b215d6b56554038596faeba3401a842ef95",
+  "provenance": "Fresh complete raw response bytes, including the native JavaScript UTF-8 BOM; exact current corporate delegation, native read-only executable, opening listing, two own details and closing listing. Historical text-decoded capture and failed registered BOM hold retained separately. Aggregate counters are not inventory totals."
+}

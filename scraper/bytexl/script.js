@@ -274,7 +274,7 @@ export const createBytexlScraper = ({ maxJobs = null } = {}) => ({
   },
 })
 
-export const run = async () => createBytexlScraper().run()
+export const run = async (options) => createBytexlScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

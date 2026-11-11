@@ -1,7 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {collectStridesNative,activeCorporate,activePortal} from './nativeContract.js'
+import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 
 import { STRIDES_PHARMA_CATALOG } from './catalog.js'
@@ -21,8 +22,6 @@ export const LISTING_KEY = PROVIDER_METADATA.listingKey
 export const DETAIL_KEY = PROVIDER_METADATA.detailKey
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
-
-const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
 
 const normalizeWhitespace = (value) => {
   if (value == null) return null
@@ -71,56 +70,22 @@ const extractTableBlocks = (xml, tagName) =>
   [...String(xml ?? '').matchAll(new RegExp(`<${tagName}>([\\s\\S]*?)</${tagName}>`, 'gi'))]
     .map((match) => match[1])
 
-const normalizeCity = (value) => {
-  const parts = String(value ?? '')
-    .split(',')
-    .map((part) => normalizeWhitespace(part))
-    .filter(Boolean)
-
-  const unique = parts.filter((part, index) => parts.indexOf(part) === index)
-  return unique[0] ?? null
-}
-
-const toLocationLabel = (locationCity) => {
-  const city = normalizeCity(locationCity)
-  return city ? `${city}, India` : 'India'
-}
+const toLocationLabel = (locationCity) => normalizeWhitespace(locationCity)
 
 const extractMinimumQualificationFromDescription = (descriptionHtml) =>
   decodeHtmlEntities(String(descriptionHtml ?? ''))
     .match(/\bQualification:\s*([^<\n]+)/i)?.[1]?.trim() ?? null
 
-export const hasOfficialCareersPageSignal = (html = '') => {
-  const page = String(html ?? '')
-  const normalized = stripTags(page)
-
-  return /<title>\s*Careers\s*\|\s*Join the Strides Team\s*<\/title>/i.test(page)
-    && normalized?.includes('Join Us and Grow with Strides')
-    && /href=["']https:\/\/portal\.arcolab\.com\/careerportal\/["']/i.test(page)
-    && normalized?.includes('View current openings')
-}
-
-export const hasOfficialPortalSignal = (html = '') => {
-  const page = String(html ?? '')
-  const normalized = stripTags(page)
-
-  return (
-    /<title>\s*Career Portal\s*<\/title>/i.test(page)
-    && normalized?.includes('Build your future with Us')
-    && /Welcome to the Careers Centre for strides\s*\./i.test(normalized || '')
-    && /Strides Pharma Science Limited\b/i.test(page)
-    && /company\s*:\s*"Strides"/i.test(page)
-    && (/ServiceHandler\.svc/i.test(page) || /js\/Communicator\.js/i.test(page))
-  )
-  // The portal script references Communicator.js, which in turn pins ServiceHandler.svc.
-}
+export const hasOfficialCareersPageSignal = html => activeCorporate(html, OFFICIAL_CAREERS_HANDOFF_URL)
+export const hasOfficialPortalSignal = html => activePortal(html)
 
 export const extractPortalServiceUrl = (
   html = '',
   portalUrl = OFFICIAL_CAREERS_HANDOFF_URL,
 ) => {
-  const page = String(html ?? '')
-  if (!/js\/Communicator\.js/i.test(page)) return null
+  const doc = readNativeDocument(String(html ?? ''))
+  if (!doc.nodes(n => n.tag === 'script' && (!n.attrs.type || ['text/javascript','application/javascript','module'].includes(n.attrs.type))
+    && n.attrs.src && new URL(n.attrs.src, portalUrl).href === new URL('js/Communicator.js', portalUrl).href).length) return null
 
   return new URL('ServiceHandler.svc/GenericMethod', portalUrl).toString()
 }
@@ -150,12 +115,13 @@ export const extractListings = (xml = '') =>
       employmentType: extractTagValue(block, 'employee_type'),
       totalPositions: extractTagValue(block, 'total_positions'),
       locationCity: extractTagValue(block, 'location_city'),
+      nativeWorksite: extractTagValue(block, 'Joblocation'),
       companyToken: extractTagValue(block, 'company'),
     }))
     .filter((job) => normalizeWhitespace(job.companyToken) === PORTAL_COMPANY_TOKEN)
     .map((job) => ({
       ...job,
-      locationLabel: toLocationLabel(job.locationCity),
+      locationLabel: job.nativeWorksite || toLocationLabel(job.locationCity),
     }))
     .filter((job) => job.jobId && job.title)
 
@@ -180,146 +146,18 @@ export const extractJobDetail = (xml = '') => {
   }
 }
 
-const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
-  signal,
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: 'stridespharma-html',
-  timeoutMs: 15000,
-})
-
-const defaultFetchJson = (url, options = {}) => fetchJsonWithRetry(url, {
-  ...options,
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json,text/plain,*/*',
-    ...(options.headers ?? {}),
-  },
-  label: 'stridespharma-json',
-  timeoutMs: 15000,
-})
-
-const mapJob = (listing, detail) => {
-  const city = normalizeCity(detail?.locationCity ?? listing.locationCity)
-
-  return {
-    title: detail?.title ?? listing.title,
-    company: COMPANY_NAME,
-    department: detail?.department ?? listing.department,
-    location: toLocationLabel(detail?.locationCity ?? listing.locationCity),
-    city,
-    country: 'India',
-    jobId: listing.jobId,
-    requisitionId: listing.jobId,
-    sourceUrl: OFFICIAL_CAREERS_HANDOFF_URL,
-    applyUrl: buildApplyUrl(listing.jobId),
-    employmentType: detail?.employmentType ?? listing.employmentType,
-    experienceRequired: detail?.experience ?? listing.experience,
-    minimumQualification: detail?.minimumQualification ?? null,
-    preferredQualification: null,
-    requiredSkills: [],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: detail?.jobDescription ?? null,
-  }
-}
-
 export const createStridesPharmaScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({
-    fetchText: rawFetchText = defaultFetchText,
-    fetchJson: rawFetchJson = defaultFetchJson,
-    signal,
-    now = () => new Date().toISOString(),
-  } = {}) {
-    const fetchText = async (url, options = {}) => {
-      signal?.throwIfAborted()
-      try {
-        const value = await rawFetchText(url, { ...options, signal: signal || options.signal })
-        signal?.throwIfAborted()
-        return value
-      } catch (error) {
-        signal?.throwIfAborted()
-        throw error
-      }
-    }
-    const fetchJson = async (url, options = {}) => {
-      signal?.throwIfAborted()
-      try {
-        const value = await rawFetchJson(url, { ...options, signal: signal || options.signal })
-        signal?.throwIfAborted()
-        return value
-      } catch (error) {
-        signal?.throwIfAborted()
-        throw error
-      }
-    }
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersPageSignal(careersHtml)) {
-      throw new Error('Strides Pharma verified first-party careers page changed materially')
-    }
-
-    const portalHtml = await fetchText(OFFICIAL_CAREERS_HANDOFF_URL)
-    if (!hasOfficialPortalSignal(portalHtml)) {
-      throw new Error('Strides Pharma verified career portal changed materially')
-    }
-
-    const serviceUrl = extractPortalServiceUrl(portalHtml, OFFICIAL_CAREERS_HANDOFF_URL)
-    if (serviceUrl !== PORTAL_JOBS_SERVICE_URL) {
-      throw new Error('Strides Pharma verified career portal service URL changed materially')
-    }
-
-    const listingResponse = await fetchJson(PORTAL_JOBS_SERVICE_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: buildServiceRequestBody({
-        key: LISTING_KEY,
-        params: {
-          company: PORTAL_COMPANY_TOKEN,
-        },
-      }),
+  async run(options = {}) {
+    if (maxJobs != null && (!Number.isSafeInteger(maxJobs) || maxJobs < 1)) throw new RangeError('Invalid Strides result limit')
+    return collectStridesNative({...options,maxJobs}, {
+      careers: CAREERS_URL, portal: OFFICIAL_CAREERS_HANDOFF_URL,
+      service: PORTAL_JOBS_SERVICE_URL, companyToken: PORTAL_COMPANY_TOKEN,
+      listingKey: LISTING_KEY, detailKey: DETAIL_KEY, buildServiceRequestBody, buildApplyUrl,
     })
-
-    const listings = extractListings(listingResponse?.d?.Returnvalues)
-    if (listings.length === 0) {
-      throw new Error('Strides Pharma verified portal service returned no current Strides jobs')
-    }
-
-    const selectedListings = maxJobs ? listings.slice(0, maxJobs) : listings
-    const jobs = await Promise.all(selectedListings.map(async (listing) => {
-      const detailResponse = await fetchJson(PORTAL_JOBS_SERVICE_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: buildServiceRequestBody({
-          key: DETAIL_KEY,
-          params: {
-            JobId: listing.jobId,
-          },
-        }),
-      })
-
-      const detail = extractJobDetail(detailResponse?.d?.Returnvalues)
-      const mappedJob = mapJob(listing, detail)
-
-      return {
-        ...mappedJob,
-        source: SOURCE,
-        link: mappedJob.applyUrl || mappedJob.sourceUrl,
-        scrapedAt: now(),
-      }
-    }))
-
-    return jobs
   },
 })
-
 export const run = async (options = {}) => createStridesPharmaScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

@@ -1,0 +1,1582 @@
+{
+  "source": "twilio",
+  "fixture": "recruitment-eightfold-pcsx-twilio-default-20261111.json.gz",
+  "sha256": "2717cebe0fbbeec2a3011c8aa7b1bfbbeff54c8639bd88941ee8963953c8d14c",
+  "proof": {
+    "source": "twilio",
+    "qualifiedCurrentNormalDefaultHelperProof": true,
+    "readerSHA256": "5110a76f5dd6f160a14e2681ad14c4676f255e6b981ac4b8c7c073bad23424e0",
+    "roles": [
+      {
+        "roleID": 1099556746356,
+        "title": "Principal Engineer (L5)",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-11-02"
+        ],
+        "publishedDatePosted": "2026-10-23T20:34:00",
+        "platformValidity": "2027-04-21T20:34:00",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4894,
+        "serializedPrimaryCharacters": 4470,
+        "authoredLocationContext": "Location This role will be based in any of the permitted 5 India states (Delhi, Karnataka, Maharashtra, Telangana & TamilNadu) Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099556883308,
+        "title": "Phone Number specialist 1",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-11-05"
+        ],
+        "publishedDatePosted": "2026-10-29T14:49:05",
+        "platformValidity": "2027-04-27T14:49:05",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 3944,
+        "serializedPrimaryCharacters": 3521,
+        "authoredLocationContext": "Location This role will be based remotely in India (Karnataka, Tamil Nadu, Telangana, Maharashtra, Delhi). Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099553745549,
+        "title": "Tech Lead /Sr. Principal Engineer (L6)",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-06-16"
+        ],
+        "publishedDatePosted": "2026-05-29T15:18:16",
+        "platformValidity": "2026-11-25T15:18:16",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 5469,
+        "serializedPrimaryCharacters": 4882,
+        "authoredLocationContext": "Location This role will be remote, and based in India (only in Karnataka, Tamil Nadu, Telangana, Maharashtra, Delhi). Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099556432090,
+        "title": "HR Partner",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": [
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": {
+                "@type": "Country",
+                "name": "IN"
+              },
+              "addressLocality": "",
+              "addressRegion": ""
+            }
+          },
+          {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": {
+                "@type": "Country",
+                "name": "IN"
+              },
+              "addressLocality": "Bengaluru",
+              "addressRegion": "KA,IN"
+            }
+          }
+        ],
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-10-09"
+        ],
+        "publishedDatePosted": "2026-10-05T16:04:42",
+        "platformValidity": "2027-04-03T16:04:42",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4603,
+        "serializedPrimaryCharacters": 4044,
+        "authoredLocationContext": "Location This role will be remote, and based in India (only in Karnataka, Tamil Nadu, Telangana, Maharashtra, Delhi). Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099557015020,
+        "title": "Onboarding Operations Specialist 1",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-11-06"
+        ],
+        "publishedDatePosted": "2026-11-05T15:47:56",
+        "platformValidity": "2027-05-04T15:47:56",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4864,
+        "serializedPrimaryCharacters": 4342,
+        "authoredLocationContext": "Location This role will be based remotely in India (Karnataka, Tamil Nadu, Telangana, Maharashtra, Delhi) Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099552854135,
+        "title": "Applications Engineer 2",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-06-30"
+        ],
+        "publishedDatePosted": "2026-04-06T15:02:53",
+        "platformValidity": "2026-10-03T15:02:53",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4238,
+        "serializedPrimaryCharacters": 3727,
+        "authoredLocationContext": "Location This role will be remote, and based in India <Karnataka, Tamil Nadu, Telangana State, Maharashtra and New Delhi>. Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099557015018,
+        "title": "Phone Numbers Operations Specialist 2",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-11-06"
+        ],
+        "publishedDatePosted": "2026-11-05T15:47:43",
+        "platformValidity": "2027-05-04T15:47:43",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 3976,
+        "serializedPrimaryCharacters": 3525,
+        "authoredLocationContext": "Location This role will be based remotely in India (Karnataka, Tamil Nadu, Telangana, Maharashtra, Delhi) Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099554319680,
+        "title": "Technical Support Engineer 2",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-11-05"
+        ],
+        "publishedDatePosted": "2026-06-25T15:32:35",
+        "platformValidity": "2026-12-22T15:32:35",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 3937,
+        "serializedPrimaryCharacters": 3485,
+        "authoredLocationContext": "Location This role will be remote and based in India (Karnataka, Maharashtra, Tamil Nadu, Telangana, Delhi) Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      },
+      {
+        "roleID": 1099556746224,
+        "title": "Staff, Software Engineer (L4)",
+        "nativeLocations": [
+          "Remote - India"
+        ],
+        "publishedLocations": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "IN"
+            },
+            "addressLocality": "",
+            "addressRegion": ""
+          }
+        },
+        "applicantCountries": [
+          {
+            "@type": "Country",
+            "name": "IN"
+          }
+        ],
+        "nativeRemoteOption": "remote_local",
+        "publishedJobLocationType": "TELECOMMUTE",
+        "projectedRemoteStatus": null,
+        "nativePostedTs": 0,
+        "nativeCustomPostDate": [
+          "2026-11-02"
+        ],
+        "publishedDatePosted": "2026-10-23T20:49:05",
+        "platformValidity": "2027-04-21T20:49:05",
+        "publicationProjection": null,
+        "exactClosingProjection": null,
+        "wholePrimaryNativeStructuralAndPublishedPlainTextAgree": true,
+        "allOwnAPIAndSchemaAndSelectedFieldsClosingStable": true,
+        "nativePrimaryHTMLCharacters": 4643,
+        "serializedPrimaryCharacters": 4109,
+        "authoredLocationContext": "Location This role will be based in any of the permitted 5 India states (Delhi, Karnataka, Maharashtra, Telangana & TamilNadu) Travel We prioritize connection and opportunities to build relationships with our customers and each other. For this role, you may be required to travel occasionally to participate in project or team in-person meetings. What We Offer Working at Twilio offers many benefits, including competitive pay, generous time off, ample parental and wellness leave, healthcare, a retirement savings program, and much more. Offerings vary by location.",
+        "all4PerksRetained": true
+      }
+    ],
+    "allOpeningBeforeAllClosing": true,
+    "lastOpeningAt": "2026-11-11T08:34:17.990Z",
+    "firstClosingAt": "2026-11-11T08:34:18.049Z",
+    "actualPublicGETs": 48,
+    "initialAuthorityReads": 2,
+    "nativeAllowance": 46,
+    "defaultMaxPages": 8,
+    "defaultMaxDetails": 20,
+    "noCandidateCap": true,
+    "noExtraBudget": true,
+    "bothNativePagesCoherentBeforeAndAfter": true,
+    "nativeCount": 14,
+    "uniqueObservedNativeRows": 14,
+    "allCountryRepresentationsExplicitIN": true,
+    "allAuthorityAndCarriersAndRenderersClosingStable": true,
+    "allFullPrimaryAnd4PerksPreserved": true,
+    "rawPublishedPlainTextRetained": true,
+    "nativeLocationAndAdditionalOwnAddressesSeparatelyPreserved": true,
+    "noAllIndiaEligibilityOrCityProjection": true,
+    "unknownProjectedPublicationClosingAndMode": true,
+    "sourceScopeComplete": false,
+    "listingComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "noRegisteredRunnerOrRecoveryOrZeroClaim": true
+  },
+  "responses": [
+    {
+      "ordinal": 1,
+      "phase": "opening",
+      "requestedURL": "https://www.twilio.com/en-us/careers",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:33:56.647Z",
+      "completedAt": "2026-11-11T08:33:58.569Z",
+      "status": 200,
+      "finalURL": "https://www.twilio.com/en-us/careers",
+      "contentType": "text/html;charset=utf-8",
+      "bodyFile": "001.html",
+      "bodySHA256": "bf0e73d6315709a3a897c46825d1e8e660d612028d9319fdac05bb3d68b01a3e",
+      "bodyBytes": 729435,
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:28 GMT",
+        "etag": "\"b215b-65ffa8ec130f0-gzip\"",
+        "last-modified": "Wed, 11 Nov 2026 06:46:41 GMT"
+      },
+      "label": "corporate",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 2,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:33:58.576Z",
+      "completedAt": "2026-11-11T08:34:00.373Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "002.html",
+      "bodySHA256": "bc6f630f5dbc9c476fc829c1f1e3078792007a8c948b226b194d0af308a1649f",
+      "bodyBytes": 150578,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:30 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "board",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 3,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "method": "GET",
+      "kind": "renderer",
+      "startedAt": "2026-11-11T08:34:01.234Z",
+      "completedAt": "2026-11-11T08:34:02.146Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "contentType": "text/javascript",
+      "bodyFile": "003.js",
+      "bodySHA256": "c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111",
+      "bodyBytes": 716693,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Fri, 06 Nov 2026 12:35:06 GMT",
+        "etag": "W/\"36d27f29d5cb16f603d2a82cade84963\"",
+        "last-modified": "Fri, 06 Nov 2026 05:48:51 GMT"
+      },
+      "label": "entry",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 4,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "method": "GET",
+      "kind": "renderer",
+      "startedAt": "2026-11-11T08:34:02.166Z",
+      "completedAt": "2026-11-11T08:34:02.422Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "contentType": "text/javascript",
+      "bodyFile": "004.js",
+      "bodySHA256": "48ab46e9fdd729f1117dc855913b9eff925eff8996519686eb31ed25d89eb385",
+      "bodyBytes": 84276,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Wed, 04 Nov 2026 16:01:10 GMT",
+        "etag": "W/\"429d37af34152726c8bac6897850090f\"",
+        "last-modified": "Wed, 04 Nov 2026 12:51:53 GMT"
+      },
+      "label": "roleRenderer",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 5,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:02.432Z",
+      "completedAt": "2026-11-11T08:34:02.904Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "contentType": "application/json",
+      "bodyFile": "005.json",
+      "bodySHA256": "1fc890e5d95edc5ada6daea219eda052542bede079d25e1681d6de171578ec3e",
+      "bodyBytes": 9462,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:32 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "selected0",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 6,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:02.916Z",
+      "completedAt": "2026-11-11T08:34:03.670Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "contentType": "application/json",
+      "bodyFile": "006.json",
+      "bodySHA256": "8355fe15c7221a63a9dc194144cf7a13520a8adf75e9f50671cd48923a02f2f7",
+      "bodyBytes": 6721,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:33 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "selected10",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 7,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:03.685Z",
+      "completedAt": "2026-11-11T08:34:04.423Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "007.json",
+      "bodySHA256": "7e496eba3014ee7a7932f04fd2422f1beb30e8ab12146058376723e071f50122",
+      "bodyBytes": 8397,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:34 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556746356",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 8,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:04.435Z",
+      "completedAt": "2026-11-11T08:34:04.955Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "008.html",
+      "bodySHA256": "4309559174594514892d65f445532ae0340584e96312258f12c97e3dcc359533",
+      "bodyBytes": 160153,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:34 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556746356",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 9,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:05.067Z",
+      "completedAt": "2026-11-11T08:34:05.557Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "009.json",
+      "bodySHA256": "d13c183e1d60642614089efdbf015e5592c4ff3f64e67d665ee5d3e61cddd550",
+      "bodyBytes": 7482,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:35 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556883308",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 10,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:05.568Z",
+      "completedAt": "2026-11-11T08:34:06.131Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "010.html",
+      "bodySHA256": "e01801e98960af60e0ba1d37ed297c65b09b7c334322003cb8d4be000e70b9dc",
+      "bodyBytes": 157165,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:35 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556883308",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 11,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:06.211Z",
+      "completedAt": "2026-11-11T08:34:06.973Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "011.json",
+      "bodySHA256": "4c4de1b87bfa899e0a32b70d9ab7d0d3ed17c3ad15199618d0980959c94db8c6",
+      "bodyBytes": 8987,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:36 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099553745549",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 12,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:06.987Z",
+      "completedAt": "2026-11-11T08:34:07.895Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "012.html",
+      "bodySHA256": "904bcb7c0ce4a5f64cdf591082537138f9719587d2244028bd3bd6e86b62c894",
+      "bodyBytes": 161065,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:37 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099553745549",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 13,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:07.945Z",
+      "completedAt": "2026-11-11T08:34:08.371Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "013.json",
+      "bodySHA256": "f8fcdf6f231344cd92e5919a1be3898cc52d31a60e46bbcd3abe05e3361b775c",
+      "bodyBytes": 8100,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:38 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556432090",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 14,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:08.380Z",
+      "completedAt": "2026-11-11T08:34:09.244Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "014.html",
+      "bodySHA256": "f7a47cef5d12cc0c2bf9fa711d4bc753009f998051203bf77124aaaa89f0d7f9",
+      "bodyBytes": 157934,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:38 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556432090",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 15,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015020&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:09.301Z",
+      "completedAt": "2026-11-11T08:34:09.755Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015020&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "015.json",
+      "bodySHA256": "483ab267e1f13da61e8648cc27281db5efd21bb3eae462f6d38e526f61dca9a1",
+      "bodyBytes": 8468,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:39 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099557015020",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 16,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099557015020",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:09.761Z",
+      "completedAt": "2026-11-11T08:34:11.278Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099557015020",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "016.html",
+      "bodySHA256": "be1961fb99356bee7c729a94c1ce3f25b9e0237fc7ceb818bbcce4c2b8107a86",
+      "bodyBytes": 158476,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:40 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099557015020",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 17,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099552854135&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:11.344Z",
+      "completedAt": "2026-11-11T08:34:12.130Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099552854135&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "017.json",
+      "bodySHA256": "d7002affcf848afceee3e43aede1747cea4252c310a874db50053bc1c371004a",
+      "bodyBytes": 7748,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:41 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099552854135",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 18,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099552854135",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:12.143Z",
+      "completedAt": "2026-11-11T08:34:13.149Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099552854135",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "018.html",
+      "bodySHA256": "1c765392a0eb5b4f9d5e82a70c5c4b1de4bd1d831efde6e7eeb7654479fcb11d",
+      "bodyBytes": 158849,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:42 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099552854135",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 19,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015018&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:13.193Z",
+      "completedAt": "2026-11-11T08:34:13.655Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015018&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "019.json",
+      "bodySHA256": "14b3fdae9bb942239b3d295285a632b3d9d2a4a3a1e5a86ec467e346b55bbd62",
+      "bodyBytes": 7530,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:43 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099557015018",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 20,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099557015018",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:13.670Z",
+      "completedAt": "2026-11-11T08:34:14.174Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099557015018",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "020.html",
+      "bodySHA256": "08b691c1d55b68f21ac838e17cb8565dde8db2cdb15d2e12072805d65b9ed5e4",
+      "bodyBytes": 158857,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:44 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099557015018",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 21,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099554319680&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:14.221Z",
+      "completedAt": "2026-11-11T08:34:14.686Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099554319680&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "021.json",
+      "bodySHA256": "af06da6ae2e76021df55216460a86a048c8caa224d597e4c98026f2749130175",
+      "bodyBytes": 7477,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:44 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099554319680",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 22,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099554319680",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:14.696Z",
+      "completedAt": "2026-11-11T08:34:15.555Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099554319680",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "022.html",
+      "bodySHA256": "5442170e489beef5825438ae01f25b5d4a9f19950f55bc950143f5b7ba615924",
+      "bodyBytes": 158395,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:45 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099554319680",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 23,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746224&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:15.595Z",
+      "completedAt": "2026-11-11T08:34:16.449Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746224&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "023.json",
+      "bodySHA256": "3a1be85d3f9fa13368ea7361124cbc7fbdf6d56a1ae5b7fa068afc82c0bbdbfd",
+      "bodyBytes": 8155,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:46 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556746224",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 24,
+      "phase": "opening",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556746224",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:16.456Z",
+      "completedAt": "2026-11-11T08:34:17.990Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556746224",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "024.html",
+      "bodySHA256": "4386201e8a327194fc677f46a5059e9a55e8cef6b250bc603f014d6994da8b62",
+      "bodyBytes": 160232,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:47 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556746224",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 25,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:18.049Z",
+      "completedAt": "2026-11-11T08:34:18.960Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746356&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "025.json",
+      "bodySHA256": "7e496eba3014ee7a7932f04fd2422f1beb30e8ab12146058376723e071f50122",
+      "bodyBytes": 8397,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:48 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556746356",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 26,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:18.972Z",
+      "completedAt": "2026-11-11T08:34:19.887Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556746356",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "026.html",
+      "bodySHA256": "887db10c64f0c63f2dde52f2ae9751c84d5cef9d3ed249c5cc13fcfd964d1b28",
+      "bodyBytes": 158499,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:49 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556746356",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 27,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:19.965Z",
+      "completedAt": "2026-11-11T08:34:20.441Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556883308&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "027.json",
+      "bodySHA256": "d13c183e1d60642614089efdbf015e5592c4ff3f64e67d665ee5d3e61cddd550",
+      "bodyBytes": 7482,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:50 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556883308",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 28,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:20.458Z",
+      "completedAt": "2026-11-11T08:34:21.412Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556883308",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "028.html",
+      "bodySHA256": "2d0fb26a91338348fcfef2e302efe94e49b0015ee4e2cf351da6d7bc8764a50e",
+      "bodyBytes": 157165,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:51 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556883308",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 29,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:21.739Z",
+      "completedAt": "2026-11-11T08:34:22.268Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099553745549&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "029.json",
+      "bodySHA256": "4c4de1b87bfa899e0a32b70d9ab7d0d3ed17c3ad15199618d0980959c94db8c6",
+      "bodyBytes": 8987,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:52 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099553745549",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 30,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:22.303Z",
+      "completedAt": "2026-11-11T08:34:23.232Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099553745549",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "030.html",
+      "bodySHA256": "c59e5d56beb06e501d9a8faabac64f6832f2d953edceaeb747cca632fd8b8041",
+      "bodyBytes": 161065,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:52 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099553745549",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 31,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:23.321Z",
+      "completedAt": "2026-11-11T08:34:24.416Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556432090&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "031.json",
+      "bodySHA256": "f8fcdf6f231344cd92e5919a1be3898cc52d31a60e46bbcd3abe05e3361b775c",
+      "bodyBytes": 8100,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:54 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556432090",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 32,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:24.473Z",
+      "completedAt": "2026-11-11T08:34:25.384Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556432090",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "032.html",
+      "bodySHA256": "926bebd052de13d25ee63dacb0422ddf009f1cc9963954ff6733df074a2b8476",
+      "bodyBytes": 157934,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:55 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556432090",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 33,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015020&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:25.511Z",
+      "completedAt": "2026-11-11T08:34:26.234Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015020&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "033.json",
+      "bodySHA256": "483ab267e1f13da61e8648cc27281db5efd21bb3eae462f6d38e526f61dca9a1",
+      "bodyBytes": 8468,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:56 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099557015020",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 34,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099557015020",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:26.256Z",
+      "completedAt": "2026-11-11T08:34:27.091Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099557015020",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "034.html",
+      "bodySHA256": "bc4c05bcbcd4be0dad190dd38d017ee3937f4ad291f234fe5f03d41b64415c41",
+      "bodyBytes": 160128,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:56 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099557015020",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 35,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099552854135&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:27.152Z",
+      "completedAt": "2026-11-11T08:34:27.886Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099552854135&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "035.json",
+      "bodySHA256": "d7002affcf848afceee3e43aede1747cea4252c310a874db50053bc1c371004a",
+      "bodyBytes": 7748,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:57 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099552854135",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 36,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099552854135",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:27.895Z",
+      "completedAt": "2026-11-11T08:34:28.835Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099552854135",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "036.html",
+      "bodySHA256": "6c5d42ade7902ae38365906b6ae0823095c342c6359d6799b32b92d54c975be0",
+      "bodyBytes": 158851,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:58 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099552854135",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 37,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015018&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:28.898Z",
+      "completedAt": "2026-11-11T08:34:29.382Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099557015018&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "037.json",
+      "bodySHA256": "14b3fdae9bb942239b3d295285a632b3d9d2a4a3a1e5a86ec467e346b55bbd62",
+      "bodyBytes": 7530,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:34:59 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099557015018",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 38,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099557015018",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:29.397Z",
+      "completedAt": "2026-11-11T08:34:30.324Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099557015018",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "038.html",
+      "bodySHA256": "0242e32bf6dc2e0a14f8ed040c18a70df574ef5e044c667241c98b2368b2db98",
+      "bodyBytes": 157207,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:00 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099557015018",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 39,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099554319680&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:30.430Z",
+      "completedAt": "2026-11-11T08:34:31.196Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099554319680&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "039.json",
+      "bodySHA256": "af06da6ae2e76021df55216460a86a048c8caa224d597e4c98026f2749130175",
+      "bodyBytes": 7477,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:01 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099554319680",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 40,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099554319680",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:31.206Z",
+      "completedAt": "2026-11-11T08:34:32.122Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099554319680",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "040.html",
+      "bodySHA256": "8b54f8cadedfc149554da2e538efaacfe6fd4dc457c52fc7800b0c2900803fb8",
+      "bodyBytes": 156745,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:01 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099554319680",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 41,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746224&domain=twilio.com&hl=en",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:32.170Z",
+      "completedAt": "2026-11-11T08:34:32.666Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/position_details?position_id=1099556746224&domain=twilio.com&hl=en",
+      "contentType": "application/json",
+      "bodyFile": "041.json",
+      "bodySHA256": "3a1be85d3f9fa13368ea7361124cbc7fbdf6d56a1ae5b7fa068afc82c0bbdbfd",
+      "bodyBytes": 8155,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:02 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "roleAPI:1099556746224",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 42,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers/job/1099556746224",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:32.682Z",
+      "completedAt": "2026-11-11T08:34:33.560Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers/job/1099556746224",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "042.html",
+      "bodySHA256": "840f699b000afb9817383d320933669ec3ae1265d83503c4a220ca5a89383994",
+      "bodyBytes": 160173,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:03 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "role:1099556746224",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 43,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:33.637Z",
+      "completedAt": "2026-11-11T08:34:34.416Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=0&",
+      "contentType": "application/json",
+      "bodyFile": "043.json",
+      "bodySHA256": "1fc890e5d95edc5ada6daea219eda052542bede079d25e1681d6de171578ec3e",
+      "bodyBytes": 9462,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:04 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "selected0",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 44,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "method": "GET",
+      "kind": "json",
+      "startedAt": "2026-11-11T08:34:34.435Z",
+      "completedAt": "2026-11-11T08:34:35.201Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/api/pcsx/search?domain=twilio.com&query=&location=India&start=10&",
+      "contentType": "application/json",
+      "bodyFile": "044.json",
+      "bodySHA256": "8355fe15c7221a63a9dc194144cf7a13520a8adf75e9f50671cd48923a02f2f7",
+      "bodyBytes": 6721,
+      "headers": {
+        "content-type": "application/json",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:05 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "selected10",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 45,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/careers",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:35.221Z",
+      "completedAt": "2026-11-11T08:34:36.132Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/careers",
+      "contentType": "text/html; charset=utf-8",
+      "bodyFile": "045.html",
+      "bodySHA256": "6372a91ad17760872d89a1c964daf45ee1c3c671fae3df1fc00a22f715853e6e",
+      "bodyBytes": 150578,
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:05 GMT",
+        "etag": null,
+        "last-modified": null
+      },
+      "label": "board",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 46,
+      "phase": "closing",
+      "requestedURL": "https://www.twilio.com/en-us/careers",
+      "method": "GET",
+      "kind": "page",
+      "startedAt": "2026-11-11T08:34:36.213Z",
+      "completedAt": "2026-11-11T08:34:37.739Z",
+      "status": 200,
+      "finalURL": "https://www.twilio.com/en-us/careers",
+      "contentType": "text/html;charset=utf-8",
+      "bodyFile": "046.html",
+      "bodySHA256": "bf0e73d6315709a3a897c46825d1e8e660d612028d9319fdac05bb3d68b01a3e",
+      "bodyBytes": 729435,
+      "headers": {
+        "content-type": "text/html;charset=utf-8",
+        "location": null,
+        "date": "Wed, 11 Nov 2026 08:35:07 GMT",
+        "etag": "\"b215b-65ffa19f600fc-gzip\"",
+        "last-modified": "Wed, 11 Nov 2026 06:14:02 GMT"
+      },
+      "label": "corporate",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 47,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "method": "GET",
+      "kind": "renderer",
+      "startedAt": "2026-11-11T08:34:38.317Z",
+      "completedAt": "2026-11-11T08:34:38.891Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/pcsxPwa.6c903be3a68c07ae.js",
+      "contentType": "text/javascript",
+      "bodyFile": "047.js",
+      "bodySHA256": "c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111",
+      "bodyBytes": 716693,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Fri, 06 Nov 2026 12:35:06 GMT",
+        "etag": "W/\"36d27f29d5cb16f603d2a82cade84963\"",
+        "last-modified": "Fri, 06 Nov 2026 05:48:51 GMT"
+      },
+      "label": "entry",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    },
+    {
+      "ordinal": 48,
+      "phase": "closing",
+      "requestedURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "method": "GET",
+      "kind": "renderer",
+      "startedAt": "2026-11-11T08:34:38.923Z",
+      "completedAt": "2026-11-11T08:34:39.197Z",
+      "status": 200,
+      "finalURL": "https://jobs.twilio.com/gen/js/12480.612f8bee165df945.js",
+      "contentType": "text/javascript",
+      "bodyFile": "048.js",
+      "bodySHA256": "48ab46e9fdd729f1117dc855913b9eff925eff8996519686eb31ed25d89eb385",
+      "bodyBytes": 84276,
+      "headers": {
+        "content-type": "text/javascript",
+        "location": null,
+        "date": "Wed, 04 Nov 2026 16:01:10 GMT",
+        "etag": "W/\"429d37af34152726c8bac6897850090f\"",
+        "last-modified": "Wed, 04 Nov 2026 12:51:53 GMT"
+      },
+      "label": "roleRenderer",
+      "sourceReceipt": "twilio-native-default-diagnostic-20261111c/receipts.json"
+    }
+  ]
+}

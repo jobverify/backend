@@ -220,20 +220,26 @@ function detail(row,brief,opening,body,spec){
     descriptionHtml:row.descriptionHtml,jobDescription,...qualifications(row.descriptionHtml),experienceRequired:extractAshbyExperienceRequired({title:row.title,jobDescription}),nativeFields,nativeLocations:locs.map(l=>({location:l.location,...l.address,country:l.country,countryProvenance:l.countryProvenance,countryEvidence:l.countryEvidence||null})),nativeSchemaDatePosted:schema.datePosted,isIndia:Boolean(selected),geographyComplete:geographyIssues.length===0,geographyIssues:sorted(geographyIssues)}
 }
 const defaultGet=async(url,{signal,json=false}={})=>{
+  signal?.throwIfAborted()
   const response=await fetch(url,{method:'GET',signal:signal||AbortSignal.timeout(30000),headers:{Accept:json?'application/json':'text/html'}})
+  signal?.throwIfAborted()
   if(!response.ok){
     const publicResponse=response.status===404&&!json?{requestedUrl:url,responseUrl:response.url,status:response.status,body:await response.text()}:undefined
-    if(signal?.aborted)throw signal.reason||new Error('Public careers request cancelled')
+    signal?.throwIfAborted()
     throw Object.assign(new Error(`HTTP ${response.status} for ${url}`),{status:response.status,abortRetries:true,publicResponse})
   }
-  const body=await response.text();if(botGate.test(body))throw Object.assign(new Error(`Public careers access denied for ${url}`),{abortRetries:true});return json?JSON.parse(body):body
+  const body=await response.text();signal?.throwIfAborted();if(botGate.test(body))throw Object.assign(new Error(`Public careers access denied for ${url}`),{abortRetries:true});return json?JSON.parse(body):body
 }
 export function createAshbyPairNativeScraper(spec,defaults={}){
   const boardUrl=`https://jobs.ashbyhq.com/${spec.token}`,apiUrl=`https://api.ashbyhq.com/posting-api/job-board/${spec.token}`
   return {async run({fetchText,fetchJson,signal,onNativeAudit,now=()=>new Date().toISOString(),maxJobs=defaults.maxJobs}={}){
     let pagesFetched=0
-    const getText=async url=>{pagesFetched++;const body=await(fetchText?fetchText(url,{signal}):defaultGet(url,{signal}));if(botGate.test(body))throw Object.assign(new Error('Public careers access denied'),{abortRetries:true});return body}
-    const getJson=async url=>{pagesFetched++;return fetchJson?fetchJson(url,{signal}):defaultGet(url,{signal,json:true})}
+    const checked=async operation=>{
+      signal?.throwIfAborted()
+      try{const value=await operation();signal?.throwIfAborted();return value}catch(error){signal?.throwIfAborted();throw error}
+    }
+    const getText=async url=>{const body=await checked(()=>{pagesFetched++;return fetchText?fetchText(url,{signal}):defaultGet(url,{signal})});if(botGate.test(body))throw Object.assign(new Error('Public careers access denied'),{abortRetries:true});return body}
+    const getJson=async url=>checked(()=>{pagesFetched++;return fetchJson?fetchJson(url,{signal}):defaultGet(url,{signal,json:true})})
     const issues=[],rows=[],channelChecks=[],unresolvedCorporateRoutes=[]
     const inspectCorporate=async(phase,known=null)=>{
       const queue=[spec.careersUrl],seen=new Set(),surfaces={}
@@ -280,7 +286,7 @@ export function createAshbyPairNativeScraper(spec,defaults={}){
       if(!validUrls(row,spec)){issues.push(`unsafe-native-role-url:${row.id}`);continue}
       try{const result=detail(row,brief,opening,await getText(row.jobUrl),spec);rows.push(result);if(!result.geographyComplete)issues.push(`unresolved-native-geography:${row.id}`)}catch(e){if(denied(e)||signal?.aborted)throw e;issues.push(`native-detail:${row.id}:${e.message}`)}
     }
-    let closing=null,closingFeed=null,closingChannels=null,proxyClosing=null
+    let closing=null,closingFeed,closingChannels=null,proxyClosing=null
     try{closing=boardSnapshot(await getText(boardUrl),spec);closingFeed=feedSnapshot(await getJson(apiUrl))
       if(!same(opening.organization,closing.organization)||!same(stableRows(opening.rows),stableRows(closing.rows))||!same(stableRows(feed),stableRows(closingFeed)))issues.push('closing-native-inventory-or-criteria-changed')
       if(spec.proxyUrl){proxyClosing=await getJson(spec.proxyUrl);issues.push(...reconcileProxy(proxyClosing,closingFeed,spec));if(!same(stableRows(proxyOpening.jobs||[]),stableRows(proxyClosing.jobs||[])))issues.push('closing-corporate-proxy-role-state-changed')}
@@ -288,9 +294,16 @@ export function createAshbyPairNativeScraper(spec,defaults={}){
     }catch(e){if(denied(e)||signal?.aborted)throw e;issues.push(`closing-inventory-failed:${e.message}`)}
     const india=rows.filter(r=>r.isIndia),capped=Number.isInteger(maxJobs)&&maxJobs>=0&&india.length>maxJobs
     if(capped)issues.push('output-cap')
-    const complete=issues.length===0&&rows.length===feed.length&&rows.every(r=>r.geographyComplete),scrapedAt=now()
-    const jobs=(capped?india.slice(0,maxJobs):india).map(({isIndia,geographyComplete,geographyIssues,...row})=>({...row,source:spec.source,link:row.applyUrl,scrapedAt,sourceListingComplete:complete,lifecycleCleanupAllowed:complete}))
-    onNativeAudit?.({source:spec.source,verifiedAt:scrapedAt,complete,issues:sorted(issues),openingChannels,closingChannels,channelChecks,unresolvedCorporateRoutes:sorted(unresolvedCorporateRoutes),proxyOpening:proxyOpening&&{count:proxyOpening.jobs?.length,meta:proxyOpening.meta},proxyClosing:proxyClosing&&{count:proxyClosing.jobs?.length,meta:proxyClosing.meta},opening:{organization:opening.organization,ids:sorted(opening.rows.map(r=>r.id))},closing:closing&&{organization:closing.organization,ids:sorted(closing.rows.map(r=>r.id))},nativeCount:feed.length,fullDetailCount:rows.length,fullyHealthyCount:rows.filter(r=>r.geographyComplete).length,indiaCount:india.length,eligibleCount:jobs.length,pagesFetched,rows})
+    const complete=issues.length===0&&rows.length===feed.length&&rows.every(r=>r.geographyComplete)
+    let scrapedAt
+    try{scrapedAt=now()}catch(error){signal?.throwIfAborted();throw error}
+    signal?.throwIfAborted()
+    const jobs=(capped?india.slice(0,maxJobs):india).map(({isIndia:_isIndia,geographyComplete:_geographyComplete,geographyIssues:_geographyIssues,...row})=>({...row,source:spec.source,link:row.applyUrl,scrapedAt,sourceListingComplete:complete,lifecycleCleanupAllowed:complete}))
+    signal?.throwIfAborted()
+    try{
+      onNativeAudit?.({source:spec.source,verifiedAt:scrapedAt,complete,issues:sorted(issues),openingChannels,closingChannels,channelChecks,unresolvedCorporateRoutes:sorted(unresolvedCorporateRoutes),proxyOpening:proxyOpening&&{count:proxyOpening.jobs?.length,meta:proxyOpening.meta},proxyClosing:proxyClosing&&{count:proxyClosing.jobs?.length,meta:proxyClosing.meta},opening:{organization:opening.organization,ids:sorted(opening.rows.map(r=>r.id))},closing:closing&&{organization:closing.organization,ids:sorted(closing.rows.map(r=>r.id))},nativeCount:feed.length,fullDetailCount:rows.length,fullyHealthyCount:rows.filter(r=>r.geographyComplete).length,indiaCount:india.length,eligibleCount:jobs.length,pagesFetched,rows})
+    }catch(error){signal?.throwIfAborted();throw error}
+    signal?.throwIfAborted()
     return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:boardUrl,firstParty:true,listingComplete:complete,pagesFetched,reportedTotal:complete?feed.length:null,indiaFacetCount:complete?india.length:null,verifiedAt:scrapedAt,reason:complete?'native-corporate-channels-board-feed-all-details-and-closing-state-reconciled':sorted(issues).join(';')||'incomplete-native-details'})
   }}
 }

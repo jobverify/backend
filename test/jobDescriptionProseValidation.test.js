@@ -3,6 +3,20 @@ import assert from 'node:assert/strict';
 import { validateProsePart } from '../rewriting/prose.js';
 import { checkProseStatements } from '../rewriting/proseValidation.js';
 
+test('removing the duplicated work-model label preserves the complete employer fact', () => {
+  const source = 'The work model for the role is: The work model for the role is: #Li_Onsite.';
+  assert.equal(validateProsePart(source, 'The work model for the role is: #Li_Onsite.'), null);
+  assert.notEqual(validateProsePart(source, 'The work model for the role is: hybrid.'), null);
+  assert.notEqual(validateProsePart(source, '#Li_Onsite.'), null);
+});
+
+test('a recruitment warning label can join its unchanged notice without changing negation', () => {
+  const source = 'Recruitment Fraud Warning. ABB never asks for payment from job applicants.';
+  assert.equal(validateProsePart(source, 'Recruitment Fraud Warning: ABB never asks for payment from job applicants.'), null);
+  assert.notEqual(validateProsePart(source, 'Recruitment Fraud Warning: ABB asks for payment from job applicants.'), null);
+  assert.notEqual(validateProsePart(source, 'Recruitment Fraud Warning: ABB never asks for payment.'), null);
+});
+
 for (const [name, source, output] of [
   ['number spelling', 'At least 2 years of Python experience is required.', 'At least two years of Python experience is required.'],
   ['independent statement order', 'Salary is 100000. At least 2 years of Python experience is required.', 'At least 2 years of Python experience is required. Salary is 100000.'],

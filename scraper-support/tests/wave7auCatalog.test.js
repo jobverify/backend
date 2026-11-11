@@ -110,7 +110,7 @@ test('Blazeclan Technologies local catalog captures the verified broken Zoho han
   await assertHydratedCatalogLoadsScript(provider)
 })
 
-test('Reserve Bank Information Technology local catalog captures the verified careers SPA and authenticated current-openings API contract', async () => {
+test('Reserve Bank Information Technology local catalog records the current browser-contract hold and unknown inventory', async () => {
   const { constant, defaultExport } = await loadCatalog(
     '../../scraper/reservebankinformationtechnology/catalog.js',
     'RESERVE_BANK_INFORMATION_TECHNOLOGY_CATALOG',
@@ -124,16 +124,20 @@ test('Reserve Bank Information Technology local catalog captures the verified ca
   assert.equal(provider.companyCareerPage, 'https://rebit.org.in/careers/')
   assert.equal(provider.careersPortalBaseUrl, 'https://rebithr.darwinbox.in/ms/candidatev2/main/careers/')
   assert.equal(provider.atsPlatform, 'first-party-careers-spa-authenticated-api')
-  assert.equal(provider.paginationStrategy, 'single-first-party-current-openings-api')
+  assert.equal(provider.paginationStrategy, 'configured-first-party-current-openings-api-with-current-browser-contract-hold')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-careers-spa+authenticated-current-openings-api+darwinbox-apply-links+experience-field',
+    'current-corporate-browser-trust-hold+literal-api-field-observations+unqualified-native-criteria',
   )
-  assert.equal(provider.verifiedOn, '2026-10-03')
+  assert.equal(provider.verifiedOn, '2026-11-11')
   assert.match(provider.verifiedSurfaceSummary, /web\/api\/auth\/login/i)
   assert.match(provider.verifiedSurfaceSummary, /web\/api\/current-openings/i)
   assert.match(provider.verifiedSurfaceSummary, /rebithr\.darwinbox\.in/i)
-  assert.match(provider.verifiedSurfaceSummary, /14 active India openings/i)
+  assert.match(provider.verifiedSurfaceSummary, /unchanged trusted browser contract/i)
+  assert.match(provider.verifiedSurfaceSummary, /explicitly authored controls/i)
+  assert.equal(provider.verificationDisposition, 'current-careers-program-unqualified-no-login-or-api-read')
+  for (const field of ['sourceScopeComplete', 'sourceListingComplete', 'lifecycleCleanupAllowed']) assert.equal(provider[field], false)
+  for (const field of ['verifiedPublicJobCount', 'verifiedIndiaJobCount', 'companyIndiaTotal', 'companyGlobalTotal', 'nativeLegalEmployer']) assert.equal(provider[field], null)
 
   assertCatalogMatchesBacklogRow({
     provider,
@@ -163,7 +167,7 @@ test('Amtex Systems local catalog captures the verified careers shell and non-In
   )
   assert.equal(provider.verifiedOn, '2026-07-18')
   assert.match(provider.verifiedSurfaceSummary, /career-list\/business-analyst/i)
-  assert.match(provider.verifiedSurfaceSummary, /href=\"#\" placeholders/i)
+  assert.match(provider.verifiedSurfaceSummary, /href="#" placeholders/i)
   assert.match(provider.verifiedSurfaceSummary, /New York, NY/i)
 
   assertCatalogMatchesBacklogRow({

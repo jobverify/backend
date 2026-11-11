@@ -87,7 +87,7 @@ export function createFirstPartyDocumentReader(options,{source,urls,roleURL=()=>
     const text=new TextDecoder('utf-8',{fatal:true}).decode(bytes)
     Object.assign(receipt,{bodyComplete:true,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')})
     checkRequest();return {url,status:200,headers:response.headers,body:text,bodyUnavailable:false,sha256:receipt.sha256}
-   }catch(error){if(caller?.aborted)throw caller.reason;try{checkRequest()}catch(expired){throw expired};throw error}
+   }catch(error){if(caller?.aborted)throw caller.reason;checkRequest();throw error}
    finally{clearTimeout(timer);receipt.completedAt=new Date().toISOString()}
   },
   stats:()=>({requests:receipts.length,decodedBytes,receipts:structuredClone(receipts),nativeRequestIntervalMs:500,requestTimeoutMs,sourceTimeoutMs,

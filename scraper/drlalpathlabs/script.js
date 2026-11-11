@@ -39,7 +39,7 @@ export const createDrLalPathlabsScraper = () => ({
   },
 })
 
-export const run = async () => createDrLalPathlabsScraper().run()
+export const run = async (options) => createDrLalPathlabsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

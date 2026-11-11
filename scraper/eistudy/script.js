@@ -158,7 +158,7 @@ export const createEIStudyScraper = ({
   },
 })
 
-export const run = async () => createEIStudyScraper().run()
+export const run = async (options) => createEIStudyScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

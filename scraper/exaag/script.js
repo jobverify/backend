@@ -297,4 +297,4 @@ export const createExaAgScraper = () => ({
   },
 })
 
-export const run = async () => createExaAgScraper().run()
+export const run = async (options) => createExaAgScraper().run(options)

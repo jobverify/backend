@@ -67,7 +67,7 @@ export const createOdNestCompanyScraper = () => ({
   },
 })
 
-export const run = async () => createOdNestCompanyScraper().run()
+export const run = async (options) => createOdNestCompanyScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

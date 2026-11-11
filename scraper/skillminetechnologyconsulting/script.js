@@ -160,7 +160,7 @@ export const createSkillmineTechnologyConsultingScraper = ({
   },
 })
 
-export const run = async () => createSkillmineTechnologyConsultingScraper().run()
+export const run = async (options) => createSkillmineTechnologyConsultingScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

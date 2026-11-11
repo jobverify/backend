@@ -1,20 +1,25 @@
 import { setTimeout as delay } from 'node:timers/promises'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { buildPublishableJobPostedAtCutoff } from '../../src/utils/jobLifecycle.js'
-import { ORIGIN,CAREER_PAGE_URL,DASHBOARD_URL,API_BASE_URL,NOAUTH_TOKEN_URL,ORGANIZATION_URL,FILTERED_JOBS_URL,SOURCES,UUID,LIVE_FILTER_BODY,reviewed,check,sha256,canonical,assetContract,surfaceAssets,corporateStylesheets,corporateContract,nativeSurfaceContract,organizationContract,listingContract,jobURL,publicJobURL,roleContract } from './nativeContract.js'
+import { ORIGIN,CAREER_PAGE_URL,DASHBOARD_URL,API_BASE_URL,NOAUTH_TOKEN_URL,ORGANIZATION_URL,FILTERED_JOBS_URL,SOURCES,UUID,LIVE_FILTER_BODY,check,sha256,canonical,assetContract,surfaceAssets,corporateStylesheets,corporateContract,nativeSurfaceContract,organizationContract,listingContract,jobURL,publicJobURL,roleContract } from './nativeContract.js'
 
 const bounded=(operation,signal)=>new Promise((resolve,reject)=>{
-  const cleanup=()=>signal.removeEventListener('abort',abort),abort=()=>{cleanup();reject(signal.reason||Error('Ola source aborted'))}
+  const cleanup=()=>signal.removeEventListener('abort',abort),abort=()=>{cleanup();reject(signal.reason)}
   if(signal.aborted)return abort()
   signal.addEventListener('abort',abort,{once:true})
-  Promise.resolve().then(operation).then(v=>{cleanup();resolve(v)},e=>{cleanup();reject(e)})
+  Promise.resolve().then(()=>{signal.throwIfAborted();return operation()}).then(v=>{cleanup();resolve(v)},e=>{cleanup();reject(e)})
 })
 const redact=value=>Array.isArray(value)?value.map(redact):value&&typeof value==='object'?Object.fromEntries(Object.entries(value).filter(([k])=>!/createdby|updatedby|hiringmanager|recruiter|(?:^|_)users?(?:$|id|name)|email|phone|mobile|billing|^CompanyAddress$|gstin|^TaxType$|^DeductTDS$|^SSOProvider$|OrgVerifiedDomains|OrgVisibleResumeFields|OrganizationDefaults/i.test(k)).map(([k,v])=>[k,redact(v)])):value
 export async function runNativeOla({source,...options}={}) {
+  const checkedClock=operation=>{
+    options.signal?.throwIfAborted()
+    try{return operation()}finally{options.signal?.throwIfAborted()}
+  }
+  options.signal?.throwIfAborted()
   const config=SOURCES[source];check(config,'unreviewed source registration')
   check(!options.fetchJson,'legacy preview-only fetchJson transport cannot establish a current native inventory')
-  const now=typeof options.now==='function'?options.now():options.now||new Date().toISOString(),maxJobs=options.maxJobs??Infinity,interval=options.requestIntervalMs??1000,timeout=options.timeoutMs??240000
-  check(Number.isFinite(+new Date(now)),'invalid verification time')
+  const now=checkedClock(()=>typeof options.now==='function'?options.now():options.now||new Date().toISOString()),maxJobs=options.maxJobs??Infinity,interval=options.requestIntervalMs??1000,timeout=options.timeoutMs??240000
+  checkedClock(()=>check(Number.isFinite(+new Date(now)),'invalid verification time'))
   check(maxJobs===Infinity||Number.isSafeInteger(maxJobs)&&maxJobs>=0,'invalid caller cap')
   check(Number.isSafeInteger(interval)&&interval>=0&&(interval>=1000||options.fetchImpl),'invalid public per-origin pacing')
   check(Number.isSafeInteger(timeout)&&timeout>0&&timeout<=300000,'invalid bounded deadline')
@@ -100,6 +105,20 @@ export async function runNativeOla({source,...options}={}) {
     Object.defineProperty(jobs,Symbol.for('jobverify.verified-recruitment-observations'),{value:{...evidence,nativeRecords:evidence.observedGlobalRecords,unresolved:evidence.reasons}})
     signal.throwIfAborted()
     return attachInventoryEvidence(jobs,{status:complete?(jobs.length?'complete-inventory':'verified-empty'):'coverage-gap',surface:config.corporateURL,firstParty:true,listingComplete:complete,pagesFetched:responses.length,reportedTotal:opening.listing.total,indiaFacetCount:matchedIndia,verifiedAt:now,reason:evidence.reasons.join(';')||'complete-native-global-and-employer-snapshots-reconciled'})
-  }catch(error){if(/timed? out|timeout|fetch failed|connect|socket|econn|enotfound|eai_again|tls|deadline/i.test(String(error?.message)))Object.assign(error,{softFailure:true,upstreamOutage:true,abortRetries:true,failureKind:'network_or_timeout'});throw error}
+  }catch(error){
+    const checked=operation=>{
+      options.signal?.throwIfAborted()
+      try{const value=operation();options.signal?.throwIfAborted();return value}
+      catch(failure){options.signal?.throwIfAborted();throw failure}
+    }
+    options.signal?.throwIfAborted()
+    try{
+      if(checked(()=>/timed? out|timeout|fetch failed|connect|socket|econn|enotfound|eai_again|tls|deadline/i.test(String(error?.message)))){
+        for(const[key,value]of Object.entries({softFailure:true,upstreamOutage:true,abortRetries:true,failureKind:'network_or_timeout'}))checked(()=>{error[key]=value})
+      }
+    }catch{}
+    options.signal?.throwIfAborted()
+    throw error
+  }
   finally{token=null;clearTimeout(timer)}
 }

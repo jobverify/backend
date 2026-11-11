@@ -85,7 +85,7 @@ test('McKinsey scraper returns only India jobs from the public search API', asyn
     fetchJson: async (url) => {
       requestedJsonUrls.push(url)
       if (url === mckinsey.buildSearchApiUrl({ start: 1 })) return JOBS_PAYLOAD_PAGE_1
-      if (url === mckinsey.buildSearchApiUrl({ start: 21 })) return JOBS_PAYLOAD_PAGE_2
+      if (url === mckinsey.buildSearchApiUrl({ start: 2 })) return JOBS_PAYLOAD_PAGE_2
       throw new Error(`Unexpected JSON URL: ${url}`)
     },
     now: () => '2026-07-25T12:00:00.000Z',
@@ -93,7 +93,7 @@ test('McKinsey scraper returns only India jobs from the public search API', asyn
 
   assert.deepEqual(requestedJsonUrls, [
     mckinsey.buildSearchApiUrl({ start: 1 }),
-    mckinsey.buildSearchApiUrl({ start: 21 }),
+    mckinsey.buildSearchApiUrl({ start: 2 }),
   ])
   assert.deepEqual(jobs, [
     {
@@ -102,6 +102,7 @@ test('McKinsey scraper returns only India jobs from the public search API', asyn
       department: 'Consulting',
       location: 'Mumbai, India',
       city: 'Mumbai',
+      country: 'India',
       jobId: '15178',
       requisitionId: '15178',
       sourceUrl: 'https://mckinsey.avature.net/careers/ApplicationMethods?folderId=15178',
@@ -114,6 +115,11 @@ test('McKinsey scraper returns only India jobs from the public search API', asyn
       postingDate: '2026-07-20',
       closingDate: null,
       jobDescription: 'Drive problem solving for client teams.',
+      sourceScopeComplete: false,
+      sourceListingComplete: false,
+      sourceDetailComplete: false,
+      sourceDetailFailureKind: 'native-role-criteria-incomplete',
+      lifecycleCleanupAllowed: false,
       source: 'mckinseycompany',
       link: 'https://mckinsey.avature.net/careers/ApplicationMethods?folderId=15178',
       scrapedAt: '2026-07-25T12:00:00.000Z',

@@ -382,7 +382,7 @@ export const rewriteCandidates = async (jobs, { client, update, deadline, signal
   onRejection = () => {}, onFragmentRejection = () => {} } = {}) => {
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > MAX_REWRITE_CONCURRENCY) throw new Error('Rewrite concurrency must be between one and ' + MAX_REWRITE_CONCURRENCY);
   const stats = { attempted: 0, published: 0, failed: 0, skipped: 0, queueRepairs: 0, staleSources: 0, concurrentChanges: 0,
-    sourceFallbackDescriptions: 0, sourceFallbackBlocks: 0, interrupted: false, peakConcurrency: 0 };
+    sourceFallbackDescriptions: 0, sourceFallbackBlocks: 0, interruptedAttempts: 0, interrupted: false, peakConcurrency: 0 };
   const processJob = async job => {
     if (signal?.aborted || Date.now() >= deadline) { stats.interrupted = true; return; }
     const reconciled = await reconcileRewriteCandidate(job, { update });
@@ -402,13 +402,23 @@ export const rewriteCandidates = async (jobs, { client, update, deadline, signal
     const started = Date.now();
     const assessment = assessDescriptionRewrite(input, client.format);
     if (assessment.ok) stats.attempted++;
-    let response, result;
+    let response, result, interruptedTelemetry;
+    const recordInterruption = async telemetry => {
+      stats.interrupted = true;
+      stats.interruptedAttempts++;
+      await onResult({ id: String(job._id), inputHash: input.inputHash, ok: false, published: false,
+        interrupted: true, reason: signal?.aborted && signal.reason?.name !== 'TimeoutError' ? 'cancelled' : 'budget_exhausted',
+        generated: assessment.ok, durationMs: Date.now() - started,
+        ...Object.fromEntries(['generationRequests', 'correctionRequests', 'correctionsAccepted', 'correctionsRejected',
+          'correctionsSkipped', 'transportRetries'].map(key => [key, telemetry?.[key] || 0])) });
+    };
     try {
       if (!assessment.ok) result = assessment;
       else {
       response = await client.generate(input, { signal, remainingMs: deadline - started,
+        onInterrupted: telemetry => { interruptedTelemetry = telemetry; },
         onFragmentRejection: rejection => onFragmentRejection({ ...rejection, id: String(job._id), input }) });
-      if (signal?.aborted || Date.now() >= deadline) { stats.interrupted = true; return; }
+      if (signal?.aborted || Date.now() >= deadline) return recordInterruption(response);
       result = response.finishReason === 'stop' && response.validationFailure
         ? response.validationFailure : validateDescriptionRewrite(response.value, input, response.finishReason, response.format || client.format);
       if (result.ok && Number.isInteger(response.modelEditedItems)) result.quality = { ...result.quality,
@@ -417,7 +427,7 @@ export const rewriteCandidates = async (jobs, { client, update, deadline, signal
     } catch (error) {
       const expectedAbort = ['TimeoutError', 'AbortError'].includes(error.name) || error === signal?.reason;
       if (!(error instanceof RewriteGenerationError) && !expectedAbort) throw error;
-      if (signal?.aborted || Date.now() >= deadline) { stats.interrupted = true; return; }
+      if (signal?.aborted || Date.now() >= deadline) return recordInterruption(interruptedTelemetry || error);
       if (Number.isInteger(error.generationRequests) || error.rawText) response = { generationRequests: error.generationRequests,
         rawText: error.rawText, usage: error.usage, timings: error.timings, generations: error.generations,
         transportRetries: error.transportRetries, reusedChunks: error.reusedChunks,

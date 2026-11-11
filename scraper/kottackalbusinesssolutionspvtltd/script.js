@@ -60,7 +60,7 @@ export const createKottackalBusinessSolutionsScraper = () => ({
   },
 })
 
-export const run = async () => createKottackalBusinessSolutionsScraper().run()
+export const run = async (options) => createKottackalBusinessSolutionsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

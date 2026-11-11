@@ -131,7 +131,7 @@ export const createAxiscadesScraper = ({
   },
 })
 
-export const run = async () => createAxiscadesScraper().run()
+export const run = async (options) => createAxiscadesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

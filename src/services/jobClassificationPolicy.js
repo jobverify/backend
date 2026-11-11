@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { extractJobFilterSignals } from '../utils/jobFilterSignals.js';
+import { extractJobFilterSignals, nativeExperienceConflictEvidence, unresolvedNativeExperienceFields } from '../utils/jobFilterSignals.js';
 import { selectClassificationDescription } from './classificationDescription.js';
 import { JOB_CLASSIFICATION_POLICY_VERSION } from '../utils/jobClassificationVersion.js';
 import { resolveRecruitmentPolicy, collectRecruitmentFacts } from './jobRecruitmentPolicy.js';
@@ -94,6 +94,7 @@ export const buildClassificationInput = (job = {}, { now = new Date(), identity 
     eligibleBatches: [...new Set((job.eligibleBatchesProvenance === 'source' ? job.eligibleBatches || [] : []).map(Number).filter(year => Number.isInteger(year) && year >= 1990 && year <= referenceYear + 10))].sort(),
     postedDate: validPosted, referenceYear,
     eligibleBatchesProvenance: job.eligibleBatchesProvenance === 'source' ? 'source' : null,
+    ...(nativeExperienceConflictEvidence(job) && { sourceNativeExperienceConflict: nativeExperienceConflictEvidence(job) }),
   };
   const runtimeIdentity = {
     modelRevision: CLASSIFICATION_MODEL.revision, runtimeVersion: CLASSIFICATION_MODEL.runtimeVersion,
@@ -161,6 +162,8 @@ const splitPreferenceText = (text, input) => {
 };
 const NUMERIC_SOURCE_PATTERN = /\b(?:\d+(?:\.\d+)?|zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s*(?:(?:-|to)\s*(?:\d+(?:\.\d+)?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s*)?(?:\+\s*)?(?:years?|yrs?|months?)\b/i;
 const sourceNumericFields = input => {
+  const nativeConflict = nativeExperienceConflictEvidence(input);
+  if (nativeConflict) return { ...unresolvedNativeExperienceFields(nativeConflict), numericSourceIssues: [] };
   const separated = splitPreferenceText(input.body.replace(/[\u2013\u2014]/g, '-'), input);
   separated.required = maskScreenedThirdPartyDegreeRequirements(separated.required);
   const numericSourceIssues = numericExperienceSourceIssues({ requiredText: separated.required,
@@ -278,6 +281,9 @@ const resolveSourceClassification = (job, { now = new Date(), mode = 'shadow', i
       policyEvidence: policyEvidence?.slice(0, 160) || null };
   }
   if (mode === 'policy' && input.incomplete) resolved = { ...resolved, jobType: 'Unspecified', employmentType: null, seniority: 'Unknown', experienceLevel: null };
+  const nativeConflict = nativeExperienceConflictEvidence(input);
+  if (nativeConflict) resolved = { ...resolved, ...unresolvedNativeExperienceFields(nativeConflict),
+    employerExperienceProfile: unresolvedNativeExperienceFields(nativeConflict).experienceProfile };
   return {
     policyVersion: CLASSIFICATION_POLICY.version, inputHash: input.inputHash, modelRevision: input.modelRevision,
     runtimeVersion: input.runtimeVersion, runtimeHash: input.runtimeHash, policyHash: input.policyHash, calibrationHash: input.calibrationHash,
@@ -320,18 +326,25 @@ export const resolveClassification = (job, prediction, options = {}) => {
 
 export const getAuthoritativeClassification = (job = {}) => {
   const result = job.classification;
-  return result?.authoritative === true && ['enforce', 'policy'].includes(result.mode) && result.policyVersion === CLASSIFICATION_POLICY.version
+  const resolved = result?.authoritative === true && ['enforce', 'policy'].includes(result.mode) && result.policyVersion === CLASSIFICATION_POLICY.version
     && ['accepted', 'uncertain', 'fallback'].includes(result.status) && PUBLIC_TYPES.includes(result.resolved?.jobType)
     ? { ...result.resolved, jobType: result.resolved.jobType === 'Unspecified' && result.complete === true && !result.sourceQualityIssues?.length
       && PUBLIC_JOB_TYPES.includes(result.decisions?.jobType?.label)
       ? result.decisions.jobType.label : normalizePublicJobType(result.resolved.jobType) } : null;
+  const nativeConflict = nativeExperienceConflictEvidence(job);
+  return resolved && nativeConflict ? { ...resolved, ...unresolvedNativeExperienceFields(nativeConflict) } : resolved;
 };
 
 export const applyClassification = job => {
   const resolved = getAuthoritativeClassification(job);
   if (!resolved) return job;
+  const nativeConflict = nativeExperienceConflictEvidence(job);
   const rejectedCompanyField = job.classification?.sourceEvidenceRepairs?.some(repair => repair.code === 'company_history_experience_field_ignored');
-  return { ...job, ...resolved, experienceRequired: job.classification?.numericSourceIssues?.length ? null
+  return { ...job, ...resolved,
+    ...(nativeConflict && { classification: { ...job.classification,
+      resolved: { ...job.classification.resolved, ...unresolvedNativeExperienceFields(nativeConflict),
+        employerExperienceProfile: unresolvedNativeExperienceFields(nativeConflict).experienceProfile } } }),
+    experienceRequired: nativeConflict || job.classification?.numericSourceIssues?.length ? null
     : resolved.experienceRequired ?? (rejectedCompanyField ? null : job.sourceExperienceRequired ?? (job.experienceRequiredProvenance === 'source' ? job.experienceRequired : null))
       ?? resolved.experienceProfile.evidence ?? null };
 };

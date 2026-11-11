@@ -1,0 +1,8 @@
+{
+  "fixture": "fields-20261111.json.gz",
+  "sha256": "8ae2850659f637624e4ffbcc71fd836df695b518674dd93fdf7fe4ba0b3c4ece",
+  "originalPublicResponses": 1,
+  "originalAPIPayloads": 0,
+  "originalCareersBodySHA256": "de51d994ff3e8f621a5561c4f2e7533ef9a555344ca29d62d1aacc30a72f133e",
+  "syntheticModelsAreNotNativeCaptures": true
+}

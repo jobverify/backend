@@ -43,15 +43,6 @@ const toAbsoluteUrl = (value) => {
   }
 }
 
-const normalizeEmploymentType = (value) => {
-  const normalized = normalizeWhitespace(value)?.toLowerCase()
-  if (!normalized) return null
-  if (/intern/.test(normalized)) return 'Internship'
-  if (/contract/.test(normalized)) return 'Contract'
-  if (/full.?time|permanent/.test(normalized)) return 'Full-time'
-  return normalizeWhitespace(value)
-}
-
 export const hasOfficialCareersSignal = (html) => {
   const page = String(html ?? '')
   return /Join us and change yours by shaping the future of Conversations!/i.test(page)
@@ -158,7 +149,7 @@ export const createEmplayScraper = ({
   },
 })
 
-export const run = async () => createEmplayScraper().run()
+export const run = async (options) => createEmplayScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

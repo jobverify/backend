@@ -189,7 +189,7 @@ export const createSecurDIScraper = ({
   },
 })
 
-export const run = async () => createSecurDIScraper().run()
+export const run = async (options) => createSecurDIScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

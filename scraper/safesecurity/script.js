@@ -99,4 +99,4 @@ export const createSafeSecurityScraper = () => ({
   },
 })
 
-export const run = async () => createSafeSecurityScraper().run()
+export const run = async (options) => createSafeSecurityScraper().run(options)

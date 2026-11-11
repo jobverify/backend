@@ -216,7 +216,7 @@ export const createWeRizeScraper = ({
   },
 })
 
-export const run = async () => createWeRizeScraper().run()
+export const run = async (options) => createWeRizeScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

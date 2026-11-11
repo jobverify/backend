@@ -62,6 +62,7 @@ export const getUserSuggestions = async (req, res) => {
       id: row._id,
       message: row.message,
       createdAt: row.createdAt,
+      resolved: row.resolved === true,
       user: row.user
         ? {
             id: row.user._id,
@@ -82,5 +83,29 @@ export const getUserSuggestions = async (req, res) => {
     return respondWithInternalError(res, error, {
       logLabel: "Failed to list user suggestions:",
     });
+  }
+};
+
+export const resolveUserSuggestion = async (req, res) => {
+  try {
+    const suggestion = await UserSuggestion.findByIdAndUpdate(
+      req.params.id,
+      { $set: { resolved: true } },
+      { new: true, runValidators: true },
+    );
+    if (!suggestion) return res.status(404).json({ success: false, message: "Suggestion not found." });
+    return res.json({ success: true, data: { id: suggestion._id, resolved: suggestion.resolved } });
+  } catch (error) {
+    return respondWithInternalError(res, error, { logLabel: "Failed to resolve user suggestion:" });
+  }
+};
+
+export const deleteUserSuggestion = async (req, res) => {
+  try {
+    const suggestion = await UserSuggestion.findByIdAndDelete(req.params.id);
+    if (!suggestion) return res.status(404).json({ success: false, message: "Suggestion not found." });
+    return res.json({ success: true, data: { id: suggestion._id } });
+  } catch (error) {
+    return respondWithInternalError(res, error, { logLabel: "Failed to delete user suggestion:" });
   }
 };

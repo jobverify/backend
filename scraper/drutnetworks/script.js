@@ -41,7 +41,7 @@ export const createDrutNetworksScraper = () => ({
   },
 })
 
-export const run = async () => createDrutNetworksScraper().run()
+export const run = async (options) => createDrutNetworksScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

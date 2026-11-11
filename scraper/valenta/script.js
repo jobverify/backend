@@ -144,7 +144,7 @@ export const createValentaScraper = ({
   },
 })
 
-export const run = async () => createValentaScraper().run()
+export const run = async (options) => createValentaScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

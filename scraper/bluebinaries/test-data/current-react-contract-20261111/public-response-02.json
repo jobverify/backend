@@ -1,0 +1,98 @@
+{
+  "number": 2,
+  "startedAt": "2026-11-11T13:47:07.671447+00:00",
+  "url": "https://www.bluebinaries.com/static/js/main.726414c5.js",
+  "method": "GET",
+  "origin": "https://www.bluebinaries.com",
+  "provenance": {
+    "source": "bluebinaries",
+    "basis": "same-origin current homepage declared script or stylesheet",
+    "declaredByResponse": "public-response-01.json",
+    "declaringBodySHA256": "a3e848ae1fdc2b30fd1fb91b73226c806b36a1f488d1059afd91a1f5a9bbeea3"
+  },
+  "requestHeaders": {
+    "Accept": "text/html,application/javascript;q=0.9,*/*;q=0.8",
+    "User-Agent": "Mozilla/5.0"
+  },
+  "redirectPolicy": "manual; no redirects followed",
+  "cookiesSent": false,
+  "authenticationSent": false,
+  "strictTLS": true,
+  "maximumBodyBytes": 5000000,
+  "status": 200,
+  "reason": "OK",
+  "headers": [
+    [
+      "Date",
+      "Wed, 11 Nov 2026 13:47:39 GMT"
+    ],
+    [
+      "Content-Type",
+      "application/javascript"
+    ],
+    [
+      "Transfer-Encoding",
+      "chunked"
+    ],
+    [
+      "Connection",
+      "keep-alive"
+    ],
+    [
+      "etag",
+      "W/\"67d447bb86ddd1:0\""
+    ],
+    [
+      "last-modified",
+      "Fri, 06 Nov 2026 06:31:39 GMT"
+    ],
+    [
+      "vary",
+      "Accept-Encoding"
+    ],
+    [
+      "Server",
+      "cloudflare"
+    ],
+    [
+      "x-powered-by",
+      "ASP.NET"
+    ],
+    [
+      "x-powered-by-plesk",
+      "PleskWin"
+    ],
+    [
+      "Cache-Control",
+      "public, max-age=31536000"
+    ],
+    [
+      "set-cookie",
+      "__cf_bm=.O82.6AMeT5PxWPL8y0yEeSLMguzsDbJnVxE1G4OdUc-1794404859.1889744-1.0.1.1-hj3wrK3Aw922aYJi0ePRrG3PJuJRlsRNEaapc8kw5xGDMwkINaCEu8pf1bJ6dLie5NZaFaRAOjU7z1eAD2741obNHmIQ7nqcAroh6boLM6Gr5GLwOmFqqHhYIrXgSoiw; HttpOnly; SameSite=None; Partitioned; Secure; Path=/; Domain=www.bluebinaries.com; Expires=Wed, 11 Nov 2026 14:17:39 GMT"
+    ],
+    [
+      "expires",
+      "Thu, 11 Nov 2027 13:47:39 GMT"
+    ],
+    [
+      "cf-cache-status",
+      "HIT"
+    ],
+    [
+      "CF-RAY",
+      "a58dc001e91dccc9-LHR"
+    ],
+    [
+      "alt-svc",
+      "h3=\":443\"; ma=86400"
+    ]
+  ],
+  "location": null,
+  "contentType": "application/javascript",
+  "bodyFile": "public-response-02.body.bin",
+  "bytes": 958844,
+  "bodySHA256": "f015404118bbc6eb96824698308aaa440e7f99c3033282b8ebfee32fc66bce53",
+  "truncated": false,
+  "stopOrigin": false,
+  "completedAt": "2026-11-11T13:47:11.006435+00:00"
+}

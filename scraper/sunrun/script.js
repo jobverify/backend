@@ -217,7 +217,7 @@ export const createSunrunScraper = (defaults = {}) => ({
     const config = { ...defaults, ...options }, controller = new AbortController(), signal = controller.signal
     const timeoutMs = config.timeoutMs ?? 120000
     if (!Number.isFinite(timeoutMs) || timeoutMs <= 0 || timeoutMs > 300000) fail('invalid timeout')
-    const abort = () => controller.abort(config.signal.reason ?? Error('Sunrun cancelled'))
+    const abort = () => controller.abort(config.signal.reason)
     if (config.signal?.aborted) abort()
     else config.signal?.addEventListener('abort', abort, { once: true })
     const timer = setTimeout(() => controller.abort(Error('Sunrun inventory timed out')), timeoutMs)
@@ -229,7 +229,10 @@ export const createSunrunScraper = (defaults = {}) => ({
         listener = () => reject(signal.reason)
         signal.addEventListener('abort', listener, { once: true })
       })
-      try { return await Promise.race([Promise.resolve().then(action), stopped]) }
+      try { return await Promise.race([Promise.resolve().then(() => {
+        if (signal.aborted) throw signal.reason
+        return action()
+      }), stopped]) }
       finally { signal.removeEventListener('abort', listener) }
     }
     const fetchJson = (url, request = {}) => bounded(async () => {
@@ -238,12 +241,14 @@ export const createSunrunScraper = (defaults = {}) => ({
         ...request, signal, redirect: 'error',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json', ...request.headers },
       })
+      if (signal.aborted) throw signal.reason
       if (response.status !== 200 || (response.url && response.url !== url)) fail('native HTTP failure or redirect')
       return response.json()
     })
     const fetchPage = url => bounded(async () => {
       if (config.fetchPage) return config.fetchPage(url, { signal })
       const response = await (config.fetch ?? fetch)(url, { signal, redirect: 'error' })
+      if (signal.aborted) throw signal.reason
       return { url: response.url, status: response.status, html: await response.text() }
     })
 

@@ -77,6 +77,7 @@ export const createRadspanWirelessSystemsScraper = () => ({
 
         throw new Error(
           `RADSPAN Wireless Systems sentinel could not verify the verified no-surface condition at ${url}: ${error?.message ?? error}`,
+          { cause: error },
         )
       }
     }
@@ -85,7 +86,7 @@ export const createRadspanWirelessSystemsScraper = () => ({
   },
 })
 
-export const run = async () => createRadspanWirelessSystemsScraper().run()
+export const run = async (options) => createRadspanWirelessSystemsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

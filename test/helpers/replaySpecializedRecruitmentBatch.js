@@ -14,12 +14,13 @@ import {assertReutersCurrentExtraction,assertReutersPrimaryDenial} from './repla
 import {assertAdityaBirlaRealEstatePartialExtraction,assertAdityaBirlaRealEstatePrimaryDenial} from './replayAdityaBirlaRealEstatePartial20261107.js'
 import {assertJabilCurrentExtraction,assertJabilPrimaryDenial} from './replayJabilCurrentFeed20261107.js'
 import {assertBigeyeGemContract,assertBigeyeGemDenial} from './replayBigeyeGemContract20261108.js'
+import {assertRegistrationRepairExtraction,assertRegistrationRepairDenial} from './replayRegistrationRepairs20261110.js'
 
 // These source-owned current readers require their declared native contracts.
 // The remaining cohort members still exercise the generic controlled HTML path.
-export const specializedBatchSources=new Set(['adidas','aecom','aecomindia','corteva','lyrahealth','unosecur','kkr','precisely','mannhummel','corning','priceline','moodys','moodyscorporation','stantec','synchronyfinancial','evonik','2u','xerox','ncs','ikea','bilt','ferrero','reuters','adityabirlarealestate','jabil','bigeye'])
-export const currentCatalogBindingDates={unosecur:'2026-11-06',kkr:'2026-11-06',precisely:'2026-11-06',mannhummel:'2026-11-06'}
-export const currentModuleBindingDates={lyrahealth:'2026-11-05',unosecur:'2026-11-06'}
+export const specializedBatchSources=new Set(['adidas','aecom','aecomindia','corteva','lyrahealth','unosecur','kkr','precisely','mannhummel','corning','priceline','moodys','moodyscorporation','stantec','synchronyfinancial','evonik','2u','xerox','ncs','ikea','bilt','ferrero','reuters','adityabirlarealestate','jabil','bigeye','onsemiconductor','lennoxinternational'])
+export const currentCatalogBindingDates={unosecur:'2026-11-06',kkr:'2026-11-06',precisely:'2026-11-06',mannhummel:'2026-11-06',onsemiconductor:'2026-11-10',lennoxinternational:'2026-11-11'}
+export const currentModuleBindingDates={lyrahealth:'2026-11-05',unosecur:'2026-11-06',lennoxinternational:'2026-11-11'}
 const sha=b=>createHash('sha256').update(b).digest('hex'),cache=new Map()
 const key=(url,init={})=>(init.method||'GET')+':'+url+':'+(init.body||'')
 const canonical=value=>Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.entries(value).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>[k,canonical(v)])):value
@@ -90,6 +91,7 @@ function currentTransport(t,source,denied=false){
  return{fixture,rows,calls,fetchImpl}
 }
 export async function assertSpecializedBatchExtraction(t,provider){
+ if(provider.source==='onsemiconductor'||provider.source==='lennoxinternational')return assertRegistrationRepairExtraction(t,provider)
  if(provider.source==='bigeye')return assertBigeyeGemContract(t,provider)
  if(provider.source==='jabil')return assertJabilCurrentExtraction(t,provider)
  if(provider.source==='adityabirlarealestate')return assertAdityaBirlaRealEstatePartialExtraction(t,provider)
@@ -166,6 +168,7 @@ export async function assertSpecializedBatchExtraction(t,provider){
  return{jobs,calls:io.calls}
 }
 export async function assertSpecializedBatchDenial(t,provider){
+ if(provider.source==='onsemiconductor'||provider.source==='lennoxinternational')return assertRegistrationRepairDenial(t,provider)
  if(provider.source==='bigeye')return assertBigeyeGemDenial(t,provider)
  if(provider.source==='jabil')return assertJabilPrimaryDenial(t,provider)
  if(provider.source==='adityabirlarealestate')return assertAdityaBirlaRealEstatePrimaryDenial(t,provider)

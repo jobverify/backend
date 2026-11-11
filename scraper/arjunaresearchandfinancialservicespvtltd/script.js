@@ -54,7 +54,7 @@ export const createArjunaResearchAndFinancialServicesScraper = () => ({
   },
 })
 
-export const run = async () => createArjunaResearchAndFinancialServicesScraper().run()
+export const run = async (options) => createArjunaResearchAndFinancialServicesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

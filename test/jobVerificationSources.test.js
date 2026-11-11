@@ -24,6 +24,7 @@ test('fresh phishing matches are threats and cached observations retain their or
   assert.equal(first.find(item => item.id === 'phishing').outcome, 'threat');
   assert.equal(second.find(item => item.id === 'phishing').observedAt, '2026-11-10T10:00:00.000Z');
   assert.equal(downloads, 2);
+  assert.match(first.find(item => item.id === 'phishing').excerpt, /matched entry: bad\.example\.com/);
 });
 
 test('an invalid downloaded feed cannot replace a valid cached copy or imply a clean scan', async () => {

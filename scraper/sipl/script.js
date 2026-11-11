@@ -56,7 +56,7 @@ export const createSIPLScraper = ({
   },
 })
 
-export const run = async () => createSIPLScraper().run()
+export const run = async (options) => createSIPLScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

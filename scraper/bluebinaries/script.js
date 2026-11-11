@@ -5,6 +5,7 @@ import { visibleDocument, decodeLeaf, normalizeText } from './nativeVisibility.j
 import {publicRead,structure} from '../alkemlaboratories/publicRead.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {verifyBlueRendering} from './currentRendering.js'
+import {looksLikeCurrentReactHomepage,collectCurrentReactHiringObservations} from './currentReactContract20261111.js'
 
 export const SOURCE = 'bluebinaries'
 export const HOMEPAGE_URL = 'https://www.bluebinaries.com/'
@@ -107,8 +108,10 @@ export const run = async (options = {}) => {
   valid(!options.fetchJson && !options.fetchText || options.fetchPage, 'use native fetchPage transport')
   let requests = 0
   const page = async (url,phase='initial') => {const body=await scope.read(url,{phase});requests++;return body}
-  const home = async (phase='initial') => { const html = await page(HOMEPAGE_URL,phase), doc = visibleDocument(html, n => n.tag === 'a'); valid(doc.nodes(n => n.tag === 'title' && /BlueBinaries/i.test(decodeLeaf(n.raw))).length === 1 && doc.nodes(n => n.tag === 'a' && absolute(n.attrs.href, HOMEPAGE_URL) === CAREER_PAGE_URL).length > 0, 'official homepage career handoff changed'); return doc.nodes(n => n.tag === 'a' && absolute(n.attrs.href,HOMEPAGE_URL) === WORKSITES_URL).length > 0 }
-  const openingContactAdvertised = await home(), openingWorksites = openingContactAdvertised ? extractOfficialWorksites(await page(WORKSITES_URL)) : []
+  const home = async (phase='initial') => { const html = await page(HOMEPAGE_URL,phase), doc = visibleDocument(html, n => n.tag === 'a'); const legacyHandoff = doc.nodes(n => n.tag === 'title' && /BlueBinaries/i.test(decodeLeaf(n.raw))).length === 1 && doc.nodes(n => n.tag === 'a' && absolute(n.attrs.href, HOMEPAGE_URL) === CAREER_PAGE_URL).length > 0; if (!legacyHandoff && phase === 'initial' && looksLikeCurrentReactHomepage(html)) return collectCurrentReactHiringObservations({openingHTML:html,scope}); valid(legacyHandoff, 'official homepage career handoff changed'); return doc.nodes(n => n.tag === 'a' && absolute(n.attrs.href,HOMEPAGE_URL) === WORKSITES_URL).length > 0 }
+  const openingContactAdvertised = await home()
+  if (Array.isArray(openingContactAdvertised)) return openingContactAdvertised
+  const openingWorksites = openingContactAdvertised ? extractOfficialWorksites(await page(WORKSITES_URL)) : []
   const openingHTML=await page(CAREER_PAGE_URL),openingRendering=await verifyBlueRendering(openingHTML,scope,'initial')
   const opening = extractNativeInventory(openingHTML, { worksites: openingWorksites,renderingVerified:openingRendering.verified })
   const closingContactAdvertised = await home('closing'), closingWorksites = closingContactAdvertised ? extractOfficialWorksites(await page(WORKSITES_URL,'closing')) : []

@@ -4,10 +4,10 @@ import { CAREER_PAGE_URL,FRAME_URL,CLIENT_URL,PROXY_URL,NATIVE_ORIGIN,API_ORIGIN
 
 const bounded = (operation, signal) => new Promise((resolve,reject) => {
   const cleanup = () => signal.removeEventListener('abort',abort)
-  const abort = () => { cleanup(); reject(signal.reason || Error('Byteridge aborted')) }
+  const abort = () => { cleanup(); reject(signal.reason) }
   if (signal.aborted) return abort()
   signal.addEventListener('abort',abort,{once:true})
-  Promise.resolve().then(operation).then(value => {cleanup();resolve(value)},error => {cleanup();reject(error)})
+  Promise.resolve().then(()=>{signal.throwIfAborted();return operation()}).then(value => {cleanup();resolve(value)},error => {cleanup();reject(error)})
 })
 export async function runNativeByteridge(options = {}) {
   const now = typeof options.now === 'function' ? options.now() : options.now || new Date().toISOString()
@@ -33,7 +33,7 @@ export async function runNativeByteridge(options = {}) {
     const isClient = url === CLIENT_URL || Object.hasOwn(reviewedNativeClients,url)
     const headers = parsed.origin === API_ORIGIN ? {...sessionHeaders,...(token && !anonymous ? {Authorization:'Bearer '+token} : {})} : {Accept:json ? 'application/json, text/plain, */*' : isClient ? 'application/javascript, text/javascript, */*' : 'text/html,application/xhtml+xml'}
     if (method === 'POST') Object.assign(headers,{'Content-Type':'application/json;charset=UTF-8',...(url === PROXY_URL ? {Origin:'https://byteridge.com',Referer:FRAME_URL} : {})})
-    let text,status=200,contentType=null,finalUrl=url
+    let text,status=200,contentType=null,finalUrl
     // The legacy seam remains read-only and deterministic for timeout tests.
     // Full public contract tests inject a response-shaped transport instead.
     if (options.fetchText && !options.fetchImpl && !options.fetchPage) text = await bounded(() => options.fetchText(url,{method,body,headers,signal}),signal)
@@ -43,7 +43,7 @@ export async function runNativeByteridge(options = {}) {
       if (status !== 200) throw Object.assign(Error('Byteridge public HTTP '+status+'; stopped without retry'),{code:'BYTERIDGE_PUBLIC_HTTP',status,abortRetries:true,softFailure:true,upstreamOutage:true,failureKind:[401,403,429].includes(status)?'public_access_denied':'network_or_timeout'})
       check(finalUrl === url, 'public response redirect changed')
       check(!contentType || (json ? /(?:application|text)\/[^;]*json/i : isClient ? /(?:application|text)\/(?:x-)?(?:java|ecma)script/i : /text\/html/i).test(contentType), 'public response MIME changed')
-      text = await bounded(() => typeof response.body === 'string' ? response.body : response.text(),signal)
+      text = await bounded(() => { if (typeof response.body === 'string') return response.body; const method = response.text; signal.throwIfAborted(); return Reflect.apply(method,response,[]) },signal)
     }
     check(typeof text === 'string' && Buffer.byteLength(text) <= (Object.hasOwn(reviewedNativeClients,url) ? 16000000 : 5000000), 'oversized/invalid public response')
     // Only response hashes and sizes are retained. Issued anonymous credentials,
@@ -141,6 +141,7 @@ export async function runNativeByteridge(options = {}) {
     signal.throwIfAborted()
     return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:CAREER_PAGE_URL,firstParty:true,listingComplete:complete,pagesFetched:retainedResponses.length,reportedTotal:opening.listing.total,indiaFacetCount:healthy.length,verifiedAt:now,reason:complete?'complete-native-global-and-corporate-snapshots-reconciled':evidence.reasons.join(';')})
   } catch(error) {
+    options.signal?.throwIfAborted()
     if(/timed? out|timeout|fetch failed|connect|socket|econn|enotfound|eai_again|tls|deadline/i.test(String(error?.message))) Object.assign(error,{softFailure:true,upstreamOutage:true,abortRetries:true,failureKind:'network_or_timeout'})
     throw error
   } finally {token=null;clearTimeout(timer)}

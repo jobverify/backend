@@ -88,4 +88,4 @@ export const createDunAndBradstreetScraper = () => ({
   },
 })
 
-export const run = async () => createDunAndBradstreetScraper().run()
+export const run = async (options) => createDunAndBradstreetScraper().run(options)

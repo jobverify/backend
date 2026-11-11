@@ -192,7 +192,7 @@ export const createAesTechnologiesScraper = ({
   },
 })
 
-export const run = async () => createAesTechnologiesScraper().run()
+export const run = async (options) => createAesTechnologiesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

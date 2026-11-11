@@ -104,7 +104,7 @@ export const createCywareScraper = ({
   },
 })
 
-export const run = async () => createCywareScraper().run()
+export const run = async (options) => createCywareScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

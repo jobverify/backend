@@ -116,7 +116,7 @@ export const createDanlawTechnologiesScraper = () => ({
   },
 })
 
-export const run = async () => createDanlawTechnologiesScraper().run()
+export const run = async (options) => createDanlawTechnologiesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

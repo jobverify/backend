@@ -21,7 +21,7 @@ const decode=value=>String(value??'').replace(/&(?:#(x[\da-f]+|\d+);?|(nbsp|amp|
 })
 const attributes=tag=>{
  const result={},reasons=[]
- for(const m of tag.replace(/^<\/?[a-z][\w:-]*/i,'').replace(/\/?\s*>$/,'').matchAll(/([^\s"'<>\/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)){
+ for(const m of tag.replace(/^<\/?[a-z][\w:-]*/i,'').replace(/\/?\s*>$/,'').matchAll(/([^\s"'<>/=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g)){
   const key=m[1].toLowerCase();if(Object.hasOwn(result,key))reasons.push('duplicate-attribute:'+key)
   result[key]=decode(m[2]??m[3]??m[4]??'')
  }
@@ -58,7 +58,7 @@ export function projectNativeHtml(input) {
     const at=declaration.indexOf(':');if(at<0){unknown=true;continue}
     const key=declaration.slice(0,at).trim(),value=declaration.slice(at+1).replace(/\s*!important\s*$/,'').trim()
     if(key==='display'&&value==='none'||key==='visibility'&&['hidden','collapse'].includes(value)||key==='content-visibility'&&value==='hidden'||key==='opacity'&&/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/.test(value)&&Number(value)===0)suppressed=true
-    else if(key==='display'&&['block','inline','inline-block','flex','grid','list-item','table'].includes(value)||key==='visibility'&&value==='visible'||key==='opacity'&&Number(value)>0&&Number(value)<=1||['font-weight','font-style','text-decoration','text-align'].includes(key)&&/^[a-z\s\d-]+$/.test(value)){}
+    else if(key==='display'&&['block','inline','inline-block','flex','grid','list-item','table'].includes(value)||key==='visibility'&&value==='visible'||key==='opacity'&&Number(value)>0&&Number(value)<=1||['font-weight','font-style','text-decoration','text-align'].includes(key)&&/^[a-z\s\d-]+$/.test(value)){/* Accepted visible native style declaration. */}
     else unknown=true
    }
    if(unknown&&!suppressed)reasons.push('unresolved-style-visibility')
@@ -164,15 +164,19 @@ function readPublicShell(html){
 }
 
 export function createTripcomScraper(defaults={}){return {async run(runOptions={}){
- const options={...defaults,...runOptions},now=typeof options.now==='function'?options.now():options.now??new Date().toISOString(),cap=options.maxJobs??Infinity,interval=options.requestIntervalMs??250,timeout=options.timeoutMs??600000
+ const options={...defaults,...runOptions}
+ options.signal?.throwIfAborted()
+ let now
+ try{now=typeof options.now==='function'?options.now():options.now??new Date().toISOString()}finally{options.signal?.throwIfAborted()}
+ const cap=options.maxJobs??Infinity,interval=options.requestIntervalMs??250,timeout=options.timeoutMs??600000
  check(Number.isFinite(Date.parse(now)),'invalid verification clock');check(cap===Infinity||Number.isSafeInteger(cap)&&cap>=0,'invalid caller cap');check(Number.isSafeInteger(interval)&&interval>=0,'invalid request interval');check(Number.isSafeInteger(timeout)&&timeout>0&&timeout<=900000,'invalid source deadline')
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(Error('Trip.com source deadline exceeded')),timeout),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal,receipts=[],allowed=new Set([CAREERS_URL]),last=new Map()
- const bounded=fn=>new Promise((resolve,reject)=>{const abort=()=>{cleanup();reject(signal.reason||Error('Trip.com aborted'))},cleanup=()=>signal.removeEventListener('abort',abort);if(signal.aborted)return abort();signal.addEventListener('abort',abort,{once:true});Promise.resolve().then(fn).then(v=>{cleanup();resolve(v)},e=>{cleanup();reject(e)})})
+ const bounded=fn=>new Promise((resolve,reject)=>{const abort=()=>{cleanup();reject(signal.reason)},cleanup=()=>signal.removeEventListener('abort',abort);if(signal.aborted)return abort();signal.addEventListener('abort',abort,{once:true});Promise.resolve().then(()=>{signal.throwIfAborted();return fn()}).then(v=>{cleanup();resolve(v)},e=>{cleanup();reject(e)})})
  const request=async(url,body)=>{
   signal.throwIfAborted();check(body?[JOBS_API_URL,LOCATION_API_URL].includes(url):allowed.has(url),'request outside current public readonly contract')
   const origin=new URL(url).origin,wait=interval-(Date.now()-(last.get(origin)||0));if(wait>0)await delay(wait,undefined,{signal});last.set(origin,Date.now())
   const response=await bounded(()=>(options.fetchImpl??globalThis.fetch)(url,{method:body?'POST':'GET',redirect:'manual',signal,headers:body?{Accept:'application/json','Content-Type':'application/json'}:{Accept:'text/html,application/javascript,*/*'},...(body?{body}:{} )}))
-  const bytes=await bounded(()=>response.text())
+  const bytes=await bounded(()=>{const method=response.text;signal.throwIfAborted();return Reflect.apply(method,response,[])})
   receipts.push({url,method:body?'POST':'GET',requestBody:body?JSON.parse(body):null,status:response.status,bodyBytes:Buffer.byteLength(bytes),bodySHA256:hash(bytes)})
   if(response.status!==200)throw Object.assign(Error('Trip.com public HTTP '+response.status+'; stopped without retry'),{status:response.status,abortRetries:true,softFailure:true,upstreamOutage:true,failureKind:[401,403,429].includes(response.status)?'public_access_denied':'public_http_failure'})
   check(!response.url||response.url===url,'public response redirected outside native identity')
@@ -239,7 +243,15 @@ export function createTripcomScraper(defaults={}){return {async run(runOptions={
   if(cap<eligible.length)reasons.push('caller-cap-after-complete-native-reconciliation')
   const complete=reasons.length===0,evidence={source:SOURCE,surface:CAREERS_URL,nativeScope:'all unfiltered current overseas public board records; source Trip.com; sibling employers require role attribution',corporateHiringContexts:shell.hiringContexts,globalRecords:opening.total,closingGlobalRecords:closing.total,observedOverseasRecords:opening.total,closingObservedOverseasRecords:closing.total,wholeEmployerGlobalRecords:complete?opening.total:null,wholeEmployerIndiaRecords:complete?eligible.length:null,fullDetailRecords:[...details.values()].filter(r=>r.full).length,closingFullDetailRecords:[...closingDetails.values()].filter(r=>r.full).length,confirmedIndiaRecords:roles.filter(r=>r.country==='India').length,confirmedForeignRecords:roles.filter(r=>r.country&&r.country!=='India').length,countryUnknownRecords:roles.filter(r=>!r.country).length,employerUnknownRecords:roles.filter(r=>!r.company).length,eligibleIndiaRecords:eligible.length,publicationPolicyEligibleRecords:eligible.length===0?0:null,publicationPolicyEvaluation:'registered downstream policy evaluated separately',sourceScopeComplete:complete,lifecycleCleanupAllowed:complete,closingReconciled:details.size===opening.total&&closingDetails.size===closing.total&&!reasons.some(r=>/changed|identity|cardinality/.test(r)),reasons:[...new Set(reasons)],roles,nativeTaxonomy:openingTaxonomy.raw,retainedResponses:receipts,verifiedAt:now,candidateActionsTaken:false,applicationSubmitted:false}
   if(options.onNativeEvidence)await options.onNativeEvidence(evidence)
+  signal.throwIfAborted()
   const jobs=eligible.slice(0,cap).map(job=>({...job,sourceListingComplete:complete,sourceScopeComplete:complete,lifecycleCleanupAllowed:complete,sourceObservedGlobalJobCount:opening.total,sourceObservedIndiaJobCount:evidence.confirmedIndiaRecords,nativeCollectionEvidence:{...evidence,roles:undefined,nativeTaxonomy:undefined}}))
   return attachInventoryEvidence(jobs,{status:complete?(opening.total===0?'verified-empty':'complete-inventory'):'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:complete,pagesFetched:opening.pages+closing.pages,reportedTotal:opening.total,indiaFacetCount:evidence.confirmedIndiaRecords,verifiedAt:now,reason:complete?'complete-native-opening-details-and-closing-reconciliation':evidence.reasons.join(';')})
- }catch(error){error.abortRetries=true;throw error}finally{clearTimeout(timer)}
+ }catch(error){
+  options.signal?.throwIfAborted()
+  const failure=signal.aborted?signal.reason:error
+  try{if(failure!==null&&(typeof failure==='object'||typeof failure==='function'))failure.abortRetries=true}
+  catch{/* Retry metadata must not replace the original source failure. */}
+  finally{options.signal?.throwIfAborted()}
+  throw failure
+ }finally{clearTimeout(timer)}
 }}}

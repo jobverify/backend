@@ -138,4 +138,4 @@ export const createCafeCoffeeDayScraper = () => ({
   },
 })
 
-export const run = async () => createCafeCoffeeDayScraper().run()
+export const run = async (options) => createCafeCoffeeDayScraper().run(options)

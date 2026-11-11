@@ -148,7 +148,7 @@ export const createAxelorScraper = ({
   },
 })
 
-export const run = async () => createAxelorScraper().run()
+export const run = async (options) => createAxelorScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

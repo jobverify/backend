@@ -1,0 +1,11 @@
+{
+  "source": "seweurodriveindiapvtltd",
+  "fixture": "quality-20261110.json.gz",
+  "sha256": "3100570702ef00d6bb4ae0e71160b687953232f8683b78a08d32acab91dff2e3",
+  "retainedRegisteredOutputSHA256": "fc0c2e6bc027440941c020297e722f88139e55ff395a36d861a46215b0ac3334",
+  "actualPublicPackets": 1,
+  "actualPublicPacketStatus": 403,
+  "actualPublicPacketSHA256": "640fb42b7689584282aa63097fec1784dc8d014d32234eccfc0b6db061949fd1",
+  "nativeRolePDFFixtures": 0,
+  "syntheticControlsExplicitlyLabelled": true
+}

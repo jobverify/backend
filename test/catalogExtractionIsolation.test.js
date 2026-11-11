@@ -27,7 +27,63 @@ test('isolated extraction cannot write outside its source artifact directory', a
   await withFixture(`import fs from 'node:fs'; export const run = async () => { fs.writeFileSync(new URL('./forbidden.txt', import.meta.url), 'changed'); return [] }`, async ({ directory, provider }) => {
     const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
     assert.equal(row.outcome, 'audit-permission-blocked')
+    assert.equal(row.failureKind, 'audit_permission_blocked')
     assert.equal(fs.existsSync(path.join(directory, 'forbidden.txt')), false)
+  })
+})
+
+test('installed PDF native-addon load denied by the audit remains an audit limitation', async () => {
+  await withFixture(`import 'pdfjs-dist/legacy/build/pdf.mjs'; export const run = async () => []`, async ({ directory, provider }) => {
+    const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
+    assert.equal(row.outcome, 'audit-permission-blocked')
+    assert.equal(row.failureKind, 'audit_permission_blocked')
+    assert.equal(row.failureCode, 'AUDIT_NATIVE_ADDONS_UNAVAILABLE')
+    assert.deepEqual(row.auditRuntimeLimitation, { capability: 'native-addons', component: 'pdfjs-dist', allowed: false })
+    for (const key of ['rawJobs', 'indiaJobs', 'eligibleJobs', 'inventoryEvidence']) assert.equal(row[key], null)
+  })
+})
+
+test('an unrelated DOMMatrix error remains a source failure in the restricted audit', async () => {
+  await withFixture(`export const run = async () => { throw new ReferenceError('DOMMatrix is not defined') }`, async ({ directory, provider }) => {
+    const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
+    assert.equal(row.outcome, 'extraction-failed')
+    assert.equal(row.failureCode, 'EXTRACTION_OR_UPSTREAM_ERROR')
+    assert.equal(row.auditRuntimeLimitation, undefined)
+  })
+})
+
+test('an employer detail wrapper retains the exact denied PDF module as an audit limitation', async () => {
+  await withFixture(`export const run = async () => {
+    try { await import('pdfjs-dist/legacy/build/pdf.mjs') }
+    catch (cause) { throw new Error('Native role descriptions unavailable', { cause: new Error('PDF detail failed', { cause }) }) }
+    throw new Error('Expected the restricted native module to remain unavailable')
+  }`, async ({ directory, provider }) => {
+    const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
+    assert.equal(row.outcome, 'audit-permission-blocked')
+    assert.equal(row.failureCode, 'AUDIT_NATIVE_ADDONS_UNAVAILABLE')
+    assert.equal(row.auditRuntimeLimitation.component, 'pdfjs-dist')
+    for (const key of ['rawJobs', 'indiaJobs', 'eligibleJobs', 'inventoryEvidence']) assert.equal(row[key], null)
+  })
+})
+
+test('a wrapped counterfeit PDF error remains an actual source failure', async () => {
+  await withFixture(`export const run = async () => {
+    throw new Error('Native role descriptions unavailable', { cause: new ReferenceError('DOMMatrix is not defined') })
+  }`, async ({ directory, provider }) => {
+    const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
+    assert.equal(row.outcome, 'extraction-failed')
+    assert.equal(row.auditRuntimeLimitation, undefined)
+    assert.notEqual(row.failureCode, 'AUDIT_NATIVE_ADDONS_UNAVAILABLE')
+  })
+})
+
+test('cyclic native error causes remain bounded source failures', async () => {
+  await withFixture(`export const run = async () => {
+    const error = new Error('Native role contract unavailable'); error.cause = error; throw error
+  }`, async ({ directory, provider }) => {
+    const row = await runIsolatedExtraction(provider, { outputDirectory: path.join(directory, 'output') })
+    assert.equal(row.outcome, 'extraction-failed')
+    assert.equal(row.auditRuntimeLimitation, undefined)
   })
 })
 

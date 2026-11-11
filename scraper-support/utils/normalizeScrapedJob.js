@@ -1,7 +1,7 @@
 import { resolveEmployerPostedAt } from '../../src/utils/employerPostingDate.js';
 import { withSourceDescription } from '../../src/utils/jobSourceContent.js';
 import { normalizePublicJobType } from '../../src/utils/publicJobTypeLabel.js';
-import { extractJobFilterSignals, hasEntryLevelCue } from '../../src/utils/jobFilterSignals.js'
+import { extractJobFilterSignals, hasEntryLevelCue, nativeExperienceConflictEvidence } from '../../src/utils/jobFilterSignals.js'
 import { applyClassification, getAuthoritativeClassification } from '../../src/services/jobClassificationPolicy.js'
 import { resolveJobPublicationDate } from '../../src/utils/jobPublicationDate.js'
 
@@ -1452,6 +1452,7 @@ const shouldPreferProfileEvidence = (explicitExperience, experienceProfile = {})
 }
 
 export const inferMissingExperienceRequired = (job = {}, experienceRequired, experienceProfile = {}) => {
+  if (nativeExperienceConflictEvidence(job)) return null
   const hasHighConfidenceNoExperienceProfile = (
     experienceProfile.confidence === 'high'
     && experienceProfile.minimumYears === 0
@@ -1459,6 +1460,13 @@ export const inferMissingExperienceRequired = (job = {}, experienceRequired, exp
   )
   const explicitExperience = normalizeString(experienceRequired)
   const profileEvidence = normalizeProfileEvidence(experienceProfile)
+  // Retained candidate records can lack an own-role experience requirement.
+  // Preserve their explicitly unresolved source contract before profile or
+  // internship inference can manufacture an experience requirement.
+  if (!explicitExperience
+    && job.sourceExperienceScopeUnresolved === true
+    && ['application-role-choice', 'corporate-public-role-card', 'api-role-observation'].includes(job.sourceRecordKind)
+    && job.skipPublicExperienceEnrichment === true) return null
   if (explicitExperience) {
     return shouldPreferProfileEvidence(explicitExperience, experienceProfile)
       ? (hasHighConfidenceNoExperienceProfile
@@ -1488,6 +1496,7 @@ export const inferMissingExperienceRequired = (job = {}, experienceRequired, exp
 
 export const normalizeScrapedJob = (job = {}, provider = {}) => {
   job = withSourceDescription(job);
+  const nativeExperienceConflict = nativeExperienceConflictEvidence(job)
   const identity = normalizeScrapedJobIdentity(job, provider)
   // Keep the employer title as scan evidence; display whitespace may differ.
   const sourceTitle = String(job.originalTitle || job.title || '').trim() || null
@@ -1497,7 +1506,7 @@ export const normalizeScrapedJob = (job = {}, provider = {}) => {
   const sourceUrl = identity.sourceUrl
   const hasEmailApplication = /^mailto:/i.test(String(job.applyUrl || job.link || '').trim())
   const scrapedTimestamp = normalizeDate(job.scrapedTimestamp || job.scrapedAt) || new Date()
-  const publicExperienceChecked = (
+  const publicExperienceChecked = !nativeExperienceConflict && (
     job.publicExperienceChecked === true
     || hasTrustedPublicExperienceSurface({
       ...job,
@@ -1519,8 +1528,10 @@ export const normalizeScrapedJob = (job = {}, provider = {}) => {
     ...normalizeEmployerDisclosures(job),
     sourceEmploymentType: preserveSourceText(job.sourceEmploymentType || job.atsEmploymentType || job.rawEmploymentType
       || (job.employmentTypeProvenance === 'source' ? job.employmentType : null)),
-    sourceExperienceRequired: preserveSourceText([job.sourceExperienceRequired, job.experienceRequiredProvenance === 'source' ? job.experienceRequired : null]
+    sourceExperienceRequired: nativeExperienceConflict ? null : preserveSourceText([job.sourceExperienceRequired, job.experienceRequiredProvenance === 'source' ? job.experienceRequired : null]
       .find(value => value !== null && value !== undefined && value !== '')),
+    ...(nativeExperienceConflict && { sourceNativeExperienceConflict: nativeExperienceConflict,
+      sourceExperienceScopeUnresolved: true, skipPublicExperienceEnrichment: true }),
     title: originalTitle,
     company: identity.company,
     originalTitle: sourceTitle,
@@ -1540,7 +1551,7 @@ export const normalizeScrapedJob = (job = {}, provider = {}) => {
     minimumQualification: preserveSourceText(job.minimumQualification),
     preferredQualification: preserveSourceText(job.preferredQualification),
     requiredSkills,
-    experienceRequired: normalizeString(job.experienceRequired),
+    experienceRequired: nativeExperienceConflict ? null : normalizeString(job.experienceRequired),
     salary: normalizeString(job.salary),
     jobId: identity.jobId,
     requisitionId: identity.requisitionId,

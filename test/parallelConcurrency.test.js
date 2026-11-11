@@ -69,9 +69,9 @@ test('configured concurrency prefers the .env SCRAPER_CONCURRENCY value', () => 
   assert.equal(resolveConfiguredParallelScraperConcurrency('5'), 5)
 })
 
-test('configured concurrency falls back to the minimum worker pool size when unset', () => {
+test('configured concurrency falls back to five workers when unset', () => {
   assert.equal(
     resolveConfiguredParallelScraperConcurrency('', FALLBACK_PARALLEL_SCRAPER_CONCURRENCY),
-    FALLBACK_PARALLEL_SCRAPER_CONCURRENCY,
+    5,
   )
 })

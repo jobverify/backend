@@ -2,6 +2,7 @@ import { prepareResumeModel, generateResumeText, RESUME_MODEL } from './resumeRu
 import { prepareResumeCompiler, compileResumeLatex } from './latexCompiler.js';
 import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
 import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
+import { preserveResumeSourceLinks } from '../src/utils/resumeLatexFormat.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
   buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations } from '../src/services/resumeLatexContent.js';
 
@@ -57,9 +58,10 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       latex = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal, allowedLinks, onDiagnostic }));
       await phase('latex');
       latex = validateLatexSource(latex);
+      latex = validateLatexSource(preserveResumeSourceLinks(latex, facts.links));
       await phase('compiling');
-      // The published PDF must be compiled from the validated model output.
-      // There is no template-renderer fallback on generation or compile failure.
+      // Compile the validated model document with its original source references.
+      // Generation and compilation failures never fall back to a resume template.
       result = await withinResumeBudget(deadline, signal => compile(latex, { deadline, signal }));
       await phase('validating');
       if (tailored && result.pageCount > 2) {

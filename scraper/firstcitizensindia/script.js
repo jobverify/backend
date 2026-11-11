@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { runCurrentFirstCitizensInventory } from './currentNative20261111.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -81,12 +82,15 @@ const defaultFetchJson = async (url) => {
   return response.json()
 }
 
-export const createFirstCitizensIndiaScraper = ({
+export const createFirstCitizensIndiaScraper = (options = {}) => {
+ const {
   maxPages = 1,
   maxJobs = null,
   fetchJson = defaultFetchJson,
-} = {}) => ({
-  async run() {
+ } = options
+ return {
+  async run(runOptions = {}) {
+    if (!options.fetchJson) return runCurrentFirstCitizensInventory({ ...options, ...runOptions })
     const jobs = []
 
     for (let page = 1; page <= maxPages; page += 1) {
@@ -110,7 +114,8 @@ export const createFirstCitizensIndiaScraper = ({
       scrapedAt: new Date().toISOString(),
     }))
   },
-})
+ }
+}
 
 export const run = async (options = {}) => createFirstCitizensIndiaScraper(options).run()
 

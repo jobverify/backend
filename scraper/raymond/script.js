@@ -1,5 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {collectRaymondNative} from './nativeDetails.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -99,50 +100,6 @@ export const buildPublicHeaders = () => ({
   'Content-Type': 'application/json',
 })
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/javascript,application/javascript,text/plain,*/*',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
-}
-
-const defaultFetchJson = async (url, options = {}) => {
-  const response = await fetch(url, {
-    method: options.method || 'GET',
-    headers: options.headers,
-    body: options.body,
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.json()
-}
-
 export const hasOfficialCareersShell = (html) => {
   const rawHtml = String(html ?? '')
 
@@ -217,62 +174,10 @@ export const extractSearchResults = (payload = {}) => (
   })
   .filter(Boolean)
 
-export const createRaymondScraper = () => ({
-  async run({
-    fetchPage = defaultFetchPage,
-    fetchText = defaultFetchText,
-    fetchJson = defaultFetchJson,
-    pageSize = DEFAULT_PAGE_SIZE,
-    maxPages = Number.POSITIVE_INFINITY,
-  } = {}) {
-    const careersPage = await fetchPage(CAREERS_PAGE_URL)
-    if (careersPage.status !== 200 || !hasOfficialCareersShell(careersPage.html)) {
-      throw new Error('Raymond verified official careers shell no longer matches the known public surface')
-    }
-
-    const bundleUrl = extractClientBundleUrl(careersPage.html)
-    if (!bundleUrl) {
-      throw new Error('Raymond verified official careers shell no longer exposes the known client bundle')
-    }
-
-    const careersBundle = await fetchText(bundleUrl)
-    if (!hasVerifiedApplyNowHandoff(careersBundle)) {
-      throw new Error('Raymond verified official careers bundle no longer contains the known Apply Now handoff')
-    }
-
-    const portalPage = await fetchPage(JOB_LISTINGS_URL)
-    if (![200, 404].includes(portalPage.status) || !hasPublicPortalShell(portalPage.html)) {
-      throw new Error('Raymond verified public PeopleStrong portal no longer matches the known public surface')
-    }
-
-    const jobs = []
-
-    for (let page = 0; page < maxPages; page += 1) {
-      const offset = page * pageSize
-      const payload = await fetchJson(buildApiUrl({ offset, limit: pageSize }), {
-        method: 'POST',
-        headers: buildPublicHeaders(),
-        body: JSON.stringify(DEFAULT_SEARCH_BODY),
-      })
-
-      const pageJobs = extractSearchResults(payload)
-      jobs.push(...pageJobs.map((job) => ({
-        ...job,
-        source: SOURCE,
-        link: job.applyUrl || job.sourceUrl,
-        scrapedAt: new Date().toISOString(),
-      })))
-
-      const responseCount = Array.isArray(payload?.response) ? payload.response.length : 0
-      const totalRecords = Number.parseInt(String(payload?.totalRecords ?? ''), 10)
-
-      if (responseCount === 0) break
-      if (Number.isFinite(totalRecords) && offset + responseCount >= totalRecords) break
-    }
-
-    return jobs
-  },
-})
+export const createRaymondScraper = () => ({run: (options = {}) => collectRaymondNative(options,{
+  CAREERS_PAGE_URL,JOB_LISTINGS_URL,buildApiUrl,extractSearchResults,hasOfficialCareersShell,
+  extractClientBundleUrl,hasVerifiedApplyNowHandoff,hasPublicPortalShell,
+})})
 
 export const run = async (options = {}) => createRaymondScraper().run(options)
 

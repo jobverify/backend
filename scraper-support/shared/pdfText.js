@@ -1,7 +1,3 @@
-import { getDocument, VerbosityLevel } from 'pdfjs-dist/legacy/build/pdf.mjs'
-import { createCanvas } from '@napi-rs/canvas'
-import { createWorker } from 'tesseract.js'
-
 const normalizePdfWhitespace = (value) => String(value ?? '')
   .replace(/[ \t]+\n/g, '\n')
   .replace(/\n[ \t]+/g, '\n')
@@ -13,6 +9,7 @@ const OCR_RENDER_SCALE = 2
 const OCR_MAX_PAGES = 2
 const OCR_WORKER_COUNT = 2
 const DEFAULT_PDF_TEXT_EXTRACTION_TIMEOUT_MS = 30 * 1000
+const PDF_TASK_CLEANUP_TIMEOUT_MS = 1000
 
 let ocrWorkerPoolPromise = null
 let ocrWorkerCursor = 0
@@ -36,7 +33,7 @@ export const resolvePdfTextExtractionTimeoutMs = (
 }
 
 const getAbortReason = (signal, fallbackMessage) => (
-  signal?.reason || new Error(fallbackMessage)
+  signal && 'reason' in signal ? signal.reason : new Error(fallbackMessage)
 )
 
 const throwIfAborted = (signal, fallbackMessage = 'PDF text extraction aborted') => {
@@ -47,10 +44,11 @@ const throwIfAborted = (signal, fallbackMessage = 'PDF text extraction aborted')
 
 const createTimeoutSignal = (timeoutMs) => {
   if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return { signal: null, dispose: () => {} }
+    return { signal: null, dispose: () => {}, check: () => {} }
   }
 
   const controller = new AbortController()
+  const expiresAt = performance.now() + timeoutMs
   const timeoutId = setTimeout(() => {
     controller.abort(new PdfTextExtractionTimeoutError(timeoutMs))
   }, timeoutMs)
@@ -58,6 +56,12 @@ const createTimeoutSignal = (timeoutMs) => {
   return {
     signal: controller.signal,
     dispose: () => clearTimeout(timeoutId),
+    check: () => {
+      if (performance.now() >= expiresAt && !controller.signal.aborted) {
+        controller.abort(new PdfTextExtractionTimeoutError(timeoutMs))
+      }
+      throwIfAborted(controller.signal)
+    },
   }
 }
 
@@ -108,18 +112,26 @@ const toPdfUint8Array = (value) => {
   return new Uint8Array(value)
 }
 
-const getOcrWorkerPool = async () => {
-  ocrWorkerPoolPromise ??= Promise.all(
-    Array.from({ length: OCR_WORKER_COUNT }, () => createWorker('eng')),
-  ).then((workers) => ({
-    workers,
-    queues: workers.map(() => Promise.resolve()),
-  }))
+const getOcrWorkerPool = async (check) => {
+  check()
+  if (!ocrWorkerPoolPromise) {
+    const { createWorker } = await import('tesseract.js')
+    check()
+    ocrWorkerPoolPromise ??= Promise.all(
+      Array.from({ length: OCR_WORKER_COUNT }, () => createWorker('eng')),
+    ).then((workers) => ({
+      workers,
+      queues: workers.map(() => Promise.resolve()),
+    }))
+  }
 
   return ocrWorkerPoolPromise
 }
 
-const renderPdfPageToPng = async (page) => {
+const renderPdfPageToPng = async (page, check) => {
+  check()
+  const { createCanvas } = await import('@napi-rs/canvas')
+  check()
   const viewport = page.getViewport({ scale: OCR_RENDER_SCALE })
   const canvas = createCanvas(
     Math.max(1, Math.ceil(viewport.width)),
@@ -130,25 +142,27 @@ const renderPdfPageToPng = async (page) => {
     canvasContext: context,
     viewport,
   }).promise
+  check()
   return canvas.toBuffer('image/png')
 }
 
-const extractTextFromPdfWithOcr = async (pdf) => {
+const extractTextFromPdfWithOcr = async (pdf, check) => {
   const pageCount = Math.min(pdf.numPages, OCR_MAX_PAGES)
   if (pageCount === 0) return ''
 
-  const pool = await getOcrWorkerPool()
+  const pool = await getOcrWorkerPool(check)
+  check()
   const pages = []
 
   for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+    check()
     const page = await pdf.getPage(pageNumber)
-    const imageBuffer = await renderPdfPageToPng(page)
+    const imageBuffer = await renderPdfPageToPng(page, check)
+    check()
     const workerIndex = ocrWorkerCursor % pool.workers.length
     ocrWorkerCursor += 1
-    const resultPromise = pool.queues[workerIndex].then(
-      () => pool.workers[workerIndex].recognize(imageBuffer),
-      () => pool.workers[workerIndex].recognize(imageBuffer),
-    )
+    const recognize = () => { check(); return pool.workers[workerIndex].recognize(imageBuffer) }
+    const resultPromise = pool.queues[workerIndex].then(recognize, recognize)
     pool.queues[workerIndex] = resultPromise.catch(() => {})
     const result = await resultPromise
     const pageText = normalizePdfWhitespace(result?.data?.text)
@@ -160,61 +174,93 @@ const extractTextFromPdfWithOcr = async (pdf) => {
   return pages.join('\n\n')
 }
 
+const destroyPdfTask = async (task) => {
+  if (!task) return
+  let timer
+  try {
+    await Promise.race([
+      Promise.resolve().then(() => task.destroy()),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => reject(Object.assign(
+          new Error('PDF native task cleanup timed out'),
+          { name: 'PdfTextExtractionCleanupError', code: 'PDF_TEXT_CLEANUP_TIMEOUT' },
+        )), PDF_TASK_CLEANUP_TIMEOUT_MS)
+      }),
+    ])
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
 export const extractTextFromPdfBuffer = async (value, {
   signal = null,
   timeoutMs = resolvePdfTextExtractionTimeoutMs(),
 } = {}) => {
   throwIfAborted(signal)
-  const pdfData = toPdfUint8Array(value)
-  const loadingTask = getDocument({
-    data: pdfData,
-    useWorkerFetch: false,
-    isEvalSupported: false,
-    verbosity: VerbosityLevel.ERRORS,
-  })
-
   const timeout = createTimeoutSignal(timeoutMs)
   const abortSignals = [signal, timeout.signal]
-  const extractionPromise = (async () => {
-    const pdf = await loadingTask.promise
-    const pages = []
-
-    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-      const page = await pdf.getPage(pageNumber)
-      const textContent = await page.getTextContent()
-      const fragments = []
-
-      for (const item of textContent.items) {
-        if (!item || typeof item.str !== 'string') continue
-
-        const text = item.str.trim()
-        if (!text) continue
-
-        fragments.push(text)
-        if (item.hasEOL) {
-          fragments.push('\n')
-        }
-      }
-
-      const pageText = normalizePdfWhitespace(fragments.join(' '))
-      if (pageText) {
-        pages.push(pageText)
-      }
+  const check = () => { throwIfAborted(signal); timeout.check() }
+  const wait = async (promise) => {
+    check()
+    try {
+      const result = await raceWithAbortSignals(promise, abortSignals)
+      check()
+      return result
+    } catch (error) {
+      check()
+      throw error
     }
-
-    const directText = pages.join('\n\n')
-    if (pages.length > 0) {
-      return directText
-    }
-
-    const ocrText = await extractTextFromPdfWithOcr(pdf)
-    return ocrText || directText
-  })()
-
-  try {
-    return await raceWithAbortSignals(extractionPromise, abortSignals)
-  } finally {
-    timeout.dispose()
-    await loadingTask.destroy()
   }
+  let loadingTask
+  let result
+  let failed = false
+  let failure
+  try {
+    check()
+    const pdfData = toPdfUint8Array(value)
+    check()
+    const { extractPdfTextWorkerCore } = await wait(import('./pdfTextWorkerCore.js'))
+    check()
+    // The core owns its transport cleanup and uses this same caller deadline.
+    // Await its shutdown instead of returning while parser ports are still live.
+    const direct = await extractPdfTextWorkerCore(pdfData, { check, wait })
+    check()
+    if (direct.text) {
+      result = direct.text
+    } else {
+      const extractionPromise = (async () => {
+        // Only a fully extracted zero-text document needs the display/OCR runtime.
+        // Keep the cached native import error intact for restricted audit callers.
+        const { getDocument, VerbosityLevel } = await import('pdfjs-dist/legacy/build/pdf.mjs')
+        check()
+        loadingTask = getDocument({
+          data: pdfData,
+          useWorkerFetch: false,
+          isEvalSupported: false,
+          verbosity: VerbosityLevel.ERRORS,
+        })
+        check()
+        const pdf = await loadingTask.promise
+        check()
+        return await extractTextFromPdfWithOcr(pdf, check)
+      })()
+      result = await wait(extractionPromise)
+    }
+    check()
+  } catch (error) {
+    failed = true
+    failure = error
+  } finally {
+    try {
+      await destroyPdfTask(loadingTask)
+    } catch (error) {
+      if (!failed) { failed = true; failure = error }
+    }
+    timeout.dispose()
+  }
+  // Elapsed synchronous conversion/import/cleanup and caller cancellation take
+  // precedence without changing the identity of null, false, '' or frozen errors.
+  check()
+  if (failed) throw failure
+  return result
 }

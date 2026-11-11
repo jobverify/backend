@@ -154,7 +154,7 @@ export const createDoctreenScraper = () => ({
   },
 })
 
-export const run = async () => createDoctreenScraper().run()
+export const run = async (options) => createDoctreenScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const jobs = await run()

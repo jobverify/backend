@@ -107,7 +107,7 @@ export const createCynlrScraper = ({ fetchText = defaultFetchText } = {}) => ({
   },
 })
 
-export const run = async () => createCynlrScraper().run()
+export const run = async (options) => createCynlrScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

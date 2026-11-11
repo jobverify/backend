@@ -287,8 +287,28 @@ const defaultFetchJson = (url, { signal } = {}) => fetchJsonWithRetry(url, {
 })
 
 const assertNotAborted = (signal) => {
-  if (signal?.aborted) throw signal.reason || new Error('Wingify public inventory cancelled')
+  if (signal?.aborted) throw signal.reason
 }
+const checkedCaller = (signal, operation) => {
+  assertNotAborted(signal)
+  try { return operation() } finally { assertNotAborted(signal) }
+}
+const withCallerAbort = (signal, operation) => new Promise((resolve, reject) => {
+  let settled = false
+  const finish = (failed, value) => {
+    if (settled) return
+    settled = true
+    signal?.removeEventListener('abort', onAbort)
+    if (signal?.aborted) reject(signal.reason)
+    else if (failed) reject(value)
+    else resolve(value)
+  }
+  const onAbort = () => finish(true, signal.reason)
+  if (signal?.aborted) { onAbort(); return }
+  signal?.addEventListener('abort', onAbort, { once: true })
+  Promise.resolve().then(() => { assertNotAborted(signal); return operation() })
+    .then(value => finish(false, value), error => finish(true, error))
+})
 
 const inventoryError = (message) => {
   const error = new Error('Wingify ' + message)
@@ -475,9 +495,14 @@ const mapAbTastyJob = (detail) => {
 }
 
 export const createWingifyScraper = () => ({
-  async run({ fetchText = defaultFetchText, fetchJson = defaultFetchJson, now = () => new Date().toISOString(), signal } = {}) {
-    const getText = async (url) => { assertNotAborted(signal); const result = await fetchText(url, { signal }); assertNotAborted(signal); return String(result) }
-    const getJson = async (url) => { assertNotAborted(signal); const result = await fetchJson(url, { signal }); assertNotAborted(signal); return result }
+  async run(options = {}) {
+    const signal = options.signal
+    const readOption = name => checkedCaller(signal, () => options[name])
+    const { fetchText = defaultFetchText, fetchJson = defaultFetchJson, now = () => new Date().toISOString() } = {
+      fetchText: readOption('fetchText'), fetchJson: readOption('fetchJson'), now: readOption('now'),
+    }
+    const getText = (url) => withCallerAbort(signal, async () => { const result = await fetchText(url, { signal }); assertNotAborted(signal); return String(result) })
+    const getJson = (url) => withCallerAbort(signal, () => fetchJson(url, { signal }))
     const careersHtml = await getText(CAREERS_URL)
     if (!hasOfficialCareersPageSignal(careersHtml) || extractKekaBoardUrl(careersHtml) !== KEKA_BOARD_URL) {
       throw inventoryError('verified official careers handoff changed materially')
@@ -515,7 +540,7 @@ export const createWingifyScraper = () => ({
     }
     if (conflicts.length && indiaJobs.length === 0) throw inventoryError('country scope remains unresolved and no independently verified India inventory is available: ' + conflicts.join('; '))
     const complete = conflicts.length === 0
-    const verifiedAt = now()
+    const verifiedAt = checkedCaller(signal, now)
     const jobs = indiaJobs.map((job) => ({ ...job, source: SOURCE, link: job.applyUrl || job.sourceUrl, scrapedAt: verifiedAt, sourceListingComplete: complete }))
     return attachInventoryEvidence(jobs, {
       status: complete ? 'complete-inventory' : 'coverage-gap', surface: CAREERS_URL,

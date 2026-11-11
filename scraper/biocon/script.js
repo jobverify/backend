@@ -4,6 +4,10 @@ import { promisify } from 'node:util'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {nativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
+import {readNativeDocument,extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {
   buildInitialSearchDwrBody,
   buildPaginatedSearchDwrBody,
@@ -137,12 +141,6 @@ const normalizeWhitespace = (value) => {
   return normalized || null
 }
 
-const stripTags = (value) => normalizeWhitespace(
-  String(value ?? '')
-    .replace(/<(br|\/p|\/div|\/li|\/h[1-6])\b[^>]*>/gi, ' ')
-    .replace(/<[^>]+>/g, ' '),
-)
-
 const toIsoDate = (value) => {
   const normalized = normalizeWhitespace(value)
   const match = normalized?.match(/^(\d{2})\/(\d{2})\/(\d{4})$/)
@@ -180,7 +178,7 @@ export const hasOfficialCareersPageSignal = (html) => {
 
 export const hasSuccessFactorsSearchPageSignal = (html) => {
   const rawHtml = String(html ?? '')
-  const normalized = normalizeWhitespace(rawHtml) || ''
+  normalizeWhitespace(rawHtml)
 
   return hasStaticSuccessFactorsSearchPageSignal(rawHtml)
     || hasSuccessFactorsDwrResponseSignal(rawHtml)
@@ -214,17 +212,21 @@ export const hasSuccessFactorsDwrBootstrapSignal = (html) => hasSuccessFactorsDw
 
 const hasNextPage = (html) => /<a[^>]+title=["']Next Page["'][^>]*>/i.test(String(html ?? ''))
 
-const parseSearchRow = (rowHtml) => {
-  const title = stripTags(rowHtml.match(/<a[^>]*class=["']jobTitle["'][^>]*>([\s\S]*?)<\/a>/i)?.[1] || '')
-  const values = [...String(rowHtml ?? '').matchAll(/<span[^>]*class=["']jobContentEM["'][^>]*>([\s\S]*?)<\/span>/gi)]
-    .map((match) => stripTags(match[1]))
-    .filter(Boolean)
+const parseSearchRow = (doc, row) => {
+  const titles = doc.nodes(node => node.tag === 'a' && doc.hasClass(node, 'jobTitle'), row)
+  const title = titles.length === 1 ? normalizeWhitespace(doc.text(titles[0])) : null
+  // Keep inactive fields as empty positional slots. Dropping a hidden or empty
+  // department must never promote another field into the country column.
+  const columns = node => node.tag === 'template' ? []
+    : node.tag === 'span' && doc.hasClass(node, 'jobContentEM') ? [node]
+      : node.children.filter(child => typeof child !== 'string').flatMap(columns)
+  const values = columns(row).map(node => normalizeWhitespace(doc.text(node)))
 
   const requisitionId = normalizeWhitespace(values[0])
   const postingDate = toIsoDate(String(values[1] ?? '').replace(/^Posted on\s*/i, ''))
   const hiringEntity = normalizeWhitespace(values[2])
   const department = normalizeWhitespace(values[3])
-  const country = normalizeWhitespace(values[4]) || 'India'
+  const country = values.length === 5 ? nativeCountryName(values[4]) : null
 
   if (!title || !requisitionId) return null
 
@@ -255,9 +257,10 @@ export const extractSearchResults = (html) => {
   }
 
   const rows = []
+  const doc = readNativeDocument(String(html ?? ''))
 
-  for (const match of String(html ?? '').matchAll(/<tr[^>]*class=["']jobResultItem["'][^>]*>([\s\S]*?)<\/tr>/gi)) {
-    const row = parseSearchRow(match[1])
+  for (const node of doc.nodes(node => node.tag === 'tr' && doc.hasClass(node, 'jobResultItem'))) {
+    const row = parseSearchRow(doc, node)
     if (row) rows.push(row)
   }
 
@@ -277,7 +280,7 @@ export const extractDwrSearchResults = (responseText) => {
 
       if (!requisitionId) return null
 
-      const country = fields.get('filter1') || 'India'
+      const country = fields.get('filter1') || null
       const detailUrl = buildDetailUrl(requisitionId)
 
       return {
@@ -301,56 +304,74 @@ export const extractDwrSearchResults = (responseText) => {
     .filter(Boolean)
 }
 
-const extractSectionText = (html, heading) => {
-  const pattern = new RegExp(
-    `<h2[^>]*>\\s*${heading}\\s*<\\/h2>\\s*<\\/div>\\s*<div[^>]*>([\\s\\S]*?)<\\/div>\\s*<\\/div>`,
-    'i',
-  )
-  const match = String(html ?? '').match(pattern)
-  return stripTags(match?.[1] || '')
+const extractSectionText = (doc, heading) => {
+  const headings = doc.nodes(node => node.tag === 'h2' && doc.text(node).toLowerCase() === heading.toLowerCase())
+  if (headings.length !== 1) return null
+  const headingNode = headings[0]
+  const parent = doc.nodes(node => node.children.includes(headingNode))[0]
+  const elements = parent?.children.filter(child => typeof child !== 'string') || []
+  const frame = parent?.tag === 'div' && elements.length === 1 ? parent : headingNode
+  const container = doc.nodes(node => node.children.includes(frame))[0]
+  const siblings = container?.children.filter(child => typeof child !== 'string') || []
+  const content = siblings[siblings.indexOf(frame) + 1]
+  if (!content || content.tag !== 'div' || content.inert || doc.nodes(node => node.tag === 'h2', content).length) return null
+  // Visibility is evaluated on the original document, before text extraction.
+  const activeText = doc.text(content).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  return extractActiveDescription(activeText)
 }
 
-const parseLocation = (value) => {
+const extractLocationText = doc => {
+  const locations = doc.nodes(node => node.tag === 'h2' && /^Job Location:\s*/i.test(doc.text(node)))
+  if (locations.length > 1) throw Object.assign(new Error('Biocon native location identity is ambiguous'), {
+    softFailure: true, abortRetries: true, lifecycleCleanupAllowed: false,
+  })
+  return locations.length === 1 ? normalizeWhitespace(doc.text(locations[0]).replace(/^Job Location:\s*/i, '')) : null
+}
+
+const parseLocation = (value, country = null) => {
   const normalized = normalizeWhitespace(value)
   if (!normalized) {
     return {
-      location: 'India',
+      location: country,
       city: null,
       state: null,
-      country: 'India',
+      country,
     }
   }
 
   const parts = normalized.split(/\s*,\s*/).filter(Boolean)
+  const writtenCountry=nativeLocationCountryName(normalized)
+  if(writtenCountry)parts.pop()
+  const location=writtenCountry||!country?normalized:`${normalized}, ${country}`
   if (parts.length >= 2) {
     const [city, state] = parts
     return {
-      location: `${city}, ${state}, India`,
+      location,
       city,
       state,
-      country: 'India',
+      country,
     }
   }
 
   return {
-    location: `${normalized}, India`,
-    city: normalized,
+    location,
+    city: parts[0] || null,
     state: null,
-    country: 'India',
+    country,
   }
 }
 
-const buildJobDescription = (html, fallbackLocation) => {
+const buildJobDescription = (doc, fallbackLocation) => {
   const sections = []
-  const locationMatch = String(html ?? '').match(/<h2[^>]*>\s*Job Location:\s*([^<]+?)\s*<\/h2>/i)
-  const locationText = normalizeWhitespace(locationMatch?.[1] || fallbackLocation || '')
+  if(!['Role Summary','Key Responsibilities'].some(heading=>extractSectionText(doc,heading)))return null
+  const locationText = extractLocationText(doc) || normalizeWhitespace(fallbackLocation)
 
   if (locationText) {
     sections.push(`Job Location: ${locationText}`)
   }
 
   for (const heading of ['Department Details', 'Role Summary', 'Key Responsibilities']) {
-    const content = extractSectionText(html, heading)
+    const content = extractSectionText(doc, heading)
     if (content) {
       sections.push(`${heading}: ${content}`)
     }
@@ -361,23 +382,37 @@ const buildJobDescription = (html, fallbackLocation) => {
 
 export const extractJobDetail = (html, listing = {}) => {
   const rawHtml = String(html ?? '')
-  const bodyText = stripTags(rawHtml) || ''
+  const doc=readNativeDocument(rawHtml),root=doc.nodes(node=>node.tag==='root')[0]
+  const bodyText=doc.text(root),headings=doc.nodes(node=>node.tag==='h1').map(node=>doc.text(node))
+  const nativeHeadingId=headings[0]?.match(/\((\d+)\)\s*$/)?.[1]
+  const nativeBodyIds=[...new Set([...bodyText.matchAll(/\bRequisition ID\s*([0-9]+)\b/gi)].map(match=>match[1]))]
+  const nativeBodyId=nativeBodyIds[0]
+  const nativeId=nativeBodyId||nativeHeadingId
+  const listingId=normalizeWhitespace(listing.requisitionId||listing.jobId)
+  const fail=message=>{throw Object.assign(Error('Biocon native '+message),{softFailure:true,abortRetries:true,lifecycleCleanupAllowed:false})}
+  if(headings.length!==1||nativeBodyIds.length>1||!nativeId||nativeHeadingId&&nativeHeadingId!==nativeId||listingId&&listingId!==nativeId)fail('requisition identity conflicts with listing')
   const title = normalizeWhitespace(
-    (stripTags(rawHtml.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || listing.title || '') || '')
+    (headings[0] || '')
       .replace(/^Career Opportunities:\s*/i, '')
-      .replace(/\s*\(([^)]+)\)\s*$/i, ''),
+      .replace(/\s*\(\d+\)\s*$/i, ''),
   )
+  if(!title||listing.title&&title.toLowerCase()!==normalizeWhitespace(listing.title).toLowerCase())fail('title identity conflicts with listing')
   const requisitionId = normalizeWhitespace(
-    bodyText.match(/\bRequisition ID\s*([0-9]+)\b/i)?.[1] || listing.requisitionId || listing.jobId,
+    nativeId,
   )
   const postingDate = toIsoDate(
     bodyText.match(/\bPosted\s*([0-9/]{10})\b/i)?.[1] || listing.postingDate,
   )
-  const department = extractSectionText(rawHtml, 'Department Details') || listing.department || null
-  const locationMatch = rawHtml.match(/<h2[^>]*>\s*Job Location:\s*([^<]+?)\s*<\/h2>/i)
-  const locationText = normalizeWhitespace(locationMatch?.[1] || '')
-  const parsedLocation = parseLocation(locationText)
-  const jobDescription = buildJobDescription(rawHtml, locationText) || listing.jobDescription || null
+  const department = extractSectionText(doc, 'Department Details') || listing.department || null
+  const locationText = extractLocationText(doc)
+  const headerCountries=doc.nodes(node=>['div','p'].includes(node.tag)).flatMap(node=>{
+    const fields=doc.text(node).split(/\s+-\s+/)
+    if(fields.length!==5||fields[0]!==`Requisition ID ${requisitionId}`||!/^Posted\s+[0-9/]{10}$/.test(fields[1]))return[]
+    return nativeCountryName(fields[4])?[nativeCountryName(fields[4])]:[]
+  })
+  const countries=[...new Set([nativeCountryName(listing.country),nativeLocationCountryName(locationText),...headerCountries].filter(Boolean))]
+  const parsedLocation = parseLocation(locationText,countries.length===1?countries[0]:null)
+  const jobDescription = buildJobDescription(doc, locationText)
 
   return {
     title: title || listing.title || null,
@@ -387,7 +422,7 @@ export const extractJobDetail = (html, listing = {}) => {
     location: parsedLocation.location,
     city: parsedLocation.city,
     state: parsedLocation.state,
-    country: 'India',
+    country: parsedLocation.country,
     applyUrl: buildDetailUrl(requisitionId || listing.requisitionId || listing.jobId),
     jobDescription,
   }
@@ -566,13 +601,15 @@ export const createBioconScraper = ({
     for (const listing of listings) {
       const detailHtml = await readText(listing.sourceUrl)
       const detail = extractJobDetail(detailHtml, listing)
+      if(!detail.country||!detail.jobDescription)continue
 
       jobs.push({
         ...listing,
         ...detail,
         source: SOURCE,
         company: COMPANY_NAME,
-        country: 'India',
+        sourceScopeComplete:false,
+        lifecycleCleanupAllowed:false,
         companyCareerPage: CAREERS_PAGE_URL,
         companyDomain: PROVIDER_METADATA.companyDomain,
         atsPlatform: PROVIDER_METADATA.atsPlatform,
@@ -581,7 +618,11 @@ export const createBioconScraper = ({
       })
     }
 
-    return jobs
+    attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:listings.length,
+      observedVacancyCount:listings.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
+    return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_PAGE_URL,firstParty:false,listingComplete:false,
+      lifecycleCleanupAllowed:false,pagesFetched:1+searchPages.length+listings.length,reportedTotal:null,indiaFacetCount:null,
+      verifiedAt:null,reason:'native-country-and-role-criteria-required;legacy-text-transport-and-company-scope-unverified;cleanup-forbidden'})
   },
 })
 

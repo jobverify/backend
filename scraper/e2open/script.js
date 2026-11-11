@@ -333,7 +333,7 @@ export const createE2OpenScraper = () => ({
   },
 })
 
-export const run = async () => createE2OpenScraper().run()
+export const run = async (options) => createE2OpenScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

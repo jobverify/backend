@@ -70,7 +70,7 @@ export const hasOfficialHomepageSignal = (html) => {
   const rawHtml = String(html ?? '')
   const normalized = normalizeWhitespace(rawHtml) || ''
 
-  return /<title[^>]*>\s*Global Leader in MADTECH Resource Planning and Execution(?:™|&#x2122;)?\s*<\/title>/i.test(rawHtml)
+  return /<title[^>]*>\s*Global Leader in MADTECH Resource Planning and Execution(?:\u2122|&#x2122;)?\s*<\/title>/i.test(rawHtml)
     && /MADTECH \(MarTech, AdTech [&] DataTech\) is complex, expensive, time-consuming, and hard to staff\./i.test(normalized)
     && /Picking the right business partner is crucial\./i.test(normalized)
     && /https:\/\/isocrates\.com\/careers\/?/i.test(rawHtml)
@@ -321,7 +321,7 @@ export const createIsocratesScraper = ({
   },
 })
 
-export const run = async () => createIsocratesScraper().run()
+export const run = async (options) => createIsocratesScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

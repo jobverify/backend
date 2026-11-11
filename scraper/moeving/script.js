@@ -40,7 +40,7 @@ export const createMoEVingScraper = () => ({
     let onAbort
     const interrupted = new Promise((resolve, reject) => {
       onAbort = () => {
-        const reason = signal.reason || new Error('MoEVing caller aborted')
+        const reason = signal.reason
         controller.abort(reason)
         reject(reason)
       }
@@ -53,7 +53,7 @@ export const createMoEVingScraper = () => ({
     })
     try {
       const html = await Promise.race([
-        Promise.resolve().then(() => fetchText(FIRST_PARTY_ATS_URL, { signal: controller.signal })),
+        Promise.resolve().then(() => { signal?.throwIfAborted(); controller.signal.throwIfAborted(); return fetchText(FIRST_PARTY_ATS_URL, { signal: controller.signal }) }),
         interrupted,
       ])
       signal?.throwIfAborted()

@@ -13,7 +13,27 @@ const walk = (node, predicate) => !node || node.inert ? [] : [
   ...node.children.filter(child => typeof child !== 'string').flatMap(child => walk(child, predicate)),
 ]
 const requireNative = (condition, message) => { if (!condition) throw new Error(`Tech Mahindra native content: ${message}`) }
-const aborted = signal => { if (signal?.aborted) throw signal.reason || new DOMException('Aborted', 'AbortError') }
+const aborted = signal => { if (signal?.aborted) throw signal.reason }
+const checkedNative = (signal, operation) => {
+  aborted(signal)
+  try { return operation() } finally { aborted(signal) }
+}
+const withNativeAbort = (signal, operation) => new Promise((resolve, reject) => {
+  let settled = false
+  const finish = (failed, value) => {
+    if (settled) return
+    settled = true
+    signal?.removeEventListener('abort', onAbort)
+    if (signal?.aborted) reject(signal.reason)
+    else if (failed) reject(value)
+    else resolve(value)
+  }
+  const onAbort = () => finish(true, signal.reason)
+  if (signal?.aborted) { onAbort(); return }
+  signal?.addEventListener('abort', onAbort, { once: true })
+  Promise.resolve().then(() => { aborted(signal); return operation() })
+    .then(value => finish(false, value), error => finish(true, error))
+})
 const digest = value => createHash('sha256').update(value).digest('hex')
 const atsHost = /(?:^|\.)(?:myworkdayjobs\.com|myworkdaysite\.com|successfactors\.(?:com|eu)|greenhouse\.io|lever\.co|smartrecruiters\.com|icims\.com|taleo\.net|oraclecloud\.com|workable\.com|applytojob\.com|ashbyhq\.com|zohorecruit\.(?:com|in)|bamboohr\.com|dayforcehcm\.com|darwinbox\.(?:com|in)|ceipal\.com|avature\.net|manatal\.com|careers-page\.com|recruitee\.com|recruiterbox\.com)$/i
 
@@ -157,17 +177,25 @@ export const runNativeInventory = async (options = {}) => {
   const supplied = options.fetchPage ?? options.transport?.fetchPage
   requireNative(supplied == null || typeof supplied === 'function', 'invalid supplied transport')
   const fetchImpl = options.fetchImpl ?? (typeof options.transport === 'function' ? options.transport : options.transport?.fetch) ?? globalThis.fetch
-  const cookies = new Map(), audit = { observedAt: new Date().toISOString(), responses: [], scopes: {}, acceptedIndia: 0, limitations: [] }
+  const cookies = new Map(), audit = { observedAt: checkedNative(options.signal, () => new Date().toISOString()), responses: [], scopes: {}, acceptedIndia: 0, limitations: [] }
   let requests = 0
   const request = async (url, init = {}) => {
     aborted(options.signal)
     officialUrl(url, ORIGIN, ['/CurrentOpportunity.aspx', '/BpsOpportunity.aspx', '/JobDetails.aspx'])
     requireNative(!init.body || !/(?:btn_jobs|btnApply)/i.test(decodeURIComponent(init.body)), 'application submit prohibited')
     const requestInit = { ...init, redirect: 'manual', signal: composeAbortSignals(options.signal, AbortSignal.timeout(options.timeoutMs || 45000)), headers: { 'User-Agent': 'Mozilla/5.0', Accept: 'text/html', ...(init.body ? { 'Content-Type': 'application/x-www-form-urlencoded', Referer: url } : {}), ...(cookies.size ? { Cookie: [...cookies].map(([name, value]) => `${name}=${value}`).join('; ') } : {}), ...(init.headers || {}) } }
-    const response = supplied ? await supplied(url, requestInit) : await fetchImpl(url, requestInit)
+    const response = await withNativeAbort(requestInit.signal, () => supplied ? supplied(url, requestInit) : fetchImpl(url, requestInit))
     aborted(options.signal)
     const status = response?.status ?? 200, finalUrl = response?.url ?? response?.finalUrl ?? url
-    const html = typeof response === 'string' ? response : response.html ?? response.body ?? (typeof response.text === 'function' ? await response.text() : response.text)
+    const { html } = await withNativeAbort(requestInit.signal, async () => {
+      if (typeof response === 'string') return { html: response }
+      const html = checkedNative(requestInit.signal, () => response.html)
+      if (html != null) return { html }
+      const body = checkedNative(requestInit.signal, () => response.body)
+      if (body != null) return { html: body }
+      const text = checkedNative(requestInit.signal, () => response.text)
+      return { html: typeof text === 'function' ? await Reflect.apply(text, response, []) : checkedNative(requestInit.signal, () => response.text) }
+    })
     requireNative(typeof html === 'string', 'transport did not return HTML')
     const headers = response.headers
     audit.responses.push({ url, finalUrl, status, location: headers?.get?.('location') || null, method: init.method || 'GET', bytes: Buffer.byteLength(html), sha256: digest(html) })
@@ -262,8 +290,9 @@ export const runNativeInventory = async (options = {}) => {
   attachInventoryEvidence(jobs, { status: allEmpty ? 'verified-empty' : requests ? 'discovery-only' : 'coverage-gap', surface: scopeUrls.IT,
     firstParty: requests > 0, listingComplete: allEmpty, pagesFetched: requests,
     reportedTotal: allEmpty ? 0 : null, indiaFacetCount: allEmpty ? 0 : null,
-    verifiedAt: new Date().toISOString(), reason: allEmpty ? 'both-native-IT-and-BPS-explicit-empty-with-stable-closing-scope' : audit.limitations.join('; ') || 'native-role-details-unverified' })
+    verifiedAt: checkedNative(options.signal, () => new Date().toISOString()), reason: allEmpty ? 'both-native-IT-and-BPS-explicit-empty-with-stable-closing-scope' : audit.limitations.join('; ') || 'native-role-details-unverified' })
   Object.defineProperty(jobs, TECHMAHINDRA_NATIVE_AUDIT, { value: audit })
-  if (options.onNativeAudit) await options.onNativeAudit(audit)
+  const onNativeAudit = checkedNative(options.signal, () => options.onNativeAudit)
+  if (onNativeAudit) await withNativeAbort(options.signal, () => Reflect.apply(onNativeAudit, options, [audit]))
   return jobs
 }

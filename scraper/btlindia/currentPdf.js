@@ -1,6 +1,14 @@
 import {getDocument,OPS,VerbosityLevel} from 'pdfjs-dist/legacy/build/pdf.mjs'
 import {fileURLToPath} from 'node:url'
 import {need} from './currentErrors.js'
+const destroyTask=task=>{
+ const started=performance.now();let timer,reason
+ const expired=()=>reason??=Object.assign(Error('Native PDF task cleanup deadline exceeded'),{name:'NativePdfCleanupError',code:'NATIVE_PDF_CLEANUP_TIMEOUT'})
+ const checkGrace=()=>{if(performance.now()-started>=1000)throw expired()}
+ const destroying=Promise.resolve().then(()=>{const owned=Promise.resolve(task.destroy());owned.catch(()=>{});checkGrace();return owned}).then(value=>{checkGrace();return value})
+ const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>reject(expired()),1000)})
+ return Promise.race([destroying,deadline]).finally(()=>clearTimeout(timer))
+}
 const fontId=name=>typeof name==='string'?name.replace(/^g_d\d+_/,''):name
 function snapshot(value,seen=new Set(),depth=0){
  need(depth<=64,'excessive decoded PDF model nesting')
@@ -37,20 +45,26 @@ export function pdfTextFlow(items){
 }
 export async function readCurrentBtlPdf(value,{signal,loadDocument=getDocument}={}){
  signal?.throwIfAborted();const bytes=Buffer.from(value);need(bytes.length>0&&bytes.length<=4*1024*1024&&bytes.subarray(0,5).toString()==='%PDF-','unavailable/non-PDF document')
- const task=loadDocument({data:new Uint8Array(bytes),useWorkerFetch:false,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,verbosity:VerbosityLevel.ERRORS,standardFontDataUrl:fileURLToPath(new URL('../../node_modules/pdfjs-dist/standard_fonts/',import.meta.url)).replaceAll('\\','/')})
- let cleanupPromise,listener
- const cleanup=()=>cleanupPromise??=(Promise.resolve().then(()=>task.destroy()))
+ let task,cleanupPromise,listener,output,primaryFailure,failed=false
+ const cleanup=()=>task?(cleanupPromise??=destroyTask(task)):Promise.resolve()
  const aborted=new Promise((_,reject)=>{listener=()=>{cleanup().catch(()=>{});reject(signal.reason)};signal?.addEventListener('abort',listener,{once:true});if(signal?.aborted)listener()})
- const checked=async promise=>{signal?.throwIfAborted();const result=await Promise.race([promise,aborted]);signal?.throwIfAborted();return result}
+ aborted.catch(()=>{})
+ const checked=async value=>{
+  const promise=typeof value==='function'?Promise.resolve().then(()=>{signal?.throwIfAborted();return value()}):Promise.resolve(value)
+  promise.catch(()=>{});signal?.throwIfAborted()
+  try{const result=await Promise.race([promise,aborted]);signal?.throwIfAborted();return result}catch(error){signal?.throwIfAborted();throw error}
+ }
  try{
+  signal?.throwIfAborted()
+  task=loadDocument({data:new Uint8Array(bytes),useWorkerFetch:false,isEvalSupported:false,enableXfa:false,disableAutoFetch:true,verbosity:VerbosityLevel.ERRORS,standardFontDataUrl:fileURLToPath(new URL('../../node_modules/pdfjs-dist/standard_fonts/',import.meta.url)).replaceAll('\\','/')})
   const pdf=await checked(task.promise);need(pdf.numPages>0&&pdf.numPages<=8,'unreviewed PDF page scope');const missingAPIs=[]
-  const call=async(name,...args)=>{if(typeof pdf[name]!=='function'){missingAPIs.push(name);return{decoderAPIUnavailable:name}}return checked(pdf[name](...args))}
+  const call=async(name,...args)=>{if(typeof pdf[name]!=='function'){missingAPIs.push(name);return{decoderAPIUnavailable:name}}return checked(()=>pdf[name](...args))}
   const metadata=await call('getMetadata'),optional=await call('getOptionalContentConfig'),optionalEntries=typeof optional?.[Symbol.iterator]==='function'?[...optional]:[]
   const optionalContent={entries:optionalEntries.map(([id,group])=>({id,properties:snapshot(group),visible:group.visible})),order:typeof optional?.getOrder==='function'?snapshot(optional.getOrder()):null,hash:typeof optional?.getHash==='function'?optional.getHash():null,hasInitialVisibility:typeof optional?.hasInitialVisibility==='function'?optional.hasInitialVisibility():optional?.hasInitialVisibility??null,serialized:snapshot(typeof optional?.serializable==='function'?optional.serializable():optional?.serializable)}
   const visibilityLimits=[];if(optionalEntries.some(([,group])=>group.visible===false))visibilityLimits.push('inactive-optional-content')
   const pageModels=[]
   for(let n=1;n<=pdf.numPages;n++){
-   const page=await checked(pdf.getPage(n)),content=await checked(page.getTextContent({includeMarkedContent:true,disableNormalization:true})),operators=await checked(page.getOperatorList());need(content.items.length<=50000&&operators.fnArray.length<=100000,'excessive decoded PDF page')
+   const page=await checked(()=>pdf.getPage(n)),content=await checked(()=>page.getTextContent({includeMarkedContent:true,disableNormalization:true})),operators=await checked(()=>page.getOperatorList());need(content.items.length<=50000&&operators.fnArray.length<=100000,'excessive decoded PDF page')
    const stack=[];let state={mode:0,fill:1,stroke:1}
    for(let i=0;i<operators.fnArray.length;i++){
     const op=operators.fnArray[i],args=operators.argsArray[i]
@@ -63,7 +77,7 @@ export async function readCurrentBtlPdf(value,{signal,loadDocument=getDocument}=
     const[x0,y0,x1,y1]=page.view,x=item.transform?.[4],y=item.transform?.[5],height=Math.abs(item.height||0)
     if(Number.isFinite(x)&&Number.isFinite(y)&&(x<x0-height||x>x1+height||y<y0-height||y>y1+height))visibilityLimits.push('off-page-text')
    }
-   const pageCall=async(name,...args)=>{if(typeof page[name]!=='function'){missingAPIs.push('page.'+name);return{decoderAPIUnavailable:name}}return checked(page[name](...args))}
+   const pageCall=async(name,...args)=>{if(typeof page[name]!=='function'){missingAPIs.push('page.'+name);return{decoderAPIUnavailable:name}}return checked(()=>page[name](...args))}
    const annotations=await pageCall('getAnnotations',{intent:'display'}),structureTree=await pageCall('getStructTree'),javaScriptActions=await pageCall('getJSActions')
    const textContent=snapshot({...content,items:content.items.map(item=>Object.hasOwn(item,'fontName')?{...item,fontName:fontId(item.fontName)}:item),styles:Object.fromEntries(Object.entries(content.styles).map(([k,v])=>[fontId(k),v]))})
    const argsArray=operators.argsArray.map((args,i)=>{
@@ -75,8 +89,12 @@ export async function readCurrentBtlPdf(value,{signal,loadDocument=getDocument}=
   }
   const fields={};for(const[name,key]of[['getPermissions','permissions'],['getMarkInfo','markInfo'],['getPageLabels','pageLabels'],['getOutline','outline'],['getAttachments','attachments'],['getFieldObjects','fieldObjects'],['getJSActions','javaScriptActions'],['getCalculationOrderIds','calculationOrderIds'],['getDestinations','destinations']])fields[key]=snapshot(await call(name))
   const result={text:pageModels.map(p=>p.text).join('\n\n'),pages:pdf.numPages,pageCount:pdf.numPages,pageModels,metadata:{info:snapshot(metadata.info),rawXML:metadata.metadata?.getRaw?.()??null,contentDispositionFilename:metadata.contentDispositionFilename??null,contentLength:metadata.contentLength??null},documentMetadata:snapshot(metadata.info),fingerprints:snapshot(pdf.fingerprints),optionalContent,...fields,missingAPIs:[...new Set(missingAPIs)].sort(),visibilityQualified:visibilityLimits.length===0,visibilityLimits:[...new Set(visibilityLimits)],visibilityDiagnosticOnly:true,renderedCriteriaVisibilityQualified:false,publicationDateQualified:false,publisherProgramsExecuted:false,PDFJavaScriptActionsExecuted:false,decoderResourceIdNormalization:'only-parser-generated-g_d-counter-font-identifiers',modelCoverage:'whole-available-PDF.js-page-text-operators-geometry-annotations-forms-actions-and-document-metadata; complete-original-bytes-retained-separately'}
-  need(Buffer.byteLength(JSON.stringify(result))<=8*1024*1024,'decoded PDF model exceeds bound');return result
- }finally{
-  try{if(signal?.aborted)cleanup().catch(()=>{});else await checked(cleanup())}finally{signal?.removeEventListener('abort',listener)}
+  need(Buffer.byteLength(JSON.stringify(result))<=8*1024*1024,'decoded PDF model exceeds bound');output=result
+ }catch(error){failed=true;primaryFailure=error}finally{
+  try{await checked(cleanup())}catch(error){if(!failed){failed=true;primaryFailure=error}}
+  finally{signal?.removeEventListener('abort',listener)}
  }
+ signal?.throwIfAborted()
+ if(failed)throw primaryFailure
+ return output
 }

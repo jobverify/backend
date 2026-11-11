@@ -135,7 +135,7 @@ export const createCourse5iScraper = () => ({
   },
 })
 
-export const run = async () => createCourse5iScraper().run()
+export const run = async (options) => createCourse5iScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

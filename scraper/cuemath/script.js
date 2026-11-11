@@ -31,4 +31,4 @@ export const createCuemathScraper = () => ({
   },
 })
 
-export const run = async () => createCuemathScraper().run()
+export const run = async (options) => createCuemathScraper().run(options)

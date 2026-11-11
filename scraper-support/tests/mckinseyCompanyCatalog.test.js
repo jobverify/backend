@@ -49,11 +49,11 @@ test('McKinsey & Company local catalog captures the verified India careers hando
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'public-search-api-start-offset-pagination-until-empty-page',
+    'public-search-api-one-based-pages-with-native-total-and-closing-reconciliation',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-india-careers-page+public-search-api+india-location-pair-filter',
+    'verified-india-careers-page+public-search-api+aligned-india-location-pairs+full-native-role-criteria',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

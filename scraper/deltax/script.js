@@ -42,7 +42,7 @@ export const createDeltaXScraper = () => ({
   },
 })
 
-export const run = async () => createDeltaXScraper().run()
+export const run = async (options) => createDeltaXScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

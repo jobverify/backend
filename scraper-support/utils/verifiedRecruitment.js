@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import {setTimeout as delay} from 'node:timers/promises'
 import {publishedIndiaLocationFacets,currentWorkdayRoleSnapshot,currentWorkdayListingSnapshot,reviewedWorkdayEmployerDeclaration} from './recruitmentWorkdayContext.js'
 import {extractWorkdayJobDetail} from '../detailExtractors/workday.js'
-import { readNativeDocument, activeIframeSources, extractActiveDescription, decodeNativeEntities } from './activeNativeHtml.js'
+import { readNativeDocument, activeIframeDeclarations, extractActiveDescription, decodeNativeEntities } from './activeNativeHtml.js'
 import { normalizeNativeAttributeBoundaries } from './nativeHtmlAttributes.js'
 import { identifyPublicAtsBoard } from './publicAtsIdentity.js'
 import { createPublishingGapAtsScraper, publicAtsInventoryError } from './publishingGapAts.js'
@@ -23,6 +23,11 @@ import { readSourceObservationEvidence } from './sourceObservationEvidence.js'
 import { readBreezyEmptyState } from './recruitmentBreezyEmptyState.js'
 import { activeLeverCareersFeeds } from './activeLeverCareersFeed.js'
 import { activeAshbyCareersFeeds } from './activeAshbyCareersFeed.js'
+import { declaredRipplingRecruitment, readRipplingRecruitment } from './recruitmentRippling.js'
+import { declaredPyjamaRecruitment, readPyjamaRecruitment } from './recruitmentPyjama.js'
+import { declaredEightfoldRecruitment, readEightfoldRecruitment } from './recruitmentEightfold.js'
+import { declaredEightfoldPcsxRecruitment, readEightfoldPcsxRecruitment } from './recruitmentEightfoldPcsx.js'
+import { declaredEightfoldPcsxTwilioRecruitment, readEightfoldPcsxTwilioRecruitment } from './recruitmentEightfoldPcsxTwilio.js'
 
 export const RECRUITMENT_OBSERVATIONS = Symbol.for('jobverify.verified-recruitment-observations')
 const sha = value => createHash('sha256').update(value).digest('hex')
@@ -122,6 +127,11 @@ const failureDiagnostic = (stage, error) => {
       name: item.name, message: item.message, ...(item.status != null ? { status: item.status } : {}), ...(item.code ? { code: item.code } : {}),
     })) } : {}) }
 }
+const failureSummary = failures => failures.slice(0, 3).map(failure => [
+  failure.stage, failure.status != null ? 'HTTP ' + failure.status : null, failure.code,
+  failure.requestUrl, failure.message,
+  ...(failure.causes || []).map(cause => [cause.code, cause.status != null ? 'HTTP ' + cause.status : null, cause.message].filter(Boolean).join(' ')),
+].filter(Boolean).join(' ')).join(' | ')
 const addFailureDiagnostics = (error, causes, failures, receipts) => {
   if (causes.length) error.cause = causes[0]
   // A successful response can still leave scope unknown. Optional failures and
@@ -134,12 +144,8 @@ const addFailureDiagnostics = (error, causes, failures, receipts) => {
     const signals = causes.map(diagnosticSignal)
     for (const key of ['status', 'code']) if (signals[0][key] != null && signals.every(item => item[key] === signals[0][key])) error[key] = signals[0][key]
   }
-  const summaries = failures.slice(0, 3).map(failure => [
-    failure.stage, failure.status != null ? 'HTTP ' + failure.status : null, failure.code,
-    failure.requestUrl, failure.message,
-    ...(failure.causes || []).map(cause => [cause.code, cause.status != null ? 'HTTP ' + cause.status : null, cause.message].filter(Boolean).join(' ')),
-  ].filter(Boolean).join(' '))
-  if (summaries.length) error.message = (error.message + '; failures=' + failures.length + ': ' + summaries.join(' | ')).slice(0, 1600)
+  const summary = failureSummary(failures)
+  if (summary) error.message = (error.message + '; failures=' + failures.length + ': ' + summary).slice(0, 1600)
 }
 const https = value => {
   let url
@@ -307,6 +313,9 @@ function project(config, native, observedAt) {
     sourceDescription: native.description, jobDescription: native.description,
     postingDate: native.posted || null, postedAt: native.posted || null,
     closingDate: native.closing || null, employmentType: native.employmentType || null,
+    ...(Object.hasOwn(native, 'remoteStatus') ? { remoteStatus: native.remoteStatus } : {}),
+    ...(native.sourceRemoteStatusUnresolved === true ? { sourceRemoteStatusUnresolved: true } : {}),
+    ...(native.sourcePublicationDateUnavailable === true ? { sourcePublicationDateUnavailable: true } : {}),
     nativeHiringOrganization: native.employer || null, nativeSourceRecord: native.record,
     ...(native.employerRecord ? {nativeHiringOrganizationRecord:native.employerRecord} : {}),
     ...(native.legalEmployer === null ? {nativeLegalEmployer:null} : {}),
@@ -342,6 +351,9 @@ export function createVerifiedRecruitmentScraper(config) {
     const phenomSearches = new Map()
     const unifiedSearchOrigins = new Set(), nativeSearchCandidates = new Map()
     const jibeSearchOrigins = new Set()
+    const ripplingFeeds = new Set()
+    const pyjamaBoards = new Set()
+    const eightfoldPages = new Map(), eightfoldBindings = new Map()
     const currentBreezyBindings = new Map()
     const declaredCompanyRolePages = new Set()
     const observed = { source: config.source, observedAt: now, requestCount: 0, nativeRecords: 0, returnedIndiaJobs: 0,
@@ -385,16 +397,19 @@ export function createVerifiedRecruitmentScraper(config) {
     const read = async (value, init = {}, format = 'page') => {
       signal.throwIfAborted()
       const url = https(value), method = init.method || 'GET'
+      const jsonFormat = format === 'json' || format === 'json-text'
       requireValue(url && allowed(url, method), 'Unbound recruitment request refused')
       const key = method + ':' + url.href + ':' + (init.body || '')
       if (method === 'GET' && init.cache !== 'no-store' && cache.has(key)) return cache.get(key)
       const task = (async () => {
         requireValue(++observed.requestCount <= maxRequests, 'Recruitment request budget reached')
+        requireValue(format !== 'json-text' || !options.fetchJson || options.fetchImpl,
+          'Original native JSON requires raw response text; a parsed JSON hook cannot supply it')
         const wait=requestIntervalMs-(Date.now()-(lastRequest.get(url.origin)||0))
         if(wait>0)await delay(wait,undefined,{signal})
         lastRequest.set(url.origin,Date.now())
         let response
-        if (format !== 'json' && options.fetchPage) {
+        if (!jsonFormat && options.fetchPage) {
           const page = await waitForRead(() => options.fetchPage(url.href, { signal }), signal)
           response = { ...page, contentType: page.contentType || 'text/html', body: page.html }
         } else if (format === 'json' && options.fetchJson) {
@@ -403,8 +418,8 @@ export function createVerifiedRecruitmentScraper(config) {
         } else {
           const timeout = AbortSignal.any([signal, AbortSignal.timeout(15000)])
           const raw = await waitForRead(() => (options.fetchImpl || globalThis.fetch)(url.href, { ...init, method,
-            redirect: format === 'json' ? 'error' : 'follow', credentials: 'omit', signal: timeout,
-            headers: { Accept: format === 'json' ? 'application/json' : 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)', ...init.headers } }),
+            redirect: jsonFormat ? 'error' : 'follow', credentials: 'omit', signal: timeout,
+            headers: { Accept: jsonFormat ? 'application/json' : 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)', ...init.headers } }),
           timeout, (late, reason) => late?.body?.cancel(reason))
           let reader
           const chunks = []; let bytes = 0
@@ -484,7 +499,7 @@ export function createVerifiedRecruitmentScraper(config) {
           }
         }
         requireValue(final && allowed(final, method), 'Recruitment redirect changed authority')
-        requireValue(format !== 'json' || final.href === url.href, 'Native API changed response identity')
+        requireValue(!jsonFormat || final.href === url.href, 'Native API changed response identity')
         aggregateBytes += Buffer.byteLength(body); requireValue(aggregateBytes <= 24e6, 'Recruitment aggregate byte budget reached')
         receipts.push({ requestedURL: url.href, finalURL: final.href, status: response.status, format,
           bodyBytes: Buffer.byteLength(body), bodySHA256: sha(body) })
@@ -495,17 +510,18 @@ export function createVerifiedRecruitmentScraper(config) {
           && (format === 'publisher-page' || format === 'page' && root && url.href === root.href)
         requireValue(publisherHTML ? ['text/html', 'application/xhtml+xml']
           .includes((response.contentType || '').split(';')[0].trim().toLowerCase())
-          : format === 'json' ? /(?:application|text)\/(?:[a-z.+-]*\+)?json\b/i.test(response.contentType)
+          : jsonFormat ? /(?:application|text)\/(?:[a-z.+-]*\+)?json\b/i.test(response.contentType)
           : format === 'publisher-script' ? ['application/javascript', 'text/javascript', 'application/ecmascript', 'text/ecmascript']
             .includes((response.contentType || '').split(';')[0].trim().toLowerCase())
             : format === 'renderer' ? /(?:text\/(?:html|js)\b|application\/xhtml\+xml|(?:application|text)\/(?:java|ecma)script)/i.test(response.contentType)
             : /(?:text\/html|application\/xhtml\+xml)/i.test(response.contentType), 'Unexpected recruitment response type')
-        if (format !== 'json' && /<title\b[^>]*>\s*Forbidden Access\s*<\/title>/i.test(body)) {
+        if (!jsonFormat && /<title\b[^>]*>\s*Forbidden Access\s*<\/title>/i.test(body)) {
           const denied = readNativeDocument(normalizeNativeAttributeBoundaries(body))
           requireValue(!denied.nodes(node => (node.attrs.class || '').split(/\s+/).includes('status-code')
             && /^FORBIDDEN ACCESS$/i.test(denied.text(node))).length, 'Recruitment access denied by the public publisher')
         }
-        return format === 'json' ? JSON.parse(body) : { url: final.href, status: 200, html: body }
+        return format === 'json' ? JSON.parse(body) : format === 'json-text'
+          ? { url: final.href, status: 200, text: body } : { url: final.href, status: 200, html: body }
       })().catch(error => {
         signal.throwIfAborted()
         const bounded = diagnosticError(error)
@@ -516,6 +532,10 @@ export function createVerifiedRecruitmentScraper(config) {
       return task
     }
     const readJson = (url, init) => read(url, init, 'json')
+    const readNativeJson = (url, init = {}) => {
+      requireValue(!init.method || init.method === 'GET', 'Native Eightfold models require a public GET')
+      return read(url, { ...init, cache: 'no-store' }, 'json-text')
+    }
     const problem = (stage, error) => {
       signal.throwIfAborted()
       const bounded = diagnosticError(error)
@@ -529,6 +549,9 @@ export function createVerifiedRecruitmentScraper(config) {
       return true
     }
     const addJob = native => {
+      if (config.nativeOracleCandidateSite && native.record?.publicRoleRoute !== config.nativeOracleCandidateSite) {
+        observed.unresolved.push('native-role-outside-reviewed-Oracle-site'); return
+      }
       if (native.heldStatuses?.length) {
         observed.exclusions.push({reason:'native-role-on-hold',url:native.url,nativeStatuses:native.heldStatuses}); return
       }
@@ -585,6 +608,13 @@ export function createVerifiedRecruitmentScraper(config) {
         && board.site === config.nativeWorkdaySiteId, 'Current publisher declared an unreviewed native Workday board')
       return board
     }
+    const declaredPublisherBoard = value => {
+      if (!config.nativeOracleCandidateSite) return declaredWorkdayBoard(value)
+      const url = https(value), expected = https(config.nativeOracleCandidateSite), board = url && recruitmentBoard(url.href)
+      requireValue(expected && board?.kind === 'oracle' && url.href === expected.href && url.href === board.url
+        && !url.search && !url.hash, 'Current publisher declared an unreviewed native Oracle candidate site')
+      return board
+    }
     const readPublisherDeclaration = async (page, phase) => {
       requireValue(typeof config.readCurrentPublisherDeclaration === 'function' && config.requireCorporateIdentityMatch === true
         && identifiedCompanyHosts.has(new URL(page.url).hostname.replace(/^www\./, '')) && root && page.url === root.href
@@ -595,12 +625,12 @@ export function createVerifiedRecruitmentScraper(config) {
         readRenderer: (value, init = {}) => read(value, { ...init, ...uncached }, 'publisher-script'),
         readJson: (value, init = {}) => readJson(value, { ...init, ...uncached }),
         readDeclaredBoardPage: value => {
-          const board = declaredWorkdayBoard(value)
+          const board = declaredPublisherBoard(value)
           permit(board.url)
           return read(board.url, uncached, 'publisher-page')
         },
       })
-      declaredWorkdayBoard(declaration?.url)
+      declaredPublisherBoard(declaration?.url)
       requireValue(declaration.context && typeof declaration.context === 'object' && !Array.isArray(declaration.context)
         && declaration.evidence && typeof declaration.evidence === 'object', 'Current publisher declaration context is missing')
       observed.publisherDeclarations ||= []
@@ -700,6 +730,54 @@ export function createVerifiedRecruitmentScraper(config) {
           unresolved: value => observed.unresolved.push(value) }) }
         catch (error) { problem('native-first-party-json-feed', error) }
       }
+      if (canDelegate && config.discoverLiteralRecruitmentData === true) {
+        try {
+          const descriptor = declaredRipplingRecruitment(doc, page.url, config)
+          if (descriptor && !ripplingFeeds.has(descriptor.endpointURL)) {
+            ripplingFeeds.add(descriptor.endpointURL)
+            await readRipplingRecruitment(descriptor, { readPage: read,
+              readRenderer: (url, init) => read(url, init, 'renderer'), readJson, permit, matchingEmployer, addJob, maxDetails,
+              canRead: () => observed.requestCount < maxRequests,
+              inventoryRead: value => observed.nativeInventoryReads.push(value),
+              recordRead: (row, account) => {
+                observed.nativeRecords++
+                observeNative({ scope: 'rippling:' + account.token, id: row.id, title: row.name, url: row.url })
+              },
+              unresolved: value => observed.unresolved.push(value) })
+          }
+        } catch (error) { problem('native-rippling', error) }
+      }
+      if (canDelegate && config.discoverLiteralRecruitmentData === true) {
+        try {
+          const descriptor = declaredPyjamaRecruitment(page, config)
+          if (descriptor && !pyjamaBoards.has(descriptor.boardURL)) {
+            pyjamaBoards.add(descriptor.boardURL)
+            await readPyjamaRecruitment(descriptor, { readPage: read,
+              readRenderer: (url, init) => read(url, init, 'renderer'), readJson, permit, matchingEmployer, addJob,
+              maxPages, maxDetails, now, canRead: () => observed.requestCount < maxRequests,
+              remainingRequests: () => maxRequests - observed.requestCount,
+              inventoryRead: value => observed.nativeInventoryReads.push(value),
+              recordRead: (row, account) => {
+                observed.nativeRecords++
+                observeNative({ scope: 'pyjama:' + account.companyUUID, id: row.id, title: row.title, url: row.url })
+              },
+              unresolved: value => observed.unresolved.push(value), exclude: value => observed.exclusions.push(value) })
+          }
+        } catch (error) { problem('native-pyjama', error) }
+      }
+      if (canDelegate && config.discoverLiteralRecruitmentData === true) {
+        try {
+          const descriptor = declaredEightfoldRecruitment(page, config) || declaredEightfoldPcsxRecruitment(page, config)
+            || declaredEightfoldPcsxTwilioRecruitment(page, config)
+          if (descriptor) {
+            eightfoldPages.set(descriptor.boardURL, { descriptor, requestedURL: value })
+            // The selected program supplies its own full role criteria and
+            // date semantics. Do not fall through to its generated SEO dates.
+            if (eightfoldBindings.has(value) || eightfoldBindings.has(page.url)) break
+            continue
+          }
+        } catch (error) { problem('native-eightfold', error); continue }
+      }
       const declaredNativeSearchLinks = []
       if (canDelegate && config.discoverJibeRecruitmentData === true && !jibeSearchOrigins.has(pageURL.origin)) {
         try {
@@ -796,8 +874,8 @@ export function createVerifiedRecruitmentScraper(config) {
         observed.unresolved.push('native-detail-budget-reached'); break
       }
       const next = []
-      const links = doc.nodes(node => node.tag === 'a' && node.attrs.href).map(node => ({ href: node.attrs.href, label: doc.text(node) }))
-      links.push(...activeIframeSources(page.html).map(href => ({ href, label: 'careers embedded board' })))
+      const links = doc.nodes(node => node.tag === 'a' && node.attrs.href).map(node => ({ href: node.attrs.href, label: doc.text(node), carrier: 'anchor' }))
+      links.push(...activeIframeDeclarations(page.html))
       links.push(...doc.nodes(node => node.tag === 'script' && node.attrs.src && !Object.hasOwn(node.attrs, 'nomodule')
         && /^(?:|module|(?:text|application)\/javascript)$/i.test(node.attrs.type || '')).map(node => ({ href: node.attrs.src, label: /\/embed/.test(node.attrs.src) ? 'careers embed' : '' })))
       for (const link of links) {
@@ -809,7 +887,17 @@ export function createVerifiedRecruitmentScraper(config) {
         if (!career.test(context) && !(config.discoverRecruitmentLinks && recruitmentNavigation.test(context)) && !languageView && !vendor.test(target.hostname) && !nativeRole) continue
         if (/\/(?:login|sign-in|signin|cookie-policy|privacy-policy|my-profile)(?:\/|$)/i.test(target.pathname)
           && !/\/(?:jobs?|requisitions?)\/[^/]+/i.test(target.pathname) && !recruitmentBoard(target.href)) continue
+        const originalDeclaredURL = target.href
         target.hash = ''
+        // Retain only an actual active declaration on a registered corporate
+        // surface. A registered native root cannot manufacture its own handoff.
+        const registeredPublisher = [root, homepage].some(surface => surface
+          && surface.hostname.replace(/^www\./, '') === pageURL.hostname.replace(/^www\./, ''))
+        if (canDelegate && corporatePage && registeredPublisher && link.carrier === 'anchor' && target.origin !== pageURL.origin
+          && /^\/careers\/?$/.test(target.pathname) && !eightfoldBindings.has(target.href)) {
+          eightfoldBindings.set(target.href, { officialURL: page.url, declaredURL: originalDeclaredURL,
+            linkLabel: link.label, page })
+        }
         if (allowed(target) && !asset.test(target.pathname) && !seenPages.has(target.href)) {
           if (corporatePage && companyIdentified && official(target)) declaredCompanyRolePages.add(target.href)
           next.push(target.href)
@@ -863,6 +951,26 @@ export function createVerifiedRecruitmentScraper(config) {
       queue.unshift(...declaredNativeSearchLinks)
       if (boards.size && seenPages.size >= 2) break
     }
+    for (const { descriptor, requestedURL } of eightfoldPages.values()) {
+      const binding = eightfoldBindings.get(requestedURL) || eightfoldBindings.get(descriptor.boardURL)
+      if (!binding) { observed.unresolved.push('native-eightfold-current-corporate-binding-unavailable'); continue }
+      try {
+        const readNativeProgram = descriptor.kind === 'eightfold-pcsx-twilio' ? readEightfoldPcsxTwilioRecruitment
+          : descriptor.kind === 'eightfold-pcsx' ? readEightfoldPcsxRecruitment : readEightfoldRecruitment
+        await readNativeProgram(descriptor, { readPage: read,
+          readRenderer: (url, init) => read(url, init, 'renderer'), readNativeJson, permit, matchingEmployer, addJob,
+          maxPages, maxDetails, remainingRequests: () => maxRequests - observed.requestCount, now,
+          officialBinding: binding,
+          recheckOfficialBinding: value => read(value.officialURL, { cache: 'no-store' }),
+          inventoryRead: value => observed.nativeInventoryReads.push(value),
+          recordRead: (row, account) => {
+            observed.nativeRecords++
+            observeNative({ scope: 'eightfold:' + descriptor.origin + ':' + (account?.domain || descriptor.domain),
+              id: row.id, title: row.name || row.title, url: row.canonicalPositionUrl || row.url })
+          },
+          unresolved: value => observed.unresolved.push(value) })
+      } catch (error) { problem('native-eightfold', error) }
+    }
     for (const search of phenomSearches.values()) {
       try {
         permit(search.url, ['POST'])
@@ -910,6 +1018,8 @@ export function createVerifiedRecruitmentScraper(config) {
     }
 
     for (const board of boards.values()) {
+      if (config.nativeOracleCandidateSite && (board.kind !== 'oracle' || board.url !== config.nativeOracleCandidateSite
+        || board.bindingEvidence?.bindingMethod !== 'runtime-current-careers-publisher-declaration')) continue
       if (config.stopAfterNativeIndiaLimit === true && jobs.length >= maxDetails) {
         observed.unresolved.push('native-detail-budget-reached'); break
       }
@@ -1264,15 +1374,35 @@ export function createVerifiedRecruitmentScraper(config) {
             brandEmploymentDeclaration: config.nativeOracleBrandEmployerDeclaration || null,
             descriptionEmployerDeclaration: config.nativeOracleDescriptionEmployerDeclaration || null,
             roleWorkplaceDeclarations: config.nativeOracleRoleWorkplaceDeclarations || null,
+            reviewedPublisherEmployerName: config.nativeOracleCandidateSite ? config.companyName : null,
             requireNativeEmployerName: config.requireNativeEmployerName === true, maxPages, maxDetails,
             canRead: () => observed.requestCount < maxRequests,
             inventoryRead: value => { if (!observed.nativeInventoryReads.some(row => row.surface === value.surface)) observed.nativeInventoryReads.push(value) },
             recordRead: (row, account) => { observed.nativeRecords++; observeNative({ scope: 'oracle:' + account.origin + ':' + account.site,
-              id: row.Id, title: row.Title, url: account.publicBase.replace(/\/$/, '') + '/job/' + row.Id }) },
-            unresolved: value => observed.unresolved.push(value), addJob })
+              id: row.Id, title: row.Title, url: account.publicBase.replace(/\/$/, '') + '/job/' + row.Id })
+              if (config.nativeOracleCandidateSite) {
+                observed.nativeOracleRecords ||= []
+                observed.nativeOracleRecords.push({listing:structuredClone(row),account:structuredClone(account)})
+              }
+            },
+            unresolved: value => observed.unresolved.push(value),
+            addJob: native => addJob(config.nativeOracleCandidateSite && !native.employer ? {...native,legalEmployer:null} : native) })
+          if (config.nativeOracleCandidateSite) {
+            requireValue(board.bindingEvidence.bindingMethod === 'runtime-current-careers-publisher-declaration',
+              'Reviewed Oracle candidate site requires its current publisher declaration')
+            const closingPublisher = await read(board.bindingEvidence.officialURL, {cache:'no-store'})
+            const closingDeclaration = await readPublisherDeclaration(closingPublisher, 'closing')
+            requireValue(closingDeclaration.url === board.url
+              && JSON.stringify(closingDeclaration.context) === JSON.stringify(board.bindingEvidence.publisherDeclaration.context),
+            'Oracle closing current publisher declaration changed')
+            for (const job of jobs.slice(jobsBeforeBoard)) job.sourceOfficialBinding = {
+              ...board.bindingEvidence,currentHandoffRechecked:true,closingURL:closingPublisher.url,
+              closingPublisherDeclaration:closingDeclaration.evidence,closingBodySHA256:sha(closingPublisher.html),companyScopeComplete:false,
+            }
+          }
         }
       } catch (error) {
-        if(board.kind==='workday'&&config.reconcileWorkdayNativeContext===true)jobs.splice(jobsBeforeBoard)
+        if(board.kind==='workday'&&config.reconcileWorkdayNativeContext===true || board.kind==='oracle'&&config.nativeOracleCandidateSite)jobs.splice(jobsBeforeBoard)
         problem('native-' + board.kind, error)
       }
     }
@@ -1280,16 +1410,21 @@ export function createVerifiedRecruitmentScraper(config) {
     observed.returnedIndiaJobs = jobs.length
     observed.unresolved = [...new Set(observed.unresolved)]
     observed.boards = [...boards.values()]
-    if (!jobs.length && observed.nativeRecords === 0 && !observed.nativeInventoryReads.length) {
+    const reviewedOracleFailure = config.nativeOracleCandidateSite && failures.some(row =>
+      ['current-publisher-declaration','native-oracle'].includes(row.stage))
+    if (reviewedOracleFailure) { jobs.splice(0); observed.returnedIndiaJobs = 0 }
+    if (reviewedOracleFailure || !jobs.length && observed.nativeRecords === 0 && !observed.nativeInventoryReads.length) {
       if (!boards.size && receipts.some(row => row.status === 200 && row.format === 'page')) observed.unresolved.push('current-native-recruitment-contract-not-discovered')
       const error = Object.assign(new Error(`[${config.source}] Current verified recruitment inventory is unavailable`),
         { softFailure: true, upstreamOutage: false, abortRetries: true, failureKind: 'coverage_gap', recruitmentObservations: observed })
       addFailureDiagnostics(error, failureCauses, failures, receipts)
       throw error
     }
+    const summary = failureSummary(failures)
+    const reason = 'runtime-first-party-recruitment;source-scope-unverified;cleanup-forbidden;failures=' + failures.length
     attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: root?.href || homepage.href, firstParty: receipts.some(row => row.status === 200),
       listingComplete: false, pagesFetched: receipts.length, reportedTotal: null, indiaFacetCount: null,
-      verifiedAt: now, reason: 'runtime-first-party-recruitment;source-scope-unverified;cleanup-forbidden;failures=' + failures.length })
+      verifiedAt: now, reason: (reason + (summary ? '; diagnostic=' + summary : '')).slice(0, 1600) })
     Object.defineProperty(jobs, RECRUITMENT_OBSERVATIONS, { value: observed })
     observationAccounting.attach(jobs)
     // Accounting supplies the authoritative observation snapshot. Add the full

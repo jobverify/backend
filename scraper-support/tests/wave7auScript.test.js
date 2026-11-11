@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import fs from 'node:fs/promises'
+import { MAIN as rebitMain, CONFIG as rebitConfig, careers as rebitCareersHtml,
+  client as rebitClientFixture, config as rebitConfigFixture, expectedBody as rebitExpectedBody } from '../../test/helpers/rebitProtocolControl20261111.js'
 
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
@@ -76,29 +77,12 @@ const blazeclanBrokenBoardHtml = `
 </html>
 `
 
-const rebitCareersHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>ReBIT - Reserve Bank Information Technology</title>
-    <base href="/">
-    <script src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
-    <script src="polyfills-5CFQRCPP.js"></script>
-    <script src="main-DIP7EZNW.js"></script>
-  </head>
-  <body>
-    <app-root></app-root>
-  </body>
-</html>
-`
-
-
-const rebitClientFixture = await fs.readFile(new URL('../../scraper/reservebankinformationtechnology/fixtures/current-client.js.txt', import.meta.url), 'utf8')
-const rebitConfigFixture = await fs.readFile(new URL('../../scraper/reservebankinformationtechnology/fixtures/current-config.js.txt', import.meta.url), 'utf8')
+// ReBIT bootstrap and row examples below are explicit offline controls. The
+// missing historical client/config files have not been reconstructed as native.
 const rebitFetchText = async url => {
   if (url === 'https://rebit.org.in/careers/') return rebitCareersHtml
-  if (url === 'https://rebit.org.in/main-DIP7EZNW.js') return rebitClientFixture
-  if (url === 'https://rebit.org.in/chunk-DFJHAP4Q.js') return rebitConfigFixture
+  if (url === rebitMain) return rebitClientFixture
+  if (url === rebitConfig) return rebitConfigFixture
   assert.fail('Unexpected ReBIT fixture URL: ' + url)
 }
 
@@ -295,7 +279,7 @@ test('Blazeclan Technologies reports a missing Zoho tenant as discovery-only inv
   assert.equal(readInventoryEvidence(jobs)?.surface, blazeclan.CAREERS_URL)
 })
 
-test('Reserve Bank Information Technology run authenticates against the first-party careers API and returns current openings with experience', async () => {
+test('synthetic Reserve Bank Information Technology protocol retains raw locations and explicit API experience without complete inventory', async () => {
   const rebit = await loadModule('../../scraper/reservebankinformationtechnology/script.js')
   const authRequests = []
   const apiRequests = []
@@ -324,8 +308,7 @@ test('Reserve Bank Information Technology run authenticates against the first-pa
     {
       url: rebit.CAREERS_LOGIN_API_URL,
       body: {
-        username: authRequests[0]?.body?.username,
-        password: authRequests[0]?.body?.password,
+        ...rebitExpectedBody(),
       },
     },
   ])
@@ -343,14 +326,19 @@ test('Reserve Bank Information Technology run authenticates against the first-pa
   assert.equal(jobs[0].location, 'Navi Mumbai, Bengaluru')
   assert.equal(jobs[0].department, 'Cyber Security')
   assert.equal(jobs[0].experienceRequired, '6 - 8 Years')
-  assert.equal(jobs[0].postingDate, '2026-06-29')
-  assert.equal(jobs[0].publicExperienceChecked, true)
+  assert.equal(jobs[0].country, null)
+  assert.equal(jobs[0].postingDate, null)
+  assert.equal(jobs[0].sourceNativeCreatedDate, '2026-06-29')
+  assert.equal(jobs[0].publicExperienceChecked, false)
   assert.equal(jobs[1].title, 'SOC - SIEM Admin Specialist')
   assert.equal(jobs[1].location, 'Navi Mumbai, Maharashtra, India')
   assert.equal(jobs[1].experienceRequired, '4 - 6 Years')
+  assert.equal(jobs[1].country, 'India')
+  assert.equal(readInventoryEvidence(jobs)?.status, 'coverage-gap')
+  assert.equal(readInventoryEvidence(jobs)?.reportedTotal, null)
 })
 
-test('Reserve Bank Information Technology run enriches Darwinbox detail pages only when the first-party API omits experience', async () => {
+test('synthetic Reserve Bank Information Technology missing experience cannot promote unbound Darwinbox callback text', async () => {
   const rebit = await loadModule('../../scraper/reservebankinformationtechnology/script.js')
   const requestedDetailUrls = []
 
@@ -388,14 +376,13 @@ test('Reserve Bank Information Technology run enriches Darwinbox detail pages on
     },
   })
 
-  assert.deepEqual(requestedDetailUrls, [
-    'https://rebithr.darwinbox.in/ms/candidatev2/main/careers/jobDetails/a6788af7cc042e',
-  ])
-  assert.equal(jobs[0].experienceRequired, '8+ years')
-  assert.equal(jobs[0].publicExperienceChecked, true)
-  assert.match(jobs[0].jobDescription || '', /secure SDLC delivery/i)
+  assert.deepEqual(requestedDetailUrls, [])
+  assert.equal(jobs[0].experienceRequired, null)
+  assert.equal(jobs[0].publicExperienceChecked, false)
+  assert.equal(jobs[0].jobDescription, null)
+  assert.equal(jobs[0].skipPublicExperienceEnrichment, true)
   assert.equal(jobs[1].experienceRequired, '4 - 6 Years')
-  assert.equal(jobs[1].publicExperienceChecked, true)
+  assert.equal(jobs[1].publicExperienceChecked, false)
 })
 
 test('Amtex Systems run verifies the live detail-link shell and filters out the current non-India opening', async () => {
