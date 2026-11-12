@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { disposeResponseBody, disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 import { readNativeDocument, decodeNativeEntities } from '../../scraper-support/utils/activeNativeHtml.js'
 import { normalizeNativeAttributeBoundaries } from '../../scraper-support/utils/nativeHtmlAttributes.js'
 import { nativeCountryName, nativeLocationCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
@@ -330,14 +331,26 @@ export async function runCurrentCalendlyAstro({ fetchImpl = globalThis.fetch, si
     const contentType = response.headers.get('content-type') || ''
     need((kind === 'json' ? /^(?:application|text)\/json\b/i : kind === 'js'
       ? /^(?:application|text)\/(?:java|ecma|x-java)script\b/i : /^text\/html\b/i).test(contentType), 'native public content type changed')
-    need(Number(response.headers.get('content-length') || 0) <= 4000000, 'native response byte budget reached')
+    try {
+      need(Number(response.headers.get('content-length') || 0) <= 4000000, 'native response byte budget reached')
+    } catch (error) {
+      await disposeResponseBody(response, { signal, bestEffort: true })
+      throw error
+    }
     const reader = response.body.getReader(), chunks = []; let length = 0
-    while (true) {
-      const chunk = await reader.read()
-      if (chunk.done) break
-      length += chunk.value.byteLength
-      if (length > 4000000) { await reader.cancel(); need(false, 'native response byte budget reached') }
-      chunks.push(Buffer.from(chunk.value))
+    try {
+      while (true) {
+        const chunk = await reader.read()
+        if (chunk.done) break
+        length += chunk.value.byteLength
+        if (length > 4000000) need(false, 'native response byte budget reached')
+        chunks.push(Buffer.from(chunk.value))
+      }
+    } catch (error) {
+      await disposeResponseReader(reader, { signal, bestEffort: true })
+      throw error
+    } finally {
+      reader.releaseLock()
     }
     deadline.throwIfAborted()
     const body = Buffer.concat(chunks).toString('utf8')

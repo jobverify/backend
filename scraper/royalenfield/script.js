@@ -12,6 +12,8 @@ const scraper = createPhenomScraper({
   searchPath: '/us/en/search-results',
   scraperDir: currentDir,
   nativeStatePostalCodeFormatting: true,
+  // Captured listing/native/schema agree on the office; preserve its untyped display suffix.
+  nativeStatePostalLiteralJobIds: ['P-101048'],
   nativeLocalitySuffixFormatting: true,
 })
 

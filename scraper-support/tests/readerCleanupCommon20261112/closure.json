@@ -1,0 +1,2447 @@
+{
+  "schemaVersion": 1,
+  "status": "RETAINED_CLOSED_COMMON60",
+  "flows": [
+    {
+      "id": "claroty-current",
+      "entry": "backend/scraper/claroty/script.js",
+      "target_module": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js",
+      "targetURL": "https://claroty.com/careers",
+      "maxBodyBytes": 3145728,
+      "modules": [
+        {
+          "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+          "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+          "bytes": 1782
+        },
+        {
+          "path": "backend/scraper-support/utils/activeNativeHtml.js",
+          "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+          "bytes": 10506
+        },
+        {
+          "path": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js",
+          "sha256": "7e4c96adeaa0af9885ce61579f816e3933b628f8a62f7cde631e5e0b398448c0",
+          "bytes": 22395
+        },
+        {
+          "path": "backend/scraper-support/utils/inventoryEvidence.js",
+          "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+          "bytes": 8046
+        },
+        {
+          "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+          "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+          "bytes": 33032
+        },
+        {
+          "path": "backend/scraper/claroty/script.js",
+          "sha256": "8980814d6feef0317393f9602d739de32babdc7d96282cbc5ef72fcc5744e347",
+          "bytes": 1735
+        },
+        {
+          "path": "backend/src/utils/jobSourceContent.js",
+          "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+          "bytes": 2529
+        }
+      ],
+      "additional_reads": [
+        {
+          "path": "backend/package.json",
+          "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+          "bytes": 6914
+        }
+      ],
+      "application_builtins": [
+        "node:crypto",
+        "node:path",
+        "node:url"
+      ],
+      "static_edges": [
+        {
+          "from": "backend/scraper/claroty/script.js",
+          "specifier": "../../scraper-support/utils/firstPartyComeetProxyInventory.js",
+          "to": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js",
+          "specifier": "./activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js",
+          "specifier": "./visibleNativeHtml.js",
+          "to": "backend/scraper-support/utils/visibleNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js",
+          "specifier": "./inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/visibleNativeHtml.js",
+          "specifier": "./activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/activeNativeHtml.js",
+          "specifier": "../../src/utils/jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/firstPartyComeetProxyInventory.js",
+          "specifier": "../shared/responseBodyDisposal.js",
+          "to": "backend/scraper-support/shared/responseBodyDisposal.js"
+        }
+      ],
+      "ungranted_literal_dynamic_imports": [
+        {
+          "from": "backend/scraper/claroty/script.js",
+          "specifier": "../../scraper-support/utils/saveToDB.js",
+          "runtimeGrant": false
+        }
+      ],
+      "cases": [
+        "overflow-ordinary",
+        "overflow-cancel-throws",
+        "overflow-cancel-rejects",
+        "overflow-cancel-pending",
+        "overflow-caller-opaque-pending",
+        "overflow-prompt-owned",
+        "closed-read-error-identity",
+        "closed-eof-malformed-control",
+        "preabort-opaque"
+      ],
+      "compatibility": null,
+      "registeredCurrentImpact": true,
+      "expectedHistoricalCompatibility": []
+    },
+    {
+      "id": "firebolt-current",
+      "entry": "backend/scraper/firebolt/script.js",
+      "target_module": "backend/scraper/firebolt/nativeInventory.js",
+      "targetURL": "https://www.firebolt.io/careers",
+      "maxBodyBytes": 3145728,
+      "modules": [
+        {
+          "path": "backend/node_modules/acorn/dist/acorn.mjs",
+          "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+          "bytes": 234658
+        },
+        {
+          "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+          "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+          "bytes": 1782
+        },
+        {
+          "path": "backend/scraper-support/utils/activeNativeHtml.js",
+          "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+          "bytes": 10506
+        },
+        {
+          "path": "backend/scraper-support/utils/inventoryEvidence.js",
+          "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+          "bytes": 8046
+        },
+        {
+          "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+          "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+          "bytes": 33032
+        },
+        {
+          "path": "backend/scraper/firebolt/nativeInventory.js",
+          "sha256": "e8a2c46f663e8b6aafa13713f79d20984198629dc3cccf40318a4de93f1f3ace",
+          "bytes": 30027
+        },
+        {
+          "path": "backend/scraper/firebolt/script.js",
+          "sha256": "2cb958f63335a57106cf51e369ff80f38056cb69a3b8b567d74a72214ae423d5",
+          "bytes": 1601
+        },
+        {
+          "path": "backend/src/utils/jobSourceContent.js",
+          "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+          "bytes": 2529
+        }
+      ],
+      "additional_reads": [
+        {
+          "path": "backend/node_modules/acorn/package.json",
+          "sha256": "04d6fecaafb5e3d20a38fc3b64fed84bb3830a7759a8c00400ebcb87331fec00",
+          "bytes": 1067
+        },
+        {
+          "path": "backend/package.json",
+          "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+          "bytes": 6914
+        },
+        {
+          "path": "backend/scraper/firebolt/test-data-20261107/current-http.json.gz",
+          "sha256": "5fef636d83b57f11c8d0c42fcb9bbdcefbe73158b30e78b4c0ab171d5e7c159c",
+          "bytes": 648576
+        }
+      ],
+      "application_builtins": [
+        "node:crypto",
+        "node:path",
+        "node:url"
+      ],
+      "static_edges": [
+        {
+          "from": "backend/scraper/firebolt/script.js",
+          "specifier": "./nativeInventory.js",
+          "to": "backend/scraper/firebolt/nativeInventory.js"
+        },
+        {
+          "from": "backend/scraper/firebolt/nativeInventory.js",
+          "specifier": "acorn",
+          "to": "backend/node_modules/acorn/dist/acorn.mjs"
+        },
+        {
+          "from": "backend/scraper/firebolt/nativeInventory.js",
+          "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper/firebolt/nativeInventory.js",
+          "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+          "to": "backend/scraper-support/utils/visibleNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper/firebolt/nativeInventory.js",
+          "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/visibleNativeHtml.js",
+          "specifier": "./activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/activeNativeHtml.js",
+          "specifier": "../../src/utils/jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/scraper/firebolt/nativeInventory.js",
+          "specifier": "../../scraper-support/shared/responseBodyDisposal.js",
+          "to": "backend/scraper-support/shared/responseBodyDisposal.js"
+        }
+      ],
+      "ungranted_literal_dynamic_imports": [
+        {
+          "from": "backend/scraper/firebolt/script.js",
+          "specifier": "../../scraper-support/utils/saveToDB.js",
+          "runtimeGrant": false
+        }
+      ],
+      "cases": [
+        "overflow-ordinary",
+        "overflow-cancel-throws",
+        "overflow-cancel-rejects",
+        "overflow-cancel-pending",
+        "overflow-caller-opaque-pending",
+        "overflow-prompt-owned",
+        "closed-read-error-identity",
+        "closed-eof-malformed-control",
+        "preabort-opaque",
+        "genuine-capture-compatibility"
+      ],
+      "compatibility": {
+        "pin": {
+          "path": "backend/scraper/firebolt/test-data-20261107/current-http.json.gz",
+          "sha256": "5fef636d83b57f11c8d0c42fcb9bbdcefbe73158b30e78b4c0ab171d5e7c159c",
+          "bytes": 648576,
+          "copy": "backend/scraper/firebolt/test-data-20261107/current-http.json.gz",
+          "copySHA256": "5fef636d83b57f11c8d0c42fcb9bbdcefbe73158b30e78b4c0ab171d5e7c159c"
+        },
+        "bodyCount": 12,
+        "bodyPins": [
+          {
+            "url": "https://www.firebolt.io/careers",
+            "status": 200,
+            "sha256": "7f16b1ee961eb69a2c632870be833f7b3920f9ac695f971bbf3afd1b8ef13e93",
+            "bytes": 171098
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004",
+            "status": 200,
+            "sha256": "05a47e8e53cb5f8bd92a332e75c38e5b01a98c17dbb31fa2e5a35b2d5cc7a6d0",
+            "bytes": 128660
+          },
+          {
+            "url": "https://www.comeet.com/common/careers.js?rc-314-10",
+            "status": 200,
+            "sha256": "fcea099bc3113e6ea20e9baad0b9b35d70ec7a9c245a7472cb1420f859368d4c",
+            "bytes": 169188
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004/join-the-team/63.F1C",
+            "status": 200,
+            "sha256": "a2ae694e9247f9dd56675382f2bb83fe93b368128e99658c7484c0e9183887b3",
+            "bytes": 125370
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004/senior-software-engineer--query-processing-munich/05.865",
+            "status": 200,
+            "sha256": "6144dacb35dca1b24858129f0aeecbed1a7f63d61b98504cf394fa69911245eb",
+            "bytes": 132515
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004/software-engineer-query-processing-munich/E2.A5D",
+            "status": 200,
+            "sha256": "cdcad26f94c3013187f3d4cf23160bed17356eaf0a9a868dbd45bd56e27651f3",
+            "bytes": 132240
+          },
+          {
+            "url": "https://www.firebolt.io/careers",
+            "status": 200,
+            "sha256": "7f16b1ee961eb69a2c632870be833f7b3920f9ac695f971bbf3afd1b8ef13e93",
+            "bytes": 171098
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004",
+            "status": 200,
+            "sha256": "44a19330582cc0ef240a1f2f7f1bd08b8d7b956e978fd7953af52991be10c26d",
+            "bytes": 128659
+          },
+          {
+            "url": "https://www.comeet.com/common/careers.js?rc-314-10",
+            "status": 200,
+            "sha256": "fcea099bc3113e6ea20e9baad0b9b35d70ec7a9c245a7472cb1420f859368d4c",
+            "bytes": 169188
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004/join-the-team/63.F1C",
+            "status": 200,
+            "sha256": "2dbd86e2ba47afba6b801b346bb1e6c5da254a942fcf6bfa2af002d4dff33cd6",
+            "bytes": 125371
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004/senior-software-engineer--query-processing-munich/05.865",
+            "status": 200,
+            "sha256": "d1811e977b6244898d14e592b1945c073f2dee74825a6995da4233d4e152cfc9",
+            "bytes": 132516
+          },
+          {
+            "url": "https://www.comeet.com/jobs/firebolt/26.004/software-engineer-query-processing-munich/E2.A5D",
+            "status": 200,
+            "sha256": "2fef701946a5492529fd62110adf3514c06314e731a41d969c1f97bdb5eba2b1",
+            "bytes": 132240
+          }
+        ],
+        "originalKeys": [
+          "source",
+          "profile",
+          "provenance",
+          "observedAt",
+          "requests",
+          "entities",
+          "expectedInventory",
+          "expectedNativeProof",
+          "expectedJobs"
+        ],
+        "applicationReplayPerformed": false
+      },
+      "registeredCurrentImpact": true,
+      "expectedHistoricalCompatibility": [
+        {
+          "case": "genuine-capture-compatibility",
+          "fixtureSHA256": "5fef636d83b57f11c8d0c42fcb9bbdcefbe73158b30e78b4c0ab171d5e7c159c",
+          "packets": 12,
+          "returnedJobs": 0,
+          "semanticSHA256": "d5bb3493c682b6bc02c83e708178f8974b48e5fb4a3cfdde47a3f479c52e4533",
+          "historicalCompatibilityOnly": true,
+          "livePublisherClaim": false,
+          "sourceClockOverridden": false,
+          "sourcePacingOverridden": false
+        }
+      ]
+    },
+    {
+      "id": "slb-current-reader",
+      "entry": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+      "target_module": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+      "targetURL": "https://careers.slb.com/job-listing",
+      "maxBodyBytes": 4000000,
+      "modules": [
+        {
+          "path": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+          "sha256": "dd7851cf03921863ef9d8240c5c5e21e1a275f3ed1c2cc046b3e21df25a52439",
+          "bytes": 16642
+        },
+        {
+          "path": "backend/scraper-support/shared/nativeFailureDiagnostics.js",
+          "sha256": "9c8f9f26cab3768f9449147004d8b0736d2bac04cb95eeebad433cd35a310184",
+          "bytes": 1427
+        },
+        {
+          "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+          "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+          "bytes": 1782
+        },
+        {
+          "path": "backend/scraper-support/utils/activeNativeHtml.js",
+          "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+          "bytes": 10506
+        },
+        {
+          "path": "backend/scraper-support/utils/inventoryEvidence.js",
+          "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+          "bytes": 8046
+        },
+        {
+          "path": "backend/src/utils/jobSourceContent.js",
+          "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+          "bytes": 2529
+        }
+      ],
+      "additional_reads": [
+        {
+          "path": "backend/package.json",
+          "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+          "bytes": 6914
+        },
+        {
+          "path": "backend/test/test-data/recruitmentGoal20261104/slb-current-native-quality.json.gz",
+          "sha256": "08e44c2f8fa8b99373cd03f3428a9261b9aa29d26e9b66006026e0cd650452ad",
+          "bytes": 860314
+        }
+      ],
+      "application_builtins": [
+        "node:crypto",
+        "node:timers/promises"
+      ],
+      "static_edges": [
+        {
+          "from": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+          "specifier": "../utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+          "specifier": "../utils/inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/activeNativeHtml.js",
+          "specifier": "../../src/utils/jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+          "specifier": "../shared/responseBodyDisposal.js",
+          "to": "backend/scraper-support/shared/responseBodyDisposal.js"
+        },
+        {
+          "from": "backend/scraper-support/apiPortal/slbCurrentCareers.js",
+          "specifier": "../shared/nativeFailureDiagnostics.js",
+          "to": "backend/scraper-support/shared/nativeFailureDiagnostics.js"
+        }
+      ],
+      "ungranted_literal_dynamic_imports": [],
+      "cases": [
+        "overflow-ordinary",
+        "overflow-cancel-throws",
+        "overflow-cancel-rejects",
+        "overflow-cancel-pending",
+        "overflow-caller-opaque-pending",
+        "overflow-prompt-owned",
+        "closed-read-error-identity",
+        "closed-eof-malformed-control",
+        "preabort-opaque",
+        "caller-null-pending-read",
+        "caller-opaque-pending-read",
+        "genuine-capture-compatibility"
+      ],
+      "compatibility": {
+        "pin": {
+          "path": "backend/test/test-data/recruitmentGoal20261104/slb-current-native-quality.json.gz",
+          "sha256": "08e44c2f8fa8b99373cd03f3428a9261b9aa29d26e9b66006026e0cd650452ad",
+          "bytes": 860314,
+          "copy": "backend/test/test-data/recruitmentGoal20261104/slb-current-native-quality.json.gz",
+          "copySHA256": "08e44c2f8fa8b99373cd03f3428a9261b9aa29d26e9b66006026e0cd650452ad"
+        },
+        "bodyCount": 49,
+        "bodyPins": [
+          {
+            "url": "https://careers.slb.com/job-listing",
+            "status": 200,
+            "sha256": "5d7c0aa8a9103cdcad992debe434bb17d8e1f63003107d7d753b9ccf0e57e810",
+            "bytes": 63955
+          },
+          {
+            "url": "https://careers.slb.com/static/js/js-atomic-job-listing-search.js",
+            "status": 200,
+            "sha256": "b883fef66869f8c96c18b5272a1b51f651b0f62e814f7e09d8bfe2d3157e9aa9",
+            "bytes": 3969
+          },
+          {
+            "url": "https://schlumbergerproduction0cs2zrh7.org.coveo.com/rest/search/v2?organizationId=schlumbergerproduction0cs2zrh7&searchHub=CoveoJobsHub&cq=%40source%3D%3D%24%22ATS_Jobs_Source+-+Prod%22&q=&aq=%40country%3D%3D%22India%22&numberOfResults=50&firstResult=0",
+            "status": 200,
+            "sha256": "1821f76d74ef6df670e9bd091943088a8f3f67e143e3502e1619dd9c974fbe3c",
+            "bytes": 277924
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=WDR00137324",
+            "status": 200,
+            "sha256": "2b6ace36ae06766ec33baf9ff4d7479d309f6fcbd5f20c0748372d3a1379eac6",
+            "bytes": 93527
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF12070-en_US%201",
+            "status": 200,
+            "sha256": "74a10470f60274f3d963b983a94cd6cf694eb54150945f202d80a1407958bae8",
+            "bytes": 86851
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF12069-en_US%201",
+            "status": 200,
+            "sha256": "c0cfb7b2cac50c50f6b9c20d01f2268552f8891d91ecede86356fb813eee7b06",
+            "bytes": 93109
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF15400-en_US%201",
+            "status": 200,
+            "sha256": "cce70e25a0f07b0c23be7ff8fa187089fafc7fa80cbc3adfbbffb91204b67aa1",
+            "bytes": 94850
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF16510-en_US%201",
+            "status": 200,
+            "sha256": "ba4018fa7d10ff79f1cb628bad73553b6ca1de1043897b90dc572e49614eda1c",
+            "bytes": 104033
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF14531-en_US%201",
+            "status": 200,
+            "sha256": "0b553d82588fc2cc6bf1e737f546d4871d0a7f002aa150716766559a9a70235d",
+            "bytes": 99410
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF18133-en_US%201",
+            "status": 200,
+            "sha256": "4438bffa283a3ff461664e1b0ac6aa4e8aadf4f8ec1715443e71ece46242af26",
+            "bytes": 101034
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF14078-en_US%201",
+            "status": 200,
+            "sha256": "930c8527d8e29d71220fbc190dc67b96213d3308d9df761e4ca23f08f78da33e",
+            "bytes": 90780
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF12498-en_US%201",
+            "status": 200,
+            "sha256": "05a22b3ccd75d8e11f234ebb4c16affddc7ce88186b5a3c781df5ec4c22efd21",
+            "bytes": 94445
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF12068-en_US%201",
+            "status": 200,
+            "sha256": "8b7a8edc6502974eee593eaf5162011589ab72cc6dec892fe5ba27216a140f11",
+            "bytes": 87723
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF14075-en_US%201",
+            "status": 200,
+            "sha256": "0837cb9358c61c72058c78b0158a4abb8a500dd79ea7921729ea0b1ae6fb8038",
+            "bytes": 90788
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF15842-en_US%201",
+            "status": 200,
+            "sha256": "9f803024ac32d37abcbfd3346f0c19a703d15bf6f9d984024a8003775bf94c74",
+            "bytes": 94378
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF16685-en_US%201",
+            "status": 200,
+            "sha256": "9ef14188935910a0c39ff3e8eec5bc01f5e9cf3f87dd71900123e70c3a875cdd",
+            "bytes": 94549
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF12067-en_US%201",
+            "status": 200,
+            "sha256": "d2e96148f2b997560a7dfd7e751bc721c572d165f69bc5c092c3a7a581b597e4",
+            "bytes": 88093
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF16993-en_US%201",
+            "status": 200,
+            "sha256": "3cc06e25f0921e98b41a12821691bcff371d05b130db05787326f1db953920a4",
+            "bytes": 99748
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF19488-en_US%201",
+            "status": 200,
+            "sha256": "4c49c4f4f771b820ea4920d9e8e1e7cbf6bd362cdcb0fa022e241be1c91b9deb",
+            "bytes": 86738
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF19551-en_US%201",
+            "status": 200,
+            "sha256": "ddd95a451a4111aa4ce6e82baff8dd9ebc6d709277be7c0b50591a899f7956df",
+            "bytes": 85741
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF20055-en_US%201",
+            "status": 200,
+            "sha256": "0df07325767580be376769f4ec11f5d7fdf2673cdd8c7e47024120e956df7860",
+            "bytes": 86189
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF19636-en_US%201",
+            "status": 200,
+            "sha256": "38f02fb221cee41c5132fcee9c90f3861e9b7eb6a9f9b83f95322f2f19dc08e1",
+            "bytes": 94319
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF20828-en_US%201",
+            "status": 200,
+            "sha256": "7d3c425a2bb9163a4d5dbfd79553e7665d70197970c54e18b85b0fa4b90dcf46",
+            "bytes": 93921
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21266-en_US%201",
+            "status": 200,
+            "sha256": "da601e9c61a1e61786da902f3f97e48ebeb92008c0a0722c5d23c9934eccd5f1",
+            "bytes": 95851
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF12072-en_US%201",
+            "status": 200,
+            "sha256": "4b3f4c68bcb385c40896e9df06e5bd948fbdf3302ec818dc5e400e54bafcb89e",
+            "bytes": 85117
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF15575-en_US%201",
+            "status": 200,
+            "sha256": "a25131cb66ef94378298b73b9fbe4f358f51d36149a71a866ce7b16e8fbd637b",
+            "bytes": 91927
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF17416-en_US%201",
+            "status": 200,
+            "sha256": "c33f18ad318cf0883818f8172bc03d2de9c12a7af73141b564984d93f468794f",
+            "bytes": 95034
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF18659-en_US%201",
+            "status": 200,
+            "sha256": "3f6043c1e0170b3fdcf84aaa30449628531d92127a0627eb29712e17d64d00b5",
+            "bytes": 86940
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF17415-en_US%201",
+            "status": 200,
+            "sha256": "73117e82159aafc421478b35202ffe188df01c52f904207610b6cfbf7f24b1ab",
+            "bytes": 94831
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF16994-en_US%201",
+            "status": 200,
+            "sha256": "4218602360ecd2cc3b193659409cb30cba719d3353f5cd3530eafd2556747825",
+            "bytes": 99605
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF14708-en_US%201",
+            "status": 200,
+            "sha256": "e9686208e356132b8411816efb09bfd44385f9de79ec4347c4e105eb0787b710",
+            "bytes": 101130
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21453-en_US%201",
+            "status": 200,
+            "sha256": "aa24139e3d3299a2f8371d4f5b55d23e1e9eb70f0aa4b37d973dd87a3acc279b",
+            "bytes": 99829
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF19096-en_US%201",
+            "status": 200,
+            "sha256": "1c264127ea650978cf64c40fb0e4045ea551e461f3010521939ce990c0622dad",
+            "bytes": 95915
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21424-en_US%201",
+            "status": 200,
+            "sha256": "63768389bd4641cdf75aa871ec035d563df69b5a1ee266cafd943b9507d459c4",
+            "bytes": 88849
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21052-en_US%201",
+            "status": 200,
+            "sha256": "4a11cce2f5962a15ad77968065584f0574ed66aeedb9311c8afca98730810386",
+            "bytes": 94221
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21517-en_US%201",
+            "status": 200,
+            "sha256": "824475569ef061fcd458f3f93f3261ba595e00d9e8ca0f4c568123e4588daa1d",
+            "bytes": 94288
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21421-en_US%201",
+            "status": 200,
+            "sha256": "95d507102ad8e906136762fb5107bedeffc652171683b7d01d4aeb3963309908",
+            "bytes": 88367
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF21422-en_US%201",
+            "status": 200,
+            "sha256": "6c02415ecf0dea85cce14b52aab10b1dc635c7077ebcaa6b8b50cd9ce4442ee5",
+            "bytes": 88525
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF20953-en_US%201",
+            "status": 200,
+            "sha256": "1b04c177de1c235f6ec5fbe0828f39249fb82f16a0e2a0412d2d7b9c0db27626",
+            "bytes": 85524
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22488-en_US%201",
+            "status": 200,
+            "sha256": "a8ec5c4edc4b7ed6e5b87b63012265cb06820ab0cf4027b692655afa935ba0df",
+            "bytes": 96378
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22052-en_US%201",
+            "status": 200,
+            "sha256": "445c9caa40642c2e92a91204cefd2ea95368554c2d5c5d93c3475d0837d4f810",
+            "bytes": 94794
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22056-en_US%201",
+            "status": 200,
+            "sha256": "b613ed06408abfc1822a11e901a6d903f9290708556dab341f8da51e7a2ead96",
+            "bytes": 97709
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22544-en_US%201",
+            "status": 200,
+            "sha256": "4bea405df96d7541c6042c76361c7379494e4f69f65b6983a9f39b7348e10b0b",
+            "bytes": 88778
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22261-en_US%201",
+            "status": 200,
+            "sha256": "3dbded77781b3cd0f52dcc2b6b9695c88cddf98fc08cdea2a1f9257876a2d1d7",
+            "bytes": 89347
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22211-en_US%201",
+            "status": 200,
+            "sha256": "2350976a36af455112d6d33c320fa68b7094ebb3259ba11cbc598cad908a5311",
+            "bytes": 103583
+          },
+          {
+            "url": "https://careers.slb.com/jobdescription.aspx?id=EF22489-en_US%201",
+            "status": 200,
+            "sha256": "da1a1bc011ebf84df318139a2481053c79d409cddd0d94910baf1de69e93fd87",
+            "bytes": 95542
+          },
+          {
+            "url": "https://careers.slb.com/job-listing",
+            "status": 200,
+            "sha256": "7c3332453d2dec448a06868d713c79c729932277a64b2e1ed6a91b369b02590a",
+            "bytes": 63955
+          },
+          {
+            "url": "https://careers.slb.com/static/js/js-atomic-job-listing-search.js",
+            "status": 200,
+            "sha256": "b883fef66869f8c96c18b5272a1b51f651b0f62e814f7e09d8bfe2d3157e9aa9",
+            "bytes": 3969
+          },
+          {
+            "url": "https://schlumbergerproduction0cs2zrh7.org.coveo.com/rest/search/v2?organizationId=schlumbergerproduction0cs2zrh7&searchHub=CoveoJobsHub&cq=%40source%3D%3D%24%22ATS_Jobs_Source+-+Prod%22&q=&aq=%40country%3D%3D%22India%22&numberOfResults=50&firstResult=0",
+            "status": 200,
+            "sha256": "be25f1e9a42e652773a6da7ed6e9d9c6ea87b6efe04a2893c68b2b93808740d4",
+            "bytes": 277924
+          }
+        ],
+        "originalKeys": [
+          "source",
+          "startedAt",
+          "completedAt",
+          "requests"
+        ],
+        "applicationReplayPerformed": false
+      },
+      "registeredCurrentImpact": true,
+      "expectedHistoricalCompatibility": [
+        {
+          "case": "genuine-capture-compatibility",
+          "fixtureSHA256": "08e44c2f8fa8b99373cd03f3428a9261b9aa29d26e9b66006026e0cd650452ad",
+          "packets": 49,
+          "returnedJobs": 43,
+          "semanticSHA256": "a36c4b467340b794d375bbf20aadb537fa2ba7d52df3795e53a8fbd7a9b4908c",
+          "historicalCompatibilityOnly": true,
+          "livePublisherClaim": false,
+          "sourceClockOverridden": false,
+          "sourcePacingOverridden": false
+        }
+      ]
+    },
+    {
+      "id": "cohere-current",
+      "entry": "backend/scraper/cohere/script.js",
+      "target_module": "backend/scraper/cohere/publicInventory.js",
+      "targetURL": "https://cohere.com/careers",
+      "maxBodyBytes": 5242880,
+      "modules": [
+        {
+          "path": "backend/node_modules/acorn/dist/acorn.mjs",
+          "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+          "bytes": 234658
+        },
+        {
+          "path": "backend/node_modules/entities/dist/decode-codepoint.js",
+          "sha256": "c5c52b66256cc5a84b84a516ed78cc76256ec99c47344041f11d3e67010c4a64",
+          "bytes": 2409
+        },
+        {
+          "path": "backend/node_modules/entities/dist/decode.js",
+          "sha256": "84447c68870d330d2d9f72fc6dd34fceeba9e2061339da0c24f5a645edf4ca88",
+          "bytes": 44274
+        },
+        {
+          "path": "backend/node_modules/entities/dist/encode.js",
+          "sha256": "3e4fada680dd848e235df9835c766845172e8731b02cfbfea396448ec4f306a4",
+          "bytes": 12340
+        },
+        {
+          "path": "backend/node_modules/entities/dist/escape.js",
+          "sha256": "c9321bcfd5431fe2f81038614d1d84636328456e38be1df57e6bf3e2e24edac5",
+          "bytes": 5670
+        },
+        {
+          "path": "backend/node_modules/entities/dist/generated/decode-data-html.js",
+          "sha256": "f26a918fce4ad7e365d8715559291e40dd16be38f50bc6b71b0a64eed2ff32b2",
+          "bytes": 26305
+        },
+        {
+          "path": "backend/node_modules/entities/dist/generated/encode-html.js",
+          "sha256": "8b76a4028ff2a691a67c02405af473be5028db93da2cb94a9343039d69609d30",
+          "bytes": 10042
+        },
+        {
+          "path": "backend/node_modules/entities/dist/index.js",
+          "sha256": "efacf1df956b3d7156a17653cd241f3328f9a6fe1a4b61f098efc1bed2fa9a0e",
+          "bytes": 3552
+        },
+        {
+          "path": "backend/node_modules/entities/dist/internal/decode-data-format.js",
+          "sha256": "e2c3e8fb026292e55b124165680665593000c077af4c1c80f39a4b7451f8f2a8",
+          "bytes": 6523
+        },
+        {
+          "path": "backend/scraper-support/native-sources/boundedDeclaredPublicGet.js",
+          "sha256": "d3e31d32c774637b68d7f51770f4e23c47c11b397712849da4c754f999885396",
+          "bytes": 355
+        },
+        {
+          "path": "backend/scraper-support/native-sources/boundedDeclaredPublicRead.js",
+          "sha256": "ef3a790a7fb5a0b4d3868ec6823ce8f6e3e8eddd155fe91b92228accc4725abd",
+          "bytes": 4246
+        },
+        {
+          "path": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "sha256": "ca090132c92a9c949da598f6576d77155a155e8576406e4e8b91c423961dbba0",
+          "bytes": 20075
+        },
+        {
+          "path": "backend/scraper-support/native-sources/declaredAshby/nativeData.js",
+          "sha256": "ce282c2ff76a4356e161c55b54e0e794ecf7c25df9bb93a9dbe5636a318297fc",
+          "bytes": 13833
+        },
+        {
+          "path": "backend/scraper-support/native-sources/jobPostingData.js",
+          "sha256": "1e9f0124984cc1b81300938e5651ec84e39b3e2ed79f09af760e2b12ca77d77d",
+          "bytes": 5983
+        },
+        {
+          "path": "backend/scraper-support/native-sources/literalModel.js",
+          "sha256": "e712842c79dd9bb63ab27fc129e3e3ff2d7d7125da1a0a9a107539378591378f",
+          "bytes": 3551
+        },
+        {
+          "path": "backend/scraper-support/native-sources/publicIO.js",
+          "sha256": "c20f15625ed016f4f2133540fbacd91753d00ff7b83fcd5503ab0e1ab53a394d",
+          "bytes": 4620
+        },
+        {
+          "path": "backend/scraper-support/shared/nativeFailureDiagnostics.js",
+          "sha256": "9c8f9f26cab3768f9449147004d8b0736d2bac04cb95eeebad433cd35a310184",
+          "bytes": 1427
+        },
+        {
+          "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+          "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+          "bytes": 1782
+        },
+        {
+          "path": "backend/scraper-support/utils/activeNativeHtml.js",
+          "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+          "bytes": 10506
+        },
+        {
+          "path": "backend/scraper-support/utils/inventoryEvidence.js",
+          "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+          "bytes": 8046
+        },
+        {
+          "path": "backend/scraper-support/utils/sourceObservationEvidence.js",
+          "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+          "bytes": 2823
+        },
+        {
+          "path": "backend/scraper/biofourmis/scriptExecution.js",
+          "sha256": "1f649073da0fdd98dbb5740c37b2717283d352f39b0113e668753faa35f99956",
+          "bytes": 7423
+        },
+        {
+          "path": "backend/scraper/cohere/publicInventory.js",
+          "sha256": "2ac20a53825c6ce3772896e0dbad0250e7a5560dc3753f890d74d29c03cc42db",
+          "bytes": 23677
+        },
+        {
+          "path": "backend/scraper/cohere/script.js",
+          "sha256": "7efef1447828b60bb80ba40c4e50ef31a5e6c6fbe36c01119743e59c82ae10f7",
+          "bytes": 1142
+        },
+        {
+          "path": "backend/src/utils/jobSourceContent.js",
+          "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+          "bytes": 2529
+        }
+      ],
+      "additional_reads": [
+        {
+          "path": "backend/node_modules/acorn/package.json",
+          "sha256": "04d6fecaafb5e3d20a38fc3b64fed84bb3830a7759a8c00400ebcb87331fec00",
+          "bytes": 1067
+        },
+        {
+          "path": "backend/node_modules/entities/package.json",
+          "sha256": "91021df30616d21086a8b43877198c33f83fcbb8f8b74bdf5127f1fabac5e0eb",
+          "bytes": 2579
+        },
+        {
+          "path": "backend/package.json",
+          "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+          "bytes": 6914
+        },
+        {
+          "path": "backend/scraper-support/native-sources/declaredAshby/htmlNamedEntities.json",
+          "sha256": "525f9707034c6b02ecdd468a780e61735c65ad39353cc28e6f59901219a9b348",
+          "bytes": 42741
+        },
+        {
+          "path": "backend/scraper/cohere/native-captures/full-native-20261101.json.gz",
+          "sha256": "db1acb6bef984ad8e955e8bf571ac88ee81753039451d33d7d6c4f48cd7ff760",
+          "bytes": 3844975
+        }
+      ],
+      "application_builtins": [
+        "node:crypto",
+        "node:fs",
+        "node:path",
+        "node:url",
+        "node:util"
+      ],
+      "static_edges": [
+        {
+          "from": "backend/scraper/cohere/script.js",
+          "specifier": "./publicInventory.js",
+          "to": "backend/scraper/cohere/publicInventory.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "entities",
+          "to": "backend/node_modules/entities/dist/index.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "to": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/native-sources/jobPostingData.js",
+          "to": "backend/scraper-support/native-sources/jobPostingData.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/native-sources/declaredAshby/nativeData.js",
+          "to": "backend/scraper-support/native-sources/declaredAshby/nativeData.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/utils/sourceObservationEvidence.js",
+          "to": "backend/scraper-support/utils/sourceObservationEvidence.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../biofourmis/scriptExecution.js",
+          "to": "backend/scraper/biofourmis/scriptExecution.js"
+        },
+        {
+          "from": "backend/scraper/biofourmis/scriptExecution.js",
+          "specifier": "entities",
+          "to": "backend/node_modules/entities/dist/index.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./decode.js",
+          "to": "backend/node_modules/entities/dist/decode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./encode.js",
+          "to": "backend/node_modules/entities/dist/encode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./escape.js",
+          "to": "backend/node_modules/entities/dist/escape.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./decode.js",
+          "to": "backend/node_modules/entities/dist/decode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./encode.js",
+          "to": "backend/node_modules/entities/dist/encode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./escape.js",
+          "to": "backend/node_modules/entities/dist/escape.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/encode.js",
+          "specifier": "./escape.js",
+          "to": "backend/node_modules/entities/dist/escape.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/encode.js",
+          "specifier": "./generated/encode-html.js",
+          "to": "backend/node_modules/entities/dist/generated/encode-html.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./decode-codepoint.js",
+          "to": "backend/node_modules/entities/dist/decode-codepoint.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./generated/decode-data-html.js",
+          "to": "backend/node_modules/entities/dist/generated/decode-data-html.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./internal/decode-data-format.js",
+          "to": "backend/node_modules/entities/dist/internal/decode-data-format.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./decode-codepoint.js",
+          "to": "backend/node_modules/entities/dist/decode-codepoint.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/activeNativeHtml.js",
+          "specifier": "../../src/utils/jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeData.js",
+          "specifier": "acorn",
+          "to": "backend/node_modules/acorn/dist/acorn.mjs"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeData.js",
+          "specifier": "../../utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeData.js",
+          "specifier": "../literalModel.js",
+          "to": "backend/scraper-support/native-sources/literalModel.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeData.js",
+          "specifier": "../jobPostingData.js",
+          "to": "backend/scraper-support/native-sources/jobPostingData.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/jobPostingData.js",
+          "specifier": "../utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/jobPostingData.js",
+          "specifier": "./literalModel.js",
+          "to": "backend/scraper-support/native-sources/literalModel.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "specifier": "../../utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "specifier": "../publicIO.js",
+          "to": "backend/scraper-support/native-sources/publicIO.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "specifier": "../jobPostingData.js",
+          "to": "backend/scraper-support/native-sources/jobPostingData.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "specifier": "../../utils/inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/declaredAshby/nativeCareers.js",
+          "specifier": "./nativeData.js",
+          "to": "backend/scraper-support/native-sources/declaredAshby/nativeData.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/publicIO.js",
+          "specifier": "./literalModel.js",
+          "to": "backend/scraper-support/native-sources/literalModel.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/publicIO.js",
+          "specifier": "./boundedDeclaredPublicGet.js",
+          "to": "backend/scraper-support/native-sources/boundedDeclaredPublicGet.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/boundedDeclaredPublicGet.js",
+          "specifier": "./boundedDeclaredPublicRead.js",
+          "to": "backend/scraper-support/native-sources/boundedDeclaredPublicRead.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/shared/responseBodyDisposal.js",
+          "to": "backend/scraper-support/shared/responseBodyDisposal.js"
+        },
+        {
+          "from": "backend/scraper-support/native-sources/publicIO.js",
+          "specifier": "../shared/nativeFailureDiagnostics.js",
+          "to": "backend/scraper-support/shared/nativeFailureDiagnostics.js"
+        },
+        {
+          "from": "backend/scraper/cohere/publicInventory.js",
+          "specifier": "../../scraper-support/shared/nativeFailureDiagnostics.js",
+          "to": "backend/scraper-support/shared/nativeFailureDiagnostics.js"
+        }
+      ],
+      "ungranted_literal_dynamic_imports": [
+        {
+          "from": "backend/scraper/cohere/script.js",
+          "specifier": "../../scraper-support/utils/saveToDB.js",
+          "runtimeGrant": false
+        }
+      ],
+      "cases": [
+        "overflow-ordinary",
+        "overflow-cancel-throws",
+        "overflow-cancel-rejects",
+        "overflow-cancel-pending",
+        "overflow-caller-opaque-pending",
+        "overflow-prompt-owned",
+        "closed-read-error-identity",
+        "closed-eof-malformed-control",
+        "preabort-opaque",
+        "genuine-capture-compatibility"
+      ],
+      "compatibility": {
+        "pin": {
+          "path": "backend/scraper/cohere/native-captures/full-native-20261101.json.gz",
+          "sha256": "db1acb6bef984ad8e955e8bf571ac88ee81753039451d33d7d6c4f48cd7ff760",
+          "bytes": 3844975,
+          "copy": "backend/scraper/cohere/native-captures/full-native-20261101.json.gz",
+          "copySHA256": "db1acb6bef984ad8e955e8bf571ac88ee81753039451d33d7d6c4f48cd7ff760"
+        },
+        "bodyCount": 128,
+        "bodyPins": [
+          {
+            "url": "https://cohere.com/careers",
+            "status": 200,
+            "sha256": "d79e25acfda5e9fb37afeb399a248b2efd1b91ac7e6cd55eff75b8c926e2d078",
+            "bytes": 570867
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere",
+            "status": 200,
+            "sha256": "e8e0df194b663471003add8ebe59f04ec2e945e319f19e1a3c2fd70f4868ca62",
+            "bytes": 105201
+          },
+          {
+            "url": "https://api.ashbyhq.com/posting-api/job-board/cohere",
+            "status": 200,
+            "sha256": "18c7c0518e84e292bd7ed0159581c787c7c4f4e278e74f8f8acd35ed50feb18c",
+            "bytes": 2033085
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/7133d205-5421-4336-a8e2-6037b5f55073",
+            "status": 200,
+            "sha256": "b75e9145fdb805a5afa0eb4f1a139f23602f18a8a69b2fc4477b2e97bc56962f",
+            "bytes": 44966
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/3136a5a5-06fd-4c82-8b72-a43467e6b128",
+            "status": 200,
+            "sha256": "779dda3980b3e79733f600692d3eb967194bdc6870bf72ee646b5bab28779672",
+            "bytes": 48105
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/443368a3-6276-4b90-9671-27fed40fd6d2",
+            "status": 200,
+            "sha256": "2e2260883a70e6cc9b64721df7ba902d8a00ef36a67b718c0cd5a8149cbee602",
+            "bytes": 35961
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/acec6038-117b-400b-92e3-0745fbb4cf53",
+            "status": 200,
+            "sha256": "a4a2fca31e5d2e51b7cd4fd467895473b5a25d6082a8bf7654f1c0f3bd3e7ef0",
+            "bytes": 49346
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/d42f5fd4-1ffc-45b9-957c-f09862db6af6",
+            "status": 200,
+            "sha256": "ee9e512040161c08bbf5c7f637d8875d71419aebc473b609d90bff7fdb4a3f7a",
+            "bytes": 32069
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/6d0f0753-ff22-46fd-90e9-08998914a8e7",
+            "status": 200,
+            "sha256": "2b8b634f5e4c6e0c1e6ca9843add4b73c0c1fdbf5f686251c104da69df2eaae8",
+            "bytes": 34539
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a13207e7-dc82-473f-8ca4-e832452fe8c3",
+            "status": 200,
+            "sha256": "9f279353488495d26684911fbf582fab6cf14426333c882344db16236b32637f",
+            "bytes": 31560
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/291e5dee-dcda-49e6-a1b6-dae0d48f80af",
+            "status": 200,
+            "sha256": "91c7cfc822188537c50fef8430fe40daf4fe8b8aed0327ed6395d500d7d34dd5",
+            "bytes": 48955
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/61703710-4379-42fd-a508-946f2a5fb6bc",
+            "status": 200,
+            "sha256": "e99dea4dd597988f8b90dd8b2cc0b96e1f623ecac6fe621e15ad034bc24b4ab1",
+            "bytes": 34712
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/554a9380-ab50-4338-88a9-c6b8ab19d92e",
+            "status": 200,
+            "sha256": "eaed8643b1ccc9695ebd08fe19628ed9bbb5a1c868b280419f3725d8c2026ffe",
+            "bytes": 32659
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a87be947-00f0-4a4c-a690-a4922f88f553",
+            "status": 200,
+            "sha256": "95e9fd4c306546b8b3c9ad6d17b85772a2e9c14ae367cf0444970a0499146d6d",
+            "bytes": 33420
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/859e2e47-02fb-4afe-bb8a-e83bf4d8c265",
+            "status": 200,
+            "sha256": "fa6ae511e578a3fa2bba51d85c4090badf0c9d6c2dfc9a41dadeb2334ec4678f",
+            "bytes": 33077
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e9ef9420-88e5-403b-82e8-1c36fa010d4d",
+            "status": 200,
+            "sha256": "e06cb3fe206c2f6d17b5c6f1b84ceccb774517e6619402b06036200fb5b8b35e",
+            "bytes": 34982
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/2d256112-b336-4539-8133-a0bf7f6698f0",
+            "status": 200,
+            "sha256": "2ba92ff97589c1ad84c899375400cbe9356a5c7e5834ee2ea8b9c4365f9d3477",
+            "bytes": 55812
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/be48aafc-9610-4ebd-8414-a0722a3cd59a",
+            "status": 200,
+            "sha256": "c55028f91655df983abfb98ed3f52dd16c3518bb0ed0d2ebd4dd01790dd5f2f5",
+            "bytes": 47873
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/70a8dc77-ac84-4790-aff6-13b4dcd4554a",
+            "status": 200,
+            "sha256": "be644e476feac2087cdd92cea0a09c02a9d6f78b426617adfbeb1db07e04320a",
+            "bytes": 33765
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/830c613b-d4bf-4673-ab33-46ccc12cc415",
+            "status": 200,
+            "sha256": "88ee552f2740b58c4968a21c5b67c4340415610a398099e07b894f28c4fd4aa8",
+            "bytes": 30968
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/b9306620-a110-46b5-b4c4-7363e1d03a8d",
+            "status": 200,
+            "sha256": "881fa826b2bebcbe56dbaeba7f927f6f15836c60acfbd5323be58a3a6c5a4fcb",
+            "bytes": 30192
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/b0bcef37-1d20-414f-aade-c54942d63df9",
+            "status": 200,
+            "sha256": "eef3d5cf10b9e96a95d3b4fb4a59e172d8714d658f2a566ca0e763b94601e504",
+            "bytes": 56403
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/2a989030-6d14-4924-88c1-d878911e26fa",
+            "status": 200,
+            "sha256": "5be885e7600217ae3860db2fb9669401e1b2014a53abeaac91b52a1e50418f92",
+            "bytes": 32522
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/c80f0fe9-3fc4-49fe-9f26-a7115350b1fc",
+            "status": 200,
+            "sha256": "bacae93f12669f16f63587048c7b7649317eb756114bfc4ef72a9306ecd6508d",
+            "bytes": 31503
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e912d84c-8399-422d-8a7d-918422a3e4b1",
+            "status": 200,
+            "sha256": "f753faa910cd397b7c63b931eae88f9d5a0a37cdd5c28ce97d3033028ae31b7a",
+            "bytes": 32060
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/c99e61c9-ed92-426d-9711-188dfc0f729f",
+            "status": 200,
+            "sha256": "b1531345006e4bf197cde114fe5e933e1b15c4af4f8bdcfccf74d122748b750e",
+            "bytes": 35727
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/cb981ecd-a161-482c-8d8e-5f19bb6e7fdd",
+            "status": 200,
+            "sha256": "182fb0a2281eca7e0aba87df02b1310f9fd1ec314b796e275326457c473df1df",
+            "bytes": 47003
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/2df2da3c-fb69-4d4d-b3c9-077b3df2ba3d",
+            "status": 200,
+            "sha256": "2d1aefcdd44074ba45285a810886c972f5170ea37d989a5ff0a0a0147dfbe499",
+            "bytes": 33917
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/98f69f63-2f54-4813-86ea-13d67336326e",
+            "status": 200,
+            "sha256": "99832e4766dbcd518bdd62bb6ed63a0b0884dea54e0f32d8182358ebabe24dfe",
+            "bytes": 55928
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/41f23dad-9da2-451a-bd1e-a1800437cb64",
+            "status": 200,
+            "sha256": "6fe9fce885b458e9276407ce9a236abe9c06842dd9ad1b03cae53ee59144ef7a",
+            "bytes": 45326
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/556467eb-3dc8-46e2-b015-277872210997",
+            "status": 200,
+            "sha256": "dddd2b3497ddaecc66e6c2282182bc2d4e4e274561554dc56848dd2f0661212e",
+            "bytes": 51540
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/031c2335-db85-4265-8a88-a54b911be36a",
+            "status": 200,
+            "sha256": "204990fd4d4007542e30792ad1be8e4d62a4909820bcb470385e6eb3c18b09f5",
+            "bytes": 37914
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/c0cab8c2-7215-449b-92c8-44b48c313514",
+            "status": 200,
+            "sha256": "52121d7ab253bb2baacdf8aa9d2017f33a3c3a32b486268fc1f63df6153d0e91",
+            "bytes": 61419
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a3a69960-3c85-4b11-b9b7-d4056d406c2e",
+            "status": 200,
+            "sha256": "ea947a4a852b1755a252784357b316952446eea3bde1a1a93f8d724b2dbe2fcf",
+            "bytes": 45014
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/247a481a-21cc-4829-94c7-8447b692c89e",
+            "status": 200,
+            "sha256": "64f85b94c7694c7b25ef52f949e02a4e254c3b695c175ad1115b81bcaeaa0754",
+            "bytes": 60942
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/75c0032c-7200-48bf-9d6d-355880dd93d9",
+            "status": 200,
+            "sha256": "3917683ea5771d981bea4b8246e2afac5614c2f1c27dcf1e1ce521b55a0a39ea",
+            "bytes": 56705
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/1d1b300d-254b-48c4-958f-99c6b907f295",
+            "status": 200,
+            "sha256": "8ca5f8347ef9538ba7dfc7e291859ea3d566d742b5289b54e080f873ada7e2b4",
+            "bytes": 66261
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/1f7cc5e6-5f31-40d8-ad49-fe22c98a3ea4",
+            "status": 200,
+            "sha256": "fc989d9c78a1a4bd920b7a1998b451227b046a4b80531a5d0ccf223525b67556",
+            "bytes": 32569
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/39cab400-c976-41d9-9002-880ac6985b64",
+            "status": 200,
+            "sha256": "0f2ae9697f8e5918cab5eba19e8d4afe86b6eef3e6a211a14048047b7c590af2",
+            "bytes": 48502
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/73bd3e2b-6597-4124-b64b-1e5dbc32e785",
+            "status": 200,
+            "sha256": "42c204b66318ddd4dd02964fa81d7741c10a90275f77dfab72b8323cc544477f",
+            "bytes": 50707
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/8c035d3d-081d-4c8a-914a-72f4efaad254",
+            "status": 200,
+            "sha256": "575be55cef2613295bf3a557c5668f9860f6d911eebfeca41bfe2427bdb63e9e",
+            "bytes": 45724
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/9baccd88-c051-474f-bfe8-6867fca54cee",
+            "status": 200,
+            "sha256": "790ff083d83837b22d9194ab60b95d9f89e9351205ffe4331b7cf4a9a8498b0d",
+            "bytes": 44812
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/277827a9-02b7-49ca-8590-458e93cab0e6",
+            "status": 200,
+            "sha256": "b88c60d0262c26e9e0c11e176119142d4795ddaa3c1df8adb37af677b35bd5fc",
+            "bytes": 50363
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/52a2b83b-7537-4e88-af7b-e4e9630a96e0",
+            "status": 200,
+            "sha256": "c50851714939695d4ad30e449edb1f664972f379e0c290b846a5f0e36880099d",
+            "bytes": 53833
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/0ef0a9f8-33ac-4360-a833-f8ce8e108a31",
+            "status": 200,
+            "sha256": "352d33ad326f17486d03c006301a481dc9511a9faa0e72c5f3af9ea6bf7cf93e",
+            "bytes": 43242
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/36d1f52f-8270-4652-adf5-5303a0ff341b",
+            "status": 200,
+            "sha256": "eb5e7b7b308fc6574952c11632ef2057e25e4cf8871e1c0b28ae474e76f15d68",
+            "bytes": 45274
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/6aa3cb2b-ee8b-4c92-b505-3a7509f80d7f",
+            "status": 200,
+            "sha256": "c6da9211f39462e8a0848864404b4c91c58f5f63f85d0811a44fe9aa2d6ceca4",
+            "bytes": 46084
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/1599cc22-313e-49c9-ac69-b365f5f8f227",
+            "status": 200,
+            "sha256": "96fb606fbee949c5374fbd68bc3dd9bcda9ff33865db16446e24221d772d7190",
+            "bytes": 53924
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/fdf2e205-0c85-4940-9450-aa024379746a",
+            "status": 200,
+            "sha256": "14fb367c831827449b2e890ab8005ffa80a10fdc8fd383fbd890d95713db9842",
+            "bytes": 55694
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/82ec1512-5bc3-49dd-b995-b6abc2a958d7",
+            "status": 200,
+            "sha256": "5a8c1dbded5087a3972eaa9813c22bc42b4fbb548174e54ae89ff444c1a0242c",
+            "bytes": 50878
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e588a0ac-6a84-42fd-808f-6474fd8ff6f0",
+            "status": 200,
+            "sha256": "9b22b988aeec0d95631b359adb01d12f7c9dbc3be9a0e4243b939e7d4601a600",
+            "bytes": 53745
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/9845c80d-95ba-4769-94a7-62408d73d603",
+            "status": 200,
+            "sha256": "d66575f6a6fcbca33b27062a04822cdc0128fe8fad770e542efe5f907aa8f362",
+            "bytes": 44193
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/6a6120d5-5e02-4811-99d9-6baf0b910e37",
+            "status": 200,
+            "sha256": "629f7fbcfe13a5876d899ab36cf7c90acbe64cd60a975161355bbfdbec86649b",
+            "bytes": 45820
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/87e9fd4e-49ac-4242-97be-7da6f718020d",
+            "status": 200,
+            "sha256": "d9a4b59ecd7162fa416576a62fa7fe2b9e845c87245a74cba7dbea310c97de5f",
+            "bytes": 49198
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/01a34bc3-6421-4af2-bf5b-f42e98155dda",
+            "status": 200,
+            "sha256": "5bee9c25bc4009b74365985795418d592661f70004a7431be1b4f59d4bfa8ccd",
+            "bytes": 80751
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/582c4a60-14a2-49d5-b4d3-24c4ec50508d",
+            "status": 200,
+            "sha256": "c6d92ed0bd37a6b2e30e3bf2f495d2d5b1a5ca539c358a85bb8d1529a4b3eb46",
+            "bytes": 61543
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/2d4d224f-94d4-40ce-88d5-5d340bc0da4e",
+            "status": 200,
+            "sha256": "3a1e01693dc1b7013b00044ae03eca0f87f817f84fec26de67c40577b66bb95f",
+            "bytes": 52910
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/10306789-4fd5-4f1d-90aa-8132c2df2848",
+            "status": 200,
+            "sha256": "d74dfe7eb05417452ddcb2a8b1552a65f31dab455c8dbe95a44c6043c6fa32ee",
+            "bytes": 74333
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/d28fbc03-cb09-49da-84b9-e12c16182695",
+            "status": 200,
+            "sha256": "09932e5723559f44bba1c0b20fc6c9aad17dc90ea56d860daa55e3cc1de7c3f1",
+            "bytes": 62513
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/1a31d80f-0d8b-475a-a60a-b13393ba8687",
+            "status": 200,
+            "sha256": "732fc8819be3f36638a6178fcab483f096bcd7c7eb24f2e174bd725fb97351ef",
+            "bytes": 62537
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/5e344658-f721-4f4a-b4df-b4052b6a0393",
+            "status": 200,
+            "sha256": "2b56e02c5a52b1b6437a44e5341c831e1e6b74cdcc4678dc6ebc93dfd98bba1f",
+            "bytes": 88039
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/fee0951d-8f8a-41ad-a7d5-4b0083bbe777",
+            "status": 200,
+            "sha256": "ae3071130d48583b1d93a5cc5c34784c78d82eb4d0cb437656d3032bff07a289",
+            "bytes": 57055
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/85e808ab-ee45-4944-bedc-832bf933d0b6",
+            "status": 200,
+            "sha256": "63d06b8e05f747fdd2e682836aba3b820dc8908c2fd7ebfd31124b2e8a46db80",
+            "bytes": 49032
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e49063ea-b829-4718-be74-02f36fa3d983",
+            "status": 200,
+            "sha256": "140211f45e6c0b6672692df4e70edc22c13df717192e797e20095d2dfc8d2401",
+            "bytes": 43989
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/fc5cb642-23df-430e-ae84-67215384be1c",
+            "status": 200,
+            "sha256": "fc1043a869a4b7af1bdffd37cbaab3246aba9c9c557c79f971b3cc2b33b69d3a",
+            "bytes": 72903
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/cd987666-aeda-4da6-a23c-d84d4231d33b",
+            "status": 200,
+            "sha256": "250ad615ebda6ac56ce02864e98035141d4e2c02c04d95224850866f8c1b3530",
+            "bytes": 50314
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/529b2dd6-4be3-49db-97cd-781f4897540b",
+            "status": 200,
+            "sha256": "afb13ea2eef99bbd35d02abc155a02cd2560486f56e2f156ec4e65924b5383f3",
+            "bytes": 49724
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/8878b0d0-7d88-4ee9-bc17-b0dd237e39a0",
+            "status": 200,
+            "sha256": "79012c828f0cddff311db7dbbbee7da0d2aebf303b6fe0f016bd006e4a6a0f52",
+            "bytes": 33065
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a7321948-288c-4e9f-9fbe-2f9ccda07ffa",
+            "status": 200,
+            "sha256": "a18347f220782bd1e76d46c2a90f71d7ff91c5f4783a1110a463382d19e3289a",
+            "bytes": 56614
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/9f8d2b51-7fe9-470d-8108-fe5fb48c8a89",
+            "status": 200,
+            "sha256": "0e7523bf04bcf523c2df3d1f521fef0abc434e2470633ae165d2433cadc4a790",
+            "bytes": 48335
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e824f0bd-72e6-4a9b-aecb-e604e3ca8ac2",
+            "status": 200,
+            "sha256": "a5b6fee78129e802c926208b84390e084f264c59b08ba32beab9ff6f432a7b3a",
+            "bytes": 48480
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/dbe76343-a8ae-445c-b2f9-c5a304d54f6a",
+            "status": 200,
+            "sha256": "fc3eba1908d18688297707d557ecd8b56d4212a17e102e5f257c15bc2cc07361",
+            "bytes": 48172
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/334b2a07-0c6a-4764-b4a8-c8bf68513cde",
+            "status": 200,
+            "sha256": "8b4d30711603a64f4cb970a483295a84efa9fa92e278c07fc1f82b55ce98659c",
+            "bytes": 51481
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/14a286d9-e415-4198-8d3b-8e0a7882a5b6",
+            "status": 200,
+            "sha256": "b3c76de1a7b96b794e653693edf6d73f7578c6315c9235ea478be7567b1298a0",
+            "bytes": 73652
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e906188a-e089-4b86-85b9-aad0d4413c68",
+            "status": 200,
+            "sha256": "324aa0b763953453af0bf4194ac972a1feb0b0927d25636b7befe8500d5f3a87",
+            "bytes": 47227
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/8ac3ed85-e315-443b-bc13-e7a0b900b922",
+            "status": 200,
+            "sha256": "57766912722ac800698008440ed61c0e9311282d68f92a2ea224cd214d61e496",
+            "bytes": 46035
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/96c74af4-b3d7-4960-a666-212ce4debac8",
+            "status": 200,
+            "sha256": "c2534a05b01f0bf43ff95f6c945117080b25b0e1c033d8356afaf3af970846b4",
+            "bytes": 51833
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/2dc8b505-128a-4bc8-b8c1-7084e7d26530",
+            "status": 200,
+            "sha256": "7d7466e2a59c10aa31f872f713b16ba7d933596b5a5f6d4c8befddd45de7b92a",
+            "bytes": 62963
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e2489771-1c24-4ca2-ab5b-03fc961b18b7",
+            "status": 200,
+            "sha256": "d3a4a2445b4f2cb26ccbb14bb5cf9ff76f7f83e4f11c3b72f6e8ac61bbf80912",
+            "bytes": 55672
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/fd92000d-241c-4cf6-86b1-2d9ab796bcbf",
+            "status": 200,
+            "sha256": "7fddeff042171c7537203916dff7af6aaa3e61187bcb629e5b483bb857c178c7",
+            "bytes": 56001
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a0f174cf-4407-4334-b812-45a767092fca",
+            "status": 200,
+            "sha256": "b5249f39709afc8643cb800f034c7c45fb4d58526efd7e4b675783192d220915",
+            "bytes": 49816
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/dc523c5b-9477-46c4-a122-4f3b2b8f4b67",
+            "status": 200,
+            "sha256": "126757e4ab11700bf64ff555647e0128ff7312e4122af2ed65996ec74e6124d9",
+            "bytes": 33921
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/f154a1cb-b7c1-4f74-ac50-04ef9dcfc9e0",
+            "status": 200,
+            "sha256": "11588d5c0d4bbe3105ad9978f7ec1b9aca10de3a8c602d53aecc98d226b1833e",
+            "bytes": 54343
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/691982e3-9357-42e4-b4c3-a65cae906935",
+            "status": 200,
+            "sha256": "19478ec24081fb08387ae035a10738c6c3c69eac719aa4bf18388777b38a4c24",
+            "bytes": 56342
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/60de50e9-aba7-4a3a-8cdb-955a456749aa",
+            "status": 200,
+            "sha256": "ebfc4db3c38dfafbf6bd43dc7d0e591d59f8d8dd5e8a36455acc72ae9f9f6e72",
+            "bytes": 35726
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/abd68512-a6e1-4221-bc60-dec83623408a",
+            "status": 200,
+            "sha256": "2a7b801c2ce0c355b31178af3deb31dc227fbafa5e8e2ef94b78d6855f915128",
+            "bytes": 60551
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/c21c76f0-4a2f-4666-a256-01f454d1d479",
+            "status": 200,
+            "sha256": "bffaaac4be2dcd1ac03604fa7e13ee73b35c0377d0c34a17f20edbf8818e77c1",
+            "bytes": 53418
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/597e18f5-c33c-4350-8bcd-05a751cece3a",
+            "status": 200,
+            "sha256": "429ccab7c207c1501a45362ed09144e9175ba236767ed6951f6da7321d7c86b5",
+            "bytes": 61855
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/c12e3636-ed16-47e7-ba1f-82860f88d340",
+            "status": 200,
+            "sha256": "7f6283fea91d6fab285430dc484a4244bb2833244deed99db7f3688ce6d10ae2",
+            "bytes": 44442
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/41cb2a12-e33a-4368-a9f8-0ae0d19c023e",
+            "status": 200,
+            "sha256": "01315fe752eae174cdc9aa0ba1c899aab780ea4c1dc9e1ba69ab5b3348b95094",
+            "bytes": 50384
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/d4c55e53-850e-4bf9-bd34-de86ab27ebc2",
+            "status": 200,
+            "sha256": "71706230987292c8a66d09bf26a9765c77a75f554e566c92cb4173ac460523c8",
+            "bytes": 57230
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a42976d7-0ae5-4892-b3ba-bf5510c6cecd",
+            "status": 200,
+            "sha256": "0c587cc66df023ca3775f443f93c4b5f9a897b7e782c45396e9a61d5438a2e98",
+            "bytes": 55811
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/f74933db-e97f-41c9-97ab-daa57880a12b",
+            "status": 200,
+            "sha256": "09a63f52f0cf4e6ceef293c690c27991010e9bbc54d708a71c14117cbaa75535",
+            "bytes": 67663
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/0342fd5f-3760-4dcb-b026-333c7b63fc8d",
+            "status": 200,
+            "sha256": "e0185d46b668aa73cefac58068493328fc222836e18df2235fcacc9d8708e9ae",
+            "bytes": 59598
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/baa0f719-86bf-4378-83c9-c8c8609357f0",
+            "status": 200,
+            "sha256": "16c711b73dfc8ce847a89cb468651f97cca0a7509d2c09d003a167c6b549bda9",
+            "bytes": 55755
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/481389bc-49c1-4cea-bc68-9e67c7ca4dd9",
+            "status": 200,
+            "sha256": "884017f1ee7ec6e625d51465867621283471e0a7661d57e70e0a91ff3188d924",
+            "bytes": 53172
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/1b909aeb-1221-476f-88fe-8300a2065975",
+            "status": 200,
+            "sha256": "07c1d210d61fef2d88bad1fe095a6c4c6f5ff3189119744b764e7720a858e4fa",
+            "bytes": 49085
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/9b596ab8-0df4-41aa-85da-e07578c082b2",
+            "status": 200,
+            "sha256": "eebe76266c518a7e6540adbb00b25e6ac48e2f3c2f29b0e0836a3fcbdd7125a2",
+            "bytes": 55693
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/a10a96b5-f772-466d-9297-f021f78ca9c0",
+            "status": 200,
+            "sha256": "e9390e941d3ed75a9402468f32a41619ad86605ff101dac8dc60d27a905e5111",
+            "bytes": 46795
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/f6100cdd-94fc-4f4b-bac5-7efa5069cdd5",
+            "status": 200,
+            "sha256": "b7cc778bc22373cefa4419ae9277f227de45d18b7ddd74cb3f92ecc71c86a4be",
+            "bytes": 51090
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/5cfb3495-e33f-4cf2-a54d-fa9a5ca3cc3e",
+            "status": 200,
+            "sha256": "f6a5a8be2633055dbfd91b335b4c18e57933171a53ed760a019200b79aba54b6",
+            "bytes": 51616
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/3906eb1d-932f-485a-8f77-e8cc31859fdd",
+            "status": 200,
+            "sha256": "b919adfef8340d3ce11fa2c40703e3d86bd4b5dcb849e92a9c15bc0f3324c942",
+            "bytes": 53878
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/e645a8bc-73de-47e6-9600-3f418e6f5c8b",
+            "status": 200,
+            "sha256": "0aabc44b40966b284c591b1551e147a625792e3159a6f3bbf1a8af057e46396c",
+            "bytes": 59995
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/be14b338-eac9-4099-9599-1e15cfdd11be",
+            "status": 200,
+            "sha256": "8ab8f206dc4a17f78168edbfcefb7776494e3f0e8938d995c6e066479588ad81",
+            "bytes": 52355
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/1c011283-34f3-4461-bb65-455d65a3ec84",
+            "status": 200,
+            "sha256": "ee4bf99108273f29ab649c823680093af376211642a940ecaf1bbdb8983a1688",
+            "bytes": 54674
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/8a73f59d-41b7-42ed-8cc8-99afa0a2ba5f",
+            "status": 200,
+            "sha256": "ef5f2f266017dfb64e63e250b91441e112dc89928630438e656d1826ff2f5b63",
+            "bytes": 48806
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/bdcdc6d1-2379-40fe-bfb6-d61768043b37",
+            "status": 200,
+            "sha256": "ce7db9fd77483fb9333bac05c3439ce5c12773fc0ebef0829bc8458ba19a0381",
+            "bytes": 60705
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/49a6485c-c449-4e07-8001-cafc97a39a13",
+            "status": 200,
+            "sha256": "56645a47c6e10b6a0ac359fb915724f024aea2ab1f96c60e7461b0bb62b6973b",
+            "bytes": 52535
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/75765a04-82cb-4d17-ac53-09b156656a7d",
+            "status": 200,
+            "sha256": "719a66a98e5149c4003503eea1a9fd9accbfd45ad12121a0b182ef986cb56170",
+            "bytes": 62589
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/eef82766-7e31-430f-a102-bc33a5022597",
+            "status": 200,
+            "sha256": "d61d88f827bb8f1576d128ad310be4f7ec0dbc61230566a166225bc1003dc6e4",
+            "bytes": 44061
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/7e0e08ed-4b12-4aaa-8dda-ad6292992061",
+            "status": 200,
+            "sha256": "6ff6ee0da90f02dd067e6cc87802926146be00757529b8faf8f71a0a29556275",
+            "bytes": 45290
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/14aef6d9-763e-4f56-a498-206fb31dd0c6",
+            "status": 200,
+            "sha256": "b3aafea903bb94f885692d0280d0154ee58593147cc46fc9e528cc4c8545d95d",
+            "bytes": 56037
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/b04cf265-c4f7-48bf-88ec-d4d71f3bdfaa",
+            "status": 200,
+            "sha256": "90060d7cb8f2f020033f447a5199f547806667be6bd35fbb39de277c62920e63",
+            "bytes": 72315
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/4e3694ee-d051-497f-bb3b-8cff3d7f578f",
+            "status": 200,
+            "sha256": "f6f2655e01a7712e89dbd11b61b889f74663bf7972f3a6c7b2f4867d3cb1d1a1",
+            "bytes": 71781
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/81450c5f-8495-439b-a1b3-ce7ef9739437",
+            "status": 200,
+            "sha256": "5a90425ad9ac456977bf9a38b3b58f8cc06a9b89090d7aab9de62eaa3234fc52",
+            "bytes": 52529
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/4ef5101e-b083-49cd-808a-54c754d159e5",
+            "status": 200,
+            "sha256": "21ca365c21ca0581448263e43d431ede25624d881b2e86292b15b9f8c8ca2c35",
+            "bytes": 65194
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/9be116c1-c1df-49bd-8e90-31d41b62645f",
+            "status": 200,
+            "sha256": "4905d19a8dc4911c57bdcda38f3932f1a0524e2caf1728a4a6a6cebd05796bf2",
+            "bytes": 51761
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/dca93d1a-9ab8-442b-aa76-950595e8b9c3",
+            "status": 200,
+            "sha256": "96eb28765e1879e8037ac0e20c974b2eb468fe73140c565c1b6997263f5d6a85",
+            "bytes": 45604
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/ada41b39-21a9-467c-a22c-9e907524af40",
+            "status": 200,
+            "sha256": "91dbc94644b74c9efbffff0aa4a15bb78ab2560da2cffcbf803db4a06531b82c",
+            "bytes": 54259
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/4232d337-fbc7-4e8c-81d5-2903ab0eb6e8",
+            "status": 200,
+            "sha256": "17778ff5ed0f5640985f58e2e3ce6e8b37083e5022ea7d83219b58b50140bceb",
+            "bytes": 44413
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/f3290fb2-66f1-44c7-9824-3f416f44af5a",
+            "status": 200,
+            "sha256": "2fd5ccb0277805928c024e4e1e9f3498c21f610d4bddd3f8cb2f3cefee7c4b31",
+            "bytes": 33931
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/bfa95525-f25f-4445-947e-c36308c1fc83",
+            "status": 200,
+            "sha256": "fd997f1d0a34983c5c026c5e98434c30cf9b04a37109ece4c2051d2cf3b228e2",
+            "bytes": 50599
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/5da754e4-d83a-4d91-b6fe-a128227ae609",
+            "status": 200,
+            "sha256": "1c2349b4677f8214237930d3af96e21e287225431d400af60f5923c7112cc32d",
+            "bytes": 49493
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/0f93d8e8-8e4a-4176-a884-d5eca0e48287",
+            "status": 200,
+            "sha256": "9ab935caed500feb6dc4fe4bc85edf3bd72b01e6e77a66a0e910172215d01861",
+            "bytes": 49273
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere/8df498e9-aba8-487f-80ba-362b492bad09",
+            "status": 200,
+            "sha256": "4f2d259a419d36279b88f5be9385a1cec84995caf7ddda982cbed64e4377545a",
+            "bytes": 53565
+          },
+          {
+            "url": "https://api.ashbyhq.com/posting-api/job-board/cohere",
+            "status": 200,
+            "sha256": "18c7c0518e84e292bd7ed0159581c787c7c4f4e278e74f8f8acd35ed50feb18c",
+            "bytes": 2033085
+          },
+          {
+            "url": "https://jobs.ashbyhq.com/cohere",
+            "status": 200,
+            "sha256": "e8e0df194b663471003add8ebe59f04ec2e945e319f19e1a3c2fd70f4868ca62",
+            "bytes": 105201
+          },
+          {
+            "url": "https://cohere.com/careers",
+            "status": 200,
+            "sha256": "d79e25acfda5e9fb37afeb399a248b2efd1b91ac7e6cd55eff75b8c926e2d078",
+            "bytes": 570867
+          }
+        ],
+        "originalKeys": [
+          "summary",
+          "provider",
+          "packets"
+        ],
+        "applicationReplayPerformed": false
+      },
+      "registeredCurrentImpact": true,
+      "expectedHistoricalCompatibility": [
+        {
+          "case": "genuine-capture-compatibility",
+          "fixtureSHA256": "db1acb6bef984ad8e955e8bf571ac88ee81753039451d33d7d6c4f48cd7ff760",
+          "packets": 128,
+          "returnedJobs": 0,
+          "semanticSHA256": "2f8105b90f7945d611960970f7abc406502eeba165f652b7c6aca67aa206529d",
+          "historicalCompatibilityOnly": true,
+          "livePublisherClaim": false,
+          "sourceClockOverridden": false,
+          "sourcePacingOverridden": false
+        }
+      ]
+    },
+    {
+      "id": "coinbase-current",
+      "entry": "backend/scraper/coinbase/script.js",
+      "target_module": "backend/scraper/coinbase/native.js",
+      "targetURL": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
+      "maxBodyBytes": 8388608,
+      "modules": [
+        {
+          "path": "backend/node_modules/entities/dist/decode-codepoint.js",
+          "sha256": "c5c52b66256cc5a84b84a516ed78cc76256ec99c47344041f11d3e67010c4a64",
+          "bytes": 2409
+        },
+        {
+          "path": "backend/node_modules/entities/dist/decode.js",
+          "sha256": "84447c68870d330d2d9f72fc6dd34fceeba9e2061339da0c24f5a645edf4ca88",
+          "bytes": 44274
+        },
+        {
+          "path": "backend/node_modules/entities/dist/encode.js",
+          "sha256": "3e4fada680dd848e235df9835c766845172e8731b02cfbfea396448ec4f306a4",
+          "bytes": 12340
+        },
+        {
+          "path": "backend/node_modules/entities/dist/escape.js",
+          "sha256": "c9321bcfd5431fe2f81038614d1d84636328456e38be1df57e6bf3e2e24edac5",
+          "bytes": 5670
+        },
+        {
+          "path": "backend/node_modules/entities/dist/generated/decode-data-html.js",
+          "sha256": "f26a918fce4ad7e365d8715559291e40dd16be38f50bc6b71b0a64eed2ff32b2",
+          "bytes": 26305
+        },
+        {
+          "path": "backend/node_modules/entities/dist/generated/encode-html.js",
+          "sha256": "8b76a4028ff2a691a67c02405af473be5028db93da2cb94a9343039d69609d30",
+          "bytes": 10042
+        },
+        {
+          "path": "backend/node_modules/entities/dist/index.js",
+          "sha256": "efacf1df956b3d7156a17653cd241f3328f9a6fe1a4b61f098efc1bed2fa9a0e",
+          "bytes": 3552
+        },
+        {
+          "path": "backend/node_modules/entities/dist/internal/decode-data-format.js",
+          "sha256": "e2c3e8fb026292e55b124165680665593000c077af4c1c80f39a4b7451f8f2a8",
+          "bytes": 6523
+        },
+        {
+          "path": "backend/scraper-support/apiPortal/greenhousePublication.js",
+          "sha256": "839f6064bc1a457df47fa45f9850ed9f8d22bcef77df180458334ad80145d1e0",
+          "bytes": 3472
+        },
+        {
+          "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+          "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+          "bytes": 1782
+        },
+        {
+          "path": "backend/scraper-support/utils/activeNativeHtml.js",
+          "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+          "bytes": 10506
+        },
+        {
+          "path": "backend/scraper-support/utils/cities.js",
+          "sha256": "0a36387d20290a29e3e41f3346a1273bfd6427517c5378e3c348867341bb330c",
+          "bytes": 3078
+        },
+        {
+          "path": "backend/scraper-support/utils/cityNormalizer.js",
+          "sha256": "78e3b31ac4899c9da2a534b0a8848a1c447873bfcb911618eaccd737fdd087e6",
+          "bytes": 1383
+        },
+        {
+          "path": "backend/scraper-support/utils/inventoryEvidence.js",
+          "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+          "bytes": 8046
+        },
+        {
+          "path": "backend/scraper-support/utils/sourceObservationEvidence.js",
+          "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+          "bytes": 2823
+        },
+        {
+          "path": "backend/scraper/coinbase/native.js",
+          "sha256": "66b7a21e65b32dc841c41debae7dbe4ebc3eac970f80eb254b880dc876b67d20",
+          "bytes": 10590
+        },
+        {
+          "path": "backend/scraper/coinbase/script.js",
+          "sha256": "91f8eaf77c49d9135ea81a5c755507a7e6eaf285dfe181087786191cb33bcee5",
+          "bytes": 495
+        },
+        {
+          "path": "backend/src/utils/jobLifecycle.js",
+          "sha256": "b4c707068c2ff5c4ce079992896ac505eb69e0246009ae752384fdb58ac1a55a",
+          "bytes": 2262
+        },
+        {
+          "path": "backend/src/utils/jobListingEvidence.js",
+          "sha256": "e65717ae3d8160c1d18542925367180ac26fb4dec535be5b51714c9fec35bee0",
+          "bytes": 602
+        },
+        {
+          "path": "backend/src/utils/jobSourceContent.js",
+          "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+          "bytes": 2529
+        },
+        {
+          "path": "backend/src/utils/publicJobLocationScope.js",
+          "sha256": "f74dfee4d8147a48ff250283eae4689da2ee8fd3c36c4ce590a0fd08a087a1c9",
+          "bytes": 11733
+        }
+      ],
+      "additional_reads": [
+        {
+          "path": "backend/node_modules/entities/package.json",
+          "sha256": "91021df30616d21086a8b43877198c33f83fcbb8f8b74bdf5127f1fabac5e0eb",
+          "bytes": 2579
+        },
+        {
+          "path": "backend/package.json",
+          "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+          "bytes": 6914
+        },
+        {
+          "path": "backend/scraper/coinbase/native-captures/greenhouse-coinbase-jobs-20261101.json",
+          "sha256": "5988c86a7dd98ed25c0f7e9c1983d3b2acb09efb92e97722eec89bdec88da840",
+          "bytes": 2791050
+        },
+        {
+          "path": "backend/scraper/coinbase/native-captures/greenhouse-coinbase-jobs-20261101.meta.json",
+          "sha256": "a9ed887e7b36b79d42d82040de6d208fa01a72760b0674b754c6fcd8332f2b13",
+          "bytes": 482
+        }
+      ],
+      "application_builtins": [
+        "node:crypto",
+        "node:path",
+        "node:url"
+      ],
+      "static_edges": [
+        {
+          "from": "backend/scraper/coinbase/script.js",
+          "specifier": "./native.js",
+          "to": "backend/scraper/coinbase/native.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/script.js",
+          "specifier": "./native.js",
+          "to": "backend/scraper/coinbase/native.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "entities",
+          "to": "backend/node_modules/entities/dist/index.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "../../src/utils/publicJobLocationScope.js",
+          "to": "backend/src/utils/publicJobLocationScope.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "../../scraper-support/apiPortal/greenhousePublication.js",
+          "to": "backend/scraper-support/apiPortal/greenhousePublication.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "../../scraper-support/utils/sourceObservationEvidence.js",
+          "to": "backend/scraper-support/utils/sourceObservationEvidence.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/activeNativeHtml.js",
+          "specifier": "../../src/utils/jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/src/utils/publicJobLocationScope.js",
+          "specifier": "../../scraper-support/utils/cityNormalizer.js",
+          "to": "backend/scraper-support/utils/cityNormalizer.js"
+        },
+        {
+          "from": "backend/src/utils/publicJobLocationScope.js",
+          "specifier": "./jobListingEvidence.js",
+          "to": "backend/src/utils/jobListingEvidence.js"
+        },
+        {
+          "from": "backend/src/utils/publicJobLocationScope.js",
+          "specifier": "./jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/src/utils/publicJobLocationScope.js",
+          "specifier": "../../scraper-support/utils/cities.js",
+          "to": "backend/scraper-support/utils/cities.js"
+        },
+        {
+          "from": "backend/src/utils/publicJobLocationScope.js",
+          "specifier": "./jobLifecycle.js",
+          "to": "backend/src/utils/jobLifecycle.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/cityNormalizer.js",
+          "specifier": "./cities.js",
+          "to": "backend/scraper-support/utils/cities.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./decode.js",
+          "to": "backend/node_modules/entities/dist/decode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./encode.js",
+          "to": "backend/node_modules/entities/dist/encode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./escape.js",
+          "to": "backend/node_modules/entities/dist/escape.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./decode.js",
+          "to": "backend/node_modules/entities/dist/decode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./encode.js",
+          "to": "backend/node_modules/entities/dist/encode.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/index.js",
+          "specifier": "./escape.js",
+          "to": "backend/node_modules/entities/dist/escape.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/encode.js",
+          "specifier": "./escape.js",
+          "to": "backend/node_modules/entities/dist/escape.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/encode.js",
+          "specifier": "./generated/encode-html.js",
+          "to": "backend/node_modules/entities/dist/generated/encode-html.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./decode-codepoint.js",
+          "to": "backend/node_modules/entities/dist/decode-codepoint.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./generated/decode-data-html.js",
+          "to": "backend/node_modules/entities/dist/generated/decode-data-html.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./internal/decode-data-format.js",
+          "to": "backend/node_modules/entities/dist/internal/decode-data-format.js"
+        },
+        {
+          "from": "backend/node_modules/entities/dist/decode.js",
+          "specifier": "./decode-codepoint.js",
+          "to": "backend/node_modules/entities/dist/decode-codepoint.js"
+        },
+        {
+          "from": "backend/scraper/coinbase/native.js",
+          "specifier": "../../scraper-support/shared/responseBodyDisposal.js",
+          "to": "backend/scraper-support/shared/responseBodyDisposal.js"
+        }
+      ],
+      "ungranted_literal_dynamic_imports": [
+        {
+          "from": "backend/scraper/coinbase/script.js",
+          "specifier": "../../scraper-support/utils/saveToDB.js",
+          "runtimeGrant": false
+        }
+      ],
+      "cases": [
+        "overflow-ordinary",
+        "overflow-cancel-throws",
+        "overflow-cancel-rejects",
+        "overflow-cancel-pending",
+        "overflow-caller-opaque-pending",
+        "overflow-prompt-owned",
+        "closed-read-error-identity",
+        "closed-eof-malformed-control",
+        "preabort-opaque",
+        "genuine-capture-compatibility"
+      ],
+      "compatibility": {
+        "pin": {
+          "path": "backend/scraper/coinbase/native-captures/greenhouse-coinbase-jobs-20261101.json",
+          "sha256": "5988c86a7dd98ed25c0f7e9c1983d3b2acb09efb92e97722eec89bdec88da840",
+          "bytes": 2791050,
+          "copy": "backend/scraper/coinbase/native-captures/greenhouse-coinbase-jobs-20261101.json",
+          "copySHA256": "5988c86a7dd98ed25c0f7e9c1983d3b2acb09efb92e97722eec89bdec88da840"
+        },
+        "bodyCount": 1,
+        "bodyPins": [
+          {
+            "url": "https://boards-api.greenhouse.io/v1/boards/coinbase/jobs?content=true",
+            "sha256": "5988c86a7dd98ed25c0f7e9c1983d3b2acb09efb92e97722eec89bdec88da840",
+            "bytes": 2791050
+          }
+        ],
+        "originalKeys": [
+          "jobs",
+          "meta"
+        ],
+        "applicationReplayPerformed": false,
+        "metadataPin": {
+          "path": "backend/scraper/coinbase/native-captures/greenhouse-coinbase-jobs-20261101.meta.json",
+          "sha256": "a9ed887e7b36b79d42d82040de6d208fa01a72760b0674b754c6fcd8332f2b13",
+          "bytes": 482,
+          "copy": "backend/scraper/coinbase/native-captures/greenhouse-coinbase-jobs-20261101.meta.json",
+          "copySHA256": "a9ed887e7b36b79d42d82040de6d208fa01a72760b0674b754c6fcd8332f2b13"
+        },
+        "metadataKeys": [
+          "requestedUrl",
+          "finalUrl",
+          "status",
+          "at",
+          "bytes",
+          "sha256",
+          "headers"
+        ]
+      },
+      "registeredCurrentImpact": true,
+      "expectedHistoricalCompatibility": [
+        {
+          "case": "genuine-capture-compatibility",
+          "fixtureSHA256": "5988c86a7dd98ed25c0f7e9c1983d3b2acb09efb92e97722eec89bdec88da840",
+          "packets": 1,
+          "returnedJobs": 18,
+          "semanticSHA256": "a9579d66e03accfa1a34e57b1a949c2fd309b90fbf89144243ba14fe75c6802d",
+          "historicalCompatibilityOnly": true,
+          "livePublisherClaim": false,
+          "sourceClockOverridden": false,
+          "sourcePacingOverridden": false
+        }
+      ]
+    },
+    {
+      "id": "comeet-export-direct-contract",
+      "entry": "backend/scraper-support/utils/comeetEmployerInventory.js",
+      "target_module": "backend/scraper-support/utils/comeetEmployerInventory.js",
+      "targetURL": "https://www.firebolt.io/careers",
+      "maxBodyBytes": 3145728,
+      "modules": [
+        {
+          "path": "backend/node_modules/acorn/dist/acorn.mjs",
+          "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+          "bytes": 234658
+        },
+        {
+          "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+          "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+          "bytes": 1782
+        },
+        {
+          "path": "backend/scraper-support/utils/activeNativeHtml.js",
+          "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+          "bytes": 10506
+        },
+        {
+          "path": "backend/scraper-support/utils/comeetEmployerInventory.js",
+          "sha256": "b291566f77855e068110439f5d36d0808fabb440a5ffc2dafd532c693d999c86",
+          "bytes": 29196
+        },
+        {
+          "path": "backend/scraper-support/utils/inventoryEvidence.js",
+          "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+          "bytes": 8046
+        },
+        {
+          "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+          "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+          "bytes": 33032
+        },
+        {
+          "path": "backend/src/utils/jobSourceContent.js",
+          "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+          "bytes": 2529
+        }
+      ],
+      "additional_reads": [
+        {
+          "path": "backend/node_modules/acorn/package.json",
+          "sha256": "04d6fecaafb5e3d20a38fc3b64fed84bb3830a7759a8c00400ebcb87331fec00",
+          "bytes": 1067
+        },
+        {
+          "path": "backend/package.json",
+          "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+          "bytes": 6914
+        }
+      ],
+      "application_builtins": [
+        "node:crypto"
+      ],
+      "static_edges": [
+        {
+          "from": "backend/scraper-support/utils/comeetEmployerInventory.js",
+          "specifier": "acorn",
+          "to": "backend/node_modules/acorn/dist/acorn.mjs"
+        },
+        {
+          "from": "backend/scraper-support/utils/comeetEmployerInventory.js",
+          "specifier": "./activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/comeetEmployerInventory.js",
+          "specifier": "./visibleNativeHtml.js",
+          "to": "backend/scraper-support/utils/visibleNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/comeetEmployerInventory.js",
+          "specifier": "./inventoryEvidence.js",
+          "to": "backend/scraper-support/utils/inventoryEvidence.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/visibleNativeHtml.js",
+          "specifier": "./activeNativeHtml.js",
+          "to": "backend/scraper-support/utils/activeNativeHtml.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/activeNativeHtml.js",
+          "specifier": "../../src/utils/jobSourceContent.js",
+          "to": "backend/src/utils/jobSourceContent.js"
+        },
+        {
+          "from": "backend/scraper-support/utils/comeetEmployerInventory.js",
+          "specifier": "../shared/responseBodyDisposal.js",
+          "to": "backend/scraper-support/shared/responseBodyDisposal.js"
+        }
+      ],
+      "ungranted_literal_dynamic_imports": [],
+      "cases": [
+        "overflow-ordinary",
+        "overflow-cancel-throws",
+        "overflow-cancel-rejects",
+        "overflow-cancel-pending",
+        "overflow-caller-opaque-pending",
+        "overflow-prompt-owned",
+        "closed-read-error-identity",
+        "closed-eof-malformed-control",
+        "preabort-opaque"
+      ],
+      "compatibility": null,
+      "registeredCurrentImpact": false,
+      "expectedHistoricalCompatibility": []
+    }
+  ],
+  "plannedDistinctCases": 60,
+  "sourceClockOrSignalSubstitution": false,
+  "legacyPhysicalRequestsField": "intercepted fetch calls; actual physical network counter is0",
+  "currentDefaultFlows": 5,
+  "exportedDirectContractFlows": 1,
+  "nativeExpiryPhaseCoverageClaim": false,
+  "unknownJasperIncluded": false
+}

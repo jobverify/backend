@@ -3,6 +3,7 @@ import {createHash} from 'node:crypto'
 import {readNativeDocument,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {extractPdfTextWorkerCore} from '../../scraper-support/shared/pdfTextWorkerCore.js'
 import {createNativePdfTextContext} from '../../scraper-support/shared/nativePdfTextContext20261111.js'
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 
 const need=(ok,message)=>{if(!ok)throw Error('Workline public role: '+message)}
 const text=value=>typeof value==='string'?value.trim():''
@@ -99,8 +100,12 @@ export async function fetchDescriptionPDF(url,{signal}={}){
  need(response.status===200&&response.url===url,'native PDF HTTP '+response.status)
  need(/^(?:application\/(?:pdf|octet-stream))\b/i.test(response.headers.get('content-type')||''),'native description is not a PDF response')
  const reader=response.body?.getReader();need(reader,'missing PDF body')
- const chunks=[];let size=0
- try{for(;;){signal?.throwIfAborted();const row=await reader.read();if(row.done)break;size+=row.value.byteLength;need(size<=4e6,'native PDF body bound');chunks.push(Buffer.from(row.value))}}
- finally{await reader.cancel().catch(()=>{});reader.releaseLock()}
+ const chunks=[];let size=0,readComplete=false
+ try{for(;;){signal?.throwIfAborted();const row=await reader.read();if(row.done)break;size+=row.value.byteLength;need(size<=4e6,'native PDF body bound');chunks.push(Buffer.from(row.value))}
+  readComplete=true
+ }finally{
+  try{await disposeResponseReader(reader,{signal,bestEffort:!readComplete})}
+  finally{reader.releaseLock()}
+ }
  return Buffer.concat(chunks)
 }

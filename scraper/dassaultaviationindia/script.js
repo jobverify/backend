@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 import {createHash} from 'node:crypto'
 import {attachInventoryEvidence,normalizeInventoryEvidence,readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {activeIframeSources,readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
-import {activeDocument,collectNative,ATS_ORIGIN,HANDOFF_URL,ENTRY_URL,LISTING_URL} from './native.js'
+import {activeDocument,collectNative,HANDOFF_URL,ENTRY_URL,LISTING_URL} from './native.js'
 import candidate from './catalog-candidate.json' with {type:'json'}
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -50,20 +50,21 @@ export const createDassaultAviationIndiaScraper = (defaults={}) => ({
     const collect=async()=>{
       const read=async(url,{allowedFinalUrl=url}={})=>{
         controller.signal.throwIfAborted();surface=url
-        let requestUrl=url,response
+        let requestUrl=url,response,responseRequestUrl
         for(let hop=0;hop<4;hop++){
+          responseRequestUrl=requestUrl
           response=await fetchImpl(requestUrl,{signal:controller.signal,redirect:'manual',headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}})
           controller.signal.throwIfAborted()
           if([301,302,303,307,308].includes(response.status)){
             const target=new URL(response.headers?.get('location'),requestUrl).href
-            if(url!==HANDOFF_URL||![HANDOFF_URL,ENTRY_URL].includes(target))throw gap('Unreviewed corporate handoff redirect')
+            if(url!==HANDOFF_URL||![HANDOFF_URL,ENTRY_URL].includes(target))throw Object.assign(gap(`Unreviewed corporate handoff redirect (HTTP ${response.status}) for ${responseRequestUrl}`),{status:response.status,statusCode:response.status,requestUrl:responseRequestUrl,finalUrl:response.url})
             retainedResponses.push({url:requestUrl,finalUrl:response.url,status:response.status,location:target,body:'',capturedAt:now()})
             void response.body?.cancel?.().catch(()=>{})
             requestUrl=target;continue
           }
           break
         }
-        if(response.status!==200||response.url!==allowedFinalUrl)throw gap('Native HTTP failure or final URL changed')
+        if(response.status!==200||response.url!==allowedFinalUrl)throw Object.assign(gap(response.status!==200?`Native HTTP ${response.status} for ${responseRequestUrl}`:`Native final URL changed (HTTP ${response.status}) for ${responseRequestUrl}`),{status:response.status,statusCode:response.status,requestUrl:responseRequestUrl,finalUrl:response.url})
         let body
         if(response.body?.getReader){
           const reader=response.body.getReader(),chunks=[];let bytes=0

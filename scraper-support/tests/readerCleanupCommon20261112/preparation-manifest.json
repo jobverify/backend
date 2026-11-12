@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "status": "RETAINED_CLOSED_COMMON60",
+  "files": [
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112.test.js",
+      "sha256": "ff24ee25a27186800e25ef3ea4c0d6ccb925b9e640afaef0e118cc98359432f2",
+      "bytes": 10595
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/closure.json",
+      "sha256": "fa466e348cf84c4d6304329e48f0cbde1ffee478445e6757f0be525f039d8205",
+      "bytes": 100557
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/guard.mjs",
+      "sha256": "554729117cb998da75ecfac2e02ddcaacff99ac1b80a781cf3fdd9dd08611283",
+      "bytes": 6074
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/native-observers.mjs",
+      "sha256": "03e7e692d5413b525ee0196f2dd196b03e81c4d00520059eabda1c46b6fcd00b",
+      "bytes": 2238
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/proof.mjs",
+      "sha256": "fc0b97abedba18dfb539d4f1249385bdeadd3a916d7fd602ab7d75bf36702960",
+      "bytes": 16421
+    }
+  ],
+  "childProofFiles": [
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/closure.json",
+      "sha256": "fa466e348cf84c4d6304329e48f0cbde1ffee478445e6757f0be525f039d8205",
+      "bytes": 100557
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/guard.mjs",
+      "sha256": "554729117cb998da75ecfac2e02ddcaacff99ac1b80a781cf3fdd9dd08611283",
+      "bytes": 6074
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/native-observers.mjs",
+      "sha256": "03e7e692d5413b525ee0196f2dd196b03e81c4d00520059eabda1c46b6fcd00b",
+      "bytes": 2238
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupCommon20261112/proof.mjs",
+      "sha256": "fc0b97abedba18dfb539d4f1249385bdeadd3a916d7fd602ab7d75bf36702960",
+      "bytes": 16421
+    }
+  ],
+  "plannedDistinctChildCases": 60,
+  "ordinaryWrapperTests": 1,
+  "extraDistinctCasesFromRepeats": 0,
+  "expectedApplicationModuleCounts": [
+    7,
+    8,
+    6,
+    25,
+    21,
+    7
+  ],
+  "noReportRuntimeDependencies": true,
+  "physicalNetworkAuthorized": false,
+  "nativeClockOrSignalSubstitution": false,
+  "closureSHA256": "fa466e348cf84c4d6304329e48f0cbde1ffee478445e6757f0be525f039d8205",
+  "legacyPhysicalRequestsMeaning": "intercepted fetch calls; actual physical network counter is0"
+}

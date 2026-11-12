@@ -1,0 +1,1141 @@
+{
+  "schemaVersion": "remaining-reader-per-flow-green-closure/v1",
+  "workspace": ".",
+  "backend": "backend",
+  "modules": [
+    {
+      "path": "backend/node_modules/acorn/dist/acorn.mjs",
+      "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+      "bytes": 234658,
+      "relativePath": "backend/node_modules/acorn/dist/acorn.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/decode-codepoint.js",
+      "sha256": "c5c52b66256cc5a84b84a516ed78cc76256ec99c47344041f11d3e67010c4a64",
+      "bytes": 2409,
+      "relativePath": "backend/node_modules/entities/dist/decode-codepoint.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/decode.js",
+      "sha256": "84447c68870d330d2d9f72fc6dd34fceeba9e2061339da0c24f5a645edf4ca88",
+      "bytes": 44274,
+      "relativePath": "backend/node_modules/entities/dist/decode.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/encode.js",
+      "sha256": "3e4fada680dd848e235df9835c766845172e8731b02cfbfea396448ec4f306a4",
+      "bytes": 12340,
+      "relativePath": "backend/node_modules/entities/dist/encode.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/escape.js",
+      "sha256": "c9321bcfd5431fe2f81038614d1d84636328456e38be1df57e6bf3e2e24edac5",
+      "bytes": 5670,
+      "relativePath": "backend/node_modules/entities/dist/escape.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/generated/decode-data-html.js",
+      "sha256": "f26a918fce4ad7e365d8715559291e40dd16be38f50bc6b71b0a64eed2ff32b2",
+      "bytes": 26305,
+      "relativePath": "backend/node_modules/entities/dist/generated/decode-data-html.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/generated/encode-html.js",
+      "sha256": "8b76a4028ff2a691a67c02405af473be5028db93da2cb94a9343039d69609d30",
+      "bytes": 10042,
+      "relativePath": "backend/node_modules/entities/dist/generated/encode-html.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/index.js",
+      "sha256": "efacf1df956b3d7156a17653cd241f3328f9a6fe1a4b61f098efc1bed2fa9a0e",
+      "bytes": 3552,
+      "relativePath": "backend/node_modules/entities/dist/index.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/internal/decode-data-format.js",
+      "sha256": "e2c3e8fb026292e55b124165680665593000c077af4c1c80f39a4b7451f8f2a8",
+      "bytes": 6523,
+      "relativePath": "backend/node_modules/entities/dist/internal/decode-data-format.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/eightfoldDetailIdentity.js",
+      "sha256": "1a9d332e9f24c28bf87e224854388b2e45c5345ed29582418d42c4736c385673",
+      "bytes": 2125,
+      "relativePath": "backend/scraper-support/apiPortal/eightfoldDetailIdentity.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/eightfoldLocations.js",
+      "sha256": "e974184b99b0a1def12c662765132f0a029d6156be17fc6e2337c155106675b2",
+      "bytes": 8984,
+      "relativePath": "backend/scraper-support/apiPortal/eightfoldLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/engine.js",
+      "sha256": "6557863d837a2c99e66c2125e3531ec58e1f00eff1656f4b2bd467281dc73e99",
+      "bytes": 36385,
+      "relativePath": "backend/scraper-support/apiPortal/engine.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/greenhousePublication.js",
+      "sha256": "839f6064bc1a457df47fa45f9850ed9f8d22bcef77df180458334ad80145d1e0",
+      "bytes": 3472,
+      "relativePath": "backend/scraper-support/apiPortal/greenhousePublication.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/pagination.js",
+      "sha256": "cb55574a68ce3a8e1594b9ab7a82780e214848f9bcdd74513e743868439d9ab3",
+      "bytes": 2639,
+      "relativePath": "backend/scraper-support/apiPortal/pagination.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/providerConfig.js",
+      "sha256": "c7efa571f1b955aa83b6ac396b034d9f4995e3373f3b740781f46dfc4a2a14b4",
+      "bytes": 4183,
+      "relativePath": "backend/scraper-support/apiPortal/providerConfig.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/smartRecruitersDetail.js",
+      "sha256": "82c8dc6317faae401313a74de1919d1b725081f850da5e82943a81902fb5ea53",
+      "bytes": 3250,
+      "relativePath": "backend/scraper-support/apiPortal/smartRecruitersDetail.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/detailExtractors/shared.js",
+      "sha256": "4668c02aed703bd8e8e43bd70a9875d153cfb1d69427f5a71552911f5d2d2b0e",
+      "bytes": 1563,
+      "relativePath": "backend/scraper-support/detailExtractors/shared.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/detailExtractors/workday.js",
+      "sha256": "adb6d24510af006f6a84cc962d34fe386e351e793da9b8b76c142ca482a5dfc0",
+      "bytes": 7941,
+      "relativePath": "backend/scraper-support/detailExtractors/workday.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/providers/apiPortalTemplates.js",
+      "sha256": "f0b471bc81e26080a22c4adcfee2276fb585f61234582d2bffe880eb597503fd",
+      "bytes": 10355,
+      "relativePath": "backend/scraper-support/providers/apiPortalTemplates.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/nativeCityScope.js",
+      "sha256": "add346fe297779973a9ec92710247e0140333095648d0ed978c6aa9a34d8ae47",
+      "bytes": 703,
+      "relativePath": "backend/scraper-support/shared/nativeCityScope.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/nativeJobPosting.js",
+      "sha256": "dccdbbadb4923b387819e084e3383dcf8301c603211dc3e2d81ce82312e701b6",
+      "bytes": 11054,
+      "relativePath": "backend/scraper-support/shared/nativeJobPosting.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782,
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "sha256": "15c2b95e087bf4a87ed9cf3923f381f56fe96cc35337760a9f221d0962d2bf23",
+      "bytes": 3393,
+      "relativePath": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeAshbyCareersFeed.js",
+      "sha256": "d585d5ba4f06aa14bdf72bccc92e4e3d7c6aaf7ff58905e2a628b366252fc185",
+      "bytes": 2221,
+      "relativePath": "backend/scraper-support/utils/activeAshbyCareersFeed.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeLeverCareersFeed.js",
+      "sha256": "a342f0a18eaec0369b5ab912c6ee11ff7a88ab76328d33aa5b63c87a4534a8c9",
+      "bytes": 4256,
+      "relativePath": "backend/scraper-support/utils/activeLeverCareersFeed.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506,
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/ashbyApi.js",
+      "sha256": "373028c2b919dc35ab0a2c2373079851071fe046a81520628c2cc057618ac338",
+      "bytes": 5663,
+      "relativePath": "backend/scraper-support/utils/ashbyApi.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/cities.js",
+      "sha256": "0a36387d20290a29e3e41f3346a1273bfd6427517c5378e3c348867341bb330c",
+      "bytes": 3078,
+      "relativePath": "backend/scraper-support/utils/cities.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/cityNormalizer.js",
+      "sha256": "78e3b31ac4899c9da2a534b0a8848a1c447873bfcb911618eaccd737fdd087e6",
+      "bytes": 1383,
+      "relativePath": "backend/scraper-support/utils/cityNormalizer.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/failureClassification.js",
+      "sha256": "ac88df162d1b3a6af45ce52075b3825fe5bd67486e3789f88c25a46f1fc8946a",
+      "bytes": 5744,
+      "relativePath": "backend/scraper-support/utils/failureClassification.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/fetch.js",
+      "sha256": "e8ea64054e99dcd3e63cb4c37bffb8700f65531b0d1b54fd3e3b0501b8b89eca",
+      "bytes": 9045,
+      "relativePath": "backend/scraper-support/utils/fetch.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseLocations.js",
+      "sha256": "e94ad83a2fc558a1d2d8e2a6786cb9f7223c3563840734905dd47bdbb2fdfe99",
+      "bytes": 4955,
+      "relativePath": "backend/scraper-support/utils/greenhouseLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseOfficeCountry.js",
+      "sha256": "db6aad28154c1b39495460fb79b09d18d7a479ead24e5bf5a460b33649232ddf",
+      "bytes": 8128,
+      "relativePath": "backend/scraper-support/utils/greenhouseOfficeCountry.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseProspects.js",
+      "sha256": "a72e29718bd83fbf01706cb84d9cf159196293c9b8318af67ef10aa6146403be",
+      "bytes": 2899,
+      "relativePath": "backend/scraper-support/utils/greenhouseProspects.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseWorksiteCountry.js",
+      "sha256": "63e8d8e90455db2f36d58e65918c74d14060d48a66c116ac85d4dc178941fa0b",
+      "bytes": 4574,
+      "relativePath": "backend/scraper-support/utils/greenhouseWorksiteCountry.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/indiaLocationFilter.js",
+      "sha256": "6af1df7f2c6a506ff615dcba7cb229a37505c1369bdca065c470ec8aa1daa92c",
+      "bytes": 372,
+      "relativePath": "backend/scraper-support/utils/indiaLocationFilter.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046,
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/leverDescription.js",
+      "sha256": "59a906bfe66bb86e60b76acc4ebe97e88d8eb74f2d8ba1e7166a2391a7a89e69",
+      "bytes": 933,
+      "relativePath": "backend/scraper-support/utils/leverDescription.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/leverLocations.js",
+      "sha256": "de581de082438790d05b955f93e7399dc15eeadf1de005722f1c27337bb2faf7",
+      "bytes": 1027,
+      "relativePath": "backend/scraper-support/utils/leverLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "sha256": "b8ff3a4c22b628dcc50db14dca358ceaf70feb5102ab249495e81a7413d6928e",
+      "bytes": 3852,
+      "relativePath": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/publicAtsIdentity.js",
+      "sha256": "cb43b2dccf58a8f8a9c35085716472e8777cacc61043c70a4d2a10dfd61ecdfd",
+      "bytes": 3335,
+      "relativePath": "backend/scraper-support/utils/publicAtsIdentity.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/publishingGapAts.js",
+      "sha256": "58aa7e19ea18e0f16ab7fd3ba21c325edb37a2b95ed492a5b3dcc4ece53d31f8",
+      "bytes": 23819,
+      "relativePath": "backend/scraper-support/utils/publishingGapAts.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentBreezyEmptyState.js",
+      "sha256": "1fb11bb86c01ddff9a67fdd1d788a025757e5e9393e06ea444bf773c461f2faf",
+      "bytes": 7220,
+      "relativePath": "backend/scraper-support/utils/recruitmentBreezyEmptyState.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfold.js",
+      "sha256": "4b0a06af9af4905fb7dac8b24aacc6ef7607240fc980a631697f3e5c1ce3b7b3",
+      "bytes": 30666,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfold.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfoldData.js",
+      "sha256": "94d5e834f1dd684624f59c560e6478758e3bb07c2b8d31a664e472d1a1984e9f",
+      "bytes": 6178,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfoldData.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfoldPcsx.js",
+      "sha256": "47efb3edf1b00748eb3708c7e7645d315b5aa2a43593f14d487f6e6c1993a571",
+      "bytes": 34032,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfoldPcsx.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfoldPcsxTwilio.js",
+      "sha256": "78a32b1f5c8786473149c2ee87a7a14ffe988cd149a82aaf412b5b85d68457a7",
+      "bytes": 28242,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfoldPcsxTwilio.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentJibe.js",
+      "sha256": "330e10591f6ddf6ded728fe982289d33071caf467191245036199d6d7a81f325",
+      "bytes": 14328,
+      "relativePath": "backend/scraper-support/utils/recruitmentJibe.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentKeka.js",
+      "sha256": "3eac5f9134e05734cfc700b150069658a6a4ef4b8a7fe63760c7a0da2f861c3e",
+      "bytes": 11754,
+      "relativePath": "backend/scraper-support/utils/recruitmentKeka.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentMicrodata.js",
+      "sha256": "3008850588611bee3646d6d8a5257f6498443c7b4d0433ee1a3c87b5434c5ccb",
+      "bytes": 9272,
+      "relativePath": "backend/scraper-support/utils/recruitmentMicrodata.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentObservationAccounting.js",
+      "sha256": "4e6db159a6eb17ea7c74be5b3e982803a62e310746ad23833d7cfcf02ff5cb98",
+      "bytes": 4433,
+      "relativePath": "backend/scraper-support/utils/recruitmentObservationAccounting.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentOracle.js",
+      "sha256": "d4ce1b2caa3b8e33200fe27ea105c6c960231625b0718b432e9caf4ba1062b16",
+      "bytes": 19920,
+      "relativePath": "backend/scraper-support/utils/recruitmentOracle.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentPageData.js",
+      "sha256": "a302292d12c2022c474621c1cfc38275766621cd38b8d44f04c0e3a64577509d",
+      "bytes": 15760,
+      "relativePath": "backend/scraper-support/utils/recruitmentPageData.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentProgramProfile.js",
+      "sha256": "3ff491077081008003c729546ea0fb653ca70aba4a8373dcda9e259d238323ec",
+      "bytes": 1055,
+      "relativePath": "backend/scraper-support/utils/recruitmentProgramProfile.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentPyjama.js",
+      "sha256": "421daab90e394def28d0ad9f71cd314870c141676be9cdad97b741c4c9642878",
+      "bytes": 24423,
+      "relativePath": "backend/scraper-support/utils/recruitmentPyjama.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentRippling.js",
+      "sha256": "925ef15203f346e5dda9f0d20ea1949f0c48a49e92daac060bfa99d8447c5791",
+      "bytes": 14197,
+      "relativePath": "backend/scraper-support/utils/recruitmentRippling.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentSuccessFactors.js",
+      "sha256": "d8914641eed7fd576c17fccbeac9ccb57f46b70fc7163e34151dfa09854ead8c",
+      "bytes": 2076,
+      "relativePath": "backend/scraper-support/utils/recruitmentSuccessFactors.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentSuccessFactorsUnified.js",
+      "sha256": "e79c4c7abd7c003dbd6c61e700535c675f3a5aadef87a5a2b6d91ae32a1e0084",
+      "bytes": 11364,
+      "relativePath": "backend/scraper-support/utils/recruitmentSuccessFactorsUnified.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentWorkdayContext.js",
+      "sha256": "88f7bae0f0e2a8702c2237005b92cfa91ce37125e98cd133e95b72dfc3d35fe0",
+      "bytes": 6546,
+      "relativePath": "backend/scraper-support/utils/recruitmentWorkdayContext.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/retry.js",
+      "sha256": "409c28ffe8d53dcdfda30f0d4a588ecbb139ebf84debc041b1c330cd6e009b8e",
+      "bytes": 7520,
+      "relativePath": "backend/scraper-support/utils/retry.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/retryPressure.js",
+      "sha256": "61ccc6f52fcaed0318bcfbab2aae02d9363b78b60c06a96b621a766e83f6144a",
+      "bytes": 3453,
+      "relativePath": "backend/scraper-support/utils/retryPressure.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+      "bytes": 2823,
+      "relativePath": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/verifiedRecruitment.js",
+      "sha256": "a2fa2eea165068dc27026a09f84c0d4759d08693cdc79a23bd69af008f943478",
+      "bytes": 108359,
+      "relativePath": "backend/scraper-support/utils/verifiedRecruitment.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032,
+      "relativePath": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/primenumberstechnologies/script.js",
+      "sha256": "a761e20dc1e223f88aa60dd673be77b6e9fd9ac0f0ddfe662d81a77abf0efebb",
+      "bytes": 20637,
+      "relativePath": "backend/scraper/primenumberstechnologies/script.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/constants/jobFilterTaxonomy.js",
+      "sha256": "fdfc41dc676b22787a4c82c8b217d110b084c921f1575e66dd044506f2d8c07e",
+      "bytes": 12248,
+      "relativePath": "backend/src/constants/jobFilterTaxonomy.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobClassificationVersion.js",
+      "sha256": "0be95099ac901472b2d7fcb193047c91588d9f8181c5394a28c5a25b995897f1",
+      "bytes": 74,
+      "relativePath": "backend/src/utils/jobClassificationVersion.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobFilterSignals.js",
+      "sha256": "93018791517b3504bffa952f2dedae74d4dc30ff6de348c31d8c4e5023443853",
+      "bytes": 97589,
+      "relativePath": "backend/src/utils/jobFilterSignals.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobLifecycle.js",
+      "sha256": "b4c707068c2ff5c4ce079992896ac505eb69e0246009ae752384fdb58ac1a55a",
+      "bytes": 2262,
+      "relativePath": "backend/src/utils/jobLifecycle.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobListingEvidence.js",
+      "sha256": "e65717ae3d8160c1d18542925367180ac26fb4dec535be5b51714c9fec35bee0",
+      "bytes": 602,
+      "relativePath": "backend/src/utils/jobListingEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529,
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/mainExperienceRequirement.js",
+      "sha256": "1aa3ad167abc1315e57b097550897d18276bb190fe6bdb017f0d10e2c82d3360",
+      "bytes": 3906,
+      "relativePath": "backend/src/utils/mainExperienceRequirement.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/mongoOperationalError.js",
+      "sha256": "2cf383cc1116ba31220430d13ce4ed525f6e3d2d8b3b05547c89cb119e3774a0",
+      "bytes": 3053,
+      "relativePath": "backend/src/utils/mongoOperationalError.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/publicJobLocationScope.js",
+      "sha256": "f74dfee4d8147a48ff250283eae4689da2ee8fd3c36c4ce590a0fd08a087a1c9",
+      "bytes": 11733,
+      "relativePath": "backend/src/utils/publicJobLocationScope.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/publicWorkArrangement.js",
+      "sha256": "ac8db8f84fa23f0d7b155f7fa4d54a7ce7b35da692c40b9424a3b2cee66a716f",
+      "bytes": 1886,
+      "relativePath": "backend/src/utils/publicWorkArrangement.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/guard.mjs",
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/guard.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/proof.mjs",
+      "sha256": "e5f8ccf518734a745baf36442c6c1d3c98348d00906000663e577dd65482039c",
+      "bytes": 20833,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/proof.mjs",
+      "exists": true
+    }
+  ],
+  "reads": [
+    {
+      "path": "backend/node_modules/acorn/dist/acorn.mjs",
+      "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+      "bytes": 234658,
+      "relativePath": "backend/node_modules/acorn/dist/acorn.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/acorn/package.json",
+      "sha256": "04d6fecaafb5e3d20a38fc3b64fed84bb3830a7759a8c00400ebcb87331fec00",
+      "bytes": 1067,
+      "relativePath": "backend/node_modules/acorn/package.json",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/decode-codepoint.js",
+      "sha256": "c5c52b66256cc5a84b84a516ed78cc76256ec99c47344041f11d3e67010c4a64",
+      "bytes": 2409,
+      "relativePath": "backend/node_modules/entities/dist/decode-codepoint.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/decode.js",
+      "sha256": "84447c68870d330d2d9f72fc6dd34fceeba9e2061339da0c24f5a645edf4ca88",
+      "bytes": 44274,
+      "relativePath": "backend/node_modules/entities/dist/decode.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/encode.js",
+      "sha256": "3e4fada680dd848e235df9835c766845172e8731b02cfbfea396448ec4f306a4",
+      "bytes": 12340,
+      "relativePath": "backend/node_modules/entities/dist/encode.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/escape.js",
+      "sha256": "c9321bcfd5431fe2f81038614d1d84636328456e38be1df57e6bf3e2e24edac5",
+      "bytes": 5670,
+      "relativePath": "backend/node_modules/entities/dist/escape.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/generated/decode-data-html.js",
+      "sha256": "f26a918fce4ad7e365d8715559291e40dd16be38f50bc6b71b0a64eed2ff32b2",
+      "bytes": 26305,
+      "relativePath": "backend/node_modules/entities/dist/generated/decode-data-html.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/generated/encode-html.js",
+      "sha256": "8b76a4028ff2a691a67c02405af473be5028db93da2cb94a9343039d69609d30",
+      "bytes": 10042,
+      "relativePath": "backend/node_modules/entities/dist/generated/encode-html.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/index.js",
+      "sha256": "efacf1df956b3d7156a17653cd241f3328f9a6fe1a4b61f098efc1bed2fa9a0e",
+      "bytes": 3552,
+      "relativePath": "backend/node_modules/entities/dist/index.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/dist/internal/decode-data-format.js",
+      "sha256": "e2c3e8fb026292e55b124165680665593000c077af4c1c80f39a4b7451f8f2a8",
+      "bytes": 6523,
+      "relativePath": "backend/node_modules/entities/dist/internal/decode-data-format.js",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/entities/package.json",
+      "sha256": "91021df30616d21086a8b43877198c33f83fcbb8f8b74bdf5127f1fabac5e0eb",
+      "bytes": 2579,
+      "relativePath": "backend/node_modules/entities/package.json",
+      "exists": true
+    },
+    {
+      "path": "backend/package.json",
+      "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+      "bytes": 6914,
+      "relativePath": "backend/package.json",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/eightfoldDetailIdentity.js",
+      "sha256": "1a9d332e9f24c28bf87e224854388b2e45c5345ed29582418d42c4736c385673",
+      "bytes": 2125,
+      "relativePath": "backend/scraper-support/apiPortal/eightfoldDetailIdentity.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/eightfoldLocations.js",
+      "sha256": "e974184b99b0a1def12c662765132f0a029d6156be17fc6e2337c155106675b2",
+      "bytes": 8984,
+      "relativePath": "backend/scraper-support/apiPortal/eightfoldLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/engine.js",
+      "sha256": "6557863d837a2c99e66c2125e3531ec58e1f00eff1656f4b2bd467281dc73e99",
+      "bytes": 36385,
+      "relativePath": "backend/scraper-support/apiPortal/engine.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/greenhousePublication.js",
+      "sha256": "839f6064bc1a457df47fa45f9850ed9f8d22bcef77df180458334ad80145d1e0",
+      "bytes": 3472,
+      "relativePath": "backend/scraper-support/apiPortal/greenhousePublication.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/pagination.js",
+      "sha256": "cb55574a68ce3a8e1594b9ab7a82780e214848f9bcdd74513e743868439d9ab3",
+      "bytes": 2639,
+      "relativePath": "backend/scraper-support/apiPortal/pagination.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/providerConfig.js",
+      "sha256": "c7efa571f1b955aa83b6ac396b034d9f4995e3373f3b740781f46dfc4a2a14b4",
+      "bytes": 4183,
+      "relativePath": "backend/scraper-support/apiPortal/providerConfig.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/apiPortal/smartRecruitersDetail.js",
+      "sha256": "82c8dc6317faae401313a74de1919d1b725081f850da5e82943a81902fb5ea53",
+      "bytes": 3250,
+      "relativePath": "backend/scraper-support/apiPortal/smartRecruitersDetail.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/detailExtractors/shared.js",
+      "sha256": "4668c02aed703bd8e8e43bd70a9875d153cfb1d69427f5a71552911f5d2d2b0e",
+      "bytes": 1563,
+      "relativePath": "backend/scraper-support/detailExtractors/shared.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/detailExtractors/workday.js",
+      "sha256": "adb6d24510af006f6a84cc962d34fe386e351e793da9b8b76c142ca482a5dfc0",
+      "bytes": 7941,
+      "relativePath": "backend/scraper-support/detailExtractors/workday.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/providers/apiPortalTemplates.js",
+      "sha256": "f0b471bc81e26080a22c4adcfee2276fb585f61234582d2bffe880eb597503fd",
+      "bytes": 10355,
+      "relativePath": "backend/scraper-support/providers/apiPortalTemplates.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/nativeCityScope.js",
+      "sha256": "add346fe297779973a9ec92710247e0140333095648d0ed978c6aa9a34d8ae47",
+      "bytes": 703,
+      "relativePath": "backend/scraper-support/shared/nativeCityScope.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/nativeJobPosting.js",
+      "sha256": "dccdbbadb4923b387819e084e3383dcf8301c603211dc3e2d81ce82312e701b6",
+      "bytes": 11054,
+      "relativePath": "backend/scraper-support/shared/nativeJobPosting.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782,
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "sha256": "15c2b95e087bf4a87ed9cf3923f381f56fe96cc35337760a9f221d0962d2bf23",
+      "bytes": 3393,
+      "relativePath": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeAshbyCareersFeed.js",
+      "sha256": "d585d5ba4f06aa14bdf72bccc92e4e3d7c6aaf7ff58905e2a628b366252fc185",
+      "bytes": 2221,
+      "relativePath": "backend/scraper-support/utils/activeAshbyCareersFeed.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeLeverCareersFeed.js",
+      "sha256": "a342f0a18eaec0369b5ab912c6ee11ff7a88ab76328d33aa5b63c87a4534a8c9",
+      "bytes": 4256,
+      "relativePath": "backend/scraper-support/utils/activeLeverCareersFeed.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506,
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/ashbyApi.js",
+      "sha256": "373028c2b919dc35ab0a2c2373079851071fe046a81520628c2cc057618ac338",
+      "bytes": 5663,
+      "relativePath": "backend/scraper-support/utils/ashbyApi.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/cities.js",
+      "sha256": "0a36387d20290a29e3e41f3346a1273bfd6427517c5378e3c348867341bb330c",
+      "bytes": 3078,
+      "relativePath": "backend/scraper-support/utils/cities.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/cityNormalizer.js",
+      "sha256": "78e3b31ac4899c9da2a534b0a8848a1c447873bfcb911618eaccd737fdd087e6",
+      "bytes": 1383,
+      "relativePath": "backend/scraper-support/utils/cityNormalizer.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/failureClassification.js",
+      "sha256": "ac88df162d1b3a6af45ce52075b3825fe5bd67486e3789f88c25a46f1fc8946a",
+      "bytes": 5744,
+      "relativePath": "backend/scraper-support/utils/failureClassification.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/fetch.js",
+      "sha256": "e8ea64054e99dcd3e63cb4c37bffb8700f65531b0d1b54fd3e3b0501b8b89eca",
+      "bytes": 9045,
+      "relativePath": "backend/scraper-support/utils/fetch.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseLocations.js",
+      "sha256": "e94ad83a2fc558a1d2d8e2a6786cb9f7223c3563840734905dd47bdbb2fdfe99",
+      "bytes": 4955,
+      "relativePath": "backend/scraper-support/utils/greenhouseLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseOfficeCountry.js",
+      "sha256": "db6aad28154c1b39495460fb79b09d18d7a479ead24e5bf5a460b33649232ddf",
+      "bytes": 8128,
+      "relativePath": "backend/scraper-support/utils/greenhouseOfficeCountry.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseProspects.js",
+      "sha256": "a72e29718bd83fbf01706cb84d9cf159196293c9b8318af67ef10aa6146403be",
+      "bytes": 2899,
+      "relativePath": "backend/scraper-support/utils/greenhouseProspects.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/greenhouseWorksiteCountry.js",
+      "sha256": "63e8d8e90455db2f36d58e65918c74d14060d48a66c116ac85d4dc178941fa0b",
+      "bytes": 4574,
+      "relativePath": "backend/scraper-support/utils/greenhouseWorksiteCountry.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/indiaLocationFilter.js",
+      "sha256": "6af1df7f2c6a506ff615dcba7cb229a37505c1369bdca065c470ec8aa1daa92c",
+      "bytes": 372,
+      "relativePath": "backend/scraper-support/utils/indiaLocationFilter.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046,
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/leverDescription.js",
+      "sha256": "59a906bfe66bb86e60b76acc4ebe97e88d8eb74f2d8ba1e7166a2391a7a89e69",
+      "bytes": 933,
+      "relativePath": "backend/scraper-support/utils/leverDescription.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/leverLocations.js",
+      "sha256": "de581de082438790d05b955f93e7399dc15eeadf1de005722f1c27337bb2faf7",
+      "bytes": 1027,
+      "relativePath": "backend/scraper-support/utils/leverLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "sha256": "b8ff3a4c22b628dcc50db14dca358ceaf70feb5102ab249495e81a7413d6928e",
+      "bytes": 3852,
+      "relativePath": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/publicAtsIdentity.js",
+      "sha256": "cb43b2dccf58a8f8a9c35085716472e8777cacc61043c70a4d2a10dfd61ecdfd",
+      "bytes": 3335,
+      "relativePath": "backend/scraper-support/utils/publicAtsIdentity.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/publishingGapAts.js",
+      "sha256": "58aa7e19ea18e0f16ab7fd3ba21c325edb37a2b95ed492a5b3dcc4ece53d31f8",
+      "bytes": 23819,
+      "relativePath": "backend/scraper-support/utils/publishingGapAts.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentBreezyEmptyState.js",
+      "sha256": "1fb11bb86c01ddff9a67fdd1d788a025757e5e9393e06ea444bf773c461f2faf",
+      "bytes": 7220,
+      "relativePath": "backend/scraper-support/utils/recruitmentBreezyEmptyState.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfold.js",
+      "sha256": "4b0a06af9af4905fb7dac8b24aacc6ef7607240fc980a631697f3e5c1ce3b7b3",
+      "bytes": 30666,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfold.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfoldData.js",
+      "sha256": "94d5e834f1dd684624f59c560e6478758e3bb07c2b8d31a664e472d1a1984e9f",
+      "bytes": 6178,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfoldData.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfoldPcsx.js",
+      "sha256": "47efb3edf1b00748eb3708c7e7645d315b5aa2a43593f14d487f6e6c1993a571",
+      "bytes": 34032,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfoldPcsx.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentEightfoldPcsxTwilio.js",
+      "sha256": "78a32b1f5c8786473149c2ee87a7a14ffe988cd149a82aaf412b5b85d68457a7",
+      "bytes": 28242,
+      "relativePath": "backend/scraper-support/utils/recruitmentEightfoldPcsxTwilio.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentJibe.js",
+      "sha256": "330e10591f6ddf6ded728fe982289d33071caf467191245036199d6d7a81f325",
+      "bytes": 14328,
+      "relativePath": "backend/scraper-support/utils/recruitmentJibe.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentKeka.js",
+      "sha256": "3eac5f9134e05734cfc700b150069658a6a4ef4b8a7fe63760c7a0da2f861c3e",
+      "bytes": 11754,
+      "relativePath": "backend/scraper-support/utils/recruitmentKeka.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentMicrodata.js",
+      "sha256": "3008850588611bee3646d6d8a5257f6498443c7b4d0433ee1a3c87b5434c5ccb",
+      "bytes": 9272,
+      "relativePath": "backend/scraper-support/utils/recruitmentMicrodata.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentObservationAccounting.js",
+      "sha256": "4e6db159a6eb17ea7c74be5b3e982803a62e310746ad23833d7cfcf02ff5cb98",
+      "bytes": 4433,
+      "relativePath": "backend/scraper-support/utils/recruitmentObservationAccounting.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentOracle.js",
+      "sha256": "d4ce1b2caa3b8e33200fe27ea105c6c960231625b0718b432e9caf4ba1062b16",
+      "bytes": 19920,
+      "relativePath": "backend/scraper-support/utils/recruitmentOracle.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentPageData.js",
+      "sha256": "a302292d12c2022c474621c1cfc38275766621cd38b8d44f04c0e3a64577509d",
+      "bytes": 15760,
+      "relativePath": "backend/scraper-support/utils/recruitmentPageData.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentProgramProfile.js",
+      "sha256": "3ff491077081008003c729546ea0fb653ca70aba4a8373dcda9e259d238323ec",
+      "bytes": 1055,
+      "relativePath": "backend/scraper-support/utils/recruitmentProgramProfile.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentPyjama.js",
+      "sha256": "421daab90e394def28d0ad9f71cd314870c141676be9cdad97b741c4c9642878",
+      "bytes": 24423,
+      "relativePath": "backend/scraper-support/utils/recruitmentPyjama.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentRippling.js",
+      "sha256": "925ef15203f346e5dda9f0d20ea1949f0c48a49e92daac060bfa99d8447c5791",
+      "bytes": 14197,
+      "relativePath": "backend/scraper-support/utils/recruitmentRippling.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentSuccessFactors.js",
+      "sha256": "d8914641eed7fd576c17fccbeac9ccb57f46b70fc7163e34151dfa09854ead8c",
+      "bytes": 2076,
+      "relativePath": "backend/scraper-support/utils/recruitmentSuccessFactors.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentSuccessFactorsUnified.js",
+      "sha256": "e79c4c7abd7c003dbd6c61e700535c675f3a5aadef87a5a2b6d91ae32a1e0084",
+      "bytes": 11364,
+      "relativePath": "backend/scraper-support/utils/recruitmentSuccessFactorsUnified.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/recruitmentWorkdayContext.js",
+      "sha256": "88f7bae0f0e2a8702c2237005b92cfa91ce37125e98cd133e95b72dfc3d35fe0",
+      "bytes": 6546,
+      "relativePath": "backend/scraper-support/utils/recruitmentWorkdayContext.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/retry.js",
+      "sha256": "409c28ffe8d53dcdfda30f0d4a588ecbb139ebf84debc041b1c330cd6e009b8e",
+      "bytes": 7520,
+      "relativePath": "backend/scraper-support/utils/retry.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/retryPressure.js",
+      "sha256": "61ccc6f52fcaed0318bcfbab2aae02d9363b78b60c06a96b621a766e83f6144a",
+      "bytes": 3453,
+      "relativePath": "backend/scraper-support/utils/retryPressure.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+      "bytes": 2823,
+      "relativePath": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/verifiedRecruitment.js",
+      "sha256": "a2fa2eea165068dc27026a09f84c0d4759d08693cdc79a23bd69af008f943478",
+      "bytes": 108359,
+      "relativePath": "backend/scraper-support/utils/verifiedRecruitment.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032,
+      "relativePath": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/primenumberstechnologies/script.js",
+      "sha256": "a761e20dc1e223f88aa60dd673be77b6e9fd9ac0f0ddfe662d81a77abf0efebb",
+      "bytes": 20637,
+      "relativePath": "backend/scraper/primenumberstechnologies/script.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/constants/jobFilterTaxonomy.js",
+      "sha256": "fdfc41dc676b22787a4c82c8b217d110b084c921f1575e66dd044506f2d8c07e",
+      "bytes": 12248,
+      "relativePath": "backend/src/constants/jobFilterTaxonomy.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobClassificationVersion.js",
+      "sha256": "0be95099ac901472b2d7fcb193047c91588d9f8181c5394a28c5a25b995897f1",
+      "bytes": 74,
+      "relativePath": "backend/src/utils/jobClassificationVersion.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobFilterSignals.js",
+      "sha256": "93018791517b3504bffa952f2dedae74d4dc30ff6de348c31d8c4e5023443853",
+      "bytes": 97589,
+      "relativePath": "backend/src/utils/jobFilterSignals.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobLifecycle.js",
+      "sha256": "b4c707068c2ff5c4ce079992896ac505eb69e0246009ae752384fdb58ac1a55a",
+      "bytes": 2262,
+      "relativePath": "backend/src/utils/jobLifecycle.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobListingEvidence.js",
+      "sha256": "e65717ae3d8160c1d18542925367180ac26fb4dec535be5b51714c9fec35bee0",
+      "bytes": 602,
+      "relativePath": "backend/src/utils/jobListingEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529,
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/mainExperienceRequirement.js",
+      "sha256": "1aa3ad167abc1315e57b097550897d18276bb190fe6bdb017f0d10e2c82d3360",
+      "bytes": 3906,
+      "relativePath": "backend/src/utils/mainExperienceRequirement.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/mongoOperationalError.js",
+      "sha256": "2cf383cc1116ba31220430d13ce4ed525f6e3d2d8b3b05547c89cb119e3774a0",
+      "bytes": 3053,
+      "relativePath": "backend/src/utils/mongoOperationalError.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/publicJobLocationScope.js",
+      "sha256": "f74dfee4d8147a48ff250283eae4689da2ee8fd3c36c4ce590a0fd08a087a1c9",
+      "bytes": 11733,
+      "relativePath": "backend/src/utils/publicJobLocationScope.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/publicWorkArrangement.js",
+      "sha256": "ac8db8f84fa23f0d7b155f7fa4d54a7ce7b35da692c40b9424a3b2cee66a716f",
+      "bytes": 1886,
+      "relativePath": "backend/src/utils/publicWorkArrangement.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/guard.mjs",
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/guard.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/manifest.json",
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/manifest.json",
+      "exists": true,
+      "integrity": "Self excluded; exact bytes pinned by root-reviewed command plan and trusted parent before source child execution."
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/proof.mjs",
+      "sha256": "e5f8ccf518734a745baf36442c6c1d3c98348d00906000663e577dd65482039c",
+      "bytes": 20833,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/prime/proof.mjs",
+      "exists": true
+    }
+  ],
+  "mutableSources": [],
+  "substitutions": [],
+  "pinnedHelper": {
+    "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+    "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+    "bytes": 1782,
+    "runtimeModuleOrReadGrant": true
+  },
+  "flowSpec": {
+    "key": "prime",
+    "label": "PrimeNumbers default reader",
+    "entry": "backend/scraper/primenumberstechnologies/script.js",
+    "targetURL": "https://primenumbers.in/careers/",
+    "byteCap": 2000000,
+    "primaryError": "Primenumbers native body bound",
+    "contentType": "text/html",
+    "expectedCases": 5
+  },
+  "applicationAndStaticImportedDataModules": 75,
+  "trustedHarnessModules": 2,
+  "dynamicImportsFollowedOrGranted": [],
+  "deniedPDFImplementations": [
+    "pdfjs-dist",
+    "@napi-rs/canvas"
+  ],
+  "publicFactoryDefaultsPreserved": true,
+  "sourceRuntimeAuthorization": "HOLD pending exact root GREEN plan review and runtime GO"
+}

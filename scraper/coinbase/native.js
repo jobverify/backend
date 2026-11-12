@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 import { decodeHTML } from 'entities'
 
 import { getValidIndiaCityForJob } from '../../src/utils/publicJobLocationScope.js'
@@ -40,7 +41,7 @@ const boundedBody = async (response, signal) => {
     signal?.throwIfAborted()
     return Buffer.concat(chunks).toString('utf8')
   } catch (error) {
-    await reader.cancel().catch(() => {})
+    await disposeResponseReader(reader, { signal, bestEffort: true })
     throw error
   } finally {
     reader.releaseLock()

@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "source": "jasper",
+  "fixture": {
+    "file": "jasper-server-programme-originals-20261111.json.gz",
+    "bytes": 311625,
+    "SHA256": "82af37b04e3aa043abccf0b56c5a9106dd2b167fc5eea22c5ced3a702a24bae9"
+  },
+  "evidenceClass": "Genuine independently acquired original openings only; no genuine closings or coherent current interval.",
+  "currentnessQualified": false,
+  "programmeZeroQualified": false,
+  "originalPacketCount": 10,
+  "genuineClosingPackets": 0,
+  "sourceFreezeBindings": [
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-corporate-20261111am/freeze.json",
+      "SHA256": "16d18261989439a9a9ebbe09e09def6824f083f154c4a59f889f45bd636f459f",
+      "bytes": 4316
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-native-openings-20261111an/freeze.json",
+      "SHA256": "49ee278baaee2c45f418efa8d5bd8ccf3d92122f70d859511337ced8f5754323",
+      "bytes": 6587
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/freeze.json",
+      "SHA256": "c25a23adf9cd4fa7c706ac4307e46424008ca0a065f84e0044e79dff4081e2b0",
+      "bytes": 14683
+    }
+  ],
+  "inputs": [
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-corporate-20261111am/receipt.json",
+      "bytes": 4732,
+      "SHA256": "94e83f0d21b4e899ae69cedbc92abfae32c60632bb82b12ed8c53088dabc35f2"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-corporate-20261111am/001-corporate.body",
+      "bytes": 373448,
+      "SHA256": "ed9d99eef7a1bea04edb8200a0fdcd1795b53d7ed23ceb5a837f5075b51d0222"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-native-openings-20261111an/001-B.receipt.json",
+      "bytes": 9201,
+      "SHA256": "60b84c8b1794caf0dc3d9bbc97f8bc340b1b671b88ab19baaa225dd4c12a26cd"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-native-openings-20261111an/001-B.body",
+      "bytes": 16217,
+      "SHA256": "8304c2a75ce966b843ce2cd17a4def3bf3f3db6eda95be34e8023c5f4019af26"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-native-openings-20261111an/002-A.receipt.json",
+      "bytes": 3347,
+      "SHA256": "ff5368533eb871a9eb2c4c85b35cfbb55a5a4e9609bccc357fa615a63fbfe11e"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-native-openings-20261111an/002-A.body",
+      "bytes": 108160,
+      "SHA256": "47a9ee26da48447afe0757826aa55493c6b3908a5dde95febd66ff3e8d2cbcd1"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/001-O-788b07a9-1d7c-4c07-9dac-0d6b230238fc.receipt.json",
+      "bytes": 9869,
+      "SHA256": "4d2049d5f33d443dbf099be2db5bf1246780ab6bbe4c4404bfcd5ca363092b44"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/001-O-788b07a9-1d7c-4c07-9dac-0d6b230238fc.body",
+      "bytes": 47401,
+      "SHA256": "293af3c7a29afd32437e5d3994a1d2920d9ef789686c5bd9369750b8ab3b58a9"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/002-O-54b7f667-feff-4df3-8ece-238f0c668851.receipt.json",
+      "bytes": 9446,
+      "SHA256": "533402aa3f99de5e6d47a147c04a7a0ae0c105a7d8856c09baf141c07f5563fa"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/002-O-54b7f667-feff-4df3-8ece-238f0c668851.body",
+      "bytes": 50103,
+      "SHA256": "fe45d4282915b53028393bde15a0ff6cc869dd0bc9fa38b111643ac59624c9d1"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/003-O-721ceaea-3c25-481d-979d-861251b1a83a.receipt.json",
+      "bytes": 9446,
+      "SHA256": "0a1a58aed596fdc874141f23bdaa83deaa818cc47f9a513d9459654c7a7e57b1"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/003-O-721ceaea-3c25-481d-979d-861251b1a83a.body",
+      "bytes": 49793,
+      "SHA256": "4e462391e2dc4ee51a2f59c02ad57af67e50448d02fb91d025ec8ee09ccf0c03"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/004-O-630c8ab8-d9a0-4a4c-847c-c9d17161a91e.receipt.json",
+      "bytes": 9448,
+      "SHA256": "2bf65eb0a9168668e5bd33c4ac04ea81b25bd694df13a8fd07c2bbf94aabadfa"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/004-O-630c8ab8-d9a0-4a4c-847c-c9d17161a91e.body",
+      "bytes": 43041,
+      "SHA256": "5521348e021503b2655efefc189c0efa180f42899291d3343e33481004cb89a2"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/005-O-e85a9104-c15a-429c-a7f1-d7f581c402ca.receipt.json",
+      "bytes": 9438,
+      "SHA256": "bbeae1242324d9e1afe8d96aa932d2c98fedc9566a344d99460c889480fa76d7"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/005-O-e85a9104-c15a-429c-a7f1-d7f581c402ca.body",
+      "bytes": 47092,
+      "SHA256": "d7317766676ff4f094de521577c6a94cd22743e9e23b89e4e19e0ab8352ed06a"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/006-O-6c949b3c-bbd9-4dc6-8818-0366f77778bf.receipt.json",
+      "bytes": 9470,
+      "SHA256": "ac809405ac4c7df9d8e54c19028a93d51ecc95db672e741b30525bfeb8798a7a"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/006-O-6c949b3c-bbd9-4dc6-8818-0366f77778bf.body",
+      "bytes": 60975,
+      "SHA256": "71e5a483371d68a1bad90710793d279f737e997441cfff8032292e74618817cf"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/007-O-365bc527-6f65-4c24-aaa2-aab59d06c3c3.receipt.json",
+      "bytes": 9450,
+      "SHA256": "889c1657d45818e8eaab8af53610b2d3d6fa8d51b6cfd7256b6ee3c35bb041d3"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/jasper-current-own-openings-20261111ao/007-O-365bc527-6f65-4c24-aaa2-aab59d06c3c3.body",
+      "bytes": 54837,
+      "SHA256": "00bc19261067cd40b3fd0861231425f92fe766276d5617b836de329e766ff5d1"
+    }
+  ],
+  "packets": [
+    {
+      "index": 0,
+      "channel": "C",
+      "requestedURL": "https://www.jasper.ai/careers",
+      "finalURL": "https://www.jasper.ai/careers",
+      "status": 200,
+      "bodyBytes": 373448,
+      "bodySHA256": "ed9d99eef7a1bea04edb8200a0fdcd1795b53d7ed23ceb5a837f5075b51d0222",
+      "threeClocks": [
+        "2026-11-11T23:17:57.886Z",
+        "2026-11-11T23:17:58.182Z",
+        "2026-11-11T23:17:58.228Z"
+      ]
+    },
+    {
+      "index": 1,
+      "channel": "B",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI",
+      "status": 200,
+      "bodyBytes": 16217,
+      "bodySHA256": "8304c2a75ce966b843ce2cd17a4def3bf3f3db6eda95be34e8023c5f4019af26",
+      "threeClocks": [
+        "2026-11-11T23:25:39.144Z",
+        "2026-11-11T23:25:39.861Z",
+        "2026-11-11T23:25:39.878Z"
+      ]
+    },
+    {
+      "index": 2,
+      "channel": "A",
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/Jasper%20AI",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/Jasper%20AI",
+      "status": 200,
+      "bodyBytes": 108160,
+      "bodySHA256": "47a9ee26da48447afe0757826aa55493c6b3908a5dde95febd66ff3e8d2cbcd1",
+      "threeClocks": [
+        "2026-11-11T23:25:40.886Z",
+        "2026-11-11T23:25:41.398Z",
+        "2026-11-11T23:25:41.416Z"
+      ]
+    },
+    {
+      "index": 3,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/788b07a9-1d7c-4c07-9dac-0d6b230238fc",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/788b07a9-1d7c-4c07-9dac-0d6b230238fc",
+      "status": 200,
+      "bodyBytes": 47401,
+      "bodySHA256": "293af3c7a29afd32437e5d3994a1d2920d9ef789686c5bd9369750b8ab3b58a9",
+      "threeClocks": [
+        "2026-11-11T23:33:16.566Z",
+        "2026-11-11T23:33:17.256Z",
+        "2026-11-11T23:33:17.273Z"
+      ]
+    },
+    {
+      "index": 4,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/54b7f667-feff-4df3-8ece-238f0c668851",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/54b7f667-feff-4df3-8ece-238f0c668851",
+      "status": 200,
+      "bodyBytes": 50103,
+      "bodySHA256": "fe45d4282915b53028393bde15a0ff6cc869dd0bc9fa38b111643ac59624c9d1",
+      "threeClocks": [
+        "2026-11-11T23:33:18.285Z",
+        "2026-11-11T23:33:18.769Z",
+        "2026-11-11T23:33:18.778Z"
+      ]
+    },
+    {
+      "index": 5,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/721ceaea-3c25-481d-979d-861251b1a83a",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/721ceaea-3c25-481d-979d-861251b1a83a",
+      "status": 200,
+      "bodyBytes": 49793,
+      "bodySHA256": "4e462391e2dc4ee51a2f59c02ad57af67e50448d02fb91d025ec8ee09ccf0c03",
+      "threeClocks": [
+        "2026-11-11T23:33:19.787Z",
+        "2026-11-11T23:33:20.217Z",
+        "2026-11-11T23:33:20.222Z"
+      ]
+    },
+    {
+      "index": 6,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/630c8ab8-d9a0-4a4c-847c-c9d17161a91e",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/630c8ab8-d9a0-4a4c-847c-c9d17161a91e",
+      "status": 200,
+      "bodyBytes": 43041,
+      "bodySHA256": "5521348e021503b2655efefc189c0efa180f42899291d3343e33481004cb89a2",
+      "threeClocks": [
+        "2026-11-11T23:33:21.241Z",
+        "2026-11-11T23:33:21.674Z",
+        "2026-11-11T23:33:21.683Z"
+      ]
+    },
+    {
+      "index": 7,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/e85a9104-c15a-429c-a7f1-d7f581c402ca",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/e85a9104-c15a-429c-a7f1-d7f581c402ca",
+      "status": 200,
+      "bodyBytes": 47092,
+      "bodySHA256": "d7317766676ff4f094de521577c6a94cd22743e9e23b89e4e19e0ab8352ed06a",
+      "threeClocks": [
+        "2026-11-11T23:33:22.688Z",
+        "2026-11-11T23:33:23.085Z",
+        "2026-11-11T23:33:23.099Z"
+      ]
+    },
+    {
+      "index": 8,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/6c949b3c-bbd9-4dc6-8818-0366f77778bf",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/6c949b3c-bbd9-4dc6-8818-0366f77778bf",
+      "status": 200,
+      "bodyBytes": 60975,
+      "bodySHA256": "71e5a483371d68a1bad90710793d279f737e997441cfff8032292e74618817cf",
+      "threeClocks": [
+        "2026-11-11T23:33:24.110Z",
+        "2026-11-11T23:33:24.527Z",
+        "2026-11-11T23:33:24.547Z"
+      ]
+    },
+    {
+      "index": 9,
+      "channel": "O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+      "status": 200,
+      "bodyBytes": 54837,
+      "bodySHA256": "00bc19261067cd40b3fd0861231425f92fe766276d5617b836de329e766ff5d1",
+      "threeClocks": [
+        "2026-11-11T23:33:25.553Z",
+        "2026-11-11T23:33:26.015Z",
+        "2026-11-11T23:33:26.023Z"
+      ]
+    }
+  ]
+}

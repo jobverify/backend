@@ -22,7 +22,7 @@ export const createXto10xScraper=(defaults={})=>({async run(options={}){
   const response=await fetchImpl(url,{signal:combined,redirect:'manual',headers:{Accept:json?'application/json':'text/html','User-Agent':'Mozilla/5.0'}})
   const cancelUnopened=()=>{try{void Promise.resolve(response.body?.cancel(combined.reason)).catch(()=>{})}catch{}}
   if(combined.aborted){cancelUnopened();combined.throwIfAborted()}
-  if(response.url!==url||response.status!==200){cancelUnopened();throw gap('Native HTTP failure or final URL changed')}
+  if(response.url!==url||response.status!==200){cancelUnopened();throw Object.assign(gap(response.status!==200?`Native HTTP ${response.status} for ${url}`:`Native final URL changed (HTTP ${response.status}) for ${url}`),{status:response.status,statusCode:response.status,requestUrl:url,finalUrl:response.url})}
   let body
   if(response.body?.getReader){
    const reader=response.body.getReader(),chunks=[];let bytes=0

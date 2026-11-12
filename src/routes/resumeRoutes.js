@@ -1,3 +1,4 @@
+import { requireResumeAccess } from '../middleware/resumeAccess.js';
 import express from 'express';
 import { protect } from '../middleware/authMiddleware.js';
 import { createRateLimiter } from '../utils/rateLimit.js';
@@ -13,7 +14,7 @@ const uploadLimiter = createRateLimiter({ windowMs: 15 * 60_000, limit: 20,
 const parseFile = express.raw({ type: 'application/octet-stream', limit: MAX_RESUME_BYTES, inflate: false });
 
 router.use((_req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
-router.use(protect);
+router.use(protect, requireResumeAccess);
 router.get('/', getResume);
 router.get('/download', downloadResume);
 router.get('/base', baseResume);

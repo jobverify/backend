@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { disposeResponseBody, disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 
 export const HOME = 'https://www.dataiku.com/company/careers'
 export const JOBS = 'https://boards-api.greenhouse.io/v1/boards/dataiku/jobs?content=true'
@@ -91,8 +92,8 @@ export function createDataikuPublicRead({ fetchImpl = globalThis.fetch, signal, 
       if (response.status !== 200 || response.url !== url) throw problem('Native response status or final URL changed', { status: response.status })
       return page
     } catch (error) {
-      await reader?.cancel(error).catch(() => {})
-      if (!reader) await response?.body?.cancel?.(error).catch(() => {})
+      if (reader) await disposeResponseReader(reader, { signal, bestEffort: true, reason: error })
+      else if (response?.body) await disposeResponseBody(response, { signal, bestEffort: true, reason: error })
       signal?.throwIfAborted()
       if (denied.has(host)) throw denied.get(host)
       throw error

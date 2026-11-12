@@ -1,4 +1,6 @@
 import {createHash} from 'node:crypto'
+import {disposeResponseReader} from '../shared/responseBodyDisposal.js'
+import {nativeFailureDiagnostics} from '../shared/nativeFailureDiagnostics.js'
 import {setTimeout as sleep} from 'node:timers/promises'
 import {readNativeDocument,decodeNativeEntities} from '../utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../utils/inventoryEvidence.js'
@@ -97,21 +99,24 @@ export async function runCurrentSlbCareers({provider,fetchImpl=globalThis.fetch,
  check(Number.isFinite(Date.parse(observedAt)),'invalid observation time')
  const minimumIntervalMs=provider.config?.rateLimit?.minimumIntervalMs??1000
  check(Number.isSafeInteger(minimumIntervalMs)&&minimumIntervalMs>=0&&minimumIntervalMs<=10000,'invalid native pacing')
- const denied=new Map(),requests=[],failures=[],held=[],jobs=[];let lastStarted=0,requestCount=0
+ const denied=new Map(),requests=[],failures=[],held=[],jobs=[];let lastStarted=0,requestCount=0,lastReadTransportFailure=false
  async function read(url,format='html',headers={}){
-  signal.throwIfAborted();const origin=new URL(url).origin;if(denied.has(origin))throw denied.get(origin)
+  lastReadTransportFailure=false
+  signal.throwIfAborted();const origin=new URL(url).origin;if(denied.has(origin)){lastReadTransportFailure=true;throw denied.get(origin)}
   const delay=lastStarted+minimumIntervalMs-Date.now();if(delay>0)await sleep(delay,undefined,{signal})
   signal.throwIfAborted();check(requestCount<220,'native source request bound');requestCount++;lastStarted=Date.now()
   let response
   try{response=await fetchImpl(url,{method:'GET',credentials:'omit',redirect:'manual',headers:{Accept:format==='json'?'application/json':format==='script'?'application/javascript':'text/html',...headers},
-   signal:AbortSignal.any([signal,AbortSignal.timeout(20000)])})}catch(error){signal.throwIfAborted();error.nativeTransportFailure=true;throw error}
+   signal:AbortSignal.any([signal,AbortSignal.timeout(20000)])})}catch(error){signal.throwIfAborted();lastReadTransportFailure=true;throw error}
   if(response.status!==200){const error=Object.assign(Error('SLB current native HTTP '+response.status),{status:response.status,abortRetries:true,nativeTransportFailure:true})
-   if([401,403,429,451].includes(response.status))denied.set(origin,error);throw error}
+   lastReadTransportFailure=true;if([401,403,429,451].includes(response.status))denied.set(origin,error);throw error}
   check(response.url===url,'native response authority changed')
   check((format==='json'?/json/i:format==='script'?/javascript/i:/html/i).test(response.headers.get('content-type')||''),'native response type changed')
   const reader=response.body?.getReader(),chunks=[];let size=0;check(reader,'native body unavailable')
-  try{for(;;){const next=await reader.read();signal.throwIfAborted();if(next.done)break;size+=next.value.byteLength;check(size<=4e6,'native response body bound');chunks.push(Buffer.from(next.value))}
-  }catch(error){await reader.cancel().catch(()=>{});if(['AbortError','TimeoutError'].includes(error.name)&&!signal.aborted)error.nativeTransportFailure=true;throw error}finally{reader.releaseLock()}
+  try{for(;;){let next
+   try{next=await reader.read()}catch(error){signal.throwIfAborted();lastReadTransportFailure=['AbortError','TimeoutError'].includes(nativeFailureDiagnostics(error).name);throw error}
+   signal.throwIfAborted();if(next.done)break;size+=next.value.byteLength;check(size<=4e6,'native response body bound');chunks.push(Buffer.from(next.value))}
+  }catch(error){await disposeResponseReader(reader,{signal,bestEffort:true});throw error}finally{reader.releaseLock()}
   const text=Buffer.concat(chunks).toString('utf8');requests.push({url,sha256:sha(text),bytes:size});return format==='json'?JSON.parse(text):text
  }
  async function currentAccount(){const html=await read(SLB_INDEX),client=await read(SLB_CLIENT,'script');return readSlbSearchConfiguration(html,client)}
@@ -148,14 +153,14 @@ export async function runCurrentSlbCareers({provider,fetchImpl=globalThis.fetch,
     nativeHiringOrganization:null,nativeEmployerBinding:employerBinding,
     nativeSourceRecord:{nativeAccount:accountProof,nativeListing:row,nativeVisibleRole:role},
     sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,scrapedAt:observedAt})
-  }catch(error){signal.throwIfAborted();held.push({id:identity.id,title:identity.title,url:identity.url,reason:error.message,nativeListing:row});failures.push({stage:'current-native-role',message:error.message});if(denied.has(new URL(identity.url).origin))break}
+  }catch(error){signal.throwIfAborted();const diagnostic=nativeFailureDiagnostics(error);held.push({id:identity.id,title:identity.title,url:identity.url,reason:diagnostic.message,nativeListing:row});failures.push({stage:'current-native-role',message:diagnostic.message});if(denied.has(new URL(identity.url).origin))break}
  }
  let closing=null,closingTransportUnavailable=false
  try{
   const closingAccount=await currentAccount()
   check(['organizationId','searchHub','source'].every(field=>closingAccount[field]===openingAccount[field]),'current company account changed at closing')
   closing=await inventory(closingAccount)
- }catch(error){signal.throwIfAborted();closingTransportUnavailable=error.nativeTransportFailure===true;failures.push({stage:'current-native-closing-inventory',message:error.message})}
+ }catch(error){signal.throwIfAborted();closingTransportUnavailable=lastReadTransportFailure;failures.push({stage:'current-native-closing-inventory',message:nativeFailureDiagnostics(error).message})}
  const closingById=new Map((closing?.rows||[]).map(row=>[slbListingIdentity(row).id,row])),accepted=[]
  for(const job of jobs){const current=closingById.get(job.nativeCurrentPostingId)
   if(!closing&&closingTransportUnavailable){job.nativeRoleClosingReconciled=false;job.nativeClosingInventoryUnavailable=true;accepted.push(job)

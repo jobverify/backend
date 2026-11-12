@@ -1,3 +1,4 @@
+import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDisposal.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -233,13 +234,13 @@ export const extractIndiaJobsFromGreenhousePayload = (
     })
 }
 
-const exactTransport = async (url, options) => {
+const exactTransport = async (url, options, disposalSignal) => {
   const response = await fetch(url, options)
   const contentType = (response.headers.get('content-type') || '').split(';')[0].trim().toLowerCase()
   const expected = new URL(url).hostname === 'boards-api.greenhouse.io'
     ? contentType === 'application/json' : ['text/html', 'application/xhtml+xml'].includes(contentType)
   if (response.ok && (response.url !== url || !expected)) {
-    await response.body?.cancel().catch(() => {})
+    await disposeResponseBody(response, { signal: disposalSignal, bestEffort: true })
     const error = new Error('GHX response URL or content-type identity changed')
     error.abortRetries = true
     throw error
@@ -261,7 +262,7 @@ const defaultFetchText = async (url, options = {}) => exactResponse(await fetchT
   label: SOURCE,
   timeoutMs: 15000,
   includeResponseMetadata: true,
-  fetchImpl: exactTransport,
+  fetchImpl: (requestUrl, requestOptions) => exactTransport(requestUrl, requestOptions, options.signal),
 }), url, 'html')
 
 const defaultFetchJson = async (url, options = {}) => exactResponse(await fetchJsonWithRetry(url, {
@@ -276,7 +277,7 @@ const defaultFetchJson = async (url, options = {}) => exactResponse(await fetchJ
   label: SOURCE,
   timeoutMs: 15000,
   includeResponseMetadata: true,
-  fetchImpl: exactTransport,
+  fetchImpl: (requestUrl, requestOptions) => exactTransport(requestUrl, requestOptions, options.signal),
 }), url, 'payload')
 
 const requireActiveBoardHandoff = html => {

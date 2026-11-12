@@ -5,7 +5,7 @@ import TailoredResume from '../models/TailoredResume.js';
 import { artifactBytes, readResumeArtifact } from './resumeArtifactService.js';
 import { getCandidateEvidenceSnapshot } from './candidateEvidenceService.js';
 import { publishGeneratedCv } from './cvRevisionService.js';
-import { dispatchTailoredResumes, requireTailoredResumeActions, tailoredResumeActionsConfigured } from './resumeTailoringWorkflow.js';
+import { dispatchTailoredResumes, requireTailoredResumeActions, tailoredResumeActionsConfigured, RESUME_WORKFLOW_STOPPED } from './resumeTailoringWorkflow.js';
 import { tailoringError } from './resumeTailoringContent.js';
 import { remainingBudget } from '../../resume-tailoring/resumeBudget.js';
 import { preparationDurations, preparationTiming } from './resumePreparationTiming.js';
@@ -146,7 +146,13 @@ export async function recoverResumePreparations({ now = new Date(), dispatch = d
   ] };
   const pending = Boolean(await Resume.exists(due));
   if (pending && dispatchPending && (dispatch !== dispatchTailoredResumes || tailoredResumeActionsConfigured())) {
-    try { await dispatch({ reuseRunning: true }); await Resume.updateMany(due, { $set: { 'preparation.dispatchAt': now } }); } catch { /* Keep durable queued work for recovery. */ }
+    try { await dispatch({ reuseRunning: true, recovery: true }); await Resume.updateMany(due, { $set: { 'preparation.dispatchAt': now } }); }
+    catch (error) {
+      if (error.code === RESUME_WORKFLOW_STOPPED) await Resume.updateMany(due, { $set: {
+        'preparation.status': 'failed', 'preparation.phase': 'failed', 'preparation.ready': false, 'preparation.error': error.message,
+      } });
+      // Transient API outages retain durable queued work for later recovery.
+    }
   }
   return { pending, due };
 }

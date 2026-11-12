@@ -1,4 +1,5 @@
-import {getDocument,OPS,VerbosityLevel} from 'pdfjs-dist/legacy/build/pdf.mjs'
+import {loadPdfDisplay} from '../../scraper-support/shared/pdfDisplay.js'
+const {getDocument,OPS,VerbosityLevel}=await loadPdfDisplay()
 import {fileURLToPath} from 'node:url'
 const check=(ok,message)=>{if(!ok)throw Object.assign(Error("nitaragormalonellp"+' native PDF: '+message),{abortRetries:true})}
 export const readNativePdf=async(value,{signal}={})=>{

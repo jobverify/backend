@@ -9,6 +9,7 @@ import { fetchSmartRecruitersDetail } from './smartRecruitersDetail.js'
 import { isGreenhousePublicationProvider, resolveGreenhousePublication } from './greenhousePublication.js'
 import { assertEightfoldDetailIdentity } from './eightfoldDetailIdentity.js'
 import { readEightfoldLocationScope } from './eightfoldLocations.js'
+import { nativeCountryName } from '../shared/nativeJobPosting.js'
 import { identifyPublicAtsBoard } from '../utils/publicAtsIdentity.js'
 import {
   expandTemplate,
@@ -475,6 +476,38 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
   const incompleteReasons = new Set()
   const markIncomplete = reason => { inventoryComplete = false; incompleteReasons.add(reason) }
 
+  // Public ATS wrappers validate the original records before deriving office
+  // labels. Direct catalog API providers must perform that same scope check
+  // here, on their complete raw listing, rather than trusting counts alone.
+  const directApiListingUrl = provider.adapter === 'apiPortal' ? new URL(config.discovery.listingApiUrl) : null
+  // Family detection precedes validation: malformed native URLs and aliases
+  // must not silently fall back to a generic count-only inventory contract.
+  const directGreenhouseScope = provider.adapter === 'apiPortal' && (
+    /^greenhouse(?:-|$)/i.test(provider.atsPlatform || '') || provider.template === 'greenhouse'
+    || ['boards-api.greenhouse.io', 'api.greenhouse.io'].includes(directApiListingUrl.hostname)
+  )
+  const directGreenhouseUrl = directGreenhouseScope ? directApiListingUrl : null
+  const directGreenhouseBoard = directGreenhouseScope ? identifyPublicAtsBoard(config.discovery.listingApiUrl) : null
+  const declaredGreenhouseBoards = [provider.boardToken, provider.templateOptions?.boardToken].filter(value => value != null)
+  if (directGreenhouseScope && (directGreenhouseBoard?.atsPlatform !== 'greenhouse'
+    || directGreenhouseUrl.protocol !== 'https:' || directGreenhouseUrl.username || directGreenhouseUrl.password
+    || directGreenhouseUrl.port || directGreenhouseUrl.hash
+    || !['boards-api.greenhouse.io', 'api.greenhouse.io'].includes(directGreenhouseUrl.hostname)
+    || directGreenhouseUrl.pathname !== `/v1/boards/${encodeURIComponent(directGreenhouseBoard.boardToken)}/jobs`
+    || declaredGreenhouseBoards.some(token => token !== directGreenhouseBoard.boardToken))) {
+    throw new Error('Invalid Greenhouse native board identity')
+  }
+  const validateGreenhouseListingRequest = url => {
+    if (directGreenhouseScope && (
+      String(config.request.method).toUpperCase() !== 'GET' || config.request.body != null
+      || [...url.searchParams].some(([key, value]) => key !== 'content' || value !== 'true')
+      || url.searchParams.getAll('content').length > 1)) {
+      throw new Error('Invalid Greenhouse native listing request')
+    }
+  }
+  if (directGreenhouseScope) validateGreenhouseListingRequest(directGreenhouseUrl)
+  const explicitSmartRecruitersCountry = provider.atsPlatform === 'smartrecruiters' && Boolean(config.mapping.country)
+
   let stagedDeadline = null, stagedDeadlineController, stagedDeadlineReason, stagedDeadlineTimer
   if (stagedTraversal) {
     const budget = provider.scraperTimeoutMs ?? 300000
@@ -499,6 +532,15 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
       config.detail.enabled ? (config.detail.concurrency || 1) : 1,
       async (record) => {
         checkTraversalAbort()
+        // A global SmartRecruiters feed must establish the native country for
+        // every row before filtering; a city name or provider default cannot
+        // turn an unclassified vacancy into an India job or a complete scope.
+        const listingCountry = explicitSmartRecruitersCountry
+          ? nativeCountryName(getMappedValue(record, config.mapping.country)) : null
+        if (explicitSmartRecruitersCountry && !listingCountry) {
+          markIncomplete('native-location-scope-unresolved')
+          return null
+        }
         // Reconcile the full feed above, but only hydrate explicitly selected
         // public records. Draft/private records are not missing job details.
         if (config.recordFilter && !passesResultFilter(record, config.recordFilter)) return null
@@ -552,6 +594,17 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
           }
         }
 
+        if (explicitSmartRecruitersCountry && detailObservation === 'observed') {
+          const detailCountry = nativeCountryName(getMappedValue({ ...record, ...detailPayload }, config.mapping.country))
+          if (!detailCountry) {
+            markIncomplete('native-location-scope-unresolved')
+            return null
+          }
+          if (detailCountry !== listingCountry) {
+            markIncomplete('native-location-country-conflict')
+            return null
+          }
+        }
         const mapped = mapRecord(record, provider, config, detailPayload, detailObservation)
         if (publicAccessRecovery && mapped && detailObservation === 'observed'
           && typeof mapped.jobDescription === 'string' && mapped.jobDescription.length >= 150) {
@@ -601,6 +654,9 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
         url.searchParams.set(key, value)
       })
 
+      // Validate the actual configured/pagination query too; validating only
+      // the base URL cannot certify an unfiltered native board inventory.
+      validateGreenhouseListingRequest(url)
       let listingPayload
       try {
         listingPayload = await fetchPortalJson(url.toString(), {
@@ -635,6 +691,12 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
         throw new Error('API portal inventory validation failed: listing array missing or malformed')
       }
       validateInventory(listingPayload, records, config.inventoryValidation)
+      if (directGreenhouseScope) {
+        const { validatePublicPostingScope } = await import('../utils/publishingGapAts.js')
+        for (const reason of validatePublicPostingScope(records, 'greenhouse', {
+          ...provider, boardToken: directGreenhouseBoard.boardToken,
+        })) markIncomplete(reason)
+      }
       if (provider.atsPlatform === 'lever') {
         const board = identifyPublicAtsBoard(config.discovery.listingApiUrl)
         if (board?.atsPlatform !== 'lever') throw new Error('Invalid Lever native board identity')
@@ -745,16 +807,19 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
       && (reportedTotal == null || reportedTotal === recordsFetched)
     if (!complete) for (const job of jobs) {
       job.sourceListingComplete = false
-      if (publicAccessRecovery) { job.sourceScopeComplete = false; job.lifecycleCleanupAllowed = false }
+      if (publicAccessRecovery || directGreenhouseScope) { job.sourceScopeComplete = false; job.lifecycleCleanupAllowed = false }
     }
     return attachInventoryEvidence(jobs, {
       status: complete ? recordsFetched === 0 ? 'verified-empty' : 'complete-inventory' : 'discovery-only',
       surface: config.discovery.listingApiUrl, firstParty: true, listingComplete: complete,
       pagesFetched, reportedTotal,
+      ...(directGreenhouseScope ? { nativeCountryScopeChecked: true } : {}),
       indiaFacetCount: incompleteReasons.has('native-location-scope-unresolved')
-        || incompleteReasons.has('native-india-location-unmapped') || deniedOrigins.size ? null : indiaCount,
+        || incompleteReasons.has('native-india-location-unmapped')
+        || incompleteReasons.has('native-location-country-conflict') || deniedOrigins.size ? null : indiaCount,
       verifiedAt: new Date().toISOString(),
-      reason: complete ? stagedTraversal ? 'api-portal-complete-opening-and-closing-native-pagination' : 'api-portal-complete-native-pagination'
+      reason: complete ? stagedTraversal ? 'api-portal-complete-opening-and-closing-native-pagination'
+          : directGreenhouseScope ? 'api-portal-complete-native-pagination-and-native-country-scope' : 'api-portal-complete-native-pagination'
         : `api-portal-incomplete-listing-or-role-details:${[...incompleteReasons,
           ...(!state.done || continuation ? ['unconsumed-continuation'] : []),
           ...(reportedTotal != null && reportedTotal !== recordsFetched ? ['upstream-count-mismatch'] : []),

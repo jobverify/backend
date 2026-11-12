@@ -71,5 +71,7 @@ test('runApiPortalScraper keeps only CommerceIQ Greenhouse jobs in India and exc
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

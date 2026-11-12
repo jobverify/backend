@@ -1,3 +1,5 @@
+import { REVIEWED_PHENOM_TITLE_BINDINGS_20261112 } from './reviewedTitleBindings20261112.js'
+
 // Original retained native models and optional JSON-LD carriers establish only
 // these exact role/title pairs. New roles, titles or canonical URLs need their
 // own captured evidence; a source opt-in cannot broaden this list at runtime.
@@ -291,4 +293,4 @@ const bindings = [
 ]
 
 export const reviewedPhenomTitleBindingsForSource = source =>
-  bindings.filter(binding => binding.source === source).map(binding => ({ ...binding }))
+  bindings.concat(REVIEWED_PHENOM_TITLE_BINDINGS_20261112).filter(binding => binding.source === source).map(binding => ({ ...binding }))

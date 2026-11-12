@@ -2,6 +2,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { createPhenomScraper } from '../../scraper-support/phenom/engine.js'
+import { enrichNttSolutionsNativeHandoffs } from './nativeHandoffDetails20261112.js'
 import { reviewedPhenomTitleBindingsForSource } from '../../scraper-support/phenom/reviewedTitleBindings20261108.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -36,7 +37,7 @@ const PHENOM_WIDGET_ENDPOINT_PATTERN =
   /"widgetApiEndpoint":"https:\/\/careers\.nttdata\.com\/widgets"/i
 const SEARCH_RESULTS_PAGE_PATTERN = /"pageName":"search-results"/i
 
-const fetchText = async (url, { signal } = {}) => {
+const fetchText = async (url, { signal, expectedOrigin } = {}) => {
   const timeout = AbortSignal.timeout(20000)
   const requestSignal = signal ? AbortSignal.any([signal, timeout]) : timeout
   requestSignal.throwIfAborted()
@@ -49,6 +50,7 @@ const fetchText = async (url, { signal } = {}) => {
       },
     })
     if (!response.ok) throw new Error('HTTP ' + response.status + ' for ' + url)
+    if (expectedOrigin && new URL(response.url).origin !== expectedOrigin) throw new Error('Unapproved NTT native handoff redirect')
     return await response.text()
   } finally { requestSignal.throwIfAborted() }
 }
@@ -147,6 +149,7 @@ const phenomScraper = createPhenomScraper({
   defaultDetailEnrichmentBudgetMs: 150000,
   nativeConcatenatedStateCountry: true,
   nativeCityCountryLiteral: true,
+  nativeCommaCityLiteral: true,
 })
 
 export const {
@@ -162,12 +165,12 @@ export const createNttDataServicesScraper = () => ({
     const getPage = options.fetchText || fetchText
     const pageCache = new Map()
 
-    const getCachedPage = async (url, { signal: requestSignal = options.signal } = {}) => {
+    const getCachedPage = async (url, { signal: requestSignal = options.signal, expectedOrigin } = {}) => {
       const signal = options.signal && requestSignal && requestSignal !== options.signal
         ? AbortSignal.any([options.signal, requestSignal]) : requestSignal || options.signal
       signal?.throwIfAborted()
       try {
-        if (!pageCache.has(url)) pageCache.set(url, await getPage(url, { signal }))
+        if (!pageCache.has(url)) pageCache.set(url, await getPage(url, { signal, expectedOrigin }))
         return pageCache.get(url)
       } finally { signal?.throwIfAborted() }
     }
@@ -183,7 +186,7 @@ export const createNttDataServicesScraper = () => ({
       fetchText: getCachedPage,
     })
 
-    return jobs
+    return enrichNttSolutionsNativeHandoffs(jobs, { fetchText: getCachedPage, signal: options.signal })
   },
 })
 

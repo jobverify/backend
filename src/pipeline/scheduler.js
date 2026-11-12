@@ -4,7 +4,8 @@ import PipelineRun from '../models/PipelineRun.js';
 import { getScraperSchedule, nextScheduleRun } from './schedule.js';
 import { createPipeline, dispatchNext, failPipeline, pipelineError } from './execution.js';
 import { githubRequest, dispatchGithubStage } from './github.js';
-import { directConfiguration, WORKFLOWS } from './policy.js';
+import { WORKFLOWS } from './policy.js';
+import { savedPipelineConfiguration } from './configuration.js';
 
 export const scraperSchedulerEnabled = (env = process.env) => env.SCRAPER_SCHEDULER_ENABLED === 'true'
   || (env.SCRAPER_SCHEDULER_ENABLED !== 'false' && env.NODE_ENV === 'production');
@@ -41,7 +42,7 @@ export async function tickScraperSchedule({ now = Date.now(), repo = process.env
     if (await PipelineRun.exists({ activeKey: 'database' })) return null;
     const repository = await request(repo, '', { token });
     const ref = repository.default_branch;
-    const configuration = directConfiguration('scraper');
+    const configuration = await savedPipelineConfiguration();
     const [commit] = await Promise.all([
       request(repo, `/commits/${encodeURIComponent(ref)}`, { token }),
       ...configuration.stages.filter(stage => stage.enabled).map(async stage => {

@@ -6,6 +6,7 @@ import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNati
 import {attachInventoryEvidence,readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {verifyGoogleSitesPublisher,nativePortalDocument} from './publisherChain.js'
 import {inspectAssignedLocations} from './assignedLocations.js'
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 
 const ROOT='https://kidvento.keka.com/careers/',ID='79e3ba6e-9a27-4031-8af7-4c7bca97a921',OFFICIAL='https://www.kidvento.com/careers',HOME='https://www.kidvento.com/'
 const BOARD=ROOT+'api/jobs/default/active',EMBED=ROOT+'api/embedjobs/default/active/'+ID,RENDERER=ROOT+'api/embedjobs/js/'+ID,PORTAL=ROOT+'api/organization/default/careerportalinfo'
@@ -92,7 +93,7 @@ export async function runNativeInventory(options={}){
   const contentType=response.headers?.get('content-type')||''
   fail(json?/^application\/json\b/i.test(contentType):renderer?/(?:java|ecma)script/i.test(contentType)||(url===RENDERER&&/^text\/js\b/i.test(contentType)):/^text\/html\b/i.test(contentType),'HTTP content type changed: '+url)
   fail(response.body?.getReader,'streaming native body unavailable');const reader=response.body.getReader(),chunks=[];let bytes=0
-  try{for(;;){const {done,value}=await reader.read();deadline.throwIfAborted();if(done)break;bytes+=value.byteLength;fail(bytes<=4000000,'response budget exceeded');chunks.push(Buffer.from(value))}}catch(error){await reader.cancel().catch(()=>{});throw error}finally{reader.releaseLock()}
+  try{for(;;){const {done,value}=await reader.read();deadline.throwIfAborted();if(done)break;bytes+=value.byteLength;fail(bytes<=4000000,'response budget exceeded');chunks.push(Buffer.from(value))}}catch(error){await disposeResponseReader(reader,{signal,bestEffort:true});throw error}finally{reader.releaseLock()}
   const body=Buffer.concat(chunks).toString('utf8');receipts.push({url,status:response.status,responseUrl:response.url,bytes,sha256:hash(body)})
   if(renderer)scope.observeRenderer(url,body)
   if(Object.hasOwn(baselines,url)&&!json&&!renderer)scope.observe(url,body)

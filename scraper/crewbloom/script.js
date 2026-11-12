@@ -1,3 +1,4 @@
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import path from 'node:path'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -85,13 +86,14 @@ const fetchNativeJson = async (url, options = {}) => {
     signal?.throwIfAborted()
     requestSignal.throwIfAborted()
   }
-  let response
+  let response, primaryFailure = false
   try {
     checkRequest()
     response = await fetch(url, { ...options, redirect: 'follow', signal: requestSignal,
       headers: { Accept: 'application/json', 'User-Agent': 'Mozilla/5.0 (compatible; JobverifyCareerScraper/1.0)', ...options.headers } })
     checkRequest()
     if (response.status !== 200 || response.url !== url) {
+      primaryFailure = true
       throw Object.assign(new Error(`[${SOURCE}] Workable native HTTP status or redirect identity changed: ${url}`), { status: response.status })
     }
     const payload = await response.json()
@@ -99,9 +101,10 @@ const fetchNativeJson = async (url, options = {}) => {
     return payload
   } finally {
     try {
-      if (response?.body && !response.bodyUsed) await response.body.cancel()
+      if (response?.body && !response.bodyUsed) await disposeResponseBody(response, {signal, bestEffort: true})
     } catch {}
-    checkRequest()
+    signal?.throwIfAborted()
+    if (!primaryFailure) requestSignal.throwIfAborted()
   }
 }
 

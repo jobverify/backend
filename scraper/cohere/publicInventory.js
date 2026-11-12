@@ -1,4 +1,6 @@
 import { createHash } from 'node:crypto'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
+import { nativeFailureDiagnostics } from '../../scraper-support/shared/nativeFailureDiagnostics.js'
 import { decodeHTML } from 'entities'
 import { createDeclaredAshbyScraper } from '../../scraper-support/native-sources/declaredAshby/nativeCareers.js'
 import { countryName } from '../../scraper-support/native-sources/jobPostingData.js'
@@ -60,7 +62,7 @@ const publicTransport = options => {
             if (halted || bytes > limits.maxBodyBytes || decodedBytes > limits.maxDecodedBytes) stop('Cohere decoded body budget exhausted')
             chunks.push(item.value)
           }
-        } catch (error) { await reader.cancel().catch(() => {}); throw error } finally { reader.releaseLock() }
+        } catch (error) { await disposeResponseReader(reader, { signal: requestSignal, bestEffort: true }); throw error } finally { reader.releaseLock() }
         const body = Buffer.concat(chunks)
         result = { url: response.url || url, status: response.status, headers: Object.fromEntries(response.headers),
           bodyBase64: body.toString('base64'), requestedAt, completedAt: new Date().toISOString() }
@@ -83,7 +85,7 @@ const publicTransport = options => {
       return result
     } catch (error) {
       signal.throwIfAborted()
-      halted ||= error.message
+      halted ||= nativeFailureDiagnostics(error).message
       throw error
     }
   }

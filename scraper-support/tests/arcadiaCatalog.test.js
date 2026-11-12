@@ -7,16 +7,16 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes Arcadia as an official first-party Rippling apiPortal provider', () => {
+test('getScraperCatalog includes Arcadia as the current first-party Rippling native role collector', () => {
   const catalog = getScraperCatalog()
   const arcadia = catalog.find((provider) => provider.source === 'arcadia')
 
   assert.ok(arcadia)
-  assert.equal(arcadia.adapter, 'apiPortal')
-  assert.equal(arcadia.atsPlatform, 'official-company-careers-rippling-api')
+  assert.equal(arcadia.adapter, 'script')
+  assert.equal(arcadia.atsPlatform, 'rippling-first-party-feed')
   assert.equal(arcadia.companyCareerPage, 'https://www.arcadia.com/careers')
   assert.equal(arcadia.companyDomain, 'arcadia.com')
-  assert.equal(arcadia.config.discovery.listingApiUrl, 'https://www.arcadia.com/api/rippling-jobs')
+  assert.match(arcadia.modulePath, /arcadia[\\/]script\.js$/)
 })
 
 test('buildScrapers and company coverage resolve Arcadia to the arcadia source', () => {
@@ -26,7 +26,7 @@ test('buildScrapers and company coverage resolve Arcadia to the arcadia source',
   assert.equal(typeof arcadia.run, 'function')
   assert.match(arcadia.dryRunFile, /arcadia[\\/]jobs\.json$/)
   assert.equal(arcadia.provider.source, 'arcadia')
-  assert.equal(arcadia.provider.atsPlatform, 'official-company-careers-rippling-api')
+  assert.equal(arcadia.provider.atsPlatform, 'rippling-first-party-feed')
 
   const report = generateCompanyCoverageReport({
     csvText: 'Arcadia,\n',

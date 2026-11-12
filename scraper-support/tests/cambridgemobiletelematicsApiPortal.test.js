@@ -68,5 +68,7 @@ test('runApiPortalScraper filters Cambridge Mobile Telematics Greenhouse jobs to
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

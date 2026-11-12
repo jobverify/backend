@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "source": "hyperscience",
+  "fixture": "hyperscience-server-programme-components-20261111.json.gz",
+  "fixtureBytes": 1953683,
+  "fixtureSHA256": "ac1eedaa4ddaa0719ca19866fe444803062f4476a9204862a84aee5ac6c1d8c6",
+  "decodedJSONBytes": 6559405,
+  "decodedJSONSHA256": "c915f346386cce7e80d0649981ea2ab5476451b08ae9d5bab4876a9b490854ec",
+  "genuineAcquiredClosing": false,
+  "coherentProgrammeInterval": false,
+  "originalHeaderEntriesNeverFabricated": true,
+  "components": [
+    {
+      "kind": "C0",
+      "bodyBytes": 159204,
+      "bodySHA256": "f1c70d6cd4078b90567df24a9ec08113a3b37edbfc24b427c416e459fc59b510",
+      "method": "GET",
+      "requestedURL": "https://www.hyperscience.ai/about-us/careers/",
+      "finalURL": "https://www.hyperscience.ai/about-us/careers/",
+      "requestedAt": "2026-11-11T12:11:25.090Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T12:11:28.292Z",
+      "originalActualHeaderEntriesPresent": false,
+      "phase": "ashby-front-hyperscience-current-20261111a"
+    },
+    {
+      "kind": "C1",
+      "bodyBytes": 82789,
+      "bodySHA256": "60e3654b4fb4628c432cd5e9da0c4f3e2b442bb55cb7c533853f62658773c328",
+      "method": "GET",
+      "requestedURL": "https://www.hyperscience.ai/about-us/careers/open-positions/",
+      "finalURL": "https://www.hyperscience.ai/about-us/careers/open-positions/",
+      "requestedAt": "2026-11-11T12:15:44.704Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T12:15:45.591Z",
+      "originalActualHeaderEntriesPresent": false,
+      "phase": "ashby-shared-additional-three-20261111b"
+    },
+    {
+      "kind": "A",
+      "bodyBytes": 73199,
+      "bodySHA256": "f02c074044a5e4a86fae910b1620c4f7eaba0a521bb06843dc2268755e3ad5b7",
+      "method": "GET",
+      "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/hyperscience",
+      "finalURL": "https://api.ashbyhq.com/posting-api/job-board/hyperscience",
+      "requestedAt": "2026-11-11T12:44:10.706Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T12:44:11.620Z",
+      "originalActualHeaderEntriesPresent": false,
+      "phase": "ashby-front-hyperscience-native-resume-20261111d"
+    },
+    {
+      "kind": "O-b18ed242",
+      "bodyBytes": 52818,
+      "bodySHA256": "9372a9e528cf3adb0ae32ae419cb72e241d0bf0c04665f67077f35a73d4b1779",
+      "method": "GET",
+      "requestedURL": "https://jobs.ashbyhq.com/hyperscience/b18ed242-b78a-45a6-add4-fb528637c0d9",
+      "finalURL": "https://jobs.ashbyhq.com/hyperscience/b18ed242-b78a-45a6-add4-fb528637c0d9",
+      "requestedAt": "2026-11-11T12:44:08.264Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T12:44:09.422Z",
+      "originalActualHeaderEntriesPresent": false,
+      "phase": "ashby-front-hyperscience-native-resume-20261111d"
+    },
+    {
+      "kind": "O-0ea8e9f0",
+      "bodyBytes": 59906,
+      "bodySHA256": "7055b6bfcf1fe2521992b8a39522651c78b84f301161e2bd0c88782ebc75366a",
+      "method": "GET",
+      "requestedURL": "https://jobs.ashbyhq.com/hyperscience/0ea8e9f0-51a3-4be5-a7a6-f4b4fc5b3efd",
+      "finalURL": "https://jobs.ashbyhq.com/hyperscience/0ea8e9f0-51a3-4be5-a7a6-f4b4fc5b3efd",
+      "requestedAt": "2026-11-11T12:44:12.340Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T12:44:12.833Z",
+      "originalActualHeaderEntriesPresent": false,
+      "phase": "ashby-front-hyperscience-native-resume-20261111d"
+    },
+    {
+      "kind": "O-52bce84c",
+      "bodyBytes": 65045,
+      "bodySHA256": "f06fc170d0dc64e818d4741c84b3e43e10469ca19ec6f511f06ec85c22fd6c36",
+      "method": "GET",
+      "requestedURL": "https://jobs.ashbyhq.com/hyperscience/52bce84c-651a-469a-b13e-457a60c8c69c",
+      "finalURL": "https://jobs.ashbyhq.com/hyperscience/52bce84c-651a-469a-b13e-457a60c8c69c",
+      "requestedAt": "2026-11-11T14:51:14.104Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T14:51:14.600Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "ashby-four-missing-own-20261111l"
+    },
+    {
+      "kind": "O-617d4ed8",
+      "bodyBytes": 59052,
+      "bodySHA256": "4496dadd545a193ade3413415fbd0ddc0b8cf2bb5f78fc4ca624c654a3f07628",
+      "method": "GET",
+      "requestedURL": "https://jobs.ashbyhq.com/hyperscience/617d4ed8-c3c5-4b9f-ad1e-4a4b2802ee54",
+      "finalURL": "https://jobs.ashbyhq.com/hyperscience/617d4ed8-c3c5-4b9f-ad1e-4a4b2802ee54",
+      "requestedAt": "2026-11-11T14:51:14.609Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T14:51:15.108Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "ashby-four-missing-own-20261111l"
+    },
+    {
+      "kind": "H",
+      "bodyBytes": 12438,
+      "bodySHA256": "3be2357c35bc571453ca54aa9513f913fced0eb646148509ae4ab1c90956d698",
+      "method": "GET",
+      "requestedURL": "https://jobs.ashbyhq.com/Hyperscience/form/talent-community",
+      "finalURL": "https://jobs.ashbyhq.com/Hyperscience/form/talent-community",
+      "requestedAt": "2026-11-11T22:10:47.459Z",
+      "responseAt": "2026-11-11T22:10:48.063Z",
+      "completedAt": "2026-11-11T22:10:48.070Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "hyperscience-advertised-form-20261111a"
+    },
+    {
+      "kind": "M",
+      "bodyBytes": 1562,
+      "bodySHA256": "e27f80f4953bf6a35d2a373ada777efc6f0c3024196a0dcb2a067ce64e74886f",
+      "method": "GET",
+      "requestedURL": "https://cdn.ashbyprd.com/frontend_non_user/9dcb0028decb504fedc3b17ccfaef95eb86f321e/.vite/manifest.json",
+      "finalURL": "https://cdn.ashbyprd.com/frontend_non_user/9dcb0028decb504fedc3b17ccfaef95eb86f321e/.vite/manifest.json",
+      "requestedAt": "2026-11-11T22:38:56.391Z",
+      "responseAt": "2026-11-11T22:38:56.687Z",
+      "completedAt": "2026-11-11T22:38:56.694Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "hyperscience-current-form-client-20261111a"
+    },
+    {
+      "kind": "S",
+      "bodyBytes": 4274367,
+      "bodySHA256": "28d6655fbfcdbbf151c3cdf041d75ea08c37a8a6256cd2a62f79ea98eb79e62c",
+      "method": "GET",
+      "requestedURL": "https://cdn.ashbyprd.com/frontend_non_user/9dcb0028decb504fedc3b17ccfaef95eb86f321e/assets/index-5_5MhUPU.js",
+      "finalURL": "https://cdn.ashbyprd.com/frontend_non_user/9dcb0028decb504fedc3b17ccfaef95eb86f321e/assets/index-5_5MhUPU.js",
+      "requestedAt": "2026-11-11T22:38:56.707Z",
+      "responseAt": "2026-11-11T22:38:56.783Z",
+      "completedAt": "2026-11-11T22:38:57.012Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "hyperscience-current-form-client-20261111a"
+    },
+    {
+      "kind": "Q-first",
+      "bodyBytes": 8405,
+      "bodySHA256": "5f3d2a629d35c05d6f08e9bcd0f2450aa38e634a7436fffbc1f49e5b8e47320f",
+      "method": "POST",
+      "requestedURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "finalURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "requestedAt": "2026-11-11T22:58:01.412Z",
+      "responseAt": "2026-11-11T22:58:01.999Z",
+      "completedAt": "2026-11-11T22:58:02.002Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "hyperscience-public-form-query-20261111a"
+    },
+    {
+      "kind": "Q-repeat",
+      "bodyBytes": 8405,
+      "bodySHA256": "6a6910c09941f358c17a17aa36a04b51163d55746cc0561219e58aff21652fdb",
+      "method": "POST",
+      "requestedURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "finalURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "requestedAt": "2026-11-11T23:22:04.946Z",
+      "responseAt": "2026-11-11T23:22:05.602Z",
+      "completedAt": "2026-11-11T23:22:05.607Z",
+      "originalActualHeaderEntriesPresent": true,
+      "phase": "hyperscience-public-form-repeat-diagnostic-20261111a"
+    }
+  ],
+  "inputBindings": [
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-front-hyperscience-current-20261111a/002-hyperscience-corporate.body",
+      "bytes": 159204,
+      "sha256": "f1c70d6cd4078b90567df24a9ec08113a3b37edbfc24b427c416e459fc59b510"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-front-hyperscience-current-20261111a/receipts.json",
+      "bytes": 10793,
+      "sha256": "6c423a63372fc4198220225e374bddb0f1361c3e5ca4d4d2858e94a0731ce547"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-shared-additional-three-20261111b/002-hyperscience.body",
+      "bytes": 82789,
+      "sha256": "60e3654b4fb4628c432cd5e9da0c4f3e2b442bb55cb7c533853f62658773c328"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-shared-additional-three-20261111b/receipts.json",
+      "bytes": 12378,
+      "sha256": "dc6cce3e63531b7c2c328da1a7a7233a889c375b33d4c382a035e9cb7b634189"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-front-hyperscience-native-resume-20261111d/003-hyperscience-native-api.body",
+      "bytes": 73199,
+      "sha256": "f02c074044a5e4a86fae910b1620c4f7eaba0a521bb06843dc2268755e3ad5b7"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-front-hyperscience-native-resume-20261111d/receipts.json",
+      "bytes": 473069,
+      "sha256": "253e8baa04c63acf931a5a4a1a35d0d3386af87de33d36a1a379d0bd43fe270f"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-front-hyperscience-native-resume-20261111d/001-hyperscience-own-role.body",
+      "bytes": 52818,
+      "sha256": "9372a9e528cf3adb0ae32ae419cb72e241d0bf0c04665f67077f35a73d4b1779"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-front-hyperscience-native-resume-20261111d/005-hyperscience-own-role.body",
+      "bytes": 59906,
+      "sha256": "7055b6bfcf1fe2521992b8a39522651c78b84f301161e2bd0c88782ebc75366a"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-four-missing-own-20261111l/003-hyperscience-52bce84c-651a-469a-b13e-457a60c8c69c.body",
+      "bytes": 65045,
+      "sha256": "f06fc170d0dc64e818d4741c84b3e43e10469ca19ec6f511f06ec85c22fd6c36"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-four-missing-own-20261111l/receipts.json",
+      "bytes": 70682,
+      "sha256": "c49ddda6e72fb5274cbac146755dd3dcc1b4095e28bb8ac6a23495e22f4f3527"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/runtime-discovery/ashby-four-missing-own-20261111l/004-hyperscience-617d4ed8-c3c5-4b9f-ad1e-4a4b2802ee54.body",
+      "bytes": 59052,
+      "sha256": "4496dadd545a193ade3413415fbd0ddc0b8cf2bb5f78fc4ca624c654a3f07628"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-advertised-form-20261111a/001-hyperscience-advertised-form.body",
+      "bytes": 12438,
+      "sha256": "3be2357c35bc571453ca54aa9513f913fced0eb646148509ae4ab1c90956d698"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-advertised-form-20261111a/receipt.json",
+      "bytes": 9383,
+      "sha256": "d1b2ca66d2a45749eea42a4626cbc664e2b9c58861605c6bb46c68aa0df18868"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-current-form-client-20261111a/001-manifest.body",
+      "bytes": 1562,
+      "sha256": "e27f80f4953bf6a35d2a373ada777efc6f0c3024196a0dcb2a067ce64e74886f"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-current-form-client-20261111a/receipts.json",
+      "bytes": 9140,
+      "sha256": "aefdaeab4eeaecafef0d8d9613c1302f93f58fcacc31129199f9a8187d6cddd3"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-current-form-client-20261111a/002-entry.body",
+      "bytes": 4274367,
+      "sha256": "28d6655fbfcdbbf151c3cdf041d75ea08c37a8a6256cd2a62f79ea98eb79e62c"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-query-20261111a/001-public-form-query.body",
+      "bytes": 8405,
+      "sha256": "5f3d2a629d35c05d6f08e9bcd0f2450aa38e634a7436fffbc1f49e5b8e47320f"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-query-20261111a/receipt.json",
+      "bytes": 4765,
+      "sha256": "a44d7b8ec39c0b5375790e840d935ac953ab6c036474c73fcbb0eda1f9cc58e0"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-repeat-diagnostic-20261111a/001-repeat-public-form-query.body",
+      "bytes": 8405,
+      "sha256": "6a6910c09941f358c17a17aa36a04b51163d55746cc0561219e58aff21652fdb"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-repeat-diagnostic-20261111a/receipt.json",
+      "bytes": 3783,
+      "sha256": "44f301ab9b57b8f44f4f446bf5e82f4fe87ba079e4849caa1705373c8b8adbb3"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/hyperscience-public-form-query-request.json",
+      "bytes": 1983,
+      "sha256": "26301b880ec3355a303c0431fa61fdc78c804d4d3964711771061c44876e51a8"
+    }
+  ],
+  "authorization": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/hyperscience-pure-task2-authorization.json",
+  "limits": "All original component captures retain their independent phases/clocks/raw metadata. No row is relabelled as a genuine closing or current coherent programme. Controlled tests must mark manufactured representations explicitly."
+}

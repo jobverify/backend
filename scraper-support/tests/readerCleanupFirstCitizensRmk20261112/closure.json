@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "entries": [
+    "scraper/firstcitizensindia/script.js",
+    "scraper/hershey.workday/script.js",
+    "scraper/hubbell.workday/script.js"
+  ],
+  "modules": [
+    {
+      "path": "scraper-support/shared/nativeJobPosting.js",
+      "sha256": "dccdbbadb4923b387819e084e3383dcf8301c603211dc3e2d81ce82312e701b6",
+      "bytes": 11054
+    },
+    {
+      "path": "scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782
+    },
+    {
+      "path": "scraper-support/shared/rmkNativePair.js",
+      "sha256": "0fabb2d6492695410a101ac1913d0392643feb3b47b44fe79d7e6b3aab657dc2",
+      "bytes": 19417
+    },
+    {
+      "path": "scraper-support/shared/rmkNativePairHtml.js",
+      "sha256": "15c2b95e087bf4a87ed9cf3923f381f56fe96cc35337760a9f221d0962d2bf23",
+      "bytes": 3393
+    },
+    {
+      "path": "scraper-support/shared/successFactorsRmk.js",
+      "sha256": "a4be9263c6bbe460849ad6a4132cb11c580e0403b8cb0f9bfe24ca18921e7616",
+      "bytes": 16674
+    },
+    {
+      "path": "scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506
+    },
+    {
+      "path": "scraper-support/utils/fetch.js",
+      "sha256": "e8ea64054e99dcd3e63cb4c37bffb8700f65531b0d1b54fd3e3b0501b8b89eca",
+      "bytes": 9045
+    },
+    {
+      "path": "scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046
+    },
+    {
+      "path": "scraper-support/utils/retry.js",
+      "sha256": "409c28ffe8d53dcdfda30f0d4a588ecbb139ebf84debc041b1c330cd6e009b8e",
+      "bytes": 7520
+    },
+    {
+      "path": "scraper-support/utils/retryPressure.js",
+      "sha256": "61ccc6f52fcaed0318bcfbab2aae02d9363b78b60c06a96b621a766e83f6144a",
+      "bytes": 3453
+    },
+    {
+      "path": "scraper-support/utils/sourceObservationEvidence.js",
+      "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+      "bytes": 2823
+    },
+    {
+      "path": "scraper/abmknowledgeware/publicIntake.js",
+      "sha256": "70cfdb39325aea811655fb57a8f1abb9b073fb4f9f6105433b1fdac433e72e8f",
+      "bytes": 11746
+    },
+    {
+      "path": "scraper/firstcitizensindia/currentNative20261111.js",
+      "sha256": "00f932c499391cd88561e4ac4426c7083a99275893f43d8d8e4715003888b51a",
+      "bytes": 14707
+    },
+    {
+      "path": "scraper/firstcitizensindia/script.js",
+      "sha256": "1b8d911b146757c59cfc00d78b6b29094fa9af7427aca0602f96565e26fb7475",
+      "bytes": 4854
+    },
+    {
+      "path": "scraper/hershey.workday/script.js",
+      "sha256": "950bc6248bcaa4d2185251d533e7418ee8013ffcd7d3e2d5e8b90019c73a1c40",
+      "bytes": 1322
+    },
+    {
+      "path": "scraper/hubbell.workday/script.js",
+      "sha256": "5e209b04868cdb53a1a38791f240defe16b9aceee9e410807a51b56b0f4f461e",
+      "bytes": 1320
+    },
+    {
+      "path": "src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529
+    }
+  ],
+  "additional_reads": [
+    {
+      "path": "package.json",
+      "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+      "bytes": 6914
+    }
+  ],
+  "absent_allowed_read_paths": [],
+  "source_builtins": [
+    "node:async_hooks",
+    "node:crypto",
+    "node:path",
+    "node:url"
+  ],
+  "expected_cases": 28
+}

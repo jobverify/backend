@@ -22,6 +22,8 @@ import {
   updateUserRole,
   updateUserAccess,
   updateUserTelegramAccess,
+  updateUserResumeAccess,
+  updateUserApplicationsAccess,
   getJobsTable,
   purgeAllJobs,
   updateJobStatus,
@@ -104,6 +106,19 @@ router.put(
   mongoIdParamValidation("id", "user ID"),
   validateRequest,
   updateUserTelegramAccess,
+  updateUserResumeAccess,
+);
+router.put(
+  "/users/:id/resume-access",
+  mongoIdParamValidation("id", "user ID"),
+  validateRequest,
+  updateUserResumeAccess,
+);
+router.put(
+  "/users/:id/applications-access",
+  mongoIdParamValidation("id", "user ID"),
+  validateRequest,
+  updateUserApplicationsAccess,
 );
 router.put(
   "/users/:id/access",

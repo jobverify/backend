@@ -1,3 +1,4 @@
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import { activeScripts, decodeNativeEntities, extractActiveDescription, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
@@ -174,7 +175,7 @@ const readRole = (html, profile, checkedAt) => {
 const defaultPage = async (url, { signal, stage } = {}) => {
   const response = await fetch(url, { signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(20000)]) : AbortSignal.timeout(20000) })
   if (response.status !== 200 || response.url !== url) {
-    await response.body?.cancel()
+    await disposeResponseBody(response, {signal, bestEffort: true})
     return { status: response.status, finalUrl: response.url, html: '', stage }
   }
   const html = await response.text()

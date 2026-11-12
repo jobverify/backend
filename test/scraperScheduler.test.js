@@ -5,6 +5,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import { fileURLToPath } from 'node:url';
 import ScraperSchedule from '../src/models/ScraperSchedule.js';
 import PipelineRun from '../src/models/PipelineRun.js';
+import PipelineConfiguration from '../src/models/PipelineConfiguration.js';
 import { getScraperSchedule, updateScraperSchedule, nextScheduleRun } from '../src/pipeline/schedule.js';
 import { tickScraperSchedule, scraperSchedulerEnabled } from '../src/pipeline/scheduler.js';
 import { createPipeline, failPipeline, claimStage } from '../src/pipeline/execution.js';
@@ -114,4 +115,32 @@ test('database schedule saves, dispatches once, retries busy runs and survives r
   assert.equal(await tickScraperSchedule({ now: staleNow, repo: 'owner/jobs', token: 'test', request: staleRequest, dispatch }), null);
   assert.equal(dispatches, 5);
   assert.equal((await getScraperSchedule()).time, '12:00');
+});
+
+test('scheduled pipelines snapshot saved stage order and skip disabled rewrite', { timeout: 300000 }, async t => {
+  const mongo = await MongoMemoryServer.create({ binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
+  await mongoose.connect(mongo.getUri());
+  t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
+  const now = Date.parse('2026-11-12T03:00:00Z');
+  await getScraperSchedule({ now: now - 60000 });
+  const stages = [{ key: 'scraper', enabled: true }, { key: 'classification', enabled: true }, { key: 'rewrite', enabled: false }];
+  await PipelineConfiguration.create({ _id: 'global', stages, scraperConcurrency: 5 });
+  const checked = [], dispatched = [];
+  const run = await tickScraperSchedule({ now, repo: 'owner/jobs', token: 'test',
+    request: async (_repo, endpoint) => {
+      checked.push(endpoint);
+      if (!endpoint) return { default_branch: 'main' };
+      if (endpoint.startsWith('/commits/')) return { sha: 'a'.repeat(40) };
+      assert.doesNotMatch(endpoint, /rewrite-descriptions/);
+      return { state: 'active' };
+    }, dispatch: async (_run, stage) => dispatched.push(stage.key),
+  });
+  const saved = await PipelineRun.findById(run._id).lean();
+  assert.deepEqual(saved.stages.map(({ key, enabled }) => ({ key, enabled })), stages);
+  assert.equal(saved.stages[2].status, 'disabled');
+  assert.equal(saved.scraperConcurrency, 5);
+  assert.deepEqual(dispatched, ['scraper']);
+  assert.ok(checked.some(endpoint => endpoint.includes('classify-jobs')));
+  await PipelineConfiguration.updateOne({ _id: 'global' }, { $set: { stages: directConfiguration('scraper').stages } });
+  assert.deepEqual((await PipelineRun.findById(run._id).lean()).stages, saved.stages);
 });

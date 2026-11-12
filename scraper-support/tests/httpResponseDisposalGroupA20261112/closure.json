@@ -1,0 +1,1326 @@
+{
+  "schema_version": 1,
+  "prepared_at_utc": "2026-11-12T00:54:12.797939+00:00",
+  "backend": "C:\\Users\\mohv\\release\\backend",
+  "entries": [
+    "scraper-support/shared/paradoxPublicInventory.js",
+    "scraper/aavasfinanciers.workday/native.js",
+    "scraper/allcargologistics/nativeInventory.js",
+    "scraper/aplazo/nativeCollector.js",
+    "scraper/botminds/currentPublicApi.js",
+    "scraper/bluestock/native.js",
+    "scraper/buyhatke/script.js",
+    "scraper/cloudambassadors/native.js",
+    "scraper/continualengine/native.js",
+    "scraper/crewbloom/script.js",
+    "scraper/couchbase/script.js",
+    "scraper/credresolve/script.js"
+  ],
+  "modules": [
+    {
+      "path": "node_modules/acorn/dist/acorn.mjs",
+      "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+      "bytes": 234658
+    },
+    {
+      "path": "node_modules/entities/dist/decode-codepoint.js",
+      "sha256": "c5c52b66256cc5a84b84a516ed78cc76256ec99c47344041f11d3e67010c4a64",
+      "bytes": 2409
+    },
+    {
+      "path": "node_modules/entities/dist/decode.js",
+      "sha256": "84447c68870d330d2d9f72fc6dd34fceeba9e2061339da0c24f5a645edf4ca88",
+      "bytes": 44274
+    },
+    {
+      "path": "node_modules/entities/dist/encode.js",
+      "sha256": "3e4fada680dd848e235df9835c766845172e8731b02cfbfea396448ec4f306a4",
+      "bytes": 12340
+    },
+    {
+      "path": "node_modules/entities/dist/escape.js",
+      "sha256": "c9321bcfd5431fe2f81038614d1d84636328456e38be1df57e6bf3e2e24edac5",
+      "bytes": 5670
+    },
+    {
+      "path": "node_modules/entities/dist/generated/decode-data-html.js",
+      "sha256": "f26a918fce4ad7e365d8715559291e40dd16be38f50bc6b71b0a64eed2ff32b2",
+      "bytes": 26305
+    },
+    {
+      "path": "node_modules/entities/dist/generated/encode-html.js",
+      "sha256": "8b76a4028ff2a691a67c02405af473be5028db93da2cb94a9343039d69609d30",
+      "bytes": 10042
+    },
+    {
+      "path": "node_modules/entities/dist/index.js",
+      "sha256": "efacf1df956b3d7156a17653cd241f3328f9a6fe1a4b61f098efc1bed2fa9a0e",
+      "bytes": 3552
+    },
+    {
+      "path": "node_modules/entities/dist/internal/decode-data-format.js",
+      "sha256": "e2c3e8fb026292e55b124165680665593000c077af4c1c80f39a4b7451f8f2a8",
+      "bytes": 6523
+    },
+    {
+      "path": "scraper/aavasfinanciers.workday/native.js",
+      "sha256": "1e4a6b6ac58974a1d83ac942e67cce4a06d479e5fefdbe1791b9dd12d66f382c",
+      "bytes": 17631
+    },
+    {
+      "path": "scraper/allcargologistics/nativeInventory.js",
+      "sha256": "7b88fbb2491cfa1535d429cc371db8fc16f65476b64f06951e7b1baece1c2c13",
+      "bytes": 13326
+    },
+    {
+      "path": "scraper/aplazo/nativeCollector.js",
+      "sha256": "88805a670ad3ffc55efcd3caa00953857a39b0819607d6339c1684427d251cbf",
+      "bytes": 18040
+    },
+    {
+      "path": "scraper/bluestock/native.js",
+      "sha256": "3bb27a0b4e09f25723eb8d18aa80109c0feba97b06faefcbc63c688ef7fb7ee4",
+      "bytes": 9142
+    },
+    {
+      "path": "scraper/botminds/currentPublicApi.js",
+      "sha256": "482084b17d4182b1358805943adac270484919a26d98eefb3ad14b26017fdfc3",
+      "bytes": 8414
+    },
+    {
+      "path": "scraper/buyhatke/native.js",
+      "sha256": "aaa53b8b37e782d4d36c81f5a595b7f795c19d36706906f7c94495d2ee94e130",
+      "bytes": 3878
+    },
+    {
+      "path": "scraper/buyhatke/script.js",
+      "sha256": "3c013446afc8fd5204ddba55c3002a1075afabb0d7893bec7398ae29595098ef",
+      "bytes": 9309
+    },
+    {
+      "path": "scraper/cloudambassadors/native.js",
+      "sha256": "3f201bfcf34105d6f8a8f1ecfb4e3fb13834807c482793ddf486293c8ea2b7b1",
+      "bytes": 24787
+    },
+    {
+      "path": "scraper/continualengine/native.js",
+      "sha256": "1052098f8004c98f6b848af87e49a2b3daf4fa2c7c1bf3d576274120ef57bde5",
+      "bytes": 8223
+    },
+    {
+      "path": "scraper/couchbase/currentInventory.js",
+      "sha256": "1de18d572a9a5b8ad94073b8dd52885cbdd3328e5b75b561e3369e0f521e7ba8",
+      "bytes": 8420
+    },
+    {
+      "path": "scraper/couchbase/script.js",
+      "sha256": "5f866429fd7a8331869b21451587482cd663b10c7c670f7e4e10816b163efbee",
+      "bytes": 17540
+    },
+    {
+      "path": "scraper/credresolve/nativeFields.js",
+      "sha256": "cf654a8282ace98d01f65587ea1f9895393edb34f9c6e52ee5be01a48d823c7c",
+      "bytes": 1841
+    },
+    {
+      "path": "scraper/credresolve/script.js",
+      "sha256": "4ea92ff6a42d6af636cab87c955a87fa0407a28ca2daacf0fb44d14875e4fd87",
+      "bytes": 12632
+    },
+    {
+      "path": "scraper/crewbloom/script.js",
+      "sha256": "bfe47278724f198dc3181c154c19aefa8ea7f604e478954c3cc0c08063324a9f",
+      "bytes": 6735
+    },
+    {
+      "path": "scraper/darwinbox/script.js",
+      "sha256": "96dff489a9607a8888dc063f9871e0b7659491ecf153d0805bad0c58274fcd72",
+      "bytes": 26480
+    },
+    {
+      "path": "scraper-support/apiPortal/eightfoldDetailIdentity.js",
+      "sha256": "1a9d332e9f24c28bf87e224854388b2e45c5345ed29582418d42c4736c385673",
+      "bytes": 2125
+    },
+    {
+      "path": "scraper-support/apiPortal/eightfoldLocations.js",
+      "sha256": "e974184b99b0a1def12c662765132f0a029d6156be17fc6e2337c155106675b2",
+      "bytes": 8984
+    },
+    {
+      "path": "scraper-support/apiPortal/engine.js",
+      "sha256": "6557863d837a2c99e66c2125e3531ec58e1f00eff1656f4b2bd467281dc73e99",
+      "bytes": 36385
+    },
+    {
+      "path": "scraper-support/apiPortal/greenhousePublication.js",
+      "sha256": "839f6064bc1a457df47fa45f9850ed9f8d22bcef77df180458334ad80145d1e0",
+      "bytes": 3472
+    },
+    {
+      "path": "scraper-support/apiPortal/pagination.js",
+      "sha256": "cb55574a68ce3a8e1594b9ab7a82780e214848f9bcdd74513e743868439d9ab3",
+      "bytes": 2639
+    },
+    {
+      "path": "scraper-support/apiPortal/providerConfig.js",
+      "sha256": "c7efa571f1b955aa83b6ac396b034d9f4995e3373f3b740781f46dfc4a2a14b4",
+      "bytes": 4183
+    },
+    {
+      "path": "scraper-support/apiPortal/smartRecruitersDetail.js",
+      "sha256": "82c8dc6317faae401313a74de1919d1b725081f850da5e82943a81902fb5ea53",
+      "bytes": 3250
+    },
+    {
+      "path": "scraper-support/providers/apiPortalTemplates.js",
+      "sha256": "f0b471bc81e26080a22c4adcfee2276fb585f61234582d2bffe880eb597503fd",
+      "bytes": 10355
+    },
+    {
+      "path": "scraper-support/shared/ashbyPairNative20261027.js",
+      "sha256": "9d591aeb072156a69523ba3937c03e660247b1307a51badfeb0798dc2e58fe3d",
+      "bytes": 30268
+    },
+    {
+      "path": "scraper-support/shared/nativeJobPosting.js",
+      "sha256": "dccdbbadb4923b387819e084e3383dcf8301c603211dc3e2d81ce82312e701b6",
+      "bytes": 11054
+    },
+    {
+      "path": "scraper-support/shared/paradoxPublicInventory.js",
+      "sha256": "66b3c56a25793e09d74f2ecdfcfc72250c9e6b0e62730d0206eafdf277da9c1b",
+      "bytes": 18855
+    },
+    {
+      "path": "scraper-support/shared/rmkNativePairHtml.js",
+      "sha256": "15c2b95e087bf4a87ed9cf3923f381f56fe96cc35337760a9f221d0962d2bf23",
+      "bytes": 3393
+    },
+    {
+      "path": "scraper-support/supportPaths.js",
+      "sha256": "5f44b6f8037dd8aac7e50876f8c9d56c277a6d3fc135240cbd7de148f780d588",
+      "bytes": 566
+    },
+    {
+      "path": "scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506
+    },
+    {
+      "path": "scraper-support/utils/ashbyApi.js",
+      "sha256": "373028c2b919dc35ab0a2c2373079851071fe046a81520628c2cc057618ac338",
+      "bytes": 5663
+    },
+    {
+      "path": "scraper-support/utils/ashbyExperience.js",
+      "sha256": "6038b6590d98f270b3ba4d615110f8e6a15fa806e4e6aa8eef17c0e7c8e01c98",
+      "bytes": 294
+    },
+    {
+      "path": "scraper-support/utils/ashbyScopeEvidence.js",
+      "sha256": "01af1796352d2be740ed1004c1335df20e9f2056b4bac3ef18fe4253c45feb1e",
+      "bytes": 8782
+    },
+    {
+      "path": "scraper-support/utils/cities.js",
+      "sha256": "0a36387d20290a29e3e41f3346a1273bfd6427517c5378e3c348867341bb330c",
+      "bytes": 3078
+    },
+    {
+      "path": "scraper-support/utils/cityNormalizer.js",
+      "sha256": "78e3b31ac4899c9da2a534b0a8848a1c447873bfcb911618eaccd737fdd087e6",
+      "bytes": 1383
+    },
+    {
+      "path": "scraper-support/utils/fetch.js",
+      "sha256": "e8ea64054e99dcd3e63cb4c37bffb8700f65531b0d1b54fd3e3b0501b8b89eca",
+      "bytes": 9045
+    },
+    {
+      "path": "scraper-support/utils/greenhouseLocations.js",
+      "sha256": "e94ad83a2fc558a1d2d8e2a6786cb9f7223c3563840734905dd47bdbb2fdfe99",
+      "bytes": 4955
+    },
+    {
+      "path": "scraper-support/utils/greenhouseOfficeCountry.js",
+      "sha256": "db6aad28154c1b39495460fb79b09d18d7a479ead24e5bf5a460b33649232ddf",
+      "bytes": 8128
+    },
+    {
+      "path": "scraper-support/utils/greenhouseProspects.js",
+      "sha256": "a72e29718bd83fbf01706cb84d9cf159196293c9b8318af67ef10aa6146403be",
+      "bytes": 2899
+    },
+    {
+      "path": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "sha256": "a3649c2d70546ca1649dffe33f13e7c0488b582c156ccfcc9172c4d0c4caa708",
+      "bytes": 5799
+    },
+    {
+      "path": "scraper-support/utils/greenhouseWorksiteCountry.js",
+      "sha256": "63e8d8e90455db2f36d58e65918c74d14060d48a66c116ac85d4dc178941fa0b",
+      "bytes": 4574
+    },
+    {
+      "path": "scraper-support/utils/indiaLocationFilter.js",
+      "sha256": "6af1df7f2c6a506ff615dcba7cb229a37505c1369bdca065c470ec8aa1daa92c",
+      "bytes": 372
+    },
+    {
+      "path": "scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046
+    },
+    {
+      "path": "scraper-support/utils/leverDescription.js",
+      "sha256": "59a906bfe66bb86e60b76acc4ebe97e88d8eb74f2d8ba1e7166a2391a7a89e69",
+      "bytes": 933
+    },
+    {
+      "path": "scraper-support/utils/leverLocations.js",
+      "sha256": "de581de082438790d05b955f93e7399dc15eeadf1de005722f1c27337bb2faf7",
+      "bytes": 1027
+    },
+    {
+      "path": "scraper-support/utils/loadConfig.js",
+      "sha256": "b092c2b1ebe4b511908ff949f40e473818dc32e4dc1921c5f552303361b0a828",
+      "bytes": 810
+    },
+    {
+      "path": "scraper-support/utils/publicAtsIdentity.js",
+      "sha256": "cb43b2dccf58a8f8a9c35085716472e8777cacc61043c70a4d2a10dfd61ecdfd",
+      "bytes": 3335
+    },
+    {
+      "path": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "sha256": "56970ed88bb423b8f899cdd9fc2d69208ee4e202ee8b7067ea7e12ac8e18bd60",
+      "bytes": 21325
+    },
+    {
+      "path": "scraper-support/utils/publishingGapAts.js",
+      "sha256": "58aa7e19ea18e0f16ab7fd3ba21c325edb37a2b95ed492a5b3dcc4ece53d31f8",
+      "bytes": 23819
+    },
+    {
+      "path": "scraper-support/utils/retry.js",
+      "sha256": "409c28ffe8d53dcdfda30f0d4a588ecbb139ebf84debc041b1c330cd6e009b8e",
+      "bytes": 7520
+    },
+    {
+      "path": "scraper-support/utils/retryPressure.js",
+      "sha256": "61ccc6f52fcaed0318bcfbab2aae02d9363b78b60c06a96b621a766e83f6144a",
+      "bytes": 3453
+    },
+    {
+      "path": "scraper-support/utils/sourceObservationEvidence.js",
+      "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+      "bytes": 2823
+    },
+    {
+      "path": "scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032
+    },
+    {
+      "path": "scraper-support/utils/workableEmployerInventory.js",
+      "sha256": "b66e1f06e894a96d0af73bc7c42c98fcc0fcca7493d0dbe5c99ba1ae7da6792b",
+      "bytes": 16307
+    },
+    {
+      "path": "scraper-support/utils/workablePublicApi.js",
+      "sha256": "2e66fe61232c53f3ec2e613ddd1593fc2e1992c625ed1751b553976d130a182b",
+      "bytes": 13679
+    },
+    {
+      "path": "src/constants/jobFilterTaxonomy.js",
+      "sha256": "fdfc41dc676b22787a4c82c8b217d110b084c921f1575e66dd044506f2d8c07e",
+      "bytes": 12248
+    },
+    {
+      "path": "src/utils/jobClassificationVersion.js",
+      "sha256": "0be95099ac901472b2d7fcb193047c91588d9f8181c5394a28c5a25b995897f1",
+      "bytes": 74
+    },
+    {
+      "path": "src/utils/jobFilterSignals.js",
+      "sha256": "93018791517b3504bffa952f2dedae74d4dc30ff6de348c31d8c4e5023443853",
+      "bytes": 97589
+    },
+    {
+      "path": "src/utils/jobLifecycle.js",
+      "sha256": "b4c707068c2ff5c4ce079992896ac505eb69e0246009ae752384fdb58ac1a55a",
+      "bytes": 2262
+    },
+    {
+      "path": "src/utils/jobListingEvidence.js",
+      "sha256": "e65717ae3d8160c1d18542925367180ac26fb4dec535be5b51714c9fec35bee0",
+      "bytes": 602
+    },
+    {
+      "path": "src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529
+    },
+    {
+      "path": "src/utils/mainExperienceRequirement.js",
+      "sha256": "1aa3ad167abc1315e57b097550897d18276bb190fe6bdb017f0d10e2c82d3360",
+      "bytes": 3906
+    },
+    {
+      "path": "src/utils/publicJobLocationScope.js",
+      "sha256": "f74dfee4d8147a48ff250283eae4689da2ee8fd3c36c4ce590a0fd08a087a1c9",
+      "bytes": 11733
+    },
+    {
+      "path": "src/utils/publicWorkArrangement.js",
+      "sha256": "ac8db8f84fa23f0d7b155f7fa4d54a7ce7b35da692c40b9424a3b2cee66a716f",
+      "bytes": 1886
+    },
+    {
+      "path": "scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782
+    }
+  ],
+  "additional_reads": [
+    {
+      "path": "package.json",
+      "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+      "bytes": 6914
+    },
+    {
+      "path": "node_modules/acorn/package.json",
+      "sha256": "04d6fecaafb5e3d20a38fc3b64fed84bb3830a7759a8c00400ebcb87331fec00",
+      "bytes": 1067
+    },
+    {
+      "path": "node_modules/entities/package.json",
+      "sha256": "91021df30616d21086a8b43877198c33f83fcbb8f8b74bdf5127f1fabac5e0eb",
+      "bytes": 2579
+    },
+    {
+      "path": "scraper-support/scraper.config.json",
+      "sha256": "042aa867a751e2ffdbe1fb0781032779501133dd175813a3dcaf59d12621f9e2",
+      "bytes": 171
+    },
+    {
+      "path": "scraper/crewbloom/config.json",
+      "sha256": "58131adcafb2aa63613cad82f30613380309d77125e8ec8ab40055180b904c04",
+      "bytes": 312
+    },
+    {
+      "path": "scraper/checkoutcom/htmlNamedEntities.json",
+      "sha256": "525f9707034c6b02ecdd468a780e61735c65ad39353cc28e6f59901219a9b348",
+      "bytes": 42741
+    },
+    {
+      "path": "scraper/vanta/worksiteStateCountryEvidence.json",
+      "sha256": "d817c0b2ed64c3c7a916e93d8bbaec37286501009dd7e42876c6360e63c47dad",
+      "bytes": 894
+    }
+  ],
+  "absent_allowed_read_paths": [
+    "scraper/darwinbox/config.json"
+  ],
+  "edges": [
+    {
+      "from": "scraper/credresolve/script.js",
+      "specifier": "./nativeFields.js",
+      "to": "scraper/credresolve/nativeFields.js"
+    },
+    {
+      "from": "scraper/credresolve/script.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/credresolve/script.js",
+      "specifier": "../../scraper-support/shared/nativeJobPosting.js",
+      "to": "scraper-support/shared/nativeJobPosting.js"
+    },
+    {
+      "from": "scraper-support/shared/nativeJobPosting.js",
+      "specifier": "./rmkNativePairHtml.js",
+      "to": "scraper-support/shared/rmkNativePairHtml.js"
+    },
+    {
+      "from": "scraper/credresolve/nativeFields.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/visibleNativeHtml.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/activeNativeHtml.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../src/utils/publicJobLocationScope.js",
+      "to": "src/utils/publicJobLocationScope.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/fetch.js",
+      "to": "scraper-support/utils/fetch.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/greenhouseSourceEvidence.js",
+      "to": "scraper-support/utils/greenhouseSourceEvidence.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/publishingGapAts.js",
+      "to": "scraper-support/utils/publishingGapAts.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "./currentInventory.js",
+      "to": "scraper/couchbase/currentInventory.js"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/cityNormalizer.js",
+      "to": "scraper-support/utils/cityNormalizer.js"
+    },
+    {
+      "from": "scraper-support/utils/cityNormalizer.js",
+      "specifier": "./cities.js",
+      "to": "scraper-support/utils/cities.js"
+    },
+    {
+      "from": "scraper/couchbase/currentInventory.js",
+      "specifier": "../../scraper-support/utils/publishingGapAts.js",
+      "to": "scraper-support/utils/publishingGapAts.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "../apiPortal/engine.js",
+      "to": "scraper-support/apiPortal/engine.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "../providers/apiPortalTemplates.js",
+      "to": "scraper-support/providers/apiPortalTemplates.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./ashbyApi.js",
+      "to": "scraper-support/utils/ashbyApi.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./fetch.js",
+      "to": "scraper-support/utils/fetch.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./indiaLocationFilter.js",
+      "to": "scraper-support/utils/indiaLocationFilter.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "../../src/utils/publicJobLocationScope.js",
+      "to": "src/utils/publicJobLocationScope.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./leverLocations.js",
+      "to": "scraper-support/utils/leverLocations.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./greenhouseWorksiteCountry.js",
+      "to": "scraper-support/utils/greenhouseWorksiteCountry.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./greenhouseOfficeCountry.js",
+      "to": "scraper-support/utils/greenhouseOfficeCountry.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./greenhouseProspects.js",
+      "to": "scraper-support/utils/greenhouseProspects.js"
+    },
+    {
+      "from": "scraper-support/utils/publishingGapAts.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseProspects.js",
+      "specifier": "./publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseOfficeCountry.js",
+      "specifier": "./publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseOfficeCountry.js",
+      "specifier": "./greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseOfficeCountry.js",
+      "specifier": "./greenhouseProspects.js",
+      "to": "scraper-support/utils/greenhouseProspects.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseLocations.js",
+      "specifier": "./indiaLocationFilter.js",
+      "to": "scraper-support/utils/indiaLocationFilter.js"
+    },
+    {
+      "from": "scraper-support/utils/indiaLocationFilter.js",
+      "specifier": "../../src/utils/publicJobLocationScope.js",
+      "to": "src/utils/publicJobLocationScope.js"
+    },
+    {
+      "from": "src/utils/publicJobLocationScope.js",
+      "specifier": "../../scraper-support/utils/cityNormalizer.js",
+      "to": "scraper-support/utils/cityNormalizer.js"
+    },
+    {
+      "from": "src/utils/publicJobLocationScope.js",
+      "specifier": "./jobListingEvidence.js",
+      "to": "src/utils/jobListingEvidence.js"
+    },
+    {
+      "from": "src/utils/publicJobLocationScope.js",
+      "specifier": "./jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "src/utils/publicJobLocationScope.js",
+      "specifier": "../../scraper-support/utils/cities.js",
+      "to": "scraper-support/utils/cities.js"
+    },
+    {
+      "from": "src/utils/publicJobLocationScope.js",
+      "specifier": "./jobLifecycle.js",
+      "to": "src/utils/jobLifecycle.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseWorksiteCountry.js",
+      "specifier": "./greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper-support/utils/fetch.js",
+      "specifier": "./retry.js",
+      "to": "scraper-support/utils/retry.js"
+    },
+    {
+      "from": "scraper-support/utils/fetch.js",
+      "specifier": "./retryPressure.js",
+      "to": "scraper-support/utils/retryPressure.js"
+    },
+    {
+      "from": "scraper-support/utils/retry.js",
+      "specifier": "./retryPressure.js",
+      "to": "scraper-support/utils/retryPressure.js"
+    },
+    {
+      "from": "scraper-support/utils/retry.js",
+      "specifier": "./retryPressure.js",
+      "to": "scraper-support/utils/retryPressure.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyApi.js",
+      "specifier": "./fetch.js",
+      "to": "scraper-support/utils/fetch.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyApi.js",
+      "specifier": "./indiaLocationFilter.js",
+      "to": "scraper-support/utils/indiaLocationFilter.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyApi.js",
+      "specifier": "./inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyApi.js",
+      "specifier": "./publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyApi.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./pagination.js",
+      "to": "scraper-support/apiPortal/pagination.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "../utils/retryPressure.js",
+      "to": "scraper-support/utils/retryPressure.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "../utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "../utils/indiaLocationFilter.js",
+      "to": "scraper-support/utils/indiaLocationFilter.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./smartRecruitersDetail.js",
+      "to": "scraper-support/apiPortal/smartRecruitersDetail.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./greenhousePublication.js",
+      "to": "scraper-support/apiPortal/greenhousePublication.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./eightfoldDetailIdentity.js",
+      "to": "scraper-support/apiPortal/eightfoldDetailIdentity.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./eightfoldLocations.js",
+      "to": "scraper-support/apiPortal/eightfoldLocations.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "../utils/publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./providerConfig.js",
+      "to": "scraper-support/apiPortal/providerConfig.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/providerConfig.js",
+      "specifier": "../utils/leverDescription.js",
+      "to": "scraper-support/utils/leverDescription.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/providerConfig.js",
+      "specifier": "../utils/greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/providerConfig.js",
+      "specifier": "../utils/leverLocations.js",
+      "to": "scraper-support/utils/leverLocations.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/providerConfig.js",
+      "specifier": "./eightfoldLocations.js",
+      "to": "scraper-support/apiPortal/eightfoldLocations.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/eightfoldLocations.js",
+      "specifier": "../utils/cities.js",
+      "to": "scraper-support/utils/cities.js"
+    },
+    {
+      "from": "scraper-support/utils/leverDescription.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/eightfoldDetailIdentity.js",
+      "specifier": "./eightfoldLocations.js",
+      "to": "scraper-support/apiPortal/eightfoldLocations.js"
+    },
+    {
+      "from": "scraper-support/apiPortal/smartRecruitersDetail.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "../apiPortal/engine.js",
+      "to": "scraper-support/apiPortal/engine.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "../providers/apiPortalTemplates.js",
+      "to": "scraper-support/providers/apiPortalTemplates.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./indiaLocationFilter.js",
+      "to": "scraper-support/utils/indiaLocationFilter.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./publishingGapAts.js",
+      "to": "scraper-support/utils/publishingGapAts.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./greenhouseOfficeCountry.js",
+      "to": "scraper-support/utils/greenhouseOfficeCountry.js"
+    },
+    {
+      "from": "scraper-support/utils/greenhouseSourceEvidence.js",
+      "specifier": "./greenhouseProspects.js",
+      "to": "scraper-support/utils/greenhouseProspects.js"
+    },
+    {
+      "from": "scraper/crewbloom/script.js",
+      "specifier": "../../scraper-support/utils/workableEmployerInventory.js",
+      "to": "scraper-support/utils/workableEmployerInventory.js"
+    },
+    {
+      "from": "scraper-support/utils/workableEmployerInventory.js",
+      "specifier": "./workablePublicApi.js",
+      "to": "scraper-support/utils/workablePublicApi.js"
+    },
+    {
+      "from": "scraper-support/utils/workableEmployerInventory.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/workableEmployerInventory.js",
+      "specifier": "./visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/workableEmployerInventory.js",
+      "specifier": "./inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/workablePublicApi.js",
+      "specifier": "./inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/workablePublicApi.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/workablePublicApi.js",
+      "specifier": "./fetch.js",
+      "to": "scraper-support/utils/fetch.js"
+    },
+    {
+      "from": "scraper/continualengine/native.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper/continualengine/native.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/continualengine/native.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/continualengine/native.js",
+      "specifier": "../../scraper-support/utils/sourceObservationEvidence.js",
+      "to": "scraper-support/utils/sourceObservationEvidence.js"
+    },
+    {
+      "from": "scraper/cloudambassadors/native.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper/cloudambassadors/native.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/cloudambassadors/native.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/cloudambassadors/native.js",
+      "specifier": "../../scraper-support/utils/sourceObservationEvidence.js",
+      "to": "scraper-support/utils/sourceObservationEvidence.js"
+    },
+    {
+      "from": "scraper/cloudambassadors/native.js",
+      "specifier": "acorn",
+      "to": "node_modules/acorn/dist/acorn.mjs"
+    },
+    {
+      "from": "scraper/cloudambassadors/native.js",
+      "specifier": "../../scraper-support/shared/rmkNativePairHtml.js",
+      "to": "scraper-support/shared/rmkNativePairHtml.js"
+    },
+    {
+      "from": "scraper/buyhatke/script.js",
+      "specifier": "./native.js",
+      "to": "scraper/buyhatke/native.js"
+    },
+    {
+      "from": "scraper/buyhatke/script.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/buyhatke/native.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper/buyhatke/native.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/bluestock/native.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper/bluestock/native.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/bluestock/native.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/bluestock/native.js",
+      "specifier": "../../scraper-support/utils/sourceObservationEvidence.js",
+      "to": "scraper-support/utils/sourceObservationEvidence.js"
+    },
+    {
+      "from": "scraper/botminds/currentPublicApi.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/botminds/currentPublicApi.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "entities",
+      "to": "node_modules/entities/dist/index.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "../../scraper-support/utils/visibleNativeHtml.js",
+      "to": "scraper-support/utils/visibleNativeHtml.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "../../scraper-support/utils/publishingGapAts.js",
+      "to": "scraper-support/utils/publishingGapAts.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "../../scraper-support/utils/publicAtsRuntimeInventory.js",
+      "to": "scraper-support/utils/publicAtsRuntimeInventory.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/aplazo/nativeCollector.js",
+      "specifier": "../../scraper-support/utils/sourceObservationEvidence.js",
+      "to": "scraper-support/utils/sourceObservationEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./publishingGapAts.js",
+      "to": "scraper-support/utils/publishingGapAts.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./publicAtsIdentity.js",
+      "to": "scraper-support/utils/publicAtsIdentity.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./fetch.js",
+      "to": "scraper-support/utils/fetch.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./greenhouseLocations.js",
+      "to": "scraper-support/utils/greenhouseLocations.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./ashbyScopeEvidence.js",
+      "to": "scraper-support/utils/ashbyScopeEvidence.js"
+    },
+    {
+      "from": "scraper-support/utils/publicAtsRuntimeInventory.js",
+      "specifier": "./greenhouseOfficeCountry.js",
+      "to": "scraper-support/utils/greenhouseOfficeCountry.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyScopeEvidence.js",
+      "specifier": "./activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyScopeEvidence.js",
+      "specifier": "../shared/ashbyPairNative20261027.js",
+      "to": "scraper-support/shared/ashbyPairNative20261027.js"
+    },
+    {
+      "from": "scraper-support/shared/ashbyPairNative20261027.js",
+      "specifier": "../utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/shared/ashbyPairNative20261027.js",
+      "specifier": "../utils/ashbyExperience.js",
+      "to": "scraper-support/utils/ashbyExperience.js"
+    },
+    {
+      "from": "scraper-support/utils/ashbyExperience.js",
+      "specifier": "../../src/utils/jobFilterSignals.js",
+      "to": "src/utils/jobFilterSignals.js"
+    },
+    {
+      "from": "src/utils/jobFilterSignals.js",
+      "specifier": "./jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "src/utils/jobFilterSignals.js",
+      "specifier": "./publicWorkArrangement.js",
+      "to": "src/utils/publicWorkArrangement.js"
+    },
+    {
+      "from": "src/utils/jobFilterSignals.js",
+      "specifier": "./mainExperienceRequirement.js",
+      "to": "src/utils/mainExperienceRequirement.js"
+    },
+    {
+      "from": "src/utils/jobFilterSignals.js",
+      "specifier": "./jobClassificationVersion.js",
+      "to": "src/utils/jobClassificationVersion.js"
+    },
+    {
+      "from": "src/utils/jobFilterSignals.js",
+      "specifier": "../constants/jobFilterTaxonomy.js",
+      "to": "src/constants/jobFilterTaxonomy.js"
+    },
+    {
+      "from": "node_modules/entities/dist/index.js",
+      "specifier": "./decode.js",
+      "to": "node_modules/entities/dist/decode.js"
+    },
+    {
+      "from": "node_modules/entities/dist/index.js",
+      "specifier": "./encode.js",
+      "to": "node_modules/entities/dist/encode.js"
+    },
+    {
+      "from": "node_modules/entities/dist/index.js",
+      "specifier": "./escape.js",
+      "to": "node_modules/entities/dist/escape.js"
+    },
+    {
+      "from": "node_modules/entities/dist/index.js",
+      "specifier": "./decode.js",
+      "to": "node_modules/entities/dist/decode.js"
+    },
+    {
+      "from": "node_modules/entities/dist/index.js",
+      "specifier": "./encode.js",
+      "to": "node_modules/entities/dist/encode.js"
+    },
+    {
+      "from": "node_modules/entities/dist/index.js",
+      "specifier": "./escape.js",
+      "to": "node_modules/entities/dist/escape.js"
+    },
+    {
+      "from": "node_modules/entities/dist/encode.js",
+      "specifier": "./escape.js",
+      "to": "node_modules/entities/dist/escape.js"
+    },
+    {
+      "from": "node_modules/entities/dist/encode.js",
+      "specifier": "./generated/encode-html.js",
+      "to": "node_modules/entities/dist/generated/encode-html.js"
+    },
+    {
+      "from": "node_modules/entities/dist/decode.js",
+      "specifier": "./decode-codepoint.js",
+      "to": "node_modules/entities/dist/decode-codepoint.js"
+    },
+    {
+      "from": "node_modules/entities/dist/decode.js",
+      "specifier": "./generated/decode-data-html.js",
+      "to": "node_modules/entities/dist/generated/decode-data-html.js"
+    },
+    {
+      "from": "node_modules/entities/dist/decode.js",
+      "specifier": "./internal/decode-data-format.js",
+      "to": "node_modules/entities/dist/internal/decode-data-format.js"
+    },
+    {
+      "from": "node_modules/entities/dist/decode.js",
+      "specifier": "./decode-codepoint.js",
+      "to": "node_modules/entities/dist/decode-codepoint.js"
+    },
+    {
+      "from": "scraper/allcargologistics/nativeInventory.js",
+      "specifier": "../darwinbox/script.js",
+      "to": "scraper/darwinbox/script.js"
+    },
+    {
+      "from": "scraper/allcargologistics/nativeInventory.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/allcargologistics/nativeInventory.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/darwinbox/script.js",
+      "specifier": "../../scraper-support/utils/fetch.js",
+      "to": "scraper-support/utils/fetch.js"
+    },
+    {
+      "from": "scraper/darwinbox/script.js",
+      "specifier": "../../scraper-support/utils/loadConfig.js",
+      "to": "scraper-support/utils/loadConfig.js"
+    },
+    {
+      "from": "scraper/darwinbox/script.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper/darwinbox/script.js",
+      "specifier": "../../src/utils/jobSourceContent.js",
+      "to": "src/utils/jobSourceContent.js"
+    },
+    {
+      "from": "scraper-support/utils/loadConfig.js",
+      "specifier": "../supportPaths.js",
+      "to": "scraper-support/supportPaths.js"
+    },
+    {
+      "from": "scraper/aavasfinanciers.workday/native.js",
+      "specifier": "../../scraper-support/utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper/aavasfinanciers.workday/native.js",
+      "specifier": "../../scraper-support/utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/shared/paradoxPublicInventory.js",
+      "specifier": "acorn",
+      "to": "node_modules/acorn/dist/acorn.mjs"
+    },
+    {
+      "from": "scraper-support/shared/paradoxPublicInventory.js",
+      "specifier": "../utils/activeNativeHtml.js",
+      "to": "scraper-support/utils/activeNativeHtml.js"
+    },
+    {
+      "from": "scraper-support/shared/paradoxPublicInventory.js",
+      "specifier": "./nativeJobPosting.js",
+      "to": "scraper-support/shared/nativeJobPosting.js"
+    },
+    {
+      "from": "scraper-support/shared/paradoxPublicInventory.js",
+      "specifier": "../utils/inventoryEvidence.js",
+      "to": "scraper-support/utils/inventoryEvidence.js"
+    },
+    {
+      "from": "scraper-support/shared/paradoxPublicInventory.js",
+      "specifier": "../utils/sourceObservationEvidence.js",
+      "to": "scraper-support/utils/sourceObservationEvidence.js"
+    }
+  ],
+  "dynamic_imports": [
+    {
+      "from": "scraper/credresolve/script.js",
+      "specifier": "../../scraper-support/utils/saveToDB.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper/couchbase/script.js",
+      "specifier": "../../scraper-support/utils/saveToDB.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper-support/utils/ashbyApi.js",
+      "specifier": "./publishingGapAts.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "./slbCurrentCareers.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper-support/apiPortal/engine.js",
+      "specifier": "../utils/publishingGapAts.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper/crewbloom/script.js",
+      "specifier": "../../scraper-support/utils/saveToDB.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper/buyhatke/script.js",
+      "specifier": "../../scraper-support/utils/saveToDB.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    },
+    {
+      "from": "scraper/darwinbox/script.js",
+      "specifier": "../../scraper-support/utils/saveToDB.js",
+      "policy": "denied unless already in static module closure; CLI saveToDB branches must remain never called"
+    }
+  ],
+  "prospective_module": {
+    "path": "scraper-support/shared/responseBodyDisposal.js",
+    "status": "Root-approved GREEN dependency",
+    "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+    "bytes": 1782
+  },
+  "substitutions": {
+    "database": "none; deny saveToDB/mongoose/mongodb imports and require never called",
+    "browser": "none; deny browser imports and require never called",
+    "environment": "No application environment module substitution; child NODE_OPTIONS cleared and HTTP_DISPOSAL_BACKEND set; harness asserts DOMMatrix undefined"
+  },
+  "scope": "Preparation only; no module import, source or test execution, network or backend writes",
+  "source_integration": {
+    "source_proposal_review_sha256": "dd59f2eeedeedff537fb694ae9774e78dab309dc146cdc072072bbe63b35787e",
+    "approved_patch_sha256": "74dffa2c23d9a5918a7253e330196d8a2330f2058be83156a0786e66e5b5e9d6",
+    "changed_paths": [
+      "scraper-support/shared/paradoxPublicInventory.js",
+      "scraper/aavasfinanciers.workday/native.js",
+      "scraper/allcargologistics/nativeInventory.js",
+      "scraper/aplazo/nativeCollector.js",
+      "scraper/bluestock/native.js",
+      "scraper/botminds/currentPublicApi.js",
+      "scraper/buyhatke/script.js",
+      "scraper/cloudambassadors/native.js",
+      "scraper/continualengine/native.js",
+      "scraper/couchbase/script.js",
+      "scraper/credresolve/script.js",
+      "scraper/crewbloom/script.js"
+    ],
+    "all_other_pins_unchanged": true
+  }
+}

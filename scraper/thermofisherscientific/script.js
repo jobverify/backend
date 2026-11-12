@@ -16,6 +16,9 @@ const scraper = createPhenomScraper({
   listingPredicate: (listing) => listing?.country === 'India',
   scraperDir: currentDir,
   nativeBoundModelTitlePreference: true,
+  // Captured primary/standardized country and both typed native/schema offices agree.
+  nativeReviewedMultiCountryDerivedConflicts: [{ jobId: 'R-01369441', derivedCountry: 'Sierra Leone',
+    officeCountries: ['India', 'Philippines'] }],
   nativeReviewedTitleBindings: reviewedPhenomTitleBindingsForSource('thermofisherscientific'),
   nativeLocalizedCountryNames: [{ locale: 'ja', region: 'IN' }, { locale: 'de', region: 'IN' },
     { locale: 'zh', region: 'IN' }, { locale: 'hr', region: 'IN' }, { locale: 'pl', region: 'IN' },

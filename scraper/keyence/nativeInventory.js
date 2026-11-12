@@ -1,3 +1,4 @@
+import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDisposal.js'
 import { createHash } from 'node:crypto'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { selectReviewedCandidateClient } from '../darwinbox/reviewedCandidateClient.js'
@@ -51,7 +52,7 @@ export async function runReviewedDarwinboxInventory(spec, options = {}) {
     fail(response.url === url, 'HTTP response URL changed: ' + url)
     const receipt = { url, method: init.method || 'GET', status: response.status, responseUrl: response.url }
     receipts.push(receipt)
-    if (cancel) { await response.body?.cancel(); signal?.throwIfAborted(); receipt.bodyConsumed = false; return { response } }
+    if (cancel) { await disposeResponseBody(response, { signal }); signal?.throwIfAborted(); receipt.bodyConsumed = false; return { response } }
     const body = await response.text(); deadline.throwIfAborted()
     fail(Buffer.byteLength(body) <= 4000000, 'response budget exceeded')
     Object.assign(receipt, { bytes: Buffer.byteLength(body), sha256: hash(body) })

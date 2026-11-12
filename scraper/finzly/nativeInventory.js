@@ -3,6 +3,7 @@ import { readNativeDocument, decodeNativeEntities, extractActiveDescription } fr
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { getValidIndiaCityForJob } from '../../src/utils/publicJobLocationScope.js'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 
 export const HOMEPAGE_URL = 'https://finzly.com/'
 export const CAREERS_URL = HOMEPAGE_URL + 'careers/'
@@ -139,9 +140,9 @@ const scopedLocation = (row, raw, native, id, reasons, office) => {
   if (cities.some(city => !city)) { reasons.add(`native-india-city-scope-unresolved:${id}`); return null }
   return { city: cities.length === 1 ? cities[0] : null, locations: names.map(city => city + ', India'), remote: names[0] === 'Remote' }
 }
-const defaultFetchPage = async (url, init) => {
+const defaultFetchPage = async (url, init, callerSignal) => {
   const response = await fetch(url, { ...init, redirect: 'error' }), reader = response.body?.getReader(), chunks = []
-  let length = 0
+  let length = 0, readComplete = false
   if (reader) try {
     while (true) {
       const part = await reader.read()
@@ -150,7 +151,11 @@ const defaultFetchPage = async (url, init) => {
       requireIdentity(length <= 4 * 1024 * 1024, 'native response exceeds size limit')
       chunks.push(Buffer.from(part.value))
     }
-  } finally { await reader.cancel().catch(() => {}) }
+    readComplete = true
+  } finally {
+    try { await disposeResponseReader(reader, { signal: callerSignal, bestEffort: !readComplete }) }
+    finally { reader.releaseLock() }
+  }
   return { status: response.status, url: response.url, body: Buffer.concat(chunks).toString('utf8'), contentType: response.headers.get('content-type'),
     wpTotal: response.headers.get('x-wp-total'), wpTotalPages: response.headers.get('x-wp-totalpages') }
 }
@@ -172,7 +177,7 @@ export const createFinzlyNativeInventory = (defaults = {}) => ({
     const responseAt = async (url, type) => {
       signal?.throwIfAborted()
       const response = await fetchPage(url, { method: 'GET', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(25000)]) : AbortSignal.timeout(25000),
-        headers: { Accept: 'text/html,application/json,application/javascript,*/*' } })
+        headers: { Accept: 'text/html,application/json,application/javascript,*/*' } }, ...(fetchPage === defaultFetchPage ? [signal] : []))
       signal?.throwIfAborted(); requests++
       requireIdentity(response?.url === url, 'native response redirected')
       if (response.status !== 200) throw Error(`Finzly public native HTTP ${response.status}`)

@@ -1,3 +1,4 @@
+import {disposeResponseBody,disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -111,26 +112,27 @@ const createBlockedAccessError = (message, cause) => Object.assign(
 )
 
 const fetchTextWithCapturedHttpBody = async (url, {signal} = {}, canonicalBoard = false) => {
+  const requestSignal = signal ? AbortSignal.any([signal,createManualFetchSignal()]) : createManualFetchSignal()
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
     redirect: 'manual',
-    signal: signal ? AbortSignal.any([signal,createManualFetchSignal()]) : createManualFetchSignal(),
+    signal: requestSignal,
   })
   if([301,302,307,308].includes(response.status)&&url===SMARTRECRUITERS_BOARD_URL&&!canonicalBoard){
     let location
     try{location=new URL(response.headers.get('location'),url).href}catch{}
     if(location==='https://careers.smartrecruiters.com/NECSWS'){
-      await response.body?.cancel()
+      try{await disposeResponseBody(response,{signal:requestSignal})}catch(error){signal?.throwIfAborted();throw error}
       return fetchTextWithCapturedHttpBody(location,{signal},true)
     }
   }
   const reader=response.body?.getReader(),chunks=[];let bytes=0
   if(!reader)throw new Error('Rave native public body unavailable')
   try{for(;;){signal?.throwIfAborted();const {done,value}=await reader.read();if(done)break;bytes+=value.byteLength;if(bytes>3000000)throw new Error('Rave native public body exceeds byte bound');chunks.push(Buffer.from(value))}}
-  finally{await reader.cancel().catch(()=>{});reader.releaseLock()}
+  finally{try{await disposeResponseReader(reader,{signal,bestEffort:true})}finally{reader.releaseLock()}}
   const html = Buffer.concat(chunks).toString('utf8')
 
   if (response.ok) {

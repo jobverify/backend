@@ -1,3 +1,4 @@
+import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDisposal.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 import { explicitWorkdayCountryScope } from '../../scraper-support/myworkday/countryInventoryProof.js'
@@ -181,7 +182,7 @@ export const extractJobDetail = (html, listing = {}) => {
   return detail
 }
 
-const defaultFetchText = async (url, { signal } = {}) => {
+const defaultFetchText = async (url, { signal, disposalSignal } = {}) => {
   signal?.throwIfAborted()
   const response = await fetch(url, {
     headers: {
@@ -191,7 +192,7 @@ const defaultFetchText = async (url, { signal } = {}) => {
     signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(20000)]) : AbortSignal.timeout(20000),
   })
   if (!response.ok) {
-    await response.body?.cancel().catch(() => {})
+    await disposeResponseBody(response, { signal: disposalSignal, bestEffort: true })
     throw Object.assign(new Error(`HTTP ${response.status} for ${url}`), {
       status: response.status, ...([401, 403, 429].includes(response.status) ? { abortRetries: true } : {}),
     })
@@ -254,7 +255,7 @@ export const createIqviaScraper = ({ fetchText = defaultFetchText } = {}) => ({
       signal.throwIfAborted()
       if (requests >= MAX_PUBLIC_READS) throw coverageError('IQVIA native public-read-budget exhausted; inventory incomplete')
       requests++
-      const html = await getHtml(url, { signal })
+      const html = await getHtml(url, getHtml === defaultFetchText ? { signal, disposalSignal: callerSignal } : { signal })
       signal.throwIfAborted()
       pagesFetched++
       return html

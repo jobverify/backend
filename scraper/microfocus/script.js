@@ -2,6 +2,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { createPhenomScraper } from '../../scraper-support/phenom/engine.js'
+import { reviewedPhenomTitleBindingsForSource } from '../../scraper-support/phenom/reviewedTitleBindings20261108.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -11,6 +12,12 @@ const scraper = createPhenomScraper({
   baseUrl: 'https://careers.opentext.com',
   searchPath: '/us/en/search-results',
   nativeIsoAlpha3CountryCodes: true,
+  nativeCountryBeforeZipCode: true,
+  nativeBoundModelTitlePreference: true,
+  // This source reads the same OpenText board. Retain only the already reviewed
+  // exact role/title/canonical bindings; identity and geography still validate.
+  nativeReviewedTitleBindings: reviewedPhenomTitleBindingsForSource('opentext')
+    .map(binding => ({ ...binding, source: 'microfocus' })),
   scraperDir: currentDir,
 })
 

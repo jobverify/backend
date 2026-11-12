@@ -5,13 +5,13 @@ import { createPipelineBundle } from '../pipeline/download.js';
 import PipelineRun from '../models/PipelineRun.js';
 import PipelineConfiguration from '../models/PipelineConfiguration.js';
 import AdminAudit from '../models/AdminAudit.js';
-import { defaultConfiguration, validateConfiguration } from '../pipeline/policy.js';
+import { validateConfiguration } from '../pipeline/policy.js';
+import { savedPipelineConfiguration as configuration } from '../pipeline/configuration.js';
 import { createPipeline, dispatchNext, failPipeline, pipelineError, requestPipelineStop } from '../pipeline/execution.js';
 import { githubRequest, dispatchGithubStage, reconcileGithub } from '../pipeline/github.js';
 import { localEnabled, launchLocal, reconcileLocal, readLocalLog } from '../pipeline/local.js';
 
 export const capabilities=()=>({github:Boolean(process.env.GITHUB_PAT&&process.env.GITHUB_REPO),local:localEnabled(),localMachine:localEnabled()?os.hostname():null});
-const configuration=async()=>{const saved=await PipelineConfiguration.findById('global').lean();return saved?validateConfiguration(saved):defaultConfiguration();};
 const audit=async(req,action,details)=>{try{await AdminAudit.create({admin:req.user._id,action,targetType:'ScraperStatus',details});}catch{/* execution must not depend on audit availability */}};
 const endpoint=fn=>async(req,res)=>{
   res.set('Cache-Control','no-store');

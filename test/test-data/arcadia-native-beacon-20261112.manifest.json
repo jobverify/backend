@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "source": "arcadia",
+  "provenance": "Original decoded bytes of four current unfiltered native board observations and their newly advertised SRI-pinned public telemetry executable. Two genuine observed variants differ only in telemetry/bootstrap declaration order. No positive response body rewriting. The executable was independently fetched for code review, not counted as an inventory observation.",
+  "responses": [
+    {
+      "url": "https://ats.rippling.com/arcadiacareers/jobs?pageSize=1000",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 205646,
+      "hash": "5719863931608f770a7c4f946e0dc0cc0a3471949b298a2e008275e4023d439b",
+      "filename": "5719863931608f770a7c4f946e0dc0cc0a3471949b298a2e008275e4023d439b.gz",
+      "startedAt": "2026-11-12T16:06:56.821Z",
+      "completedAt": "2026-11-12T16:06:58.876Z",
+      "proofRole": "current-native-board-inventory"
+    },
+    {
+      "url": "https://ats.rippling.com/arcadiacareers/jobs?pageSize=1000",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 205646,
+      "hash": "13e48e874674d05d1bf25b5eb218f222d3ff187d0c49f1d95f196d6c0ee6ffa8",
+      "filename": "13e48e874674d05d1bf25b5eb218f222d3ff187d0c49f1d95f196d6c0ee6ffa8.gz",
+      "startedAt": "2026-11-12T16:07:11.357Z",
+      "completedAt": "2026-11-12T16:07:11.982Z",
+      "proofRole": "current-native-board-inventory"
+    },
+    {
+      "url": "https://ats.rippling.com/arcadiacareers/jobs?pageSize=1000",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 205646,
+      "hash": "5716535e174d7f7ddc8c29f32794c25c9aa0e797e7c4ccc5afe3f0aa872b12c4",
+      "filename": "5716535e174d7f7ddc8c29f32794c25c9aa0e797e7c4ccc5afe3f0aa872b12c4.gz",
+      "startedAt": "2026-11-12T16:19:55.746Z",
+      "completedAt": "2026-11-12T16:19:57.548Z",
+      "proofRole": "current-native-board-inventory"
+    },
+    {
+      "url": "https://ats.rippling.com/arcadiacareers/jobs?pageSize=1000",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 205646,
+      "hash": "c0ed9ac806bc069ecf0f9a93396de3b0cd93f80a39af9dbfd5cd89b1dd84921d",
+      "filename": "c0ed9ac806bc069ecf0f9a93396de3b0cd93f80a39af9dbfd5cd89b1dd84921d.gz",
+      "startedAt": "2026-11-12T16:20:07.882Z",
+      "completedAt": "2026-11-12T16:20:08.508Z",
+      "proofRole": "current-native-board-inventory"
+    },
+    {
+      "url": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "finalUrl": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+      "status": 200,
+      "contentType": "text/javascript;charset=UTF-8",
+      "startedAt": "2026-11-12T16:13:53.054Z",
+      "completedAt": "2026-11-12T16:13:54.381Z",
+      "bytes": 31853,
+      "hash": "637381256384554e1cc3309a62fb238a51b83e7f10b2a56d8ba15dbc73ca762e",
+      "filename": "637381256384554e1cc3309a62fb238a51b83e7f10b2a56d8ba15dbc73ca762e.gz"
+    }
+  ],
+  "fixtureSHA256": "3790f122827489599a9e8ebf711039872f722466b9c2e7f3055d4ae056c07604"
+}

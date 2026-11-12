@@ -1,0 +1,262 @@
+{
+  "schemaVersion": "reader-cleanup-native-portable-immutable-closure/v1",
+  "workspace": ".",
+  "backend": "backend",
+  "modules": [
+    {
+      "path": "backend/scraper-support/shared/nativeJobPosting.js",
+      "relativePath": "backend/scraper-support/shared/nativeJobPosting.js",
+      "exists": true,
+      "sha256": "dccdbbadb4923b387819e084e3383dcf8301c603211dc3e2d81ce82312e701b6",
+      "bytes": 11054
+    },
+    {
+      "path": "backend/scraper-support/shared/pdfDisplay.js",
+      "relativePath": "backend/scraper-support/shared/pdfDisplay.js",
+      "exists": true,
+      "sha256": "8356f3738248b8815250646541f9acf7f7c75a78aa6c52eb0461aeb0c73bb425",
+      "bytes": 933
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true,
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782
+    },
+    {
+      "path": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "relativePath": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "exists": true,
+      "sha256": "15c2b95e087bf4a87ed9cf3923f381f56fe96cc35337760a9f221d0962d2bf23",
+      "bytes": 3393
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true,
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true,
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046
+    },
+    {
+      "path": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "relativePath": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "exists": true,
+      "sha256": "b8ff3a4c22b628dcc50db14dca358ceaf70feb5102ab249495e81a7413d6928e",
+      "bytes": 3852
+    },
+    {
+      "path": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "relativePath": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "exists": true,
+      "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+      "bytes": 2823
+    },
+    {
+      "path": "backend/scraper/calendly/currentAstro.js",
+      "relativePath": "backend/scraper/calendly/currentAstro.js",
+      "exists": true,
+      "sha256": "e8e9f330afb405361a9aa284199fa60b6e0299ae0f6fdfc395a60f13571d914a",
+      "bytes": 29686
+    },
+    {
+      "path": "backend/scraper/dataiku/publicRead.js",
+      "relativePath": "backend/scraper/dataiku/publicRead.js",
+      "exists": true,
+      "sha256": "39f2c8e79e6e15d542d452b599838f79addaa689632ceaa15fb0bb904b0c0a99",
+      "bytes": 6968
+    },
+    {
+      "path": "backend/scraper/iprogrammersolutions/employerAnnouncement.js",
+      "relativePath": "backend/scraper/iprogrammersolutions/employerAnnouncement.js",
+      "exists": true,
+      "sha256": "5e253ac132a87d2619a1cb90ba59375826366696818d77ff5eefaef6454666f3",
+      "bytes": 12728
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true,
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529
+    },
+    {
+      "path": "backend/test/readerCleanupNative20261112/guard.mjs",
+      "relativePath": "backend/test/readerCleanupNative20261112/guard.mjs",
+      "exists": true,
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076
+    },
+    {
+      "path": "backend/test/readerCleanupNative20261112/reader-cleanup-controls.mjs",
+      "relativePath": "backend/test/readerCleanupNative20261112/reader-cleanup-controls.mjs",
+      "exists": true,
+      "sha256": "7a701391d69887405490dae496f9e50fe6810a58303044d5a448e0cd2e4fa14a",
+      "bytes": 27634
+    }
+  ],
+  "reads": [
+    {
+      "path": "backend/package.json",
+      "relativePath": "backend/package.json",
+      "exists": true,
+      "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+      "bytes": 6914
+    },
+    {
+      "path": "backend/scraper-support/shared/nativeJobPosting.js",
+      "relativePath": "backend/scraper-support/shared/nativeJobPosting.js",
+      "exists": true,
+      "sha256": "dccdbbadb4923b387819e084e3383dcf8301c603211dc3e2d81ce82312e701b6",
+      "bytes": 11054
+    },
+    {
+      "path": "backend/scraper-support/shared/pdfDisplay.js",
+      "relativePath": "backend/scraper-support/shared/pdfDisplay.js",
+      "exists": true,
+      "sha256": "8356f3738248b8815250646541f9acf7f7c75a78aa6c52eb0461aeb0c73bb425",
+      "bytes": 933
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true,
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782
+    },
+    {
+      "path": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "relativePath": "backend/scraper-support/shared/rmkNativePairHtml.js",
+      "exists": true,
+      "sha256": "15c2b95e087bf4a87ed9cf3923f381f56fe96cc35337760a9f221d0962d2bf23",
+      "bytes": 3393
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true,
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true,
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046
+    },
+    {
+      "path": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "relativePath": "backend/scraper-support/utils/nativeHtmlAttributes.js",
+      "exists": true,
+      "sha256": "b8ff3a4c22b628dcc50db14dca358ceaf70feb5102ab249495e81a7413d6928e",
+      "bytes": 3852
+    },
+    {
+      "path": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "relativePath": "backend/scraper-support/utils/sourceObservationEvidence.js",
+      "exists": true,
+      "sha256": "eafdbefce18de5a38320599d44c67c34294fa041077fabc9b08d96301b53529a",
+      "bytes": 2823
+    },
+    {
+      "path": "backend/scraper/calendly/currentAstro.js",
+      "relativePath": "backend/scraper/calendly/currentAstro.js",
+      "exists": true,
+      "sha256": "e8e9f330afb405361a9aa284199fa60b6e0299ae0f6fdfc395a60f13571d914a",
+      "bytes": 29686
+    },
+    {
+      "path": "backend/scraper/calendly/test-data/current-astro-20261111.json.gz",
+      "relativePath": "backend/scraper/calendly/test-data/current-astro-20261111.json.gz",
+      "exists": true,
+      "sha256": "a2fdf4a06f96350add6d286a0b8738c3eba507d0df30c45400d5a6bdbd3fc90d",
+      "bytes": 2380077
+    },
+    {
+      "path": "backend/scraper/calendly/test-data/current-astro-20261111.manifest.json",
+      "relativePath": "backend/scraper/calendly/test-data/current-astro-20261111.manifest.json",
+      "exists": true,
+      "sha256": "57d58a2a8f7f3ab3e950d06701ca0c148c40c8ec531035145140fa438e7ad9d0",
+      "bytes": 13758
+    },
+    {
+      "path": "backend/scraper/dataiku/native-captures/registered-public-20261101.json.gz",
+      "relativePath": "backend/scraper/dataiku/native-captures/registered-public-20261101.json.gz",
+      "exists": true,
+      "sha256": "bca692104224173a33a058f600a06c525e45735e03b5c6ad9f98e1359989d494",
+      "bytes": 1053750
+    },
+    {
+      "path": "backend/scraper/dataiku/publicRead.js",
+      "relativePath": "backend/scraper/dataiku/publicRead.js",
+      "exists": true,
+      "sha256": "39f2c8e79e6e15d542d452b599838f79addaa689632ceaa15fb0bb904b0c0a99",
+      "bytes": 6968
+    },
+    {
+      "path": "backend/scraper/iprogrammersolutions/employerAnnouncement.js",
+      "relativePath": "backend/scraper/iprogrammersolutions/employerAnnouncement.js",
+      "exists": true,
+      "sha256": "5e253ac132a87d2619a1cb90ba59375826366696818d77ff5eefaef6454666f3",
+      "bytes": 12728
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true,
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529
+    },
+    {
+      "path": "backend/test/readerCleanupNative20261112/guard.mjs",
+      "relativePath": "backend/test/readerCleanupNative20261112/guard.mjs",
+      "exists": true,
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076
+    },
+    {
+      "path": "backend/test/readerCleanupNative20261112/manifest.json",
+      "relativePath": "backend/test/readerCleanupNative20261112/manifest.json",
+      "exists": true,
+      "integrity": "Self excluded here; the ordinary parent wrapper pins exact manifest bytes before child execution."
+    },
+    {
+      "path": "backend/test/readerCleanupNative20261112/reader-cleanup-controls.mjs",
+      "relativePath": "backend/test/readerCleanupNative20261112/reader-cleanup-controls.mjs",
+      "exists": true,
+      "sha256": "7a701391d69887405490dae496f9e50fe6810a58303044d5a448e0cd2e4fa14a",
+      "bytes": 27634
+    }
+  ],
+  "mutableSources": [],
+  "pinnedHelper": {
+    "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+    "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+    "bytes": 1782,
+    "runtimeModuleOrReadGrant": true
+  },
+  "substitutions": [],
+  "expectedCases": 33,
+  "applicationModuleCount": 12,
+  "trustedHarnessModuleCount": 2,
+  "externalPackagesGranted": [],
+  "lazyImportsNotFollowedOrGranted": [
+    "@napi-rs/canvas/geometry.js",
+    "pdfjs-dist/legacy/build/pdf.mjs"
+  ],
+  "nativeInstanceObservation": "Only authored fixture Response.url metadata, standard stream getReader/cancel and actual reader cancel/releaseLock forwarding observers. Each call forwards original receiver/arguments/return; native cancellation behavior comes only from standard underlying-source algorithms.",
+  "sourceRuntimeAuthorization": "Retained strict-child regression after root-approved exact package creation; no report dependency.",
+  "rootPublishedBaselineSHA256": "f581e9c8fe59856b0863587f2188ee7dccf13c6b8eb02c37d32ad05dfe2c8e55",
+  "baseApplicationModuleCount": 11,
+  "addedPureHelperCount": 1,
+  "rootSourceApplyReceiptSHA256": "8abc49034e7196b5905ee1959aeeec4ad72220e9514ba41d8760292f34f3e341",
+  "historicalProofDiagnostic": "Proof sourceScope text is preserved byte-for-byte as its historical11-base-module label; exact GREEN closure has11base+1purehelper=12actual application modules and14total modules."
+}

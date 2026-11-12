@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { readFile } from 'node:fs/promises';
+import { cp, mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ResumeUsage from '../src/models/ResumeUsage.js';
@@ -109,12 +110,63 @@ test('recovery does not start a second workflow while an existing worker is sett
 test('recovery starts a replacement after the previous workflow ends', async t => {
   configure(t);
   let posts = 0;
-  const result = await dispatchTailoredResumes({ reuseRunning: true, request: async (_repo, endpoint, options) => {
-    if (endpoint.includes('/runs?')) return { workflow_runs: [{ status: 'completed' }] };
+  const result = await dispatchTailoredResumes({ recovery: true, reuseRunning: true, request: async (_repo, endpoint, options) => {
+    if (endpoint.includes('/runs?')) return { workflow_runs: [{ status: 'completed', conclusion: 'success' }] };
     if (!endpoint) return { default_branch: 'main' };
     if (options?.method === 'POST') posts++;
   } });
   assert.equal(result.reused, false);
+  assert.equal(posts, 1);
+});
+
+test('automatic recovery never redispatches a failed workflow', async t => {
+  configure(t);
+  for (const conclusion of ['failure', 'cancelled', 'timed_out', 'startup_failure']) {
+    let posts = 0;
+    await assert.rejects(dispatchTailoredResumes({ recovery: true, reuseRunning: true, request: async (_repo, endpoint, options) => {
+      if (endpoint.includes('/runs?')) return { workflow_runs: [{ status: 'completed', conclusion }] };
+      if (!endpoint) return { default_branch: 'main' };
+      if (options?.method === 'POST') posts++;
+    } }), { code: 'resume_workflow_stopped' });
+    assert.equal(posts, 0);
+  }
+});
+
+test('an active worker takes precedence over an earlier failure during recovery', async t => {
+  configure(t);
+  const result = await dispatchTailoredResumes({ recovery: true, reuseRunning: true, request: async (_repo, endpoint) => {
+    assert.match(endpoint, /\/runs\?/);
+    return { workflow_runs: [{ status: 'queued' }, { status: 'completed', conclusion: 'failure' }] };
+  } });
+  assert.equal(result.reused, true);
+});
+
+test('an explicit retry can start a run after a failed workflow', async t => {
+  configure(t);
+  let posts = 0;
+  await dispatchTailoredResumes({ request: async (_repo, endpoint, options) => {
+    if (endpoint.includes('/runs?')) return { workflow_runs: [{ status: 'completed', conclusion: 'failure' }] };
+    if (!endpoint) return { default_branch: 'main' };
+    if (options?.method === 'POST') posts++;
+  } });
+  assert.equal(posts, 1);
+});
+
+test('explicit retries do not inherit a concurrent recovery stop or create duplicate runs', async t => {
+  configure(t);
+  let release;
+  const response = new Promise(resolve => { release = resolve; });
+  let posts = 0;
+  const request = async (_repo, endpoint, options) => {
+    if (endpoint.includes('/runs?')) return response;
+    if (!endpoint) return { default_branch: 'main' };
+    if (options?.method === 'POST') posts++;
+  };
+  const stopped = assert.rejects(dispatchTailoredResumes({ recovery: true, reuseRunning: true, request }), { code: 'resume_workflow_stopped' });
+  const retries = Promise.all(Array.from({ length: 5 }, () => dispatchTailoredResumes({ request })));
+  release({ workflow_runs: [{ status: 'completed', conclusion: 'failure' }] });
+  await stopped;
+  await retries;
   assert.equal(posts, 1);
 });
 
@@ -199,6 +251,35 @@ test('sparse worker checkout covers the complete local import closure and its fo
   await visit(path.join(root, 'scripts/runTailoredResumes.js'));
   assert.ok(visited.size > 20);
   for (const file of ['package.json', 'package-lock.json', 'resume-tailoring/fonts/manifest.json', 'src/services/resumeTextWorker.js']) assert.ok(included(file));
+});
+
+test('the Actions entrypoint loads from only the declared sparse checkout files', async t => {
+  const root = fileURLToPath(new URL('../', import.meta.url));
+  const workflow = await readFile(path.join(root, '.github/workflows/tailored-resumes.yml'), 'utf8');
+  const block = workflow.match(/sparse-checkout: \|\r?\n((?:[ \t]{12}[^\r\n]+\r?\n)+)/);
+  assert.ok(block);
+  const temporaryRoot = path.join(root, '.tmp');
+  await mkdir(temporaryRoot, { recursive: true });
+  const checkout = await mkdtemp(path.join(temporaryRoot, 'resume-checkout-'));
+  t.after(async () => {
+    assert.equal(path.dirname(checkout), temporaryRoot);
+    await rm(checkout, { recursive: true, force: true });
+  });
+  for (const entry of block[1].trim().split(/\r?\n/)) {
+    const relative = entry.trim().replace(/^\//, '');
+    const target = path.join(checkout, relative);
+    await mkdir(path.dirname(target), { recursive: true });
+    await cp(path.join(root, relative), target, { recursive: true });
+  }
+  const result = spawnSync(process.execPath, ['--use-system-ca', 'scripts/runTailoredResumes.js'], {
+    cwd: checkout, encoding: 'utf8', timeout: 15000,
+    env: { ...process.env, MONGO_URI: '', DOTENV_CONFIG_PATH: path.join(checkout, '.missing-env') },
+  });
+  assert.ifError(result.error);
+  assert.equal(result.status, 1, 'without credentials the worker must stop at its configuration guard');
+  assert.doesNotMatch(result.stderr, /ERR_MODULE_NOT_FOUND|Cannot find module/);
+  assert.match(result.stdout, /"stage":"worker"/);
+  assert.match(result.stderr, /The tailored resume worker could not finish/);
 });
 
 test('worker budget includes setup time and reserves cleanup time within its Actions job', async () => {

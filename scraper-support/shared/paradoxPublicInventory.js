@@ -1,3 +1,4 @@
+import {disposeResponseBody} from './responseBodyDisposal.js'
 import {parse} from 'acorn'
 import {readNativeDocument, extractActiveDescription, decodeNativeEntities} from '../utils/activeNativeHtml.js'
 import {nativeCountryName} from './nativeJobPosting.js'
@@ -105,13 +106,13 @@ const readNativeJson = raw => {
   catch { need(false, 'native data is not JSON') }
 }
 
-const fetchNativeText = async (url, {signal} = {}) => {
+const fetchNativeText = async (url, {signal, callerSignal} = {}) => {
   signal?.throwIfAborted()
   const requestSignal = AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(20000)])
   const response = await fetch(url, {signal: requestSignal, redirect: 'manual',
     headers: {Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers inventory check)'}})
   if (response.status !== 200) {
-    await response.body?.cancel()
+    await disposeResponseBody(response, {signal: callerSignal, bestEffort: true})
     throw Object.assign(new Error(`Paradox public response HTTP ${response.status}`), {
       status: response.status, abortRetries: true, softFailure: true,
       failureKind: [401,403,429].includes(response.status) ? 'blocked_or_access_denied' : 'network_or_timeout',
@@ -177,7 +178,7 @@ export const createParadoxPublicScraper = source => {
     const read = async url => {
       signal?.throwIfAborted()
       let html
-      try { html = await fetchText(url, {signal, cache: 'no-store'}) }
+      try { html = await fetchText(url, {signal, callerSignal, cache: 'no-store'}) }
       catch (error) { callerSignal?.throwIfAborted(); signal.throwIfAborted(); throw error }
       signal?.throwIfAborted()
       need(typeof html === 'string', 'native reader did not return HTML')

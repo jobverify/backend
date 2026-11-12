@@ -1,6 +1,8 @@
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import {createHash} from 'node:crypto'
 import {readNativeDocument,activeHead} from '../../scraper-support/utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {readBotmindsPublicScope} from './publicScope20261112.js'
 const ORIGIN='https://www.botminds.ai',HUB=ORIGIN+'/careers',API=ORIGIN+'/api/jobs'
 const programs={
  '/_astro/index.astro_astro_type_script_index_0_lang.qeH_4dqN.js':'aefcd3cc79d2ddda88f82d19e2c13ed673fffe55150ebf46faa14f8a88af73e0',
@@ -42,15 +44,22 @@ export async function runBotmindsPublicApi(initialHTML,options={}){
  const signal=AbortSignal.any([AbortSignal.timeout(options.timeoutMs??90000),...(options.signal?[options.signal]:[])]),receipts=[]
  const read=async(url,kind='html')=>{
   signal.throwIfAborted();const response=await (options.fetchImpl||fetch)(url,{redirect:'manual',signal:AbortSignal.any([signal,AbortSignal.timeout(20000)]),headers:{'User-Agent':'JobverifyScraper/1.0',Accept:kind==='json'?'application/json':kind==='js'?'text/javascript,application/javascript':'text/html'}})
-  if(response.status!==200){await response.body?.cancel();throw Object.assign(Error('Botminds public HTTP '+response.status),{status:response.status,abortRetries:true,failureKind:[401,403,406,429].includes(response.status)?'blocked_or_access_denied':'network_or_timeout'})}
+  if(response.status!==200){await disposeResponseBody(response,{signal:options.signal,bestEffort:true});throw Object.assign(Error('Botminds public HTTP '+response.status),{status:response.status,abortRetries:true,failureKind:[401,403,406,429].includes(response.status)?'blocked_or_access_denied':'network_or_timeout'})}
   need(response.url===url,'public response URL identity changed')
-  need((kind==='json'?/^application\/json\b/i:kind==='js'?/^(?:text|application)\/javascript\b/i:/^text\/html\b/i).test(response.headers.get('content-type')||''),'native '+kind+' MIME changed')
+  need((kind==='json'?/^application\/json\b/i:kind==='js'?/^(?:text|application)\/javascript\b/i:kind==='xml'?/^(?:application|text)\/xml\b/i:kind==='text'?/^text\/plain\b/i:/^text\/html\b/i).test(response.headers.get('content-type')||''),'native '+kind+' MIME changed')
   const body=await response.text();signal.throwIfAborted();need(Buffer.byteLength(body)<=1000000,'public response budget exceeded')
-  receipts.push({url,status:response.status,sha256:sha(body)});return kind==='json'?JSON.parse(body):body
+  receipts.push({url,status:response.status,sha256:sha(body),bodyBytes:Buffer.byteLength(body),observedAt:new Date().toISOString()});return kind==='json'?JSON.parse(body):body
  }
  documentAt(initialHTML,hubProgram)
  for(const [program,digest]of Object.entries(programs)){const body=await read(ORIGIN+program,'js');need(sha(body)===digest,'unreviewed complete public renderer/client program')}
  const opening=readFeed(await read(API,'json'))
+ const scopeFailures=[]
+ const readScope=async(hubHTML,records,phase)=>{
+  try{return readBotmindsPublicScope({hubHTML,records,companyHTML:await read(ORIGIN+'/'),
+   robotsText:await read(ORIGIN+'/robots.txt','text'),jobsSitemapXML:await read(ORIGIN+'/api/jobs-sitemap','xml')})}
+  catch(error){signal.throwIfAborted();scopeFailures.push({phase,message:error.message});return null}
+ }
+ const openingScope=await readScope(initialHTML,opening,'opening')
  const details=async()=>{
   for(const row of opening){documentAt(await read(HUB+'/'+row.slug),roleProgram,true)
    const payload=await read(API+'?slug='+encodeURIComponent(row.slug),'json')
@@ -59,10 +68,13 @@ export async function runBotmindsPublicApi(initialHTML,options={}){
  }
  await details();await details()
  const closing=readFeed(await read(API,'json'));need(stable(opening)===stable(closing),'closing full native inventory or criteria changed')
- documentAt(await read(HUB),hubProgram)
+ const closingHTML=await read(HUB);documentAt(closingHTML,hubProgram)
+ const closingScope=await readScope(closingHTML,closing,'closing')
  const unknown=opening.filter(row=>!country(row.country)),selected=opening.filter(row=>country(row.country)==='India')
  const cap=options.maxJobs??selected.length;need(Number.isSafeInteger(cap)&&cap>=0,'invalid caller result cap')
- const complete=!unknown.length&&cap>=selected.length
+ const sourceScopeProof=openingScope&&closingScope?{method:'official-careers-controller-and-declared-jobs-sitemap',
+  opening:openingScope,closing:closingScope}:null
+ const complete=!unknown.length&&cap>=selected.length&&Boolean(sourceScopeProof)
  const jobs=selected.slice(0,cap).map(row=>({source:'botminds',company:'Botminds',jobId:row.slug,requisitionId:null,title:row.title,
   sourceUrl:HUB+'/'+row.slug,applyUrl:HUB+'/apply?role='+encodeURIComponent(row.slug),link:HUB+'/'+row.slug,
   country:'India',city:row.city||null,location:[row.city,'India'].filter(Boolean).join(', '),department:row.department||null,
@@ -70,12 +82,16 @@ export async function runBotmindsPublicApi(initialHTML,options={}){
   workplaceType:{onsite:'On-site',hybrid:'Hybrid',remote:'Remote'}[row.workplace]||null,experienceRequired:row.experience||null,
   postingDate:row.datePosted,closingDate:null,jobDescription:row.body,sourceDescription:row.body,
   sourceNativeApiRecord:structuredClone(row),sourceCountryEvidence:'role-owned public API country; exact native renderer schema country binding',
-  sourceDetailComplete:true,sourceListingComplete:complete,sourceScopeComplete:false,lifecycleCleanupAllowed:false,scrapedAt:new Date().toISOString()}))
+  sourceDetailComplete:true,sourceListingComplete:complete,sourceScopeComplete:complete,lifecycleCleanupAllowed:complete,scrapedAt:new Date().toISOString()}))
  const audit={source:'botminds',nativeRoleCount:opening.length,nativeIndiaRoleCount:selected.length,unresolvedNativeCountries:unknown.map(r=>r.slug),
-  opening,closing,closingFullCriteriaReconciled:true,publicRoleDetailPasses:2,receipts,sourceScopeComplete:false,lifecycleCleanupAllowed:false}
+  opening,closing,closingFullCriteriaReconciled:true,publicRoleDetailPasses:2,receipts,sourceScopeProof,scopeFailures,
+  sourceScopeComplete:complete,lifecycleCleanupAllowed:complete}
  if(jobs.length)jobs[0].nativeCollectionEvidence=audit
+ Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
  options.onAudit?.(audit)
- return attachInventoryEvidence(jobs,{status:complete?'complete-inventory':'coverage-gap',surface:API,firstParty:true,listingComplete:complete,
+ return attachInventoryEvidence(jobs,{status:complete?opening.length?'complete-inventory':'verified-empty':'coverage-gap',surface:API,firstParty:true,listingComplete:complete,lifecycleCleanupAllowed:complete,
   reportedTotal:opening.length,indiaFacetCount:unknown.length?null:selected.length,pagesFetched:receipts.length+1,verifiedAt:new Date().toISOString(),
-  reason:'current-declared-public-client-and-complete-native-role-criteria;two-detail-passes-and-closing-feed;company-scope-unqualified'})
+  reason:'current-declared-public-client-and-complete-native-role-criteria;two-detail-passes-and-closing-feed;'
+   +(sourceScopeProof?'official-careers-controller-and-declared-jobs-sitemap-reconciled':'source-scope-unresolved:'+scopeFailures.map(failure=>failure.phase+'='+failure.message).join('|'))
+   +(cap<selected.length?';caller-result-cap':'')+(unknown.length?';native-country-unresolved':'' )})
 }

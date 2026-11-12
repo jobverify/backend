@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { readNativeDocument, activeIframeSources, extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 
 export const CAREERS_URL = 'https://www.sightspectrum.com/careers'
 export const PUBLIC_SCOPE_URLS = [CAREERS_URL, 'https://www.sightspectrum.com/', 'https://www.sightspectrum.com/job-board-and-careers-page', 'https://www.sightspectrum.com/getintouch']
@@ -90,7 +91,7 @@ export const runCurrentSightSpectrum = async ({ fetchImpl = globalThis.fetch, fe
     const response = await fetchImpl(url, { redirect: 'follow', signal: requestSignal, headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify scraper)', Accept: 'text/html' } })
     requestSignal.throwIfAborted()
     if (response?.status !== 200 || response.url !== url || !/^text\/html(?:\s*;|$)/i.test(response.headers?.get('content-type') || '') || !response.body?.getReader) fail('HTTP/URL/MIME response identity unresolved')
-    const reader = response.body.getReader(), chunks = []; let bytes = 0
+    const reader = response.body.getReader(), chunks = []; let bytes = 0, readComplete = false
     try {
       for (;;) {
         requestSignal.throwIfAborted()
@@ -100,7 +101,11 @@ export const runCurrentSightSpectrum = async ({ fetchImpl = globalThis.fetch, fe
         if (bytes > maxResponseBytes) fail('Response byte cap exceeded')
         chunks.push(Buffer.from(value))
       }
-    } finally { await reader.cancel().catch(() => {}) }
+      readComplete = true
+    } finally {
+      try { await disposeResponseReader(reader, { signal, bestEffort: !readComplete }) }
+      finally { reader.releaseLock() }
+    }
     requestSignal.throwIfAborted()
     const body = Buffer.concat(chunks), row = { url, finalUrl: response.url, status: response.status, contentType: response.headers.get('content-type'), bytes, sha256: digest(body), html: new TextDecoder().decode(body) }
     documents.push(row)

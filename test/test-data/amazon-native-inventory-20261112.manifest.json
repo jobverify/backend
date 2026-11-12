@@ -1,0 +1,270 @@
+{
+  "capturedAt": "2026-11-12T06:01:17.008Z",
+  "kind": "Genuine public Amazon India search, linked current client, and native full-body response corpus; mutations in tests are synthetic contract regressions.",
+  "sha256": "2f66edf09288ed3a1300b3054e5fef1f7eef0bcbd899663ee1482ee7fe326bc2",
+  "compressedBytes": 2887742,
+  "nativeRows": 2113,
+  "source": "https://www.amazon.jobs/en/search?normalized_country_code%5B%5D=IND",
+  "receipts": [
+    {
+      "url": "https://www.amazon.jobs/en/search?normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search?normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:51.059Z",
+      "completedAt": "2026-11-12T06:00:52.378Z",
+      "bytes": 35589,
+      "hash": "cac69b05ee7c49fdcf27ec09b3c39908420a690b9d26bd3fd7dd2d2a550f7d10"
+    },
+    {
+      "url": "https://static.amazon.jobs/assets/bundles/search/index-f30f4e5ad13129ea5aba659e0b5ce2333d3e1ee25b96fc8f2caa42dfa5cfba85.js",
+      "finalUrl": "https://static.amazon.jobs/assets/bundles/search/index-f30f4e5ad13129ea5aba659e0b5ce2333d3e1ee25b96fc8f2caa42dfa5cfba85.js",
+      "status": 200,
+      "contentType": "application/javascript",
+      "startedAt": "2026-11-12T06:00:52.383Z",
+      "completedAt": "2026-11-12T06:00:53.007Z",
+      "bytes": 244089,
+      "hash": "65eb922e364cd5af207d4419b08faf60a46d78a9f98662dd9fa09ad1c8632bbd"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=0&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=0&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:53.010Z",
+      "completedAt": "2026-11-12T06:00:54.361Z",
+      "bytes": 671372,
+      "hash": "aac8a36599d5ef7b312bbc7873a07af5547c505c53f1cfc2d39c9f997398eca1"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=100&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=100&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:54.370Z",
+      "completedAt": "2026-11-12T06:00:55.634Z",
+      "bytes": 714478,
+      "hash": "664e9abde98f93da48398b13f898ee84af0f43c8531f7c55870077dec4dd1acb"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=200&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=200&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:55.642Z",
+      "completedAt": "2026-11-12T06:00:56.825Z",
+      "bytes": 762748,
+      "hash": "82e3a3650c2e9bec13f571d712f9d2aaa2673169af27f15be9730ecc28a9cb22"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=300&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=300&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:56.832Z",
+      "completedAt": "2026-11-12T06:00:58.180Z",
+      "bytes": 681261,
+      "hash": "522858dba2ed0aecb079f6d410c4c7d1d77fde8913409043ef2e137094360f6d"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=400&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=400&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:58.185Z",
+      "completedAt": "2026-11-12T06:00:59.132Z",
+      "bytes": 698594,
+      "hash": "858210278f4eda8e4ee72ea4ed84be5e73561b3a2d09c54fca2c9690cdc63b94"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=500&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=500&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:00:59.137Z",
+      "completedAt": "2026-11-12T06:01:00.093Z",
+      "bytes": 696847,
+      "hash": "746a871f659fef956d007955844bfd087dfbe0c10a38859afa5551db8486775b"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=600&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=600&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:00.101Z",
+      "completedAt": "2026-11-12T06:01:01.081Z",
+      "bytes": 641909,
+      "hash": "c283ae6f4b65f06788a91ef9c4294e70048e318b186e8de66892c5b76eb9c7a3"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=700&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=700&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:01.093Z",
+      "completedAt": "2026-11-12T06:01:02.118Z",
+      "bytes": 699736,
+      "hash": "02d516a7691fb557bbc548a4fbb9c17a499fa3fa4a588612595d8bd17aaaf975"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=800&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=800&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:02.125Z",
+      "completedAt": "2026-11-12T06:01:03.100Z",
+      "bytes": 698436,
+      "hash": "8af67400a6bd464d254fb3145db7629f64a116947ce94de5e2958b4e5e73c306"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=900&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=900&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:03.109Z",
+      "completedAt": "2026-11-12T06:01:04.009Z",
+      "bytes": 722145,
+      "hash": "f0fb3d12775f8f5cc7aee88f953637c90e6573b7634424bd3632a93dc503ab99"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1000&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1000&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:04.016Z",
+      "completedAt": "2026-11-12T06:01:05.098Z",
+      "bytes": 683995,
+      "hash": "db4bf8110b5745a8b38347e3d4118e441c780a1396d6382c24ab0ac343f0fc81"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1100&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1100&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:05.105Z",
+      "completedAt": "2026-11-12T06:01:05.993Z",
+      "bytes": 775833,
+      "hash": "ae70820a629b815520317456d4fee0f79ed3934486e13a6a965da20c730e0424"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1200&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1200&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:05.999Z",
+      "completedAt": "2026-11-12T06:01:07.177Z",
+      "bytes": 737688,
+      "hash": "a908c71b94b5ad018830c64b93002e5711cfaf239d5c965108139913969fe145"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1300&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1300&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:07.188Z",
+      "completedAt": "2026-11-12T06:01:08.044Z",
+      "bytes": 697941,
+      "hash": "87191b7ec29a71054694b08a245c07204022389773c4874c2d6e5b4a5a470fb7"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1400&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1400&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:08.052Z",
+      "completedAt": "2026-11-12T06:01:09.452Z",
+      "bytes": 673993,
+      "hash": "15f785a881527184a8f972976439136953e599d98f7775ec6c58b977f0f4ca4e"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1500&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1500&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:09.462Z",
+      "completedAt": "2026-11-12T06:01:10.352Z",
+      "bytes": 695417,
+      "hash": "6a97c6459e55c7ca5f51747c05ce67f2cff2751332145d5901a54b2180ec79bd"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1600&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1600&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:10.360Z",
+      "completedAt": "2026-11-12T06:01:11.208Z",
+      "bytes": 714653,
+      "hash": "1a562cae2c6d748a4778eea3526c37a4064969ae9d2924896c521416746ea8ef"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1700&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1700&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:11.216Z",
+      "completedAt": "2026-11-12T06:01:12.039Z",
+      "bytes": 746903,
+      "hash": "780f52d91793354c919a77766c9a1e8b76f786d4a9fc3aa4bd19beb7f5abbc8c"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1800&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1800&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:12.047Z",
+      "completedAt": "2026-11-12T06:01:12.935Z",
+      "bytes": 714256,
+      "hash": "b18c45584b36aacaf99008c7266fb73d411b615c84b2dfd82614e0734b61d3e8"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=1900&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=1900&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:12.946Z",
+      "completedAt": "2026-11-12T06:01:13.919Z",
+      "bytes": 706381,
+      "hash": "b847413366c923bfd8b46a3573c09684832273490334d878f1234a6672985802"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=2000&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=2000&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:13.936Z",
+      "completedAt": "2026-11-12T06:01:14.917Z",
+      "bytes": 707829,
+      "hash": "a6b060c9177c242bd81cffd82a3f131237438d8ba688e227f519c68d83bd77f0"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=2100&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=2100&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:14.926Z",
+      "completedAt": "2026-11-12T06:01:15.662Z",
+      "bytes": 98102,
+      "hash": "96998ea3ad10274ccb5f7bfa320e3d6242c0a44f1fe8079544247b887d9c89c6"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=2113&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=2113&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:15.668Z",
+      "completedAt": "2026-11-12T06:01:16.041Z",
+      "bytes": 740,
+      "hash": "888fd8b8f980960a488bfbbe1ce159bc31234164281267b3010e59d1a7fa0bf9"
+    },
+    {
+      "url": "https://www.amazon.jobs/en/search.json?offset=0&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "finalUrl": "https://www.amazon.jobs/en/search.json?offset=0&result_limit=100&sort=relevant&normalized_country_code%5B%5D=IND",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "startedAt": "2026-11-12T06:01:16.046Z",
+      "completedAt": "2026-11-12T06:01:16.989Z",
+      "bytes": 671372,
+      "hash": "1addffb8e304f525a7b5a0d302afeeec0fdd8bb2569c0a6365a8cac5ddcc6c2a"
+    }
+  ]
+}

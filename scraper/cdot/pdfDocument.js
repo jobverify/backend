@@ -1,3 +1,4 @@
+import {loadPdfDisplay} from '../../scraper-support/shared/pdfDisplay.js'
 import {createHash} from 'node:crypto'
 const check=(ok,message)=>{if(!ok)throw Object.assign(Error('Published PDF: '+message),{abortRetries:true,code:'PUBLISHED_PDF_UNQUALIFIED'})}
 const normalize=value=>String(value??'').replace(/[ \t]+/g,' ').replace(/ *\n */g,'\n').replace(/\n{3,}/g,'\n\n').trim()
@@ -23,7 +24,7 @@ export async function readPublishedPdf(value,{signal}={}){
  try{
   const bytes=Buffer.from(value)
   check(bytes.length>100&&bytes.length<=4000000&&bytes.subarray(0,5).toString()==='%PDF-','native PDF bytes unavailable or oversized')
-  const {getDocument}=await wait(()=>import('pdfjs-dist/legacy/build/pdf.mjs'))
+  const {getDocument}=await wait(()=>loadPdfDisplay({signal}))
   signal?.throwIfAborted()
   task=getDocument({data:new Uint8Array(bytes),isEvalSupported:false,useWorkerFetch:false,useSystemFonts:false,disableFontFace:true,stopAtErrors:true,verbosity:0})
   const pdf=await wait(task.promise)

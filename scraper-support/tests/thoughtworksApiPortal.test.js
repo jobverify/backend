@@ -81,5 +81,7 @@ test('runApiPortalScraper maps Thoughtworks Greenhouse jobs and keeps India role
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

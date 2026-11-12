@@ -1,0 +1,59 @@
+{
+  "source": "immuta",
+  "fixture": "lever-request-metadata-immuta-openings-20261111.json.gz",
+  "fixtureBytes": 327889,
+  "fixtureSHA256": "39ddb4368ddf594437cbbb802bba3058a8bfb2d874f9fc295d0a82bfbaba8e93",
+  "fixtureKind": "Two separately clocked genuine intake opening observations only; no acquired closings or complete programme",
+  "observationOnly": true,
+  "acquiredClosings": false,
+  "completeSourceTransaction": false,
+  "actual31Reconstructed": false,
+  "originalSources": [
+    {
+      "path": "backend/test/fixtures/immuta-current-programme-20261111.json.gz",
+      "bytes": 1048129,
+      "sha256": "d55bc41a35a1a9b6ed27f1132936cf61cd8c596fb78cdfbf7e0c1fa1395e009a",
+      "selectedResponseIndex": 3
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/runtime-discovery/immuta-request-metadata-diagnostic-20261111v/receipt.json",
+      "bytes": 3039,
+      "sha256": "bf750a8e0a3f8ca2dc2cce236a31d10e06aa47d2a727033605a66c3cbe8ac21b"
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/runtime-discovery/immuta-request-metadata-diagnostic-20261111v/001-immuta-intake.body",
+      "bytes": 725471,
+      "sha256": "ab232df374e79e9999bc568705cc40d3893eb4ada18cc8a0ff7b5d61e7c8d700"
+    }
+  ],
+  "originals": [
+    {
+      "requestedURL": "https://jobs.lever.co/immuta/4372d3ba-00d6-4ae0-986c-e65d8dbf9def",
+      "finalURL": "https://jobs.lever.co/immuta/4372d3ba-00d6-4ae0-986c-e65d8dbf9def",
+      "status": 200,
+      "requestedAt": "2026-11-11T16:41:25.202Z",
+      "responseAt": "2026-11-11T16:41:26.565Z",
+      "completedAt": "2026-11-11T16:41:27.305Z",
+      "bodyBytes": 725471,
+      "bodySHA256": "8619d446a4fc5dd2681bfb13f874df7f9e816e7c8b9477bf325a645e13fd8ae5",
+      "originalHeaderEntriesRecorded": true,
+      "observationKind": "genuine-programme-opening-intake",
+      "originalKindPresent": true,
+      "originalKind": "own-html"
+    },
+    {
+      "requestedURL": "https://jobs.lever.co/immuta/4372d3ba-00d6-4ae0-986c-e65d8dbf9def",
+      "finalURL": "https://jobs.lever.co/immuta/4372d3ba-00d6-4ae0-986c-e65d8dbf9def",
+      "status": 200,
+      "requestedAt": "2026-11-11T17:55:33.069Z",
+      "responseAt": "2026-11-11T17:55:34.267Z",
+      "completedAt": "2026-11-11T17:55:34.759Z",
+      "bodyBytes": 725471,
+      "bodySHA256": "ab232df374e79e9999bc568705cc40d3893eb4ada18cc8a0ff7b5d61e7c8d700",
+      "originalHeaderEntriesRecorded": true,
+      "observationKind": "genuine-separate-diagnostic-opening-intake",
+      "originalKindPresent": false,
+      "originalKind": null
+    }
+  ]
+}

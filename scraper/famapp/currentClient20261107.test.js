@@ -22,7 +22,7 @@ test('FamApp and Fampay follow the current declared native tenant with all origi
   const first=jobs.find(j=>j.jobId==='09c9d0cd-f422-4138-a065-8d45e71d01a7')
   assert.ok(first.jobDescription.includes('Perks That Go Beyond the Paycheck'))
   const original=JSON.parse(capture.packets.find(r=>r.requestUrl===API).body).find(r=>r.id===first.jobId)
-  assert.ok(first.jobDescription.includes(original.descriptionPlain.trim()))
+  assert.ok(first.jobDescription.includes(original.description.trim()))
   for(const section of original.lists)assert.ok(first.jobDescription.includes(section.content.trim()))
   assert.equal(readInventoryEvidence(jobs).listingComplete,true)
  }

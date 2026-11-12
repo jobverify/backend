@@ -20,7 +20,7 @@ const whole=doc=>one(doc.nodes(n=>n.tag==='root'),'document root')
 export function readCareers(html){
  const doc=parse(html),root=whole(doc),nodes=all(root),titles=nodes.filter(n=>n.tag==='title').map(n=>norm(n.raw||flow(n)))
  need(titles.length===1&&titles[0]==='Career Opportunities - CircleCI','careers publisher title differs');need(nodes.filter(n=>n.attrs.id==='jobs-list'&&!n.inert).length===1&&nodes.some(n=>n.tag==='h1'&&!n.inert&&norm(flow(n))==='Current open roles'),'current open roles scope missing')
- need(!nodes.some(n=>(n.attrs.rel||'').toLowerCase().split(/\s+/).includes('next')),'new native continuation requires qualification')
+ if(nodes.some(n=>(n.attrs.rel||'').toLowerCase().split(/\s+/).includes('next')))throw Object.assign(failure('new native continuation requires qualification'),{softFailure:true,upstreamOutage:false,failureKind:'surface_drift_or_fail_closed'})
  const roles=new Map()
  for(const anchor of nodes.filter(n=>n.tag==='a'&&/\/careers\/jobs\/\d+/.test(n.attrs.href||''))){
   let url;try{url=new URL(anchor.attrs.href,CAREERS)}catch{throw failure('invalid corporate role URL')}
@@ -52,6 +52,7 @@ export function bind(record,detail,corporate,role,at){
  need(detail?.id===record.id&&detail.company_name==='CircleCI'&&norm(detail.title)===norm(record.title)&&roleUrl(detail)===roleUrl(record),'native detail employer/posting/title identity differs')
  // This documented field describes an applicant's location input, not a job
  // workplace. Retain it in detail while checking actual workplace fields.
+ // eslint-disable-next-line no-unused-vars -- Deliberately omit applicant location form inputs from workplace fields.
  const {location_questions:applicantLocationQuestions,...detailWorkplaceFields}=detail
  const vacancyId=value=>Number.isSafeInteger(value)&&value>0
  const nativePostingKind=Object.hasOwn(record,'internal_job_id')&&Object.hasOwn(detail,'internal_job_id')&&record.internal_job_id===null&&detail.internal_job_id===null?'prospect':vacancyId(record.internal_job_id)&&record.internal_job_id===detail.internal_job_id?'vacancy':'unknown'

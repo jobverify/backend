@@ -3,6 +3,7 @@ import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNa
 import { extractActiveDescription, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { getValidIndiaCityForJob } from '../../src/utils/publicJobLocationScope.js'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 
 export const CAREERS_URL = 'https://www.licious.in/careers'
 export const CURRENT_JOBS_URL = CAREERS_URL + '/jobs'
@@ -34,10 +35,10 @@ const requireNative = (condition, message) => { if (!condition) throw new Native
 const parseJson = (body, label) => {
   try { return JSON.parse(body) } catch { throw new NativeContractError('invalid ' + label + ' response') }
 }
-const defaultFetchPage = async (url, init) => {
+const defaultFetchPage = async (url, init, callerSignal) => {
   const response = await fetch(url, { ...init, redirect: 'error' })
   const reader = response.body?.getReader(), chunks = []
-  let size = 0
+  let size = 0, readComplete = false
   if (reader) {
     try {
       while (true) {
@@ -47,7 +48,11 @@ const defaultFetchPage = async (url, init) => {
         requireNative(size <= 4 * 1024 * 1024, 'response exceeds public native size limit')
         chunks.push(Buffer.from(part.value))
       }
-    } finally { await reader.cancel().catch(() => {}) }
+      readComplete = true
+    } finally {
+      try { await disposeResponseReader(reader, { signal: callerSignal, bestEffort: !readComplete }) }
+      finally { reader.releaseLock() }
+    }
   }
   return { status: response.status, url: response.url, contentType: response.headers.get('content-type'), body: Buffer.concat(chunks).toString('utf8') }
 }
@@ -163,7 +168,7 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
       signal?.throwIfAborted()
       const scoped = signal ? AbortSignal.any([signal, AbortSignal.timeout(25000)]) : AbortSignal.timeout(25000)
       const response = await fetchPage(url, { signal: scoped, method: input ? 'POST' : 'GET', ...(input ? { body: JSON.stringify(input) } : {}),
-        headers: { Accept: 'application/json,text/html,application/javascript,*/*', ...(input ? { 'Content-Type': 'application/json' } : {}) } })
+        headers: { Accept: 'application/json,text/html,application/javascript,*/*', ...(input ? { 'Content-Type': 'application/json' } : {}) } }, ...(fetchPage === defaultFetchPage ? [signal] : []))
       signal?.throwIfAborted(); requests++
       requireNative(response?.url === url, 'public native response redirected or changed identity')
       if (response.status !== 200) throw Error(`Licious public native HTTP ${response.status}`)

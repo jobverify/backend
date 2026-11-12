@@ -111,7 +111,16 @@ test('GitHub CLI registers direct roots, reports work and dispatches separate co
  assert.equal(await PipelineRun.countDocuments(),before);
  await run('register','scraper',1203,{GITHUB_EVENT_NAME:'schedule',TEST_SCHEDULE_START:due});
  assert.equal(await PipelineRun.countDocuments({scheduleSlot:{$exists:true}}),0);
+ const savedStages=[{key:'scraper',enabled:true},{key:'classification',enabled:true},{key:'rewrite',enabled:false}];
+ await PipelineConfiguration.updateOne({_id:'global'},{$set:{stages:savedStages}});
  await run('register','scraper',1204,{GITHUB_EVENT_NAME:'workflow_dispatch'});
  const manual=await PipelineRun.findOne({activeKey:'database'}).lean();
  assert.equal(manual.stages[0].githubRunId,1204);assert.equal(manual.scheduleSlot,undefined);
+ assert.deepEqual(manual.stages.map(({key,enabled})=>({key,enabled})),savedStages);
+ assert.equal(manual.stages[2].status,'disabled');
+ await run('report','scraper',1204,{PIPELINE_JOB_RESULT:'success'});
+ await complete('scraper','Jobverify Scraper Cron',1204);
+ const advanced=await PipelineRun.findById(manual._id).lean();
+ assert.equal(advanced.stages[1].key,'classification');assert.equal(advanced.stages[1].status,'queued');
+ assert.equal(advanced.stages[2].status,'disabled');
 });

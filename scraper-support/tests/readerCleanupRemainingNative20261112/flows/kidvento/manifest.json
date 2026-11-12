@@ -1,0 +1,238 @@
+{
+  "schemaVersion": "remaining-reader-per-flow-green-closure/v1",
+  "workspace": ".",
+  "backend": "backend",
+  "modules": [
+    {
+      "path": "backend/node_modules/acorn/dist/acorn.mjs",
+      "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+      "bytes": 234658,
+      "relativePath": "backend/node_modules/acorn/dist/acorn.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/kekaCurrentSourceScope.js",
+      "sha256": "3e9c5258327e1aadeee87b4b81b897ca882403089c411fdc1e99228e71e2b25d",
+      "bytes": 8773,
+      "relativePath": "backend/scraper-support/shared/kekaCurrentSourceScope.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782,
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506,
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046,
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032,
+      "relativePath": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/assignedLocations.js",
+      "sha256": "eb2ce4d5b467a4ba513790b1df6fc07d5d6785c1eab7a1ef31c5732d6007430f",
+      "bytes": 1933,
+      "relativePath": "backend/scraper/kidvento/assignedLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/native.js",
+      "sha256": "78cbdb9bfb133ca56174740d951d12e7a906829650182c91edf0132c903da05b",
+      "bytes": 18372,
+      "relativePath": "backend/scraper/kidvento/native.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/native.scope.json",
+      "sha256": "30b246243dc58eb98017b06dbb43a220934b7614b001ab09fa55ff811f7f247f",
+      "bytes": 134969,
+      "relativePath": "backend/scraper/kidvento/native.scope.json",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/publisherChain.js",
+      "sha256": "df3db82e554f86d5883c6d8f846fd4a9fb92c1537f83cb115bdf310a73a8eb4f",
+      "bytes": 7915,
+      "relativePath": "backend/scraper/kidvento/publisherChain.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529,
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/guard.mjs",
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/guard.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/proof.mjs",
+      "sha256": "e5f8ccf518734a745baf36442c6c1d3c98348d00906000663e577dd65482039c",
+      "bytes": 20833,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/proof.mjs",
+      "exists": true
+    }
+  ],
+  "reads": [
+    {
+      "path": "backend/node_modules/acorn/dist/acorn.mjs",
+      "sha256": "76254fc76529713b4dfd2532972d17a991ffd9aafeebb1f977445b5506b9fb0b",
+      "bytes": 234658,
+      "relativePath": "backend/node_modules/acorn/dist/acorn.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/node_modules/acorn/package.json",
+      "sha256": "04d6fecaafb5e3d20a38fc3b64fed84bb3830a7759a8c00400ebcb87331fec00",
+      "bytes": 1067,
+      "relativePath": "backend/node_modules/acorn/package.json",
+      "exists": true
+    },
+    {
+      "path": "backend/package.json",
+      "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+      "bytes": 6914,
+      "relativePath": "backend/package.json",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/kekaCurrentSourceScope.js",
+      "sha256": "3e9c5258327e1aadeee87b4b81b897ca882403089c411fdc1e99228e71e2b25d",
+      "bytes": 8773,
+      "relativePath": "backend/scraper-support/shared/kekaCurrentSourceScope.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782,
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506,
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046,
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032,
+      "relativePath": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/assignedLocations.js",
+      "sha256": "eb2ce4d5b467a4ba513790b1df6fc07d5d6785c1eab7a1ef31c5732d6007430f",
+      "bytes": 1933,
+      "relativePath": "backend/scraper/kidvento/assignedLocations.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/native.js",
+      "sha256": "78cbdb9bfb133ca56174740d951d12e7a906829650182c91edf0132c903da05b",
+      "bytes": 18372,
+      "relativePath": "backend/scraper/kidvento/native.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/native.scope.json",
+      "sha256": "30b246243dc58eb98017b06dbb43a220934b7614b001ab09fa55ff811f7f247f",
+      "bytes": 134969,
+      "relativePath": "backend/scraper/kidvento/native.scope.json",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/kidvento/publisherChain.js",
+      "sha256": "df3db82e554f86d5883c6d8f846fd4a9fb92c1537f83cb115bdf310a73a8eb4f",
+      "bytes": 7915,
+      "relativePath": "backend/scraper/kidvento/publisherChain.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529,
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/guard.mjs",
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/guard.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/manifest.json",
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/manifest.json",
+      "exists": true,
+      "integrity": "Self excluded; exact bytes pinned by root-reviewed command plan and trusted parent before source child execution."
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/proof.mjs",
+      "sha256": "e5f8ccf518734a745baf36442c6c1d3c98348d00906000663e577dd65482039c",
+      "bytes": 20833,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/kidvento/proof.mjs",
+      "exists": true
+    }
+  ],
+  "mutableSources": [],
+  "substitutions": [],
+  "pinnedHelper": {
+    "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+    "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+    "bytes": 1782,
+    "runtimeModuleOrReadGrant": true
+  },
+  "flowSpec": {
+    "key": "kidvento",
+    "label": "Kidvento native reader",
+    "entry": "backend/scraper/kidvento/native.js",
+    "targetURL": "https://www.kidvento.com/",
+    "byteCap": 4000000,
+    "primaryError": "response budget exceeded",
+    "contentType": "text/html",
+    "expectedCases": 5
+  },
+  "applicationAndStaticImportedDataModules": 11,
+  "trustedHarnessModules": 2,
+  "dynamicImportsFollowedOrGranted": [],
+  "deniedPDFImplementations": [
+    "pdfjs-dist",
+    "@napi-rs/canvas"
+  ],
+  "publicFactoryDefaultsPreserved": true,
+  "sourceRuntimeAuthorization": "HOLD pending exact root GREEN plan review and runtime GO"
+}

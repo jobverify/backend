@@ -11,6 +11,7 @@ import { aggregateClassificationSummaries } from '../classification/reporting.js
 import { aggregateRewriteSummaries, formatRewriteReport } from '../rewriting/reporting.js';
 import { validateRewriteShard } from '../rewriting/partitioning.js';
 import { scraperRunEnvironment } from '../src/pipeline/scraperConcurrency.js';
+import { savedPipelineConfiguration } from '../src/pipeline/configuration.js';
 
 const command=process.argv[2],key=process.env.PIPELINE_STAGE;
 const token=process.env.GH_TOKEN;
@@ -29,7 +30,15 @@ try {
         // Ignore old cron events queued before the backend scheduler rollout.
         await fs.appendFile(process.env.GITHUB_OUTPUT,'should_run=false\n');
         console.log('GitHub cron skipped: scraper scheduling is owned by the backend.');
-      } else run=await createDirectGithubPipeline(options,{token});
+      } else {
+        if(key==='scraper') {
+          options.configuration=await savedPipelineConfiguration();
+          if(options.configuration.stages.find(stage=>stage.enabled)?.key!=='scraper') {
+            throw new Error('Start this saved pipeline through admin controls: its first enabled stage is not scraper.');
+          }
+        }
+        run=await createDirectGithubPipeline(options,{token});
+      }
       if(run)id=run._id;
     } else {
       const expected=await PipelineRun.findById(id).lean();

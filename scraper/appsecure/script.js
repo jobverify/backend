@@ -14,7 +14,7 @@ export const createAppSecureScraper=(defaults={})=>({async run(options={}){
  signal?.throwIfAborted()
  const controller=new AbortController(),combined=signal?AbortSignal.any([signal,controller.signal]):controller.signal,retainedResponses=[]
  let surface=FIRST_PARTY_ROOT_URL,timer,onAbort
- const evidence=reason=>({status:'discovery-only',surface,firstParty:new URL(surface).hostname==='www.appsecure.com',listingComplete:false,pagesFetched:retainedResponses.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:now(),reason})
+ const evidence=reason=>({status:'discovery-only',surface,firstParty:new URL(surface).origin===new URL(FIRST_PARTY_ROOT_URL).origin,listingComplete:false,pagesFetched:retainedResponses.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:now(),reason})
  const gap=(reason,cause)=>Object.assign(new Error('appsecure coverage gap: '+reason,{cause}),{code:'APPSECURE_COVERAGE_GAP',source:SOURCE,partial:true,abortRetries:true,sourceListingComplete:false,lifecycleCleanupAllowed:false,retainedResponses,inventoryEvidence:{...evidence(reason),status:'coverage-gap'}})
  if(!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>180000)throw gap('Invalid aggregate request budget')
  const interrupted=new Promise((_,reject)=>{onAbort=()=>reject(combined.reason);combined.addEventListener('abort',onAbort,{once:true});timer=setTimeout(()=>controller.abort(gap('aggregate fetch/body deadline exceeded')),timeoutMs)})
@@ -23,7 +23,7 @@ export const createAppSecureScraper=(defaults={})=>({async run(options={}){
   const response=await fetchImpl(url,{signal:combined,redirect:'manual',headers:{Accept:'text/html','User-Agent':'Mozilla/5.0'}})
   const cancelUnopened=()=>{try{void Promise.resolve(response.body?.cancel(combined.reason)).catch(()=>{})}catch{}}
   if(combined.aborted){cancelUnopened();combined.throwIfAborted()}
-  if(response.url!==url||response.status!==200){cancelUnopened();throw gap('Native HTTP failure or final URL changed')}
+  if(response.url!==url||response.status!==200){cancelUnopened();throw Object.assign(gap(response.status!==200?'Native HTTP '+response.status+' for '+url:'Native final URL changed for '+url+' to '+response.url),{status:response.status,requestUrl:url,finalUrl:response.url})}
   let body
   if(response.body?.getReader){
    const reader=response.body.getReader(),chunks=[];let bytes=0

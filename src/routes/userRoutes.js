@@ -1,4 +1,5 @@
 import express from "express";
+import { requireApplicationsAccess } from "../middleware/applicationsAccess.js";
 import { requireTelegramAccess } from "../middleware/telegramAccess.js";
 import { loadSiteSettings } from "../middleware/siteSettings.js";
 import { telegramAlertScheduleValidation, getUserTelegramAlertSchedule, updateUserTelegramAlertSchedule } from "../controllers/alertScheduleController.js";
@@ -49,6 +50,7 @@ router.use('/auto-apply', autoApplyRoutes);
 router.use('/resume', resumeRoutes);
 router.use('/tailored-resumes', tailoredResumeRoutes);
 router.use('/candidate-evidence', candidateEvidenceRoutes);
+router.use('/applications', protect, requireApplicationsAccess);
 router.use(applicationStageRoutes);
 
 router

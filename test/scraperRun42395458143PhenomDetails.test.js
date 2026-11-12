@@ -32,7 +32,8 @@ for (const fixture of cases) test('captured ' + fixture.source + ' role ' + fixt
   const [job] = await replay(fixture)
   assert.ok(job)
   const continuedQuestOffice = fixture.source === 'questglobal' && continuedQuestOfficeRoles.has(fixture.listing.jobId)
-  assert.equal(job.sourceDetailComplete, fixture.expectedRepaired || continuedQuestOffice)
+  const continuedRoyalOffice = fixture.source === 'royalenfield' && fixture.listing.jobId === 'P-101048'
+  assert.equal(job.sourceDetailComplete, fixture.expectedRepaired || continuedQuestOffice || continuedRoyalOffice)
   assert.equal(job.jobId, fixture.listing.jobId)
   assert.equal(job.country, 'India')
   if (fixture.source === 'opentext') {
@@ -40,7 +41,7 @@ for (const fixture of cases) test('captured ' + fixture.source + ' role ' + fixt
     assert.equal(job.sourceNativeDetailEvidence.jsonLdTitle, 'Premium Support Developer ( SMAX)')
   }
   if (fixture.expectedRepaired) assert.ok(job.jobDescription.length > 100)
-  else if (continuedQuestOffice) assert.ok(job.jobDescription.length > 60)
+  else if (continuedQuestOffice || continuedRoyalOffice) assert.ok(job.jobDescription.length > 60)
   else assert.equal(job.jobDescription, null)
 })
 

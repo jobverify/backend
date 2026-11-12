@@ -1,3 +1,4 @@
+import {disposeResponseBody, disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 import { createHash } from 'node:crypto'
 import { decodeHTMLAttribute } from 'entities'
 import { activeHead, extractActiveDescription, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
@@ -20,23 +21,27 @@ const unavailable = (message, status = null) => Object.assign(new Error(`[aplazo
   softFailure: true, abortRetries: true, failureKind: [401, 403, 429].includes(status) ? 'blocked_or_access_denied' : 'source_identity_unverified',
   ...(status == null ? {} : { status, httpStatus: status }),
 })
-const nativeText = async (url, { signal, budget }) => {
+const nativeText = async (url, { signal, callerSignal, budget }) => {
   signal?.throwIfAborted()
   const requestSignal = AbortSignal.any([...(signal ? [signal] : []), AbortSignal.timeout(20000)])
+  let primaryFailure = false
   try {
     const response = await fetch(url, { signal: requestSignal, redirect: 'manual', credentials: 'omit',
       headers: { Accept: url === API_URL ? 'application/json' : 'text/html', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify careers check)' } })
     requestSignal.throwIfAborted()
     if (response.status !== 200 || response.url !== url) {
-      await response.body?.cancel().catch(() => {})
+      primaryFailure = true
+      await disposeResponseBody(response, { signal: callerSignal, bestEffort: true })
       throw unavailable('Native response unavailable or redirected', response.status)
     }
     if (Number(response.headers.get('content-length')) > MAX_BODY_BYTES || !response.body) {
-      await response.body?.cancel().catch(() => {})
+      primaryFailure = true
+      await disposeResponseBody(response, { signal: callerSignal, bestEffort: true })
       throw unavailable('Native response exceeds the source budget or has no body')
     }
     if (url === API_URL && !/^application\/(?:[\w.-]+\+)?json(?:;|$)/i.test(response.headers.get('content-type') || '')) {
-      await response.body.cancel().catch(() => {})
+      primaryFailure = true
+      await disposeResponseBody(response, { signal: callerSignal, bestEffort: true })
       throw unavailable('Native posting response is not JSON')
     }
     const reader = response.body.getReader(), chunks = []
@@ -51,13 +56,13 @@ const nativeText = async (url, { signal, budget }) => {
         if (bytes > MAX_BODY_BYTES || budget.bytes + bytes > MAX_TOTAL_BYTES) throw unavailable('Native response exceeds the source budget')
         chunks.push(Buffer.from(part.value))
       }
-    } catch (error) { await reader.cancel(error).catch(() => {}); throw error }
+    } catch (error) { primaryFailure = true; await disposeResponseReader(reader, { signal: callerSignal, bestEffort: true, reason: error }); throw error }
     finally { reader.releaseLock() }
     budget.bytes += bytes
     const body = new TextDecoder('utf8', { fatal: true }).decode(Buffer.concat(chunks))
     requestSignal.throwIfAborted()
     return body
-  } catch (error) { signal?.throwIfAborted(); requestSignal.throwIfAborted(); throw error }
+  } catch (error) { callerSignal?.throwIfAborted(); signal?.throwIfAborted(); if (!primaryFailure) requestSignal.throwIfAborted(); throw error }
 }
 const checkHandoff = page => {
   if (page?.status !== 200 || page.url !== CAREERS_URL || typeof page.html !== 'string'
@@ -182,7 +187,7 @@ export const runNativeAplazo = async ({ fetchPage, fetchJson, signal, now = () =
   const readPage = async () => {
     reserveRead(CAREERS_URL)
     const page = fetchPage ? await fetchPage(CAREERS_URL, { signal: wholeSignal })
-      : { status: 200, url: CAREERS_URL, html: await nativeText(CAREERS_URL, { signal: wholeSignal, budget }) }
+      : { status: 200, url: CAREERS_URL, html: await nativeText(CAREERS_URL, { signal: wholeSignal, callerSignal: signal, budget }) }
     checkCancellation()
     if (fetchPage && typeof page?.html === 'string') countHookBytes(page.html)
     return page
@@ -190,7 +195,7 @@ export const runNativeAplazo = async ({ fetchPage, fetchJson, signal, now = () =
   const readJson = async () => {
     reserveRead(API_URL)
     const payload = fetchJson ? await fetchJson(API_URL, { signal: wholeSignal })
-      : JSON.parse(await nativeText(API_URL, { signal: wholeSignal, budget }))
+      : JSON.parse(await nativeText(API_URL, { signal: wholeSignal, callerSignal: signal, budget }))
     checkCancellation()
     if (fetchJson) countHookBytes(JSON.stringify(payload) || '')
     return payload

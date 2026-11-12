@@ -1,0 +1,32 @@
+{
+  "source": "loadsmart",
+  "fixture": "lever-request-metadata-loadsmart-actual32-20261111.json.gz",
+  "fixtureBytes": 161090,
+  "fixtureSHA256": "c83d776cda5f0c165cab32b4265afc2acc41541c92035b878de0d7803f67401d",
+  "fixtureKind": "One complete actual registered32 opening board response; original failure retained",
+  "observationOnly": true,
+  "acquiredClosings": false,
+  "completeSourceTransaction": false,
+  "originalRunOutcome": "coverage_gap: exact t/Date predicate failed; no recovery",
+  "originalArchive": {
+    "file": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\verified-repairs-32\\captures\\loadsmart\\2026-11-11T18-18-16-158Z-e6da81e2-9320-4084-bac4-08150331da32.failure.json",
+    "bytes": 1149569,
+    "sha256": "2d687b59c7d915c241564be4a0bd52bf9e9bc6083572ea6b7befa6c379dd278e",
+    "capturedAt": "2026-11-11T18:18:16.158Z",
+    "eventId": "e6da81e2-9320-4084-bac4-08150331da32"
+  },
+  "originals": [
+    {
+      "kind": "actual32-opening-board",
+      "requestedURL": "https://jobs.lever.co/loadsmart/",
+      "finalURL": "https://jobs.lever.co/loadsmart/",
+      "status": 200,
+      "bodyBytes": 726040,
+      "bodySHA256": "5660a270598f28dcd288c37a68043aa5b89e300c2ff953b3d68d6190d3771cb3",
+      "requestedAt": "2026-11-11T18:18:12.457Z",
+      "responseAt": "2026-11-11T18:18:14.690Z",
+      "completedAt": "2026-11-11T18:18:14.692Z",
+      "originalHeaderEntriesRecorded": true
+    }
+  ]
+}

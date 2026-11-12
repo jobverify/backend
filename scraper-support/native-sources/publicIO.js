@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { readLiteralModel } from './literalModel.js'
 import { boundedDeclaredPublicGet } from './boundedDeclaredPublicGet.js'
+import { nativeFailureDiagnostics } from '../shared/nativeFailureDiagnostics.js'
 
 export const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 export const resourceURL = value => { const url = new URL(value);url.hash = '';return url.href }
@@ -43,8 +44,9 @@ export const createPublicIO = ({ fetchPage, fetchText, fetchJson, signal, allowe
       if (!page.usable) issue('native-response-unavailable-or-contradictory', { url, status: page.status, finalURL: page.finalURL })
     } catch (error) {
       signal?.throwIfAborted()
-      page = { url, declaredURL, usable: false, transportQualified: false, originalText: null, error: { name: error.name, message: error.message } }
-      issue('native-response-failed', { url, message: error.message })
+      const diagnostic = nativeFailureDiagnostics(error)
+      page = { url, declaredURL, usable: false, transportQualified: false, originalText: null, error: diagnostic }
+      issue('native-response-failed', { url, message: diagnostic.message })
     }
     rawPages.push(page);if (!fresh) cache.set(url, page)
     return page

@@ -2,6 +2,7 @@ import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNati
 import {readNativeDocument,activeHead,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 const SOURCE="nitaragormalonellp",SURFACE="https://gormalone.com/careers.html"
 export const check=(ok,message)=>{if(!ok)throw Object.assign(Error(SOURCE+' native: '+message),{abortRetries:true,inventoryEvidence:{status:'coverage-gap',surface:SURFACE,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null}})}
 export const norm=value=>decodeNativeEntities(value).replace(/\s+/g,' ').trim()
@@ -21,17 +22,26 @@ export const nativeFetch=async(url,{signal,binary=false,metadata=false,method='G
  signal?.throwIfAborted();const deadline=AbortSignal.timeout(20000),requestSignal=signal?AbortSignal.any([signal,deadline]):deadline
  const aborted=()=>{signal?.throwIfAborted();requestSignal.throwIfAborted()}
  try{const response=await fetch(url,{method,...(body==null?{}:{body}),headers:{'User-Agent':'Mozilla/5.0',Accept:binary?'application/pdf':'text/html,application/javascript,application/json;q=0.9,*/*;q=0.8',...(method==='POST'?{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8','X-Requested-With':'XMLHttpRequest'}:{})},signal:requestSignal});aborted()
-  if(!response.ok){await response.body?.cancel();throw Object.assign(Error(SOURCE+' native input: HTTP '+response.status),{status:response.status,code:[401,403].includes(response.status)?'access_denied':response.status===429?'rate_limited':'native_unavailable',abortRetries:true,inventoryEvidence:{status:'coverage-gap',surface:SURFACE,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null}})}
+  if(!response.ok){await disposeResponseBody(response,{signal,bestEffort:true});throw Object.assign(Error(SOURCE+' native input: HTTP '+response.status),{status:response.status,code:[401,403].includes(response.status)?'access_denied':response.status===429?'rate_limited':'native_unavailable',abortRetries:true,inventoryEvidence:{status:'coverage-gap',surface:SURFACE,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null}})}
   const requested=new URL(url),final=new URL(response.url||url),samePath=final.pathname.replace(/\/$/,'')===requested.pathname.replace(/\/$/,'')
-  if(final.origin!==requested.origin||!samePath||final.search!==requested.search){await response.body?.cancel();check(false,'unexpected native redirect')}
+  if(final.origin!==requested.origin||!samePath||final.search!==requested.search){await disposeResponseBody(response,{signal,bestEffort:true});check(false,'unexpected native redirect')}
   const value=binary?Buffer.from(await response.arrayBuffer()):await response.text();aborted();check(value.length<(binary?5000000:3000000),'oversized native input')
   if(!binary)check(!/<title\b[^>]*>\s*(?:Access Denied|Forbidden|Just a moment|Attention Required)|<Code>\s*AccessDenied/i.test(value),'HTTP200 native access denial or challenge')
   return metadata?{html:value,status:response.status,url:final.href}:value
- }catch(error){aborted();if(error.abortRetries)throw error;throw Object.assign(Error(SOURCE+' native input: '+error.message),{abortRetries:true,cause:error,inventoryEvidence:{status:'coverage-gap',surface:SURFACE,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null}})}
+ }catch(error){signal?.throwIfAborted();if(error.abortRetries)throw error;requestSignal.throwIfAborted();throw Object.assign(Error(SOURCE+' native input: '+error.message),{abortRetries:true,cause:error,inventoryEvidence:{status:'coverage-gap',surface:SURFACE,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null}})}
 }
 export {readVisibleNativeDocument,readNativeDocument,activeHead}
 
-import {readNativePdf} from './nativePdf.js'
+const readNativePdf=async(value,{signal}={})=>{
+ signal?.throwIfAborted()
+ const operation=import('./nativePdf.js').then(module=>{signal?.throwIfAborted();return module.readNativePdf(value,{signal})})
+ operation.catch(()=>{})
+ let listener
+ const aborted=signal&&new Promise((_,reject)=>{listener=()=>reject(signal.reason);signal.addEventListener('abort',listener,{once:true});if(signal.aborted)listener()})
+ try{const result=await (aborted?Promise.race([operation,aborted]):operation);signal?.throwIfAborted();return result}
+ catch(error){signal?.throwIfAborted();throw error}
+ finally{if(listener)signal.removeEventListener('abort',listener)}
+}
 import {createHash} from 'node:crypto'
 export const readListings=html=>{
  const doc=readVisibleNativeDocument(html,{strict:true}),text=doc.text(doc.nodes(n=>n.tag==='root')[0]);check(activeHead(html).titles.some(title=>/Careers at Gormalone/i.test(title))&&/Find your next job at GormalOne/i.test(text)&&/hr@gormalone\.com/i.test(text),'employer careers identity/application email')
@@ -49,7 +59,7 @@ export const bindDocument=(job,pdf,bytes)=>{
 }
 export const collect=async({fetchText=nativeFetch,fetchPdf=(url,options)=>nativeFetch(url,{...options,binary:true}),now=()=>new Date().toISOString(),signal,homepageVerifier}={})=>{
  signal?.throwIfAborted();const homepage=await fetchText('https://gormalone.com/',{signal});check(homepageVerifier?.(homepage),'official homepage identity/handoff');const html=await fetchText(SURFACE,{signal}),listings=readListings(html),jobs=[];let stopped=null,reads=2
- for(const job of listings){let detailed=job;if(!stopped){try{const bytes=Buffer.from(await fetchPdf(job.sourceUrl,{signal}));reads++;detailed=bindDocument(job,await readNativePdf(bytes,{signal}),bytes)}catch(error){signal?.throwIfAborted();stopped={kind:error.code||'native-pdf-unavailable',status:error.status??null,message:error.message};detailed={...job,rawNativeRoleEvidence:{...job.rawNativeRoleEvidence,nativePdfFailure:stopped}}}}else detailed={...job,rawNativeRoleEvidence:{...job.rawNativeRoleEvidence,nativePdfFailure:{kind:'not-attempted-after-native-unavailability'}}}
+ for(const job of listings){let detailed;if(!stopped){try{const bytes=Buffer.from(await fetchPdf(job.sourceUrl,{signal}));reads++;detailed=bindDocument(job,await readNativePdf(bytes,{signal}),bytes)}catch(error){signal?.throwIfAborted();stopped={kind:error.code||'native-pdf-unavailable',status:error.status??null,message:error.message};detailed={...job,rawNativeRoleEvidence:{...job.rawNativeRoleEvidence,nativePdfFailure:stopped}}}}else detailed={...job,rawNativeRoleEvidence:{...job.rawNativeRoleEvidence,nativePdfFailure:{kind:'not-attempted-after-native-unavailability'}}}
   jobs.push({...detailed,source:SOURCE,link:job.sourceUrl,scrapedAt:now()})
  }
  return finish(jobs,{observedDisplayCardCount:listings.observedDisplayCardCount,nativeDiscoveryFailures:stopped?[stopped]:[],pagesFetched:reads,now})

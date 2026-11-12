@@ -1,4 +1,5 @@
 // GET-only public portal transport. Nothing in this module runs on import.
+import { disposeResponseBody, disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 export const BASE='https://jobs.globalpayments.com/jobs';
 const ORIGIN='https://jobs.globalpayments.com';
 export function validateURL(value,{method='GET',advertisedAssets=[]}={}){
@@ -17,16 +18,20 @@ export function createNativeTransport({fetchImpl=globalThis.fetch,maxBytes=16*10
    combined.throwIfAborted();const response=await fetchImpl(url,{method:'GET',headers:{accept:'text/html, application/javascript;q=0.9'},redirect:'manual',credentials:'omit',signal:combined});
    if(response.url&&response.url!==url)throw Error('Unexpected implicit redirect');
    if([301,302,303,307,308].includes(response.status)){
-    const location=response.headers.get('location');await response.body?.cancel();if(!location||hop===3)throw Error('Missing or excessive redirect');
-    const next=validateURL(new URL(location,url).href,{advertisedAssets});
-    // Same exact resource only: redirects cannot silently replace an inventory,
-    // native identity or advertised asset with a different public contract.
-    if(next!==value)throw Error('Unexpected public resource redirect');url=next;continue;
+    const location=response.headers.get('location');let next;
+    try{
+     if(!location||hop===3)throw Error('Missing or excessive redirect');
+     next=validateURL(new URL(location,url).href,{advertisedAssets});
+     // Same exact resource only: redirects cannot silently replace an inventory,
+     // native identity or advertised asset with a different public contract.
+     if(next!==value)throw Error('Unexpected public resource redirect');
+    }catch(error){await disposeResponseBody(response,{signal,bestEffort:true});throw error;}
+    await disposeResponseBody(response,{signal});url=next;continue;
    }
-   const length=response.headers.get('content-length');if(length&&(!/^\d+$/.test(length)||Number(length)>maxBytes)){await response.body?.cancel();throw Error('Global Payments byte limit');}
+   const length=response.headers.get('content-length');if(length&&(!/^\d+$/.test(length)||Number(length)>maxBytes)){await disposeResponseBody(response,{signal,bestEffort:true});throw Error('Global Payments byte limit');}
    const chunks=[];let bytes=0;const reader=response.body?.getReader();
    try{if(reader)for(;;){combined.throwIfAborted();const {done,value:chunk}=await reader.read();if(done)break;bytes+=chunk.byteLength;if(bytes>maxBytes)throw Error('Global Payments byte limit');chunks.push(Buffer.from(chunk));}}
-   catch(error){await reader?.cancel().catch(()=>{});throw error;}finally{reader?.releaseLock();}
+   catch(error){await disposeResponseReader(reader,{signal,bestEffort:true});throw error;}finally{reader?.releaseLock();}
    combined.throwIfAborted();return {status:response.status,url,body:Buffer.concat(chunks,bytes),provenance:{requestedURL:value,finalURL:url,method:'GET',anonymous:true,cookiesSent:false,startedAt,completedAt:new Date().toISOString(),publicResponseDateRaw:response.headers.get('date'),bodyBytes:bytes}};
   }throw Error('Redirect limit');}finally{clearTimeout(timer);}
  };

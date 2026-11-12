@@ -1,4 +1,5 @@
-import {getDocument,OPS,VerbosityLevel} from 'pdfjs-dist/legacy/build/pdf.mjs'
+import {loadPdfDisplay} from '../../scraper-support/shared/pdfDisplay.js'
+const {getDocument,OPS,VerbosityLevel}=await loadPdfDisplay()
 import {fileURLToPath} from 'node:url'
 import {failure} from './runtime20261107.js'
 const need=(ok,message)=>{if(!ok)throw failure('BHEL native PDF '+message,'BHEL_NATIVE_PROOF')}

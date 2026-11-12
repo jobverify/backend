@@ -1,3 +1,4 @@
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import { createHash } from 'node:crypto'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
@@ -95,7 +96,8 @@ export async function runCurrentAllcargoInventory({ fetchImpl = fetch, signal, o
       })
     }
     if (releaseSession) {
-      await response.body?.cancel()
+      try { await disposeResponseBody(response, {signal: requestSignal}) }
+      catch (error) { signal?.throwIfAborted(); throw error }
       signal?.throwIfAborted()
       receipts.push({ url, status: response.status, responseUrl: response.url, bodyConsumed: false, purpose: 'public-session-seed' })
       return { response }

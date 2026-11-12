@@ -1,0 +1,25 @@
+[
+  {
+    "source": "arcadia",
+    "companyName": "Arcadia",
+    "catalogOverride": true,
+    "adapter": "script",
+    "parser": "custom-script",
+    "atsPlatform": "rippling-first-party-feed",
+    "modulePath": "../../scraper/arcadia/script.js",
+    "config": null,
+    "companyCareerPage": "https://www.arcadia.com/careers",
+    "companyDomain": "arcadia.com",
+    "countryFilter": "India",
+    "dryRunFile": "arcadia/jobs.json",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "paginationStrategy": "current-unfiltered-public-feed-native-row-and-role-reconciliation",
+    "extractionStrategy": "current-prismic-controller+typed-native-country+same-role-office-union+full-visible-rippling-details+closing-reconciliation",
+    "sourceScopeComplete": false,
+    "verifiedOn": null,
+    "verifiedPublicJobCount": null,
+    "verifiedIndiaJobCount": null,
+    "verifiedSurfaceSummary": "Runtime verifies the current employer-advertised public careers controller and unfiltered feed against all native role identities, typed countries, office unions, full descriptions and closing observations. Historical metadata-only API rows cannot certify details or cleanup. Native creation dates remain separate from unknown publication dates; private channels and legal employer completeness remain unknown."
+  }
+]

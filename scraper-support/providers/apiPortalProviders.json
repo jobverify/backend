@@ -472,7 +472,8 @@
       },
       "mapping": {
         "title": "text",
-        "location": "categories.location",
+        "location": { "strategy": "lever-location" },
+        "country": { "strategy": "lever-country" },
         "jobId": "id",
         "requisitionId": "id",
         "applyUrl": "applyUrl",
@@ -487,7 +488,7 @@
             "intern": "Internship"
           }
         },
-        "jobDescription": "descriptionBodyPlain",
+        "jobDescription": { "strategy": "lever-description" },
         "postingDate": "createdAt"
       }
     }
@@ -516,7 +517,7 @@
       "pagination": {
         "strategy": "single-page",
         "resultsPath": "jobs",
-        "hasMorePath": "hasMore"
+        "totalCountPath": "meta.total"
       },
       "mapping": {
         "title": "title",
@@ -562,7 +563,7 @@
       "pagination": {
         "strategy": "single-page",
         "resultsPath": "jobs",
-        "hasMorePath": "hasMore"
+        "totalCountPath": "meta.total"
       },
       "mapping": {
         "title": "title",
@@ -602,15 +603,19 @@
         "offsetParam": "offset",
         "limitParam": "limit",
         "resultsPath": "content",
-        "hasMorePath": "nextPageId"
+        "totalCountPath": "totalFound"
       },
       "mapping": {
         "title": "name",
         "location": "location.city",
+        "country": "location.country",
         "jobId": "id",
         "applyUrl": "ref",
         "department": "department.label",
         "employmentType": "typeOfEmployment.label"
+      },
+      "resultFilter": {
+        "include": [{ "field": "country", "pattern": "^in$" }]
       },
       "detail": {
         "enabled": true,
@@ -804,14 +809,15 @@
       },
       "mapping": {
         "title": "text",
-        "location": "categories.location",
+        "location": { "strategy": "lever-location" },
+        "country": { "strategy": "lever-country" },
         "jobId": "id",
         "requisitionId": "id",
         "applyUrl": "applyUrl",
         "sourceUrl": "hostedUrl",
         "department": "categories.department",
         "employmentType": "categories.commitment",
-        "jobDescription": "descriptionBodyPlain",
+        "jobDescription": { "strategy": "lever-description" },
         "postingDate": "createdAt"
       }
     }
@@ -840,7 +846,7 @@
       "pagination": {
         "strategy": "single-page",
         "resultsPath": "jobs",
-        "hasMorePath": "hasMore"
+        "totalCountPath": "meta.total"
       },
       "mapping": {
         "title": "title",
@@ -1277,7 +1283,7 @@
       "pagination": {
         "strategy": "single-page",
         "resultsPath": "jobs",
-        "hasMorePath": "hasMore"
+        "totalCountPath": "meta.total"
       },
       "mapping": {
         "title": "title",

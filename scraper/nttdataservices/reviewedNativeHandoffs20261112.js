@@ -1,0 +1,160 @@
+// Exact employer-original handoffs and active native footer text retained from public responses.
+// The Middle East location role is deliberately unresolved against its India mirror.
+export const REVIEWED_NTT_NATIVE_HANDOFFS_20261112 = [
+  {
+    "jobId": "ebe2ed3666c0800",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/ebe2ed3666c0800/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Lead-Consultant-ITAM/14665-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Lead-Consultant-ITAM/14665-en_US/",
+    "nativeRoleId": "14665",
+    "nativeTitle": "Lead Consultant-ITAM",
+    "descriptionSha256": "0c82b81740036ef17c0767a9af6541fcb98a75de1e7bf23dd2d30fe05c366f92",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:43.689Z"
+  },
+  {
+    "jobId": "100324fe38231c0",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/100324fe38231c0/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Lead-Consultant-Itom/14664-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Lead-Consultant-Itom/14664-en_US/",
+    "nativeRoleId": "14664",
+    "nativeTitle": "Lead Consultant-Itom",
+    "descriptionSha256": "26d0c30040104c39e5067eea45d2447e78a10be28d14918c2cd1c54840b46117",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:44.163Z"
+  },
+  {
+    "jobId": "b5923aaac5dbd00",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/b5923aaac5dbd00/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Lead-Consultant-SPM/14663-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Lead-Consultant-SPM/14663-en_US/",
+    "nativeRoleId": "14663",
+    "nativeTitle": "Lead Consultant-SPM",
+    "descriptionSha256": "c503128ec48d52f78b9f6e615a6bf0041ea6d951d4513dcd2213226a07465f0d",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:44.662Z"
+  },
+  {
+    "jobId": "fe9a7c2f4306000",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/fe9a7c2f4306000/FICO-Senior-Consultant-L3",
+    "phenomTitle": "FICO Senior Consultant L3",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/FICO-Senior-Consultant-L3/10422-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/FICO-Senior-Consultant-L3/10422-en_US/",
+    "nativeRoleId": "10422",
+    "nativeTitle": "FICO Senior Consultant L3",
+    "descriptionSha256": "b0213943f97cfec813b2b96441f6b955736779d47a3eb4ef12444abab982f6ae",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:45.145Z"
+  },
+  {
+    "jobId": "2a0ff2d6e5ec800",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/2a0ff2d6e5ec800/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Senior-Consultant/14891-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Senior-Consultant/14891-en_US/",
+    "nativeRoleId": "14891",
+    "nativeTitle": "Senior Consultant",
+    "descriptionSha256": "bbdcb766bdd066edc52ee4a0447a2eaac4144422458982d4ff82d2bf67609947",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:45.643Z"
+  },
+  {
+    "jobId": "c3236caa29d1700",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/c3236caa29d1700/SAP-PS-Lead-Consultant-L3",
+    "phenomTitle": "SAP PS - Lead Consultant - L3",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/SAP-PS-Lead-Consultant-L3/10803-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/SAP-PS-Lead-Consultant-L3/10803-en_US/",
+    "nativeRoleId": "10803",
+    "nativeTitle": "SAP PS - Lead Consultant - L3",
+    "descriptionSha256": "1dfb3969636d4f4d8ebc7337f1cb9a2c8b79c5a7cd108d0c849ab86acd0a1193",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:46.161Z"
+  },
+  {
+    "jobId": "17ec1cf72933de0",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/17ec1cf72933de0/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Senior-Consultant-MMEWM/14884-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Senior-Consultant-MMEWM/14884-en_US/",
+    "nativeRoleId": "14884",
+    "nativeTitle": "Senior Consultant- MM/EWM",
+    "descriptionSha256": "58307ec841a75f34f680d4c95c702e86a48910ccac3140e5d91a9a240eabd8a9",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:46.665Z"
+  },
+  {
+    "jobId": "136b25f59c24420",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/136b25f59c24420/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/PPQM-Platinum-Consultant-L4/14886-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/PPQM-Platinum-Consultant-L4/14886-en_US/",
+    "nativeRoleId": "14886",
+    "nativeTitle": "PP/QM - Platinum Consultant- L4",
+    "descriptionSha256": "64ec418ab923dda9a81812575eb85ad0927f9df6f0c3a1fee9f7880b21fec3ea",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:47.136Z"
+  },
+  {
+    "jobId": "b58dcfda2a79900",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/b58dcfda2a79900/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Consultant-SAP-PP/14887-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Consultant-SAP-PP/14887-en_US/",
+    "nativeRoleId": "14887",
+    "nativeTitle": "Consultant-SAP PP",
+    "descriptionSha256": "2889fc8c655a99941e5d416fa4c99df0da21a9ad952b2289d49f382afcfa7fc2",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:47.607Z"
+  },
+  {
+    "jobId": "1581cd9057b1590",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/1581cd9057b1590/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/SAP-PPQM-Consultant-L2/14889-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/SAP-PPQM-Consultant-L2/14889-en_US/",
+    "nativeRoleId": "14889",
+    "nativeTitle": "SAP PP/QM - Consultant - L2",
+    "descriptionSha256": "b2ff7638de2a8a30f143474aa3df26f92d9232f9aceea4f2419217e4849a106d",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:48.094Z"
+  },
+  {
+    "jobId": "178da9c2ee7f540",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/178da9c2ee7f540/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Consultant/14890-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Consultant/14890-en_US/",
+    "nativeRoleId": "14890",
+    "nativeTitle": "Consultant",
+    "descriptionSha256": "31e8578b72be6404e8bcb3ed916f005fda840fe6118702e078f36c716279347f",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:48.560Z"
+  },
+  {
+    "jobId": "199990de8cead10",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/199990de8cead10/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/Platinum-Consultant/14896-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/Platinum-Consultant/14896-en_US/",
+    "nativeRoleId": "14896",
+    "nativeTitle": "Platinum Consultant",
+    "descriptionSha256": "6a0c9b5e2f6b39a2c06e6acb94db93b880459aba6d48661a337b19687aa6246f",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:49.095Z"
+  },
+  {
+    "jobId": "345be46a8140000",
+    "phenomUrl": "https://careers.nttdata.com/global/en/job/345be46a8140000/Job-Description",
+    "phenomTitle": "Job Description:",
+    "handoffUrl": "https://careers.nttdata-solutions.com/job/HANA-DBA-Consultant/11215-en_US/?utm_medium=phenom&utm_source=OneNTTCareerPage",
+    "canonical": "https://careers.nttdata-solutions.com/job/HANA-DBA-Consultant/11215-en_US/",
+    "nativeRoleId": "11215",
+    "nativeTitle": "HANA DBA - Consultant",
+    "descriptionSha256": "dc3da6b4c0601eae0187f8551025ec8766f1d12ad6f190974d120dd1c18b10f7",
+    "fixture": "test/test-data/ntt-rmk-native-handoffs-20261112.json.gz",
+    "observedAt": "2026-11-12T06:02:50.345Z"
+  }
+]
