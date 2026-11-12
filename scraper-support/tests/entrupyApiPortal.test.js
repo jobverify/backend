@@ -62,5 +62,7 @@ test('runApiPortalScraper filters Entrupy Greenhouse jobs to India-facing locati
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

@@ -21,7 +21,7 @@ function controls(parent,sourceMs){
    const finish=(bad,value)=>{if(settled)return;settled=true;clearTimeout(deadline);waiters.delete(stop);bad?reject(value):resolve(value)}
    const stop=value=>finish(true,value);waiters.add(stop)
    deadline=setTimeout(()=>fail(failure(label+' deadline exceeded')),ms)
-   Promise.resolve().then(()=>{checkGate();return fn()}).then(value=>{try{checkGate();finish(false,value)}catch(e){finish(true,e)}},error=>finish(true,fail(error)))
+   Promise.resolve().then(()=>{checkGate();return fn(checkGate)}).then(value=>{try{checkGate();finish(false,value)}catch(e){finish(true,e)}},error=>finish(true,fail(error)))
   })
  }
  return{signal:controller.signal,gate,check,fail,dispose(){clearTimeout(timer);parent?.removeEventListener('abort',onAbort)}}
@@ -98,6 +98,6 @@ export function transport(options){
   if(control.signal.aborted)throw control.signal.reason
   const wrapped=failure('observer failed');Object.defineProperty(wrapped,'cause',{value:error});throw wrapped
  }},observerMs,'observer')
- const decode=fn=>control.gate(async()=>{try{return await fn()}catch(error){if(options.signal?.aborted)throw options.signal.reason;if(control.signal.aborted)throw control.signal.reason;if(isFailure(error))throw error;const wrapped=failure('PDF decode failed');Object.defineProperty(wrapped,'cause',{value:error});throw wrapped}},pdfMs,'PDF decode')
+ const decode=fn=>control.gate(async(checkPdf)=>{try{return await fn(checkPdf)}catch(error){if(options.signal?.aborted)throw options.signal.reason;if(control.signal.aborted)throw control.signal.reason;if(isFailure(error))throw error;const wrapped=failure('PDF decode failed');Object.defineProperty(wrapped,'cause',{value:error});throw wrapped}},pdfMs,'PDF decode')
  return{read,originals,control,decode,allow:url=>{control.check();allowed.add(url)},observe,attachFailure(error){if(!options.signal?.aborted&&isFailure(error)&&Object.isExtensible(error))Object.defineProperty(error,'nativeOriginalResponses',{value:structuredClone(originals)})}}
 }

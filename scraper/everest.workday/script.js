@@ -1,3 +1,4 @@
+import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDisposal.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
@@ -119,7 +120,7 @@ const defaultFetchPage = async (url, { signal } = {}) => {
   }
 }
 
-const defaultFetchJson = async (url, body, { signal } = {}) => {
+const defaultFetchJson = async (url, body, { signal, disposalSignal } = {}) => {
   signal?.throwIfAborted()
   const response = await fetch(url, {
     method: 'POST',
@@ -135,7 +136,7 @@ const defaultFetchJson = async (url, body, { signal } = {}) => {
   })
 
   if (!response.ok) {
-    await response.body?.cancel().catch(() => {})
+    await disposeResponseBody(response, { signal: disposalSignal, bestEffort: true })
     throw Object.assign(new Error(`HTTP ${response.status} for ${url}`), {
       status: response.status, ...([401, 403, 429].includes(response.status) ? { abortRetries: true } : {}),
     })
@@ -325,7 +326,7 @@ export const createEverestScraper = ({
     }
     const fetchJson = async (url, body) => {
       beforeRead()
-      const payload = await (options.fetchJson || defaultFetchJson)(url, body, { signal })
+      const payload = await (options.fetchJson || defaultFetchJson)(url, body, options.fetchJson ? { signal } : { signal, disposalSignal: callerSignal })
       signal?.throwIfAborted(); pagesFetched++
       return payload
     }

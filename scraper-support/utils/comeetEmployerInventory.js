@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { disposeResponseReader } from '../shared/responseBodyDisposal.js'
 import { parse } from 'acorn'
 import { readNativeDocument, extractActiveDescription, decodeNativeEntities } from './activeNativeHtml.js'
 import { readVisibleNativeDocument } from './visibleNativeHtml.js'
@@ -319,7 +320,7 @@ export const createEmployerBoundComeetScraper = config => ({
           need(bytes <= 3 * 1024 * 1024 && totalBytes <= 32 * 1024 * 1024, 'native response byte bound exceeded')
           chunks.push(value)
         }
-      } catch (error) { await reader.cancel().catch(() => {}); throw error }
+      } catch (error) { await disposeResponseReader(reader, { signal, bestEffort: true }); throw error }
       finally { reader.releaseLock() }
       signal.throwIfAborted(); need(bytes > 0, 'native response body empty')
       return Buffer.concat(chunks).toString('utf8')

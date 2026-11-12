@@ -1,4 +1,5 @@
-import {getDocument,OPS,VerbosityLevel} from 'pdfjs-dist/legacy/build/pdf.mjs'
+import {loadPdfDisplay} from '../../scraper-support/shared/pdfDisplay.js'
+const {getDocument,OPS,VerbosityLevel}=await loadPdfDisplay()
 import {fileURLToPath} from 'node:url'
 import {need} from './currentErrors.js'
 const destroyTask=task=>{

@@ -6,7 +6,8 @@ export const QUEST_REVIEWED_INDIA_CITY_GROUPS = [
     "source": "questglobal",
     "country": "IN",
     "states": [
-      "kerala"
+      "kerala",
+      "keralam"
     ],
     "names": [
       "tvm",

@@ -1,3 +1,4 @@
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {nativeCountryName,nativeLocationCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
@@ -261,9 +262,9 @@ const fetchNativeText = async (url,{signal,method='GET',body}={}) => {
  const fail=(message,fields={})=>{throw Object.assign(Error('UHP Technologies native input: '+message),{abortRetries:true,...fields,inventoryEvidence:{status:'coverage-gap',surface,firstParty:true,listingComplete:false,reportedTotal:null,indiaFacetCount:null}})}
  signal?.throwIfAborted()
  let response;try{response=await fetch(url,{method,body:method==='POST'?JSON.stringify(body??{}):undefined,headers:{'User-Agent':USER_AGENT,...(method==='POST'?{'Content-Type':'application/json'}:{}),Accept:'text/html,application/javascript,application/json;q=0.9,*/*;q=0.8'},signal:signal?AbortSignal.any([signal,AbortSignal.timeout(20000)]):AbortSignal.timeout(20000)})}catch(error){if(signal?.aborted)throw signal.reason;fail(error.message,{cause:error})}
- if(!response.ok){await response.body?.cancel();fail('HTTP '+response.status,{status:response.status,code:[401,403].includes(response.status)?'access_denied':'native_unavailable',finalUrl:response.url})}
+ if(!response.ok){await disposeResponseBody(response,{signal,bestEffort:true});fail('HTTP '+response.status,{status:response.status,code:[401,403].includes(response.status)?'access_denied':'native_unavailable',finalUrl:response.url})}
  const final=new URL(response.url||url),samePath=final.pathname.replace(/\/$/,'')===request.pathname.replace(/\/$/,'')
- if(final.origin!==request.origin||!samePath||final.search!==request.search){await response.body?.cancel();fail('unexpected native redirect',{status:response.status,finalUrl:response.url})}
+ if(final.origin!==request.origin||!samePath||final.search!==request.search){await disposeResponseBody(response,{signal,bestEffort:true});fail('unexpected native redirect',{status:response.status,finalUrl:response.url})}
  const responseBody=await response.text();signal?.throwIfAborted();if(/<title\b[^>]*>\s*(?:Access\s*Denied|Forbidden)\s*<\/title>|<Code>\s*AccessDenied\s*<\/Code>/i.test(responseBody))fail('native access denial returned HTTP200',{status:response.status,code:'access_denied',finalUrl:response.url});return responseBody
 }
 

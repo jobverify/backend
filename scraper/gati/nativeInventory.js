@@ -1,3 +1,4 @@
+import { disposeResponseBody, disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 import fs from 'node:fs'
 import {createHash} from 'node:crypto'
 import {createDarwinboxScraper} from '../darwinbox/script.js'
@@ -38,7 +39,7 @@ export async function runCurrentGatiInventory(options={}){
   requireNative(response?.url===url,'HTTP response URL changed: '+url)
   const receipt={url,method:init.method||'GET',status:response.status,responseUrl:response.url};receipts.push(receipt)
   if([401,403,429].includes(response.status)){
-   await response.body?.cancel()
+   await disposeResponseBody(response,{signal,bestEffort:true})
    throw Object.assign(new Error('Gati native public API denied; no further source reads'),{
     code:'GATI_NATIVE_PUBLIC_API_UNAVAILABLE',softFailure:true,abortRetries:true,failureKind:'blocked_or_access_denied',
     status:response.status,statusCode:response.status,requestUrl:url,receipts,lifecycleCleanupAllowed:false,
@@ -47,12 +48,12 @@ export async function runCurrentGatiInventory(options={}){
      reason:'Public native access denied; employer configuration and vacancy inventory remain unavailable'}),
    })
   }
-  if(seed){requireNative(response.status===200,'public session seed HTTP failure');requireNative(/^text\/html\b/i.test(response.headers?.get('content-type')||''),'public session seed content type changed');await response.body?.cancel();deadline.throwIfAborted();Object.assign(receipt,{bodyConsumed:false,purpose:'public-session-seed-metadata-only'});return {response,receipt}}
+  if(seed){requireNative(response.status===200,'public session seed HTTP failure');requireNative(/^text\/html\b/i.test(response.headers?.get('content-type')||''),'public session seed content type changed');await disposeResponseBody(response,{signal});deadline.throwIfAborted();Object.assign(receipt,{bodyConsumed:false,purpose:'public-session-seed-metadata-only'});return {response,receipt}}
   requireNative(response.status===(url===ROOT?301:200)||init.allow403&&response.status===403,'HTTP status changed: '+url)
   const limit=url===PARENT?8000000:4000000,chunks=[];let bytes=0
   requireNative(response.body?.getReader,'streaming HTTP body metadata unavailable')
   const reader=response.body.getReader()
-  try{for(;;){const {value,done}=await reader.read();deadline.throwIfAborted();if(done)break;bytes+=value.byteLength;requireNative(bytes<=limit,'response budget exceeded: '+url);chunks.push(Buffer.from(value))}}catch(error){await reader.cancel().catch(()=>{});throw error}finally{reader.releaseLock()}
+  try{for(;;){const {value,done}=await reader.read();deadline.throwIfAborted();if(done)break;bytes+=value.byteLength;requireNative(bytes<=limit,'response budget exceeded: '+url);chunks.push(Buffer.from(value))}}catch(error){await disposeResponseReader(reader,{signal,bestEffort:true});throw error}finally{reader.releaseLock()}
   const body=Buffer.concat(chunks).toString('utf8');Object.assign(receipt,{bytes,sha256:sha(body)})
   return {response,body,receipt}
  }

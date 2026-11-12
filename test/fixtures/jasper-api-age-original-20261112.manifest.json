@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "source": "jasper",
+  "fixture": {
+    "path": "C:\\Users\\mohv\\release\\backend\\test\\fixtures\\jasper-api-age-original-20261112.json.gz",
+    "bytes": 35867,
+    "SHA256": "ab85b4c744127c6eee99b2a2e5680d6970d2934684e9d3d2dfdcf83e85708f3d"
+  },
+  "decodedJSONBytes": 149738,
+  "decodedJSONSHA256": "8f5b81aaa48bb6312833bd7002831871cf0af4960cc6ec005f659a1f4a4b30d7",
+  "originalCapture": {
+    "path": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\verified-repairs-36\\captures\\jasper\\2026-11-12T03-31-40-155Z-8310e604-b611-4d66-a7ae-1a1f04d43f67.failure.json",
+    "bytes": 709654,
+    "SHA256": "0e3c63c8c202f2dbc26909c1f3749390ffebcf69f6a0eaa2160a2b4fff0f19b9"
+  },
+  "originalRawPageJSONSHA256": "445a80061be70005c0375be3588aee5c14a904771924ea0fa91db4c258bc4f0a",
+  "originalReceiptJSONSHA256": "84b30e5778c8a6cf0b302fdd3e64ea86e8be96f1549062e7240bb9bfc837ffea",
+  "hashScope": "JSON projection hashes identify preserved parsed original records; raw entity hash separately identifies original Fetch-decoded bytes.",
+  "entityBytes": 108160,
+  "entitySHA256": "47a9ee26da48447afe0757826aa55493c6b3908a5dde95febd66ff3e8d2cbcd1",
+  "requestedURL": "https://api.ashbyhq.com/posting-api/job-board/Jasper%20AI",
+  "finalURL": "https://api.ashbyhq.com/posting-api/job-board/Jasper%20AI",
+  "status": 200,
+  "originalAge": "21",
+  "originalHeadersAndEntriesAndThreeClocksRetained": true,
+  "genuineOpenings": 1,
+  "genuineClosings": 0,
+  "currentProgrammeQualified": false,
+  "actual36Requalified": false
+}

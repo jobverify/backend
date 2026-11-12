@@ -37,7 +37,7 @@ export const createDailyhuntScraper=(defaults={})=>({async run(options={}){
   controller.signal.throwIfAborted();const r=await fetchImpl(url,{signal:controller.signal,redirect:'error',headers:{Accept:'text/html'}});
   if(controller.signal.aborted)void Promise.resolve().then(()=>r.body?.cancel?.(controller.signal.reason)).catch(()=>{});
   controller.signal.throwIfAborted();
-  if(r.status!==200||r.url!==url){void r.body?.cancel?.().catch(()=>{});throw gap('Native HTTP failure or final URL changed')}
+  if(r.status!==200||r.url!==url){void r.body?.cancel?.().catch(()=>{});throw Object.assign(gap(r.status!==200?`Native HTTP ${r.status} for ${url}`:`Native final URL changed (HTTP ${r.status}) for ${url}`),{status:r.status,statusCode:r.status,requestUrl:url,finalUrl:r.url})}
   let body;
   if(r.body?.getReader){const reader=r.body.getReader(),chunks=[];let bytes=0;const cancel=()=>{void Promise.resolve(reader.cancel(controller.signal.reason)).catch(()=>{})};controller.signal.addEventListener('abort',cancel,{once:true});try{for(;;){const p=await reader.read();controller.signal.throwIfAborted();if(p.done)break;bytes+=p.value.byteLength;if(bytes>3000000){cancel();throw gap('Native body exceeds byte bound')}chunks.push(Buffer.from(p.value))}body=Buffer.concat(chunks).toString('utf8')}finally{controller.signal.removeEventListener('abort',cancel);reader.releaseLock?.()}}
   else body=await r.text();

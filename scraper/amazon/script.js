@@ -1,12 +1,12 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { loadNativePaginationDefaults, nativePaginationLimits, createNativePagination, readNativeWithSignal } from '../../scraper-support/utils/nativePagination.js'
 import { DEFAULT_JOB_RETENTION_DAYS } from '../../src/utils/jobLifecycle.js'
+import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { AMAZON_NATIVE_PAGE_SIZE, hasAmazonNativeBody, verifyAmazonNativeInventory } from './nativeInventory.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const config = loadConfig(currentDir)
 const nativeDefaults = loadNativePaginationDefaults(currentDir)
 
 export const BASE_URL = 'https://www.amazon.jobs'
@@ -343,7 +343,7 @@ const fetchText = async (url, { signal } = {}) => {
 }
 
 export const createAmazonScraper = ({
-  pageSize = Number.isInteger(config.pageSize) ? config.pageSize : DEFAULT_PAGE_SIZE,
+  pageSize = AMAZON_NATIVE_PAGE_SIZE,
   maxJobs = nativeDefaults.maxJobs,
   maxPages = nativeDefaults.maxPages,
 } = {}) => ({
@@ -361,22 +361,51 @@ export const createAmazonScraper = ({
     const jobs = []
     return pagination.run(jobs, async () => {
       const seenJobIds = new Set()
+      const nativePages = []
+      const finish = async (exhausted = false) => {
+        const proof = exhausted ? await verifyAmazonNativeInventory({ pages: nativePages, pageSize, fetchJson: fetchJsonImpl,
+          fetchText: fetchTextImpl, buildSearchApiUrl, signal: pagination.signal }) : null
+        const result = pagination.finish(jobs, { exhausted })
+        const inventory = readInventoryEvidence(result)
+        if (!proof?.complete || jobs.some(job => job.sourceDetailComplete !== true)
+          || jobs.length !== proof.reportedTotal || inventory.reason.includes('native-total-') || inventory.reason.includes('native-malformed-')) {
+          return attachInventoryEvidence(result, { ...inventory, lifecycleCleanupAllowed: false,
+            ...(proof && !proof.complete ? { reason: inventory.reason + ';' + proof.reason } : {}) })
+        }
+        for (const job of jobs) Object.assign(job, { sourceListingComplete: true, sourceScopeComplete: true, lifecycleCleanupAllowed: true })
+        if (jobs[0]) jobs[0].sourceInventoryEvidence = proof
+        Object.defineProperty(result, 'amazonNativeInventoryEvidence', { value: proof })
+        return attachInventoryEvidence(result, { status: jobs.length ? 'complete-inventory' : 'verified-empty',
+          surface: buildSearchApiUrl({ resultLimit: pageSize }), firstParty: true, listingComplete: true, lifecycleCleanupAllowed: true,
+          pagesFetched: proof.openingPages + proof.closingPages + proof.terminalChecks, reportedTotal: proof.reportedTotal,
+          indiaFacetCount: jobs.length, verifiedAt: proof.verifiedAt, reason: proof.reason })
+      }
+      let offset = 0
 
       for (let page = 0; page < limits.maxPages; page += 1) {
-        const offset = page * pageSize
         const payload = await readNativeWithSignal(() => fetchJsonImpl(buildSearchApiUrl({ offset, resultLimit: pageSize }), { signal: pagination.signal }), pagination.signal)
         const listings = extractSearchResults(payload)
-        const summary = extractPaginationSummary(payload, { offset, resultLimit: pageSize })
         const rawRows = Array.isArray(payload?.jobs) ? payload.jobs : []
-        const progress = pagination.page(rawRows.map(record => normalizeWhitespace(record?.id_icims)), summary.totalRecords)
-        if (!progress) return pagination.finish(jobs, { exhausted: !summary.hasNext })
+        const total = Number.isSafeInteger(payload?.hits) && payload.hits >= 0 ? payload.hits : null
+        const hasNext = total !== null ? offset + rawRows.length < total : rawRows.length >= pageSize
+        nativePages.push({ offset, payload })
+        const progress = pagination.page(rawRows.map(record => normalizeWhitespace(record?.id_icims)), total)
+        if (!progress) return finish(!hasNext)
+        const nativeRowsById = new Map(rawRows.map(record => [normalizeWhitespace(record?.id_icims), record]))
 
         for (const job of listings) {
           if (seenJobIds.has(job.jobId)) continue
           seenJobIds.add(job.jobId)
 
           let detail = {}
-          if (shouldFetchDetailForJob(job, { now, detailFetchRetentionDays })) {
+          const native = nativeRowsById.get(job.jobId)
+          const fullNativeBody = hasAmazonNativeBody(native)
+          if (fullNativeBody) {
+            const basic = stripTags(native.basic_qualifications)
+            const preferred = stripTags(native.preferred_qualifications)
+            detail = { experienceRequired: extractExperienceRequired(basic || preferred), minimumQualification: basic,
+              preferredQualification: preferred, jobDescription: [stripTags(native.description), basic, preferred].filter(Boolean).join('\n\n') }
+          } else if (shouldFetchDetailForJob(job, { now, detailFetchRetentionDays })) {
             try {
               detail = extractJobDetail(await readNativeWithSignal(() => fetchTextImpl(job.sourceUrl, { signal: pagination.signal }), pagination.signal), job)
             } catch {
@@ -396,19 +425,22 @@ export const createAmazonScraper = ({
             source: 'amazon',
             link: job.applyUrl || job.sourceUrl,
             scrapedAt: new Date().toISOString(),
+            sourceDetailComplete: fullNativeBody,
+            ...(fullNativeBody ? { sourceDetailEvidence: 'amazon-search-native-full-body-v1' } : { sourceDetailFailureKind: 'native-full-criteria-unverified' }),
           })
 
           if (jobs.length >= limits.maxJobs) {
-            return pagination.finish(jobs)
+            return finish()
           }
         }
 
-        if (!summary.hasNext) {
-          return pagination.finish(jobs, { exhausted: true })
+        if (!hasNext) {
+          return finish(true)
         }
+        offset += rawRows.length
       }
 
-      return pagination.finish(jobs)
+      return finish()
     })
   },
 })

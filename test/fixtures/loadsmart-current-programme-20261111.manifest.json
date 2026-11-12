@@ -1,0 +1,58 @@
+{
+  "source": "loadsmart",
+  "fixture": "loadsmart-current-programme-20261111.json.gz",
+  "fixtureBytes": 250277,
+  "fixtureSHA256": "44804e9c5aa5b92ab99cfc28b413da9e6725e57304749bd1dfba4d78316b8678",
+  "fixtureKind": "Actual four opening channels from separately clocked current research; no acquired closings",
+  "controlledReplay": {
+    "closingOrder": [
+      "native-api",
+      "listing-script",
+      "board",
+      "corporate"
+    ],
+    "meaning": "Tests reuse each actual opening packet as a controlled closing response. This is not a fresh closing acquisition or currentness/recovery proof."
+  },
+  "originals": [
+    {
+      "kind": "corporate",
+      "requestedURL": "https://loadsmart.com/careers/",
+      "sourceFile": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\lever-current-corporate-availability-20261111b\\loadsmart.body",
+      "bodyBytes": 129175,
+      "bodySHA256": "7fbee7abb7bee3dcca1d3a2934bcacae4f4ffb6b74485469f4622065c7b19eb6",
+      "requestedAt": "2026-11-11T16:28:14.585Z",
+      "completedAt": "2026-11-11T16:28:16.191Z",
+      "originalHeaderEntriesRecorded": false
+    },
+    {
+      "kind": "board",
+      "requestedURL": "https://jobs.lever.co/loadsmart/",
+      "sourceFile": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\runtime-discovery\\lever-opening-research-20261111s\\004-loadsmart-board-html.body",
+      "bodyBytes": 726040,
+      "bodySHA256": "81b3c22cb130a31b74e6024100d9e08102cf15f269cc7c973efa74f31305791f",
+      "requestedAt": "2026-11-11T16:41:27.327Z",
+      "completedAt": "2026-11-11T16:41:28.127Z",
+      "originalHeaderEntriesRecorded": true
+    },
+    {
+      "kind": "listing-script",
+      "requestedURL": "https://jobs.lever.co/js/list.js",
+      "sourceFile": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\loadsmart-declared-list-opening-20261111a\\list.js.body",
+      "bodyBytes": 2785,
+      "bodySHA256": "369919145cbce28d907a75a8c1da873f3cf62eafbb7fb8c323c18fdd2a8d1f76",
+      "requestedAt": "2026-11-11T16:57:04.396Z",
+      "completedAt": "2026-11-11T16:57:05.523Z",
+      "originalHeaderEntriesRecorded": true
+    },
+    {
+      "kind": "native-api",
+      "requestedURL": "https://api.lever.co/v0/postings/loadsmart?mode=json",
+      "sourceFile": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\runtime-discovery\\lever-opening-research-20261111s\\005-loadsmart-flat-json.body",
+      "bodyBytes": 147989,
+      "bodySHA256": "ecbbe2e019670e12f1c73dee51b81a1259f4e65b8123797e911b4baa2ba3a2de",
+      "requestedAt": "2026-11-11T16:41:28.340Z",
+      "completedAt": "2026-11-11T16:41:31.062Z",
+      "originalHeaderEntriesRecorded": true
+    }
+  ]
+}

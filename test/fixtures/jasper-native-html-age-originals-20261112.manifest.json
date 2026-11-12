@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "fixture": {
+    "path": "test/fixtures/jasper-native-html-age-originals-20261112.json.gz",
+    "bytes": 61756,
+    "sha256": "1a3171a98765915b18c48280b930888cc20beffbba515b32543367cee774adb6"
+  },
+  "decodedJSON": {
+    "bytes": 234120,
+    "sha256": "c705a4266dded44a957d621f03891ff6290f71db806d27aad2f24e92a3e16de5"
+  },
+  "originalCapture": {
+    "path": "C:\\Users\\mohv\\release\\reports\\soft-failures-1000-2026-11-11\\verified-repairs-37\\captures\\jasper\\2026-11-12T04-15-39-833Z-87663e60-3fc6-4bbe-8acf-f4568875fe02.failure.json",
+    "bytes": 6624920,
+    "SHA256": "33343facfe17a167eccf2cf3de68c9eb95c333807c762a18338f4381f83ac96a"
+  },
+  "originalRows": [
+    {
+      "originalRowIndex": 1,
+      "phase": "opening-B",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI",
+      "bodyBytes": 16217,
+      "bodySHA256": "ea1a56e2dc297a9eb8555650b778f0ce59605c45160568777d474e3db90fe5ca",
+      "originalResponseJSONProjectionSHA256": "5d068dcc90647553a32902957956d974c5366456cc955b606ab69145aaa7363b",
+      "originalRowJSONProjectionSHA256": "a660854dba43aabd1b78fef64cccac1e36921af2becb925ea3ed900cf8b686e5",
+      "clock": {
+        "requestedAt": "2026-11-12T04:15:32.849Z",
+        "responseAt": "2026-11-12T04:15:33.419Z",
+        "completedAt": "2026-11-12T04:15:33.483Z"
+      },
+      "agePresent": false,
+      "age": null
+    },
+    {
+      "originalRowIndex": 9,
+      "phase": "opening-O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+      "bodyBytes": 54837,
+      "bodySHA256": "b10f2937723507ef633544971d3c97b73e865ca5e1e99a00fae8b81075c678c5",
+      "originalResponseJSONProjectionSHA256": "d42a13f37e1ce864d8fe1811c95ecffe3cde2ea53a62c56784ab99e229c515f6",
+      "originalRowJSONProjectionSHA256": "9215244e2ea02f94cf45f020f6db579abc3d83f360743248e8f43206b82611c1",
+      "clock": {
+        "requestedAt": "2026-11-12T04:15:39.081Z",
+        "responseAt": "2026-11-12T04:15:39.518Z",
+        "completedAt": "2026-11-12T04:15:39.574Z"
+      },
+      "agePresent": false,
+      "age": null
+    },
+    {
+      "originalRowIndex": 10,
+      "phase": "closing-O",
+      "requestedURL": "https://jobs.ashbyhq.com/Jasper%20AI/365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+      "finalURL": "https://jobs.ashbyhq.com/Jasper%20AI/365bc527-6f65-4c24-aaa2-aab59d06c3c3",
+      "bodyBytes": 54837,
+      "bodySHA256": "b10f2937723507ef633544971d3c97b73e865ca5e1e99a00fae8b81075c678c5",
+      "originalResponseJSONProjectionSHA256": "8b50036a87ca16c5f3bb25c9f9d15eaa7d7bac517a7bb5adee972c5b55b173b8",
+      "originalRowJSONProjectionSHA256": "5c6263ae5a074def5ec96b452b9c5d57f667ace448c48abd8f99dac6625aa214",
+      "clock": {
+        "requestedAt": "2026-11-12T04:15:39.698Z",
+        "responseAt": "2026-11-12T04:15:39.779Z",
+        "completedAt": "2026-11-12T04:15:39.782Z"
+      },
+      "agePresent": true,
+      "age": "0"
+    }
+  ],
+  "limits": [
+    "All three response records are exact archived rows, including the original closing failure field.",
+    "JSON projection hashes describe this deterministic serialization, not original raw metadata file bytes.",
+    "Only one genuine own pair exists; the original programme failed and has no genuine board closing.",
+    "Optional board Age is compatibility inference, not an acquired board Age observation.",
+    "No current programme, zero, origin validation, source-time or recovery claim."
+  ]
+}

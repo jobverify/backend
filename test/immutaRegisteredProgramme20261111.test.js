@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import {readFileSync} from 'node:fs'
+import fs from 'node:fs/promises'
+import os from 'node:os'
+import path from 'node:path'
 import {gunzipSync} from 'node:zlib'
 import {createHash} from 'node:crypto'
 import {buildScrapers,getScraperCatalog} from '../scraper-support/providers/index.js'
@@ -8,6 +11,7 @@ import {readInventoryEvidence} from '../scraper-support/utils/inventoryEvidence.
 import {readSourceObservationEvidence} from '../scraper-support/utils/sourceObservationEvidence.js'
 import {buildScraperAttemptDiagnostics,resolveZeroJobOutcome} from '../scraper-support/runner.js'
 import {finishScraperProcessing,inventoryCleanupOptions} from '../scraper-support/utils/scraperOutcome.js'
+import {saveRawSourceCapture} from '../scraper-support/utils/rawCapture.js'
 
 // The fixture contains actual opening responses. Reusing them below for
 // controlled closing responses tests the protocol; it is not live currentness.
@@ -78,7 +82,9 @@ test('registered Immuta qualifies only the reconciled finite programme and forbi
   assert.deepEqual(r.nativeCalls.map(row=>row.url),order)
   assert.ok(r.nativeCalls.every(row=>row.cache==='no-store'&&row.credentials==='omit'&&row.redirect==='manual'))
   const observation=readSourceObservationEvidence(jobs,'immuta')
-  assert.ok(observation.observedRecordCount>=originalFlat.length)
+  assert.equal(observation.observedRecordCount,originalFlat.length+1)
+  assert.equal(observation.observedVacancyCount,originalFlat.length)
+  assert.equal(audit.nonPositionIntakeCount,1)
   assert.equal(observation.sourceScopeComplete,false)
   const provider=getScraperCatalog().find(row=>row.source==='immuta')
   const terminal=finishScraperProcessing({success:true,...buildScraperAttemptDiagnostics(jobs,undefined,provider),
@@ -137,4 +143,30 @@ test('pre-aborted registered Immuta acquires no legacy or native entity',async t
   await assert.rejects(registered().run({...r.options,signal:controller.signal}),error=>error.name==='AbortError')
   assert.equal(r.nativeCalls.length,0)
   assert.equal(r.primaryCalls.length,0)
+})
+
+test('registered empty Immuta output archives the full native transaction without inventing a job',async t=>{
+  forbidNetwork(t)
+  const r=replay(),jobs=await registered().run(r.options)
+  const directory=await fs.mkdtemp(path.join(os.tmpdir(),'immuta-native-archive-'))
+  t.after(async()=>{
+    const target=path.resolve(directory),parent=path.resolve(os.tmpdir()),relative=path.relative(parent,target)
+    assert.ok(relative&&!relative.startsWith('..')&&!path.isAbsolute(relative),'Remove only this owned temporary child')
+    await fs.rm(target,{recursive:true,force:true})
+  })
+  const file=await saveRawSourceCapture(jobs,{source:'immuta',dryRun:true,directory})
+  const saved=JSON.parse(await fs.readFile(file,'utf8'))
+  assert.equal(saved.jobCount,0)
+  assert.deepEqual(saved.jobs,[])
+  assert.deepEqual(saved.inventoryEvidence,readInventoryEvidence(jobs))
+  assert.deepEqual(saved.nativeCollectionEvidence,jobs.nativeCollectionEvidence)
+  assert.deepEqual(saved.nativeCollectionEvidence.nativePayload,originalFlat)
+  assert.equal(saved.nativeCollectionEvidence.nonPositionIntakeCount,1)
+  assert.equal(saved.nativeCollectionEvidence.rawPages.length,8)
+  for(const row of saved.nativeCollectionEvidence.rawPages){
+    const original=originals.get(row.requestedURL)
+    assert.equal(row.bodyBase64,original.bodyBase64)
+    assert.equal(row.bodySHA256,original.bodySHA256)
+    assert.deepEqual(row.headers,original.headers)
+  }
 })

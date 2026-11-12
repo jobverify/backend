@@ -28,6 +28,7 @@ jobs:
             /resume-tailoring/
             /scraper-support/utils/cityNormalizer.js
             /scraper-support/utils/cities.js
+            /scraper-support/utils/parallelConcurrency.js
       - uses: actions/setup-node@v7
         with:
           node-version: '24'

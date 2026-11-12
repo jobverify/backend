@@ -64,5 +64,7 @@ test('runApiPortalScraper filters Groww Greenhouse jobs to India-facing location
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

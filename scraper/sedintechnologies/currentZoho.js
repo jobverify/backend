@@ -1,3 +1,4 @@
+import {disposeResponseBody} from '../../scraper-support/shared/responseBodyDisposal.js'
 import {createZohoNativeInventoryScraper} from '../../scraper-support/utils/zohoNativeInventory.js'
 import {attachInventoryEvidence,readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const OFFICIAL='https://sedintechnologies.com/careers/',BOARD='https://sedintechnologies.zohorecruit.in/jobs/Careers'
@@ -14,8 +15,8 @@ export async function runCurrentSedinZoho(options={}){
   try{
    if(![OFFICIAL,BOARD].includes(url)&&!url.startsWith(API+'?')&&!new RegExp('^'+API.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'/\\d+\\?source=CareerSite&pagename=Careers$').test(url))throw fail('undeclared public endpoint')
    const response=await(options.fetchImpl||fetch)(url,{redirect:'manual',signal:AbortSignal.any([signal,AbortSignal.timeout(20000)]),headers:{'User-Agent':'JobverifyScraper/1.0',Accept:json?'application/json':'text/html'}})
-   if(response.status!==200){await response.body?.cancel();throw fail('HTTP '+response.status,{status:response.status,code:[401,403,406,429].includes(response.status)?'access_denied':'native_unavailable',failureKind:[401,403,406,429].includes(response.status)?'blocked_or_access_denied':'network_or_timeout'})}
-   if(response.url!==url){await response.body?.cancel();throw fail('unexpected native redirect; response URL identity changed')}
+   if(response.status!==200){await disposeResponseBody(response,{signal:options.signal,bestEffort:true});throw fail('HTTP '+response.status,{status:response.status,code:[401,403,406,429].includes(response.status)?'access_denied':'native_unavailable',failureKind:[401,403,406,429].includes(response.status)?'blocked_or_access_denied':'network_or_timeout'})}
+   if(response.url!==url){await disposeResponseBody(response,{signal:options.signal,bestEffort:true});throw fail('unexpected native redirect; response URL identity changed')}
    const body=await response.text();signal.throwIfAborted();if(Buffer.byteLength(body)>4000000)throw fail('response budget exceeded')
    if(/<title\b[^>]*>\s*(?:Access\s*Denied|Forbidden)\s*<\/title>|<Code>\s*AccessDenied\s*<\/Code>/i.test(body))throw fail('native access denial returned HTTP200',{status:response.status,code:'access_denied',failureKind:'blocked_or_access_denied'})
    if(!(json?/^application\/json\b/i:/^text\/html\b/i).test(response.headers?.get?.('content-type')||''))throw fail('native MIME identity changed')

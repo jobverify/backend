@@ -5,7 +5,7 @@ import Resume from '../models/Resume.js';
 import TailoredResume from '../models/TailoredResume.js';
 import SiteSettings from '../models/SiteSettings.js';
 import { applyPublicJobVisibility } from '../utils/publicJobVisibility.js';
-import { dispatchTailoredResumes, tailoredResumeActionsConfigured, requireTailoredResumeActions } from './resumeTailoringWorkflow.js';
+import { dispatchTailoredResumes, tailoredResumeActionsConfigured, requireTailoredResumeActions, RESUME_WORKFLOW_STOPPED } from './resumeTailoringWorkflow.js';
 import { dayKey, reserveUsage } from './resumeUsage.js';
 import { tailoringError } from './resumeTailoringContent.js';
 import { artifactBytes, readResumeArtifact } from './resumeArtifactService.js';
@@ -184,8 +184,15 @@ export async function recoverTailoredResumes({ dispatch = dispatchTailoredResume
     if (dispatch === dispatchTailoredResumes && !tailoredResumeActionsConfigured()) return;
     const due = { status: 'queued', ready: true, $or: [{ dispatchAt: { $exists: false } }, { dispatchAt: { $lt: new Date(now.getTime() - 300000) } }] };
     if (preparation.pending || await TailoredResume.exists(due)) {
-      try { await dispatch({ reuseRunning: true }); await Promise.all([TailoredResume.updateMany(due, { $set: { dispatchAt: now } }), Resume.updateMany(preparation.due, { $set: { 'preparation.dispatchAt': now } })]); }
-      catch { /* Durable requests remain retryable when the shared worker is unavailable. */ }
+      try { await dispatch({ reuseRunning: true, recovery: true }); await Promise.all([TailoredResume.updateMany(due, { $set: { dispatchAt: now } }), Resume.updateMany(preparation.due, { $set: { 'preparation.dispatchAt': now } })]); }
+      catch (error) {
+        if (error.code === RESUME_WORKFLOW_STOPPED) await Promise.all([
+          TailoredResume.updateMany(due, { $set: { status: 'failed', phase: 'failed', ready: false, error: error.message } }),
+          Resume.updateMany(preparation.due, { $set: { 'preparation.status': 'failed', 'preparation.phase': 'failed',
+            'preparation.ready': false, 'preparation.error': error.message } }),
+        ]);
+        // Transient API outages retain durable queued work for later recovery.
+      }
     }
   } finally { recovering = false; }
 }

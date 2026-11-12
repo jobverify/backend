@@ -13,7 +13,7 @@ export function readCareers(text){
  need(nodes.some(n=>n.tag==='h1'&&norm(flow(n))==='BE PART OF OUR TEAM !')&&norm(flow(root)).includes('btlinrd-hr@btlnet.com'),'native employer/contact context missing')
  const headings=nodes.filter(n=>n.tag==='h4'&&norm(flow(n))==='Job Opportunities');need(headings.length===1,'missing/ambiguous Job Opportunities heading');const header=parents.get(headings[0]),scope=parents.get(header)
  need(header?.tag==='div'&&(header.attrs.class||'').split(/\s+/).includes('card-header')&&scope?.tag==='div'&&(scope.attrs.class||'').split(/\s+/).includes('card'),'native role scope differs')
- need(!nodes.some(n=>(n.attrs.rel||'').toLowerCase().split(/\s+/).includes('next')),'new native continuation requires qualification')
+ if(nodes.some(n=>(n.attrs.rel||'').toLowerCase().split(/\s+/).includes('next')))throw Object.assign(failure('new native continuation requires qualification'),{softFailure:true,upstreamOutage:false,failureKind:'surface_drift_or_fail_closed'})
  const anchors=all(scope).filter(n=>n.tag==='a'&&/\.pdf(?:$|[?#])/i.test(n.attrs.href||'')),roles=new Map()
  for(const anchor of anchors){const heading=parents.get(anchor);need(heading?.tag==='h4','unbound native PDF heading');let url;try{url=new URL(anchor.attrs.href,CAREERS)}catch{throw failure('invalid declared PDF URL')}
   need(url.origin==='https://www.btlnet.co.in'&&!url.username&&!url.password&&!url.search&&!url.hash&&/^\/admin\/image\/career\/[^/?#]+\.pdf$/i.test(url.pathname)&&!/%(?:2f|5c|00)/i.test(url.pathname),'foreign/unbound native PDF URL')

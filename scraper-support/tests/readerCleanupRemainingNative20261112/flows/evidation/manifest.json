@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "remaining-reader-per-flow-green-closure/v1",
+  "workspace": ".",
+  "backend": "backend",
+  "modules": [
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782,
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506,
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046,
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032,
+      "relativePath": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/evidation/nativeRun.js",
+      "sha256": "6535f13d5a464fdeb3296af4eb7bb793df0b3773149418fdbc79a45c21e83815",
+      "bytes": 23210,
+      "relativePath": "backend/scraper/evidation/nativeRun.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529,
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/guard.mjs",
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/guard.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/proof.mjs",
+      "sha256": "e5f8ccf518734a745baf36442c6c1d3c98348d00906000663e577dd65482039c",
+      "bytes": 20833,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/proof.mjs",
+      "exists": true
+    }
+  ],
+  "reads": [
+    {
+      "path": "backend/package.json",
+      "sha256": "6a9b6b4d5f575d101081e2943d3cc4a2e1fa9b6cc4eb3088a1a35978494acbc9",
+      "bytes": 6914,
+      "relativePath": "backend/package.json",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+      "bytes": 1782,
+      "relativePath": "backend/scraper-support/shared/responseBodyDisposal.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/activeNativeHtml.js",
+      "sha256": "d4faab72f471130b22dc008d78b14850305b44e1e0c68a7c2f038bf3c6bb892a",
+      "bytes": 10506,
+      "relativePath": "backend/scraper-support/utils/activeNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/inventoryEvidence.js",
+      "sha256": "ef92e1c9e0228e6d15f01d50da7c3bf4f94283deab6f1634d8be8cfd780803c2",
+      "bytes": 8046,
+      "relativePath": "backend/scraper-support/utils/inventoryEvidence.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "sha256": "90c639368132984d1c0e45eb77f66528436bc39e92971f3619a2837103b8f86d",
+      "bytes": 33032,
+      "relativePath": "backend/scraper-support/utils/visibleNativeHtml.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/evidation/fixtures/current-full-run-20261110.json.gz",
+      "sha256": "b639e7b4e6a4a89945cca602174ea85fae74ac08aa95b54cbeee8474cb466cd0",
+      "bytes": 440412,
+      "relativePath": "backend/scraper/evidation/fixtures/current-full-run-20261110.json.gz",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper/evidation/nativeRun.js",
+      "sha256": "6535f13d5a464fdeb3296af4eb7bb793df0b3773149418fdbc79a45c21e83815",
+      "bytes": 23210,
+      "relativePath": "backend/scraper/evidation/nativeRun.js",
+      "exists": true
+    },
+    {
+      "path": "backend/src/utils/jobSourceContent.js",
+      "sha256": "b808562a1dcebbee35f67ff2e0b55b21ef9a14ed5f66cd687aefc71238cf5226",
+      "bytes": 2529,
+      "relativePath": "backend/src/utils/jobSourceContent.js",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/guard.mjs",
+      "sha256": "12da0a771606295543458c2f2257158762e126c0b2e82e7517ddb1138f06557e",
+      "bytes": 6076,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/guard.mjs",
+      "exists": true
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/manifest.json",
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/manifest.json",
+      "exists": true,
+      "integrity": "Self excluded; exact bytes pinned by root-reviewed command plan and trusted parent before source child execution."
+    },
+    {
+      "path": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/proof.mjs",
+      "sha256": "e5f8ccf518734a745baf36442c6c1d3c98348d00906000663e577dd65482039c",
+      "bytes": 20833,
+      "relativePath": "backend/scraper-support/tests/readerCleanupRemainingNative20261112/flows/evidation/proof.mjs",
+      "exists": true
+    }
+  ],
+  "mutableSources": [],
+  "substitutions": [],
+  "pinnedHelper": {
+    "path": "backend/scraper-support/shared/responseBodyDisposal.js",
+    "sha256": "b8111ff8723991c6f4d2ca9f350f1c2c999b86772882212bd3af12fbc7fd2d66",
+    "bytes": 1782,
+    "runtimeModuleOrReadGrant": true
+  },
+  "flowSpec": {
+    "key": "evidation",
+    "label": "Evidation native reader",
+    "entry": "backend/scraper/evidation/nativeRun.js",
+    "targetURL": "https://evidation.com/open-positions",
+    "byteCap": 3145728,
+    "primaryError": "native body byte bound exceeded",
+    "contentType": "text/html",
+    "expectedCases": 6,
+    "fixture": "scraper/evidation/fixtures/current-full-run-20261110.json.gz"
+  },
+  "applicationAndStaticImportedDataModules": 6,
+  "trustedHarnessModules": 2,
+  "dynamicImportsFollowedOrGranted": [],
+  "deniedPDFImplementations": [
+    "pdfjs-dist",
+    "@napi-rs/canvas"
+  ],
+  "publicFactoryDefaultsPreserved": true,
+  "sourceRuntimeAuthorization": "HOLD pending exact root GREEN plan review and runtime GO"
+}

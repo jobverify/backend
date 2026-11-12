@@ -64,5 +64,7 @@ test('runApiPortalScraper filters mthree Greenhouse jobs to India-facing locatio
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

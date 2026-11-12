@@ -4,6 +4,7 @@ import { nativeCountryName } from '../../scraper-support/shared/nativeJobPosting
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import { withCallerSignal } from '../abmknowledgeware/publicIntake.js'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 
 const CORPORATE = 'https://www.firstcitizens.com/'
 const CAREERS = 'https://jobs.firstcitizens.com/'
@@ -114,7 +115,7 @@ export async function runCurrentFirstCitizensInventory({ fetchImpl = globalThis.
     const byteLimit = 2 * 1024 * 1024
     need(Number(response.headers.get('content-length') || 0) <= byteLimit && response.body?.getReader, 'native response body budget unavailable')
     const reader = response.body.getReader(), chunks = []
-    let size = 0
+    let size = 0, failed = false, failure
     try {
       while (true) {
         const next = await withCallerSignal(() => reader.read(), [requestSignal])
@@ -123,7 +124,21 @@ export async function runCurrentFirstCitizensInventory({ fetchImpl = globalThis.
         need(size <= byteLimit, 'native response body budget exceeded')
         chunks.push(next.value)
       }
-    } finally { await reader.cancel().catch(() => {}) }
+    } catch (error) {
+      failed = true
+      failure = error
+      throw error
+    } finally {
+      // A known body failure keeps priority over a later per-request timeout.
+      const cleanupSignal = failed && !(requestSignal.aborted && failure === requestSignal.reason)
+        ? deadline : requestSignal
+      try {
+        await disposeResponseReader(reader, { signal: cleanupSignal, bestEffort: failed })
+      } catch (error) {
+        if (signal?.aborted) throw signal.reason
+        throw error
+      } finally { reader.releaseLock() }
+    }
     const bytes = Buffer.concat(chunks), body = new TextDecoder('utf-8', { fatal: true }).decode(bytes)
     receipts.push({ url, method: 'GET', status: 200, kind, phase: closing ? 'closing' : 'opening',
       requestedAt, completedAt: new Date().toISOString(), bodyBytes: size, bodySHA256: hash(bytes),

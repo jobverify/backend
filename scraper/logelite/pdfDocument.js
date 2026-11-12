@@ -1,3 +1,4 @@
+import {loadPdfDisplay} from '../../scraper-support/shared/pdfDisplay.js'
 import {readPublishedPdf} from '../cdot/pdfDocument.js'
 import {need,hash} from './nativeModels.js'
 import graphicsReview from './pdfGraphicsReview.json' with {type:'json'}
@@ -29,7 +30,7 @@ export async function readLogelitePDF(bytes,{signal}={}){
   try{const result=await Promise.race([promise,interrupted]);signal?.throwIfAborted();return result}catch(error){signal?.throwIfAborted();throw error}
  }
  try{
-  const {getDocument,OPS}=await wait(()=>import('pdfjs-dist/legacy/build/pdf.mjs')),names=new Map(Object.entries(OPS).map(([name,id])=>[id,name]))
+  const {getDocument,OPS}=await wait(()=>loadPdfDisplay({signal})),names=new Map(Object.entries(OPS).map(([name,id])=>[id,name]))
   signal?.throwIfAborted()
   task=getDocument({data:new Uint8Array(bytes),isEvalSupported:false,useWorkerFetch:false,useSystemFonts:false,disableFontFace:true,stopAtErrors:true,verbosity:0})
   const pdf=await wait(task.promise),optional=await wait(()=>pdf.getOptionalContentConfig())

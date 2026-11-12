@@ -1,6 +1,7 @@
 // Source-owned exact derivative of the reviewed shared Comeet reader.
 // Import relocation and finite declared URL/program pairs are its only semantic changes.
 import { createHash } from 'node:crypto'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 import { parse } from 'acorn'
 import { readNativeDocument, extractActiveDescription, decodeNativeEntities } from '../../scraper-support/utils/activeNativeHtml.js'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
@@ -327,7 +328,7 @@ export const createEmployerBoundComeetScraper = config => ({
           need(bytes <= 3 * 1024 * 1024 && totalBytes <= 32 * 1024 * 1024, 'native response byte bound exceeded')
           chunks.push(value)
         }
-      } catch (error) { await reader.cancel().catch(() => {}); throw error }
+      } catch (error) { await disposeResponseReader(reader, { signal, bestEffort: true }); throw error }
       finally { reader.releaseLock() }
       signal.throwIfAborted(); need(bytes > 0, 'native response body empty')
       return Buffer.concat(chunks).toString('utf8')

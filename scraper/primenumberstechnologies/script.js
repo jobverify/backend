@@ -5,6 +5,7 @@ import {readNativeDocument,extractActiveDescription} from '../../scraper-support
 import {recruitmentJobPostings} from '../../scraper-support/utils/verifiedRecruitment.js'
 import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -357,7 +358,7 @@ export const extractJobDetail = (html, listing = {}) => {
   }
 }
 
-const defaultFetchText = async (url,{signal}={}) => {
+const defaultFetchText = async (url,{signal}={},callerSignal) => {
   const response=await fetch(url,{signal:AbortSignal.any([...(signal?[signal]:[]),AbortSignal.timeout(15000)]),
     redirect:'manual',credentials:'omit',headers:{'User-Agent':USER_AGENT,Accept:'text/html'}})
   if(response.status!==200||response.url!==url)throw Error('Primenumbers native HTTP '+response.status+' or role URL changed')
@@ -366,7 +367,7 @@ const defaultFetchText = async (url,{signal}={}) => {
   if(!reader)throw Error('Primenumbers native body unavailable')
   try{for(;;){const next=await reader.read();signal?.throwIfAborted();if(next.done)break
     size+=next.value.byteLength;if(size>2e6)throw Error('Primenumbers native body bound');chunks.push(Buffer.from(next.value))}
-  }catch(error){await reader.cancel().catch(()=>{});throw error}finally{reader.releaseLock()}
+  }catch(error){await disposeResponseReader(reader,{signal:callerSignal,bestEffort:true});throw error}finally{reader.releaseLock()}
   return Buffer.concat(chunks).toString('utf8')
 }
 
@@ -378,7 +379,7 @@ export const createPrimenumbersTechnologiesScraper = () => ({
     signal.throwIfAborted()
     const observedAt=typeof now==='function'?now():now
     if(!Number.isFinite(Date.parse(observedAt)))throw Error('Invalid Primenumbers observation time')
-    const read=async url=>{signal.throwIfAborted();const html=await fetchText(url,{signal});signal.throwIfAborted()
+    const read=async url=>{signal.throwIfAborted();const html=await fetchText(url,{signal},...(fetchText===defaultFetchText?[callerSignal]:[]));signal.throwIfAborted()
       if(typeof html!=='string'||Buffer.byteLength(html)>2e6)throw Error('Primenumbers native body bound');return html}
     const careersHtml = await read(CAREERS_URL)
     const listings = extractRoleListings(careersHtml)

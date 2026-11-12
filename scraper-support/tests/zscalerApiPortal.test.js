@@ -62,5 +62,7 @@ test('runApiPortalScraper keeps Zscaler India locations that do not literally co
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

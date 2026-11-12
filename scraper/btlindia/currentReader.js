@@ -1,6 +1,5 @@
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
-import {readCurrentBtlPdf} from './currentPdf.js'
 import {bindDocument} from './native.js'
 import {CAREERS,need,failure,isFailure,readCareers,reconcile} from './currentDeclarations.js'
 import {transport,cap} from './currentTransport.js'
@@ -20,7 +19,7 @@ export async function runCurrentBtl(options={}){
   const phase=async()=>{
    const careers=readCareers((await io.read(CAREERS)).text);need(careers.listingPages<=maxPages,'caller page limit prevents whole PDF closure');const models=Array(careers.roles.length);let cursor=0
    const worker=async()=>{while(cursor<models.length){control.check();const i=cursor++,role=careers.roles[i];try{
-    io.allow(role.url);const original=await io.read(role.url,'pdf'),{decoded,bound}=await io.decode(async()=>{const decoded=await readCurrentBtlPdf(original.bytes,{signal:control.signal}),bound=bindDocument({title:role.title,sourceUrl:role.url,rawNativeRoleEvidence:{}},decoded,original.bytes);return{decoded,bound}})
+    io.allow(role.url);const original=await io.read(role.url,'pdf'),{decoded,bound}=await io.decode(async(checkPdf)=>{const {readCurrentBtlPdf}=await import('./currentPdf.js');checkPdf();const decoded=await readCurrentBtlPdf(original.bytes,{signal:control.signal}),bound=bindDocument({title:role.title,sourceUrl:role.url,rawNativeRoleEvidence:{}},decoded,original.bytes);return{decoded,bound}})
     models[i]={listing:role,publisherTitle:careers.publisherTitle,nativeContactEmail:careers.nativeContactEmail,nativePDFBinding:bound.rawNativeRoleEvidence,pdfModel:{...decoded,pageCount:decoded.pages},originalPDF:{url:role.url,bodyBytes:original.bytes.length,bodySHA256:original.sha256,bodyBase64:original.bytes.toString('base64')},nativeCountryQualified:false,nativePostingIdentityQualified:false,nativeCriteriaVisibilityQualified:false}
    }catch(e){if(options.signal?.aborted||control.signal.aborted||isFailure(e))throw control.fail(e);const wrapped=failure('native PDF model failed');Object.defineProperty(wrapped,'cause',{value:e});throw control.fail(wrapped)}}}
    const settled=await Promise.allSettled(Array.from({length:Math.min(2,models.length)},worker));control.check();for(const r of settled)if(r.status==='rejected')throw r.reason;return{careers,models}

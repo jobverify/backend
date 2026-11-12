@@ -62,5 +62,7 @@ test('runApiPortalScraper keeps Tenstorrent India Greenhouse jobs and drops non-
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

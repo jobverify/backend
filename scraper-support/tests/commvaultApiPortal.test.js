@@ -62,5 +62,7 @@ test('runApiPortalScraper keeps only Commvault Greenhouse jobs in India', async 
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

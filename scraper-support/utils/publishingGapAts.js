@@ -22,24 +22,36 @@ const indiaLocation = (job) => INDIA_LOCATION.test([job.location, job.city].filt
 const httpUrl = (value) => { try { return ['https:', 'http:'].includes(new URL(value).protocol) } catch { return false } }
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 const countryNames = new Map()
-const foreignCountryLabels = new Set(['United States of America', 'USA', 'U.S.A.', 'US', 'UK', 'UAE', 'GBR', 'SGP'])
+const foreignCountryLabels = new Set(['United States of America', 'USA', 'U.S.A.', 'US', 'UK', 'UAE', 'GBR', 'SGP', 'Hong Kong'])
 for (let a = 65; a <= 90; a++) for (let b = 65; b <= 90; b++) {
   const code = String.fromCharCode(a, b), name = regionNames.of(code)
   if (name && name !== code && !['ZZ', 'EU', 'UN', 'XA', 'XB', 'QO'].includes(code)) {
-    countryNames.set(code.toLowerCase(), code)
-    countryNames.set(name.toLowerCase(), code)
+    // Intl also recognizes aliases such as UK. Canonicalize them so their
+    // display names cannot overwrite GB (United Kingdom) with an alias code.
+    const region = new Intl.Locale(`und-${code}`).region
+    countryNames.set(code.toLowerCase(), region)
+    countryNames.set(name.toLowerCase(), region)
     if (code !== 'IN') foreignCountryLabels.add(name)
   }
 }
-for (const [name, code] of Object.entries({ IND: 'IN', USA: 'US', 'United States of America': 'US', GBR: 'GB', UK: 'GB', SGP: 'SG', CAN: 'CA', AUS: 'AU' })) countryNames.set(name.toLowerCase(), code)
+for (const [name, code] of Object.entries({ IND: 'IN', USA: 'US', 'United States of America': 'US', GBR: 'GB', UK: 'GB', SGP: 'SG', CAN: 'CA', AUS: 'AU', 'Hong Kong': 'HK' })) countryNames.set(name.toLowerCase(), code)
 const nativeCountry = value => typeof value === 'string' ? countryNames.get(value.trim().toLowerCase()) || null : null
 const escapePattern = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const foreignCountryPattern = new RegExp(`(?:^|[^\\p{L}])(?:${[...foreignCountryLabels].sort((a, b) => b.length - a.length).map(escapePattern).join('|')})(?=$|[^\\p{L}])`, 'iu')
 const nativeText = value => typeof value === 'string' && value.trim().length > 0
 const GLOBAL_LOCATION = /\b(?:worldwide|global|anywhere|any\s+location|all\s+locations|APAC|EMEA|AMER|LATAM|Asia[- ]Pacific)\b/i
+// A business-region prefix is not a country. A national suffix may corroborate
+// this exact location's native postal country, without using the region to
+// infer geography or borrowing country evidence from a secondary office.
+const countryQualifiedRegion = (label, country) => {
+  if (!country) return false
+  const match = /^(?:APAC|EMEA|AMER|LATAM|Asia[- ]Pacific)\s+-\s+(?:Distributed\s+\(([^()]+)\)|([^()]+))$/i.exec(label.trim())
+  const suffix = (match?.[1] || match?.[2] || '').trim().replace(/^U\.K\.$/i, 'UK')
+  return nativeCountry(suffix) === country
+}
 const unresolvedLocationSegment = (label, country) => {
   const parts = String(label || '').split(/\s*(?:[;|/+&\n]|\s+(?:or|and)\s+)\s*/i).filter(Boolean)
-  return !parts.length ? !country : parts.some(part => GLOBAL_LOCATION.test(part)
+  return !parts.length ? !country : parts.some(part => GLOBAL_LOCATION.test(part) && !countryQualifiedRegion(part, country)
     // A native postal country scopes this location object, including a label
     // with several cities. Separate secondary locations retain their own scope.
     || (!INDIA_LOCATION.test(part) && !foreignCountryPattern.test(part) && !country))
@@ -193,7 +205,7 @@ const validateAshbyInventory = (payload, records, provider) => {
 }
 
 export const createPublishingGapAtsScraper = (provider) => ({
-  async run({ fetchJson = (url, options) => fetchJsonWithRetry(url, { ...options, timeoutMs: 20000, label: provider.source }), signal } = {}) {
+  async run({ fetchJson = (url, options) => fetchJsonWithRetry(url, { ...options, timeoutMs: 20000, label: provider.source }), signal, fetchPage } = {}) {
     signal?.throwIfAborted()
     const kind = provider.atsPlatform
     if (!['greenhouse', 'ashby', 'lever'].includes(kind)) throw new Error(`Unsupported ATS: ${kind}`)
@@ -203,10 +215,10 @@ export const createPublishingGapAtsScraper = (provider) => ({
       : kind === 'ashby'
         ? `https://api.ashbyhq.com/posting-api/job-board/${token}`
         : `https://api.${provider.leverRegion === 'eu' ? 'eu.' : ''}lever.co/v0/postings/${token}?mode=json`
-    const payload = await fetchJson(url, { signal })
+    let payload = await fetchJson(url, { signal })
     signal?.throwIfAborted()
     if (publicAtsInventoryError(payload)) throw new Error(`[${provider.source}] Failed ${kind} inventory envelope`)
-    const records = kind === 'lever' ? payload : payload?.jobs
+    let records = kind === 'lever' ? payload : payload?.jobs
     if (!Array.isArray(records)) throw new Error(`[${provider.source}] Invalid ${kind} inventory`)
     if (kind === 'greenhouse') {
       const identities = new Set()
@@ -224,8 +236,22 @@ export const createPublishingGapAtsScraper = (provider) => ({
     const prospectIds = kind === 'greenhouse' ? greenhouseProspectPostIds(records, provider) : []
     const countryProofs = [], officeCountryProofs = []
     const officeCountryScope = kind === 'greenhouse' ? reconcileGreenhouseOfficeCountries(records, provider) : null
-    const nativeReasons = kind === 'ashby' ? validateAshbyInventory(payload, records, provider)
+    const originalPayload = payload, originalRecords = records
+    let nativeReasons = kind === 'ashby' ? validateAshbyInventory(payload, records, provider)
       : validatePublicPostingScope(records, kind, provider, { countryProofs, officeCountryScope, officeCountryProofs })
+    let countryAudit = null
+    if (kind === 'ashby' && nativeReasons.includes('native-location-scope-unresolved')) {
+      const { reconcileAshbyPublisherCountries } = await import('./ashbyPublisherCountry20261112.js')
+      const reconciliation = await reconcileAshbyPublisherCountries(payload, provider, { fetchPage, signal,
+        needsCountry: row => validateAshbyInventory({ apiVersion: payload.apiVersion, jobs: [row] }, [row], provider)
+          .includes('native-location-scope-unresolved') })
+      if (reconciliation.proofs.length || reconciliation.failures.length) {
+        countryAudit = reconciliation
+        payload = reconciliation.payload
+        records = payload.jobs
+        nativeReasons = validateAshbyInventory(payload, records, provider)
+      }
+    }
     const active = records.filter((record) => record?.isListed !== false)
     if (active.some((record) => !record?.id || !(record.title || record.text))) {
       throw new Error(`[${provider.source}] Malformed ${kind} inventory record`)
@@ -236,7 +262,10 @@ export const createPublishingGapAtsScraper = (provider) => ({
     // Retain the complete producer response before mapping or country/prospect
     // selection. These models are evidence, not a declared vacancy total.
     const nativeCollectionEvidence = structuredClone({
-      source: provider.source, nativeRecords: records, nativePayload: payload,
+      source: provider.source, nativeRecords: originalRecords, nativePayload: originalPayload,
+      ...(countryAudit ? { nativeCountryReconciliation: {
+        proofs: countryAudit.proofs, failures: countryAudit.failures,
+      } } : {}),
     })
     let mapped
     if (kind === 'ashby') {
@@ -245,7 +274,11 @@ export const createPublishingGapAtsScraper = (provider) => ({
         const native = nativeById.get(job.jobId)
         const description = hasSourceDescription({ sourceDescription: native.descriptionHtml })
           ? native.descriptionHtml : native.descriptionPlain || null
-        return { ...job, jobDescription: description, sourceDescription: description }
+        return { ...job, jobDescription: description, sourceDescription: description,
+          ...(native.primaryCountryScopeEvidence ? {
+            nativeSourceRecord: structuredClone(originalRecords.find(record => record.id === job.jobId)),
+            sourceNativeCountryEvidence: structuredClone(native.primaryCountryScopeEvidence),
+          } : {}) }
       })
     } else {
       const config = expandApiPortalProviderTemplate({ ...provider, template: kind, templateOptions: { boardToken: provider.boardToken, region: provider.leverRegion } })
@@ -311,14 +344,17 @@ export const createPublishingGapAtsScraper = (provider) => ({
       surface: url,
       firstParty: kind === 'ashby' || innerEvidence?.firstParty === true,
       listingComplete,
-      pagesFetched: innerEvidence?.pagesFetched ?? 1,
+      pagesFetched: (innerEvidence?.pagesFetched ?? 1) + (countryAudit?.pagesFetched || 0),
       reportedTotal: innerEvidence?.reportedTotal ?? (kind === 'greenhouse' ? null : records.length),
       indiaFacetCount: nativeReasons.some(reason => /location-scope-unresolved|location-unmapped/.test(reason)) ? null : located.length,
       verifiedAt: new Date().toISOString(),
       reason: (listingComplete ? `${kind}-public-posting-api-complete-single-response`
         : `${kind}-public-posting-api-incomplete:${incompleteReasons.join(';')}`)
         + (countryProofs.length ? `:native-worksite-country-verified:${countryProofs.map(proof => `${proof.jobId}=${proof.country}@${proof.sha256}`).join(',')}` : '')
-        + greenhouseOfficeProofReason(officeCountryProofs) + greenhouseProspectReason(prospectIds),
+        + greenhouseOfficeProofReason(officeCountryProofs) + greenhouseProspectReason(prospectIds)
+        + (countryAudit?.proofs.length ? ':native-role-country-verified:'
+          + countryAudit.proofs.map(proof => `${proof.jobId}=${proof.country}@${proof.sha256}`).join(',') : '')
+        + (countryAudit?.failures.length ? `:native-country-audit-unresolved=${countryAudit.failures.length}` : ''),
       // The proof identifies source records and office IDs without replacing
       // the original native response or claiming a new publisher country field.
     })

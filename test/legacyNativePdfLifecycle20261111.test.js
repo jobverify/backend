@@ -199,7 +199,8 @@ for (const helper of helpers) {
 }
 
 const restricted = source => {
-  const result = spawnSync(process.execPath, ['--permission', '--allow-fs-read=' + backend, '--unhandled-rejections=strict', '--input-type=module', '--eval', source],
+  const sourceReads=['package.json','scraper/btlindia/nativePdf.js','scraper/nitaragormalonellp/nativePdf.js','scraper-support/shared/pdfDisplay.js','node_modules/@napi-rs/canvas/package.json','node_modules/@napi-rs/canvas/geometry.js','node_modules/pdfjs-dist/package.json','node_modules/pdfjs-dist/legacy/build/pdf.mjs','node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs'].map(name=>fileURLToPath(new URL(name,new URL('../',import.meta.url)))).concat([fileURLToPath(new URL('../../package.json',import.meta.url))])
+  const result = spawnSync(process.execPath, ['--permission',...sourceReads.map(name=>'--allow-fs-read='+name),'--disallow-code-generation-from-strings', '--unhandled-rejections=strict', '--input-type=module', '--eval', source],
     { cwd: backend, env: { ...process.env, NODE_OPTIONS: '' }, encoding: 'utf8', timeout: 20000, windowsHide: true })
   assert.equal(result.error, undefined); assert.equal(result.status, 0, result.stderr || result.stdout)
 }
@@ -221,13 +222,13 @@ test('restricted strict rejections observe reentrant aborts, late parser failure
     cleanup.reject(Error('Synthetic late cleanup rejection'));loading.reject(Error('Synthetic late task rejection'));const final=await pending;await turn();await turn();
     assert.equal(early.pending,undefined);assert.equal(early.reason,false);assert.equal(final.reason,false);assert.equal(destroyed,1);
    }
-   for(const name of ['addons','worker','child'])assert.equal(process.permission.has(name),false);assert.equal(typeof globalThis.DOMMatrix,'undefined');`)
+   for(const name of ['addons','worker','child'])assert.equal(process.permission.has(name),false);const geometry=await import('@napi-rs/canvas/geometry.js');assert.equal(globalThis.DOMMatrix,geometry.DOMMatrix);`)
 })
 test('restricted native display import remains the original cached capability failure', () => {
   restricted(`import assert from'node:assert/strict';globalThis.fetch=()=>assert.fail('No HTTP');let original,repeated;
    try{await import('pdfjs-dist/legacy/build/pdf.mjs')}catch(error){original=error}try{await import('pdfjs-dist/legacy/build/pdf.mjs')}catch(error){repeated=error}
    assert.ok(original instanceof ReferenceError);assert.equal(original.message,'DOMMatrix is not defined');assert.equal(original,repeated);
    for(const url of ${JSON.stringify(helpers.map(helper => helper.url))}){let actual;try{await import(url)}catch(error){actual=error}assert.equal(actual,original)}
-   for(const name of ['addons','worker','child'])assert.equal(process.permission.has(name),false);assert.equal(typeof globalThis.DOMMatrix,'undefined');`)
+   for(const name of ['addons','worker','child'])assert.equal(process.permission.has(name),false);const geometry=await import('@napi-rs/canvas/geometry.js');assert.equal(globalThis.DOMMatrix,geometry.DOMMatrix);`)
 })
 test('synthetic lifecycle suite performed no actual network operation', () => assert.equal(networkAttempts, 0))

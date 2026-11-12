@@ -6,6 +6,7 @@ import {declaredRoleDescription,readDescriptionPDF,fetchDescriptionPDF,nativePDF
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {nativeCountryName} from '../../scraper-support/shared/nativeJobPosting.js'
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -82,13 +83,17 @@ const toAbsoluteUrl = (value, baseUrl = JOBS_BOARD_URL) => {
   }
 }
 
-const readBoundedBody = async (response,signal) => {
+const readBoundedBody = async (response,signal,callerSignal) => {
   const reader=response.body?.getReader()
   if(!reader)throw Error('Missing Workline public response body')
-  const chunks=[];let bytes=0
+  const chunks=[];let bytes=0,readComplete=false
   try{for(;;){signal?.throwIfAborted();const item=await reader.read();if(item.done)break;bytes+=item.value.byteLength
-    if(bytes>4e6)throw Error('Workline public response body limit');chunks.push(Buffer.from(item.value))}}
-  finally{await reader.cancel().catch(()=>{});reader.releaseLock()}
+    if(bytes>4e6)throw Error('Workline public response body limit');chunks.push(Buffer.from(item.value))}
+    readComplete=true
+  }finally{
+    try{await disposeResponseReader(reader,{signal:callerSignal,bestEffort:!readComplete})}
+    finally{reader.releaseLock()}
+  }
   return Buffer.concat(chunks).toString('utf8')
 }
 const defaultFetchPage = async (url,{signal}={}) => {
@@ -105,7 +110,7 @@ const defaultFetchPage = async (url,{signal}={}) => {
   return {
     status: response.status,
     url: response.url,
-    html: await readBoundedBody(response,requestSignal),
+    html: await readBoundedBody(response,requestSignal,signal),
   }
 }
 
@@ -126,7 +131,7 @@ const defaultFetchJson = async (url, options = {}) => {
   }
 
   if(response.url!==url)throw Error('Workline native search response identity changed')
-  return JSON.parse(await readBoundedBody(response,requestSignal))
+  return JSON.parse(await readBoundedBody(response,requestSignal,options.signal))
 }
 
 const normalizeDate = (value) => {

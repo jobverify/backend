@@ -1,11 +1,12 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { once } from 'node:events';
+import { randomBytes } from 'node:crypto';
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../src/models/User.js';
 import BlacklistedToken from '../src/models/BlacklistedToken.js';
-process.env.JWT_SECRET = 'verification-fixture-secret-that-is-at-least-32-characters';
+process.env.JWT_SECRET = randomBytes(32).toString('hex');
 const { createVerificationRouter } = await import('../src/routes/jobVerificationRoutes.js').catch(() => ({}));
 
 test('verification API requires a session and exposes no cacheable report responses', async t => {

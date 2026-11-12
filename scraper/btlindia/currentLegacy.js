@@ -1,5 +1,4 @@
 import {collect} from './native.js'
-import {readNativePdf} from './nativePdf.js'
 import {transport,cap,budget} from './currentTransport.js'
 import {runCurrentBtl} from './currentReader.js'
 import {CAREERS,need,failure,isFailure} from './currentDeclarations.js'
@@ -18,7 +17,7 @@ export async function runLegacyBtl(options={}){
  },readMs,'read/body')
  try{
   control.check();const clock=options.now===undefined?new Date():typeof options.now==='function'?options.now():options.now,time=new Date(clock).getTime();need(Number.isFinite(time),'invalid observation clock');const at=new Date(time).toISOString()
-  const all=await collect({...options,now:()=>at,signal:control.signal,fetchText:bounded('html',options.fetchText),fetchPdf:bounded('pdf',options.fetchPdf||(async url=>{io.allow(url);return(await io.read(url,'pdf')).bytes})),decodePdf:(bytes,init)=>io.decode(()=>readNativePdf(bytes,init))});control.check()
+  const all=await collect({...options,now:()=>at,signal:control.signal,fetchText:bounded('html',options.fetchText),fetchPdf:bounded('pdf',options.fetchPdf||(async url=>{io.allow(url);return(await io.read(url,'pdf')).bytes})),decodePdf:(bytes,init)=>io.decode(async(checkPdf)=>{const {readNativePdf}=await import('./nativePdf.js');checkPdf();return readNativePdf(bytes,init)})});control.check()
   for(const job of all)Object.assign(job,{nativeOriginalByteEvidenceQualified:false,nativeModelClosingReconciled:false,fullNativeAuthoredDocumentAvailable:false,fullNativeAuthoredCriteriaAvailable:false,nativeCriteriaVisibilityQualified:false,nativeCriteriaComplete:false,sourceDetailComplete:false,sourceScopeComplete:false,sourceListingComplete:false,companyInventoryComplete:false,lifecycleCleanupAllowed:false,jobSpecificApplicationIdentityQualified:false,applicationVisited:false,activeApplyVerified:false})
   const heldRecords=all.map(job=>({title:job.title,reason:job.sourceDetailFailureKind,country:job.country??null,sourceScopeComplete:false})),audit={source:'btlindia',records:all,heldRecords,nativeObservedRecords:all.length,originalResponses:structuredClone(io.originals),compatibilityAttempts:attempts,nativeOriginalByteEvidenceQualified:false,wholeNativeModelsClosingReconciled:false,sourceScopeComplete:false,companyInventoryComplete:false,lifecycleCleanupAllowed:false,qualifiedIndiaRecords:0}
   if(options.onAudit)await io.observe(()=>options.onAudit(structuredClone(audit)));if(options.onRecords)await io.observe(()=>options.onRecords(structuredClone(all)));control.check()

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 import { extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 
 const CAREERS = 'https://evidation.com/open-positions'
 const BOARD = 'https://ats.rippling.com/evidation/jobs'
@@ -226,7 +227,7 @@ export async function runNativeEvidation({ signal: callerSignal, now = () => new
         need(bytes <= 3 * 1024 * 1024 && totalBytes <= 32 * 1024 * 1024, 'native body byte bound exceeded')
         chunks.push(value)
       }
-    } catch (error) { await reader.cancel().catch(() => {}); throw error }
+    } catch (error) { await disposeResponseReader(reader, { signal: callerSignal, bestEffort: true }); throw error }
     finally { reader.releaseLock() }
     signal.throwIfAborted(); need(bytes > 0, 'native response body empty')
     return Buffer.concat(chunks).toString('utf8')

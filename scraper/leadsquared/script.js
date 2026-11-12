@@ -143,20 +143,26 @@ export const createLeadSquaredScraper = ({
     maxPages = Number.POSITIVE_INFINITY,
     maxJobs = null,
     fetchListingPage: customFetchListingPage,
+    ...darwinboxOptions
   } = {}) => {
+    const { signal } = darwinboxOptions
+    signal?.throwIfAborted()
     if (!customFetchListingPage) {
-      return darwinboxScraper.run({ maxPages, maxJobs })
+      return darwinboxScraper.run({ ...darwinboxOptions, maxPages, maxJobs })
     }
 
     const jobs = []
     let page = 1
 
     while (page <= maxPages) {
+      signal?.throwIfAborted()
       const payload = await customFetchListingPage({
         page,
         pageSize,
         companyId: COMPANY_ID,
+        ...(signal ? { signal } : {}),
       })
+      signal?.throwIfAborted()
 
       const results = extractSearchResults(payload)
 

@@ -62,5 +62,7 @@ test('runApiPortalScraper filters CloudSEK Greenhouse jobs to India-facing locat
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

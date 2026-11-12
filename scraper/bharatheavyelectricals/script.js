@@ -1,7 +1,6 @@
 import path from 'node:path'
 import {fileURLToPath} from 'node:url'
 import CATALOG from './catalog.js'
-import {readBhelNativePdf} from './pdf20261107.js'
 import {readPublishedCampaign} from './campaign20261107.js'
 import {settingsFor,runtime,bounded,failure,annotateFailure,errorValue} from './runtime20261107.js'
 import {nativeTransport,MAX_BYTES} from './transport20261107.js'
@@ -70,7 +69,7 @@ export const createBharatHeavyElectricalsScraper=(defaults={})=>({async run(opti
   analysis=readAnnouncements(careers.body,clock);listingQualified=true;rt.check()
   if(analysis.unresolvedRows.length)reason='unclassified-native-announcement-rows'
   else{
-   await readPublishedCampaign({read,declare,decode:async(bytes,url,stage)=>{phase=stage;currentURL=url;const parsed=await bounded(signal=>readBhelNativePdf(bytes,{signal}),{signal:rt.signal,timeoutMs:settings.pdfTimeoutMs,code:'BHEL_PDF_TIMEOUT'});rt.check();return parsed}},analysis,board)
+   await readPublishedCampaign({read,declare,decode:async(bytes,url,stage)=>{phase=stage;currentURL=url;const parsed=await bounded(async(signal,check)=>{const {readBhelNativePdf}=await import('./pdf20261107.js');check();return readBhelNativePdf(bytes,{signal})},{signal:rt.signal,timeoutMs:settings.pdfTimeoutMs,code:'BHEL_PDF_TIMEOUT'});rt.check();return parsed}},analysis,board)
    reason='native-campaign-inventory-scope-unverified'
   }
   rt.check();await report();rt.check();return output()

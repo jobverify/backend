@@ -1,3 +1,4 @@
+import { requireResumeAccess } from '../middleware/resumeAccess.js';
 import express from 'express';
 import { protect } from '../middleware/authMiddleware.js';
 import { loadSiteSettings } from '../middleware/siteSettings.js';
@@ -6,7 +7,7 @@ import { read, create, download, preview } from '../controllers/tailoredResumeCo
 import * as revisions from '../controllers/cvRevisionController.js';
 const router = express.Router();
 router.use((_req, res, next) => { res.set('Cache-Control', 'no-store'); next(); });
-router.use(protect, loadSiteSettings);
+router.use(protect, requireResumeAccess, loadSiteSettings);
 const limit = createRateLimiter({ windowMs: 900000, limit: 20, keyGenerator: req => String(req.user._id), standardHeaders: true, legacyHeaders: false,
   message: { success: false, message: 'Too many generation requests. Please try again later.' } });
 router.get('/:jobId/revisions', revisions.list);

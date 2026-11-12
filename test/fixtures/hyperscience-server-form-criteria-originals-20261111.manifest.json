@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "source": "hyperscience",
+  "fixture": "hyperscience-server-form-criteria-originals-20261111.json.gz",
+  "fixtureBytes": 8189,
+  "fixtureSHA256": "76bc64035cab301c72ca29fd131e1a971706fee4648f2538139fc957b0cfd450",
+  "decodedJSONBytes": 42244,
+  "decodedJSONSHA256": "b66c534280e0e83db13f9e374e35544d880ddf2d67850129f99703fca1db2ccc",
+  "evidenceKind": "two-genuine-separately-clocked-public-definition-diagnostics",
+  "genuineAcquiredClosing": false,
+  "coherentProgrammeInterval": false,
+  "elapsedBetweenRequestsMs": 1443534,
+  "exactRequestSHA256": "26301b880ec3355a303c0431fa61fdc78c804d4d3964711771061c44876e51a8",
+  "originals": [
+    {
+      "kind": "first-separately-clocked-diagnostic",
+      "bodyBytes": 8405,
+      "bodySHA256": "5f3d2a629d35c05d6f08e9bcd0f2450aa38e634a7436fffbc1f49e5b8e47320f",
+      "requestedAt": "2026-11-11T22:58:01.412Z",
+      "responseAt": "2026-11-11T22:58:01.999Z",
+      "completedAt": "2026-11-11T22:58:02.002Z",
+      "method": "POST",
+      "requestedURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "finalURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "status": 200,
+      "complete": true
+    },
+    {
+      "kind": "repeat-separately-clocked-diagnostic",
+      "bodyBytes": 8405,
+      "bodySHA256": "6a6910c09941f358c17a17aa36a04b51163d55746cc0561219e58aff21652fdb",
+      "requestedAt": "2026-11-11T23:22:04.946Z",
+      "responseAt": "2026-11-11T23:22:05.602Z",
+      "completedAt": "2026-11-11T23:22:05.607Z",
+      "method": "POST",
+      "requestedURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "finalURL": "https://jobs.ashbyhq.com/api/non-user-graphql?op=ApiSourcingForm",
+      "status": 200,
+      "complete": true
+    }
+  ],
+  "inputBindings": [
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/hyperscience-public-form-query-request.json",
+      "bytes": 1983,
+      "sha256": "26301b880ec3355a303c0431fa61fdc78c804d4d3964711771061c44876e51a8"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-query-20261111a/001-public-form-query.body",
+      "bytes": 8405,
+      "sha256": "5f3d2a629d35c05d6f08e9bcd0f2450aa38e634a7436fffbc1f49e5b8e47320f"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-query-20261111a/receipt.json",
+      "bytes": 4765,
+      "sha256": "a44d7b8ec39c0b5375790e840d935ac953ab6c036474c73fcbb0eda1f9cc58e0"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-repeat-diagnostic-20261111a/001-repeat-public-form-query.body",
+      "bytes": 8405,
+      "sha256": "6a6910c09941f358c17a17aa36a04b51163d55746cc0561219e58aff21652fdb"
+    },
+    {
+      "path": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/empty-native/hyperscience-public-form-repeat-diagnostic-20261111a/receipt.json",
+      "bytes": 3783,
+      "sha256": "44f301ab9b57b8f44f4f446bf5e82f4fe87ba079e4849caa1705373c8b8adbb3"
+    }
+  ],
+  "authorization": "C:/Users/mohv/release/reports/soft-failures-1000-2026-11-11/hyperscience-form-comparison-task1-authorization.json",
+  "note": "Pure comparison input only; these two diagnostics are about24minutes apart. No fresh closure/currentness/programme/zero/recovery or interactive-equivalence evidence."
+}

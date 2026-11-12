@@ -1,3 +1,4 @@
+import { disposeResponseBody, disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
@@ -197,11 +198,11 @@ export const extractJobDetail = (html, listing = {}) => {
     applicationVisited: false, sourceDetailComplete: true, sourceScopeComplete: false, sourceListingComplete: false, lifecycleCleanupAllowed: false }
 }
 
-const defaultFetchPage = async (url, signal, consumeBytes) => {
+const defaultFetchPage = async (url, signal, consumeBytes, callerSignal) => {
   const response = await fetch(url, { signal, redirect: 'error', credentials: 'omit',
     headers: { Accept: 'text/html,application/xhtml+xml', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify public careers reader)' } })
   if ([401, 403, 429].includes(response.status)) {
-    await response.body?.cancel().catch(() => {})
+    await disposeResponseBody(response, { signal: callerSignal, bestEffort: true })
     throw Object.assign(new Error('Optum public access stop HTTP ' + response.status), { abortRetries: true, status: response.status, failureKind: 'blocked_or_access_denied', softFailure: true })
   }
   const reader = response.body?.getReader(), chunks = []; let size = 0
@@ -214,7 +215,10 @@ const defaultFetchPage = async (url, signal, consumeBytes) => {
         need(size <= MAX_RESPONSE_BYTES, 'native response-byte-budget exhausted')
         chunks.push(Buffer.from(next.value))
       }
-    } finally { await reader.cancel().catch(() => {}) }
+    } finally {
+      try { await disposeResponseReader(reader, { signal: callerSignal, bestEffort: true }) }
+      finally { reader.releaseLock() }
+    }
   }
   return { status: response.status, url: response.url, headers: response.headers, html: Buffer.concat(chunks).toString('utf8') }
 }
@@ -262,7 +266,7 @@ export const createOptumScraper = ({ maxPages = config.maxPages ?? 10, maxJobs =
       const boundary = AbortSignal.any([signal, AbortSignal.timeout(15000)])
       const page = options.fetchPage ? await options.fetchPage(url, { signal: boundary })
         : options.fetchText ? { status: 200, url, headers: { 'content-type': 'text/html' }, html: await options.fetchText(url, { signal: boundary }) }
-          : await defaultFetchPage(url, boundary, consumeBytes)
+          : await defaultFetchPage(url, boundary, consumeBytes, options.signal)
       boundary.throwIfAborted()
       const type = page.headers?.get?.('content-type') || page.headers?.['content-type'] || page.contentType || ''
       need(page.status === 200 && page.url === url && /^text\/html\b/i.test(type) && typeof page.html === 'string'

@@ -1,0 +1,372 @@
+{
+  "source": "immuta",
+  "fixturePath": "test/fixtures/immuta-current-programme-20261111.json.gz",
+  "fixtureSHA256": "d55bc41a35a1a9b6ed27f1132936cf61cd8c596fb78cdfbf7e0c1fa1395e009a",
+  "fixtureBytes": 1048129,
+  "rawOriginalEntities": 4,
+  "controlledReplayResponses": 8,
+  "noActualClosing": true,
+  "notAFreshTransaction": true,
+  "HTTP": 0,
+  "originalPackets": [
+    {
+      "kind": "corporate",
+      "requestedURL": "https://www.immuta.com/careers",
+      "finalURL": "https://www.immuta.com/careers",
+      "status": 200,
+      "headers": {
+        "age": "87185",
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-cache-status": "HIT",
+        "cf-ray": "a58eabfe7d609383-LHR",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Wed, 11 Nov 2026 16:28:45 GMT",
+        "last-modified": "Tue, 10 Nov 2026 16:49:32 GMT",
+        "link": "<https://cdn.prod.website-files.com>; rel=preconnect; crossorigin, <https://cdn.prod.website-files.com/69f398d567d00b28f09ec392/css/immutastaging.shared.c083a212e.min.css>; rel=preload; as=style; crossorigin; integrity=\"sha384-wIOiEu5s1NZyRGDo/h/+vguFIi4BxqL2Ov4MqOFsM86s1JoCpa+hJCashriJeeer\", <https://cdn.intellimize.co>; rel=preconnect, <https://api.intellimize.co>; rel=preconnect; crossorigin, <https://log.intellimize.co>; rel=preconnect; crossorigin, <https://117921460.intellimizeio.com>; rel=preconnect",
+        "server": "cloudflare",
+        "set-cookie": "_cfuvid=4TIWz6GZTH7Os91iJA5he9dB1vLogxRPzJGFbuF32o0-1794414525.1949608-1.0.1.1-xiKnyu318h9R0CNyShGfCrxAFjN7bOfeM.Z1vTm4n.s; HttpOnly; SameSite=None; Secure; Path=/; Domain=www.immuta.com",
+        "strict-transport-security": "max-age=31536000",
+        "surrogate-control": "max-age=432000",
+        "surrogate-key": "www.immuta.com 69f398d567d00b28f09ec392 pageId:6a3b3070fc8a50f7cbde88f7 6a3b838c99dc1940f9c979c1 6a3b8b7afa42ff5b504d6fe8 sp:1550d3235d1979cc22e3b25e52706a05",
+        "transfer-encoding": "chunked",
+        "vary": "accept-encoding",
+        "x-content-type-options": "nosniff",
+        "x-lambda-id": "c85b9523-a05b-461a-b369-a3bd2052197e",
+        "x-wf-region": "us-east-1"
+      },
+      "headerEntries": [
+        [
+          "age",
+          "87185"
+        ],
+        [
+          "alt-svc",
+          "h3=\":443\"; ma=86400"
+        ],
+        [
+          "cf-cache-status",
+          "HIT"
+        ],
+        [
+          "cf-ray",
+          "a58eabfe7d609383-LHR"
+        ],
+        [
+          "connection",
+          "keep-alive"
+        ],
+        [
+          "content-encoding",
+          "gzip"
+        ],
+        [
+          "content-type",
+          "text/html; charset=utf-8"
+        ],
+        [
+          "date",
+          "Wed, 11 Nov 2026 16:28:45 GMT"
+        ],
+        [
+          "last-modified",
+          "Tue, 10 Nov 2026 16:49:32 GMT"
+        ],
+        [
+          "link",
+          "<https://cdn.prod.website-files.com>; rel=preconnect; crossorigin, <https://cdn.prod.website-files.com/69f398d567d00b28f09ec392/css/immutastaging.shared.c083a212e.min.css>; rel=preload; as=style; crossorigin; integrity=\"sha384-wIOiEu5s1NZyRGDo/h/+vguFIi4BxqL2Ov4MqOFsM86s1JoCpa+hJCashriJeeer\", <https://cdn.intellimize.co>; rel=preconnect, <https://api.intellimize.co>; rel=preconnect; crossorigin, <https://log.intellimize.co>; rel=preconnect; crossorigin, <https://117921460.intellimizeio.com>; rel=preconnect"
+        ],
+        [
+          "server",
+          "cloudflare"
+        ],
+        [
+          "set-cookie",
+          "_cfuvid=4TIWz6GZTH7Os91iJA5he9dB1vLogxRPzJGFbuF32o0-1794414525.1949608-1.0.1.1-xiKnyu318h9R0CNyShGfCrxAFjN7bOfeM.Z1vTm4n.s; HttpOnly; SameSite=None; Secure; Path=/; Domain=www.immuta.com"
+        ],
+        [
+          "strict-transport-security",
+          "max-age=31536000"
+        ],
+        [
+          "surrogate-control",
+          "max-age=432000"
+        ],
+        [
+          "surrogate-key",
+          "www.immuta.com 69f398d567d00b28f09ec392 pageId:6a3b3070fc8a50f7cbde88f7 6a3b838c99dc1940f9c979c1 6a3b8b7afa42ff5b504d6fe8 sp:1550d3235d1979cc22e3b25e52706a05"
+        ],
+        [
+          "transfer-encoding",
+          "chunked"
+        ],
+        [
+          "vary",
+          "accept-encoding"
+        ],
+        [
+          "x-content-type-options",
+          "nosniff"
+        ],
+        [
+          "x-lambda-id",
+          "c85b9523-a05b-461a-b369-a3bd2052197e"
+        ],
+        [
+          "x-wf-region",
+          "us-east-1"
+        ]
+      ],
+      "bodySHA256": "3f765489b1b181bb5e7cf75f59cad31cbcfd230f7f28b36ada1fbd41d45a62fa",
+      "bodyBytes": 190199,
+      "requestedAt": "2026-11-11T16:28:13.023Z",
+      "responseAt": null,
+      "completedAt": "2026-11-11T16:28:14.580Z",
+      "originalPath": "reports/soft-failures-1000-2026-11-11/lever-current-corporate-availability-20261111b/immuta.body",
+      "originalCapturePhase": "separate-current-corporate-availability-20261111b",
+      "actualOpeningOnly": true
+    },
+    {
+      "kind": "grouped-json",
+      "requestedURL": "https://api.lever.co/v0/postings/immuta?mode=json&group=department",
+      "finalURL": "https://api.lever.co/v0/postings/immuta?mode=json&group=department",
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "238381",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 11 Nov 2026 16:41:51 GMT",
+        "etag": "W/\"3a32d-RuA+3nrFs+F7x8qnuez21+EfeaI\"",
+        "strict-transport-security": "max-age=15552000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "x-stream-path": "dapi",
+        "x-xss-protection": "1; mode=block"
+      },
+      "headerEntries": [
+        [
+          "connection",
+          "keep-alive"
+        ],
+        [
+          "content-length",
+          "238381"
+        ],
+        [
+          "content-type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "date",
+          "Wed, 11 Nov 2026 16:41:51 GMT"
+        ],
+        [
+          "etag",
+          "W/\"3a32d-RuA+3nrFs+F7x8qnuez21+EfeaI\""
+        ],
+        [
+          "strict-transport-security",
+          "max-age=15552000; includeSubDomains"
+        ],
+        [
+          "x-content-type-options",
+          "nosniff"
+        ],
+        [
+          "x-stream-path",
+          "dapi"
+        ],
+        [
+          "x-xss-protection",
+          "1; mode=block"
+        ]
+      ],
+      "bodySHA256": "05c70d0e8f9548c7b73e0ef4d17beaf45f33b8cf3e6b69c3130d0d3b2469bf27",
+      "bodyBytes": 238381,
+      "requestedAt": "2026-11-11T16:41:05.225Z",
+      "responseAt": "2026-11-11T16:41:20.741Z",
+      "completedAt": "2026-11-11T16:41:21.658Z",
+      "originalPath": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/001-immuta-grouped-json.body",
+      "originalCapturePhase": "lever-opening-research-20261111s",
+      "actualOpeningOnly": true
+    },
+    {
+      "kind": "flat-json",
+      "requestedURL": "https://api.lever.co/v0/postings/immuta?mode=json",
+      "finalURL": "https://api.lever.co/v0/postings/immuta?mode=json",
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "content-length": "238146",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Wed, 11 Nov 2026 16:41:54 GMT",
+        "etag": "W/\"3a242-AbscO4/SHk6av4U3YfPI6UdDykA\"",
+        "strict-transport-security": "max-age=15552000; includeSubDomains",
+        "x-content-type-options": "nosniff",
+        "x-stream-path": "dapi",
+        "x-xss-protection": "1; mode=block"
+      },
+      "headerEntries": [
+        [
+          "connection",
+          "keep-alive"
+        ],
+        [
+          "content-length",
+          "238146"
+        ],
+        [
+          "content-type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "date",
+          "Wed, 11 Nov 2026 16:41:54 GMT"
+        ],
+        [
+          "etag",
+          "W/\"3a242-AbscO4/SHk6av4U3YfPI6UdDykA\""
+        ],
+        [
+          "strict-transport-security",
+          "max-age=15552000; includeSubDomains"
+        ],
+        [
+          "x-content-type-options",
+          "nosniff"
+        ],
+        [
+          "x-stream-path",
+          "dapi"
+        ],
+        [
+          "x-xss-protection",
+          "1; mode=block"
+        ]
+      ],
+      "bodySHA256": "c5752933ecea44800dbcf5b774baab5b9d9b6fe75589a1c2c670a5690c6f80c5",
+      "bodyBytes": 238146,
+      "requestedAt": "2026-11-11T16:41:21.719Z",
+      "responseAt": "2026-11-11T16:41:24.123Z",
+      "completedAt": "2026-11-11T16:41:25.178Z",
+      "originalPath": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/002-immuta-flat-json.body",
+      "originalCapturePhase": "lever-opening-research-20261111s",
+      "actualOpeningOnly": true
+    },
+    {
+      "kind": "own-html",
+      "requestedURL": "https://jobs.lever.co/immuta/4372d3ba-00d6-4ae0-986c-e65d8dbf9def",
+      "finalURL": "https://jobs.lever.co/immuta/4372d3ba-00d6-4ae0-986c-e65d8dbf9def",
+      "status": 200,
+      "headers": {
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a58ebf54fc9def4d-LHR",
+        "connection": "keep-alive",
+        "content-encoding": "gzip",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Wed, 11 Nov 2026 16:41:57 GMT",
+        "server": "cloudflare",
+        "set-cookie": "__cf_bm=bfrFpsQNcp_HYUzuoxcfGd7ETmxK6dgLgFHe9l6DTHo-1794415317.2744405-1.0.1.1-DGS_eq7WXIysPpRU96Q4VCOttF4ZmPsOHO1K8mh8PQG27QiA_9bXgN7tOXJegpksK.BHrnGiqKv7MrLyhyEo6Hh.N.mfGgwR5ZFYdRx9SnA4TXuerwSbvpddX5erFd2S; HttpOnly; SameSite=None; Partitioned; Secure; Path=/; Domain=lever.co; Expires=Wed, 11 Nov 2026 17:11:57 GMT",
+        "strict-transport-security": "max-age=15552000; includeSubDomains",
+        "transfer-encoding": "chunked",
+        "x-content-type-options": "nosniff",
+        "x-stream-path": "jobs",
+        "x-xss-protection": "1; mode=block"
+      },
+      "headerEntries": [
+        [
+          "cf-cache-status",
+          "DYNAMIC"
+        ],
+        [
+          "cf-ray",
+          "a58ebf54fc9def4d-LHR"
+        ],
+        [
+          "connection",
+          "keep-alive"
+        ],
+        [
+          "content-encoding",
+          "gzip"
+        ],
+        [
+          "content-type",
+          "text/html; charset=utf-8"
+        ],
+        [
+          "date",
+          "Wed, 11 Nov 2026 16:41:57 GMT"
+        ],
+        [
+          "server",
+          "cloudflare"
+        ],
+        [
+          "set-cookie",
+          "__cf_bm=bfrFpsQNcp_HYUzuoxcfGd7ETmxK6dgLgFHe9l6DTHo-1794415317.2744405-1.0.1.1-DGS_eq7WXIysPpRU96Q4VCOttF4ZmPsOHO1K8mh8PQG27QiA_9bXgN7tOXJegpksK.BHrnGiqKv7MrLyhyEo6Hh.N.mfGgwR5ZFYdRx9SnA4TXuerwSbvpddX5erFd2S; HttpOnly; SameSite=None; Partitioned; Secure; Path=/; Domain=lever.co; Expires=Wed, 11 Nov 2026 17:11:57 GMT"
+        ],
+        [
+          "strict-transport-security",
+          "max-age=15552000; includeSubDomains"
+        ],
+        [
+          "transfer-encoding",
+          "chunked"
+        ],
+        [
+          "x-content-type-options",
+          "nosniff"
+        ],
+        [
+          "x-stream-path",
+          "jobs"
+        ],
+        [
+          "x-xss-protection",
+          "1; mode=block"
+        ]
+      ],
+      "bodySHA256": "8619d446a4fc5dd2681bfb13f874df7f9e816e7c8b9477bf325a645e13fd8ae5",
+      "bodyBytes": 725471,
+      "requestedAt": "2026-11-11T16:41:25.202Z",
+      "responseAt": "2026-11-11T16:41:26.565Z",
+      "completedAt": "2026-11-11T16:41:27.305Z",
+      "originalPath": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/003-immuta-own-html.body",
+      "originalCapturePhase": "lever-opening-research-20261111s",
+      "actualOpeningOnly": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/lever-current-corporate-availability-20261111b/receipts.json",
+      "bytes": 4473,
+      "SHA256": "e03edf1396c1750d32635666913af9e42bb62dcc55ef85f6e9318aecb47a26ac"
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/receipts.json",
+      "bytes": 17070,
+      "SHA256": "a1161fe714678c7f2ef45450e936f8446950ac942f885acdd8d25d0462ac4306"
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/lever-current-corporate-availability-20261111b/immuta.body",
+      "bytes": 190199,
+      "SHA256": "3f765489b1b181bb5e7cf75f59cad31cbcfd230f7f28b36ada1fbd41d45a62fa"
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/001-immuta-grouped-json.body",
+      "bytes": 238381,
+      "SHA256": "05c70d0e8f9548c7b73e0ef4d17beaf45f33b8cf3e6b69c3130d0d3b2469bf27"
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/002-immuta-flat-json.body",
+      "bytes": 238146,
+      "SHA256": "c5752933ecea44800dbcf5b774baab5b9d9b6fe75589a1c2c670a5690c6f80c5"
+    },
+    {
+      "path": "reports/soft-failures-1000-2026-11-11/runtime-discovery/lever-opening-research-20261111s/003-immuta-own-html.body",
+      "bytes": 725471,
+      "SHA256": "8619d446a4fc5dd2681bfb13f874df7f9e816e7c8b9477bf325a645e13fd8ae5"
+    }
+  ]
+}

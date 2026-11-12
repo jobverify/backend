@@ -1,0 +1,15 @@
+{
+  "reviewedAt": "2026-11-12T16:29:00.578Z",
+  "originalFixtureSHA256": "f9fb04238010f1198a79da25ab53fa36c9d2584f7c7aad9fb994668bb3e59304",
+  "pages": {
+    "https://www.sixt.jobs/in/jobs?q=&country=IN": "23a88c48261871a30caac1876f2e9ee72900f59322033e3c85331cbdb694eb8a",
+    "https://www.sixt.jobs/in/research-and-development-india": "1b832dc60c3f45ea4602960c8635ed57e9765bf0d50106cc3b2b7eb989665540",
+    "https://www.sixt.jobs/in/about-us": "083747028a80ad749e16ea245cc3f1da55d98e7db40c31739e4f6440a53ed139",
+    "https://www.sixt.jobs/in/tech-engineering": "9e9966c5a184f7401cfaea0f8b3c73d76df9f44318c64c9e6cd0005d5765159f",
+    "https://www.sixt.jobs/in/corporate-functions": "cd9c5d256b3c4a83ef476b2f4418e9299f4844d5519020f50005c86d0f9c4aa8"
+  },
+  "clients": {
+    "https://cdn.sixt.jobs/build/assets/app-kLBNkimr.js": "2b39c61705471c7312c1b2cf43fa1ae16f95f3605dac2cea0f307748a4b1a339",
+    "https://cdn.sixt.jobs/build/assets/vendor-DHApjQxJ.js": "cf9b2286325978ca3b0176efb94a1f6da96efe464b253c3f3bbae2347917b9e3"
+  }
+}

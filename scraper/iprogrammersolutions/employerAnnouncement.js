@@ -1,3 +1,5 @@
+import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {loadPdfDisplay} from '../../scraper-support/shared/pdfDisplay.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 export const PROFILE_URL='https://in.linkedin.com/company/iprogrammer-solutions'
 export const POST_URL='https://www.linkedin.com/posts/iprogrammer-solutions_hiring-hiringsales-businessdevelopment-activity-7512006475670597632-4SHX'
@@ -11,19 +13,58 @@ const clean=value=>String(value??'').replace(/&amp;/gi,'&').replace(/<[^>]+>/g,'
 const uncomment=html=>String(html??'').replace(/<!--[\s\S]*?-->/g,'')
 export const fetchAnnouncementPage=async(url,{signal}={})=>{
  signal?.throwIfAborted();const response=await fetch(url,{signal:AbortSignal.any([...(signal?[signal]:[]),AbortSignal.timeout(15000)]),headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',Accept:'text/html,application/pdf;q=0.9,*/*;q=0.8'}})
- const reader=response.body.getReader(),parts=[];let size=0
- try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>MAX_BYTES)throw fail('native response exceeds size bound');parts.push(value)}}finally{await reader.cancel()}
+ const reader=response.body.getReader(),parts=[];let size=0,readComplete=false
+ try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>MAX_BYTES)throw fail('native response exceeds size bound');parts.push(value)}readComplete=true}finally{try{await disposeResponseReader(reader,{signal,bestEffort:!readComplete})}finally{reader.releaseLock()}}
  const bytes=Buffer.concat(parts);signal?.throwIfAborted();return {status:response.status,url:response.url,html:url===PDF_URL?null:bytes.toString('utf8'),bytes:url===PDF_URL?bytes:undefined}
 }
 // Existing installed pdfjs-dist, fresh in-memory bytes only. No OCR or remote font resources.
 export const parseNativeAnnouncementPdf=async(bytes,{signal}={})=>{
  signal?.throwIfAborted();if(!bytes||bytes.length>MAX_BYTES||Buffer.from(bytes).subarray(0,5).toString()!=='%PDF-')throw fail('native download is not a bounded PDF')
- const {getDocument,VerbosityLevel}=await import('pdfjs-dist/legacy/build/pdf.mjs')
- signal?.throwIfAborted();const deadline=AbortSignal.any([...(signal?[signal]:[]),AbortSignal.timeout(15000)])
- const loading=getDocument({data:new Uint8Array(bytes),isEvalSupported:false,useWorkerFetch:false,disableFontFace:true,useSystemFonts:false,verbosity:VerbosityLevel.ERRORS})
- let onAbort
- const pending=(async()=>{const pdf=await loading.promise;if(!pdf.numPages||pdf.numPages>10)throw fail('published PDF page count is outside the verified bound');const texts=[];for(let n=1;n<=pdf.numPages;n++){deadline.throwIfAborted();const page=await pdf.getPage(n),content=await page.getTextContent();texts.push(content.items.filter(i=>typeof i.str==='string').map(i=>i.str+(i.hasEOL?'\n':' ')).join(''))}return texts.join('\n').replace(/[ \t]+\n/g,'\n').replace(/\n[ \t]+/g,'\n').trim()})()
- try{return await Promise.race([pending,new Promise((_,reject)=>{onAbort=()=>reject(deadline.reason);deadline.addEventListener('abort',onAbort,{once:true});if(deadline.aborted)onAbort()})])}finally{if(onAbort)deadline.removeEventListener('abort',onAbort);pending.catch(()=>{});await loading.destroy()}
+ const {getDocument,VerbosityLevel}=await loadPdfDisplay({signal})
+ signal?.throwIfAborted();const extractionStarted=performance.now(),deadline=AbortSignal.any([...(signal?[signal]:[]),AbortSignal.timeout(15000)])
+ const destroyTask=task=>{
+  const started=performance.now();let timer,reason
+  const expired=()=>reason??=Object.assign(Error('Native PDF task cleanup deadline exceeded'),{name:'NativePdfCleanupError',code:'NATIVE_PDF_CLEANUP_TIMEOUT'})
+  const checkGrace=()=>{if(performance.now()-started>=1000)throw expired()}
+  const destroying=Promise.resolve().then(()=>{const owned=Promise.resolve(task.destroy());owned.catch(()=>{});checkGrace();return owned}).then(value=>{checkGrace();return value})
+  const limit=new Promise((_,reject)=>{timer=setTimeout(()=>reject(expired()),1000)})
+  return Promise.race([destroying,limit]).finally(()=>clearTimeout(timer))
+ }
+ let loading,cleanupPromise,output,primaryFailure,elapsedReason,failed=false
+ const cleanup=()=>loading?(cleanupPromise??=destroyTask(loading)):Promise.resolve()
+ const checkExtraction=()=>{
+  signal?.throwIfAborted();deadline.throwIfAborted()
+  if(performance.now()-extractionStarted>=15000)throw elapsedReason??=new DOMException('The operation was aborted due to timeout','TimeoutError')
+ }
+ const checked=async(value,extracting=true)=>{
+  const active=extracting?deadline:signal,check=()=>extracting?checkExtraction():signal?.throwIfAborted()
+  const promise=typeof value==='function'?Promise.resolve().then(()=>{check();return value()}):Promise.resolve(value)
+  promise.catch(()=>{})
+  let listener
+  const interrupted=new Promise((_,reject)=>{listener=()=>{cleanup().catch(()=>{});reject(active.reason)};active?.addEventListener('abort',listener,{once:true});if(active?.aborted)listener()})
+  interrupted.catch(()=>{})
+  try{check();const result=await Promise.race([promise,interrupted]);check();return result}
+  catch(error){check();throw error}
+  finally{active?.removeEventListener('abort',listener)}
+ }
+ try{
+  checkExtraction()
+  loading=getDocument({data:new Uint8Array(bytes),isEvalSupported:false,useWorkerFetch:false,disableFontFace:true,useSystemFonts:false,verbosity:VerbosityLevel.ERRORS})
+  const pdf=await checked(loading.promise);if(!pdf.numPages||pdf.numPages>10)throw fail('published PDF page count is outside the verified bound');const texts=[]
+  for(let n=1;n<=pdf.numPages;n++){
+   checkExtraction();const page=await checked(()=>pdf.getPage(n)),content=await checked(()=>page.getTextContent());checkExtraction()
+   texts.push(content.items.filter(i=>typeof i.str==='string').map(i=>i.str+(i.hasEOL?'\n':' ')).join(''))
+  }
+  output=texts.join('\n').replace(/[ \t]+\n/g,'\n').replace(/\n[ \t]+/g,'\n').trim();checkExtraction()
+ }catch(error){
+  failed=true;primaryFailure=error
+  try{checkExtraction()}catch(expired){primaryFailure=expired}
+ }finally{
+  try{await checked(cleanup(),false)}catch(error){if(!failed){failed=true;primaryFailure=error}}
+ }
+ signal?.throwIfAborted()
+ if(failed)throw primaryFailure
+ return output
 }
 const currentAnnouncement=(html,checkedAt)=>{
  const page=uncomment(html)

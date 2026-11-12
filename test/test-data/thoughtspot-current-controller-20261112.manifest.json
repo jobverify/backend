@@ -1,0 +1,214 @@
+{
+  "kind": "Genuine first-party current ThoughtSpot careers document, complete native publisher listing and12 reciprocally bound India role pages, plus current advertised public controller assets. Test mutations are synthetic contract regressions.",
+  "nativeCapturedAt": "2026-11-12T06:15:58.849Z",
+  "controllerCapturedAt": "2026-11-12T06:23:36.376Z",
+  "compressedSHA256": "29b474994680c99969289d4bcd7e483252303e14e07c45cc15947179dc5ab03d",
+  "compressedBytes": 720560,
+  "responses": [
+    {
+      "startedAt": "2026-11-12T06:15:58.882Z",
+      "completedAt": "2026-11-12T06:15:59.790Z",
+      "requestedUrl": "https://www.thoughtspot.com/careers",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://www.thoughtspot.com/careers",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "1d819f8d752c00748236262325c98c95672939d2377ebe4cab2a72c55a06c4be"
+    },
+    {
+      "startedAt": "2026-11-12T06:15:59.853Z",
+      "completedAt": "2026-11-12T06:16:00.038Z",
+      "requestedUrl": "https://www.thoughtspot.com/api/getCareersListing",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://www.thoughtspot.com/api/getCareersListing",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "hash": "8a8a9f747961ecb1e2eb6b07bf9a28614d587e8003f1cdd2a7088dc72c981069"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:00.054Z",
+      "completedAt": "2026-11-12T06:16:01.122Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/ffd134bf-a6d7-4ece-bbd7-22106a07d47a",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/ffd134bf-a6d7-4ece-bbd7-22106a07d47a",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "191fa3b631c86a37cc79475263b3c68acbf0c0fef0d274fe919df41169fbe652"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:00.051Z",
+      "completedAt": "2026-11-12T06:16:02.138Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/f909db11-b8a2-42cd-a007-55cd0d2e10de",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/f909db11-b8a2-42cd-a007-55cd0d2e10de",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "0b4f7ad654c4ad76689dd999ac8920ac6295cd73fdea0143a0759adb58f89e47"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:01.208Z",
+      "completedAt": "2026-11-12T06:16:02.262Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/75664f03-7551-4c41-91e9-47bae86dd1d1",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/75664f03-7551-4c41-91e9-47bae86dd1d1",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "72e1b9075fc7412e81f0d078a296a97e07da9480bd2d69137e636825228ed827"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:02.182Z",
+      "completedAt": "2026-11-12T06:16:02.799Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/4daf44f1-5cd5-4f54-b088-d8f95014a8c6",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/4daf44f1-5cd5-4f54-b088-d8f95014a8c6",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "7f2ac8a98df6ec013f0d272116f68c04f0eba67f0c913b3be7979a2358c2668d"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:02.336Z",
+      "completedAt": "2026-11-12T06:16:02.918Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/5dc55f04-f9ff-472a-afd0-1031e926d16d",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/5dc55f04-f9ff-472a-afd0-1031e926d16d",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "5fa3223e48d1aaedcdec82473aeac5cf31794438f17e0b95ea5bcc5bda5e9e24"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:02.839Z",
+      "completedAt": "2026-11-12T06:16:03.370Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/d5405756-fcbd-492e-aa0a-b02e7766eccf",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/d5405756-fcbd-492e-aa0a-b02e7766eccf",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "1a18d1f046f6a5bea6f136e3953adaa94bb881f5ec35540d9106934800ef15e3"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:02.956Z",
+      "completedAt": "2026-11-12T06:16:03.603Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/f6ded12e-a926-446f-b82c-942cda1a26f7",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/f6ded12e-a926-446f-b82c-942cda1a26f7",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "e9f95767451bf62aa7d4f68c03c699edf7e306815a31b6cd0c595433da974049"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:03.415Z",
+      "completedAt": "2026-11-12T06:16:04.053Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/e5b1b87b-65a2-491b-939a-c299fad07a9e",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/e5b1b87b-65a2-491b-939a-c299fad07a9e",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "2b3549e4156f76eb03b377cdfe71d4a608a2d00ccc3c6cb87d5b5115316bd736"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:03.649Z",
+      "completedAt": "2026-11-12T06:16:04.218Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/88540eac-9073-4fb9-9c49-0e112f3e6977",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/88540eac-9073-4fb9-9c49-0e112f3e6977",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "7e567ffaf38a4bee7ff38b73602435ed888e4917fb8c8aa4f8da3405be8318e0"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:04.090Z",
+      "completedAt": "2026-11-12T06:16:04.689Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/e0ec9cad-414b-4aa7-a15e-d820b55934ae",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/e0ec9cad-414b-4aa7-a15e-d820b55934ae",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "1641f72417ab3c1fed0d8c01b0d1f97526a5caaca02788b35ba473b076d4c14c"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:04.259Z",
+      "completedAt": "2026-11-12T06:16:04.852Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/cbbdc582-8387-44f2-b747-e359e7e77985",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/cbbdc582-8387-44f2-b747-e359e7e77985",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "fc06b867c725356a4787b290fef87ad062343ef331fe16c2d776b0a532dbe3c2"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:04.741Z",
+      "completedAt": "2026-11-12T06:16:05.374Z",
+      "requestedUrl": "https://ats.rippling.com/thoughtspot/jobs/e86cb9e1-bb48-4932-8b05-6cd34f06c834",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://ats.rippling.com/thoughtspot/jobs/e86cb9e1-bb48-4932-8b05-6cd34f06c834",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "hash": "5805f1ac89e9c5e4363be4acd636234ce934b2a8fefe7c181dd266d5cb183f18"
+    },
+    {
+      "startedAt": "2026-11-12T06:16:05.422Z",
+      "completedAt": "2026-11-12T06:16:05.807Z",
+      "requestedUrl": "https://www.thoughtspot.com/api/getCareersListing",
+      "method": "GET",
+      "requestBody": null,
+      "url": "https://www.thoughtspot.com/api/getCareersListing",
+      "status": 200,
+      "contentType": "application/json; charset=utf-8",
+      "hash": "8a8a9f747961ecb1e2eb6b07bf9a28614d587e8003f1cdd2a7088dc72c981069"
+    },
+    {
+      "url": "https://www.thoughtspot.com/_next/static/chunks/42179.dd76c7957fb6f98e.js",
+      "finalUrl": "https://www.thoughtspot.com/_next/static/chunks/42179.dd76c7957fb6f98e.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "startedAt": "2026-11-12T06:23:36.391Z",
+      "completedAt": "2026-11-12T06:23:37.294Z",
+      "bytes": 7789,
+      "hash": "bce23fa90538d06ccd0029740a24ffd50e5293c0a1467c0e7c98ec20f714108e"
+    },
+    {
+      "url": "https://www.thoughtspot.com/_next/static/chunks/90155-e2c8eae2e1b199ea.js",
+      "finalUrl": "https://www.thoughtspot.com/_next/static/chunks/90155-e2c8eae2e1b199ea.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "startedAt": "2026-11-12T06:23:37.321Z",
+      "completedAt": "2026-11-12T06:23:37.641Z",
+      "bytes": 152985,
+      "hash": "d62bddc37509e6698c7b663c923df6da6334cd0354cfb0a1909af7ff7d7ca55d"
+    },
+    {
+      "url": "https://www.thoughtspot.com/_next/static/chunks/webpack-7384f84f48791def.js",
+      "finalUrl": "https://www.thoughtspot.com/_next/static/chunks/webpack-7384f84f48791def.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "startedAt": "2026-11-12T06:23:37.827Z",
+      "completedAt": "2026-11-12T06:23:37.976Z",
+      "bytes": 23724,
+      "hash": "d63818ceb1a18b3fec9ca901da27ab7ebbedf05dd2fbb350307c7542b384a8c0"
+    }
+  ],
+  "review": {
+    "bodyJsxUnchanged": true,
+    "bodyJsxSHA256": "a3b27ad91928feb3f18fa8c8c3e55e3d948113d415a9e287ca7950398df3807f",
+    "listingComponentUnchanged": true,
+    "currentCareerComponent": "V3_Career_Section",
+    "currentModule": "nU = dynamic Promise.all([74758,42179]).then(webpack.bind(webpack,42179)); SSR enabled",
+    "currentLoaderChunk42179": "static/chunks/42179.dd76c7957fb6f98e.js",
+    "nativeEnumeration": "The unchanged reviewed42179 component performs one unfiltered GET /api/getCareersListing and retains response.data; search/country/department filters and10-row display pagination occur in browser state only.",
+    "oldMapAndLoader": "Both old immutable asset URLs returned404 during current review; no historical-body equivalence is claimed."
+  }
+}

@@ -62,5 +62,7 @@ test('runApiPortalScraper filters Observe.AI Greenhouse jobs to India-facing loc
     remoteStatus: 'On-site',
     scrapedAt: jobs[0].scrapedAt,
     sourceListingComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
   })
 })

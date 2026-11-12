@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { disposeResponseReader } from '../shared/responseBodyDisposal.js'
 import { readNativeDocument, decodeNativeEntities } from './activeNativeHtml.js'
 import { readVisibleNativeDocument } from './visibleNativeHtml.js'
 import { attachInventoryEvidence } from './inventoryEvidence.js'
@@ -222,7 +223,7 @@ export const createFirstPartyComeetProxyScraper = sourceConfig => ({
           need(bytes <= 3 * 1024 * 1024 && totalBytes <= 32 * 1024 * 1024, 'native response byte bound exceeded')
           chunks.push(value)
         }
-      } catch (error) { await reader.cancel().catch(() => {}); throw error }
+      } catch (error) { await disposeResponseReader(reader, { signal, bestEffort: true }); throw error }
       finally { reader.releaseLock() }
       signal.throwIfAborted(); need(bytes > 0, 'native response body empty')
       const body = Buffer.concat(chunks)

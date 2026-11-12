@@ -11,8 +11,8 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex')
 // They are read as data; none of this remote JavaScript is executed.
 export const PUBLIC_ASSETS = new Map([
   [origin + '/_next/static/chunks/42179.dd76c7957fb6f98e.js', 'bce23fa90538d06ccd0029740a24ffd50e5293c0a1467c0e7c98ec20f714108e'],
-  [origin + '/_next/static/chunks/90155-e179c67d0f81b18d.js', '706e99fccc3472cce60e64f67e6296e2da0aa04e527ce316b123735ceb878db0'],
-  [origin + '/_next/static/chunks/webpack-434ac8987fd498f9.js', '73b861c20d22629966674beaf0205bd05d363ebb7a17d57a4af9c11dbf831310'],
+  [origin + '/_next/static/chunks/90155-e2c8eae2e1b199ea.js', 'd62bddc37509e6698c7b663c923df6da6334cd0354cfb0a1909af7ff7d7ca55d'],
+  [origin + '/_next/static/chunks/webpack-7384f84f48791def.js', 'd63818ceb1a18b3fec9ca901da27ab7ebbedf05dd2fbb350307c7542b384a8c0'],
 ])
 const reviewedBody = 'a3b27ad91928feb3f18fa8c8c3e55e3d948113d415a9e287ca7950398df3807f'
 const recruitingHost = /(?:^|\.)(?:ashbyhq\.com|greenhouse\.io|lever\.co|myworkdayjobs\.com|workable\.com|smartrecruiters\.com|rippling\.com|jobylon\.com|recruitee\.com|bamboohr\.com|teamtailor\.com|icims\.com|successfactors\.com|oraclecloud\.com|paylocity\.com)$/i
@@ -34,6 +34,10 @@ const bytesOf = response => Buffer.from(response.rawBodyBase64, 'base64')
 function verifyPublicPage(response) {
   requireNative(response?.status === 200, 'ThoughtSpot current public careers page unavailable')
   const doc = readNativeDocument(new TextDecoder('utf-8', { fatal: true }).decode(bytesOf(response)))
+  // Frame fallback content is inert in nodes(); active declarations remain on
+  // their parent, including frames whose source is blank or supplied by srcdoc.
+  requireNative(!doc.nodes(node => node.children.some(child => typeof child !== 'string' && child.activeFrame === true)).length,
+    'ThoughtSpot unreviewed embedded public recruiting surface')
   const scripts = doc.nodes(node => node.tag === 'script' && node.attrs.id === '__NEXT_DATA__')
   requireNative(scripts.length === 1, 'ThoughtSpot current page data ambiguous')
   const data = JSON.parse(scripts[0].raw), page = data.props?.pageProps?.page

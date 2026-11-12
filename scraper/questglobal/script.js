@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url'
 
 import { createPhenomScraper } from '../../scraper-support/phenom/engine.js'
 import { reviewedPhenomTitleBindingsForSource } from '../../scraper-support/phenom/reviewedTitleBindings20261108.js'
+import { QUEST_REVIEWED_OFFICE_DISPLAYS_20261112 } from './reviewedOfficeDisplays20261112.js'
 import { QUEST_REVIEWED_INDIA_CITY_GROUPS } from './reviewedCityGroups20261109.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -21,6 +22,7 @@ const scraper = createPhenomScraper({
   nativeBoundUSStateCodeFormatting: true,
   nativeReviewedIndiaCityAliases: true,
   nativeReviewedIndiaCityGroups: QUEST_REVIEWED_INDIA_CITY_GROUPS,
+  nativeReviewedOfficeDisplayBindings: QUEST_REVIEWED_OFFICE_DISPLAYS_20261112,
   nativeCityDashCountryFormatting: true,
 })
 
