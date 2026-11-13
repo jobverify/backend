@@ -39,6 +39,10 @@ test('admin can change applications access; disabled users cannot use any applic
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const adminPath = `/api/admin/users/${member._id}/applications-access`;
+  const initialApplications = await request(member, '/api/user/applications');
+  assert.equal(initialApplications.status, 403, 'new users must wait for an admin to enable applications');
+  assert.equal((await initialApplications.json()).code, 'APPLICATIONS_ACCESS_DISABLED');
+  assert.equal(buildAccessSummary(member).applicationsAllowed, false);
   assert.equal((await request(member, adminPath, 'PUT', { enabled: false })).status, 403);
   for (const enabled of ['false', 0, null]) {
     assert.equal((await request(admin, adminPath, 'PUT', { enabled })).status, 400);
@@ -60,6 +64,6 @@ test('admin can change applications access; disabled users cannot use any applic
   assert.equal(enabled.status, 200);
   assert.equal((await enabled.json()).data.applicationsAllowed, true);
   assert.equal(buildAccessSummary(member).applicationsAllowed, true);
-  assert.equal(member.resumeFeaturesAllowed, true);
+  assert.equal(member.resumeFeaturesAllowed, false);
   assert.equal(buildAccessSummary({}).applicationsAllowed, true);
 });
