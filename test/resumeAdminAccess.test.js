@@ -39,6 +39,10 @@ test('admin can change resume access; disabled users cannot use any resume endpo
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const adminPath = `/api/admin/users/${member._id}/resume-access`;
+  const initialResume = await request(member, '/api/user/resume');
+  assert.equal(initialResume.status, 403, 'new users must wait for an admin to enable resumes');
+  assert.equal((await initialResume.json()).code, 'RESUME_ACCESS_DISABLED');
+  assert.equal(buildAccessSummary(member).resumeFeaturesAllowed, false);
   assert.equal((await request(member, adminPath, 'PUT', { enabled: false })).status, 403);
   for (const enabled of ['false', 0, null]) {
     assert.equal((await request(admin, adminPath, 'PUT', { enabled })).status, 400);
