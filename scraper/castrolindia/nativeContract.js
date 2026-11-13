@@ -23,6 +23,9 @@ function model(html,isJob){
 }
 export function parseCastrolBoard(corporate,html){
  check(extractOfficialRecruitmentLinks(corporate,CORPORATE).some(l=>l.href===BOARD),'Current official Castrol India handoff unavailable')
+ return parseCastrolNativeBoard(html)
+}
+export function parseCastrolNativeBoard(html){
  const{doc,loaders}=model(html,false),board=loaders['routes/$url_token'];check(object(board)&&board.urlToken==='castrol'&&board.board?.name==='Castrol'&&board.board.public_url===BOARD&&board.board.redirect_to===null,'Native board company mismatch')
  check(doc.nodes(n=>n.tag==='h1').some(n=>doc.text(n)==='Current positions at Castrol'),'Visible native board identity unavailable')
  for(const key of ['departmentIds','officeIds'])check(Array.isArray(board[key])&&board[key].length===0,'Native board is filtered')

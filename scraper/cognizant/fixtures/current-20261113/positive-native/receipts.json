@@ -1,0 +1,1146 @@
+[
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:18.280Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 54715,
+    "sha256": "98e5abc8d5ea3d1e6848117860defad3aac24fa58114b8d68be6ac2e86895542",
+    "file": "cognizant-0.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071249921/sonata-ba/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:20.876Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071249921/sonata-ba/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 66435,
+    "sha256": "c529c39d222f326537b138a7caa70c0e421e526e5b8823f947554033ea27585f",
+    "file": "cognizant-1.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071185071/senior-stibo-step-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:26.370Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071185071/senior-stibo-step-engineer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 72258,
+    "sha256": "41cb88ce4b56e7d0cb0ebb80a3373dbef1c79f2f9f27480e02f0f6ee74985cfe",
+    "file": "cognizant-2.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071185151/stibo-step-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:28.141Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071185151/stibo-step-engineer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 70230,
+    "sha256": "7ae1a7e41005e719a947263be616deeb0301688709882d07ae4196145288d571",
+    "file": "cognizant-3.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071184291/stibo-step-lead-pod-team-lead/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:29.807Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071184291/stibo-step-lead-pod-team-lead/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73719,
+    "sha256": "0403bb5439dec54e0e16f75bbe3c3702315bbeb7c04e9d0fd492da159e27bed7",
+    "file": "cognizant-4.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071352951/senior-consultant-healthcare-business-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:31.443Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071352951/senior-consultant-healthcare-business-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74373,
+    "sha256": "e8a21667993bfe582aa37f428618ed39939fa2b0351cebc92b554ac353561e47",
+    "file": "cognizant-5.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/47965/tech-lead-salesforce-data-cloud-data-360/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:36.979Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/47965/tech-lead-salesforce-data-cloud-data-360/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73330,
+    "sha256": "ee2f3a4d51cff1822dbdf3375f40a82340824c367083428e53efbd891c2135b3",
+    "file": "cognizant-6.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071271382/senior-service-designer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:38.744Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071271382/senior-service-designer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73427,
+    "sha256": "c9958e5bc38c97f49a08ba93d8ac3c54649def378240118683f4b9829ceb1978",
+    "file": "cognizant-7.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071148751/senior-product-lifecycle-management-plm-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:40.938Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071148751/senior-product-lifecycle-management-plm-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 78978,
+    "sha256": "87a24e0071e1363278d7ea7115657f626ec8bb09a448faaecd66ead43021335b",
+    "file": "cognizant-8.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070024891/java-aws-architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:42.934Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070024891/java-aws-architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 76250,
+    "sha256": "06c8f547f21148ed9613f5296c0b67ccbff8ed3ca236a8ccab8b95c1cc73472a",
+    "file": "cognizant-9.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071285771/technical-manager-healthcare-claims-systems/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:45.208Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071285771/technical-manager-healthcare-claims-systems/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 77468,
+    "sha256": "be7f721faf994a05377237e545058e08cbbdc56512fc303fa8ccc30b915ab0eb",
+    "file": "cognizant-10.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=2",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:47.069Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=2",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 55239,
+    "sha256": "96ca62d47c7bb03fe31b79a40fe1165a224468fb60ad7a8d3f2f161ad0e9b118",
+    "file": "cognizant-11.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070262901/lead-guidewire-claimcenter-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:48.746Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070262901/lead-guidewire-claimcenter-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 71874,
+    "sha256": "e34cdc046f8b885030d34c32cdac6e526ef88919f05425807f56524ad4e4f874",
+    "file": "cognizant-12.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071140631/director-portfolio-marketing-enterprise-platforms/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:50.560Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071140631/director-portfolio-marketing-enterprise-platforms/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 80412,
+    "sha256": "1cf8a4640ca16f322fe45e52861c1275f6464b15dd6db86783de895924d3b4ad",
+    "file": "cognizant-13.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071310342/senior-net-full-stack-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:52.614Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071310342/senior-net-full-stack-engineer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 77254,
+    "sha256": "782814e55a880ec9edd136407431f9390f8cb95a5a21f3ccae74b8c870907453",
+    "file": "cognizant-14.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071310341/senior-net-full-stack-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:54.692Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071310341/senior-net-full-stack-engineer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 77658,
+    "sha256": "f6205321d391d75783729280b603d6e92caf61574e05680a1be57ade7fcd5b41",
+    "file": "cognizant-15.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071159711/servicenow-irm-technical-consultant/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:56.552Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071159711/servicenow-irm-technical-consultant/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73065,
+    "sha256": "3c4e72d8192a848925d076ba9b4a5429a267944dec34361d4b98545926c98cd1",
+    "file": "cognizant-16.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071211301/associate-director-quality-engineering-healthcare-payer-and-facets/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:10:58.394Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071211301/associate-director-quality-engineering-healthcare-payer-and-facets/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 80293,
+    "sha256": "42262eb220736570f9ed2f31f87c1008d971f98abb8440ec77657513853dc037",
+    "file": "cognizant-17.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071229301/procurement-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:00.091Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071229301/procurement-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 72027,
+    "sha256": "27c67b37803837569f970202ce774d260fb5ceecaa35ba2efad2ba15f26a9e7a",
+    "file": "cognizant-18.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071159161/audio-visual-technician/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:01.832Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071159161/audio-visual-technician/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 67254,
+    "sha256": "ea08bcff0f584e68fbf9025731943bc94738ab47530d0cf16e4e7ce5419b8dd0",
+    "file": "cognizant-19.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070713951/executive-accounts-payable/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:03.691Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070713951/executive-accounts-payable/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 71160,
+    "sha256": "12669894250b77e49e862a57128234c4bfdd67a358ed6e1b7f700e2f6bbb41bb",
+    "file": "cognizant-20.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070713691/jr-executive-accounts-payable/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:05.396Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070713691/jr-executive-accounts-payable/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 71401,
+    "sha256": "f90d7f3c43489f0a27ec8c1b648dc85f5c19ea4aa42329958505aa370d92c130",
+    "file": "cognizant-21.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=3",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:07.159Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=3",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 55635,
+    "sha256": "c2181f282a3938c45422e397e3da4c99781d2e50b5be68015d01bfa3f3f46849",
+    "file": "cognizant-22.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00066694561/jr-executive-accounts-payable/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:09.253Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00066694561/jr-executive-accounts-payable/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 71499,
+    "sha256": "e9c37f00ce7d1bb29e0503724084ae06cb3dfb86e40e4252b1fa685c84f8a4ab",
+    "file": "cognizant-23.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070465561/salesforce-marketing-cloud-specialist/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:11.290Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070465561/salesforce-marketing-cloud-specialist/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 72721,
+    "sha256": "14ce1cfe2eed8aee06bded0447536c481ad984cd013f58f0fd65d24dfb7afd47",
+    "file": "cognizant-24.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070193981/quality-assurance-uat-manager-commercial-real-estate/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:13.218Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070193981/quality-assurance-uat-manager-commercial-real-estate/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 77670,
+    "sha256": "541506f7e0a67b8d13e5a83141787886e5b3481c4d9193174a3e005da5ed55f5",
+    "file": "cognizant-25.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071229551/tosca-automation-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:15.305Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071229551/tosca-automation-engineer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 76449,
+    "sha256": "d11e42265093156b3bc9857f516deb0c3269fd9cb0b7d64379dc55026ae692e4",
+    "file": "cognizant-26.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071198081/pega-lsa-smart-claims-engine-sce-71198081/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:17.340Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071198081/pega-lsa-smart-claims-engine-sce-71198081/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 78178,
+    "sha256": "c343da5be778e6c856bce04a1026acf09c4f00c2cf63b75ceead90927f774bb0",
+    "file": "cognizant-27.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071055911/business-systems-analyst-bsa-ls-commercial-domain-veeva/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:19.465Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071055911/business-systems-analyst-bsa-ls-commercial-domain-veeva/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 80587,
+    "sha256": "3b547dc69fbcd4f57c65e28a52db655ae8c5dee4c134cc412f908e679452c28b",
+    "file": "cognizant-28.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071279011/devops-architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:21.368Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071279011/devops-architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75111,
+    "sha256": "14eb3e8361adc76de4dfca62f3c16224ea86c2af5f0108e36f60612b617b7235",
+    "file": "cognizant-29.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00069807321/service-line-sales-director-iot-oil-gas/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:22.996Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00069807321/service-line-sales-director-iot-oil-gas/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 84342,
+    "sha256": "355bcdbdd3800a9273f4b06d75f4c9cbd385cb81872aca28c03b47d2b9379178",
+    "file": "cognizant-30.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070239781/ioabpo-service-line-sales-specialist/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:24.670Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070239781/ioabpo-service-line-sales-specialist/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 80079,
+    "sha256": "eb84f7abbc1078a91ec132227cb69a8b96575c69799d6fa0ba845dae982897a1",
+    "file": "cognizant-31.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00069904611/sr-technical-architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:26.201Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00069904611/sr-technical-architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75426,
+    "sha256": "05135412f11455730b6f5b590167f70178c8427a2bcc7f736489d248a912f8f0",
+    "file": "cognizant-32.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=4",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:27.874Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=4",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 55588,
+    "sha256": "57ea696d41b634f68f8e16359873268002767e4964f9b0122307fab6e2b34476",
+    "file": "cognizant-33.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/46594/compliance-content-moderator-with-french/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:29.345Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/46594/compliance-content-moderator-with-french/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 47657,
+    "sha256": "d9368d9f0c075d23412ec9d1b3f51daa863fc08489d11476d5d59d98137330df",
+    "file": "cognizant-34.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071295022/service-line-sales-specialist-ai-process-automation-associate-director-san-francisco-71295022/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:30.883Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071295022/service-line-sales-specialist-ai-process-automation-associate-director-san-francisco-71295022/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 80085,
+    "sha256": "94ad610a0bd765a6306f75f6683d047c2a5ffd9dc8a8733ff1d3d1670084ee19",
+    "file": "cognizant-35.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070789201/production-support-engineer-java-sql/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:32.436Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070789201/production-support-engineer-java-sql/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73077,
+    "sha256": "7843734475e43a93bd6b285b3b6b4a7ef0483ea2cae290f73e11098473b35d67",
+    "file": "cognizant-36.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070968031/c-and-unix-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:34.319Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070968031/c-and-unix-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 71954,
+    "sha256": "72e0ee3879ca81888abf3e8d8bb3975e762cd709ad2dfd081c302122bcf96e02",
+    "file": "cognizant-37.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071244781/senior-sql-server-dba/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:35.850Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071244781/senior-sql-server-dba/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 77917,
+    "sha256": "1ef491a806fefc6720a394ab4b653bac100bb60245039c7cdd6bd38447218db7",
+    "file": "cognizant-38.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070948551/sr-associate-projects/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:37.338Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070948551/sr-associate-projects/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75129,
+    "sha256": "0b17df2f176439b580b1e138e9468cb76df9495d1f842f1df2d0b03b56f75e5b",
+    "file": "cognizant-39.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070469921/cloud-finops-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:39.057Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070469921/cloud-finops-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 71174,
+    "sha256": "7decc391e975d0cc9123f1ad6bce8d93cb49d7ba827cb0221c84cf4fbee909fa",
+    "file": "cognizant-40.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071190021/net-architect-full-stack-engineering/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:40.998Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071190021/net-architect-full-stack-engineering/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 80276,
+    "sha256": "bf60e5dbc8f106c69e4d033dd9ca2e7d649e291bdd8293eab302d38dc6b35552",
+    "file": "cognizant-41.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/45779/video-content-moderator-with-swedish/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:42.825Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/45779/video-content-moderator-with-swedish/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 50766,
+    "sha256": "72d4817a825b4e691cde1c7ad77b4fd0f82ddaf953896acd10fa6cf6306d46ad",
+    "file": "cognizant-42.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071256491/network-engineering-lead-l3/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:44.426Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071256491/network-engineering-lead-l3/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73748,
+    "sha256": "3b9aaea112192d77a4b5b6209b923ab28e57937a7cdb6ae249645848d5b8a5d8",
+    "file": "cognizant-43.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=5",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:45.980Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=5",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 55515,
+    "sha256": "cd8c03f8d661128130e7d9301f8fb2f41b428916581be0854d551582f17dd930",
+    "file": "cognizant-44.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/40671/video-content-moderator-with-czech/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:47.559Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/40671/video-content-moderator-with-czech/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 53892,
+    "sha256": "552d8999c60c7eae73df0a46082490a4d3337da68789463c6b36b35302c3064d",
+    "file": "cognizant-45.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/46733/video-content-moderator-with-croatian/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:49.053Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/46733/video-content-moderator-with-croatian/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 51658,
+    "sha256": "8c983c5d5d688250693eb1d1870054cfb332516fca17638c1479c0f5fa752a05",
+    "file": "cognizant-46.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/47963/distinguished-frontier-engineer-dfm/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:50.506Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/47963/distinguished-frontier-engineer-dfm/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74206,
+    "sha256": "ff7575db2a55ac633177e423420d5271cbcc770dc3a2ae34eb4087c8f0f0e74c",
+    "file": "cognizant-47.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/47964/master-frontier-engineer-dfm/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:51.992Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/47964/master-frontier-engineer-dfm/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73621,
+    "sha256": "97a1b683c6179640a2da9fdefc16c0dffdf081f5606e51141d8be4cc9407826d",
+    "file": "cognizant-48.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/47962/frontier-engineer-dfm/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:53.733Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/47962/frontier-engineer-dfm/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73039,
+    "sha256": "69c6e0c351411895ea573107f92f19ff086283281880d5d518cd37b9c51e98c9",
+    "file": "cognizant-49.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071257171/network-engineering-lead-l3/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:55.519Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071257171/network-engineering-lead-l3/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74029,
+    "sha256": "89a2387abf28c0c1526afffe9fbd7ce87f453ed54dbeb841bbc8b32008f991c8",
+    "file": "cognizant-50.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071305431/salesforce-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:57.631Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071305431/salesforce-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 70200,
+    "sha256": "70abaa4bd43e03ee1a69909a366fe7cc041dd9be67058a595dfb90444dc8db63",
+    "file": "cognizant-51.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070590911/salesforce-technical-architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:11:59.853Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070590911/salesforce-technical-architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 76613,
+    "sha256": "82b80af2b6ea32655775440ce5f5d8cb7a46be418d7965bea87dbeef40b98aab",
+    "file": "cognizant-52.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070962901/salesforce-ncino-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:02.083Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070962901/salesforce-ncino-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 76145,
+    "sha256": "31663ad2ca339e042f1f8dd82753543bf4ae4351c446e2c321f3f7cdf0836dd2",
+    "file": "cognizant-53.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/39884/video-content-moderator-with-danish/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:03.769Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/39884/video-content-moderator-with-danish/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 50683,
+    "sha256": "c4fa09a66f3e46597e9640f77849876431ab6f3d047be3de414f858ecdf6a1bb",
+    "file": "cognizant-54.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=6",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:05.175Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=6",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 55020,
+    "sha256": "9ca060b98281ddd36bb7ebb519b0438a101847d33f9f871ae714c7636631e6f4",
+    "file": "cognizant-55.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/47838/video-content-moderator-with-arabic/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:07.643Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/47838/video-content-moderator-with-arabic/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 52975,
+    "sha256": "1bc8b804c0e5ec0033742e9cb0737f462cb5e62a8d72e98eb6ed9771b0ed2d4c",
+    "file": "cognizant-56.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070951211/pe-digital-content-services/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:09.976Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070951211/pe-digital-content-services/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 68242,
+    "sha256": "9569116d94b6240d0cd009e19783617b89b9b39a5a3e4e008c4bd5469583f831",
+    "file": "cognizant-57.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071070311/servicenow-solutioning-presales-consultant/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:11.674Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071070311/servicenow-solutioning-presales-consultant/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75732,
+    "sha256": "25b5e231202720ce292ee163efefe144f713ece74c84d9a92c3840fac24b8d78",
+    "file": "cognizant-58.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071220862/spe-ar-management-hc/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:13.625Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071220862/spe-ar-management-hc/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73494,
+    "sha256": "e77d58bb8b257a8e65c4fd9aba7a82f05eb9f12be5bc7572f7d49f7445b6aa3e",
+    "file": "cognizant-59.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071105041/sme-quality-mgmt-hc-ops/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:15.304Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071105041/sme-quality-mgmt-hc-ops/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74074,
+    "sha256": "48c69b9c67d811e497c3fa982ca3dfb166081519bc57df5324be6510ef3745fb",
+    "file": "cognizant-60.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071023671/spe-medical-coding-hc/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:17.310Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071023671/spe-medical-coding-hc/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74258,
+    "sha256": "32a3fe170678665ce8015d51c68c70af0e4a722d42c4236ad74158d88d6a1498",
+    "file": "cognizant-61.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071005651/tl-ar-management-hc/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:19.084Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071005651/tl-ar-management-hc/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73534,
+    "sha256": "9920f60a889627538f587de075e34d17ba1fd457cc3124de34b6d66703c7e829",
+    "file": "cognizant-62.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071004881/spe-enrollment-billing/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:20.703Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071004881/spe-enrollment-billing/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73953,
+    "sha256": "dc1a6f6dbf8d5cebbbe08bd531fe670515ecdcb2220ca89cc066c22b1bdd8ae1",
+    "file": "cognizant-63.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071000811/sme-medical-coding-hc/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:22.273Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071000811/sme-medical-coding-hc/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 66141,
+    "sha256": "3d15c350fd49531efb1b07563838b4ee0b0d9887692d47c7069635dd8c2bd18f",
+    "file": "cognizant-64.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00069666321/solution-data-architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:23.854Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00069666321/solution-data-architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73316,
+    "sha256": "a9c05e613d7970c747458e6b81771feddfb58359922b2674a25f90ec53ae195e",
+    "file": "cognizant-65.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=7",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:25.465Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=7",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 55101,
+    "sha256": "37c0bfb68ebe1e9f37bfd9359e2b3e3f231f9afa3640a069a9950fc2f84ad928",
+    "file": "cognizant-66.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070976271/dgm-quality-management/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:27.099Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070976271/dgm-quality-management/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73005,
+    "sha256": "c191cbfd929e02ba866e7c4458e260677a83a814697d8d354ef9a4766776f3d0",
+    "file": "cognizant-67.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00067660918/senior-delivery-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:31.943Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00067660918/senior-delivery-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73682,
+    "sha256": "a37afdb5c989e87aecac16d6bbd840cc5f9fec97536e40bbf849b4ca8f82ed1c",
+    "file": "cognizant-68.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00067660916/senior-delivery-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:33.680Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00067660916/senior-delivery-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73682,
+    "sha256": "2d519691d328f874b0f689a292169837e7ba73a314c8f03c714a0b6bb097c683",
+    "file": "cognizant-69.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00067660912/senior-delivery-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:35.252Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00067660912/senior-delivery-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 73682,
+    "sha256": "eddc5b21997c8674b102987d180cd16a4c80322f95ba3031bfc55e31005e315d",
+    "file": "cognizant-70.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00069676471/business-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:36.859Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00069676471/business-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74444,
+    "sha256": "fe69265a2a6e5108804b413826d919de3b04fba564b8b5ef95e5b4cd9acb1f4a",
+    "file": "cognizant-71.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070851811/major-incident-manager/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:38.711Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070851811/major-incident-manager/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 52131,
+    "sha256": "072328a6c2199a9fbcceac8dd3dba743bbbe7c82a0c0f647061d010a7dc2f4f1",
+    "file": "cognizant-72.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/000676609110/senior-delivery-developer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:40.333Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/000676609110/senior-delivery-developer/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 70097,
+    "sha256": "dadae75914cd0dc2f143c0f4207af6a2ab54d76aaba866eaf24286e3bee3d5b0",
+    "file": "cognizant-73.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070390451/tm-quality-management/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:42.051Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070390451/tm-quality-management/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 69711,
+    "sha256": "f8bb31ad02e984d3d544b6974c5d0fd4be0e23a4b6af5fb8ebaee452e6f42f4d",
+    "file": "cognizant-74.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070553101/architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:43.894Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070553101/architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 69008,
+    "sha256": "b70f9f66c642202d98d59c390ede081031cd4d2edb376450d6ce24ba10fc9be7",
+    "file": "cognizant-75.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00069158121/architect/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:45.419Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00069158121/architect/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75511,
+    "sha256": "96df19cbc4ea25069eb7afc103dc7c77888311ffcce673329d1007aaf5a03a91",
+    "file": "cognizant-76.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=8",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:47.105Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=8",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 53499,
+    "sha256": "90aa928ec28f4c06bf77a9090995ba435705a15e9b4323ebcb6bbda224ba1b1a",
+    "file": "cognizant-77.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071283411/business-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:48.918Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071283411/business-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 69232,
+    "sha256": "58d59a0100618234866008844249fc62ee69235cbcaa4953ac04239b0e027f71",
+    "file": "cognizant-78.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071283101/senior-business-analyst/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:50.586Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071283101/senior-business-analyst/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 70142,
+    "sha256": "9f98bc6d7b0bac015b4912e6c4634fb36275178cd91166ad51ee2028d3793cb1",
+    "file": "cognizant-79.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00067762811/mspp-plus-copilot-studio/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:52.116Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00067762811/mspp-plus-copilot-studio/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 68514,
+    "sha256": "dfbaf9299aaecae621a0853f313b5713dc9a3814100a274b06edee2594639a97",
+    "file": "cognizant-80.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00068061742/test-lead/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:53.612Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00068061742/test-lead/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 70517,
+    "sha256": "97e24ae288e8ca4da4afc017d436112a560d6cda856df09e27eba0482c51b9df",
+    "file": "cognizant-81.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070546091/service-line-specialist-cloud-and-infrastructure-sales-associate-director/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:55.104Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070546091/service-line-specialist-cloud-and-infrastructure-sales-associate-director/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 81832,
+    "sha256": "a42d545b478aaffad796018bbff14a4a88ea78e1b10bed553a9c7e448b81b52b",
+    "file": "cognizant-82.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070976871/spe-claims-hc/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:12:59.643Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070976871/spe-claims-hc/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74093,
+    "sha256": "8827a44c19338d3b06727be4937e6e2a802a15b7d6f97c61d1120b59abbad89c",
+    "file": "cognizant-83.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070970202/sme-order-management-voice/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:13:01.191Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070970202/sme-order-management-voice/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75211,
+    "sha256": "8922aeefc9e378882cd0f2cb5c95efb622b9ff9be793d40b2a318f3c89612601",
+    "file": "cognizant-84.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00071052432/spe-product-info-mdm/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:13:02.720Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00071052432/spe-product-info-mdm/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 74530,
+    "sha256": "cea15c6dd9ef2683aefc52257d87214b503be57cad2447c3ed30094a19bf1027",
+    "file": "cognizant-85.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00070513481/tl-enrollment-billing/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:13:04.216Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00070513481/tl-enrollment-billing/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75982,
+    "sha256": "7a2d8a4292491533bc9a45f3e30ad19ad078a854a137036550ee6e7af455efb6",
+    "file": "cognizant-86.body.gz"
+  },
+  {
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/00069367074/returnship-sme-learning-development/",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:13:05.888Z",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/00069367074/returnship-sme-learning-development/",
+    "headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "bytes": 75997,
+    "sha256": "df59368db9874e2e4c345263a5590073ff6160f2a7b1851a636856fe27773e45",
+    "file": "cognizant-87.body.gz"
+  }
+]

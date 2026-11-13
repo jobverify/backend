@@ -1,0 +1,1471 @@
+{
+  "role": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "_key",
+      "_offset",
+      "_operation",
+      "_partition",
+      "application_type",
+      "benefits",
+      "category",
+      "city",
+      "contact_email",
+      "country",
+      "created_at",
+      "description",
+      "disclaimers",
+      "environments",
+      "hiring_type",
+      "i18n",
+      "is_expired",
+      "is_hidden",
+      "is_hot",
+      "job_specialization",
+      "locale",
+      "metadata",
+      "name",
+      "permalink_key",
+      "posting_type",
+      "primary_skill",
+      "referral_campaign",
+      "relocation",
+      "relocation_destination",
+      "request_id",
+      "sd_pool_id",
+      "sd_position_id",
+      "sd_requisition_id",
+      "seniority",
+      "seo",
+      "skill_spec",
+      "skills",
+      "tags",
+      "tenant",
+      "tests",
+      "text",
+      "uid",
+      "unique_id",
+      "updated_at",
+      "vacancy_type"
+    ]
+  },
+  "role._key": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role._partition": {
+    "types": [
+      "number"
+    ],
+    "keys": []
+  },
+  "role._offset": {
+    "types": [
+      "number"
+    ],
+    "keys": []
+  },
+  "role._operation": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.uid": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.unique_id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.tenant": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.posting_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.city[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "country",
+      "id",
+      "name",
+      "state",
+      "type"
+    ]
+  },
+  "role.city[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].country": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "name",
+      "type"
+    ]
+  },
+  "role.city[].country.id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].country.name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].country.type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].state": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "locode",
+      "name"
+    ]
+  },
+  "role.city[].state.id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].state.name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].state.locode": {
+    "types": [
+      "null",
+      "string"
+    ],
+    "keys": []
+  },
+  "role.city[].type": {
+    "types": [
+      "null",
+      "string"
+    ],
+    "keys": []
+  },
+  "role.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.country[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "name",
+      "type"
+    ]
+  },
+  "role.country[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.country[].name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.country[].type": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.seniority": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.is_hot": {
+    "types": [
+      "boolean"
+    ],
+    "keys": []
+  },
+  "role.is_hidden": {
+    "types": [
+      "boolean"
+    ],
+    "keys": []
+  },
+  "role.skills": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.skills[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.primary_skill": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.sd_pool_id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.request_id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.tags": {
+    "types": [
+      "array",
+      "null"
+    ],
+    "keys": []
+  },
+  "role.tags[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.description": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.category": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "about_the_customer",
+      "about_the_project",
+      "nice_to_have",
+      "requirements",
+      "responsibilities",
+      "technologies"
+    ]
+  },
+  "role.category.responsibilities": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.category.responsibilities[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.category.requirements": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.category.requirements[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.category.nice_to_have": {
+    "types": [
+      "array",
+      "null"
+    ],
+    "keys": []
+  },
+  "role.category.technologies": {
+    "types": [
+      "array",
+      "null"
+    ],
+    "keys": []
+  },
+  "role.category.about_the_project": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.category.about_the_customer": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.seo": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "description",
+      "title",
+      "url"
+    ]
+  },
+  "role.seo.url": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.seo.title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.seo.description": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.tests": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "required"
+    ]
+  },
+  "role.tests.required": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.locale": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.created_at": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.updated_at": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.benefits": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.benefits[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "content",
+      "country",
+      "state",
+      "title"
+    ]
+  },
+  "role.benefits[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.benefits[].country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.benefits[].country[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "name",
+      "type"
+    ]
+  },
+  "role.benefits[].country[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.benefits[].country[].name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.benefits[].country[].type": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.benefits[].content": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.benefits[].state": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.environments": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.environments[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.application_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.contact_email": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.contact_email[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.relocation": {
+    "types": [
+      "boolean"
+    ],
+    "keys": []
+  },
+  "role.sd_requisition_id": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.disclaimers": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "content",
+      "country",
+      "name",
+      "order",
+      "position",
+      "state",
+      "title"
+    ]
+  },
+  "role.disclaimers[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].country[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "name"
+    ]
+  },
+  "role.disclaimers[].country[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].country[].name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].position": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].content": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].city[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "name"
+    ]
+  },
+  "role.disclaimers[].city[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].city[].name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].state": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].order": {
+    "types": [
+      "number"
+    ],
+    "keys": []
+  },
+  "role.disclaimers[].name": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.referral_campaign": {
+    "types": [
+      "array",
+      "null"
+    ],
+    "keys": []
+  },
+  "role.skill_spec": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.sd_position_id": {
+    "types": [
+      "null"
+    ],
+    "keys": []
+  },
+  "role.relocation_destination": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.job_specialization": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.job_specialization[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.text": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "job_specialization",
+      "primary_skill",
+      "seniority",
+      "skill_spec",
+      "skills",
+      "vacancy_type"
+    ]
+  },
+  "role.metadata.seniority": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "epam_seniority_level",
+      "level",
+      "tenants",
+      "title",
+      "tooltip",
+      "uid",
+      "undelucram_level"
+    ]
+  },
+  "role.metadata.seniority[].uid": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].tenants": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].tenants[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].level": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].epam_seniority_level": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].undelucram_level": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.seniority[].tooltip": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.vacancy_type": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.vacancy_type[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "locale",
+      "title"
+    ]
+  },
+  "role.metadata.vacancy_type[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.vacancy_type[].locale": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "job_function",
+      "locale",
+      "title",
+      "uid"
+    ]
+  },
+  "role.metadata.job_specialization[].uid": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].locale": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].job_function": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "job_function_id",
+      "job_function_name",
+      "linkedin_job_function"
+    ]
+  },
+  "role.metadata.job_specialization[].job_function.job_function_name": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].job_function.job_function_id": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].job_function.job_function_id[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].job_function.linkedin_job_function": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.job_specialization[].job_function.linkedin_job_function[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.country[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "title"
+    ]
+  },
+  "role.metadata.country[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.country[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.skills": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.skills[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "skill_id",
+      "title"
+    ]
+  },
+  "role.metadata.skills[].skill_id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.skills[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.primary_skill": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.primary_skill[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "skill_id",
+      "title"
+    ]
+  },
+  "role.metadata.primary_skill[].skill_id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.primary_skill[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.metadata.city[]": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "id",
+      "title"
+    ]
+  },
+  "role.metadata.city[].id": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.city[].title": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.metadata.skill_spec": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.hiring_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "de-de",
+      "en-us",
+      "es-es",
+      "fr-fr",
+      "it-it",
+      "nl-nl",
+      "pt-pt",
+      "uk-ua"
+    ]
+  },
+  "role.i18n.en-us": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.en-us.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.en-us.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.en-us.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.en-us.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.en-us.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.en-us.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.en-us.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.uk-ua.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.uk-ua.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.de-de.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.de-de.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.fr-fr.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.fr-fr.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.nl-nl.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.nl-nl.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.es-es.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.es-es.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.it-it.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.it-it.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt": {
+    "types": [
+      "object"
+    ],
+    "keys": [
+      "city",
+      "country",
+      "state",
+      "vacancy_type"
+    ]
+  },
+  "role.i18n.pt-pt.vacancy_type": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt.country": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt.country[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt.state": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt.state[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt.city": {
+    "types": [
+      "array"
+    ],
+    "keys": []
+  },
+  "role.i18n.pt-pt.city[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.permalink_key": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.is_expired": {
+    "types": [
+      "boolean"
+    ],
+    "keys": []
+  },
+  "role.category.nice_to_have[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.referral_campaign[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  },
+  "role.category.technologies[]": {
+    "types": [
+      "string"
+    ],
+    "keys": []
+  }
+}

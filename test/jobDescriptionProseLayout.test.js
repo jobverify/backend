@@ -23,3 +23,9 @@ test('plain-text formatting resumes only after a complete closing fence', () => 
   assert.ok(result.paragraphBreaks > 0);
   assert.equal(result.text.replace(/\s+/g, ' '), (fenced + dense).replace(/\s+/g, ' '));
 });
+
+test('collapsed heading recovery cannot rewrite a code fence or table cell', () => {
+  for (const source of ['```text\nRequired Qualifications AWS experience\n```', '| Type | Value |\n| --- | --- |\n| Text | Required Qualifications AWS experience |']) {
+    assert.deepEqual(formatProseLayout(source), { text: source, paragraphBreaks: 0 });
+  }
+});

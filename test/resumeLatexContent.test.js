@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { buildSourceFacts, buildPreparationPrompt, buildLatexTailoringPrompt, buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, buildResumeJobSnapshot, resumeJobHash } from '../src/services/resumeLatexContent.js';
-import { RESUME_LATEX_PREAMBLE, preserveResumeSourceLinks, resumeLatexLinkTarget } from '../src/utils/resumeLatexFormat.js';
+import { RESUME_LATEX_PREAMBLE, resumeLatexLinkTarget } from '../src/utils/resumeLatexFormat.js';
 
 const source = { text: `Asha Rao
 asha@example.test | +91 98765 43210
@@ -134,11 +134,12 @@ Club President
   assert.equal(validateResumeFidelity({ facts, text: movedDates, links: [] }).valid, false);
 });
 
-test('annotation-only contacts keep their original destinations without inventing visible contact text', () => {
+test('unused annotation-only contacts can be omitted while visible contacts remain protected', () => {
   const original = { ...source, links: [...source.links, 'mailto:legacy-contact@example.test', 'tel:+12025550123'] };
   const facts = buildSourceFacts(original);
   assert.deepEqual(validateResumeFidelity({ facts, text: original.text, links: original.links }).issues, []);
-  assert.equal(validateResumeFidelity({ facts, text: original.text, links: source.links }).valid, false, 'original hidden destinations must still be retained');
+  assert.equal(validateResumeFidelity({ facts, text: original.text, links: source.links }).valid, true, 'unused hidden destinations do not require a Links appendix');
+  assert.equal(validateResumeFidelity({ facts, text: original.text, links: [] }).valid, false, 'visible contact destinations remain required');
 });
 
 test('missing employers, changed email, missing dates and substituted job titles cannot pass fidelity', () => {
@@ -241,10 +242,11 @@ test('the constrained compiler format passes the model-output preflight', () => 
   assert.equal(validateLatexSource(document), document);
 });
 
-test('retaining source destinations preserves literal dollar replacement syntax', () => {
+test('inline source destinations preserve escaped dollar and ampersand characters', () => {
   const link = "https://example.test/path?literal=$'&prefix=$`&cash=$$";
-  const output = preserveResumeSourceLinks(latex, [link]);
-  assert.ok(output.includes('\\href{' + resumeLatexLinkTarget(link) + '}'));
+  const target = resumeLatexLinkTarget(link);
+  assert.equal(target, "https://example.test/path?literal=\\$'\\&prefix=\\$`\\&cash=\\$\\$");
+  const output = latex.replace('\\end{document}', () => `\\href{${target}}{Portfolio}\n\\end{document}`);
   assert.equal(validateLatexSource(output), output);
   assert.equal(output.match(/\\documentclass/g).length, 1);
 });

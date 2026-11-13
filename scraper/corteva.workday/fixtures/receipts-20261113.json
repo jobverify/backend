@@ -1,0 +1,29 @@
+{
+  "capturedDate": "2026-11-13",
+  "requests": [
+    {
+      "requestedURL": "https://apply.corteva.com/careers",
+      "status": 200,
+      "url": "https://apply.corteva.com/careers",
+      "bytes": 174794,
+      "sha256": "f0d5d29d1e8b0c694b3b1f0a198370a8e1a3e57fa2c6c293dc20d7e6751e7a4f",
+      "file": "corteva-board.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    },
+    {
+      "requestedURL": "https://apply.corteva.com/gen/js/pcsxPwa.52b647b4fc3ce8f6.js",
+      "status": 200,
+      "url": "https://apply.corteva.com/gen/js/pcsxPwa.52b647b4fc3ce8f6.js",
+      "bytes": 722027,
+      "sha256": "d08d828d8794b424383232b00c35df5733ed99b7fcd4154ac91bdd311515d78c",
+      "file": "corteva-client.body.gz",
+      "headers": {
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Thu, 12 Nov 2026 12:25:52 GMT",
+        "ETag": "\"30a77320e74c291f2a9d4102feffaa9d\""
+      }
+    }
+  ]
+}

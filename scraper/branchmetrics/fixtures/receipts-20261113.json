@@ -1,0 +1,16 @@
+{
+  "capturedDate": "2026-11-13",
+  "requests": [
+    {
+      "requestedURL": "https://ats.rippling.com/branch/jobs",
+      "status": 200,
+      "url": "https://ats.rippling.com/branch/jobs",
+      "bytes": 191727,
+      "sha256": "7d1f99f987fa786b78e3f0ca4841745929da463e1e32d398c74832d0621a986c",
+      "file": "branchmetrics-board.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      }
+    }
+  ]
+}

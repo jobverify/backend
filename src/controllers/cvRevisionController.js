@@ -1,4 +1,4 @@
-import { listCvRevisions, compareCvRevisions, getCvRevisionArtifact, restoreCvRevision } from '../services/cvRevisionService.js';
+import { listCvRevisions, compareCvRevisions, getCvRevisionArtifact, restoreCvRevision, deleteCvRevision } from '../services/cvRevisionService.js';
 import { artifactBytes } from '../services/resumeArtifactService.js';
 import { respondWithInternalError } from '../utils/respondWithInternalError.js';
 
@@ -16,6 +16,10 @@ export async function list(req, res) {
 }
 export async function compare(req, res) {
   try { return res.json({ success: true, data: await compareCvRevisions(req.user, scope(req), { from: req.query.from, to: req.query.to }) }); }
+  catch (error) { return fail(res, error); }
+}
+export async function remove(req, res) {
+  try { return res.json({ success: true, data: await deleteCvRevision(req.user, scope(req), req.params.revisionId) }); }
   catch (error) { return fail(res, error); }
 }
 export async function download(req, res) {

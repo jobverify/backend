@@ -2,7 +2,7 @@ import { prepareResumeModel, generateResumeText, RESUME_MODEL } from './resumeRu
 import { prepareResumeCompiler, compileResumeLatex } from './latexCompiler.js';
 import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
 import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
-import { preserveResumeSourceLinks } from '../src/utils/resumeLatexFormat.js';
+import { resumePageBudget } from '../src/utils/resumePresentation.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
   buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations } from '../src/services/resumeLatexContent.js';
 
@@ -30,6 +30,7 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   remainingBudget(deadline, RESUME_WORKER_BUDGET_MS);
   const tailored = input.mode === 'tailored';
   const source = sourceWithCandidateEvidence(input.source, input.candidateEvidence);
+  const pagination = resumePageBudget(source);
   // Always derive protections from this request's source, including new profile
   // evidence. Historic artifact metadata cannot weaken factual validation.
   const facts = buildSourceFacts(source);
@@ -57,16 +58,21 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       diagnose('started');
       latex = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal, allowedLinks, onDiagnostic }));
       await phase('latex');
-      latex = validateLatexSource(latex);
-      latex = validateLatexSource(preserveResumeSourceLinks(latex, facts.links));
+      latex = validateLatexSource(latex, { requireTemplate: true });
       await phase('compiling');
-      // Compile the validated model document with its original source references.
-      // Generation and compilation failures never fall back to a resume template.
+      // Compile the validated model document exactly as generated. Useful links
+      // belong inline; never append a generated reference appendix.
+      // Generation and compilation failures never publish a different layout.
       result = await withinResumeBudget(deadline, signal => compile(latex, { deadline, signal }));
       await phase('validating');
-      if (tailored && result.pageCount > 2) {
+      if (result.pageCount > pagination.targetPages || (pagination.exact && result.pageCount !== pagination.targetPages)) {
         failureCode = 'pagination_failed';
-        issues.push('The tailored PDF exceeds two pages. Shorten less relevant prose while retaining all protected employment and education facts and text of at least 10pt.');
+        const target = `${pagination.targetPages} ${pagination.targetPages === 1 ? 'page' : 'pages'}`;
+        issues.push(`The compiled PDF has ${result.pageCount} pages; ${pagination.exact ? 'the required layout is exactly' : 'the maximum is'} ${target}. `
+          + (result.pageCount < pagination.targetPages
+            ? 'Increase the spacing between sections and entries and distribute the existing content over the required pages, using a page break at a natural section boundary if needed. Do not add filler or blank pages. '
+            : 'Condense repeated wording, combine related bullets, and reduce excess spacing to fit the page budget. ')
+          + 'Preserve the Abey template, protected candidate facts and readable text of at least 10pt.');
       }
       const fidelity = validateResumeFidelity({ facts, text: result.text, links: result.links, tailored });
       if (!fidelity.valid) {

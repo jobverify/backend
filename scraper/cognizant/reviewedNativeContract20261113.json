@@ -1,0 +1,167 @@
+{
+  "source": "cognizant",
+  "reviewedOn": "2026-11-13",
+  "cssUrl": "https://careers.cognizant.com/phb/style.css.v639301575709021910",
+  "cssSha256": "c2ff6c4e1bd7de57c16283f25c5899b048b7b1b9231a18b20b788c3b42c92a98",
+  "articlePath": [
+    {
+      "tag": "root",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {
+        "lang": "en-IN"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {
+        "class": " js-template-job",
+        "data-template": "job",
+        "id": "js-page-5ab9d25b-237d-40d5-8726-8af988b0082a",
+        "data-id": "1362"
+      }
+    },
+    {
+      "tag": "main",
+      "attrs": {
+        "id": "content"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "container job-detail",
+        "id": "js-job-detail",
+        "data-id": "NATIVE_ROLE_ID",
+        "data-jobtitle": "NATIVE_ROLE_TITLE"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "row"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "col-lg-8 main-col"
+      }
+    },
+    {
+      "tag": "article",
+      "attrs": {
+        "class": "cms-content"
+      }
+    }
+  ],
+  "applyPath": [
+    {
+      "tag": "root",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {
+        "lang": "en-IN"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {
+        "class": " js-template-job",
+        "data-template": "job",
+        "id": "js-page-5ab9d25b-237d-40d5-8726-8af988b0082a",
+        "data-id": "1362"
+      }
+    },
+    {
+      "tag": "main",
+      "attrs": {
+        "id": "content"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "container job-detail",
+        "id": "js-job-detail",
+        "data-id": "NATIVE_ROLE_ID",
+        "data-jobtitle": "NATIVE_ROLE_TITLE"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "row"
+      }
+    },
+    {
+      "tag": "aside",
+      "attrs": {
+        "class": "col-lg-4 sidebar"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "sticky"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "job-sidebar"
+      }
+    },
+    {
+      "tag": "a",
+      "attrs": {
+        "class": "js-apply-now btn btn-primary",
+        "id": "js-apply-external",
+        "href": "NATIVE_ROLE_APPLY_URL",
+        "target": "_blank",
+        "rel": "noopener"
+      }
+    }
+  ],
+  "criterionClasses": [
+    "cms-content",
+    "hr-gradient",
+    "__cf_email__"
+  ],
+  "criterionAttributes": {
+    "article": [
+      "class"
+    ],
+    "p": [],
+    "h3": [],
+    "hr": [
+      "class"
+    ],
+    "strong": [],
+    "br": [],
+    "a": [
+      "href"
+    ],
+    "span": [
+      "class",
+      "data-cfemail"
+    ],
+    "meta": [],
+    "div": [],
+    "ul": [],
+    "li": [],
+    "em": [],
+    "sup": [],
+    "table": [],
+    "tbody": [],
+    "tr": [],
+    "td": [],
+    "ol": []
+  },
+  "nativeRoleCountReviewed": 80,
+  "applicationQualification": "Declared own-RRID handoff only. Current application main program HTTP403; no usable native form or role lookup verified."
+}

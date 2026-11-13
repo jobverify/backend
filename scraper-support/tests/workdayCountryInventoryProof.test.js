@@ -77,11 +77,15 @@ const exercise = async (t, { source = 'csg', change = () => {}, options = {}, co
   }))
   const calls = []
   let listingCalls = 0
+  let passListingCalls = 0
   const fetchMock = t.mock.method(globalThis, 'fetch', async (input, init = {}) => {
     const url = String(input)
     const method = init.method || 'GET'
     calls.push({ url, method, ...(init.body ? { body: JSON.parse(init.body) } : {}) })
-    if (url === spec.corporateUrl && method === 'GET') return asResponse(state.corporate)
+    if (url === spec.corporateUrl && method === 'GET') {
+      passListingCalls = 0
+      return asResponse(state.corporate)
+    }
     if (url === initialReceipt.url && method === 'POST') {
       const request = JSON.parse(init.body)
       assert.deepEqual(request.appliedFacets, {}, 'A complete-board proof cannot implicitly select India')
@@ -89,9 +93,10 @@ const exercise = async (t, { source = 'csg', change = () => {}, options = {}, co
       assert.equal(request.offset, 0)
       assert.equal(request.limit, 20)
       listingCalls++
-      assert.ok(listingCalls <= (boardUnion ? 3 : 2), 'Only captured initial, closing and optional union recheck snapshots are expected')
-      return asResponse({ url, body: JSON.stringify(listingCalls === 1 ? state.initial : state.closing),
-        ...(listingCalls === 2 ? state.closingResponse : {}),
+      passListingCalls++
+      assert.ok(listingCalls <= (boardUnion ? 5 : 4), 'At most two opening/closing passes and one optional union recheck are allowed')
+      return asResponse({ url, body: JSON.stringify(passListingCalls === 1 ? state.initial : state.closing),
+        ...(passListingCalls === 2 ? state.closingResponse : {}),
       })
     }
     if (method === 'GET' && state.details.has(url)) {

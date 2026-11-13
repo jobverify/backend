@@ -2,6 +2,8 @@ import { randomBytes } from 'node:crypto'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { extractDwrPayload as extractSharedDwrPayload } from '../../scraper-support/shared/successFactorsDwr.js'
+import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { assessDescriptionSource } from '../../src/utils/jobDescriptionSourceQuality.js'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { withRetry } from '../../scraper-support/utils/retry.js'
@@ -347,18 +349,23 @@ export const extractDwrSearchResults = (responseText) => {
     .filter(Boolean)
 }
 
-const extractDescriptionFromText = (text) => {
-  const normalized = normalizeWhitespace(text)
-  if (!normalized) return null
-
-  const explicitSection = normalized.match(/(Responsibilities|Role overview|Job description|About the role)[\s\S]+$/i)?.[0]
-  return explicitSection || normalized
+const descriptionMarkup = node => {
+  if (typeof node === 'string') return node
+  if (!node || node.inert || ['script', 'style', 'form', 'input', 'button', 'select', 'textarea', 'svg'].includes(node.tag)) return ''
+  if (node.tag === 'br') return '<br>'
+  const content = (node.children || []).map(descriptionMarkup).join('')
+  const href = node.tag === 'a' && node.attrs.href ? ` href="${node.attrs.href.replace(/&/g, '&amp;').replace(/"/g, '&quot;')}"` : ''
+  const numberAttribute = node.tag === 'ol' ? 'start' : node.tag === 'li' ? 'value' : null
+  const numbering = numberAttribute && /^\d+$/.test(node.attrs[numberAttribute] || '') ? ` ${numberAttribute}="${node.attrs[numberAttribute]}"` : ''
+  return `<${node.tag}${href}${numbering}>${content}</${node.tag}>`
 }
 
 export const extractJobDetail = (html, listing = {}) => {
   const rawHtml = String(html ?? '')
-  const bodyText = stripTags(rawHtml) || ''
-  const detailSectionHtml = rawHtml.match(/<div[^>]*class="jobdescription"[^>]*>([\s\S]*?)<\/div>/i)?.[1]
+  const document = readNativeDocument(rawHtml)
+  const bodyText = document.text(document.nodes(node => node.tag === 'root')[0]) || ''
+  const sections = document.nodes(node => (node.attrs.class || '').split(/\s+/).includes('jobdescription') || node.attrs.id === 'jobdescription')
+  const detailSectionHtml = sections.length === 1 ? descriptionMarkup(sections[0]) : null
   const title = normalizeWhitespace(
     (rawHtml.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]
       || rawHtml.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1]
@@ -370,16 +377,18 @@ export const extractJobDetail = (html, listing = {}) => {
   const requisitionId = normalizeWhitespace(
     bodyText.match(/\bRequisition ID\s*([0-9]+)\b/i)?.[1] || listing.requisitionId || listing.jobId,
   )
-  const jobDescription = detailSectionHtml
-    ? stripTags(detailSectionHtml)
-    : extractDescriptionFromText(bodyText)
+  // A whole-page fallback can contain localization scripts and application
+  // forms even when the role has closed. Require the actual role container.
+  const jobDescription = detailSectionHtml && assessDescriptionSource(detailSectionHtml).ok
+    ? document.text(sections[0]) : null
 
   return {
     title: title || listing.title || null,
     requisitionId,
     postingDate: listing.postingDate || null,
     applyUrl: buildDetailUrl(requisitionId || listing.requisitionId || listing.jobId),
-    jobDescription: jobDescription || listing.jobDescription || null,
+    jobDescription: jobDescription || null,
+    sourceDescription: jobDescription ? detailSectionHtml : null,
   }
 }
 

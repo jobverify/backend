@@ -30,96 +30,19 @@ const loadAirtelPaymentsBankModule = async () => {
   }
 }
 
-test('Airtel Payments Bank local catalog captures the verified guarded bank pages and shared Airtel careers sentinel state', async () => {
+test('Airtel Payments Bank metadata preserves the exact employer feed and company-wide cleanup hold', async () => {
   const { AIRTEL_PAYMENTS_BANK_CATALOG } = await loadCatalogModule()
-  const airtelPaymentsBank = await loadAirtelPaymentsBankModule()
-
+  const airtel = await loadAirtelPaymentsBankModule()
   assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.source, 'airtelpaymentsbank')
   assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.companyName, 'Airtel Payments Bank')
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.officialBrandName, 'Airtel Payments Bank')
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.adapter, 'script')
   assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.companyCareerPage, 'https://www.airtelpayments.bank.in/')
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.aboutPageUrl,
-    'https://www.airtelpayments.bank.in/static/about-us',
-  )
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.parentCareersPage, 'https://careers.airtel.com/')
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.sharedCareersBundleUrl,
-    'https://careers.airtel.com/static/js/main.57023176.js',
-  )
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.sharedDarwinboxUrl,
-    'https://airtel.darwinbox.in/ms/candidatev2/main/careers/allJobs',
-  )
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.sharedCareersApiUrl,
-    'https://careersapi.airtel.com/',
-  )
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.companyDomain, 'airtelpayments.bank.in')
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.atsPlatform,
-    'official-company-site-no-public-careers',
-  )
+  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.employerProfileUrl, 'https://www.linkedin.com/company/airtelpaymentsbank')
+  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.employerCompanyId, '13361480')
   assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.countryFilter, 'India')
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.paginationStrategy,
-    '403-guarded-bank-pages-plus-shared-airtel-careers-shell-bundle-and-darwinbox-checks',
-  )
-  assert.equal(
-    AIRTEL_PAYMENTS_BANK_CATALOG.extractionStrategy,
-    '403-guarded-bank-homepage+403-guarded-bank-about-page+shared-airtel-careers-shell+shared-bundle-reference+shared-darwinbox-shell+no-distinct-bank-jobs-route-return-empty',
-  )
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.parser, 'custom-script')
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.normalizationProfile, 'engineering-default')
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.verifiedOn, '2026-08-07')
-  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.dryRunFile, 'airtelpaymentsbank/jobs.json')
-  assert.match(
-    AIRTEL_PAYMENTS_BANK_CATALOG.verifiedSurfaceSummary,
-    /https:\/\/www\.airtelpayments\.bank\.in\//i,
-  )
-  assert.match(
-    AIRTEL_PAYMENTS_BANK_CATALOG.verifiedSurfaceSummary,
-    /cloudflare-guarded http 403 surfaces/i,
-  )
-  assert.match(
-    AIRTEL_PAYMENTS_BANK_CATALOG.verifiedSurfaceSummary,
-    /https:\/\/careers\.airtel\.com\//i,
-  )
-  assert.match(
-    AIRTEL_PAYMENTS_BANK_CATALOG.verifiedSurfaceSummary,
-    /https:\/\/careers\.airtel\.com\/static\/js\/main\.57023176\.js/i,
-  )
-  assert.match(
-    AIRTEL_PAYMENTS_BANK_CATALOG.verifiedSurfaceSummary,
-    /https:\/\/airtel\.darwinbox\.in\/ms\/candidatev2\/main\/careers\/allJobs/i,
-  )
-  assert.match(
-    AIRTEL_PAYMENTS_BANK_CATALOG.verifiedSurfaceSummary,
-    /no distinct Airtel Payments Bank public jobs route/i,
-  )
+  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.sourceScopeComplete, false)
+  assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.lifecycleCleanupAllowed, false)
   assert.equal(AIRTEL_PAYMENTS_BANK_CATALOG.modulePath, airtelPaymentsBankModulePath)
-
-  assert.equal(
-    airtelPaymentsBank.PROVIDER_METADATA.source,
-    AIRTEL_PAYMENTS_BANK_CATALOG.source,
-  )
-  assert.equal(
-    airtelPaymentsBank.PROVIDER_METADATA.companyName,
-    AIRTEL_PAYMENTS_BANK_CATALOG.companyName,
-  )
-  assert.equal(
-    airtelPaymentsBank.PROVIDER_METADATA.aboutPageUrl,
-    AIRTEL_PAYMENTS_BANK_CATALOG.aboutPageUrl,
-  )
-  assert.equal(
-    airtelPaymentsBank.PROVIDER_METADATA.parentCareersPage,
-    AIRTEL_PAYMENTS_BANK_CATALOG.parentCareersPage,
-  )
-  assert.equal(
-    airtelPaymentsBank.PROVIDER_METADATA.sharedDarwinboxUrl,
-    AIRTEL_PAYMENTS_BANK_CATALOG.sharedDarwinboxUrl,
-  )
+  assert.equal(airtel.PROVIDER_METADATA, AIRTEL_PAYMENTS_BANK_CATALOG)
 })
 
 test('Airtel Payments Bank local catalog hydrates into coverage without needing a shared alias entry', async () => {
@@ -156,10 +79,13 @@ test('buildScrapers and company coverage resolve Airtel Payments Bank from the s
   assert.ok(scraper)
   assert.equal(provider.companyName, 'Airtel Payments Bank')
   assert.equal(provider.companyCareerPage, 'https://www.airtelpayments.bank.in/')
-  assert.equal(provider.paginationStrategy, '403-guarded-bank-pages-plus-shared-airtel-careers-shell-bundle-and-darwinbox-checks')
-  assert.equal(provider.extractionStrategy, '403-guarded-bank-homepage+403-guarded-bank-about-page+shared-airtel-careers-shell+shared-bundle-reference+shared-darwinbox-shell+no-distinct-bank-jobs-route-return-empty')
-  assert.equal(provider.verifiedOn, '2026-08-07')
-  assert.match(provider.verifiedSurfaceSummary, /cloudflare-guarded http 403 surfaces/i)
+  assert.equal(provider.paginationStrategy, 'exact-employer-worldwide-count-and-terminal+stable-closing-inventory;max-100-native-rows')
+  assert.equal(provider.extractionStrategy, 'corporate-employer-handoff+reciprocal-bank-website+native-JobPosting-and-full-visible-criteria-parity+explicit-country+same-role-account-handoff;whole-company-scope-unverified')
+  assert.equal(provider.verifiedOn, '2026-11-13')
+  assert.equal(provider.employerCompanyId, '13361480')
+  assert.equal(provider.sourceScopeComplete, false)
+  assert.equal(provider.lifecycleCleanupAllowed, false)
+  assert.match(provider.verifiedSurfaceSummary, /company-wide totals remain unknown and lifecycle cleanup is forbidden/i)
   assert.match(scraper.dryRunFile, /airtelpaymentsbank[\\/]jobs\.json$/i)
 
   const report = generateCompanyCoverageReport({

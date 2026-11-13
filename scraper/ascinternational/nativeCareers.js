@@ -46,8 +46,10 @@ export const inspectAscCareers = html => {
   const sections = document.nodes(node => node.tag === 'section')
   const opening = one(sections.filter(node => descendants(node, child => child.tag === 'h2'
     && document.text(child) === 'Current Openings').length), 'current opening section')
-  const cards = descendants(opening, node => node.tag === 'div' && document.hasClass(node, 'bg-dark-card')
-    && document.hasClass(node, 'rounded-2xl'))
+  // The public site switched from a dark to a white card. The opening section,
+  // one role heading, criteria groups and matching JobPosting establish identity;
+  // its decorative background colour does not.
+  const cards = descendants(opening, node => node.tag === 'div' && document.hasClass(node, 'rounded-2xl'))
   const headingCount = descendants(opening, node => node.tag === 'h3').length
   const native = []
   for (const node of document.nodes(node => node.tag === 'script' && /^application\/ld\+json$/i.test(node.attrs.type || ''))) {

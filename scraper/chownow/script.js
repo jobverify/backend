@@ -1,18 +1,19 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { CAREERS, runNativeChownow } from './native.js'
+import { CAREERS } from './native.js'
+import { runCurrentChownow } from './currentApi.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const SOURCE = "chownow"
 export const COMPANY = "Chownow"
 export const CAREERS_URL = CAREERS
-export const DISPOSITION = 'current-official-loader-native-Lever-postings'
+export const DISPOSITION = 'reviewed-native-Lever-public-API-with-paired-records'
 export const VERIFIED_ON = null
-export const VERIFIED_SURFACE_SUMMARY = 'Reverify the current corporate script loader, public native feed data flow and role identities; retain original full native content and timestamps. Other channels and public visibility remain unknown.'
+export const VERIFIED_SURFACE_SUMMARY = 'Read the reviewed native ChowNow Lever account directly, validate every original record and full criteria, and reconcile an unfiltered opening and closing snapshot. Corporate/API count disagreement, company scope and cleanup remain unqualified.'
 
-export const run = options => runNativeChownow(options)
+export const run = options => runCurrentChownow(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

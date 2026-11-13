@@ -2,6 +2,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 import { MUVI_ENTERTAINMENT_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -167,12 +170,34 @@ const getPageLinks = (html, requestedPage) => {
 }
 
 const readCurrentDetail = (html, card) => {
-  const title = normalizeText(String(html).match(/<h3\b[^>]*class=["'][^"']*\bdetails-title\b[^"']*["'][^>]*>([\s\S]*?)<\/h3>/i)?.[1])
-  const location = normalizeText(String(html).match(/<div\b[^>]*class=["']location["'][^>]*>([\s\S]*?)<\/div>/i)?.[1])
-  const jobDescription = normalizeText(String(html).match(/<div\b[^>]*class=["']job-abt["'][^>]*>([\s\S]*?)<\/div>/i)?.[1])
-  const id = String(html).match(/<input\b[^>]*name=["']job_id["'][^>]*value=["'](\d+)["']/i)?.[1]
-  if (title !== card.title || location !== card.location || !id || !jobDescription || jobDescription.length < 40 || !/<form\b[^>]*id=["']careerform["']/i.test(html)) throw new Error('Muvi incomplete or mismatched public job detail')
-  return { ...card, jobDescription, jobId: SOURCE + '-' + id, requisitionId: id, applyUrl: card.sourceUrl, company: COMPANY, country: 'India', city: /bhubaneswar/i.test(location) ? 'Bhubaneswar' : null, closingDate: null, postingDate: null }
+  const doc = readNativeDocument(html), cls = (node, name) => (node.attrs.class || '').split(/\s+/).includes(name)
+  const only = predicate => { const nodes = doc.nodes(predicate); return nodes.length === 1 ? nodes[0] : null }
+  const text = node => node ? doc.text(node).replace(/\s+/g, ' ').trim() : null
+  const title = text(only(node => node.tag === 'h3' && cls(node, 'details-title')))
+  const location = text(only(node => node.tag === 'div' && cls(node, 'location')))
+  // Read the whole active authored container, including nested role sections.
+  const jobDescription = text(only(node => node.tag === 'div' && cls(node, 'job-abt')))
+  const id = only(node => node.tag === 'input' && node.attrs.name === 'job_id')?.attrs.value
+  const applicationAvailable = /^\d+$/.test(id || '') && Boolean(only(node => node.tag === 'form' && node.attrs.id === 'careerform'))
+  // The current Jobs template also publishes a complete role rendition without
+  // the application form or numeric application ID. Retain that advertised URL
+  // as an observation; its hiring/application status cannot be qualified.
+  const applicationless = !doc.nodes(node => node.tag === 'form' || node.tag === 'input' && node.attrs.name === 'job_id').length
+    && normalizeText(only(node => node.tag === 'title')?.raw) === 'Jobs - Muvi'
+    && Boolean(only(node => node.tag === 'link' && node.attrs.rel === 'canonical' && node.attrs.href === 'https://www.muvi.com/career/jobs/'))
+    && Boolean(only(node => node.tag === 'meta' && node.attrs.property === 'og:site_name' && node.attrs.content === 'Muvi'))
+  if (title !== card.title || location !== card.location || !jobDescription || jobDescription.length < 40
+    || !applicationAvailable && !applicationless) throw new Error('Muvi incomplete or mismatched public job detail')
+  const india = isIndiaLocation(location)
+  return { ...card, jobDescription, sourceDescription: jobDescription, sourceNativeCriteriaComplete: true,
+    sourceDetailComplete: applicationAvailable, sourceDetailFailureKind: applicationAvailable ? null : 'native-application-unavailable',
+    jobId: SOURCE + '-' + getSlugFromUrl(card.sourceUrl), requisitionId: id ?? null,
+    sourceNativeApplicationId: id ?? null, sourceNativeJobUrlIdentity: card.sourceUrl,
+    sourceNativeApplicationHandoffAvailable: applicationAvailable, activeApplyVerified: false, applicationVisited: false,
+    sourceCurrentNativeRoleQualified: applicationAvailable && india,
+    applyUrl: card.sourceUrl, company: COMPANY,
+    country: india ? 'India' : null, sourceCountryScopeUnresolved: !india,
+    city: /bhubaneswar/i.test(location) ? 'Bhubaneswar' : null, closingDate: null, postingDate: null }
 }
 
 const readCurrentInventory = async (read) => {
@@ -197,15 +222,13 @@ const readCurrentInventory = async (read) => {
   }
   if (Math.max(...visited) !== visited.size) throw new Error('Muvi incomplete pagination coverage')
   const jobs = []
-  let unknownScope = false
   for (const card of cards) {
     const detail = readCurrentDetail(await read(card.sourceUrl), card)
-    if (isIndiaLocation(card.location)) jobs.push(detail)
-    else unknownScope = true
+    jobs.push(detail)
   }
-  if (unknownScope && !jobs.length) throw new Error('Muvi public roles have unverified India country scope')
   if (new Set(jobs.map(job => job.jobId)).size !== jobs.length) throw new Error('Muvi duplicate detail job identifier')
-  return jobs.map(job => ({ ...job, ...(unknownScope ? { sourceListingComplete: false } : {}) }))
+  return jobs.map(job => ({ ...job, sourceListingComplete: false, sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false }))
 }
 
 export const createMuviEntertainmentScraper = ({
@@ -224,14 +247,15 @@ export const createMuviEntertainmentScraper = ({
       throw new Error('Muvi Entertainment verified careers page no longer matches the trusted first-party surface')
     }
 
-    const jobs = /href=["']https:\/\/www\.muvi\.com\/career\/job-listings\/["']/i.test(careersHtml)
+    const current = /href=["']https:\/\/www\.muvi\.com\/career\/job-listings\/["']/i.test(careersHtml)
+    const jobs = current
       ? await readCurrentInventory(read)
       : extractJobCards(careersHtml)
     if (jobs.length === 0) {
       throw new Error('Muvi Entertainment careers page no longer exposes the verified current openings links')
     }
 
-    return jobs.map((job) => ({
+    const mapped = jobs.map((job) => ({
       ...job,
       source: SOURCE,
       company: COMPANY,
@@ -241,6 +265,19 @@ export const createMuviEntertainmentScraper = ({
       link: job.applyUrl,
       scrapedAt: (overrideNow || now)(),
     }))
+    if (!current) return mapped
+    const qualified = mapped.filter(job => job.sourceCurrentNativeRoleQualified === true)
+    const observation = { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: mapped.length,
+      observedVacancyCount: mapped.length, sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null }
+    attachSourceObservationEvidence(qualified, observation)
+    Object.defineProperty(qualified, 'nativeCollectionEvidence', { value: { ...observation,
+      observations: mapped, returnedQualifiedRecords: qualified.length, companyCareerPage: CAREERS_URL,
+      sourceListingComplete: false, lifecycleCleanupAllowed: false }, configurable: true })
+    return attachInventoryEvidence(qualified, { status: 'coverage-gap',
+      surface: JOB_LISTINGS_URL, firstParty: true, listingComplete: false,
+      reportedTotal: null, indiaFacetCount: null,
+      verifiedAt: (overrideNow || now)(),
+      reason: `Retained ${mapped.length} advertised native role observations and full descriptions; company scope and closing cohort are unverified; ${mapped.filter(job => job.sourceCountryScopeUnresolved).length} countries unresolved; ${mapped.filter(job => !job.sourceNativeApplicationHandoffAvailable).length} native applications unavailable` })
   },
 })
 

@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-// Revisions are append-only. Artifacts are shared by restores, never replaced.
+// Revision content is immutable. Deleted history retains artifacts shared by restores.
 const schema = new Schema({
   _id: { type: String, required: true, immutable: true },
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true, immutable: true },
@@ -18,6 +18,7 @@ const schema = new Schema({
   modelVersion: { type: String, immutable: true },
   styleVersion: { type: String, immutable: true },
   createdAt: { type: Date, default: Date.now, immutable: true },
+  deletedAt: { type: Date, default: null },
 }, { versionKey: false });
 schema.index({ user: 1, kind: 1, job: 1, sequence: -1 }, { unique: true });
 export default model('CVRevision', schema);

@@ -1,8 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { createBrowserFetchSession } from '../../scraper-support/shared/browserFetch.js'
 import { BHARAT_ELECTRONICS_CATALOG } from './catalog.js'
+import {runCurrentBel20261113} from './currentNative20261113.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -82,12 +84,6 @@ const getEmploymentType = (title) => {
   if (/trainee/i.test(title)) return 'Full-time'
   return null
 }
-
-const getJobDescription = (applyUrl) => (
-  /\.pdf(?:$|\?)/i.test(String(applyUrl ?? ''))
-    ? 'Download the official BEL application form PDF and follow the advertisement instructions before the closing date.'
-    : 'Review the official BEL advertisement PDF and complete the official online application before the closing date.'
-)
 
 export const buildJobNotificationsPageUrl = (pageNumber = 1) => (
   Number(pageNumber) <= 1
@@ -170,7 +166,7 @@ export const extractActiveJobNotifications = (html, {
       company: COMPANY,
       location,
       city: null,
-      country: 'India',
+      country: null,
       jobId: buildJobId(title, closingDate),
       requisitionId: slugify(title),
       sourceUrl,
@@ -182,7 +178,10 @@ export const extractActiveJobNotifications = (html, {
       requiredSkills: [],
       postingDate: null,
       closingDate,
-      jobDescription: getJobDescription(applyUrl),
+      jobDescription: null,
+      sourceDetailComplete: false,
+      sourceScopeComplete: false,
+      lifecycleCleanupAllowed: false,
       remoteStatus: null,
     })
   }
@@ -206,45 +205,24 @@ const defaultFetchText = async (url) => {
   return response.text()
 }
 
-const isBrowserFallbackError = (error) =>
-  /HTTP (?:403|429)\b|fetch failed|timed out|timeout|could not connect|und_err_connect_timeout|ssl\/tls secure channel|econnreset|unable to verify the first certificate|unable to/i
-    .test(String(error?.message ?? error ?? ''))
-
 export const createBharatElectronicsScraper = () => ({
   async run({
     fetchText = defaultFetchText,
-    fetchBrowserText,
     now = () => new Date().toISOString(),
     maxPages = 6,
+    signal,
   } = {}) {
-    let browserSession = null
-
-    const getBrowserSession = async () => {
-      if (!browserSession) {
-        browserSession = await createBrowserFetchSession({ userAgent: USER_AGENT })
-      }
-
-      return browserSession
-    }
-
-    const browserTextFetcher = fetchBrowserText || (async (url) => {
-      const session = await getBrowserSession()
-      return session.fetchText(url)
-    })
-
     const fetchVerifiedText = async (url) => {
+      signal?.throwIfAborted()
       try {
-        return await fetchText(url)
+        const value=await fetchText(url,{signal})
+        signal?.throwIfAborted()
+        return value
       } catch (error) {
-        if (!isBrowserFallbackError(error)) {
-          throw error
-        }
-
-        return browserTextFetcher(url)
+        signal?.throwIfAborted()
+        throw error
       }
     }
-
-    try {
       const homepageHtml = await fetchVerifiedText(HOMEPAGE_URL)
       if (!hasOfficialHomepageSignal(homepageHtml)) {
         throw new Error('Bharat Electronics homepage no longer matches the verified official surface')
@@ -275,16 +253,15 @@ export const createBharatElectronicsScraper = () => ({
         if (newJobsAdded === 0) break
       }
 
-      return jobs
-    } finally {
-      if (browserSession) {
-        await browserSession.close()
-      }
-    }
+      const held=[]
+      attachSourceObservationEvidence(held,{source:SOURCE,recordKind:'vacancy-notices',observedRecordCount:jobs.length,observedVacancyCount:jobs.length,sourceScopeComplete:false})
+      Object.defineProperty(held,'sourceAudit',{value:{source:SOURCE,originalNotices:jobs,reason:'Legacy discovery rows have no full native PDF/country/application qualification.'},configurable:true})
+      return attachInventoryEvidence(held,{status:'coverage-gap',surface:JOB_NOTIFICATIONS_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:1,reportedTotal:null,indiaFacetCount:null,verifiedAt:null,reason:'native-full-PDF-country-and-application-required;discovery-rows-withheld'})
   },
 })
 
-export const run = async (options = {}) => createBharatElectronicsScraper().run(options)
+export const run = async (options = {}) => options.reviewedCurrent || !options.fetchText
+  ? runCurrentBel20261113(options) : createBharatElectronicsScraper().run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

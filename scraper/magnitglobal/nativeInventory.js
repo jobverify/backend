@@ -195,10 +195,19 @@ const directPostingUrl = value => {
 const readDirectList = (html, reasons) => {
   const doc = readMagnitVisible(html)
   valid(clean(one(doc.nodes(n => n.tag === 'title'), 'DirectSource list title').raw) === 'Magnit Global Talent Network', 'DirectSource employer identity changed')
+  let soleCountry = null
   for (const id of ['inputCountry', 'inputJobType']) {
     const select = one(doc.nodes(n => n.tag === 'select' && n.attrs.id === id), 'unfiltered ' + id)
     const options = descendants(select, n => n.tag === 'option'), selected = options.filter(n => Object.hasOwn(n.attrs, 'selected'))
-    valid(options.length && (selected.length ? selected : [options[0]]).every(option => option.attrs.value === ''), 'DirectSource native inventory is filtered')
+    const unfiltered = options.length && (selected.length ? selected : [options[0]]).every(option => option.attrs.value === '')
+    // The current unfiltered board has one available country, Finland, and
+    // selects that sole option automatically. It supplies no blank/all option.
+    // Qualify only this reviewed rendition and bind every role's native country
+    // to it below; a selected option among multiple countries stays invalid.
+    const onlyFinland = id === 'inputCountry' && options.length === 1 && selected.length === 1
+      && options[0].attrs.value === 'FI' && options[0].attrs['data-cid'] === '74' && doc.text(options[0]) === 'Finland'
+    valid(unfiltered || onlyFinland, 'DirectSource native inventory is filtered')
+    if (onlyFinland) soleCountry = 'FI'
   }
   const industry = one(doc.nodes(n => n.tag === 'select' && n.attrs.id === 'inputIndustry'), 'unfiltered business groups')
   const groups = descendants(industry, n => n.tag === 'option')
@@ -210,7 +219,7 @@ const readDirectList = (html, reasons) => {
   for (const anchor of doc.nodes(n => n.tag === 'a' && /^\/eu\/magnitglobal\/jobs\/[1-9]\d*-/.test(n.attrs.href || ''))) {
     const url = directPostingUrl(anchor.attrs.href), id = new URL(url).pathname.split('/').at(-1).split('-')[0], title = doc.text(anchor)
     valid(title && !roles.has(id), 'duplicate DirectSource posting identity')
-    roles.set(id, { id, url, title })
+    roles.set(id, { id, url, title, ...(soleCountry ? { nativeCountryRestriction: soleCountry } : {}) })
   }
   if (roles.size !== Number(match[1])) reasons.add('directsource-native-inventory-unreconciled')
   return { roles, total: Number(match[1]) }
@@ -235,6 +244,7 @@ const readDirectDetail = (html, row, reasons) => {
   valid(applyUrl.origin === new URL(W).origin && applyUrl.pathname === '/eu/magnitglobal/job-apply/view'
     && [...applyUrl.searchParams].length === 1 && applyUrl.searchParams.get('id') === row.id, 'DirectSource native application identity conflicts')
   const address = native.jobLocation?.address, code = countryCode(address?.addressCountry)
+  if (row.nativeCountryRestriction) valid(code === row.nativeCountryRestriction, 'DirectSource role country conflicts with sole native country inventory')
   if (!code) reasons.add('native-country-unresolved:directsource:' + row.id)
   const geography = one(doc.nodes(n => n.tag === 'div' && n.children.some(child => typeof child !== 'string'
     && cls(child, 'info-label') && doc.text(child) === 'Job Location')), 'DirectSource primary geography')

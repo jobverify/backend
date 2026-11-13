@@ -1,8 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { createBrowserFetchSession } from '../../scraper-support/shared/browserFetch.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runAirtelPaymentsBankNative } from './nativeCurrent20261113.js'
 
 import { AIRTEL_PAYMENTS_BANK_CATALOG } from './catalog.js'
 
@@ -20,9 +19,6 @@ export const PARENT_CAREERS_URL = PROVIDER_METADATA.parentCareersPage
 export const SHARED_CAREERS_BUNDLE_URL = PROVIDER_METADATA.sharedCareersBundleUrl
 export const SHARED_DARWINBOX_URL = PROVIDER_METADATA.sharedDarwinboxUrl
 export const SHARED_CAREERS_API_URL = PROVIDER_METADATA.sharedCareersApiUrl
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
@@ -140,152 +136,8 @@ export const hasSharedDarwinboxShellSignal = (html = '') => {
     && /db-components\.esm\.js/i.test(page)
 }
 
-const isKnownGuardedBrandedPageError = (error) => {
-  const message = String(error?.message ?? error ?? '')
-  return error?.status === 403 || /HTTP 403\b/i.test(message)
-}
-
-const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
-  signal,
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  attempts: 1,
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const isBrowserFallbackError = (error) =>
-  /HTTP (?:403|429)\b|fetch failed|timed out|timeout|could not connect|und_err_connect_timeout/i
-    .test(String(error?.message ?? error ?? ''))
-
 export const createAirtelPaymentsBankScraper = () => ({
-  async run({ fetchText = defaultFetchText, fetchBrowserText, signal } = {}) {
-    signal?.throwIfAborted()
-    let browserSession = null
-
-    const getBrowserSession = async () => {
-      signal?.throwIfAborted()
-      if (!browserSession) {
-        browserSession = await createBrowserFetchSession({ userAgent: USER_AGENT, signal })
-      }
-
-      signal?.throwIfAborted()
-      return browserSession
-    }
-
-    const browserTextFetcher = fetchBrowserText || (async (url, options = {}) => {
-      const session = await getBrowserSession()
-      return session.fetchText(url, { ...options, signal })
-    })
-
-    const readBrowser = async url => {
-      signal?.throwIfAborted()
-      try {
-        const value = await browserTextFetcher(url, { signal })
-        signal?.throwIfAborted()
-        return value
-      } catch (error) {
-        signal?.throwIfAborted()
-        throw error
-      }
-    }
-    const fetchPageText = async (url) => {
-      signal?.throwIfAborted()
-      let value
-      try {
-        value = await fetchText(url, { signal })
-        signal?.throwIfAborted()
-      } catch (error) {
-        signal?.throwIfAborted()
-        if (isKnownGuardedBrandedPageError(error)) throw error
-        if (!isBrowserFallbackError(error)) throw error
-        return readBrowser(url)
-      }
-
-      return value
-    }
-
-    try {
-      let homepageHtml = null
-      try {
-        homepageHtml = await fetchPageText(HOMEPAGE_URL)
-      } catch (error) {
-        signal?.throwIfAborted()
-        if (!isKnownGuardedBrandedPageError(error)) {
-          throw error
-        }
-      }
-
-      if (homepageHtml != null) {
-        if (!hasOfficialHomepageSignal(homepageHtml)) {
-          throw new Error('Airtel Payments Bank verified homepage no longer matches the known public surface')
-        }
-
-        if (hasPublicJobsSignal(homepageHtml)) {
-          throw new Error('Airtel Payments Bank homepage now appears to expose public jobs')
-        }
-
-        if (hasCareersHandoffLink(homepageHtml)) {
-          throw new Error('Airtel Payments Bank homepage now exposes a careers handoff')
-        }
-      }
-
-      let aboutPageHtml = null
-      try {
-        aboutPageHtml = await fetchPageText(ABOUT_PAGE_URL)
-      } catch (error) {
-        signal?.throwIfAborted()
-        if (!isKnownGuardedBrandedPageError(error)) {
-          throw error
-        }
-      }
-
-      if (aboutPageHtml != null) {
-        if (!hasOfficialAboutPageSignal(aboutPageHtml)) {
-          throw new Error('Airtel Payments Bank verified about page no longer matches the known public surface')
-        }
-
-        if (hasPublicJobsSignal(aboutPageHtml)) {
-          throw new Error('Airtel Payments Bank about page now appears to expose public jobs')
-        }
-
-        if (hasCareersHandoffLink(aboutPageHtml)) {
-          throw new Error('Airtel Payments Bank about page now exposes a careers handoff')
-        }
-      }
-
-      const careersShellHtml = await fetchPageText(PARENT_CAREERS_URL)
-
-      if (!hasSharedAirtelCareersShellSignal(careersShellHtml)) {
-        throw new Error('Airtel Payments Bank verified shared Airtel careers shell no longer matches the public surface')
-      }
-
-      const bundleUrl = extractMainBundleUrl(careersShellHtml)
-      const bundleText = await fetchPageText(bundleUrl)
-
-      if (hasDistinctAirtelPaymentsBankCareerRoute(bundleText)) {
-        throw new Error('Airtel Payments Bank verified shared bundle now exposes a distinct Airtel Payments Bank public jobs route')
-      }
-
-      if (!hasVerifiedSharedBundleSignal(bundleText)) {
-        throw new Error('Airtel Payments Bank verified shared Airtel careers bundle no longer matches the public surface')
-      }
-
-      const darwinboxShellHtml = await fetchPageText(SHARED_DARWINBOX_URL)
-
-      if (!hasSharedDarwinboxShellSignal(darwinboxShellHtml)) {
-        throw new Error('Airtel Payments Bank verified shared Darwinbox shell no longer matches the public surface')
-      }
-
-      return []
-    } finally {
-      try {
-        if (browserSession) await browserSession.close()
-      } finally { signal?.throwIfAborted() }
-    }
-  },
+  run: runAirtelPaymentsBankNative,
 })
 
 export const run = async (options = {}) => createAirtelPaymentsBankScraper().run(options)

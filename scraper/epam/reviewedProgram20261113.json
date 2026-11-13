@@ -1,0 +1,564 @@
+{
+  "appSha256": "3587c063618bc4345e8afcc8da28928bda2498b9585026baa89fa1cb2d792247",
+  "staticDataSha256": "f3d084e3006eb08018da2f7b9078440d1081925f0b9513b725a8fff99d78f410",
+  "commonCmsPropsSha256": "ec9e2a04a7940c81ef4ab7f16874255b680209f6245b5efe32375bccfe050286",
+  "otherPagePropsSha256": "e9866e5621ef23d6bc9901c08cac351847bd79375e607bf35b5e701372fefec1",
+  "programAndStyleFiles": [
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/2253.4f03dc7b3b0db79c.js",
+      "sha256": "b217767c82621dad71f1fcca022fa4669d2f2b1a3e6c831b958aa658a83c2c2a",
+      "bytes": 203,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/2420-e4b4e77bb0a3b743.js",
+      "sha256": "3f0c3f99641ba86ce0c63ea2370ec13a1ed3a11cd3e90c2d7381294d20bae474",
+      "bytes": 7709,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/1145-06bc5629ecc885a0.js",
+      "sha256": "37a780aa319856621380eaac3610277e44a787126d6c4de359bbf78a7c0a2f84",
+      "bytes": 6460,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/6370-417085e605602476.js",
+      "sha256": "10fbdac827ffc40dbff7f04b949e5a8583f86f3e96bfd1b19a79028d95e812bd",
+      "bytes": 7153,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/712-700680230724ef58.js",
+      "sha256": "0a7eb1e534636bf5a85c1bc40d6f42fc639c2e21abdfa7e320f684e9b2bfff27",
+      "bytes": 7301,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/3016-e6171a3771611606.js",
+      "sha256": "aac575989552669d5eece2d13d61123ca60922e8da0a11cf63afa73e2d3d59e9",
+      "bytes": 13064,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/257-18559a16a2b9a8fc.js",
+      "sha256": "e60db672a2216658a39670c5e9319dc6cdea697ca40e0baac3293af1dbaeb5bf",
+      "bytes": 10808,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/1058-d3d66ea4a156357b.js",
+      "sha256": "7282e9c4f14ed9c81f42dfb717c53dac7ed59ddd82d6fc621e4c827648823eb7",
+      "bytes": 6542,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/8834-a21246d4b50e0c25.js",
+      "sha256": "cbe017c7576dcbb75afb01cfd5fcb77cf3098909f477752e0af5402b897037a4",
+      "bytes": 29088,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/726-093910a6b4a7ae47.js",
+      "sha256": "59c10e5dd5ca487ac8a61a1182fd8d0202d45804502193a496045f683a798553",
+      "bytes": 23272,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/pages/vacancy/%5BjobId%5D-bcc92cb89b3cb8de.js",
+      "sha256": "1cd5545588cfda37610f524353794328f0eb713f4d8c1445a9d4114338163e2f",
+      "bytes": 50592,
+      "mime": "application/javascript"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/css/329379ff4f7f3c67.css",
+      "sha256": "39783f82f655c0ae08060d479c665ec56e409809e23ee80cc090a6543944ca5d",
+      "bytes": 262634,
+      "mime": "text/css"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/css/f63fba50653f20de.css",
+      "sha256": "70bd9c029dcd41942136f7c685f50431a98d13b2e826a54c0bc4e5d83a2f1fc4",
+      "bytes": 22120,
+      "mime": "text/css"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/css/92f4459dc337da9c.css",
+      "sha256": "473824f641b95ef4ba8149f7288d3b754a6ce852e8527f12c79b75a25bbc3656",
+      "bytes": 44607,
+      "mime": "text/css"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/css/e55cddc0ee13f264.css",
+      "sha256": "f7b0a7626094d897825476318d4723da1abd6ddda561b932ee4d17b45e41cdb6",
+      "bytes": 29717,
+      "mime": "text/css"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/css/e4cdf4005f7b04a4.css",
+      "sha256": "63cc2f174ac62f62f99350a9d8a26b6cdfd093421694fbbba5a5e99c5383f4fc",
+      "bytes": 17385,
+      "mime": "text/css"
+    }
+  ],
+  "scriptDeclarations": [
+    {
+      "defer": "",
+      "nomodule": "",
+      "src": "/_next/static/chunks/polyfills-42372ed130431b0a.js"
+    },
+    {
+      "defer": "",
+      "src": "/_next/static/chunks/2253.4f03dc7b3b0db79c.js"
+    },
+    {
+      "src": "/_next/static/chunks/webpack-ed260533bee3566a.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/framework-0675a4b5b92df616.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/main-c9b84127e25ca27f.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/pages/_app-2958ad34104c68a4.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/2420-e4b4e77bb0a3b743.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/1145-06bc5629ecc885a0.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/6370-417085e605602476.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/712-700680230724ef58.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/3016-e6171a3771611606.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/257-18559a16a2b9a8fc.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/1058-d3d66ea4a156357b.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/8834-a21246d4b50e0c25.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/726-093910a6b4a7ae47.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/chunks/pages/vacancy/%5BjobId%5D-bcc92cb89b3cb8de.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/bpOW3k09BiBTgJL-NJ0KY/_buildManifest.js",
+      "defer": ""
+    },
+    {
+      "src": "/_next/static/bpOW3k09BiBTgJL-NJ0KY/_ssgManifest.js",
+      "defer": ""
+    },
+    {
+      "data-cfasync": "false",
+      "src": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    }
+  ],
+  "styleDeclarations": [
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/329379ff4f7f3c67.css",
+        "as": "style"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/f63fba50653f20de.css",
+        "as": "style"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/92f4459dc337da9c.css",
+        "as": "style"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/e55cddc0ee13f264.css",
+        "as": "style"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/e4cdf4005f7b04a4.css",
+        "as": "style"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "style",
+      "attrs": {},
+      "rawSha256": "19ef70c93e8c9a3e5d1bddc0a5e177026c6153e7c8ed3f583d2db17192580849"
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/329379ff4f7f3c67.css",
+        "data-n-g": "",
+        "media": "print",
+        "onload": "this.media='all'"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/f63fba50653f20de.css",
+        "data-n-p": "",
+        "media": "print",
+        "onload": "this.media='all'"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/92f4459dc337da9c.css",
+        "data-n-p": "",
+        "media": "print",
+        "onload": "this.media='all'"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/e55cddc0ee13f264.css",
+        "data-n-p": "",
+        "media": "print",
+        "onload": "this.media='all'"
+      },
+      "rawSha256": null
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/e4cdf4005f7b04a4.css",
+        "data-n-p": "",
+        "media": "print",
+        "onload": "this.media='all'"
+      },
+      "rawSha256": null
+    }
+  ],
+  "applyPath": [
+    {
+      "tag": "root",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {
+        "lang": "en",
+        "data-critters-container": ""
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "id": "__next"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "data-testid": "sticky-container",
+        "id": "sticky-container",
+        "style": "position:relative"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "data-contenttype": "anywhere_pages_job_details_page",
+        "data-locale": "en-us",
+        "data-pageref": "blt79a347486a158156"
+      }
+    },
+    {
+      "tag": "main",
+      "attrs": {
+        "id": "main"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetails_container__6s0PH"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetails_mainContent__ADdAF",
+        "id": "cta_job_apply_linkedin_not_authorized"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetailsBanner_container__hB5fQ",
+        "data-testid": "job-details-banner-container"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetailsBanner_actionBlock__DxSQx"
+      }
+    },
+    {
+      "tag": "button",
+      "attrs": {
+        "class": "Button_button__m3Sde ApplyButton_button__HzSuv Button_primary__DEajn Button_medium__Y1p80 Button_short__NPa4m ApplyButton_short__cSXU8 Button_light__GXUCP JobDetails_applyButton__Knogf",
+        "data-testid": "buttonComponent",
+        "id": "cta_job_apply_unauthorized",
+        "tabindex": "0",
+        "type": "submit",
+        "data-event-type": "interaction",
+        "data-event-action": "click",
+        "data-event-location": "apply_bar",
+        "data-event-label": "apply_button",
+        "data-event-content": "apply",
+        "data-event-result": "NATIVE_ROLE_TITLE / NATIVE_ROLE_UID",
+        "name": "button_cta_job_apply_unauthorized"
+      }
+    }
+  ],
+  "criterionPath": [
+    {
+      "tag": "root",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {
+        "lang": "en",
+        "data-critters-container": ""
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "id": "__next"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "data-testid": "sticky-container",
+        "id": "sticky-container",
+        "style": "position:relative"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "data-contenttype": "anywhere_pages_job_details_page",
+        "data-locale": "en-us",
+        "data-pageref": "blt79a347486a158156"
+      }
+    },
+    {
+      "tag": "main",
+      "attrs": {
+        "id": "main"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetails_container__6s0PH"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetails_mainContent__ADdAF",
+        "id": "cta_job_apply_linkedin_not_authorized"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetails_main__7UFr2"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "JobDetails_responsiveContainer___8Mvs"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "Description_container__VxWne",
+        "data-testid": "description-container"
+      }
+    }
+  ],
+  "criterionAttributes": {
+    "div": [
+      "class",
+      "data-testid",
+      "style",
+      "role",
+      "tabindex",
+      "data-event-result",
+      "data-event-content",
+      "aria-hidden"
+    ],
+    "p": [],
+    "strong": [],
+    "ul": [],
+    "li": []
+  },
+  "criterionClasses": [
+    "AccordionSection_container__DkAIb",
+    "AccordionSection_defaultCursor__K3fXL",
+    "AccordionSection_header__kp8GP",
+    "AccordionSection_info__N1sZA",
+    "AccordionSection_medium__cGYqU",
+    "AccordionSection_openedInfo__Cv2V0",
+    "AccordionSection_opened___mAD0",
+    "AccordionSection_title__L0ERa",
+    "AccordionSection_withDataAttributes__cBdvN",
+    "Description_accordionContainer__9fLdz",
+    "Description_categories__NnTtv",
+    "Description_container__VxWne",
+    "Description_descriptionContainer__Vopi0",
+    "Description_medium__vb35_",
+    "RichText_none__DsI64",
+    "RichText_richText__SeP4X",
+    "RichText_widthLimit__h2_mi",
+    "rah-static",
+    "rah-static--height-auto"
+  ],
+  "criterionNodePatterns": {
+    "div": [
+      {
+        "class": "Description_container__VxWne",
+        "data-testid": "description-container"
+      },
+      {
+        "class": "Description_descriptionContainer__Vopi0",
+        "data-testid": "description-content",
+        "style": "display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:14"
+      },
+      {
+        "class": "RichText_richText__SeP4X RichText_none__DsI64",
+        "data-testid": "rich-text"
+      },
+      {
+        "class": "Description_categories__NnTtv",
+        "data-testid": "categories-container"
+      },
+      {
+        "class": "AccordionSection_container__DkAIb Description_accordionContainer__9fLdz AccordionSection_medium__cGYqU Description_medium__vb35_ AccordionSection_defaultCursor__K3fXL AccordionSection_opened___mAD0 AccordionSection_withDataAttributes__cBdvN",
+        "data-testid": "accordion-section-container",
+        "role": "group",
+        "tabindex": "0",
+        "data-event-result": "NATIVE_ROLE_TITLE / NATIVE_ROLE_UID",
+        "data-event-content": "close"
+      },
+      {
+        "class": "AccordionSection_header__kp8GP",
+        "tabindex": "-1"
+      },
+      {
+        "data-testid": "accordion-section-label-container",
+        "class": "AccordionSection_title__L0ERa"
+      },
+      {
+        "aria-hidden": "false",
+        "class": "rah-static rah-static--height-auto ",
+        "style": "height:auto;overflow:visible"
+      },
+      {},
+      {
+        "class": "AccordionSection_info__N1sZA AccordionSection_medium__cGYqU Description_medium__vb35_ AccordionSection_openedInfo__Cv2V0",
+        "data-testid": "accordion-section-children-container"
+      },
+      {
+        "class": "RichText_richText__SeP4X RichText_none__DsI64 RichText_widthLimit__h2_mi",
+        "data-testid": "rich-text"
+      }
+    ],
+    "p": [
+      {}
+    ],
+    "strong": [
+      {}
+    ],
+    "ul": [
+      {}
+    ],
+    "li": [
+      {}
+    ]
+  },
+  "inlinePrograms": [
+    {
+      "attrs": {},
+      "sha256": "c0177bcdde04a04e47f121d37f40a09d10ace62449ef12d7de0a7c80550e6612"
+    }
+  ],
+  "applyText": "apply",
+  "contextCmsUid": "blt79a347486a158156",
+  "contextPageRef": "blt79a347486a158156"
+}

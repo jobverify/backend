@@ -16,38 +16,8 @@ import { createProgressLogger } from './lib/progressLogger.js'
 import { trialNativeInputHash, trialNativeRuntimeHash } from './trialNativePredictionCache.js'
 import { classificationSkipReason, createClassificationReport, recordClassificationInput, recordClassificationDecision,
   recordClassificationInference } from '../classification/reporting.js'
-
-async function* assignedSavedJobs(model, shard, shardCount, summary, shouldStop) {
-  const query = model.find({ status: 'active' }).sort({ _id: 1 }).lean()
-  // Partition using small identities first. Four workers should not download
-  // four copies of every description before discarding the other three shards.
-  if (shardCount > 1) query.select({ _id: 1, fingerprint: 1 })
-  const cursor = query.cursor({ batchSize: shardCount > 1 ? 1000 : 100 })
-  let assignedIds = []
-  async function* fetchAssigned() {
-    const ids = assignedIds
-    assignedIds = []
-    for (const job of await model.find({ _id: { $in: ids }, status: 'active' }).sort({ _id: 1 }).lean()) {
-      // A rescrape may change the fingerprint after the identity scan.
-      if (classificationShard(job.fingerprint || job._id, shardCount) === shard) yield job
-    }
-  }
-  try {
-    for await (const row of cursor) {
-      if (shouldStop()) { summary.budgetExhausted = true; return }
-      summary.scanned++
-      if (shardCount === 1) yield row
-      else if (classificationShard(row.fingerprint || row._id, shardCount) === shard) {
-        assignedIds.push(row._id)
-        if (assignedIds.length === 100) yield* fetchAssigned()
-      }
-    }
-    if (assignedIds.length) {
-      if (shouldStop()) summary.budgetExhausted = true
-      else yield* fetchAssigned()
-    }
-  } finally { await cursor.close() }
-}
+import { assignedSavedJobs } from './lib/assignedSavedJobs.js'
+import { refreshJobBatchEligibility } from './lib/batchEligibilityPhase.js'
 
 export async function classifySavedJobs({ model = Job, worker, now = () => new Date(),
   mode = 'shadow', shard = 0, shardCount = 1, budgetSeconds = 18000, concurrency = 1, signal,
@@ -234,6 +204,19 @@ export async function classifySavedJobs({ model = Job, worker, now = () => new D
   return { ...summary, elapsedSeconds: (Date.now()-started)/1000 }
 }
 
+export async function classifyJobsWithBatches(options = {}) {
+  const began = Date.now(), clock = options.now?.() || new Date()
+  let summary
+  try { summary = await classifySavedJobs(options) }
+  finally { await options.worker.stop?.() }
+  const batchEligibility = await refreshJobBatchEligibility({ ...options, referenceDate: clock,
+    budgetSeconds: Math.max(0, (options.budgetSeconds ?? 18000) - (Date.now() - began) / 1000),
+    extractorFactory: options.extractorFactory,
+    onResult: options.onResult, onProgress: batch => options.onProgress?.({ ...summary, batchEligibility: batch }),
+  })
+  return { ...summary, batchEligibility, elapsedSeconds: (Date.now() - began) / 1000 }
+}
+
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   dotenv.config({ quiet: true })
   const controller = new AbortController()
@@ -257,18 +240,20 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     progress.phase('start_worker')
     worker = await startGliclassWorker()
     progress.phase('process_queue')
-    const summary = await classifySavedJobs({ worker, shard, shardCount: Number(process.env.CLASSIFICATION_SHARD_COUNT || 1),
+    const summary = await classifyJobsWithBatches({ worker, shard, shardCount: Number(process.env.CLASSIFICATION_SHARD_COUNT || 1),
       mode: process.env.POST_SCRAPE_CLASSIFICATION_MODE || 'shadow',
       concurrency: Number(process.env.CLASSIFICATION_CONCURRENCY || 1),
       budgetSeconds: Number(process.env.CLASSIFICATION_BUDGET_SECONDS || 18000), signal: controller.signal,
       onProgress: value => {
         const { scanned, assigned, completed, cached, nativeCached, skipped, failed, stale, leased, modelRequests } = value
-        latestProgress = { scanned, assigned, completed, cached, nativeCached, skipped, failed, stale, leased, modelRequests }
+        latestProgress = { scanned, assigned, completed, cached, nativeCached, skipped, failed, stale, leased, modelRequests,
+          ...(value.batchEligibility ? { batchEligibility: value.batchEligibility } : {}) }
         persist(value)
       }, onResult: row => fs.appendFileSync(diagnostics, JSON.stringify(row) + '\n') })
     persist(summary)
     console.log(JSON.stringify(summary))
-    if (summary.failed || summary.stale || summary.budgetExhausted) process.exitCode = 1
+    if (summary.failed || summary.stale || summary.budgetExhausted || summary.batchEligibility.failed
+      || summary.batchEligibility.pending || summary.batchEligibility.budgetExhausted) process.exitCode = 1
   } finally {
     progress.stop()
     await worker?.stop()

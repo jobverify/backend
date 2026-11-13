@@ -5,7 +5,13 @@ import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNa
 import { nativeCountryName, nativeLocationCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
 
 export const NATIVE_API_URL = 'https://api.ashbyhq.com/posting-api/job-board/sentry'
-export const check = (ok, message) => { if (!ok) throw Object.assign(new Error('[sentry] Current native contract: ' + message), { abortRetries: true, failureKind: 'parser_or_contract_error' }) }
+const contractError = message => Object.assign(new Error('[sentry] Current native contract: ' + message), { abortRetries: true, failureKind: 'parser_or_contract_error' })
+const cohortDrifts = new WeakSet()
+export const check = (ok, message) => { if (!ok) throw contractError(message) }
+export const isCohortDrift = error => error !== null && typeof error === 'object' && cohortDrifts.has(error)
+export const checkCohort = (ok, message) => {
+  if (!ok) { const error = contractError(message); cohortDrifts.add(error); throw error }
+}
 export const norm = value => typeof value === 'string' ? value.replace(/\s+/g, ' ').trim() : ''
 const stable = value => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object' ? Object.fromEntries(Object.keys(value).sort().map(key => [key, stable(value[key])])) : value
 export const digest = value => createHash('sha256').update(JSON.stringify(stable(value))).digest('hex')
@@ -73,7 +79,9 @@ export const reconcileNativeInventory = (corporate, payload) => {
       check(norm(record.title) === norm(row.info.title)
         && norm(record.location) === norm(row.info.locationName) && record.jobUrl === row.info.applyLink
         && norm(record.employmentType) === norm(row.info.employmentType), 'corporate/API employer, role identity, location or employment type disagrees')
-      check(extractActiveDescription(record.descriptionHtml) && extractActiveDescription(record.descriptionHtml) === extractActiveDescription(row.info.descriptionHtml), 'corporate/API full job criteria disagree')
+      const nativeDescription = extractActiveDescription(record.descriptionHtml), corporateDescription = extractActiveDescription(row.info.descriptionHtml)
+      check(nativeDescription && corporateDescription, 'corporate/API full job criteria disagree')
+      checkCohort(nativeDescription === corporateDescription, 'corporate/API full job criteria disagree')
       reconciledRoleIds.push(record.id)
     } else nativeOnlyRoleIds.push(record.id)
     if (record.publishedAt != null) check(typeof record.publishedAt === 'string' && /^\d{4}-\d\d-\d\dT/.test(record.publishedAt) && Number.isFinite(Date.parse(record.publishedAt)), 'native publication timestamp is malformed')

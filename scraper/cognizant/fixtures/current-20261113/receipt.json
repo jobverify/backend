@@ -1,0 +1,13 @@
+{
+  "requestedUrl": "https://careers.cognizant.com/india-en/jobs/",
+  "method": "GET",
+  "startedAt": "2026-11-13T09:00:22.805Z",
+  "status": 500,
+  "url": "https://careers.cognizant.com/india-en/jobs/",
+  "headers": {
+    "content-type": "text/html"
+  },
+  "bytes": 2416,
+  "sha256": "7bb8605d08c5d3d42c6865f5e0bffaf25969c1fdedb3b8d2f6c4cfe68ade92a0",
+  "file": "aspnet-startup-error-500.html.gz"
+}

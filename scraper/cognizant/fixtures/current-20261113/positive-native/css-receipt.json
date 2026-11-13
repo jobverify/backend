@@ -1,0 +1,14 @@
+{
+  "requestedUrl": "https://careers.cognizant.com/phb/style.css.v639301575709021910",
+  "method": "GET",
+  "startedAt": "2026-11-13T09:24:43.221913+00:00",
+  "status": 200,
+  "url": "https://careers.cognizant.com/phb/style.css.v639301575709021910",
+  "headers": {
+    "Content-Type": "text/css"
+  },
+  "bytes": 369496,
+  "sha256": "c2ff6c4e1bd7de57c16283f25c5899b048b7b1b9231a18b20b788c3b42c92a98",
+  "file": "01.body.gz",
+  "completedAt": "2026-11-13T09:24:45.665994+00:00"
+}

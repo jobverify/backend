@@ -1,4 +1,5 @@
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {ENTRY,PRIMARY,API,MODULE_PROFILES,profileModuleURL,profileForPublisher,sha,need,equal,publisher,program,loadingContract,inventory,detail} from './nativeModels.js'
 
 const cancel=body=>{try{Promise.resolve(body?.cancel()).catch(()=>{})}catch{}}
@@ -22,7 +23,7 @@ export function createNativeGrouponScraper({maxJobs:factoryCap=Infinity,now:fact
   const cap=Object.hasOwn(options,'maxJobs')&&options.maxJobs!==undefined?options.maxJobs??Infinity:factoryCap??Infinity
   if(!(cap===Infinity||Number.isSafeInteger(cap)&&cap>=0))throw new RangeError('Groupon invalid result cap')
   if(options.maxPages!=null&&options.maxPages!==Infinity)throw new RangeError('Groupon finite native inventory truncation is unsupported')
-  const finish=(jobs,reads=0)=>attachInventoryEvidence(jobs,{status:'coverage-gap',surface:ENTRY,firstParty:false,listingComplete:false,pagesFetched:reads,reportedTotal:null,indiaFacetCount:null,reason:'Current published cohort only; country conflicts, application availability, complete company inventory and cleanup remain unqualified'})
+  const finish=(jobs,reads=0)=>attachInventoryEvidence(jobs,{status:'coverage-gap',surface:ENTRY,firstParty:false,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:reads,reportedTotal:null,indiaFacetCount:null,reason:'Current published cohort only; country conflicts, application availability, complete company inventory and cleanup remain unqualified'})
   if(cap===0)return finish([])
   const receipts=[],originals=[],allowed=new Set([ENTRY,PRIMARY,...MODULE_PROFILES.flatMap(modules=>Object.keys(modules).map(key=>profileModuleURL(key,modules)))])
   async function read(url){
@@ -59,9 +60,12 @@ export function createNativeGrouponScraper({maxJobs:factoryCap=Infinity,now:fact
   const opening=await snapshot(),closing=await snapshot(opening);signal?.throwIfAborted();const completed=Date.now();let prior=started
   const fresh=receipts.every(r=>{const a=Date.parse(r.startedAt),b=Date.parse(r.completedAt),valid=r.requestedURL===r.url&&r.finalURL===r.url&&r.method==='GET'&&r.status&&r.contentType&&Number.isFinite(a)&&Number.isFinite(b)&&a>=prior&&b>=a&&b<=completed;prior=b;return Boolean(valid)})
   const audit={source:'groupon',openingRows:opening.details.length,closingRows:closing.details.length,originalResponses:receipts,rawNativeOriginals:originals,openingPrograms:opening.programs,closingPrograms:closing.programs,wholeNativeModelsClosingReconciled:true,transportEvidenceWithinRun:Boolean(fresh),applicationInteractions:0,publisherProgramsExecuted:false,companyInventoryComplete:false,lifecycleCleanupAllowed:false}
-  const observations=opening.details.map(first=>{const last=closing.details.find(j=>j.jobId===first.jobId);return{...first,nativeClosingRecord:last.nativeSourceRecord,nativeClosingPublication:last.nativePublication,sourceRawClosingNativeResponse:last.sourceRawNativeResponse,sourceRawClosingNativeResponseSHA256:last.sourceRawNativeResponseSHA256,sourceDetailComplete:Boolean(fresh&&first.nativeRoleCriteriaReconciled&&last.nativeRoleCriteriaReconciled),nativeRoleClosingReconciled:true}})
+  const observations=opening.details.map(first=>{const last=closing.details.find(j=>j.jobId===first.jobId);return{...first,nativeClosingRecord:last.nativeSourceRecord,nativeClosingPublication:last.nativePublication,sourceRawClosingNativeResponse:last.sourceRawNativeResponse,sourceRawClosingNativeResponseSHA256:last.sourceRawNativeResponseSHA256,sourceDetailComplete:Boolean(fresh&&first.nativeRoleCriteriaReconciled&&last.nativeRoleCriteriaReconciled&&first.activeApplyVerified&&last.activeApplyVerified),nativeRoleClosingReconciled:true}})
   if(options.onAudit)await abortable(()=>options.onAudit(structuredClone({...audit,observations})),signal)
   const clock=options.now||factoryNow,jobs=observations.slice(0,cap).map(job=>{let scrapedAt;try{scrapedAt=clock()}catch(error){signal?.throwIfAborted();throw error}signal?.throwIfAborted();return{...job,source:'groupon',company:'Groupon',companyDomain:'grouponcareers.com',companyCareerPage:ENTRY,scrapedAt}})
-  Object.defineProperty(jobs,'sourceAudit',{value:audit});signal?.throwIfAborted();return finish(jobs,receipts.length)
+  Object.defineProperty(jobs,'sourceAudit',{value:audit})
+  const fullAudit={...audit,source:'groupon',recordKind:'vacancy-rows',observedRecordCount:observations.length,observedVacancyCount:observations.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,observations}
+  attachSourceObservationEvidence(jobs,fullAudit);Object.defineProperty(jobs,'nativeCollectionEvidence',{value:fullAudit,configurable:true})
+  signal?.throwIfAborted();return finish(jobs,receipts.length)
  }}
 }

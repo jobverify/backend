@@ -15,7 +15,7 @@
       "sha256": "14cf1303ca9ac3abd94816850532f9f9a69ac66fbaca3776fc6f9061c2fac1d1"
     }
   },
-  "policyVersion": "job-description-prose-v30",
+  "policyVersion": "job-description-prose-v31",
   "outputFormat": "prose",
   "maxModelEdits": 2,
   "maxPromptCandidates": 6,

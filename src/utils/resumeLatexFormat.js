@@ -1,46 +1,27 @@
+import { readFileSync } from 'node:fs';
 import { normalizeResumeLinks } from '../services/resumeSource.js';
 
 const resumeUrlBreaks = Array.from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789./-?&=#_~:!,;()[]'+",
   character => '\\do' + (/[0-9]/.test(character) ? '' : '\\') + character).join('');
 
-// Decode into the same cached compiler format on every attempt. Candidate prose,
-// section order, achievements and job-specific wording still come from the model.
-export const RESUME_LATEX_PREAMBLE = String.raw`\documentclass[11pt,a4paper]{article}
-\usepackage[margin=0.7in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern,enumitem,hyperref}
-\pagestyle{empty}
-\setcounter{secnumdepth}{0}
-\hypersetup{hidelinks}
-\renewcommand{\UrlBreaks}{${resumeUrlBreaks}}
-\hyphenpenalty=10000
-\setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=*,nosep}
-\renewcommand{\\}[1][0pt]{\par}
-\begin{document}
-\obeylines
-`;
+// The selected template is repository-owned code, never candidate input. Share
+// its actual preamble between inference, preflight and compiler dependency setup.
+export const RESUME_ABEY_TEMPLATE = readFileSync(new URL('../../resume-tailoring/templates/abey-resume.tex', import.meta.url), 'utf8').replace(/\r\n/g, '\n')
+  .replace('\\urlstyle{same}', `\\urlstyle{same}\n\\renewcommand{\\UrlBreaks}{${resumeUrlBreaks}}`);
+export const RESUME_LATEX_PREAMBLE = RESUME_ABEY_TEMPLATE.slice(0,
+  RESUME_ABEY_TEMPLATE.indexOf('\\begin{document}') + '\\begin{document}\n'.length);
 
-const bodyCommands = ['section', 'subsection', 'subsubsection', 'paragraph', 'textbf', 'textit', 'textsc', 'textsf', 'texttt',
+export const RESUME_LATEX_BODY_COMMANDS = Object.freeze(['section', 'subsection', 'subsubsection', 'paragraph', 'textbf', 'textit', 'textsc', 'textsf', 'texttt',
   'textrm', 'textnormal', 'emph', 'underline', 'item', 'par', 'newline', 'linebreak', 'noindent', 'hfill',
-  'hspace', 'vspace', 'newpage', 'pagebreak', 'small', 'normalsize', 'large', 'Large', 'LARGE',
+  'hspace', 'vspace', 'newpage', 'pagebreak', 'small', 'normalsize', 'large', 'Large', 'LARGE', 'huge', 'Huge', 'scshape', 'bfseries',
   'textbar', 'textbullet', 'textendash', 'textemdash', 'textbackslash', 'textasciitilde', 'textasciicircum',
-  'LaTeX', 'TeX', 'c', 'v', 'H', 'u', 'k', 'r', 'b', 'd', 't'];
-const environments = ['center', 'flushleft', 'itemize', 'enumerate', 'description'];
+  'LaTeX', 'TeX', 'c', 'v', 'H', 'u', 'k', 'r', 'b', 'd', 't',
+  'resumeItem', 'classesList', 'resumeSubheading', 'resumeSubSubheading', 'resumeProjectHeading', 'resumeSubItem',
+  'resumeSubHeadingListStart', 'resumeSubHeadingListEnd', 'resumeItemListStart', 'resumeItemListEnd', 'sbullet',
+  'faPhone', 'faEnvelope', 'faLinkedin', 'faLinkedinSquare', 'faGithub', 'faHackerrank', 'faPoll', 'faExternalLink', 'faGlobe']);
+export const RESUME_LATEX_ENVIRONMENTS = Object.freeze(['center', 'flushleft', 'itemize', 'enumerate', 'description', 'multicols']);
 const alternatives = values => values.map(value => JSON.stringify(value)).join(' | ');
 export const resumeLatexLinkTarget = value => value.replace(/[&%_$#{}]/g, character => `\\${character}`);
-
-// Keep annotation-only references even when generation omits their destinations.
-// Labels carry no candidate claims; the PDF's actual targets are still audited.
-export function preserveResumeSourceLinks(latex, links = []) {
-  const commands = latex.replace(/(?<!\\)%[^\n]*/g, '');
-  const present = [...commands.matchAll(/\\(?:href|url)\s*\{((?:\\.|[^}])*)\}/g)]
-    .map(match => match[1].replace(/\\([&%_$#{}])/g, '$1'));
-  const missing = normalizeResumeLinks(links).filter(link => !present.includes(link));
-  if (!missing.length) return latex;
-  const references = missing.map(link => `\\href{${resumeLatexLinkTarget(link)}}{Original link}`).join('\n');
-  return latex.replace(/\\end\s*\{document\}\s*$/, () => `\n\\section*{Links}\n${references}\n\\end{document}`);
-}
 
 // Word commands require a delimiter: otherwise an allowed accent such as \c
 // followed by plain text could admit a forbidden command such as \catcode.
@@ -52,8 +33,8 @@ export function buildResumeLatexGrammar(allowedLinks = []) {
     `body ::= (text | symbol | command | environment${targets.length ? ' | hyperlink' : ''})*`,
     String.raw`text ::= [^\\\x00-\x08\x0B\x0E-\x1F]`,
     `symbol ::= ${JSON.stringify('\\')} (${alternatives(['\\', '%', '$', '&', '#', '_', '{', '}', ' ', '~', '^', ',', ';', ':', '!', "'", '`', '"', '=', '.'])})`,
-    `command ::= ${JSON.stringify('\\')} (${alternatives(bodyCommands)}) [^A-Za-z\\\\]`,
-    `environment ::= (${JSON.stringify(String.raw`\begin{`)} | ${JSON.stringify(String.raw`\end{`)}) (${alternatives(environments)}) "}"`,
+    `command ::= ${JSON.stringify('\\')} (${alternatives(RESUME_LATEX_BODY_COMMANDS)}) [^A-Za-z\\\\]`,
+    `environment ::= (${JSON.stringify(String.raw`\begin{`)} | ${JSON.stringify(String.raw`\end{`)}) (${alternatives(RESUME_LATEX_ENVIRONMENTS)}) "}"`,
     ...(targets.length ? [
       `hyperlink ::= (${JSON.stringify(String.raw`\href{`)} | ${JSON.stringify(String.raw`\url{`)}) link-target "}"`,
       `link-target ::= ${alternatives(targets)}`,
@@ -64,7 +45,10 @@ export function buildResumeLatexGrammar(allowedLinks = []) {
 export const RESUME_LATEX_GRAMMAR = buildResumeLatexGrammar();
 
 export const RESUME_LATEX_FORMAT_INSTRUCTION = [
-  'Start with this exact compiler-supported preamble, including its final newline. Do not add packages, definitions or preamble commands:',
-  RESUME_LATEX_PREAMBLE,
-  `After that preamble, write the complete candidate resume, then \\end{document}. Body newlines end paragraphs: keep every header and achievement on its own line, and keep each command and its arguments on one physical line. Use ordinary text, escaped special characters, the environments ${environments.join(', ')}, and these commands only: ${[...bodyCommands, 'href', 'url'].map(command => `\\${command}`).join(', ')}. For \\href and \\url, copy a latexTarget exactly from allowedLinkDestinations, including its escapes. Never invent or change a destination. Separate word commands from following commands with whitespace. Do not use math mode or custom macros.`,
+  'Use the Abey Resume Template code below. Copy its preamble exactly through \\begin{document}, including the following newline, and replace the sample body with the candidate resume. Template sample names, employers, skills, dates and URLs are examples, never candidate facts. Do not add packages, redefine commands, change margins or create a different layout.',
+  'BEGIN TRUSTED ABEY TEMPLATE CODE',
+  RESUME_ABEY_TEMPLATE,
+  'END TRUSTED ABEY TEMPLATE CODE',
+  'Keep the sample leading \\vspace*{18pt} so the name has room above it, the centered name/contact header, ruled section headings, and template entry macros. Use \\resumeSubheading{employer or institution}{dates}{actual role or degree}{location}, \\resumeProjectHeading{project and tools}{dates}, and \\resumeItem inside the corresponding list macros. At least one entry or item macro is required; for a prose-only source, put its supported statements in \\resumeItem lists. Keep all four subheading arguments, using empty braces for unknown values. Include only source-supported sections; section order may follow the candidate resume. Do not copy sample sections with no candidate evidence.',
+  `Use standard LaTeX line semantics: source newlines are whitespace, a blank line or \\par starts a paragraph, and \\\\ ends a header/skills row. Use ordinary text, escaped special characters, the environments ${RESUME_LATEX_ENVIRONMENTS.join(', ')}, and these body commands only: ${[...RESUME_LATEX_BODY_COMMANDS, 'href', 'url'].map(command => `\\${command}`).join(', ')}. For \\href and \\url, copy a latexTarget exactly from allowedLinkDestinations, including its escapes. Never invent or change a destination. Separate word commands with whitespace or {}. Use \\textbar{} instead of math mode. Use only the template-defined macros; never define new ones.`,
 ].join('\n');

@@ -17,6 +17,8 @@ export const CORALOGIX_CATALOG = {
   companyDomain: 'coralogix.com',
   atsPlatform: 'official-first-party-careers-page',
   countryFilter: 'India',
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
   paginationStrategy: 'single-first-party-open-positions-page+india-detail-pages',
   extractionStrategy:
     'verified-first-party-open-positions-page+same-domain-role-links+india-location-filter+first-party-detail-pages',

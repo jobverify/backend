@@ -146,7 +146,9 @@ export const JobSchema = new Schema(
     locationKeys: { type: [String], default: [] },
     department: { type: String, trim: true },
     eligibleBatches: { type: [Number], default: [] },
-    eligibleBatchesProvenance: { type: String, enum: ['source', null], default: null },
+    eligibleBatchesProvenance: { type: String, enum: ['source', 'inferred', null], default: null },
+    eligibleBatchRange: { type: new Schema({ maxYear: { type: Number, min: 1900, max: 2199, validate: Number.isInteger } }, { _id: false }), default: null },
+    batchEligibility: { type: Schema.Types.Mixed, default: undefined },
     branches: { type: [String], default: [] },
     requiredSkills: { type: [String], default: [] },
     source: { type: String },
@@ -304,6 +306,7 @@ JobSchema.index({ verificationKeys: 1 }, { name: 'verification_identity' });
 JobSchema.index({ sourceUrl: 1 }, { name: 'verification_source_url' });
 JobSchema.index({ applyUrl: 1 }, { name: 'verification_apply_url' });
 JobSchema.index({ eligibleBatches: 1 });
+JobSchema.index({ 'eligibleBatchRange.maxYear': 1 });
 JobSchema.index({ branches: 1 });
 JobSchema.index({ createdAt: -1 });
 JobSchema.index(

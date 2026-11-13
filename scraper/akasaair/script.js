@@ -253,6 +253,12 @@ export const createAkasaAirScraper = ({
   async run({ fetchPage = defaultFetchPage, signal } = {}) {
     const landingPage = await fetchPage(CAREERS_REDIRECT_URL, { signal })
 
+    if (Number(landingPage.status) === 403) {
+      const error = new Error(`Akasa Air public careers acquisition is upstream unavailable: HTTP 403 at ${landingPage.url}`)
+      Object.assign(error, { softFailure: true, upstreamOutage: true, abortRetries: true, failureKind: 'public_access_denied' })
+      throw error
+    }
+
     if (
       Number(landingPage.status) !== 200
       || normalizeUrl(landingPage.url) !== CAREERS_LANDING_URL

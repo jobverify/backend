@@ -16,6 +16,15 @@ async function execute(t,source,change=()=>{},options={}){
  const jobs=await createCatalogScraper(provider).run({fetchImpl:transport,onAudit:value=>audit=value,...options})
  return{jobs,audit,calls,evidence:readInventoryEvidence(jobs)}
 }
+const unqualifiedRow=(source,{jobs,audit})=>{
+ if(source==='dataiku'){
+  assert.equal(jobs.length,0,'Unqualified Dataiku rows stay outside the publication input')
+  assert.equal(audit.withheldIndiaDetails.length,1)
+  return audit.withheldIndiaDetails[0]
+ }
+ assert.equal(jobs.length,1)
+ return jobs[0]
+}
 for(const [source,count]of[['dataiku',15],['assemblyai',18]]){
  test(`${source} registered current native recovery binds employer and preserves full uncertain opening/closing inventory`,async t=>{
   const {jobs,audit,calls,evidence}=await execute(t,source)
@@ -85,10 +94,10 @@ for(const [source,count]of[['dataiku',15],['assemblyai',18]]){
  })
  test(`${source} unknown role criteria revoke affected detail completeness while retaining raw fields`,async t=>{
   const target=JSON.parse(Object.entries(fixture(source).entries).find(([u])=>u.endsWith('/jobs?content=true'))[1].body).jobs[0].id
-  const {jobs}=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[];row.additionalQualificationRequirements='Mandatory professional license'}r.body=JSON.stringify(p)})
-  assert.equal(jobs.length,1)
-  assert.equal(jobs[0].sourceDetailComplete,false)
-  assert.equal(jobs[0].sourceNativePayload.additionalQualificationRequirements,'Mandatory professional license')
+  const result=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[];row.additionalQualificationRequirements='Mandatory professional license'}r.body=JSON.stringify(p)})
+  const job=unqualifiedRow(source,result)
+  assert.equal(job.sourceDetailComplete,false)
+  assert.equal(job.sourceNativePayload.additionalQualificationRequirements,'Mandatory professional license')
  })
  for(const [label,mutate]of[
   ['unknown mandatory metadata',row=>{row.metadata=[...(row.metadata||[]),{id:999999,name:'Mandatory qualification',value:'Professional license required',value_type:'single_select'}]}],
@@ -97,26 +106,26 @@ for(const [source,count]of[['dataiku',15],['assemblyai',18]]){
   ['nested native location mandatory criteria',row=>{row.location.mandatoryQualifications='Professional license required'}],
  ])test(`${source} ${label} revoke retained role detail completeness`,async t=>{
   const target=JSON.parse(Object.entries(fixture(source).entries).find(([u])=>u.endsWith('/jobs?content=true'))[1].body).jobs[0].id
-  const {jobs}=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[];mutate(row)}r.body=JSON.stringify(p)})
-  assert.equal(jobs.length,1)
-  assert.equal(jobs[0].sourceDetailComplete,false)
-  assert.ok(jobs[0].sourceNativePayload)
-  assert.equal(jobs[0].lifecycleCleanupAllowed,false)
+  const result=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[];mutate(row)}r.body=JSON.stringify(p)})
+  const job=unqualifiedRow(source,result)
+  assert.equal(job.sourceDetailComplete,false)
+  assert.ok(job.sourceNativePayload)
+  assert.equal(job.lifecycleCleanupAllowed,false)
  })
  for(const style of['display:none','opacity:0'])test(`${source} ${style} copied criteria revoke detail completeness and remain only in raw evidence`,async t=>{
   const target=JSON.parse(Object.entries(fixture(source).entries).find(([u])=>u.endsWith('/jobs?content=true'))[1].body).jobs[0].id
-  const {jobs}=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[];row.content+=`<div style="${style}">HIDDEN_MANDATORY_LICENSE copied inactive criteria</div><p>Visible current employer criteria: build reliable services and own delivery.</p>`}r.body=JSON.stringify(p)})
-  assert.equal(jobs.length,1)
-  assert.equal(jobs[0].sourceDetailComplete,false)
-  assert.match(jobs[0].sourceNativePayload.content,/HIDDEN_MANDATORY_LICENSE/)
-  assert.doesNotMatch(jobs[0].jobDescription,/HIDDEN_MANDATORY_LICENSE/)
-  assert.match(jobs[0].jobDescription,/Visible current employer criteria/)
+  const result=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[];row.content+=`<div style="${style}">HIDDEN_MANDATORY_LICENSE copied inactive criteria</div><p>Visible current employer criteria: build reliable services and own delivery.</p>`}r.body=JSON.stringify(p)})
+  const job=unqualifiedRow(source,result)
+  assert.equal(job.sourceDetailComplete,false)
+  assert.match(job.sourceNativePayload.content,/HIDDEN_MANDATORY_LICENSE/)
+  assert.doesNotMatch(job.jobDescription,/HIDDEN_MANDATORY_LICENSE/)
+  assert.match(job.jobDescription,/Visible current employer criteria/)
  })
  test(`${source} unknown global envelope criteria revoke complete detail and retain the entire native envelope`,async t=>{
   const target=JSON.parse(Object.entries(fixture(source).entries).find(([u])=>u.endsWith('/jobs?content=true'))[1].body).jobs[0].id
-  const {jobs,audit}=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[]}if(p.jobs)p.mandatoryRequirements='Every role requires a professional license';r.body=JSON.stringify(p)})
-  assert.equal(jobs.length,1)
-  assert.equal(jobs[0].sourceDetailComplete,false)
+  const result=await execute(t,source,(r,u)=>{if(!u.includes('boards-api'))return;const p=JSON.parse(r.body);for(const row of p.jobs||[p])if(row.id===target){row.location={name:'Bengaluru, India'};row.offices=[]}if(p.jobs)p.mandatoryRequirements='Every role requires a professional license';r.body=JSON.stringify(p)})
+  const {audit}=result,job=unqualifiedRow(source,result)
+  assert.equal(job.sourceDetailComplete,false)
   assert.equal(audit.openingPayload.mandatoryRequirements,'Every role requires a professional license')
   assert.equal(audit.closingPayload.mandatoryRequirements,'Every role requires a professional license')
  })

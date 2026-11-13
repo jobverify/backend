@@ -17,7 +17,7 @@ export const classificationSkipReason = (input, maxInputBytes) => !input.body ? 
   : Buffer.byteLength(input.body, 'utf8') > maxInputBytes ? 'oversized_description' : null
 
 export const createClassificationReport = (configuration = {}) => ({
-  reportingVersion: 2, modelRequests: 0,
+  reportingVersion: 3, modelRequests: 0,
   timingMs: {},
   resolvedCategories: counter(resolvedTypes), publicCategories: {}, modelCategories: counter(resolvedTypes.slice(0, 4)),
   descriptionOrigins: {}, skipReasons: counter(['missing_description', 'oversized_description']),
@@ -77,6 +77,13 @@ export function aggregateClassificationSummaries(parts) {
     timingBasis: 'summed_operation_durations' }
   const merge = (target, source) => { for (const [key, value] of Object.entries(source || {})) if (finite(value)) increment(target, key, value) }
   for (const part of parts) {
+    if (part.batchEligibility) {
+      summary.batchEligibility ||= { budgetExhausted: false };
+      for (const key of ['scanned', 'assigned', 'explicit', 'inferred', 'unknown', 'cached', 'failed', 'stale', 'leased', 'pending', 'modelRequests', 'extractionCached']) {
+        increment(summary.batchEligibility, key, part.batchEligibility[key] || 0);
+      }
+      summary.batchEligibility.budgetExhausted ||= part.batchEligibility.budgetExhausted === true;
+    }
     for (const key of ['assigned', 'completed', 'skipped', 'cached', 'nativeCached', 'failed', 'stale', 'leased', 'modelRequests']) {
       if (finite(part[key])) summary[key] += part[key]
     }

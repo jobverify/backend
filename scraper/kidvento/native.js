@@ -1,12 +1,14 @@
 import baselines from './native.scope.json' with {type:'json'}
 import {createHash} from 'node:crypto'
 import {createCurrentSourceScope,hasLiteralActiveKekaConfiguration,finishCurrentKekaInventory} from '../../scraper-support/shared/kekaCurrentSourceScope.js'
-import {activeHead,readNativeDocument,extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
+import {activeHead,readNativeDocument,extractActiveDescription,decodeNativeEntities} from '../../scraper-support/utils/activeNativeHtml.js'
 import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 import {attachInventoryEvidence,readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {verifyGoogleSitesPublisher,nativePortalDocument} from './publisherChain.js'
 import {inspectAssignedLocations} from './assignedLocations.js'
 import {disposeResponseReader} from '../../scraper-support/shared/responseBodyDisposal.js'
+import {hasReviewedCriterionRendering} from './criterionRendering.js'
 
 const ROOT='https://kidvento.keka.com/careers/',ID='79e3ba6e-9a27-4031-8af7-4c7bca97a921',OFFICIAL='https://www.kidvento.com/careers',HOME='https://www.kidvento.com/'
 const BOARD=ROOT+'api/jobs/default/active',EMBED=ROOT+'api/embedjobs/default/active/'+ID,RENDERER=ROOT+'api/embedjobs/js/'+ID,PORTAL=ROOT+'api/organization/default/careerportalinfo'
@@ -67,7 +69,8 @@ function visibleDescription(value){
  let hiddenText=false
  function walk(node){if(typeof node==='string')return;if(node.inert&&node.children.some(v=>typeof v==='string'&&clean(v)))hiddenText=true;node.children.forEach(walk)}
  active.nodes(n=>n.tag==='root').forEach(walk)
- return {text:text||null,complete:!hiddenText&&Boolean(extractActiveDescription(value))&&text===clean(extractActiveDescription(value))&&text.length>=80}
+ const original=active.nodes(n=>n.tag==='root')[0],rawText=node=>typeof node==='string'?decodeNativeEntities(node):typeof node.raw==='string'?decodeNativeEntities(node.raw):node.children.map(rawText).join(' ')
+ return {text:text||null,complete:!hiddenText&&Boolean(original)&&hasReviewedCriterionRendering(original)&&clean(rawText(original))===text&&Boolean(extractActiveDescription(value))&&text===clean(extractActiveDescription(value))&&text.length>=80}
 }
 
 function detailProof(native,html){
@@ -122,18 +125,22 @@ export async function runNativeInventory(options={}){
  const unknown=[],jobs=[],allNativeDetailProofs=[]
  for(const native of raw){
   const id=String(native.id),info=inspectRole(native),assigned=inspectAssignedLocations(native.description,info.places),before=openingDetails.get(id),after=closingDetails.get(id),stable=canonical(native)===canonical(closingMap.get(id)),criteriaComplete=before.proof.complete&&after.proof.complete&&before.proof.sha256===after.proof.sha256&&stable,complete=criteriaComplete&&info.schema.length===0&&!assigned.unresolved&&!info.unresolved
-  allNativeDetailProofs.push({id,complete,criteriaComplete,opening:before.proof,closing:after.proof,schemaGaps:info.schema,assignedLocationStatements:assigned.statements,stableNativeRole:stable})
+  allNativeDetailProofs.push({id,complete,criteriaComplete,opening:before.proof,closing:after.proof,openingHtml:before.html,closingHtml:after.html,schemaGaps:info.schema,assignedLocationStatements:assigned.statements,stableNativeRole:stable})
   if(assigned.unresolved)scope.gaps.add('unresolved-JD-assigned-location:'+id)
   if(info.unresolved||info.schema.length){unknown.push(native);scope.gaps.add('unresolved-native-role:'+id)}
   if(!complete)scope.gaps.add('unreviewed-native-criteria:'+id)
-  const india=info.places.filter(l=>l.countryCode==='IN');if(!india.length||info.unresolved)continue
+  const india=info.places.filter(l=>l.countryCode==='IN');if(!complete||!india.length||info.unresolved)continue
   const primary=india[0],render=l=>[l.name,clean(l.state),l.countryName].filter(Boolean).join(', '),description=before.proof.description
   const job={source:'kidvento',company:'Kidvento Education and Research Private Limited',companyCareerPage:OFFICIAL,companyDomain:'kidvento.com',atsPlatform:'keka',jobId:id,requisitionId:clean(native.jobNumber)||id,title:clean(native.title),location:render(primary),locations:india.map(render),sourceNativeLocations:native.jobLocations,city:primary.city,state:clean(primary.state)||null,country:'India',sourceUrl:ROOT+'jobdetails/'+id,applyUrl:ROOT+'jobdetails/'+id,link:ROOT+'jobdetails/'+id,jobDescription:description,experienceRequired:clean(native.experience)||null,department:clean(native.departmentName)||null,employmentType:native.jobType===2?'Full Time':null,requiredSkills:Array.isArray(native.skillNames)?native.skillNames.filter(v=>clean(v)):[],postingDate:clean(native.publishedOn)&&Number.isFinite(Date.parse(native.publishedOn))?new Date(native.publishedOn).toISOString():null,closingDate:null,publicExperienceChecked:true,sourceDetailComplete:complete,sourceNativePayload:native,sourceNativeInventorySha256:hash(canonical(raw)),sourceNativeDescriptionSha256:typeof native.description==='string'?hash(native.description):null,sourceNativeDetailSha256:before.proof.sha256,sourceNativeClosingDetailSha256:after.proof.sha256,scrapedAt:new Date().toISOString()}
   job.sourceNativeCriteriaComplete=criteriaComplete;job.sourceAssignedLocationStatements=assigned.statements;job.sourceAssignedLocationsUnresolved=assigned.unresolved
-  if(!complete){job.sourceDetailFailureKind='unverified-native-criteria-schema-or-assigned-geography';job.sourceNativeOpeningDetailHtml=before.html;job.sourceNativeClosingDetailHtml=after.html;job.sourceNativeSchemaGaps=info.schema}jobs.push(job)
+  jobs.push(job)
  }
  let result=finishCurrentKekaInventory(jobs,{raw,unknown,scope,evidence:{surface:BOARD,firstParty:true,pagesFetched:receipts.length,verifiedAt:new Date().toISOString(),reason:'kidvento-actual-GoogleSites-publisher-chain-native-partial-inventory-all-details-opening-closing'}})
- const evidence=readInventoryEvidence(result);if(!evidence.listingComplete)result=attachInventoryEvidence(result,{...evidence,reportedTotal:null,indiaFacetCount:null})
- const audit={source:'kidvento',nativeTotal:raw.length,closingNativeTotal:closingRaw.length,returnedIndiaJobs:result.length,fullReturnedCriteria:result.filter(j=>j.sourceNativeCriteriaComplete).length,completeReturnedDetails:result.filter(j=>j.sourceDetailComplete).length,sourceScopeComplete:readInventoryEvidence(result).listingComplete,lifecycleCleanupAllowed:readInventoryEvidence(result).listingComplete,unresolvedCountryIds:unknown.map(r=>String(r.id)),sourceScopeGaps:[...scope.gaps],sourceNativeRaw:raw,sourceNativeClosingRaw:closingRaw,allNativeDetailProofs,openingSurface,closingSurface,receipts,productionWrites:false,websiteJavaScriptExecuted:false}
- Object.defineProperty(result,'sourceAudit',{value:audit});onAudit?.(structuredClone(audit));return result
+ const evidence=readInventoryEvidence(result)
+ result.forEach(job=>Object.assign(job,{sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false}))
+ result=attachInventoryEvidence(result,{...evidence,status:'coverage-gap',listingComplete:false,lifecycleCleanupAllowed:false,reportedTotal:null,indiaFacetCount:null})
+ const audit={source:'kidvento',recordKind:'vacancy-rows',observedRecordCount:raw.length,observedVacancyCount:raw.length,companyGlobalTotal:null,companyIndiaTotal:null,nativeTotal:raw.length,closingNativeTotal:closingRaw.length,returnedIndiaJobs:result.length,fullReturnedCriteria:result.filter(j=>j.sourceNativeCriteriaComplete).length,completeReturnedDetails:result.filter(j=>j.sourceDetailComplete).length,sourceScopeComplete:false,lifecycleCleanupAllowed:false,unresolvedCountryIds:unknown.map(r=>String(r.id)),sourceScopeGaps:[...scope.gaps],sourceNativeRaw:raw,sourceNativeClosingRaw:closingRaw,allNativeDetailProofs,openingSurface,closingSurface,receipts,productionWrites:false,websiteJavaScriptExecuted:false}
+ Object.defineProperty(result,'sourceAudit',{value:audit})
+ attachSourceObservationEvidence(result,audit);Object.defineProperty(result,'nativeCollectionEvidence',{value:audit,configurable:true})
+ onAudit?.(structuredClone(audit));return result
 }

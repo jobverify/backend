@@ -1,0 +1,122 @@
+[
+  {
+    "url": "https://mykaarma.com/careers/",
+    "fixture": "mykaarma-0.body.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://static-assets.ripplingcdn.com/ats/embeds/job-board.v1.js",
+    "fixture": "mykaarma-1.body.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.rippling.com/embed/mykaarma/jobs?s=https%3A%2F%2Fmykaarma.com%2Fcareers%2F",
+    "fixture": "mykaarma-2.body.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.us1.rippling.com/_next/static/chunks/393-a9f2d9d9df16aac4.js",
+    "fixture": "mykaarma-script-6.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.us1.rippling.com/_next/static/chunks/716-56fec01e420a91ba.js",
+    "fixture": "mykaarma-script-7.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.us1.rippling.com/_next/static/chunks/387-7dc7a691b78f1b74.js",
+    "fixture": "mykaarma-script-8.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.us1.rippling.com/_next/static/chunks/pages/embed/%5BjobBoardSlug%5D/jobs-07e8390cfd79b3f4.js",
+    "fixture": "mykaarma-script-9.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.us1.rippling.com/_next/static/chunks/pages/%5BjobBoardSlug%5D/jobs/%5BjobId%5D-f5a3381aaec0ea0b.js",
+    "fixture": "mykaarma-role-renderer.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.us1.rippling.com/_next/static/chunks/pages/%5BjobBoardSlug%5D/jobs/%5BjobId%5D/apply-b96f12938a22623b.js",
+    "fixture": "mykaarma-application-renderer.gz",
+    "type": "application/javascript"
+  },
+  {
+    "url": "https://ats.rippling.com/embed/mykaarma/jobs?s=https%3A%2F%2Fmykaarma.com%2Fcareers%2F&page=1",
+    "fixture": "embed-page-1.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/0e1a516c-a374-43c6-9aa5-ea92faf1f15b",
+    "fixture": "mykaarma-role-0e1a516c-a374-43c6-9aa5-ea92faf1f15b.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/3a3da50e-7f50-46fb-87b9-281713e2ca88",
+    "fixture": "mykaarma-role-3a3da50e-7f50-46fb-87b9-281713e2ca88.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/55bc7c13-d994-4722-8b1d-399f2e24aba9",
+    "fixture": "mykaarma-role-55bc7c13-d994-4722-8b1d-399f2e24aba9.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/811e76a4-8ba4-4921-8ced-94a901dde48a",
+    "fixture": "mykaarma-role-811e76a4-8ba4-4921-8ced-94a901dde48a.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/854ee9f5-885b-4c76-8e6f-0330a11cdc54",
+    "fixture": "mykaarma-role-854ee9f5-885b-4c76-8e6f-0330a11cdc54.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/c2cc0528-abc5-41cd-8884-3d0d66aa4ffc",
+    "fixture": "mykaarma-role-c2cc0528-abc5-41cd-8884-3d0d66aa4ffc.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/e4dcb57a-72bb-4906-99a3-bb7872bfb020",
+    "fixture": "mykaarma-role-e4dcb57a-72bb-4906-99a3-bb7872bfb020.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/0e1a516c-a374-43c6-9aa5-ea92faf1f15b/apply",
+    "fixture": "mykaarma-apply-0e1a516c-a374-43c6-9aa5-ea92faf1f15b.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/3a3da50e-7f50-46fb-87b9-281713e2ca88/apply",
+    "fixture": "mykaarma-apply-3a3da50e-7f50-46fb-87b9-281713e2ca88.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/55bc7c13-d994-4722-8b1d-399f2e24aba9/apply",
+    "fixture": "mykaarma-apply-55bc7c13-d994-4722-8b1d-399f2e24aba9.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/811e76a4-8ba4-4921-8ced-94a901dde48a/apply",
+    "fixture": "mykaarma-apply-811e76a4-8ba4-4921-8ced-94a901dde48a.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/854ee9f5-885b-4c76-8e6f-0330a11cdc54/apply",
+    "fixture": "mykaarma-apply-854ee9f5-885b-4c76-8e6f-0330a11cdc54.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/c2cc0528-abc5-41cd-8884-3d0d66aa4ffc/apply",
+    "fixture": "mykaarma-apply-c2cc0528-abc5-41cd-8884-3d0d66aa4ffc.gz",
+    "type": "text/html"
+  },
+  {
+    "url": "https://ats.rippling.com/mykaarma/jobs/e4dcb57a-72bb-4906-99a3-bb7872bfb020/apply",
+    "fixture": "mykaarma-apply-e4dcb57a-72bb-4906-99a3-bb7872bfb020.gz",
+    "type": "text/html"
+  }
+]

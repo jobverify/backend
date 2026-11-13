@@ -17,6 +17,7 @@ import { normalizeProfilePreferenceFilters } from "../utils/profilePreferenceFil
 import { PUBLIC_WORK_ARRANGEMENT_EXPRESSION, normalizePublicWorkArrangement } from '../utils/publicWorkArrangement.js';
 import { normalizePublicJobCategory } from '../utils/publicJobNormalization.js';
 import { getPublicJobTypeMatches } from '../utils/publicJobTypeLabel.js';
+import { batchYearFilter, hasBatchEligibility, matchesBatchYear, validBatchYear } from '../utils/jobBatchEligibility.js';
 
 const MAX_REGEX_FILTER_LENGTH = 80;
 const MAX_TEXT_QUERY_LENGTH = 200;
@@ -140,8 +141,8 @@ export const buildJobFilterConditions = (queryParams = {}, { includeExperienceYe
   if (locationKeys.length && !filters.locationKeys) filters.locationKeys = { $in: locationKeys };
   const jobTypes = [...new Set(normalizeList(jobType).flatMap(getPublicJobTypeMatches))];
   if (jobTypes.length) filters.jobType = { $in: jobTypes };
-  const batchValues = normalizeList(batch).map(Number).filter(Number.isFinite);
-  if (batchValues.length) filters.eligibleBatches = { $in: batchValues };
+  const batchValues = normalizeList(batch).map(Number).filter(validBatchYear);
+  if (batchValues.length) appendFilterConstraint(filters, batchYearFilter(batchValues));
   const branches = normalizeList(branch);
   if (branches.length) filters.branches = { $in: branches };
   const skillValues = resolveSkillTokens(normalizeList(skills, { maxItems: 8, maxLength: MAX_REGEX_FILTER_LENGTH }));
@@ -196,9 +197,8 @@ export const jobMatchesSavedFilters = ({ job, filters, userProfile = {}, now = n
   const branch = String(userProfile.branch || "").trim().toLowerCase();
   const passingYear = Number(userProfile.passingYear);
   const branches = (job.branches || []).map((value) => String(value).trim().toLowerCase());
-  const batches = (job.eligibleBatches || []).map(Number);
   if (!ignoreProfileEligibility && branches.length && !branches.includes(branch)) return false;
-  if (!ignoreProfileEligibility && batches.length && !batches.includes(passingYear)) return false;
+  if (!ignoreProfileEligibility && hasBatchEligibility(job) && !matchesBatchYear(job, passingYear)) return false;
   const jobTypes = getPublicJobTypeMatches(normalizePublicJobCategory(job));
   const location = [job.city, job.location].filter(Boolean).join(" ").toLowerCase();
   const experienceMatches = matchesExperienceFilter(job, normalized.experienceYear, (legacy) => {

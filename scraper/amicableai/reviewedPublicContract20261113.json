@@ -1,0 +1,103 @@
+{
+  "functions": {
+    "getUrlOriginPath": "2dbcb45b2dfa55f7e35fb27e46a4c53b705af650a502403557fb1bbd291e0fb4",
+    "JobPostCardContainer": "75483d90b2ad9c831e2efaa72c6bbaedbdb246a3283e76cd1b0ce92b40505699",
+    "JobPostCard": "6ad5a603e9ceddf6dfe70788ee300550da5ec2aae9a1d08f8a7bfcf86320c6e9",
+    "getPageJobPosts": "51bf1e2331a04aa2894707cca84aeff22f4a686c6c8b94992d7b25fa169c070f",
+    "JobPostsList": "c44d02aa86f23840ad8b0757f3b1cc2e33db67131acecd4f1f062c23f806075e",
+    "filteredJobPosts": "ddbdb54d1376ac9221b2e7e32a88917d24f01e7ee7e0b176c70fde381249ca1c",
+    "getLocationOptions": "7386d74870240a837ff4877d760ef23cfd113315664a4a07df9a7a3916f516f3",
+    "getDepartmentOptions": "987d6d0e075e3bda48994de1e59e9f3d87832280bf0967e07057644be023c1ca",
+    "CareersPageBody": "d8e800799c7132149e2348da0082fac1e975bc77871a5aaf728172702805c3c2",
+    "CareersPage": "de3a6b199251200b03b8d831a54e1961a976a0f843a9afadad5d80ef350fca19",
+    "OverviewTab2": "51ff9f7071cdd500e7c1f88c9c15061e753aac0408d07d041b872ecd01e1ce0e",
+    "JobPostPage": "aff723a55446c99bd8f81886439c135e241cc297936e289cfa943063228e9bf5"
+  },
+  "classes": {
+    "PluginManager": "17ec882bbb9fd23a24f1fb1be2276233b3ffe3bcce19a04d03a71f6e60b969a5",
+    "ReactPlugin": "cb27390418fdf5cb96ace404f4969af3ce63e6ec416ecb965346dec8907063b6"
+  },
+  "registry": {
+    "name": "containers",
+    "component": "applicant_tracking/Careers/CareersPage",
+    "binding": "CareersPage"
+  },
+  "client": "https://app.screenloop.com/assets/application-d4ba320bff006e080a012c5045580c178557c755340b02e5cf3b4c055317862d.js",
+  "imports": {
+    "import_react1392": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_classnames454": "f3b9f98599c737a0a61d25400bd7e763b44d7094c37acd407dace488df7ace06",
+    "import_react1393": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1394": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_classnames455": "f3b9f98599c737a0a61d25400bd7e763b44d7094c37acd407dace488df7ace06",
+    "import_react1396": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1606": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_classnames504": "f3b9f98599c737a0a61d25400bd7e763b44d7094c37acd407dace488df7ace06",
+    "import_react1608": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef",
+    "import_react1852": "a6be02f894de35483ebbb7d7abe19625c376b7a58f7e70ce32df93f01e8fe1ef"
+  },
+  "detailRegistry": {
+    "component": "applicant_tracking/Jobs/JobPostPage",
+    "binding": "JobPostPage"
+  },
+  "corporateFrameCss": [
+    {
+      "url": "https://cdn.prod.website-files.com/6385ee682225b5b4e42bc740/css/amicable-new-website-2023.shared.43c8ea875.min.css",
+      "sha256": "3c406ab746309ad78fc54f00592837d47270be1bab6f4c2573d85062f732ab1b"
+    }
+  ],
+  "corporateInlineCss": [
+    "d7ca36e5347b862304f32802ed28ed66214f02e79e00362aa8d3c508ffc57694",
+    "c0036964a5244f1654732bc7e29d22fb9493b52a0f3771197da8797ca11cfd41",
+    "4e1d51a56294ffa077dcff241448edaf380e0776e0b161aedd713db3dda2c2f9",
+    "03555f7f90c74222f35cd8aa3b883ca96f202bf4f94bbbcd3b57c35768f600af"
+  ],
+  "corporateFramePath": [
+    {
+      "tag": "iframe",
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "iframe-wrapper"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "embed-form ef-styled w-embed w-iframe"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "container-full"
+      }
+    },
+    {
+      "tag": "section",
+      "attrs": {
+        "id": "explore-vacancies",
+        "class": "section-primary sp-pb-default bg-light"
+      }
+    },
+    {
+      "tag": "main",
+      "attrs": {
+        "class": "page-wrapper pw-relative"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {}
+    },
+    {
+      "tag": "root",
+      "attrs": {}
+    }
+  ]
+}

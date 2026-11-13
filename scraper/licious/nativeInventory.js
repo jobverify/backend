@@ -1,9 +1,11 @@
 import { createHash } from 'node:crypto'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
-import { extractActiveDescription, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { extractActiveDescription, readNativeDocument, decodeNativeEntities } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import { getValidIndiaCityForJob } from '../../src/utils/publicJobLocationScope.js'
 import { disposeResponseReader } from '../../scraper-support/shared/responseBodyDisposal.js'
+import {hasReviewedCriterionRendering} from './criterionRendering.js'
 
 export const CAREERS_URL = 'https://www.licious.in/careers'
 export const CURRENT_JOBS_URL = CAREERS_URL + '/jobs'
@@ -16,6 +18,12 @@ export const DETAIL_URL = 'https://licious.prod.in1.mynexthire.io/d17/careers/re
 const INTEGRATION_URL = NATIVE_ORIGIN + '/employer/ui/js/jobboard/careers-integration.js'
 const CLIENT_URL = NATIVE_ORIGIN + '/employer/ui/js/jobboard/careers.js'
 const APP_COMPONENT_URL = 'https://www.licious.in/_next/static/chunks/app/content/careers/jobs/page-a5324517c636287b.js'
+// These complete published programs contain the same reviewed iframe, tenant,
+// initializer and integration module. The document selects one whole profile.
+const APP_COMPONENTS = new Map([
+  [APP_COMPONENT_URL,'2ec55b865dc2493fb8174fc75bb6076d7bd298102723d1bccfbe366ec0f0feff'],
+  ['https://www.licious.in/_next/static/chunks/app/content/careers/jobs/page-ee5b4b837d8d8e74.js','92a0899b761af9428e64f67f90eb8860aaf883c883f48453cf174af26d5901a0'],
+])
 const LISTING_INPUT = { source: 'careers', code: '', filterByBuId: -1 }
 // Freshly fetched, currently advertised clients establish the connected iframe,
 // unfiltered array, in1 backend and last-event publication rule. Never eval JS.
@@ -117,6 +125,7 @@ const roleLocation = (row, detail, reasons) => {
   if (countries.some(value => !['India', 'IN', 'IND'].includes(value))) {
     reasons.add(`native-country-scope-conflicts:${row.reqId}`); return null
   }
+  if (!countries.length) { reasons.add(`native-role-country-unpublished:${row.reqId}`); return null }
   const cities = []
   for (const place of assigned) {
     const city = getValidIndiaCityForJob({ city: place.office, location: place.office })
@@ -198,7 +207,7 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
     const rawScripts = within(rawRoot, node => node.tag === 'script')
     const rawPaths = rawScripts.map(node => { try { return node.attrs.src ? new URL(node.attrs.src, CURRENT_JOBS_URL).pathname : '' } catch { return '' } })
     const legacyPage = data.length === 1 && parseJson(data[0].raw, 'current Next page').page === '/content/careers/jobs' && appComponents.length === 0
-    const appPage = data.length === 0 && components.length === 0 && appComponents.length === 1 && appComponents[0].href === APP_COMPONENT_URL
+    const appPage = data.length === 0 && components.length === 0 && appComponents.length === 1 && APP_COMPONENTS.has(appComponents[0].href)
     requireNative(legacyPage || appPage, 'current jobs page client handoff changed')
     requireNative(appPage || components.length === 1, 'current connected job client is unavailable')
     requireNative(rawScripts.filter(node => node.attrs.id === '__NEXT_DATA__').length === data.length
@@ -213,7 +222,7 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
       // Other App Router dependencies and company-wide hiring scope are unproved.
       reasons.add('app-router-company-scope-unqualified')
     }
-    requireNative(hash(await request(appPage ? APP_COMPONENT_URL : components[0].href)) === (appPage ? CLIENT_HASHES.appComponent : CLIENT_HASHES.component), 'current job client contract changed')
+    requireNative(hash(await request(appPage ? appComponents[0].href : components[0].href)) === (appPage ? APP_COMPONENTS.get(appComponents[0].href) : CLIENT_HASHES.component), 'current job client contract changed')
     requireNative(hash(await request(INTEGRATION_URL)) === CLIENT_HASHES.integration, 'current integration client contract changed')
     if (hasAdditionalSurface(jobsPage, CURRENT_JOBS_URL, allowed)) reasons.add('additional-current-recruiting-surface')
     const board = readVisibleNativeDocument(await request(PUBLIC_PORTAL_URL))
@@ -225,9 +234,11 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
     const rows = listingRows(await jsonAt(LISTING_API_URL, LISTING_INPUT)), ids = rows.map(row => row.reqId)
     const dateInput = { srcShortName: 'careers', requisitionIdList: ids }
     const dates = publicationHistory(await jsonAt(PUBLICATION_DATES_URL, dateInput), ids, checkedAt, reasons)
-    const jobs = new Map()
+    const jobs = new Map(), observations = []
     // Fetch all details before applying caller output caps.
     for (const row of rows) {
+      const observation={listingRecord:row,detailRecord:null,sourceScopeComplete:false,lifecycleCleanupAllowed:false}
+      observations.push(observation)
       let payload
       try { payload = await jsonAt(DETAIL_URL, { source: 'careers', id: '', code: '', reqId: row.reqId }) }
       catch (error) {
@@ -236,6 +247,7 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
         reasons.add(`native-detail-unavailable:${row.reqId}`); continue
       }
       const detail = payload?.data?.reqDetailsBO
+      observation.detailRecord=detail??null
       if (payload?.status !== 200 || !detail) { reasons.add(`native-detail-unavailable:${row.reqId}`); continue }
       requireNative(detail.reqId === row.reqId && norm(detail.reqTitle) === norm(row.reqTitle), 'full-detail role identity conflicts with listing')
       if (row.statusId !== 3 || detail.statusId !== 3 || detail.requisitionPublished !== true) { reasons.add(`native-role-not-published:${row.reqId}`); continue }
@@ -243,7 +255,10 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
       const visibleDocument = description ? readVisibleNativeDocument(detail.jdDisplay) : null
       const visibleRoot = visibleDocument?.nodes(node => node.tag === 'root')[0]
       const visible = visibleRoot ? visibleDocument.text(visibleRoot) : ''
-      if (!description || !visible || visible.replace(/\s/g, '') !== description.replace(/\s/g, '')) {
+      const originalRoot=typeof detail.jdDisplay==='string'?readNativeDocument(detail.jdDisplay).nodes(node=>node.tag==='root')[0]:null
+      const rawText=node=>typeof node==='string'?decodeNativeEntities(node):typeof node.raw==='string'?decodeNativeEntities(node.raw):node.children.map(rawText).join(' ')
+      const originalText=originalRoot?norm(rawText(originalRoot)):''
+      if (!description || !visible || !originalRoot || !hasReviewedCriterionRendering(originalRoot) || visible.replace(/\s/g, '') !== description.replace(/\s/g, '') || originalText.replace(/\s/g,'')!==description.replace(/\s/g,'')) {
         reasons.add(`full-native-description-unavailable:${row.reqId}`); continue
       }
       const employers = [detail.companyName, detail.clientName, detail.hiringOrganization?.name, row.companyName, row.clientName, row.hiringOrganization?.name].filter(value => value != null)
@@ -266,7 +281,7 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
         requiredSkills: strings(detail.mandatorySkillList), preferredSkills: strings(detail.nonMandatorySkillList),
         minimumQualification: null, preferredQualification: null, nativeEducationRequirements: strings(detail.educationList),
         sourceNativeLocations: location.assigned,
-        sourceNativeCountryEvidence: { method: 'role-assigned-office-trusted-india-city', policy: 'src/utils/publicJobLocationScope.js', rawCountry: row.countryCode ?? null, source: 'reqDetailsBO.locationList' },
+        sourceNativeCountryEvidence: { method: 'explicit-native-role-country-with-reconciled-assigned-locations', rawCountry: row.countryCode ?? row.country ?? detail.countryCode ?? detail.country ?? null, source: 'reqDetailsBO.country+locationList' },
         sourceNativeDates: { publishedOn, publicationEvents: history, firstPublishedOn: history[0], approvedOn: row.approvedOn ?? null },
         sourceNativeStatusEvidence: { statusId: detail.statusId, requisitionPublished: detail.requisitionPublished },
         sourceNativeEmployerEvidence: { clientId: tenant.clientId, clientName: tenant.clientName, companyWebsite: tenant.companyWebsite,
@@ -287,7 +302,10 @@ export const createNativeLiciousScraper = ({ maxJobs: defaultMaxJobs = 0, now = 
     if (selected.length !== healthy.length) reasons.add('source-job-limit')
     const complete = reasons.size === 0
     if (!complete) selected.forEach(job => Object.assign(job, { sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false }))
+    attachSourceObservationEvidence(selected,{source:'licious',recordKind:'vacancy-rows',observedRecordCount:rows.length,observedVacancyCount:rows.length,sourceScopeComplete:false})
+    Object.defineProperty(selected,'nativeCollectionEvidence',{value:{source:'licious',recordKind:'vacancy-rows',observedRecordCount:rows.length,observedVacancyCount:rows.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,observations,closingRecords:closing,reasons:[...reasons]},configurable:true})
     return attachInventoryEvidence(selected, { status: complete ? closing.length === 0 ? 'verified-empty' : 'complete-inventory' : 'discovery-only',
+      lifecycleCleanupAllowed:false,
       firstParty: true, surface: CURRENT_JOBS_URL, listingComplete: complete, reportedTotal: closing.length, indiaFacetCount: complete ? healthy.length : null,
       pagesFetched: requests, verifiedAt: new Date(now()).toISOString(), reason: complete ? 'current-native-employer-full-inventory-details-and-closing-reconciled'
         : `licious-native-incomplete:${[...reasons].join(';')}` })

@@ -7,6 +7,8 @@ import { createCatalogScraper, getScraperCatalog } from '../../scraper-support/p
 import { readInventoryEvidence, isCompleteScraperAttempt, isFreshCompleteInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { extractionDetailHealth } from '../../scraper-support/utils/extractionDetailHealth.js'
 import { createDataikuPublicRead, HOME, JOBS, OFFICES, LIMITS } from './publicRead.js'
+import { decodeNativeEntities } from '../../scraper-support/utils/activeNativeHtml.js'
+import { assessSoftFailureAcquisition } from '../../scripts/softFailureAssessment20261113.mjs'
 
 // This test composes the retained20-response native cohort with two copies of
 // the separately captured office protocol. It is not a new live observation.
@@ -137,9 +139,26 @@ test('future India role retains exact full native fields, paired detail and orig
   assert.equal(Date.parse(job.postingDate), Date.parse(target.first_published))
   assert.equal(job.sourceDetailComplete, true)
   assert.equal(job.sourceListingComplete, true, result.evidence.reason)
-  assert.equal(job.sourceScopeComplete, true)
-  assert.equal(job.lifecycleCleanupAllowed, true)
+  assert.equal(job.sourceScopeComplete, false)
+  assert.equal(job.lifecycleCleanupAllowed, false)
   assert.equal(result.evidence.indiaFacetCount, 1)
+})
+
+test('an offscreen original India criterion is withheld at the actual publication boundary and retained in audit', async () => {
+  const result = await execute({ india: true, mutate: response => {
+    if (!response.url.includes('boards-api') || response.url === OFFICES) return
+    const model = JSON.parse(response.body)
+    for (const row of model.jobs || [model]) if (row.id === target.id) {
+      row.content = '<div style="position:fixed;left:-9999px">' + decodeNativeEntities(row.content) + '</div>'
+    }
+    response.body = JSON.stringify(model)
+  } })
+  partial(result)
+  assert.equal(result.jobs.length, 0)
+  const assessment = assessSoftFailureAcquisition(result.provider, result.jobs)
+  assert.equal(assessment.eligibleJobs, 0)
+  assert.equal(assessment.zeroJobEvidence, 'coverage-gap')
+  assert.match(result.audit.openingRecords.find(row => row.id === target.id).content, /left:-9999px/)
 })
 
 test('later office country drift preserves the fully validated opening India role', async () => {
@@ -170,11 +189,15 @@ test('an incomplete native closing retains the already paired full India detail'
   assert.equal(result.audit.details.length, 16)
 })
 
-test('new corporate recruiting control withdraws certification without losing verified India criteria', async () => {
+test('new corporate recruiting control holds company scope while retaining the independently reconciled board', async () => {
   const result = await execute({ india: true, mutate: response => {
     if (response.url === HOME) response.body = response.body.replace('</body>', '<iframe srcdoc="&lt;a href=&quot;https://jobs.lever.co/dataiku&quot;&gt;Open roles&lt;/a&gt;"></iframe></body>')
   } })
-  partial(result)
+  assert.equal(result.evidence.listingComplete, true)
+  assert.equal(result.evidence.lifecycleCleanupAllowed, false)
+  assert.equal(result.jobs[0].sourceScopeComplete, false)
+  assert.equal(result.jobs[0].lifecycleCleanupAllowed, false)
+  assert.ok(result.audit.publicInventoryScope.companyScopeReasons.includes('current-public-employer-scope-unreviewed'))
   assert.equal(result.jobs.length, 1)
   assert.equal(result.jobs[0].sourceDescription, target.content)
 })
@@ -216,9 +239,9 @@ test('unsupported metadata remains present and cannot qualify a full detail', as
     response.body = JSON.stringify(model)
   } })
   partial(result)
-  assert.equal(result.jobs.length, 1)
-  assert.equal(result.jobs[0].sourceNativePayload.mandatoryLicense, 'Controlled future licence criterion')
-  assert.equal(result.jobs[0].sourceDetailComplete, false)
+  assert.equal(result.jobs.length, 0)
+  assert.equal(result.audit.withheldIndiaDetails[0].sourceNativePayload.mandatoryLicense, 'Controlled future licence criterion')
+  assert.equal(result.audit.withheldIndiaDetails[0].sourceDetailComplete, false)
 })
 
 test('unreviewed office eligibility criteria remain raw and revoke affected detail qualification', async () => {
@@ -229,9 +252,9 @@ test('unreviewed office eligibility criteria remain raw and revoke affected deta
     response.body = JSON.stringify(model)
   } })
   partial(result)
-  assert.equal(result.jobs.length, 1)
-  assert.equal(result.jobs[0].sourceDescription, target.content)
-  assert.equal(result.jobs[0].sourceDetailComplete, false)
+  assert.equal(result.jobs.length, 0)
+  assert.equal(result.audit.withheldIndiaDetails[0].sourceDescription, target.content)
+  assert.equal(result.audit.withheldIndiaDetails[0].sourceDetailComplete, false)
   assert.equal(result.audit.publicInventoryScope.openingOffices.offices.find(office => office.id === indiaOffice.id).mandatoryLicense,
     'Controlled office-specific licence criterion')
 })

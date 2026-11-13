@@ -71,12 +71,12 @@ test('synthetic empty native inventory behind the genuine App Router handoff can
  assert.match(evidence.reason,/app-router-company-scope-unqualified/)
 })
 
-test('entire genuine current44-response default output retains29 complete models, all30 output clocks and three native holds',async()=>{
+test('entire genuine current44-response acquisition retains all32 native models under unpublished role country holds',async()=>{
  const capture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./test-inputs/current-app-router-default-20261107.json.gz',import.meta.url))))
  const expectedBytes=Buffer.from(capture.fullOutputBase64,'base64')
  assert.equal(expectedBytes.length,capture.fullOutputBytes)
  assert.equal(createHash('sha256').update(expectedBytes).digest('hex'),capture.fullOutputSHA256)
- const expected=JSON.parse(expectedBytes),clocks=[capture.clocks.firstValidationClock,...expected.jobs.map(row=>row.scrapedAt),capture.clocks.closingValidationClock,expected.inventory.verifiedAt]
+ const expected=JSON.parse(expectedBytes),clocks=[capture.clocks.firstValidationClock,capture.clocks.closingValidationClock,expected.inventory.verifiedAt]
  let requestIndex=0,clockIndex=0
  const scraper=createNativeLiciousScraper({now:()=>{assert.ok(clockIndex<clocks.length);return clocks[clockIndex++]}})
  const jobs=await scraper.run({fetchPage:async(url,init)=>{
@@ -88,12 +88,15 @@ test('entire genuine current44-response default output retains29 complete models
   assert.equal(createHash('sha256').update(body).digest('hex'),row.sha256)
   return{status:row.status,url:row.finalUrl,contentType:row.contentType,body:body.toString('utf8')}
  }})
- assert.equal(requestIndex,44);assert.equal(clockIndex,32)
+ assert.equal(requestIndex,44);assert.equal(clockIndex,3)
  const actual={jobs,inventory:readInventoryEvidence(jobs),observations:readSourceObservationEvidence(jobs,'licious')}
- assert.deepEqual(actual,expected);assert.equal(Buffer.from(JSON.stringify(actual,null,2)+'\n').compare(expectedBytes),0)
- assert.equal(jobs.length,29);assert.ok(jobs.every(row=>row.sourceDetailComplete&&row.country==='India'&&row.lifecycleCleanupAllowed===false))
+ assert.equal(jobs.length,0)
+ assert.equal(actual.observations.observedRecordCount,32);assert.equal(actual.observations.sourceScopeComplete,false)
+ assert.equal(jobs.nativeCollectionEvidence.observations.length,32)
+ assert.ok(jobs.nativeCollectionEvidence.observations.every(row=>row.listingRecord&&typeof row.detailRecord.jdDisplay==='string'))
+ assert.equal(actual.inventory.lifecycleCleanupAllowed,false)
  assert.equal(actual.inventory.reportedTotal,32);assert.equal(actual.inventory.indiaFacetCount,null);assert.equal(actual.inventory.listingComplete,false)
- for(const reason of ['native-location-scope-unresolved:1587','role-employer-scope-unresolved:1557','native-location-scope-unresolved:1505'])assert.ok(actual.inventory.reason.includes(reason))
+ for(const reason of ['native-role-country-unpublished:1587','role-employer-scope-unresolved:1557','native-role-country-unpublished:1505'])assert.ok(actual.inventory.reason.includes(reason))
 })
 
 for(const [label,html]of [

@@ -21,6 +21,16 @@ const BINDINGS = {
   md: '69d8383a09270a4142e8b92ed18be947ffba361923149872e6065a57c405aac2',
   hd: 'c4f3afbe98c30681a613ae29fb78a619188085e8bb24e58285589c2947d09ac6',
 }
+const PROFILES = new Map([
+  [ROOT_SHA,{rootSHA256:ROOT_SHA,entryURL:ENTRY,declaredStylesheetURL:STYLE,entrySHA256:ENTRY_SHA,bindings:BINDINGS,blockStart:378741,blockEnd:958794,label:'current-react-20261111'}],
+  ['e38db4c9b80f4473777826213ae1c05d34209e31b5f7b45663c31d0a68885463',{
+    rootSHA256:'e38db4c9b80f4473777826213ae1c05d34209e31b5f7b45663c31d0a68885463',
+    entryURL:HOME+'static/js/main.69b436a7.js',declaredStylesheetURL:HOME+'static/css/main.cf2af84f.css',
+    entrySHA256:'7d6f90f82e40d6a365d4d132c2449a9f9cc35d0bf23820ca46b95dd89edfa56c',
+    bindings:{...BINDINGS,hd:'4dc55536c2de520890a1bfa4404ff9479bc4be0e5d8920e658de958ead601356'},
+    blockStart:378740,blockEnd:958441,label:'current-react-20261113',
+  }],
+])
 const hash = value => createHash('sha256').update(value).digest('hex')
 const failure = (message, cause, failureKind = 'surface_drift_or_fail_closed') => Object.assign(new Error('Blue Binaries current React contract: ' + message, { cause }), {
   code: 'BLUEBINARIES_REACT_CONTRACT', source: 'bluebinaries', abortRetries: true,
@@ -63,7 +73,8 @@ export const looksLikeCurrentReactHomepage = html => {
 }
 
 const readRoot = (html, signal) => {
-  requireContract(typeof html === 'string' && Buffer.byteLength(html) <= 16384 && hash(html) === ROOT_SHA, 'unreviewed complete employer root document', signal)
+  const profile=typeof html==='string'&&Buffer.byteLength(html)<=16384?PROFILES.get(hash(html)):null
+  requireContract(profile, 'unreviewed complete employer root document', signal)
   const doc = readNativeDocument(html)
   const scripts = doc.nodes(node => node.tag === 'script' && !node.inert)
   const roots = doc.nodes(node => node.tag === 'div' && node.attrs.id === 'root' && !node.inert)
@@ -73,13 +84,13 @@ const readRoot = (html, signal) => {
   requireContract(Object.hasOwn(script.attrs, 'defer') && !Object.hasOwn(script.attrs, 'nomodule') && !script.attrs.type, 'entry activation declaration changed', signal)
   const entry = new URL(script.attrs.src, HOME)
   const style = new URL(styles[0].attrs.href, HOME)
-  requireContract(entry.origin === new URL(HOME).origin && entry.href === ENTRY && !entry.username && !entry.password
-    && style.origin === entry.origin && style.href === STYLE, 'employer-origin entry or stylesheet declaration changed', signal)
-  return { rootSHA256: ROOT_SHA, entryURL: entry.href, declaredStylesheetURL: style.href }
+  requireContract(entry.origin === new URL(HOME).origin && entry.href === profile.entryURL && !entry.username && !entry.password
+    && style.origin === entry.origin && style.href === profile.declaredStylesheetURL, 'employer-origin entry or stylesheet declaration changed', signal)
+  return profile
 }
 
-const readProgram = (javascript, signal) => {
-  requireContract(typeof javascript === 'string' && Buffer.byteLength(javascript) <= 1048576 && hash(javascript) === ENTRY_SHA, 'unreviewed complete declared entry program', signal)
+const readProgram = (javascript, signal, profile) => {
+  requireContract(typeof javascript === 'string' && Buffer.byteLength(javascript) <= 1048576 && hash(javascript) === profile.entrySHA256, 'unreviewed complete declared entry program', signal)
   let ast
   try { ast = parse(javascript, { sourceType: 'script', ecmaVersion: 'latest' }) }
   catch (cause) { signal.throwIfAborted(); throw failure('complete declared entry AST unavailable', cause, 'parser_or_contract_error') }
@@ -91,8 +102,8 @@ const readProgram = (javascript, signal) => {
     const block = node.type === 'BlockStatement'
     if (block) blocks.push(node)
     const owner = blocks.at(-1)
-    if (node.type === 'VariableDeclarator' && Object.hasOwn(BINDINGS, node.id?.name)
-      && owner?.start === 378741 && owner.end === 958794) {
+    if (node.type === 'VariableDeclarator' && Object.hasOwn(profile.bindings, node.id?.name)
+      && owner?.start === profile.blockStart && owner.end === profile.blockEnd) {
       requireContract(!declarations.has(node.id.name), 'ambiguous same-scope contract binding', signal)
       declarations.set(node.id.name, node)
     }
@@ -111,8 +122,8 @@ const readProgram = (javascript, signal) => {
     if (block) blocks.pop()
   }
   walk(ast)
-  requireContract(rootRender && declarations.size === Object.keys(BINDINGS).length, 'root or same-scope frontend graph changed', signal)
-  for (const [name, expectedHash] of Object.entries(BINDINGS)) {
+  requireContract(rootRender && declarations.size === Object.keys(profile.bindings).length, 'root or same-scope frontend graph changed', signal)
+  for (const [name, expectedHash] of Object.entries(profile.bindings)) {
     const node = declarations.get(name)
     requireContract(hash(javascript.slice(node.start, node.end)) === expectedHash, 'complete ' + name + ' binding changed', signal)
   }
@@ -157,13 +168,13 @@ const readProgram = (javascript, signal) => {
   return models
 }
 
-const observation = (model, index) => {
+const observation = (model, index, sourceURL) => {
   const country = /,\s*UK\s*$/.test(model.location) ? 'United Kingdom' : /,\s*Austria\s*$/.test(model.location) ? 'Austria' : null
   return {
     source: 'bluebinaries', company: 'Blue Binaries', title: model.jobTitle, location: model.location,
     country, countryCode: country === 'United Kingdom' ? 'GB' : country === 'Austria' ? 'AT' : null,
     jobId: null, sourceJobId: null, requisitionId: null, observationIndex: index,
-    sourceUrl: CAREERS, nativeModelSourceURL: ENTRY, applyUrl: null, link: CAREERS,
+    sourceUrl: CAREERS, nativeModelSourceURL: sourceURL, applyUrl: null, link: CAREERS,
     applicationPublicContextValidated: false, applicationUrlScope: 'unqualified',
     sourceNativeFields: { ...model }, nativePublicationLabel: model.postedDate,
     postingDate: null, closingDate: null, sourceClosingDateIsExact: false,
@@ -179,20 +190,20 @@ export const collectCurrentReactHiringObservations = async ({ openingHTML, scope
   const { signal } = scope
   const opening = readRoot(openingHTML, signal)
   const openingProgram = await scope.read(opening.entryURL, { kind: 'javascript', phase: 'initial' })
-  const models = readProgram(openingProgram, signal)
+  const models = readProgram(openingProgram, signal, opening)
   // The AST work is synchronous. Yield once to the existing collection timer
   // before admitting closing reads or publishing any native observations.
   await yieldToCollectionTimer(0)
   signal.throwIfAborted()
   const closingHTML = await scope.read(HOME, { phase: 'closing' })
   const closing = readRoot(closingHTML, signal)
-  requireContract(closing.entryURL === opening.entryURL, 'closing declared entry changed', signal)
+  requireContract(closing.entryURL === opening.entryURL && closing.rootSHA256===opening.rootSHA256, 'closing declared entry changed', signal)
   const closingProgram = await scope.read(closing.entryURL, { kind: 'javascript', phase: 'closing' })
   // The closing entity is separately read, bounded and hashed. Equal complete bytes
   // have the same already-parsed graph; they are not replaced by the opening entity.
   requireContract(typeof closingProgram === 'string' && Buffer.byteLength(closingProgram) <= 1048576
-    && hash(closingProgram) === ENTRY_SHA && closingProgram === openingProgram, 'closing complete entry program changed', signal)
-  const observations = models.map(observation)
+    && hash(closingProgram) === opening.entrySHA256 && closingProgram === openingProgram, 'closing complete entry program changed', signal)
+  const observations = models.map((model,index)=>observation(model,index,opening.entryURL))
   signal.throwIfAborted()
   const now = scope.stamp()
   signal.throwIfAborted()
@@ -202,8 +213,8 @@ export const collectCurrentReactHiringObservations = async ({ openingHTML, scope
     qualification: 'Separate logical opening/closing reads; parser equality does not certify transport acquisition times or employer-wide inventory.',
   }
   const evidence = {
-    profile: 'current-react-20261111', rootSHA256: ROOT_SHA, entrySHA256: ENTRY_SHA,
-    declaredCareerURL: CAREERS, declaredStylesheetURL: STYLE, stylesheetVisibilityQualified: false,
+    profile: opening.label, rootSHA256: opening.rootSHA256, entrySHA256: opening.entrySHA256,
+    declaredCareerURL: CAREERS, declaredStylesheetURL: opening.declaredStylesheetURL, stylesheetVisibilityQualified: false,
     observations, closingEvidence, sourceScopeComplete: false, companyScopeComplete: false, lifecycleCleanupAllowed: false,
   }
   await scope.audit({
@@ -218,8 +229,10 @@ export const collectCurrentReactHiringObservations = async ({ openingHTML, scope
   const jobs = []
   Object.defineProperty(jobs, 'nativeCurrentReactEvidence', { value: evidence })
   attachSourceObservationEvidence(jobs, { source: 'bluebinaries', recordKind: 'hiring-signals', observedRecordCount: 9, observedVacancyCount: 0, sourceScopeComplete: false })
+  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:'bluebinaries',recordKind:'hiring-signals',observedRecordCount:9,observedVacancyCount:0,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false,...evidence},configurable:true})
   return attachInventoryEvidence(jobs, {
     status: 'coverage-gap', surface: CAREERS, firstParty: true, listingComplete: false,
+    lifecycleCleanupAllowed:false,
     pagesFetched: scope.publicPages.length, reportedTotal: null, indiaFacetCount: null, verifiedAt: now,
     reason: 'Current employer-declared React native observations; posting IDs, country, rendered criteria, application, closing acquisition and company scope remain unqualified.',
   })

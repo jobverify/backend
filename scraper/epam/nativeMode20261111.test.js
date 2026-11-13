@@ -3,7 +3,8 @@ import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import test from 'node:test'
-import { run, CAREER_PAGE_URL } from './script.js'
+import { extractSearchResults, CAREER_PAGE_URL } from './script.js'
+import { collectNativeEpam } from './nativeInventory.js'
 import { normalizeScrapedJob } from '../../scraper-support/utils/normalizeScrapedJob.js'
 import { extractJobFilterSignals } from '../../src/utils/jobFilterSignals.js'
 import { normalizePublicWorkArrangement } from '../../src/utils/publicWorkArrangement.js'
@@ -22,7 +23,9 @@ test.beforeEach(t => t.mock.method(globalThis, 'fetch', async () => assert.fail(
 async function replay(mutate, selectedID = hybridID, stages = ['opening-primary', 'opening', 'closing', 'closing-primary']) {
   let index = 0
   const mutations = []
-  const jobs = await run({ transport: async (url, init) => {
+  const jobs = await collectNativeEpam({ maxJobs: null, headers: {},
+    project: record => extractSearchResults({ data: { jobs: [record] } })[0],
+    options: { transport: async (url, init) => {
     const row = capture.responses[index++]
     assert.ok(row, 'No missing fixture response may masquerade as a safe source hold')
     assert.equal(url, row.url); assert.equal(init.method, 'GET'); assert.equal(init.redirect, 'manual')
@@ -49,7 +52,7 @@ async function replay(mutate, selectedID = hybridID, stages = ['opening-primary'
       }
     }
     return { url: row.finalUrl, status: row.status, headers: { 'content-type': row.contentType }, body, provenance: 'exact-actual-registered-25-acquired-packet-replay' }
-  } })
+  } } })
   assert.equal(index, 15, 'This fixture must exercise the uncapped complete native opening and closing transaction')
   assert.equal(jobs.length, 255)
   if (mutate) {
@@ -117,7 +120,7 @@ test('uncapped actual255 EPAM roles preserve typed Hybrid2 and Office253 through
     assert.equal(normalized.country, before.country); assert.equal(normalized.location, before.location)
     assert.equal(normalized.originalTitle, before.title); assert.equal(normalized.jobId, before.jobId)
     assert.equal(job.employmentType, null); assert.equal(normalized.sourceEmploymentType, null)
-    assert.equal(job.sourceScopeComplete, true); assert.equal(job.lifecycleCleanupAllowed, true)
+    assert.equal(job.sourceScopeComplete, false); assert.equal(job.lifecycleCleanupAllowed, false)
   }
 })
 

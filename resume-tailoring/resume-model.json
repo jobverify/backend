@@ -9,5 +9,5 @@
   "contextTokens": 16384,
   "maxOutputTokens": 6144,
   "comparisonOutputTokens": 1536,
-  "styleVersion": "latex-ats-v2"
+  "styleVersion": "abey-resume-v1"
 }

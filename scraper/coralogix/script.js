@@ -1,13 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import CORALOGIX_CATALOG from './catalog.js'
+import { runCurrentCoralogix } from './currentNative20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const INDIA_LOCATION_PATTERN =
   /\b(remote,\s*india|india|gurugram|gurgaon|bengaluru|bangalore|hyderabad|pune|mumbai|chennai|delhi|noida)\b/i
@@ -39,16 +36,6 @@ const stripTags = (value) => normalizeWhitespace(
     .replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<[^>]+>/g, ' '),
 )
-
-const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 20000,
-  signal,
-})
 
 const toAbsoluteUrl = (value) => {
   try {
@@ -210,10 +197,12 @@ export const extractJobFromDetail = (url, html = '') => {
 
 export const createCoralogixScraper = () => ({
   async run({
-    fetchText = defaultFetchText,
+    fetchText,
     now = () => new Date().toISOString(),
     signal,
+    ...options
   } = {}) {
+    if (!fetchText) return runCurrentCoralogix({ ...options, now, signal })
     const listingHtml = await fetchText(CAREERS_URL, { signal })
     if (!hasOfficialCareersSignal(listingHtml)) {
       throw new Error('Verified Coralogix careers page changed materially')

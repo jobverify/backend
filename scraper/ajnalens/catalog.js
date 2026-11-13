@@ -13,6 +13,8 @@ export const AJNALENS_CATALOG = {
   applicationUrl: 'https://ajnalens.com/careers',
   atsPlatform: 'official-company-careers',
   countryFilter: 'India',
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
   paginationStrategy: 'single-first-party-careers-page',
   extractionStrategy: 'verified-nextjs-careers-page+embedded-openings-payload+shared-first-party-careers-form',
   parser: 'custom-script',

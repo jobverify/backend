@@ -1,0 +1,265 @@
+{
+  "reviewedOn": "2026-11-13",
+  "officialHomepage": "https://www.any.do/",
+  "nativeBoard": "https://any-do.breezy.hr/",
+  "company": "Any.do",
+  "boardNormalizedSha256": "e57e7415fbe42d5724e010ca6e1e1486a99f88767eb863b94275090315c6eddc",
+  "normalization": "Only native share_id=0.<digits> referral entropy is replaced; no vacancy/template/visibility/executable bytes are removed.",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "knownNativeEnglishEmptyStatement": "Sorry, we don't currently have any open positions.",
+  "nativeRenderingReview": "The reviewed root is unfiltered and server renders exactly one no-positions container with no vacancy links/models, filters or continuation. The exact declared Breezy index client binds navigation/filters/referral UI only. The exact translation client maps the native empty token to the English publisher statement. All board inline/external declarations remain bound by the normalized native template hash; all13 native assets are read and byte-qualified twice.",
+  "assets": [
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/polyglot.min.js?v=2bq-1us5ftb",
+      "bytes": 3014,
+      "sha256": "a5682f074b1c630080749047546ffea128fc10394497f15c93d4ee2807b49549"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/translate.breezy.js?v=bl3m-pww369",
+      "bytes": 540562,
+      "sha256": "b583504060d956d38d9185320f0520ad76da69163befff43d6e7500c4f9c0ecf"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-hr/dependencies/fontawesome/v6.4.2-pro/css/all.css",
+      "bytes": 650759,
+      "sha256": "aa41917b782b2731d4b84b15da6afeaaefd2d8d593cc634e442129b48370915b"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/bootstrap.css",
+      "bytes": 99961,
+      "sha256": "e9503448692b738dd260fbd7f7cabf2e11f09b600fa97e6eb3a56eba5b1a7e9b"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/animate.css",
+      "bytes": 52790,
+      "sha256": "0ab525f34fd194333c8cbfd5e5f0cfa585a77f2d71ab415dc6e456a4c6c10e30"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/stylesheets/v3/index.css?v=2h2f-7joqcv",
+      "bytes": 115431,
+      "sha256": "784b6b8ec83174bcacd30f3a7c943aa01f6bb2f1cc3dbb04549a8607118d2101"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/jquery.js",
+      "bytes": 93105,
+      "sha256": "0ed0d14bbe5d90219933b6e1b65d3074fe618d533e35b6c84c1ea721d9415a7b"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/tooltip.js",
+      "bytes": 12132,
+      "sha256": "79db8c34e6803fb5f396f779730e500bb7464571d970961ae6d414005415e10a"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/popover.js",
+      "bytes": 3177,
+      "sha256": "19613f3e53c2a54d3a244ec884bcc647539b83d3e8020bdee0e14ba4792656fd"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/smoothscroll.js",
+      "bytes": 7994,
+      "sha256": "9fc82ff90f3a2533554ae38b0b91438f4ebe1ff8e9bb422b1a3d4420df0735fd"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/index.js?v=6t5-196s2vi",
+      "bytes": 8825,
+      "sha256": "d1d6d0f30dd829c3183f5c9f119a5d6787deb9df1f27952ca17aefbaca90150e"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/fancybox/source/jquery.fancybox.css",
+      "bytes": 4895,
+      "sha256": "968a8e56e4adaf8c135199ebd7f6cc065424ca45974d4dfbeb5607e69fe72fcd"
+    },
+    {
+      "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/fancybox/source/jquery.fancybox.pack.js",
+      "bytes": 23135,
+      "sha256": "bc50bf49cbe79ee49b4ee8b56f26ff4877bc4945c16f260b1481ba2355c96347"
+    }
+  ],
+  "corporateStylesheetAssets": [
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/7945594108dc3b1f.css",
+      "bytes": 46626,
+      "sha256": "29cf939da6a6be6f100a473ecc0671890eda120c909e66881800eeacb55d4946"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/ccf865e4253008f0.css",
+      "bytes": 25351,
+      "sha256": "5da6d30526b8724dd831b21b3f57b90ea5184563e2b5338d3cdc28c996d0de61"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/5a7c1b2ed68ba5d9.css",
+      "bytes": 4957,
+      "sha256": "0fe8a8f3d621f3295fa6b9646e1e9f3f313b12bde4812104ca58848cb384982a"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/4d7fddf0971db5ae.css",
+      "bytes": 600,
+      "sha256": "0657d5d567540ef668fcc83ecec05c5c88c0278a24e1d166dc50c624c18ba7b3"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/4951baacede0751e.css",
+      "bytes": 2026,
+      "sha256": "b8ee9aa170a633606adc0a225650cc65d44a4668f664f654ba9f4ef577f43577"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/0f9f7bf1e7ee9648.css",
+      "bytes": 4517,
+      "sha256": "9340cdb15b2d69fef7df9de35c5c915e74ca2ae075891ee08756e7b21c7cfbb9"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/9257653f9499e960.css",
+      "bytes": 7941,
+      "sha256": "741dd62b2b2c9a2badf779410edbdc28ef4b951b97556b8db036e8092263e1b6"
+    },
+    {
+      "requestedUrl": "https://www.any.do/_next/static/css/9798e27dba9b2b3d.css",
+      "bytes": 17273,
+      "sha256": "37990503da4e069ad60e1ccf973a9825857c139a7baf1eb2636c7cebb9b8e13f"
+    },
+    {
+      "requestedUrl": "https://assets.calendly.com/assets/external/widget.css",
+      "bytes": 2461,
+      "sha256": "a79d97b88b4d1d042cd34f2e46a1c79ce52f023728634bec0c6d65292895e174"
+    }
+  ],
+  "corporateInlineStyleSha256": [],
+  "corporateHandoffAncestry": [
+    {
+      "tag": "a",
+      "attrs": {
+        "href": "https://any-do.breezy.hr/",
+        "rel": "nofollow noreferrer",
+        "target": "_blank"
+      }
+    },
+    {
+      "tag": "li",
+      "attrs": {}
+    },
+    {
+      "tag": "ul",
+      "attrs": {
+        "class": "footer-nav"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "grid_1-5 grid_1-2-md grid_1-xs"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "grid -spacing-sm"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "wrap -size-lg"
+      }
+    },
+    {
+      "tag": "footer",
+      "attrs": {
+        "class": "site-footer"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "site _pd-t-xl"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {
+        "class": "__variable_d8ebd1 __variable_e183b1 __variable_ee06cb _10f666a0",
+        "lang": "en"
+      }
+    },
+    {
+      "tag": "root",
+      "attrs": {}
+    }
+  ],
+  "corporateStylesheetDeclarations": [
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/7945594108dc3b1f.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/ccf865e4253008f0.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/5a7c1b2ed68ba5d9.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/4d7fddf0971db5ae.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/4951baacede0751e.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/0f9f7bf1e7ee9648.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/9257653f9499e960.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "data-precedence": "next",
+        "href": "/_next/static/css/9798e27dba9b2b3d.css",
+        "rel": "stylesheet"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "href": "https://assets.calendly.com/assets/external/widget.css",
+        "rel": "stylesheet"
+      }
+    }
+  ]
+}

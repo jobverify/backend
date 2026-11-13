@@ -1,0 +1,2014 @@
+{
+  "observedOn": "2026-11-13",
+  "authorityStylesheetBytesReviewed": false,
+  "scopeLimit": "Eight observed cards repeat on page2; no complete unfiltered board or company-wide absence is proven. Current stylesheet bytes and active online application continuations remain unqualified.",
+  "contexts": [
+    {
+      "url": "https://bel-india.in/",
+      "bodyAttributes": {
+        "class": "home wp-singular page-template page-template-elementor_header_footer page page-id-2 custom-background wp-custom-logo wp-embed-responsive wp-theme-twentytwenty wp-megamenu ehf-header ehf-footer ehf-template-twentytwenty ehf-stylesheet-twentytwenty mega-menu-primary mega-menu-mobile ally-default singular missing-post-thumbnail has-no-pagination not-showing-comments show-avatars elementor_header_footer footer-top-visible reduced-spacing elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-2"
+      },
+      "inline": [
+        {
+          "attrs": {
+            "id": "wp-img-auto-sizes-contain-inline-css"
+          },
+          "sha256": "bb30c393cf6568d2b6f27fe621805573d9976bdb20e597ceff6b467c77c6b67f"
+        },
+        {
+          "attrs": {
+            "id": "wp-emoji-styles-inline-css"
+          },
+          "sha256": "ab27bae3ee005d98a419c9ea9aa1423b1e792e4e1f6bd1e79313563662930793"
+        },
+        {
+          "attrs": {
+            "id": "classic-theme-styles-inline-css"
+          },
+          "sha256": "0198c17b3620886acc079216ee17b5d171a40ab155c243a898a0c28900311cd1"
+        },
+        {
+          "attrs": {
+            "id": "global-styles-inline-css"
+          },
+          "sha256": "8ad9e9e001118781c982079c9b37e2fa23da11faf8a2e5daec21b3f35dd7eb5f"
+        },
+        {
+          "attrs": {
+            "id": "twentytwenty-style-inline-css"
+          },
+          "sha256": "ba63bbc333979856e848a812ea3185d2cdff60b26b316a6c619ae5285211b858"
+        },
+        {
+          "attrs": {},
+          "sha256": "06b28f9a12b7064bb7382a748da669949bdd1fc16629ae2794644dd54e237e8d"
+        },
+        {
+          "attrs": {},
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "attrs": {
+            "type": "text/css"
+          },
+          "sha256": "237e4dc5d4c5d9af4e59e00233ac7a09cc29bd35726cc0ac1f0d4451d16ffa63"
+        },
+        {
+          "attrs": {},
+          "sha256": "6b4b7dd4d92a7142387f1fc76b2484da65a22304a8062e04f46d81767fc9b972"
+        },
+        {
+          "attrs": {
+            "id": "custom-background-css"
+          },
+          "sha256": "62bffd53144302b2408b2665ef8551a21cdf0044aed3131732cc9b301c5b39be"
+        },
+        {
+          "attrs": {},
+          "sha256": "ad31458349f53a1a0f37cf41b58170f8a0b2a338dbb8edf2e22b340eb39cf096"
+        },
+        {
+          "attrs": {
+            "id": "wp-custom-css"
+          },
+          "sha256": "d79b3034b160a2aebaf343cad5446c150e082ed8d8ceecfbcf0e659cfc3fcb92"
+        },
+        {
+          "attrs": {
+            "id": "hfe-skip-link-style"
+          },
+          "sha256": "bf21398cbbbc95459e162057cd58c29b3324dd7ad349e7fc33fe8b87ac2dc094"
+        },
+        {
+          "attrs": {},
+          "sha256": "37c7b91d9a1fe8ecee8067b3d275851017812a96f52548eed6f6e0e6d35643c0"
+        },
+        {
+          "attrs": {},
+          "sha256": "acdc92ccb6ad178d81961563f654c1bc58acb9763d65e4144c13e8a9ec04fdf8"
+        },
+        {
+          "attrs": {},
+          "sha256": "cc910e4773935c442d89bdbd516ef5ecbc475101eb30dd451b137431d9628ab9"
+        },
+        {
+          "attrs": {},
+          "sha256": "4ed723c570d1dc4dd8b0496c75c2cb68e28f9f9a32f83646d20f6c8a71e49040"
+        },
+        {
+          "attrs": {},
+          "sha256": "6ee79347a1d2311efd3afdaed2de54645e48c80ffeef0800efe162aa16106db4"
+        },
+        {
+          "attrs": {},
+          "sha256": "839d5dcd173ff26ee6488089959f6252f6e92af7ca793cc9e0916e90686058c7"
+        }
+      ],
+      "declarations": [
+        {
+          "rel": "stylesheet",
+          "id": "dashicons-css",
+          "href": "https://bel-india.in/wp-includes/css/dashicons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "menu-icons-extra-css",
+          "href": "https://bel-india.in/wp-content/plugins/menu-icons/css/extra.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-widgets-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pll-language-switcher-css",
+          "href": "https://bel-india.in/wp-content/plugins/polylang/css/build/language-switcher.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pll-navigation-language-switcher-css",
+          "href": "https://bel-india.in/wp-content/plugins/polylang/css/build/navigation-language-switcher.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpos-magnific-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/magnific-popup.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpos-slick-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/slick.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "aigpl-public-css-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/aigpl-public.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pb_animate-css",
+          "href": "https://bel-india.in/wp-content/plugins/ays-popup-box/public/css/animate.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "contact-form-7-css",
+          "href": "https://bel-india.in/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ditty-displays-css",
+          "href": "https://bel-india.in/wp-content/plugins/ditty-news-ticker/assets/build/dittyDisplays.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ditty-fontawesome-css",
+          "href": "https://bel-india.in/wp-content/plugins/ditty-news-ticker/includes/libs/fontawesome-6.4.0/css/all.css",
+          "media": ""
+        },
+        {
+          "rel": "stylesheet",
+          "id": "to-top-css",
+          "href": "https://bel-india.in/wp-content/plugins/to-top/public/css/to-top-public.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_fontawesome_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/font-awesome-4.7.0/css/font-awesome.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_icofont_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/icofont/icofont.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/css/wpmm.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wp_megamenu_generated_css-css",
+          "href": "https://bel-india.in/wp-content/uploads/wp-megamenu/wp-megamenu.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "featuresbox_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/addons/wpmm-featuresbox/wpmm-featuresbox.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "postgrid_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/addons/wpmm-gridpost/wpmm-gridpost.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-frontend-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-8-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-8.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "font-awesome-5-all-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "font-awesome-4-shim-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpdt-elementor-widget-font-css",
+          "href": "https://bel-india.in/wp-content/plugins/wpdatatables/integrations/page_builders/elementor/css/style.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "swiper-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-swiper-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-image-carousel-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-image-carousel.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-heading-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-heading.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-motion-fx-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/modules/motion-fx.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-image-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-image.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-spacer-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-spacer.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-counter-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-counter.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-2-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-2.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-261-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-261.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-835-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-835.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "megamenu-css",
+          "href": "https://bel-india.in/wp-content/uploads/maxmegamenu/style_en_us.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pojo-a11y-css",
+          "href": "https://bel-india.in/wp-content/plugins/pojo-accessibility/modules/legacy/assets/css/style.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "twentytwenty-style-css",
+          "href": "https://bel-india.in/wp-content/themes/twentytwenty/style.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "twentytwenty-print-style-css",
+          "href": "https://bel-india.in/wp-content/themes/twentytwenty/print.css",
+          "media": "print"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "bootstrap_css-css",
+          "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-color-scheme-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/color-scheme/assets/css/ecs-color-scheme.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-container-layout-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/container-layout/assets/css/ecs-container-layout.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-mobile-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/mobile-menu/assets/css/ecs-mobile-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-editorial-text-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/editorial-text/assets/css/ecs-editorial-text.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "addtoany-css",
+          "href": "https://bel-india.in/wp-content/plugins/add-to-any/addtoany.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-elementor-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-icons-list-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-share-icons-brands-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-share-icons-fontawesome-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-nav-menu-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-widget-blockquote-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-blockquote.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-mega-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-mega-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-nav-menu-widget-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "poppins-css",
+          "href": "//fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "open-sans-css",
+          "href": "https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&display=fallback",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-styles-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/assets/css/ecs-style.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-356-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-356.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-3813-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-3813.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-4055-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-4055.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-notosans-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/notosans.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-poppins-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/poppins.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-lato-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/lato.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-roboto-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/roboto.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-shared-0-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-fa-solid-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-fa-brands-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-nav-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-animation-float-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-float.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-social-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-apple-webkit-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-icon-list-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ays-pb-min-css",
+          "href": "https://bel-india.in/wp-content/plugins/ays-popup-box/public/css/ays-pb-public-min.css",
+          "media": "all"
+        }
+      ],
+      "cards": []
+    },
+    {
+      "url": "https://bel-india.in/job-notifications/",
+      "bodyAttributes": {
+        "class": "wp-singular page-template page-template-elementor_header_footer page page-id-10508 custom-background wp-custom-logo wp-embed-responsive wp-theme-twentytwenty wp-megamenu ehf-header ehf-footer ehf-template-twentytwenty ehf-stylesheet-twentytwenty mega-menu-primary mega-menu-mobile ally-default singular missing-post-thumbnail has-no-pagination not-showing-comments show-avatars elementor_header_footer footer-top-visible reduced-spacing elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-10508"
+      },
+      "inline": [
+        {
+          "attrs": {
+            "id": "wp-img-auto-sizes-contain-inline-css"
+          },
+          "sha256": "bb30c393cf6568d2b6f27fe621805573d9976bdb20e597ceff6b467c77c6b67f"
+        },
+        {
+          "attrs": {
+            "id": "wp-emoji-styles-inline-css"
+          },
+          "sha256": "ab27bae3ee005d98a419c9ea9aa1423b1e792e4e1f6bd1e79313563662930793"
+        },
+        {
+          "attrs": {
+            "id": "classic-theme-styles-inline-css"
+          },
+          "sha256": "0198c17b3620886acc079216ee17b5d171a40ab155c243a898a0c28900311cd1"
+        },
+        {
+          "attrs": {
+            "id": "global-styles-inline-css"
+          },
+          "sha256": "8ad9e9e001118781c982079c9b37e2fa23da11faf8a2e5daec21b3f35dd7eb5f"
+        },
+        {
+          "attrs": {
+            "id": "twentytwenty-style-inline-css"
+          },
+          "sha256": "ba63bbc333979856e848a812ea3185d2cdff60b26b316a6c619ae5285211b858"
+        },
+        {
+          "attrs": {},
+          "sha256": "06b28f9a12b7064bb7382a748da669949bdd1fc16629ae2794644dd54e237e8d"
+        },
+        {
+          "attrs": {},
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "attrs": {
+            "type": "text/css"
+          },
+          "sha256": "237e4dc5d4c5d9af4e59e00233ac7a09cc29bd35726cc0ac1f0d4451d16ffa63"
+        },
+        {
+          "attrs": {},
+          "sha256": "6b4b7dd4d92a7142387f1fc76b2484da65a22304a8062e04f46d81767fc9b972"
+        },
+        {
+          "attrs": {
+            "id": "custom-background-css"
+          },
+          "sha256": "62bffd53144302b2408b2665ef8551a21cdf0044aed3131732cc9b301c5b39be"
+        },
+        {
+          "attrs": {},
+          "sha256": "ad31458349f53a1a0f37cf41b58170f8a0b2a338dbb8edf2e22b340eb39cf096"
+        },
+        {
+          "attrs": {
+            "id": "wp-custom-css"
+          },
+          "sha256": "d79b3034b160a2aebaf343cad5446c150e082ed8d8ceecfbcf0e659cfc3fcb92"
+        },
+        {
+          "attrs": {
+            "id": "hfe-skip-link-style"
+          },
+          "sha256": "bf21398cbbbc95459e162057cd58c29b3324dd7ad349e7fc33fe8b87ac2dc094"
+        },
+        {
+          "attrs": {},
+          "sha256": "37c7b91d9a1fe8ecee8067b3d275851017812a96f52548eed6f6e0e6d35643c0"
+        },
+        {
+          "attrs": {},
+          "sha256": "acdc92ccb6ad178d81961563f654c1bc58acb9763d65e4144c13e8a9ec04fdf8"
+        },
+        {
+          "attrs": {},
+          "sha256": "4ed723c570d1dc4dd8b0496c75c2cb68e28f9f9a32f83646d20f6c8a71e49040"
+        },
+        {
+          "attrs": {},
+          "sha256": "6ee79347a1d2311efd3afdaed2de54645e48c80ffeef0800efe162aa16106db4"
+        },
+        {
+          "attrs": {},
+          "sha256": "839d5dcd173ff26ee6488089959f6252f6e92af7ca793cc9e0916e90686058c7"
+        }
+      ],
+      "declarations": [
+        {
+          "rel": "stylesheet",
+          "id": "dashicons-css",
+          "href": "https://bel-india.in/wp-includes/css/dashicons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "menu-icons-extra-css",
+          "href": "https://bel-india.in/wp-content/plugins/menu-icons/css/extra.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-widgets-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pll-language-switcher-css",
+          "href": "https://bel-india.in/wp-content/plugins/polylang/css/build/language-switcher.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pll-navigation-language-switcher-css",
+          "href": "https://bel-india.in/wp-content/plugins/polylang/css/build/navigation-language-switcher.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpos-magnific-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/magnific-popup.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpos-slick-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/slick.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "aigpl-public-css-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/aigpl-public.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pb_animate-css",
+          "href": "https://bel-india.in/wp-content/plugins/ays-popup-box/public/css/animate.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "contact-form-7-css",
+          "href": "https://bel-india.in/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ditty-displays-css",
+          "href": "https://bel-india.in/wp-content/plugins/ditty-news-ticker/assets/build/dittyDisplays.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ditty-fontawesome-css",
+          "href": "https://bel-india.in/wp-content/plugins/ditty-news-ticker/includes/libs/fontawesome-6.4.0/css/all.css",
+          "media": ""
+        },
+        {
+          "rel": "stylesheet",
+          "id": "to-top-css",
+          "href": "https://bel-india.in/wp-content/plugins/to-top/public/css/to-top-public.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_fontawesome_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/font-awesome-4.7.0/css/font-awesome.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_icofont_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/icofont/icofont.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/css/wpmm.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wp_megamenu_generated_css-css",
+          "href": "https://bel-india.in/wp-content/uploads/wp-megamenu/wp-megamenu.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "featuresbox_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/addons/wpmm-featuresbox/wpmm-featuresbox.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "postgrid_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/addons/wpmm-gridpost/wpmm-gridpost.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-frontend-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-8-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-8.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "font-awesome-5-all-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "font-awesome-4-shim-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpdt-elementor-widget-font-css",
+          "href": "https://bel-india.in/wp-content/plugins/wpdatatables/integrations/page_builders/elementor/css/style.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-heading-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-heading.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-10508-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-10508.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-261-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-261.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-835-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-835.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "megamenu-css",
+          "href": "https://bel-india.in/wp-content/uploads/maxmegamenu/style_en_us.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pojo-a11y-css",
+          "href": "https://bel-india.in/wp-content/plugins/pojo-accessibility/modules/legacy/assets/css/style.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "twentytwenty-style-css",
+          "href": "https://bel-india.in/wp-content/themes/twentytwenty/style.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "twentytwenty-print-style-css",
+          "href": "https://bel-india.in/wp-content/themes/twentytwenty/print.css",
+          "media": "print"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "bootstrap_css-css",
+          "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-color-scheme-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/color-scheme/assets/css/ecs-color-scheme.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-container-layout-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/container-layout/assets/css/ecs-container-layout.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "swiper-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-swiper-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-mobile-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/mobile-menu/assets/css/ecs-mobile-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-editorial-text-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/editorial-text/assets/css/ecs-editorial-text.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "addtoany-css",
+          "href": "https://bel-india.in/wp-content/plugins/add-to-any/addtoany.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-elementor-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-icons-list-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-share-icons-brands-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-share-icons-fontawesome-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-nav-menu-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-widget-blockquote-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-blockquote.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-mega-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-mega-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-nav-menu-widget-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "poppins-css",
+          "href": "//fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "open-sans-css",
+          "href": "https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&display=fallback",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-styles-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/assets/css/ecs-style.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-356-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-356.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-3813-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-3813.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-4055-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-4055.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-poppins-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/poppins.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-notosans-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/notosans.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-roboto-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/roboto.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-lato-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/lato.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-shared-0-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-fa-solid-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-fa-brands-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-nav-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-image-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-image.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-animation-float-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-float.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-social-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-apple-webkit-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-icon-list-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ays-pb-min-css",
+          "href": "https://bel-india.in/wp-content/plugins/ays-popup-box/public/css/ays-pb-public-min.css",
+          "media": "all"
+        }
+      ],
+      "cards": [
+        {
+          "treeSHA256": "19349f38d6b5f07a14360b847b2c13ab55a067a5cd5aa143e4e66a264b23d06e",
+          "text": "WALK-IN SELECTION FOR THE POST OF TRAINEE ENGINEER-I FOR BEL KOTDWAR Advertisements Detailed Advertisement for the Post Trainee Engineer-I - [pdf, 779.57 KB] Click here to Pre-Registration for Walk-in Prescribed Format for EWS Certificate - [pdf, 67.59 KB] Prescribed Format for OBC-NCL Certificate - [pdf, 408.8 KB] Prescribed Format for SC/ST Certificate - [pdf, 71.49 KB] Prescribed Format for PwBD Certificate - [pdf, 158.44 KB] Link for online Payment of application fee Instructions for making payment through SBI Collect - [docx, 661.5 KB] Location: BEL KOTDWAR Last Date to Apply: 26-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/11/AdvertisementTE-I.pdf"
+        },
+        {
+          "treeSHA256": "dd14b950bc42ced94527f723cbd4b4fc56545b5223dad0af9fcededdb63e3d90",
+          "text": "Recruitment of Teachers for Bharat Electronics Educational Institutions (BEEI) Advertisements Click here to view detailed advertisement - [pdf, 236.1 KB] Click here to apply Prescribed Format for EWS Certificate - [pdf, 35.76 KB] Prescribed Format for OBC Certificate - [pdf, 8.24 KB] Prescribed Format for SC / ST Certificate - [pdf, 60.9 KB] Prescribed Format for PwBD Certificate - [pdf, 243.61 KB] Location: Last Date to Apply: 24-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/11/BEEI-Recruitment-Fixed-Tenure-Teachers-Job-Description.pdf"
+        },
+        {
+          "treeSHA256": "e250fab9f14aba018fa294acd54c0f06bafa0b34616cfe2ae141c43d5ab1cf61",
+          "text": "Walk In Interview for Management Industrial Trainee (Finance) Advertisements Please click for detailed advertisement. - [pdf, 53.13 KB] corrigendum - [pdf, 170.59 KB] Location: BEL Ghaziabad Last Date to Apply: 20-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/MIT-Ad.-English.pdf"
+        },
+        {
+          "treeSHA256": "42d1e8572a9d91ba87188ca895f8f2f3b1958ab7b93f032b0a561ba1923b39fb",
+          "text": "RECRUITMENT FOR THE POST OF PROBATIONARY ENGINEER (E-II GRADE) ON ALL INDIA BASIS (Ref. Adv . No- 17556/ HR/aII-INDIA/2026) Advertisements Click here to view the detailed advertisement - [pdf, 522.58 KB] Click here to apply Prescribed Format for OBC Certificate - [pdf, 8.24 KB] Prescribed Format for PwBD - [pdf, 243.61 KB] Prescribed Format for SC/ST Certificate - [pdf, 60.9 KB] Prescribed Format for EWS Certificate - [pdf, 35.76 KB] Location:",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/External-Ad-2026-English-1.pdf"
+        },
+        {
+          "treeSHA256": "786c10ec58d9e8211a01ab417403c9748257e4760bf7de811c9b2dad9249f3a9",
+          "text": "Application for the post of Director (Research and Development) Advertisements Click here to view the Detailed Advertisement - [pdf, 175.01 KB] Location: Bengaluru Last Date to Apply: 05-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/Director-RD-Advertisement.pdf"
+        },
+        {
+          "treeSHA256": "09aa673c13d18ed6f2ba461aa5fb427be10d28eecfb4b6c50b4ed70b18b80abc",
+          "text": "Recruitment for temporary post of Project Engineer-I for NWCS SBU- Bg.Cx. Advertisements Click here to view the detailed advertisement. - [pdf, 423 KB] Click below link to Apply Click here for Online Payment of Application fee. Click here for Instructions for making payment through SBI Collect. - [pdf, 959.82 KB] Click here for prescribed OBC(NCL) Certificate format. - [pdf, 305.85 KB] Click here for prescribed SC/ST Certificate format. - [pdf, 12.6 KB] Click here for prescribed PWD Certificate format. - [pdf, 11.36 KB] Click here for prescribed EWS Certificate format. - [pdf, 67.6 KB] Location: New Delhi/Bengaluru. Last Date to Apply: 27-10-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/PE-Advt-NWCS-Final.pdf"
+        },
+        {
+          "treeSHA256": "4385831fa7946a46a9a6508b97d7ed9b1b44b6f43b5984437eeb18e2b8b4ab70",
+          "text": "WALK-IN INTERVIEW FOR ENGAGEMENT OF GRADUATE, DIPLOMA AND ITI APPRENTICES FOR BEL-NAVI MUMBAI UNIT Advertisements Click here to view detailed advertisement - [pdf, 394.38 KB] Location: BEL NAVI Mumbai Last Date to Apply: 12-10-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/Advertisement_App_final.pdf"
+        },
+        {
+          "treeSHA256": "bb640ee694ef466ecfde0a835fa64d6e7587b5ce45a290e4b7b394994012e5dc",
+          "text": "Recruitment for the post of Project Engineer-I for EWandA SBU - BEL Bengaluru Complex Advertisements Click here to view detailed advertisement. - [pdf, 979.46 KB] Click here to apply Link AIMA Instruction for making payment through SBI collect - [pdf, 595.29 KB] Click here for prescribed SC/ST Certificate format. - [pdf, 12.79 KB] Click here for prescribed EWS Certificate format. - [pdf, 501.69 KB] Click here for prescribed OBC Certificate Format - [pdf, 12.65 KB] Click here for prescribed PwBD format - [pdf, 243.61 KB] Location: Bengaluru Last Date to Apply: 23-10-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/final-advt-corp-communication-aima-09102026.pdf"
+        }
+      ]
+    },
+    {
+      "url": "https://bel-india.in/job-notifications/page/2/",
+      "bodyAttributes": {
+        "class": "paged wp-singular page-template page-template-elementor_header_footer page page-id-10508 custom-background wp-custom-logo wp-embed-responsive paged-2 page-paged-2 wp-theme-twentytwenty wp-megamenu ehf-header ehf-footer ehf-template-twentytwenty ehf-stylesheet-twentytwenty mega-menu-primary mega-menu-mobile ally-default singular missing-post-thumbnail has-no-pagination not-showing-comments show-avatars elementor_header_footer footer-top-visible reduced-spacing elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-10508"
+      },
+      "inline": [
+        {
+          "attrs": {
+            "id": "wp-img-auto-sizes-contain-inline-css"
+          },
+          "sha256": "bb30c393cf6568d2b6f27fe621805573d9976bdb20e597ceff6b467c77c6b67f"
+        },
+        {
+          "attrs": {
+            "id": "wp-emoji-styles-inline-css"
+          },
+          "sha256": "ab27bae3ee005d98a419c9ea9aa1423b1e792e4e1f6bd1e79313563662930793"
+        },
+        {
+          "attrs": {
+            "id": "classic-theme-styles-inline-css"
+          },
+          "sha256": "0198c17b3620886acc079216ee17b5d171a40ab155c243a898a0c28900311cd1"
+        },
+        {
+          "attrs": {
+            "id": "global-styles-inline-css"
+          },
+          "sha256": "8ad9e9e001118781c982079c9b37e2fa23da11faf8a2e5daec21b3f35dd7eb5f"
+        },
+        {
+          "attrs": {
+            "id": "twentytwenty-style-inline-css"
+          },
+          "sha256": "ba63bbc333979856e848a812ea3185d2cdff60b26b316a6c619ae5285211b858"
+        },
+        {
+          "attrs": {},
+          "sha256": "06b28f9a12b7064bb7382a748da669949bdd1fc16629ae2794644dd54e237e8d"
+        },
+        {
+          "attrs": {},
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "attrs": {
+            "type": "text/css"
+          },
+          "sha256": "237e4dc5d4c5d9af4e59e00233ac7a09cc29bd35726cc0ac1f0d4451d16ffa63"
+        },
+        {
+          "attrs": {},
+          "sha256": "6b4b7dd4d92a7142387f1fc76b2484da65a22304a8062e04f46d81767fc9b972"
+        },
+        {
+          "attrs": {
+            "id": "custom-background-css"
+          },
+          "sha256": "62bffd53144302b2408b2665ef8551a21cdf0044aed3131732cc9b301c5b39be"
+        },
+        {
+          "attrs": {},
+          "sha256": "ad31458349f53a1a0f37cf41b58170f8a0b2a338dbb8edf2e22b340eb39cf096"
+        },
+        {
+          "attrs": {
+            "id": "wp-custom-css"
+          },
+          "sha256": "d79b3034b160a2aebaf343cad5446c150e082ed8d8ceecfbcf0e659cfc3fcb92"
+        },
+        {
+          "attrs": {
+            "id": "hfe-skip-link-style"
+          },
+          "sha256": "bf21398cbbbc95459e162057cd58c29b3324dd7ad349e7fc33fe8b87ac2dc094"
+        },
+        {
+          "attrs": {},
+          "sha256": "37c7b91d9a1fe8ecee8067b3d275851017812a96f52548eed6f6e0e6d35643c0"
+        },
+        {
+          "attrs": {},
+          "sha256": "acdc92ccb6ad178d81961563f654c1bc58acb9763d65e4144c13e8a9ec04fdf8"
+        },
+        {
+          "attrs": {},
+          "sha256": "4ed723c570d1dc4dd8b0496c75c2cb68e28f9f9a32f83646d20f6c8a71e49040"
+        },
+        {
+          "attrs": {},
+          "sha256": "6ee79347a1d2311efd3afdaed2de54645e48c80ffeef0800efe162aa16106db4"
+        },
+        {
+          "attrs": {},
+          "sha256": "839d5dcd173ff26ee6488089959f6252f6e92af7ca793cc9e0916e90686058c7"
+        }
+      ],
+      "declarations": [
+        {
+          "rel": "stylesheet",
+          "id": "dashicons-css",
+          "href": "https://bel-india.in/wp-includes/css/dashicons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "menu-icons-extra-css",
+          "href": "https://bel-india.in/wp-content/plugins/menu-icons/css/extra.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-widgets-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/header-footer-elementor/inc/widgets-css/frontend.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pll-language-switcher-css",
+          "href": "https://bel-india.in/wp-content/plugins/polylang/css/build/language-switcher.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pll-navigation-language-switcher-css",
+          "href": "https://bel-india.in/wp-content/plugins/polylang/css/build/navigation-language-switcher.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpos-magnific-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/magnific-popup.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpos-slick-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/slick.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "aigpl-public-css-css",
+          "href": "https://bel-india.in/wp-content/plugins/album-and-image-gallery-plus-lightbox/assets/css/aigpl-public.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pb_animate-css",
+          "href": "https://bel-india.in/wp-content/plugins/ays-popup-box/public/css/animate.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "contact-form-7-css",
+          "href": "https://bel-india.in/wp-content/plugins/contact-form-7/includes/css/styles.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ditty-displays-css",
+          "href": "https://bel-india.in/wp-content/plugins/ditty-news-ticker/assets/build/dittyDisplays.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ditty-fontawesome-css",
+          "href": "https://bel-india.in/wp-content/plugins/ditty-news-ticker/includes/libs/fontawesome-6.4.0/css/all.css",
+          "media": ""
+        },
+        {
+          "rel": "stylesheet",
+          "id": "to-top-css",
+          "href": "https://bel-india.in/wp-content/plugins/to-top/public/css/to-top-public.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_fontawesome_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/font-awesome-4.7.0/css/font-awesome.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_icofont_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/icofont/icofont.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpmm_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/assets/css/wpmm.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wp_megamenu_generated_css-css",
+          "href": "https://bel-india.in/wp-content/uploads/wp-megamenu/wp-megamenu.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "featuresbox_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/addons/wpmm-featuresbox/wpmm-featuresbox.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "postgrid_css-css",
+          "href": "https://bel-india.in/wp-content/plugins/wp-megamenu/addons/wpmm-gridpost/wpmm-gridpost.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-style-css",
+          "href": "https://bel-india.in/wp-content/plugins/header-footer-elementor/assets/css/header-footer-elementor.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-frontend-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/frontend.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-8-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-8.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "font-awesome-5-all-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "font-awesome-4-shim-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/v4-shims.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "wpdt-elementor-widget-font-css",
+          "href": "https://bel-india.in/wp-content/plugins/wpdatatables/integrations/page_builders/elementor/css/style.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-heading-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-heading.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-10508-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-10508.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-261-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-261.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-835-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-835.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "megamenu-css",
+          "href": "https://bel-india.in/wp-content/uploads/maxmegamenu/style_en_us.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "pojo-a11y-css",
+          "href": "https://bel-india.in/wp-content/plugins/pojo-accessibility/modules/legacy/assets/css/style.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "twentytwenty-style-css",
+          "href": "https://bel-india.in/wp-content/themes/twentytwenty/style.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "twentytwenty-print-style-css",
+          "href": "https://bel-india.in/wp-content/themes/twentytwenty/print.css",
+          "media": "print"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "bootstrap_css-css",
+          "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-color-scheme-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/color-scheme/assets/css/ecs-color-scheme.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-container-layout-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/container-layout/assets/css/ecs-container-layout.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "swiper-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/swiper/v8/css/swiper.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-swiper-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/conditionals/e-swiper.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-mobile-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/mobile-menu/assets/css/ecs-mobile-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-editorial-text-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/modules/editorial-text/assets/css/ecs-editorial-text.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "addtoany-css",
+          "href": "https://bel-india.in/wp-content/plugins/add-to-any/addtoany.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-elementor-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-icons-list-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-share-icons-brands-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-social-share-icons-fontawesome-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-nav-menu-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-widget-blockquote-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-blockquote.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-mega-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-mega-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "hfe-nav-menu-widget-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "poppins-css",
+          "href": "//fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "open-sans-css",
+          "href": "https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&subset=latin%2Clatin-ext&display=fallback",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ecs-styles-css",
+          "href": "https://bel-india.in/wp-content/plugins/ele-custom-skin/assets/css/ecs-style.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-356-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-356.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-3813-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-3813.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-post-4055-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/css/post-4055.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-poppins-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/poppins.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-notosans-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/notosans.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-roboto-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/roboto.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-gf-local-lato-css",
+          "href": "https://bel-india.in/wp-content/uploads/elementor/google-fonts/css/lato.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-shared-0-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-fa-solid-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "elementor-icons-fa-brands-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-nav-menu-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-image-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-image.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-animation-float-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/lib/animations/styles/e-animation-float.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-social-icons-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "e-apple-webkit-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/conditionals/apple-webkit.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "widget-icon-list-css",
+          "href": "https://bel-india.in/wp-content/plugins/elementor/assets/css/widget-icon-list.min.css",
+          "media": "all"
+        },
+        {
+          "rel": "stylesheet",
+          "id": "ays-pb-min-css",
+          "href": "https://bel-india.in/wp-content/plugins/ays-popup-box/public/css/ays-pb-public-min.css",
+          "media": "all"
+        }
+      ],
+      "cards": [
+        {
+          "treeSHA256": "19349f38d6b5f07a14360b847b2c13ab55a067a5cd5aa143e4e66a264b23d06e",
+          "text": "WALK-IN SELECTION FOR THE POST OF TRAINEE ENGINEER-I FOR BEL KOTDWAR Advertisements Detailed Advertisement for the Post Trainee Engineer-I - [pdf, 779.57 KB] Click here to Pre-Registration for Walk-in Prescribed Format for EWS Certificate - [pdf, 67.59 KB] Prescribed Format for OBC-NCL Certificate - [pdf, 408.8 KB] Prescribed Format for SC/ST Certificate - [pdf, 71.49 KB] Prescribed Format for PwBD Certificate - [pdf, 158.44 KB] Link for online Payment of application fee Instructions for making payment through SBI Collect - [docx, 661.5 KB] Location: BEL KOTDWAR Last Date to Apply: 26-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/11/AdvertisementTE-I.pdf"
+        },
+        {
+          "treeSHA256": "dd14b950bc42ced94527f723cbd4b4fc56545b5223dad0af9fcededdb63e3d90",
+          "text": "Recruitment of Teachers for Bharat Electronics Educational Institutions (BEEI) Advertisements Click here to view detailed advertisement - [pdf, 236.1 KB] Click here to apply Prescribed Format for EWS Certificate - [pdf, 35.76 KB] Prescribed Format for OBC Certificate - [pdf, 8.24 KB] Prescribed Format for SC / ST Certificate - [pdf, 60.9 KB] Prescribed Format for PwBD Certificate - [pdf, 243.61 KB] Location: Last Date to Apply: 24-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/11/BEEI-Recruitment-Fixed-Tenure-Teachers-Job-Description.pdf"
+        },
+        {
+          "treeSHA256": "e250fab9f14aba018fa294acd54c0f06bafa0b34616cfe2ae141c43d5ab1cf61",
+          "text": "Walk In Interview for Management Industrial Trainee (Finance) Advertisements Please click for detailed advertisement. - [pdf, 53.13 KB] corrigendum - [pdf, 170.59 KB] Location: BEL Ghaziabad Last Date to Apply: 20-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/MIT-Ad.-English.pdf"
+        },
+        {
+          "treeSHA256": "42d1e8572a9d91ba87188ca895f8f2f3b1958ab7b93f032b0a561ba1923b39fb",
+          "text": "RECRUITMENT FOR THE POST OF PROBATIONARY ENGINEER (E-II GRADE) ON ALL INDIA BASIS (Ref. Adv . No- 17556/ HR/aII-INDIA/2026) Advertisements Click here to view the detailed advertisement - [pdf, 522.58 KB] Click here to apply Prescribed Format for OBC Certificate - [pdf, 8.24 KB] Prescribed Format for PwBD - [pdf, 243.61 KB] Prescribed Format for SC/ST Certificate - [pdf, 60.9 KB] Prescribed Format for EWS Certificate - [pdf, 35.76 KB] Location:",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/External-Ad-2026-English-1.pdf"
+        },
+        {
+          "treeSHA256": "786c10ec58d9e8211a01ab417403c9748257e4760bf7de811c9b2dad9249f3a9",
+          "text": "Application for the post of Director (Research and Development) Advertisements Click here to view the Detailed Advertisement - [pdf, 175.01 KB] Location: Bengaluru Last Date to Apply: 05-11-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/Director-RD-Advertisement.pdf"
+        },
+        {
+          "treeSHA256": "09aa673c13d18ed6f2ba461aa5fb427be10d28eecfb4b6c50b4ed70b18b80abc",
+          "text": "Recruitment for temporary post of Project Engineer-I for NWCS SBU- Bg.Cx. Advertisements Click here to view the detailed advertisement. - [pdf, 423 KB] Click below link to Apply Click here for Online Payment of Application fee. Click here for Instructions for making payment through SBI Collect. - [pdf, 959.82 KB] Click here for prescribed OBC(NCL) Certificate format. - [pdf, 305.85 KB] Click here for prescribed SC/ST Certificate format. - [pdf, 12.6 KB] Click here for prescribed PWD Certificate format. - [pdf, 11.36 KB] Click here for prescribed EWS Certificate format. - [pdf, 67.6 KB] Location: New Delhi/Bengaluru. Last Date to Apply: 27-10-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/PE-Advt-NWCS-Final.pdf"
+        },
+        {
+          "treeSHA256": "4385831fa7946a46a9a6508b97d7ed9b1b44b6f43b5984437eeb18e2b8b4ab70",
+          "text": "WALK-IN INTERVIEW FOR ENGAGEMENT OF GRADUATE, DIPLOMA AND ITI APPRENTICES FOR BEL-NAVI MUMBAI UNIT Advertisements Click here to view detailed advertisement - [pdf, 394.38 KB] Location: BEL NAVI Mumbai Last Date to Apply: 12-10-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/Advertisement_App_final.pdf"
+        },
+        {
+          "treeSHA256": "bb640ee694ef466ecfde0a835fa64d6e7587b5ce45a290e4b7b394994012e5dc",
+          "text": "Recruitment for the post of Project Engineer-I for EWandA SBU - BEL Bengaluru Complex Advertisements Click here to view detailed advertisement. - [pdf, 979.46 KB] Click here to apply Link AIMA Instruction for making payment through SBI collect - [pdf, 595.29 KB] Click here for prescribed SC/ST Certificate format. - [pdf, 12.79 KB] Click here for prescribed EWS Certificate format. - [pdf, 501.69 KB] Click here for prescribed OBC Certificate Format - [pdf, 12.65 KB] Click here for prescribed PwBD format - [pdf, 243.61 KB] Location: Bengaluru Last Date to Apply: 23-10-2026",
+          "pdf": "https://bel-india.in/wp-content/uploads/2026/10/final-advt-corp-communication-aima-09102026.pdf"
+        }
+      ]
+    }
+  ],
+  "documents": [
+    {
+      "url": "https://bel-india.in/wp-content/uploads/2026/11/AdvertisementTE-I.pdf",
+      "bodySHA256": "81f042b19a7ed208275a3ee5aef5e6f635dd730a077cc41fa12abb6e64e68178",
+      "numPages": 11,
+      "textSHA256": "654283f6dcf37f86428ff1c491780992a31ff121301325ac1b5b9892ccff71d5",
+      "pages": [
+        {
+          "page": 1,
+          "textBytes": 3249,
+          "textSHA256": "8a7cd8bbc75a813d4053640b3a8b82431c9f9a224dbc945a69161e2edd754245"
+        },
+        {
+          "page": 2,
+          "textBytes": 5297,
+          "textSHA256": "ebfb4690a8c1e536383a3b2c10449e079bc19ba00b4329fe7ca673a2373f64f8"
+        },
+        {
+          "page": 3,
+          "textBytes": 6427,
+          "textSHA256": "d04da982626e5e84a00d9ae2fa55cc6dc567b5b005926a021572e2d7e22f916d"
+        },
+        {
+          "page": 4,
+          "textBytes": 5863,
+          "textSHA256": "6b51ad6ca0f5ecf61290fec74cdbc69238a59d0411a8aa586a498e83c5dccf43"
+        },
+        {
+          "page": 5,
+          "textBytes": 7154,
+          "textSHA256": "969f57d8be0c4899dedba6c575b5faf3ea164110d2f4a5a08d6812bf54d79d48"
+        },
+        {
+          "page": 6,
+          "textBytes": 4213,
+          "textSHA256": "9e48e93ff25f6a111d6269761c0968133c0251062be3280433e12c3693db9de0"
+        },
+        {
+          "page": 7,
+          "textBytes": 4594,
+          "textSHA256": "f2c79e0f9774f6b1e30fb948e85cb6c1608f34ae250269fca199d9fb610bfc09"
+        },
+        {
+          "page": 8,
+          "textBytes": 6839,
+          "textSHA256": "304187f83c990d4afa9bd31b738a113f172f57b56005f1eb0ce9ae01ddf792cf"
+        },
+        {
+          "page": 9,
+          "textBytes": 6694,
+          "textSHA256": "877c455c7222f75acbfba69b14b6366842d3a3e629bca874aad9d3c1d6982e15"
+        },
+        {
+          "page": 10,
+          "textBytes": 6934,
+          "textSHA256": "2fb208201c6667aa2604070e7ac8ff1596c202fa3abc4a7a6ab513561fb3a126"
+        },
+        {
+          "page": 11,
+          "textBytes": 4724,
+          "textSHA256": "0cf0405af6780e31f963ea7f5700670db6b278361b4decb734b0d03b72d6f958"
+        }
+      ],
+      "parser": {
+        "version": "6.2.108",
+        "packageSHA256": "d7918934bf0ef5b18beed1bd2d9b49a04447de445c171305a2de082ccee369ed",
+        "workerSHA256": "b4e582882f5e811f4d1b7b511f68d9a0c3209141e6f68856f01408c5cc155131"
+      }
+    },
+    {
+      "url": "https://bel-india.in/wp-content/uploads/2026/11/BEEI-Recruitment-Fixed-Tenure-Teachers-Job-Description.pdf",
+      "bodySHA256": "fbc24a025eaced3049a2d397774b8e1e44946377f966cbacb12f6dc8c546f12a",
+      "numPages": 6,
+      "textSHA256": "5083c9e7f29d11bb2fa41216536bec07eed860cf7241547b28f6fa4566d1e62a",
+      "pages": [
+        {
+          "page": 1,
+          "textBytes": 1932,
+          "textSHA256": "75efd7b6d2e0c08bbc1b63ed01bb6244df92583ac45a27ac3b8d70c32dbaac4f"
+        },
+        {
+          "page": 2,
+          "textBytes": 1380,
+          "textSHA256": "ed373a7f26e5532a9f3cdcfd656507b3140b29f4cac0709302135c5c5101be51"
+        },
+        {
+          "page": 3,
+          "textBytes": 3142,
+          "textSHA256": "c9e2800a1010049c401357cef53ac1582db943dd6644d8ef44fcba5804c00dc8"
+        },
+        {
+          "page": 4,
+          "textBytes": 2700,
+          "textSHA256": "7323dee242a51ef65c0057cd5d2168f5b9e5e36c596ccf4a2797f339d83ebd94"
+        },
+        {
+          "page": 5,
+          "textBytes": 2703,
+          "textSHA256": "be06fdf8df0606dd54574359238f03f4a1c609745dae215303991ec1fc0b6dbb"
+        },
+        {
+          "page": 6,
+          "textBytes": 1896,
+          "textSHA256": "02508b8edfd4e9d2201b06b822107acaaae4ac589400db63ad57810d18d7fad2"
+        }
+      ],
+      "parser": {
+        "version": "6.2.108",
+        "packageSHA256": "d7918934bf0ef5b18beed1bd2d9b49a04447de445c171305a2de082ccee369ed",
+        "workerSHA256": "b4e582882f5e811f4d1b7b511f68d9a0c3209141e6f68856f01408c5cc155131"
+      }
+    },
+    {
+      "url": "https://bel-india.in/wp-content/uploads/2026/10/MIT-Ad.-English.pdf",
+      "bodySHA256": "58ddb5cc8716a6da5d74caab8fd284b7ed86ceb73b5a332c4087f48720854221",
+      "numPages": 4,
+      "textSHA256": "ee255506668ec1d889b5c9394e9aeeffc3d8e80db27ae528955859a93ba8a531",
+      "pages": [
+        {
+          "page": 1,
+          "textBytes": 1960,
+          "textSHA256": "29e15d8f612937cbd8f1e6c42f05f648ca21f9623765156f1b8b4f0938400a63"
+        },
+        {
+          "page": 2,
+          "textBytes": 921,
+          "textSHA256": "d302cd02bb937b4e02eb370e8df686955d10661587094db7486f2bcbcfd0a64e"
+        },
+        {
+          "page": 3,
+          "textBytes": 1078,
+          "textSHA256": "2a2ed2e538ee20c6475026d22abe4d91628f8832aee033e6432d14b1ec0c6e8c"
+        },
+        {
+          "page": 4,
+          "textBytes": 1223,
+          "textSHA256": "5daa3ed08b0983d8059aada4603694dbbfb28c39602c6545955602da20ebda48"
+        }
+      ],
+      "parser": {
+        "version": "6.2.108",
+        "packageSHA256": "d7918934bf0ef5b18beed1bd2d9b49a04447de445c171305a2de082ccee369ed",
+        "workerSHA256": "b4e582882f5e811f4d1b7b511f68d9a0c3209141e6f68856f01408c5cc155131"
+      }
+    },
+    {
+      "url": "https://bel-india.in/wp-content/uploads/2026/11/Corrigendum-MIT-1.pdf",
+      "bodySHA256": "f454cb389785d95e6afec372b9d8d8f2c107f5a0139cb82cddbb6b77525bccb2",
+      "numPages": 1,
+      "textSHA256": "457afbcba4be81a9e5eb5bc82654dd5e61e79d985eb40e8111c2f8042fb9edb5",
+      "pages": [
+        {
+          "page": 1,
+          "textBytes": 2157,
+          "textSHA256": "457afbcba4be81a9e5eb5bc82654dd5e61e79d985eb40e8111c2f8042fb9edb5"
+        }
+      ],
+      "parser": {
+        "version": "6.2.108",
+        "packageSHA256": "d7918934bf0ef5b18beed1bd2d9b49a04447de445c171305a2de082ccee369ed",
+        "workerSHA256": "b4e582882f5e811f4d1b7b511f68d9a0c3209141e6f68856f01408c5cc155131"
+      }
+    },
+    {
+      "url": "https://bel-india.in/wp-content/uploads/2026/10/External-Ad-2026-English-1.pdf",
+      "bodySHA256": "5f4ffad40045db812cac1cddd0c54a0d7e3a36d46a8e7371972277a8e9e2652c",
+      "numPages": 16,
+      "textSHA256": "da81c320c6742aac99762ded6a88c996fad08acbd01a55b425b0efd93e694055",
+      "pages": [
+        {
+          "page": 1,
+          "textBytes": 1196,
+          "textSHA256": "66610a53c98d5285bcb3dd4076298548df1bdb634cb4d0f8f40a625ac249e34e"
+        },
+        {
+          "page": 2,
+          "textBytes": 1633,
+          "textSHA256": "1598aeb03142a94b6731886aa2aeb8862f73c04fb7dd73ef92fb5405d21e15bd"
+        },
+        {
+          "page": 3,
+          "textBytes": 1975,
+          "textSHA256": "a2465c8f52e6be567eb79211479a037bc35e064fb63d5b6bb0904ed03d0bf543"
+        },
+        {
+          "page": 4,
+          "textBytes": 2509,
+          "textSHA256": "8b8c2c203c76526a6f20953c3aec7253ed644b7082c792c0c25c3ac636cdc94c"
+        },
+        {
+          "page": 5,
+          "textBytes": 2052,
+          "textSHA256": "fbd89d7a6234106b9957372aabf4b5c4999935ed71600d1169749e6155352be4"
+        },
+        {
+          "page": 6,
+          "textBytes": 2551,
+          "textSHA256": "79f642af52ec4f843bc6b4d53665cdca6674484daa9c405da1702ca00f9b59e8"
+        },
+        {
+          "page": 7,
+          "textBytes": 2309,
+          "textSHA256": "a72219122457adb9060cd8f57b331e22d8d0f5bc36a8aa19972960203e09370c"
+        },
+        {
+          "page": 8,
+          "textBytes": 2206,
+          "textSHA256": "1ff477073da102c35cc939bb813bbf379a7c24e9ef8a413dfe4c3b2b374b858e"
+        },
+        {
+          "page": 9,
+          "textBytes": 2431,
+          "textSHA256": "6d19a0e63ef3d5833179a2f02d8336e2eec71907174200a0d8dcdfd947b36d10"
+        },
+        {
+          "page": 10,
+          "textBytes": 1351,
+          "textSHA256": "bcea47671d275964035a9043d36f2d313d54c0c6297590ba3a7b44936e53e1c2"
+        },
+        {
+          "page": 11,
+          "textBytes": 2563,
+          "textSHA256": "ab01df17a0abdd2e3505affbcfdc67546a253bbc602264c5a8888785001084a7"
+        },
+        {
+          "page": 12,
+          "textBytes": 2631,
+          "textSHA256": "f62f8f2b4e7c25b28e87eba0c832b61c55803849fcc97e8ef932452ed9ef8eab"
+        },
+        {
+          "page": 13,
+          "textBytes": 3170,
+          "textSHA256": "a6d9c0d3bb48a280d65a8958d2ac9c3e1d079d69a7353c45d654417bbbdc145d"
+        },
+        {
+          "page": 14,
+          "textBytes": 2153,
+          "textSHA256": "b392e74a24ba8ce718b88b5ed890d4f052beea1ed9de1a3d61a267bce0bea0fa"
+        },
+        {
+          "page": 15,
+          "textBytes": 1238,
+          "textSHA256": "868bb889edf3fd256db698b99105c3b149cab392d0e09a90031d1dbcb811e7aa"
+        },
+        {
+          "page": 16,
+          "textBytes": 1635,
+          "textSHA256": "27593be2765644196108ed5d900fe0f61f5ee9aed5048b4c7e90937acb6030f2"
+        }
+      ],
+      "parser": {
+        "version": "6.2.108",
+        "packageSHA256": "d7918934bf0ef5b18beed1bd2d9b49a04447de445c171305a2de082ccee369ed",
+        "workerSHA256": "b4e582882f5e811f4d1b7b511f68d9a0c3209141e6f68856f01408c5cc155131"
+      }
+    }
+  ],
+  "notices": [
+    {
+      "advertisementId": "21001/HR/KOT/REC/02",
+      "country": "India",
+      "countryPage": 1,
+      "countryNeedle": "for its various projects locations all over India",
+      "postingDate": "2026-11-12",
+      "closingDate": "2026-11-26",
+      "applicationMode": "mandatory-online-preregistration",
+      "applyUrl": "https://jobapply.in/bel2026kotdwarte/",
+      "activeApplicationQualified": false,
+      "applicationLimit": "The declared public landing contains no active registration controls.",
+      "pdfUrl": "https://bel-india.in/wp-content/uploads/2026/11/AdvertisementTE-I.pdf",
+      "relatedDocumentUrls": []
+    },
+    {
+      "advertisementId": "BEEI/TS/2026-2027/02",
+      "hiringEntity": "Bharat Electronics Educational Institutions",
+      "country": null,
+      "postingDate": "2026-11-04",
+      "closingDate": "2026-11-24",
+      "applicationMode": "online",
+      "applyUrl": "https://jobapply.in/beei2026jalahalliteachers/",
+      "activeApplicationQualified": false,
+      "applicationLimit": "The declared public landing contains no active registration controls; Bengaluru is not a typed country assignment.",
+      "pdfUrl": "https://bel-india.in/wp-content/uploads/2026/11/BEEI-Recruitment-Fixed-Tenure-Teachers-Job-Description.pdf",
+      "relatedDocumentUrls": []
+    },
+    {
+      "advertisementId": "12930/64/HRD/GAD/01",
+      "country": null,
+      "postingDate": "2026-10-29",
+      "closingDate": "2026-11-20",
+      "originalInterviewDate": "2026-11-18",
+      "applicationMode": "offline-walk-in",
+      "applyUrl": "https://bel-india.in/wp-content/uploads/2026/10/MIT-Ad.-English.pdf",
+      "activeApplicationQualified": true,
+      "applicationLimit": "Native full notification and matching corrigendum bind the rescheduled walk-in and original application form; role country remains untyped.",
+      "pdfUrl": "https://bel-india.in/wp-content/uploads/2026/10/MIT-Ad.-English.pdf",
+      "relatedDocumentUrls": [
+        "https://bel-india.in/wp-content/uploads/2026/11/Corrigendum-MIT-1.pdf"
+      ]
+    },
+    {
+      "advertisementId": "17556/HR/All-India/2026",
+      "country": "India",
+      "countryPage": 5,
+      "countryNeedle": "place in India or any Section/Department/Division/Unit of BEL",
+      "postingDate": "2026-10-28",
+      "closingDate": "2026-11-18",
+      "applicationMode": "online-candidate-account",
+      "applyUrl": "https://cdn.digialm.com/EForms/configuredHtml/33192/103061/uPVtXzjwivanf3RWlN/Index.html",
+      "registrationUrl": "https://cdn.digialm.com/EForms/configuredHtml/33192/103061/uPVtXzjwivanf3RWlN/Registration.html",
+      "activeApplicationQualified": false,
+      "applicationLimit": "The current index declares the campaign and registration link; the exact registration continuation and reciprocal English PDF have no current HTTP response.",
+      "pdfUrl": "https://bel-india.in/wp-content/uploads/2026/10/External-Ad-2026-English-1.pdf",
+      "relatedDocumentUrls": []
+    }
+  ]
+}

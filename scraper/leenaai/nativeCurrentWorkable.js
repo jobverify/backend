@@ -198,19 +198,24 @@ export const decodeNativeRole=(detail,proxy,account,observedAt)=>{
 const publisherProfileSHA=html=>{
  assert(typeof html==='string','corporate declaration profile changed')
  const bytes=Buffer.from(html,'utf8')
- assert(bytes.length===188301,'corporate declaration profile changed')
+ // Exact reviewed document revisions. Each keeps the same career factory,
+ // native feed and error-only Workable fallback; fixed page bytes stay pinned.
+ const profile=[{bytes:188301,frameSHA256:HTML_FRAME_SHA},
+  {bytes:191410,frameSHA256:'127ab18db6d06f57a856f154e87f3982f561dd7d9c94ec6f843510e0a390c4ee'}].find(value=>value.bytes===bytes.length)
+ assert(profile,'corporate declaration profile changed')
+ const shift=profile.bytes-188301
  // Exactly two observed direct-body layouts share this fixed1475-byte region.
  // The360-byte beacon and oneLF move around the complete1114-byte inline
  // element. Only this validation copy is reordered; raw HTML/receipt hashes
  // remain original. No general script sort or execution equivalence is used.
- const regionStart=186812,regionEnd=188287,beaconLength=360,inlineLength=1114
+ const regionStart=186812+shift,regionEnd=188287+shift,beaconLength=360,inlineLength=1114
  const beaconSHA='2de28415c6181ca4d754c39f8bd3751c6abdcc147ccb35f367a0675015d522d8'
  const inlineAt=start=>bytes.subarray(start,start+8).toString('ascii')==='<script>'&&bytes.subarray(start+inlineLength-9,start+inlineLength).toString('ascii')==='</script>'
  const firstLayout=inlineAt(regionStart)&&sha(bytes.subarray(regionStart+inlineLength,regionEnd-1))===beaconSHA&&bytes[regionEnd-1]===10
  const secondLayout=sha(bytes.subarray(regionStart,regionStart+beaconLength))===beaconSHA&&bytes[regionStart+beaconLength]===10&&inlineAt(regionStart+beaconLength+1)
  assert(firstLayout||secondLayout,'corporate fixed delivery layout changed')
  const profileBytes=secondLayout?Buffer.concat([bytes.subarray(0,regionStart),bytes.subarray(regionStart+beaconLength+1,regionEnd),bytes.subarray(regionStart,regionStart+beaconLength),bytes.subarray(regionStart+beaconLength,regionStart+beaconLength+1),bytes.subarray(regionEnd)]):bytes
- const ranges=[[186991,187007],[187012,187028],[187221,187237]]
+ const ranges=[[186991,187007],[187012,187028],[187221,187237]].map(([start,end])=>[start+shift,end+shift])
  const values=ranges.map(([start,end])=>{
   const value=profileBytes.subarray(start,end)
   assert(value.every(byte=>byte<128),'corporate delivery parameter encoding changed')
@@ -222,7 +227,7 @@ const publisherProfileSHA=html=>{
  const frame=Buffer.from(profileBytes)
  for(const[start,end]of ranges)frame.fill(48,start,end)
  const fingerprint=sha(frame)
- assert(fingerprint===HTML_FRAME_SHA,'corporate declaration profile changed')
+ assert(fingerprint===profile.frameSHA256,'corporate declaration profile changed')
  return fingerprint
 }
 

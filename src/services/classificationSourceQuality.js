@@ -8,6 +8,34 @@ export const isPlaceholderClassificationText = value => {
 export const isExplicitTestPosting = title => /\b(?:job|posting|vacancy|requisition)\s+(?:is\s+)?(?:for\s+)?(?:a\s+)?system\s+test\s+only\d*\b|\b(?:this\s+is\s+(?:a\s+)?)?(?:dummy|test)\s+(?:job|posting|vacancy|requisition)\s*[-:,(]?\s*(?:only|do\s+not\s+apply)\b/i
   .test(String(title ?? '').replace(/_/g, ' '))
 
+export function sourceAvailabilityIssues(input, { unresolved = false } = {}) {
+  const issues = []
+  const description = input.sourceFields.description
+  const closures = description.matchAll(/\b(?:this|the)\s+(?:position|vacancy|role|job)\s+(?:is\s+)?(?:no\s+longer\s+(?:accepting\s+applications|available|open)|closed|has\s+been\s+(?:closed|filled))\b/gi)
+  for (const closure of closures) {
+    const prefix = description.slice(0, closure.index).split(/[.!?;\n]/).at(-1)
+    const suffix = description.slice(closure.index + closure[0].length)
+    if (/\b(?:if|when|whenever|unless|whether|should|in\s+case)\b/i.test(prefix)
+      || /^\s+(?:if|when|unless|provided|subject\s+to)\b/i.test(suffix)) continue
+    issues.push('closed_vacancy')
+    break
+  }
+  if (/\bscholarship(?:\s+for\b|\s+program(?:me)?\s*$|\s*$)/i.test(input.title)
+    && /\b(?:students?|university|college|workshop|award|grant|tuition)\b/i.test(description)) issues.push('non_vacancy_programme')
+  if (unresolved) {
+    // Education alone or a rewritten caption cannot supply missing job duties.
+    // Explicit source eligibility has already been resolved by the caller.
+    const roleText = [description, input.sourceFields.responsibilities, input.sourceFields.requirements].filter(Boolean).join('\n')
+    const placeholder = !roleText || isPlaceholderClassificationText(roleText)
+      || /^(?:apply\b[^.!?]{0,150}\b(?:careers?\s+(?:page|form)|first[- ]party\b[^.!?]{0,50}\bform)|to\s+be\s+updated\s+by\s+(?:the\s+)?recruiter|posted\s+by\s*:|\d{4}-\d{2}-\d{2}\s*\||(?:category|position)\s*:|job\s+description\s+\S|(?:must\s+have|primary\s+skills?|specializations?)\s*:)/i.test(roleText)
+    if (placeholder && Buffer.byteLength(roleText, 'utf8') <= 200) issues.push('sparse_role_description')
+    else if (roleText.length < 400 && /(?:\.{3}|\u2026)\s*$/.test(roleText)) issues.push('truncated_role_description')
+    else if (/\bcareer\s+site\s+cookie\s+settings\b/i.test(roleText)
+      && !/\b(?:responsibilities|qualifications|requirements|you\s+will|this\s+role)\b/i.test(roleText)) issues.push('missing_role_description')
+  }
+  return issues
+}
+
 const fragmentedQuantity = () => /\b\d[\t ]+\d[\t ]*\+[\t ]*(?:years?|yrs?)\b/gi
 
 // Do not read the last digit of an unresolved number, or join its digits.

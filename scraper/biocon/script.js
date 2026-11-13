@@ -21,6 +21,7 @@ import {
 } from '../../scraper-support/shared/successFactorsDwr.js'
 
 import { BIOCON_CATALOG } from './catalog.js'
+import {runCurrentBiocon20261113} from './currentNative20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const execFile = promisify(execFileCallback)
@@ -364,6 +365,16 @@ const parseLocation = (value, country = null) => {
 const buildJobDescription = (doc, fallbackLocation) => {
   const sections = []
   if(!['Role Summary','Key Responsibilities'].some(heading=>extractSectionText(doc,heading)))return null
+  // The native posting frame owns all authored sections, including education
+  // and experience. Selecting a few known headings drops mandatory criteria.
+  const rawNodes = node => [node, ...node.children.filter(child => typeof child !== 'string').flatMap(rawNodes)]
+  const originalFrames = rawNodes(doc.nodes(node => node.tag === 'root')[0])
+    .filter(node => node.tag === 'div' && doc.hasClass(node, 'joqReqDescription'))
+  if (originalFrames.length) {
+    if (originalFrames.length !== 1 || originalFrames[0].inert) return null
+    const originalText = doc.text(originalFrames[0])
+    return extractActiveDescription(originalText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'))
+  }
   const locationText = extractLocationText(doc) || normalizeWhitespace(fallbackLocation)
 
   if (locationText) {
@@ -400,9 +411,20 @@ export const extractJobDetail = (html, listing = {}) => {
   const requisitionId = normalizeWhitespace(
     nativeId,
   )
-  const postingDate = toIsoDate(
+  let postingDate = toIsoDate(
     bodyText.match(/\bPosted\s*([0-9/]{10})\b/i)?.[1] || listing.postingDate,
   )
+  const nativeDateFields = doc.nodes(node => node.tag === 'input' && node.attrs.id === 'postedOnFastDate')
+  if (nativeDateFields.length) {
+    const patterns = doc.nodes(node => node.tag === 'input' && node.attrs.id === 'pattern')
+    if (nativeDateFields.length !== 1 || patterns.length !== 1 || patterns[0].attrs.value !== 'MM/dd/yyyy'
+      || !/^\d{13}$/.test(nativeDateFields[0].attrs.value || '')) fail('posting date metadata changed')
+    const date = new Date(Number(nativeDateFields[0].attrs.value))
+    if (!Number.isFinite(date.getTime())) fail('posting date epoch is invalid')
+    // This public detail URL explicitly requests browserTimeZone=Asia/Calcutta.
+    // The native client formats its epoch; the DWR date string is ambiguous.
+    postingDate = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).format(date)
+  }
   const department = extractSectionText(doc, 'Department Details') || listing.department || null
   const locationText = extractLocationText(doc)
   const headerCountries=doc.nodes(node=>['div','p'].includes(node.tag)).flatMap(node=>{
@@ -626,7 +648,8 @@ export const createBioconScraper = ({
   },
 })
 
-export const run = async (options = {}) => createBioconScraper(options).run(options)
+export const run = async (options = {}) => options.reviewedCurrent || (!options.fetchText && !options.getSearchPages)
+  ? runCurrentBiocon20261113(options) : createBioconScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { getSourceDescription, hasSourceDescription } from '../utils/jobSourceContent.js';
 import { buildSourceDescriptionDisplay } from '../utils/jobDescriptionDisplay.js';
+import { assessDescriptionSource } from '../utils/jobDescriptionSourceQuality.js';
 
 export const REWRITE_MODEL = JSON.parse(readFileSync(new URL('../../rewriting/model.json', import.meta.url), 'utf8'));
 export const SECTION_TITLES = {
@@ -32,16 +33,17 @@ export const buildRewriteInput = (job = {}) => {
   const inputHash = createHash('sha256').update(JSON.stringify({ facts, sourceStructure: sourceDescription.replace(/\r\n?/g, '\n') })).digest('hex');
   const body = Object.entries(facts).filter(([, value]) => value).map(([key, value]) => key + ': ' + value).join('\n');
   const sourceWords = words(facts.description).length;
-  return { facts, sourceDescription, inputHash, body, sourceWords, eligible: hasSourceDescription(job) };
+  return { facts, sourceDescription, inputHash, body, sourceWords, eligible: hasSourceDescription(job), sourceQuality: assessDescriptionSource(sourceDescription) };
 };
 
 export const buildDescriptionSourceUpdate = (job, existing, { mode = 'off', now = new Date() } = {}) => {
   if (job.preserveExistingSourceContent === true && existing) return {};
   let input = buildRewriteInput(job);
-  const display = input.eligible ? buildSourceDescriptionDisplay(input.sourceDescription) : null;
-  const eligible = input.eligible && hasSourceDescription({ sourceDescription: display.description });
+  const sourceReason = input.sourceQuality.ok ? null : input.sourceQuality.reason;
+  const display = input.eligible && !sourceReason ? buildSourceDescriptionDisplay(input.sourceDescription) : null;
+  const eligible = input.eligible && !sourceReason && hasSourceDescription({ sourceDescription: display.description });
   if (existing && !eligible) return {};
-  if (input.eligible && !eligible) input = buildRewriteInput({ ...job, sourceDescription: null });
+  if (input.eligible && !eligible && !sourceReason) input = buildRewriteInput({ ...job, sourceDescription: null });
   // Older records stored employer fields before dedicated provenance fields existed.
   // Recognizing those values initializes metadata without queuing an unchanged job.
   const previousSource = existing && existing.sourceContentHashVersion !== 2 ? {
@@ -54,9 +56,9 @@ export const buildDescriptionSourceUpdate = (job, existing, { mode = 'off', now 
   const sourceFields = { sourceDescription: input.sourceDescription || null, sourceContentHash: input.inputHash, sourceContentHashVersion: 2 };
   if (!changed) return { ...sourceFields, ...(!existing.descriptionRewrite ? { descriptionRewrite: { status: 'baseline', inputHash: input.inputHash, queuedAt: now } } : existing.descriptionRewrite.inputHash !== input.inputHash ? { 'descriptionRewrite.inputHash': input.inputHash } : {}) };
   return {
-    ...sourceFields, ...(eligible ? display : {}),
+    ...sourceFields, ...(eligible ? display : sourceReason ? { description: null, descriptionFormat: 'plain' } : {}),
     descriptionRewrite: { status: mode === 'publish' && eligible ? 'pending' : 'skipped', inputHash: input.inputHash,
-      reason: !eligible ? 'insufficient_source' : mode === 'publish' ? null : 'disabled', queuedAt: now, attempts: 0 },
+      reason: !eligible ? sourceReason || 'insufficient_source' : mode === 'publish' ? null : 'disabled', queuedAt: now, attempts: 0 },
   };
 };
 

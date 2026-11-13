@@ -2,6 +2,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { extractAlstomNativeDescription } from './nativeDescription20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -154,18 +155,11 @@ export const extractResultsSummary = (html) => {
   }
 }
 
-const extractListItems = (value) => [...String(value ?? '').matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)]
-  .map((match) => stripTags(match[1]))
-  .filter(Boolean)
-
 export const extractJobDetail = (html, listing = {}) => {
   const title = normalizeWhitespace(
     extractFirst(/<(?:span|h1)\b[^>]*itemprop="title"[^>]*>([\s\S]*?)<\/(?:span|h1)>/i, html),
   ) || listing.title || null
-  const descriptionHtml = extractFirst(
-    /itemprop="description"[^>]*>([\s\S]*?)<\/span>\s*<\/span>/i,
-    html,
-  ) || extractFirst(/itemprop="description"[^>]*>([\s\S]*?)<\/span>/i, html)
+  const description = extractAlstomNativeDescription(html)
   const applyPath = normalizeWhitespace(
     extractFirst(/class="btn btn-primary btn-large btn-lg apply dialogApplyBtn "\s+href="([^"]+)"/i, html),
   )
@@ -190,10 +184,10 @@ export const extractJobDetail = (html, listing = {}) => {
     requisitionId: listing.requisitionId || jobId,
     employmentType: 'Full-time',
     experienceRequired: listing.experienceRequired || null,
-    jobDescription: stripTags(descriptionHtml),
+    jobDescription: description.jobDescription,
     minimumQualification: null,
     preferredQualification: null,
-    requiredSkills: extractListItems(descriptionHtml),
+    requiredSkills: description.requiredSkills,
     postingDate,
     closingDate,
     applyUrl: toAbsoluteUrl(applyPath),

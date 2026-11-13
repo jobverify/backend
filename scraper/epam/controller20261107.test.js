@@ -3,8 +3,8 @@ import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import { createHash } from 'node:crypto'
 import test from 'node:test'
-import { run, CAREER_PAGE_URL } from './script.js'
-import { nativeSearchUrl } from './nativeInventory.js'
+import { extractSearchResults, CAREER_PAGE_URL } from './script.js'
+import { collectNativeEpam, nativeSearchUrl } from './nativeInventory.js'
 import { readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const captured = JSON.parse(gunzipSync(readFileSync(new URL('./test-data-20261107/current-controller.json.gz', import.meta.url))))
@@ -17,7 +17,10 @@ test.beforeEach(t => t.mock.method(globalThis, 'fetch', async () => { throw Erro
 
 async function replay(mutate = value => value) {
   const calls = []
-  const jobs = await run({ maxPages: 1, transport: async (url, init) => {
+  const jobs = await collectNativeEpam({ maxJobs: null,
+    project: record => extractSearchResults({ data: { jobs: [record] } })[0],
+    headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36' },
+    options: { maxPages: 1, transport: async (url, init) => {
     calls.push(url)
     assert.equal(init.method, 'GET')
     assert.equal(init.redirect, 'manual')
@@ -27,7 +30,7 @@ async function replay(mutate = value => value) {
     assert.ok(record, `No original response for ${url}`)
     assert.equal(sha(record.body), record.sha256)
     return mutate({ url: record.finalURL, status: record.status, headers: { 'content-type': record.contentType }, body: Buffer.from(record.body) }, url)
-  } })
+  } } })
   return { jobs, calls, batch: jobs[evidenceKey] }
 }
 

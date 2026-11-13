@@ -1,0 +1,361 @@
+{
+  "capturedAt": "2026-11-13",
+  "primaryEmployer": "Airtel Payments Bank",
+  "companyId": "13361480",
+  "receipts": [
+    {
+      "requestedUrl": "https://www.airtelpayments.bank.in/",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:01:53.955807+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://www.airtelpayments.bank.in/",
+      "bytes": 315648,
+      "sha256": "24ec661c411d021f19e21da2e1756f7c4c503c03923fc3af563f635ac126388a",
+      "file": "corporate.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:01:57.124252+00:00",
+      "evidenceDirectory": "public-routes-20261113"
+    },
+    {
+      "requestedUrl": "https://www.linkedin.com/company/airtelpaymentsbank",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:03:31.384055+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://www.linkedin.com/company/airtelpaymentsbank",
+      "bytes": 373756,
+      "sha256": "55ff2554fb4420926808adef6c7cd5c1481d34f933607f8ae708580086407ee6",
+      "file": "company.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:03:34.679789+00:00",
+      "evidenceDirectory": "native-handoffs-20261113"
+    },
+    {
+      "requestedUrl": "https://www.linkedin.com/jobs/airtel-payments-bank-jobs-worldwide?f_C=13361480&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:05:23.126427+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://www.linkedin.com/jobs/airtel-payments-bank-jobs-worldwide?f_C=13361480&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "bytes": 150387,
+      "sha256": "30eaffd304d4d85abbfb86145a5c29624957c301c6c3098c7fa4687774ac7c2c",
+      "file": "board.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:05:30.930832+00:00",
+      "evidenceDirectory": "native-inventory-20261113"
+    },
+    {
+      "requestedUrl": "https://www.linkedin.com/jobs/airtel-payments-bank-jobs-worldwide?f_C=13361480&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:08:18.810734+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://www.linkedin.com/jobs/airtel-payments-bank-jobs-worldwide?f_C=13361480&trk=top-card_top-card-primary-button-top-card-primary-cta",
+      "bytes": 161162,
+      "sha256": "fc7fff2033d3d8445b6173ae37fe0de489cbe9762153e495d46230d29968d2f4",
+      "file": "closing-board.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:08:21.394912+00:00",
+      "evidenceDirectory": "bank-detail-retry-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/software-development-engineer-ii-at-airtel-payments-bank-4489910835",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:55.094690+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/software-development-engineer-ii-at-airtel-payments-bank-4489910835",
+      "bytes": 310554,
+      "sha256": "860105006d41d43a66bdc04206041d5bdd7a7fee7399cfb41bdea2b342e36650",
+      "file": "role-4489910835.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:06:58.465700+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/zonal-manager-at-airtel-payments-bank-4487756751",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:55.096697+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/zonal-manager-at-airtel-payments-bank-4487756751",
+      "bytes": 318910,
+      "sha256": "4a4ffa37830963fe17341bf983c5821b744fd6b51cbef005da8985133e9bf330",
+      "file": "role-4487756751.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:06:58.335519+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/key-account-manager-at-airtel-payments-bank-4485302914",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:55.097704+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/key-account-manager-at-airtel-payments-bank-4485302914",
+      "bytes": 291796,
+      "sha256": "aa7c0b13b94f493634490427d8fe8dc4eb53725a34f2863b6f26f41295800683",
+      "file": "role-4485302914.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:06:58.256840+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/zonal-manager-at-airtel-payments-bank-4486143091",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:55.098697+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/zonal-manager-at-airtel-payments-bank-4486143091",
+      "bytes": 300856,
+      "sha256": "8264d3310e17a8d5a4af34c95d07b4882845cd57dbbc54d9da634ee99b7c424d",
+      "file": "role-4486143091.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:06:58.418999+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/third-party-risk-governance-at-airtel-payments-bank-4485309759",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:58.256840+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/third-party-risk-governance-at-airtel-payments-bank-4485309759",
+      "bytes": 280325,
+      "sha256": "2e84cc2304ddb28757a1d382052e78d5e3374b86b4f35e29b7e248b9176fe9a5",
+      "file": "role-4485309759.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:01.113914+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/key-account-manager-fastag-acquiring-api-at-airtel-payments-bank-4486820946",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:58.335519+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/key-account-manager-fastag-acquiring-api-at-airtel-payments-bank-4486820946",
+      "bytes": 337940,
+      "sha256": "dfe1d5270ed6959ca9111770d5a0f065714837c6cd51bc8a7194e26afe040fc1",
+      "file": "role-4486820946.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:01.347221+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/debit-card-operations-at-airtel-payments-bank-4486161646",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:58.420000+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/debit-card-operations-at-airtel-payments-bank-4486161646",
+      "bytes": 320672,
+      "sha256": "29a99107d6c3b8f9a5bd53fd18402421ba00700ef24d33c1a082a9516f84eae5",
+      "file": "role-4486161646.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:00.749612+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/is-audit-at-airtel-payments-bank-4485307888",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:06:58.466697+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/is-audit-at-airtel-payments-bank-4485307888",
+      "bytes": 284459,
+      "sha256": "1878b80af9fe16bab0fbbc891abfcd2ce48f3c1351fd2e216263c1418dd1fe04",
+      "file": "role-4485307888.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:01.843680+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/product-manager-fastag-at-airtel-payments-bank-4487727842",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:00.749612+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/product-manager-fastag-at-airtel-payments-bank-4487727842",
+      "bytes": 321379,
+      "sha256": "f15659b3a5848afd97a242d6d560a9d66ede5b0dfa0b0e5aea18d5eb11a6e380",
+      "file": "role-4487727842.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:03.320926+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/product-manager-merchant-lending-at-airtel-payments-bank-4490577778",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:01.113914+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/product-manager-merchant-lending-at-airtel-payments-bank-4490577778",
+      "bytes": 342078,
+      "sha256": "198888f8599ed4d3111ae87132104beae09d72cf263f4dbf9fe684c70ca89ad4",
+      "file": "role-4490577778.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:03.676481+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/key-account-manager-at-airtel-payments-bank-4482077936",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:01.348221+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/key-account-manager-at-airtel-payments-bank-4482077936",
+      "bytes": 294070,
+      "sha256": "206dd50c809c0094ef63324bc665e9d8b4aef12ad6a53e18ecdce90c57fed6b6",
+      "file": "role-4482077936.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:03.692225+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/internal-control-vendor-governance-tprm-at-airtel-payments-bank-4489428146",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:01.843680+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/internal-control-vendor-governance-tprm-at-airtel-payments-bank-4489428146",
+      "bytes": 332312,
+      "sha256": "236e707320bb358b170eedb181c60e652fd47920d93e3ac678dfc1a0250a0fde",
+      "file": "role-4489428146.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:04.443302+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/strategic-sourcing-procurement-governance-at-airtel-payments-bank-4488114353",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:03.321933+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/strategic-sourcing-procurement-governance-at-airtel-payments-bank-4488114353",
+      "bytes": 351585,
+      "sha256": "77e5d4205c9223e3761eede259b0f141cc0a125150b1e9c89efcbfffac47ff93",
+      "file": "role-4488114353.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:05.993243+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/operational-risk-manager-at-airtel-payments-bank-4482433197",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:08:18.807589+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/operational-risk-manager-at-airtel-payments-bank-4482433197",
+      "bytes": 330525,
+      "sha256": "e6207c295b9bd5ea013cb422081e4a450a3776d1288073d541ff760407c327a7",
+      "file": "role-4482433197.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:08:21.684040+00:00",
+      "evidenceDirectory": "bank-detail-retry-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/product-head-financial-services-at-airtel-payments-bank-4485322900",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:03.692225+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/product-head-financial-services-at-airtel-payments-bank-4485322900",
+      "bytes": 309980,
+      "sha256": "e9c2da4fab8367faa1682e33acfcfc150f27513c7e2efe0ae89f4431df949066",
+      "file": "role-4485322900.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:06.410337+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://in.linkedin.com/jobs/view/customer-grievance-officer-at-airtel-payments-bank-4487233912",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:07:04.444310+00:00",
+      "tlsVerified": true,
+      "transport": "Python urllib default TLS/proxy",
+      "status": 200,
+      "finalUrl": "https://in.linkedin.com/jobs/view/customer-grievance-officer-at-airtel-payments-bank-4487233912",
+      "bytes": 299293,
+      "sha256": "f51350b76c07870a55ae28e216826b75103d95331dd50c7397f651f77106c687",
+      "file": "role-4487233912.body.gz",
+      "headers": {
+        "Content-Type": "text/html; charset=utf-8"
+      },
+      "completedAt": "2026-11-13T07:07:06.938236+00:00",
+      "evidenceDirectory": "bank-details-20261113"
+    },
+    {
+      "requestedUrl": "https://www.airtelpayments.bank.in/",
+      "method": "GET",
+      "startedAt": "2026-11-13T07:19:13.091Z",
+      "status": 403,
+      "headers": {
+        "content-type": "text/html; charset=UTF-8"
+      },
+      "bytes": 5676,
+      "sha256": "3f6b0fbe79d38ceee7fd80116c93ab87b4513ec142098436930c08559a181e09",
+      "file": "corporate-node-403.body.gz",
+      "evidenceDirectory": "bank-native-runner-attempt-1",
+      "finalUrl": "https://www.airtelpayments.bank.in/"
+    }
+  ]
+}

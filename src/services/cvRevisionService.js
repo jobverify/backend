@@ -136,7 +136,7 @@ export async function listCvRevisions(user, input, { before, limit = 20 } = {}) 
   const scope = scopeFor(user, input);
   if (!Number.isInteger(limit) || limit < 1 || limit > 50 || (before !== undefined && (!Number.isInteger(before) || before < 1))) throw tailoringError('Invalid history page.', 400);
   await retainLegacyCv(user, input);
-  const rows = await CVRevision.find({ ...scope, ...(before ? { sequence: { $lt: before } } : {}) }).sort({ sequence: -1 }).limit(limit + 1)
+  const rows = await CVRevision.find({ ...scope, deletedAt: null, ...(before ? { sequence: { $lt: before } } : {}) }).sort({ sequence: -1 }).limit(limit + 1)
     .select('kind job sequence generationId actor reason restoredFrom createdAt pageCount modelVersion styleVersion evidenceSnapshot.version sourceSnapshot.filename').lean();
   const current = await currentModel(scope).findOne(currentFilter(scope)).select('currentRevisionId').lean();
   return { currentRevisionId: current?.currentRevisionId || null, items: rows.slice(0, limit).map(metadata), nextBefore: rows.length > limit ? rows[limit - 1].sequence : null };
@@ -144,9 +144,21 @@ export async function listCvRevisions(user, input, { before, limit = 20 } = {}) 
 
 async function revisionById(user, input, id, session) {
   if (typeof id !== 'string' || id.length > 100) throw tailoringError('Invalid CV revision.', 400);
-  const row = await CVRevision.findOne({ ...scopeFor(user, input), _id: id }).session(session || null).lean();
+  const row = await CVRevision.findOne({ ...scopeFor(user, input), _id: id, deletedAt: null }).session(session || null).lean();
   if (!row) throw tailoringError('CV revision not found.', 404);
   return row;
+}
+
+export async function deleteCvRevision(user, input, id) {
+  const scope = scopeFor(user, input);
+  return transaction(null, async session => {
+    await lockOwner(scope.user, session);
+    const revision = await revisionById(user, input, id, session);
+    // Keep the current pointer and shared artifacts so active CVs remain usable
+    // and a deleted current version is never re-adopted as legacy history.
+    await CVRevision.updateOne({ ...scope, _id: revision._id, deletedAt: null }, { $set: { deletedAt: new Date() } }, { session });
+    return { id: revision._id };
+  });
 }
 
 export async function getCvRevisionArtifact(user, input, id) {

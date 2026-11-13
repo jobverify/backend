@@ -1,5 +1,7 @@
 ﻿import { decodeHTML } from 'entities';
 import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js';
+import { recoverDescriptionLayout } from './jobDescriptionLayout.js';
+import { assessDescriptionSource } from './jobDescriptionSourceQuality.js';
 
 const SKIP = new Set(['script', 'style', 'template', 'noscript', 'nav', 'footer', 'aside', 'form', 'button', 'input', 'select', 'textarea', 'svg', 'iframe', 'object', 'embed']);
 const CONTAINERS = new Set(['root', 'div', 'section', 'article', 'main', 'header', 'table', 'tbody', 'thead', 'tr', 'td', 'blockquote']);
@@ -13,7 +15,10 @@ const textNode = value => decodeHTML(value).replace(/\s+/g, ' ');
 export function buildSourceDescriptionDisplay(raw) {
   let source = String(raw ?? '');
   if (ENCODED_BODY.test(source)) source = decodeHTML(source);
-  if (!HTML_BODY.test(source)) return { description: source, descriptionFormat: 'plain' };
+  if (!HTML_BODY.test(source)) {
+    const layout = recoverDescriptionLayout(source);
+    return { description: layout.text, descriptionFormat: /^#{1,6}\s/m.test(layout.text) ? 'markdown' : 'plain' };
+  }
   const document = readNativeDocument(source);
   const root = document.nodes(node => node.tag === 'root')[0];
   const inline = node => {
@@ -21,6 +26,10 @@ export function buildSourceDescriptionDisplay(raw) {
     if (!node || node.inert || SKIP.has(node.tag)) return '';
     if (node.tag === 'br') return '\n';
     const text = (node.children ?? []).map(inline).join('');
+    if (node.tag === 'a') {
+      const href = decodeHTML(String(node.attrs.href ?? '')).trim();
+      if (/^(?:https?:\/\/|mailto:|tel:)/i.test(href) && !text.includes(href)) return `${text} (${href})`;
+    }
     return /^(?:p|div|li)$/.test(node.tag) ? ` ${text} ` : text;
   };
   const listLines = (node, depth = 0) => {
@@ -47,6 +56,7 @@ export function buildSourceDescriptionDisplay(raw) {
           return;
         }
         if (child.tag === 'br') { pending += '\n'; return; }
+        if (child.tag === 'a') { pending += inline(child); return; }
         const block = CONTAINERS.has(child.tag) || child.tag === 'p';
         if (block) pending += ' ';
         for (const value of child.children ?? []) collect(value);
@@ -88,12 +98,19 @@ export function buildSourceDescriptionDisplay(raw) {
     if (node.tag !== 'br') push(inline(node));
   };
   visit(root);
-  return { description: blocks.join('\n\n') || null, descriptionFormat: 'markdown' };
+  return { description: recoverDescriptionLayout(blocks.join('\n\n')).text || null, descriptionFormat: 'markdown' };
 }
 
 /** Recover legacy display layout on reads without changing accepted rewrites or stored data. */
 export function publicDescriptionFields(job) {
-  if (job.descriptionFormat === 'markdown' || job.descriptionRewrite?.status === 'published') return {};
+  const published = job.descriptionFormat === 'markdown' || job.descriptionRewrite?.status === 'published';
+  const display = published ? job.description : job.sourceDescription !== undefined ? job.sourceDescription : job.description;
+  if (typeof display === 'string' && !assessDescriptionSource(display).ok) return { description: '', descriptionFormat: 'plain' };
+  if (published) {
+    if (typeof display !== 'string' || display.length > 120000) return {};
+    const layout = recoverDescriptionLayout(display);
+    return layout.changed ? { description: layout.text, descriptionFormat: job.descriptionFormat || (layout.structured ? 'markdown' : 'plain') } : {};
+  }
   const source = job.sourceDescription !== undefined ? job.sourceDescription : job.description;
   if (source === null || source === '') return { description: '', descriptionFormat: 'plain' };
   if (typeof source !== 'string' || source.length > 120000) return {};

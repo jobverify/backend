@@ -43,7 +43,12 @@
       "sha256": "6b4bba34d2074a13de17fd62282417a729609181b4f0f5dada5d496b34ed8d91"
     }
   ],
-  "corporateInlineCss": [],
+  "corporateInlineCss": [
+    "d7ca36e5347b862304f32802ed28ed66214f02e79e00362aa8d3c508ffc57694",
+    "c0036964a5244f1654732bc7e29d22fb9493b52a0f3771197da8797ca11cfd41",
+    "4e1d51a56294ffa077dcff241448edaf380e0776e0b161aedd713db3dda2c2f9",
+    "03555f7f90c74222f35cd8aa3b883ca96f202bf4f94bbbcd3b57c35768f600af"
+  ],
   "corporateFramePath": [
     {
       "tag": "iframe",

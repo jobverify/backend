@@ -28,9 +28,9 @@ export const rewriteStopDetails = ({ budgetExpired = false, cancelled = false } 
   ? { interrupted: true, cancelled: true, stopReason: 'cancelled', reason: 'interrupted' }
   : budgetExpired ? { interrupted: true, budgetExhausted: true, stopReason: 'budget_exhausted', reason: 'workflow_budget_exhausted' } : {};
 
-// Production uses compact source-fact decisions. Keep the prose protocols
-// available for explicit comparisons and historical regression coverage.
+// Apply source-quality checks before choosing a generation protocol.
 export const assessDescriptionRewrite = (input, format = REWRITE_MODEL.outputFormat) => {
+  if (input.sourceQuality?.ok === false) return { ok: false, reason: input.sourceQuality.reason };
   if (format === 'prose') return input.eligible ? { ok: true } : { ok: false, reason: 'insufficient_source' };
   if (['source-edits', 'source-sections'].includes(format)) {
     if (!input.eligible) return { ok: false, reason: 'insufficient_source' };

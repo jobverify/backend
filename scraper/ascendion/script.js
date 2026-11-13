@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { collectAscendionNative, inspectNativeWorkplaces } from './nativeInventory.js'
 import { extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
+import { assessDescriptionSource } from '../../src/utils/jobDescriptionSourceQuality.js'
 import { extractJobFilterSignals } from '../../src/utils/jobFilterSignals.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -188,6 +189,7 @@ const mapPositionToJob = (position, detail = {}) => {
   const displayJobId = normalizeWhitespace(detailPayload?.displayJobId || position?.displayJobId)
   const sourceUrl = buildJobUrl(positionId)
   const descriptionHtml = detailPayload?.jobDescription || null
+  const activeDescription = descriptionHtml && assessDescriptionSource(descriptionHtml).ok ? extractActiveDescription(descriptionHtml) : null
 
   return {
     title: normalizeWhitespace(detailPayload?.name || position?.name),
@@ -207,7 +209,8 @@ const mapPositionToJob = (position, detail = {}) => {
     requiredSkills: [],
     postingDate: toIsoDate(position?.postedTs),
     closingDate: null,
-    jobDescription: descriptionHtml ? extractActiveDescription(descriptionHtml) : null,
+    jobDescription: activeDescription,
+    sourceDescription: activeDescription ? descriptionHtml : null,
   }
 }
 

@@ -3,6 +3,7 @@ import { execFile } from 'node:child_process'
 import { fileURLToPath } from 'url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { runCognizantCurrent20261113 } from './currentNative20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -191,6 +192,7 @@ const buildBlockedCareersPageError = (url, response, html) => {
 const buildHttpStatusError = (url, response) => {
   const status = Number(response?.status)
   const error = new Error(`HTTP ${Number.isFinite(status) ? status : 'unknown'} for ${url}`)
+  if (Number.isFinite(status)) error.status = status
   if (Number.isFinite(status) && [401, 403, 404, 429].includes(status)) {
     error.abortRetries = true
   }
@@ -202,6 +204,7 @@ const runCurlRequest = (url, execFileImpl = execFile) => new Promise((resolve, r
   const args = [
     '-L',
     '--compressed',
+    '--fail-with-body',
     '-A',
     COGNIZANT_HEADERS['User-Agent'],
     '-H',
@@ -385,7 +388,7 @@ export const createDefaultFetchText = ({
 
     throw buildHttpStatusError(url, response)
   } catch (error) {
-    if (error?.abortRetries === true || error?.softFailure === true) {
+    if (Number.isFinite(error?.status) || error?.abortRetries === true || error?.softFailure === true) {
       throw error
     }
     return runCurlRequest(url, execFileImpl)
@@ -447,7 +450,11 @@ export const createCognizantScraper = ({
   },
 })
 
-export const run = async (options) => createCognizantScraper().run(options)
+export const run = async (options = {}) => runCognizantCurrent20261113(options, {
+  extractSearchResults, extractPaginationSummary,
+  maxPages: Number.isInteger(config.maxPages) ? config.maxPages : 8,
+  headers: COGNIZANT_HEADERS,
+})
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

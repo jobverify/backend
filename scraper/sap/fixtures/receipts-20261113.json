@@ -1,0 +1,27 @@
+{
+  "capturedDate": "2026-11-13",
+  "requests": [
+    {
+      "requestedURL": "https://careers.sap.com/search/?q=&locationsearch=India&locale=en_US",
+      "status": 200,
+      "url": "https://careers.sap.com/search/?q=&locationsearch=India&locale=en_US",
+      "bytes": 249357,
+      "sha256": "065fcf77b7630b1cb56822cbbd9fbd7c4903d6f5d575dcf6fb3f3885733b1506",
+      "file": "sap-search.body.gz",
+      "headers": {
+        "content-type": "text/html;charset=UTF-8"
+      }
+    },
+    {
+      "requestedURL": "https://careers.sap.com/job/Gurgaon-Consultant-in-Data-Analytics%2C-Datasphere-&-AI-Domain-BangaloreGurgaon-122002/1403950833/",
+      "status": 200,
+      "url": "https://careers.sap.com/job/Gurgaon-Consultant-in-Data-Analytics%2C-Datasphere-&-AI-Domain-BangaloreGurgaon-122002/1403950833/",
+      "bytes": 241128,
+      "sha256": "180621cf8b6d263e0e9db04664dd7a4cddac36dd3aac2263a42f76e3a2b8ccb3",
+      "file": "sap-multilocation-detail.body.gz",
+      "headers": {
+        "content-type": "text/html;charset=UTF-8"
+      }
+    }
+  ]
+}

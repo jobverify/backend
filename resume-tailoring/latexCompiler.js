@@ -8,6 +8,7 @@ import { resumeFailure } from './resumeDiagnostics.js';
 import { resumePdfText } from '../src/services/resumePdfText.js';
 
 const context = fileURLToPath(new URL('./compiler/', import.meta.url));
+const buildContext = fileURLToPath(new URL('./', import.meta.url));
 const cache = fileURLToPath(new URL('../.cache/resume-compiler/', import.meta.url));
 let preparedImage;
 export function compilerFailure({ stderr = '', code, aborted = false } = {}) {
@@ -41,12 +42,13 @@ export function compilerArguments({ name, image }) {
 export async function prepareResumeCompiler({ deadline = Date.now() + 600000 } = {}) {
   const hash = createHash('sha256');
   for (const name of ['Dockerfile', 'compiler.json', 'warmup.tex', 'compile.sh']) hash.update(await fs.readFile(path.join(context, name)));
+  hash.update(await fs.readFile(path.join(buildContext, 'templates/abey-resume.tex')));
   const tag = `jobverify-resume-compiler:${hash.digest('hex').slice(0, 24)}`;
   const archive = path.join(cache, 'image.tar');
   try { await docker(['load', '--input', archive], { deadline, limit: 1024 * 1024 }); } catch { /* cache miss; trusted build only */ }
   try { preparedImage = (await docker(['image', 'inspect', '--format', '{{.Id}}', tag], { deadline })).toString().trim(); }
   catch {
-    await docker(['build', '--quiet', '--tag', tag, context], { deadline, limit: 1024 * 1024 });
+    await docker(['build', '--quiet', '--tag', tag, '--file', path.join(context, 'Dockerfile'), buildContext], { deadline, limit: 1024 * 1024 });
     preparedImage = (await docker(['image', 'inspect', '--format', '{{.Id}}', tag], { deadline })).toString().trim();
     await fs.mkdir(cache, { recursive: true });
     const temporary = `${archive}.${randomUUID()}.download`;

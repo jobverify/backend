@@ -18,7 +18,7 @@ const replay = (t, change = () => {}) => {
     { total: 21, jobPostings: rows.slice(0, 20) }, { total: 0, jobPostings: rows.slice(20) },
     { total: 21, jobPostings: rows.slice(0, 20) }, { total: 0, jobPostings: rows.slice(20) },
   ]
-  change(pages)
+  const expectedOffsets = change(pages)
   const directory = mkdtempSync(path.join(tmpdir(), 'workday-proof-pagination-'))
   t.after(() => {
     const target = realpathSync(directory)
@@ -35,7 +35,7 @@ const replay = (t, change = () => {}) => {
     if (init.method === 'POST') {
       assert.equal(String(url), api)
       assert.ok(requests < pages.length)
-      assert.equal(JSON.parse(init.body).offset, requests % 2 ? 20 : 0)
+      assert.equal(JSON.parse(init.body).offset, expectedOffsets?.[requests] ?? (requests % 2 ? 20 : 0))
       response = Response.json(pages[requests++])
     } else {
       assert.ok([baseUrl, corporate].includes(String(url)))
@@ -71,9 +71,14 @@ for (const [name, change] of [
   test(`complete-board zero-sentinel pagination rejects ${name}`, async t => {
     await assert.rejects(replay(t, pages => {
       change(pages)
-      // Opening drift now receives one clean restart. Keep the bad opening
-      // on both attempts; closing-only failures still reject in their phase.
+      // Keep the bad snapshot on both allowed attempts. A closing first-page
+      // count mismatch ends that pass before its second page can be read.
       if (name.includes('initial')) pages.splice(2, 0, structuredClone(pages[0]), structuredClone(pages[1]))
+      else if (name === 'changed closing first total') {
+        pages.pop()
+        pages.push(...structuredClone(pages))
+        return [0, 20, 0, 0, 20, 0]
+      } else if (name.startsWith('changed')) pages.push(...structuredClone(pages))
     }), { name: 'WorkdayIncompleteListingError' })
   })
 }

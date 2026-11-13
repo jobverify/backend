@@ -1,0 +1,18 @@
+{
+  "reviewedOn": "2026-11-13",
+  "officialURL": "https://get.chownow.com/careers/",
+  "nativeAPI": "https://api.lever.co/v0/postings/chownow?mode=json",
+  "officialRenderedRoleCount": 15,
+  "nativeAPIRecordCount": 7,
+  "officialAdvertisedMatchingNativeRoleURLs": [
+    "https://jobs.lever.co/chownow/c20b3c8c-6659-43ed-8b38-4a11cfae0db6",
+    "https://jobs.lever.co/chownow/c70ccb0c-89db-4b54-b0ce-834e38be0a22",
+    "https://jobs.lever.co/chownow/605a99b1-ff74-4692-a520-ffb633dd067c",
+    "https://jobs.lever.co/chownow/746e1fc0-8755-4526-bb46-9a2d656e43aa",
+    "https://jobs.lever.co/chownow/c0020b71-4174-4e53-a231-0284b2b4b40c",
+    "https://jobs.lever.co/chownow/300dcd24-6795-456a-b4e9-7d6091285314",
+    "https://jobs.lever.co/chownow/7878033a-4368-45d2-8aec-dc87304231da"
+  ],
+  "ownershipMethod": "Current official public careers renderedlinks target exactjobs.lever.co/chownow account; every current API role is included. Counts are historical review observations, never runtime validity requirements.",
+  "scope": "Whole company scope and corporate/API freshness unresolved. No verified company India zero or cleanup authority."
+}

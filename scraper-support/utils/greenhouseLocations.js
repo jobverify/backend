@@ -39,10 +39,25 @@ export const qualifiedGreenhouseWorksites = label => {
     ? locations.map(location => location.trim()) : null
 }
 
+const nativeCountryNames = new Set()
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
+for (let a = 65; a <= 90; a++) for (let b = 65; b <= 90; b++) {
+  const code = String.fromCharCode(a, b), name = regionNames.of(code)
+  if (name !== code && !['ZZ', 'EU', 'UN', 'XA', 'XB', 'QO'].includes(code)) nativeCountryNames.add(name.toLowerCase())
+}
+// A final "or" separates explicit country alternatives. Require every item to
+// be a country name; city/country addresses and ambiguous mixed labels remain
+// whole so the existing contradiction checks can reject them.
+const qualifiedCountryAlternatives = label => {
+  if (!/\s+or\s+[^,]+$/i.test(label)) return null
+  const countries = label.split(/\s*,\s*|\s+or\s+/i).map(value => value.trim())
+  return countries.length > 1 && countries.every(value => nativeCountryNames.has(value.toLowerCase())) ? countries : null
+}
+
 // Semicolons also enumerate independent native offices. Unqualified alternate
 // city/region labels retain their original text and unresolved scope.
 export const greenhouseLocationSegments = label => label.split(';').map(value => value.trim()).filter(Boolean)
-  .flatMap(value => qualifiedGreenhouseWorksites(value) || [value])
+  .flatMap(value => qualifiedGreenhouseWorksites(value) || qualifiedCountryAlternatives(value) || [value])
 
 export const greenhouseLocationLabels = (record = {}) => {
   const labels = []

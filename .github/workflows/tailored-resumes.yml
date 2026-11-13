@@ -43,7 +43,7 @@ jobs:
             .cache/resume-models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
             .cache/resume-runtime/b11146/llama-b11146-bin-ubuntu-x64.tar.gz
             .cache/resume-compiler/image.tar
-          key: resume-qwen4b-3605803b-runtime-c150306e-${{ hashFiles('resume-tailoring/compiler/**') }}
+          key: resume-qwen4b-3605803b-runtime-c150306e-${{ hashFiles('resume-tailoring/compiler/**', 'resume-tailoring/templates/**') }}
       - name: Prepare or tailor one requested resume
         timeout-minutes: 28
         env:

@@ -119,7 +119,8 @@ export function parseBoard(html){
  const queries=props.dehydratedState.queries.filter(q=>Array.isArray(q.queryKey)&&q.queryKey[2]==='job-posts')
  check(queries.length===1,'one unfiltered public jobs query required')
  const q=queries[0],filters=q.queryKey[4]
- check(sameNative(q.queryKey.slice(0,4),['board','branch','job-posts',false])&&q.queryKey.length===5
+ check(sameNative(q.queryKey.slice(0,4),['board','branch','job-posts',false])
+  &&(q.queryKey.length===5||(q.queryKey.length===6&&q.queryKey[5]==='en-US'))
   &&sameNative(filters,{searchQuery:'',departments:[],workplaceType:null,country:'',state:'',city:'',page:0,pageSize:20})
   &&q.state?.status==='success'&&q.state.error===null,'native board query is filtered or unsuccessful')
  return parseListing(q.state.data,0,20)

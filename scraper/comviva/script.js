@@ -2,7 +2,8 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {hasCurrentNativeMarker,readCurrentNative} from './native.js'
+import {createPublicReader} from './publicRead.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -31,15 +32,6 @@ const normalizeWhitespace = (value) => {
 
   return normalized || null
 }
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: 'comviva',
-  timeoutMs: 15000,
-})
 
 export const hasCareersPageSignal = (html) => {
   const normalized = String(html ?? '').toLowerCase()
@@ -80,16 +72,21 @@ export const extractOpenings = (html) => {
 
 export const createComvivaScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
+  maxPages = Number.isInteger(config.maxPages) ? config.maxPages : 10,
 } = {}) => ({
   async run(options = {}) {
-    const fetchText = options.fetchText || defaultFetchText
-    const careersPageHtml = await fetchText(CAREERS_PAGE_URL)
+    options.signal?.throwIfAborted()
+    const receipts=[],read=createPublicReader(options,receipts)
+    const careersPageHtml=await read(CAREERS_PAGE_URL,{headers:{'User-Agent':USER_AGENT,Accept:'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}})
+    if(hasCurrentNativeMarker(careersPageHtml))return readCurrentNative({careersHTML:careersPageHtml,read,receipts,options,maxJobs,maxPages})
 
+    // Historical exported formatting helpers remain compatible. An unqualified
+    // historical shell never publishes vacancies or certifies company scope.
     if (!hasCareersPageSignal(careersPageHtml)) {
       return []
     }
 
-    const widgetHtml = await fetchText(CEIPAL_WIDGET_URL)
+    const widgetHtml = await read(CEIPAL_WIDGET_URL,{headers:{'User-Agent':USER_AGENT,Accept:'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}})
     const jobs = extractOpenings(widgetHtml)
 
     return maxJobs ? jobs.slice(0, maxJobs) : jobs

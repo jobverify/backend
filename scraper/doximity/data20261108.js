@@ -58,7 +58,13 @@ export function board(html,onRecord){
  need(Array.isArray(route.featuredPosts?.data)&&route.featuredPosts.data.every(v=>ids.has(v.id)&&isDeepStrictEqual(v,records.find(r=>r.id===v.id))),'unreconciled native featured posts')
  need(Array.isArray(route.departmentIds)&&!route.departmentIds.length&&Array.isArray(route.officeIds)&&!route.officeIds.length&&route.customFieldFilters&&Object.keys(route.customFieldFilters).length===0,'native filtered listing cannot establish a complete cohort')
  const links=doc.nodes(n=>n.tag==='a'&&/^https:\/\/job-boards\.greenhouse\.io\/doximity\/jobs\/\d+$/.test(n.attrs.href||''));need(new Set(links.map(n=>n.attrs.href)).size===records.length&&links.every(n=>records.some(v=>v.absolute_url===n.attrs.href)),'rendered/native complete listing disagreement')
- need(nativeHTMLText(one(doc.nodes(n=>n.tag==='title'),'board title').raw)==='Jobs at Doximity','board head publisher changed')
+ const headTitle=nativeHTMLText(one(doc.nodes(n=>n.tag==='title'),'board title').raw)
+ if(headTitle==='page_title'){
+  const title=one(doc.nodes(n=>n.tag==='meta'&&n.attrs.property==='og:title'),'board head publisher metadata')
+  const address=one(doc.nodes(n=>n.tag==='meta'&&n.attrs.property==='og:url'),'board head route metadata')
+  need(title.attrs.content==='Doximity','board head publisher changed')
+  metadataURI(address.attrs.content,BOARD)
+ }else need(headTitle==='Jobs at Doximity','board head publisher changed')
  return {records,route:structuredClone(route),context:c.model,originalCanonical,nativeBoardTotal:total.total,companyGlobalTotal:null,companyIndiaTotal:null}
 }
 export function own(html,listing,api,at,onModel){
@@ -70,7 +76,16 @@ export function own(html,listing,api,at,onModel){
  need(post.redirect_to===null&&post.published_at===listing.published_at,'own native redirect/publication conflict')
  need((api.internal_job_id===null)===(post.post_type==='prospect_post'),'own native vacancy/prospect conflict')
  const heading=one(doc.nodes(n=>n.tag==='h1'&&cls(n,'section-header--large')&&cls(n,'font-primary')),'own role heading');need(doc.text(heading)===nativeHTMLText(post.title),'native own heading conflict')
- need(nativeHTMLText(one(doc.nodes(n=>n.tag==='title'),'own head title').raw)==='Job Application for '+nativeHTMLText(post.title)+' at Doximity','own head publisher/title conflict')
+ const headTitle=nativeHTMLText(one(doc.nodes(n=>n.tag==='title'),'own head title').raw)
+ const expectedTitle='Job Application for '+nativeHTMLText(post.title)+' at Doximity'
+ if(headTitle==='page_title'){
+  // The reviewed current Greenhouse rendition emits its untranslated title
+  // key. Its published Open Graph fields still identify this exact role;
+  // require agreement with the API, hosted model, listing and visible H1 above.
+  const metadata=property=>one(doc.nodes(n=>n.tag==='meta'&&n.attrs.property===property),'own head '+property).attrs.content
+  need(nativeHTMLText(metadata('og:title'))===nativeHTMLText(post.title)
+   &&metadata('og:url')===url&&nativeHTMLText(metadata('og:description'))===nativeHTMLText(post.job_post_location),'own head metadata publisher/title/location conflict')
+ }else need(headTitle===expectedTitle,'own head publisher/title conflict')
  need(!doc.nodes(n=>n.tag==='base').length&&!doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json').length,'additional unreviewed native role identity/schema')
  one(doc.nodes(n=>n.tag==='div'&&cls(n,'job__description')&&cls(n,'body')),'active complete role criteria')
  const raw=rawDocument(html),carrier=one(raw.nodes(n=>n.tag==='div'&&raw.hasClass(n,'job__description')&&raw.hasClass(n,'body')),'exact full role criteria'),descriptionHTML=raw.outer(carrier),description=nativeHTMLText(descriptionHTML)

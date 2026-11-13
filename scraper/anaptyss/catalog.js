@@ -33,6 +33,8 @@ export const ANAPTYSS_CATALOG = {
   companyDomain: 'anaptyss.com',
   atsPlatform: 'official-company-careers',
   countryFilter: 'India',
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
   paginationStrategy: 'current-first-party-openings-list-and-detail-pages-with-legacy-sitemap-fallback',
   extractionStrategy:
     'verified-current-homepage+current-openings-list+india-detail-pages+shared-first-party-apply-form',

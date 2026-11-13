@@ -1,0 +1,8 @@
+[
+  { "id": "required-range", "text": "Requirements:\nApplicants must have between three and five years of professional experience building production services.", "expected": { "status": "supported", "graduationYears": [], "graduationMaxYear": null, "experienceRanges": [{ "minimumYears": 3, "maximumYears": 5, "isOpenEnded": false }] } },
+  { "id": "open-experience", "text": "Required qualifications:\nAt least 3 years of professional experience is required.", "expected": { "status": "supported", "graduationYears": [], "graduationMaxYear": null, "experienceRanges": [{ "minimumYears": 3, "maximumYears": null, "isOpenEnded": true }] } },
+  { "id": "explicit-cohort", "text": "Graduate Engineer vacancy. Only candidates graduating in 2026 or 2027 are eligible.", "expected": { "status": "supported", "graduationYears": [2026, 2027], "graduationMaxYear": null, "experienceRanges": [] } },
+  { "id": "preferred-only", "text": "Preferred qualifications:\nThree years of experience in Python is desirable.\nResponsibilities:\nBuild and test services.", "expected": { "status": "not_stated", "graduationYears": [], "graduationMaxYear": null, "experienceRanges": [] } },
+  { "id": "company-history", "text": "About us:\nOur company has 20 years of experience delivering software.\nResponsibilities:\nDevelop and test applications.\nRequirements:\nA degree in computer science.", "expected": { "status": "not_stated", "graduationYears": [], "graduationMaxYear": null, "experienceRanges": [] } },
+  { "id": "absent-requirements", "text": "Senior Engineer. Design reliable systems, review code and help colleagues debug production issues.", "expected": { "status": "not_stated", "graduationYears": [], "graduationMaxYear": null, "experienceRanges": [] } }
+]

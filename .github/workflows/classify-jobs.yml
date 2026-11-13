@@ -64,7 +64,7 @@ jobs:
   classify:
     name: Classify jobs (shard ${{ matrix.shard }})
     needs: register
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 360
     strategy:
       fail-fast: false
@@ -108,6 +108,31 @@ jobs:
       - name: Download and verify public model
         timeout-minutes: 10
         run: python classification/gliclass/download.py "$GLICLASS_MODEL_DIRECTORY"
+      - name: Cache batch extraction model
+        uses: actions/cache@v6
+        with:
+          path: .cache/description-rewriter
+          key: batch-extraction-model-${{ runner.os }}-${{ hashFiles('rewriting/model.json') }}
+      - name: Cache portable batch extraction runtime
+        id: batch_runtime
+        uses: actions/cache@v6
+        with:
+          path: .cache/description-rewriter-avx2
+          key: description-runtime-avx2-ubuntu24-x64-b11146-${{ hashFiles('scripts/portableRewriteRuntime.sh') }}
+      - name: Check out pinned runtime source when needed
+        if: steps.batch_runtime.outputs.cache-hit != 'true'
+        uses: actions/checkout@v7
+        with:
+          repository: ggml-org/llama.cpp
+          ref: 7fe450e19305b828c199d602c23a8337aaa1f03b
+          path: .cache/description-rewriter-source
+          persist-credentials: false
+      - name: Build portable batch extraction runtime
+        if: steps.batch_runtime.outputs.cache-hit != 'true'
+        timeout-minutes: 30
+        run: bash scripts/portableRewriteRuntime.sh build
+      - name: Verify batch extraction runtime
+        run: bash scripts/portableRewriteRuntime.sh activate
       - name: Classify saved MongoDB descriptions
         run: node scripts/classifySavedJobs.js
         env:
@@ -121,6 +146,7 @@ jobs:
             .cache/scraper-actions/classification-${{ matrix.shard }}.json
             .cache/scraper-actions/classification-${{ matrix.shard }}.ndjson
             .cache/scraper-actions/gliclass-worker.log
+            .cache/scraper-actions/batch-extractor.log
           include-hidden-files: true
           if-no-files-found: warn
           retention-days: 14

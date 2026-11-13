@@ -142,7 +142,7 @@ test('Bharat Electronics exports the verified first-party recruitment surface co
   assert.equal(bel.hasOfficialJobNotificationsPageSignal(JOB_NOTIFICATIONS_HTML), true)
 })
 
-test('Bharat Electronics extracts only still-open official recruitment notices and preserves online-vs-form apply modes', async () => {
+test('Bharat Electronics discovers still-open notices without inventing country or criteria', async () => {
   const bel = await loadBharatElectronicsModule()
 
   const jobs = bel.extractActiveJobNotifications(JOB_NOTIFICATIONS_HTML, {
@@ -155,7 +155,7 @@ test('Bharat Electronics extracts only still-open official recruitment notices a
     company: 'Bharat Electronics',
     location: 'Pune',
     city: null,
-    country: 'India',
+    country: null,
     jobId: 'bharatelectronics-advertisement-for-the-post-of-havildar-security-on-permanent-basis-for-bel-pune-2026-07-31',
     requisitionId: 'advertisement-for-the-post-of-havildar-security-on-permanent-basis-for-bel-pune',
     sourceUrl: 'https://bel-india.in/wp-content/uploads/2026/07/01-Final-Web-Ad-Havildar-Security-8-7.pdf',
@@ -167,17 +167,20 @@ test('Bharat Electronics extracts only still-open official recruitment notices a
     requiredSkills: [],
     postingDate: null,
     closingDate: '2026-07-31',
-    jobDescription: 'Review the official BEL advertisement PDF and complete the official online application before the closing date.',
+    jobDescription: null,
+    sourceDetailComplete: false,
+    sourceScopeComplete: false,
+    lifecycleCleanupAllowed: false,
     remoteStatus: null,
   })
   assert.equal(jobs[1].title, 'Recruitment of Senior Engineer on Fixed Tenure Basis for Project Sites in Madhya Pradesh')
   assert.equal(jobs[1].applyUrl, 'https://bel-india.in/wp-content/uploads/2026/06/BIO-DATA-FORM.pdf')
   assert.equal(jobs[1].closingDate, '2026-07-16')
   assert.equal(jobs[1].employmentType, 'Contract')
-  assert.match(jobs[1].jobDescription, /application form pdf/i)
+  assert.equal(jobs[1].jobDescription, null)
 })
 
-test('Bharat Electronics runner verifies the official homepage, deduplicates repeated paginated pages, and returns shared fields', async () => {
+test('Bharat Electronics legacy discovery retains deduplicated observations outside publication', async () => {
   const bel = await loadBharatElectronicsModule()
   const requestedUrls = []
 
@@ -200,12 +203,10 @@ test('Bharat Electronics runner verifies the official homepage, deduplicates rep
     'https://bel-india.in/job-notifications/',
     'https://bel-india.in/job-notifications/page/2/',
   ])
-  assert.equal(jobs.length, 2)
-  assert.equal(jobs[0].source, 'bharatelectronics')
-  assert.equal(jobs[0].company, 'Bharat Electronics')
-  assert.equal(jobs[0].link, jobs[0].applyUrl)
-  assert.equal(jobs[0].scrapedAt, '2026-07-15T12:00:00.000Z')
-  assert.equal(jobs[1].link, 'https://bel-india.in/wp-content/uploads/2026/06/BIO-DATA-FORM.pdf')
+  assert.equal(jobs.length, 0)
+  assert.equal(jobs.sourceAudit.originalNotices.length, 2)
+  assert.equal(jobs.sourceAudit.originalNotices[0].source, 'bharatelectronics')
+  assert.equal(jobs.sourceAudit.originalNotices[0].scrapedAt, '2026-07-15T12:00:00.000Z')
 })
 
 test('Bharat Electronics fails closed when the official job notifications surface changes away from the verified layout', async () => {
@@ -234,11 +235,11 @@ test('Bharat Electronics fails closed when the official job notifications surfac
   )
 })
 
-test('Bharat Electronics falls back to a browser fetch when certificate verification fails', async () => {
+test('Bharat Electronics preserves the original transport failure without browser fallback', async () => {
   const bel = await loadBharatElectronicsModule()
   const requestedUrls = []
 
-  const jobs = await bel.createBharatElectronicsScraper().run({
+  await assert.rejects(bel.createBharatElectronicsScraper().run({
     fetchText: async () => {
       throw new Error('fetch failed | unable to verify the first certificate')
     },
@@ -253,13 +254,6 @@ test('Bharat Electronics falls back to a browser fetch when certificate verifica
     },
     now: () => '2026-07-15T12:00:00.000Z',
     maxPages: 4,
-  })
-
-  assert.deepEqual(requestedUrls, [
-    'https://bel-india.in/',
-    'https://bel-india.in/job-notifications/',
-    'https://bel-india.in/job-notifications/page/2/',
-  ])
-  assert.equal(jobs.length, 2)
-  assert.equal(jobs[0].source, 'bharatelectronics')
+  }), /unable to verify the first certificate/)
+  assert.deepEqual(requestedUrls, [])
 })
