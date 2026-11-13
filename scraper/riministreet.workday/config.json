@@ -1,6 +1,12 @@
 {
   "listingStrategy": "jobs-api",
+  "inventoryScope": "complete-board-country-proof",
+  "retainProvenIndiaOnUnresolvedLocations": true,
+  "officialCareersUrl": "https://www.riministreet.com/company/careers/",
   "jobsApiUrl": "https://riministreet.wd1.myworkdayjobs.com/wday/cxs/riministreet/RiminiStreet/jobs",
   "detailUrlBase": "https://riministreet.wd1.myworkdayjobs.com/RiminiStreet",
+  "locationCountry": null,
+  "searchText": "",
+  "workdayMaxPages": 25,
   "maxPages": 25
 }

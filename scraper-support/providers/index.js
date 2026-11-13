@@ -688,7 +688,22 @@ const createApiPortalScraper = (provider) => ({
   name: provider.source,
   dryRunFile: provider.dryRunFile,
   provider,
-  run: async ({ signal } = {}) => {
+  run: async (options = {}) => {
+    const { signal } = options
+    if (provider.source === 'entrupy') {
+      const { createPublishingGapAtsScraper } = await import('../utils/publishingGapAts.js')
+      const jobs = await createPublishingGapAtsScraper({ ...provider,
+        boardToken: provider.templateOptions.boardToken,
+      }).run(options)
+      const decorated = decorateJobsWithProviderMetadata(jobs, provider)
+      // A native country alternative supplies no city. Work arrangements in
+      // the description must not replace that missing workplace information.
+      for (const job of decorated) if (/^India$/i.test(job.location || '')) job.city = null
+      if (jobs.nativeCollectionEvidence) Object.defineProperty(decorated, 'nativeCollectionEvidence', {
+        value: jobs.nativeCollectionEvidence, configurable: true,
+      })
+      return decorated
+    }
     const { runApiPortalScraper } = await import('../apiPortal/engine.js')
     const jobs = await runApiPortalScraper({
       provider,

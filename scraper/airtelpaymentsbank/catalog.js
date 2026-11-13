@@ -15,17 +15,23 @@ export const AIRTEL_PAYMENTS_BANK_CATALOG = {
   sharedDarwinboxUrl: 'https://airtel.darwinbox.in/ms/candidatev2/main/careers/allJobs',
   sharedCareersApiUrl: 'https://careersapi.airtel.com/',
   companyDomain: 'airtelpayments.bank.in',
-  atsPlatform: 'official-company-site-no-public-careers',
+  employerProfileUrl: 'https://www.linkedin.com/company/airtelpaymentsbank',
+  employerCompanyId: '13361480',
+  employerListingPath: '/jobs/airtel-payments-bank-jobs-worldwide',
+  atsPlatform: 'corporate-declared-linkedin-employer-feed',
   countryFilter: 'India',
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
+  zeroResultPolicy: 'evidence-required',
   paginationStrategy:
-    '403-guarded-bank-pages-plus-shared-airtel-careers-shell-bundle-and-darwinbox-checks',
+    'exact-employer-worldwide-count-and-terminal+stable-closing-inventory;max-100-native-rows',
   extractionStrategy:
-    '403-guarded-bank-homepage+403-guarded-bank-about-page+shared-airtel-careers-shell+shared-bundle-reference+shared-darwinbox-shell+no-distinct-bank-jobs-route-return-empty',
+    'corporate-employer-handoff+reciprocal-bank-website+native-JobPosting-and-full-visible-criteria-parity+explicit-country+same-role-account-handoff;whole-company-scope-unverified',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
-  verifiedOn: '2026-08-07',
+  verifiedOn: '2026-11-13',
   verifiedSurfaceSummary:
-    'Verified on Friday, August 7, 2026 that https://www.airtelpayments.bank.in/ and https://www.airtelpayments.bank.in/static/about-us returned Cloudflare-guarded HTTP 403 surfaces from this environment, while the shared Airtel careers shell at https://careers.airtel.com/, its bundle at https://careers.airtel.com/static/js/main.57023176.js, and the shared Airtel Darwinbox handoff at https://airtel.darwinbox.in/ms/candidatev2/main/careers/allJobs remained publicly reachable and still exposed no distinct Airtel Payments Bank public jobs route.',
+    'Verified with public TLS on November 13, 2026: https://www.airtelpayments.bank.in/ explicitly links to https://www.linkedin.com/company/airtelpaymentsbank, whose native employer profile reciprocates the bank website and declares the exact Worldwide bank feed f_C=13361480. Its 16 native vacancies, full original descriptions, explicit countries, role-bound account application links and unchanged closing inventory were acquired. Only this employer feed is complete; company-wide totals remain unknown and lifecycle cleanup is forbidden. The former shared https://careers.airtel.com/ handoff still times out; its Darwinbox API alternatives return a public Cloudflare block.',
   dryRunFile: 'airtelpaymentsbank/jobs.json',
   modulePath: path.resolve(currentDir, 'script.js'),
 }

@@ -12,9 +12,13 @@ const CAREERS = HOME + 'careers'
 const INDIA = CAREERS + '/locations/india'
 const PROGRAM = 'https://jobs.echostar.com'
 const CANONICAL = 'https://dish.jibeapply.com'
-const SEARCH_CLIENT = 'https://app.jibecdn.com/prod/search/4.11.225/main.js'
+// Exact reviewed releases. The November 13 release adds a request-source
+// header and minifier renames; native search/filter/country rendering remains.
+const SEARCH_CLIENTS = Object.freeze({
+  'https://app.jibecdn.com/prod/search/4.11.225/main.js': '8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f',
+  'https://app.jibecdn.com/prod/search/4.11.226/main.js': '64df0d1d3d65b28b8ebe0d9ccd08d776ffb092486633fb72f91f26e6c9950f56',
+})
 const DESCRIPTION_CLIENT = 'https://app.jibecdn.com/prod/descriptions/1.1.100/main.js'
-const SEARCH_SHA = '8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f'
 const DESCRIPTION_SHA = 'fc31de5557e316926aaa23755d10152e33f418ebbbdb731fd20b32023a93d880'
 const EMPLOYER = 'EchoStar'
 // Exact state/label pairs in the captured current native page. These reconcile
@@ -111,7 +115,7 @@ function search(html) {
   need(one(doc.nodes(n => n.tag === 'link' && n.attrs.rel === 'canonical'), 'native search canonical').attrs.href === CANONICAL + '/jobs',
     'native public program canonical changed')
   need(assignment(doc, '_jibe').cid === 'dish', 'native public program tenant changed')
-  one(doc.nodes(n => n.tag === 'script' && n.attrs.src === SEARCH_CLIENT && n.attrs.type === 'module' && executable(n)), 'reviewed search renderer')
+  const renderer = one(doc.nodes(n => n.tag === 'script' && Object.hasOwn(SEARCH_CLIENTS, n.attrs.src) && n.attrs.type === 'module' && executable(n)), 'reviewed search renderer').attrs.src
   const config = assignment(doc, 'searchConfig'), query = config.query
   need(query?.location === 'India' && query.page === '1' && query.internal === 'false'
     && Object.values(query).every(value => typeof value === 'string') && Object.keys(query).length <= 16,
@@ -120,7 +124,7 @@ function search(html) {
     'native own-role navigation override is unreviewed')
   const api = new URL(PROGRAM + '/api/jobs')
   api.search = new URLSearchParams(query).toString()
-  return { query, api: api.href, canonical: CANONICAL + '/jobs' }
+  return { query, api: api.href, canonical: CANONICAL + '/jobs', renderer }
 }
 
 const locations = job => [job, ...(job.additional_locations ?? [])]
@@ -200,6 +204,31 @@ function listing(payload) {
     displayedLocations(job)
   }
   return { rows: payload.jobs, total: payload.totalCount, snapshot: stable(payload.jobs) }
+}
+
+function sameListingInventory(opening, closing) {
+  if (opening.total !== closing.total || opening.rows.length !== closing.rows.length) return { matches: false, differences: [] }
+  if (opening.snapshot === closing.snapshot) return { matches: true, differences: [] }
+  const comparison = structuredClone(closing.rows), differences = []
+  for (let index = 0; index < opening.rows.length; index++) {
+    const before = opening.rows[index].data.meta_data?.last_mod, after = comparison[index].data.meta_data?.last_mod
+    if (before === after) continue
+    // The same public search response is delivered with either whole-second
+    // or fractional UTC modification metadata. Compare only these observed
+    // representations at their shared precision. Every other native field is
+    // still compared exactly, and original metadata/receipts remain retained.
+    const coarse = value => typeof value === 'string' && /^(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)\+0000$/.exec(value)
+    const precise = value => typeof value === 'string' && /^(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d)\.\d{3}\+00:00$/.exec(value)
+    const pair = coarse(before) && precise(after) ? [coarse(before), precise(after)]
+      : coarse(after) && precise(before) ? [coarse(after), precise(before)] : null
+    if (!pair || pair[0][1] !== pair[1][1]) return { matches: false, differences: [] }
+    const instant = new Date(pair[0][1] + 'Z')
+    if (!Number.isFinite(+instant) || instant.toISOString().slice(0, 19) !== pair[0][1]) return { matches: false, differences: [] }
+    comparison[index].data.meta_data.last_mod = before
+    differences.push({ jobId: opening.rows[index].data.slug, opening: before, closing: after,
+      scope: 'last_mod only: whole UTC second versus fractional value within that second; all other original native fields equal' })
+  }
+  return { matches: stable(opening.rows) === stable(comparison), differences }
 }
 
 const roleURL = job => PROGRAM + '/jobs/' + job.slug + '?lang=' + job.language
@@ -320,7 +349,7 @@ export async function runCurrentDishInventory({ fetchImpl = globalThis.fetch, si
     const corporateChain = []
     for (const url of [HOME, CAREERS, INDIA]) corporateChain.push(corporate(await read(url, 'html', closing), url))
     const searchModel = search(await read(corporateChain[2].links[0].href, 'html', closing))
-    need(hash(await read(SEARCH_CLIENT, 'javascript', closing)) === SEARCH_SHA, 'current native search renderer changed')
+    need(hash(await read(searchModel.renderer, 'javascript', closing)) === SEARCH_CLIENTS[searchModel.renderer], 'current native search renderer changed')
     need(hash(await read(DESCRIPTION_CLIENT, 'javascript', closing)) === DESCRIPTION_SHA, 'current native description renderer changed')
     return { corporateChain, searchModel }
   }
@@ -334,10 +363,12 @@ export async function runCurrentDishInventory({ fetchImpl = globalThis.fetch, si
     need(stable(closing) === stable(jobs[index]), 'closing native complete role criteria or identity changed')
   }
   const closing = listing(await read(opening.searchModel.api, 'json', true))
-  need(closing.total === opened.total && closing.snapshot === opened.snapshot, 'closing selected native inventory changed')
+  const inventoryAgreement = sameListingInventory(opened, closing)
+  need(inventoryAgreement.matches, 'closing selected native inventory changed')
   need(stable(await authority(true)) === stable(opening), 'closing current corporate India declaration changed')
   deadline.throwIfAborted()
   const audit = { source: 'dishnetworktechnologies', observedListingCount: opened.rows.length, nativeListingRecords: opened.rows,
+    lastModificationRepresentationDifferences: inventoryAgreement.differences,
     nativeReportedSearchCount: opened.total, observedIndiaListingCount: candidates.length, nonIndiaListingCount: opened.rows.length - candidates.length,
     candidateDetails: candidates.length, extractedDetailJobs: jobs.length, excludedDetailJobs: 0, failures: [], omittedDetails: candidates.length - selected.length,
     listingPaginationComplete: opened.rows.length === opened.total, closingInventoryMatches: true,

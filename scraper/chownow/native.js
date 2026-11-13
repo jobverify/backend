@@ -297,7 +297,7 @@ export function chownowNativeFeed(client) {
 }
 
 const escapeHTML = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
-const originalContent = record => {
+export const originalContentSegments = record => {
   const html = (field, fallback) => {
     requireNative(record[field] == null || typeof record[field] === 'string', 'non-string native content')
     requireNative(record[fallback] == null || typeof record[fallback] === 'string', 'non-string native plain content')
@@ -307,9 +307,14 @@ const originalContent = record => {
   requireNative(record.lists == null || Array.isArray(record.lists), 'native content section inventory changed')
   const sections = (record.lists || []).map(section => {
     requireNative(section && typeof section === 'object' && typeof section.text === 'string' && typeof section.content === 'string', 'native content section changed')
-    return (section.text ? '<h3>' + escapeHTML(section.text) + '</h3>' : '') + section.content
+    return { kind: 'criteria', label: section.text, content: section.content }
   })
-  const content = [html('opening', 'openingPlain'), primary, ...sections, html('additional', 'additionalPlain')].filter(Boolean).join('\n\n')
+  return [{ kind: 'opening', content: html('opening', 'openingPlain') }, { kind: 'criteria', content: primary },
+    ...sections, { kind: 'additional', content: html('additional', 'additionalPlain') }]
+}
+export const originalContent = record => {
+  const content = originalContentSegments(record).map(segment =>
+    (segment.label ? '<h3>' + escapeHTML(segment.label) + '</h3>' : '') + segment.content).filter(Boolean).join('\n\n')
   requireNative(hasSourceDescription({ sourceDescription: content }), 'native full role content missing')
   return content
 }

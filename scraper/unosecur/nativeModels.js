@@ -31,7 +31,18 @@ export function readCareers(html){
   need(!all(n,c=>['iframe','object','embed','form'].includes(c.tag)).length,'unreviewed delegated corporate role context')
   need(nativeText(n)===clean(text(vlinks[i],true)),'hidden native role declaration')
   const title=nativeText(one(all(n,c=>/^h[1-6]$/.test(c.tag)),'native corporate role title'))
-  const location=one(all(n,c=>c.attrs['fs-cmsfilter-field']==='location'),'native corporate role location'),nativeLocationLabel=nativeText(location)
+  const locations=all(n,c=>c.attrs['fs-cmsfilter-field']==='location')
+  need(locations.length===1||locations.length===2,'one native corporate role location or reviewed CMS pair required')
+  const nativeLocationLabel=nativeText(locations[0])
+  need(nativeLocationLabel&&locations.every(c=>nativeText(c)===nativeLocationLabel),'native corporate role location fields conflict')
+  if(locations.length===2){
+   // The current Webflow card repeats its hidden CMS filter in the team and
+   // location tags. Bind both copies to the separately visible location tag.
+   need(locations.every(c=>cls(c,'hide-2')),'unreviewed repeated corporate location markup')
+   const tag=one(all(n,c=>cls(c,'career-list_tag')&&cls(c,'is-location')),'visible native corporate role location tag')
+   const label=one(all(tag,c=>c.attrs['fs-cmsfilter-field']==='teams'&&!cls(c,'hide-2')),'visible native corporate role location label')
+   need(nativeText(label)===nativeLocationLabel&&all(tag,c=>locations.includes(c)).length===1,'visible native corporate role location conflicts')
+  }
   return {sourceUrl:n.attrs.href,slug:roleSlug(n.attrs.href),title,nativeLocationLabel,fullText:nativeText(n),card:tree(n)}
  })
  need(new Set(rows.map(r=>r.sourceUrl)).size===rows.length,'duplicate native role URL')
@@ -41,7 +52,12 @@ export function readClient(source,url){
  need(isClientURL(url),'current declared native client URL required')
  // The program's reviewed read/render contract is pinned, never executed.
  // Country is proved separately by original role and API location fields.
- need(hash(source)==='3928ddc04e0df5e22e193d3fdf6191944c6eb285959819b12d5d269452782e49','changed declared client requires read/render contract review')
+ // The November13 bundle changes unrelated application code. Its public GET,
+ // URL builder, API version, own-role reader and criteria renderer have the
+ // exact same source hashes as the previously reviewed deployment.
+ need(['3928ddc04e0df5e22e193d3fdf6191944c6eb285959819b12d5d269452782e49',
+  '8121c21c565097351e9ee508c1016485bc6835d398936b338c64ab8bb8ce7fab'].includes(hash(source)),
+ 'changed declared client requires read/render contract review')
  const ast=parse(source,{ecmaVersion:'latest',sourceType:'script'}),nodes=[],pending=[ast]
  while(pending.length){const n=pending.pop();nodes.push(n);for(const v of Object.values(n))if(v&&typeof v==='object')Array.isArray(v)?pending.push(...v.filter(c=>c&&typeof c==='object')):pending.push(v)}
  const module=id=>one(nodes.filter(n=>n.type==='Property'&&n.key?.value===id&&n.value?.type==='FunctionExpression'),'native client module '+id).value
@@ -89,7 +105,8 @@ export function makeJob(rawAPIJSON,row,role,careers,client,clock){
  need(typeof r.job_description==='string'&&r.job_description===p.description&&r.job_description.length>100&&r.job_description.length<=100000,'native complete role-description mismatch')
  need(r.posted_on===p.datePosted&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(r.posted_on)&&new Date(r.posted_on).toISOString()===r.posted_on,'native published timestamp mismatch or invalid date')
  need(r.job_type==='full_time'&&r.job_type_display==='Full-time'&&p.employmentType==='FULL_TIME','unreviewed native employment representation')
- need(Array.isArray(api.data.screening_questions)&&typeof api.data.eeoc_questions_enabled==='boolean'&&['required','optional','off','disabled'].includes(r.video_application_mode),'unreviewed native application requirements')
+ need(Array.isArray(api.data.screening_questions)&&(api.data.eeoc_questions_enabled===null||typeof api.data.eeoc_questions_enabled==='boolean')
+  &&['required','optional','off','disabled'].includes(r.video_application_mode),'unreviewed native application requirements')
  const jd=readNativeDocument(r.job_description),jr=one(jd.nodes(n=>n.tag==='root'),'whole native criteria'),visible=readVisibleNativeDocument(r.job_description,{strict:true}),vr=one(visible.nodes(n=>n.tag==='root'),'visible native criteria')
  need(!all(jr,n=>['iframe','object','embed','form','script'].includes(n.tag)).length,'delegated/unreviewed native criteria')
  need(nativeText(jr)===clean(text(vr,true)),'hidden or unreviewed native criteria')

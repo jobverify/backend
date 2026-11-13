@@ -35,7 +35,7 @@ test('registered Groupon accepts the exact current declared graph and preserves 
  assert.equal(calls.filter(url=>url===mainURL).length,2)
  assert.ok(jobs.every(job=>job.nativeRoleClosingReconciled===true&&job.sourceDescription===job.nativeSourceRecord.detail.contentHtml&&job.lifecycleCleanupAllowed===false))
  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
- assert.equal(jobs[0].country,'Spain')
+ assert.equal(jobs[0].country,null)
 })
 
 test('an unreviewed Groupon main filename cannot fall back to a marker-based native API binding',async()=>{

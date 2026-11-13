@@ -1,0 +1,339 @@
+[
+  {
+    "requestedUrl": "https://www.any.do/",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:32:22.277Z",
+    "status": 200,
+    "url": "https://www.any.do/",
+    "headers": {
+      "content-type": "text/html; charset=UTF-8",
+      "last-modified": "Tue, 10 Nov 2026 15:27:09 GMT"
+    },
+    "bytes": 307173,
+    "sha256": "0401fe3d5206a10cad0f21b8a041adc45bf51d45125fbcb3b00d18ddc624533a",
+    "file": "page-01.body.gz"
+  },
+  {
+    "requestedUrl": "https://any-do.breezy.hr/",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:32:26.102Z",
+    "status": 200,
+    "url": "https://any-do.breezy.hr/",
+    "headers": {
+      "content-length": "10151",
+      "content-type": "text/html; charset=utf-8",
+      "etag": "W/\"27a7-i3pgxT8JCDPYsWYtuldtv4j2+so\""
+    },
+    "bytes": 10151,
+    "sha256": "5360bcd57b22e8128d74f75b35c166e2f535336c93107aa287077418aa0a37c0",
+    "file": "page-02.body.gz"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/polyglot.min.js?v=2bq-1us5ftb",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:52.221728+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/polyglot.min.js?v=2bq-1us5ftb",
+    "bytes": 3014,
+    "sha256": "a5682f074b1c630080749047546ffea128fc10394497f15c93d4ee2807b49549",
+    "file": "asset-01.body.gz",
+    "headers": {
+      "Content-Type": "application/javascript"
+    },
+    "completedAt": "2026-11-13T08:35:54.261834+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/translate.breezy.js?v=bl3m-pww369",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:52.222729+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/translate.breezy.js?v=bl3m-pww369",
+    "bytes": 540562,
+    "sha256": "b583504060d956d38d9185320f0520ad76da69163befff43d6e7500c4f9c0ecf",
+    "file": "asset-02.body.gz",
+    "headers": {
+      "Content-Type": "application/javascript"
+    },
+    "completedAt": "2026-11-13T08:35:56.062270+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-hr/dependencies/fontawesome/v6.4.2-pro/css/all.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:52.224082+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-hr/dependencies/fontawesome/v6.4.2-pro/css/all.css",
+    "bytes": 650759,
+    "sha256": "aa41917b782b2731d4b84b15da6afeaaefd2d8d593cc634e442129b48370915b",
+    "file": "asset-03.body.gz",
+    "headers": {
+      "Content-Type": "text/css"
+    },
+    "completedAt": "2026-11-13T08:35:56.336554+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/bootstrap.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:54.262832+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/bootstrap.css",
+    "bytes": 99961,
+    "sha256": "e9503448692b738dd260fbd7f7cabf2e11f09b600fa97e6eb3a56eba5b1a7e9b",
+    "file": "asset-04.body.gz",
+    "headers": {
+      "Content-Type": "text/css"
+    },
+    "completedAt": "2026-11-13T08:35:56.669982+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/animate.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:56.062270+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/animate.css",
+    "bytes": 52790,
+    "sha256": "0ab525f34fd194333c8cbfd5e5f0cfa585a77f2d71ab415dc6e456a4c6c10e30",
+    "file": "asset-05.body.gz",
+    "headers": {
+      "Content-Type": "text/css"
+    },
+    "completedAt": "2026-11-13T08:35:57.749910+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/stylesheets/v3/index.css?v=2h2f-7joqcv",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:56.336554+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/stylesheets/v3/index.css?v=2h2f-7joqcv",
+    "bytes": 115431,
+    "sha256": "784b6b8ec83174bcacd30f3a7c943aa01f6bb2f1cc3dbb04549a8607118d2101",
+    "file": "asset-06.body.gz",
+    "headers": {
+      "Content-Type": "text/css"
+    },
+    "completedAt": "2026-11-13T08:35:58.256952+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/jquery.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:56.669982+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/jquery.js",
+    "bytes": 93105,
+    "sha256": "0ed0d14bbe5d90219933b6e1b65d3074fe618d533e35b6c84c1ea721d9415a7b",
+    "file": "asset-07.body.gz",
+    "headers": {
+      "Content-Type": "text/javascript"
+    },
+    "completedAt": "2026-11-13T08:35:58.436732+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/tooltip.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:57.749910+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/tooltip.js",
+    "bytes": 12132,
+    "sha256": "79db8c34e6803fb5f396f779730e500bb7464571d970961ae6d414005415e10a",
+    "file": "asset-08.body.gz",
+    "headers": {
+      "Content-Type": "application/javascript"
+    },
+    "completedAt": "2026-11-13T08:35:59.111850+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/popover.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:58.256952+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/popover.js",
+    "bytes": 3177,
+    "sha256": "19613f3e53c2a54d3a244ec884bcc647539b83d3e8020bdee0e14ba4792656fd",
+    "file": "asset-09.body.gz",
+    "headers": {
+      "Content-Type": "application/javascript"
+    },
+    "completedAt": "2026-11-13T08:36:00.143795+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/smoothscroll.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:58.436732+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/smoothscroll.js",
+    "bytes": 7994,
+    "sha256": "9fc82ff90f3a2533554ae38b0b91438f4ebe1ff8e9bb422b1a3d4420df0735fd",
+    "file": "asset-10.body.gz",
+    "headers": {
+      "Content-Type": "text/javascript"
+    },
+    "completedAt": "2026-11-13T08:36:00.229731+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/index.js?v=6t5-196s2vi",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:35:59.111850+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/javascripts/v3/index.js?v=6t5-196s2vi",
+    "bytes": 8825,
+    "sha256": "d1d6d0f30dd829c3183f5c9f119a5d6787deb9df1f27952ca17aefbaca90150e",
+    "file": "asset-11.body.gz",
+    "headers": {
+      "Content-Type": "application/javascript"
+    },
+    "completedAt": "2026-11-13T08:36:01.246709+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/fancybox/source/jquery.fancybox.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:36:00.143795+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/fancybox/source/jquery.fancybox.css",
+    "bytes": 4895,
+    "sha256": "968a8e56e4adaf8c135199ebd7f6cc065424ca45974d4dfbeb5607e69fe72fcd",
+    "file": "asset-12.body.gz",
+    "headers": {
+      "Content-Type": "text/css"
+    },
+    "completedAt": "2026-11-13T08:36:02.508842+00:00"
+  },
+  {
+    "requestedUrl": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/fancybox/source/jquery.fancybox.pack.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:36:00.230747+00:00",
+    "status": 200,
+    "url": "https://assets-cdn.breezy.hr/breezy-portal/dependencies/20170112/fancybox/source/jquery.fancybox.pack.js",
+    "bytes": 23135,
+    "sha256": "bc50bf49cbe79ee49b4ee8b56f26ff4877bc4945c16f260b1481ba2355c96347",
+    "file": "asset-13.body.gz",
+    "headers": {
+      "Content-Type": "text/javascript"
+    },
+    "completedAt": "2026-11-13T08:36:02.435748+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/7945594108dc3b1f.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:14.113609+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/7945594108dc3b1f.css",
+    "bytes": 46626,
+    "sha256": "29cf939da6a6be6f100a473ecc0671890eda120c909e66881800eeacb55d4946",
+    "file": "corporate-style-01.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:16.224624+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/ccf865e4253008f0.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:14.115147+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/ccf865e4253008f0.css",
+    "bytes": 25351,
+    "sha256": "5da6d30526b8724dd831b21b3f57b90ea5184563e2b5338d3cdc28c996d0de61",
+    "file": "corporate-style-02.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:16.198319+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/5a7c1b2ed68ba5d9.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:14.117167+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/5a7c1b2ed68ba5d9.css",
+    "bytes": 4957,
+    "sha256": "0fe8a8f3d621f3295fa6b9646e1e9f3f313b12bde4812104ca58848cb384982a",
+    "file": "corporate-style-03.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:15.990025+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/4d7fddf0971db5ae.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:15.990025+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/4d7fddf0971db5ae.css",
+    "bytes": 600,
+    "sha256": "0657d5d567540ef668fcc83ecec05c5c88c0278a24e1d166dc50c624c18ba7b3",
+    "file": "corporate-style-04.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:16.684483+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/4951baacede0751e.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:16.198319+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/4951baacede0751e.css",
+    "bytes": 2026,
+    "sha256": "b8ee9aa170a633606adc0a225650cc65d44a4668f664f654ba9f4ef577f43577",
+    "file": "corporate-style-05.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:16.936431+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/0f9f7bf1e7ee9648.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:16.224624+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/0f9f7bf1e7ee9648.css",
+    "bytes": 4517,
+    "sha256": "9340cdb15b2d69fef7df9de35c5c915e74ca2ae075891ee08756e7b21c7cfbb9",
+    "file": "corporate-style-06.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:16.950137+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/9257653f9499e960.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:16.685119+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/9257653f9499e960.css",
+    "bytes": 7941,
+    "sha256": "741dd62b2b2c9a2badf779410edbdc28ef4b951b97556b8db036e8092263e1b6",
+    "file": "corporate-style-07.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:17.387201+00:00"
+  },
+  {
+    "requestedUrl": "https://www.any.do/_next/static/css/9798e27dba9b2b3d.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:16.936431+00:00",
+    "status": 200,
+    "url": "https://www.any.do/_next/static/css/9798e27dba9b2b3d.css",
+    "bytes": 17273,
+    "sha256": "37990503da4e069ad60e1ccf973a9825857c139a7baf1eb2636c7cebb9b8e13f",
+    "file": "corporate-style-08.body.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=UTF-8"
+    },
+    "completedAt": "2026-11-13T08:51:17.685806+00:00"
+  },
+  {
+    "requestedUrl": "https://assets.calendly.com/assets/external/widget.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:51:16.950137+00:00",
+    "status": 200,
+    "url": "https://assets.calendly.com/assets/external/widget.css",
+    "bytes": 2461,
+    "sha256": "a79d97b88b4d1d042cd34f2e46a1c79ce52f023728634bec0c6d65292895e174",
+    "file": "corporate-style-09.body.gz",
+    "headers": {
+      "Content-Type": "text/css"
+    },
+    "completedAt": "2026-11-13T08:51:18.191649+00:00"
+  }
+]

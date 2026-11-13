@@ -104,7 +104,10 @@ const extractCityFromLocation = (value) => {
 
 const INDIAN_REGION = /^(?:AP|AR|AS|BR|CG|CH|DL|GA|GJ|HR|HP|JK|JH|KA|KL|LD|MP|MH|MN|ML|MZ|NL|OD|OR|PB|PY|RJ|SK|TN|TS|TR|UP|UK|UT|WB|AN|DN|DD|LA|Andhra Pradesh|Arunachal Pradesh|Assam|Bihar|Chhattisgarh|Chandigarh|Delhi|New Delhi|Goa|Gujarat|Haryana|Himachal Pradesh|Jammu and Kashmir|Jharkhand|Karnataka|Kerala|Lakshadweep|Madhya Pradesh|Maharashtra|Manipur|Meghalaya|Mizoram|Nagaland|Odisha|Orissa|Punjab|Puducherry|Rajasthan|Sikkim|Tamil Nadu|Telangana|Tripura|Uttar Pradesh|Uttarakhand|West Bengal|Andaman and Nicobar Islands|Dadra and Nagar Haveli|Daman and Diu|Ladakh)$/i
 const countryFromLocation = (value) => {
-  const parts = (stripTags(value) || '').split(',').map(x => x.trim())
+  // The native listing appends a count of other worksites inside this display
+  // marker. Keep rawLocation intact, and parse the explicit primary address.
+  const address = String(value ?? '').replace(/\s*<small class="nobr">\+[1-9]\d* more(?:&hellip;|&#8230;|\u2026)<\/small>\s*$/i, '')
+  const parts = (stripTags(address) || '').split(',').map(x => x.trim())
   if (/^\d{6}$/.test(parts.at(-1))) parts.pop()
   if (!/^(?:IN|India)$/i.test(parts.pop() || '')) return null
   if (!parts[0] || parts.length > 2 || (parts.length === 2 && !INDIAN_REGION.test(parts[1]))) return null
@@ -112,7 +115,7 @@ const countryFromLocation = (value) => {
 }
 const normalizeSearchLocation = (value) => {
   const normalized = stripTags(value)
-  return countryFromLocation(normalized) === 'India'
+  return countryFromLocation(value) === 'India'
     ? extractCityFromLocation(normalized) + ', India'
     : normalized
 }

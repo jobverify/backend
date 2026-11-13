@@ -36,6 +36,7 @@ import { persistJobChangesWithAlertOutbox } from '../../src/services/jobAlertOut
 import { saveLocalJobOutbox } from './localJobOutbox.js'
 import { buildDescriptionSourceUpdate } from '../../src/services/jobDescriptionPolicy.js'
 import { getSourceDescription, hasSourceDescription } from '../../src/utils/jobSourceContent.js'
+import { batchRescrapePatch } from '../../src/utils/jobBatchEligibility.js'
 import { postScrapePersistencePatch } from '../../src/services/postScrapeClassification.js'
 import { getAuthoritativeClassification } from '../../src/services/jobClassificationPolicy.js'
 import { correctExistingSourceLifecycleDates } from './sourceLifecycleCorrection.js'
@@ -329,7 +330,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
   const existingJobs = enrichedJobs.length === 0 || (rewriteMode === 'off' && !hasLiveDatabaseHandle())
     ? []
     : await JobModel.find(applicationIdentityLookup(normalizedJobs))
-      .select('fingerprint jobId requisitionId applicationUrlIsGeneric applyUrl sourceUrl city classification postClassification scrapedAt scrapedTimestamp title originalTitle company location salary description sourceDescription sourceContentHash sourceContentHashVersion descriptionFormat descriptionRewrite minimumQualification preferredQualification requiredSkills publicExperienceChecked sourceEmploymentType sourceExperienceRequired sourceNativeExperienceConflict employerExperienceLevel employerStreetAddress postedAt sortDate postedAtProvenance postedAtProvenanceValue eligibleBatches eligibleBatchesProvenance jobType employmentType experienceRequired experienceLevel seniority experienceYears experienceBucket experienceProfile sourceRemoteStatusUnresolved remoteStatus workArrangement')
+      .select('fingerprint jobId requisitionId applicationUrlIsGeneric applyUrl sourceUrl city classification postClassification scrapedAt scrapedTimestamp title originalTitle company location salary description sourceDescription sourceContentHash sourceContentHashVersion descriptionFormat descriptionRewrite minimumQualification preferredQualification qualifications requirements responsibilities requiredSkills publicExperienceChecked sourceEmploymentType sourceExperienceRequired sourceNativeExperienceConflict employerExperienceLevel employerStreetAddress postedAt sortDate postedAtProvenance postedAtProvenanceValue eligibleBatches eligibleBatchRange eligibleBatchesProvenance batchEligibility jobType employmentType experienceRequired experienceRequiredProvenance experienceLevel seniority experienceYears experienceBucket experienceProfile sourceRemoteStatusUnresolved remoteStatus workArrangement')
       .lean().exec()
   const identities = coalesceApplicationIdentities(resolveApplicationIdentities(normalizedJobs, existingJobs))
   const existingByKey = new Map(identities.filter(identity => identity.previous).map(identity => [identity.fingerprint, identity.previous]))
@@ -362,6 +363,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
         preferredQualification: job.preferredQualification ?? previous.preferredQualification,
         requiredSkills: job.requiredSkills?.length ? job.requiredSkills : previous.requiredSkills || [],
         eligibleBatches: job.eligibleBatchesProvenance === 'source' ? job.eligibleBatches : previous.eligibleBatches,
+        eligibleBatchRange: job.eligibleBatchesProvenance === 'source' ? job.eligibleBatchRange || null : previous.eligibleBatchRange,
         eligibleBatchesProvenance: job.eligibleBatchesProvenance === 'source' ? 'source' : previous.eligibleBatchesProvenance,
         employmentType: job.sourceEmploymentType ? job.employmentType : previous.employmentType,
         experienceRequired: hasFreshExperience ? job.sourceExperienceRequired : previous.experienceRequired,
@@ -477,6 +479,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
           sourceNativeExperienceConflict: normalizedJob.sourceNativeExperienceConflict ?? null,
           ...normalizeEmployerDisclosures(normalizedJob),
           eligibleBatches: normalizedJob.eligibleBatches || [],
+          eligibleBatchRange: normalizedJob.eligibleBatchRange || null,
           eligibleBatchesProvenance: normalizedJob.eligibleBatchesProvenance === 'source' ? 'source' : null,
           minimumQualification: normalizedJob.minimumQualification,
           preferredQualification: normalizedJob.preferredQualification,
@@ -503,8 +506,9 @@ export const saveToDB = async (jobs, source, options = {}) => {
           extractedAt: normalizedJob.extractedAt || now,
         }
 
+    const batchPatch = batchRescrapePatch({ ...persistedJob, ...sourceContentUpdates }, existingByKey.get(fingerprint))
     const deferred = postScrapePersistencePatch({
-      ...existingByKey.get(fingerprint), ...persistedJob, ...sourceContentUpdates,
+      ...existingByKey.get(fingerprint), ...persistedJob, ...sourceContentUpdates, ...batchPatch,
       postedAt: postedAt || existingByKey.get(fingerprint)?.postedAt,
       scrapedAt: now, scrapedTimestamp: normalizedJob.scrapedTimestamp || now,
     }, existingByKey.get(fingerprint), { now, mode: process.env.POST_SCRAPE_CLASSIFICATION_MODE || 'shadow' })
@@ -569,6 +573,7 @@ export const saveToDB = async (jobs, source, options = {}) => {
             }),
             ...(closingDate && { closingDate }),
             ...(deferred?.set || {}),
+            ...batchPatch,
           },
           // Insert-only fallback protects the first stored observation even if
           // another writer inserts or recovers a source date after our lookup.

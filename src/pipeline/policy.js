@@ -30,6 +30,10 @@ export const createStages = config => config.stages.map(s=>({...s,status:s.enabl
 export function stageOutcome(key, summary={}, code=0) {
   if (['worker_error','disabled'].includes(summary.reason)) return 'failed';
   if (key === 'scraper' && code !== 0) return 'failed';
+  if (key === 'classification' && summary.batchEligibility) {
+    if (summary.failed || summary.stale || summary.batchEligibility.failed || summary.batchEligibility.stale) return 'failed';
+    if (summary.batchEligibility.pending || summary.batchEligibility.leased || summary.batchEligibility.budgetExhausted) return 'incomplete';
+  }
   if (key==='rewrite') {
     // A normal budget stop leaves durable work for a later run. It must not
     // block classification, and it must never conceal an execution failure.

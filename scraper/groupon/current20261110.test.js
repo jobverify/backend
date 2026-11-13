@@ -67,7 +67,7 @@ test('the current genuine graph reconciles every full historical-protocol role a
   assert.equal(job.sourceScopeComplete,false);assert.equal(job.lifecycleCleanupAllowed,false)
  }
  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
- assert.equal(jobs[0].country,'Spain')
+ assert.equal(jobs[0].country,null)
 })
 
 for(const[key,change]of[

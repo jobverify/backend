@@ -1,0 +1,30 @@
+[
+  {
+    "requestedUrl": "https://jobsearch.alstom.com/job/Bangalore-Perceived-Quality-Lead-Engineer/1392774833/",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:04:18.823Z",
+    "status": 200,
+    "url": "https://jobsearch.alstom.com/job/Bangalore-Perceived-Quality-Lead-Engineer/1392774833/",
+    "headers": {
+      "content-type": "text/html;charset=UTF-8"
+    },
+    "bytes": 65583,
+    "sha256": "7aa7474fa049f4b7b92748947e9f8edaeb4a4d57f3489110323e0313da3ea451",
+    "file": "alstom-4.body.gz",
+    "fixture": "1392774833.html.gz"
+  },
+  {
+    "requestedUrl": "https://jobsearch.alstom.com/job/Bangalore-Digital-Solutions-Technical-Lead/1453219233/",
+    "method": "GET",
+    "startedAt": "2026-11-13T08:04:39.813Z",
+    "status": 200,
+    "url": "https://jobsearch.alstom.com/job/Bangalore-Digital-Solutions-Technical-Lead/1453219233/",
+    "headers": {
+      "content-type": "text/html;charset=UTF-8"
+    },
+    "bytes": 68150,
+    "sha256": "8c9da919c223387cad54ca8f9009a756657e6ea49d1053baf5876a935ee28d6f",
+    "file": "alstom-27.body.gz",
+    "fixture": "1453219233.html.gz"
+  }
+]

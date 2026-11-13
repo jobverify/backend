@@ -17,6 +17,7 @@ export const getPublishingBuildFeed = wrap(async (req, res) => {
     ...(cursor ? { _id: { $gt: cursor } } : {}), $or: [{ closingDate: null }, { closingDate: { $gt: new Date() } }],
   }, settings)).sort({ _id: 1 }).limit(limit + 1)
     .select('title company description descriptionFormat sourceDescription descriptionRewrite.status sourceUrl applyUrl applicationUrl applicationStatus applicationStatusReason workdayApplicationStatus workdayApplicationStatusReason workdayApplicationStatusCheckedAt city location locations country jobType employmentType experienceLevel experienceRequired sourceExperienceRequired sourceEmploymentType classification minimumQualification preferredQualification salary employerPostedAt postedAt postedAtProvenance postedAtProvenanceValue closingDate updatedAt lastSeenAt scrapedAt requisitionId requiredSkills eligibleBatches eligibleBatchesProvenance branches')
+    .select('eligibleBatchRange')
     .select({ _publicJobType: PUBLIC_JOB_TYPE_EXPRESSION }).lean().exec();
   const data = rows.slice(0, limit).map(row => {
     const job = normalizeJobListResponseJob(row);

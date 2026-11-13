@@ -1,4 +1,5 @@
 import {explicitMasterFirstZeroExperienceRoute, maskScreenedThirdPartyDegreeRequirements} from './classificationSourceQuality.js';
+import {normalizeExperienceEvidence} from './classificationExperienceEvidence.js';
 
 // Product filter defaults are kept separate from employer-stated work experience.
 const degree = /\b(?:bachelor(?:'s|s)?|master(?:'s|s)?|b\.?tech|m\.?tech|b\.e\.?|m\.e\.?|degree)\b/i;
@@ -9,6 +10,10 @@ const applicantExperienceRequirement = /\b(?:(?:applicants?|candidates?|you)\s+(
 const normalize = value => String(value || '').replace(/[\u2018\u2019]/g, "'").replace(/[\u2013\u2014]/g, '-');
 const clauses = text => normalize(text).split(/\n|[.;](?=\s|$)/).map(value => value.trim()).filter(Boolean);
 const experienceQualification = text => text.replace(/^(?:(?:required|minimum|basic|mandatory)\s+)?(?:work\s+)?experience\s*:\s*/i, '');
+const zeroInclusiveExperience = /\b(?:0(?:\.0+)?|zero)\s*(?:-|to)\s*\d+(?:\.\d+)?\s*(?:years?|yrs?|months?)\b/i;
+const withoutIncidentalExperience = text => text
+  .replace(/\bjob\s+search\s+experience\b/gi, 'job search process')
+  .replace(/\b(?:gain|gaining|acquire|acquiring)\s+(?:(?:practical|valuable|professional|relevant|industry|work|hands[- ]on|real[- ]world)\s+){0,5}experience\b/gi, 'learn new skills');
 const negated = text => /\b(?:not|never|no longer|ineligible|cannot|can't|need not)\b/i.test(text);
 const finiteAppointment = /^(?:(?:this|the)\s+(?:role|position|job)|employment)\s+is\s+(?:based\s+in\s+[^.;\n]{1,80}?\s+and\s+is\s+)?for\s+(?:a\s+)?fixed[- ]term\s+of\s+(?:\d+(?:\.\d+)?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:years?|months?|weeks?)\b/i;
 const contractualAppointment = /^(?:this\s+is\s+(?:a|an)\s+(?:(?:purely|strictly)\s+)?contractual\s+(?:role|position|job|employment|engagement)|(?:(?:this|the)\s+(?:role|position|job|employment|engagement)|employment)\s+is\s+(?:(?:a|an|purely|strictly)\s+)*contractual(?:\s+(?:role|position|job|employment|engagement))?)\b/i;
@@ -149,7 +154,8 @@ export const fresherVacancyTitle = value => {
   const title = normalize(value);
   return /\bfreshers?\b/i.test(title)
     && !/\b(?:no|not|non|never|cannot|ineligible|excluding|except|excluded)\b|\b\w+n't\b/i.test(title)
-    && !/\b(?:trainers?|training|mentors?|mentoring|instructors?|tutors?|coaches?|coaching|recruit(?:ers?|ment|ing)?|talent\s+acquisition|placements?)\b/i.test(title)
+    && (/\(\s*freshers?\s+(?:openings?|vacanc(?:y|ies)|opportunit(?:y|ies))\s*\)/i.test(title)
+      || !/\b(?:trainers?|training|mentors?|mentoring|instructors?|tutors?|coaches?|coaching|recruit(?:ers?|ment|ing)?|talent\s+acquisition|placements?)\b/i.test(title))
     ? title : null;
 };
 // Eligibility for the vacancy itself. Recruiting, supervising or training these
@@ -326,7 +332,7 @@ export const collectRecruitmentFacts = input => {
   // Some ATS pages flatten this heading and its requirements into one paragraph.
   // Restore a boundary only when qualification text follows, not in prose such
   // as "an equivalent combination of education and experience is considered".
-  const sectionBody = normalize(maskScreenedThirdPartyDegreeRequirements(input.body)).replace(/\b((?:(?:preferred|desirable|optional|desired|nice[- ]to[- ]have|good[- ]to[- ]have|bonus)\s+)?Education\s+(?:and|&)\s+Experience)(?=\s*(?::|\n|[•-]|recommended\b|bachelor|master|degree|experience|relevant|previous|required))/gi, '\n$1\n')
+  const sectionBody = normalize(normalizeExperienceEvidence(maskScreenedThirdPartyDegreeRequirements(input.body))).replace(/\b((?:(?:preferred|desirable|optional|desired|nice[- ]to[- ]have|good[- ]to[- ]have|bonus)\s+)?Education\s+(?:and|&)\s+Experience)(?=\s*(?::|\n|[•-]|recommended\b|bachelor|master|degree|experience|relevant|previous|required))/gi, '\n$1\n')
     .replace(/\b(About\s+(?:the\s+)?ideal\s+candidate)\s*:/gi, '\n$1:\n')
     .replace(/\b(SKILLS\s+(?:AND|&)\s+COMPETENCIES)\b/g, '\n$1:\n')
     .replace(/\b((?:not\s+(?:(?:strictly|necessarily|always)\s+)?)?(?:mandatory|desirable|preferred|optional))\s*:/gi, '\n$1:\n')
@@ -390,7 +396,7 @@ export const collectRecruitmentFacts = input => {
   });
   const contract = contractBody || finiteAppointmentClause(input.body) || contractualAppointmentClause(input.body) || (!fullTime && !/\b(?:full.?time|permanent|regular)\b/i.test(input.sourceEmploymentType)
     && !/\bcontract(?:s)? (?:manager|management|administrator|administration|specialist)|\btemporary works\b/i.test(input.title)
-    && /\b(?:contract(?:or)?|freelance|fixed[- ]term|temporary)\b/i.test(input.title) ? input.title : null);
+    && /\b(?:contract(?:or)?|freelance|fixed[- ]term|temporary)\b|\(\s*contractual\s*\)/i.test(input.title) ? input.title : null);
   const mixedStudentPath = /\b(?:completed|finished|graduated)\b[^.;]{0,110}\bor\b[^.;]{0,100}\b(?:currently\s+)?pursuing\b|\bpursuing\b[^.;]{0,100}\bor\b[^.;]{0,110}\b(?:completed|finished|graduated)\b/i.test(normalize(input.body));
   const studying = !mixedStudentPath && segments.find(segment => !negated(segment) && !excludedStudentSubject.test(segment) && degree.test(segment)
     && !/\b(?:desirable|preferred|optional|may|can|a plus|nice to have)\b/i.test(segment)
@@ -403,6 +409,11 @@ export const collectRecruitmentFacts = input => {
       || /\b(?:welcomes?|open to|suitable for|seeking)\s+(?:freshers?|fresh graduates?|recent graduates?|new graduates?)\b/i.test(segment))
     && (/\b(?:freshers?|fresh graduates?|recent graduates?|new graduates?|no (?:prior |previous |professional |work )?experience (?:is )?(?:required|necessary))\b/i.test(segment)
       || (degree.test(segment) && /\b(?:recently|just)\s+(?:(?:have|has)\s+)?(?:completed|finished|graduated)|\b(?:completed|finished)\b.{0,65}\brecently\b/i.test(segment))))
+    || segments.find(segment => {
+      const hiring = /\bwe\s+are\s+(?:currently\s+)?hiring\s+([^.;\n]{1,110})\(\s*freshers?\s*\)/i.exec(segment);
+      return !negated(segment) && hiring
+        && !/\b(?:for|of|to)\s+[^.;()]{0,70}\b(?:training|program(?:me)?|freshers?|graduates?|students?)\b/i.test(hiring[1]);
+    })
     || fresherVacancyTitle(input.title);
   // Keep an alternative degree route separate from unconditional fresher
   // eligibility until all of the vacancy's work-history requirements are known.
@@ -418,18 +429,19 @@ export const collectRecruitmentFacts = input => {
       // same sentence and its original qualification-section context.
       const welcomeRemoved = mixedFresherEligibility(original) ? original.replace(mixedFresherWelcome, '') : original;
       const withoutWaivedExperience = welcomeRemoved.replace(/\bno\s+(?:prior|previous|professional|relevant)(?:\s+[a-z][a-z-]*){0,4}\s+experience(?:\s+is)?\s+(?:required|mandatory|necessary|essential)\b/gi, '');
-      const segment = stripRecruitingDutyExperience(withoutWaivedExperience);
+      const segment = withoutIncidentalExperience(stripRecruitingDutyExperience(withoutWaivedExperience));
       return !negated(segment) && !excludedStudentSubject.test(segment)
       // A field heading is not its value. In particular, the structured
       // experience field may say "Fresher" or zero on the following line.
       // Actual numeric and nonnumeric requirements are evaluated separately.
       && !/^(?:(?:required|minimum|prior|previous|professional|relevant|work)\s+)*experience\s*:$/i.test(segment)
       && (!employerExperienceSubject.test(segment) || applicantExperienceRequirement.test(segment))
-      && !/\b(?:preferred|desirable|desired|optional|a plus|a bonus|an advantage|nice[- ]to[- ]have|good[- ]to[- ]have)\b/i.test(segment)
+      && !/\b(?:prefer(?:red|able|rable)|desirable|desired|optional|a plus|a bonus|an advantage|nice[- ]to[- ]have|good[- ]to[- ]have)\b/i.test(segment)
       && (applicantExperienceRequirement.test(segment)
         || (!/\bintern(?:ship)?\b/i.test(segment) && /\bwe\s+(?:are\s+)?(?:looking\s+for|seeking|hiring)\s+(?:(?:an?|the)\s+)?experienced\b/i.test(segment))
-        || /\b(?:prior|previous|professional|relevant)(?:\s+[a-z][a-z-]*){0,4}\s+experience\b.{0,60}\b(?:required|mandatory|must|essential)|\bexperienced (?:professionals?|applicants?|candidates?)\b/i.test(segment)
-        || (qualificationSegments.has(original) && /\b(?:prior|previous|professional|relevant) (?:work )?experience\b|\bexperience\s+(?:in|with|on|of|as|related|working)\b|\bworked\s+(?:on|in|with|as)\b/i.test(segment)));
+        || /\b(?:prior|previous|professional|relevant|past\s+working)(?:\s+[a-z][a-z-]*){0,4}\s+experience\b.{0,60}\b(?:required|mandatory|must|essential)|^(?:[-*\u2022]\s*)?(?:we\s+(?:need|require|seek|want)\s+)?experienced (?:professionals?|applicants?|candidates?)\b/i.test(segment)
+        || (qualificationSegments.has(original) && !zeroInclusiveExperience.test(segment)
+          && /\b(?:prior|previous|professional|relevant) (?:work )?experience\b|\bexperience\s+(?:in|with|on|of|as|related|working)\b|\bworked\s+(?:on|in|with|as)\b/i.test(segment)));
     });
   // An explicit reference in the next sentence can qualify the same history
   // requirement. Unrelated academic skills do not waive earlier work history.

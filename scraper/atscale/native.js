@@ -80,8 +80,11 @@ export function parseAtScaleListing(html) {
   const queries = p.dehydratedState?.queries
   need(Array.isArray(queries), 'native queries are missing')
   const found = queries.filter(q => q.queryKey?.[2] === 'job-posts')
-  need(found.length === 1 && same(found[0].queryKey, ['board', 'atscale', 'job-posts', true,
-    { searchQuery: '', departments: [], workplaceType: null, country: '', state: '', city: '', page: 0, pageSize: 20 }])
+  const unfiltered = ['board', 'atscale', 'job-posts', true,
+    { searchQuery: '', departments: [], workplaceType: null, country: '', state: '', city: '', page: 0, pageSize: 20 }]
+  // Rippling's current deployment appends the explicit page locale to the
+  // otherwise unchanged query identity. Both reviewed shapes remain exact.
+  need(found.length === 1 && (same(found[0].queryKey, unfiltered) || same(found[0].queryKey, [...unfiltered, 'en-US']))
     && found[0].state?.status === 'success' && found[0].state.error == null, 'native unfiltered listing query changed or failed')
   const value = found[0].state.data; noError(value)
   need(same(Object.keys(value).sort(), ['items', 'page', 'pageSize', 'totalItems', 'totalPages'].sort())

@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import test from 'node:test'
-import { createEpamScraper, run } from './script.js'
+import { createEpamScraper, extractSearchResults, run } from './script.js'
+import { collectNativeEpam } from './nativeInventory.js'
 import { isCompleteScraperAttempt, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { buildScrapers } from '../../scraper-support/providers/index.js'
 import { extractionDetailHealth } from '../../scraper-support/utils/extractionDetailHealth.js'
@@ -14,6 +15,12 @@ const controller = fixture('public-controller.js.gz')
 const captured = JSON.parse(fixture('india-first-page.json.gz'))
 const clone = value => structuredClone(value)
 const batchSymbol = Symbol.for('jobverify.epam-native-inventory')
+// These older packets exercise raw collection/projection, not current public
+// admission. Registered old-client rejection is covered separately below.
+const collectHistorical = options => collectNativeEpam({ options, maxJobs: null,
+  headers: { 'User-Agent': 'Mozilla/5.0' },
+  project: record => extractSearchResults({ data: { jobs: [record] } })[0],
+})
 const pageData = html => JSON.parse(html.match(/<script[^>]+id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
 const htmlFor = rows => {
   const data = pageData(originalHTML)
@@ -58,11 +65,7 @@ function scenario({ rows = captured.data.jobs.slice(0, 3), mutatePage, mutateHTM
     return mutateResponse?.(response, count) ?? response
   }
   return { rows, calls, transport, async run(options = {}) {
-    return createEpamScraper().run({ transport,
-      // The pre-repair implementation accepts only parsed JSON; keep RED offline.
-      fetchJson: async url => ({ data: { total: rows.length,
-        jobs: clone(rows.slice(Number(new URL(url).searchParams.get('from')), 50)) } }),
-      ...options })
+    return collectHistorical({ transport, ...options })
   } }
 }
 
@@ -112,7 +115,7 @@ test('EPAM preserves the native public GET transport headers used by the working
 })
 
 test('EPAM distinguishes the real India page jobs from its unfiltered initialJobs inventory', async () => {
-  const jobs = await createEpamScraper().run({ maxPages: 1, transport: async url => ({ url, status: 200,
+  const jobs = await collectHistorical({ maxPages: 1, transport: async url => ({ url, status: 200,
     headers: { 'content-type': url.endsWith('/india') ? 'text/html' : url.includes('/_next/') ? 'application/javascript' : 'application/json' },
     body: Buffer.from(url.endsWith('/india') ? originalHTML : url.includes('/_next/') ? controller : JSON.stringify(captured)),
   }) })
@@ -291,25 +294,25 @@ test('EPAM cancellation queued by a reader prevents its deferred body read from 
   assert.equal(reads, 0)
 })
 
-test('registered EPAM run preserves validated inventory and the original native batch on the first job', async () => {
+test('registered EPAM withholds old-client publication and preserves complete original observations on the empty array', async () => {
   const provider = buildScrapers().find(scraper => scraper.name === 'epam')
   const s = scenario()
   const jobs = await provider.run({ transport: s.transport })
-  assert.equal(jobs.length, 3)
-  assert.equal(readInventoryEvidence(jobs).listingComplete, true)
-  assert.equal(jobs[0].nativeCollectionEvidence.complete, true)
-  assert.equal(jobs[0].nativeCollectionEvidence.retainedResponses.length, 7)
-  assert.equal(jobs[0].nativeCollectionEvidence.passes[0].uniqueCount, 3)
-  assert.equal(Object.isFrozen(jobs[0].nativeCollectionEvidence), true)
-  assert.equal(jobs[0].nativeRecord.uid, captured.data.jobs[0].uid)
-  assert.equal(jobs[1].nativeCollectionEvidence, undefined)
-  const health = extractionDetailHealth(jobs)
-  assert.equal(health.complete, true)
-  assert.equal(health.nativeCollections[0].sourceMatches, true)
-  assert.equal(health.nativeCollections[0].candidateDetails, 3)
-  assert.equal(health.nativeCollections[0].parsedDetails, 3)
-  assert.equal(health.nativeCollections[0].observedListingRows, 3)
-  assert.deepEqual(extractionRawJobMetrics(provider.provider, jobs, null), { rawJobs: 3, rawJobsBasis: 'observed-native-listing-rows' })
+  assert.equal(jobs.length, 0)
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(readInventoryEvidence(jobs).status, 'coverage-gap')
+  const audit = jobs.nativeCollectionEvidence
+  assert.equal(audit.complete, true, 'Historical configured collection completeness cannot establish current public admission')
+  assert.equal(audit.sourceCurrentAdmissionQualified, false)
+  assert.equal(audit.retainedResponses.length, 7)
+  assert.equal(audit.passes[0].uniqueCount, 3)
+  assert.equal(audit.observations.length, 3)
+  assert.deepEqual(audit.observations, s.rows)
+  assert.equal(audit.sourceScopeComplete, false)
+  assert.equal(audit.lifecycleCleanupAllowed, false)
+  assert.equal(audit.extractedDetailJobs, 0)
+  assert.equal(Object.isFrozen(audit), true)
+  assert.deepEqual(extractionRawJobMetrics(provider.provider, jobs, null), { rawJobs: 3, rawJobsBasis: 'observed-native-vacancy-rows' })
 })
 
 test('runner native counters retain real partial observations and cannot certify malformed geography or missing content', async () => {
@@ -331,6 +334,50 @@ test('runner native counters retain real partial observations and cannot certify
       rawJobs: mode === 'limit' ? 2 : 3, rawJobsBasis: 'observed-native-listing-rows',
     })
   }
+})
+
+test('EPAM caller cancellation retains completed original observations on the exact Error reason', async () => {
+  const s = scenario(), controller = new AbortController(), reason = new Error('stop after original opening observations')
+  let firstPageReads = 0, finishLate
+  const pending = run({ signal: controller.signal, transport: (url, init) => {
+    if (url.includes('/api/jobs/') && new URL(url).searchParams.get('from') === '0' && ++firstPageReads === 2) {
+      const stalled = new Promise(resolve => { finishLate = resolve })
+      queueMicrotask(() => controller.abort(reason))
+      return stalled
+    }
+    return s.transport(url, init)
+  } })
+  await assert.rejects(pending, error => error === reason)
+  const audit = reason.sourceAudit
+  assert.equal(audit.complete, false)
+  assert.equal(audit.aborted, true)
+  assert.equal(audit.sourceCurrentAdmissionQualified, false)
+  assert.deepEqual(audit.observations, s.rows)
+  assert.equal(audit.passes[0].rawCount, 3)
+  assert.equal(audit.retainedResponses.length, 4)
+  assert.equal(Object.isFrozen(audit), true)
+  const before = JSON.stringify(audit)
+  finishLate({ url: 'https://careers.epam.com/api/jobs/v2/search/careers-i18n', status: 200,
+    headers: { 'content-type': 'application/json' }, body: Buffer.from('{}') })
+  await new Promise(resolve => setImmediate(resolve))
+  assert.equal(JSON.stringify(audit), before)
+})
+
+test('EPAM audit callbacks stay inside the original total deadline and cannot mutate retained evidence', async () => {
+  let called = 0, snapshot
+  const startedAt = Date.now()
+  const jobs = await scenario().run({ totalTimeoutMs: 500, onAudit: audit => {
+    called++
+    snapshot = audit
+    assert.equal(Object.isFrozen(audit.observations), true)
+    return new Promise(() => {})
+  } })
+  assert.equal(called, 1)
+  assert.equal(jobs[batchSymbol].complete, false)
+  assert.equal(jobs[batchSymbol].failures.some(row => row.stage === 'audit-callback' && row.code === 'total-timeout'), true)
+  assert.equal(jobs[batchSymbol].observations.length, 3)
+  assert.equal(snapshot.failures.length, 0, 'Callback snapshot must be independent of later deadline diagnostics')
+  assert.ok(Date.now() - startedAt < 2000, 'A stalled audit callback must not outlive the source budget')
 })
 
 for (const settles of ['resolve', 'reject', 'never']) {

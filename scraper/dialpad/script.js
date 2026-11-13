@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { DIALPAD_CATALOG } from './catalog.js'
+import { runCurrentDialpad } from './currentNative20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -227,7 +228,7 @@ export const createDialpadScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createDialpadScraper().run(options)
+export const run = async (options = {}) => options.fetchPage ? createDialpadScraper().run(options) : runCurrentDialpad(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

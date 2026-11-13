@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { createBrowserNetworkFallback } from '../../scraper-support/shared/browserNetworkFallback.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { activeHead, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -46,10 +47,28 @@ const parseQuotedConfigValue = (block, key) => {
 
 export const hasOfficialCareersSignal = (html) => {
   const rawHtml = String(html ?? '')
+  const doc = readNativeDocument(rawHtml)
+  const canonicals = doc.nodes(node => node.tag === 'link' && node.attrs.rel === 'canonical')
+  // The current rendered page retains its static homepage canonical alongside
+  // the careers-specific React head. Require the own careers binding whenever
+  // canonicals are supplied, and never admit a foreign or unrelated route.
+  if (canonicals.length && (!canonicals.some(node => [CAREERS_URL, CAREERS_URL + '/'].includes(node.attrs.href))
+    || canonicals.some(node => ![CAREERS_URL, CAREERS_URL + '/', 'https://www.rapteehv.com/'].includes(node.attrs.href)))) return false
 
   return /<title[^>]*>(?:Raptee\.HV - India's First Motorcycle with Electric Car DNA \| HV-TEC|Careers at Raptee\.HV \| Join India's High-Voltage EV Startup|EV Careers in India \| Join Raptee\.HV(?:'|&#39;|&rsquo;)?s High-Voltage Electric Vehicle Team|Raptee\.HV \| India(?:'|&#39;|&rsquo;)?s First High-Voltage Electric Motorcycle)<\/title>/i.test(rawHtml)
     && /"name":\s*"Careers",\s*"url":\s*"https:\/\/www\.rapteehv\.com\/careers\/?"/i.test(rawHtml)
     && /https:\/\/raptee\.keka\.com\/careers\/api\/embedjobs\/js\/3d03878f-6bf4-4fe3-9090-2989304de3b4/i.test(rawHtml)
+}
+
+const rejectNativeAccessDenial = html => {
+  const doc = readNativeDocument(String(html ?? ''))
+  if (activeHead(html).titles.includes('Forbidden Access')
+    && doc.nodes(node => node.tag === 'p' && doc.hasClass(node, 'status-code')
+      && doc.text(node) === 'FORBIDDEN ACCESS').length === 1) {
+    throw Object.assign(new Error('RAPTEE HV public Keka careers inventory is access denied by the publisher'), {
+      softFailure: true, upstreamOutage: true, failureKind: 'blocked_or_access_denied', abortRetries: true,
+    })
+  }
 }
 
 export const extractExternalHandoffUrl = (html) => {
@@ -235,10 +254,12 @@ export const createRapteeHvScraper = ({
         } catch {
           pageHtml = await browserFallback.fetchTextInBrowser(url)
         }
+        rejectNativeAccessDenial(pageHtml)
 
         if (!verifier(pageHtml)) {
           pageHtml = await browserFallback.fetchTextInBrowser(url)
         }
+        rejectNativeAccessDenial(pageHtml)
 
         return pageHtml
       }

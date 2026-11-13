@@ -1,0 +1,52 @@
+[
+  {
+    "profile": "existing-source",
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=2",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:45:53.137115+00:00",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=2",
+    "bytes": 55239,
+    "sha256": "ee47ced708d42f73fbd579915ed5c937781a81ee3e2b6c601762c004fdbaee2b",
+    "file": "existing-source.body.gz",
+    "activePageHref": "https://careers.cognizant.com/india-en/jobs/?page=2#results",
+    "jobIds": [
+      "00070262901",
+      "00071140631",
+      "00071310342",
+      "00071310341",
+      "00071159711",
+      "00071211301",
+      "00071229301",
+      "00071159161",
+      "00070713951",
+      "00070713691"
+    ],
+    "completedAt": "2026-11-13T09:45:55.062665+00:00"
+  },
+  {
+    "profile": "new-generic-helper",
+    "requestedUrl": "https://careers.cognizant.com/india-en/jobs/?page=2",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:45:53.137115+00:00",
+    "status": 200,
+    "url": "https://careers.cognizant.com/india-en/jobs/?page=2",
+    "bytes": 54724,
+    "sha256": "4a0c84d1f6e7b3d72b3a133b503963921e779fa0f32f4cf1ee838779a12855fb",
+    "file": "new-generic-helper.body.gz",
+    "activePageHref": "https://careers.cognizant.com/india-en/jobs/#results",
+    "jobIds": [
+      "00071249921",
+      "00071185071",
+      "00071185151",
+      "00071184291",
+      "00071352951",
+      "47965",
+      "00071271382",
+      "00071148751",
+      "00070024891",
+      "00071285771"
+    ],
+    "completedAt": "2026-11-13T09:45:55.066675+00:00"
+  }
+]

@@ -2,6 +2,8 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
+import {hasCurrentGreenhouseMarker,readCurrentGreenhouse} from './currentGreenhouse.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -285,7 +287,10 @@ export const hasVerifiedJobsSurface = (html) => {
     && JOBS_FILTERS_PATTERN.test(page)
 }
 
-export const pageShowsNoPublicJobs = (html) => NO_PUBLIC_JOBS_PATTERN.test(String(html ?? ''))
+export const pageShowsNoPublicJobs = (html) => {
+  const doc=readVisibleNativeDocument(String(html??''),{strict:true})
+  return doc.nodes(node=>node.tag==='p'&&!/\b(?:hide|hidden|offscreen)\b/i.test(node.attrs.class||'')&&NO_PUBLIC_JOBS_PATTERN.test(doc.text(node))).length>0
+}
 
 export const extractEmbeddedJobPostings = (html) => extractJsonLdBlocks(html)
   .map(parseJsonLd)
@@ -294,7 +299,8 @@ export const extractEmbeddedJobPostings = (html) => extractJsonLdBlocks(html)
   .map(normalizeJobPosting)
   .filter((job) => job?.title && job?.location)
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const defaultFetchText = (url,{signal}={}) => fetchTextWithRetry(url, {
+  signal,redirect:'error',
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -304,32 +310,26 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
 })
 
 export const createE2OpenScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const careersHtml = await fetchText(CAREERS_PAGE_URL)
+  async run({ fetchText = defaultFetchText,signal,onAudit,now } = {}) {
+    const readText=async url=>{signal?.throwIfAborted();const body=await fetchText(url,{signal});signal?.throwIfAborted();return body}
+    const careersHtml = await readText(CAREERS_PAGE_URL)
     if (!hasVerifiedCareersSurface(careersHtml)) {
       throw new Error('e2open careers page no longer matches the verified official public surface')
     }
 
-    const jobsHtml = await fetchText(JOBS_PAGE_URL)
+    const jobsHtml = await readText(JOBS_PAGE_URL)
     if (!hasVerifiedJobsSurface(jobsHtml)) {
       throw new Error('e2open jobs page no longer matches the verified official public surface')
     }
+    if(hasCurrentGreenhouseMarker(careersHtml)||hasCurrentGreenhouseMarker(jobsHtml))return readCurrentGreenhouse({careersHtml,jobsHtml,readText,onAudit,now})
 
     if (pageShowsNoPublicJobs(jobsHtml)) {
       return []
     }
 
-    const jobs = extractEmbeddedJobPostings(jobsHtml)
-    if (jobs.length === 0) {
-      throw new Error('e2open jobs page no longer matches the supported public listings surface')
-    }
-
-    return jobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl || JOBS_PAGE_URL,
-      scrapedAt: new Date().toISOString(),
-    }))
+    // Historical JSON-LD remains an exported formatter, never current vacancy
+    // authority after the reviewed public native handoff is retired or absent.
+    throw new Error('e2open jobs page no longer matches the supported public listings surface; current native client handoff required')
   },
 })
 

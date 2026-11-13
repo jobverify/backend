@@ -5,6 +5,9 @@ import { readReviewedClientProgram, hasClientDocumentBase, clientScriptDeclarati
 // Whole programs reviewed against genuine 2026-11-05 public responses. A build
 // filename may rotate; changed module logic, target IDs or tenant links cannot.
 const LOADER_SHA256 = 'ba49c2a5eb44f5d8f9ce44d7cdb7212c74b808bb36285971f15f48b66160fb8c'
+// November13 keeps the exact footer loader module512169 -> module516114 and
+// the unchanged reviewed footer. The surrounding complete Next program changed.
+const LOADER_20261113_SHA256 = 'ccb6083dba2f9ccb662d52e8df6e8d11e04be3002df1deb2b127bc3783274b3f'
 const FOOTER_SHA256 = '994447fba92c4b0e2d1b4a0ce8c0480d42dbdb6a462be524ee2bc66f8f59fb49'
 const LEGACY_LOADER_SHA256 = '14ba844a20ed06cc9d3c5e3aeed2895e7aaf96ddae08f61b4dc2b68555d35e4a'
 const LEGACY_FOOTER_SHA256 = 'fafc2abdba1da22439c0ef7d7e4f000bd6791ae0a0303d707c220da41f4d1804'
@@ -98,11 +101,11 @@ const loaderChild = program => {
 export const verifyCurrentPocketClientBinding = async (html, getText) => {
   const parentURL = currentParentURL(html)
   const parent = readReviewedClientProgram(await getText(parentURL), { normalizeChunkNames: true })
-  if (parent?.sha256 !== LOADER_SHA256) fail('unreviewed parent program')
+  if (![LOADER_SHA256, LOADER_20261113_SHA256].includes(parent?.sha256)) fail('unreviewed parent program')
   const childURL = loaderChild(parent.program)
   const footer = readReviewedClientProgram(await getText(childURL))
   if (footer?.sha256 !== FOOTER_SHA256) fail('unreviewed careers footer program')
-  return { parentURL, childURL, loaderProgramSHA256: LOADER_SHA256, footerProgramSHA256: FOOTER_SHA256 }
+  return { parentURL, childURL, loaderProgramSHA256: parent.sha256, footerProgramSHA256: FOOTER_SHA256 }
 }
 
 export const verifyLegacyPocketClientBinding = async (html, getText) => {

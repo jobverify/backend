@@ -25,12 +25,12 @@ async function collect({ change = () => {}, closingChange = () => {}, maxJobs = 
   change(model)
   let calls = 0
   const fetchImpl = async (url, init = {}) => {
-    assert.equal(url, [CAREERS, API, API, CAREERS][calls++], 'only the real four-request closing protocol is admitted')
+    assert.equal(url, [CAREERS, API, API, CAREERS][calls++ % 4], 'only complete four-request cohorts are admitted')
     assert.ok(init.signal instanceof AbortSignal)
     let body = model.corporate
     if (url === API) {
       const payload = structuredClone(model.inventory)
-      if (calls === 3) closingChange(payload)
+      if (calls % 4 === 3) closingChange(payload)
       body = JSON.stringify(payload)
     }
     const response = new Response(body, { headers: { 'content-type': url === API ? 'application/json' : 'text/html' } })

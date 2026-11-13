@@ -12,15 +12,16 @@
   "countryFilter": "India",
   "sourceScopeComplete": false,
   "zeroResultPolicy": "evidence-required",
-  "paginationStrategy": "native-jobs-meta-total+office-department-roles+all-native-details+independent-closing",
-  "extractionStrategy": "current-visible-employer-handoff+all-native-role-details+semantic-flight-scope+office-country-tree+partial-country-scope-preservation",
-  "verifiedOn": null,
+  "paginationStrategy": "native-meta-total+all-full-native-details+office-country-tree-memberships+independent-final-inventory",
+  "extractionStrategy": "current-visible-employer-handoff+full-original-visible-native-criteria+assigned-office-countries+closing+partial-country-scope",
+  "verifiedOn": "2026-11-13",
   "verifiedAt": null,
-  "verifiedPublicJobCount": null,
+  "verifiedPublicJobCount": 0,
   "verifiedIndiaJobCount": null,
   "companyGlobalTotal": null,
   "companyIndiaTotal": null,
   "verifiedInventoryStatus": "unverified",
   "remediationStatus": "conditional-current-public-inventory-native-office-and-employer-scope-proof",
-  "verifiedSurfaceSummary": "Retains the full native partial source recovery and paired role details. Current public completeness additionally requires a reviewed semantic employer model, complete native office-country hierarchy and job assignments, and independent closing protocols. Unknown scope preserves original India positives with cleanup disabled. Historical metadata does not certify a future check or private/legal-employer universality."
+  "verifiedSurfaceSummary": "Verified partial source recovery on 2026-11-13: current visible employer handoff binds the dataiku Greenhouse board; fifteen complete native roles have explicit foreign primary alternatives and reconciled assigned office-country trees/memberships. All full original same-ID details and final native inventory agree. Current runner accepts declared-board India zero only. Whole-company marketing/Flight scope remains unreviewed, unqualified India rows are held outside publication and all originals remain in audit. Company-wide absence and lifecycle cleanup remain unproved.",
+  "lifecycleCleanupAllowed": false
 }

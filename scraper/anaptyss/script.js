@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { ANAPTYSS_CATALOG, VERIFIED_JOB_DETAIL_URLS } from './catalog.js'
+import { runNativeAnaptyss } from './currentNative20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -92,13 +93,14 @@ const buildJobIdFromUrl = (url) => {
 
 const escapeRegExp = (value) => String(value ?? '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
-const defaultFetchPage = async (url) => {
+const defaultFetchPage = async (url, { signal } = {}) => {
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
     redirect: 'follow',
+    signal: AbortSignal.any([AbortSignal.timeout(30000), ...(signal ? [signal] : [])]),
   })
 
   return {
@@ -369,8 +371,10 @@ export const hasCurrentDetailSignal = (html, card) => {
     && Boolean(extractCurrentDescription(page))
 }
 
-const runCurrentSite = async (fetchPage, now) => {
+const runCurrentSite = async (fetchPage, now, options = {}) => {
   const careers = await fetchPage(CURRENT_CAREERS_URL)
+  if (/rel="canonical" href="https:\/\/www\.anaptyss\.com\/careers\/openings"/.test(careers.html)
+    && /<details class="op-card" name="op-card"/.test(careers.html)) return runNativeAnaptyss({ ...options, fetchPage, now })
   if (careers.status !== 200 || normalizeUrl(careers.url) !== CURRENT_CAREERS_URL
     || !hasCurrentCareersSignal(careers.html)) {
     throw new Error('Anaptyss current openings page no longer matches the first-party jobs surface')
@@ -415,7 +419,19 @@ const runCurrentSite = async (fetchPage, now) => {
 export const createAnaptyssScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run({ fetchPage: reader = defaultFetchPage, signal, ...options } = {}) {
+    const fetchPage = (url, { signal: operationSignal } = {}) => {
+      const signals = [signal, operationSignal].filter(Boolean)
+      const readSignal = signals.length ? AbortSignal.any(signals) : undefined
+      readSignal?.throwIfAborted()
+      if (!readSignal) return reader(url)
+      return new Promise((resolve, reject) => {
+        const abort = () => { readSignal.removeEventListener('abort', abort); reject(readSignal.reason) }
+        readSignal.addEventListener('abort', abort, { once: true })
+        Promise.resolve().then(() => reader(url, { signal: readSignal })).then(value => { readSignal.removeEventListener('abort', abort); resolve(value) }, error => { readSignal.removeEventListener('abort', abort); reject(error) })
+        if (readSignal.aborted) abort()
+      })
+    }
     const homepage = await fetchPage(HOMEPAGE_URL)
     if (
       homepage.status !== 200
@@ -425,7 +441,7 @@ export const createAnaptyssScraper = ({
       throw new Error('Anaptyss verified homepage no longer matches the known first-party surface')
     }
 
-    if (hasCurrentHomepageSignal(homepage.html)) return runCurrentSite(fetchPage, now)
+    if (hasCurrentHomepageSignal(homepage.html)) return runCurrentSite(fetchPage, now, { ...options, signal })
 
     const careersLanding = await fetchPage(CAREERS_LANDING_URL)
     if (

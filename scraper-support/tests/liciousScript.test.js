@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 import * as licious from '../../scraper/licious/script.js'
-import { liciousNativeOptions } from './fixtures/liciousNativeOptions.js'
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
 test('Licious exports the current corporate and MyNextHire endpoints', () => {
@@ -16,10 +17,24 @@ test('Licious exports the current corporate and MyNextHire endpoints', () => {
 })
 
 test('Licious run wrapper forwards cancellation and native transport options', async () => {
-  const options = liciousNativeOptions()
+  const capture=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/licious/test-inputs/current-app-router-default-20261107.json.gz',import.meta.url))))
+  let index=0,detailReads=0
+  const options={now:()=>capture.collectionStartedAt,fetchPage:async(url,init)=>{
+    init.signal.throwIfAborted();const packet=capture.packets[index++];assert.equal(url,packet.requestedUrl)
+    let body=Buffer.from(packet.bodyBase64,'base64').toString('utf8')
+    // Explicitly labelled synthetic country control: original current rows
+    // publish no country and therefore cannot exercise the positive cap branch.
+    if(url.endsWith('/reqlist/get')||url.endsWith('/requisition/object')){
+      const value=JSON.parse(body),rows=value.reqDetailsBOList||[value.data.reqDetailsBO]
+      for(const row of rows)row.countryCode='IN'
+      body=JSON.stringify(value)
+    }
+    if(url.endsWith('/requisition/object'))detailReads++
+    return{url:packet.finalUrl,status:packet.status,contentType:packet.contentType,body}
+  }}
   const jobs = await licious.run({ ...options, maxJobs: 2 })
   assert.equal(jobs.length, 2)
-  assert.equal(options.calls.filter(call => call.url.endsWith('/requisition/object')).length, 35)
+  assert.equal(detailReads,32);assert.equal(index,44)
   assert.equal(readInventoryEvidence(jobs).listingComplete, false)
 })
 

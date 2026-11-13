@@ -45,6 +45,7 @@ const WORKDAY_HOST_FAILURE_THRESHOLD = 2
 const WORKDAY_HOST_CIRCUIT_COOLDOWN_MS = 5 * 60 * 1000
 const WORKDAY_DETAIL_FALLBACK = Symbol.for('jobverify.workday.detail-fallback')
 const WORKDAY_DETAIL_FALLBACK_REASON = Symbol.for('jobverify.workday.detail-fallback-reason')
+const WORKDAY_CLOSING_INVENTORY_CHANGED = Symbol('workday-closing-inventory-changed')
 const WORKDAY_COUNTRY_FACET_NORMALIZED = 'locationcountry'
 const WORKDAY_FETCH_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36'
 const WORKDAY_OUTAGE_TEXT_PATTERNS = [
@@ -1961,7 +1962,7 @@ const resolveWorkdayScopeLocations = (candidate, countryEvidence, source, countr
   }
 }
 
-const runWorkdayJobsApiScraper = async ({
+const runWorkdayJobsApiPass = async ({
   company,
   baseUrl,
   locationCountry,
@@ -1978,6 +1979,7 @@ const runWorkdayJobsApiScraper = async ({
   detailEnrichmentBudgetMs = null,
   nativeDetailRecovery = null,
   sourceWorksiteCountryProof = null,
+  inventoryRestartState,
 }) => {
   throwIfAborted(signal)
   const countryProof = config.inventoryScope === 'complete-board-country-proof'
@@ -2317,14 +2319,19 @@ const runWorkdayJobsApiScraper = async ({
     }
     // Live boards can add/remove postings between offset requests. Discard
     // that pass and make one fresh enumeration before any role hydration.
-    // A second unstable pass remains a failure and cannot authorize cleanup.
+    // Temporarily incomplete role objects can also appear while a live board
+    // updates. Discard the whole pass; never skip or fabricate their identity.
+    // A second unstable or malformed pass remains a hard failure.
     let emptyListing
     try { emptyListing = await enumerateListing() } catch (error) {
       throwIfAborted(signal)
-      if (error.code !== 'WORKDAY_INVENTORY_CHANGED') throw error
+      const incompleteIdentity = error.name === 'WorkdayIncompleteListingError'
+        && ['missing-title', 'invalid-external-path'].includes(error.listingIdentity?.reason)
+      if (inventoryRestartState.used || error.code !== 'WORKDAY_INVENTORY_CHANGED' && !incompleteIdentity) throw error
+      inventoryRestartState.used = true
       seenLinks.clear(); seenApiRecords.clear(); initialInventory.clear()
       allCandidates.length = 0; reportedTotal = 0; offset = 0
-      console.log(`  [${source}] Workday inventory changed during pagination; restarting the listing once.`)
+      console.log(`  [${source}] Workday inventory changed or a role identity was incomplete; restarting the listing once.`)
       emptyListing = await enumerateListing()
     }
     if (emptyListing !== undefined) return emptyListing
@@ -2511,10 +2518,14 @@ const runWorkdayJobsApiScraper = async ({
     )).length
     const pacedStartIntervalMs = Number.isFinite(requestScheduler?.minIntervalMs)
       ? Math.max(0, requestScheduler.minIntervalMs) : 0
-    const effectiveDetailBudgetMs = nativeDetailPassBudget(nativeDetailRecovery, detailEnrichmentBudgetMs ?? Math.min(
+    const allowedDetailBudgetMs = nativeDetailPassBudget(nativeDetailRecovery, detailEnrichmentBudgetMs ?? Math.min(
       MAX_DEFAULT_WORKDAY_DETAIL_ENRICHMENT_BUDGET_MS,
       DEFAULT_WORKDAY_DETAIL_ENRICHMENT_BUDGET_MS + pendingDetailCount * pacedStartIntervalMs,
     ))
+    // A full inventory restart does not create a fresh optional-detail budget.
+    inventoryRestartState.detailDeadline ??= Date.now() + allowedDetailBudgetMs
+    const effectiveDetailBudgetMs = Math.max(0, Math.min(allowedDetailBudgetMs,
+      inventoryRestartState.detailDeadline - Date.now()))
     const detailController = new AbortController()
     const budgetError = new Error(`[${source}] Workday detail enrichment budget exhausted`)
     budgetError.name = 'WorkdayDetailBudgetExceededError'
@@ -2679,14 +2690,28 @@ const runWorkdayJobsApiScraper = async ({
         closingPages++
         if (closingTotal == null) closingTotal = payload.total
         const pageTotal = pageNum > 1 && payload.total === 0 ? closingTotal : payload.total
+        // A changed native inventory can be reacquired, but malformed or
+        // cross-board closing rows are contract failures, even if totals drift.
+        const apiSite = new URL(jobsApiUrl).pathname.match(/^\/wday\/cxs\/[^/]+\/([^/]+)\/jobs$/)?.[1]
+        const closingRows = payload.jobPostings.map(job => {
+          const link = typeof job.externalPath === 'string'
+            ? buildWorkdayJobDetailUrl(job.externalPath, detailUrlBase, baseUrl) : null
+          const rolePath = link && new URL(link).pathname.replace(/^\/[a-z]{2}-[a-z]{2}(?=\/)/i, '')
+          if (typeof job.title !== 'string' || !job.title.trim()
+            || typeof job.externalPath !== 'string' || !/^\/job\/.*_[^/]+$/.test(job.externalPath)
+            || !apiSite || !link || rolePath !== '/' + apiSite + job.externalPath) {
+            throw buildWorkdayIncompleteListingError(source, 'closing complete-board role identity is malformed or outside this board')
+          }
+          return { link, identity: workdayInventoryIdentity(job) }
+        })
         if (pageTotal !== reportedTotal || pageTotal !== closingTotal) {
-          throw buildWorkdayInventoryChangedError(source, 'closing complete-board count changed')
+          throw Object.assign(buildWorkdayInventoryChangedError(source, 'closing complete-board count changed'),
+            { inventoryPhase: 'closing', [WORKDAY_CLOSING_INVENTORY_CHANGED]: true })
         }
-        for (const job of payload.jobPostings) {
-          const link = buildWorkdayJobDetailUrl(job.externalPath, detailUrlBase, baseUrl)
-          const identity = workdayInventoryIdentity(job)
-          if (!link || closingInventory.has(link) || initialInventory.get(link) !== identity) {
-            throw buildWorkdayInventoryChangedError(source, 'closing complete-board role identity changed or repeated')
+        for (const { link, identity } of closingRows) {
+          if (closingInventory.has(link) || initialInventory.get(link) !== identity) {
+            throw Object.assign(buildWorkdayInventoryChangedError(source, 'closing complete-board role identity changed or repeated'),
+              { inventoryPhase: 'closing', [WORKDAY_CLOSING_INVENTORY_CHANGED]: true })
           }
           closingInventory.set(link, identity)
         }
@@ -2741,6 +2766,23 @@ const runWorkdayJobsApiScraper = async ({
     })
   } finally {
     throwIfAborted(signal)
+  }
+}
+
+const runWorkdayJobsApiScraper = async options => {
+  const inventoryRestartState = { used: false, detailDeadline: null }
+  try {
+    return await runWorkdayJobsApiPass({ ...options, inventoryRestartState })
+  } catch (error) {
+    throwIfAborted(options.signal)
+    if (inventoryRestartState.used || error.code !== 'WORKDAY_INVENTORY_CHANGED'
+      || error[WORKDAY_CLOSING_INVENTORY_CHANGED] !== true) throw error
+    inventoryRestartState.used = true
+    // Discard all first-pass jobs, details and proof. A new pass must reacquire
+    // corporate binding, bootstrap, the complete listing and closing inventory.
+    // The original caller deadline, pacing and detail deadline remain in force.
+    console.log(`  [${options.source}] Workday closing inventory changed; restarting the complete pass once.`)
+    return runWorkdayJobsApiPass({ ...options, inventoryRestartState })
   }
 }
 

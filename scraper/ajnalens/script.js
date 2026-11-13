@@ -2,6 +2,11 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { AJNALENS_CATALOG } from './catalog.js'
+import { createHash } from 'node:crypto'
+import { activeHead, activeScripts } from '../../scraper-support/utils/activeNativeHtml.js'
+import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -79,13 +84,14 @@ const mapRoleToJob = (role) => ({
   remoteStatus: 'On-site',
 })
 
-const defaultFetchPage = async (url) => {
+const defaultFetchPage = async (url, { signal } = {}) => {
   const response = await fetch(url, {
     headers: {
       'User-Agent': USER_AGENT,
       Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     },
     redirect: 'follow',
+    signal: AbortSignal.any([AbortSignal.timeout(30000), ...(signal ? [signal] : [])]),
   })
 
   return {
@@ -181,9 +187,69 @@ export const extractOpenPositions = (html) => {
   return roles.map(mapRoleToJob)
 }
 
+const CURRENT_CAREERS = 'https://www.ajnalens.com/careers'
+const CURRENT_CLIENT = 'https://www.ajnalens.com/_next/static/chunks/86b08c738e2cae78.js'
+const CURRENT_CLIENT_SHA = 'b882e3907ad51be3410791ec95004ce4605991f51870244d467454f019a3a2bb'
+const needCurrent = (ok, why) => { if (!ok) throw Error('AjnaLens current native: ' + why) }
+const boundedPage = (reader, url, signal) => {
+  signal?.throwIfAborted()
+  if (!signal) return reader(url)
+  return new Promise((resolve, reject) => {
+    const abort = () => { signal.removeEventListener('abort', abort); reject(signal.reason) }
+    signal.addEventListener('abort', abort, { once: true })
+    Promise.resolve().then(() => reader(url, { signal })).then(value => { signal.removeEventListener('abort', abort); resolve(value) }, error => { signal.removeEventListener('abort', abort); reject(error) })
+    if (signal.aborted) abort()
+  })
+}
+const observeCurrentCareers = async (initial, reader, callerSignal) => {
+  const signal = AbortSignal.any([AbortSignal.timeout(120000), ...(callerSignal ? [callerSignal] : [])])
+  const inspect = async page => {
+    needCurrent(page.status === 200 && page.url === CURRENT_CAREERS, 'public employer/final URL identity changed')
+    const doc = readVisibleNativeDocument(page.html, { strict: true })
+    needCurrent(activeHead(page.html).titles.includes("Careers at AjnaLens | Build India's XR Future")
+      && doc.nodes(node => node.tag === 'link' && node.attrs.rel === 'canonical' && node.attrs.href === CURRENT_CAREERS).length === 1
+      && doc.nodes(node => node.attrs.id === 'contactus').length === 1
+      && doc.nodes(node => node.tag === 'h2' && doc.text(node) === 'Current Openings').length === 1,
+    'current active first-party careers surface changed')
+    const roles = extractEmbeddedRoles(activeScripts(page.html).join('\n'))
+    needCurrent(roles.length > 0 && roles.length <= 100 && roles.every(role => doc.nodes(node => node.tag === 'h6' && doc.text(node) === role.title).length === 1),
+      'current active opening titles and native IDs disagree')
+    needCurrent(doc.nodes(node => node.tag === 'script' && node.attrs.src === new URL(CURRENT_CLIENT).pathname
+      && !Object.hasOwn(node.attrs, 'nomodule')).length === 1, 'current public openings client missing')
+    const client = await boundedPage(reader, CURRENT_CLIENT, signal)
+    needCurrent(client.status === 200 && client.url === CURRENT_CLIENT
+      && createHash('sha256').update(client.html).digest('hex') === CURRENT_CLIENT_SHA, 'unreviewed title-only public client contract')
+    // Module75219 maps only title/experience and scrolls Apply Now to #contactus.
+    // Neither a workplace country nor full per-role criteria is published there.
+    return roles.map(role => ({ jobId: role.id, title: role.title, experience: role.experience,
+      nativeCreatedAt: role.postingDate, sourceUrl: CURRENT_CAREERS, country: null, fullCriteria: null }))
+  }
+  const opening = await inspect(initial)
+  const closing = await inspect(await boundedPage(reader, CAREERS_URL, signal))
+  needCurrent(JSON.stringify(opening) === JSON.stringify(closing), 'current public opening membership changed at closing')
+  const jobs = []
+  attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: CURRENT_CAREERS, firstParty: true,
+    listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 4, reportedTotal: opening.length,
+    indiaFacetCount: null, verifiedAt: new Date().toISOString(),
+    reason: 'Current first-party title-only openings and shared resume form; full role criteria and workplace countries are not published; native vacancies observed, no publishable India inventory established.' })
+  attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: opening.length,
+    observedVacancyCount: opening.length, sourceScopeComplete: false })
+  Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: { source: SOURCE, recordKind: 'vacancy-rows',
+    observedRecordCount: opening.length, observedVacancyCount: opening.length, sourceScopeComplete: false,
+    companyGlobalTotal: null, companyIndiaTotal: null, lifecycleCleanupAllowed: false, observedOpenings: opening,
+    closingOpenings: closing, fullCriteriaPublished: false, nativeWorkCountriesPublished: false }, configurable: true })
+  signal.throwIfAborted()
+  return jobs
+}
+
 export const createAjnaLensScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchPage = defaultFetchPage, now: overrideNow } = {}) {
+  async run({ fetchPage: reader = defaultFetchPage, now: overrideNow, signal } = {}) {
+    const fetchPage = url => boundedPage(reader, url, signal)
     const careersPage = await fetchPage(CAREERS_URL)
+
+    if (activeHead(careersPage.html).titles.includes("Careers at AjnaLens | Build India's XR Future")) {
+      return observeCurrentCareers(careersPage, reader, signal)
+    }
 
     if (isOriginUnreachableSurface(careersPage)) {
       throw markUpstreamOutage(new Error('AjnaLens careers page is currently upstream unavailable: Origin is unreachable'))

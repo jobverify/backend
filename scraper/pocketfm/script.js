@@ -7,6 +7,7 @@ import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEv
 import { isIndiaJob } from '../../scraper-support/utils/indiaLocationFilter.js'
 import { extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
 import { verifyPocketClientBinding } from './currentClientBinding.js'
+import { runCurrentPocketFM } from './currentNative20261113.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -183,7 +184,8 @@ export const createPocketFMScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createPocketFMScraper().run(options)
+export const run = async (options = {}) => options.fetchText || options.fetchJson
+  ? createPocketFMScraper().run(options) : runCurrentPocketFM(options)
 
 const isDirectExecution = process.argv[1]
   ?.replaceAll('\\', '/')

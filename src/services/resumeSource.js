@@ -19,6 +19,18 @@ export function resumeLinksFromText(text = '') {
   return normalizeResumeLinks([...String(text).matchAll(/(?:https?:\/\/|mailto:|tel:)\S+/gi)].map(match => match[0].replace(/[.,;)}\]>]+$/, '')));
 }
 
+// Preserve which visible label belongs to each destination. No links are fetched.
+export function normalizeResumeLinkLabels(values = [], links = []) {
+  const allowed = new Set(normalizeResumeLinks(links));
+  const labels = [];
+  for (const value of Array.isArray(values) ? values.slice(0, 256) : []) {
+    const url = typeof value?.url === 'string' ? value.url : '';
+    const label = typeof value?.label === 'string' ? value.label.replace(/\s+/g, ' ').trim().slice(0, 300) : '';
+    if (allowed.has(url) && /[\p{L}\p{N}]/u.test(label) && !labels.some(item => item.url === url && item.label === label)) labels.push({ url, label });
+  }
+  return labels;
+}
+
 export async function extractResumeSource(input) {
   const { extractResumeContent } = await import('./resumeText.js');
   return extractResumeContent(input);

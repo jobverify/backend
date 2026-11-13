@@ -10,10 +10,13 @@ const CORPORATE = 'https://www.firstcitizens.com/'
 const CAREERS = 'https://jobs.firstcitizens.com/'
 const SEARCH = CAREERS + 'jobs'
 const API = CAREERS + 'api/jobs'
-const CLIENT = 'https://app.jibecdn.com/prod/search/4.11.225/main.js'
 // This currently declared public renderer whitelists country/page/limit, offers
 // page sizes 5/10/25/100, GETs /api/jobs and displays each native data.country.
-const CLIENT_SHA256 = '8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f'
+// 4.11.226 adds X-REQUEST-SOURCE:CST; query/country/pagination semantics remain.
+const CLIENTS = Object.freeze({
+  'https://app.jibecdn.com/prod/search/4.11.225/main.js': '8fa15e15e8165865026e2f5768af0160b4e1739096302d078e540131894c7f3f',
+  'https://app.jibecdn.com/prod/search/4.11.226/main.js': '64df0d1d3d65b28b8ebe0d9ccd08d776ffb092486633fb72f91f26e6c9950f56',
+})
 const EMPLOYER = 'First Citizens Bank'
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36'
 const hash = value => createHash('sha256').update(value).digest('hex')
@@ -43,7 +46,7 @@ function declaration(html, url) {
     need(doc.nodes(n => n.tag === 'script' && !n.attrs.src && /window\._jibe\s*=\s*\{"cid":"firstcitizens"\}/.test(n.raw)).length === 1,
       'current native public client identity changed')
   }
-  const clients = url === SEARCH ? doc.nodes(n => n.tag === 'script' && n.attrs.src === CLIENT
+  const clients = url === SEARCH ? doc.nodes(n => n.tag === 'script' && Object.hasOwn(CLIENTS, n.attrs.src)
     && n.attrs.type === 'module' && !Object.hasOwn(n.attrs, 'nomodule')).map(n => n.attrs.src) : []
   if (url === SEARCH) one(clients, 'reviewed native search renderer')
   return { title, links, clients }
@@ -148,7 +151,8 @@ export async function runCurrentFirstCitizensInventory({ fetchImpl = globalThis.
   const authorities = async closing => {
     const declarations = []
     for (const url of [CORPORATE, CAREERS, SEARCH]) declarations.push(declaration(await read(url, 'html', closing), url))
-    need(hash(await read(CLIENT, 'javascript', closing)) === CLIENT_SHA256, 'current native search client renderer changed')
+    const client = declarations.at(-1).clients[0]
+    need(hash(await read(client, 'javascript', closing)) === CLIENTS[client], 'current native search client renderer changed')
     return declarations
   }
   const openingAuthority = await authorities(false)

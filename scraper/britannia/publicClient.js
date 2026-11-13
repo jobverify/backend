@@ -10,6 +10,11 @@ const clients=Object.freeze([
  Object.freeze({path:'/main.673138983aeed664d914.chunk.js',
   sha256:'06a8fbd4790a319d84c07d999bc75fabf77134dee57f96f00504aa4990fbd319',
   apiBaseURL:'https://thapi-stage2.azurewebsites.net'}),
+ // November 13: constructor, public session, organization, filtered listing
+ // and full-role service methods match the retained November 6 deployment.
+ Object.freeze({path:'/main.aa5b044542056e5c6e59.chunk.js',
+  sha256:'50a44f5a5be38ad3738a63a19ebf2bc3b4b65ebb2dbe0e01be4c7e69349c4dda',
+  apiBaseURL:'https://thapi-stage2.azurewebsites.net'}),
 ])
 const origin='https://britannia.turbohire.co'
 export const isReviewedBritanniaClientURL=url=>clients.some(client=>url===origin+client.path)

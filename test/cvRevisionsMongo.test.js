@@ -173,6 +173,24 @@ test('CV revisions retain immutable documents, scope history and restore atomica
     assert.equal(detail.sourceSnapshot.baseGenerationId, oldBase);
     assert.equal(detail.sourceSnapshot.filename, 'Earlier uploaded resume');
   });
+  await t.test('individual deletion is scoped and hides current history without losing shared artifacts', async () => {
+    const current = await history.listCvRevisions(user, baseScope);
+    const target = current.items[0];
+    await assert.rejects(history.deleteCvRevision({ _id: other }, baseScope, target.id), { statusCode: 404 });
+    await assert.rejects(history.deleteCvRevision(user, tailoredScope, target.id), { statusCode: 404 });
+    const count = await ResumeArtifact.countDocuments({ user: id });
+    await history.deleteCvRevision(user, baseScope, target.id);
+    const after = await history.listCvRevisions(user, baseScope);
+    assert.ok(!after.items.some(item => item.id === target.id));
+    assert.equal(after.currentRevisionId, current.currentRevisionId);
+    assert.equal(await ResumeArtifact.countDocuments({ user: id }), count);
+    await assert.rejects(history.getCvRevisionArtifact(user, baseScope, target.id), { statusCode: 404 });
+    await assert.rejects(history.restoreCvRevision(user, baseScope, target.id, { expectedCurrentRevisionId: current.currentRevisionId }), { statusCode: 404 });
+    await prepare('After deletion');
+    const next = await history.listCvRevisions(user, baseScope);
+    assert.ok(next.items[0].sequence > target.sequence);
+    assert.ok(!next.items.some(item => item.id === target.id));
+  });
   await t.test('CV removal rolls back as one operation and a concurrent new upload retains its new publication', async () => {
     assert.equal(typeof history.removeCvDocuments, 'function', 'removal must participate in the same publication transaction fence');
     const current = await history.listCvRevisions(user, baseScope);

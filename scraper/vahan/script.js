@@ -1,14 +1,14 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { runRemainingRecruitmentBatchSource } from '../../scraper-support/utils/remainingRecruitmentBatch20261103.js'
+import { runVahanCurrentNative, VAHAN_CAREERS } from './currentNative20261113.js'
 
 export const SOURCE = "vahan"
 export const COMPANY = "Vahan"
-export const CAREERS_URL = "https://www.vahan.co/career.html"
-export const DISPOSITION = 'runtime-verified-recruitment'
-export const VERIFIED_ON = null
-export const VERIFIED_SURFACE_SUMMARY = 'Current extraction is implemented; complete and empty company inventories remain unverified.'
-export const run = options => runRemainingRecruitmentBatchSource(SOURCE, options)
+export const CAREERS_URL = VAHAN_CAREERS
+export const DISPOSITION = 'current-first-party-native-html'
+export const VERIFIED_ON = '2026-11-13'
+export const VERIFIED_SURFACE_SUMMARY = 'Current employer careers HTML and full role criteria; whole-company scope remains unverified and cleanup is forbidden.'
+export const run = options => runVahanCurrentNative(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

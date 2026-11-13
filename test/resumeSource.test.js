@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { buildSourceFacts } from '../src/services/resumeLatexContent.js';
+import { buildPreparationPrompt, buildSourceFacts, validateResumeFidelity } from '../src/services/resumeLatexContent.js';
 import { createRequire } from 'node:module';
 import { extractResumeSource, normalizeResumeLinks } from '../src/services/resumeSource.js';
 import { extractResumeText } from '../src/services/resumeText.js';
@@ -23,6 +23,53 @@ test('PDF source retains visible lines and contact annotations', async () => {
   const source = await extractResumeSource({ extension: 'pdf', data: pdfWithContactLink() });
   assert.match(source.text, /Asha Rao\nSoftware Engineer at Cedar Systems/);
   assert.ok(source.links.includes('mailto:asha@example.test'));
+  assert.equal(source.pageCount, 1);
+});
+
+test('PDF extraction preserves the actual input page count for layout planning', async () => {
+  const { default: PDFDocument } = await import('pdfkit');
+  for (const pageCount of [2, 3]) {
+    const document = new PDFDocument({ autoFirstPage: false });
+    const chunks = [];
+    const completed = new Promise((resolve, reject) => { document.on('data', chunk => chunks.push(chunk)); document.once('error', reject); document.once('end', resolve); });
+    for (let page = 1; page <= pageCount; page++) document.addPage().text('Alex Example. Developed Python services and automated tests for Cedar Labs.');
+    document.end(); await completed;
+    const original = await extractResumeSource({ extension: 'pdf', data: Buffer.concat(chunks) });
+    assert.equal(original.pageCount, pageCount);
+  }
+});
+
+test('labeled PDF profiles and portfolio homepages remain required without an appendix', async () => {
+  const { default: PDFDocument } = await import('pdfkit');
+  const document = new PDFDocument();
+  const chunks = [];
+  const completed = new Promise((resolve, reject) => { document.on('data', chunk => chunks.push(chunk)); document.once('error', reject); document.once('end', resolve); });
+  document.text('Alex Example. Developed Python services and automated tests for Cedar Labs.');
+  document.text('LinkedIn', { link: 'https://www.linkedin.com/in/alex-platform-9b31/' });
+  document.text('Portfolio', { link: 'https://alex-example.dev/' });
+  document.link(10, 10, 15, 15, 'https://example.test/unused-reference');
+  document.end(); await completed;
+  const source = await extractResumeSource({ extension: 'pdf', data: Buffer.concat(chunks) });
+  assertRequiredProfileLinks(source);
+});
+
+function assertRequiredProfileLinks(source) {
+  const expected = ['https://www.linkedin.com/in/alex-platform-9b31/', 'https://alex-example.dev/'];
+  const prompt = buildPreparationPrompt({ source });
+  const payload = JSON.parse(prompt.split('\n').find(line => line.startsWith('{"originalResume":')));
+  assert.deepEqual(payload.requiredLinkDestinations, expected);
+  assert.equal(validateResumeFidelity({ facts: buildSourceFacts(source), text: source.text, links: [] }).valid, false);
+  assert.equal(validateResumeFidelity({ facts: buildSourceFacts(source), text: source.text, links: expected }).valid, true);
+}
+
+test('labeled TeX profiles retain destinations independently of URL path names', async () => {
+  const source = await extractResumeSource({ extension: 'tex', data: Buffer.from(String.raw`\begin{document}
+Alex Example. Developed Python services and automated tests for Cedar Labs.
+\href{https://www.linkedin.com/in/alex-platform-9b31/}{\textbf{LinkedIn}}
+\href{https://alex-example.dev/}{\textbf{\underline{Portfolio}}}
+\href{https://example.test/unused-reference}{Original link}
+\end{document}`) });
+  assertRequiredProfileLinks(source);
 });
 
 test('source extraction respects an expired worker deadline', async () => {
@@ -42,9 +89,14 @@ test('Word source retains paragraph boundaries and hyperlink relationships', asy
   zip.file('[Content_Types].xml', '<?xml version="1.0"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>');
   zip.file('word/document.xml', '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body><w:p><w:r><w:t>Asha Rao</w:t></w:r></w:p><w:p><w:r><w:t>Software Engineer at Cedar Systems, 2021-2024.</w:t></w:r></w:p><w:p><w:hyperlink r:id="rId1"><w:r><w:t>Portfolio</w:t></w:r></w:hyperlink></w:p></w:body></w:document>');
   zip.file('word/_rels/document.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="https://example.test/asha?view=work&amp;lang=en" TargetMode="External"/></Relationships>');
+  zip.file('docProps/app.xml', '<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"><Pages>2</Pages></Properties>');
   const source = await extractResumeSource({ extension: 'docx', data: await zip.generateAsync({ type: 'nodebuffer' }) });
   assert.match(source.text, /Asha Rao\n\nSoftware Engineer/);
   assert.deepEqual(source.links, ['https://example.test/asha?view=work&lang=en']);
+  assert.equal(source.pageCount, 2);
+  assert.deepEqual(source.linkLabels, [{ url: 'https://example.test/asha?view=work&lang=en', label: 'Portfolio' }]);
+  const payload = JSON.parse(buildPreparationPrompt({ source }).split('\n').find(line => line.startsWith('{"originalResume":')));
+  assert.deepEqual(payload.requiredLinkDestinations, source.links);
 });
 
 test('TeX source preserves line breaks and hyperlink targets without executing TeX', async () => {

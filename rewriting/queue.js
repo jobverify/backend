@@ -44,17 +44,18 @@ export const reconcileRewriteCandidate = async (job, { update, now = new Date() 
   const changedPolicy = job.descriptionRewrite.status === 'failed'
     && typeof job.descriptionRewrite.policyVersion === 'string'
     && job.descriptionRewrite.policyVersion !== REWRITE_MODEL.policyVersion;
-  if (input.eligible && job.descriptionRewrite.inputHash === input.inputHash && !changedPolicy && !sourceCopyRetry) {
+  const eligible = input.eligible && input.sourceQuality?.ok !== false;
+  if (eligible && job.descriptionRewrite.inputHash === input.inputHash && !changedPolicy && !sourceCopyRetry) {
     return { kind: 'ready', job, input, repaired: false };
   }
 
-  const reason = input.eligible ? undefined : 'insufficient_source';
-  const descriptionRewrite = { status: input.eligible ? 'pending' : 'skipped',
+  const reason = eligible ? undefined : input.sourceQuality?.reason || 'insufficient_source';
+  const descriptionRewrite = { status: eligible ? 'pending' : 'skipped',
     inputHash: input.inputHash, queuedAt: now, attempts: 0, policyVersion: REWRITE_MODEL.policyVersion,
     ...(reason ? { reason, attemptedAt: now } : {}),
   };
   const saved = await update(rewriteSnapshotFilter(job), { $set: { descriptionRewrite } });
   if (saved.matchedCount === 0) return { kind: 'conflict' };
-  return { kind: input.eligible ? 'ready' : 'skipped', repaired: true, reason,
+  return { kind: eligible ? 'ready' : 'skipped', repaired: true, reason,
     job: { ...job, descriptionRewrite }, input };
 };

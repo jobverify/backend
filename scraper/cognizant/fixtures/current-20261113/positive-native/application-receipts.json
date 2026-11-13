@@ -1,0 +1,32 @@
+[
+  {
+    "requestedUrl": "https://talent.cognizant.com/4681/?RRID=00071271382&TenantID=1&STID=1000000004",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:22:52.803794+00:00",
+    "status": 200,
+    "url": "https://talent.cognizant.com/4681/?RRID=00071271382&TenantID=1&STID=1000000004",
+    "headers": {
+      "content-type": "text/html",
+      "Content-Length": "13599"
+    },
+    "bytes": 13599,
+    "sha256": "a9e3ba3e4f7f3e7fde55aba631a5aa9f34f4d8d81986bfa3dce483027b8b0c2c",
+    "file": "01.body.gz",
+    "completedAt": "2026-11-13T09:22:54.215435+00:00"
+  },
+  {
+    "requestedUrl": "https://talent.cognizant.com/4681/main.e62755a514d3e160.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T09:24:43.221913+00:00",
+    "status": 403,
+    "url": "https://talent.cognizant.com/4681/main.e62755a514d3e160.js",
+    "headers": {
+      "content-type": "text/html; charset=UTF-8",
+      "Content-Length": "134"
+    },
+    "bytes": 134,
+    "sha256": "c996c0469ef05ff6fdd1f7cefbc3f7e109bb21969de42fcf591498a828a7ad5f",
+    "file": "02.body.gz",
+    "completedAt": "2026-11-13T09:24:44.351701+00:00"
+  }
+]

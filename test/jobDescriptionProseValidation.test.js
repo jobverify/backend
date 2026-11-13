@@ -3,6 +3,22 @@ import assert from 'node:assert/strict';
 import { validateProsePart } from '../rewriting/prose.js';
 import { checkProseStatements } from '../rewriting/proseValidation.js';
 
+for (const [source, rewritten] of [
+  ['You will be responsible for building reliable Python services.', 'You will build reliable Python services.'],
+  ['We are looking for experienced database engineers.', 'We seek experienced database engineers.'],
+  ['You are required to possess at least 2 years of Python experience.', 'You must have at least 2 years of Python experience.'],
+]) test('equivalent grammatical rewording preserves the complete employer statement: ' + source, () => {
+  assert.equal(validateProsePart(source, rewritten), null);
+});
+
+test('grammatical rewording cannot change the actor, duty, modality, or experience threshold', () => {
+  const source = 'You will be responsible for building Python services.';
+  for (const text of ['Customers will build Python services.', 'You can build Python services.', 'You will maintain Python services.']) {
+    assert.notEqual(validateProsePart(source, text), null);
+  }
+  assert.notEqual(validateProsePart('You are required to possess at least 2 years of Python experience.', 'You must have at least 5 years of Python experience.'), null);
+});
+
 test('removing the duplicated work-model label preserves the complete employer fact', () => {
   const source = 'The work model for the role is: The work model for the role is: #Li_Onsite.';
   assert.equal(validateProsePart(source, 'The work model for the role is: #Li_Onsite.'), null);
@@ -153,6 +169,12 @@ test('a wrapped actor phrase cannot become a separate duty when an unfamiliar he
   const source = 'Team overview:\nSupport engineers and managers\nbuild services.';
   const output = 'Team overview: Support engineers and managers. Build services.';
   assert.notEqual(validateProsePart(source, output), null);
+});
+
+test('recognized headings do not allow punctuation to detach a wrapped actor from its action', () => {
+  const source = 'Role overview:\nClient teams\npay contractors.';
+  assert.notEqual(validateProsePart(source, 'Role overview:\nClient teams. Pay contractors.'), null);
+  assert.equal(validateProsePart(source, 'Role overview:\nClient teams pay contractors.'), null);
 });
 
 test('a wrapped condition cannot be detached with a full stop after an unfamiliar heading', () => {

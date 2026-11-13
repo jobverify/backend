@@ -4,7 +4,7 @@ import { buildClassificationInput, hashClassificationInput, resolveClassificatio
 import { recoverClassificationSourceTitle } from './classificationSourceTitle.js'
 import { normalizePublicJobType } from '../utils/publicJobTypeLabel.js'
 import { collectRecruitmentFacts, entryLevelVacancyTitle, fresherVacancyTitle, hasAlternativeFresherPath, hasFiniteAppointment } from './jobRecruitmentPolicy.js'
-import { isExplicitTestPosting } from './classificationSourceQuality.js'
+import { isExplicitTestPosting, sourceAvailabilityIssues } from './classificationSourceQuality.js'
 
 export const GLICLASS_CONFIG = JSON.parse(readFileSync(new URL('../../classification/gliclass/model.json', import.meta.url)))
 const runtimeHash = createHash('sha256').update(RUNTIME_HASH).update([
@@ -189,7 +189,7 @@ export function sourceGuardedClassification(job, { now = new Date(), mode = 'sha
   }
   const occupationTitle = title.replace(/\b(?:service contracts?|contract accounting|contractual operations?|contract admin(?:istration|istrator)?|source[- ]to[- ]contract)\b/ig,
     phrase => phrase.replace(/\bcontracts?|contractual\b/ig, 'agreement'))
-  const explicitContract = /\b(?:contractor|temporary|fixed[- ]term|freelance)\b|\(\s*contract\s*\)/i.test(title)
+  const explicitContract = /\b(?:contractor|temporary|fixed[- ]term|freelance)\b|\(\s*contract(?:ual)?\s*\)/i.test(title)
     || /\b(?:contract|temporary|fixed[- ]term)\b/i.test(employerType || '')
     || /\b(?:this (?:role|position|job) is (?:an? )?(?:contract|temporary)|(?:contract|temporary|fixed[- ]term) (?:role|position|employment))\b/i.test(input.body)
   if (occupationTitle !== title && !explicitContract) {
@@ -222,6 +222,7 @@ export function sourceGuardedClassification(job, { now = new Date(), mode = 'sha
       || collectRecruitmentFacts({ ...input, title: '' }).experienced)) {
     sourceQualityIssues.push('conflicting_role_eligibility')
   }
+  sourceQualityIssues.push(...sourceAvailabilityIssues(input, { unresolved: result.resolved.jobType === 'Unspecified' }))
   if (sourceQualityIssues.length) {
     const reason = sourceQualityIssues.includes('non_vacancy_test_posting') ? 'non_vacancy_test_posting'
       : sourceQualityIssues.includes('conflicting_employment_terms') ? 'conflicting_employment_terms'
@@ -272,7 +273,21 @@ export function resolvePostScrapeClassification(job, prediction, { now = new Dat
   const input = postScrapeInput(job, { now })
   if (input.incomplete) throw new Error('Missing or oversized source description')
   const resolved = { ...base.resolved }
-  const modelFallback = resolved.jobType === 'Unspecified' && !base.sourceQualityIssues.length
+  let modelFallback = resolved.jobType === 'Unspecified' && !base.sourceQualityIssues.length
+  const fallbackIssues = []
+  if (modelFallback) {
+    const employerInput = postScrapeInput({ ...job, descriptionRewrite: null }, { now })
+    if (prediction.modelLabel === 'Contract'
+      && /\b(?:review|manage|administer|negotiate|defined\s+by)\b[^.;\n]{0,100}\b(?:customer\s+|vendor\s+|supplier\s+)?contracts?\b|\b(?:manage|monitor|supervise|oversee)\b[^.;\n]{0,100}\bcontractors?\b|\b(?:vendors?|suppliers?)\s*(?:,|and|or|\/)\s*contractors?\b/i.test(employerInput.body)) {
+      fallbackIssues.push('model_contract_from_third_party_duties')
+    }
+    if (prediction.modelLabel === 'Intern'
+      && (/\bon\s+third\s+party\s+roll\b/i.test(employerInput.title)
+        || /\bfull\s+time\s+employee\s+benefits\s*\(\s*not\s+applicable\s+for\s+intern\s+or\s+contract\s+roles\s*\)/i.test(employerInput.body))) {
+      fallbackIssues.push('model_intern_without_placement_evidence')
+    }
+    if (fallbackIssues.length) modelFallback = false
+  }
   let permanentEmploymentConflict = false
   if (modelFallback && prediction.modelLabel === 'Contract') {
     const employerInput = postScrapeInput({ ...job, descriptionRewrite: null }, { now })
@@ -280,7 +295,7 @@ export function resolvePostScrapeClassification(job, prediction, { now = new Dat
   }
   const acceptedModelFallback = modelFallback && !permanentEmploymentConflict
   if (acceptedModelFallback) resolved.jobType = prediction.modelLabel
-  const sourceQualityIssues = [...base.sourceQualityIssues,
+  const sourceQualityIssues = [...base.sourceQualityIssues, ...fallbackIssues,
     ...(permanentEmploymentConflict ? ['model_conflicts_with_permanent_employment'] : [])]
   const reviewReasons = [...sourceQualityIssues]
   if (modelFallback && prediction.modelLabel === 'Full-time Experienced'
@@ -298,9 +313,9 @@ export function resolvePostScrapeClassification(job, prediction, { now = new Dat
   // The model supplies a category only when usable source text leaves it unresolved;
   // its uncalibrated score never establishes numeric experience or repairs bad input.
   return { ...base, resolved, reviewReasons, sourceQualityIssues, complete: true, windows: prediction.windows,
-    status: permanentEmploymentConflict ? 'uncertain' : base.status,
+    status: permanentEmploymentConflict || fallbackIssues.length ? 'uncertain' : base.status,
     decisionSource: acceptedModelFallback ? 'model_fallback' : 'source_policy',
-    reason: permanentEmploymentConflict ? 'model_conflicts_with_permanent_employment' : base.sourceQualityIssues.length ? base.reason : 'zero_shot_uncalibrated',
+    reason: permanentEmploymentConflict ? 'model_conflicts_with_permanent_employment' : fallbackIssues[0] || (base.sourceQualityIssues.length ? base.reason : 'zero_shot_uncalibrated'),
     comparison: { modelJobType: prediction.modelLabel, logicJobType: base.resolved.jobType,
       agreement: prediction.modelLabel === base.resolved.jobType },
     decisions: { jobType: { label: prediction.modelLabel, probability: ranked[0][1],

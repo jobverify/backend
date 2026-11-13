@@ -1,0 +1,622 @@
+[
+  {
+    "name": "job-search marketing is not prior employment",
+    "job": {
+      "title": "INC032 : Apprentice, Customer Solution",
+      "originalTitle": "INC032 : Apprentice, Customer Solution",
+      "sourceDescription": "<p>•\tThe Apprentice will support pricing and quotation activities under supervision, ensuring timely and accurate customer proposals.<br><p><strong>PRINCIPLE DUTIES, AND RESPONSIBILITIES   </strong></p><ul><li>Assist in preparing customer quotes and pricing proposals for Air and Ocean services.</li><li>Support compilation and coordination of RFQs in line with internal pricing guidelines.</li><li>Help maintain and update pricing data, including rates and surcharges.</li><li>Assist with basic reporting and data compilation for pricing and revenue tracking.</li><li>Support documentation of pricing processes and system requirements.</li><li>Coordinate with Sales, Operations, and Revenue teams to share pricing information and resolve basic queries.</li></ul><p></p><p><strong>JOB SPECIFICATIONS FOR SUCCESSFUL PERFORMANCE</strong></p><p><u>Academic</u>:</p><p></p><ul><li>General Graduate or Diploma holder in Logistics Management is preferable</li></ul><p></p><p><u>Experience & knowledge</u>:</p><ul><li>Good command of written and spoken English, local language</li></ul><p></p><p><u>Attribute</u>:</p><ul><li>Hardworking, able to work independently</li><li>Detail-oriented</li><li>Good communication skills</li></ul><br><h2>The Company</h2><p>FedEx Logistics provides e-Commerce, freight forwarding, as well as import and export services that allow companies to reach markets throughout the world. They help customers of all sizes solve the intricacies of shipping goods globally by providing comprehensive international ocean and air freight forwarding, surface transportation and distribution, customs brokerage, trade and customs advisory services, and advanced e-commerce and trade facilitation solutions.</p><h2>The Philosophy</h2><p>People–Service–Profit (P-S-P). We take care of our People so that they can deliver impeccable Service to our customers who will give us the Profit necessary for FedEx to be successful. Our success in the industry is attributed to our people. Through our P-S-P philosophy, we have a work environment that encourages employees to be innovative in delivering the highest possible quality of service to our customers. We care for our employees' well-being and value their contributions to the company.</p><h2>The Culture</h2><p>We honor innovation, integrity and diversity. We have many formal policies, procedures and programs to bring out the best in our staff, individually and in teams.</p><h2>The Mission</h2><p>We strive to be the Best Company to work for with the Best Service and the Best Brand in our industry.</p><p>We're glad you stopped by and hope your job search experience with FedEx Logistics, Inc. will be rewarding. We look forward to hearing from you!</p></p>",
+      "description": "•\tThe Apprentice will support pricing and quotation activities under supervision, ensuring timely and accurate customer proposals.\n\nPRINCIPLE DUTIES, AND RESPONSIBILITIES   \n\n\nAssist in preparing customer quotes and pricing proposals for Air and Ocean services.\n\nSupport compilation and coordination of RFQs in line with internal pricing guidelines.\n\nHelp maintain and update pricing data, including rates and surcharges.\n\nAssist with basic reporting and data compilation for pricing and revenue tracking.\n\nSupport documentation of pricing processes and system requirements.\n\nCoordinate with Sales, Operations, and Revenue teams to share pricing information and resolve basic queries.\n\n\n\n\nJOB SPECIFICATIONS FOR SUCCESSFUL PERFORMANCE\n\nAcademic:\n\n\n\n\nGeneral Graduate or Diploma holder in Logistics Management is preferable\n\n\n\n\nExperience & knowledge:\n\n\nGood command of written and spoken English, local language\n\n\n\n\nAttribute:\n\n\nHardworking, able to work independently\n\nDetail-oriented\n\nGood communication skills\n\n\n\nThe Company\n\nFedEx Logistics provides e-Commerce, freight forwarding, as well as import and export services that allow companies to reach markets throughout the world. They help customers of all sizes solve the intricacies of shipping goods globally by providing comprehensive international ocean and air freight forwarding, surface transportation and distribution, customs brokerage, trade and customs advisory services, and advanced e-commerce and trade facilitation solutions.\n\nThe Philosophy\n\nPeople–Service–Profit (P-S-P). We take care of our People so that they can deliver impeccable Service to our customers who will give us the Profit necessary for FedEx to be successful. Our success in the industry is attributed to our people. Through our P-S-P philosophy, we have a work environment that encourages employees to be innovative in delivering the highest possible quality of service to our customers. We care for our employees' well-being and value their contributions to the company.\n\nThe Culture\n\nWe honor innovation, integrity and diversity. We have many formal policies, procedures and programs to bring out the best in our staff, individually and in teams.\n\nThe Mission\n\nWe strive to be the Best Company to work for with the Best Service and the Best Brand in our industry.\n\nWe're glad you stopped by and hope your job search experience with FedEx Logistics, Inc. will be rewarding. We look forward to hearing from you!\n\nLocation: Khasra no. 47/2/2/1 [3/2/1] [8/3] [9/1] [12/2'13/1] [VPO] [Baghanki Dist] [Gurugram] [Haryāna] [122413] [India]",
+      "sourceEmploymentType": null,
+      "employmentType": "Full-time",
+      "minimumQualification": null,
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": "1-15 years (inferred)",
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Full-time Experienced",
+      "scores": {
+        "Full-time Experienced": 0.9132075607776642,
+        "Full-time Fresher": 0.016587296035140753,
+        "Intern": 0.06050695572048426,
+        "Contract": 0.009698169655166566
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.8966229955355326,
+        "Full-time Fresher": 0.01429151309033235,
+        "Intern": 0.07664952737589677,
+        "Contract": 0.01243593629139165
+      },
+      "windowScores": [
+        [
+          0.8634538650512695,
+          0.009699947200715542,
+          0.1089346706867218,
+          0.01791146956384182
+        ],
+        [
+          0.9629612565040588,
+          0.023474644869565964,
+          0.012079240754246712,
+          0.001484869746491313
+        ]
+      ],
+      "windowWeights": [
+        2,
+        1
+      ],
+      "seconds": 0.23454348999996455,
+      "cpuSeconds": 0.9211340990000281,
+      "descriptionTokens": 586,
+      "windows": 2,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725786624
+    },
+    "want": "Full-time Fresher"
+  },
+  {
+    "name": "future learning does not contradict waived prior experience",
+    "job": {
+      "title": "Graduate Apprentice Trainee - CAD/Creo",
+      "originalTitle": "Graduate Apprentice Trainee - CAD/Creo",
+      "sourceDescription": "Transport is at the core of modern society. Imagine using your expertise to shape sustainable transport and infrastructure solutions for the future. If you seek to make a difference on a global scale, working with next-gen technologies and the sharpest collaborative teams, then we could be a perfect match. We value your data privacy and therefore do not accept applications via mail. Who we are and what we believe in We are committed to shaping the future landscape of efficient, safe, and sustainable transport solutions. Fulfilling our mission creates countless career opportunities for talents across the group’s leading brands and entities. Applying to this job offers you the opportunity to join Volvo Group . Every day, you will be working with some of the sharpest and most creative brains in our field to be able to leave our society in better shape for the next generation. ​We are passionate about what we do, and we thrive on teamwork. ​We are almost 100,000 people united around the world by a culture of care, inclusiveness, and empowerment. Trucks Technology & Industrial Division hire team players who are ready to create real customer impact. Our decentralized teams work close to our customers, with speed and autonomy, to build what they truly need. Join us to collaborate on innovative, sustainable technologies that redefine how we design, build, and deliver value. Bring your curiosity, your expertise, and your collaborative energy, and together, we’ll turn bold ideas into tangible solutions for our customers and contribute to a more sustainable tomorrow. Graduate Apprentice Trainee – CAD/Creo (NATS) Location: Volvo Group India Program: National Apprenticeship Training Scheme (NATS) About Volvo Group At Volvo Group, we drive prosperity through transport and infrastructure solutions, shaping the future of sustainable mobility. As a global leader in the transportation industry, we are committed to developing innovative and sustainable engineering solutions. Through the National Apprenticeship Training Scheme (NATS), we offer fresh engineering graduates an opportunity to gain practical industry experience, develop technical competencies and work alongside experienced professionals on real-world engineering projects. Role Overview As Graduate Apprentice, you will support engineering design and development activities, gaining hands-on experience in Computer-Aided Design (CAD), 3D modelling, engineering drawings and product development processes. You will work with experienced engineering teams and learn to apply industry standards and engineering practices. Eligibility Criteria Education: B.E. / B. Tech in Mechanical Engineering or Automobile Engineering. Year of Graduation: 2024, 2025 or 2026. Program Eligibility: Candidates must meet the eligibility requirements prescribed under the National Apprenticeship Training Scheme (NATS). Experience: Fresh graduates; prior industry experience is not mandatory. Academic Performance: Minimum 65% aggregate throughout academics (10th, 12th / Diploma and Graduation). Key Skills & Technical Competencies Strong fundamentals in Mechanical / Automobile Engineering. Basic knowledge of CAD software such as Creo, CATIA or SolidWorks. Understanding of 2D engineering drawings, 3D modelling and design concepts. Basic knowledge of engineering drawing standards, GD&T and manufacturing processes. Proficiency in MS Office applications, particularly Excel, Word and PowerPoint. Knowledge of Power BI, data analytics or programming will be an added advantage. Good analytical, problem-solving and learning abilities. Effective communication, collaboration and teamwork skills. Program Duration As per the applicable National Apprenticeship Training Scheme (NATS) guidelines. What You Will Gain Hands-on exposure to real-world automotive engineering and CAD design activities. Opportunity to work with experienced engineering professionals. Practical understanding of product development and engineering processes. Development of technical, analytical and professional competencies. Exposure to Volvo Group's engineering standards and global working practices.",
+      "description": "Transport is at the core of modern society. Imagine using your expertise to shape sustainable transport and infrastructure solutions for the future. If you seek to make a difference on a global scale, working with next-gen technologies and the sharpest collaborative teams, then we could be a perfect match.\n\nWe value your data privacy and therefore do not accept applications via mail. Who we are and what we believe in We are committed to shaping the future landscape of efficient, safe, and sustainable transport solutions. Fulfilling our mission creates countless career opportunities for talents across the group’s leading brands and entities.\n\nApplying to this job offers you the opportunity to join Volvo Group . Every day, you will be working with some of the sharpest and most creative brains in our field to be able to leave our society in better shape for the next generation. ​We are passionate about what we do, and we thrive on teamwork. ​We are almost 100,000 people united around the world by a culture of care, inclusiveness, and empowerment. Trucks Technology & Industrial Division hire team players who are ready to create real customer impact.\n\nOur decentralized teams work close to our customers, with speed and autonomy, to build what they truly need. Join us to collaborate on innovative, sustainable technologies that redefine how we design, build, and deliver value. Bring your curiosity, your expertise, and your collaborative energy, and together, we’ll turn bold ideas into tangible solutions for our customers and contribute to a more sustainable tomorrow.\n\nGraduate Apprentice Trainee – CAD/Creo (NATS) Location: Volvo Group India Program: National Apprenticeship Training Scheme (NATS) About Volvo Group At Volvo Group, we drive prosperity through transport and infrastructure solutions, shaping the future of sustainable mobility. As a global leader in the transportation industry, we are committed to developing innovative and sustainable engineering solutions. Through the National Apprenticeship Training Scheme (NATS), we offer fresh engineering graduates an opportunity to gain practical industry experience, develop technical competencies and work alongside experienced professionals on real-world engineering projects.\n\nRole Overview As Graduate Apprentice, you will support engineering design and development activities, gaining hands-on experience in Computer-Aided Design (CAD), 3D modelling, engineering drawings and product development processes. You will work with experienced engineering teams and learn to apply industry standards and engineering practices. Eligibility Criteria Education: B.E. / B.\n\nTech in Mechanical Engineering or Automobile Engineering. Year of Graduation: 2024, 2025 or 2026. Program Eligibility: Candidates must meet the eligibility requirements prescribed under the National Apprenticeship Training Scheme (NATS).\n\nExperience: Fresh graduates; prior industry experience is not mandatory. Academic Performance: Minimum 65% aggregate throughout academics (10th, 12th / Diploma and Graduation). Key Skills & Technical Competencies Strong fundamentals in Mechanical / Automobile Engineering.\n\nBasic knowledge of CAD software such as Creo, CATIA or SolidWorks. Understanding of 2D engineering drawings, 3D modelling and design concepts. Basic knowledge of engineering drawing standards, GD&T and manufacturing processes.\n\nProficiency in MS Office applications, particularly Excel, Word and PowerPoint. Knowledge of Power BI, data analytics or programming will be an added advantage. Good analytical, problem-solving and learning abilities.\n\nEffective communication, collaboration and teamwork skills. Program Duration As per the applicable National Apprenticeship Training Scheme (NATS) guidelines. What You Will Gain Hands-on exposure to real-world automotive engineering and CAD design activities.\n\nOpportunity to work with experienced engineering professionals. Practical understanding of product development and engineering processes. Development of technical, analytical and professional competencies.\n\nExposure to Volvo Group's engineering standards and global working practices.\n\nLocation: Bangalore [IN] [562122]",
+      "sourceEmploymentType": null,
+      "employmentType": "Full-time",
+      "minimumQualification": null,
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": "1-15 years (inferred)",
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Full-time Experienced",
+      "scores": {
+        "Full-time Experienced": 0.9968770444393158,
+        "Full-time Fresher": 0.0017327630193904042,
+        "Intern": 0.0011878740624524653,
+        "Contract": 0.00020231462258379906
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.9970405101776123,
+        "Full-time Fresher": 0.0015900398138910532,
+        "Intern": 0.0011867731421565015,
+        "Contract": 0.00018266961948635677
+      },
+      "windowScores": [
+        [
+          0.9963866472244263,
+          0.0021609326358884573,
+          0.0011911768233403563,
+          0.00026124963187612593
+        ],
+        [
+          0.9973674416542053,
+          0.0013045934028923512,
+          0.0011845713015645742,
+          0.0001433796132914722
+        ]
+      ],
+      "windowWeights": [
+        1,
+        2
+      ],
+      "seconds": 0.25301726300017435,
+      "cpuSeconds": 0.9701472810002087,
+      "descriptionTokens": 813,
+      "windows": 2,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725798912
+    },
+    "want": "Full-time Fresher"
+  },
+  {
+    "name": "zero-based experience is not conflicting eligibility",
+    "job": {
+      "title": "Traffic Engineer (fresher upto 3 yrs exp)",
+      "originalTitle": "Traffic Engineer (fresher upto 3 yrs exp)",
+      "sourceDescription": "<p style=\"margin-left:0in\">Arcadis is the world's leading company delivering sustainable design, engineering, and consultancy solutions for natural and built assets.</p>\n<p style=\"margin-left:0in\">We are more than 34,000 people, in over 30 countries, dedicated to improving quality of life. Everyone has an important role to play. With the power of many curious minds, together we can solve the world’s most complex challenges and deliver more impact together.</p>\n<p style=\"margin-left:0in\"><strong>Role description:</strong></p>\n<p>Arcadis IBI is seeking a highly skilled and experienced Traffic / Transportation Engineer specialized in Traffic Due Diligence Studies for Highway Assets at its Hyderabad office Location. The ideal candidate should possess solid background in traffic engineering and data analytics, with a  experience of 0-3 years. He or She should have a technical acumen and can effectively tailor traffic and transportation engineering solutions to support the team objectives. Your responsibilities will encompass conducting comprehensive traffic studies, leveraging data analytics tools, and producing insightful reports. Your strong communication and presentation skills will be instrumental in conveying findings effectively.</p>\n<p><strong>Responsibilities: </strong></p>\n<p>1. Conduct Traffic Due Diligence Studies: Conduct comprehensive traffic engineering assessments and due diligence studies for highway assets including liaison with Government authorities at Field. </p>\n<p>2. Data collection and collation: Oversee the systematic gathering of comprehensive traffic data, including vehicle counts, classifications, origin-destination, axle load and other traffic surveys. Ensure the accurate compilation and organization of collected data from Field and Office, validating its integrity for reliable analysis, and forecasting in the due diligence process. </p>\n<p>3. Data Analytics: Utilize various data analytics tools and techniques to extract, analyze, and interpret traffic-related data, contributing to evidence-based decision-making processes and efficient reporting. </p>\n<p>4. Communication and Presentation: Effectively communicate technical findings, methodologies, and recommendations to internal teams, clients, and stakeholders through clear and concise presentations, both written and oral. </p>\n<p>5. Report Writing: Prepare detailed and well-structured technical reports documenting the outcomes of due diligence studies, providing actionable insights and recommendations to address any identified traffic-related issues with a high degree of clarity, accuracy, and attention to detail. </p>\n<p>6. Collaborative Team Player: Collaborate with cross-functional teams including civil engineers, transportation planners, and urban designers / planners contributing to a holistic approach in project evaluations. </p>\n<p>7. Quality Assurance: Implement quality assurance processes to ensure accuracy, reliability, and consistency in all traffic engineering assessments and due diligence studies. </p>\n<p>8. Continuous Learning: Stay abreast of the latest advancements and trends in traffic engineering, data analytics, and related fields, and apply this knowledge to enhance the effectiveness of due diligence studies. </p>\n<p> </p>\n<p><strong>Qualifications: </strong></p>\n<p>1. Educational Background: A post-graduate degree in Civil Engineering, Transportation Engineering or Planning or a closely related field, with a strong focus on traffic engineering and transportation planning. </p>\n<p>2. Experience: Around 0 to 3 years of experience in traffic engineering, with a specific emphasis on conducting due diligence studies for highway assets. </p>\n<p>3. Data Analytics Skills: Highly proficient in using data analytics tools such as MS Excel, Python, or other relevant software to analyze and interpret traffic data. </p>\n<p>4. Professional Certifications: Any relevant certifications and transport modelling expertise in traffic engineering and / or data analytics will be an advantage. </p>\n<p>5. Experience in Investment Grade Traffic due diligence studies is Highly preferrable. </p>\n<p> </p>\n<p style=\"margin-left:0in\">Why Arcadis?</p>\n<p style=\"margin-left:0in\">We can only achieve our goals when everyone is empowered to be their best. We believe everyone's contribution matters. It’s why we are pioneering a skills-based approach, where you can harness your unique experience and expertise to carve your career path and maximize the impact we can make together.</p>\n<p style=\"margin-left:0in\">You’ll do meaningful work, and no matter what role, you’ll be helping to deliver sustainable solutions for a more prosperous planet. Make your mark, on your career, your colleagues, your clients, your life and the world around you.</p>\n<p style=\"margin-left:0in\">Together, we can create a lasting legacy.</p>\n<p style=\"margin-left:0in\">Join Arcadis. Create a Legacy.</p>\n<p style=\"margin-left:0in\">Our Commitment to Equality, Diversity, Inclusion &amp; Belonging</p>\n<p style=\"margin-left:0in\">We want you to be able to bring your best self to work every day which is why equality and inclusion is at the forefront of all our activities. Our ambition is to be an employer of choice and provide a great place to work for all our people. We are an equal opportunity employer; women, minorities, and people with disabilities are strongly encouraged to apply. We are dedicated to a policy of non-discrimination in employment on any basis including race, caste, creed, colour, religion, sex, age, disability, marital status, sexual orientation, and gender identity.</p>\n<p style=\"margin-left:0in\"> </p>\n<p>#LI-SC5</p>\n<p> </p>",
+      "description": "Arcadis is the world's leading company delivering sustainable design, engineering, and consultancy solutions for natural and built assets.\n\n\nWe are more than 34,000 people, in over 30 countries, dedicated to improving quality of life. Everyone has an important role to play. With the power of many curious minds, together we can solve the world’s most complex challenges and deliver more impact together.\n\n\nRole description:\n\n\nArcadis IBI is seeking a highly skilled and experienced Traffic / Transportation Engineer specialized in Traffic Due Diligence Studies for Highway Assets at its Hyderabad office Location. The ideal candidate should possess solid background in traffic engineering and data analytics, with a experience of 0-3 years. He or She should have a technical acumen and can effectively tailor traffic and transportation engineering solutions to support the team objectives.\n\nYour responsibilities will encompass conducting comprehensive traffic studies, leveraging data analytics tools, and producing insightful reports. Your strong communication and presentation skills will be instrumental in conveying findings effectively.\n\n\nResponsibilities: \n\n\n1. Conduct Traffic Due Diligence Studies: Conduct comprehensive traffic engineering assessments and due diligence studies for highway assets including liaison with Government authorities at Field. \n\n\n2. Data collection and collation: Oversee the systematic gathering of comprehensive traffic data, including vehicle counts, classifications, origin-destination, axle load and other traffic surveys. Ensure the accurate compilation and organization of collected data from Field and Office, validating its integrity for reliable analysis, and forecasting in the due diligence process. \n\n\n3. Data Analytics: Utilize various data analytics tools and techniques to extract, analyze, and interpret traffic-related data, contributing to evidence-based decision-making processes and efficient reporting. \n\n\n4. Communication and Presentation: Effectively communicate technical findings, methodologies, and recommendations to internal teams, clients, and stakeholders through clear and concise presentations, both written and oral. \n\n\n5. Report Writing: Prepare detailed and well-structured technical reports documenting the outcomes of due diligence studies, providing actionable insights and recommendations to address any identified traffic-related issues with a high degree of clarity, accuracy, and attention to detail. \n\n\n6. Collaborative Team Player: Collaborate with cross-functional teams including civil engineers, transportation planners, and urban designers / planners contributing to a holistic approach in project evaluations. \n\n\n7. Quality Assurance: Implement quality assurance processes to ensure accuracy, reliability, and consistency in all traffic engineering assessments and due diligence studies. \n\n\n8. Continuous Learning: Stay abreast of the latest advancements and trends in traffic engineering, data analytics, and related fields, and apply this knowledge to enhance the effectiveness of due diligence studies. \n\n\n \n\n\nQualifications: \n\n\n1. Educational Background: A post-graduate degree in Civil Engineering, Transportation Engineering or Planning or a closely related field, with a strong focus on traffic engineering and transportation planning. \n\n\n2. Experience: Around 0 to 3 years of experience in traffic engineering, with a specific emphasis on conducting due diligence studies for highway assets. \n\n\n3. Data Analytics Skills: Highly proficient in using data analytics tools such as MS Excel, Python, or other relevant software to analyze and interpret traffic data. \n\n\n4. Professional Certifications: Any relevant certifications and transport modelling expertise in traffic engineering and / or data analytics will be an advantage. \n\n\n5. Experience in Investment Grade Traffic due diligence studies is Highly preferrable. \n\n\n \n\n\nWhy Arcadis?\n\n\nWe can only achieve our goals when everyone is empowered to be their best. We believe everyone's contribution matters. It’s why we are pioneering a skills-based approach, where you can harness your unique experience and expertise to carve your career path and maximize the impact we can make together.\n\n\nYou’ll do meaningful work, and no matter what role, you’ll be helping to deliver sustainable solutions for a more prosperous planet. Make your mark, on your career, your colleagues, your clients, your life and the world around you.\n\n\nTogether, we can create a lasting legacy.\n\n\nJoin Arcadis. Create a Legacy.\n\n\nOur Commitment to Equality, Diversity, Inclusion & Belonging\n\n\nWe want you to be able to bring your best self to work every day which is why equality and inclusion is at the forefront of all our activities. Our ambition is to be an employer of choice and provide a great place to work for all our people. We are an equal opportunity employer; women, minorities, and people with disabilities are strongly encouraged to apply. We are dedicated to a policy of non-discrimination in employment on any basis including race, caste, creed, colour, religion, sex, age, disability, marital status, sexual orientation, and gender identity.\n\n\n \n\n\n#LI-SC5\n\nLocation: Hyderabad [Telangana] [India]",
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "minimumQualification": null,
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": null,
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Full-time Experienced",
+      "scores": {
+        "Full-time Experienced": 0.9001026352246603,
+        "Full-time Fresher": 0.07466585499544938,
+        "Intern": 0.02415389164040486,
+        "Contract": 0.0010776175768114626
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.9256673284939357,
+        "Full-time Fresher": 0.06064977842782225,
+        "Intern": 0.013058858391429697,
+        "Contract": 0.0006240040778980724
+      },
+      "windowScores": [
+        [
+          0.9656111598014832,
+          0.026969710364937782,
+          0.007129149045795202,
+          0.0002900275867432356
+        ],
+        [
+          0.9448408484458923,
+          0.0501377210021019,
+          0.004737583454698324,
+          0.0002837939537130296
+        ],
+        [
+          0.7898558974266052,
+          0.14689013361930847,
+          0.060594942420721054,
+          0.0026590311899781227
+        ]
+      ],
+      "windowWeights": [
+        1,
+        5,
+        1
+      ],
+      "seconds": 0.34010361599985117,
+      "cpuSeconds": 1.3246971550015587,
+      "descriptionTokens": 1035,
+      "windows": 3,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725889024
+    },
+    "want": "Full-time Fresher"
+  },
+  {
+    "name": "recruiter vacancy explicitly open to freshers",
+    "job": {
+      "title": "Recruiter- Night Shift (Fresher Opening)",
+      "originalTitle": "Recruiter- Night Shift (Fresher Opening)",
+      "sourceDescription": "About Ascendion Ascendion is a leader in AI-powered software engineering, helping businesses innovate faster, smarter, and with greater impact. We partner with Global 2000 clients across North America, UK, Europe, and APAC to solve complex challenges in data, experience design, software product engineering, and workforce transformation. Powered by expert engineers, thousands of AI agents, and our Engineering to the Power of AI™ (EngineeringAI) method, we deliver measurable outcomes that build trust, unlock value, and accelerate growth. Learn more at ascendion.com Ascendion | Engineering to elevate life We have a culture built on opportunity, inclusion, and a spirit of partnership. Come, change the world with us: · Build the coolest tech for world’s leading brands · Solve complex problems – and learn new skills · Experience the power of transforming digital engineering for Fortune 500 clients · Master your craft with leading training programs and hands-on experience Experience a community of change makers! Join a culture of high-performing innovators with endless ideas and a passion for tech. Our culture is the fabric of our company, and it is what makes us unique and diverse. The way we share ideas, learning, experiences, successes, and joy allows everyone to be their best at Ascendion. Job Title: Entry Level Associate - Direct Hire Job Location: Vadodara, Gujarat Shift Timings: 8:00 PM to 5:00 AM / 8:30 PM to 5:30 AM (US Shifts) You’ll do: • Review the job description; understand the requirements of the clients and accordingly execute a search plan for identifying potential candidates to fit the requirement. • Source candidates using multiple channels like job portals, internal database, social media etc • Assess applicant’s relevant experience, knowledge, skills and competencies • Scheduling, coordination and ownership of end to end recruitment cycle. • Build strong candidate relationship & credibility to leverage their trust for getting referrals. • Negotiating wage rates and other terms of employment and gain commitment from candidates for current and future job requirements • Submitting candidate’s resume to the hiring managers for further scrutiny or consideration. • Timely communication with the candidates and keeping them posted with updates on their candidature. • Partner with our onsite sales team in North America to understand the client’s needs and requirements • Engage regularly on an ongoing basis with the candidates through email, voice & video calls. You’ll Need: • Excellent written and verbal communication skills • Negotiation & Convincing Skills • Proficiency with MS Office • Organization/Coordination Skills • Relationship Management skills • Learning Agility • Go getter attitude Want to change the world? Let us know. Tell us about your experiences, education, and ambitions. Bring your knowledge, unique viewpoint, and creativity to the table. Let’s talk!",
+      "description": "About Ascendion Ascendion is a leader in AI-powered software engineering, helping businesses innovate faster, smarter, and with greater impact. We partner with Global 2000 clients across North America, UK, Europe, and APAC to solve complex challenges in data, experience design, software product engineering, and workforce transformation. Powered by expert engineers, thousands of AI agents, and our Engineering to the Power of AI™ (EngineeringAI) method, we deliver measurable outcomes that build trust, unlock value, and accelerate growth. Learn more at ascendion.com Ascendion | Engineering to elevate life We have a culture built on opportunity, inclusion, and a spirit of partnership. Come, change the world with us: · Build the coolest tech for world’s leading brands · Solve complex problems – and learn new skills · Experience the power of transforming digital engineering for Fortune 500 clients · Master your craft with leading training programs and hands-on experience Experience a community of change makers! Join a culture of high-performing innovators with endless ideas and a passion for tech. Our culture is the fabric of our company, and it is what makes us unique and diverse. The way we share ideas, learning, experiences, successes, and joy allows everyone to be their best at Ascendion. Job Title: Entry Level Associate - Direct Hire Job Location: Vadodara, Gujarat Shift Timings: 8:00 PM to 5:00 AM / 8:30 PM to 5:30 AM (US Shifts) You’ll do: • Review the job description; understand the requirements of the clients and accordingly execute a search plan for identifying potential candidates to fit the requirement. • Source candidates using multiple channels like job portals, internal database, social media etc • Assess applicant’s relevant experience, knowledge, skills and competencies • Scheduling, coordination and ownership of end to end recruitment cycle. • Build strong candidate relationship & credibility to leverage their trust for getting referrals. • Negotiating wage rates and other terms of employment and gain commitment from candidates for current and future job requirements • Submitting candidate’s resume to the hiring managers for further scrutiny or consideration. • Timely communication with the candidates and keeping them posted with updates on their candidature. • Partner with our onsite sales team in North America to understand the client’s needs and requirements • Engage regularly on an ongoing basis with the candidates through email, voice & video calls. You’ll Need: • Excellent written and verbal communication skills • Negotiation & Convincing Skills • Proficiency with MS Office • Organization/Coordination Skills • Relationship Management skills • Learning Agility • Go getter attitude Want to change the world? Let us know. Tell us about your experiences, education, and ambitions. Bring your knowledge, unique viewpoint, and creativity to the table. Let’s talk!\n\nRequired qualifications: Assess applicant's relevant experience, knowledge, skills and competencies * Scheduling, coordination and ownership of end to end recruitment cycle.\n\nLocation: Vadodara [India]",
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "minimumQualification": "Assess applicant's relevant experience, knowledge, skills and competencies * Scheduling, coordination and ownership of end to end recruitment cycle.",
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": null,
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Full-time Experienced",
+      "scores": {
+        "Full-time Experienced": 0.9105847775936127,
+        "Full-time Fresher": 0.05780932679772377,
+        "Intern": 0.030381309799849987,
+        "Contract": 0.0012245923862792552
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.9105847775936127,
+        "Full-time Fresher": 0.05780932679772377,
+        "Intern": 0.030381309799849987,
+        "Contract": 0.0012245923862792552
+      },
+      "windowScores": [
+        [
+          0.9298720359802246,
+          0.048959411680698395,
+          0.02017192356288433,
+          0.0009966993238776922
+        ],
+        [
+          0.8912975192070007,
+          0.06665924191474915,
+          0.04059069603681564,
+          0.001452485448680818
+        ]
+      ],
+      "windowWeights": [
+        2,
+        2
+      ],
+      "seconds": 0.23759493300002532,
+      "cpuSeconds": 0.9236419470000783,
+      "descriptionTokens": 661,
+      "windows": 2,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725729280
+    },
+    "want": "Full-time Fresher"
+  },
+  {
+    "name": "hiring role names followed by freshers",
+    "job": {
+      "title": "Data Science / AI ML Engineer",
+      "originalTitle": "Data Science / AI ML Engineer",
+      "sourceDescription": "About the Role: We are hiring Data Science / AI & ML Engineers (Freshers) to work on compiler frameworks, transformer-based infrastructures, and end-to-end AI pipelines. You will collaborate with research teams to translate mathematical models into optimized execution graphs, implement custom kernels and low-level performance optimizations, and contribute to the development of deep learning frameworks and execution runtimes powering large-scale model training.\nEducation: Any Graduate\nKey Responsibilities: Design and develop compiler frameworks that optimize AI model execution at the kernel, graph, and operator levels; Architect scalable transformer-based infrastructures for distributed multi-node training and efficient inference; Build end-to-end AI pipelines including graph optimizations, memory scheduling, and compute distribution; Collaborate with research teams to translate mathematical models into optimized execution graphs and intermediate representations (IRs); Implement custom kernels, quantization strategies, and low-level performance optimizations in C/C++ and CUDA; Analyze and tune runtime performance bottlenecks focusing on parallelization, vectorization, and memory management; Develop domain-specific compiler passes for tensor operations, automatic differentiation, and operator fusion; Conduct systematic experiments to explore scaling laws, precision formats, and architectural optimizations for improved computational efficiency; Contribute to the development and optimization of deep learning frameworks and execution runtimes, focusing on tensor computation graphs, distributed training pipelines, and execution scheduling; Work on data and training infrastructure including dataset preparation pipelines, tokenization strategies, preprocessing workflows, and evaluation systems for large-scale model training; Participate in model efficiency research including quantization techniques, sparsity methods, precision formats, and inference optimization for large-scale neural networks\nRequirements: Strong proficiency in C, C++ or Java, with good command over pointers, memory management, performance optimization, and systems-level programming; Solid foundation in Mathematics - calculus, probability, statistics, and linear algebra; Strong logical reasoning, problem-solving ability, high intelligence (IQ), and an analytical mindset; Ability to operate effectively in a research-driven, high-intensity environment with cross-functional collaboration",
+      "description": "About the Role: We are hiring Data Science / AI & ML Engineers (Freshers) to work on compiler frameworks, transformer-based infrastructures, and end-to-end AI pipelines. You will collaborate with research teams to translate mathematical models into optimized execution graphs, implement custom kernels and low-level performance optimizations, and contribute to the development of deep learning frameworks and execution runtimes powering large-scale model training.\nEducation: Any Graduate\nKey Responsibilities: Design and develop compiler frameworks that optimize AI model execution at the kernel, graph, and operator levels; Architect scalable transformer-based infrastructures for distributed multi-node training and efficient inference; Build end-to-end AI pipelines including graph optimizations, memory scheduling, and compute distribution; Collaborate with research teams to translate mathematical models into optimized execution graphs and intermediate representations (IRs); Implement custom kernels, quantization strategies, and low-level performance optimizations in C/C++ and CUDA; Analyze and tune runtime performance bottlenecks focusing on parallelization, vectorization, and memory management; Develop domain-specific compiler passes for tensor operations, automatic differentiation, and operator fusion; Conduct systematic experiments to explore scaling laws, precision formats, and architectural optimizations for improved computational efficiency; Contribute to the development and optimization of deep learning frameworks and execution runtimes, focusing on tensor computation graphs, distributed training pipelines, and execution scheduling; Work on data and training infrastructure including dataset preparation pipelines, tokenization strategies, preprocessing workflows, and evaluation systems for large-scale model training; Participate in model efficiency research including quantization techniques, sparsity methods, precision formats, and inference optimization for large-scale neural networks\nRequirements: Strong proficiency in C, C++ or Java, with good command over pointers, memory management, performance optimization, and systems-level programming; Solid foundation in Mathematics - calculus, probability, statistics, and linear algebra; Strong logical reasoning, problem-solving ability, high intelligence (IQ), and an analytical mindset; Ability to operate effectively in a research-driven, high-intensity environment with cross-functional collaboration\n\nLocation: Chennai (Mandaveli) On-site",
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "minimumQualification": "Any Graduate",
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": null,
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Full-time Experienced",
+      "scores": {
+        "Full-time Experienced": 0.41185295581817627,
+        "Full-time Fresher": 0.38142263889312744,
+        "Intern": 0.1786162406206131,
+        "Contract": 0.0281081460416317
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.41185295581817627,
+        "Full-time Fresher": 0.38142263889312744,
+        "Intern": 0.1786162406206131,
+        "Contract": 0.0281081460416317
+      },
+      "windowScores": [
+        [
+          0.41185295581817627,
+          0.38142263889312744,
+          0.1786162406206131,
+          0.0281081460416317
+        ]
+      ],
+      "windowWeights": [
+        5
+      ],
+      "seconds": 0.09211877699999604,
+      "cpuSeconds": 0.35189572700005556,
+      "descriptionTokens": 455,
+      "windows": 1,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 740950016
+    },
+    "want": "Full-time Fresher"
+  },
+  {
+    "name": "tax experience floor zero outranks client contract duties",
+    "job": {
+      "title": "Consultant - TAX - National - TAX - ITTS - Advisory - Bangalore",
+      "originalTitle": "Consultant - TAX - National - TAX - ITTS - Advisory - Bangalore",
+      "sourceDescription": "Requisition Id: 1739130 As a global leader in assurance, tax, transaction and advisory services, we hire and develop the most passionate people in their field to help build a better working world. This starts with a culture that believes in giving you the training, opportunities and creative freedom. At EY, we don't just focus on who you are now, but who you can become. We believe that it’s your career and ‘It’s yours to build’ which means potential here is limitless and we'll provide you with motivating and fulfilling experiences throughout your career to help you on the path to becoming your best professional self. The opportunity : Consultant-National-TAX-TAX - ITTS - Advisory - Bangalore National : National comprises of sector agnostic teams working across industries for a well rounded experience. TAX - ITTS - Advisory : Our globally coordinated tax professionals offer connected services across all tax disciplines to help the clients thrive in an era of rapid change. We combine our exceptional knowledge and experience with the people and technology platforms to equip clients in making better business decisions by bringing insights to the forefront. We help companies understand the tax policies and tax laws of governments around the world to plan and comply accordingly. Our teams leverage transformative technologies to deliver strategy and execution, from tax and regulatory obligations to operations and workforce management, to reduce risk and drive sustainable value. We have competencies in Business Tax Services, Global Compliance and Reporting, Global Law, Indirect Tax, International Tax and Transaction Services. Your key responsibilities Technical Excellence - Your main objective is to help the Transaction tax team deliver quality deliverables using tax knowledge gained from training and assistance from more experienced tax professionals. Contribute to the profitable growth by ensuring client engagements are executed in an efficient manner. · Client responsibilities o Conduct the engagement in a professional manner and in accordance with client expectations and as defined by the terms and conditions of the contract o To the extent you have client contact, build productive working relationships with your clients · People responsibilities o Exhibit positive attitude and demonstrate willingness to learn o Contribute and leverage knowledge from individuals, databases and other sources o Provide timely and high quality services and work products o Mentoring and coaching interns and consultants · Operational Excellence / Day to day responsibilities o Research and analysis of transaction tax related laws (such as domestic and international tax, corporate laws, SEBI, FEMA, Competition Act, stamp duty laws etc.) on inbound and outbound deals, corporate reorganizations, securities market aspects, etc. o Research on tax theory and positions, and apply them to specific client needs o Prepare deliverables capturing implications arrived on the basis of above research, in word, PowerPoint, excel or email form as required o Perform direct tax diligence (this involves scrutinizing past tax issues, record, compliance, etc. of the target) and capture the facts and analysis in a diligence report Skills and attributes for success · Ability to handle multiple projects simultaneously & Attention to detail · Positive attitude and responsible and ability to handle pressure · Willingness to travel locally and outside city for work To qualify for the role you must have · A qualified Charted Accountant with 0-2 years of relevant experience · Preferred Tax experience either during internship or post qualification o Use and apply the right tax practice processes and tools to be as efficient as possible in your work Skills and attributes To qualify for the role you must have Qualification - Chartered Accountant Experience - 0-2 years in Tax What we look for People with the ability to work in a collaborative manner to provide services across multiple client departments while following the commercial and legal requirements. You will need a practical approach to solving issues and complex problems with the ability to deliver insightful and practical solutions. We look for people who are agile, curious, mindful, and able to sustain positive energy, while being adaptable and creative in their approach. What we offer Fuelled by the brilliance of our people, EY has emerged as the strongest brand and the most attractive employer in our field, with market-leading growth over competitors. Our people work side-by-side with market-leading entrepreneurs, game-changers, disruptors, and visionaries. As an organization, we are investing more time, technology, and money than ever before in skills and learning for our people. At EY, you will have a personalized Career Journey and also the chance to tap into the resources of our career frameworks to better know about your roles, skills, and opportunities. EY is equally committed to being an inclusive employer, and we strive to achieve the right balance for our people—enabling us to deliver excellent client service while allowing our people to build their careers as well as focus on their wellbeing. If you can confidently demonstrate that you meet the criteria above, please contact us as soon as possible. Join us in shaping the future with confidence. Apply Now",
+      "description": "Requisition Id: 1739130 As a global leader in assurance, tax, transaction and advisory services, we hire and develop the most passionate people in their field to help build a better working world. This starts with a culture that believes in giving you the training, opportunities and creative freedom. At EY, we don't just focus on who you are now, but who you can become.\n\nWe believe that it’s your career and ‘It’s yours to build’ which means potential here is limitless and we'll provide you with motivating and fulfilling experiences throughout your career to help you on the path to becoming your best professional self. The opportunity : Consultant-National-TAX-TAX - ITTS - Advisory - Bangalore National : National comprises of sector agnostic teams working across industries for a well rounded experience.\n\nTAX - ITTS - Advisory : Our globally coordinated tax professionals offer connected services across all tax disciplines to help the clients thrive in an era of rapid change. We combine our exceptional knowledge and experience with the people and technology platforms to equip clients in making better business decisions by bringing insights to the forefront. We help companies understand the tax policies and tax laws of governments around the world to plan and comply accordingly.\n\nOur teams leverage transformative technologies to deliver strategy and execution, from tax and regulatory obligations to operations and workforce management, to reduce risk and drive sustainable value. We have competencies in Business Tax Services, Global Compliance and Reporting, Global Law, Indirect Tax, International Tax and Transaction Services. Your key responsibilities Technical Excellence - Your main objective is to help the Transaction tax team deliver quality deliverables using tax knowledge gained from training and assistance from more experienced tax professionals.\n\nContribute to the profitable growth by ensuring client engagements are executed in an efficient manner. · Client responsibilities o Conduct the engagement in a professional manner and in accordance with client expectations and as defined by the terms and conditions of the contract o To the extent you have client contact, build productive working relationships with your clients · People responsibilities o Exhibit positive attitude and demonstrate willingness to learn o Contribute and leverage knowledge from individuals, databases and other sources o Provide timely and high quality services and work products o Mentoring and coaching interns and consultants · Operational Excellence / Day to day responsibilities o Research and analysis of transaction tax related laws (such as domestic and international tax, corporate laws, SEBI, FEMA, Competition Act, stamp duty laws etc.) on inbound and outbound deals, corporate reorganizations, securities market aspects, etc. o Research on tax theory and positions, and apply them to specific client needs o Prepare deliverables capturing implications arrived on the basis of above research, in word, PowerPoint, excel or email form as required o Perform direct tax diligence (this involves scrutinizing past tax issues, record, compliance, etc. of the target) and capture the facts and analysis in a diligence report Skills and attributes for success · Ability to handle multiple projects simultaneously & Attention to detail · Positive attitude and responsible and ability to handle pressure · Willingness to travel locally and outside city for work To qualify for the role you must have · A qualified Charted Accountant with 0-2 years of relevant experience · Preferred Tax experience either during internship or post qualification o Use and apply the right tax practice processes and tools to be as efficient as possible in your work Skills and attributes To qualify for the role you must have Qualification - Chartered Accountant Experience - 0-2 years in Tax What we look for People with the ability to work in a collaborative manner to provide services across multiple client departments while following the commercial and legal requirements.\n\nYou will need a practical approach to solving issues and complex problems with the ability to deliver insightful and practical solutions. We look for people who are agile, curious, mindful, and able to sustain positive energy, while being adaptable and creative in their approach. What we offer Fuelled by the brilliance of our people, EY has emerged as the strongest brand and the most attractive employer in our field, with market-leading growth over competitors.\n\nOur people work side-by-side with market-leading entrepreneurs, game-changers, disruptors, and visionaries. As an organization, we are investing more time, technology, and money than ever before in skills and learning for our people. At EY, you will have a personalized Career Journey and also the chance to tap into the resources of our career frameworks to better know about your roles, skills, and opportunities.\n\nEY is equally committed to being an inclusive employer, and we strive to achieve the right balance for our people—enabling us to deliver excellent client service while allowing our people to build their careers as well as focus on their wellbeing. If you can confidently demonstrate that you meet the criteria above, please contact us as soon as possible. Join us in shaping the future with confidence.\n\nApply Now\n\nLocation: Bengaluru [KA] [IN] [560001]",
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "minimumQualification": null,
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": null,
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Contract",
+      "scores": {
+        "Full-time Experienced": 0.41057370727260906,
+        "Full-time Fresher": 0.004916584580011356,
+        "Intern": 0.15752359349668646,
+        "Contract": 0.4269861491629854
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.29058907979301046,
+        "Full-time Fresher": 0.0037704821256089155,
+        "Intern": 0.33153535689260544,
+        "Contract": 0.37410511766626897
+      },
+      "windowScores": [
+        [
+          0.05330440774559975,
+          0.00022264824656303972,
+          0.0008781345677562058,
+          0.9455947875976562
+        ],
+        [
+          0.20060060918331146,
+          0.002910905284807086,
+          0.4620441794395447,
+          0.3344443440437317
+        ],
+        [
+          0.977816104888916,
+          0.01161620020866394,
+          0.009648466482758522,
+          0.0009193158475682139
+        ]
+      ],
+      "windowWeights": [
+        1,
+        5,
+        1
+      ],
+      "seconds": 0.36978843700001107,
+      "cpuSeconds": 1.4168225280000115,
+      "descriptionTokens": 1031,
+      "windows": 3,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 724721664
+    },
+    "want": "Full-time Fresher"
+  },
+  {
+    "name": "own contractual title establishes appointment",
+    "job": {
+      "title": "Content And Digital (Contractual) - Innovaccer Analytics",
+      "originalTitle": "Content And Digital (Contractual) - Innovaccer Analytics",
+      "sourceDescription": "Hello! You've landed on this page, which means you're interested in working with us. Let's take a sneak peek at what it's like to work at Innovaccer. About the Role We are looking for a Content Consultant who can shape and ship high-qual...",
+      "description": "Hello! You've landed on this page, which means you're interested in working with us. Let's take a sneak peek at what it's like to work at Innovaccer. About the Role We are looking for a Content Consultant who can shape and ship high-qual...\n\nLocation: Noida [Uttar Pradesh] [India]",
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "minimumQualification": null,
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": null,
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Full-time Experienced",
+      "scores": {
+        "Full-time Experienced": 0.4698406457901001,
+        "Full-time Fresher": 0.012265309691429138,
+        "Intern": 0.07476354390382767,
+        "Contract": 0.4431304633617401
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.4698406457901001,
+        "Full-time Fresher": 0.012265309691429138,
+        "Intern": 0.07476354390382767,
+        "Contract": 0.4431304633617401
+      },
+      "windowScores": [
+        [
+          0.4698406457901001,
+          0.012265309691429138,
+          0.07476354390382767,
+          0.4431304633617401
+        ]
+      ],
+      "windowWeights": [
+        1
+      ],
+      "seconds": 0.0324031659999946,
+      "cpuSeconds": 0.12131759600015357,
+      "descriptionTokens": 73,
+      "windows": 1,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 726102016
+    },
+    "want": "Contract"
+  },
+  {
+    "name": "seven to ten years cannot be an internship by model alone",
+    "job": {
+      "title": "Specialist",
+      "originalTitle": "Specialist",
+      "sourceDescription": "experience required(yrs):\n7 - 10\n\nqualification:\nB.E/B.Tech\n\nprimary skill:\nNetworking\n\nsecondary skill:\nCloud Networking Fundamentals\n\njob description:\nGood Communication with strong firewall and switching knowledge",
+      "description": "experience required(yrs):\n7 - 10\n\nqualification:\nB.E/B.Tech\n\nprimary skill:\nNetworking\n\nsecondary skill:\nCloud Networking Fundamentals\n\njob description:\nGood Communication with strong firewall and switching knowledge\n\nLocation: Chennai [Tamil Nadu] [India]",
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "minimumQualification": "B.E/B.Tech",
+      "preferredQualification": null,
+      "sourceExperienceRequired": null,
+      "experienceRequired": null,
+      "eligibleBatches": [],
+      "eligibleBatchesProvenance": null
+    },
+    "prediction": {
+      "modelLabel": "Intern",
+      "scores": {
+        "Full-time Experienced": 0.37898993492126465,
+        "Full-time Fresher": 0.03183744475245476,
+        "Intern": 0.41890424489974976,
+        "Contract": 0.17026835680007935
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.37898993492126465,
+        "Full-time Fresher": 0.03183744475245476,
+        "Intern": 0.41890424489974976,
+        "Contract": 0.17026835680007935
+      },
+      "windowScores": [
+        [
+          0.37898993492126465,
+          0.03183744475245476,
+          0.41890424489974976,
+          0.17026835680007935
+        ]
+      ],
+      "windowWeights": [
+        2
+      ],
+      "seconds": 0.031741659000090294,
+      "cpuSeconds": 0.11949709600003189,
+      "descriptionTokens": 83,
+      "windows": 1,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725872640
+    },
+    "want": "Full-time Experienced"
+  },
+  {
+    "name": "prior work in flattened qualifications Project Planner",
+    "job": {
+      "experienceRequired": null,
+      "title": "Project Planner",
+      "eligibleBatches": [],
+      "sourceDescription": "The responsibility includes Project planner for India PWS Projects and working closely with Project Manager (PM) to update financial plans (As Sold, Revised & Approved) for the new projects and prepare and process invoices in line with PO terms and coordinating with various teams. If you think this role suits you, join our team and apply now! In this Role, Your Responsibilities Will Be: Working closely with Project Manager (PM) to update financial plans (As Sold, Revised & Approved) for the new projects. Prepare and process invoices in line with PO terms and coordinate with various teams. Update and revise project budgets based on approved change orders. Funding revaluation and accommodating currency fluctuations and reflecting in the project cost Execute and track internal project cost transfers to ensure correct allocation of project expenses. For the monthly invoiced projects, revenue events creation. Closure of the projects in Oracle and clarity as per PM and PA team Prepare and update EAC reports to support financial plan tracking. Create and manage task codes and Oracle related tasks to support team. Allocate and adjust project resources in Clarity, including timesheet adjustments and alignment with project requirements. Create projects in RST (Resource Scheduling Tool), review RFR (Request for Resource), communicate with Resource Managers for resource allocations etc. Contracts Administration particularly during beginning and ending of a Project cycle. Who You Are: You display a can-do attitude in good and bad times. You recognize when a solution can be balanced. You focus and monitor both formal and informal progress regularly. You provide calmness and efficiency, even when things are unclear. You convert ideas into actions and produce results with new initiatives. For This Role, You Will Need: Bachelor’s / master’s degree in commerce Experience in general accounting and project administration Experience: 3 to 5 years Preferred Qualifications that Set You Apart: This position has access to confidential data and responsibility for reports. Candidate must exhibit confidentiality, truthfulness & accuracy of data in reporting. Self-Motivation and ready to accept challenging assignments Having fast and agile decision-making approach Knows importance of keeping deadlines Proficient language and communication skills; both verbal and written Ability to write reports, business correspondence and other applicable documents. Ability to effectively present information and respond to queries from groups of managers, clients, and customers. Ability to define problems, collect data, establish facts, and draw valid conclusions along with risk assessments. Our Culture & Commitment to You: At Emerson, we prioritize a workplace where every employee is valued, respected, and empowered to grow. We foster an environment that encourages innovation, collaboration, and diverse perspectives—because we know that great ideas come from great teams. Our commitment to ongoing career development and growing an inclusive culture ensures you have the support to thrive. Whether through mentorship, training, or leadership opportunities, we invest in your success so you can make a lasting impact. We believe diverse teams, working together are key to driving growth and delivering business results. We recognize the importance of employee wellbeing. We prioritize providing flexible, competitive benefits plans to meet you and your family’s physical, mental, financial, and social needs. We provide a variety of medical insurance plans, with dental and vision coverage, Employee Assistance Program, 401(k), tuition reimbursement, employee resource groups, recognition, and much more. Our culture offers flexible time off plans, including paid parental leave (maternal and paternal), vacation and holiday leave.",
+      "description": "The responsibility includes Project planner for India PWS Projects and working closely with Project Manager (PM) to update financial plans (As Sold, Revised & Approved) for the new projects and prepare and process invoices in line with PO terms and coordinating with various teams. If you think this role suits you, join our team and apply now! In this Role, Your Responsibilities Will Be: Working closely with Project Manager (PM) to update financial plans (As Sold, Revised & Approved) for the new projects.\n\nPrepare and process invoices in line with PO terms and coordinate with various teams. Update and revise project budgets based on approved change orders. Funding revaluation and accommodating currency fluctuations and reflecting in the project cost Execute and track internal project cost transfers to ensure correct allocation of project expenses.\n\nFor the monthly invoiced projects, revenue events creation. Closure of the projects in Oracle and clarity as per PM and PA team Prepare and update EAC reports to support financial plan tracking. Create and manage task codes and Oracle related tasks to support team.\n\nAllocate and adjust project resources in Clarity, including timesheet adjustments and alignment with project requirements. Create projects in RST (Resource Scheduling Tool), review RFR (Request for Resource), communicate with Resource Managers for resource allocations etc. Contracts Administration particularly during beginning and ending of a Project cycle.\n\nWho You Are: You display a can-do attitude in good and bad times. You recognize when a solution can be balanced. You focus and monitor both formal and informal progress regularly.\n\nYou provide calmness and efficiency, even when things are unclear. You convert ideas into actions and produce results with new initiatives. For This Role, You Will Need: Bachelor’s / master’s degree in commerce Experience in general accounting and project administration Experience: 3 to 5 years Preferred Qualifications that Set You Apart: This position has access to confidential data and responsibility for reports.\n\nCandidate must exhibit confidentiality, truthfulness & accuracy of data in reporting. Self-Motivation and ready to accept challenging assignments Having fast and agile decision-making approach Knows importance of keeping deadlines Proficient language and communication skills; both verbal and written Ability to write reports, business correspondence and other applicable documents. Ability to effectively present information and respond to queries from groups of managers, clients, and customers.\n\nAbility to define problems, collect data, establish facts, and draw valid conclusions along with risk assessments. Our Culture & Commitment to You: At Emerson, we prioritize a workplace where every employee is valued, respected, and empowered to grow. We foster an environment that encourages innovation, collaboration, and diverse perspectives—because we know that great ideas come from great teams.\n\nOur commitment to ongoing career development and growing an inclusive culture ensures you have the support to thrive. Whether through mentorship, training, or leadership opportunities, we invest in your success so you can make a lasting impact. We believe diverse teams, working together are key to driving growth and delivering business results.\n\nWe recognize the importance of employee wellbeing. We prioritize providing flexible, competitive benefits plans to meet you and your family’s physical, mental, financial, and social needs. We provide a variety of medical insurance plans, with dental and vision coverage, Employee Assistance Program, 401(k), tuition reimbursement, employee resource groups, recognition, and much more.\n\nOur culture offers flexible time off plans, including paid parental leave (maternal and paternal), vacation and holiday leave.\n\nLocation: MUMBAI [MAHARASHTRA] [India]",
+      "minimumQualification": null,
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "preferredQualification": null,
+      "eligibleBatchesProvenance": null,
+      "sourceExperienceRequired": null,
+      "originalTitle": "Project Planner"
+    },
+    "prediction": {
+      "modelLabel": "Contract",
+      "scores": {
+        "Full-time Experienced": 0.4886649060063064,
+        "Full-time Fresher": 0.009658622766437475,
+        "Intern": 0.004368481459096074,
+        "Contract": 0.49730798904784024
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.3272324148565531,
+        "Full-time Fresher": 0.006483635836048052,
+        "Intern": 0.003505965850005547,
+        "Contract": 0.6627779623183111
+      },
+      "windowScores": [
+        [
+          0.004367432557046413,
+          0.00013366197526920587,
+          0.0017809346318244934,
+          0.9937179088592529
+        ],
+        [
+          0.9729623794555664,
+          0.019183583557605743,
+          0.006956028286367655,
+          0.0008980692364275455
+        ]
+      ],
+      "windowWeights": [
+        2,
+        1
+      ],
+      "seconds": 0.2354851369999551,
+      "cpuSeconds": 0.920950157000334,
+      "descriptionTokens": 743,
+      "windows": 2,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725831680
+    },
+    "want": "Full-time Experienced"
+  },
+  {
+    "name": "prior work in flattened qualifications Project Controls Specialist IV",
+    "job": {
+      "experienceRequired": null,
+      "title": "Project Controls Specialist IV",
+      "eligibleBatches": [],
+      "sourceDescription": "<p><span style=\"font-size:14.0px\"><span style=\"font-family:Arial, Helvetica, sans-serif\">At Fluor, we are proud to design and build projects and careers. We are committed to fostering a welcoming and collaborative work environment that encourages big-picture thinking, brings out the best in our employees, and helps us develop innovative solutions that contribute to building a better world together. If this sounds like a culture you would like to work in, you’re invited to apply for this role.</span></span></p><div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Job Description</h2>\r</div><div><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">This position performs Project Control activities and/or supervises the preparation of Project Controls activities for a project or assignment.  This role serves as Control Team Leader on small projects and provides direct supervision to a small team of Project Controls personnel, or as a Subject Manager Expert (SME) for the entire Project Controls Team in the Regional Office. </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Develop Work Breakdown and Project Coding Structures for control and integrity of work defined by the contract </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Develop totally integrated engineering, procurement, and construction (EPC) schedules or cost control programs </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Recommend solutions or recovery plans to schedule or cost impact or delays </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• As a Lead Scheduler analyze schedule, review delays, propose schedule recovery alternatives and presents them to internal groups as well as the client </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• As Lead Cost Specialist maintain the cost system and provide required reports </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Analyze variances in cost and schedule performance against the plan, and communicate the reasons for the issuance of variance and proposed mitigation plans to Project Management </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Other duties as assigned</span></span></p></div></div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Basic Job Requirements</h2>\r</div><div><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Accredited four (4) year degree or global equivalent in applicable field of study and ten (10) years of work-related experience or a combination of education and directly related experience equal to fourteen (14) years if non-degreed; some locations may have additional or different qualifications in order to comply with local requirements  </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Ability to communicate effectively with audiences that include but are not limited to management, coworkers, clients, vendors, contractors, and visitors   </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Job related technical knowledge necessary to complete the job </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Ability to learn and apply knowledge of applicable local, state/province, and federal/national statutes and guidelines  </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Ability to attend to detail and work in a time-conscious and time-effective manner   </span></span></p></div></div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Other Job Requirements</h2>\r</div><div></div></div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Preferred Qualifications</h2>\r</div><div><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Possess practical experience in the use of the automated cost or schedule management systems </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• Must have had leadership roles as a Control Team Lead (CTL) on a small-sized project or cost or scheduling lead on a large project </span></span></p><p><span style=\"font-family:Arial,Helvetica,sans-serif\"><span style=\"font-size:14px\">• May need  to travel internationally for project assignments and in support of business related matters  </span></span></p></div></div></div><p><span style=\"font-size:14.0px\"><span style=\"font-family:Arial, Helvetica, sans-serif\"><strong>To be Considered Candidates:</strong><br>Must be authorized to work in the country where the position is located.</span></span></p><p><span style=\"font-size:14.0px\"><span style=\"font-family:Arial, Helvetica, sans-serif\">We are an equal opportunity employer. All qualified individuals will receive consideration for employment without regard to race, color, age, sex, sexual orientation, gender identity, religion, national origin, disability, veteran status, genetic information, or any other criteria protected by governing law.</span></span></p>",
+      "description": "At Fluor, we are proud to design and build projects and careers. We are committed to fostering a welcoming and collaborative work environment that encourages big-picture thinking, brings out the best in our employees, and helps us develop innovative solutions that contribute to building a better world together. If this sounds like a culture you would like to work in, you’re invited to apply for this role.\n\n\n\n\nJob Description\n\n\n\nThis position performs Project Control activities and/or supervises the preparation of Project Controls activities for a project or assignment.  This role serves as Control Team Leader on small projects and provides direct supervision to a small team of Project Controls personnel, or as a Subject Manager Expert (SME) for the entire Project Controls Team in the Regional Office. \n\n• Develop Work Breakdown and Project Coding Structures for control and integrity of work defined by the contract \n\n• Develop totally integrated engineering, procurement, and construction (EPC) schedules or cost control programs \n\n• Recommend solutions or recovery plans to schedule or cost impact or delays \n\n• As a Lead Scheduler analyze schedule, review delays, propose schedule recovery alternatives and presents them to internal groups as well as the client \n\n• As Lead Cost Specialist maintain the cost system and provide required reports \n\n• Analyze variances in cost and schedule performance against the plan, and communicate the reasons for the issuance of variance and proposed mitigation plans to Project Management \n\n• Other duties as assigned\n\n\n\n\n\nBasic Job Requirements\n\n\n\n• Accredited four (4) year degree or global equivalent in applicable field of study and ten (10) years of work-related experience or a combination of education and directly related experience equal to fourteen (14) years if non-degreed; some locations may have additional or different qualifications in order to comply with local requirements  \n\n• Ability to communicate effectively with audiences that include but are not limited to management, coworkers, clients, vendors, contractors, and visitors   \n\n• Job related technical knowledge necessary to complete the job \n\n• Ability to learn and apply knowledge of applicable local, state/province, and federal/national statutes and guidelines  \n\n• Ability to attend to detail and work in a time-conscious and time-effective manner   \n\n\n\n\n\nOther Job Requirements\n\n\n\n\n\n\n\nPreferred Qualifications\n\n\n\n• Possess practical experience in the use of the automated cost or schedule management systems \n\n• Must have had leadership roles as a Control Team Lead (CTL) on a small-sized project or cost or scheduling lead on a large project \n\n• May need  to travel internationally for project assignments and in support of business related matters  \n\n\n\n\nTo be Considered Candidates:\nMust be authorized to work in the country where the position is located.\n\nWe are an equal opportunity employer. All qualified individuals will receive consideration for employment without regard to race, color, age, sex, sexual orientation, gender identity, religion, national origin, disability, veteran status, genetic information, or any other criteria protected by governing law.\n\nLocation: Gurgaon [IN-DL] [India]",
+      "minimumQualification": null,
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "preferredQualification": null,
+      "eligibleBatchesProvenance": null,
+      "sourceExperienceRequired": null,
+      "originalTitle": "Project Controls Specialist IV"
+    },
+    "prediction": {
+      "modelLabel": "Contract",
+      "scores": {
+        "Full-time Experienced": 0.38489340990781784,
+        "Full-time Fresher": 0.0023626826296094805,
+        "Intern": 0.12412162567488849,
+        "Contract": 0.48862222768366337
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.38489340990781784,
+        "Full-time Fresher": 0.0023626826296094805,
+        "Intern": 0.12412162567488849,
+        "Contract": 0.48862222768366337
+      },
+      "windowScores": [
+        [
+          0.06465129554271698,
+          0.0006801423733122647,
+          0.003440537955611944,
+          0.93122798204422
+        ],
+        [
+          0.7051355242729187,
+          0.004045222885906696,
+          0.24480271339416504,
+          0.046016473323106766
+        ]
+      ],
+      "windowWeights": [
+        2,
+        2
+      ],
+      "seconds": 0.23443989999987025,
+      "cpuSeconds": 0.9120690680001644,
+      "descriptionTokens": 638,
+      "windows": 2,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725889024
+    },
+    "want": "Full-time Experienced"
+  },
+  {
+    "name": "prior work in flattened qualifications Project Controls Specialist I",
+    "job": {
+      "experienceRequired": null,
+      "title": "Project Controls Specialist I",
+      "eligibleBatches": [],
+      "sourceDescription": "<p><span style=\"font-size:14.0px\"><span style=\"font-family:Arial, Helvetica, sans-serif\">At Fluor, we are proud to design and build projects and careers. We are committed to fostering a welcoming and collaborative work environment that encourages big-picture thinking, brings out the best in our employees, and helps us develop innovative solutions that contribute to building a better world together. If this sounds like a culture you would like to work in, you’re invited to apply for this role.</span></span></p><div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Job Description</h2>\r</div><div><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">This position performs Project Control functions related to cost and/or schedule and assists in the preparation of Project Controls activities for a project or assignment. </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Prepare the Work Breakdown and Project Coding Structures for control and integrity of work to be performed as defined by the contract </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Accumulate and compile accurate cost management data to prepare the project budget and update the progress of the project </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Develop cost control/scheduling procedures, execution plan, and business plan for a project </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Participate in weekly project cost reviews/schedule meetings </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Develop and implement a basic change management system for engineering and construction </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Develop and maintain Management, Project and Control level schedules </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Other duties as assigned</span></span></p></div></div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Basic Job Requirements</h2>\r</div><div><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Accredited four (4) year degree or global equivalent in applicable field of study and four (4) years of work-related experience or a combination of education and directly related experience equal to eight (8) years if non-degreed; some locations may have additional or different qualifications in order to comply with local requirements  </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Ability to communicate effectively with audiences that include but are not limited to management, coworkers, clients, vendors, contractors, and visitors   </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Job related technical knowledge necessary to complete the job  </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Ability to learn and apply knowledge of applicable local, state/province, and federal/national statutes and guidelines  </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Ability to attend to detail and work in a time-conscious and time-effective manner   </span></span></p></div></div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Other Job Requirements</h2>\r</div><div></div></div><div style=\"padding: 10px 0px;border: 1px solid transparent;\"><div style=\"font-size:16px;word-wrap: break-word;\"><h2 style=\"font-size: 1em; margin: 0px\">Preferred Qualifications</h2>\r</div><div><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Possess practical experience in the use of the automated cost or schedule management systems </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• Having leadership roles on various projects is preferred  </span></span></p><p><span style=\"font-size:14px\"><span style=\"font-family:Arial,Helvetica,sans-serif\">• May need  to travel internationally for project assignments and in support of business related matters  </span></span></p></div></div></div><p><span style=\"font-size:14.0px\"><span style=\"font-family:Arial, Helvetica, sans-serif\"><strong>To be Considered Candidates:</strong><br>Must be authorized to work in the country where the position is located.</span></span></p><p><span style=\"font-size:14.0px\"><span style=\"font-family:Arial, Helvetica, sans-serif\">We are an equal opportunity employer. All qualified individuals will receive consideration for employment without regard to race, color, age, sex, sexual orientation, gender identity, religion, national origin, disability, veteran status, genetic information, or any other criteria protected by governing law.</span></span></p>",
+      "description": "At Fluor, we are proud to design and build projects and careers. We are committed to fostering a welcoming and collaborative work environment that encourages big-picture thinking, brings out the best in our employees, and helps us develop innovative solutions that contribute to building a better world together. If this sounds like a culture you would like to work in, you’re invited to apply for this role.\n\n\n\n\nJob Description\n\n\n\nThis position performs Project Control functions related to cost and/or schedule and assists in the preparation of Project Controls activities for a project or assignment. \n\n• Prepare the Work Breakdown and Project Coding Structures for control and integrity of work to be performed as defined by the contract \n\n• Accumulate and compile accurate cost management data to prepare the project budget and update the progress of the project \n\n• Develop cost control/scheduling procedures, execution plan, and business plan for a project \n\n• Participate in weekly project cost reviews/schedule meetings \n\n• Develop and implement a basic change management system for engineering and construction \n\n• Develop and maintain Management, Project and Control level schedules \n\n• Other duties as assigned\n\n\n\n\n\nBasic Job Requirements\n\n\n\n• Accredited four (4) year degree or global equivalent in applicable field of study and four (4) years of work-related experience or a combination of education and directly related experience equal to eight (8) years if non-degreed; some locations may have additional or different qualifications in order to comply with local requirements  \n\n• Ability to communicate effectively with audiences that include but are not limited to management, coworkers, clients, vendors, contractors, and visitors   \n\n• Job related technical knowledge necessary to complete the job  \n\n• Ability to learn and apply knowledge of applicable local, state/province, and federal/national statutes and guidelines  \n\n• Ability to attend to detail and work in a time-conscious and time-effective manner   \n\n\n\n\n\nOther Job Requirements\n\n\n\n\n\n\n\nPreferred Qualifications\n\n\n\n• Possess practical experience in the use of the automated cost or schedule management systems \n\n• Having leadership roles on various projects is preferred  \n\n• May need  to travel internationally for project assignments and in support of business related matters  \n\n\n\n\nTo be Considered Candidates:\nMust be authorized to work in the country where the position is located.\n\nWe are an equal opportunity employer. All qualified individuals will receive consideration for employment without regard to race, color, age, sex, sexual orientation, gender identity, religion, national origin, disability, veteran status, genetic information, or any other criteria protected by governing law.\n\nLocation: Gurgaon [IN-DL] [India]",
+      "minimumQualification": null,
+      "sourceEmploymentType": null,
+      "employmentType": null,
+      "preferredQualification": null,
+      "eligibleBatchesProvenance": null,
+      "sourceExperienceRequired": null,
+      "originalTitle": "Project Controls Specialist I"
+    },
+    "prediction": {
+      "modelLabel": "Contract",
+      "scores": {
+        "Full-time Experienced": 0.3912844145670533,
+        "Full-time Fresher": 0.004323977787862532,
+        "Intern": 0.11381581623572856,
+        "Contract": 0.4905757885426283
+      },
+      "focusedScores": {
+        "Full-time Experienced": 0.3912844145670533,
+        "Full-time Fresher": 0.004323977787862532,
+        "Intern": 0.11381581623572856,
+        "Contract": 0.4905757885426283
+      },
+      "windowScores": [
+        [
+          0.0281385350972414,
+          0.0002546735049691051,
+          0.0011076072696596384,
+          0.9704992175102234
+        ],
+        [
+          0.7544302940368652,
+          0.008393282070755959,
+          0.22652402520179749,
+          0.010652359575033188
+        ]
+      ],
+      "windowWeights": [
+        2,
+        2
+      ],
+      "seconds": 0.24483022699996582,
+      "cpuSeconds": 0.9442140880000807,
+      "descriptionTokens": 558,
+      "windows": 2,
+      "fullDescriptionCovered": true,
+      "peakRssBytes": 725889024
+    },
+    "want": "Full-time Experienced"
+  }
+]

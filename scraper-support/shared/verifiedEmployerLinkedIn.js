@@ -64,7 +64,7 @@ const accountApplication = (html, canonical) => {
     const body = one(elements(doc, 'div', t => attr(t, 'id') === modal), 'application modal identity changed')
     candidates = links(body.inner).filter(x => attr(x.tag, 'data-tracking-control-name') === 'public_jobs_apply-link-offsite_contextual-sign-in-modal_join-link')
   } else {
-    if (attr(button.tag, 'data-tracking-control-name') !== 'public_jobs_apply-link-onsite') return error('application mode changed')
+    if (!['public_jobs_apply-link-onsite', 'public_jobs_apply-link-simple_onsite'].includes(attr(button.tag, 'data-tracking-control-name'))) return error('application mode changed')
     candidates = links(doc).filter(x => attr(x.tag, 'data-tracking-control-name') === 'public_jobs_nav-header-signin')
   }
   if (!candidates.length) return error('missing account application handoff')

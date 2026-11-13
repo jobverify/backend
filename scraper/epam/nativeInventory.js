@@ -2,6 +2,10 @@ import { createHash } from 'node:crypto'
 import { decodeHTML } from 'entities'
 import { nativeCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
+import { readLiteralModel } from '../../scraper-support/native-sources/literalModel.js'
+import { qualifyCurrentEpamModel } from './currentModel20261113.js'
+import { currentEpamProgram, verifyCurrentEpamProgram } from './currentProgram20261113.js'
 
 const PRIMARY = 'https://careers.epam.com/en/jobs/india'
 const API = 'https://careers.epam.com/api/jobs/v2/search/careers-i18n'
@@ -16,12 +20,21 @@ const CONTROLLER_SHA256S = new Set([
   '66f26b113cd0ae5c02536ebfaab2826ed4f17b85d567319a7af6edb0db9f9678',
   'dec7833162b39f8f5c3aa8dc876875c7982775d0e8b724dd254b178ca3e52d12',
   'c6769eb0c0fdf432f63afb1204e9c9b81594ebaea3fc4144e0c0039aeebe6c4b',
+  // Independent static review confines this delta to COUNTRY-cookie prefill.
+  // Collection permission is separate from current publication admission.
+  '3587c063618bc4345e8afcc8da28928bda2498b9585026baa89fa1cb2d792247',
 ])
 const EVIDENCE = Symbol.for('jobverify.epam-native-inventory')
 export const NATIVE_PAGE_SIZE = 50
 export const nativeSearchUrl = offset => `${API}?facets=country%3D${INDIA}&from=${offset}&lang=en&size=50&sortBy=relevance%3Brelocation%3Dasc&websiteLocale=en-us`
 const norm = value => typeof value === 'string' ? decodeHTML(value.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim() : ''
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
+const originalJSON = text => {
+  const value = JSON.parse(text)
+  // JSON.parse alone silently replaces duplicate criteria/identity members.
+  readLiteralModel(text)
+  return value
+}
 const requireNative = (condition, code) => { if (!condition) throw Object.assign(new Error(code), { code }) }
 const stable = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)
   ? Object.fromEntries(Object.keys(item).sort().map(key => [key, item[key]])) : item)
@@ -65,7 +78,7 @@ export function awaitEpamRead(operation, signal, callerSignal) {
 function primary(html) {
   const matches = [...html.matchAll(/<script\b[^>]*\bid="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/g)]
   requireNative(matches.length === 1, 'primary-page-data-missing-or-ambiguous')
-  const data = JSON.parse(matches[0][1]), props = data.props?.pageProps
+  const data = originalJSON(matches[0][1]), props = data.props?.pageProps
   requireNative(data.page === '/jobs/[slug]' && data.query?.slug === 'india'
     && props?.canonicalPath === PRIMARY && props.contentType === 'anywhere_pages_jobs'
     && props.locale === 'en-us', 'primary-employer-route-changed')
@@ -74,7 +87,7 @@ function primary(html) {
     && settings[0].name === 'India', 'primary-native-country-scope-changed')
   const environment = [...html.matchAll(/APP_ENV_VARIABLES\s*=\s*Object\.assign\(window\.APP_ENV_VARIABLES\s*\|\|\s*\{\},\s*(\{[^<]*?\})\);/g)]
   requireNative(environment.length === 1, 'primary-tenant-configuration-missing')
-  const env = JSON.parse(environment[0][1])
+  const env = originalJSON(environment[0][1])
   requireNative(env.TENANT_NAME === 'anywhere' && env.API_HOST === '' && env.NODE_ENV === 'production', 'primary-native-tenant-changed')
   const scripts = [...html.matchAll(/<script\b[^>]*\bsrc="([^"<>]+)"[^>]*>/g)]
     .map(match => match[1]).filter(src => /^\/_next\/static\/chunks\/pages\/_app-[a-f0-9]+\.js$/.test(src))
@@ -97,7 +110,7 @@ function primary(html) {
 }
 
 function envelope(text, expectedTotal) {
-  const payload = JSON.parse(text), data = payload?.data
+  const payload = originalJSON(text), data = payload?.data
   requireNative(data && !payload.error && payload.success !== false && Array.isArray(data.jobs)
     && data.jobs.length <= NATIVE_PAGE_SIZE && Number.isSafeInteger(data.total)
     && data.total >= 0, 'native-listing-envelope-invalid')
@@ -208,7 +221,9 @@ function limit(options, name, fallback) {
   return value
 }
 
-export async function runNativeEpam({ options, maxJobs, project, headers }) {
+// Raw native collection remains independently testable against historical
+// packets. Only runNativeEpam below is the registered publication boundary.
+export async function collectNativeEpam({ options, maxJobs, project, headers }) {
   const callerSignal = options.signal
   callerSignal?.throwIfAborted()
   const limits = {
@@ -230,7 +245,10 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
     countryProof: 'every-declared-native-country-and-city-country;query-is-not-location-evidence',
     limits, handoffVerified: false, controllerVerified: false, closingMatches: false,
     cleanupAllowed: false, complete: false, requests: 0, aggregateBytes: 0,
-    passes: [], failures: [], bodyGaps: [], retainedResponses: [], invalidRecords: [] }
+    passes: [], failures: [], bodyGaps: [], retainedResponses: [], invalidRecords: [],
+    observations: [], closingObservations: [], sourceCurrentAdmissionQualified: false,
+    sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+    companyGlobalTotal: null, companyIndiaTotal: null }
   const jobsByID = new Map()
   const closingWorkArrangements = new Map()
   const fail = (stage, error, extra = {}) => result.failures.push({ stage,
@@ -288,6 +306,20 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
       if (reader) { try { Promise.resolve(reader.cancel()).catch(() => {}) } catch {} }
     }
   }
+  let current = false
+  const auditSnapshot = () => ({ ...result, passes: result.passes.map(({ records, ...pass }) => ({
+    ...pass, fingerprints: records instanceof Map ? Object.fromEntries(records) : pass.fingerprints,
+  })) })
+  const preserveAbort = reason => {
+    result.complete = false
+    result.sourceCurrentAdmissionQualified = false
+    result.aborted = true
+    // Do not replace an opaque caller reason or change its identity. Normal
+    // extensible Error objects can additionally carry completed original reads.
+    if (reason && typeof reason === 'object' && Object.isExtensible(reason)) {
+      try { Object.defineProperty(reason, 'sourceAudit', { value: freeze(auditSnapshot()), configurable: true }) } catch {}
+    }
+  }
   try {
     const opening = primary(await read(PRIMARY, 'text/html', 'opening-primary'))
     result.handoffVerified = true
@@ -295,7 +327,10 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
     result.globalReportedTotal = opening.globalReportedTotal
     result.globalIndiaFacetCount = opening.globalIndiaFacetCount
     const controller = await read(opening.controller, 'application/javascript', 'public-controller')
-    requireNative(CONTROLLER_SHA256S.has(sha(Buffer.from(controller))), 'native-public-controller-changed')
+    const controllerSHA256 = sha(Buffer.from(controller))
+    requireNative(CONTROLLER_SHA256S.has(controllerSHA256), 'native-public-controller-changed')
+    current = controllerSHA256 === currentEpamProgram.appSha256
+    result.controllerSHA256 = controllerSHA256
     result.controllerVerified = true
     const collectPass = async name => {
       const pass = { name, rawCount: 0, uniqueCount: 0, paginationComplete: false, pages: [], records: new Map() }
@@ -321,6 +356,7 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
         if (pass.rawCount > opening.total) fail(name, { code: 'native-count-overflow', message: 'Native rows exceed reported total' })
         for (const raw of data.jobs) {
           const record = freeze(structuredClone(raw))
+          ;(name === 'opening' ? result.observations : result.closingObservations).push(record)
           let closingMode
           if (name === 'closing' && typeof record?.uid === 'string') {
             closingMode = closingWorkArrangements.get(record.uid) || { observations: 0 }
@@ -343,11 +379,19 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
               closingMode.remoteStatus = nativeWorkArrangement(record)
             }
             let description = null, detailComplete = true
-            try { description = fullDescription(record) }
+            let currentModel
+            try {
+              currentModel = current ? qualifyCurrentEpamModel(record) : null
+              description = currentModel ? currentModel.jobDescription : fullDescription(record)
+            }
             catch (error) {
               detailComplete = false
-              fail(name, error, { id: key.id })
+              if (!current) fail(name, error, { id: key.id })
               if (name === 'opening') result.bodyGaps.push({ id: key.id, nativeRecord: record, reason: error.code })
+              if (current) {
+                result.invalidRecords.push({ pass: name, offset, reason: error.code || 'unqualified-current-model', nativeRecord: record })
+                continue
+              }
             }
             if (name === 'opening') {
               const projected = project(record)
@@ -356,6 +400,7 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
                 sourceUrl: key.url, applyUrl: key.url, country: 'India',
                 location: geography.location, city: geography.indiaCities[0] || null,
                 jobDescription: description, sourceDetailComplete: detailComplete,
+                ...(currentModel ? { nativeApplicationType: currentModel.applicationType } : {}),
                 nativeRecord: record, nativeUniqueId: key.id, nativeDeclaredCountries: geography.countries })
             }
           } catch (error) {
@@ -382,8 +427,30 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
     }
     const first = await collectPass('opening')
     if (first.paginationComplete) {
+      if (current) {
+        const contextRecord = result.observations[0]
+        requireNative(contextRecord, 'native-current-empty-feed-has-no-public-context-proof')
+        const contextURL = identity(contextRecord).url
+        result.openingProgramContext = await verifyCurrentEpamProgram({
+          html: await read(contextURL, 'text/html', 'opening-own-role-context'),
+          sourceUrl: contextURL, nativeRecord: contextRecord, read,
+        })
+      }
       const closing = await collectPass('closing')
+      if (current) {
+        const contextRecord = result.closingObservations.find(row => row.unique_id === result.observations[0].unique_id)
+        requireNative(contextRecord, 'native-current-closing-context-role-missing')
+        const contextURL = identity(contextRecord).url
+        result.closingProgramContext = await verifyCurrentEpamProgram({
+          html: await read(contextURL, 'text/html', 'closing-own-role-context'),
+          sourceUrl: contextURL, nativeRecord: contextRecord, read,
+        })
+        requireNative(result.openingProgramContext.fingerprint === result.closingProgramContext.fingerprint,
+          'native-current-role-program-context-changed')
+      }
       const finalPrimary = primary(await read(PRIMARY, 'text/html', 'closing-primary'))
+      if (current) requireNative(sha(Buffer.from(await read(finalPrimary.controller, 'application/javascript', 'closing-public-controller')))
+        === controllerSHA256, 'native-current-closing-controller-changed')
       result.closingMatches = closing.paginationComplete && first.records.size === closing.records.size
         && [...first.records].every(([id, fingerprint]) => closing.records.get(id) === fingerprint)
         && stable(opening) === stable(finalPrimary)
@@ -391,19 +458,29 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
     }
     result.complete = result.handoffVerified && result.controllerVerified && result.closingMatches
       && result.failures.length === 0
-    result.cleanupAllowed = result.complete
+    result.sourceCurrentAdmissionQualified = current && result.complete
   } catch (error) {
-    if (callerSignal?.aborted) throw callerSignal.reason
+    if (callerSignal?.aborted) { preserveAbort(callerSignal.reason); clearTimeout(timer); throw callerSignal.reason }
     fail('native-inventory', error)
-  } finally { clearTimeout(timer) }
-  callerSignal?.throwIfAborted()
+  }
+  if (callerSignal?.aborted) { preserveAbort(callerSignal.reason); clearTimeout(timer); throw callerSignal.reason }
+  if (typeof options.onAudit === 'function' && !signal.aborted) {
+    try { await awaitEpamRead(() => options.onAudit(freeze(structuredClone(auditSnapshot()))), signal, callerSignal) }
+    catch (error) {
+      if (callerSignal?.aborted) { preserveAbort(callerSignal.reason); clearTimeout(timer); throw callerSignal.reason }
+      fail('audit-callback', error)
+      result.complete = false
+      result.sourceCurrentAdmissionQualified = false
+    }
+  }
+  clearTimeout(timer)
   const complete = result.complete
   const jobs = [...jobsByID.values()].slice(0, requestedMaxJobs ?? jobsByID.size).map(job => {
     const closingMode = closingWorkArrangements.get(job.jobId)
     return { ...job, remoteStatus: closingMode?.observations === 1
       && closingMode.nativeUniqueId === job.nativeUniqueId && closingMode.remoteStatus === job.remoteStatus ? job.remoteStatus : null,
     source: 'epam', link: job.applyUrl, scrapedAt: new Date().toISOString(),
-    sourceListingComplete: complete, sourceScopeComplete: complete, lifecycleCleanupAllowed: complete }
+    sourceListingComplete: complete, sourceScopeComplete: false, lifecycleCleanupAllowed: false }
   })
   result.passes = result.passes.map(({ records, ...pass }) => ({ ...pass, fingerprints: Object.fromEntries(records) }))
   const verifiedAt = complete ? result.retainedResponses.at(-1).completedAt : null
@@ -418,11 +495,11 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
     excludedDetailJobs: 0,
     listingPaginationComplete: result.passes[0]?.paginationComplete === true,
     closingInventoryMatches: result.closingMatches,
-    sourceScopeComplete: complete,
+    sourceScopeComplete: false,
     firstExtractedJobID: jobs[0]?.jobId ?? null,
   })
   attachInventoryEvidence(jobs, { status: complete ? jobs.length ? 'complete-inventory' : 'verified-empty' : 'coverage-gap',
-    firstParty: result.handoffVerified, surface: nativeSearchUrl(0), listingComplete: complete,
+    firstParty: result.handoffVerified, surface: nativeSearchUrl(0), listingComplete: complete, lifecycleCleanupAllowed: false,
     pagesFetched: result.passes.reduce((sum, pass) => sum + pass.pages.length, 0),
     reportedTotal: result.reportedTotal ?? null, indiaFacetCount: complete ? result.reportedTotal : null, verifiedAt,
     reason: complete ? 'current-official-native-India-feed;all-declared-countries-and-full-content;two-complete-native-reads-and-stable-primary'
@@ -432,5 +509,39 @@ export async function runNativeEpam({ options, maxJobs, project, headers }) {
   // Provider decoration maps the array. The existing per-job evidence convention
   // carries the full immutable native batch through that registered boundary.
   if (jobs[0]) jobs[0].nativeCollectionEvidence = batch
+  return jobs
+}
+
+export async function runNativeEpam(args) {
+  const collected = await collectNativeEpam(args)
+  const original = collected[EVIDENCE]
+  const qualified = original.sourceCurrentAdmissionQualified === true
+  const jobs = qualified ? [...collected] : []
+  const batch = freeze({ ...original,
+    sourceCurrentAdmissionQualified: qualified,
+    publicationHeldNativeIDs: qualified ? [] : collected.map(job => job.nativeUniqueId),
+    extractedDetailJobs: jobs.length,
+    firstExtractedJobID: jobs[0]?.jobId ?? null,
+    ...(qualified ? {} : { publicationHold: 'current-complete-renderer-criteria-and-application-contract-not-qualified' }),
+    recordKind: 'vacancy-rows',
+    observedRecordCount: original.passes[0]?.rawCount ?? 0,
+    observedVacancyCount: original.passes[0]?.rawCount ?? 0,
+    sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+    companyGlobalTotal: null, companyIndiaTotal: null,
+  })
+  attachSourceObservationEvidence(jobs, batch)
+  Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: batch, configurable: true })
+  Object.defineProperty(jobs, EVIDENCE, { value: batch })
+  if (jobs[0]) jobs[0].nativeCollectionEvidence = batch
+  attachInventoryEvidence(jobs, {
+    status: qualified && jobs.length ? 'complete-inventory' : 'coverage-gap',
+    firstParty: batch.handoffVerified, surface: nativeSearchUrl(0),
+    listingComplete: qualified && jobs.length > 0, lifecycleCleanupAllowed: false,
+    pagesFetched: batch.passes.reduce((sum, pass) => sum + pass.pages.length, 0),
+    reportedTotal: batch.reportedTotal ?? null, indiaFacetCount: null,
+    verifiedAt: qualified ? batch.verifiedAt : null,
+    reason: qualified ? 'qualified-current-native-India-subset;all-observations-retained;company-scope-and-cleanup-unproved'
+      : 'publication-held;current-renderer-criteria-and-application-proof-incomplete;not-verified-empty',
+  })
   return jobs
 }

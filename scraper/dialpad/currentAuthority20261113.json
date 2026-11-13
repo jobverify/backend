@@ -1,0 +1,714 @@
+{
+  "reviewedOn": "2026-11-13",
+  "kind": "exact-native-link-ancestry-classes-from-retained-current-original-pages",
+  "sourceRequestedUrls": [
+    "https://www.dialpad.com/careers/",
+    "https://www.dialpad.com/careers/open-opportunities/",
+    "https://www.dialpad.com/careers/open-opportunities/apply/?id=8590367002&title=Corporate-Counsel-Telecommunications-&-Regulatory&officeId=4017292002&location=Bay-Area-US"
+  ],
+  "classesByTag": {
+    "a": [
+      "btn-primary btn-primary-secondary-styles",
+      "btn-primary-dark btn-primary-secondary-styles",
+      "btn-text-link"
+    ],
+    "div": [
+      "justify-center md:justify-start flex-row mt-8 flex flex-wrap gap-6 items-center w-full justify-start",
+      "text-deep-blue [&_h1]:!text-[32px] [&_h2]:!text-[32px] lg:[&_h1]:!text-[48px] lg:[&_h2]:!text-[48px] [&_.paragraph]:!text-[20px] [&_.subheading]:!text-[20px] md:[&_.paragraph]:!text-[16px] md:[&_.subheading]:!text-[16px] lg:[&_.paragraph]:!text-[20px] lg:[&_.subheading]:!text-[20px] [&_.paragraph]:!font-medium [&_.subheading]:!font-medium [&_h1]:!text-left [&_h2]:!text-left [&_p]:!text-left [&_.paragraph]:!text-left [&_.subheading]:!text-left [&_.flex-row]:!justify-start",
+      "lg:mx-auto lg:col-span-4 xs:col-span-full col-span-full md:col-span-4 md:self-center lg:self-center lg:col-span-7",
+      "grid-container grid-cols-8 gap-y-8 xs:gap-y-16 lg:gap-y-0 container mx-auto",
+      "relative mx-auto",
+      "text-deep-blue flex flex-col gap-4 [&>p]:!mb-0 [&>h1]:!mt-0 [&>h2]:!mt-0 [&>div]:!mt-0 [&>div+div]:!gap-4",
+      "col-span-full lg:col-start-1 lg:col-end-7 [&_h2]:text-[32px] [&_h2]:font-semibold [&_h2]:leading-[120%] [&_h2]:tracking-[-0.16px] [&_p]:text-[12px] [&_p]:font-bold [&_p]:leading-[120%] [&_p]:tracking-[0.6px] [&_div]:sm:mx-0 mb-8",
+      "relative grid-container",
+      "flex flex-col sm:flex-row w-full items-center gap-4 sm:gap-0 md:gap-0 lg:gap-0 mt-4 [&>button]:mx-3 [&>a]:mx-3 sm:[&>a]:mb-0 last-of-type:[&>a]:mb-0 justify-center btn-container ",
+      "flex flex-col bg-transparent items-center",
+      "relative z-10 block-container",
+      "relative mx-auto max-w-screen-customlg overflow-hidden rounded-2xl py-16 bg-deep-blue dark",
+      "col-span-1",
+      "w-full lg:grid lg:grid-cols-10",
+      "flex w-full flex-col items-center justify-center gap-8 text-base lg:text-xl",
+      "flex flex-col items-center justify-center gap-8",
+      "container !max-w-6xl px-4",
+      "mb-0 flex flex-col gap-16",
+      "mt-[-9px] flex flex-col gap-8",
+      "my-[40px] flex gap-[33px]",
+      "content-container"
+    ],
+    "section": [
+      "container py-[48px] bg-light-tan ",
+      "container py-12 bg-light-tan",
+      "relative px-4 lg:px-8 z-10 py-16 "
+    ],
+    "main": [
+      "bg-light-tan pt-[172px] md:pt-[127px] lg:pt-[153px] [html[data-headache-bar=dismissed]_&]:pt-[72px] md:[html[data-headache-bar=dismissed]_&]:pt-[80px] lg:[html[data-headache-bar=dismissed]_&]:pt-[105px]"
+    ],
+    "body": [
+      "__variable_c870e0 __variable_093972 __variable_19d1f9"
+    ],
+    "html": [
+      ""
+    ],
+    "root": [
+      ""
+    ]
+  },
+  "stylingBySurface": {
+    "careers": {
+      "inlineStyles": [
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        }
+      ],
+      "stylesheets": [
+        {
+          "url": "https://www.dialpad.com/_next/static/css/bc077190056b2fd2.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/bc077190056b2fd2.css",
+            "data-precedence": "next"
+          },
+          "sha256": "6906f4f9b227dd3db4faf1149425c4cde9e69936f7e047544e782d4b33518755"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/645859c2f2901802.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/645859c2f2901802.css",
+            "data-precedence": "next"
+          },
+          "sha256": "583d6620d7cedf8a8b27ff7b55313d5dcddd7cfe9b6ab496977856bfc8c97b28"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/aba022fb46a24329.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/aba022fb46a24329.css",
+            "data-precedence": "next"
+          },
+          "sha256": "959f710ad8367b06be13328d0f6169973bcda687a00404b54fddef1e20d498c8"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/5e926fe9ea91e2f9.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5e926fe9ea91e2f9.css",
+            "data-precedence": "next"
+          },
+          "sha256": "522998ba3020005cff69b22c0bb627aaf45916692d7b71cdd7a5112c35c4cb17"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/1d230bca8927ddbe.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/1d230bca8927ddbe.css",
+            "data-precedence": "next"
+          },
+          "sha256": "8fe8a8a6455d69613ed670dd056577d6d34f28c605e16b2f962508261e3af86e"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/5c4826c56b72a529.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5c4826c56b72a529.css",
+            "data-precedence": "next"
+          },
+          "sha256": "89e7b8e26c51ec4c7f256ced3ba231556f320179b5e0bc64fa596986998a83cd"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/9bc1ffd3896e0178.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/9bc1ffd3896e0178.css",
+            "data-precedence": "next"
+          },
+          "sha256": "a947cb8eda715b96e577e6bdccdaede76378d004868b28cf2f82f2033a82a037"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/981cb09f8014508c.css",
+          "attributes": {
+            "href": "/_next/static/css/981cb09f8014508c.css",
+            "rel": "stylesheet",
+            "as": "style",
+            "data-precedence": "dynamic"
+          },
+          "sha256": "61457ce3b693bab940465dd224cbb840e0446723a818db726c2c407e42990914"
+        }
+      ]
+    },
+    "openings": {
+      "inlineStyles": [
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        }
+      ],
+      "stylesheets": [
+        {
+          "url": "https://www.dialpad.com/_next/static/css/bc077190056b2fd2.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/bc077190056b2fd2.css",
+            "data-precedence": "next"
+          },
+          "sha256": "6906f4f9b227dd3db4faf1149425c4cde9e69936f7e047544e782d4b33518755"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/645859c2f2901802.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/645859c2f2901802.css",
+            "data-precedence": "next"
+          },
+          "sha256": "583d6620d7cedf8a8b27ff7b55313d5dcddd7cfe9b6ab496977856bfc8c97b28"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/aba022fb46a24329.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/aba022fb46a24329.css",
+            "data-precedence": "next"
+          },
+          "sha256": "959f710ad8367b06be13328d0f6169973bcda687a00404b54fddef1e20d498c8"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/5e926fe9ea91e2f9.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5e926fe9ea91e2f9.css",
+            "data-precedence": "next"
+          },
+          "sha256": "522998ba3020005cff69b22c0bb627aaf45916692d7b71cdd7a5112c35c4cb17"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/1d230bca8927ddbe.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/1d230bca8927ddbe.css",
+            "data-precedence": "next"
+          },
+          "sha256": "8fe8a8a6455d69613ed670dd056577d6d34f28c605e16b2f962508261e3af86e"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/5c4826c56b72a529.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5c4826c56b72a529.css",
+            "data-precedence": "next"
+          },
+          "sha256": "89e7b8e26c51ec4c7f256ced3ba231556f320179b5e0bc64fa596986998a83cd"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/9bc1ffd3896e0178.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/9bc1ffd3896e0178.css",
+            "data-precedence": "next"
+          },
+          "sha256": "a947cb8eda715b96e577e6bdccdaede76378d004868b28cf2f82f2033a82a037"
+        }
+      ]
+    },
+    "role": {
+      "inlineStyles": [
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        },
+        {
+          "attributes": {
+            "id": "button-extended-underline-styles"
+          },
+          "sha256": "dfded3d38744177a645349b8a3b59a680e301b400e8878c692d0e00d2da36602"
+        }
+      ],
+      "stylesheets": [
+        {
+          "url": "https://www.dialpad.com/_next/static/css/bc077190056b2fd2.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/bc077190056b2fd2.css",
+            "data-precedence": "next"
+          },
+          "sha256": "6906f4f9b227dd3db4faf1149425c4cde9e69936f7e047544e782d4b33518755"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/645859c2f2901802.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/645859c2f2901802.css",
+            "data-precedence": "next"
+          },
+          "sha256": "583d6620d7cedf8a8b27ff7b55313d5dcddd7cfe9b6ab496977856bfc8c97b28"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/aba022fb46a24329.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/aba022fb46a24329.css",
+            "data-precedence": "next"
+          },
+          "sha256": "959f710ad8367b06be13328d0f6169973bcda687a00404b54fddef1e20d498c8"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/5e926fe9ea91e2f9.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5e926fe9ea91e2f9.css",
+            "data-precedence": "next"
+          },
+          "sha256": "522998ba3020005cff69b22c0bb627aaf45916692d7b71cdd7a5112c35c4cb17"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/1d230bca8927ddbe.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/1d230bca8927ddbe.css",
+            "data-precedence": "next"
+          },
+          "sha256": "8fe8a8a6455d69613ed670dd056577d6d34f28c605e16b2f962508261e3af86e"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/5c4826c56b72a529.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/5c4826c56b72a529.css",
+            "data-precedence": "next"
+          },
+          "sha256": "89e7b8e26c51ec4c7f256ced3ba231556f320179b5e0bc64fa596986998a83cd"
+        },
+        {
+          "url": "https://www.dialpad.com/_next/static/css/9bc1ffd3896e0178.css",
+          "attributes": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/9bc1ffd3896e0178.css",
+            "data-precedence": "next"
+          },
+          "sha256": "a947cb8eda715b96e577e6bdccdaede76378d004868b28cf2f82f2033a82a037"
+        }
+      ]
+    }
+  },
+  "attributeValuesByTag": {
+    "section": {
+      "data-section": [
+        "poster-card",
+        "feature-list-card",
+        "promo-card"
+      ],
+      "data-testid": [
+        "default-story"
+      ],
+      "id": [
+        "promo-card-4OabruFlu8Cutvmcgj7Fey"
+      ]
+    },
+    "main": {
+      "data-testid": [
+        "regular-page-template"
+      ],
+      "data-slug": [
+        "careers",
+        ""
+      ]
+    },
+    "html": {
+      "lang": [
+        "en-US"
+      ]
+    },
+    "a": {
+      "rel": [
+        "noreferrer"
+      ],
+      "target": [
+        "_blank"
+      ]
+    }
+  }
+}

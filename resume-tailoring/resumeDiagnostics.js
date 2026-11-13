@@ -14,7 +14,7 @@ const failures = {
   compiler_resource_limit: 'The PDF compiler reached its resource limit. Please retry.',
   pdf_invalid: 'The generated PDF failed readability validation after one repair. Please retry.',
   factual_validation_failed: 'The generated document could not preserve the source facts. Your previous successful version is unchanged. Please retry.',
-  pagination_failed: 'The original content cannot fit into two readable pages without losing facts. Shorten the source resume and retry.',
+  pagination_failed: 'The resume did not fit its required one- or two-page layout after revision. Please retry.',
   comparison_invalid: 'The factual comparison returned an invalid response after one repair. Please retry.',
   input_too_large: 'The complete resume and profile exceed the supported input limit. Use a shorter source document and retry; no content was truncated.',
   time_limit: 'The resume processing time limit was reached. Please retry.',

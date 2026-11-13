@@ -39,10 +39,10 @@ async function collect(route,{changeClosing=false,maxJobs=null}={}){
  const opening=structuredClone(expectedPayload),closing=structuredClone(expectedPayload),calls=[]
  if(changeClosing)closing.jobs[0].futureNativeCriterion={required:true}
  const fetchImpl=async(url,init={})=>{
-  assert.equal(url,[CAREERS,API,API,CAREERS][calls.length],'only the real four-request protocol is admitted')
+  assert.equal(url,[CAREERS,API,API,CAREERS][calls.length%4],'only complete four-request cohorts are admitted')
   assert.ok(init.signal instanceof AbortSignal)
   calls.push(url)
-  const payload=calls.length===2?opening:closing
+  const payload=calls.length%4===2?opening:closing
   return{ok:true,status:200,url,headers:new Headers({'content-type':url===API?'application/json':'text/html; charset=utf-8'}),text:async()=>fixture.responses.corporate,json:async()=>payload}
  }
  const options={fetchImpl,signal:new AbortController().signal,maxJobs,totalBudgetMs:20000,requestTimeoutMs:3000}

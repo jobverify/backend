@@ -2,7 +2,7 @@ import { Worker } from 'node:worker_threads';
 import { inflateRawSync } from 'node:zlib';
 import { MAX_RESUME_BYTES } from '../utils/resumeFile.js';
 import { MAX_RESUME_TEXT_BYTES, tailoringError } from './resumeTailoringContent.js';
-import { normalizeResumeLinks } from './resumeSource.js';
+import { normalizeResumeLinks, normalizeResumeLinkLabels } from './resumeSource.js';
 import { remainingBudget } from '../../resume-tailoring/resumeBudget.js';
 import { resumeFailure } from '../../resume-tailoring/resumeDiagnostics.js';
 
@@ -55,7 +55,10 @@ export async function extractResumeContent({ extension, data, deadline }) {
     worker.once('message', result => {
       if (result.error || typeof result.text !== 'string' || result.text.trim().length < 40) return finish(tailoringError('Could not extract enough text. Upload a readable resume with your experience and education.', 422));
       if (Buffer.byteLength(result.text) > MAX_RESUME_TEXT_BYTES) return finish(tailoringError('Use a shorter resume so all candidate facts can be preserved.', 422));
-      finish(null, { text: result.text.trim(), links: normalizeResumeLinks(result.links) });
+      const pageCount = Number.isSafeInteger(result.pageCount) && result.pageCount > 0 && result.pageCount <= 10000 ? result.pageCount : null;
+      const links = normalizeResumeLinks(result.links);
+      const linkLabels = normalizeResumeLinkLabels(result.linkLabels, links);
+      finish(null, { text: result.text.trim(), links, ...(linkLabels.length ? { linkLabels } : {}), ...(pageCount ? { pageCount } : {}) });
     });
   });
 }

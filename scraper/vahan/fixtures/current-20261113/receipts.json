@@ -1,0 +1,506 @@
+[
+  {
+    "requestedUrl": "https://www.vahan.co/careers/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:14.932280+00:00",
+    "completedAt": "2026-11-13T07:24:17.041362+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/",
+    "bytes": 39460,
+    "sha256": "b99a3f5539b0e03992783eaba837853ae9b8b6e2d4d0f3b9f28ea0e9511a7409",
+    "file": "listing-opening.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:17.063379+00:00",
+    "completedAt": "2026-11-13T07:24:18.339025+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/",
+    "bytes": 22099,
+    "sha256": "34236802726c8b6bd21cdaac848fee7c1f58717a3f0780622e837772d275a641",
+    "file": "homepage.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/business-development-manager-lucknow/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:17.068805+00:00",
+    "completedAt": "2026-11-13T07:24:18.553945+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/business-development-manager-lucknow/",
+    "bytes": 23191,
+    "sha256": "6394fe66cb92fc1061e33925c4f34c2074919ef0a99729887e20db0004c3eb77",
+    "file": "careers_business-development-manager-lucknow.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/key-account-manager-supply/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:17.068805+00:00",
+    "completedAt": "2026-11-13T07:24:18.554889+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/key-account-manager-supply/",
+    "bytes": 23922,
+    "sha256": "468b86ae1632ee3d093c7b370f3dff7df8c2988563da3db550dc0fbf9fdb143e",
+    "file": "careers_key-account-manager-supply.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/bde-indore/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:17.072090+00:00",
+    "completedAt": "2026-11-13T07:24:18.339025+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/bde-indore/",
+    "bytes": 22957,
+    "sha256": "617220c6a166d6eb49e9382c125178ed054fbbf29cc9a6dee4ed00d262a82add",
+    "file": "careers_bde-indore.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/manager-channel-partner-acquisition/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:18.339025+00:00",
+    "completedAt": "2026-11-13T07:24:19.562738+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/manager-channel-partner-acquisition/",
+    "bytes": 25998,
+    "sha256": "8e92e2b561a5bb7d6be978e8cd86004133e59810c63be5c6026c79aaa3d8b655",
+    "file": "careers_manager-channel-partner-acquisition.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/bde-delhi/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:18.339025+00:00",
+    "completedAt": "2026-11-13T07:24:19.750161+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/bde-delhi/",
+    "bytes": 22897,
+    "sha256": "081016fd9df19b1d8ac3dff200c7071f07b2ddee0561b31cd8183d9f7aa6cac1",
+    "file": "careers_bde-delhi.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/cm-bangalore/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:18.553945+00:00",
+    "completedAt": "2026-11-13T07:24:19.904678+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/cm-bangalore/",
+    "bytes": 24099,
+    "sha256": "6b78726bdb29cb1aca393dc73c297528220d95df2e7cb282c2054c3f0e5cff54",
+    "file": "careers_cm-bangalore.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/bde-mumbai/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:18.556220+00:00",
+    "completedAt": "2026-11-13T07:24:20.099079+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/bde-mumbai/",
+    "bytes": 22948,
+    "sha256": "c03b9b345c88076f9baa328090381c498c49ba7bcafb3ea930ffab045ef07dd0",
+    "file": "careers_bde-mumbai.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/intern-channel-development/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:19.562738+00:00",
+    "completedAt": "2026-11-13T07:24:20.917126+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/intern-channel-development/",
+    "bytes": 23691,
+    "sha256": "e93f139f0324708369416ba1a779d92633165e3d5de06045e3892fd57a8d90cc",
+    "file": "careers_intern-channel-development.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/cluster-lead-south-tn-kerala/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:19.750161+00:00",
+    "completedAt": "2026-11-13T07:24:20.760876+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/cluster-lead-south-tn-kerala/",
+    "bytes": 22781,
+    "sha256": "c460422e5b5c828c94b495f1a531cdf869c5b83d7d36ab4acb5f19538d514170",
+    "file": "careers_cluster-lead-south-tn-kerala.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/bde-hyderabad/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:19.904678+00:00",
+    "completedAt": "2026-11-13T07:24:21.039530+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/bde-hyderabad/",
+    "bytes": 22828,
+    "sha256": "037f28833a39b589c70c692e8eaebe26c808d516aacbca05737e693a5e8a4742",
+    "file": "careers_bde-hyderabad.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/cm-hyderabad/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:20.099079+00:00",
+    "completedAt": "2026-11-13T07:24:21.437248+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/cm-hyderabad/",
+    "bytes": 22347,
+    "sha256": "7f178991d0f239510f0293fd7fb26b6b5a88c3dd962daa67396725612f2335a0",
+    "file": "careers_cm-hyderabad.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/associate-account-manager/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:20.760876+00:00",
+    "completedAt": "2026-11-13T07:24:21.904778+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/associate-account-manager/",
+    "bytes": 20454,
+    "sha256": "c6b36235e14b18801772446646eca1dfd8ce5f8644d83d7dcb53c099e5166ca5",
+    "file": "careers_associate-account-manager.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/bde-chennai/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:20.917126+00:00",
+    "completedAt": "2026-11-13T07:24:22.143163+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/bde-chennai/",
+    "bytes": 23647,
+    "sha256": "3d40ee780162de28f386cd35abf0cd7bd400bc14df052207a490c00a196681c1",
+    "file": "careers_bde-chennai.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/cm-chennai/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:21.039530+00:00",
+    "completedAt": "2026-11-13T07:24:22.253597+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/cm-chennai/",
+    "bytes": 24011,
+    "sha256": "4e04105b072a0ec91fdd93bff8ec902cde1e8d08d37ef3147423578f874b4cc2",
+    "file": "careers_cm-chennai.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/sde-2-backend-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:21.437248+00:00",
+    "completedAt": "2026-11-13T07:24:22.603466+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/sde-2-backend-engineer/",
+    "bytes": 23864,
+    "sha256": "53e3493e3e9eae133693b4464dc88bd555497e01eb03e19ba27ac8f7015e8a79",
+    "file": "careers_sde-2-backend-engineer.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/ai-engineer-intern/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:21.905323+00:00",
+    "completedAt": "2026-11-13T07:24:23.237036+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/ai-engineer-intern/",
+    "bytes": 22888,
+    "sha256": "6833354e1bbb9a88048a1e3f7c3ef0d3ce1353e8b27b82b160f7571a58b8eeca",
+    "file": "careers_ai-engineer-intern.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/senior-backend-engineer/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:22.143163+00:00",
+    "completedAt": "2026-11-13T07:24:23.617732+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/senior-backend-engineer/",
+    "bytes": 26353,
+    "sha256": "0b7e0559ae46b544df8c86e0bd05a4f200ef0680d527a71bba61b869525f1932",
+    "file": "careers_senior-backend-engineer.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/social-media-and-brand-manager/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:22.253597+00:00",
+    "completedAt": "2026-11-13T07:24:23.413869+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/social-media-and-brand-manager/",
+    "bytes": 22210,
+    "sha256": "5669377f0e7f125aede3f30659333d8b2319656e7d8efafdb094d6c05fd8aff0",
+    "file": "careers_social-media-and-brand-manager.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/lead-human-data/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:22.603466+00:00",
+    "completedAt": "2026-11-13T07:24:24.164585+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/lead-human-data/",
+    "bytes": 24122,
+    "sha256": "112ae455ed1d803cd395e32091eb6b1c60df815b7ff9a79a06e0d3f6893ab30f",
+    "file": "careers_lead-human-data.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/centre-manager-mumbai/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:23.237036+00:00",
+    "completedAt": "2026-11-13T07:24:24.528792+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/centre-manager-mumbai/",
+    "bytes": 23607,
+    "sha256": "ffc0f931c738bd3fdac0ceb0eeab8bdf1f7967eeebd8dcac12495d83247fd9b6",
+    "file": "careers_centre-manager-mumbai.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/centre-manager-bangalore/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:23.413869+00:00",
+    "completedAt": "2026-11-13T07:24:24.652479+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/centre-manager-bangalore/",
+    "bytes": 23635,
+    "sha256": "cd89403709b0fe2ec4ca2f34fdb98c45ef8e78c99edeb83ae6c2de7c62da8e35",
+    "file": "careers_centre-manager-bangalore.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/centre-manager-delhi/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:23.619039+00:00",
+    "completedAt": "2026-11-13T07:24:24.853903+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/centre-manager-delhi/",
+    "bytes": 23554,
+    "sha256": "94259d4bb38da8cd2682a6d8d5444701d2f99a08f750685cba226d44251f172d",
+    "file": "careers_centre-manager-delhi.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/fleet-manager/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:24.165559+00:00",
+    "completedAt": "2026-11-13T07:24:25.428785+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/fleet-manager/",
+    "bytes": 22703,
+    "sha256": "228d16ca98f18b4f413f7520e5bd8786de9d9b69454929076934472295800d50",
+    "file": "careers_fleet-manager.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/talent-acquisition-specialist/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:24.528792+00:00",
+    "completedAt": "2026-11-13T07:24:25.752122+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/talent-acquisition-specialist/",
+    "bytes": 25435,
+    "sha256": "2b473187b4d80346ba85b348844b9f05b5820f853b78045b14a43598a73a9a3f",
+    "file": "careers_talent-acquisition-specialist.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/hr-intern/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:24.652479+00:00",
+    "completedAt": "2026-11-13T07:24:25.690238+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/hr-intern/",
+    "bytes": 22311,
+    "sha256": "b81a98b3e9ec9669a603ebad9645f6792dc9cd72ffd97826573595db2bb83612",
+    "file": "careers_hr-intern.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/head-of-finance/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:24.853903+00:00",
+    "completedAt": "2026-11-13T07:24:26.070986+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/head-of-finance/",
+    "bytes": 22635,
+    "sha256": "21145dc88c1cc94bf4fbd0381cf4d519954565c5f3fde6384ccf3323aed8bd12",
+    "file": "careers_head-of-finance.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/key-account-manager/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:25.428785+00:00",
+    "completedAt": "2026-11-13T07:24:26.738337+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/key-account-manager/",
+    "bytes": 23955,
+    "sha256": "3b369ce8029cd263110f28f87188f1019277114e128bf41ac42b402bd8df010e",
+    "file": "careers_key-account-manager.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/intern-gtm/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:25.690238+00:00",
+    "completedAt": "2026-11-13T07:24:30.638095+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/intern-gtm/",
+    "bytes": 23757,
+    "sha256": "050cda1458e137d72cf57167d713b663892ed03954fc20b7a5db6a89d41e0d69",
+    "file": "careers_intern-gtm.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/_astro/styles.DSJzDw_Y.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:25.752122+00:00",
+    "completedAt": "2026-11-13T07:24:30.472057+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/_astro/styles.DSJzDw_Y.css",
+    "bytes": 26131,
+    "sha256": "1d7180e888ed7827035613900f48b19a15d4646f8fee94ac186e7109835d1248",
+    "file": "styles.DSJzDw_Y.css.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/_astro/careers.D7sopiS7.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:26.070986+00:00",
+    "completedAt": "2026-11-13T07:24:27.098931+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/_astro/careers.D7sopiS7.css",
+    "bytes": 16951,
+    "sha256": "ba7603153b33eb871dd0c14498b37bada19860618724e03ba8c4065b74078c9a",
+    "file": "careers.D7sopiS7.css.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/_astro/responsive.CEO3JTRX.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:26.739346+00:00",
+    "completedAt": "2026-11-13T07:24:28.239710+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/_astro/responsive.CEO3JTRX.css",
+    "bytes": 69086,
+    "sha256": "b0bf6c99f36c9367321886a6bd6508ca28944f7c28300f7205448e3a768efbef",
+    "file": "responsive.CEO3JTRX.css.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/_astro/Base.astro_astro_type_script_index_0_lang.Dxv3huhu.js",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:27.098931+00:00",
+    "completedAt": "2026-11-13T07:24:28.157445+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/_astro/Base.astro_astro_type_script_index_0_lang.Dxv3huhu.js",
+    "bytes": 12623,
+    "sha256": "1fdee5a16a78af187f0cf2c3414c20d41c5f5560d6463482a025bfd82751d3e7",
+    "file": "Base.astro_astro_type_script_index_0_lang.Dxv3huhu.js.gz",
+    "headers": {
+      "Content-Type": "text/javascript; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/_astro/career-role.B2ZynOP3.css",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:28.158956+00:00",
+    "completedAt": "2026-11-13T07:24:29.186893+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/_astro/career-role.B2ZynOP3.css",
+    "bytes": 4718,
+    "sha256": "851993f1d6e771e0d37f61ddecade781859882fe04656e434d490171d5d7b920",
+    "file": "career-role.B2ZynOP3.css.gz",
+    "headers": {
+      "Content-Type": "text/css; charset=utf-8"
+    }
+  },
+  {
+    "requestedUrl": "https://www.vahan.co/careers/",
+    "method": "GET",
+    "startedAt": "2026-11-13T07:24:30.640105+00:00",
+    "completedAt": "2026-11-13T07:24:31.767720+00:00",
+    "status": 200,
+    "url": "https://www.vahan.co/careers/",
+    "bytes": 39460,
+    "sha256": "b99a3f5539b0e03992783eaba837853ae9b8b6e2d4d0f3b9f28ea0e9511a7409",
+    "file": "listing-closing.html.gz",
+    "headers": {
+      "Content-Type": "text/html; charset=utf-8"
+    }
+  }
+]

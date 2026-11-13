@@ -10,20 +10,23 @@ function replay(mutate=()=>{},extra={}){
  const data=structuredClone(fixture);mutate(data);const calls=[],seen=new Map()
  return{calls,options:{now:()=>data.capturedAt,...extra,fetchText:async(url,options)=>{
   calls.push({url,signal:options?.signal});const rows=data.responses.filter(row=>row.requestedUrl===url),index=seen.get(url)||0;seen.set(url,index+1)
+  // The historical capture has one role document. This retained-document
+  // control exercises the added closing declaration check; live proof is separate.
+  if(index===1&&rows.length===1&&url==='https://celebaltech.com/careers/website-owner')return rows[0].body
   assert.ok(rows[index],'unexpected current native read '+url+' #'+index);return rows[index].body
  }}}
 }
 const listRows=data=>data.responses.filter(row=>row.requestedUrl.endsWith('/getAllJobs'))
 const changeJson=(row,mutate)=>{const value=JSON.parse(row.body);mutate(value);row.body=JSON.stringify(value)}
-test('registered Celebal source reads the declared live API and full role criteria with current India office proof',async()=>{
+test('registered Celebal source reads the declared live API and full criteria with explicit native India country',async()=>{
  const{options}=replay(),jobs=await createCatalogScraper(provider).run(options)
- assert.equal(jobs.length,20)
+ assert.equal(jobs.length,6)
  assert.ok(jobs.every(job=>job.country==='India'&&job.sourceDetailComplete===true&&job.jobDescription.length>300))
  assert.ok(jobs.every(job=>job.sourceScopeComplete===false&&job.lifecycleCleanupAllowed===false))
  assert.ok(!jobs.some(job=>['data-scientist-fresher','data-engineer-fresher','data-scientist','lorem-ipsum'].includes(job.jobId)))
  assert.equal(readInventoryEvidence(jobs).status,'coverage-gap')
  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
- assert.equal(jobs[0].nativeCollectionEvidence.unknownCountry.length,2)
+ assert.equal(jobs[0].nativeCollectionEvidence.unknownCountry.length,16)
 })
 test('unreviewed Celebal list and detail clients cannot activate their native API contracts',async()=>{
  for(const part of ['/pages/careers-','/pages/careers/%5Bid%5D-']){
@@ -65,7 +68,9 @@ test('Celebal cannot replace full native criteria with a card summary',async()=>
   for(const row of listRows(data))changeJson(row,value=>shorten(value.data.find(row=>row.id==='website-owner')))
   changeJson(data.responses.find(row=>row.requestedUrl.endsWith('/getJob/website-owner')),value=>shorten(value.data))
  })
- await assert.rejects(createCatalogScraper(provider).run(options),/criteria|detail/)
+ const jobs=await createCatalogScraper(provider).run(options)
+ assert.equal(jobs.length,5);assert.equal(jobs.some(job=>job.jobId==='website-owner'),false)
+ assert.deepEqual(jobs.nativeCollectionEvidence.criteriaHolds,['website-owner'])
 })
 test('Celebal closing inventory compares full native records, including publication status and criteria',async()=>{
  for(const field of ['status','description']){

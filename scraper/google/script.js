@@ -6,6 +6,7 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { mapWithConcurrency } from '../../scraper-support/utils/mapWithConcurrency.js'
 import { loadNativePaginationDefaults, nativePaginationLimits, createNativePagination, readNativeWithSignal } from '../../scraper-support/utils/nativePagination.js'
+import { activeHead, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -210,6 +211,15 @@ export const extractGoogleNextPageUrl = (html, currentUrl = BASE_URL) => {
   return href ? toAbsoluteUrl(href, currentUrl) : null
 }
 
+const isNativeEmptyResultsPage = html => {
+  const doc = readNativeDocument(html)
+  const titles = activeHead(html).titles
+  return titles.length === 1 && titles[0] === 'Search Jobs — Google Careers'
+    && doc.nodes(node => node.tag === 'h2' && doc.hasClass(node, 'r4nke') && doc.text(node) === 'No results').length === 1
+    && doc.nodes(node => node.tag === 'span' && doc.hasClass(node, 'ij8cu')
+      && doc.text(node) === 'Search again or try updating your filters').length === 1
+}
+
 const mergeJobDetail = (primary = {}, fallback = {}) => ({
   jobDescription: primary.jobDescription || fallback.jobDescription || null,
   minimumQualification: primary.minimumQualification || fallback.minimumQualification || null,
@@ -264,6 +274,10 @@ export const createGoogleScraper = ({
 
           const jobs = extractGoogleListingCards(html, currentUrl)
           if (jobs.length === 0) {
+            // An advertised next page can become empty when the live inventory
+            // changes. Preserve prior roles without certifying an employer zero
+            // or a complete inventory (nativePagination retains discovery scope).
+            if (isNativeEmptyResultsPage(html)) return pagination.finish(allJobs, { exhausted: true })
             throw new Error(`Google job list not found at: ${currentUrl}`)
           }
 

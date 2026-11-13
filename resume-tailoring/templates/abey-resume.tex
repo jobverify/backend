@@ -1,0 +1,134 @@
+\documentclass[letterpaper,11pt]{article}
+% Abey Resume Template -- Abey George.
+% Source: https://www.overleaf.com/latex/templates/abey-resume-template/jxstkffrxxmh
+% Gallery license: CC BY 4.0; original source header: MIT, based on sb2nov/resume.
+% Adapted for Tectonic: omit pdfTeX-only glyph setup and unused graphics;
+% use fontawesome5 alone, readable bullets and wrapping entry columns.
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{black}{HTML}{130810}
+\definecolor{darkcolor}{HTML}{0F4539}
+\definecolor{cvgreen}{HTML}{3BD80D}
+\definecolor{taggreen}{HTML}{00E278}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{name}{black}
+\colorlet{tagline}{darkcolor}
+\colorlet{heading}{darkcolor}
+\colorlet{headingrule}{cvblue}
+\colorlet{accent}{darkcolor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setlength{\parindent}{0pt}
+\hyphenpenalty=10000
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large\bfseries}{}{0em}{}[\color{black}\titlerule\vspace{-5pt}]
+\newcommand{\resumeItem}[1]{\item\small{#1\vspace{-2pt}}}
+\newcommand{\classesList}[4]{\item\small{#1 #2 #3 #4\vspace{-2pt}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+  \begin{tabularx}{\linewidth}[t]{X@{\extracolsep{\fill}}r}
+    \textbf{\large #1} & \textbf{\small #2} \\
+    \textit{\large #3} & \textit{\small #4} \\
+  \end{tabularx}\vspace{-7pt}
+}
+\newcommand{\resumeSubSubheading}[2]{
+  \item
+  \begin{tabularx}{0.97\linewidth}{X@{\extracolsep{\fill}}r}
+    \textit{\small #1} & \textit{\small #2} \\
+  \end{tabularx}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+  \begin{tabularx}{\linewidth}{X@{\extracolsep{\fill}}r}
+    \small #1 & \textbf{\small #2} \\
+  \end{tabularx}\vspace{-7pt}
+}
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+\renewcommand{\labelitemi}{\textbullet}
+\renewcommand{\labelitemii}{\textbullet}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in,label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\sbullet}[1][.5]{\textbullet}
+\newcommand{\faLinkedinSquare}{\faLinkedin}
+\renewcommand{\faExternalLink}{\faIcon{external-link-alt}}
+\begin{document}
+% Sample body demonstrates formatting only; it supplies no candidate facts.
+\vspace*{18pt}
+\begin{center}
+{\Huge \scshape Your Name} \\ \vspace{1pt}
+City, State \\ \vspace{1pt}
+\small \faPhone{} \href{tel:+12345678900}{+1 234 567 8900} ~
+\faEnvelope{} \href{mailto:yourname@example.com}{yourname@example.com} ~
+\faLinkedinSquare{} \href{https://linkedin.com/in/yourid}{yourid} ~
+\faGithub{} \href{https://github.com/yourid}{yourid}
+\vspace{-8pt}
+\end{center}
+\section{EDUCATION}
+\resumeSubHeadingListStart
+\resumeSubheading{Institution}{Start -- End}{Degree}{City, Country}
+\resumeSubHeadingListEnd
+\section{COURSEWORK / SKILLS}
+\begin{multicols}{4}
+\begin{itemize}[itemsep=-2pt,parsep=5pt]
+\item Source-supported coursework
+\item Source-supported skill
+\end{itemize}
+\end{multicols}
+\section{PROJECTS}
+\resumeSubHeadingListStart
+\resumeProjectHeading{\textbf{\large Project Name} \textbar{} Technology Stack}{Dates}
+\resumeItemListStart
+\resumeItem{Source-supported project achievement.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{EXPERIENCE}
+\resumeSubHeadingListStart
+\resumeSubheading{Employer}{Start -- End}{Actual Role}{City, Country}
+\resumeItemListStart
+\resumeItem{Source-supported achievement.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{TECHNICAL SKILLS}
+\begin{itemize}[leftmargin=0.15in,label={}]
+\small \item \textbf{Languages:} Source-supported languages \\
+\textbf{Developer Tools:} Source-supported tools \\
+\textbf{Technologies/Frameworks:} Source-supported technologies
+\end{itemize}
+\section{EXTRACURRICULAR}
+\resumeSubHeadingListStart
+\resumeSubheading{Organization}{Dates}{Actual Role}{Location}
+\resumeItemListStart
+\resumeItem{Source-supported activity.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{CERTIFICATIONS}
+\resumeItemListStart
+\resumeItem{Source-supported certification.}
+\resumeItemListEnd
+\end{document}

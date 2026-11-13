@@ -27,6 +27,7 @@ import {
 } from "../constants/jobFilterTaxonomy.js";
 
 import { PUBLIC_JOB_TYPE_EXPRESSION } from "../utils/publicJobType.js";
+import { batchYearExpression } from '../utils/jobBatchEligibility.js';
 import { normalizePublicJobCategory as normalizeResponseJobType, normalizePublicExperienceLevel as normalizeResponseExperienceLevel } from '../utils/publicJobNormalization.js';
 import { normalizePublicWorkArrangement, PUBLIC_WORK_ARRANGEMENT_EXPRESSION } from '../utils/publicWorkArrangement.js';
 import { withSemanticExperienceConstraint } from '../utils/classifiedExperienceFilters.js';
@@ -118,6 +119,8 @@ const JOB_LIST_CARD_FIELDS = Object.freeze([
   "seniority",
   "workArrangement",
   "eligibleBatches",
+  "eligibleBatchRange",
+  "eligibleBatchesProvenance",
   "branches",
   "postedAt",
   "employerPostedAt",
@@ -721,6 +724,7 @@ export const normalizeResponseJob = (job) => {
     _publicJobType,
     classification: _classification,
     postClassification: _postClassification,
+    batchEligibility: _batchEligibility,
     sourceDescription: _sourceDescription,
     sourceContentHash: _sourceContentHash,
     sourceContentHashVersion: _sourceContentHashVersion,
@@ -1273,7 +1277,7 @@ const buildRecommendationScoreExpression = (profile = {}) => {
   if (Number.isFinite(passingYear)) {
     scoreParts.push({
       $cond: [
-        { $in: [passingYear, { $ifNull: ["$eligibleBatches", []] }] },
+        batchYearExpression(passingYear),
         7,
         0,
       ],

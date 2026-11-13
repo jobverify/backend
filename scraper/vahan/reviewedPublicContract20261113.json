@@ -1,0 +1,17 @@
+{
+  "reviewedOn": "2026-11-13",
+  "scope": "Published employer HTML under /careers/; excludes the customer-facing /jobs/ marketplace. No application requests.",
+  "assets": {
+    "/_astro/styles.DSJzDw_Y.css": "1d7180e888ed7827035613900f48b19a15d4646f8fee94ac186e7109835d1248",
+    "/_astro/careers.D7sopiS7.css": "ba7603153b33eb871dd0c14498b37bada19860618724e03ba8c4065b74078c9a",
+    "/_astro/responsive.CEO3JTRX.css": "b0bf6c99f36c9367321886a6bd6508ca28944f7c28300f7205448e3a768efbef",
+    "/_astro/Base.astro_astro_type_script_index_0_lang.Dxv3huhu.js": "1fdee5a16a78af187f0cf2c3414c20d41c5f5560d6463482a025bfd82751d3e7",
+    "/_astro/career-role.B2ZynOP3.css": "851993f1d6e771e0d37f61ddecade781859882fe04656e434d490171d5d7b920"
+  },
+  "inlineClients": {
+    "listing": "5d63e586c0d8a603af373df2fae58c60020e20d5422c99e6b2f097d66f539f71",
+    "role": "9371202d907cd64432e58b8a362fc81a55224334bcfef60817073db51a663ef5"
+  },
+  "review": "The listing client filters only the existing DOM job rows; all three select defaults are all. The role client adjusts layout and submits the same native form role/slug/page only after user submission; no additional criteria are fetched. Base client changes navigation, decorative waves, slideshows and videos. Stylesheets leave the job-row, jr-title, jr-meta and jr-block criteria visible; responsive rules hide decorative jr-band only. All source criteria are retained without generated headings.",
+  "evidence": "fixtures/current-20261113/receipts.json"
+}

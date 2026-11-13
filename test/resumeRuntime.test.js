@@ -48,7 +48,8 @@ test('LaTeX inference constrains packages and document structure without constra
   assert.equal(typeof requests[0].grammar, 'string', 'generation must enforce its compiler-supported format during decoding');
   assert.match(requests[0].grammar, /documentclass/);
   assert.match(requests[0].grammar, /hyperref/);
-  assert.doesNotMatch(requests[0].grammar, /inputenc|fontspec|fontawesome/);
+  assert.doesNotMatch(requests[0].grammar, /inputenc|fontspec/);
+  assert.match(requests[0].grammar, /fontawesome5/);
   assert.equal(requests[1].grammar, undefined);
   assert.equal(requests[1].response_format.type, 'json_schema');
 });

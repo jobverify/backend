@@ -23,6 +23,7 @@ router.get('/revisions', revisions.list);
 router.get('/revisions/compare', revisions.compare);
 router.get('/revisions/:revisionId/download', revisions.download);
 router.post('/revisions/:revisionId/restore', uploadLimiter, revisions.restore);
+router.delete('/revisions/:revisionId', uploadLimiter, revisions.remove);
 router.post('/prepare', uploadLimiter, prepareResume);
 router.delete('/', removeResume);
 router.put('/', uploadLimiter, (req, res, next) => {

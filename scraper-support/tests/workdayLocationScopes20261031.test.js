@@ -53,7 +53,9 @@ const replay = async (t, source, { qualify = false, closingDrift = false, contra
       postCounts.set(offset, count)
       // The real failure capture never reached closing. Only the controlled
       // positive case replays its initial listing as a stable closing response.
-      if (closingDrift && count === 2 && offset === 0) {
+      // Both allowed closing snapshots drift; a single transient change now
+      // receives one fresh complete pass and cannot test persistent rejection.
+      if (closingDrift && count % 2 === 0 && offset === 0) {
         const payload = JSON.parse(body)
         payload.total++
         body = JSON.stringify(payload)

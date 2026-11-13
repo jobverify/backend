@@ -4,6 +4,7 @@ import{attachInventoryEvidence}from'../../scraper-support/utils/inventoryEvidenc
 import{attachSourceObservationEvidence}from'../../scraper-support/utils/sourceObservationEvidence.js'
 import{qualifyScreenloopClient}from'./clientContract.js'
 import reviewed from'./reviewedPublicContract.json'with{type:'json'}
+import reviewed20261113 from'./reviewedPublicContract20261113.json'with{type:'json'}
 export const HOME='https://amicable.io/',CAREERS='https://amicable.io/careers',BOARD='https://app.screenloop.com/careers/amicable'
 const SOURCE='amicableai',COMPANY='amicable',hash=value=>createHash('sha256').update(value).digest('hex'),norm=value=>String(value??'').replace(/\s+/g,' ').trim(),equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b)
 const need=(ok,why)=>{if(!ok)throw Error('amicable native: '+why)}
@@ -14,6 +15,7 @@ countries.set('united kingdom of great britain and northern ireland','United Kin
 const country=value=>typeof value==='string'?countries.get(norm(value).toLowerCase())||null:null
 const company=value=>{need(value?.organizationId===474&&value.name==='amicable'&&value.subdomain==='amicable','native public employer identity changed');return{organizationId:value.organizationId,name:value.name,subdomain:value.subdomain}}
 const publicScripts=html=>{const doc=readNativeDocument(html),root=doc.nodes(node=>node.tag==='root')[0],scripts=[];const visit=node=>{if(typeof node==='string'||node.tag==='template')return;if(node.tag==='script'){if(!Object.hasOwn(node.attrs,'nomodule')&&/^(?:|module|(?:text|application)\/(?:java|ecma)script)$/.test(node.attrs.type||''))scripts.push(node);return}node.children.forEach(visit)};visit(root);return scripts}
+const inlineCss=html=>{const doc=readNativeDocument(html),styles=[];const visit=node=>{if(typeof node==='string'||node.tag==='template')return;if(node.tag==='style'){styles.push(hash(node.raw||''));return}if(node.inert)return;node.children.forEach(visit)};visit(doc.nodes(node=>node.tag==='root')[0]);return styles}
 const framePath=html=>{const doc=readNativeDocument(html),parents=new Map(),frames=[];const visit=node=>{if(typeof node==='string'||node.tag==='template')return;if(node.tag==='iframe'&&node.attrs.src===BOARD)frames.push(node);for(const child of node.children||[])if(typeof child!=='string'){parents.set(child,node);visit(child)}};visit(doc.nodes(node=>node.tag==='root')[0]);let at=one(frames,'declared native frame');const path=[];for(;at;at=parents.get(at))path.push({tag:at.tag,attrs:Object.fromEntries(Object.entries(at.attrs).filter(([key])=>['class','id','style','hidden','inert','aria-hidden','width','height'].includes(key)))});return path}
 const props=(html,component)=>{const doc=readNativeDocument(html),node=one(doc.nodes(node=>node.attrs['data-react-class']===component),'public component '+component);let value;try{value=JSON.parse(node.attrs['data-react-props'])}catch{throw Error('amicable native: invalid public React model')};company(value.companyInfo);return value}
 const model=html=>{
@@ -25,12 +27,19 @@ const model=html=>{
 }
 const projection=rows=>rows.map(row=>({id:row.id,name:row.name,job:row.job,location:Object.fromEntries(Object.entries(row.location).filter(([key])=>!['jobsCount','updatedAt'].includes(key)))})).sort((a,b)=>a.id-b.id)
 const geographicExtras=row=>Object.keys(row).filter(key=>!['id','name','location','job'].includes(key)&&/countr|location|workplace|address/i.test(key)).length>0
+const visibleAuthoredCriteria=html=>{
+ // These are the complete inline typography declarations in the reviewed public criteria.
+ // Every original fragment and ancestor must qualify; remaining visible text is insufficient.
+ const typography=style=>style.split(';').every(value=>!value.trim()||/^(?:white-space\s*:\s*pre-wrap|text-align\s*:\s*(?:left|start|justify))\s*$/i.test(value.trim()))
+ const doc=readNativeDocument(html),visible=node=>typeof node==='string'||(!node.inert&&!Object.hasOwn(node,'raw')&&typography(node.attrs.style||'')&&node.children.every(visible))
+ return visible(doc.nodes(node=>node.tag==='root')[0])
+}
 function detail(html,row){
  const value=props(html,'applicant_tracking/Jobs/JobPostPage'),native=value.previewJobPost
  need(value.previewMode===false&&native?.jobPostId===row.id&&native.name===row.name&&native.status==='published','public detail identity/title/publication changed')
  need(native.location===row.location.name,'public listing/detail workplace label conflict')
  const description=value.jobPostHtmlString,text=extractActiveDescription(description)
- need(typeof description==='string'&&text&&text.length>=250,'full public role criteria unavailable')
+ need(typeof description==='string'&&text&&text.length>=250&&visibleAuthoredCriteria(description),'full visible authored public role criteria unavailable')
  const raw=[row.location.countryCode,row.location.country,native.locationCountry],present=raw.filter(value=>value!==null&&value!==undefined&&value!==''),resolved=present.map(country),unique=[...new Set(resolved.filter(Boolean))]
  const unknown=resolved.some(value=>!value)||unique.length!==1||geographicExtras(row)||geographicExtras(row.job)||Object.keys(row.location).some(key=>!['id','name','address','jobsCount','updatedAt','country','countryCode','state','stateCode','timezone','city','importedId','importedProvider'].includes(key)&&/countr|location|workplace|address/i.test(key))
  const resolvedCountry=unknown?null:unique[0],sourceUrl=BOARD+'/job_posts/'+row.id+'?tab=overview'
@@ -44,12 +53,13 @@ export async function runCurrentAmicable(options={}){
  const context=async()=>{
   const home=await read(HOME),homeDoc=readNativeDocument(home);need(activeHead(home).titles.some(title=>/^amicable\s*\|/i.test(title))&&homeDoc.nodes(node=>node.tag==='a'&&new URL(node.attrs.href||'',HOME).href===CAREERS&&homeDoc.text(node)==='Careers').length>0,'current employer homepage/careers handoff changed')
   const html=await read(CAREERS),doc=readNativeDocument(html);need(activeHead(html).titles.includes('Careers: explore our vacancies | amicable')&&doc.nodes(node=>node.tag==='section'&&node.attrs.id==='explore-vacancies').length===1&&activeIframeSources(html).includes(BOARD),'current active careers native handoff changed')
-  need(equal(framePath(html),reviewed.corporateFramePath),'current native frame CSS visibility path changed')
-  const css=doc.nodes(node=>node.tag==='link'&&node.attrs.rel==='stylesheet').map(node=>new URL(node.attrs.href,CAREERS).href);need(equal(css,reviewed.corporateFrameCss.map(row=>row.url))&&equal(doc.nodes(node=>node.tag==='style').map(node=>hash(node.raw||'')),reviewed.corporateInlineCss),'public frame visibility context changed')
-  for(const asset of reviewed.corporateFrameCss)need(hash(await read(asset.url))===asset.sha256,'public frame CSS visibility contract changed')
+  const css=doc.nodes(node=>node.tag==='link'&&node.attrs.rel==='stylesheet').map(node=>new URL(node.attrs.href,CAREERS).href),frameContract=[reviewed,reviewed20261113].find(contract=>equal(css,contract.corporateFrameCss.map(row=>row.url)))
+  need(frameContract&&equal(framePath(html),frameContract.corporateFramePath),'current native frame CSS visibility path changed')
+  need(equal(inlineCss(html),frameContract.corporateInlineCss),'public frame visibility context changed')
+  for(const asset of frameContract.corporateFrameCss)need(hash(await read(asset.url))===asset.sha256,'public frame CSS visibility contract changed')
   const board=await read(BOARD),rows=model(board),head=activeHead(board);need(head.metas.some(meta=>meta.property==='og:url'&&meta.content===BOARD),'native board canonical identity changed')
-  const script=one(publicScripts(board).filter(node=>node.attrs.src===reviewed.client),'published public executable client'),source=await read(script.attrs.src),digest=hash(source)
-  if(!contracts.has(digest))contracts.set(digest,qualifyScreenloopClient(source))
+  const script=one(publicScripts(board).filter(node=>[reviewed.client,reviewed20261113.client].includes(node.attrs.src)),'published public executable client'),source=await read(script.attrs.src),digest=hash(source),clientContract=[reviewed,reviewed20261113].find(contract=>contract.client===script.attrs.src)
+  if(!contracts.has(digest))contracts.set(digest,qualifyScreenloopClient(source,clientContract))
   return rows
  }
  const observe=async(rows,phase)=>{for(const row of rows){signal.throwIfAborted();try{const job=detail(await read(BOARD+'/job_posts/'+row.id+'?tab=overview'),row);observed.set(row.id,job);if(job.sourceCountryScopeUnresolved)failures.push({stage:'country',id:row.id,phase,reason:'unknown or conflicting native listing/detail country',rawFields:job.sourceNativeCountryFields});if(phase==='opening')firstDetails.set(row.id,job);else if(!equal(firstDetails.get(row.id),job))failures.push({stage:'detail-closing',id:row.id,phase,reason:'closing full public criteria/identity/country changed'})}catch(error){signal.throwIfAborted();if(/public HTTP|public final URL/.test(error.message))throw error;failures.push({stage:'detail',id:row.id,phase,reason:error.message})}}}
@@ -58,8 +68,9 @@ export async function runCurrentAmicable(options={}){
  const active=new Map(closing.map(row=>[row.id,row])),nonVacancyRecords=[...observed.values()].filter(job=>/^join our talent pool$/i.test(norm(job.title))),bad=new Set(failures.filter(row=>row.id).map(row=>row.id))
  let jobs=[...observed.values()].filter(job=>{const id=Number(job.jobId),first=opening.find(row=>row.id===id),last=active.get(id);return job.country==='India'&&job.sourceCurrentNativeRoleQualified&&!bad.has(id)&&!nonVacancyRecords.includes(job)&&first&&last&&equal(projection([first]),projection([last]))})
  const limit=Number.isSafeInteger(options.maxJobs)&&options.maxJobs>0?options.maxJobs:null,limited=Boolean(limit&&jobs.length>limit);if(limit)jobs=jobs.slice(0,limit)
- const complete=closingInventoryMatches&&failures.length===0&&!limited,stamp=new Date().toISOString(),evidence={status:complete?'complete-inventory':'coverage-gap',surface:BOARD,firstParty:true,listingComplete:complete,pagesFetched:responses.length,reportedTotal:opening.length,indiaFacetCount:complete?jobs.length:null,verifiedAt:stamp,reason:'Current corporate-declared Screenloop complete jobPosts with bound public inventory/pagination components, same-ID full public criteria and final membership after closing details; unresolved fields retained; declared-board scope only.'}
+ const complete=closingInventoryMatches&&failures.length===0&&!limited,stamp=new Date().toISOString(),evidence={status:complete?'complete-inventory':'coverage-gap',surface:BOARD,firstParty:true,listingComplete:complete,lifecycleCleanupAllowed:false,pagesFetched:responses.length,reportedTotal:opening.length,indiaFacetCount:complete?jobs.length:null,verifiedAt:stamp,reason:'Current corporate-declared Screenloop complete jobPosts with bound public inventory/pagination components, same-ID full public criteria and final membership after closing details; unresolved fields retained; declared-board scope only.'}
  attachInventoryEvidence(jobs,evidence);if(!complete)attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'mixed',observedRecordCount:opening.length,observedVacancyCount:opening.length-nonVacancyRecords.length,sourceScopeComplete:false})
  const audit={source:SOURCE,nativeCompany:COMPANY,legacyCatalogLabel:'Amicable AI',sourceDeclaredBoardScopeComplete:complete,sourceCompanyWideScopeComplete:false,sourceLifecycleCleanupVerified:false,opening:projection(opening),closingBeforeDetails:projection(closingBeforeDetails),closing:projection(closing),closingInventoryMatches,finalInventoryReadAfterDetails:true,observedDetails:[...observed.values()],nonVacancyRecords:nonVacancyRecords.map(job=>({id:job.jobId,title:job.title,reason:'explicit Join our Talent Pool public record, not a specific vacancy'})),failures,limited,responses,publicClientContracts:[...contracts.values()],privateApplicationRequests:0,inventoryEvidence:evidence}
+ Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
  if(options.onAudit)await wait(Promise.resolve().then(()=>options.onAudit(audit)));signal.throwIfAborted();return jobs
 }

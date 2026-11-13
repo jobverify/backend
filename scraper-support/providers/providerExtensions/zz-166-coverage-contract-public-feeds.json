@@ -99,46 +99,6 @@
     "verificationDisposition": "current-native-feed-revalidated-each-run;historical-snapshots-do-not-prove-future-inventory"
   },
   {
-    "source": "dialpad",
-    "companyName": "Dialpad",
-    "adapter": "publicAts",
-    "catalogOverride": true,
-    "companyDomain": "dialpad.com",
-    "companyCareerPage": "https://www.dialpad.com/careers/",
-    "atsPlatform": "greenhouse",
-    "boardToken": "dialpad",
-    "countryFilter": "India",
-    "zeroResultPolicy": "evidence-required",
-    "backfillMode": "live-parser",
-    "paginationStrategy": "current-first-party-handoff-and-full-native-public-feed",
-    "extractionStrategy": "runtime-employer-binding-native-role-identity-country-and-description-verification",
-    "parser": "public-ats-runtime-verified",
-    "verifiedOn": "2026-11-03",
-    "bindingEvidence": {
-      "verified": true,
-      "checkedAt": "2026-11-03T08:34:18.548Z",
-      "officialURL": "https://www.dialpad.com/careers/open-opportunities/apply/?id=8590367002&title=Corporate-Counsel-Telecommunications-&-Regulatory&officeId=4017292002&location=Bay-Area-US",
-      "evidenceURL": "https://www.dialpad.com/careers/open-opportunities/apply/?id=8590367002&title=Corporate-Counsel-Telecommunications-&-Regulatory&officeId=4017292002&location=Bay-Area-US",
-      "httpStatus": 200,
-      "matchedLinks": [
-        "https://boards.greenhouse.io/dialpad/jobs/8590367002"
-      ],
-      "bindingMethod": "official-careers-native-posting-link"
-    },
-    "runtimeInventoryVerification": {
-      "mode": "role-links-exact",
-      "boardUrl": "https://boards.greenhouse.io/dialpad",
-      "employerHandoffPages": [
-        "https://www.dialpad.com/careers/open-opportunities/"
-      ],
-      "employerRoleLinks": {
-        "pathname": "/careers/open-opportunities/apply/",
-        "idParameter": "id"
-      }
-    },
-    "verificationDisposition": "current-native-feed-revalidated-each-run;historical-snapshots-do-not-prove-future-inventory"
-  },
-  {
     "source": "moengage",
     "companyName": "MoEngage",
     "catalogOverride": true,

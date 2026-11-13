@@ -21,7 +21,7 @@ export function slbRoleURL(value){
  check(url.protocol==='https:'&&url.origin==='https://careers.slb.com'&&!url.username&&!url.password&&!url.hash
   &&url.pathname==='/jobdescription.aspx'&&url.searchParams.getAll('id').length===1
   &&[...url.searchParams.keys()].every(key=>key==='id'),'unbound own role URL')
- check(/^(?:EF[0-9]+-en_US [0-9]+|WD[A-Za-z0-9_-]+)$/.test(url.searchParams.get('id')),'unreviewed native role identifier')
+ check(/^(?:EF[0-9]+-(?:en_US|en) [0-9]+|WD[A-Za-z0-9_-]+)$/.test(url.searchParams.get('id')),'unreviewed native role identifier')
  return url
 }
 

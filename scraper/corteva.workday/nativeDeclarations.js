@@ -6,8 +6,12 @@ import {parseNativeJSON} from '../aecom.workday/nativeJSON.js'
 export const CAREERS='https://careers.corteva.com/'
 export const PORTAL='https://apply.corteva.com/'
 export const BOARD=PORTAL+'careers'
-export const CLIENT=PORTAL+'gen/js/pcsxPwa.6c903be3a68c07ae.js'
-export const CLIENT_SHA256='c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111'
+export const CLIENT=PORTAL+'gen/js/pcsxPwa.52b647b4fc3ce8f6.js'
+export const CLIENT_SHA256='d08d828d8794b424383232b00c35df5733ed99b7fcd4154ac91bdd311515d78c'
+const reviewedClients=new Map([
+ [CLIENT,CLIENT_SHA256],
+ [PORTAL+'gen/js/pcsxPwa.6c903be3a68c07ae.js','c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111'],
+])
 export const searchURL=start=>PORTAL+'api/pcsx/search?domain=corteva.com&query=&location=&start='+start+'&'
 export const detailURL=id=>PORTAL+'api/pcsx/position_details?'+new URLSearchParams({position_id:String(id),domain:'corteva.com',hl:'en'})
 export const roleURL=id=>PORTAL+'careers/job/'+id
@@ -40,15 +44,18 @@ function carrier(html,id){
 export function board(html){
  const branding=carrier(html,'branding-data'),pcsx=carrier(html,'pcsx-data'),doc=readVisibleNativeDocument(html,{strict:true})
  need(branding.domain==='corteva.com'&&pcsx.domain==='corteva.com','tenant domain differs')
- need(doc.nodes(n=>n.tag==='script'&&n.attrs.src===new URL(CLIENT).pathname).length===1,'reviewed PCSX client missing')
+ const scripts=doc.nodes(n=>n.tag==='script'&&/^\/gen\/js\/pcsxPwa\.[^/]+\.js$/.test(n.attrs.src||''))
+ need(scripts.length===1&&reviewedClients.has(PORTAL.slice(0,-1)+scripts[0].attrs.src),'reviewed PCSX client missing')
+ const clientURL=PORTAL.slice(0,-1)+scripts[0].attrs.src
  need(pcsx.configs?.pcsxConfig?.positionDetailsConfig?.efJdOverridesAtsPosting===false,'unreviewed description source override')
- return{tenantDomain:'corteva.com',boardURL:BOARD,clientURL:CLIENT,clientSHA256:CLIENT_SHA256,efJdOverridesAtsPosting:false,requestGeolocationUsed:false,programsExecuted:false}
+ return{tenantDomain:'corteva.com',boardURL:BOARD,clientURL,clientSHA256:reviewedClients.get(clientURL),efJdOverridesAtsPosting:false,requestGeolocationUsed:false,programsExecuted:false}
 }
-export function client(bytes){need(createHash('sha256').update(bytes).digest('hex')===CLIENT_SHA256,'published client contract changed')}
-export function canonical(html,id,role,now){
+export function client(bytes,{clientURL=CLIENT}={}){need(reviewedClients.has(clientURL)&&createHash('sha256').update(bytes).digest('hex')===reviewedClients.get(clientURL),'published client contract changed')}
+export function canonical(html,id,role,now,expectedTenant){
  const doc=readVisibleNativeDocument(html,{strict:true}),links=doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical')
  need(links.length===1&&links[0].attrs.href===roleURL(id),'canonical role page differs')
- board(html)
+ const tenant=board(html)
+ if(expectedTenant)need(tenant.clientURL===expectedTenant.clientURL&&tenant.clientSHA256===expectedTenant.clientSHA256,'role client differs from the native board deployment')
  const scripts=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json')
  need(scripts.length===1,'missing or ambiguous own structured role')
  const model=json(scripts[0].raw),keys=['@context','@type','datePosted','description','employmentType','hiringOrganization','inLanguage','jobLocation','title','url','validThrough']

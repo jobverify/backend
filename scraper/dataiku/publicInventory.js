@@ -3,11 +3,13 @@ import { runCurrentGreenhouseSource, inspectNativeRecordShape, readNativeCriteri
 import config from './currentConfig.json' with { type: 'json' }
 import { captureCurrentPublicScope } from './publicScope.js'
 import { reconcileOfficeScope } from './officeScope.js'
-import { createDataikuPublicRead, HOME, JOBS, OFFICES } from './publicRead.js'
+import { createDataikuPublicRead, observeUntilAborted, HOME, JOBS, OFFICES } from './publicRead.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { createPublishingGapAtsScraper } from '../../scraper-support/utils/publishingGapAts.js'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 import { rawElementNodes } from '../biofourmis/scriptExecution.js'
+import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
+import { qualifyDataikuCriteria } from './criteriaVisibility20261113.js'
 
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex')
 const stable = value => Array.isArray(value) ? value.map(stable) : value && typeof value === 'object'
@@ -36,13 +38,13 @@ export async function run(options = {}) {
   signal?.throwIfAborted()
   if (options.maxJobs != null || options.maxPages != null) throw softError('Inventory caps unsupported')
   if (options.fetchJson || options.fetchText || options.fetchPage) throw softError('Observed HTTP fetchImpl required')
-  const io = createDataikuPublicRead(options), reasons = [], originalNativeObservations = []
+  const io = createDataikuPublicRead(options), reasons = [], companyScopeReasons = [], originalNativeObservations = []
   let openingHome, openingOffices, closingOffices, baseAudit, baseJobs, nativeError, openingPayload, finalPayload
   try {
     openingHome = await io.read(HOME)
     checkBinding(openingHome)
     try { openingOffices = json(await io.read(OFFICES)) }
-    catch (error) { signal?.throwIfAborted(); reasons.push('opening-office-protocol-unavailable') }
+    catch { signal?.throwIfAborted(); reasons.push('opening-office-protocol-unavailable') }
     let firstHome = true
     try {
       baseJobs = await runCurrentGreenhouseSource(config, { ...options, signal: io.sourceSignal,
@@ -54,12 +56,12 @@ export async function run(options = {}) {
     } catch (error) { signal?.throwIfAborted(); nativeError = error; reasons.push('native-full-detail-cohort-incomplete') }
     await io.settle()
     const openingPage = io.pages.get(JOBS)?.find(page => page.status === 200 && page.finalUrl === JOBS)
-    if (openingPage) { try { openingPayload = json(openingPage) } catch {} }
+    if (openingPage) { try { openingPayload = json(openingPage) } catch { /* The native error below retains the unavailable opening inventory. */ } }
     if (!openingPayload) throw nativeError || softError('Current native opening inventory unavailable')
     const openingCountryProof = reconcileOfficeScope(openingPayload, openingOffices)
     if (!openingCountryProof.complete) reasons.push(...openingCountryProof.reasons)
     const openingScope = captureCurrentPublicScope(openingHome.text)
-    if (!openingScope.qualified) reasons.push('current-public-employer-scope-unreviewed')
+    if (!openingScope.qualified) companyScopeReasons.push('current-public-employer-scope-unreviewed')
     if (baseAudit) {
       originalNativeObservations.push(baseAudit)
       reasons.push(...baseAudit.scopeReasons.filter(reason => !recoverableScopeReasons.has(reason)))
@@ -86,8 +88,11 @@ export async function run(options = {}) {
       if (nativeError && !baseJobs.length) throw nativeError
     }
     const indiaIds = new Set(openingCountryProof.indiaRoleIds)
-    const jobs = baseJobs.filter(job => indiaIds.has(String(job.jobId)))
+    let jobs = baseJobs.filter(job => indiaIds.has(String(job.jobId)))
     if (jobs.length !== indiaIds.size || jobs.some(job => job.sourceDetailComplete !== true)) reasons.push('selected-native-india-details-incomplete')
+    const criteriaVisibility = openingPayload.jobs.map(row => ({ jobId: String(row.id), ...qualifyDataikuCriteria(row.content) }))
+    const unreviewedCriteria = new Set(criteriaVisibility.filter(row => !row.qualified).map(row => row.jobId))
+    if (unreviewedCriteria.size) reasons.push('native-original-criteria-visibility-unreviewed:' + [...unreviewedCriteria].join(','))
     let closingScope, closingCountryProof, verifiedAt = null
     try {
       closingOffices = json(await io.read(OFFICES))
@@ -99,21 +104,27 @@ export async function run(options = {}) {
       if (!closingCountryProof.complete) reasons.push(...closingCountryProof.reasons)
       if (!same(openingOffices, closingOffices)) reasons.push('native-office-hierarchy-or-job-assignments-changed')
       if (!same(openingPayload, finalPayload)) reasons.push('post-office-native-inventory-changed')
-      if (!closingScope.qualified || closingScope.fingerprint !== openingScope.fingerprint) reasons.push('closing-current-public-employer-scope-changed')
+      if (!closingScope.qualified || closingScope.fingerprint !== openingScope.fingerprint) companyScopeReasons.push('closing-current-public-employer-scope-changed')
       const value = now ? now() : finalHome.completedAt, date = new Date(value)
       if (value == null || !Number.isFinite(+date) || +date <= 0) reasons.push('invalid-proof-clock')
       else verifiedAt = date.toISOString()
-    } catch (error) { signal?.throwIfAborted(); reasons.push('post-office-closing-proof-unavailable') }
+    } catch { signal?.throwIfAborted(); reasons.push('post-office-closing-proof-unavailable') }
     if (io.receipts.some(receipt => !receipt.contentTypeQualified)) reasons.push('observed-native-content-type-unqualified')
     const complete = reasons.length === 0
     const unreviewedOfficeDetails = new Set([...openingCountryProof.unreviewedOfficeRoleIds,
       ...(closingCountryProof?.unreviewedOfficeRoleIds || [])])
     for (const job of jobs) {
-      Object.assign(job, { sourceListingComplete: complete, sourceScopeComplete: complete, lifecycleCleanupAllowed: complete })
+      Object.assign(job, { sourceListingComplete: complete, sourceScopeComplete: false, lifecycleCleanupAllowed: false })
+      if (unreviewedCriteria.has(String(job.jobId))) Object.assign(job, { sourceDetailComplete: false,
+        sourceDetailFailureKind: 'native-original-criteria-visibility-unreviewed' })
       if (unreviewedOfficeDetails.has(String(job.jobId))) Object.assign(job, { sourceDetailComplete: false,
         sourceDetailFailureKind: 'native-office-schema-or-criteria-unresolved',
         sourceDetailFailureReasons: [...(job.sourceDetailFailureReasons || []), 'unreviewed-native-office-role-criteria'] })
     }
+    // The runner's publication classifier does not consume sourceDetailComplete.
+    // Retain unqualified native originals in the audit, outside publishable rows.
+    const withheldIndiaDetails = jobs.filter(job => job.sourceDetailComplete !== true)
+    jobs = jobs.filter(job => job.sourceDetailComplete === true)
     const lastPage = url => io.pages.get(url)?.at(-1)
     const lastPayload = (() => {
       const page = lastPage(JOBS)
@@ -130,21 +141,26 @@ export async function run(options = {}) {
       }), openingEmployerHtml: openingHome.text, closingEmployerHtml: lastPage(HOME)?.text || null,
       scopeReasons: ['native-full-detail-cohort-incomplete'],
     }
-    const audit = { ...fallbackAudit, source: 'dataiku', originalNativeObservations,
+    const audit = { ...fallbackAudit, source: 'dataiku', originalNativeObservations, withheldIndiaDetails, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
       publicInventoryScope: { complete, reasons: [...new Set(reasons)], openingScope, closingScope,
+        companyScopeReasons: [...new Set(companyScopeReasons)], criteriaVisibility,
         openingCountryProof, closingCountryProof, openingOffices, closingOffices, finalPayload,
         nativeError: nativeError ? { message: nativeError.message, failureKind: nativeError.failureKind } : null,
         transport: io.audit, wholeCompanyScope: null, privateApplicationActivation: null,
         verifiedAt: complete ? verifiedAt : null },
     }
     if (jobs.length) jobs[0].nativeCurrentInventoryAudit = audit
-    await onAudit?.(structuredClone(audit))
+    attachSourceObservationEvidence(jobs, { source: 'dataiku', recordKind: 'vacancy-rows',
+      observedRecordCount: openingPayload.jobs.length, observedVacancyCount: openingPayload.jobs.length, sourceScopeComplete: false })
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: audit, configurable: true })
+    Object.defineProperty(jobs, 'sourceAudit', { value: audit, configurable: true })
+    await observeUntilAborted(onAudit?.(structuredClone(audit)), io.sourceSignal)
     signal?.throwIfAborted()
     return attachInventoryEvidence(jobs, { status: complete ? openingPayload.jobs.length ? 'complete-inventory' : 'verified-empty' : 'coverage-gap',
-      surface: JOBS, firstParty: true, listingComplete: complete, pagesFetched: io.receipts.length,
+      surface: JOBS, firstParty: true, listingComplete: complete, lifecycleCleanupAllowed: false, pagesFetched: io.receipts.length,
       reportedTotal: complete ? openingPayload.meta.total : null, indiaFacetCount: complete ? jobs.length : null,
       verifiedAt: complete ? verifiedAt : null,
-      reason: complete ? 'dataiku-current-public-employer-model;all-native-details;office-country-tree-and-assignments;post-office-closing-reconciled'
+      reason: complete ? 'dataiku-current-declared-board;all-native-original-visible-criteria;office-country-tree-and-assignments;post-office-closing-reconciled;company-scope-unproved-cleanup-forbidden'
         : `dataiku-current-public-inventory-incomplete:${[...new Set(reasons)].join(';')}` })
   } finally { await io.settle(); io.dispose() }
 }

@@ -8,6 +8,7 @@ import { normalizePublicJobType, PUBLIC_JOB_TYPES } from '../utils/publicJobType
 import { resolveJobPublicationDate } from '../utils/jobPublicationDate.js';
 import { getSourceDescription } from '../utils/jobSourceContent.js';
 import { isPlaceholderClassificationText, numericExperienceSourceIssues, maskFragmentedExperienceNumbers, companyHistoryExperienceField, maskScreenedThirdPartyDegreeRequirements } from './classificationSourceQuality.js';
+import { normalizeExperienceEvidence } from './classificationExperienceEvidence.js';
 
 const normalizedBytes = relative => readFileSync(new URL(`../../${relative}`, import.meta.url)).toString('utf8').replace(/\r\n/g, '\n');
 const policyBytes = normalizedBytes('classification/policy.json');
@@ -18,7 +19,7 @@ export const POLICY_HASH = createHash('sha256').update(policyBytes).digest('hex'
 export const RUNTIME_HASH = createHash('sha256').update(JSON.stringify([
   'classification/gliclass/model.json', 'classification/gliclass/requirements.txt', 'classification/gliclass/worker.py', 'classification/gliclass/runtime.py',
   'src/services/jobClassificationPolicy.js', 'src/services/classificationDescription.js', 'src/services/classificationSourceQuality.js', 'src/services/jobRecruitmentPolicy.js', 'src/utils/jobClassificationVersion.js', 'src/utils/jobFilterSignals.js', 'src/utils/jobSourceContent.js', 'src/utils/jobPublicationDate.js',
-  'src/utils/publicJobTypeLabel.js', 'src/constants/preferredJobTypes.js',
+  'src/utils/publicJobTypeLabel.js', 'src/constants/preferredJobTypes.js', 'src/services/classificationExperienceEvidence.js',
 ].map(relative => [relative, createHash('sha256').update(normalizedBytes(relative)).digest('hex')]))).digest('hex');
 const PUBLIC_TYPES = ['Intern', 'Full-time Fresher', 'Full-time Experienced', 'Contract', 'Others', 'Unspecified'];
 export const CLASSIFICATION_FIELDS = ['jobType', 'employmentType', 'experienceLevel', 'seniority', 'experienceYears', 'experienceBucket', 'experienceProfile', 'experienceRequired', 'experienceBasis'];
@@ -164,13 +165,13 @@ const NUMERIC_SOURCE_PATTERN = /\b(?:\d+(?:\.\d+)?|zero|one|two|three|four|five|
 const sourceNumericFields = input => {
   const nativeConflict = nativeExperienceConflictEvidence(input);
   if (nativeConflict) return { ...unresolvedNativeExperienceFields(nativeConflict), numericSourceIssues: [] };
-  const separated = splitPreferenceText(input.body.replace(/[\u2013\u2014]/g, '-'), input);
+  const separated = splitPreferenceText(normalizeExperienceEvidence(input.body), input);
   separated.required = maskScreenedThirdPartyDegreeRequirements(separated.required);
   const numericSourceIssues = numericExperienceSourceIssues({ requiredText: separated.required,
     description: splitPreferenceText(input.sourceFields.description, input).required,
     experienceRequired: input.sourceFields.experienceRequired });
   separated.required = maskFragmentedExperienceNumbers(separated.required);
-  const numericExperienceField = maskFragmentedExperienceNumbers(input.sourceFields.experienceRequired);
+  const numericExperienceField = maskFragmentedExperienceNumbers(normalizeExperienceEvidence(input.sourceFields.experienceRequired));
   // A break from work is not work experience, even if it is adjacent to an experience requirement.
   const breakWords = '(?:career (?:break|gap)|employment gap|break from (?:work|employment))';
   for (const key of ['required', 'preferred']) separated[key] = separated[key]
@@ -178,7 +179,7 @@ const sourceNumericFields = input => {
     // Remove only that duration so a separate professional requirement survives.
     .replace(new RegExp(NUMERIC_SOURCE_PATTERN.source + '\\s+(?:of\\s+)?(?:difference|gap)\\s+between\\s+(?:(?:the|highest)\\s+)*(?:education(?:al)?\\s+)?(?:degree\\s+)?(?:completion|graduation)\\s+date\\s+and\\s+(?:the\\s+)?(?:joining|start)\\s+date', 'gi'), 'education-to-joining interval')
     // The length of a degree is education, not previous professional work.
-    .replace(/\b(?:\d+(?:\.\d+)?|one|two|three|four|five|six)\s*(?:\+\s*)?(?:[- ]\s*)?(?:years?|yrs?)\s*(?:of\s+)?(?=(?:bachelor(?:['\u2019]s|s)?|master(?:['\u2019]s|s)?|[bm]\.?\s*tech|[bm]\.e\.?|degree|diploma)\b)/gi, 'degree duration ')
+    .replace(/\b(?:\d+(?:\.\d+)?|one|two|three|four|five|six)\s*(?:\+\s*)?(?:[- ]\s*)?(?:years?|yrs?)\s*(?:of\s+)?(?=(?:bachelor(?:['\u2019]s|s)?|master(?:['\u2019]s|s)?|[bm]\.?\s*tech|[bm]\.e\.?|degree|diploma)\b)/gi, 'academic qualification ')
     // First-time people leaders can still need substantial professional work.
     // A zero-year leadership subset does not establish zero overall experience.
     .replace(/(?<![\d.])\b(?:0(?:\.0+)?|zero)\s*(?:(?:-|to)\s*(?:\d+(?:\.\d+)?|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s*)?(?:\+\s*)?(?:years?|yrs?|months?)['\u2019]?\s+(?:of\s+)?(?:leadership|(?:people|staff|team|personnel|line)\s+management)\s+experience\b/gi, 'leadership tenure')

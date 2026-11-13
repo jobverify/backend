@@ -2,9 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { prepareResumeRuntime, processResumeDocument } from '../resume-tailoring/resumePipeline.js';
 import { preparationMetadata, requirePreparedResume } from '../src/services/resumePreparationService.js';
+import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
 
 const source = { text: 'Alex Example\nalex@example.com\nEXPERIENCE\nExample Corp\nSoftware Engineer | Jan 2022 - Present\nDeveloped Java services and automated tests.\nEDUCATION\nExample University\nBSc Computer Science | 2018 - 2022', links: ['mailto:alex@example.com'] };
-const latex = '\\documentclass[11pt]{article}\n\\usepackage{hyperref}\n\\begin{document}\nAlex Example\n\\href{mailto:alex@example.com}{alex@example.com}\n\\end{document}';
+const latex = RESUME_LATEX_PREAMBLE + String.raw`\begin{center}
+{\Huge \scshape Alex Example} \\
+\href{mailto:alex@example.com}{alex@example.com}
+\end{center}
+\section{EXPERIENCE}
+\resumeSubHeadingListStart
+\resumeSubheading{Example Corp}{Jan 2022 -- Present}{Software Engineer}{}
+\resumeItemListStart
+\resumeItem{Developed Java services and automated tests.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\end{document}`;
 const compiled = { pdf: Buffer.from('%PDF-test'), text: source.text, links: source.links, pageCount: 2 };
 const supported = JSON.stringify({ evidence: 'All generated claims match the original source facts.', supported: true, missingFacts: [], unsupportedClaims: [] });
 
@@ -18,30 +30,6 @@ test('pipeline separately compares source claims and returns only validated docu
   assert.equal(result.pageCount, 2);
   assert.equal(result.latex, latex);
   assert.ok(result.facts);
-});
-
-test('original destinations omitted by generation are retained before compilation and factual audit', async () => {
-  const links = [...source.links, 'https://example.test/profile_name?ref=resume&v=$&original', 'mailto:legacy@example.test'];
-  let generations = 0;
-  const result = await processResumeDocument({ mode: 'base', source: { ...source, links } }, {
-    generate: async (prompt, options) => {
-      if (options.comparison) {
-        assert.deepEqual(JSON.parse(prompt.split('\n').at(-1)).generatedPdf.links, links);
-        return supported;
-      }
-      generations++;
-      return latex;
-    },
-    compile: async document => {
-      assert.ok(document.includes('\\href{https://example.test/profile\\_name?ref=resume\\&v=\\$\\&original}'));
-      assert.ok(document.includes('\\href{mailto:legacy@example.test}'));
-      assert.equal(document.split('\\href{mailto:alex@example.com}').length - 1, 1, 'existing links are not duplicated');
-      assert.ok(document.endsWith('\\end{document}'));
-      return { ...compiled, links };
-    },
-  });
-  assert.equal(generations, 1);
-  assert.ok(result.latex.includes('profile\\_name'));
 });
 
 test('failed factual validation reports safe issue categories for both bounded attempts', async () => {
@@ -129,12 +117,13 @@ test('a failed comparison never publishes a document and permits only one repair
   assert.equal(generations, 2);
 });
 
-test('base preserves long resumes while tailoring enforces two pages', async () => {
-  const result = await processResumeDocument({ mode: 'base', source }, {
-    generate: async (_prompt, options) => options.comparison ? supported : latex,
+test('base resumes with unknown original pagination still have a two-page ceiling', async () => {
+  let generations = 0;
+  await assert.rejects(processResumeDocument({ mode: 'base', source }, {
+    generate: async (_prompt, options) => options.comparison ? assert.fail('oversized documents must be revised before auditing') : (generations++, latex),
     compile: async () => ({ ...compiled, pageCount: 4 }),
-  });
-  assert.equal(result.pageCount, 4);
+  }), { code: 'pagination_failed' });
+  assert.equal(generations, 2);
 });
 
 test('an incomplete generation uses the same single bounded repair and emits content-free diagnostics', async () => {

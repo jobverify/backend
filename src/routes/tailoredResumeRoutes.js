@@ -14,6 +14,7 @@ router.get('/:jobId/revisions', revisions.list);
 router.get('/:jobId/revisions/compare', revisions.compare);
 router.get('/:jobId/revisions/:revisionId/download', revisions.download);
 router.post('/:jobId/revisions/:revisionId/restore', limit, revisions.restore);
+router.delete('/:jobId/revisions/:revisionId', limit, revisions.remove);
 router.get('/:jobId/download', download);
 router.get('/:jobId/pdf', preview);
 router.get('/:jobId', read);

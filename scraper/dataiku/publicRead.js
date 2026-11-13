@@ -12,7 +12,7 @@ const problem = (message, fields = {}) => Object.assign(new Error('[dataiku] ' +
 const allowed = url => [HOME, JOBS, OFFICES].includes(url)
   || /^https:\/\/boards-api\.greenhouse\.io\/v1\/boards\/dataiku\/jobs\/[1-9]\d*\?content=true$/.test(url)
 const challenge = text => /verify you are human|cf-chl-|Vercel Security Checkpoint|You are opening a CodeSandbox preview/i.test(text)
-const observeUntilAborted = (value, signal) => new Promise((resolve, reject) => {
+export const observeUntilAborted = (value, signal) => new Promise((resolve, reject) => {
   const abort = () => { signal.removeEventListener('abort', abort); reject(signal.reason) }
   signal.addEventListener('abort', abort, { once: true })
   Promise.resolve(value).then(result => {

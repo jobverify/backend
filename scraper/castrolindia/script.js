@@ -420,8 +420,8 @@ export const createLegacyCastrolIndiaScraper = () => ({
   },
 })
 
-export const createCastrolIndiaScraper = (defaults = {}) => ({run:(options = {})=>runNativeCastrol({...defaults,...options})})
-export const run = async (options = {}) => runNativeCastrol(options)
+export const createCastrolIndiaScraper = (defaults = {}) => ({run:(options = {})=>runNativeCastrol({entrySurface:'reviewed-native-board',...defaults,...options})})
+export const run = async (options = {}) => runNativeCastrol({entrySurface:'reviewed-native-board',...options})
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

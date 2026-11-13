@@ -1,6 +1,6 @@
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
-import {CAREERS,PORTAL,BOARD,CLIENT,need,json,corporate,board,client,canonical,searchURL,detailURL,roleURL} from './nativeDeclarations.js'
+import {CAREERS,PORTAL,BOARD,need,json,corporate,board,client,canonical,searchURL,detailURL,roleURL} from './nativeDeclarations.js'
 import {readSearch,indiaCandidate,readRole,reconcile,mapRole} from './nativeModels.js'
 import {cap,transport} from './nativeTransport.js'
 
@@ -25,7 +25,7 @@ export async function runNativeCorteva(options={}){
    const owner=corporate((await io.read(CAREERS)).text);io.allow(PORTAL)
    const redirect=await io.read(PORTAL,'html',302)
    need(new URL(redirect.headers.location,PORTAL).href===BOARD,'declared portal redirect differs');io.allow(BOARD)
-   const tenant=board((await io.read(BOARD)).text);io.allow(CLIENT);client((await io.read(CLIENT,'javascript')).bytes)
+   const tenant=board((await io.read(BOARD)).text);io.allow(tenant.clientURL);client((await io.read(tenant.clientURL,'javascript')).bytes,tenant)
    return{corporate:owner,tenant}
   }
   const openingDeclaration=await declarations()
@@ -44,7 +44,7 @@ export async function runNativeCorteva(options={}){
    const result=[]
    for(const row of rows){
     const api=detailURL(row.id),page=roleURL(row.id);io.allow(api);io.allow(page)
-    const model=json((await io.read(api,'json')).text),role=readRole(model,row,observedAt),pageModel=canonical((await io.read(page)).text,row.id,role,observedAt)
+    const model=json((await io.read(api,'json')).text),role=readRole(model,row,observedAt),pageModel=canonical((await io.read(page)).text,row.id,role,observedAt,openingDeclaration.tenant)
     result.push({...role,canonical:pageModel})
    }
    return result

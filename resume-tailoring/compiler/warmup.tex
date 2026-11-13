@@ -1,12 +1,7 @@
-% Trusted dependency warmup only. No candidate facts or sample identity.
-\documentclass[11pt,a4paper]{article}
-\usepackage[margin=0.7in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{titlesec,enumitem,tabularx,array,multicol,xcolor,hyperref,fancyhdr}
-\pagestyle{empty}
+% Appended to the actual Abey preamble during the trusted image build.
+% Keep legacy packages warm as well; no candidate documents enter this context.
+\usepackage{geometry,array,fancyhdr}
 \hypersetup{hidelinks}
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
 % Exercise actual font shapes, not just package loading. An offline compiler
 % cannot fetch a missing metric or font when a candidate later uses bold/italic.
 \newcommand{\ResumeFontShapes}{%
@@ -17,13 +12,32 @@
   \textbullet\ \textendash\ \textemdash\ \textbackslash\ \textasciitilde\ \textasciicircum\ \textbar\
   C\#, R\&D, 10\%, \_underscore, \{braces\}, caf\'e.\par}
 \begin{document}
+\begin{center}
+{\Huge \scshape Trusted font preparation} \\
+{\small \faPhone{} \faEnvelope{} \faLinkedinSquare{} \faGithub{}
+\faHackerrank{} \faPoll{} \faExternalLink{} \faGlobe{}}
+\end{center}
 \ResumeFontShapes
+{\small\ResumeFontShapes}
 {\large\ResumeFontShapes}
 {\Large\ResumeFontShapes}
 {\LARGE\ResumeFontShapes}
+{\huge\ResumeFontShapes}
+{\Huge\ResumeFontShapes}
 % Also cover documents using the engine's default Unicode font encoding.
 {\fontencoding{TU}\fontfamily{lmr}\selectfont\ResumeFontShapes}
 \section*{Experience}
+\resumeSubHeadingListStart
+\resumeSubheading{Trusted bold entry}{Dates}{Trusted italic role}{Location}
+\resumeItemListStart
+\resumeItem{Trusted bullet and small font preparation.}
+\resumeItemListEnd
+\resumeProjectHeading{\textbf{\large Trusted project} \textbar{} Tools}{Dates}
+\resumeItemListStart
+\resumeItem{Trusted project bullet.}
+\resumeItemListEnd
+\resumeSubSubheading{Trusted secondary role}{Dates}
+\resumeSubHeadingListEnd
 \begin{itemize}[leftmargin=*,nosep]
 \item Trusted dependency preparation: readable text, accents caf\'e, 10\% and C\#.
 \end{itemize}

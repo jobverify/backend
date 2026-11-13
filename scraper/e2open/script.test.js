@@ -161,19 +161,20 @@ test('e2open scraper returns no jobs when the official public jobs page shows no
   assert.deepEqual(jobs, [])
 })
 
-test('e2open scraper normalizes India job postings from embedded official jobs-page JSON-LD', async () => {
+test('e2open preserves its legacy JSON-LD formatter while requiring current native authority at runtime', async () => {
   const e2open = await loadModule()
   assert.ok(e2open, 'e2open scraper module should load')
 
   const { createE2OpenScraper } = e2open
 
-  const jobs = await createE2OpenScraper().run({
+  await assert.rejects(createE2OpenScraper().run({
     fetchText: async (url) => {
       if (url.endsWith('/company/careers/')) return careersHtml
       if (url.endsWith('/jobs/')) return jobsWithJsonLdHtml
       throw new Error(`Unexpected URL: ${url}`)
     },
-  })
+  }),/current native client handoff required/)
+  const jobs=e2open.extractEmbeddedJobPostings(jobsWithJsonLdHtml)
 
   assert.equal(jobs.length, 1)
   assert.equal(jobs[0].title, 'Software Engineer')
@@ -187,9 +188,6 @@ test('e2open scraper normalizes India job postings from embedded official jobs-p
   assert.equal(jobs[0].employmentType, 'Full-time')
   assert.equal(jobs[0].sourceUrl, 'https://www.e2open.com/jobs/software-engineer/')
   assert.equal(jobs[0].applyUrl, 'https://www.e2open.com/jobs/software-engineer/')
-  assert.equal(jobs[0].source, 'e2open')
-  assert.equal(jobs[0].link, 'https://www.e2open.com/jobs/software-engineer/')
-  assert.match(jobs[0].scrapedAt, /^\d{4}-\d{2}-\d{2}T/)
 })
 
 test('e2open scraper rejects unsupported jobs-page markup when listings may exist', async () => {

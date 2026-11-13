@@ -1,26 +1,40 @@
 // Conservative lexical evidence checks, not a semantic-equivalence score.
+import { collapsedDescriptionHeadings, descriptionHeadingNames } from '../src/utils/jobDescriptionStructure.js';
+import { recoverDescriptionLayout } from '../src/utils/jobDescriptionLayout.js';
 // Independent statements may move; protected relationships within them may not.
 const required = /\b(?:must|requir(?:e[sd]?|ing)|mandatory|minimum|at least|essential|necessary)\b/i;
 const preferred = /\b(?:preferred|preferable|desirable|optional|(?:nice|good)[\s-]+to[\s-]+have|a plus)\b/i;
 const negative = /\b(?:no|not|never|without|cannot)\b|\b\w+n['’]t\b/i;
-export const proseHeadingNames = 'role overview|about (?:us|the role|the company)|(?:main |core (?:job )?|key |job )?responsibilities|primary job function|main purpose of (?:the )?role|job description|duties|required(?: qualifications| skills| requirements| experience)?|must[\\s-]+have(?: skills)?|minimum qualifications|basic qualifications|qualifications|requirements|skills|preferred(?: qualifications| skills| requirements)?|(?:nice|good)[\\s-]+to[\\s-]+have|benefits|employment details|application details';
+export const proseHeadingNames = descriptionHeadingNames + '|role overview|about (?:us|the role|the company)|(?:main |core (?:job )?|key |job )?responsibilities|primary job function|main purpose of (?:the )?role|job description|duties|required(?: qualifications| skills| requirements| experience)?|must[\\s-]+have(?: skills)?|minimum qualifications|basic qualifications|qualifications|requirements|skills|preferred(?: qualifications| skills| requirements)?|(?:nice|good)[\\s-]+to[\\s-]+have|benefits|employment details|application details';
 const heading = new RegExp('^(?:#{1,6}\\s*)?(' + proseHeadingNames + ')\\s*(?::|[-–](?=\\s|$)|$)', 'i');
 export const proseSectionRole = title => preferred.test(title || '') ? 'preferred'
-  : /required|must[\s-]+have|minimum|basic|qualification|requirement|^skills$/i.test(title || '') ? 'required' : 'neutral';
+  : /required|mandatory|must[\s-]+have|minimum|basic|qualification|requirement|^(?:technical )?skills$/i.test(title || '') ? 'required' : 'neutral';
 // One heading grammar serves statement checks, block planning and the terminal
 // scope guard, including Markdown bold and list markers.
-export const proseHeadings = source => [...source.matchAll(new RegExp(
+const explicitProseHeadings = source => [...source.matchAll(new RegExp(
   '(?<!\\S)(?:(?<=^|\\n)[ \\t]*(?:[-*•]|\\d+[.)])[ \\t]+)?(?:#{1,6}[ \\t]*)?(?:\\*\\*|__)?('
   + proseHeadingNames + ')[ \\t]*(?:\\*\\*|__)?[ \\t]*(?::|[-–](?=[ \\t\\n]|$)|(?=\\n|$))(?:\\*\\*|__)?[ \\t]*', 'gi'))]
   .filter(match => /[:–-][ \t]*$/.test(match[0].replace(/\*\*|__/g, ''))
     || !source.slice(source.lastIndexOf('\n', match.index - 1) + 1, match.index).trim())
   .map(match => ({ start: match.index, end: match.index + match[0].length, title: match[1], kind: 'heading' }));
+export const proseHeadings = source => {
+  const headings = explicitProseHeadings(source);
+  for (const heading of collapsedDescriptionHeadings(source)) {
+    if (!headings.some(existing => existing.start <= heading.start && existing.end >= heading.start)) headings.push(heading);
+  }
+  return headings.sort((left, right) => left.start - right.start);
+};
 const filler = new Set('a an the is are be been being of for to with in on at by as this that these those have has also please qualifications qualification requirements requirement skills skill required mandatory requires require essential necessary preferred preferable desirable optional nice good plus'.split(' '));
 const aliases = new Map(Object.entries({ develop: 'build', develops: 'build', developing: 'build', builds: 'build', building: 'build',
-  maintains: 'maintain', maintaining: 'maintain', designing: 'design', supporting: 'support', dependable: 'reliable', duties: 'responsibilities' }));
+  maintains: 'maintain', maintaining: 'maintain', designing: 'design', supporting: 'support', dependable: 'reliable', duties: 'responsibilities',
+  seeking: 'seek', managing: 'manage', reviewing: 'review', documenting: 'document', testing: 'test', implementing: 'implement', planning: 'plan', coordinating: 'coordinate' }));
 const numberWords = new Map('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen'.split(' ').map((word, n) => [word, String(n)]));
 const units = { '$': 'currency-dollar', '€': 'currency-euro', '£': 'currency-pound', '₹': 'currency-rupee', '¥': 'currency-yen', '%': 'percent' };
 const normalize = text => text.toLowerCase().replace(/\*\*|__/g, '')
+  .replace(/\bwe are (?:currently )?looking for\b/g, 'we seek')
+  .replace(/\byou will be responsible for\b/g, 'you will')
+  .replace(/\b(?:are|is) required to\b/g, 'must')
+  .replace(/\bpossess\b/g, 'have')
   .replace(/\b(nice|good)[\s-]+to[\s-]+have\b/g, '$1 to have')
   .replace(/^(?:the|this) role (?:focuses on|involves)\s+(?=(?:building|developing|maintaining|designing|supporting)\b)/, '')
   .replace(/[$€£₹¥%]/g, symbol => ' ' + units[symbol] + ' ')
@@ -40,6 +54,7 @@ const terms = (text, boundaries = false) => (normalize(text).match(boundaries
   .map(word => aliases.get(word) || (word.length > 3 && word.endsWith('s') && !/(?:ss|us|is)$/.test(word) ? word.slice(0, -1) : word));
 
 const statements = (text, inheritedRole = 'neutral') => {
+  text = recoverDescriptionLayout(text).text;
   // Normalize only reproduced editorial seams, never arbitrary repeated facts
   // or sentence boundaries (which can attach a duty to a different actor).
   text = text.replace(/\b(The work model for the role is:)[ \t]+(?:The work model for the role is:[ \t]+)+/gi, '$1 ')
@@ -79,6 +94,8 @@ const statements = (text, inheritedRole = 'neutral') => {
           : /\b(?:must|required|mandatory|necessary|essential)\b/i.test(clause) || explicitRole === 'required' ? 'obligation' : 'neutral';
       result.push({ text: clause, tokens, layoutTokens: terms(clause, true), role: explicitRole, modality,
         paragraphEnd: paragraphEnd && clauseIndex === clauses.length - 1,
+        continued: clauseIndex === clauses.length - 1 && /^\n$/.test(fragments[index + 1] || '')
+          && Boolean(fragments[index + 2]?.trim()) && !/^\s*(?:[-*•]|\d+[.)])\s+/.test(fragments[index + 2]),
         negative: negative.test(clause.replace(/\bno (?:less|more) than\b/gi, '')),
         numbers: normalize(clause).match(/\d+(?:\.\d+)*/g) || [] });
     }
@@ -153,7 +170,9 @@ export const checkProseStatements = (source, text, { sectionContext } = {}) => {
   // Match exact canonical facts first so reordering cannot steal a better match.
   for (const unit of originals) {
     const matches = available.get(signature(unit));
-    if (matches?.length) consumed.add(matches.pop());
+    const compatible = matches?.findIndex(index => !unit.continued
+      || !punctuation(rewritten[index].layoutTokens.at(-1)) || punctuation(unit.layoutTokens.at(-1)));
+    if (compatible >= 0) consumed.add(matches.splice(compatible, 1)[0]);
     else unmatched.push(unit);
   }
   const fail = (reason, original, candidate) => ({ reason, diagnostic: { code: reason,
