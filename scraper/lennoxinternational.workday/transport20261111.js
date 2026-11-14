@@ -22,7 +22,7 @@ export function createLennoxTransport(options,receipts){
   if(signal.aborted)aborted()
  })
  return{check,race,signal,async read(url,kind){
-  check();need(receipts.length<64,'native request budget exceeded')
+  check();need(['html','json','javascript'].includes(kind),'unreviewed native response kind');need(receipts.length<64,'native request budget exceeded')
   const receipt={url,method:'GET',kind,requestedAt:new Date().toISOString(),bodyComplete:false};receipts.push(receipt)
   try{
    const fetchImpl=options.fetchImpl??globalThis.fetch
@@ -30,7 +30,7 @@ export function createLennoxTransport(options,receipts){
     // Match the ordinary Node GET representation used by the retained public
     // capture. iCIMS supplies a different merged SSR template for the shared
     // primitive's crawler User-Agent; it is not this reviewed iframe contract.
-    const original=await fetchImpl(url,{...init,credentials:'omit',headers:{...init.headers,Accept:'text/html','User-Agent':'node'}});let size=0
+    const original=await fetchImpl(url,{...init,credentials:'omit',headers:{...init.headers,Accept:kind==='javascript'?'application/javascript,text/javascript':'text/html','User-Agent':'node'}});let size=0
     try{check();init.signal.throwIfAborted();return{status:original.status,url:original.url,headers:original.headers,body:original.body===null?null:{cancel:reason=>original.body.cancel(reason),getReader(){
      const reader=original.body.getReader()
      return{async read(){const value=await reader.read();if(!value.done){size+=byteLength.call(value.value);need(size<2000000,'native body byte limit exceeded')}return value},cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}
@@ -43,7 +43,8 @@ export function createLennoxTransport(options,receipts){
    if(response.status!==200)throw Object.assign(Error('[lennoxinternational] native HTTP '+response.status),{status:response.status,code:'LENNOX_NATIVE_HTTP',abortRetries:true})
    need(response.status===200&&response.url===url&&bytes.length>0&&bytes.length<2000000,'native HTTP status/URL/body changed')
    need(aggregate<=16000000,'native aggregate byte limit exceeded')
-   need((kind==='json'?/^application\/json\b/i:/^text\/html\b/i).test(receipt.contentType||''),'native HTTP content type changed')
+   const mime=kind==='json'?/^application\/json\b/i:kind==='javascript'?/^(?:(?:application|text)\/(?:x-)?javascript)(?:;|$)/i:/^text\/html\b/i
+   need(mime.test(receipt.contentType||''),'native HTTP content type changed')
    const text=new TextDecoder('utf8',{fatal:true}).decode(bytes)
    receipt.nativeTextSha256=createHash('sha256').update(text).digest('hex')
    check();return{text,receipt}

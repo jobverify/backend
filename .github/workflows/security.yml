@@ -39,6 +39,8 @@ jobs:
         run: npm run test:provision-mongo
       - run: npm run lint
       - run: npm run test:api
+      - name: Check encrypted-backup and restore guard logic
+        run: python3 test/databaseBackup_test.py
       - name: Run isolated database and payment integration tests
         run: npm run test:integration
 

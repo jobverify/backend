@@ -10,21 +10,39 @@ export async function auditSoleraRawScope({ apiUrl, boardUrl, schema, signal, re
   const api = new URL(apiUrl), board = new URL(boardUrl), rows = [], details = [], reasons = new Set(), seen = new Set(), pageTotals = [], listingRoleReasons = new Map()
   requireNative(api.origin === board.origin && api.pathname === '/wday/cxs/solera/Global_Career_Site/jobs', 'unexpected explicit native API')
   const request = async (url, init = {}) => {
-    signal?.throwIfAborted()
-    const release = await requestScheduler.acquire(url, { signal, kind: init.method === 'POST' ? 'listing' : 'detail' })
-    try {
-    const deadline = signal ? AbortSignal.any([signal, AbortSignal.timeout(requestTimeoutMs)]) : AbortSignal.timeout(requestTimeoutMs)
-    const response = await fetch(url, { ...init, redirect: 'error', signal: deadline,
-      headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify scraper)' } })
-    if (response.status === 429) requestScheduler.recordRateLimit(url, parseRetryAfterHeader(response.headers.get('retry-after')) ?? 5000)
-    requireNative(response.status === 200 && response.url === url, 'native HTTP status or response URL mismatch')
-    const payload = await response.json()
-    deadline.throwIfAborted()
-    requireNative(payload && typeof payload === 'object' && !Array.isArray(payload), 'native payload unavailable')
-    requireNative(!Object.keys(payload).some(key => /^(?:error|errors|errorCode|exception|fault)$/i.test(key))
-      && payload.success !== false && (payload.httpStatus == null || payload.httpStatus === 200), 'native failure envelope')
-    return payload
-    } finally { release() }
+    for (let attempt = 0; attempt < 3; attempt++) {
+      signal?.throwIfAborted()
+      const release = await requestScheduler.acquire(url, { signal, kind: init.method === 'POST' ? 'listing' : 'detail' })
+      try {
+        const deadline = signal ? AbortSignal.any([signal, AbortSignal.timeout(requestTimeoutMs)]) : AbortSignal.timeout(requestTimeoutMs)
+        const response = await fetch(url, { ...init, redirect: 'manual', signal: deadline,
+          headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify scraper)' } })
+        const location = response.headers.get('location')
+        const redirectUrl = location ? new URL(location, url).href : null
+        const maintenance = [response.url, redirectUrl].some(value => [
+          'https://static.community.workday.com/maintenance-page.html', 'https://community.workday.com/maintenance-page',
+        ].includes(value))
+        const transient = response.status === 429 || response.status >= 500 && response.status <= 599
+        const metadata = { requestedUrl: url, responseUrl: response.url, redirectUrl, httpStatus: response.status }
+        if (maintenance) throw Object.assign(new Error('Solera native raw inventory: Workday maintenance at ' + (redirectUrl || response.url)),
+          metadata, { abortRetries: true, softFailure: true, upstreamOutage: true, failureKind: 'network_or_timeout' })
+        if (response.url !== url) throw Object.assign(new Error('Solera native raw inventory: response URL mismatch ' + response.url),
+          metadata, { abortRetries: true, softFailure: false, upstreamOutage: false, failureKind: 'parser_or_contract_error' })
+        if (transient) {
+          requestScheduler.recordRateLimit(url, parseRetryAfterHeader(response.headers.get('retry-after')) ?? 1000 * (attempt + 1))
+          if (attempt < 2) { await response.body?.cancel(); continue }
+        }
+        if (response.status !== 200) throw Object.assign(new Error('Solera native raw inventory: native HTTP ' + response.status + ' at ' + url),
+          metadata, { abortRetries: true, softFailure: transient, upstreamOutage: transient,
+            failureKind: transient ? 'network_or_timeout' : 'parser_or_contract_error' })
+        const payload = await response.json()
+        deadline.throwIfAborted()
+        requireNative(payload && typeof payload === 'object' && !Array.isArray(payload), 'native payload unavailable')
+        requireNative(!Object.keys(payload).some(key => /^(?:error|errors|errorCode|exception|fault)$/i.test(key))
+          && payload.success !== false && (payload.httpStatus == null || payload.httpStatus === 200), 'native failure envelope')
+        return payload
+      } finally { release() }
+    }
   }
   const fields = (value, allowed, id, context, roleReasons) => {
     if (!value || typeof value !== 'object' || Array.isArray(value) || !Array.isArray(allowed)

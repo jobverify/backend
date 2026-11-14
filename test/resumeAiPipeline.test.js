@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { prepareResumeRuntime, processResumeDocument } from '../resume-tailoring/resumePipeline.js';
 import { preparationMetadata, requirePreparedResume } from '../src/services/resumePreparationService.js';
 import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
+import { compilerFailure } from '../resume-tailoring/latexCompiler.js';
 
 const source = { text: 'Alex Example\nalex@example.com\nEXPERIENCE\nExample Corp\nSoftware Engineer | Jan 2022 - Present\nDeveloped Java services and automated tests.\nEDUCATION\nExample University\nBSc Computer Science | 2018 - 2022', links: ['mailto:alex@example.com'] };
 const latex = RESUME_LATEX_PREAMBLE + String.raw`\begin{center}
@@ -30,6 +31,24 @@ test('pipeline separately compares source claims and returns only validated docu
   assert.equal(result.pageCount, 2);
   assert.equal(result.latex, latex);
   assert.ok(result.facts);
+});
+
+test('the single repair receives actionable compiler guidance and diagnostics keep its safe reason', async () => {
+  const events = [], prompts = [];
+  let compilations = 0;
+  const result = await processResumeDocument({ mode: 'base', source }, {
+    generate: async (prompt, options) => { if (options.comparison) return supported; prompts.push(prompt); return latex; },
+    compile: async () => {
+      if (++compilations === 1) throw compilerFailure({ stderr: 'private compiler input\nRESUME_COMPILER_REASON_ALIGNMENT_TAB', code: 1 });
+      return compiled;
+    },
+    onDiagnostic: event => events.push(event),
+  });
+  assert.equal(result.latex, latex);
+  assert.equal(prompts.length, 2);
+  assert.match(prompts[1], /ampersand/i);
+  assert.ok(events.some(event => event.stage === 'compiling' && event.reason === 'alignment_tab'));
+  assert.doesNotMatch(JSON.stringify(events) + prompts[1], /private compiler input/);
 });
 
 test('failed factual validation reports safe issue categories for both bounded attempts', async () => {

@@ -46,33 +46,52 @@ export async function run({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.pars
   }
   ensure(rows.length===total,'Full native total does not reconcile')
   const expectedIndia=rows.filter(r=>scopeById.get(r.id)?.india),byId=new Map(rows.map(r=>[r.id,r])),details=new Map(),observedIndia=new Set()
+  const unresolvedById=new Map(unresolvedScopes.map(row=>[row.id,row])),facetIdentities=new Set(),facetPages=new Map(),quarantinedFacetRoles=new Map()
+  let facetTotal=null
   const provider=expandApiPortalProviderTemplate({source:'bostonscientific',companyName:'Boston Scientific',companyCareerPage:BOARD,atsPlatform:'eightfold',countryFilter:'India',template:'eightfold',templateOptions:{host:'bostonscientific.eightfold.ai',domain:DOMAIN,pageSize:10},config:{
    request:{query:{domain:DOMAIN,query:'',location:'',filter_country:'India'}},pagination:{pageSize:10,maxPages:101},
    mapping:{location:'verifiedIndiaLocation',sourceUrl:'verifiedPublicUrl',applyUrl:'verifiedPublicUrl'},detail:{concurrency:2,required:false},
+   recordFilter:{include:[{field:'verifiedIndiaCountry',regex:'^India$',flags:''}]},
   }})
-  const jobs=await runApiPortalScraper({provider,fetchJson:async(url,options)=>{
+  const jobs=await runApiPortalScraper({provider,signal:controller.signal,fetchJson:async(url,options)=>{
    try{
     const raw=await request(fetchJson,url,options),u=new URL(url)
     if(u.pathname==='/api/pcsx/search'){
-     const data=page(raw,{country:true});ensure(data.count===expectedIndia.length,'Country facet differs from globally proven India subset')
+     const data=page(raw,{country:true})
+     // Keep the complete issued facet count and every original row. A facet
+     // can include a globally unresolved geography; it cannot resolve that
+     // row's conflicting offices or authorize publication on its own.
+     ensure(data.count>=expectedIndia.length&&data.count<=expectedIndia.length+unresolvedScopes.length,'Country facet count cannot reconcile with global native records')
+     if(facetTotal===null)facetTotal=data.count;else ensure(data.count===facetTotal,'Country facet total drift')
+     const start=u.searchParams.get('start'),snapshot=JSON.stringify(data.positions)
+     if(facetPages.has(start))ensure(facetPages.get(start)===snapshot,'Country facet native listing drift')
+     else{
+      for(const row of data.positions){ensure(!facetIdentities.has(row.id),'Duplicate native country facet identity');facetIdentities.add(row.id)}
+      facetPages.set(start,snapshot)
+     }
      return {data:{...data,positions:data.positions.map(row=>{
       ensure(byId.has(row.id)&&JSON.stringify(byId.get(row.id))===JSON.stringify(row),'Country/global native identity or listing drift')
-      const scope=validateRow(row,{now:startedAt});ensure(scope.india,'Country filter includes unproven India role');observedIndia.add(row.id)
-      return{...row,verifiedIndiaLocation:scope.indiaLocations.map(l=>l.location).join('; '),verifiedPublicUrl:ORIGIN+row.positionUrl}
+      const scope=scopeById.get(row.id)
+      ensure(scope?.india||unresolvedById.has(row.id),'Country filter includes unproven India role')
+      if(!scope){quarantinedFacetRoles.set(row.id,{...unresolvedById.get(row.id),nativeRecord:row});return{...row,verifiedIndiaCountry:null}}
+      observedIndia.add(row.id)
+      return{...row,verifiedIndiaCountry:'India',verifiedIndiaLocation:scope.indiaLocations.map(l=>l.location).join('; '),verifiedPublicUrl:ORIGIN+row.positionUrl}
      })}}
     }
     ensure(u.pathname==='/api/pcsx/position_details','Unexpected shared adapter endpoint')
     const id=Number(u.searchParams.get('position_id')),listing=byId.get(id);ensure(listing,'Unlisted detail identity')
     const detail=validateDetail(raw,listing,{now:startedAt});details.set(id,detail);return{data:detail}
-   }catch(error){error.incompleteScope=true;throw error}
+   }catch(error){controller.signal.throwIfAborted();error.incompleteScope=true;throw error}
   }})
   ensure(observedIndia.size===expectedIndia.length&&jobs.length===expectedIndia.length,'Shared extraction did not reconcile selected India identities')
-  const terminal=page(await request(fetchJson,search(Math.ceil(expectedIndia.length/10)*10,true)),{country:true});ensure(terminal.count===expectedIndia.length&&terminal.positions.length===0,'India terminal drift')
+  ensure(facetIdentities.size===facetTotal&&quarantinedFacetRoles.size+observedIndia.size===facetTotal,'Country facet native row count did not reconcile')
+  const terminal=page(await request(fetchJson,search(Math.ceil(facetTotal/10)*10,true)),{country:true});ensure(terminal.count===facetTotal&&terminal.positions.length===0,'India terminal drift')
   const final=page(await request(fetchJson,search(0)));ensure(final.count===total&&JSON.stringify(final.positions)===firstSnapshot,'Final native snapshot drift')
   const searchCeilingUnresolved=total>=OBSERVED_NATIVE_SEARCH_CEILING
   const complete=!searchCeilingUnresolved&&unresolvedScopes.length===0&&maxJobs>=jobs.length&&readInventoryEvidence(jobs)?.listingComplete===true
-  const selected=jobs.slice(0,maxJobs).map(job=>{const detail=details.get(job.jobId),native=byId.get(job.jobId);return{...job,city:detail.scope.indiaLocations[0].city,postingDate:new Date(native.postedTs*1000).toISOString(),sourceListingComplete:complete,sourceDetailComplete:detail.sourceDetailComplete,sourceDetailStatus:detail.sourceDetailComplete?'complete':'missing-content',sourceNativeLocations:native.locations,sourceNativeStandardizedLocations:native.standardizedLocations,scrapedAt:startedAt}})
-  Object.defineProperty(selected,DIAGNOSTICS,{value:{reportedGlobalTotal:total,uniqueGlobalIdentities:ids.size,knownIndiaRows:expectedIndia.length,unresolvedScopes,terminalPageVerified:true,finalFirstPageRechecked:true,companyHealthComplete:complete&&selected.every(j=>j.sourceDetailComplete)}})
-  return attachInventoryEvidence(selected,{status:complete?(total?'complete-inventory':'verified-empty'):'coverage-gap',surface:BOARD,firstParty:true,listingComplete:complete,pagesFetched:pages,reportedTotal:total,indiaFacetCount:expectedIndia.length,verifiedAt:now(),reason:complete?'global-native-pages-country-facet-details-and-terminal-reconciled':unresolvedScopes.length?'unresolved-native-geography; individually-verified-India-subset':searchCeilingUnresolved?'observed-native-search-ceiling-without-uncapped-contract':'configured-cap-or-incomplete-detail-health'})
+  const selected=jobs.slice(0,maxJobs).map(job=>{const detail=details.get(job.jobId),native=byId.get(job.jobId);return{...job,city:detail.scope.indiaLocations[0].city,postingDate:new Date(native.postedTs*1000).toISOString(),sourceListingComplete:complete,...(!complete?{sourceScopeComplete:false,lifecycleCleanupAllowed:false}:{}),sourceDetailComplete:detail.sourceDetailComplete,sourceDetailStatus:detail.sourceDetailComplete?'complete':'missing-content',sourceNativeLocations:native.locations,sourceNativeStandardizedLocations:native.standardizedLocations,scrapedAt:startedAt}})
+  Object.defineProperty(selected,DIAGNOSTICS,{value:{reportedGlobalTotal:total,uniqueGlobalIdentities:ids.size,knownIndiaRows:expectedIndia.length,unresolvedScopes,quarantinedFacetRoles:[...quarantinedFacetRoles.values()],terminalPageVerified:true,finalFirstPageRechecked:true,companyHealthComplete:complete&&selected.every(j=>j.sourceDetailComplete)}})
+  Object.defineProperty(selected,'nativeCollectionEvidence',{value:{source:'bostonscientific',observedNativeRecords:total,observedFacetRecords:facetTotal,verifiedIndiaRecords:observedIndia.size,quarantinedFacetRecords:quarantinedFacetRoles.size,quarantinedFacetRoles:[...quarantinedFacetRoles.values()],unresolvedGlobalRoles:unresolvedScopes,sourceScopeComplete:complete,...(!complete?{lifecycleCleanupAllowed:false}:{}),terminalPageVerified:true,finalFirstPageRechecked:true},configurable:true})
+  return attachInventoryEvidence(selected,{status:complete?(total?'complete-inventory':'verified-empty'):'coverage-gap',surface:BOARD,firstParty:true,listingComplete:complete,...(!complete?{lifecycleCleanupAllowed:false}:{}),pagesFetched:pages,reportedTotal:total,indiaFacetCount:facetTotal,verifiedAt:now(),reason:complete?'global-native-pages-country-facet-details-and-terminal-reconciled':unresolvedScopes.length?'unresolved-native-geography; individually-verified-India-subset':searchCeilingUnresolved?'observed-native-search-ceiling-without-uncapped-contract':'configured-cap-or-incomplete-detail-health'})
  }finally{controller.abort();clearTimeout(timer);signal?.removeEventListener('abort',abort)}
 }

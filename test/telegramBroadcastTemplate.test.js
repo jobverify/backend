@@ -1,5 +1,12 @@
 import assert from 'node:assert/strict';
-import test from 'node:test';
+import test, { after } from 'node:test';
+
+const previousOrigin = process.env.FRONTEND_ORIGIN;
+process.env.FRONTEND_ORIGIN = 'https://www.jobverify.in';
+after(() => {
+  if (previousOrigin === undefined) delete process.env.FRONTEND_ORIGIN;
+  else process.env.FRONTEND_ORIGIN = previousOrigin;
+});
 import { renderBroadcastTemplate, validateBroadcastTemplate, DEFAULT_BROADCAST_TEMPLATE, BROADCAST_SAMPLE_JOBS } from '../src/services/telegramBroadcastTemplate.js';
 
 test('preview and delivery share the same template renderer and verified data', () => {
@@ -16,7 +23,7 @@ test('lines with missing source details disappear instead of inventing metadata'
   const template = '{company} is hiring {title}\nBatch {batch}\nExperience {experience}\nSalary {salary}\nWork mode {workMode}\n{jobUrl}';
   const text = renderBroadcastTemplate(template, BROADCAST_SAMPLE_JOBS.minimal);
   assert.doesNotMatch(text, /Batch|Experience|Salary|Work mode/);
-  assert.ok(text.includes('https://example.test/jobs/sample'));
+  assert.ok(text.includes('https://www.jobverify.in/jobs/507f1f77bcf86cd799439011'));
 });
 
 test('unsupported tokens, code expressions and templates without an apply link are rejected', () => {
@@ -33,8 +40,8 @@ test('source values cannot inject new placeholders or unexpected multiline metad
 });
 
 test('missing optional fields cannot remove the mandatory application link', () => {
-  assert.equal(renderBroadcastTemplate('{salary} {jobUrl}', BROADCAST_SAMPLE_JOBS.minimal), BROADCAST_SAMPLE_JOBS.minimal.sourceUrl);
+  assert.equal(renderBroadcastTemplate('{salary} {jobUrl}', BROADCAST_SAMPLE_JOBS.minimal), 'https://www.jobverify.in/jobs/507f1f77bcf86cd799439011');
   const text = renderBroadcastTemplate('Role: {title}\nPay and apply: {salary} {jobUrl}', BROADCAST_SAMPLE_JOBS.minimal);
-  assert.ok(text.includes(BROADCAST_SAMPLE_JOBS.minimal.sourceUrl));
+  assert.ok(text.includes('https://www.jobverify.in/jobs/507f1f77bcf86cd799439011'));
   assert.doesNotMatch(text, /Pay and apply/);
 });

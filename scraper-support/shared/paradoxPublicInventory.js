@@ -75,11 +75,27 @@ const profiles = {
     nativeWorkdayCompany: 'Federal Express Corporation - PROD external', nativeWorkdayCompanyID: '25_2634_external',
     descriptionClass: 'c-job-details-content__description', countryFilter: true},
   gevernova: {origin: 'https://careers.gevernova.com', company: 'GE Vernova', nativeCompany: 'GE Vernova - PROD',
-    descriptionClass: 'description', employer: 'GE Vernova'},
+    descriptionClass: 'description', employer: 'GE Vernova', unorderedFacetFields: ['city', 'state']},
 }
 const text = value => typeof value === 'string' ? decodeNativeEntities(value).replace(/\s+/g, ' ').trim() : ''
 const stable = value => JSON.stringify(value, (_key, item) => item && typeof item === 'object' && !Array.isArray(item)
   ? Object.fromEntries(Object.keys(item).sort().map(key => [key, item[key]])) : item)
+// GE's filter renderer keys these bucket choices by custom_value. Case-distinct
+// labels with equal display sort order can exchange positions between reads.
+// Compare their complete objects as a multiset; retain duplicates and every
+// field, and keep jobs, page state and all other arrays in their original order.
+const listingSnapshot = (search, profile) => stable({...search,
+  ...(Array.isArray(search.facets) ? {facets: search.facets.map(facet => {
+    const buckets = facet?.facet_field_keyvalue
+    if (!profile.unorderedFacetFields?.includes(facet?.field) || !Array.isArray(buckets)
+      || !buckets.every(bucket => bucket && typeof bucket === 'object' && !Array.isArray(bucket)
+        && typeof bucket.original_value === 'string' && typeof bucket.custom_value === 'string'
+        && Number.isSafeInteger(bucket.doc_count) && bucket.doc_count >= 0)) return facet
+    const sorted = buckets.map(bucket => ({bucket, key: stable(bucket)}))
+      .sort((a, b) => a.key < b.key ? -1 : a.key > b.key ? 1 : 0)
+    return {...facet, facet_field_keyvalue: sorted.map(item => item.bucket)}
+  })} : {}),
+})
 const hasClass = (node, value) => (node.attrs.class || '').split(/\s+/).includes(value)
 const httpURL = value => {
   try { const url = new URL(value); return url.protocol === 'https:' && !url.username && !url.password && !url.port ? url.href : null }
@@ -204,7 +220,7 @@ export const createParadoxPublicScraper = source => {
       if (total === null) total = search.totalJob
       need(search.totalJob === total && observed + search.jobs.length <= total, 'native total changed during pagination')
       need(search.jobs.length || observed === total, 'native pagination ended early')
-      pages.push({url, page, snapshot: stable(search)})
+      pages.push({url, page, snapshot: listingSnapshot(search, profile)})
       for (const row of search.jobs) {
         need(typeof row?.uniqueID === 'string' && row.uniqueID && !ids.has(row.uniqueID), 'duplicate or missing native posting identity')
         ids.add(row.uniqueID)
@@ -274,7 +290,7 @@ export const createParadoxPublicScraper = source => {
     }
     for (const page of pages) {
       const {search} = searchPage(await read(page.url), page.page)
-      need(stable(search) === page.snapshot, 'closing native listing changed')
+      need(listingSnapshot(search, profile) === page.snapshot, 'closing native listing changed')
     }
     if (jobs.length) jobs[0].nativeInventoryContext = {selectedNativeRecords, heldNativeRecords,
       observedRecordCount: observed, selectedPaginationComplete: complete, companyScopeComplete: false}

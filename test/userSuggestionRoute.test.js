@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { once } from "node:events";
 import test from "node:test";
+import { mockActiveAccountWrites } from './helpers/activeAccountWriteDoubles.js';
 
 Object.assign(process.env, {
   NODE_ENV: "test",
@@ -25,6 +26,7 @@ const authenticatedUser = {
   role: "user",
   accessRole: "free_user",
   deactivated: false,
+  isVerified: true,
   sessionVersion: 0,
   premium: {
     planId: "free",
@@ -64,12 +66,13 @@ test.after(async () => {
   });
 });
 
-test.beforeEach(() => {
-  UserSuggestion.create = async (payload) => ({
+test.beforeEach(t => {
+  mockActiveAccountWrites(t);
+  UserSuggestion.create = async ([payload]) => ([{
     ...payload,
     id: "suggestion-1",
     createdAt: new Date("2026-09-13T12:00:00.000Z"),
-  });
+  }]);
 });
 
 const postSuggestion = (message, authenticated = true) =>
@@ -102,13 +105,13 @@ test("suggestion submission rejects empty, non-text, and 101-word messages", asy
 
 test("suggestion submission trims and stores an accepted message", async () => {
   const writes = [];
-  UserSuggestion.create = async (payload) => {
+  UserSuggestion.create = async ([payload]) => {
     writes.push(payload);
-    return {
+    return [{
       ...payload,
       id: "suggestion-1",
       createdAt: new Date("2026-09-13T12:00:00.000Z"),
-    };
+    }];
   };
 
   const response = await postSuggestion("  Please add Acme careers  ");

@@ -15,6 +15,8 @@ import { getCandidateEvidenceSnapshot, mutateCandidateEvidence } from '../src/se
 import { createResumeArtifact } from '../src/services/resumeArtifactService.js';
 import { uploadResume } from '../src/controllers/resumeController.js';
 
+const processingConsent = { version: '2026-11-14', accepted: true };
+
 const source = Buffer.from('\\documentclass{article}\n\\begin{document}Asha Rao, asha@example.test. Built React applications in 2025. BSc Computer Science 2026.\\end{document}');
 const generated = label => ({ latex: `\\documentclass{article}\n\\begin{document}Asha Rao. ${label}.\\end{document}`, pdf: Buffer.from(`%PDF-1.7\n${label}\n%%EOF`), pageCount: 1, facts: { name: 'Asha Rao', sourceText: 'Asha Rao built React applications.' }, modelVersion: 'local-test', styleVersion: 'test' });
 const dispatch = async () => {};
@@ -24,7 +26,7 @@ test('CV revisions retain immutable documents, scope history and restore atomica
   assert.equal(typeof history.listCvRevisions, 'function', 'durable CV history must be implemented');
   const { default: CVRevision } = await import('../src/models/CVRevision.js');
   process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
-  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 }, binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
+  const mongo = await MongoMemoryReplSet.create({ instanceOpts: [{ launchTimeout: 30000 }], replSet: { count: 1 }, binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
   await mongoose.connect(mongo.getUri(), { dbName: 'cv_revision_test' });
   await Promise.all([CVRevision.init(), Resume.init(), TailoredResume.init()]);
@@ -34,7 +36,7 @@ test('CV revisions retain immutable documents, scope history and restore atomica
   await Job.collection.insertOne({ _id: jobId, title: 'React Engineer', company: 'Example', location: 'Pune, India', isPublicIndia: true, jobType: 'Full-time Experienced', status: 'active', postedAt: new Date(), description: 'Build React applications.', fingerprint: 'cv-history-job' });
   await Resume.create({ _id: id, user: id, ...inspectResume('original.tex', source), data: source });
   async function prepare(label) {
-    await requestResumePreparation(user, { regenerate: true, dispatch });
+    await requestResumePreparation(user, { processingConsent, regenerate: true, dispatch });
     assert.deepEqual(await drainResumePreparations({ generate: async () => generated(label) }), { attempted: 1, completed: 1, failed: 0 });
     return Resume.findById(id).lean();
   }
@@ -61,7 +63,7 @@ test('CV revisions retain immutable documents, scope history and restore atomica
   assert.equal(comparison.from.evidenceSnapshot.version, 0);
   assert.ok(comparison.changes.some(change => change.field === 'latex'));
   const beforeFailure = base.currentRevisionId;
-  await requestResumePreparation(user, { regenerate: true, dispatch });
+  await requestResumePreparation(user, { processingConsent, regenerate: true, dispatch });
   await drainResumePreparations({ generate: async () => { throw Error('model offline'); } });
   assert.equal((await history.listCvRevisions(user, baseScope)).currentRevisionId, beforeFailure);
   assert.equal(await CVRevision.countDocuments({ user: id }), 2);
@@ -71,7 +73,7 @@ test('CV revisions retain immutable documents, scope history and restore atomica
   assert.equal(restored.generationId, first.preparation.generationId);
   assert.equal(await CVRevision.countDocuments({ user: id }), 3);
   await t.test('a failed generated publication rolls back artifact, revision and current pointer together', async () => {
-    await requestResumePreparation(user, { regenerate: true, dispatch });
+    await requestResumePreparation(user, { processingConsent, regenerate: true, dispatch });
     const leaseOwner = 'rollback-worker';
     await Resume.updateOne({ _id: id }, { $set: { 'preparation.status': 'running', 'preparation.leaseOwner': leaseOwner, 'preparation.leaseUntil': new Date(Date.now() + 60000) } });
     const row = await Resume.findById(id).select('+preparation.leaseOwner').lean();
@@ -100,9 +102,9 @@ test('CV revisions retain immutable documents, scope history and restore atomica
   } finally { await session.endSession(); }
   assert.equal((await history.listCvRevisions(user, baseScope)).currentRevisionId, restored.id);
   assert.equal(await CVRevision.countDocuments({ user: id }), 3);
-  await requestTailoredResume(user, String(jobId), { dispatch });
+  await requestTailoredResume(user, String(jobId), { processingConsent, dispatch });
   await drainTailoredResumes({ generate: async () => generated('Tailored one') });
-  await requestTailoredResume(user, String(jobId), { regenerate: true, dispatch });
+  await requestTailoredResume(user, String(jobId), { processingConsent, regenerate: true, dispatch });
   await drainTailoredResumes({ generate: async () => generated('Tailored two') });
   const tailored = await history.listCvRevisions(user, tailoredScope);
   assert.equal(tailored.items.length, 2);
@@ -126,7 +128,7 @@ test('CV revisions retain immutable documents, scope history and restore atomica
   await t.test('evidence edits invalidate in-flight output and old restores while preserving downloadable history', async () => {
     const previous = await history.listCvRevisions(user, baseScope);
     const artifactCount = await ResumeArtifact.countDocuments({ user: id });
-    await requestResumePreparation(user, { regenerate: true, dispatch });
+    await requestResumePreparation(user, { processingConsent, regenerate: true, dispatch });
     const result = await drainResumePreparations({ generate: async input => {
       assert.equal(input.candidateEvidence.version, 0);
       await mutateCandidateEvidence(id, { collection: 'achievements', action: 'create', body: { version: 0, claim: 'Reduced latency by 25%', skills: ['Redis'] } });
@@ -137,7 +139,7 @@ test('CV revisions retain immutable documents, scope history and restore atomica
     assert.equal((await history.listCvRevisions(user, baseScope)).currentRevisionId, previous.currentRevisionId);
     await assert.rejects(history.restoreCvRevision(user, baseScope, previous.items[1].id, { expectedCurrentRevisionId: previous.currentRevisionId }), { statusCode: 409 });
     assert.ok((await history.getCvRevisionArtifact(user, baseScope, previous.items[1].id)).artifact);
-    await requestResumePreparation(user, { regenerate: true, dispatch });
+    await requestResumePreparation(user, { processingConsent, regenerate: true, dispatch });
     await drainResumePreparations({ generate: async input => { assert.equal(input.candidateEvidence.version, 1); assert.equal(input.candidateEvidence.achievements[0].claim, 'Reduced latency by 25%'); return generated('current evidence'); } });
     const latest = await history.listCvRevisions(user, baseScope);
     const snapshot = await CVRevision.findById(latest.currentRevisionId).lean();

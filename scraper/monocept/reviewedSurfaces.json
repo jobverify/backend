@@ -82,7 +82,21 @@
     "https://monocept.turbohire.co/runtime-main.a3801c5ec8c75a558b86.js": "7503ade1cb27613358ce98f6084210ce621d12c49d561ba3c9dca6ffe18a1e95",
     "https://monocept.turbohire.co/18.0a0a3f53b49041744779.chunk.js": "abcaa7c62f5eba8def6e1e5e1b28b412d5ef629eed81a0630617ec891a29175d",
     "https://monocept.turbohire.co/main.bc8f2fdf0fa9e74f4468.chunk.js": "4d56acc5efbcfba0f97c383dace482b51288ce727e03d22296e0c25d7e27d085",
-    "https://monocept.turbohire.co/40.3ec75e9eb87caff145b7.chunk.js": "37422a4a8d2f7c78a4f9fc5fa6b0d7d951cb950e165ccc80e9d9d537ce5cbc94"
+    "https://monocept.turbohire.co/40.3ec75e9eb87caff145b7.chunk.js": "37422a4a8d2f7c78a4f9fc5fa6b0d7d951cb950e165ccc80e9d9d537ce5cbc94",
+    "https://monocept.turbohire.co/runtime-main.22581bcb0af0126ad3a1.js": "c502b8d7cb862c6a7ef1843016d8eb3a96d22efc3818250bb956ec1f0c014ede",
+    "https://monocept.turbohire.co/18.31a01dec5cce83de3a1c.chunk.js": "afaba82774d2053d7474dd035c5adf05515068b1f38487a2621ea2c4b3620792",
+    "https://monocept.turbohire.co/30.726ffa16663af89e0bd8.chunk.js": "40dd574c3f8dfc58c30ff23a3c84e9ff91022e080868bd910957d88c28a01479",
+    "https://monocept.turbohire.co/main.abf08ac7a40e59d79668.chunk.js": "aaf6b08a3a17192b677caa76276097d9df740c044db9403fdee773287ad319f5",
+    "https://monocept.turbohire.co/40.81ff74bdb6ce1c072e30.chunk.js": "20d12cfa50a97b70cc555e6954d000f0fd3072d79db3ac4d91770b4d43aa91fa",
+    "https://monocept.turbohire.co/24.1adf65c612745396b5b0.chunk.js": "24a8baf1bad0874e7a5730f396020b3e2921ab1e4215f9e01cf17396bd49fe27",
+    "https://monocept.turbohire.co/17.7aa44dd04eb988904792.chunk.js": "e9db874315f989ede27ce54492bac0de98140f88c47020d1904f4cad584c79ec",
+    "https://monocept.turbohire.co/14.c87aa6dd6f9b93061e07.chunk.js": "a349128ea6e937b94448c182643115b1073b4693b18d0628373390e225915fe6",
+    "https://monocept.turbohire.co/64.35c1d8460d7b82a39fd2.chunk.js": "4c849c41f08aee773c7193e08be47491e46bc6423e176da6f3a871e53e17e37d",
+    "https://monocept.turbohire.co/3.9ae5b23cc7319e71170e.chunk.js": "3eb2913975e161c653895d1abdbd07b41dab54d3d7dfcda7c2411224ec1fe3ca",
+    "https://monocept.turbohire.co/5.5d3f23d802f52b4217d2.chunk.js": "9d135bdc646d39e28fd9b0a010351fe99a97c7b33c3c95bc1ab2be884434cacf",
+    "https://monocept.turbohire.co/6.ae9eba8cacd3e7671dcf.chunk.js": "a4ec10a883f2b62f4c058af2c21d5399b32fb600a2ff144b65c1c75ca1cd718f",
+    "https://monocept.turbohire.co/7.dd8012d50bf18fb921e6.chunk.js": "2841ad1eebae2e342ba0c47155882da9e7b3bdd8fb1d0bf1ce165f15a93f4a9f",
+    "https://monocept.turbohire.co/62.55871fc2b6f0407d74c1.chunk.js": "33e4b809b6f98427ba2c2b907fda12e285655741bea36e0af39492ecdf001f05"
   },
   "cssSHA256": {
     "https://cdn.prod.website-files.com/696a2e35e7e3651bc1220fc5/css/monocept.webflow.6a01eb9f1a479fcac0481c05.d9e7abae8.opt.min.css": "818041ebe4ea8077c36512005327b0a4f4e0b78ed0102adc1ad993ac462fb22b",
@@ -210,6 +224,45 @@
         "https://monocept.turbohire.co/40.3ec75e9eb87caff145b7.chunk.js"
       ],
       "companyScopeUnqualified": true
+    },
+    {
+      "reviewedAt": "2026-11-14T16:32:47.518Z",
+      "sourceCapture": "scraper/monocept/test-inputs/current-native-20261114.json.gz",
+      "reviewSummary": "Finite current deployment review: seven public/session/API methods and157 collected caller occurrences match the genuine October31 release; complete current public detail wrapper/state/render source is independently reviewed, without an unavailable prior-renderer equivalence claim. All14required current listing/public-role client entities and the coherent four-script declaration are pinned. Unread full-description PDF/video carriers remain unresolved. Company inventory remains unqualified.",
+      "publicMethodSHA256": {
+        "getUnauthenticatedAccessToken": "d50db8d34d43d41eca8fc2f1403cec1661391d41d6dde960d7d1baec9be7f857",
+        "constructor": "9a47aeb91fb9ee7bd685848c37ffaadc054ff843ea96a6451fd9a612d52becb1",
+        "getUnAuthenticatedAccessToken": "75b78c537edf926ce6a024e37ccd9b587641b2c1698b5fb3dac6619c513142d0",
+        "getOrgDetailsFromAccountName": "22e61ca681921aa255ce15df19193ec4e4ab97bbe4f718f37863b001bf68c1a8",
+        "getPublicOrgInfo": "c930e4bc62256d242ac81f814296659ed963f86331fdf8ce82a183e796f54e50",
+        "getPublicJobRefsForOrgFiltered": "b9a164010d28e4ef3cc9fdb9f4a65c4dcec9e6b1b16e6f0ffb1533dc666cd7bc",
+        "getJobInfo": "15c91e4a0a8ddcd940e6df83f4c249a7ab945bfbecfa1b6e8edadef13f6bb5df"
+      },
+      "protocolReviewSHA256": "d14fe81bab70749aa8b5d3bc340a5ec79f69f79d9bf62c0ced3668d836d49116",
+      "scriptURLs": [
+        "https://monocept.turbohire.co/runtime-main.22581bcb0af0126ad3a1.js",
+        "https://monocept.turbohire.co/18.31a01dec5cce83de3a1c.chunk.js",
+        "https://monocept.turbohire.co/30.726ffa16663af89e0bd8.chunk.js",
+        "https://monocept.turbohire.co/main.abf08ac7a40e59d79668.chunk.js"
+      ],
+      "clientURLs": [
+        "https://monocept.turbohire.co/runtime-main.22581bcb0af0126ad3a1.js",
+        "https://monocept.turbohire.co/18.31a01dec5cce83de3a1c.chunk.js",
+        "https://monocept.turbohire.co/30.726ffa16663af89e0bd8.chunk.js",
+        "https://monocept.turbohire.co/main.abf08ac7a40e59d79668.chunk.js",
+        "https://monocept.turbohire.co/40.81ff74bdb6ce1c072e30.chunk.js",
+        "https://monocept.turbohire.co/24.1adf65c612745396b5b0.chunk.js",
+        "https://monocept.turbohire.co/17.7aa44dd04eb988904792.chunk.js",
+        "https://monocept.turbohire.co/14.c87aa6dd6f9b93061e07.chunk.js",
+        "https://monocept.turbohire.co/64.35c1d8460d7b82a39fd2.chunk.js",
+        "https://monocept.turbohire.co/3.9ae5b23cc7319e71170e.chunk.js",
+        "https://monocept.turbohire.co/5.5d3f23d802f52b4217d2.chunk.js",
+        "https://monocept.turbohire.co/6.ae9eba8cacd3e7671dcf.chunk.js",
+        "https://monocept.turbohire.co/7.dd8012d50bf18fb921e6.chunk.js",
+        "https://monocept.turbohire.co/62.55871fc2b6f0407d74c1.chunk.js"
+      ],
+      "companyScopeUnqualified": true,
+      "publicRenderReviewSHA256": "b46820d4ac926ac69aa39f31b90a03802c44151f090ce7a920ae00d9a3e0964e"
     }
   ]
 }

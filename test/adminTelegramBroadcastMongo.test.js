@@ -21,8 +21,8 @@ test('admin owns separate Telegram broadcast configuration without member depend
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
   await mongoose.connect(mongo.getUri());
   await Promise.all([User.init(), TelegramBroadcastSettings.init(), TelegramChannelSchedule.init(), TelegramChannelDelivery.init(), AdminAudit.init()]);
-  const admin = await User.create({ email: 'broadcast-admin@example.test', role: 'admin' });
-  const member = await User.create({ email: 'unrelated-member@example.test' });
+  const admin = await User.create({ email: 'broadcast-admin@example.test', isVerified: true, role: 'admin' });
+  const member = await User.create({ email: 'unrelated-member@example.test', isVerified: true });
   const app = express(); app.use(express.json()); app.use('/api/admin', adminRoutes);
   const server = app.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(() => new Promise(resolve => server.close(resolve)));
@@ -35,7 +35,7 @@ test('admin owns separate Telegram broadcast configuration without member depend
   const draft = { enabled: true, chatId: '@samplechannel', minIntervalMinutes: 20, maxIntervalMinutes: 30,
     matchAll: false, filters: { company: ['Example'] }, template: DEFAULT_BROADCAST_TEMPLATE, revision: 0 };
   assert.equal((await request(null)).status, 401);
-  for (const [path, method, body] of [['', 'GET'], ['/channel', 'PUT', draft], ['/preview', 'POST', { template: draft.template }], ['/logs', 'GET']]) {
+  for (const [path, method, body] of [['', 'GET'], ['/channel', 'PUT', draft], ['/preview', 'POST', { template: draft.template }], ['/logs', 'GET'], ['/channel/queue', 'DELETE']]) {
     assert.equal((await request(member, path, method, body)).status, 403);
   }
   const initial = await request(admin); assert.equal(initial.status, 200);
@@ -73,4 +73,28 @@ test('admin owns separate Telegram broadcast configuration without member depend
   assert.equal((await TelegramChannelDelivery.findById(pending._id)).reason, 'destination_changed');
   const history = await request(admin, '/logs?destination=channel');
   assert.equal(history.body.data.find(row => row.id === String(pending._id)).status, 'skipped');
+  assert.equal((await request(null, '/channel/queue', 'DELETE')).status, 401);
+  assert.equal((await request(admin, '/invalid/queue', 'DELETE')).status, 400);
+  const queued = await TelegramChannelDelivery.create({ channel: '@updatedchannel', destination: 'channel',
+    configRevision: 3, job: new mongoose.Types.ObjectId(), status: 'queued', retryAt: new Date() });
+  const other = await TelegramChannelDelivery.create({ channel: '-12345678', destination: 'group',
+    configRevision: 1, job: new mongoose.Types.ObjectId(), status: 'queued' });
+  const sent = await TelegramChannelDelivery.create({ channel: '@updatedchannel', destination: 'channel',
+    configRevision: 3, job: new mongoose.Types.ObjectId(), status: 'sent' });
+  const cleared = await request(admin, '/channel/queue', 'DELETE');
+  assert.equal(cleared.status, 200);
+  assert.equal(cleared.body.data.clearedCount, 1);
+  assert.equal(cleared.body.data.destination.stats.queued, 0);
+  const receipt = await TelegramChannelDelivery.findById(queued._id).lean();
+  assert.equal(receipt.status, 'skipped');
+  assert.equal(receipt.reason, 'cleared_by_admin');
+  assert.equal(receipt.retryAt, null);
+  assert.equal((await TelegramChannelDelivery.findById(other._id)).status, 'queued');
+  assert.equal((await TelegramChannelDelivery.findById(sent._id)).status, 'sent');
+  assert.equal((await request(admin, '/channel/queue', 'DELETE')).body.data.clearedCount, 0);
+  assert.equal(await AdminAudit.countDocuments({ action: 'telegram_broadcast_queue_cleared' }), 2);
+  await TelegramChannelSchedule.updateOne({ _id: '-12345678' }, { $set: { claimToken: 'posting', claimExpiresAt: new Date(Date.now() + 60000) } });
+  assert.equal((await request(admin, '/group/queue', 'DELETE')).status, 409);
+  assert.equal((await TelegramChannelDelivery.findById(other._id)).status, 'queued');
+
 });

@@ -9,20 +9,24 @@ import { dispatchTailoredResumes, requireTailoredResumeActions, tailoredResumeAc
 import { tailoringError } from './resumeTailoringContent.js';
 import { remainingBudget } from '../../resume-tailoring/resumeBudget.js';
 import { preparationDurations, preparationTiming } from './resumePreparationTiming.js';
+import { acceptedResumeProcessingConsent, resumeProcessingConsentFilter } from './resumeProcessingConsent.js';
+import { dayKey, reserveUsage } from './resumeUsage.js';
 
 export const activeResumeStatuses = ['queued', 'running'];
+const pendingPreparationStatuses = ['reserving', ...activeResumeStatuses];
 export const isRetiredTemplateVersion = version => typeof version === 'string' && version.startsWith('source-template:');
 export const activeResumeOwner = user => ({ _id: user, deactivated: { $ne: true }, accountDeletingAt: null });
 const ownerFilter = user => ({ _id: user, user });
 export const evidenceMatches = (version, hash, evidence) => version == null ? evidence.version === 0 : version === evidence.version && hash === evidence.hash;
 export function preparationMetadata(record, evidence) {
   const p = record?.preparation || {};
+  const status = p.status === 'reserving' ? 'queued' : p.status || 'unprepared';
   const valid = Boolean(p.generationId && p.outputResumeSha === record.sha256);
-  return { ...preparationTiming(p), status: p.status || 'unprepared', phase: p.phase || '', error: p.error || '', revision: p.revision || 0,
+  return { ...preparationTiming(p), status, phase: p.phase || '', error: p.error || '', revision: p.revision || 0,
     sourceHash: p.sourceSha || record?.sha256 || '', attempts: p.attempts || 0,
     stale: Boolean(valid && (isRetiredTemplateVersion(p.modelVersion)
       || (evidence && !evidenceMatches(p.outputEvidenceVersion, p.outputEvidenceHash, evidence)))),
-    retryable: ['unprepared', 'failed'].includes(p.status || 'unprepared'),
+    retryable: ['unprepared', 'failed'].includes(status),
     hasPdf: valid, hasLatex: valid, pageCount: valid ? p.pageCount || null : null, generatedAt: p.generatedAt || null };
 }
 export function resumeMetadata(record, evidence) {
@@ -38,40 +42,59 @@ export function requirePreparedResume(record) {
   return p;
 }
 
-export async function requestResumePreparation(user, { regenerate = false, automatic = false, expectedSourceSha, dispatch = dispatchTailoredResumes } = {}) {
+async function retireUnconsentedPreparations(filter = {}) {
+  await Resume.updateMany({ ...filter, 'preparation.status': { $in: pendingPreparationStatuses },
+    $nor: [resumeProcessingConsentFilter('preparation.')] }, {
+    $set: { 'preparation.status': 'failed', 'preparation.phase': 'failed', 'preparation.ready': false,
+      'preparation.error': 'Review and agree to AI resume processing before retrying this request.' },
+    $inc: { 'preparation.revision': 1 }, $unset: { 'preparation.leaseOwner': 1, 'preparation.leaseUntil': 1 },
+  });
+}
+
+export async function requestResumePreparation(user, { regenerate = false, automatic = false, expectedSourceSha, processingConsent, dispatch = dispatchTailoredResumes } = {}) {
+  const consent = acceptedResumeProcessingConsent(processingConsent, 'preparation.');
   const filter = ownerFilter(user._id);
+  await retireUnconsentedPreparations(filter);
   const current = await Resume.findOne(filter).lean();
   if (!current) throw tailoringError('Upload your resume before preparing it.', 409);
   if (!await User.exists(activeResumeOwner(user._id))) throw tailoringError('This account is unavailable.', 409);
   if (expectedSourceSha && current.sha256 !== expectedSourceSha) return resumeMetadata(current);
   const p = current.preparation || {};
   const evidence = await getCandidateEvidenceSnapshot(user._id);
-  if (activeResumeStatuses.includes(p.status) || (!regenerate && p.status === 'completed' && !isRetiredTemplateVersion(p.modelVersion) && preparationMetadata(current).hasPdf
+  if (pendingPreparationStatuses.includes(p.status) || (!regenerate && p.status === 'completed' && !isRetiredTemplateVersion(p.modelVersion) && preparationMetadata(current).hasPdf
     && evidenceMatches(p.outputEvidenceVersion, p.outputEvidenceHash, evidence))) return resumeMetadata(current, evidence);
   if (!automatic && dispatch === dispatchTailoredResumes) requireTailoredResumeActions();
   const revisionFilter = p.revision === undefined ? { $or: [{ 'preparation.revision': { $exists: false } }, { 'preparation.revision': 0 }] } : { 'preparation.revision': p.revision };
   const row = await Resume.findOneAndUpdate({ ...filter, sha256: current.sha256, ...revisionFilter,
-    'preparation.status': { $nin: activeResumeStatuses } }, {
-    $set: { 'preparation.status': 'queued', 'preparation.phase': 'queued', 'preparation.error': '', 'preparation.ready': true,
+    'preparation.status': { $nin: pendingPreparationStatuses } }, {
+    // Keep the prior base usable by tailored workers while admission is pending.
+    $set: { ...consent, 'preparation.status': 'reserving', 'preparation.phase': 'queued', 'preparation.error': '', 'preparation.ready': false,
       'preparation.sourceSha': current.sha256, 'preparation.sourceEvidenceVersion': evidence.version, 'preparation.sourceEvidenceHash': evidence.hash,
-      // Reserve dispatch with readiness so recovery cannot race the first GitHub call.
+      // Keep work unavailable to workers and recovery until quota is reserved.
       'preparation.attempts': 0, 'preparation.requestedAt': new Date(), 'preparation.dispatchAt': new Date(), 'preparation.durationSamples': preparationDurations(p) },
     $inc: { 'preparation.revision': 1 }, $unset: { 'preparation.leaseOwner': 1, 'preparation.leaseUntil': 1 },
   }, { new: true, runValidators: true }).lean();
   if (!row) return resumeMetadata(await Resume.findOne(filter).lean(), evidence);
-  const revision = { ...filter, sha256: current.sha256, 'preparation.revision': row.preparation.revision, 'preparation.status': 'queued' };
-  // New base requests invalidate queued tailoring immediately; their old PDF is retained.
-  await TailoredResume.updateMany({ user: user._id, sourceResumeSha: current.sha256,
-    sourceBaseGenerationId: p.generationId ?? null, status: { $in: activeResumeStatuses } }, {
-    $set: { status: 'failed', phase: 'failed', ready: false, error: 'Your base resume is being prepared. Generate a new tailored version afterward.' },
-    $inc: { revision: 1 }, $unset: { leaseOwner: 1, leaseUntil: 1 },
-  });
+  const reservation = { ...filter, sha256: current.sha256, 'preparation.revision': row.preparation.revision, 'preparation.status': 'reserving' };
+  const revision = { ...reservation, 'preparation.status': 'queued' };
   try {
+    await reserveUsage(`user:${user._id}:base-resumes:${dayKey()}`, 10, { user: user._id });
     if (!await User.exists(activeResumeOwner(user._id))) throw tailoringError('This account is unavailable.', 409);
+    const accepted = await Resume.updateOne(reservation, { $set: { 'preparation.status': 'queued', 'preparation.requestedAt': new Date() } });
+    if (!accepted.matchedCount) throw tailoringError('This request changed. Please retry.', 409);
+    // Accepted base requests invalidate queued tailoring; rejected quotas do not.
+    await TailoredResume.updateMany({ user: user._id, sourceResumeSha: current.sha256,
+      sourceBaseGenerationId: p.generationId ?? null, status: { $in: activeResumeStatuses } }, {
+      $set: { status: 'failed', phase: 'failed', ready: false, error: 'Your base resume is being prepared. Generate a new tailored version afterward.' },
+      $inc: { revision: 1 }, $unset: { leaseOwner: 1, leaseUntil: 1 },
+    });
+    // Reserve dispatch before recovery can see ready queued work.
+    const ready = await Resume.updateOne(revision, { $set: { 'preparation.ready': true, 'preparation.dispatchAt': new Date() } });
+    if (!ready.matchedCount) throw tailoringError('This request changed. Please retry.', 409);
     await dispatch();
     await Resume.updateOne(revision, { $set: { 'preparation.dispatchAt': new Date() } });
   } catch (error) {
-    await Resume.updateOne(revision, { $set: { 'preparation.status': 'failed', 'preparation.phase': 'failed', 'preparation.ready': false,
+    await Resume.updateOne({ ...reservation, 'preparation.status': { $in: ['reserving', 'queued'] } }, { $set: { 'preparation.status': 'failed', 'preparation.phase': 'failed', 'preparation.ready': false,
       'preparation.error': error.statusCode ? error.message : 'Resume preparation could not start. Please retry.' } });
     if (!automatic) throw error.statusCode ? error : tailoringError('Resume preparation could not start. Please retry.', 503);
   }
@@ -91,7 +114,7 @@ export async function drainResumePreparations({ generate, deadline = Date.now() 
   const counts = { attempted: 0, completed: 0, failed: 0 };
   if (deadline - Date.now() <= 15000) return counts;
   const now = new Date(); const leaseOwner = randomUUID();
-  const row = await Resume.findOneAndUpdate({ 'preparation.ready': true, 'preparation.attempts': { $lt: 3 }, $or: [
+  const row = await Resume.findOneAndUpdate({ ...resumeProcessingConsentFilter('preparation.'), 'preparation.ready': true, 'preparation.attempts': { $lt: 3 }, $or: [
     { 'preparation.status': 'queued' }, { 'preparation.status': 'running', 'preparation.leaseUntil': { $lt: now } },
   ] }, { $set: { 'preparation.status': 'running', 'preparation.phase': 'extracting', 'preparation.leaseOwner': leaseOwner,
     'preparation.leaseUntil': new Date(Math.max(deadline, now.getTime() + 30 * 60000)) }, $inc: { 'preparation.attempts': 1 } }, { new: true, sort: { 'preparation.requestedAt': 1 } }).select('+preparation.leaseOwner').lean();
@@ -133,15 +156,20 @@ export async function getBaseResumeArtifact(user) {
 }
 
 export async function recoverResumePreparations({ now = new Date(), dispatch = dispatchTailoredResumes, dispatchPending = true } = {}) {
-  await Resume.updateMany({ 'preparation.status': { $in: activeResumeStatuses }, $or: [
+  await retireUnconsentedPreparations();
+  await Resume.updateMany({ 'preparation.status': { $in: pendingPreparationStatuses }, $or: [
     { 'preparation.requestedAt': { $lt: new Date(now.getTime() - 86400000) } },
+    // A process can stop between claiming the row and reserving its allowance.
+    // Never dispatch that work; retire the claim so its owner can retry.
+    { 'preparation.status': { $in: ['reserving', 'queued'] }, 'preparation.ready': { $ne: true },
+      'preparation.requestedAt': { $lt: new Date(now.getTime() - 300000) } },
     { 'preparation.status': 'running', 'preparation.attempts': { $gte: 3 }, 'preparation.leaseUntil': { $lt: now } },
   ] }, { $set: { 'preparation.status': 'failed', 'preparation.phase': 'failed', 'preparation.ready': false,
     'preparation.error': 'This preparation request was interrupted. Please retry.' }, $unset: { 'preparation.leaseOwner': 1, 'preparation.leaseUntil': 1 } });
-  await Resume.updateMany({ 'preparation.status': 'running', 'preparation.attempts': { $lt: 3 }, 'preparation.leaseUntil': { $lt: now } }, {
+  await Resume.updateMany({ ...resumeProcessingConsentFilter('preparation.'), 'preparation.status': 'running', 'preparation.attempts': { $lt: 3 }, 'preparation.leaseUntil': { $lt: now } }, {
     $set: { 'preparation.status': 'queued', 'preparation.phase': 'queued' }, $unset: { 'preparation.leaseOwner': 1, 'preparation.leaseUntil': 1 },
   });
-  const due = { 'preparation.status': 'queued', 'preparation.ready': true, $or: [
+  const due = { ...resumeProcessingConsentFilter('preparation.'), 'preparation.status': 'queued', 'preparation.ready': true, $or: [
     { 'preparation.dispatchAt': { $exists: false } }, { 'preparation.dispatchAt': { $lt: new Date(now.getTime() - 300000) } },
   ] };
   const pending = Boolean(await Resume.exists(due));

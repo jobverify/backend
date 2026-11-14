@@ -15,18 +15,36 @@ export const VERIFIED_SURFACE_SUMMARY = 'Corporate India pages actively delegate
 export async function run(options={}){
  need(!options.fetchText&&!options.fetchJson&&!options.fetchPage&&options.maxJobs==null&&options.maxPages==null,'full native HTTP response contract required; partial caller caps unsupported')
  const receipts=[],session=createLennoxTransport(options,receipts)
- const read=async(url,parser)=>{const response=await session.read(url,'html');const model=parser(response.text);session.check();return model}
+ const read=async(url,parser,kind='html')=>{const response=await session.read(url,kind);const model=parser(response.text,response.receipt);session.check();return model}
+ const verifyAssets=async shell=>{
+  for(const asset of shell.reviewedShellAssets)await read(asset.url,(_body,receipt)=>need(receipt.sha256===asset.sha256,'reviewed current shell asset bytes changed'),'javascript')
+ }
+ const readPages=async shell=>{
+  const pages=[],seen=new Set(),ids=new Set();let url=shell.declaredFrameURL
+  while(url){
+   need(!seen.has(url)&&pages.length<shell.listingPageLimit,'native pagination cycle or page budget exceeded');seen.add(url)
+   const page=await read(url,html=>readListing(html,{requestedURL:url,pageNumber:pages.length+1,maxPages:shell.listingPageLimit}));pages.push(page)
+   for(const row of page.rows){need(!ids.has(row.nativeJobId),'duplicate native listing identities across pages');ids.add(row.nativeJobId)}
+   url=page.nextURL
+  }
+  const rows=pages.flatMap(page=>page.rows)
+  need(pages.every(page=>page.declaredPageCount===pages.length)&&rows.length<=30,'complete bounded native page count changed')
+  return{...pages[0],rows,observedNativeCount:rows.length,listingPageCount:pages.length,pages}
+ }
  try{
   const corporate=[]
   for(const url of profile.corporateURLs)corporate.push(await read(url,html=>readCorporate(html,url)))
-  const shell=await read(profile.shellURL,readShell),listing=await read(shell.declaredFrameURL,readListing),models=[]
+  const shell=await read(profile.shellURL,readShell);await verifyAssets(shell)
+  const listing=await readPages(shell),models=[]
+  need(receipts.length+2*listing.rows.length+listing.listingPageCount+1+shell.reviewedShellAssets.length+profile.corporateURLs.length<=64,'native read budget cannot cover complete observed full-detail and pagination closing')
   for(const row of listing.rows)models.push(await read(row.requestedURL,html=>readRole(html,row)))
   for(let i=0;i<listing.rows.length;i++){
    const row=listing.rows[i],closing=await read(row.requestedURL,html=>readRole(html,row))
    need(isDeepStrictEqual(models[i],closing),'closing own role identity/country/employer/full criteria changed')
   }
-  need(isDeepStrictEqual(listing,await read(shell.declaredFrameURL,readListing)),'closing native listing membership/metadata changed')
-  need(isDeepStrictEqual(shell,await read(profile.shellURL,readShell)),'closing native shell delegation changed')
+  need(isDeepStrictEqual(listing,await readPages(shell)),'closing native listing membership/metadata changed')
+  const closingShell=await read(profile.shellURL,readShell)
+  need(isDeepStrictEqual(shell,closingShell),'closing native shell delegation changed');await verifyAssets(closingShell)
   for(let i=0;i<profile.corporateURLs.length;i++){
    const url=profile.corporateURLs[i];need(isDeepStrictEqual(corporate[i],await read(url,html=>readCorporate(html,url))),'closing corporate declaration changed')
   }
@@ -40,7 +58,7 @@ export async function run(options={}){
   for(let i=0;i<jobs.length;i++)jobs[i].nativeCollectionEvidence=i===0?fullEvidence:{source:SOURCE,observedListingCount:models.length,observedIndiaListingCount:jobs.length,nonIndiaListingCount:nonIndia.length,candidateDetails:models.length,failures:[],extractedDetailJobs:jobs.length,excludedDetailJobs:nonIndia.length,listingPaginationComplete:true,closingInventoryMatches:true,sourceScopeComplete:false,retainedResponsesOnFirstExtractedJob:true,fullBatchEvidenceOnFirstExtractedJob:true,firstExtractedJobID:jobs[0].jobId,retainedResponseCount:receipts.length}
   await session.race(()=>options.onAudit?.(structuredClone(audit)));session.check()
   attachSourceObservationEvidence(jobs,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:models.length,observedVacancyCount:models.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:1,reportedTotal:null,indiaFacetCount:null,verifiedAt:new Date().toISOString(),reason:'current-lennox-india-selected-native-listing-and-own-criteria-observed-company-scope-unverified'})
+  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:listing.listingPageCount,reportedTotal:null,indiaFacetCount:null,verifiedAt:new Date().toISOString(),reason:'current-lennox-india-selected-native-listing-and-own-criteria-observed-company-scope-unverified'})
  }catch(error){
   if(error instanceof Error&&!options.signal?.aborted&&Object.isExtensible(error)){
    const retry=Object.getOwnPropertyDescriptor(error,'abortRetries')

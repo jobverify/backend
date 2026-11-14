@@ -4,6 +4,8 @@ import { document } from '../../scraper-support/shared/rmkNativePairHtml.js'
 import { extractActiveDescription } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { hasSourceDescription } from '../../src/utils/jobSourceContent.js'
+import { workdayRequestScheduler } from '../../scraper-support/myworkday/requestScheduler.js'
+import { parseRetryAfterHeader } from '../../scraper-support/utils/fetch.js'
 
 export const SOURCE = 'sunrun'
 export const COMPANY = 'Sunrun'
@@ -15,7 +17,16 @@ const PUBLIC_ROOT = 'https://sunrun.wd5.myworkdayjobs.com/Sunrun_Careers'
 const PAGE_SIZE = 20
 const EMPLOYERS = ['Sunrun Inc.', 'Sunrun Installation Services Inc.', '']
 const text = value => typeof value === 'string' && value.trim().length > 0
-const fail = reason => { throw Error('Sunrun native inventory: ' + reason) }
+const fail = reason => { throw Object.assign(Error('Sunrun native inventory: ' + reason), { abortRetries: true, failureKind: 'parser_or_contract_error', softFailure: false, upstreamOutage: false }) }
+const knownMaintenance = value => [
+  'https://static.community.workday.com/maintenance-page.html',
+  'https://community.workday.com/maintenance-page',
+  'https://wd5.myworkday.com/wday/drs/outage?t=sunrun&s=Sunrun_Careers',
+].includes(value)
+const maintenanceFailure = (url, responseUrl, status, redirectUrl = null) => Object.assign(
+  Error('Sunrun native inventory: Workday maintenance at ' + (redirectUrl || responseUrl)),
+  { requestedUrl: url, responseUrl, httpStatus: status, redirectUrl, abortRetries: true,
+    softFailure: true, upstreamOutage: true, failureKind: 'network_or_timeout' })
 
 function validateEnvelope(payload) {
   if (!payload || Array.isArray(payload) || typeof payload !== 'object'
@@ -141,6 +152,7 @@ async function verifyHandoff(fetchPage) {
     }
   }
   const board = await fetchPage(BOARD_URL)
+  if (knownMaintenance(board.url)) throw maintenanceFailure(BOARD_URL, board.url, board.status)
   if (board.status !== 200 || board.url !== BOARD_URL || typeof board.html !== 'string'
     || !/<\/html>/i.test(board.html) || !/tenant:\s*"sunrun"/.test(board.html)
     || !/siteId:\s*"Sunrun_Careers"/.test(board.html) || !/isExternal:\s*true/.test(board.html)) {
@@ -237,17 +249,40 @@ export const createSunrunScraper = (defaults = {}) => ({
     }
     const fetchJson = (url, request = {}) => bounded(async () => {
       if (config.fetchJson) return config.fetchJson(url, { ...request, signal })
-      const response = await (config.fetch ?? fetch)(url, {
-        ...request, signal, redirect: 'error',
-        headers: { Accept: 'application/json', 'Content-Type': 'application/json', ...request.headers },
-      })
-      if (signal.aborted) throw signal.reason
-      if (response.status !== 200 || (response.url && response.url !== url)) fail('native HTTP failure or redirect')
-      return response.json()
+      const scheduler = config.requestScheduler || workdayRequestScheduler
+      for (let attempt = 0; attempt < 3; attempt++) {
+        signal.throwIfAborted()
+        const release = await scheduler.acquire(url, { signal, kind: request.method === 'POST' ? 'listing' : 'detail' })
+        try {
+          const response = await (config.fetch ?? fetch)(url, {
+            ...request, signal: AbortSignal.any([signal, AbortSignal.timeout(25000)]), redirect: 'manual',
+            headers: { Accept: 'application/json', 'Content-Type': 'application/json', ...request.headers },
+          })
+          signal.throwIfAborted()
+          const location = response.headers?.get?.('location')
+          const redirectUrl = location ? new URL(location, url).href : null
+          if ([response.url, redirectUrl].some(knownMaintenance)) {
+            throw maintenanceFailure(url, response.url, response.status, redirectUrl)
+          }
+          if (response.url !== url) fail('native response URL mismatch: ' + response.url)
+          const transient = response.status === 429 || response.status >= 500 && response.status <= 599
+          if (transient) {
+            scheduler.recordRateLimit(url, parseRetryAfterHeader(response.headers?.get?.('retry-after')) ?? 1000 * (attempt + 1))
+            if (attempt < 2) { await response.body?.cancel(); continue }
+          }
+          if (response.status !== 200) throw Object.assign(Error('Sunrun native inventory: native HTTP ' + response.status + ' at ' + url),
+            { requestedUrl: url, responseUrl: response.url, httpStatus: response.status, abortRetries: true,
+              softFailure: transient, upstreamOutage: transient, failureKind: transient ? 'network_or_timeout' : 'parser_or_contract_error' })
+          return await response.json()
+        } finally { release() }
+      }
     })
     const fetchPage = url => bounded(async () => {
       if (config.fetchPage) return config.fetchPage(url, { signal })
-      const response = await (config.fetch ?? fetch)(url, { signal, redirect: 'error' })
+      const response = await (config.fetch ?? fetch)(url, { signal, redirect: 'manual' })
+      const location = response.headers?.get?.('location')
+      const redirectUrl = location ? new URL(location, url).href : null
+      if ([response.url, redirectUrl].some(knownMaintenance)) throw maintenanceFailure(url, response.url, response.status, redirectUrl)
       if (signal.aborted) throw signal.reason
       return { url: response.url, status: response.status, html: await response.text() }
     })

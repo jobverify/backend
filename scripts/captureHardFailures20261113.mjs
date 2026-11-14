@@ -41,7 +41,10 @@ const pythonFetch = async (input, options = {}) => {
   for (const [name, value] of packet.headers) responseHeaders.append(name, value)
   const response = new Response([204, 205, 304].includes(packet.status) ? null : Buffer.from(packet.body, 'base64'),
     { status: packet.status, headers: responseHeaders })
-  Object.defineProperties(response, { url: { value: packet.url }, redirected: { value: packet.url !== url } })
+  Object.defineProperties(response, { url: { value: packet.url }, redirected: { value: packet.url !== url },
+    ...(packet.wireBody ? { publicReadWireEvidence: { value: {
+      contentEncoding: packet.wireContentEncoding, body: Buffer.from(packet.wireBody, 'base64'),
+    } } } : {}) })
   return response
 }
 const originalFetch = process.argv.includes('--python') ? pythonFetch : globalThis.fetch
@@ -57,10 +60,15 @@ const captureFetch = async (input, options = {}) => {
     const credentialBody = new URL(requestedUrl).pathname.replace(/\/$/, '') === '/api/token/noauth'
     const filename = credentialBody ? null : `${source}-${index}.body.gz`
     if (filename) await fs.writeFile(path.join(output, filename), gzipSync(body))
+    const wire = response.publicReadWireEvidence
+    const wireFile = !credentialBody && wire ? `${source}-${index}.wire.bin` : null
+    if (wireFile) await fs.writeFile(path.join(output, wireFile), wire.body)
     receipts.push({ requestedUrl, method: options.method || 'GET', startedAt,
       status: response.status, url: response.url, headers: Object.fromEntries([...response.headers].filter(([name]) =>
         ['content-type', 'location', 'last-modified', 'etag', 'content-length'].includes(name))),
       bytes: body.length, sha256: createHash('sha256').update(body).digest('hex'), file: filename,
+      ...(wire ? { wire: { contentEncoding: wire.contentEncoding, bytes: wire.body.length,
+        sha256: createHash('sha256').update(wire.body).digest('hex'), file: wireFile } } : {}),
       ...(credentialBody ? { bodyOmittedReason: 'Issued anonymous session credentials are not retained in capture artifacts' } : {}) })
     const replay = new Response([204, 205, 304].includes(response.status) ? null : body,
       { status: response.status, statusText: response.statusText, headers: response.headers })

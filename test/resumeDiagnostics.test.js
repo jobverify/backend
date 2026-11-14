@@ -22,6 +22,17 @@ test('only allowlisted LaTeX validation reasons can appear in public diagnostics
     { stage: 'compiling', code: 'compiler_failed' });
 });
 
+test('compiler diagnostics retain only fixed syntax reasons in the compilation stage', () => {
+  assert.deepEqual(safeResumeDiagnostic({ stage: 'compiling', code: 'compiler_failed', reason: 'alignment_tab', stderr: 'private' }),
+    { stage: 'compiling', code: 'compiler_failed', reason: 'alignment_tab' });
+  for (const reason of ['private@example.test', '__proto__', 'toString', { text: 'private' }]) {
+    assert.deepEqual(safeResumeDiagnostic({ stage: 'compiling', code: 'compiler_failed', reason }),
+      { stage: 'compiling', code: 'compiler_failed' });
+  }
+  assert.deepEqual(safeResumeDiagnostic({ stage: 'validating', code: 'compiler_failed', reason: 'alignment_tab' }),
+    { stage: 'validating', code: 'compiler_failed' });
+});
+
 test('factual diagnostics expose bounded category counts without candidate facts', () => {
   const issueCounts = { contact: 1, employment: 1, date: 1, skill: 1, metric: 1 };
   const event = { stage: 'validating', code: 'factual_validation_failed', issueCounts: {

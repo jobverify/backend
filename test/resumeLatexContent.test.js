@@ -39,6 +39,57 @@ test('protected facts retain the candidate identity, each employer, dates, degre
   assert.equal(fidelity(source.text).valid, true);
 });
 
+test('academic grades may move beside the degree without changing the institution or grade', () => {
+  for (const label of ['CGPA', 'GPA']) {
+    const grade = `${label}: 7.49`;
+    const original = { text: `Alex Example\nalex@example.test\nEDUCATION\nValley University - ${grade} Aug 2020 - Jun 2024\nB. Tech. Computer Science Pune, India`, links: [] };
+    const facts = buildSourceFacts(original);
+    const moved = original.text.replace(` - ${grade}`, '').replace('Computer Science Pune', `Computer Science - ${grade} Pune`);
+    assert.equal(facts.education[0].institution, 'Valley University');
+    for (const tailored of [false, true]) {
+      assert.deepEqual(validateResumeFidelity({ facts, text: moved, tailored }).issues, []);
+      assert.equal(validateResumeFidelity({ facts, text: moved.replace(` - ${grade}`, ''), tailored }).valid, false, 'the grade remains protected in both modes');
+      assert.equal(validateResumeFidelity({ facts, text: moved.replace('7.49', '9.49'), tailored }).valid, false);
+    }
+  }
+});
+
+test('reformatted grades must stay associated with their original institution', () => {
+  for (const [first, second] of [['Valley University', 'Cedar University'], ['Amrita Vishwa Vidyapeetham', 'Birla Vidya Bhavan']]) {
+    for (const dated of [true, false]) {
+      const firstDates = dated ? ' | 2020 - 2024' : '';
+      const secondDates = dated ? ' | 2024 - 2026' : '';
+      const original = { text: `Alex Example\nEDUCATION\n${first} - CGPA: 7.49${firstDates}\nBSc Computer Science\n${second} - GPA: 8.1${secondDates}\nMSc Computer Science`, links: [] };
+      const facts = buildSourceFacts(original);
+      const moved = `Alex Example\nEDUCATION\n${first}${firstDates}\nBSc Computer Science - CGPA: 7.49\n${second}${secondDates}\nMSc Computer Science - GPA: 8.1`;
+      const swapped = moved.replace('CGPA: 7.49', 'TEMP').replace('GPA: 8.1', 'CGPA: 7.49').replace('TEMP', 'GPA: 8.1');
+      assert.equal(facts.education.length, 2);
+      for (const tailored of [false, true]) {
+        assert.deepEqual(validateResumeFidelity({ facts, text: moved, tailored }).issues, []);
+        assert.equal(validateResumeFidelity({ facts, text: swapped, tailored }).valid, false, `swapped grades must fail with dates=${dated}`);
+      }
+    }
+  }
+});
+
+test('ambiguous education groups retain their original grade associations', () => {
+  for (const education of [
+    'Valley University - CGPA: 7.49\nBSc Computer Science\nMSc Computer Science - GPA: 8.1',
+    'Amrita Vishwa Vidyapeetham - CGPA: 7.49\nB.Com Commerce\nBirla Vidya Bhavan\nClass XII Commerce',
+    'Amrita Vishwa Vidyapeetham - CGPA: 7.49\nB.Com Commerce\nBirla Vidya Bhavan\nMSc Commerce',
+  ]) {
+    const original = { text: `Alex Example\nEDUCATION\n${education}`, links: [] };
+    const facts = buildSourceFacts(original);
+    const swapped = education.includes('GPA: 8.1')
+      ? original.text.replace('CGPA: 7.49', 'TEMP').replace('GPA: 8.1', 'CGPA: 7.49').replace('TEMP', 'GPA: 8.1')
+      : original.text.replace(' - CGPA: 7.49', '').replace('Birla Vidya Bhavan', 'Birla Vidya Bhavan - CGPA: 7.49');
+    for (const tailored of [false, true]) {
+      assert.deepEqual(validateResumeFidelity({ facts, text: original.text, tailored }).issues, []);
+      assert.equal(validateResumeFidelity({ facts, text: swapped, tailored }).valid, false);
+    }
+  }
+});
+
 test('line-wrapped original URLs do not create numeric achievement claims', () => {
   const link = 'https://www.linkedin.com/posts/example%5Fperson_activity-7654321098765432109-ABCD?utm_source=share';
   const original = { ...source, links: [...source.links, link] };

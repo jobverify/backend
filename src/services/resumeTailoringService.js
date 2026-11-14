@@ -13,6 +13,7 @@ import { activeResumeOwner, activeResumeStatuses, requirePreparedResume, drainRe
 import { getCandidateEvidenceSnapshot } from './candidateEvidenceService.js';
 import { publishGeneratedCv } from './cvRevisionService.js';
 import { remainingBudget } from '../../resume-tailoring/resumeBudget.js';
+import { acceptedResumeProcessingConsent, resumeProcessingConsentFilter } from './resumeProcessingConsent.js';
 
 const recordId = (user, job) => `${user}:${job}`;
 
@@ -70,9 +71,19 @@ const matchesSource = (source, row) => source.resume?.sha256 === row.sourceResum
   && source.resume?.preparation?.generationId === row.sourceBaseGenerationId
   && evidenceMatches(row.sourceEvidenceVersion, row.sourceEvidenceHash, source.evidence);
 
-export async function requestTailoredResume(user, jobId, { regenerate = false, settings, dispatch = dispatchTailoredResumes } = {}) {
+async function retireUnconsentedTailoring(filter = {}) {
+  await TailoredResume.updateMany({ ...filter, status: { $in: activeResumeStatuses }, $nor: [resumeProcessingConsentFilter()] }, {
+    $set: { status: 'failed', phase: 'failed', ready: false,
+      error: 'Review and agree to AI resume processing before retrying this request.' },
+    $inc: { revision: 1 }, $unset: { leaseOwner: 1, leaseUntil: 1 },
+  });
+}
+
+export async function requestTailoredResume(user, jobId, { regenerate = false, settings, processingConsent, dispatch = dispatchTailoredResumes } = {}) {
+  const consent = acceptedResumeProcessingConsent(processingConsent);
   const source = await context(user, jobId, { settings, requireResume: true });
   const id = recordId(user._id, jobId);
+  await retireUnconsentedTailoring({ _id: id, user: user._id });
   const current = await TailoredResume.findOne({ _id: id, user: user._id }).lean();
   const view = publicRecord(current, source);
   if (current && activeResumeStatuses.includes(current.status)) return view;
@@ -81,7 +92,7 @@ export async function requestTailoredResume(user, jobId, { regenerate = false, s
   let row;
   try {
     row = await TailoredResume.findOneAndUpdate({ _id: id, user: user._id, status: { $nin: activeResumeStatuses } }, {
-      $set: { status: 'queued', phase: 'queued', ready: false, sourceResumeSha: source.resume.sha256, sourceJobHash: source.hash,
+      $set: { ...consent, status: 'queued', phase: 'queued', ready: false, sourceResumeSha: source.resume.sha256, sourceJobHash: source.hash,
         sourceBaseGenerationId: source.resume.preparation.generationId, sourceEvidenceVersion: source.evidence.version,
         sourceEvidenceHash: source.evidence.hash, error: '', attempts: 0, requestedAt: new Date() },
       $setOnInsert: { user: user._id, job: jobId }, $inc: { revision: 1 }, $unset: { leaseOwner: 1, leaseUntil: 1, dispatchAt: 1 },
@@ -113,7 +124,7 @@ export async function drainTailoredResumes({ generate, deadline = Date.now() + 3
   const counts = { attempted: 0, completed: 0, failed: 0 };
   if (deadline - Date.now() <= 15000) return counts;
   const now = new Date(); const leaseOwner = randomUUID();
-  const row = await TailoredResume.findOneAndUpdate({ ready: true, attempts: { $lt: 3 }, $or: [
+  const row = await TailoredResume.findOneAndUpdate({ ...resumeProcessingConsentFilter(), ready: true, attempts: { $lt: 3 }, $or: [
     { status: 'queued' }, { status: 'running', leaseUntil: { $lt: now } },
   ] }, { $set: { status: 'running', phase: 'extracting', leaseOwner, leaseUntil: new Date(Math.max(deadline, now.getTime() + 30 * 60000)) }, $inc: { attempts: 1 } },
   { new: true, sort: { requestedAt: 1 } }).select('+leaseOwner').lean();
@@ -150,10 +161,10 @@ export async function drainTailoredResumes({ generate, deadline = Date.now() + 3
 
 export async function nextResumeDocumentTask(now = new Date()) {
   const [base, tailored] = await Promise.all([
-    Resume.findOne({ 'preparation.ready': true, 'preparation.attempts': { $lt: 3 }, $or: [
+    Resume.findOne({ ...resumeProcessingConsentFilter('preparation.'), 'preparation.ready': true, 'preparation.attempts': { $lt: 3 }, $or: [
       { 'preparation.status': 'queued' }, { 'preparation.status': 'running', 'preparation.leaseUntil': { $lt: now } },
     ] }).sort({ 'preparation.requestedAt': 1 }).select('_id user preparation.revision preparation.status preparation.requestedAt').lean(),
-    TailoredResume.findOne({ ready: true, attempts: { $lt: 3 }, $or: [
+    TailoredResume.findOne({ ...resumeProcessingConsentFilter(), ready: true, attempts: { $lt: 3 }, $or: [
       { status: 'queued' }, { status: 'running', leaseUntil: { $lt: now } },
     ] }).sort({ requestedAt: 1 }).select('_id user revision status requestedAt').lean(),
   ]);
@@ -174,15 +185,16 @@ export async function recoverTailoredResumes({ dispatch = dispatchTailoredResume
   recovering = true;
   try {
     const preparation = await recoverResumePreparations({ dispatch, now, dispatchPending: false });
+    await retireUnconsentedTailoring();
     await TailoredResume.updateMany({ status: { $in: activeResumeStatuses }, $or: [
       { requestedAt: { $lt: new Date(now.getTime() - 86400000) } },
       { requestedAt: { $exists: false }, createdAt: { $lt: new Date(now.getTime() - 86400000) } },
       { status: 'running', attempts: { $gte: 3 }, leaseUntil: { $lt: now } },
       { status: 'queued', ready: false, updatedAt: { $lt: new Date(now.getTime() - 60000) } },
     ] }, { $set: { status: 'failed', phase: 'failed', ready: false, error: 'This request was interrupted. Please retry generation.' }, $unset: { leaseOwner: 1, leaseUntil: 1 } });
-    await TailoredResume.updateMany({ status: 'running', attempts: { $lt: 3 }, leaseUntil: { $lt: now } }, { $set: { status: 'queued', phase: 'queued' }, $unset: { leaseOwner: 1, leaseUntil: 1 } });
+    await TailoredResume.updateMany({ ...resumeProcessingConsentFilter(), status: 'running', attempts: { $lt: 3 }, leaseUntil: { $lt: now } }, { $set: { status: 'queued', phase: 'queued' }, $unset: { leaseOwner: 1, leaseUntil: 1 } });
     if (dispatch === dispatchTailoredResumes && !tailoredResumeActionsConfigured()) return;
-    const due = { status: 'queued', ready: true, $or: [{ dispatchAt: { $exists: false } }, { dispatchAt: { $lt: new Date(now.getTime() - 300000) } }] };
+    const due = { ...resumeProcessingConsentFilter(), status: 'queued', ready: true, $or: [{ dispatchAt: { $exists: false } }, { dispatchAt: { $lt: new Date(now.getTime() - 300000) } }] };
     if (preparation.pending || await TailoredResume.exists(due)) {
       try { await dispatch({ reuseRunning: true, recovery: true }); await Promise.all([TailoredResume.updateMany(due, { $set: { dispatchAt: now } }), Resume.updateMany(preparation.due, { $set: { 'preparation.dispatchAt': now } })]); }
       catch (error) {

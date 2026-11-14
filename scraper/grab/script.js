@@ -1,9 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
-
 import { GRAB_CATALOG as PROVIDER_METADATA } from './catalog.js'
+import {runCurrentGrab} from './currentNative.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -16,8 +15,6 @@ export const JOBS_RSS_URL = PROVIDER_METADATA.jobsRssFeedUrl
 export const INDIA_LOCATION_URL = PROVIDER_METADATA.indiaLocationPageUrl
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
-
-const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
@@ -149,15 +146,6 @@ const extractXmlField = (xml, tagName) =>
       ?? null,
   )
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
 export const hasOfficialJobsBoardSignal = (html = '') => {
   const text = (stripTags(html) || '').toLowerCase()
 
@@ -273,42 +261,7 @@ export const mergeJobs = (...jobCollections) => {
 export const createGrabScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-  } = {}) {
-    const jobsBoardHtml = await fetchText(JOBS_URL)
-    if (!hasOfficialJobsBoardSignal(jobsBoardHtml)) {
-      throw new Error('Grab verified Grab jobs board no longer matches the official first-party surface')
-    }
-
-    const jobsRssXml = await fetchText(JOBS_RSS_URL)
-    if (!hasOfficialJobsRssSignal(jobsRssXml)) {
-      throw new Error('Grab verified Grab jobs rss feed no longer matches the official first-party surface')
-    }
-
-    const indiaLocationHtml = await fetchText(INDIA_LOCATION_URL)
-    if (!hasOfficialIndiaLocationSignal(indiaLocationHtml)) {
-      throw new Error('Grab verified Grab India location page no longer matches the official first-party surface')
-    }
-
-    const scrapedAt = now()
-    const jobs = mergeJobs(
-      extractJobsFromJobsBoardHtml(jobsBoardHtml, { scrapedAt }),
-      extractJobsFromJobsRssXml(jobsRssXml, { scrapedAt }),
-      extractJobsFromIndiaLocationHtml(indiaLocationHtml, { scrapedAt }),
-    ).map((job) => ({
-      ...job,
-      companyCareerPage: JOBS_URL,
-      companyDomain: PROVIDER_METADATA.companyDomain,
-      atsPlatform: PROVIDER_METADATA.atsPlatform,
-    }))
-
-    if (jobs.length === 0) {
-      throw new Error('Grab verified first-party surfaces no longer exposes normalized india jobs')
-    }
-
-    return jobs
-  },
+  run: (options={})=>runCurrentGrab({now,...options}),
 })
 
 export const run = async (options = {}) => createGrabScraper(options).run(options)

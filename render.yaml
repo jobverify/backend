@@ -3,11 +3,11 @@ services:
   - type: web
     name: jobverify-backend
     runtime: node
-    repo: https://github.com/jobverify/backend
     region: oregon
-    plan: free
+    # Paid, always-on API compute. Review cost before applying this Blueprint.
+    plan: 0.5c-512mb
     branch: main
-    autoDeployTrigger: checksPass
+    autoDeployTrigger: off
     buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /ready
@@ -45,7 +45,7 @@ services:
       - key: GITHUB_REPO
         sync: false
       - key: TAILORED_RESUME_GITHUB_REPO
-        value: jobverify/backend
+        sync: false
       - key: SCRAPER_CONCURRENCY
         sync: false
       - key: WORKDAY_DETAIL_FETCH_CONCURRENCY
@@ -65,4 +65,20 @@ services:
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: TELEGRAM_WEBHOOK_SECRET
+        sync: false
+      - key: EMAIL_RELAY_URL
+        sync: false
+      - key: EMAIL_RELAY_SECRET
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: SENTRY_RELEASE
+        sync: false
+      - key: PAYMENT_PROVIDER
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
         sync: false

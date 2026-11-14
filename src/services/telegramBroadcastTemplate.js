@@ -6,7 +6,7 @@ import { formatBatchEligibility } from '../utils/jobBatchEligibility.js';
 export const BROADCAST_TOKENS = [
   ['company', 'Company'], ['title', 'Job title'], ['jobType', 'Job type'], ['location', 'Location'],
   ['batch', 'Graduation years (estimates marked)'], ['experience', 'Source-stated experience'], ['workMode', 'Work mode'],
-  ['skills', 'Required skills'], ['salary', 'Source-stated salary'], ['jobUrl', 'Application link'],
+  ['skills', 'Required skills'], ['salary', 'Source-stated salary'], ['jobUrl', 'Jobverify job page'],
 ].map(([name, label]) => ({ name, label }));
 
 export const DEFAULT_BROADCAST_TEMPLATE = [
@@ -17,11 +17,11 @@ export const DEFAULT_BROADCAST_TEMPLATE = [
 ].join('\n');
 
 export const BROADCAST_SAMPLE_JOBS = {
-  complete: { title: 'Software Engineer', company: 'Example Company', jobType: 'Full-time Fresher',
+  complete: { _id: '507f1f77bcf86cd799439011', title: 'Software Engineer', company: 'Example Company', jobType: 'Full-time Fresher',
     city: 'Bangalore', workArrangement: 'Hybrid', eligibleBatches: [2026], eligibleBatchesProvenance: 'source',
     requiredSkills: ['Java', 'SQL'], salary: '₹6–8 LPA', sourceUrl: 'https://example.test/jobs/sample',
     experienceProfile: { hasExplicitExperience: true, minimumYears: 0, maximumYears: 1 } },
-  minimal: { title: 'Software Engineer', company: 'Example Company', sourceUrl: 'https://example.test/jobs/sample' },
+  minimal: { _id: '507f1f77bcf86cd799439011', title: 'Software Engineer', company: 'Example Company', sourceUrl: 'https://example.test/jobs/sample' },
 };
 
 const TOKEN = /\{([A-Za-z][A-Za-z0-9]*)\}/g;
@@ -42,7 +42,7 @@ export function validateBroadcastTemplate(template) {
   if (/[{}]/.test(template.replace(TOKEN, ''))) throw invalid('Use single-brace placeholders such as {title}.');
   const unknown = names.find(name => !Object.hasOwn(limits, name));
   if (unknown) throw invalid(`Unsupported placeholder: {${unknown}}.`);
-  if (!names.includes('jobUrl')) throw invalid('Include {jobUrl} so every alert has an application link.');
+  if (!names.includes('jobUrl')) throw invalid('Include {jobUrl} so every alert has a Jobverify job page link.');
   if (template.replace(TOKEN, (_match, name) => 'x'.repeat(limits[name])).length > 4096) {
     throw invalid('The expanded template could exceed Telegram’s 4096-character limit. Shorten it.');
   }
@@ -76,7 +76,7 @@ export function renderBroadcastTemplate(template, job) {
     return [line.replace(TOKEN, (_match, name) => values[name]).trimEnd()];
   }).join('\n').replace(/\n{3,}/g, '\n\n').trim();
   // Optional metadata may share a line with the required link. Preserve the
-  // application URL even when dropping that incomplete metadata line.
+  // Jobverify URL even when dropping that incomplete metadata line.
   if (!text.includes(values.jobUrl)) text = [text, values.jobUrl].filter(Boolean).join('\n');
   if (text.length > 4096) throw invalid('The rendered message exceeds Telegram’s 4096-character limit.');
   return text;

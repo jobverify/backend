@@ -1,4 +1,5 @@
 import { requireResumeAccess } from '../middleware/resumeAccess.js';
+import { requireResumeProcessingConsent } from '../middleware/resumeProcessingConsent.js';
 import express from 'express';
 import { protect } from '../middleware/authMiddleware.js';
 import { createRateLimiter } from '../utils/rateLimit.js';
@@ -24,7 +25,7 @@ router.get('/revisions/compare', revisions.compare);
 router.get('/revisions/:revisionId/download', revisions.download);
 router.post('/revisions/:revisionId/restore', uploadLimiter, revisions.restore);
 router.delete('/revisions/:revisionId', uploadLimiter, revisions.remove);
-router.post('/prepare', uploadLimiter, prepareResume);
+router.post('/prepare', uploadLimiter, requireResumeProcessingConsent, prepareResume);
 router.delete('/', removeResume);
 router.put('/', uploadLimiter, (req, res, next) => {
   if (!req.is('application/octet-stream')) return res.status(415).json({ success: false, message: 'Upload the resume as application/octet-stream.' });

@@ -14,6 +14,7 @@ const schema = new Schema({
   output: { type: Schema.Types.Mixed, default: null }, outputResumeSha: String, outputJobHash: String,
   error: { type: String, maxlength: 1000, default: '' }, attempts: { type: Number, default: 0 },
   leaseOwner: { type: String, select: false }, leaseUntil: Date, dispatchAt: Date, generatedAt: Date, requestedAt: Date,
+  processingConsentVersion: String, processingConsentAcceptedAt: Date,
 }, { timestamps: true });
 // Deterministic primary key also protects concurrent first requests before indexes exist.
 schema.index({ user: 1, job: 1 }, { unique: true });

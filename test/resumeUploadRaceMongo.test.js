@@ -14,6 +14,8 @@ import { createResumeArtifact } from '../src/services/resumeArtifactService.js';
 import { requestResumePreparation, drainResumePreparations } from '../src/services/resumePreparationService.js';
 import { requestTailoredResume } from '../src/services/resumeTailoringService.js';
 
+const processingConsent = { version: '2026-11-14', accepted: true };
+
 const response = () => ({ status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } });
 const source = label => Buffer.from(`\\documentclass{article}\n\\begin{document}Asha Rao. ${label} React project in 2025. BSc Computer Science, 2026.\\end{document}`);
 const output = bytes => ({ latex: bytes.toString(), pdf: Buffer.from('%PDF-1.7\nvalidated resume\n%%EOF'), pageCount: 1 });
@@ -52,10 +54,10 @@ test('a delayed upload cleans up only the source it replaced and preserves a new
   const newest = source('Upload B');
   await uploadResume({ user: owner, headers: { 'x-resume-filename': 'b.tex' }, body: newest }, secondResponse);
   assert.equal(secondResponse.statusCode, 200);
-  await requestResumePreparation(owner, { dispatch: async () => {} });
+  await requestResumePreparation(owner, { processingConsent, dispatch: async () => {} });
   assert.deepEqual(await drainResumePreparations({ generate: async () => output(newest) }), { attempted: 1, completed: 1, failed: 0 });
   const currentBeforeA = await Resume.findById(id).lean();
-  await requestTailoredResume(owner, String(newJob), { dispatch: async () => {} });
+  await requestTailoredResume(owner, String(newJob), { processingConsent, dispatch: async () => {} });
   const queuedBeforeA = await TailoredResume.findById(`${id}:${newJob}`).lean();
   // A failed later preparation may retain B's successful PDF. The delayed A
   // request must not interpret B's failure as permission to prepare B again.

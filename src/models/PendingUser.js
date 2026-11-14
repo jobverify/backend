@@ -4,6 +4,7 @@
  */
 
 import { Schema, model } from "mongoose";
+import ageEligibilitySchema from './ageEligibilitySchema.js';
 
 const PendingUserSchema = new Schema(
   {
@@ -15,6 +16,7 @@ const PendingUserSchema = new Schema(
       lowercase: true,
     },
     password: { type: String, default: null },
+    ageEligibility: { type: ageEligibilitySchema, default: undefined },
     pendingBrowserNonceHash: { type: String, default: null },
     role: {
       type: String,

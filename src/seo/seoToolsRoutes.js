@@ -1,6 +1,6 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
 import express from 'express';
-import rateLimit from 'express-rate-limit';
+import { createRateLimiter } from '../utils/rateLimit.js';
 import { findIndexedPages } from './indexedPages.js';
 import { auditPage } from './pageAudit.js';
 import { SeoError } from './providerHttp.js';
@@ -21,11 +21,11 @@ export function createSeoToolsRouter({ env = process.env, findPages = findIndexe
     }
     next();
   });
-  // This scoped credential has one shared paid-request budget per process,
+  // Production replicas share this paid-request budget through MongoDB,
   // independent of ENABLE_RATE_LIMITING and of spoofed forwarding headers.
-  router.use(rateLimit({ windowMs: 15 * 60_000, limit: requestLimit, keyGenerator: () => 'seo-tools', standardHeaders: 'draft-8', legacyHeaders: false,
+  router.use(createRateLimiter({ storePrefix: 'seo-tools', windowMs: 15 * 60_000, limit: requestLimit, keyGenerator: () => 'seo-tools', standardHeaders: 'draft-8', legacyHeaders: false,
     handler: (_req, res) => res.status(429).json({ success: false, code: 'rate_limited', message: 'SEO tools request budget exceeded. Try again after the Retry-After interval.' }),
-  }));
+  }, { ...env, ENABLE_RATE_LIMITING: 'true' }));
   router.use(express.json({ limit: '32kb', strict: true }));
   const run = operation => async (req, res) => {
     if (active >= 2) {
@@ -43,6 +43,10 @@ export function createSeoToolsRouter({ env = process.env, findPages = findIndexe
   router.post('/audit', run(audit));
   router.use((_req, res) => res.status(404).json({ success: false, message: 'SEO route not found.' }));
   router.use((error, _req, res, next) => {
+    if (error.status === 503) {
+      res.set('Retry-After', '60');
+      return res.status(503).json({ success: false, code: 'tools_unavailable', message: 'SEO request budgets are temporarily unavailable. Please retry.' });
+    }
     if (error.type === 'entity.too.large') return res.status(413).json({ success: false, message: 'SEO snapshots must fit within 32 KB.' });
     if (error instanceof SyntaxError) return res.status(400).json({ success: false, message: 'A valid JSON object is required.' });
     next(error);

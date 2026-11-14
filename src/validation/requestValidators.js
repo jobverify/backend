@@ -1,6 +1,8 @@
 import { body, param, query } from "express-validator";
 import {
+  ASCII_EMAIL_MESSAGE,
   isAllowedAccountEmail,
+  isAsciiEmailIdentity,
   isStrongPassword,
   normalizeEmailAddress,
   PASSWORD_POLICY_MESSAGE,
@@ -51,6 +53,9 @@ const allowedAccountEmailRule = (chain) =>
       }
       return true;
     });
+
+const newAccountEmailRule = (chain) =>
+  allowedAccountEmailRule(chain.custom(isAsciiEmailIdentity).withMessage(ASCII_EMAIL_MESSAGE).bail());
 
 const boundedStringRule = (chain, label, maxLength = MAX_TEXT_LENGTH) =>
   chain
@@ -279,7 +284,7 @@ const telegramAlertFiltersValidationRules = () =>
 
 export const registerValidation = [
   boundedStringRule(body("name"), "Name"),
-  allowedAccountEmailRule(body("email")),
+  newAccountEmailRule(body("email")),
   // Older clients may submit a password; it is validated but never persisted.
   body("password").optional().custom((value) => {
     if (typeof value !== "string" || value.length === 0) {
@@ -295,7 +300,9 @@ export const registerValidation = [
 ];
 
 export const loginValidation = [
-  allowedAccountEmailRule(body("email")),
+  // Apple users may have an iCloud or private relay address. Sign-up policy is
+  // enforced only when creating an ordinary email account.
+  body('email').customSanitizer(normalizeEmailAddress).isEmail().withMessage('Please include a valid email.'),
   body("password")
     .isString()
     .isLength({ min: 1 })
@@ -308,6 +315,10 @@ export const googleAuthValidation = [
     .isString()
     .isLength({ min: 1, max: 5000 })
     .withMessage("Google credential is required."),
+];
+
+export const changeEmailValidation = [
+  newAccountEmailRule(body("email")),
 ];
 
 export const resendValidation = [

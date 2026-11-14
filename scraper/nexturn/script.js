@@ -1,8 +1,8 @@
+import {runCurrentNexTurn} from './currentNative.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { CANONICAL_CITIES } from '../../scraper-support/utils/cities.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -11,9 +11,6 @@ export const COMPANY = 'NexTurn'
 export const HOMEPAGE_URL = 'https://nexturn.com/'
 export const CAREERS_URL = 'https://nexturn.com/careers/'
 export const VERIFIED_ON = '2026-10-03'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const escapeRegExp = (value) => String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
@@ -31,14 +28,6 @@ const DETAIL_STOP_PATTERNS = [
   /^Offices\b/i,
   /^Technologies\b/i,
   /^Quick Links\b/i,
-]
-
-const NON_INDIA_LOCATION_PATTERNS = [
-  /\busa\b/i,
-  /\bunited states\b/i,
-  /\bking of prussia\b/i,
-  /\bpennsylvania\b/i,
-  /\bpa\b/i,
 ]
 
 const CITY_MATCHERS = Object.entries(CANONICAL_CITIES)
@@ -209,9 +198,6 @@ const extractSection = (lines, label) => {
   return truncateAtNextSectionLabel(values.join(' '), label)
 }
 
-const isExplicitNonIndiaLocation = (value) =>
-  NON_INDIA_LOCATION_PATTERNS.some((pattern) => pattern.test(String(value ?? '')))
-
 const findCanonicalCities = (location) => {
   const normalized = normalizeWhitespace(location)?.toLowerCase()
   if (!normalized) return []
@@ -234,14 +220,6 @@ const deriveCity = (location) => {
   return matches.includes('Remote') ? 'Remote' : null
 }
 
-const isIndiaLocation = (location) => {
-  const normalized = normalizeWhitespace(location)
-  if (!normalized) return false
-  if (/\bindia\b/i.test(normalized)) return true
-  if (isExplicitNonIndiaLocation(normalized)) return false
-  return findCanonicalCities(normalized).some((city) => city !== 'Remote' && city !== 'None')
-}
-
 const buildJobId = (sourceUrl) => {
   try {
     const slug = new URL(sourceUrl).pathname.split('/').filter(Boolean).at(-1) || 'role'
@@ -249,14 +227,6 @@ const buildJobId = (sourceUrl) => {
   } catch {
     return `${SOURCE}-role`
   }
-}
-
-const composeJobDescription = ({ requirements, jobDescription, jobDescriptionPreview }) => {
-  const sections = []
-  if (requirements) sections.push(`Requirements: ${requirements}`)
-  if (jobDescription) sections.push(`Job Description: ${jobDescription}`)
-  if (!sections.length && jobDescriptionPreview) sections.push(jobDescriptionPreview)
-  return normalizeWhitespace(sections.join('\n\n'))
 }
 
 export const hasOfficialHomepageSignal = (html) => {
@@ -292,6 +262,7 @@ export const hasOfficialJobDetailSignal = (html, sourceUrl = null) => {
         'ec2-65-0-158-166.ap-south-1.compute.amazonaws.com',
         '3.7.208.225',
         '13.202.106.64',
+        'a207918b5adcafa5a3d5c8da94245572-1614464718.ap-south-1.elb.amazonaws.com',
       ].includes(canonical.hostname)
         && canonical.protocol === 'https:'
         && normalizePathname(canonical.pathname) === normalizePathname(new URL(sourceUrl).pathname)
@@ -365,80 +336,7 @@ export const extractJobDetail = (html, sourceUrl) => {
   }
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-export const createNexTurnScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('NexTurn official homepage changed; refusing to trust careers links')
-    }
-
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('NexTurn official careers surface changed; refusing to trust public listings')
-    }
-
-    const jobCards = extractJobCards(careersHtml)
-    if (jobCards.length === 0) {
-      throw new Error('NexTurn official careers surface changed; no same-domain job cards found')
-    }
-
-    const jobs = []
-
-    for (const card of jobCards) {
-      if (isExplicitNonIndiaLocation(card.location) && !isIndiaLocation(card.location)) {
-        continue
-      }
-
-      const detailHtml = await fetchText(card.sourceUrl)
-      if (!hasOfficialJobDetailSignal(detailHtml, card.sourceUrl)) {
-        throw new Error('NexTurn official job detail surface changed; refusing to trust public listings')
-      }
-
-      const detail = extractJobDetail(detailHtml, card.sourceUrl)
-      const location = detail.location || card.location
-      if (!isIndiaLocation(location)) continue
-
-      const jobId = buildJobId(card.sourceUrl)
-      jobs.push({
-        title: detail.title || card.title,
-        company: COMPANY,
-        source: SOURCE,
-        country: 'India',
-        location,
-        city: detail.city || deriveCity(location),
-        experienceRequired: detail.experienceRequired || card.experienceRequired,
-        minimumQualification: detail.minimumQualification || card.minimumQualification,
-        preferredQualification: null,
-        requiredSkills: [],
-        jobDescription: composeJobDescription({
-          requirements: detail.requirements,
-          jobDescription: detail.jobDescription,
-          jobDescriptionPreview: card.jobDescriptionPreview,
-        }),
-        sourceUrl: card.sourceUrl,
-        applyUrl: detail.applyUrl || card.sourceUrl,
-        jobId,
-        requisitionId: jobId,
-        employmentType: null,
-        postingDate: null,
-        closingDate: null,
-        link: detail.applyUrl || card.sourceUrl,
-        scrapedAt: new Date().toISOString(),
-      })
-    }
-
-    return jobs
-  },
-})
+export const createNexTurnScraper = () => ({run: (options = {}) => runCurrentNexTurn({homeSignal:hasOfficialHomepageSignal,careersSignal:hasOfficialCareersSignal,detailSignal:hasOfficialJobDetailSignal,cards:extractJobCards,detail:extractJobDetail,id:buildJobId},options)})
 
 export const run = async (options = {}) => createNexTurnScraper().run(options)
 

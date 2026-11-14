@@ -48,7 +48,7 @@ export function parseBinding(html){
 function release(value,now){
  check(typeof value==='string'&&/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(value)&&Number.isFinite(Date.parse(value))&&new Date(value).toISOString()===value&&Date.parse(value)<=Date.parse(now)+60000,'Native releasedDate missing, malformed or future')
 }
-function rowContract(row,now){
+function rowContract(row,now,onCountryConflict){
  check(row&&typeof row==='object'&&!Array.isArray(row),'Malformed listing row')
  check(typeof row.id==='string'&&/^\d{1,25}$/.test(row.id)&&plain(row.name)&&plain(row.refNumber)&&plain(row.uuid)&&plain(row.jobAdId),'Native posting/title/requisition identity missing')
  check(row.company?.identifier===TENANT&&row.company?.name===NAME&&row.visibility==='PUBLIC','Native company or public visibility mismatch')
@@ -58,20 +58,27 @@ function rowContract(row,now){
  const countries=fields.filter(f=>f.fieldId==='COUNTRY')
  check(countries.length===1,'Native Country/Region missing or duplicated')
  if(l.country==='in'||countries[0].valueId==='in'||/\bIndia$/.test(l.fullLocation)||fields.some(f=>norm(f.valueLabel)==='india'&&/country/i.test(f.fieldLabel))){
-  check(l.country==='in'&&countries[0].valueId==='in'&&/\bIndia$/.test(l.fullLocation)&&countries[0].valueLabel==='India','Native India country or fullLocation conflict')
   const vacancy=fields.filter(f=>f.fieldLabel==='Country of vacancy')
-  check(vacancy.length===1&&vacancy[0].valueLabel==='India','Native Country of vacancy missing or conflicting')
   // Preserve native punctuation: one older record supplies city Bengaluru,.
   const city=norm(l.city).replace(/,+$/,'')
-  check(l.fullLocation.split(',').some(part=>norm(part)===city),'Native city contradicts fullLocation')
+  const reason=!(l.country==='in'&&countries[0].valueId==='in'&&/\bIndia$/.test(l.fullLocation)&&countries[0].valueLabel==='India')
+   ?'Native India country or fullLocation conflict'
+   :!(vacancy.length===1&&vacancy[0].valueLabel==='India')?'Native Country of vacancy missing or conflicting'
+   :!l.fullLocation.split(',').some(part=>norm(part)===city)?'Native city contradicts fullLocation':null
+  if(reason){
+   // Quarantine only this otherwise identity-valid native row. It remains in
+   // every count and closing comparison, and can never hydrate an India job.
+   check(typeof onCountryConflict==='function',reason)
+   onCountryConflict({id:row.id,reason,location:structuredClone(l),customField:structuredClone(fields)})
+  }
  }
  return row
 }
-export function parsePage(payload,offset,{now=new Date().toISOString()}={}){
+export function parsePage(payload,offset,{now=new Date().toISOString(),onCountryConflict}={}){
  check(payload&&typeof payload==='object'&&!Array.isArray(payload)&&!payload.error&&payload.success!==false&&!(Array.isArray(payload.errors)&&payload.errors.length),'Native upstream listing error')
  check(payload.offset===offset&&payload.limit===100&&Number.isSafeInteger(payload.totalFound)&&payload.totalFound>=0&&payload.totalFound<=MAX_RECORDS&&Array.isArray(payload.content),'Native page offset/limit/total/content mismatch')
  check(payload.content.length===Math.min(100,Math.max(0,payload.totalFound-offset)),'Native page size contradicts total')
- payload.content.forEach(r=>rowContract(r,now));check(new Set(payload.content.map(r=>r.id)).size===payload.content.length,'Duplicate native ID within page');return payload
+ payload.content.forEach(r=>rowContract(r,now,onCountryConflict));check(new Set(payload.content.map(r=>r.id)).size===payload.content.length,'Duplicate native ID within page');return payload
 }
 function postingURL(value,id){
  let u;try{u=new URL(value)}catch{check(false,'Native public posting URL missing')}
@@ -112,17 +119,18 @@ export async function run(options={}){
   }}))
   check(typeof text==='string'&&text.length<=3000000,'Native body missing or over limit');return type==='application/json'?JSON.parse(text):text
  }
- const pages=[],rows=new Map(),details=new Map(),listingURL=offset=>API+'?limit=100&offset='+offset
+ const pages=[],rows=new Map(),details=new Map(),quarantinedCountryRoles=new Map(),listingURL=offset=>API+'?limit=100&offset='+offset
+ const pageOptions={now,onCountryConflict:role=>quarantinedCountryRoles.set(role.id,role)}
  async function fetchPortalJson(url){
   if(url.startsWith(API+'?')){
    const offset=Number(new URL(url).searchParams.get('offset'));check(Number.isSafeInteger(offset)&&offset>=0&&url===listingURL(offset),'Unadvertised listing query')
-   const p=parsePage(await get(url),offset,{now});check(!pages.length||p.totalFound===pages[0].payload.totalFound,'Native total drift')
+   const p=parsePage(await get(url),offset,pageOptions);check(!pages.length||p.totalFound===pages[0].payload.totalFound,'Native total drift')
    for(const row of p.content){check(!rows.has(row.id),'Duplicate native ID across pages');rows.set(row.id,row)}
    pages.push({url,payload:p})
    // Preserve every record for pagination, selecting typed India before detail hydration.
-   return {...p,content:p.content.map(r=>({...r,nativeCountry:r.location.country}))}
+   return {...p,content:p.content.map(r=>({...r,nativeCountry:quarantinedCountryRoles.has(r.id)?null:r.location.country}))}
   }
-  const row=[...rows.values()].find(r=>r.ref===url);check(row&&row.location.country==='in','Detail ref not advertised by current India listing')
+  const row=[...rows.values()].find(r=>r.ref===url);check(row&&row.location.country==='in'&&!quarantinedCountryRoles.has(row.id),'Detail ref not advertised by current verified India listing')
   const payload=await get(url),parsed=await parseDetail(payload,row,{now});details.set(row.id,payload);return parsed
  }
  try{
@@ -133,11 +141,11 @@ export async function run(options={}){
    mapping:{jobId:'id',requisitionId:'refNumber',title:'name',location:'location.fullLocation',sourceUrl:'postingUrl',applyUrl:'applyUrl',postingDate:'releasedDate',employmentType:'typeOfEmployment.label',experienceLevel:'experienceLevel.label'},
    detail:{enabled:true,required:true,urlTemplate:API+'/{{jobId}}',concurrency:1,mapping:{jobDescription:'jobDescription',minimumQualification:'minimumQualification'}}
   }}
-  const jobs=await runApiPortalScraper({provider,fetchJson:fetchPortalJson}),india=[...rows.values()].filter(r=>r.location.country==='in')
+  const jobs=await runApiPortalScraper({provider,fetchJson:fetchPortalJson}),india=[...rows.values()].filter(r=>r.location.country==='in'&&!quarantinedCountryRoles.has(r.id))
   check(readInventoryEvidence(jobs)?.listingComplete===true&&rows.size===pages[0].payload.totalFound&&details.size===india.length&&jobs.length===india.length,'Shared native enumeration incomplete')
-  const terminalURL=listingURL(rows.size),terminal=parsePage(await get(terminalURL),rows.size,{now});check(terminal.totalFound===rows.size&&!terminal.content.length,'Native terminal mismatch')
-  for(const p of pages){const last=parsePage(await get(p.url),p.payload.offset,{now});check(equal(last,p.payload),'Native listing fields changed during extraction')}
-  const lastTerminal=parsePage(await get(terminalURL),rows.size,{now});check(equal(lastTerminal,terminal),'Native terminal changed during extraction')
+  const terminalURL=listingURL(rows.size),terminal=parsePage(await get(terminalURL),rows.size,pageOptions);check(terminal.totalFound===rows.size&&!terminal.content.length,'Native terminal mismatch')
+  for(const p of pages){const last=parsePage(await get(p.url),p.payload.offset,pageOptions);check(equal(last,p.payload),'Native listing fields changed during extraction')}
+  const lastTerminal=parsePage(await get(terminalURL),rows.size,pageOptions);check(equal(lastTerminal,terminal),'Native terminal changed during extraction')
   for(const row of india){const last=await get(row.ref);await parseDetail(last,row,{now});check(equal(last,details.get(row.id)),'Native detail fields changed during extraction')}
   signal.throwIfAborted()
   const foreignCountryConflicts=[...rows.values()].filter(r=>r.location.country!=='in'&&r.customField.find(f=>f.fieldId==='COUNTRY').valueId!==r.location.country).map(r=>({id:r.id,country:r.location.country,customCountry:r.customField.find(f=>f.fieldId==='COUNTRY').valueId,location:r.location,customField:r.customField}))
@@ -145,9 +153,12 @@ export async function run(options={}){
    city:d.location.city,remoteStatus:d.location.remote?'Remote':d.location.hybrid?'Hybrid':'On-site',
    nativeReleasedDate:d.releasedDate,nativePublicationDate:d.releasedDate,nativePublicationDatePrecision:'instant',nativePublicationDateSource:'SmartRecruiters.releasedDate',nativeFirstPublicationDate:null,nativeCreatedAt:null,nativeUpdatedAt:null,nativeClosingDate:null,closingDate:null,postedAt:d.releasedDate,publicationDateQualified:true,nativeDateUnknown:false,
    nativePostingStatus:{active:d.active,visibility:d.visibility},nativeLegalEmployer:null,nativeJobUUID:d.jobId,nativeLocationOriginal:d.location,nativeListingOriginal:rows.get(job.jobId),
-   sourceDescription:job.jobDescription,sourceDetailComplete:true,sourceDetailStatus:'active-public-native-full-JD',sourceListingComplete:false,sourceScopeComplete:false,sourceGlobalJobCount:null,sourceIndiaJobCount:null,sourceObservedNativeRecords:rows.size,sourceObservedNativeIndiaRecords:india.length,sourceCheckedNativeEnumerationComplete:true,sourceCheckedNativeReconciled:true,sourceExcludedNativeCountryConflicts:foreignCountryConflicts,
+   sourceDescription:job.jobDescription,sourceDetailComplete:true,sourceDetailStatus:'active-public-native-full-JD',sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,sourceGlobalJobCount:null,sourceIndiaJobCount:null,sourceObservedNativeRecords:rows.size,sourceObservedNativeIndiaRecords:india.length,sourceCheckedNativeEnumerationComplete:true,sourceCheckedNativeReconciled:true,sourceExcludedNativeCountryConflicts:foreignCountryConflicts,sourceQuarantinedNativeCountryRoles:[...quarantinedCountryRoles.values()],
    applicationAccessValidated:false,applicationEligibilityQualified:false,applicationSubmitted:false,applicationAccess:'configured-native-application-URL-only',scrapedAt:now,
   })}
-  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:listingURL(0),firstParty:true,listingComplete:false,pagesFetched:pages.length*2+2,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:india.length?'advertised-native-public-tenant-exhausted-and-rechecked-whole-company-scope-unknown':'advertised-native-public-tenant-India-empty-whole-company-zero-unqualified'})
+  Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:'averydennison',lifecycleCleanupAllowed:false,
+   observedNativeRecords:rows.size,observedTypedIndiaRecords:[...rows.values()].filter(r=>r.location.country==='in').length,
+   verifiedIndiaRecords:india.length,quarantinedCountryRoles:[...quarantinedCountryRoles.values()]},enumerable:true})
+  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:listingURL(0),firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,pagesFetched:pages.length*2+2,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:(india.length?'advertised-native-public-tenant-exhausted-and-rechecked-whole-company-scope-unknown':'advertised-native-public-tenant-India-empty-whole-company-zero-unqualified')+(quarantinedCountryRoles.size?';native-country-conflicts-quarantined:'+quarantinedCountryRoles.size:'')})
  }finally{clearTimeout(timer)}
 }

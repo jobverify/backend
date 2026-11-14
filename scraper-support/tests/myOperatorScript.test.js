@@ -1,7 +1,24 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {createCatalogScraper,getScraperCatalog} from '../providers/index.js'
+import {API,BOARD,CORPORATE} from '../../scraper/myoperator/currentNative.js'
 
-const FIXED_SCRAPED_AT = '2026-07-17T18:00:00.000Z'
+const currentFixture=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/myoperator/test-data/native-20261114.json.gz',import.meta.url))))
+const FIXED_SCRAPED_AT=currentFixture.capturedAt
+const provider=getScraperCatalog().find(row=>row.source==='myoperator')
+function replayCurrent(change=(_url,row)=>row){
+ const requested=[],counts=new Map()
+ const fetchImpl=async(input,init={})=>{
+  const url=String(input),count=(counts.get(url)||0)+1;counts.set(url,count);init.signal?.throwIfAborted()
+  const matches=currentFixture.responses.filter(row=>row.url===url),original=matches[Math.min(count-1,matches.length-1)]
+  assert.ok(original,'Unexpected native read '+url);assert.equal(init.method||'GET','GET');requested.push(url)
+  const record=change(url,structuredClone(original)),response=new Response(record.body,{status:record.status,headers:record.headers})
+  Object.defineProperty(response,'url',{value:record.finalUrl??record.url});return response
+ }
+ return {fetchImpl,requested}
+}
 
 const careersShellHtml = `
 <!doctype html>
@@ -145,64 +162,45 @@ test('MyOperator helpers stay pinned to the verified shell, portal, and public Z
   ])
 })
 
-test('MyOperator run validates the first-party shell and returns India jobs from the public Zoho Recruit API', async () => {
-  const myoperator = await loadModule()
-  const requestedTexts = []
-  const requestedJson = []
-
-  const jobs = await myoperator.createMyOperatorScraper({
-    now: () => FIXED_SCRAPED_AT,
-  }).run({
-    fetchText: async (url) => {
-      requestedTexts.push(url)
-      if (url === myoperator.CAREERS_URL) return careersShellHtml
-      if (url === myoperator.PORTAL_URL) return portalHtml
-      throw new Error(`Unexpected text URL: ${url}`)
-    },
-    fetchJson: async (url) => {
-      requestedJson.push(url)
-      assert.equal(url, myoperator.JOBS_API_URL)
-      return apiPayload
-    },
-  })
-
-  assert.deepEqual(requestedTexts, [
-    myoperator.CAREERS_URL,
-    myoperator.PORTAL_URL,
-  ])
-  assert.deepEqual(requestedJson, [myoperator.JOBS_API_URL])
-  assert.equal(jobs.length, 2)
-  assert.equal(jobs[0].source, 'myoperator')
-  assert.equal(jobs[0].companyCareerPage, 'https://myoperator.com/careers')
-  assert.equal(jobs[0].companyDomain, 'myoperator.com')
-  assert.equal(jobs[0].atsPlatform, 'zoho-recruit')
-  assert.equal(jobs[0].scrapedAt, FIXED_SCRAPED_AT)
+test('MyOperator registered run validates current native HTTP responses and retains provider metadata', async () => {
+  const transport=replayCurrent()
+  const jobs=await createCatalogScraper(provider).run({fetchImpl:transport.fetchImpl,now:()=>FIXED_SCRAPED_AT})
+  assert.equal(jobs.length,16)
+  assert.equal(transport.requested.length,38)
+  for(const url of [CORPORATE,BOARD,API])assert.equal(transport.requested.filter(value=>value===url).length,2)
+  for(const job of jobs){
+    assert.equal(job.source,'myoperator')
+    assert.equal(job.companyCareerPage,'https://myoperator.com/careers')
+    assert.equal(job.companyDomain,'myoperator.com')
+    assert.equal(job.atsPlatform,'zoho-recruit')
+    assert.equal(job.scrapedAt,FIXED_SCRAPED_AT)
+    assert.equal(job.country,'India')
+    assert.equal(job.sourceDetailComplete,true)
+    assert.equal(job.sourceDescriptionHTML,job.sourceNativeDetailRecord.Job_Description)
+    assert.equal(job.sourceClosingReconciled,true)
+    assert.equal(job.sourceScopeComplete,false)
+    assert.equal(job.lifecycleCleanupAllowed,false)
+  }
 })
 
-test('MyOperator fails closed when the verified shell, portal, or jobs API contract changes', async () => {
-  const myoperator = await loadModule()
+test('MyOperator registered run fails closed at shell, portal, API and HTTP authority boundaries', async t => {
+  for(const {name,url,edit,error,reads}of [
+    {name:'corporate shell',url:CORPORATE,edit:row=>{row.body='<html><head><title>Careers</title></head><body>Other employer</body></html>'},error:/corporate employer title/i,reads:1},
+    {name:'native portal',url:BOARD,edit:row=>{row.body=row.body.replace('<title>Careers at MyOperator</title>','<title>Another employer</title>')},error:/native employer title/i,reads:2},
+    {name:'native jobs API',url:API,edit:row=>{row.body=JSON.stringify({code:'error',data:[]})},error:/native jobs success/i,reads:3},
+    {name:'foreign final HTTP URL',url:CORPORATE,edit:row=>{row.finalUrl='https://other.example/careers'},error:error=>error.status===200&&/Original native final URL changed/.test(error.message),reads:1},
+    {name:'native public HTTP refusal',url:CORPORATE,edit:row=>{row.status=403},error:error=>error.status===403&&error.abortRetries===true,reads:1},
+  ])await t.test(name,async()=>{
+    const transport=replayCurrent((target,row)=>{if(target===url)edit(row);return row})
+    await assert.rejects(createCatalogScraper(provider).run({fetchImpl:transport.fetchImpl,now:()=>FIXED_SCRAPED_AT}),error)
+    assert.equal(transport.requested.length,reads)
+  })
+})
 
-  await assert.rejects(
-    myoperator.createMyOperatorScraper().run({
-      fetchText: async (url) => (url === myoperator.CAREERS_URL ? '<html><body><h1>Careers</h1></body></html>' : portalHtml),
-      fetchJson: async () => apiPayload,
-    }),
-    /verified MyOperator careers shell/i,
-  )
-
-  await assert.rejects(
-    myoperator.createMyOperatorScraper().run({
-      fetchText: async (url) => (url === myoperator.CAREERS_URL ? careersShellHtml : '<html><body><h1>Jobs</h1></body></html>'),
-      fetchJson: async () => apiPayload,
-    }),
-    /verified MyOperator portal/i,
-  )
-
-  await assert.rejects(
-    myoperator.createMyOperatorScraper().run({
-      fetchText: async (url) => (url === myoperator.CAREERS_URL ? careersShellHtml : portalHtml),
-      fetchJson: async () => ({ code: 'error', data: [] }),
-    }),
-    /verified MyOperator jobs api/i,
-  )
+test('MyOperator rejects body-only transport overrides before any HTTP read',async()=>{
+  for(const key of ['fetchText','fetchJson']){
+    let requested=0
+    await assert.rejects(createCatalogScraper(provider).run({[key]:async()=>key==='fetchJson'?apiPayload:careersShellHtml,fetchImpl:async()=>{requested++;throw Error('Unexpected HTTP read')}}),/unreviewed.*overrides|body-only|unsupported/i)
+    assert.equal(requested,0)
+  }
 })

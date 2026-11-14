@@ -17,6 +17,7 @@ const date=value=>typeof value==='string'&&/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}
 const reviewedPrograms=[
  {environment:'34b8d4d0ebe91a0e5b8c77d833b48cf00d1e516ed2fed6ab8cb6b22b62d247bb',board:'e32555ea8abc0269156dd51bc104ad9e61e1181d7fee24432783b6168a43dfc9',detail:'e820b756b428ed94fb2d892538efa299ad3e4a3ade97a1111019db5f325e44b4'},
  {environment:'b74587220172d8e2cff164d662b93e4963a4c2d3dd8a01f61dbe5e076d2950f4',board:'99b41ce0befdeff58b717776d49c5cfe80b93c4539d1ac244b11baf91ab68011',detail:'bc25c4f35faef51b08e6a8e142dc9086de217518b4fe376cca65c4a8f46d8481'},
+ {environment:'80fd5fa812addf10b504b259cfdd1c56d86bdd40d8fa53d500005bd42621f6a5',board:'1ec5a746b9c73f232a2e87ab52811de6c797086bcaf882e706ecda2f330d920d',detail:'eb06c07dee038a93e3dc6cbff4a7c39021d4aa7cf62f6ae608d1f23131082c6a'},
 ]
 
 export function readCurrentGoodnotesCorporate(html){

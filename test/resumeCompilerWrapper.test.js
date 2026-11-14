@@ -37,3 +37,39 @@ test('compiler copies the trusted 24 MB format before limiting untrusted output'
   assert.equal(oversized.stdout, '');
   assert.ok((await fs.stat(path.join(root, 'work/resume.pdf'))).size < 32 * 1024 * 1024);
 });
+
+test('compiler wrapper reduces private syntax errors to fixed repair markers', { skip: process.platform === 'win32' }, async t => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), 'resume-errors-'));
+  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  await Promise.all(['source', 'temporary', 'work', 'bin'].map(name => fs.mkdir(path.join(root, name))));
+  const wrapper = (await fs.readFile(new URL('../resume-tailoring/compiler/compile.sh', import.meta.url), 'utf8'))
+    .replaceAll('/opt/tectonic-cache', path.join(root, 'source'))
+    .replaceAll('/tmp/tectonic-cache', path.join(root, 'temporary/cache'))
+    .replaceAll('/tmp/compiler.log', path.join(root, 'temporary/compiler.log'))
+    .replaceAll('/work', path.join(root, 'work'));
+  const script = path.join(root, 'compile.sh');
+  await fs.writeFile(script, wrapper);
+  await fs.writeFile(path.join(root, 'bin/tectonic'), '#!/bin/sh\nprintf "%s\\n" "$FIXTURE_ERROR" "private alex@example.test" >&2\nexit 1\n', { mode: 0o755 });
+  for (const [error, marker] of [
+    ['Undefined control sequence', 'REASON_UNDEFINED_COMMAND'],
+    ['Misplaced alignment tab character &', 'REASON_ALIGNMENT_TAB'],
+    ['Extra alignment tab has been changed to \\cr', 'REASON_ALIGNMENT_TAB'],
+    ['Missing $ inserted', 'REASON_MATH_DELIMITER'],
+    ['Extra }, or forgotten \\endgroup', 'REASON_UNBALANCED_GROUP'],
+    ['Runaway argument?', 'REASON_UNBALANCED_GROUP'],
+    ['LaTeX Error: \\begin{itemize} ended by \\end{document}', 'REASON_ENVIRONMENT_MISMATCH'],
+    ["Something's wrong--perhaps a missing \\item.", 'REASON_MISSING_ITEM'],
+    ['No space left on device', 'RESOURCE_LIMIT'],
+    ['File size limit exceeded', 'RESOURCE_LIMIT'],
+    ['font metric not cached', 'DEPENDENCY_MISSING'],
+    ['unrecognized compiler failure', 'FAILED'],
+  ]) {
+    const result = spawnSync('/bin/sh', [script, '--untrusted', '--only-cached'], {
+      input: 'Private synthetic resume', encoding: 'utf8', timeout: 5000,
+      env: { ...process.env, PATH: `${path.join(root, 'bin')}:${process.env.PATH}`, FIXTURE_ERROR: error },
+    });
+    assert.equal(result.status, 1, error);
+    assert.equal(result.stdout, '');
+    assert.equal(result.stderr.trim(), `RESUME_COMPILER_${marker}`, error);
+  }
+});

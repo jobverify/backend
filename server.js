@@ -3,6 +3,8 @@
  * database, listening socket, maintenance tasks, and termination signals.
  */
 import "./loadEnv.js";
+import { captureServerError, flushMonitoring } from './src/monitoring/sentry.js';
+import { createFatalErrorHandler } from './src/monitoring/fatalError.js';
 import mongoose from "mongoose";
 import connectDB from "./db/db.js";
 import { createApp } from "./src/app.js";
@@ -20,6 +22,12 @@ import { recoverTelegramChannelAlerts } from './src/services/telegramChannelServ
 import { logOperationalError } from './src/utils/operationalLog.js';
 import { initializeVerification } from './src/jobVerification/initialize.js';
 import { verificationService } from './src/jobVerification/service.js';
+
+const failProcess = createFatalErrorHandler({
+  capture: captureServerError,
+  flush: flushMonitoring,
+  exit: code => process.exit(code),
+});
 
 async function main() {
   const port = parsePort(process.env.PORT);
@@ -98,8 +106,8 @@ async function main() {
   const onSignal = (signal) => {
     console.log(`Received ${signal}; draining requests and background work.`);
     shutdown().catch((error) => {
-      console.error("[Shutdown]", error.message);
-      process.exit(1);
+      process.stderr.write('[Shutdown] Backend shutdown failed.\n');
+      return failProcess(error);
     });
   };
   process.once("SIGTERM", onSignal);
@@ -107,6 +115,6 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("[Startup]", error.message);
-  process.exit(1);
+  process.stderr.write('[Startup] Backend startup failed.\n');
+  return failProcess(error);
 });

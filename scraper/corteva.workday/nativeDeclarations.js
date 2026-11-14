@@ -9,6 +9,7 @@ export const BOARD=PORTAL+'careers'
 export const CLIENT=PORTAL+'gen/js/pcsxPwa.52b647b4fc3ce8f6.js'
 export const CLIENT_SHA256='d08d828d8794b424383232b00c35df5733ed99b7fcd4154ac91bdd311515d78c'
 const reviewedClients=new Map([
+ [PORTAL+'gen/js/pcsxPwa.ceaedf5d9f9dac50.js','41537b81e94ebeeab73848de621505039707a7aee66a81b14719a91d4409ca9a'],
  [CLIENT,CLIENT_SHA256],
  [PORTAL+'gen/js/pcsxPwa.6c903be3a68c07ae.js','c99cb7da4f4a8e6eef449602e15fea1c01ef90b31b4925947bd8ab54d0f1c111'],
 ])

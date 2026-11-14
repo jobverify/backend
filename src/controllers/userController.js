@@ -26,6 +26,7 @@ import { respondWithInternalError } from "../utils/respondWithInternalError.js";
 import { createTelegramLinkToken } from "../services/telegramLinkService.js";
 import { clearAuthCookie } from "../utils/authCookies.js";
 import { removeUserAccount } from "../services/userAccountDeletion.js";
+import { InactiveAccountError } from '../services/activeAccountWrite.js';
 
 const MAX_PROFILE_TEXT_LENGTH = 80;
 const MAX_PROFILE_ITEMS = 20;
@@ -67,7 +68,9 @@ const buildSavedJobsFilter = (savedJobIds, siteSettings) => applyPublicJobVisibi
 }, siteSettings);
 
 const respondWithUserInternalError = (res, error) => (
-  respondWithInternalError(res, error, {
+  error instanceof InactiveAccountError
+    ? res.status(404).json({ code: 404, success: false, message: error.message })
+    : respondWithInternalError(res, error, {
     code: 500,
     logLabel: "[userController] Request failed:",
   })

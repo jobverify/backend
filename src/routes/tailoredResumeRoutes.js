@@ -1,4 +1,5 @@
 import { requireResumeAccess } from '../middleware/resumeAccess.js';
+import { requireResumeProcessingConsent } from '../middleware/resumeProcessingConsent.js';
 import express from 'express';
 import { protect } from '../middleware/authMiddleware.js';
 import { loadSiteSettings } from '../middleware/siteSettings.js';
@@ -18,5 +19,5 @@ router.delete('/:jobId/revisions/:revisionId', limit, revisions.remove);
 router.get('/:jobId/download', download);
 router.get('/:jobId/pdf', preview);
 router.get('/:jobId', read);
-router.post('/:jobId', limit, create);
+router.post('/:jobId', limit, requireResumeProcessingConsent, create);
 export default router;

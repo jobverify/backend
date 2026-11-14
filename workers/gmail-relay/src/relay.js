@@ -52,7 +52,8 @@ async function readPayload(request) {
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
 }
 
-function validPayload(payload, origin, verification) {
+function validPayload(payload, origin, type) {
+  const verification = type !== 'reset';
   const linkKey = verification ? 'verificationLink' : 'resetLink';
   if (!payload || typeof payload !== 'object' || Array.isArray(payload)
     || Object.keys(payload).length !== 2 || !isMailbox(payload.to)
@@ -60,7 +61,8 @@ function validPayload(payload, origin, verification) {
   try {
     const link = new URL(payload[linkKey]);
     return link.origin === origin && link.pathname === (verification ? '/verify-email' : '/reset-password')
-      && !link.username && !link.password && !link.search
+      && !link.username && !link.password
+      && link.search === (type === 'email-change' ? '?mode=change' : '')
       && /^#token=[0-9a-f]{64}$/i.test(link.hash);
   } catch { return false; }
 }
@@ -97,11 +99,26 @@ function verificationEmail(payload, user) {
   };
 }
 
+function emailChangeEmail(payload, user) {
+  return {
+    from: `Jobverify <${user}>`, to: payload.to,
+    subject: 'Verify your new Jobverify email address',
+    text: `Use this link to verify your new Jobverify email address:\n\n${payload.verificationLink}\n\nThis link expires in 30 minutes. Your current email stays active until verification succeeds. After verification, sign in with your new email. If you did not request this change, ignore this email.`,
+    html: `<div style="font-family:sans-serif;max-width:600px;margin:auto;padding:24px">
+      <h2>Verify your new email address</h2>
+      <p>Use the link below to change your Jobverify email address. This link expires in 30 minutes.</p>
+      <p><a href="${escapeHtml(payload.verificationLink)}">Verify new email address</a></p>
+      <p>Your current email stays active until verification succeeds. After verification, sign in with your new email. If you use Google sign-in, choose Forgot password to set a password.</p>
+      <p>If you did not request this change, ignore this email.</p>
+    </div>`,
+  };
+}
+
 export function createRelayHandler({ createTransport }) {
   return async function handleRequest(request, env) {
     const path = new URL(request.url).pathname;
-    if (!['/send-password-reset', '/send-verification', '/verify-smtp'].includes(path)) return reply(404, 'NOT_FOUND');
-    const verification = path === '/send-verification';
+    if (!['/send-password-reset', '/send-verification', '/send-email-change', '/verify-smtp'].includes(path)) return reply(404, 'NOT_FOUND');
+    const type = path === '/send-email-change' ? 'email-change' : path === '/send-verification' ? 'verification' : 'reset';
     if (request.method !== 'POST') return reply(405, 'METHOD_NOT_ALLOWED', { Allow: 'POST' });
     const config = configuration(env);
     if (!config) return reply(503, 'RELAY_NOT_CONFIGURED');
@@ -114,7 +131,7 @@ export function createRelayHandler({ createTransport }) {
       }
       try { payload = await readPayload(request); }
       catch (error) { return reply(error.status === 413 ? 413 : 400, 'INVALID_PAYLOAD'); }
-      if (!validPayload(payload, config.origin, verification)) return reply(400, 'INVALID_PAYLOAD');
+      if (!validPayload(payload, config.origin, type)) return reply(400, 'INVALID_PAYLOAD');
     }
 
     let transporter;
@@ -137,7 +154,8 @@ export function createRelayHandler({ createTransport }) {
       });
       if (path === '/verify-smtp') await transporter.verify();
       else {
-        const result = await transporter.sendMail((verification ? verificationEmail : resetEmail)(payload, config.user));
+        const template = type === 'email-change' ? emailChangeEmail : type === 'verification' ? verificationEmail : resetEmail;
+        const result = await transporter.sendMail(template(payload, config.user));
         if (!result.accepted?.some(address => typeof address === 'string' && address.toLowerCase() === payload.to.toLowerCase())) {
           throw new Error('Recipient not accepted');
         }

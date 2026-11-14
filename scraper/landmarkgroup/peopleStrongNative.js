@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { projectHTML } from '../arcelormittal/oracleNative.js'
 import { nativeCountryName } from '../../scraper-support/shared/nativeJobPosting.js'
+import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 import worksiteEvidence from './worksiteCountryEvidence.json' with {type:'json'}
 
 export const PEOPLESTRONG_ORIGIN='https://careers-landmarkgroupindia.peoplestrong.com'
@@ -9,6 +10,9 @@ const PARTS='basic,organisational,descriprion,workflow,skill,qualification,certi
 const proof=(v,m)=>{if(!v)throw Object.assign(Error('Landmark PeopleStrong: '+m),{code:'LANDMARK_NATIVE_UNVERIFIED'})}
 const norm=v=>v==null?null:String(v).replace(/\s+/g,' ').trim()||null
 const sha=v=>createHash('sha256').update(v).digest('hex')
+// This complete deployment factors the existing45-row paginator into ay=45.
+// Bind all three programs; matching endpoint snippets alone cannot admit it.
+const factoredPageSizeProfile={main:'main-C3ULYLPR.js',mainSHA:'f232fae4810bf9d0a51c7621b7ffe4b9cd175a73c98006b4fdc565422d866c83',service:PEOPLESTRONG_ORIGIN+'/chunk-IFMVPRQ7.js',serviceSHA:'aab6fd14131be8bbc94491b71fdad60b0dd2f9be97580566fed90d0f76d65b2c',jobModule:'./chunk-MP77JDEN.js',detailSHA:'2c8731b9c4836c4f0569c71fcb54b26ecad9e43db290d9e039a9b482e7b43e1c'}
 const parse=body=>{let p;try{p=JSON.parse(body)}catch{proof(false,'Invalid public JSON')};return p}
 const response=body=>{const p=parse(body);proof(p.messageCode?.code===200&&p.response!=null,'Native response unsuccessful');return p.response}
 const typed=(a,type)=>{const values=(a??[]).filter(x=>x.orgUnitType===type).map(x=>norm(x.orgUnitName)).filter(Boolean);proof(values.length<=1,'Ambiguous native hierarchy');return values[0]??null}
@@ -50,22 +54,27 @@ export function mapPeopleStrongRole(listing,detail,org,{now=new Date().toISOStri
 }
 async function verifyClient(read){
  const shell=await read(PEOPLESTRONG_ORIGIN+'/home',{allowAppShell404:true});proof(/<app-root\b/i.test(shell),'Current native app shell missing')
- const main=shell.match(/<script\b[^>]*\bsrc=["'](main-[A-Z0-9]+\.js)["']/)?.[1];proof(main,'Current public native main client missing');const js=await read(PEOPLESTRONG_ORIGIN+'/'+main)
+ const mains=readNativeDocument(shell).nodes(node=>node.tag==='script'&&/^main-[A-Z0-9]+\.js$/.test(node.attrs.src??''));proof(mains.length===1&&mains[0].attrs.type==='module'&&Object.keys(mains[0].attrs).every(key=>['src','type'].includes(key)),'Current public native main declaration changed');const main=mains[0].attrs.src,js=await read(PEOPLESTRONG_ORIGIN+'/'+main)
  const jobModule=js.match(/path:"job",loadChildren:\(\)=>import\("(\.\/chunk-[A-Z0-9]+\.js)"\)/)?.[1];proof(jobModule,'Current job module not advertised')
- const imports=[...new Set([...js.matchAll(/from\s*["'](\.\/chunk-[A-Z0-9]+\.js)["']/g)].map(x=>x[1]))];let service=null
- for(const file of imports){const text=await read(new URL(file,PEOPLESTRONG_ORIGIN+'/'+main).href);if(text.includes('getjoblist(')&&text.includes('jobs/v1?offset=')){service=text;break}}
- proof(service&&['/api/cp/rest/altone/cp/','makePostReq("jobs/v1?offset=','job/organizationDetails?jobCode=','getJobDetails(','/v2?part=','&isReqId=','this.offset=0,this.limit=45'].every(x=>service.includes(x)),'Current anonymous list/detail protocol changed')
+ const imports=[...new Set([...js.matchAll(/from\s*["'](\.\/chunk-[A-Z0-9]+\.js)["']/g)].map(x=>x[1]))];let service=null,serviceUrl=null
+ for(const file of imports){const url=new URL(file,PEOPLESTRONG_ORIGIN+'/'+main).href,text=await read(url);if(text.includes('getjoblist(')&&text.includes('jobs/v1?offset=')){service=text;serviceUrl=url;break}}
+ proof(service&&['/api/cp/rest/altone/cp/','makePostReq("jobs/v1?offset=','job/organizationDetails?jobCode=','getJobDetails(','/v2?part=','&isReqId='].every(x=>service.includes(x)),'Current anonymous list/detail protocol changed')
  const lazy=await read(new URL(jobModule,PEOPLESTRONG_ORIGIN+'/'+main).href);proof(lazy.includes(PARTS)&&lazy.includes('getJobDetails(')&&lazy.includes('jobDescription'),'Current full-detail request not advertised')
+ const current=main===factoredPageSizeProfile.main&&sha(js)===factoredPageSizeProfile.mainSHA&&serviceUrl===factoredPageSizeProfile.service&&sha(service)===factoredPageSizeProfile.serviceSHA&&jobModule===factoredPageSizeProfile.jobModule&&sha(lazy)===factoredPageSizeProfile.detailSHA
+ const referencesCurrent=main===factoredPageSizeProfile.main||serviceUrl===factoredPageSizeProfile.service||jobModule===factoredPageSizeProfile.jobModule
+ proof(referencesCurrent?current:service.includes('this.offset=0,this.limit=45'),'Current anonymous list/detail protocol changed')
  const layout=await read(BASE+'layout?isPreview=false'),info=response(await read(BASE+'urlinfo'));proof(/Landmark Group/i.test(layout)&&info.url==='careers-landmarkgroupindia.peoplestrong.com','Current delegated employer identity mismatch')
- return{main,jobModule,layoutIdentity:true}
+ return{main,jobModule,layoutIdentity:true,mainSHA:sha(js),serviceUrl,serviceSHA:sha(service),detailSHA:sha(lazy)}
 }
 export async function collectLandmarkPeopleStrong({read,delegation,now}){
- proof(delegation.otherScopes.includes(PEOPLESTRONG_ORIGIN+'/home'),'India native board not currently delegated');await verifyClient(read)
+ proof(delegation.otherScopes.includes(PEOPLESTRONG_ORIGIN+'/home'),'India native board not currently delegated');const client=await verifyClient(read)
  const traverse=async()=>{const records=[],pages=[];let total=null,offset=0
   for(;;){const p=parse(await read(buildPeopleStrongListUrl(offset),{method:'POST',body:'{}'}));proof(Number.isSafeInteger(p.totalRecords)&&p.totalRecords>=0&&p.totalRecords<=100000&&Array.isArray(p.response),'Native search counts missing');if(total===null)total=p.totalRecords;proof(total===p.totalRecords,'Native search total changed');proof(p.response.length<=45,'Native page exceeds advertised limit');pages.push({offset,rows:p.response.length});records.push(...p.response);if(offset>=total){proof(p.response.length===0,'Native terminal page not empty');break}offset+=45}
   return{records,pages,total}
  },initial=await traverse(),seen=new Set(),roles=[],failures=[]
  for(const row of initial.records){proof(row&&typeof row.jobCode==='string'&&!seen.has(row.jobCode),'Duplicate native requisition identity');seen.add(row.jobCode);const d=response(await read(buildPeopleStrongDetailUrl(row.jobCode))),org=response(await read(buildPeopleStrongOrgUrl(row.jobCode)));try{roles.push(mapPeopleStrongRole(row,d,org,{now}))}catch(e){failures.push({jobCode:row.jobCode,reason:e.message})}}
- const closing=await traverse(),same=sha(JSON.stringify(initial.records))===sha(JSON.stringify(closing.records)),inventoryComplete=same&&seen.size===initial.total&&roles.length===seen.size&&!failures.length,unknown=roles.filter(x=>!x.sourceLocationCorroborationComplete),partial=roles.filter(x=>!x.sourceDetailComplete),closed=roles.filter(x=>x.nativeRequisitionStatus!=='OPEN'),jobs=roles.filter(x=>x.country==='India'&&x.sourceDetailComplete&&x.nativeRequisitionStatus==='OPEN')
- return{jobs,rawCount:initial.total,complete:inventoryComplete&&!unknown.length&&!partial.length&&!closed.length,report:{surface:PEOPLESTRONG_ORIGIN+'/home',inventoryComplete,reportedTotal:initial.total,observedCount:seen.size,pages:initial.pages,closingPages:closing.pages,closingMatches:same,fullNativeDetails:roles.length,renderedFullDetails:roles.filter(x=>x.sourceDetailComplete).length,verifiedIndia:roles.filter(x=>x.country==='India').length,nativeExplicitIndia:roles.filter(x=>x.nativeWorksiteHierarchy.some(n=>n.orgUnitType==='Country'&&nativeCountryName(n.orgUnitName)==='India')).length,countryInferenceCount:roles.filter(x=>x.sourceCountryEvidence?.inference===true).length,unknownCountryCount:unknown.length,unknownCountryIds:unknown.map(x=>x.jobId),partialDetailIds:partial.map(x=>x.jobId),closedIds:closed.map(x=>x.jobId),failures,cleanupAllowed:false,verifiedZeroInventory:false,roles}}
+ const closing=await traverse(),same=sha(JSON.stringify(initial.records))===sha(JSON.stringify(closing.records));proof(same,'Native closing inventory changed')
+ const closingClient=await verifyClient(read);proof(JSON.stringify(client)===JSON.stringify(closingClient),'Native closing client changed')
+ const inventoryComplete=seen.size===initial.total&&roles.length===seen.size&&!failures.length,unknown=roles.filter(x=>!x.sourceLocationCorroborationComplete),partial=roles.filter(x=>!x.sourceDetailComplete),closed=roles.filter(x=>x.nativeRequisitionStatus!=='OPEN'),jobs=roles.filter(x=>x.country==='India'&&x.sourceDetailComplete&&x.nativeRequisitionStatus==='OPEN')
+ return{jobs,rawCount:initial.total,complete:inventoryComplete&&!unknown.length&&!partial.length&&!closed.length,report:{surface:PEOPLESTRONG_ORIGIN+'/home',inventoryComplete,reportedTotal:initial.total,observedCount:seen.size,pages:initial.pages,closingPages:closing.pages,closingMatches:same,nativeClient:client,closingClientMatches:true,fullNativeDetails:roles.length,renderedFullDetails:roles.filter(x=>x.sourceDetailComplete).length,verifiedIndia:roles.filter(x=>x.country==='India').length,nativeExplicitIndia:roles.filter(x=>x.nativeWorksiteHierarchy.some(n=>n.orgUnitType==='Country'&&nativeCountryName(n.orgUnitName)==='India')).length,countryInferenceCount:roles.filter(x=>x.sourceCountryEvidence?.inference===true).length,unknownCountryCount:unknown.length,unknownCountryIds:unknown.map(x=>x.jobId),partialDetailIds:partial.map(x=>x.jobId),closedIds:closed.map(x=>x.jobId),failures,cleanupAllowed:false,verifiedZeroInventory:false,roles}}
 }

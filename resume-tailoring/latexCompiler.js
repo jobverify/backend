@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash, randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { remainingBudget, withinResumeBudget } from './resumeBudget.js';
-import { resumeFailure } from './resumeDiagnostics.js';
+import { resumeFailure, RESUME_COMPILER_REASONS } from './resumeDiagnostics.js';
 import { resumePdfText } from '../src/services/resumePdfText.js';
 
 const context = fileURLToPath(new URL('./compiler/', import.meta.url));
@@ -13,8 +13,14 @@ const cache = fileURLToPath(new URL('../.cache/resume-compiler/', import.meta.ur
 let preparedImage;
 export function compilerFailure({ stderr = '', code, aborted = false } = {}) {
   if (aborted || code === 137) return resumeFailure('compiler_resource_limit');
-  if (String(stderr).split(/\r?\n/).includes('RESUME_COMPILER_DEPENDENCY_MISSING')) return resumeFailure('compiler_dependency_missing');
-  if (String(stderr).split(/\r?\n/).includes('RESUME_COMPILER_RESOURCE_LIMIT')) return resumeFailure('compiler_resource_limit');
+  const markers = String(stderr).split(/\r?\n/);
+  if (markers.includes('RESUME_COMPILER_DEPENDENCY_MISSING')) return resumeFailure('compiler_dependency_missing');
+  if (markers.includes('RESUME_COMPILER_RESOURCE_LIMIT')) return resumeFailure('compiler_resource_limit');
+  for (const [reason, guidance] of Object.entries(RESUME_COMPILER_REASONS)) {
+    if (markers.includes(`RESUME_COMPILER_REASON_${reason.toUpperCase()}`)) {
+      return Object.assign(resumeFailure('compiler_failed'), { reason, message: guidance });
+    }
+  }
   return resumeFailure('compiler_failed');
 }
 const dockerEnv = () => Object.fromEntries(['PATH', 'SystemRoot', 'SYSTEMROOT', 'TEMP', 'TMP', 'DOCKER_HOST', 'DOCKER_CONTEXT', 'DOCKER_CONFIG', 'HOME', 'USERPROFILE'].filter(key => process.env[key]).map(key => [key, process.env[key]]));
@@ -39,25 +45,39 @@ export function compilerArguments({ name, image }) {
     '--tmpfs', '/tmp:rw,noexec,nosuid,size=128m,uid=10001,gid=10001,mode=700',
     '--tmpfs', '/work:rw,noexec,nosuid,size=32m,uid=10001,gid=10001,mode=700', image, '--untrusted', '--only-cached', '--chatter', 'minimal'];
 }
-export async function prepareResumeCompiler({ deadline = Date.now() + 600000 } = {}) {
+export async function prepareResumeCompiler({ deadline = Date.now() + 600000, run = docker } = {}) {
   const hash = createHash('sha256');
   for (const name of ['Dockerfile', 'compiler.json', 'warmup.tex', 'compile.sh']) hash.update(await fs.readFile(path.join(context, name)));
   hash.update(await fs.readFile(path.join(buildContext, 'templates/abey-resume.tex')));
   const tag = `jobverify-resume-compiler:${hash.digest('hex').slice(0, 24)}`;
   const archive = path.join(cache, 'image.tar');
-  try { await docker(['load', '--input', archive], { deadline, limit: 1024 * 1024 }); } catch { /* cache miss; trusted build only */ }
-  try { preparedImage = (await docker(['image', 'inspect', '--format', '{{.Id}}', tag], { deadline })).toString().trim(); }
+  let image;
+  try { await run(['load', '--input', archive], { deadline, limit: 1024 * 1024 }); } catch { /* cache miss; trusted build only */ }
+  try { image = (await run(['image', 'inspect', '--format', '{{.Id}}', tag], { deadline })).toString().trim(); }
   catch {
-    await docker(['build', '--quiet', '--tag', tag, '--file', path.join(context, 'Dockerfile'), buildContext], { deadline, limit: 1024 * 1024 });
-    preparedImage = (await docker(['image', 'inspect', '--format', '{{.Id}}', tag], { deadline })).toString().trim();
+    await run(['build', '--quiet', '--tag', tag, '--file', path.join(context, 'Dockerfile'), buildContext], { deadline, limit: 1024 * 1024 });
+    image = (await run(['image', 'inspect', '--format', '{{.Id}}', tag], { deadline })).toString().trim();
     await fs.mkdir(cache, { recursive: true });
     const temporary = `${archive}.${randomUUID()}.download`;
     try {
-      await docker(['save', '--output', temporary, tag], { deadline });
+      await run(['save', '--output', temporary, tag], { deadline });
       await fs.rename(temporary, archive);
     } finally { await fs.rm(temporary, { force: true }).catch(() => {}); }
   }
-  if (!/^sha256:[a-f0-9]{64}$/.test(preparedImage)) throw new Error('The compiler image identity is invalid.');
+  if (!/^sha256:[a-f0-9]{64}$/.test(image)) throw new Error('The compiler image identity is invalid.');
+  // A successful image build does not prove the read-only, offline runtime can
+  // compile. Check the actual entrypoint and limits before spending time on AI.
+  const template = await fs.readFile(path.join(buildContext, 'templates/abey-resume.tex'), 'utf8');
+  const warmup = await fs.readFile(path.join(context, 'warmup.tex'), 'utf8');
+  const input = template.slice(0, template.indexOf('\\begin{document}')) + warmup;
+  const name = `resume-check-${randomUUID()}`;
+  try {
+    const pdf = await run(compilerArguments({ name, image }), { input, deadline: Math.min(deadline, Date.now() + 90000), limit: 5 * 1024 * 1024 });
+    if (!Buffer.isBuffer(pdf) || !pdf.subarray(0, 5).equals(Buffer.from('%PDF-'))) throw resumeFailure('compiler_failed');
+  } finally {
+    await run(['rm', '--force', name], { deadline: Date.now() + 10000 }).catch(() => {});
+  }
+  preparedImage = image;
   return preparedImage;
 }
 export async function inspectResumePdf(pdf, { deadline = Date.now() + 60000, signal } = {}) {

@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {createCatalogScraper,getScraperCatalog} from '../providers/index.js'
+import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
 
 const FIXED_SCRAPED_AT = '2026-08-14T12:00:00.000Z'
 
@@ -218,73 +222,51 @@ test('Grab extracts India roles from the live card layout used on the India loca
   )
 })
 
-test('Grab run validates the verified first-party pages and returns normalized India jobs from the RSS feed when page-one HTML has none', async () => {
-  const grab = await loadModule()
-  const requestedUrls = []
+const currentNativeFixture=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/grab/test-data/native-20261114.json.gz',import.meta.url))))
+currentNativeFixture.responses.push(...JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/grab/test-data/native-styles-20261114.json.gz',import.meta.url)))).responses)
+const currentProvider=getScraperCatalog().find(provider=>provider.source==='grab')
+const currentTransport=(change=(_url,response)=>response)=>async(url,init)=>{
+  assert.equal(init.method,'GET');assert.equal(init.credentials,'omit');assert.equal(init.redirect,'manual')
+  const original=currentNativeFixture.responses.find(response=>response.url===String(url))
+  assert.ok(original,'The current collector must only read declared original entities: '+url)
+  const captured=change(String(url),structuredClone(original))
+  const response=new Response(captured.body,{status:captured.status,headers:captured.headers})
+  Object.defineProperty(response,'url',{value:captured.finalUrl});return response
+}
 
-  const jobs = await grab.createGrabScraper({
-    now: () => FIXED_SCRAPED_AT,
-  }).run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === grab.JOBS_URL) return jobsBoardHtml
-      if (url === grab.JOBS_RSS_URL) return jobsRssXml
-      if (url === grab.INDIA_LOCATION_URL) return indiaLocationHtml
-
-      throw new Error(`Unexpected Grab text URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    grab.JOBS_URL,
-    grab.JOBS_RSS_URL,
-    grab.INDIA_LOCATION_URL,
-  ])
-  assert.equal(jobs.length, 4)
-  assert.equal(jobs[0].title, 'Lead Software Engineer, Backend')
+test('Grab registered run preserves complete original India criteria and source fields through current publisher/detail reconciliation', async () => {
+  const jobs=await createCatalogScraper(currentProvider).run({fetchImpl:currentTransport(),now:()=> '2026-11-14T12:00:00.000Z'})
+  assert.deepEqual(jobs.map(job=>job.jobId),['744000161218849','744000159351149','744000156946578','744000156260400','744000154359024','744000151842122','744000149229199','744000147495489','744000144006034','744000138554499'])
+  assert.equal(jobs[0].title, 'Lead Security Technical Program Manager')
   assert.equal(jobs[0].companyDomain, 'grab.careers')
   assert.equal(jobs[0].companyCareerPage, 'https://www.grab.careers/jobs')
   assert.equal(jobs[0].atsPlatform, 'official-company-careers')
+  assert.ok(jobs.every(job=>job.company==='Grab'&&job.country==='India'&&job.sourceDetailComplete&&job.sourceClosingReconciled&&job.sourceDescriptionHTML.length>1000))
+  assert.equal(jobs[0].postingDate,'2026-11-12T05:00:07.000Z')
+  assert.equal(jobs.at(-1).postingDate,'2026-07-20T04:10:08.000Z')
+  assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+  assert.equal(readInventoryEvidence(jobs).listingComplete,false)
 })
 
-test('Grab fails closed when the verified jobs board, RSS feed, or India location surface drifts, or when India jobs disappear', async () => {
-  const grab = await loadModule()
+for(const [label,change] of [
+  ['corporate board',(url,response)=>url==='https://www.grab.careers/jobs'?{...response,body:response.body.replace('Grab your dream role | Grab Careers','Other employer')}:response],
+  ['publisher feed',(url,response)=>url.includes('/jobs/xml/')?{...response,body:response.body.replace('<publisher>Grab</publisher>','<publisher>Other employer</publisher>')}:response]
+])test('Grab registered run fails closed when its current '+label+' changes',async()=>{
+  await assert.rejects(createCatalogScraper(currentProvider).run({fetchImpl:currentTransport(change)}),error=>error.softFailure===true&&error.lifecycleCleanupAllowed===false)
+})
 
-  await assert.rejects(
-    grab.createGrabScraper().run({
-      fetchText: async (url) => {
-        if (url === grab.JOBS_URL) return '<html><body><h1>Jobs</h1></body></html>'
-        if (url === grab.JOBS_RSS_URL) return jobsRssXml
-        return indiaLocationHtml
-      },
-    }),
-    /verified Grab jobs board/i,
-  )
+test('Grab current collector requires explicit India detail country rather than a city or India marketing page',async()=>{
+  const jobs=await createCatalogScraper(currentProvider).run({fetchImpl:currentTransport((url,response)=>{
+    if(url.includes('/744000161218849/'))response.body=response.body.replace('"addressCountry":"India"','"addressCountry":""')
+    return response
+  })})
+  assert.equal(jobs.length,9)
+  assert.ok(jobs.every(job=>job.jobId!=='744000161218849'))
+  assert.deepEqual(jobs.nativeCollectionEvidence.holds.map(hold=>hold.nativeId),['744000161218849'])
+  assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+})
 
-  await assert.rejects(
-    grab.createGrabScraper().run({
-      fetchText: async (url) => {
-        if (url === grab.JOBS_URL) return jobsBoardHtml
-        if (url === grab.JOBS_RSS_URL) return '<source><publisher>Grab</publisher></source>'
-        if (url === grab.INDIA_LOCATION_URL) return indiaLocationHtml
-        throw new Error(`Unexpected Grab text URL: ${url}`)
-      },
-    }),
-    /verified Grab jobs rss feed/i,
-  )
-
-  await assert.rejects(
-    grab.createGrabScraper().run({
-      fetchText: async (url) => {
-        if (url === grab.JOBS_URL) return jobsBoardHtml
-        if (url === grab.JOBS_RSS_URL) {
-          return jobsRssXml
-            .replaceAll('<country><![CDATA[India]]></country>', '<country><![CDATA[Malaysia]]></country>')
-        }
-        if (url === grab.INDIA_LOCATION_URL) return indiaLocationHtml
-        throw new Error(`Unexpected Grab text URL: ${url}`)
-      },
-    }),
-    /no longer exposes normalized india jobs/i,
-  )
+test('Grab current collector rejects body-only callbacks instead of promoting historical null-description previews',async()=>{
+  const grab=await loadModule()
+  await assert.rejects(grab.createGrabScraper().run({fetchText:async()=>jobsBoardHtml}),/Original HTTP metadata is required/)
 })

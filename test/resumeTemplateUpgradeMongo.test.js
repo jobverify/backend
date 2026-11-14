@@ -12,6 +12,8 @@ import { resumeJobHash } from '../src/services/resumeLatexContent.js';
 import { requestResumePreparation } from '../src/services/resumePreparationService.js';
 import { getTailoredResume, requestTailoredResume } from '../src/services/resumeTailoringService.js';
 
+const processingConsent = { version: '2026-11-14', accepted: true };
+
 test('existing template generations queue AI preparation and cannot be reused as current tailored output', { timeout: 90000 }, async t => {
   process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
   const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 },
@@ -35,13 +37,13 @@ test('existing template generations queue AI preparation and cannot be reused as
   const oldTailored = await getTailoredResume(owner, String(jobId));
   assert.equal(oldTailored.stale, true);
   assert.equal(oldTailored.hasPdf, true);
-  await assert.rejects(requestTailoredResume(owner, String(jobId), { dispatch: async () => {} }), { statusCode: 409 });
+  await assert.rejects(requestTailoredResume(owner, String(jobId), { processingConsent, dispatch: async () => {} }), { statusCode: 409 });
   let dispatches = 0;
   const dispatch = async () => { dispatches++; };
-  const preparation = await requestResumePreparation(owner, { dispatch });
+  const preparation = await requestResumePreparation(owner, { processingConsent, dispatch });
   assert.equal(preparation.preparation.status, 'queued');
   assert.equal(preparation.preparation.stale, true);
   assert.equal((await Resume.findById(user).lean()).preparation.generationId, 'old-base');
-  await requestResumePreparation(owner, { dispatch });
+  await requestResumePreparation(owner, { processingConsent, dispatch });
   assert.equal(dispatches, 1, 'repeated clicks reuse the queued upgrade');
 });

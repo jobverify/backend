@@ -38,13 +38,6 @@ const compactText = (value, limit) => {
 };
 
 export function telegramJobLink(job) {
-  for (const value of [job.jobUrl, job.applicationUrl, job.applyUrl, job.sourceUrl, job.link]) {
-    try {
-      const url = new URL(value);
-      if (['https:', 'http:'].includes(url.protocol) && !url.username && !url.password && url.href.length <= 400) return url.href;
-    } catch { /* Try the next stored link. */ }
-  }
-  // Keep navigation intact when an employer URL is too long.
   let origin;
   try { origin = resolveFrontendOrigin(); } catch { origin = 'https://www.jobverify.in'; }
   return new URL(job._id ? `/jobs/${encodeURIComponent(String(job._id))}` : '/jobs', origin).href;

@@ -1,0 +1,69 @@
+{
+  "reviewedOn": "2026-11-14",
+  "programs": {
+    "https://www.grab.careers/phb/dataLayer.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "ebb4ecc4cd82a694e6c49e873320bdfbd9519943589567742c310e401e3823ff",
+    "https://www.grab.careers/phb/app.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "07aa038a1f30a79f8622d148e30a0cd3dce874a114306e66f804d105b82090f1",
+    "https://www.grab.careers/phb/cookieAlert.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "abd20a14d7b82d6dbcddf6c8df7b4df83163fe9a727060bd45df9d528358ebab",
+    "https://www.grab.careers/phb/jobDetail.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "e52f873293dabfab2925b516e174905a0ea9d02e3d12b8a83215e045bad65cd4",
+    "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js": "9520018fa5d81f4e4dc9d06afb576f90cbbaba209cfcc6cb60e1464647f7890b",
+    "https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js": "6942f0873b6a7108e18a983b4192ad469011a8131317f88161d6f0917058da22",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js": "efc85c7eb141819717cda0033484a84b1c890d13b02e355a2fec79d424b20e7a",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js": "65f6c13748b0c8d8f9eabd0373a130ac293b3f16bf34aaa946d953980372b932",
+    "https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js": "159b16ec7d95e57f531a29d28e3c18278d7d5e46b6ec8f173c3996af21a55adc",
+    "https://d2fp31zpw6nk03.cloudfront.net/conversational-service/web-config/injectV2.js": "90ba643bf3dc813fa1300c31b191779ca53155842177707c9abd28d20fc9850b",
+    "https://d2fp31zpw6nk03.cloudfront.net/conversational-service/web-config/bots/0ca91ea5-745a-42a2-8a9f-c927b2129912.js": "81447e474cc81d68b98345eac6be7051b4491ffe54105e4d4b8f98a2231bcb58",
+    "https://www.grab.careers/phb/lookups.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "4c84b4fbac657acf14a7a0c845e0a6687b818a98b6229caaee072660a9fc7cc0",
+    "https://www.grab.careers/phb/jobAlerts.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "7aa9f9d808757e6c60c5723cee09208bb52c7acb00c354ccdc39b45734e31007"
+  },
+  "programByteVariants": {
+    "https://www.grab.careers/phb/dataLayer.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": [
+      "6b616437a7411ff7a2b85501142deebb4cb52d07986fae3bd628068ab738daa3"
+    ],
+    "https://www.grab.careers/phb/app.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": [
+      "95fb6cf719096d507ccc4dfbbfe8e41848496b379e5c08427c0f938c3778dd99"
+    ]
+  },
+  "styles": {
+    "https://www.grab.careers/phb/style.css.v639302004092521550": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f"
+  },
+  "styleDeclarations": [
+    "00d3cf701fefbe0de0514b8c8be1506a2b43e56e729bf375988e3a652122e5f8"
+  ],
+  "board": {
+    "programSHA256": "ae91550e6e91e359d501dbd951aec4dc6c143951ea733ddc63129c1619b87bcf",
+    "events": []
+  },
+  "detailPrograms": [
+    "78294b87e5b1ba092cb1997675376e6977e91e2161f67eacda351ba339f9dd69"
+  ],
+  "detailEvents": [
+    {
+      "tag": "a",
+      "attribute": "onclick",
+      "valueSHA256": "8cd0bacb5310608fbe40ac55304f6dec44615ba6e3d4cd68eceb983258a17fdc",
+      "inert": false
+    },
+    {
+      "tag": "a",
+      "attribute": "onclick",
+      "valueSHA256": "8cd0bacb5310608fbe40ac55304f6dec44615ba6e3d4cd68eceb983258a17fdc",
+      "inert": false
+    },
+    {
+      "tag": "a",
+      "attribute": "onclick",
+      "valueSHA256": "8cd0bacb5310608fbe40ac55304f6dec44615ba6e3d4cd68eceb983258a17fdc",
+      "inert": false
+    }
+  ],
+  "detailAncestors": [
+    {"tag": "root", "attrs": {}, "inert": false},
+    {"tag": "html", "attrs": {"lang": "en-US"}, "inert": false},
+    {"tag": "body", "attrs": {"class": " js-template-job", "id": "js-page-5ab9d25b-237d-40d5-8726-8af988b0082a", "data-id": "1362", "data-template": "job"}, "inert": false},
+    {"tag": "main", "attrs": {"id": "content"}, "inert": false},
+    {"tag": "div", "attrs": {"class": "overflow-hidden"}, "inert": false}
+  ],
+  "detailLayouts": [
+    "4fec001f4ccfa3b8b681fe4ab9963e5042478e88ddfa33d82fc97fb6a59cfa00"
+  ]
+}

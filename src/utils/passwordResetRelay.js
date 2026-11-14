@@ -34,3 +34,6 @@ export const sendPasswordResetViaRelay = (to, resetLink) =>
 
 export const sendVerificationViaRelay = (to, verificationLink) =>
   sendViaRelay('/send-verification', { to, verificationLink }, 'Verification');
+
+export const sendEmailChangeViaRelay = (to, verificationLink) =>
+  sendViaRelay('/send-email-change', { to, verificationLink }, 'Email change verification');

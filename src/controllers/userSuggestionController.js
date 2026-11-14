@@ -3,6 +3,7 @@ import {
   UserSuggestionDailyLimitError,
 } from "../services/userSuggestionService.js";
 import UserSuggestion from "../models/UserSuggestion.js";
+import { InactiveAccountError } from '../services/activeAccountWrite.js';
 import { respondWithInternalError } from "../utils/respondWithInternalError.js";
 
 export const submitUserSuggestion = async (req, res) => {
@@ -24,6 +25,9 @@ export const submitUserSuggestion = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error instanceof InactiveAccountError) {
+      return res.status(404).json({ code: 404, success: false, message: error.message });
+    }
     if (error instanceof UserSuggestionDailyLimitError) {
       return res.status(429).json({
         code: 429,

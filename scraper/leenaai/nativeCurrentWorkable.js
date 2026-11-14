@@ -200,10 +200,13 @@ const publisherProfileSHA=html=>{
  const bytes=Buffer.from(html,'utf8')
  // Exact reviewed document revisions. Each keeps the same career factory,
  // native feed and error-only Workable fallback; fixed page bytes stay pinned.
- const profile=[{bytes:188301,frameSHA256:HTML_FRAME_SHA},
-  {bytes:191410,frameSHA256:'127ab18db6d06f57a856f154e87f3982f561dd7d9c94ec6f843510e0a390c4ee'}].find(value=>value.bytes===bytes.length)
- assert(profile,'corporate declaration profile changed')
- const shift=profile.bytes-188301
+ const profiles=[{bytes:188301,frameSHA256:HTML_FRAME_SHA},
+  {bytes:191410,frameSHA256:'127ab18db6d06f57a856f154e87f3982f561dd7d9c94ec6f843510e0a390c4ee'},
+  // November 14: only the three manifest/build ID occurrences changed to
+  // 2KTP-RzvGs8LpgTmW4czh. Every fixed tag, style and career factory stays pinned.
+  {bytes:191410,frameSHA256:'972817792972e380e8dd657b70f106757e40a6774e300fbce53f92dc090cfdb4'}].filter(value=>value.bytes===bytes.length)
+ assert(profiles.length>0,'corporate declaration profile changed')
+ const shift=bytes.length-188301
  // Exactly two observed direct-body layouts share this fixed1475-byte region.
  // The360-byte beacon and oneLF move around the complete1114-byte inline
  // element. Only this validation copy is reordered; raw HTML/receipt hashes
@@ -227,7 +230,7 @@ const publisherProfileSHA=html=>{
  const frame=Buffer.from(profileBytes)
  for(const[start,end]of ranges)frame.fill(48,start,end)
  const fingerprint=sha(frame)
- assert(fingerprint===profile.frameSHA256,'corporate declaration profile changed')
+ assert(profiles.some(profile=>fingerprint===profile.frameSHA256),'corporate declaration profile changed')
  return fingerprint
 }
 

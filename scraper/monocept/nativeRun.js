@@ -33,9 +33,24 @@ export async function runNativeMonocept(options={}){
   if(status!==200)throw Object.assign(Error('Monocept public HTTP '+status+'; stopped without retry'),{code:'MONOCEPT_PUBLIC_HTTP',status,abortRetries:true,softFailure:true,upstreamOutage:true,failureKind:[401,403,429].includes(status)?'public_access_denied':'network_or_timeout'})
   check((response.url||response.finalUrl)===url,'public response redirect changed')
   check(!contentType||(json?/(?:application|text)\/[^;]*json/i:url.endsWith('.js')?/(?:application|text)\/(?:x-)?(?:java|ecma)script/i:url.endsWith('.css')?/text\/css/i:/text\/html/i).test(contentType),'public response MIME changed')
-  const text=await bounded(()=>{if(typeof response.body==='string')return response.body;if(typeof response.html==='string')return response.html;const method=response.text;signal.throwIfAborted();return Reflect.apply(method,response,[])},signal)
-  check(typeof text==='string'&&Buffer.byteLength(text)<=15000000,'oversized/invalid public response')
-  retainedResponses.push({url,method,status,contentType,bodyBytes:Buffer.byteLength(text),bodySHA256:sha256(text),observedAt:new Date().toISOString(),anonymousSession:anonymous})
+  const pinnedHash=reviewed.clientSHA256[url]??reviewed.cssSHA256[url]
+  const bytes=await bounded(async()=>{
+   signal.throwIfAborted()
+   if(typeof response.arrayBuffer==='function')return Buffer.from(await Reflect.apply(response.arrayBuffer,response,[]))
+   // Full-metadata fixture/reader adapters may carry the original receipt.
+   const original=response.rawBodyBase64??response.bodyBase64
+   if(typeof original==='string')return Buffer.from(original,'base64')
+   if(typeof response.body==='string')return Buffer.from(response.body,'utf8')
+   if(typeof response.html==='string')return Buffer.from(response.html,'utf8')
+   check(!pinnedHash,'original pinned entity bytes unavailable')
+   return Buffer.from(await Reflect.apply(response.text,response,[]),'utf8')
+  },signal)
+  check(bytes.length<=15000000,'oversized/invalid public response')
+  // Fetch text() erases a UTF-8 BOM. Pin the original entity before decoding;
+  // the existing decoded JS/CSS guard must still match the same exact hash.
+  if(pinnedHash)check(sha256(bytes)===pinnedHash,(reviewed.clientSHA256[url]?'unreviewed current native client bytes':'unreviewed current corporate CSS bytes')+': original pinned entity hash changed')
+  const text=new TextDecoder('utf-8',{fatal:true,ignoreBOM:Boolean(pinnedHash)}).decode(bytes)
+  retainedResponses.push({url,method,status,contentType,bodyBytes:bytes.length,bodySHA256:sha256(bytes),observedAt:new Date().toISOString(),anonymousSession:anonymous})
   if(anonymous){const v=JSON.parse(text);check(typeof v.access_token==='string'&&v.access_token.length>0&&v.token_type?.toLowerCase()==='bearer'&&typeof v.expires_in==='number'&&v.expires_in>0&&v.ShouldRedirect===false,'unexpected anonymous public session contract');token=v.access_token;return null}
   return json?JSON.parse(text):text
  }

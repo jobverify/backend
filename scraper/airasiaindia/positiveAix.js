@@ -2,7 +2,7 @@ import { activeScripts } from '../../scraper-support/utils/activeNativeHtml.js'
 import { document } from '../../scraper-support/shared/rmkNativePairHtml.js'
 import { parseNativeRole } from '../../scraper-support/shared/rmkNativePair.js'
 import { parseBoundedProgram, parseRemoteLiteral } from '../../scraper-support/utils/remoteScriptData.js'
-import { readAixNativeInit } from '../bounteous/nativeScriptContract.js'
+import { readAixNativeInit } from './nativeInit.js'
 
 const ORIGIN = 'https://careers.airindia.com'
 const check = (ok, message) => { if (!ok) throw Error('AirAsia India positive AIX: ' + message) }

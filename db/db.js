@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import "../loadEnv.js";
 import { configureMongoDns } from "../src/utils/mongoDns.js";
 import { restoreMongooseReadiness } from './mongooseRecovery.js';
+import { assertSecureMongoConnection } from '../src/utils/mongoConnectionPolicy.js';
 
 let connectionAttempt = null;
 let connectionAttemptUri = null;
@@ -21,6 +22,7 @@ const connectDB = async () => {
   }
 
   const uri = process.env.MONGO_URI;
+  assertSecureMongoConnection(uri);
   const connection = mongoose.connection;
   const liveClient = connection.getClient()?.topology?.isDestroyed() === false;
   // Keep Mongoose's rejection of a different URI on an active connection,

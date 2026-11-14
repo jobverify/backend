@@ -4,9 +4,28 @@ import { verificationRequestUrl, redactText } from './urls.js';
 const empty = () => ({ title: '', company: '', roleIds: [], links: [], text: '', validThrough: null, structured: false, blocked: false });
 const values = value => Array.isArray(value) ? value : [value];
 
+// Search only for the fixed prefix, and consume each declaration once. A greedy
+// doctype regex rescans the remaining page for every unterminated prefix.
+function withoutDoctypes(body) {
+  const declarations = /<!doctype/gi;
+  const parts = [];
+  let copied = 0, match;
+  while ((match = declarations.exec(body))) {
+    const end = body.indexOf('>', declarations.lastIndex);
+    if (end === -1) return null;
+    parts.push(body.slice(copied, match.index));
+    copied = end + 1;
+    declarations.lastIndex = copied;
+  }
+  parts.push(body.slice(copied));
+  return parts.join('');
+}
+
 export function readJobPage(body, url) {
   if (!body || /<!ENTITY\s/i.test(body)) return empty();
-  const document = new DOMParser({ errorHandler: () => {} }).parseFromString(`<html><body>${body.replace(/<!doctype[^>]*>/gi, '')}</body></html>`, 'text/html');
+  const html = withoutDoctypes(body);
+  if (html === null) return empty();
+  const document = new DOMParser({ errorHandler: () => {} }).parseFromString(`<html><body>${html}</body></html>`, 'text/html');
   const result = empty();
   const scripts = Array.from(document.getElementsByTagName('script')).slice(0, 30);
   const postings = [];

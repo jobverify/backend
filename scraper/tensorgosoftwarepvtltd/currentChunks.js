@@ -2,8 +2,13 @@ import {createHash} from 'node:crypto'
 import {readNativeDocument} from '../../scraper-support/utils/activeNativeHtml.js'
 
 const origin='https://tensorgo.com'
-const mainUrl=origin+'/static/js/main.dd1b2abe.js'
-const mainHash='a165b5c21362147cdc53a3aac49f8ecb35e178ceb4305355a089fc427208b2e1'
+// The November 11 deployment changes only the license filename and Contact
+// route chunk 842. All 228 module bodies and the careers dependencies below
+// are identical to the retained prior deployment; both whole mains stay pinned.
+const mainProfiles=new Map([
+ [origin+'/static/js/main.dd1b2abe.js','a165b5c21362147cdc53a3aac49f8ecb35e178ceb4305355a089fc427208b2e1'],
+ [origin+'/static/js/main.e95187a2.js','96283e041ebb4d7b3d04f511161fefe1fcda30f8da6a9f1322734e0aca33e4ef'],
+])
 const hash=value=>createHash('sha256').update(value).digest('hex')
 const requireContract=(condition)=>{if(!condition)throw Error('TensorGo current public job API handoff program contract changed')}
 // Reviewed published webpack careers and role routes, including their shared
@@ -19,10 +24,10 @@ const chunks=[
  ['803','76777e33','67630548509198f1bf7a0652a46c1e3fee10c1ae8254e879eb44b942d7d30d8d'],
 ]
 export async function readReviewedTensorGoChunks({html,asset,bundle,readText}){
- requireContract(asset.href===mainUrl&&hash(bundle)===mainHash)
+ requireContract(hash(bundle)===mainProfiles.get(asset.href))
  const doc=readNativeDocument(html)
  const mains=doc.nodes(node=>node.tag==='script'&&node.attrs.src&&/\/static\/js\/main\.[^/]+\.js$/.test(node.attrs.src))
- requireContract(mains.length===1&&new URL(mains[0].attrs.src,origin).href===mainUrl)
+ requireContract(mains.length===1&&new URL(mains[0].attrs.src,origin).href===asset.href)
  requireContract(bundle.includes('bn=pn(()=>Promise.all([n.e(375),n.e(756),n.e(757),n.e(985),n.e(402)]).then(n.bind(n,2402)))')
   &&bundle.includes('wn=pn(()=>Promise.all([n.e(985),n.e(803)]).then(n.bind(n,6803)))'))
  for(const[id,version,expectedHash]of chunks){

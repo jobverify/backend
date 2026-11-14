@@ -5,6 +5,7 @@ import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNa
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 import profile from './reviewedPublicContract20261113.json' with { type: 'json' }
+import currentProfile from './reviewedPublicContract20261114.json' with { type: 'json' }
 
 const HOME = 'https://www.vahan.co/'
 export const VAHAN_CAREERS = HOME + 'careers/'
@@ -20,10 +21,23 @@ const all = (node, predicate) => typeof node === 'string' ? [] : [
 const root = document => one(document.nodes(node => node.tag === 'root'), 'document missing')
 const authored = node => typeof node === 'string' ? node : (node.raw || '') + node.children.map(authored).join(' ')
 const fingerprint = rows => JSON.stringify([...rows].sort((a, b) => a.id.localeCompare(b.id)))
-const stylesFor = kind => Object.keys(profile.assets).filter(path => path.endsWith('.css')
+const stylesFor = (contract, kind) => Object.keys(contract.assets).filter(path => path.endsWith('.css')
   && (kind === 'role' || !path.includes('career-role.'))
   && (kind !== 'home' || !path.includes('/careers.')))
-const baseClient = Object.keys(profile.assets).find(path => path.endsWith('.js'))
+const baseClientFor = contract => contract.baseClient || Object.keys(contract.assets).find(path => path.endsWith('.js'))
+const legacyFonts = ['https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@100..900&display=swap']
+const expectedStyles = (contract, kind) => [...stylesFor(contract, kind), ...(contract.externalStylesheets || legacyFonts)].sort()
+const isStylesheet = node => node.tag === 'link' && (node.attrs.rel || '').toLowerCase().split(/\s+/).includes('stylesheet')
+const styleDeclarations = tree => {
+  const links = all(tree, isStylesheet)
+  need(links.every(node => !node.inert), 'inactive stylesheet declaration requires review')
+  return links.map(node => node.attrs.href).sort()
+}
+const declaredStyles = html => styleDeclarations(root(readNativeDocument(html)))
+const selectContract = (home, board) => one([profile, currentProfile].filter(contract =>
+  JSON.stringify(declaredStyles(home)) === JSON.stringify(expectedStyles(contract, 'home'))
+  && JSON.stringify(declaredStyles(board)) === JSON.stringify(expectedStyles(contract, 'listing'))),
+'unreviewed current deployment stylesheet declaration tuple')
 const project = (html, styles) => readVisibleNativeDocument('<style>' + styles + '</style>' + html, { strict: true })
 const unstyledPath = (tree, target) => {
   const visit = (node, path) => {
@@ -40,6 +54,32 @@ const unstyledPath = (tree, target) => {
   return path && path.every(node => !Object.hasOwn(node.attrs, 'style'))
 }
 
+function documentBindings(tree, kind) {
+  const nodes = all(tree, () => true), parents = new Map()
+  need(!nodes.some(node => node.tag === 'base'), 'unreviewed document base changes native URL authority')
+  need(!nodes.some(node => Object.keys(node.attrs).some(name => /^on/i.test(name))),
+    'unreviewed executable document event program')
+  need(!nodes.some(node => node.tag === 'meta' && (node.attrs['http-equiv'] || '').trim().toLowerCase() === 'refresh'),
+    'unreviewed document refresh handoff')
+  for (const node of nodes) for (const child of node.children) if (typeof child !== 'string') parents.set(child, node)
+  const critical = nodes.filter(node => kind === 'role'
+    ? ['jr-title', 'jr-meta', 'jr-pill', 'jr-body', 'jr-form'].some(name => cls(node, name))
+    : kind === 'listing' ? cls(node, 'jobs') || cls(node, 'role-select') || Object.hasOwn(node.attrs, 'data-filter')
+      : node.tag === 'a' && ['/careers/', VAHAN_CAREERS].includes(node.attrs.href))
+  const protectedNodes = new Set()
+  for (const node of critical) {
+    for (const child of all(node, () => true)) protectedNodes.add(child)
+    for (let parent = parents.get(node); parent; parent = parents.get(parent)) protectedNodes.add(parent)
+  }
+  // The reviewed shared clients animate decorative tracks, open videos and
+  // operate carousels. Those bindings cannot own criteria, forms or ancestors.
+  const triggers = ['data-video', 'data-slideshow', 'data-wave', 'data-wave-on', 'data-carousel']
+  need(![...protectedNodes].some(node => cls(node, 'logo-strip-track')
+    || node.tag === 'a' && ['youtube.com', 'youtu.be'].some(part => (node.attrs.href || '').includes(part))
+    || kind !== 'home' && cls(node, 'nav-item') && cls(node, 'has-dropdown')
+    || triggers.some(name => Object.hasOwn(node.attrs, name))), 'unreviewed decorative client binding to native criteria or application')
+}
+
 function employer(document) {
   const scripts = document.nodes(node => node.tag === 'script' && node.attrs.type === 'application/ld+json')
   need(scripts.length === 1, 'employer identity missing or ambiguous')
@@ -50,19 +90,38 @@ function employer(document) {
   'employer identity changed')
 }
 
-function documentIdentity(html, url, kind, styles) {
-  const original = readNativeDocument(html), tree = root(original), document = project(html, styles)
+function documentIdentity(html, url, kind, styles, contract) {
+  const original = readNativeDocument(html), tree = root(original)
+  documentBindings(tree, kind)
+  const document = project(html, styles)
   employer(original)
   const canonical = document.nodes(node => node.tag === 'link' && node.attrs.rel === 'canonical')
   need(canonical.length === 1 && canonical[0].attrs.href === url, 'canonical URL identity changed')
-  // These pages publish no inline CSS. New styling, even when it does not use
-  // display:none, needs review before it can establish visible authored facts.
-  need(!all(tree, node => node.tag === 'style').length, 'unreviewed inline stylesheet cannot qualify visible criteria')
-  const declared = original.nodes(node => node.tag === 'link' && node.attrs.rel === 'stylesheet')
-    .map(node => node.attrs.href)
-  const fonts = 'https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@100..900&display=swap'
-  need(JSON.stringify([...declared].sort()) === JSON.stringify([...stylesFor(kind), fonts].sort()),
+  // The current deployment adds only a literal scrollbar-gutter rule in head.
+  // Any additional, moved or changed inline styling still requires review.
+  const inlineStyles = all(tree, node => node.tag === 'style')
+  need(contract.inlineStyleSHA256 ? inlineStyles.length === 1
+    && Object.keys(inlineStyles[0].attrs).length === 0
+    && hash(inlineStyles[0].raw) === contract.inlineStyleSHA256
+    && original.nodes(node => node.tag === 'head' && node.children.includes(inlineStyles[0])).length === 1
+    : inlineStyles.length === 0, 'unreviewed inline stylesheet cannot qualify visible criteria')
+  need(JSON.stringify(styleDeclarations(tree)) === JSON.stringify(expectedStyles(contract, kind)),
     'declared criteria stylesheet set changed')
+  const baseClient = baseClientFor(contract)
+  if (contract.scaleInitializerSHA256) {
+    const clients = original.nodes(node => node.tag === 'script' && node.attrs.type !== 'application/ld+json')
+    const external = [baseClient, ...(kind === 'home' ? contract.homeClients : [])]
+    const externalClient = node => external.includes(node.attrs.src) && node.attrs.type === 'module'
+      && Object.keys(node.attrs).length === 2 && !norm(node.raw)
+    const scaler = node => Object.keys(node.attrs).length === 0 && hash(node.raw) === contract.scaleInitializerSHA256
+    const inline = node => Object.keys(node.attrs).length === 1 && node.attrs.type === 'module'
+      && !node.attrs.src && kind !== 'home' && hash(node.raw) === contract.inlineClients[kind]
+    need(clients.length === external.length + (kind === 'home' ? 1 : 2)
+      && external.every(path => clients.filter(node => externalClient(node) && node.attrs.src === path).length === 1)
+      && clients.filter(scaler).length === 1 && clients.filter(inline).length === (kind === 'home' ? 0 : 1)
+      && clients.every(node => externalClient(node) || scaler(node) || inline(node)),
+    'published public client declaration contract changed')
+  }
   if (kind !== 'home') {
     const scopes = kind === 'role' ? ['jr-title', 'jr-meta', 'jr-pill', 'jr-body', 'jr-form'] : ['jobs']
     for (const node of all(tree, node => scopes.some(value => cls(node, value)))) {
@@ -70,17 +129,19 @@ function documentIdentity(html, url, kind, styles) {
       if (cls(node, 'jr-body') || cls(node, 'jobs')) need(!all(node, child => Object.hasOwn(child.attrs, 'style')).length,
         'unreviewed inline styling cannot qualify visible authored criteria')
     }
-    const clients = original.nodes(node => node.tag === 'script' && node.attrs.type !== 'application/ld+json')
-    need(clients.length === 2 && clients.every(node => node.attrs.type === 'module')
-      && clients.filter(node => node.attrs.src === baseClient).length === 1
-      && clients.filter(node => !node.attrs.src && hash(node.raw) === profile.inlineClients[kind]).length === 1,
-    'published public client contract changed')
+    if (!contract.scaleInitializerSHA256) {
+      const clients = original.nodes(node => node.tag === 'script' && node.attrs.type !== 'application/ld+json')
+      need(clients.length === 2 && clients.every(node => node.attrs.type === 'module')
+        && clients.filter(node => node.attrs.src === baseClient).length === 1
+        && clients.filter(node => !node.attrs.src && hash(node.raw) === contract.inlineClients[kind]).length === 1,
+      'published public client contract changed')
+    }
   }
   return { document, tree }
 }
 
-function listing(html, styles) {
-  const { document, tree } = documentIdentity(html, VAHAN_CAREERS, 'listing', styles)
+function listing(html, styles, contract) {
+  const { document, tree } = documentIdentity(html, VAHAN_CAREERS, 'listing', styles, contract)
   need(activeHead(html).titles.includes('Vahan — Careers'), 'current employer careers title changed')
   const filters = document.nodes(node => node.tag === 'select' && node.attrs['data-filter'])
   need(filters.length === 3 && ['department', 'type', 'location'].every(name => filters.some(node => {
@@ -115,8 +176,8 @@ function listing(html, styles) {
   return rows
 }
 
-function role(html, row, styles) {
-  const { document, tree } = documentIdentity(html, row.url, 'role', styles)
+function role(html, row, styles, contract) {
+  const { document, tree } = documentIdentity(html, row.url, 'role', styles, contract)
   const title = one(document.nodes(node => node.tag === 'h1' && cls(node, 'jr-title')), 'visible same-role title missing')
   need([row.title, row.title + '.'].includes(document.text(title)), 'same-role title conflicts with listing')
   const meta = document.text(one(document.nodes(node => cls(node, 'jr-meta')), 'native role country missing'))
@@ -206,7 +267,7 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     audit.responses.push({ url, status: response.status, bytes: Buffer.byteLength(html), sha256: hash(html) })
     return html
   }
-  const details = async (rows, styles) => {
+  const details = async (rows, styles, contract) => {
     const result = new Array(rows.length)
     let cursor = 0, failure
     const workers = Array.from({ length: Math.min(3, rows.length) }, async () => {
@@ -214,7 +275,7 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
         while (cursor < rows.length) {
           signal.throwIfAborted()
           const index = cursor++
-          result[index] = role(await read(rows[index].url), rows[index], styles)
+          result[index] = role(await read(rows[index].url), rows[index], styles, contract)
         }
       } catch (error) { failure ||= error; controller.abort(failure); throw error }
     })
@@ -224,29 +285,35 @@ export async function runVahanCurrentNative({ fetchImpl = fetch, signal: callerS
     return result
   }
   try {
-    const home = await read(HOME), openingHtml = await read(VAHAN_CAREERS), assets = {}
-    for (const [path, sha] of Object.entries(profile.assets)) {
-      assets[path] = await read(new URL(path, HOME).href)
-      need(hash(assets[path]) === sha, path.endsWith('.css') ? 'unreviewed criteria stylesheet contract' : 'unreviewed shared public client contract')
+    const home = await read(HOME), openingHtml = await read(VAHAN_CAREERS), contract = selectContract(home, openingHtml)
+    const verifyAssets = async () => {
+      const assets = {}
+      for (const [path, sha] of Object.entries(contract.assets)) {
+        assets[path] = await read(new URL(path, HOME).href)
+        need(hash(assets[path]) === sha, path.endsWith('.css') ? 'unreviewed criteria stylesheet contract' : 'unreviewed shared public client contract')
+      }
+      return assets
     }
+    const assets = await verifyAssets()
     const styles = Object.entries(assets).filter(([path]) => path.endsWith('.css')).map(([, body]) => body).join('\n')
     const bindHome = html => {
-      const { document } = documentIdentity(html, HOME, 'home', styles)
+      const { document } = documentIdentity(html, HOME, 'home', styles, contract)
       need(document.nodes(node => node.tag === 'a' && node.attrs.href === '/careers/' && document.text(node) === 'Careers').length > 0,
         'current corporate employer careers handoff missing')
     }
     bindHome(home)
-    const opening = listing(openingHtml, styles)
+    const opening = listing(openingHtml, styles, contract)
     audit.observedRecordCount = audit.observedVacancyCount = opening.length
     let jobs = [], complete = false
     if (opening.length) {
-      jobs = await details(opening, styles)
+      jobs = await details(opening, styles, contract)
       bindHome(await read(HOME))
-      const closing = listing(await read(VAHAN_CAREERS), styles)
+      const closing = listing(await read(VAHAN_CAREERS), styles, contract)
       need(fingerprint(opening) === fingerprint(closing), 'closing inventory changed')
-      const closingJobs = await details(closing, styles)
+      const closingJobs = await details(closing, styles, contract)
       need(JSON.stringify(jobs) === JSON.stringify(closingJobs), 'closing full authored criteria changed')
-      need(fingerprint(opening) === fingerprint(listing(await read(VAHAN_CAREERS), styles)), 'final closing inventory changed after role details')
+      need(fingerprint(opening) === fingerprint(listing(await read(VAHAN_CAREERS), styles, contract)), 'final closing inventory changed after role details')
+      await verifyAssets()
       complete = audit.closingStable = true
     }
     const limited = Number.isSafeInteger(maxJobs) && maxJobs > 0 && jobs.length > maxJobs

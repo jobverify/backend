@@ -1,5 +1,5 @@
 import TelegramChannelDelivery from '../models/TelegramChannelDelivery.js';
-import { BROADCAST_DESTINATIONS, listBroadcastSettings, saveBroadcastSettings } from '../services/telegramBroadcastSettingsService.js';
+import { BROADCAST_DESTINATIONS, listBroadcastSettings, saveBroadcastSettings, clearBroadcastQueue } from '../services/telegramBroadcastSettingsService.js';
 import { BROADCAST_TOKENS, DEFAULT_BROADCAST_TEMPLATE, BROADCAST_SAMPLE_JOBS, renderBroadcastTemplate } from '../services/telegramBroadcastTemplate.js';
 import { isTelegramDeliveryEnabled } from '../services/telegramProvider.js';
 
@@ -35,3 +35,5 @@ export const getAdminTelegramAlertLogs = handle(async req => {
     status: row.status, reason: row.reason, createdAt: row.createdAt, sentAt: row.sentAt,
     providerMessageId: row.providerMessageId, configRevision: row.configRevision }));
 });
+
+export const clearAdminTelegramAlertQueue = handle(req => clearBroadcastQueue(req.params.destination, req.user._id));

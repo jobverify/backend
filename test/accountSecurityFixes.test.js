@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { passwordSafety } from '../src/services/passwordSafety.js';
+// These compatibility fixtures isolate the external password provider.
+test.beforeEach(t => { t.mock.method(passwordSafety, 'check', async () => {}); });
 import { fileURLToPath } from 'node:url';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
@@ -18,12 +21,18 @@ const response = () => ({ statusCode: 200, body: null,
   cookie() {}, clearCookie() {},
 });
 async function invoke(handler, body, user, rules = []) {
-  const req = { body, user }; const res = response();
+  const req = { body: { dateOfBirth: '2000-01-15', ...body }, user }; const res = response();
   for (const rule of rules) await rule.run(req);
   await handler(req, res); return res;
 }
 
 test('account security boundaries', { timeout: 90000 }, async t => {
+  const originalRelay = process.env.EMAIL_RELAY_URL;
+  process.env.EMAIL_RELAY_URL = '';
+  t.after(() => {
+    if (originalRelay === undefined) delete process.env.EMAIL_RELAY_URL;
+    else process.env.EMAIL_RELAY_URL = originalRelay;
+  });
   process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
   process.env.FRONTEND_ORIGIN = 'http://localhost:5173';
   Object.assign(process.env, { SMTP_HOST: '127.0.0.1', SMTP_PORT: '1025', SMTP_USER: 'test', SMTP_PASS: 'test', SMTP_FROM: 'test@gmail.com' });
@@ -141,5 +150,73 @@ test('account security boundaries', { timeout: 90000 }, async t => {
     assert.equal(exhausted.statusCode, missing.statusCode);
     assert.deepEqual(exhausted.body, missing.body);
     assert.equal((await PendingUser.findOne({ email })).resendCount, 2);
+  });
+
+  for (const used of [0, 1]) {
+    await t.test(`concurrent resends reserve only one delivery with ${used} prior resends`, async t => {
+      const email = `concurrent-resend-${used}@gmail.com`;
+      const now = Date.now();
+      await PendingUser.create({ email, profile: { name: 'Candidate' },
+        verificationToken: 'legacy-verification-token',
+        verificationTokenHash: hashVerificationToken('initial-verification-token'),
+        verificationTokenExpiresAt: new Date(now - 1), createdAt: new Date(now - 120000), resendCount: used,
+        resendWindowStartedAt: used ? new Date(now - 120000) : null,
+        lastResentAt: new Date(now - 60001) });
+
+      // Force overlapping snapshots in the former read/check/save path. Keep
+      // actual database reads and writes so MongoDB enforces the reservation.
+      const read = PendingUser.collection.findOne.bind(PendingUser.collection);
+      let readers = 0; let release;
+      const gate = new Promise(resolve => { release = resolve; });
+      const snapshot = t.mock.method(PendingUser.collection, 'findOne', async (...args) => {
+        const document = await read(...args);
+        if (args[0].email === email) {
+          if (++readers === 3) release();
+          await gate;
+        }
+        return document;
+      });
+      const sentBefore = mails.length;
+      let results;
+      try {
+        results = await Promise.all(Array.from({ length: 3 }, () => invoke(resendVerification, { email })));
+        await new Promise(resolve => setImmediate(resolve));
+      } finally { snapshot.mock.restore(); }
+
+      for (const result of results) {
+        assert.equal(result.statusCode, 200);
+        assert.deepEqual(result.body, results[0].body);
+      }
+      const pending = await PendingUser.findOne({ email });
+      assert.equal(pending.resendCount, used + 1);
+      const delivered = mails.slice(sentBefore).filter(mail => mail.to === email);
+      assert.equal(delivered.length, 1, 'Only the winning reservation may send a verification email.');
+      const link = new URL(delivered[0].html.match(/href="([^"]+)"/)[1]);
+      const token = new URLSearchParams(link.hash.slice(1)).get('token');
+      assert.equal(hashVerificationToken(token), pending.verificationTokenHash);
+      assert.equal(pending.verificationToken, null);
+      assert.ok(pending.verificationTokenExpiresAt.getTime() >= now + 29 * 60000);
+      assert.ok(pending.createdAt.getTime() >= now);
+    });
+  }
+
+  await t.test('resending starts a new expired daily window and retains the cooldown', async () => {
+    const email = 'resend-new-window@gmail.com';
+    const now = Date.now();
+    await PendingUser.create({ email, profile: { name: 'Candidate' },
+      verificationTokenHash: hashVerificationToken('expired-window-token'),
+      verificationTokenExpiresAt: new Date(now + 60000), resendCount: 2,
+      resendWindowStartedAt: new Date(now - 86400001), lastResentAt: new Date(now - 60001) });
+    const sentBefore = mails.length;
+    const eligible = await invoke(resendVerification, { email });
+    const pending = await PendingUser.findOne({ email });
+    assert.equal(eligible.statusCode, 200);
+    assert.equal(pending.resendCount, 1);
+    assert.ok(pending.resendWindowStartedAt.getTime() >= now);
+    const coolingDown = await invoke(resendVerification, { email });
+    assert.deepEqual(coolingDown.body, eligible.body);
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(mails.slice(sentBefore).filter(mail => mail.to === email).length, 1);
+    assert.equal((await PendingUser.findOne({ email })).resendCount, 1);
   });
 });

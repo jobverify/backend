@@ -60,7 +60,7 @@ export function readCdotListing(html){
    applicationOpeningTimeLocal:opening.time,closingDate:closing.date,applicationClosingTimeLocal:closing.time,
    applicationDateTimezone:null,attrs:structuredClone(row.attrs),cells:cells.map(n=>({attrs:structuredClone(n.attrs),text:d.text(n),tree:tree(n)})),tree:tree(row)}
  })
- need(rows.length>0,'native empty inventory cannot establish company absence')
+ if(rows.length===0)throw Object.assign(Error('C-DOT native: native empty inventory cannot establish company absence'),{code:'CDOT_EMPTY_INVENTORY_UNPROVEN',softFailure:true,upstreamOutage:false,failureKind:'coverage_gap',abortRetries:true,partial:true,nativeObservedRecordCount:0,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false})
  need(new Set(rows.map(r=>r.jobId)).size===rows.length&&new Set(rows.map(r=>r.sourceUrl)).size===rows.length,'ambiguous duplicate advertisement/post identity')
  return {identity:{title:head.titles[0],publisher:'Centre for Development of Telematics',metas:head.metas},schemas,table:{attrs:table.attrs,columns,tree:tree(table)},rows}
 }

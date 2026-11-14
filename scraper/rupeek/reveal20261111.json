@@ -34,6 +34,20 @@
     "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea",
     "a7b184efc6db3070eb138216ce988c4adb40b13a54bbbc308b9ff0be71f9e0eb"
   ],
+  "additionalInlineProgramSHA256Orders": [
+    [
+      "ee6bb81f4e9fc030a39a7c71affc4d1f2b900baa4b4c7af83361388d7c39599b",
+      "304316a41481e9922995bd7977cf64bd1c55f431dcf4f316888b578d52372133",
+      "4009527b06902e2fcd3c2ce78c0652caf43bda1783d1577198d0c3919782c607",
+      "a7b184efc6db3070eb138216ce988c4adb40b13a54bbbc308b9ff0be71f9e0eb",
+      "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+    ]
+  ],
+  "additionalOrderReview": {
+    "reviewedOn": "2026-11-14",
+    "sourceCapture": "fixtures/reveal-order-20261114.json.gz",
+    "summary": "The actual closing response interchanges only the independent literal self.__next_f initialization and the already-defined B:1/S:1 reveal call. Every raw program body, occurrence, other relative order and external declaration remains exact. No generic ordering normalization or downloaded program execution."
+  },
   "revealProgramSHA256": "4009527b06902e2fcd3c2ce78c0652caf43bda1783d1577198d0c3919782c607",
   "revealCall": "$RC(\"B:1\",\"S:1\")",
   "placeholderID": "B:1",

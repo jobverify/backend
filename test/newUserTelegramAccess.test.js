@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { passwordSafety } from '../src/services/passwordSafety.js';
+// These compatibility fixtures isolate the external password provider.
+test.beforeEach(t => { t.mock.method(passwordSafety, 'check', async () => {}); });
 import User from '../src/models/User.js';
 import PendingUser from '../src/models/PendingUser.js';
 import { authenticateWithGoogle, verifyEmail } from '../src/controllers/authController.js';
@@ -34,8 +37,8 @@ for (const flow of ['email', 'google', 'google-pending']) {
       email: pending.email, emailVerified: true, sub: 'google-subject', name: 'New Member',
     }));
     const res = response();
-    if (flow === 'email') await verifyEmail({ body: { token: 'verification-token', password: 'MailboxOwnerPassword123!' } }, res);
-    else await authenticateWithGoogle({ body: { credential: 'google-credential' } }, res);
+    if (flow === 'email') await verifyEmail({ body: { dateOfBirth: '2000-01-15', token: 'verification-token', password: 'MailboxOwnerPassword123!' } }, res);
+    else await authenticateWithGoogle({ body: { credential: 'google-credential', dateOfBirth: '2000-01-15' } }, res);
     assert.equal(res.statusCode, 200);
     assert.ok(saved.length > 0);
     for (const user of saved) {
@@ -55,7 +58,7 @@ for (const allowed of [true, false]) {
       email: user.email, emailVerified: true, sub: 'existing-subject',
     }));
     const res = response();
-    await authenticateWithGoogle({ body: { credential: 'google-credential' } }, res);
+    await authenticateWithGoogle({ body: { credential: 'google-credential', dateOfBirth: '2000-01-15' } }, res);
     assert.equal(res.statusCode, 200);
     assert.equal(user.telegramAlertsAllowed, allowed);
     assert.equal(res.body.user.access.telegramAlertsAllowed, allowed);

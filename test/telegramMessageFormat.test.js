@@ -1,11 +1,30 @@
 import assert from 'node:assert/strict';
-import test from 'node:test';
-import { buildTelegramMessageBody } from '../src/services/jobAlertService.js';
+import test, { after } from 'node:test';
+
+const previousOrigin = process.env.FRONTEND_ORIGIN;
+process.env.FRONTEND_ORIGIN = 'https://www.jobverify.in';
+after(() => {
+  if (previousOrigin === undefined) delete process.env.FRONTEND_ORIGIN;
+  else process.env.FRONTEND_ORIGIN = previousOrigin;
+});
+import { buildTelegramMessageBody, telegramJobLink } from '../src/services/jobAlertService.js';
+
+test('Telegram links to the Jobverify job page even when employer links exist', () => {
+  const job = { _id: '507f1f77bcf86cd799439011', title: 'Engineer', company: 'Example',
+    jobUrl: 'https://employer.example/job', applicationUrl: 'https://employer.example/apply',
+    applyUrl: 'https://employer.example/apply', sourceUrl: 'https://employer.example/source', link: 'https://employer.example/link' };
+  const expected = 'https://www.jobverify.in/jobs/507f1f77bcf86cd799439011';
+  assert.equal(telegramJobLink(job), expected);
+  assert.equal(buildTelegramMessageBody([job], '{jobUrl}'), expected);
+  assert.ok(buildTelegramMessageBody([job]).includes(expected));
+  assert.doesNotMatch(buildTelegramMessageBody([job]), /employer\.example/);
+  assert.equal(telegramJobLink({}), 'https://www.jobverify.in/jobs');
+});
 
 test('personal Telegram templates control the delivered message', () => {
   const job = { company: 'Example', title: 'Engineer', sourceUrl: 'https://example.com/job' };
   assert.equal(buildTelegramMessageBody([job], '{title} at {company}\n{jobUrl}'),
-    'Engineer at Example\nhttps://example.com/job');
+    'Engineer at Example\nhttps://www.jobverify.in/jobs');
   assert.throws(() => buildTelegramMessageBody([job], '{unknown}\n{jobUrl}'), /Unsupported placeholder/);
 });
 
@@ -25,7 +44,7 @@ test('Telegram uses the requested hiring announcement format for one job only', 
     sourceUrl: 'https://lseg.wd3.myworkdayjobs.com/Careers/job/IND-BLR-Divyasree-Technopolis/Associate-Software-Engineer_R0124079' };
   assert.equal(buildTelegramMessageBody([job, { title: 'Second job', company: 'Other' }]), [
     '📌 LSEG is hiring Associate Software Engineer', '', '🎓 Batch :- 2026',
-    '⚙️ Type :- Full time', '📍 Location :- Bangalore', '', '👔 Job link', job.sourceUrl, '', footer,
+    '⚙️ Type :- Full time', '📍 Location :- Bangalore', '', '👔 Job link', 'https://www.jobverify.in/jobs', '', footer,
   ].join('\n'));
 });
 

@@ -33,6 +33,8 @@ import { normalizePublicWorkArrangement, PUBLIC_WORK_ARRANGEMENT_EXPRESSION } fr
 import { withSemanticExperienceConstraint } from '../utils/classifiedExperienceFilters.js';
 import { applyPublicJobVisibility } from "../utils/publicJobVisibility.js";
 import { recordApplicationOpen } from '../services/applicationService.js';
+import { InactiveAccountError, withActiveAccountWrite } from '../services/activeAccountWrite.js';
+import { logOperationalError } from '../utils/operationalLog.js';
 import { canUsePremiumFilters } from "../utils/accessControl.js";
 import {
   formatStoredLocationLabel,
@@ -1670,16 +1672,20 @@ export const trackJobClick = async (req, res) => {
       });
     }
 
-    // cretes an anayltics record
+    // Authenticated analytics must commit before the owner's deletion sweep.
+    // Anonymous clicks do not depend on a user record or transaction.
     try {
-      await Click.create({
+      const record = {
         user: req.user ? req.user._id : null,
         job: job._id,
         ip: req.ip,
         userAgent,
-      });
+      };
+      if (req.user) await withActiveAccountWrite(req.user._id, session => Click.create([record], { session }));
+      else await Click.create(record);
     } catch (clickErr) {
-      console.error("Error creating Click record:", clickErr);
+      if (clickErr instanceof InactiveAccountError) throw clickErr;
+      logOperationalError('job_click_write', clickErr);
     }
 
     // A purge may finish between the job update and analytics insertion.
@@ -1700,6 +1706,9 @@ export const trackJobClick = async (req, res) => {
       },
     });
   } catch (error) {
+    if (error instanceof InactiveAccountError) {
+      return res.status(404).json({ code: 404, success: false, message: error.message });
+    }
     console.error("Error in trackJobClick:", error);
     return res.status(500).json({
       code: 500,

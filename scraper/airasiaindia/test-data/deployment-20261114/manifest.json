@@ -1,0 +1,18 @@
+{
+  "source": "airasiaindia",
+  "description": "New public SAP referrer tracker uses idempotent namespace initialization. Complete AST is pinned after masking only one validated anonymous UUID; employer/query init remains validated by the unchanged strict reader.",
+  "receipt": {
+    "requestedUrl": "https://careers.airindia.com/aix",
+    "method": "GET",
+    "startedAt": "2026-11-14T12:52:46.162Z",
+    "status": 200,
+    "url": "https://careers.airindia.com/aix",
+    "headers": {
+      "content-type": "text/html;charset=UTF-8"
+    },
+    "bytes": 137101,
+    "sha256": "985cbe11a543ff7ab8f4784a700485eb3fc599c41e5d1c1b956f12385ff381b1",
+    "file": "airasiaindia-3.body.gz"
+  },
+  "captureDirectory": "airasiaindia-baseline"
+}

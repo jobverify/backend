@@ -302,6 +302,9 @@ export function roleContract(row, dto, native, now) {
   typedCountryContract(row);typedCountryContract(dto)
   check(dto && typeof dto === 'object' && dto.JobId === row.JobId && norm(dto.JobTitle) === norm(row.JobTitle) && dto.JobCode === row.JobCode, 'native listing/detail identity mismatch')
   check(dto.JobStatus === 'Active' && dto.IsPublic === true && dto.IsDraft === false, 'role is not active, public and published')
+  // The reviewed public renderer exposes these as additional full criteria.
+  // Unread documents/videos cannot inherit completeness from the HTML carrier.
+  check([dto.JobDescriptionBlobUrl,dto.JobDescriptionVideoUrl].every(value=>value==null||value===''), 'unreviewed additional full-description carrier')
   check(!native.visibleClosure,'public native page visibly closed')
   check(native.frames.length===0,'unreviewed native role frame')
   const employer = publicOrgReference(dto.OrgDetails)

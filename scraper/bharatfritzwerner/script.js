@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 
 import { BHARAT_FRITZ_WERNER_CATALOG } from './catalog.js'
@@ -321,6 +322,23 @@ export const createBharatFritzWernerScraper = ({
 
     const jobs = (await Promise.all(listings.map(async (listing) => {
       const detailPage = await fetchPage(listing.sourceUrl)
+      if (detailPage.status === 404) {
+        const body = Buffer.from(String(detailPage.html ?? ''), 'utf8')
+        throw Object.assign(new Error('Bharat Fritz Werner published native detail is unavailable: HTTP 404'), {
+          code: 'BFW_NATIVE_DETAIL_HTTP404', status: 404, requestUrl: listing.sourceUrl,
+          finalUrl: detailPage.url, softFailure: true, upstreamOutage: false,
+          failureKind: 'coverage_gap', abortRetries: true, sourceScopeComplete: false,
+          lifecycleCleanupAllowed: false,
+          recruitmentObservations: {
+            source: SOURCE, observedRecordCount: listings.length,
+            selectedListings: structuredClone(listings), sourceScopeComplete: false,
+            lifecycleCleanupAllowed: false, companyIndiaZeroProven: false,
+            nativeDetailResponse: { requestedUrl: listing.sourceUrl, finalUrl: detailPage.url,
+              status: 404, bodyBytes: body.length,
+              bodySHA256: createHash('sha256').update(body).digest('hex') },
+          },
+        })
+      }
       return extractJobDetail(detailPage.html, listing)
     })))
       .sort((left, right) => left.title.localeCompare(right.title) || left.jobId.localeCompare(right.jobId))

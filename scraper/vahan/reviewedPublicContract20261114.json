@@ -1,0 +1,29 @@
+{
+  "reviewedOn": "2026-11-14",
+  "scope": "Current /careers/ employer HTML only; no customer jobs marketplace, OTP, application or challenge requests.",
+  "assets": {
+    "/_astro/styles.DCxPlcQy.css": "67b940d64059c3af0bc35c5f2606322e172ce21e06c908a5d1f53fd1567ea910",
+    "/_astro/careers.D7sopiS7.css": "ba7603153b33eb871dd0c14498b37bada19860618724e03ba8c4065b74078c9a",
+    "/_astro/responsive.CrAE6xt2.css": "600269cc0faa68e7c943121302c6126104e271a173fb9f9238baf8fa333b3ec1",
+    "/_astro/Base.astro_astro_type_script_index_0_lang.D04DSgcs.js": "55a2a4fdf37bcfca03fa73a3ac1520e42d258c40881df70923f0e0df94d68ae5",
+    "/_astro/career-role.B2ZynOP3.css": "851993f1d6e771e0d37f61ddecade781859882fe04656e434d490171d5d7b920",
+    "/_astro/LeadGenOtpForm.astro_astro_type_script_index_0_lang.DFChJR4U.js": "6933a2c63f7780b5d830aaf39a6a0fdc82fee11ad8fb14a6f1f40e301ab02f4e",
+    "/_astro/index.astro_astro_type_script_index_0_lang.D1jvhht4.js": "c90c2cda3d8e853c2d27b5cc14721cae5d1b9e0d3d3666593e10de69c0db417f",
+    "/_astro/swipe.DY0ALsqN.js": "d9df706db78eb0052332de021b4e03fb602922ad1110f677db5a95ed121f5d52",
+    "/_astro/turnstile.D0BTt4Nh.js": "e447d217b6cc5bf20c5ed735da0240aea866f7e6ae1fd3cc6fed8fcf99757107"
+  },
+  "externalStylesheets": [],
+  "baseClient": "/_astro/Base.astro_astro_type_script_index_0_lang.D04DSgcs.js",
+  "homeClients": [
+    "/_astro/LeadGenOtpForm.astro_astro_type_script_index_0_lang.DFChJR4U.js",
+    "/_astro/index.astro_astro_type_script_index_0_lang.D1jvhht4.js"
+  ],
+  "scaleInitializerSHA256": "d13024934d670a48c729a4f7d7a81bcbc429c5263a6c026fc3533fc0da32ffb2",
+  "inlineStyleSHA256": "ada620560000924f589c5a71e8813137572fad5c339dcb66af4154d9e95302ed",
+  "inlineClients": {
+    "listing": "5d63e586c0d8a603af373df2fae58c60020e20d5422c99e6b2f097d66f539f71",
+    "role": "9371202d907cd64432e58b8a362fc81a55224334bcfef60817073db51a663ef5"
+  },
+  "review": "Listing filtering and role criteria/application inline clients, employer-careers CSS and role CSS are byte-identical to the earlier reviewed deployment. The 125-byte classic initializer only scales the document root with --z. Base retains navigation, decorative waves, videos and carousels; its scaling target moved to the document root and touch handling changed. Global CSS changes font assets to local WOFF2 and adjusts --ui; responsive differences concern navigation, corporate art, backer logos, decorative career images, footer and newsroom logos. The homepage lead widget and its exact dependency handle customer phone/OTP only after focus/submission; the other homepage client and swipe dependency operate tabs and a case-study carousel. Static modules are read and hashed, never executed. No customer, challenge or application endpoint is called.",
+  "evidence": "fixtures/current-20261114/native-responses.json.gz"
+}

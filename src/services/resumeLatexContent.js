@@ -21,6 +21,7 @@ const dateAtom = `(?:${months}\\.?[ ,]+(?:19|20)\\d{2}|(?:0?[1-9]|1[0-2])[/-](?:
 const datePattern = new RegExp(`\\b${dateAtom}(?:\\s*(?:[-–—]+|to)\\s*(?:${dateAtom}|present|current|ongoing))?\\b`, 'gi');
 const datesIn = value => unique([...String(value).matchAll(datePattern)].map(match => match[0]));
 const dateKey = value => canonical(value).replace(/\b(jan|feb|mar|apr|jun|jul|aug|sept?|oct|nov|dec)(?:uary|ruary|ch|il|e|y|ust|tember|ober|ember)?\b/g, month => month.slice(0, 3)).replace(/\b(?:current|ongoing)\b/g, 'present').replace(/\bto\b/g, '').replace(/\s+/g, ' ').trim();
+const academicGradePattern = /\b(?:CGPA|GPA)\s*:?\s*\d+(?:\.\d+)?(?:\s*\/\s*\d+(?:\.\d+)?)?/gi;
 const headingType = line => {
   const heading = canonical(line.replace(/:.*$/, ''));
   if (/^(?:(?:professional|work|relevant|employment) )?(?:experience|history)|^(?:employment|internships?)$/.test(heading) && heading.length < 45) return 'employment';
@@ -53,10 +54,21 @@ function sectionLines(text) {
 
 function recordFact(line, type) {
   const dates = datesIn(line);
+  const grades = type === 'education' ? unique(line.match(academicGradePattern) || []) : [];
   let remainder = line;
   for (const date of dates) remainder = remainder.replace(date, '');
-  const anchors = remainder.split(type === 'employment' ? /\s*[|\t•\n]\s*|\s{2,}|\s+(?:at|@)\s+/ : /\s*[|\t•\n]\s*|\s{2,}/).map(value => value.replace(/^[\s,–—-]+|[\s,–—-]+$/g, '').trim()).filter(value => value && !/^present$/i.test(value));
-  return { source: line, anchors, dates,
+  const splitAnchors = value => value.split(type === 'employment' ? /\s*[|\t•\n]\s*|\s{2,}|\s+(?:at|@)\s+/ : /\s*[|\t•\n]\s*|\s{2,}/).map(value => value.replace(/^[\s,–—-]+|[\s,–—-]+$/g, '').trim()).filter(value => value && !/^present$/i.test(value));
+  // Grades may move between the institution and degree rows in the template.
+  // Ambiguous multi-entry groups retain their original grade-containing anchors.
+  const withoutGrades = remainder.replace(academicGradePattern, '');
+  const gradeFreeAnchors = splitAnchors(withoutGrades);
+  const movableGrades = type === 'education' && grades.length === 1
+    && gradeFreeAnchors.length <= 2
+    && gradeFreeAnchors.filter(value => degreeWords.test(value)).length === 1
+    && gradeFreeAnchors.filter(value => institutionWords.test(value)).length <= 1;
+  if (movableGrades) remainder = withoutGrades;
+  const anchors = splitAnchors(remainder);
+  return { source: line, anchors, dates, ...(movableGrades ? { grades } : {}),
     ...(type === 'employment' ? { title: anchors.find(value => titleWords.test(value)) || '', employer: anchors.find(value => !titleWords.test(value)) || '' }
       : { institution: anchors.find(value => institutionWords.test(value)) || anchors.find(value => !degreeWords.test(value) && !/^(?:cgpa|gpa|grade)\b/i.test(value)) || '',
         qualification: anchors.find(value => degreeWords.test(value)) || '' }) };
@@ -67,7 +79,7 @@ function factualRecords(lines, type) {
   let group = [];
   let description = false;
   const flush = () => { if (group.length) records.push(recordFact(group.join('\n'), type)); group = []; };
-  for (const line of lines) {
+  for (const [index, line] of lines.entries()) {
     if (actionStart.test(line) || line.split(/\s+/).length > 30) { flush(); description = true; continue; }
     const dated = datesIn(line).length > 0;
     // Wrapped bullet continuations are prose, even when they lack a bullet or
@@ -81,6 +93,13 @@ function factualRecords(lines, type) {
     // Dates often share the employer/institution row, followed by its title or
     // qualification on the next row. Keep those rows in the same record.
     if (dated && group.some(value => datesIn(value).length)) flush();
+    if (type === 'education' && group.some(value => degreeWords.test(value))) {
+      const current = recordFact(group.join('\n'), type).institution;
+      const next = recordFact(line, type).institution;
+      const institutionRow = institutionWords.test(line)
+        || (!degreeWords.test(line) && degreeWords.test(lines[index + 1] || ''));
+      if (institutionRow && current && next && !hasPhrase(current, next) && !hasPhrase(next, current)) flush();
+    }
     group.push(line);
   }
   flush();
@@ -308,20 +327,24 @@ export function validateResumeFidelity({ facts, text, links = [], tailored = fal
     if (/^https?:/i.test(link) && !(facts.links || []).includes(link) && !facts.sourceText.includes(link)) issues.push('Unsupported portfolio or profile link.');
   }
   for (const [kind, entries] of [['employment', facts.employment || []], ['education', facts.education || []]]) for (const entry of entries) {
-    for (const anchor of entry.anchors || []) if (!hasPhrase(generated, anchor)) issues.push(`Missing or changed ${kind}: ${anchor}.`);
+    const anchorText = kind === 'education' && entry.grades?.length ? generated.replace(academicGradePattern, '') : generated;
+    for (const anchor of entry.anchors || []) if (!hasPhrase(anchorText, anchor)) issues.push(`Missing or changed ${kind}: ${anchor}.`);
     const identity = kind === 'education' ? entry.institution || entry.qualification : entry.employer;
+    let associatedText = generated;
     if (identity && occurrences(generated, identity) > occurrences(original, identity)) issues.push(`Duplicated ${kind} entry: ${identity}.`);
-    if (identity && entry.dates?.length) {
+    if (identity && (entry.dates?.length || entry.grades?.length)) {
       const generatedLines = generated.split('\n');
       const index = generatedLines.findIndex(line => hasPhrase(line, identity));
       if (index >= 0) {
         const identities = [...(facts.employment || []).map(item => item.employer), ...(facts.education || []).map(item => item.institution || item.qualification)].filter(value => value && value !== identity);
         let end = index + 1;
         while (end < generatedLines.length && !identities.some(other => hasPhrase(generatedLines[end], other))) end++;
-        const nearbyDates = datesIn(generatedLines.slice(index, end).join('\n')).map(dateKey);
+        associatedText = generatedLines.slice(index, end).join('\n');
+        const nearbyDates = datesIn(associatedText).map(dateKey);
         for (const date of entry.dates) if (!nearbyDates.includes(dateKey(date))) issues.push(`Date no longer associated with ${identity}: ${date}.`);
       }
     }
+    for (const grade of entry.grades || []) if (!hasPhrase(associatedText, grade)) issues.push(`Missing or changed education: ${identity || 'academic'} grade ${grade}.`);
   }
   const generatedDates = datesIn(generated).map(dateKey);
   const requiredDates = tailored ? [...(facts.employment || []), ...(facts.education || [])].flatMap(entry => entry.dates || []) : facts.dates || [];

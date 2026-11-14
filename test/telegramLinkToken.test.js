@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import test from "node:test";
+import { mockActiveAccountWrites } from './helpers/activeAccountWriteDoubles.js';
 
 import JobAlertDelivery from "../src/models/JobAlertDelivery.js";
 import TelegramLinkToken from "../src/models/TelegramLinkToken.js";
@@ -9,13 +10,14 @@ import {
   createTelegramLinkToken,
 } from "../src/services/telegramLinkService.js";
 
-test("createTelegramLinkToken stores a SHA-256 hash rather than the raw link token", async () => {
+test("createTelegramLinkToken stores a SHA-256 hash rather than the raw link token", async t => {
+  mockActiveAccountWrites(t);
   const originalCreate = TelegramLinkToken.create;
   const stored = [];
   const now = new Date("2026-08-16T12:00:00.000Z");
-  TelegramLinkToken.create = async (payload) => {
+  TelegramLinkToken.create = async ([payload]) => {
     stored.push(payload);
-    return payload;
+    return [payload];
   };
 
   try {
