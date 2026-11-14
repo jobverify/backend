@@ -9,6 +9,8 @@ import {hydrateTurboHireJobs} from '../../scraper-support/utils/turboHireDetails
 import {createPublicTurboHireTransport} from '../../scraper-support/utils/turboHirePublicTransport.js'
 import {TURBOHIRE_CURRENT_PUBLIC_CLIENT} from '../../scraper-support/utils/turboHirePublicClient.js'
 import {isReviewedNaviClientURL,verifyNaviPublicClient} from './publicClient.js'
+import {createNaviPublicReads} from './currentAssetRead20261114.js'
+import {currentNaviPublicCriteria} from './currentCriteria20261114.js'
 import {hasNativeBoardIdentity} from './nativeContent.js'
 
 import { NAVI_CATALOG } from './catalog.js'
@@ -220,9 +222,11 @@ export const createNaviScraper = (options = {}) => ({
       allowedURL: (url, method, body) => method === 'GET'
         ? [CAREERS_PAGE_URL, TURBOHIRE_BOARD_URL, NOAUTH_TOKEN_URL].includes(url)||isReviewedNaviClientURL(url)
           || /^https:\/\/thapi-stage2\.azurewebsites\.net\/api\/publicjobs\?jobId=[A-Za-z0-9_%+-]{30,400}&fieldVisibility=None$/.test(url)
+          || /^https:\/\/thapi-stage2\.azurewebsites\.net\/api\/publicjobs\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\?fieldVisibility=CareerPage$/i.test(url)
         : method === 'POST' && url === FILTERED_JOBS_URL && body === buildFilteredJobsRequestBody(),
     })
-    const { fetchText, fetchScript, fetchJson, signal } = transport
+    const {fetchText,fetchScript,fetchJson,fetchCurrentAsset}=createNaviPublicReads(transport,options)
+    const {signal}=transport
     try {
       let currentClient
       const verifyPublisher = async () => {
@@ -231,7 +235,7 @@ export const createNaviScraper = (options = {}) => ({
         if (!sameUrl(extractTurboHireHandoffUrl(corporate), TURBOHIRE_BOARD_URL)) throw Error('Navi verified official careers page no longer links to the verified TurboHire board')
         const boardHTML = await fetchText(TURBOHIRE_BOARD_URL)
         if (!hasOfficialBoardSignal(boardHTML)) throw Error('Navi verified TurboHire board changed materially')
-        const client = await verifyNaviPublicClient({ boardHTML, fetchScript })
+        const client = await verifyNaviPublicClient({ boardHTML, fetchScript, fetchCurrentAsset })
         if (currentClient && JSON.stringify(client) !== JSON.stringify(currentClient)) throw Error('Navi current public client changed during closing')
         currentClient = client
       }
@@ -242,16 +246,29 @@ export const createNaviScraper = (options = {}) => ({
       const listingRequest = { method: 'POST', body: buildFilteredJobsRequestBody(),
         headers: { ...headers, 'Content-Type': 'application/json' }, signal }
       const payload = await fetchJson(FILTERED_JOBS_URL, listingRequest)
-      validateNativeInventory(payload, { now: now() })
+      const openingNativeInventory = validateNativeInventory(payload, { now: now() })
       const jobs = extractPublicJobs(payload).map(job => ({ ...job, source: SOURCE,
         link: job.applyUrl, scrapedAt: now() }))
       return await hydrateTurboHireJobs({ source: SOURCE, orgId: ORG_ID, employer: 'NAVI TECHNOLOGIES LIMITED',
         origin: ORIGIN, apiBaseUrl: API_BASE_URL, boardUrl: TURBOHIRE_BOARD_URL, payload, jobs,
-        fetchJson, headers, listingUrl: FILTERED_JOBS_URL, listingRequest, maxJobs, signal, now,
-        publicJobInfoUrl: listing => API_BASE_URL + '/api/publicjobs?jobId=' + listing.JobIdObfuscated + '&fieldVisibility=None',
-        verifyNativeDetail: (detail, listing) => validateNativeDetail(detail, listing, { now: now() }),
+        fetchJson: async (url, init) => {
+          const response = await fetchJson(url, init)
+          if (currentClient.detailProtocol === 'native-guid-path' && url === FILTERED_JOBS_URL) {
+            const closingNativeInventory = validateNativeInventory(response, { now: now() })
+            if (closingNativeInventory.snapshot !== openingNativeInventory.snapshot)
+              throw Object.assign(new Error('Navi closing native qualification snapshot changed'), {
+                abortRetries: true, incompleteScope: true,
+              })
+          }
+          return response
+        }, headers, listingUrl: FILTERED_JOBS_URL, listingRequest, maxJobs, signal, now,
+        publicJobInfoUrl: listing => currentClient.detailProtocol==='native-guid-path'
+          ? API_BASE_URL+'/api/publicjobs/'+listing.JobId+'?fieldVisibility=CareerPage'
+          : API_BASE_URL + '/api/publicjobs?jobId=' + listing.JobIdObfuscated + '&fieldVisibility=None',
+        verifyNativeDetail: (detail, listing) => validateNativeDetail(detail, listing, { now: now(),currentPublicRender:currentClient.detailProtocol==='native-guid-path' }),
         mapNativeFields: (detail, description) => ({ employmentType: normalizeWhitespace(detail.JobTypeV2),
           experienceRequired: formatExperience(detail.Experience) || inferExperienceFromDescription(description),
+          ...(currentClient.detailProtocol==='native-guid-path'?{sourceNativePublicCriteria:currentNaviPublicCriteria(detail)}:{}),
           requiredSkills: Array.isArray(detail.Skills) ? detail.Skills.filter(value => typeof value === 'string').map(normalizeWhitespace).filter(Boolean) : [] }),
         retainNativeProof: true, verifyPublisher,
         publisherProof: { corporateURL: CAREERS_PAGE_URL, boardURL: TURBOHIRE_BOARD_URL, orgId: ORG_ID, client: currentClient },

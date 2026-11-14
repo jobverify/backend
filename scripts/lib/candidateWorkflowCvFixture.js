@@ -6,6 +6,8 @@ import { requestTailoredResume, drainTailoredResumes } from '../../src/services/
 import { listCvRevisions } from '../../src/services/cvRevisionService.js';
 import { buildSourceFacts, sourceWithCandidateEvidence } from '../../src/services/resumeLatexContent.js';
 
+const processingConsent = { version: '2026-11-14', accepted: true };
+
 function pdfDocument(label) {
   const stream = `BT /F1 16 Tf 48 740 Td (Asha Rao - ${label}) Tj ET`;
   const objects = ['<< /Type /Catalog /Pages 2 0 R >>', '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
@@ -30,12 +32,12 @@ export async function seedCandidateWorkflowCv({ userId, jobId }) {
   const generate = label => async input => ({ latex: `\\documentclass[11pt]{article}\n\\begin{document}\nAsha Rao. ${label}.\n\\end{document}`,
     pdf: pdfDocument(label), pageCount: 1, facts: buildSourceFacts(sourceWithCandidateEvidence(input.source, input.candidateEvidence)), modelVersion: 'local-browser-fixture', styleVersion: 'local-fixture' });
   for (let index = 1; index <= 2; index++) {
-    await requestResumePreparation(user, { regenerate: true, dispatch });
+    await requestResumePreparation(user, { processingConsent, regenerate: true, dispatch });
     const result = await drainResumePreparations({ generate: generate(`Base revision ${index}`) });
     if (!result.completed) throw new Error(`Base fixture publication failed: ${JSON.stringify(result)}`);
   }
   for (let index = 1; index <= 2; index++) {
-    await requestTailoredResume(user, String(jobId), { regenerate: true, dispatch });
+    await requestTailoredResume(user, String(jobId), { processingConsent, regenerate: true, dispatch });
     const result = await drainTailoredResumes({ generate: generate(`Tailored revision ${index}`) });
     if (!result.completed) throw new Error(`Tailored fixture publication failed: ${JSON.stringify(result)}`);
   }

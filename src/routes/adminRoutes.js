@@ -6,10 +6,11 @@
 import express from "express";
 import { getPipelineSchedule, savePipelineSchedule } from '../controllers/pipelineController.js';
 import { updateSiteSettings } from "../controllers/siteSettingsController.js";
-import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs } from '../controllers/adminTelegramAlertsController.js';
+import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs, clearAdminTelegramAlertQueue } from '../controllers/adminTelegramAlertsController.js';
 import { getPipelineStatus, savePipelineConfiguration, getPipelineCapabilities, triggerPipeline, getPipelineRuns, getPipelineRun, getPipelineLog, downloadPipeline, retiredPipelineControl, stopPipeline, stopAllPipelines } from '../controllers/pipelineController.js';
 import { getUserSuggestions, resolveUserSuggestion, deleteUserSuggestion } from "../controllers/userSuggestionController.js";
 import { purgeScraperJobs } from "../controllers/scraperMaintenanceController.js";
+import { contentReportHandlers } from '../controllers/contentReportController.js';
 import {
   getDashboardStats,
   getClickTimeSeries,
@@ -78,11 +79,14 @@ const descriptionTriggerLimiter = createRateLimiter({
 // Apply authentication and administrator role guard to all routes
 router.use(protect);
 router.use(authorize("admin"));
+router.get('/content-reports', contentReportHandlers.list);
+router.put('/content-reports/:reference', contentReportHandlers.review);
 router.put("/site-settings", updateSiteSettings);
 router.get('/telegram-alerts', getAdminTelegramAlerts);
 router.get('/telegram-alerts/logs', getAdminTelegramAlertLogs);
 router.post('/telegram-alerts/preview', previewAdminTelegramAlert);
 router.put('/telegram-alerts/:destination', saveAdminTelegramAlerts);
+router.delete('/telegram-alerts/:destination/queue', clearAdminTelegramAlertQueue);
 
 // Dashboard Overview and Time-Series Analytics
 router.get("/stats", getDashboardStats);

@@ -47,6 +47,7 @@ jobs:
       - name: Prepare or tailor one requested resume
         timeout-minutes: 28
         env:
+          NODE_ENV: production
           MONGO_URI: ${{ secrets.MONGO_URI }}
         run: node scripts/runTailoredResumes.js
       - name: Check immutable dependency cache completeness

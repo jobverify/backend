@@ -1,7 +1,7 @@
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import { googleIdentity } from '../utils/googleAuth.js';
-import { createVerificationTokenPair, hashVerificationToken, isAllowedAccountEmail, normalizeEmailAddress } from '../utils/authSecurity.js';
+import { ASCII_EMAIL_MESSAGE, createVerificationTokenPair, hashVerificationToken, isAllowedAccountEmail, isAsciiEmailIdentity, normalizeEmailAddress } from '../utils/authSecurity.js';
 import { sendEmailChangeVerificationEmail } from '../utils/sendEmail.js';
 import { resolveFrontendOrigin } from '../utils/runtimeConfig.js';
 
@@ -27,6 +27,7 @@ export const getEmailChange = async (req, res) => {
 };
 
 export const requestEmailChange = async (req, res) => {
+  if (!isAsciiEmailIdentity(req.body.email)) return reply(res, 400, ASCII_EMAIL_MESSAGE);
   const email = normalizeEmailAddress(req.body.email);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !isAllowedAccountEmail(email)) {
     return reply(res, 400, 'Use a valid Gmail or educational email address.');
@@ -97,8 +98,9 @@ export const verifyEmailChange = async (req, res) => {
       $expr: { $eq: [{ $ifNull: ['$sessionVersion', 0] }, '$pendingEmailChange.sessionVersion'] },
     };
     const user = await User.findOne(filter).select('+pendingEmailChange');
-    if (!user) return reply(res, 400, INVALID_LINK_MESSAGE);
-    const updated = await User.findOneAndUpdate({ ...filter, _id: user._id }, {
+    if (!user || !isAsciiEmailIdentity(user.pendingEmailChange.email)) return reply(res, 400, INVALID_LINK_MESSAGE);
+    const updated = await User.findOneAndUpdate({ ...filter, _id: user._id,
+      'pendingEmailChange.email': user.pendingEmailChange.email }, {
       $set: { email: user.pendingEmailChange.email, isVerified: true,
         resetPasswordTokenHash: null, resetPasswordExpiresAt: null },
       $unset: { pendingEmailChange: 1, google: 1 },

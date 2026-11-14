@@ -11,6 +11,7 @@ import telegramRoutes from "./routes/telegramRoutes.js";
 import scrapeRoutes from "./routes/scrapeRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import billingRoutes from "./routes/billingRoutes.js";
+import contentReportRoutes from './routes/contentReportRoutes.js';
 import { createCsrfProtection } from "./middleware/csrfProtection.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import {
@@ -39,6 +40,9 @@ import { validateTurnstileConfiguration } from './middleware/turnstileCaptcha.js
 import { createCanaryHandler, createCrawlerPolicyGuard } from './security/scraperDefense.js';
 import { createSeoToolsRouter } from './seo/seoToolsRoutes.js';
 import { requestDiagnostics } from './middleware/requestDiagnostics.js';
+import { observeLoginFailures } from './monitoring/errorEvents.js';
+import { captureLoginFailure } from './monitoring/sentry.js';
+import { SECURITY_DISCLOSURE } from './security/disclosurePolicy.js';
 
 export function createApp({ isReady = () => mongoose.connection.readyState === 1, ingressLimit = 1200 } = {}) {
   const env = process.env;
@@ -195,6 +199,7 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   });
 
   app.use("/api", mutationLimiter);
+  app.use('/api/auth', observeLoginFailures(captureLoginFailure));
   app.use("/api", authLimiter);
   app.use("/api", cheapReadLimiter);
   app.use("/api", expensiveSearchLimiter);
@@ -209,6 +214,9 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   };
 
   // Routes
+  app.get(['/security.txt', '/.well-known/security.txt'], (_req, res) => {
+    res.set('Cache-Control', 'public, max-age=3600').type('text/plain').send(SECURITY_DISCLOSURE);
+  });
   app.get("/api/site-settings", noStore, readSiteSettings);
   app.use("/api/auth", noStore, authRoutes);
   app.use("/api/jobs", jobRoutes);
@@ -217,6 +225,7 @@ export function createApp({ isReady = () => mongoose.connection.readyState === 1
   app.use("/api/user", noStore, userRoutes);
   app.use('/api/job-verifications', noStore, jobVerificationRoutes);
   app.use("/api/billing", noStore, billingRoutes);
+  app.use('/api/content-reports', noStore, contentReportRoutes);
   app.use("/api/scrape", noStore, scrapeRoutes);
   app.use("/api/admin", noStore, adminRoutes);
   app.get("/", (req, res) => {

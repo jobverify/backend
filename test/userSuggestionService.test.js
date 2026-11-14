@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { mockActiveAccountWrites } from './helpers/activeAccountWriteDoubles.js';
 
 import UserSuggestion from "../src/models/UserSuggestion.js";
 import {
@@ -17,6 +18,8 @@ const quotaCollision = () => {
   error.keyPattern = { user: 1, submittedDay: 1, dailySlot: 1 };
   return error;
 };
+
+test.beforeEach(t => mockActiveAccountWrites(t));
 
 test("suggestion character count includes whitespace", () => {
   assert.equal(countSuggestionCharacters("  Acme\n\tCareers   please "), 25);
@@ -40,15 +43,15 @@ test("slot allocation retries quota collisions and reports remaining allowance",
   const originalCreate = UserSuggestion.create;
   const attempts = [];
 
-  UserSuggestion.create = async (payload) => {
+  UserSuggestion.create = async ([payload]) => {
     attempts.push(payload);
     if (payload.dailySlot < 3) throw quotaCollision();
 
-    return {
+    return [{
       ...payload,
       id: "suggestion-3",
       createdAt: new Date("2026-09-13T12:00:00.000Z"),
-    };
+    }];
   };
 
   try {

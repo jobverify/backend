@@ -11,7 +11,7 @@ import { preparationMetadata, recoverResumePreparations } from '../src/services/
 
 test('a workflow that fails before claiming work stops recovery and exposes retry without losing artifacts', { timeout: 90000 }, async t => {
   process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
-  const mongo = await MongoMemoryServer.create({ binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
+  const mongo = await MongoMemoryServer.create({ instance: { launchTimeout: 60000 }, binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
   await mongoose.connect(mongo.getUri(), { dbName: 'resume_recovery_test' });
   for (const [key, value] of Object.entries({ GITHUB_PAT: 'test-only', GITHUB_REPO: 'example/backend', TAILORED_RESUME_ACTIONS_ENABLED: 'true' })) {
@@ -22,12 +22,13 @@ test('a workflow that fails before claiming work stops recovery and exposes retr
   const user = new mongoose.Types.ObjectId();
   const requestedAt = new Date(now.getTime() - 547 * 60000);
   const dispatchAt = new Date(now.getTime() - 6 * 60000);
+  const consent = { processingConsentVersion: '2026-11-14', processingConsentAcceptedAt: requestedAt };
   await Resume.collection.insertOne({ _id: user, user, sha256: 'a'.repeat(64), preparation: {
-    status: 'queued', phase: 'queued', ready: true, attempts: 0, revision: 3, requestedAt, dispatchAt,
+    ...consent, status: 'queued', phase: 'queued', ready: true, attempts: 0, revision: 3, requestedAt, dispatchAt,
     generationId: 'previous-base', outputResumeSha: 'a'.repeat(64),
   } });
   await TailoredResume.collection.insertOne({ _id: 'queued-tailored', user, status: 'queued', phase: 'queued', ready: true,
-    attempts: 0, revision: 2, requestedAt, dispatchAt, generationId: 'previous-tailored' });
+    ...consent, attempts: 0, revision: 2, requestedAt, dispatchAt, generationId: 'previous-tailored' });
   let posts = 0;
   const request = async (_repo, endpoint, options) => {
     if (endpoint.includes('/runs?')) return { workflow_runs: [{ status: 'completed', conclusion: 'failure' }] };

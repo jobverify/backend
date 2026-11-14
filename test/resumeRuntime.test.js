@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { generateResumeText, RESUME_MODEL } from '../resume-tailoring/resumeRuntime.js';
-import { compilerArguments, compilerFailure } from '../resume-tailoring/latexCompiler.js';
+import { compilerArguments, compilerFailure, prepareResumeCompiler } from '../resume-tailoring/latexCompiler.js';
 
 test('resume model is pinned separately and counts the complete rendered prompt before inference', async () => {
   assert.match(RESUME_MODEL.modelId, /Qwen3-4B-Instruct-2507/);
@@ -91,6 +91,50 @@ test('compiler failures retain only fixed reason codes and discard private diagn
   assert.doesNotMatch(error.message, /private|alex@/);
   assert.equal(compilerFailure({ code: 137 }).code, 'compiler_resource_limit');
   assert.equal(compilerFailure({ stderr: 'untrusted content with missing-file speculation', code: 1 }).code, 'compiler_failed');
+});
+
+test('compiler syntax markers provide specific repair guidance without exposing the compiler log', () => {
+  for (const [reason, guidance] of [['alignment_tab', /ampersand/i], ['undefined_command', /command/i],
+    ['math_delimiter', /math|escape/i], ['unbalanced_group', /brace|argument/i],
+    ['environment_mismatch', /environment/i], ['missing_item', /list|item/i]]) {
+    const error = compilerFailure({ stderr: `private alex@example.test\nRESUME_COMPILER_REASON_${reason.toUpperCase()}\n`, code: 1 });
+    assert.equal(error.code, 'compiler_failed');
+    assert.equal(error.reason, reason);
+    assert.match(error.message, guidance);
+    assert.doesNotMatch(JSON.stringify(error) + error.message, /private|alex@/);
+  }
+  assert.equal(compilerFailure({ stderr: 'RESUME_COMPILER_REASON_PRIVATE_EMAIL', code: 1 }).reason, undefined);
+});
+
+test('compiler preparation verifies the cached image under runtime isolation before returning it', async () => {
+  const calls = [];
+  const image = 'sha256:' + 'b'.repeat(64);
+  const result = await prepareResumeCompiler({ run: async (args, options) => {
+    calls.push({ args, options });
+    if (args[0] === 'image') return Buffer.from(image);
+    if (args[0] === 'run') return Buffer.from('%PDF-trusted compiler probe');
+    return Buffer.alloc(0);
+  } });
+  assert.equal(result, image);
+  const probe = calls.find(call => call.args[0] === 'run');
+  assert.ok(probe, 'a cached image still needs a runtime check');
+  assert.ok(probe.args.includes('--network') && probe.args.includes('none'));
+  assert.ok(probe.args.includes('--memory=512m'));
+  assert.ok(probe.args.includes('--only-cached'));
+  assert.match(probe.options.input, /\\resumeSubheading\{Trusted bold entry\}/);
+  assert.doesNotMatch(probe.options.input, /Your Name|alex@example/);
+  assert.equal(calls.at(-1).args[0], 'rm');
+});
+
+test('an unusable cached compiler fails preparation instead of reaching model generation', async () => {
+  const calls = [];
+  await assert.rejects(prepareResumeCompiler({ run: async args => {
+    calls.push(args[0]);
+    if (args[0] === 'image') return Buffer.from('sha256:' + 'c'.repeat(64));
+    if (args[0] === 'run') throw compilerFailure({ stderr: 'RESUME_COMPILER_DEPENDENCY_MISSING', code: 1 });
+    return Buffer.alloc(0);
+  } }), { code: 'compiler_dependency_missing' });
+  assert.equal(calls.at(-1), 'rm');
 });
 
 test('upstream model exceptions become useful safe failures without exposing response data', async () => {

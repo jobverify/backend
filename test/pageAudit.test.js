@@ -4,14 +4,14 @@ import { analyzeSnapshot, auditPage, normalizeSnapshot } from '../src/seo/pageAu
 
 const snapshot = () => ({
   url: 'https://example.com/jobs?token=private#account',
-  title: 'Authentic jobs and internships in India',
+  title: 'Authentic Authentic Jobs and internships in India',
   descriptions: ['Discover verified career opportunities from official company career pages. Browse jobs, internships and hiring companies across India.'],
   headings: [{ level: 1, text: 'Authentic jobs in India' }, { level: 2, text: 'Latest roles' }],
   canonicals: ['https://example.com/jobs'],
   robots: [{ name: 'robots', content: 'index,follow' }],
   openGraph: [{ property: 'og:title', content: 'Jobs' }, { property: 'og:description', content: 'Official company roles' }, { property: 'og:image', content: 'https://example.com/og.png' }],
 });
-const env = { ANTHROPIC_API_KEY: 'fixture-anthropic-secret', ANTHROPIC_MODEL: 'fixture-model' };
+const env = { ANTHROPIC_API_KEY: 'fixture-anthropic-secret', ANTHROPIC_MODEL: 'fixture-model', ANTHROPIC_DATA_USE_REVIEWED: 'true' };
 const recommendation = { category: 'metadata', priority: 'medium', issue: 'Clarify the audience', evidenceField: 'title', recommendation: 'Mention the relevant audience in the title.', rationale: 'A more specific title can describe the page better.', verification: 'Inspect the rendered title tag.' };
 
 test('semantic snapshots strip URL secrets and unknown fields, and reject malformed collection types', () => {

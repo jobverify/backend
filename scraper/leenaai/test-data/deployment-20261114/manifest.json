@@ -1,0 +1,19 @@
+{
+  "source": "leenaai",
+  "description": "The three build/manifest ID occurrences changed to 2KTP-RzvGs8LpgTmW4czh; reversing only that build ID passes the prior full-page qualification. Career program SHA remains unchanged.",
+  "receipt": {
+    "requestedUrl": "https://leena.ai/careers",
+    "method": "GET",
+    "startedAt": "2026-11-14T12:52:39.125Z",
+    "status": 200,
+    "url": "https://leena.ai/careers",
+    "headers": {
+      "content-type": "text/html; charset=utf-8",
+      "last-modified": "Sat, 14 Nov 2026 12:53:17 GMT"
+    },
+    "bytes": 191410,
+    "sha256": "636e28142f06152a45c2d11bf4c63ddd309cac0e43bdf31bb737e4b78e6205e3",
+    "file": "leenaai-0.body.gz"
+  },
+  "captureDirectory": "leenaai-baseline"
+}

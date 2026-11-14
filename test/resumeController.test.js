@@ -10,6 +10,19 @@ import { getResume, uploadResume } from '../src/controllers/resumeController.js'
 const userId = '507f1f77bcf86cd799439011';
 const response = () => ({ status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } });
 
+test('uploading an original stores it without starting AI preparation', async t => {
+  t.mock.method(User, 'exists', async () => ({ _id: userId }));
+  t.mock.method(Resume, 'findOne', () => ({ lean: async () => null }));
+  t.mock.method(Resume, 'findOneAndUpdate', async (_filter, update) => ({
+    ...update.$set, preparation: { status: 'unprepared' },
+  }));
+  const res = response();
+  await uploadResume({ user: { _id: userId }, headers: { 'x-resume-filename': 'resume.pdf' }, body: Buffer.from('%PDF-1.7\nresume') }, res);
+  assert.equal(res.statusCode, 200);
+  assert.equal(res.body.data.preparation.status, 'unprepared');
+  assert.equal(res.body.data.filename, 'resume.pdf');
+});
+
 test('an identical upload reuses the current original and preparation without invalidating work', async t => {
   t.mock.method(User, 'exists', async () => ({ _id: userId }));
   const body = Buffer.from('%PDF-1.7\nresume');

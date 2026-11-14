@@ -6,7 +6,7 @@
 import nodemailer from "nodemailer";
 import { lookup } from "node:dns/promises";
 import { isIP } from "node:net";
-import { sendPasswordResetViaRelay, sendVerificationViaRelay } from "./passwordResetRelay.js";
+import { sendEmailChangeViaRelay, sendPasswordResetViaRelay, sendVerificationViaRelay } from "./passwordResetRelay.js";
 
 const requireEmailConfig = (name) => {
   const value = String(process.env[name] ?? "").trim();
@@ -85,7 +85,9 @@ export const sendVerificationEmail = async (to, magicLink) => String(process.env
   "Verification email",
 );
 
-export const sendEmailChangeVerificationEmail = async (to, link) => sendEmail(
+export const sendEmailChangeVerificationEmail = async (to, link) => String(process.env.EMAIL_RELAY_URL ?? '').trim()
+  ? sendEmailChangeViaRelay(to, link)
+  : sendEmail(
   to,
   'Verify your new Jobverify email address',
   `<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">

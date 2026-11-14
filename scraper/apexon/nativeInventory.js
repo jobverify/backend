@@ -77,6 +77,7 @@ export function readNativeRole(html) {
   const employerPrefixes = [
     'Apexon is a digital-first technology services firm specializing in accelerating business transformation',
     'Apexon is an AI-first technology services firm that engineers intelligent enterprises.',
+    'Apexon is a technology services firm specializing in accelerating business transformation and engineering intelligent enterprises.',
   ]
   const employers = blocks.filter(node => node.tag === 'p').map(doc.text)
     .filter(text => employerPrefixes.some(prefix => text.toLowerCase().startsWith(prefix.toLowerCase())))

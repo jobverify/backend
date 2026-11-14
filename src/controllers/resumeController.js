@@ -4,7 +4,7 @@ import User from '../models/User.js';
 import { inspectResume, ResumeValidationError } from '../utils/resumeFile.js';
 import { respondWithInternalError } from '../utils/respondWithInternalError.js';
 import { resumeMetadata, requestResumePreparation, getBaseResumeArtifact } from '../services/resumePreparationService.js';
-import { artifactBytes } from '../services/resumeArtifactService.js';
+import { generatedResumeBytes } from '../services/resumeProvenance.js';
 import { getCandidateEvidenceSnapshot } from '../services/candidateEvidenceService.js';
 import { retainLegacyCv, removeCvDocuments } from '../services/cvRevisionService.js';
 import { preparationDurations } from '../services/resumePreparationTiming.js';
@@ -56,7 +56,8 @@ export async function uploadResume(req, res) {
         currentRevisionId: 1, 'preparation.sourceEvidenceVersion': 1, 'preparation.sourceEvidenceHash': 1,
         'preparation.outputEvidenceVersion': 1, 'preparation.outputEvidenceHash': 1,
         'preparation.generatedAt': 1, 'preparation.leaseOwner': 1, 'preparation.leaseUntil': 1,
-        'preparation.dispatchAt': 1, 'preparation.requestedAt': 1, 'preparation.modelVersion': 1, 'preparation.styleVersion': 1 } };
+        'preparation.dispatchAt': 1, 'preparation.requestedAt': 1, 'preparation.modelVersion': 1, 'preparation.styleVersion': 1,
+        'preparation.processingConsentVersion': 1, 'preparation.processingConsentAcceptedAt': 1 } };
       try {
         // Pin the metadata used by cleanup as well as the source bytes. A base
         // can finish preparing between our read and this replacement CAS.
@@ -82,8 +83,9 @@ export async function uploadResume(req, res) {
         $inc: { revision: 1 }, $unset: { leaseOwner: 1, leaseUntil: 1 },
       });
     }
-    const data = await requestResumePreparation(req.user, { automatic: true, expectedSourceSha: file.sha256 });
-    return res.status(200).json({ success: true, data });
+    // Upload authorizes storage only. A separate consented preparation request
+    // is required before any resume or profile data reaches an AI worker.
+    return res.status(200).json({ success: true, data: metadata(record) });
   } catch (error) {
     if (error instanceof ResumeValidationError) return res.status(error.statusCode).json({ success: false, message: error.message });
     return failure(res, error, 'Could not save your resume. Please try again.');
@@ -116,7 +118,7 @@ export async function removeResume(req, res) {
 export async function prepareResume(req, res) {
   try {
     if (req.body?.regenerate !== undefined && typeof req.body.regenerate !== 'boolean') return res.status(400).json({ success: false, message: 'Regenerate must be true or false.' });
-    const data = await requestResumePreparation(req.user, { regenerate: req.body?.regenerate === true });
+    const data = await requestResumePreparation(req.user, { regenerate: req.body?.regenerate === true, processingConsent: req.body?.processingConsent });
     return res.status(['queued', 'running'].includes(data?.preparation.status) ? 202 : 200).json({ success: true, data });
   } catch (error) {
     if (error.statusCode) return res.status(error.statusCode).json({ success: false, message: error.message });
@@ -130,7 +132,7 @@ export async function baseResume(req, res) {
     if (!['pdf', 'tex'].includes(format)) return res.status(400).json({ success: false, message: 'Choose PDF or TeX format.' });
     const { artifact, filename } = await getBaseResumeArtifact(req.user);
     const stem = String(filename || 'resume').replace(/\.[^.]+$/, '').replace(/[^\p{L}\p{N} _-]/gu, '').slice(0, 150) || 'resume';
-    const data = artifactBytes(format === 'pdf' ? artifact.pdf : artifact.latex);
+    const data = await generatedResumeBytes(artifact, format);
     if (req.path.endsWith('/download')) res.attachment(`${stem}-prepared.${format}`);
     else res.set('Content-Disposition', `inline; filename="resume-prepared.${format}"`);
     res.set('Content-Type', format === 'pdf' ? 'application/pdf' : 'application/x-tex; charset=utf-8');

@@ -1,4 +1,5 @@
 import UserSuggestion from "../models/UserSuggestion.js";
+import { withActiveAccountWrite } from './activeAccountWrite.js';
 import {
   getIndiaDayKey,
   MAX_DAILY_SUGGESTIONS,
@@ -33,12 +34,14 @@ export async function createUserSuggestion({
     dailySlot += 1
   ) {
     try {
-      const suggestion = await UserSuggestion.create({
+      // A duplicate quota slot aborts its transaction. Retry the next slot in
+      // a fresh transaction while retaining the existing unique-index quota.
+      const [suggestion] = await withActiveAccountWrite(userId, session => UserSuggestion.create([{
         user: userId,
         message: normalizedMessage,
         submittedDay,
         dailySlot,
-      });
+      }], { session }));
 
       return {
         suggestion,

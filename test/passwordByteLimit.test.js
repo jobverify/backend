@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { passwordSafety } from '../src/services/passwordSafety.js';
+// These compatibility fixtures isolate the external password provider.
+test.beforeEach(t => { t.mock.method(passwordSafety, 'check', async () => {}); });
 import bcrypt from 'bcryptjs';
 import { validationResult } from 'express-validator';
 import { isStrongPassword } from '../src/utils/authSecurity.js';
@@ -55,7 +58,7 @@ test('the real login and replacement handlers accept an existing long password',
   process.env.JWT_SECRET = 'legacy-password-compatibility-fixture-secret';
   t.after(() => { if (jwtSecret === undefined) delete process.env.JWT_SECRET; else process.env.JWT_SECRET = jwtSecret; });
   const legacy = ascii72 + 'existing-long-password';
-  const account = { _id: 'existing-user', email: 'candidate@gmail.com', role: 'user', sessionVersion: 0,
+  const account = { _id: 'existing-user', email: 'candidate@gmail.com', role: 'user', sessionVersion: 0, isVerified: true,
     password: await bcrypt.hash(legacy, 4), save: async () => {} };
   t.mock.method(User, 'findOne', async () => account);
   t.mock.method(PendingUser, 'findOne', async () => assert.fail('Existing user must retain login'));

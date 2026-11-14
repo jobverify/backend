@@ -103,6 +103,9 @@ export async function auditPage(input, { env = process.env, fetchImpl = fetch } 
   if (!env.ANTHROPIC_API_KEY?.trim() || !env.ANTHROPIC_MODEL?.trim()) {
     throw new SeoError(503, 'audit_not_configured', 'Configure ANTHROPIC_API_KEY and ANTHROPIC_MODEL on the API server to enable Claude analysis.');
   }
+  if (env.ANTHROPIC_DATA_USE_REVIEWED !== 'true') {
+    throw new SeoError(503, 'provider_data_use_unreviewed', 'Review the provider data-use settings before enabling Claude analysis.');
+  }
   const response = await requestProviderJson('https://api.anthropic.com/v1/messages', {
     method: 'POST', headers: { 'content-type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
     body: JSON.stringify({ model: env.ANTHROPIC_MODEL, max_tokens: 3000,

@@ -6,6 +6,7 @@
 import { Schema, model } from "mongoose";
 import { PREFERRED_JOB_TYPES } from "../constants/preferredJobTypes.js";
 import { ACCESS_ROLES, PLAN_IDS } from "../constants/accessPlans.js";
+import ageEligibilitySchema from './ageEligibilitySchema.js';
 
 const MAX_PROFILE_TEXT_LENGTH = 80;
 const MAX_PROFILE_ITEMS = 20;
@@ -138,6 +139,7 @@ const UserSchema = new Schema(
       lowercase: true,
     },
     password: { type: String, default: null },
+    ageEligibility: { type: ageEligibilitySchema, default: undefined },
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -155,6 +157,16 @@ const UserSchema = new Schema(
     google: {
       type: GoogleAuthSchema,
       default: () => ({}),
+    },
+    apple: {
+      type: new Schema({
+        sub: { type: String, maxlength: 255 },
+        clientId: { type: String, maxlength: 255 },
+        privateEmail: { type: Boolean, default: false },
+        linkedAt: { type: Date },
+        refreshToken: { type: String, select: false, maxlength: 15000 },
+      }, { _id: false }),
+      default: undefined,
     },
     telegram: {
       type: TelegramSchema,
@@ -227,6 +239,8 @@ UserSchema.index({ createdAt: -1 });
 UserSchema.index({ "profile.passingYear": 1 });
 UserSchema.index({ "premium.expiresAt": 1 });
 UserSchema.index({ "google.sub": 1 }, { sparse: true });
+UserSchema.index({ 'apple.sub': 1 }, { unique: true,
+  partialFilterExpression: { 'apple.sub': { $type: 'string' } } });
 UserSchema.index(
   { "telegram.chatId": 1 },
   {
@@ -246,6 +260,7 @@ UserSchema.set("toJSON", {
   transform: (doc, ret) => {
     delete ret.password;
     delete ret.pendingEmailChange;
+    delete ret.apple;
     delete ret.__v;
     if (ret._id) {
       ret.id = ret._id;

@@ -18,16 +18,16 @@ import { issueCsrfToken } from "../utils/csrf.js";
 import {
   clearPendingRegistrationCookie,
   clearAuthCookie,
-  getRequestCookie,
   getRequestAuthToken,
-  PENDING_REGISTRATION_COOKIE_NAME,
-  setPendingRegistrationCookie,
   setAuthCookie,
 } from "../utils/authCookies.js";
 import {
+  ASCII_EMAIL_MESSAGE,
+  EMAIL_VERIFICATION_REQUIRED_MESSAGE,
   createVerificationTokenPair,
   hashVerificationToken,
   isAllowedAccountEmail,
+  isAsciiEmailIdentity,
   normalizeEmailAddress,
 } from "../utils/authSecurity.js";
 import {
@@ -36,6 +36,12 @@ import {
 } from "../utils/accessControl.js";
 import { googleIdentity } from "../utils/googleAuth.js";
 import { resolveFrontendOrigin } from "../utils/runtimeConfig.js";
+import { passwordSafety, PasswordSafetyError } from '../services/passwordSafety.js';
+
+const respondWithPasswordSafetyError = (res, error) => res.status(error.statusCode).json({
+  code: error.statusCode, success: false, error: error.code, message: error.message,
+});
+import { createAdultEligibility, resolveAdultEligibility, SignupAgeError, replySignupAgeError } from '../utils/signupAge.js';
 
 const GENERIC_REGISTRATION_MESSAGE = "If this email can be registered, a verification email will be sent.";
 const GENERIC_RESEND_MESSAGE = "If a pending registration exists for this email, a verification email will be sent when eligible.";
@@ -65,6 +71,7 @@ const LOGIN_DUMMY_HASH = "$2b$10$kj5DU.NpJDPidelRRzK.suchJqPe/5RuUp7/pqT1YqT4GEo
 // Generates a JWT token valid for 7 days.
 const generateToken = (id, role, sessionVersion = 0) => {
   return jwt.sign({ id, role, sessionVersion }, process.env.JWT_SECRET, {
+    algorithm: "HS256",
     expiresIn: "7d",
   });
 };
@@ -103,12 +110,18 @@ const buildGoogleMetadata = (identity, currentGoogle = {}) => ({
   linkedAt: currentGoogle.linkedAt ?? new Date(),
 });
 
-const issueAuthenticatedSession = async (user, res, successMessage = "Logged in successfully") => {
+export const issueAuthenticatedSession = async (user, res, successMessage = "Logged in successfully") => {
+  if (user.isVerified !== true) {
+    return res.status(401).json({ code: 401, success: false,
+      error: 'email_verification_required', message: EMAIL_VERIFICATION_REQUIRED_MESSAGE });
+  }
   if (!user.isNew) {
     const sessionVersion = user.sessionVersion ?? 0;
     // Mongoose merges Document.$where into the save filter. Only the credential
     // state that was authenticated may complete this sign-in.
-    user.$where = { ...user.$where, password: user.password ?? null,
+    // A verified provider may intentionally promote an unverified legacy account.
+    const verification = user.isModified?.('isVerified') ? {} : { isVerified: true };
+    user.$where = { ...user.$where, ...verification, password: user.password ?? null,
       sessionVersion: sessionVersion === 0 ? { $in: [0, null] } : sessionVersion,
       deactivated: { $ne: true } };
   }
@@ -152,9 +165,13 @@ export const register = async (req, res) => {
   }
 
   const { name, email } = req.body;
+  if (!isAsciiEmailIdentity(email)) {
+    return res.status(400).json({ code: 400, success: false, message: ASCII_EMAIL_MESSAGE });
+  }
   const normalizedEmail = normalizeEmailAddress(email);
 
   try {
+    const ageEligibility = createAdultEligibility(req.body.dateOfBirth);
     const user = await User.findOne({ email: normalizedEmail });
     if (user) {
       return res.status(201).json({
@@ -182,6 +199,7 @@ export const register = async (req, res) => {
     const pending = new PendingUser({
       email: normalizedEmail,
       password: null,
+      ageEligibility,
       profile: { name },
       verificationTokenHash: verificationToken.tokenHash,
       verificationTokenExpiresAt: verificationToken.expiresAt,
@@ -202,6 +220,7 @@ export const register = async (req, res) => {
       message: GENERIC_REGISTRATION_MESSAGE,
     });
   } catch (err) {
+    if (err instanceof SignupAgeError) return replySignupAgeError(res, err);
     console.error(err.message);
     res.status(500).json({
       code: 500,
@@ -258,6 +277,10 @@ export const verifyEmail = async (req, res) => {
       });
     }
 
+    if (!isAsciiEmailIdentity(pendingUser.email)) {
+      return res.status(400).json({ code: 400, success: false, message: ASCII_EMAIL_MESSAGE });
+    }
+
     const existingUser = await User.findOne({ email: pendingUser.email });
     if (existingUser) {
       await PendingUser.deleteOne({ email: pendingUser.email });
@@ -269,18 +292,22 @@ export const verifyEmail = async (req, res) => {
       });
     }
 
+    resolveAdultEligibility(pendingUser.ageEligibility, req.body.dateOfBirth);
+    await passwordSafety.check(password);
     const passwordHash = await bcrypt.hash(password, 10);
     // Consume the exact live token and create its account in one commit. A
     // storage failure rolls back consumption so the owner can retry the link.
     const created = await User.db.transaction(async session => {
       const consumed = await PendingUser.findOneAndDelete({
         _id: pendingUser._id,
+        email: pendingUser.email,
         verificationTokenExpiresAt: { $gt: new Date() },
         $or: [{ verificationTokenHash: tokenHash }, { verificationToken: token }],
       }, { session });
       if (!consumed) return null;
       const user = new User({
         email: consumed.email,
+        ageEligibility: resolveAdultEligibility(consumed.ageEligibility, req.body.dateOfBirth),
         telegramAlertsAllowed: false,
         password: passwordHash,
         profile: consumed.profile ? { name: consumed.profile.name } : {},
@@ -307,6 +334,8 @@ export const verifyEmail = async (req, res) => {
       redirectTo: buildFrontendVerifySuccessUrl(),
     });
   } catch (err) {
+    if (err instanceof SignupAgeError) return replySignupAgeError(res, err);
+    if (err instanceof PasswordSafetyError) return respondWithPasswordSafetyError(res, err);
     console.error('Email verification could not complete.');
     if (err?.code === 11000) {
       return res.status(409).json({
@@ -343,7 +372,31 @@ export const resendVerification = async (req, res) => {
       });
     }
 
-    const pendingUser = await PendingUser.findOne({ email: normalizedEmail });
+    const now = new Date();
+    const windowCutoff = new Date(now.getTime() - RESEND_LIMIT_WINDOW_MS);
+    const windowExpired = { $and: [
+      { $ne: [{ $ifNull: ['$resendWindowStartedAt', null] }, null] },
+      { $lte: ['$resendWindowStartedAt', windowCutoff] },
+    ] };
+    const verificationToken = createVerificationTokenPair();
+
+    // Reserve the quota and rotate its token in the same write. A losing
+    // request must neither send mail nor overwrite the winning request's link.
+    const pendingUser = await PendingUser.findOneAndUpdate({
+      email: normalizedEmail,
+      $and: [
+        { $or: [{ lastResentAt: { $lte: new Date(now.getTime() - RESEND_COOLDOWN_MS) } }, { lastResentAt: null }] },
+        { $or: [{ resendCount: { $lt: 2 } }, { resendCount: null }, { resendWindowStartedAt: { $lte: windowCutoff } }] },
+      ],
+    }, [{ $set: {
+      verificationToken: null,
+      verificationTokenHash: verificationToken.tokenHash,
+      verificationTokenExpiresAt: verificationToken.expiresAt,
+      resendCount: { $cond: [windowExpired, 1, { $add: [{ $ifNull: ['$resendCount', 0] }, 1] }] },
+      resendWindowStartedAt: { $cond: [windowExpired, now, { $ifNull: ['$resendWindowStartedAt', now] }] },
+      lastResentAt: now,
+      createdAt: now,
+    } }], { new: true });
     if (!pendingUser) {
       return res.status(200).json({
         code: 200,
@@ -351,42 +404,6 @@ export const resendVerification = async (req, res) => {
         message: GENERIC_RESEND_MESSAGE,
       });
     }
-
-    const now = new Date();
-    const resendWindowStartedAt = pendingUser.resendWindowStartedAt;
-    if (resendWindowStartedAt && now - resendWindowStartedAt >= RESEND_LIMIT_WINDOW_MS) {
-      pendingUser.resendCount = 0;
-      pendingUser.resendWindowStartedAt = null;
-    }
-
-    // Exhaustion check (Max 2 resends per rolling 24-hour window)
-    if (pendingUser.resendCount >= 2) {
-      return res.status(200).json({
-        code: 200,
-        success: true,
-        message: GENERIC_RESEND_MESSAGE,
-      });
-    }
-
-    // 60 second cooldown check between resends
-    if (now - pendingUser.lastResentAt < RESEND_COOLDOWN_MS) {
-      return res.status(200).json({
-        code: 200,
-        success: true,
-        message: GENERIC_RESEND_MESSAGE,
-      });
-    }
-
-    const verificationToken = createVerificationTokenPair();
-
-    pendingUser.verificationToken = null;
-    pendingUser.verificationTokenHash = verificationToken.tokenHash;
-    pendingUser.verificationTokenExpiresAt = verificationToken.expiresAt;
-    pendingUser.resendWindowStartedAt ??= now;
-    pendingUser.resendCount += 1;
-    pendingUser.lastResentAt = now;
-    pendingUser.createdAt = now;
-    await pendingUser.save();
 
     const magicLink = buildVerificationLink(verificationToken.token);
     sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
@@ -506,11 +523,13 @@ export const resetPassword = async (req, res) => {
     }
 
     const sessionVersion = user.sessionVersion ?? 0;
+    await passwordSafety.check(password);
     const passwordHash = await bcrypt.hash(password, 10);
     // Consume the still-live token with the credentials we read. A reset,
     // password change or token rotation during hashing must win atomically.
     const updated = await User.findOneAndUpdate({
       _id: user._id,
+      email: user.email,
       resetPasswordTokenHash: hashVerificationToken(token),
       resetPasswordExpiresAt: { $gt: new Date() },
       password: user.password ?? null,
@@ -519,6 +538,8 @@ export const resetPassword = async (req, res) => {
       $set: {
         password: passwordHash,
         passwordChangedAt: new Date(),
+        // The single-use reset link proves access to the account's mailbox.
+        isVerified: true,
         sessionVersion: sessionVersion + 1,
         resetPasswordTokenHash: null,
         resetPasswordExpiresAt: null,
@@ -538,6 +559,7 @@ export const resetPassword = async (req, res) => {
       message: PASSWORD_RESET_SUCCESS_MESSAGE,
     });
   } catch (err) {
+    if (err instanceof PasswordSafetyError) return respondWithPasswordSafetyError(res, err);
     console.error("Password reset failed:", err.message);
     return res.status(500).json({
       code: 500,
@@ -555,7 +577,7 @@ export const changePassword = async (req, res) => {
   const { oldPassword, newPassword } = req.body;
   try {
     const user = await User.findById(req.user._id);
-    if (!user || (user.sessionVersion ?? 0) !== (req.user.sessionVersion ?? 0)) {
+    if (!user || user.isVerified !== true || (user.sessionVersion ?? 0) !== (req.user.sessionVersion ?? 0)) {
       return res.status(401).json({ success: false, message: 'Your session has expired. Please sign in again.' });
     }
     if (!user.password) {
@@ -566,10 +588,12 @@ export const changePassword = async (req, res) => {
     }
 
     // Match the credentials we verified so concurrent changes cannot overwrite each other.
+    await passwordSafety.check(newPassword);
     const sessionVersion = user.sessionVersion ?? 0;
     const updated = await User.findOneAndUpdate(
       {
         _id: user._id,
+        isVerified: true,
         password: user.password,
         sessionVersion: sessionVersion === 0 ? { $in: [0, null] } : sessionVersion,
       },
@@ -590,6 +614,7 @@ export const changePassword = async (req, res) => {
     setAuthCookie(res, generateToken(updated._id, updated.role, updated.sessionVersion));
     return res.status(200).json({ success: true, message: 'Password changed successfully. Other sessions have been signed out.' });
   } catch (err) {
+    if (err instanceof PasswordSafetyError) return respondWithPasswordSafetyError(res, err);
     console.error('Password change failed:', err.message);
     return res.status(500).json({ success: false, message: 'Unable to change password. Please try again.' });
   }
@@ -614,7 +639,7 @@ export const login = async (req, res) => {
         return res.status(401).json({
           code: 401,
           success: false,
-          message: "Account does not exist. Please create an account.",
+          message: "Incorrect email or password. Please try again or reset your password.",
         });
       }
       if (pendingUser?.password) {
@@ -743,10 +768,16 @@ export const authenticateWithGoogle = async (req, res) => {
       return issueAuthenticatedSession(existingUser, res, "Logged in successfully");
     }
 
+    if (!isAsciiEmailIdentity(identity.email)) {
+      return res.status(400).json({ code: 400, success: false, message: ASCII_EMAIL_MESSAGE });
+    }
+
+    const ageEligibility = createAdultEligibility(req.body.dateOfBirth);
     const pendingUser = await PendingUser.findOne({ email: normalizedEmail });
     if (pendingUser) {
       const promotedUser = new User({
         email: normalizedEmail,
+        ageEligibility,
         telegramAlertsAllowed: false,
         // Pending registration data may belong to someone else. Trust only the
         // verified Google identity; email sign-in can be added by password reset.
@@ -764,6 +795,7 @@ export const authenticateWithGoogle = async (req, res) => {
 
     const newUser = new User({
       email: normalizedEmail,
+      ageEligibility,
       telegramAlertsAllowed: false,
       password: null,
       profile: identity.name
@@ -777,6 +809,7 @@ export const authenticateWithGoogle = async (req, res) => {
 
     return issueAuthenticatedSession(newUser, res, "Logged in successfully");
   } catch (error) {
+    if (error instanceof SignupAgeError) return replySignupAgeError(res, error);
     console.error("Google authentication failed:", error.message);
     return res.status(401).json({
       code: 401,

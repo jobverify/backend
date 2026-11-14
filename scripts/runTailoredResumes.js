@@ -3,9 +3,11 @@ import mongoose from 'mongoose';
 import { runTailoredResumeWorker } from '../resume-tailoring/tailoredResumeWorker.js';
 import { reportResumeDiagnostic } from '../resume-tailoring/resumeDiagnostics.js';
 import { remainingBudget, resumeWorkerDeadline, RESUME_WORKER_BUDGET_MS } from '../resume-tailoring/resumeBudget.js';
+import { assertSecureMongoConnection } from '../src/utils/mongoConnectionPolicy.js';
 
 try {
   if (!process.env.MONGO_URI) throw new Error('Missing worker configuration.');
+  assertSecureMongoConnection(process.env.MONGO_URI);
   const start = Date.parse(process.env.TAILORED_RESUME_WORKFLOW_STARTED_AT || '');
   const deadline = resumeWorkerDeadline(process.env.TAILORED_RESUME_WORKFLOW_STARTED_AT);
   await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: remainingBudget(deadline, 10000), autoIndex: false });

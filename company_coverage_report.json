@@ -1,8 +1,8 @@
 {
   "coverageLabel": "Catalog registration coverage",
-  "totalRows": 4560,
-  "candidateRows": 4560,
-  "matchedCount": 4560,
+  "totalRows": 4559,
+  "candidateRows": 4559,
+  "matchedCount": 4559,
   "unmatchedCount": 0,
   "matched": [
     {
@@ -66947,29 +66947,6 @@
         "zeroResultPolicy": "evidence-required",
         "dryRunFile": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\juzgodigital\\jobs.json",
         "sourceDirectory": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\juzgodigital"
-      }
-    },
-    {
-      "row": "2268",
-      "companyName": "Jyesta Corporate Entity",
-      "normalizedCompanyName": "jyesta corporate entity",
-      "source": "jyesta",
-      "provider": {
-        "atsPlatform": "official-company-careers",
-        "countryFilter": "India",
-        "paginationStrategy": "single-first-party-careers-page",
-        "extractionStrategy": "verified-first-party-careers-page+inline-job-cards+same-page-detail-toggles",
-        "parser": "custom-script",
-        "normalizationProfile": "engineering-default",
-        "source": "jyesta",
-        "companyName": "Jyesta Corporate Entity",
-        "adapter": "script",
-        "modulePath": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\jyesta\\script.js",
-        "companyCareerPage": "https://www.jyesta.com/careers",
-        "companyDomain": "jyesta.com",
-        "zeroResultPolicy": "evidence-required",
-        "dryRunFile": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\jyesta\\jobs.json",
-        "sourceDirectory": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\jyesta"
       }
     },
     {

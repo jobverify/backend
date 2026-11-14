@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { passwordSafety } from '../src/services/passwordSafety.js';
+// These compatibility fixtures isolate the external password provider.
+test.beforeEach(t => { t.mock.method(passwordSafety, 'check', async () => {}); });
 import { fileURLToPath } from 'node:url';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
@@ -35,7 +38,7 @@ test('reset tokens and logout enforce durable revocation under concurrent reques
   process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
   process.env.JWT_SECRET = 'revocation-tests-isolated-secret-at-least-32-characters';
   const { protect } = await import('../src/middleware/authMiddleware.js');
-  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 }, binary: {
+  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 }, instanceOpts: [{ launchTimeout: 60000 }], binary: {
     version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)),
   } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });
@@ -190,7 +193,7 @@ test('reset tokens and logout enforce durable revocation under concurrent reques
     if (state === 'pending') await PendingUser.collection.insertOne({ email, password: await hashPassword('UntrustedPendingPassword123', 4) });
     t.mock.method(googleIdentity, 'verifyCredential', async () => ({ email, emailVerified: true, sub: `subject-${email}`, name: 'Google Candidate', picture: null }));
     const res = response();
-    await authenticateWithGoogle({ body: { credential: 'mocked-provider-credential' } }, res);
+    await authenticateWithGoogle({ body: { credential: 'mocked-provider-credential', dateOfBirth: '2000-01-15' } }, res);
     assert.equal(res.statusCode, 200);
     const user = await User.findOne({ email }).lean();
     assert.equal(user.password, null);

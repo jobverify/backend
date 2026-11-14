@@ -1,7 +1,7 @@
 # Private Gmail relay
 
 Render calls this Worker over authenticated HTTPS. The Worker submits one fixed
-password-reset or registration-verification email to Gmail over TLS on port 465.
+password-reset, registration-verification, or email-change verification email to Gmail over TLS on port 465.
 The backend still issues, stores, validates and expires tokens. No mailbox-provider API is required.
 
 Deployed relay: `https://jobverify-gmail-relay.jobverify-gmail-relay.workers.dev`.
@@ -9,9 +9,9 @@ Gmail authentication from this deployed Worker was verified on November 6, 2026,
 without sending an email. Backend activation and a real delivery test are
 separate steps below.
 
-Password-reset and registration verification (including resend) use the relay
-when `EMAIL_RELAY_URL` is configured. Email-change verification retains its
-existing SMTP transport.
+Password-reset, registration verification (including resend), and email-change
+verification use the relay when `EMAIL_RELAY_URL` is configured. Without a relay,
+the backend retains direct SMTP. A relay failure never falls back to SMTP.
 
 ## Install and authenticate
 
@@ -19,7 +19,7 @@ Use Node 24.14 or later in the 24.x line. From this directory:
 
 ```powershell
 npm ci
-npx wrangler login
+npm exec -- wrangler login
 ```
 
 Complete Cloudflare login in your browser. This authorizes Wrangler, not the
@@ -51,7 +51,7 @@ From this directory, run:
 npm test
 npm run build
 npm run deploy
-npx wrangler secret bulk .dev.vars
+npm exec -- wrangler secret bulk .dev.vars
 ```
 
 If prompted for a Cloudflare account, choose the intended account. No DNS or
@@ -77,7 +77,7 @@ Google account security activity if the deployed check returns `EAUTH`.
 Deploy the updated Worker first (`npm run deploy` from this directory), then
 deploy the backend changes and add these **backend** environment variables.
 The updated Worker remains compatible with the existing password-reset backend.
-Both supported email types use the same settings; no additional secret is needed:
+All three email types use the same settings; no additional secret is needed:
 
 ```dotenv
 EMAIL_RELAY_URL=https://jobverify-gmail-relay.YOUR-SUBDOMAIN.workers.dev
@@ -91,8 +91,8 @@ Never add any relay or Gmail secret to Vercel/frontend environment variables.
 
 After SMTP verification passes, request one real password-reset email from the
 live profile and verify the link works. Also test a registration verification
-email and the resend flow. Allow at least 60 seconds between emails to the same
-recipient: recipient limits are shared by both email types. Keep the Gmail
+email, the resend flow, and an email-change verification from Profile. Allow at
+least 60 seconds between emails to the same recipient: limits cover all three email types. Keep the Gmail
 account's sending limits in mind; Workers does not remove Gmail's quotas.
 
 To roll back, remove `EMAIL_RELAY_URL` and restart the backend. This restores the
@@ -102,13 +102,15 @@ existing direct SMTP path, which still requires SMTP access from the host.
 
 - `POST /send-password-reset`: JSON `{ "to": "user@gmail.com", "resetLink": "https://www.jobverify.in/reset-password#token=<64 hex characters>" }`.
 - `POST /send-verification`: JSON `{ "to": "user@gmail.com", "verificationLink": "https://www.jobverify.in/verify-email#token=<64 hex characters>" }`.
+- `POST /send-email-change`: JSON `{ "to": "user@gmail.com", "verificationLink": "https://www.jobverify.in/verify-email?mode=change#token=<64 hex characters>" }`.
 - `POST /verify-smtp`: no mail payload and no email sent.
 - All endpoints require `Authorization: Bearer <RELAY_SECRET>` (at least 32 characters).
 - One plain recipient address; maximum body 2048 bytes. No arbitrary HTML,
   sender, headers, attachments or SMTP destination accepted.
 - Exact HTTPS frontend origin, `/reset-password` or `/verify-email` matching the
-  endpoint, no credentials/query parameters,
-  and a single 64-character hexadecimal token in the fragment.
+  endpoint, no credentials, and one 64-character hexadecimal token in the fragment.
+  Reset/registration URLs reject all query parameters; email change requires only
+  the exact `?mode=change` query. Deploy this endpoint before the updated API.
 - Gmail TLS/certificate validation remains enabled. Success means Gmail accepted
   the message, not guaranteed arrival in the inbox.
 - `gmailSocket.js` opens verified TLS directly by hostname, then supplies the

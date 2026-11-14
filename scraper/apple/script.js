@@ -88,23 +88,33 @@ const buildMergedDescription = (...parts) => {
   return normalizedParts.length > 0 ? normalizedParts.join('\n\n') : null
 }
 
-const mapWithConcurrency = async (items, concurrency, mapper) => {
+const mapWithConcurrency = async (items, concurrency, mapper, onFailure) => {
   const results = new Array(items.length)
   const limit = Math.max(1, Number(concurrency) || 1)
-  let nextIndex = 0
+  let nextIndex = 0, failed = false, failure
 
   const worker = async () => {
-    while (nextIndex < items.length) {
-      const currentIndex = nextIndex
-      nextIndex += 1
-      results[currentIndex] = await mapper(items[currentIndex], currentIndex)
+    try {
+      while (!failed && nextIndex < items.length) {
+        const currentIndex = nextIndex
+        nextIndex += 1
+        results[currentIndex] = await mapper(items[currentIndex], currentIndex)
+      }
+    } catch (error) {
+      if (!failed) {
+        failed = true
+        failure = error
+        onFailure?.(error)
+      }
     }
   }
 
-  await Promise.all(
+  // A failed worker stops scheduling immediately. Settle all sibling workers
+  // before exposing a result or error to the caller.
+  await Promise.allSettled(
     Array.from({ length: Math.min(limit, items.length) }, () => worker()),
   )
-
+  if (failed) throw failure
   return results
 }
 
@@ -302,12 +312,32 @@ export const createAppleScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
   maxPages = Number.isInteger(config.maxPages) ? config.maxPages : Number.POSITIVE_INFINITY,
   detailConcurrency = Number.isInteger(config.detailConcurrency) ? config.detailConcurrency : 8,
+  collectionTimeoutMs = 240000,
 } = {}) => ({
   async run(options = {}) {
-    const fetchText = options.fetchText || defaultFetchText
-    const { signal } = options
-    signal?.throwIfAborted()
+    const externalSignal = options.signal
+    externalSignal?.throwIfAborted()
+    const budgetMs = options.collectionTimeoutMs ?? collectionTimeoutMs
+    if (!Number.isSafeInteger(budgetMs) || budgetMs <= 0 || budgetMs > 270000) throw new Error('Apple collection deadline must be within 270000ms')
+    const collection = new AbortController(), deadlineReason = new Error('Apple source collection deadline exceeded')
+    const timer = setTimeout(() => collection.abort(deadlineReason), budgetMs)
+    const signal = externalSignal ? AbortSignal.any([externalSignal, collection.signal]) : collection.signal
+    const collectionExpired = () => collection.signal.aborted && !externalSignal?.aborted
+    const nativeFetchText = options.fetchText || defaultFetchText
+    const fetchText = async (url, requestOptions) => {
+      const requestSignal = requestOptions?.signal || signal
+      requestSignal.throwIfAborted()
+      let aborted
+      try {
+        return await Promise.race([
+          Promise.resolve().then(() => { requestSignal.throwIfAborted(); return nativeFetchText(url, requestOptions) }),
+          new Promise((_, reject) => { aborted = () => reject(requestSignal.reason); requestSignal.addEventListener('abort', aborted, { once: true }) }),
+        ])
+      } finally { requestSignal.removeEventListener('abort', aborted) }
+    }
+    try {
     const jobs = []
+    const selectedJobs = []
     const seenJobIds = new Set()
     const openingRoles = new Map()
     const incomplete = new Set()
@@ -315,10 +345,10 @@ export const createAppleScraper = ({
     let pagesFetched = 0
     let listingPages = 0
     const identity = job => JSON.stringify([job.title, job.location, job.sourceUrl])
-    const readPage = async page => {
-      signal?.throwIfAborted()
-      const html = await fetchText(buildSearchUrl({ page }), { signal })
-      signal?.throwIfAborted()
+    const readPage = async (page, requestSignal = signal) => {
+      requestSignal.throwIfAborted()
+      const html = await fetchText(buildSearchUrl({ page }), { signal: requestSignal })
+      requestSignal.throwIfAborted()
       pagesFetched++
       const search = extractHydrationPayload(html)?.loaderData?.search
       const total = Number(search?.totalRecords)
@@ -337,6 +367,7 @@ export const createAppleScraper = ({
       return { listings, total, summary: extractPaginationSummary(html) }
     }
 
+    try {
     for (let page = 1; page <= maxPages; page += 1) {
       const { listings, total, summary } = await readPage(page)
       listingPages++
@@ -356,44 +387,60 @@ export const createAppleScraper = ({
 
       const remainingJobs = maxJobs == null
         ? freshListings.length
-        : Math.max(0, maxJobs - jobs.length)
+        : Math.max(0, maxJobs - selectedJobs.length)
       const selectedListings = freshListings.slice(0, remainingJobs)
-      const hydratedJobs = await mapWithConcurrency(
-        selectedListings,
-        detailConcurrency,
-        async (job) => {
-          signal?.throwIfAborted()
-          try {
-            const detailHtml = await fetchText(job.sourceUrl, { signal })
-            signal?.throwIfAborted()
-            const nativeDetail = extractHydrationPayload(detailHtml)?.loaderData?.jobDetails?.jobsData
-            const identityMatches = detailIdentityMatches(job, nativeDetail)
-            if (!identityMatches) throw new Error('Apple detail role identity changed or is unavailable')
-            if (nativeDetail?.postingTitle && normalizeWhitespace(nativeDetail.postingTitle) !== job.title) throw new Error('Apple detail role title changed')
-            const detail = extractJobDetail(detailHtml)
-            const sourceDetailComplete = hasSourceDescription(detail)
-            return { ...job, ...detail, jobDescription: detail.jobDescription || null,
-              source: 'apple', link: job.applyUrl || job.sourceUrl, scrapedAt: new Date().toISOString(),
-              sourceDetailComplete, ...(!sourceDetailComplete ? { sourceDetailFailureKind: 'native-detail-content-unavailable',
-                sourceNativeListingDescription: job.jobDescription, preserveExistingSourceContent: true } : {}) }
-          } catch (error) {
-            signal?.throwIfAborted()
-            return { ...job, jobDescription: null, sourceNativeListingDescription: job.jobDescription,
-              preserveExistingSourceContent: true, source: 'apple', link: job.applyUrl || job.sourceUrl,
-              scrapedAt: new Date().toISOString(), sourceDetailComplete: false,
-              sourceDetailFailureKind: 'native-detail-unavailable' }
-          }
-        },
-      )
+      selectedJobs.push(...selectedListings)
 
-      jobs.push(...hydratedJobs)
-
-      if (maxJobs && jobs.length >= maxJobs) break
+      if (maxJobs && selectedJobs.length >= maxJobs) break
 
       // The last page is shorter; dividing the total by its row count would
       // invent additional pages. The native total and unique IDs bound this run.
       if (seenJobIds.size >= reportedTotal || !summary.hasNext || !freshListings.length) break
     }
+
+    } catch (error) {
+      externalSignal?.throwIfAborted()
+      if (!collectionExpired()) throw error
+      incomplete.add('source-collection-deadline')
+    }
+
+    // A continuous bounded pool avoids leaving workers idle behind the last
+    // slow detail on each page. All listing, identity and closing checks remain.
+    const hydratedJobs = await mapWithConcurrency(
+      selectedJobs,
+      detailConcurrency,
+      async (job) => {
+        externalSignal?.throwIfAborted()
+        if (collectionExpired()) return null
+        signal.throwIfAborted()
+        try {
+          const detailHtml = await fetchText(job.sourceUrl, { signal })
+          signal?.throwIfAborted()
+          const nativeDetail = extractHydrationPayload(detailHtml)?.loaderData?.jobDetails?.jobsData
+          const identityMatches = detailIdentityMatches(job, nativeDetail)
+          if (!identityMatches) throw new Error('Apple detail role identity changed or is unavailable')
+          if (nativeDetail?.postingTitle && normalizeWhitespace(nativeDetail.postingTitle) !== job.title) throw new Error('Apple detail role title changed')
+          const detail = extractJobDetail(detailHtml)
+          const sourceDetailComplete = hasSourceDescription(detail)
+          return { ...job, ...detail, jobDescription: detail.jobDescription || null,
+            source: 'apple', link: job.applyUrl || job.sourceUrl, scrapedAt: new Date().toISOString(),
+            sourceDetailComplete, ...(!sourceDetailComplete ? { sourceDetailFailureKind: 'native-detail-content-unavailable',
+              sourceNativeListingDescription: job.jobDescription, preserveExistingSourceContent: true } : {}) }
+        } catch (error) {
+          externalSignal?.throwIfAborted()
+          if (collectionExpired()) return null
+          signal.throwIfAborted()
+          return { ...job, jobDescription: null, sourceNativeListingDescription: job.jobDescription,
+            preserveExistingSourceContent: true, source: 'apple', link: job.applyUrl || job.sourceUrl,
+            scrapedAt: new Date().toISOString(), sourceDetailComplete: false,
+            sourceDetailFailureKind: 'native-detail-unavailable' }
+        }
+      },
+    )
+
+    const completed = hydratedJobs.filter(Boolean)
+    jobs.push(...(collectionExpired() ? completed.filter(job => job.sourceDetailComplete === true) : completed))
+    if (collectionExpired()) incomplete.add('source-collection-deadline')
 
     if (reportedTotal == null || seenJobIds.size !== reportedTotal || jobs.length !== reportedTotal) incomplete.add('listing-cap-or-count-mismatch')
     if (jobs.some(job => job.sourceDetailComplete !== true)) incomplete.add('native-detail-incomplete')
@@ -402,9 +449,15 @@ export const createAppleScraper = ({
     if (reportedTotal === 0) incomplete.add('empty-native-india-filter-unverified')
     if (!incomplete.size) {
       try {
-        const closing = new Map()
-        for (let page = 1; page <= listingPages; page++) {
-          const frame = await readPage(page)
+        const closing = new Map(), closingController = new AbortController()
+        const closingSignal = AbortSignal.any([signal, closingController.signal])
+        const frames = await mapWithConcurrency(
+          Array.from({ length: listingPages }, (_, index) => index + 1),
+          4,
+          page => readPage(page, closingSignal),
+          error => closingController.abort(error),
+        )
+        for (const frame of frames) {
           if (frame.total !== reportedTotal) incomplete.add('closing-total-changed')
           for (const job of frame.listings) {
             if (closing.has(job.jobId)) incomplete.add('duplicate-closing-role')
@@ -413,20 +466,34 @@ export const createAppleScraper = ({
         }
         if (closing.size !== openingRoles.size || [...openingRoles].some(([id, value]) => closing.get(id) !== value)) incomplete.add('closing-inventory-changed')
       } catch (error) {
-        signal?.throwIfAborted()
+        externalSignal?.throwIfAborted()
+        if (collectionExpired()) incomplete.add('source-collection-deadline')
+        else signal.throwIfAborted()
         incomplete.add('closing-inventory-unavailable')
       }
     }
+    externalSignal?.throwIfAborted()
+    if (collectionExpired()) incomplete.add('source-collection-deadline')
     const listingComplete = incomplete.size === 0
-    if (!listingComplete) for (const job of jobs) job.sourceListingComplete = false
+    if (!listingComplete) for (const job of jobs) Object.assign(job, {
+      sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+    })
+    Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: {
+      source: 'apple', collectionDeadlineReached: collectionExpired(), listedRoles: seenJobIds.size,
+      validatedDetailRoles: jobs.filter(job => job.sourceDetailComplete === true).length,
+      uncollectedDetailRoles: Math.max(0, seenJobIds.size - jobs.filter(job => job.sourceDetailComplete === true).length),
+      listingComplete, lifecycleCleanupAllowed: listingComplete,
+    }, configurable: true })
     return attachInventoryEvidence(jobs, {
-      status: listingComplete ? 'complete-inventory' : 'discovery-only', surface: CAREER_PAGE_URL,
+      status: listingComplete ? 'complete-inventory' : collectionExpired() ? 'coverage-gap' : 'discovery-only', surface: CAREER_PAGE_URL,
+      ...(!listingComplete ? { lifecycleCleanupAllowed: false } : {}),
       firstParty: true, listingComplete, pagesFetched, reportedTotal,
       indiaFacetCount: listingComplete ? jobs.filter(job => /\bindia\b/i.test(job.location || '')).length : null,
       verifiedAt: new Date().toISOString(), reason: listingComplete
         ? 'apple-native-pagination-details-and-closing-inventory-reconciled'
         : `apple-inventory-incomplete:${[...incomplete].join(';')}`,
     })
+    } finally { clearTimeout(timer) }
   },
 })
 

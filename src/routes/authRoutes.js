@@ -4,6 +4,7 @@
  */
 
 import express from "express";
+import { authenticateWithApple, createAppleChallenge, getAppleConfiguration } from '../controllers/appleAuthController.js';
 import { getEmailChange, requestEmailChange, verifyEmailChange } from '../controllers/emailChangeController.js';
 import {
   authenticateWithGoogle,
@@ -21,10 +22,12 @@ import {
 import { protect, protectLogout } from "../middleware/authMiddleware.js";
 import { validateRequest } from "../middleware/validateRequest.js";
 import { requireTurnstileCaptcha } from "../middleware/turnstileCaptcha.js";
-import { createRateLimiter } from "../utils/rateLimit.js";
+import { createApiRateLimitHandler, createRateLimiter } from "../utils/rateLimit.js";
+import { hashOpaqueToken, normalizeEmailAddress } from "../utils/authSecurity.js";
 import {
   forgotPasswordValidation,
   changePasswordValidation,
+  changeEmailValidation,
   googleAuthValidation,
   loginValidation,
   registerValidation,
@@ -56,6 +59,22 @@ const loginLimiter = createRateLimiter({
   },
   standardHeaders: true,
   legacyHeaders: false,
+});
+
+// Share failed-attempt budgets across IPs and replicas without storing emails.
+const loginAccountLimiter = createRateLimiter({
+  storePrefix: 'login-account',
+  windowMs: 5 * 60 * 1000,
+  limit: 10,
+  keyGenerator: req => hashOpaqueToken(normalizeEmailAddress(req.body.email)),
+  requestPropertyName: 'accountRateLimit',
+  skipSuccessfulRequests: true,
+  standardHeaders: false,
+  legacyHeaders: false,
+  handler: createApiRateLimitHandler({
+    message: 'Too many sign-in attempts, please try again after 5 minutes',
+    retryAfterSeconds: 5 * 60,
+  }),
 });
 
 // Limits email verification resends to prevent mailing abuse.
@@ -94,6 +113,9 @@ const emailChangeVerificationLimiter = createRateLimiter({ windowMs: 15 * 60 * 1
 
 // Routes definitions
 router.get("/csrf-token", getCsrfToken);
+router.get('/apple/config', getAppleConfiguration);
+router.post('/apple/challenge', loginLimiter, createAppleChallenge);
+router.post('/apple', loginLimiter, authenticateWithApple);
 router.post("/register", registerLimiter, registerValidation, validateRequest, register);
 router.post(
   "/google",
@@ -108,11 +130,12 @@ router.post(
   loginValidation,
   validateRequest,
   requireTurnstileCaptcha(),
+  loginAccountLimiter,
   login,
 );
 router.post("/logout", protectLogout, logout);
 router.get('/email-change', protect, getEmailChange);
-router.post('/change-email', protect, emailChangeLimiter, resendValidation, validateRequest, requestEmailChange);
+router.post('/change-email', protect, emailChangeLimiter, changeEmailValidation, validateRequest, requestEmailChange);
 router.post('/verify-email-change', emailChangeVerificationLimiter, verifyEmailChange);
 router.post('/change-password', protect, loginLimiter, changePasswordValidation, validateRequest, changePassword);
 router.post('/send-reset-email', protect, forgotPasswordLimiter, requestPasswordReset);

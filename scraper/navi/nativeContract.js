@@ -1,4 +1,5 @@
 import {extractActiveDescription} from './nativeContent.js'
+import {qualifiesCurrentNaviCriteria,qualifiesCurrentNaviSupplementaryCriteria} from './currentCriteria20261114.js'
 const ORG='3e818601-0baa-429c-b6f8-4b21903ae0e6'
 const fail=message=>{throw new Error('Navi native contract: '+message)}
 const requireProof=(ok,message)=>{if(!ok)fail(message)}
@@ -71,11 +72,12 @@ export function validateNativeInventory(payload,{now=new Date().toISOString()}={
  })
  return{total:payload.Total,rows,snapshot:JSON.stringify(payload.Result.map(r=>Object.fromEntries(['JobId','JobIdObfuscated','JobCode','JobTitle','OrgDetails','Location','PublishedDate','ExpiryDates','JobDescV2'].map(k=>[k,r[k]??null]))))}
 }
-export function validateNativeDetail(detail,listing,{now=new Date().toISOString()}={}){
+export function validateNativeDetail(detail,listing,{now=new Date().toISOString(),currentPublicRender=false}={}){
  checkError(detail);const scope=validateIdentity(detail)
  for(const key of ['JobId','JobIdObfuscated','JobCode','JobTitle'])requireProof(detail[key]===listing[key],'Native detail '+key+' conflicts')
  requireProof(JSON.stringify(scope)===JSON.stringify(nativeLocationScope(listing.Location)),'Native detail location conflicts')
  requireProof(detail.IsPublic===true&&detail.IsDraft===false&&detail.JobStatus==='Active'&&Array.isArray(detail.PublishedJobBoards)&&detail.PublishedJobBoards.includes('CAREERPAGE'),'Native detail is not an active public career role')
+ if(currentPublicRender)requireProof(detail.OrgDetails.IsCareerPagePublished===true,'Native organization publication authority is unavailable or contradictory')
  requireProof((detail.PublishedDates?.CAREERPAGE??null)===(listing.PublishedDate??null),'Native CareerPage publication conflicts')
  const postingDate=validateNativeDate(detail.PublishedDates?.CAREERPAGE,{now,publication:true}),closingDate=validateNativeDate(detail.ExpiryDates?.CAREERPAGE,{now})
  requireProof(typeof detail.JobDescriptionV2==='string','Native full description field unavailable')
@@ -88,5 +90,15 @@ export function validateNativeDetail(detail,listing,{now=new Date().toISOString(
   const observedPath=/^\/attachments\/[0-9a-f-]{36}\/.+\.(?:docx|pdf)$/i.test(u.pathname)||new RegExp(`^/resumebank/${detail.JobId}/JobDescription/[^/]+\\.(?:docx|pdf)$`,'i').test(u.pathname)
   requireProof(u.origin==='https://hiringsolutions.blob.core.windows.net'&&!u.search&&!u.hash&&!u.username&&!u.password&&observedPath,'Unexpected native attachment surface');attachment=u.href
  }
- return{jobDescription,postingDate,closingDate,sourceNativeClosingDate:detail.ExpiryDates?.CAREERPAGE??null,sourceClosingDateIsExact:Boolean(closingDate?.endsWith('Z')),sourceDetailComplete:Boolean(jobDescription),sourceDetailStatus:jobDescription?'complete':attachment?'attachment-unavailable':'missing-content',sourceDescriptionAttachment:attachment,scope,nativeDetail:detail}
+ if(detail.JobDescriptionVideoUrl!=null)requireProof(typeof detail.JobDescriptionVideoUrl==='string','Native full-description video carrier malformed')
+ const unreadCarrier=Boolean(attachment||detail.JobDescriptionVideoUrl)
+ const unreadLegacy=currentPublicRender&&['RolesAndResponsibilities','Eligibility'].some(key=>detail[key]!=null
+  &&(typeof detail[key]!=='string'||!extractActiveDescription(detail[key+'V2'])&&Boolean(extractActiveDescription(detail[key]))))
+ const unreviewedActivation=currentPublicRender&&!sections.every(qualifiesCurrentNaviCriteria)
+ const unreviewedSupplement=currentPublicRender&&!qualifiesCurrentNaviSupplementaryCriteria(detail)
+ const unavailableNotice=/\b(?:(?:this\s+)?(?:job|position|role|vacancy)\s+(?:(?:is|has\s+been)\s+(?:closed|filled|expired|cancelled|canceled)|has\s+expired|is\s+no\s+longer\s+(?:available|open))|(?:applications?|recruitment)\s+(?:are|is|have\s+been|has\s+been)\s+closed|(?:we\s+are\s+)?no\s+longer\s+accepting\s+applications?)\b/i.test(jobDescription??'')
+ const sourceDetailComplete=Boolean(jobDescription)&&!unreadCarrier&&!unreadLegacy&&!unreviewedActivation&&!unreviewedSupplement&&!unavailableNotice
+ return{jobDescription,postingDate,closingDate,sourceNativeClosingDate:detail.ExpiryDates?.CAREERPAGE??null,sourceClosingDateIsExact:Boolean(closingDate?.endsWith('Z')),sourceDetailComplete,
+  sourceDetailStatus:unreadCarrier?'unread-full-description-carrier':unreadLegacy?'unread-legacy-criteria-carrier':unreviewedActivation?'unreviewed-criteria-activation':unreviewedSupplement?'unreviewed-supplementary-criteria':unavailableNotice?'native-explicitly-unavailable':jobDescription?'complete':'missing-content',
+  sourceDescriptionAttachment:attachment,sourceDescriptionVideoURL:detail.JobDescriptionVideoUrl||null,scope,nativeDetail:detail}
 }

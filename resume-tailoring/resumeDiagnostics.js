@@ -1,5 +1,14 @@
 import { RESUME_LATEX_REASONS } from '../src/utils/resumeLatexValidation.js';
 
+export const RESUME_COMPILER_REASONS = Object.freeze({
+  alignment_tab: 'Escape literal ampersands in resume text and macro arguments as \\&. Use alignment tabs only in table rows.',
+  undefined_command: 'The document uses an undefined command. Use only commands and icons supported by the supplied Abey template.',
+  math_delimiter: 'Repair unmatched math delimiters and escape literal dollar signs and underscores. Use \\textbar{} for separators.',
+  unbalanced_group: 'Balance every brace and close every command argument. Keep all candidate content inside the complete document.',
+  environment_mismatch: 'Match each environment opening with its closing command in the correct order, including the Abey list macros.',
+  missing_item: 'Every list needs an item. Use Abey entry macros inside the heading list and \\resumeItem inside the item list; close both lists.',
+});
+
 // Public Actions logs must never contain candidate data or raw exception text.
 const failures = {
   processing_failed: 'Resume processing failed. Your previous successful version is unchanged. Please retry.',
@@ -48,6 +57,7 @@ export function summarizeResumeFidelityIssues(issues = []) {
 export function safeResumeDiagnostic(event = {}) {
   const result = { stage: stages.has(event.stage) ? event.stage : 'worker', code: codes.has(event.code) ? event.code : 'processing_failed' };
   if (result.stage === 'latex' && result.code === 'latex_invalid' && typeof event.reason === 'string' && Object.hasOwn(RESUME_LATEX_REASONS, event.reason)) result.reason = event.reason;
+  if (result.stage === 'compiling' && result.code === 'compiler_failed' && typeof event.reason === 'string' && Object.hasOwn(RESUME_COMPILER_REASONS, event.reason)) result.reason = event.reason;
   for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'outputTokens', 'pageCount']) {
     if (typeof event[key] === 'number' && Number.isFinite(event[key]) && event[key] >= 0 && event[key] <= 1000000) result[key] = Math.round(event[key] * 100) / 100;
   }

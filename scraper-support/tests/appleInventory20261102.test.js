@@ -161,8 +161,10 @@ test('Apple cancellation reaches source requests and does not start more pages',
   const f = fixture()
   await assert.rejects(createAppleScraper().run({ signal: controller.signal, fetchText: async (url, options) => {
     calls.push(url)
-    assert.equal(options?.signal, controller.signal)
+    assert.ok(options?.signal instanceof AbortSignal)
     controller.abort(reason)
+    assert.equal(options.signal.aborted, true)
+    assert.equal(options.signal.reason, reason)
     return f.fetchText(url, options)
   } }), error => error === reason)
   assert.equal(calls.length, 1)

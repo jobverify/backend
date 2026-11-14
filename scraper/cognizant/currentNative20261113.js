@@ -7,6 +7,7 @@ import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEv
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const contract = JSON.parse(readFileSync(new URL('./reviewedNativeContract20261113.json', import.meta.url)))
+const cssURLs = [contract.cssUrl, ...(contract.additionalCssUrls || [])]
 const digest = value => createHash('sha256').update(value).digest('hex')
 const norm = value => String(value ?? '').replace(/\s+/g, ' ').trim()
 const canonical = value => JSON.stringify(value, (_key, item) => item && !Array.isArray(item) && typeof item === 'object'
@@ -36,7 +37,7 @@ const textOf = html => {
 // Metadata supplies role-owned geography and identity. The authored article,
 // including additional employment conditions, supplies the complete criteria.
 // Neither a URL locale nor the provider's default country qualifies geography.
-export const readObservedCognizantRole = (html, { sourceUrl, id, css } = {}) => {
+export const readObservedCognizantRole = (html, { sourceUrl, id, css, cssUrl } = {}) => {
   const observation = { id, sourceUrl, nativeCountries: [], nativeLocations: [], nativeRecord: null,
     nativeArticleHtml: null, originalDescription: null, countryComplete: false, criteriaComplete: false,
     indiaCandidate: false, applicationHandoffComplete: false, declaredApplyRoleId: null,
@@ -72,7 +73,8 @@ export const readObservedCognizantRole = (html, { sourceUrl, id, css } = {}) => 
     const declaredStyles = doc.nodes(node => node.tag === 'link' && node.attrs.rel === 'stylesheet')
     const cssQualified = typeof css === 'string' && digest(css) === contract.cssSha256
       && styles.length === 0 && declaredStyles.length === 1
-      && new URL(declaredStyles[0].attrs.href, sourceUrl).href === contract.cssUrl
+      && cssURLs.includes(new URL(declaredStyles[0].attrs.href, sourceUrl).href)
+      && (!cssUrl || new URL(declaredStyles[0].attrs.href, sourceUrl).href === cssUrl)
     const criterionNodes = walk(article)
     const markupQualified = criterionNodes.every(node => !node.inert
       && Object.hasOwn(contract.criterionAttributes, node.tag)
@@ -139,7 +141,7 @@ export const runCognizantCurrent20261113 = async (options, { extractSearchResult
         })
       }
       const mime = response.headers.get('content-type') || ''
-      const expectedMime = url === contract.cssUrl ? /text\/css/i : /\/main\.[a-f0-9]+\.js$/.test(new URL(url).pathname)
+      const expectedMime = cssURLs.includes(url) ? /text\/css/i : /\/main\.[a-f0-9]+\.js$/.test(new URL(url).pathname)
         ? /(?:application|text)\/(?:java|ecma)script/i : /text\/html|application\/xhtml\+xml/i
       if (!expectedMime.test(mime)) {
         void response.body?.cancel().catch(() => {})
@@ -153,7 +155,7 @@ export const runCognizantCurrent20261113 = async (options, { extractSearchResult
     configuredBoardComplete: false, lifecycleCleanupAllowed: false, companyGlobalTotal: null, companyIndiaTotal: null,
     observedRecordCount: 0, observedVacancyCount: 0, closingStable: false, observations, applicationEvidence: null,
     nativePages: [] }
-  let css = '', next = [...urls][0], reportedTotal = null
+  let css = '', cssUrl = null, next = [...urls][0], reportedTotal = null
   try {
   for (let page = 1; next && page <= Math.min(maxPages, 8); page++) {
     const response = await reader.read(next), html = response.originalText
@@ -172,9 +174,15 @@ export const runCognizantCurrent20261113 = async (options, { extractSearchResult
     reportedTotal = summary.totalJobCount
     const doc = readNativeDocument(html)
     const sheets = doc.nodes(node => node.tag === 'link' && node.attrs.rel === 'stylesheet')
-    nativeContract(sheets.length === 1 && new URL(sheets[0].attrs.href, next).href === contract.cssUrl,
+    const declaredCssUrl = sheets.length === 1 ? new URL(sheets[0].attrs.href, next).href : null
+    nativeContract(cssURLs.includes(declaredCssUrl) && (!cssUrl || cssUrl === declaredCssUrl),
       'Cognizant declared native stylesheet changed')
-    if (!css) { urls.add(contract.cssUrl); css = (await reader.read(contract.cssUrl)).originalText }
+    if (!css) {
+      cssUrl = declaredCssUrl; urls.add(cssUrl)
+      const stylesheet = await reader.read(cssUrl)
+      nativeContract(stylesheet.bodySHA256 === contract.cssSha256, 'Cognizant raw native stylesheet bytes changed')
+      css = stylesheet.originalText
+    }
     for (const record of records) {
       const roleUrl = new URL(record.sourceUrl)
       nativeContract(!seen.has(record.jobId) && /^\d+$/.test(record.jobId)
@@ -200,7 +208,7 @@ export const runCognizantCurrent20261113 = async (options, { extractSearchResult
   for (let offset = 0; offset < listings.length; offset += 4) {
     await Promise.all(listings.slice(offset, offset + 4).map(async record => {
       const page = await reader.read(record.sourceUrl)
-      observations.push(readObservedCognizantRole(page.originalText, { sourceUrl: record.sourceUrl, id: record.jobId, css }))
+      observations.push(readObservedCognizantRole(page.originalText, { sourceUrl: record.sourceUrl, id: record.jobId, css, cssUrl }))
     }))
   }
   audit.observedRecordCount = audit.observedVacancyCount = observations.length

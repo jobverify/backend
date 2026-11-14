@@ -1,0 +1,19 @@
+{
+  "source": "byteridge",
+  "description": "Exact page revision removes two mediaelement stylesheets and their two configuration scripts; careers iframe, all inline styles and other programs retain reviewed identities.",
+  "receipt": {
+    "requestedUrl": "https://byteridge.com/careers/",
+    "method": "GET",
+    "startedAt": "2026-11-14T12:52:34.780Z",
+    "status": 200,
+    "url": "https://byteridge.com/careers/",
+    "headers": {
+      "content-type": "text/html; charset=UTF-8",
+      "etag": "\"685-1794590419;;;\""
+    },
+    "bytes": 340241,
+    "sha256": "b013ec582f05930ec3f3a0be719fbec9b4857ce78d4e23c72fdf2956a8aa5230",
+    "file": "byteridge-0.body.gz"
+  },
+  "captureDirectory": "byteridge-baseline"
+}

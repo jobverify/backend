@@ -15,7 +15,7 @@ const createResponse = () => ({
   cookie() { assert.fail("An unsuccessful sign-in must not create a session."); },
 });
 
-test('an unregistered email receives the create-account warning', async t => {
+test('an unregistered email receives the generic credential failure', async t => {
   t.mock.method(User, 'findOne', async () => null);
   t.mock.method(PendingUser, 'findOne', async () => null);
   const res = createResponse();
@@ -24,7 +24,7 @@ test('an unregistered email receives the create-account warning', async t => {
   assert.deepEqual(res.body, {
     code: 401,
     success: false,
-    message: 'Account does not exist. Please create an account.',
+    message: 'Incorrect email or password. Please try again or reset your password.',
   });
 });
 
@@ -85,9 +85,7 @@ test('failed login categories each perform one policy-cost password comparison',
     await login({ body: { email, password: 'IncorrectPassword123!' } }, res);
     assert.equal(compare.mock.callCount() - previous, 1, email);
     assert.equal(res.statusCode, 401);
-    assert.equal(res.body.message, email === 'unknown.account@gmail.com'
-      ? 'Account does not exist. Please create an account.'
-      : 'Incorrect email or password. Please try again or reset your password.');
+    assert.equal(res.body.message, 'Incorrect email or password. Please try again or reset your password.');
   }
 });
 

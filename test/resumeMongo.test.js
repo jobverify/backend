@@ -24,13 +24,13 @@ test('private resumes round-trip through HTTP and MongoDB without changing docum
     if (actionsEnabledBefore === undefined) delete process.env.TAILORED_RESUME_ACTIONS_ENABLED;
     else process.env.TAILORED_RESUME_ACTIONS_ENABLED = actionsEnabledBefore;
   });
-  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 }, binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
+  const mongo = await MongoMemoryReplSet.create({ instanceOpts: [{ launchTimeout: 30000 }], replSet: { count: 1 }, binary: { version: '8.2.6', downloadDir: fileURLToPath(new URL('../.cache/mongodb-binaries/', import.meta.url)) } });
   let server;
   t.after(async () => { if (server) await new Promise(resolve => server.close(resolve)); await mongoose.disconnect(); await mongo.stop(); });
   await mongoose.connect(mongo.getUri(), { dbName: 'resume_storage_test' });
   const user = new mongoose.Types.ObjectId();
   const other = new mongoose.Types.ObjectId();
-  await User.collection.insertMany([{ _id: user, email: 'resume@example.test', role: 'user', sessionVersion: 0 }, { _id: other, email: 'other@example.test', role: 'user', sessionVersion: 0 }]);
+  await User.collection.insertMany([{ _id: user, email: 'resume@example.test', role: 'user', sessionVersion: 0, resumeFeaturesAllowed: true }, { _id: other, email: 'other@example.test', role: 'user', sessionVersion: 0, resumeFeaturesAllowed: true }]);
   const { createApp } = await import('../src/app.js');
   server = createApp().listen(0, '127.0.0.1');
   await new Promise(resolve => server.once('listening', resolve));
@@ -85,9 +85,9 @@ test('private resumes round-trip through HTTP and MongoDB without changing docum
   assert.equal(await Resume.countDocuments({ user }), 1);
   assert.deepEqual(Buffer.from(await (await request('/api/user/resume/download')).arrayBuffer()), latex);
   const generatedPdf = Buffer.from('%PDF-1.7\nAsha Rao prepared resume\n%%EOF');
-  await requestResumePreparation({ _id: user }, { dispatch: async () => {} });
+  await requestResumePreparation({ _id: user }, { processingConsent: { version: '2026-11-14', accepted: true }, dispatch: async () => {} });
   assert.deepEqual(await drainResumePreparations({ generate: async () => ({ latex: latex.toString(), pdf: generatedPdf, pageCount: 1 }) }), { attempted: 1, completed: 1, failed: 0 });
-  const prepared = await request('/api/user/resume/prepare', { method: 'POST', type: 'application/json', body: '{}' });
+  const prepared = await request('/api/user/resume/prepare', { method: 'POST', type: 'application/json', body: JSON.stringify({ processingConsent: { version: '2026-11-14', accepted: true } }) });
   assert.equal(prepared.status, 200);
   const preparedMetadata = (await prepared.json()).data;
   assert.equal(preparedMetadata.preparation.hasPdf, true);
@@ -95,7 +95,7 @@ test('private resumes round-trip through HTTP and MongoDB without changing docum
   assert.equal(preparedMetadata.filename, 'resume.tex');
   assert.equal(preparedMetadata.pdf, undefined); assert.equal(preparedMetadata.preparation.facts, undefined);
   assert.equal((await request('/api/user/resume/prepare', { method: 'POST', type: 'application/json', body: '{}', withCsrf: false })).status, 403);
-  assert.equal((await request('/api/user/resume/prepare', { method: 'POST', type: 'application/json', body: '{"regenerate":"yes"}' })).status, 400);
+  assert.equal((await request('/api/user/resume/prepare', { method: 'POST', type: 'application/json', body: JSON.stringify({ regenerate: 'yes', processingConsent: { version: '2026-11-14', accepted: true } }) })).status, 400);
   const inline = await request('/api/user/resume/base');
   assert.equal(inline.status, 200); assert.equal(inline.headers.get('content-type'), 'application/pdf');
   assert.equal(inline.headers.get('cache-control'), 'no-store'); assert.match(inline.headers.get('content-disposition'), /inline/);
@@ -106,7 +106,7 @@ test('private resumes round-trip through HTTP and MongoDB without changing docum
   assert.equal((await request('/api/user/resume/base?format=json')).status, 400);
   assert.equal((await request('/api/user/resume/base', { owner: other })).status, 404);
   assert.equal((await request('/api/user/resume/base', { owner: null })).status, 401);
-  await requestResumePreparation({ _id: user }, { regenerate: true, dispatch: async () => {} });
+  await requestResumePreparation({ _id: user }, { regenerate: true, processingConsent: { version: '2026-11-14', accepted: true }, dispatch: async () => {} });
   await drainResumePreparations({ generate: async () => ({ latex: `${latex}\n% second revision`, pdf: generatedPdf, pageCount: 1 }) });
   const historyResponse = await request('/api/user/resume/revisions');
   assert.equal(historyResponse.status, 200); assert.equal(historyResponse.headers.get('cache-control'), 'no-store');

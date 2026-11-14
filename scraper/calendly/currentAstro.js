@@ -13,11 +13,19 @@ const EMPLOYER = 'Calendly'
 // A complete zero needs the entire reviewed public program. These profiles
 // cover active corporate content/declarations and executable data flow, never
 // native job IDs, job counts, job criteria or original publication dates.
-const PROGRAM = 'd657b7a0fd120d11d2213e52836a3939009b8177c74937975d529f282d6fc788'
-const RENDERERS = {
+const DEPLOYMENTS = {
+ d657b7a0fd120d11d2213e52836a3939009b8177c74937975d529f282d6fc788: {
   index: '2c45cec6136837b88a06f9e02a8a50a1b6483682cc70a41f70be72d6c1513d6b',
   island: '2684c70c9ce125b9442b468bef9fd13bd8ffc03714caabd4f69ed7d6f9567d7b',
   components: 'baf891cd6b629bf391919da14006f2c3033c21436158266757e8af295f58e4a0',
+ },
+ // Nov14 retains every original publisher text, link and island property;
+ // only the exact declared bundles change. Keep their bytes paired with it.
+ c80a52b768556a96d2e3e85113ff9318315124e42ac72138f982b107c257274b: {
+  index: '95cf3090a7fd787b12b0c0f5cd60bedc4e4915af4e99cf0fc400db62bfd89d07',
+  island: '1502b8d03b5ae609bc1afab6baa01dc044e315bc49408192feadfcd9574e4969',
+  components: '542c5b4a4de0e62f24335fe1b522dcb4dd753d9276a816330b39d40f369a109e',
+ },
 }
 const sha = value => createHash('sha256').update(value).digest('hex')
 const stable = value => JSON.stringify(value, (_, item) => item && typeof item === 'object' && !Array.isArray(item)
@@ -46,14 +54,15 @@ function publisherProgram(html) {
     return { tag: node.tag, attrs, script: node.tag === 'script' ? sha(node.raw || '') : null }
   })
   const signature = { activeText: doc.text(rootOf(doc)), carriers }
-  need(sha(stable(signature)) === PROGRAM, 'current active publisher recruitment program/declarations require review')
+  const signatureSHA256 = sha(stable(signature))
+  need(Object.hasOwn(DEPLOYMENTS, signatureSHA256), 'current active publisher recruitment program/declarations require review')
   const island = one(doc.nodes(node => node.tag === 'astro-island' && node.attrs['component-export'] === 'CareersHubIsland'),
     'current single active careers island declaration missing')
   const index = safeURL(new URL(island.attrs['component-url'], CAREERS).href)
   need(island.attrs.client === 'load' && index?.origin === new URL(CAREERS).origin
     && /^\/_astro\/index\.[a-z\d_-]+\.js$/i.test(index.pathname) && !index.search,
   'current publisher active careers renderer identity changed')
-  return { signatureSHA256: PROGRAM, activeCarrierCount: carriers.length, island: { ...island.attrs }, indexURL: index.href }
+  return { signatureSHA256, activeCarrierCount: carriers.length, island: { ...island.attrs }, indexURL: index.href }
 }
 
 function originalDate(value, label, now, publication = false) {
@@ -361,7 +370,7 @@ export async function runCurrentCalendlyAstro({ fetchImpl = globalThis.fetch, si
   const publisher = publisherProgram(await read(CAREERS)), scripts = []
   const readRenderer = async (url, kind) => {
     const body = await read(url, 'js')
-    need(sha(body) === RENDERERS[kind], 'current declared renderer/client requires review')
+    need(sha(body) === DEPLOYMENTS[publisher.signatureSHA256][kind], 'current declared renderer/client requires review')
     scripts.push({ url, kind, sha256: sha(body) }); return body
   }
   const index = await readRenderer(publisher.indexURL, 'index')

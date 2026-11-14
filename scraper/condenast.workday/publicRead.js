@@ -1,5 +1,5 @@
 import {setTimeout as delay} from 'node:timers/promises'
-import {CORPORATE,BOARD,APP,PAGE,CSS,API,SEARCH,query,need,hash} from './nativeModels.js'
+import {CORPORATE,BOARD,REVIEWED_PUBLISHER_ASSETS,API,SEARCH,query,need,hash} from './nativeModels.js'
 export function createCondePublicRead(options,receipts){
  const interval=options.minIntervalMs??1000,budget=options.timeoutMs??180000,requestBudget=options.requestTimeoutMs??20000
  need(Number.isSafeInteger(interval)&&interval>=0&&interval<=5000&&(interval>=1000||typeof options.fetchImpl==='function'),'invalid public pacing');need(Number.isFinite(budget)&&budget>0&&budget<=180000&&Number.isFinite(requestBudget)&&requestBudget>0&&requestBudget<=20000,'invalid public deadline')
@@ -14,5 +14,5 @@ export function createCondePublicRead(options,receipts){
    for(;;){check();combined.throwIfAborted();const part=await reader.read();check();combined.throwIfAborted();if(part.done)break;need(part.value instanceof Uint8Array,'invalid stream chunk');size+=part.value.byteLength;total+=part.value.byteLength;need(size<=4000000&&total<=32000000,'public response byte bound');chunks.push(Buffer.from(part.value))}
    need(length===null||encoding&&encoding!=='identity'||Number(length)===size,'original HTTP body length mismatch');const bytes=Buffer.concat(chunks);receipt.bodyBytes=bytes.length;receipt.bodySHA256=hash(bytes);receipt.rawText=new TextDecoder('utf8',{fatal:true,ignoreBOM:true}).decode(bytes);return receipt
   })(),interrupted])}catch(error){stopped=true;throw error}finally{clearTimeout(deadline);combined.removeEventListener('abort',listener);cancel(reader||response?.body)}}
- return{read,check,allow:url=>{need([BOARD,APP,PAGE,CSS,SEARCH].includes(url)||url.startsWith(API+'/job/')&&/^\/job\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+$/.test(url.slice(API.length)),'unreviewed native URL');allowed.add(url)},close:()=>{clearTimeout(timer);controller.abort()}}
+ return{read,check,allow:url=>{need([BOARD,...REVIEWED_PUBLISHER_ASSETS,SEARCH].includes(url)||url.startsWith(API+'/job/')&&/^\/job\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+$/.test(url.slice(API.length)),'unreviewed native URL');allowed.add(url)},close:()=>{clearTimeout(timer);controller.abort()}}
 }

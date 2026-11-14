@@ -1,5 +1,7 @@
 """Public HTTP capture transport using the host's default TLS trust and proxy."""
 import base64
+import gzip
+import io
 import json
 import sys
 import urllib.error
@@ -21,8 +23,21 @@ try:
 except urllib.error.HTTPError as error:
     response = error
 with response:
-    content = response.read(12 * 1024 * 1024 + 1)
-    if len(content) > 12 * 1024 * 1024:
+    limit = 12 * 1024 * 1024
+    content = response.read(limit + 1)
+    if len(content) > limit:
         raise ValueError('Public response exceeds capture limit')
+    wire = {}
+    encoding = response.headers.get('Content-Encoding', '').strip().lower()
+    if encoding in ('gzip', 'x-gzip'):
+        wire = {'wireBody': base64.b64encode(content).decode('ascii'), 'wireContentEncoding': encoding}
+        # urllib exposes encoded HTTP bytes; fetch exposes decoded body bytes.
+        # Bound the decoded read too, including concatenated gzip members.
+        with gzip.GzipFile(fileobj=io.BytesIO(content)) as decoded:
+            content = decoded.read(limit + 1)
+        if len(content) > limit:
+            raise ValueError('Public response exceeds capture limit')
+    elif encoding not in ('', 'identity'):
+        raise ValueError('Unsupported public Content-Encoding: ' + encoding)
     json.dump({'status': response.code, 'url': response.url, 'headers': list(response.headers.items()),
-               'body': base64.b64encode(content).decode('ascii')}, sys.stdout)
+               'body': base64.b64encode(content).decode('ascii'), **wire}, sys.stdout)

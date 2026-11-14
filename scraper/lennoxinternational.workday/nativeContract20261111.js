@@ -7,6 +7,7 @@ import {nativeCountryName,nativeDate} from '../../scraper-support/shared/nativeJ
 import fs from 'node:fs'
 
 export const profile=JSON.parse(fs.readFileSync(new URL('./profile20261111.json',import.meta.url)))
+const currentProfile=JSON.parse(fs.readFileSync(new URL('./reviewedCurrentShell20261114.json',import.meta.url)))
 export const need=(ok,message)=>{if(!ok)throw Object.assign(Error('[lennoxinternational] '+message),{abortRetries:true,failureKind:'native_contract_unverified'})}
 const norm=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
 const sha=value=>createHash('sha256').update(value).digest('hex')
@@ -44,9 +45,10 @@ export function readShell(html){
  const executableNodes=predicate=>{const found=[],visit=n=>{if(['template','noscript'].includes(n.tag))return;if(predicate(n))found.push(n);for(const child of n.children)if(typeof child!=='string')visit(child)};visit(doc.root);return found}
  const scripts=executableNodes(n=>n.tag==='script'&&n.attrs.type!=='application/ld+json')
  const signatures=scripts.map(n=>({attributes:n.attrs,...(n.attrs.src?{}:{sha256:sha(n.raw??'')})}))
- need(isDeepStrictEqual(signatures,profile.shellScripts),'reviewed native shell program set changed')
+ const release=[profile,currentProfile].find(release=>isDeepStrictEqual(signatures,release.shellScripts))
+ need(release,'reviewed native shell program set changed')
  const handlers=executableNodes(n=>Object.keys(n.attrs).some(k=>/^on/i.test(k))).map(n=>({tag:n.tag,handlers:Object.fromEntries(Object.entries(n.attrs).filter(([k])=>/^on/i.test(k)))}))
- need(isDeepStrictEqual(handlers,profile.shellHandlers),'reviewed native shell handlers changed')
+ need(isDeepStrictEqual(handlers,release.shellHandlers),'reviewed native shell handlers changed')
  need(!executableNodes(n=>n.tag==='iframe'||n.tag==='object'||n.tag==='embed'||n.tag==='meta'&&n.attrs['http-equiv']?.toLowerCase()==='refresh'||Object.values(n.attrs).some(v=>/^\s*(?:javascript|data):/i.test(v)&&v!=='javascript:void(0)')).length,'unreviewed native shell executable surface')
  const assignments=[]
  for(const script of scripts.filter(n=>!n.attrs.src)){
@@ -54,7 +56,7 @@ export function readShell(html){
   const walk=n=>{if(!n||typeof n!=='object')return;if(n.type==='AssignmentExpression'&&n.left.type==='MemberExpression'&&n.left.object.name==='icimsFrame'&&!n.left.computed&&n.left.property.name==='src')assignments.push(n);for(const v of Object.values(n)){if(Array.isArray(v))v.forEach(walk);else if(v&&typeof v==='object')walk(v)}};walk(ast)
  }
  need(assignments.length===1&&assignments[0].right.type==='Literal'&&assignments[0].right.value===profile.frameURL,'native active iframe AST literal conflict')
- return{requestedURL:profile.shellURL,publisherCanonical:profile.shellCanonical,declaredFrameURL:profile.frameURL,programSignatures:signatures,handlers}
+ return{requestedURL:profile.shellURL,publisherCanonical:profile.shellCanonical,declaredFrameURL:profile.frameURL,programSignatures:signatures,handlers,listingPageLimit:release===currentProfile?2:1,reviewedShellAssets:release.shellAssets??[]}
 }
 const rolePattern=/^https:\/\/indiacareers-lennox\.icims\.com\/jobs\/(\d+)\/[^/?#]+\/job\?in_iframe=1$/
 function headerFields(doc,node){
@@ -69,11 +71,26 @@ function headerFields(doc,node){
  values['Job Locations']=doc.text(one(spans,'native workplace value'))
  return values
 }
-export function readListing(html){
- const doc=activeDocument(html);noBase(doc);canonical(doc,profile.listingCanonical)
+export function readListing(html,{requestedURL=profile.frameURL,pageNumber=1,maxPages=1}={}){
+ need([1,2].includes(maxPages)&&Number.isSafeInteger(pageNumber)&&pageNumber>=1&&pageNumber<=maxPages,'bounded native page context changed')
+ const reviewedPage=maxPages===2?currentProfile.listingPages.find(page=>page.requestedURL===requestedURL&&page.pageNumber===pageNumber):null
+ need(maxPages===1?requestedURL===profile.frameURL&&pageNumber===1:reviewedPage,'native pagination endpoint or facet changed')
+ const doc=activeDocument(html);noBase(doc);canonical(doc,reviewedPage?.canonicalURL??profile.listingCanonical)
  const header=doc.text(one(doc.nodes(n=>cls(n,'iCIMS_SearchResultsHeader')),'native pagination header'))
- need(/\bPage 1 of 1\b/.test(header)&&!doc.nodes(n=>n.tag==='a'&&/^(?:next|previous)$/i.test(doc.text(n))).length,'bounded native listing pagination changed')
- const cards=doc.nodes(n=>n.tag==='li'&&cls(n,'iCIMS_JobCardItem'));need(cards.length>0&&cards.length<=30,'bounded native listing cohort required')
+ const pageMatch=/\bPage ([1-9]\d*) of ([1-9]\d*)\b/.exec(header)
+ need(pageMatch&&Number(pageMatch[1])===pageNumber&&Number(pageMatch[2])===maxPages,'bounded native listing pagination changed')
+ if(reviewedPage){
+  const declarations=doc.nodes(n=>n.tag==='a'&&n.attrs.href?.includes('/jobs/search?')).map(n=>({attributes:n.attrs,text:doc.text(n)}))
+  need(isDeepStrictEqual(declarations,reviewedPage.paginationDeclarations),'native pagination count, selected page, endpoint or facet declaration changed')
+  const owners=doc.nodes(n=>['iCIMS_Paginator_Bottom','iCIMS_Paging','iCIMS_PagingBatch'].some(value=>cls(n,value)))
+  need(isDeepStrictEqual(owners.map(n=>({tag:n.tag,attributes:n.attrs})),reviewedPage.paginationOwners),'native pagination owner declarations changed')
+  const owner=one(doc.nodes(n=>cls(n,'iCIMS_Paginator_Bottom')),'native pagination owner')
+  need(isDeepStrictEqual(doc.nodes(n=>n.tag==='a',owner).map(n=>({attributes:n.attrs,text:doc.text(n)})),reviewedPage.paginationDeclarations),'native pagination owner anchor inventory changed')
+  const links=doc.nodes(n=>n.tag==='link'&&/(?:^|\s)(?:next|prev)(?:\s|$)/i.test(n.attrs.rel||'')).map(n=>({tag:n.tag,attributes:n.attrs,text:doc.text(n)}))
+  need(isDeepStrictEqual(links,reviewedPage.paginationLinks),'native pagination head continuation declarations changed')
+ }else need(!doc.nodes(n=>n.tag==='a'&&/^(?:next|previous)$/i.test(doc.text(n))).length,'bounded native listing pagination changed')
+ const cards=doc.nodes(n=>n.tag==='li'&&cls(n,'iCIMS_JobCardItem'))
+ need(cards.length>0&&cards.length<=(reviewedPage?20:30)&&(!reviewedPage||pageNumber===maxPages||cards.length===20),'bounded native listing cohort count changed')
  const rows=cards.map(card=>{
   const anchor=one(doc.nodes(n=>n.tag==='a'&&typeof n.attrs.href==='string'&&n.attrs.href.includes('/jobs/'),card),'own native role anchor'),match=rolePattern.exec(anchor.attrs.href)
   need(match,'native role URL/host/path conflict')
@@ -83,8 +100,16 @@ export function readListing(html){
  })
  need(new Set(rows.map(r=>r.nativeJobId)).size===rows.length&&new Set(rows.map(r=>r.canonicalURL)).size===rows.length,'duplicate native listing identities')
  need(doc.nodes(n=>n.tag==='a'&&rolePattern.test(n.attrs.href||'')).length===rows.length,'native role links outside own listing cards')
- return{requestedURL:profile.frameURL,canonicalURL:profile.listingCanonical,header,rows,observedNativeCount:rows.length,listingPageCount:1}
+ if(reviewedPage){
+  const roleAnchors=new Set(cards.flatMap(card=>doc.nodes(n=>n.tag==='a'&&rolePattern.test(n.attrs.href||''),card)))
+  const navigation=doc.nodes(n=>n.tag==='a'&&!roleAnchors.has(n)).map(n=>({tag:n.tag,attributes:n.attrs,text:doc.text(n)}))
+  need(isDeepStrictEqual(navigation,reviewedPage.nonRoleNavigation),'native pagination or navigation anchor inventory changed')
+ }
+ const nextURL=reviewedPage&&pageNumber<maxPages?currentProfile.listingPages.find(page=>page.pageNumber===pageNumber+1)?.requestedURL:null
+ need(pageNumber===maxPages||typeof nextURL==='string','native pagination continuation missing')
+ return{requestedURL,canonicalURL:reviewedPage?.canonicalURL??profile.listingCanonical,header,rows,observedNativeCount:rows.length,listingPageCount:1,pageNumber,declaredPageCount:maxPages,nextURL}
 }
+
 const boundaries=new Set(['address','article','aside','body','br','caption','dd','details','div','dl','dt','fieldset','figcaption','figure','footer','form','h1','h2','h3','h4','h5','h6','header','hr','li','main','nav','ol','p','section','summary','table','tbody','td','th','thead','tr','ul'])
 function blocks(root,criteriaOnly=false){
  const found=[];let current='';const flush=()=>{const v=norm(decodeHTML(current));if(v)found.push(v);current=''}

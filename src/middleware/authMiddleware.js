@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import BlacklistedToken from "../models/BlacklistedToken.js";
 import { getRequestAuthToken, clearAuthCookie } from "../utils/authCookies.js";
+import { EMAIL_VERIFICATION_REQUIRED_MESSAGE } from '../utils/authSecurity.js';
 
 if (!process.env.JWT_SECRET) {
   console.error("[Config Error] JWT_SECRET is not defined or cannot be accessed in the .env configuration.");
@@ -14,7 +15,7 @@ if (!process.env.JWT_SECRET) {
 }
 
 // Verifies the Bearer JWT token and requires authorization to proceed.
-const requireSession = async (req, res, next, storageFailureStatus = 401) => {
+const requireSession = async (req, res, next, storageFailureStatus = 401, allowUnverified = false) => {
   const token = getRequestAuthToken(req);
 
   if (!token) {
@@ -29,7 +30,7 @@ const requireSession = async (req, res, next, storageFailureStatus = 401) => {
         .json({ message: "Invalid Token, Please Log in again." });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, { algorithms: ['HS256'] });
     req.user = await User.findById(decoded.id).select("-password");
 
     if (!req.user) {
@@ -42,6 +43,12 @@ const requireSession = async (req, res, next, storageFailureStatus = 401) => {
 
     if (req.user.deactivated) {
       return res.status(403).json({ message: "Your account has been deactivated. Please contact support." });
+    }
+
+    if (!allowUnverified && req.user.isVerified !== true) {
+      return res.status(401).json({
+        error: 'email_verification_required', message: EMAIL_VERIFICATION_REQUIRED_MESSAGE,
+      });
     }
 
     next();
@@ -62,7 +69,7 @@ export const protect = (req, res, next) => requireSession(req, res, next);
 // A genuine storage failure must remain distinguishable from expired-session401.
 export const protectLogout = (req, res, next) => {
   clearAuthCookie(res);
-  return requireSession(req, res, next, 500);
+  return requireSession(req, res, next, 500, true);
 };
 
 // Optionally extracts the authenticated user from JWT without blocking if absent.
@@ -73,11 +80,12 @@ export const optionalProtect = async (req, res, next) => {
     try {
       const isBlacklisted = await BlacklistedToken.findOne({ token });
       if (!isBlacklisted) {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET, { algorithms: ['HS256'] });
         const user = await User.findById(decoded.id).select("-password");
         if (
           user
           && !user.deactivated
+          && user.isVerified === true
           && (decoded.sessionVersion ?? 0) === (user.sessionVersion ?? 0)
         ) {
           req.user = user;

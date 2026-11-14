@@ -26,20 +26,11 @@ const applicationOnlyPage = `
   </html>
 `
 
-test('validates the Dr Lal PathLabs application-only careers page and returns no jobs', async () => {
-  const requestedUrls = []
+test('historical application-only markup is not proof of a current empty vacancy inventory', async () => {
   const scraper = createDrLalPathlabsScraper()
 
   assert.equal(CAREER_PAGE_URL, 'https://www.lalpathlabs.com/career/submit-your-cv')
   assert.equal(validateNoOpeningsPage(applicationOnlyPage), true)
 
-  const jobs = await scraper.run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      return applicationOnlyPage
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [CAREER_PAGE_URL])
-  assert.deepEqual(jobs, [])
+  await assert.rejects(scraper.run({fetchText:async()=>applicationOnlyPage}),/Original HTTP metadata is required/)
 })

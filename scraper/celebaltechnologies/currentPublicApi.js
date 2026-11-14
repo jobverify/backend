@@ -9,6 +9,7 @@ const origin='https://celebaltech.com',careers=origin+'/careers'
 const api='https://celebal-connect-backend-prod-c2d0ghayhbgjhkc6.centralindia-01.azurewebsites.net/api/jobOpenings/'
 const listClient=origin+'/_next/static/chunks/pages/careers-7794f93b5502d572.js'
 const detailClients={
+ [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-858fd4956ec3f8d0.js']:{sha256:'df3ba3e0d676bdc62f245d1dd230dc0219fec5176fd91023dc4705acc39d1744',plainTextOnly:true},
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-98a56e5ce2d7e26b.js']:{sha256:'be3428682abdcd6ad34dc8c4411824e7bd3cb37b37f5168753215cffe99607b6',plainTextOnly:false},
  [origin+'/_next/static/chunks/pages/careers/%5Bid%5D-337a5d16861cc114.js']:{sha256:'f551c8cac732833001391d857155585daa7b777303093132865424731b563b08',plainTextOnly:true},
 }
@@ -101,7 +102,7 @@ function closingDate(row){
  return date
 }
 // The exact reviewed list client fetches every native record once and selects
-// status=live. Both reviewed role clients bind getJob/<encoded route id> and
+// status=live. The reviewed role clients bind getJob/<encoded route id> and
 // render every native criteria field. The newer description/responsibilities
 // renderer accepts plain text/markdown, so this validator holds authored HTML.
 // Bundled fallback roles never establish live proof. Build IDs only reconcile

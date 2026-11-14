@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { passwordSafety } from '../src/services/passwordSafety.js';
+// These compatibility fixtures isolate the external password provider.
+test.beforeEach(t => { t.mock.method(passwordSafety, 'check', async () => {}); });
 import { fileURLToPath } from 'node:url';
 import { createHmac } from 'node:crypto';
 import mongoose from 'mongoose';
@@ -124,12 +127,12 @@ test('follow-up account and payment boundaries', { timeout: 120000 }, async t =>
     const email = 'retry-registration@gmail.com'; const token = 'retry-verification';
     await pendingFixture(email, token);
     const save = t.mock.method(User.prototype, 'save', async () => { throw new Error('isolated write failure'); });
-    const failed = await call(verifyEmail, { token, password }, undefined, verifyEmailValidation);
+    const failed = await call(verifyEmail, { token, password, dateOfBirth: '1990-01-01' }, undefined, verifyEmailValidation);
     assert.equal(failed.statusCode, 503);
     assert.ok(await PendingUser.exists({ email }));
     assert.equal(await User.exists({ email }), null);
     save.mock.restore();
-    assert.equal((await call(verifyEmail, { token, password }, undefined, verifyEmailValidation)).statusCode, 200);
+    assert.equal((await call(verifyEmail, { token, password, dateOfBirth: '1990-01-01' }, undefined, verifyEmailValidation)).statusCode, 200);
     assert.equal(await PendingUser.exists({ email }), null);
   });
 
@@ -137,7 +140,7 @@ test('follow-up account and payment boundaries', { timeout: 120000 }, async t =>
     const email = 'concurrent-verification@gmail.com'; const token = 'concurrent-verification-token';
     await pendingFixture(email, token);
     const passwords = [password, 'OtherMailboxPassword123!'];
-    const results = await Promise.all(passwords.map(password => call(verifyEmail, { token, password }, undefined, verifyEmailValidation)));
+    const results = await Promise.all(passwords.map(password => call(verifyEmail, { token, password, dateOfBirth: '1990-01-01' }, undefined, verifyEmailValidation)));
     assert.equal(results.filter(res => res.statusCode === 200).length, 1);
     const user = await User.findOne({ email });
     assert.equal(await bcrypt.compare(passwords[results.findIndex(res => res.statusCode === 200)], user.password), true);

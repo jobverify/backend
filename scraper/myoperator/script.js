@@ -1,7 +1,7 @@
+import {runCurrentMyOperator} from './currentNative.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 import MYOPERATOR_CATALOG from './catalog.js'
 
@@ -15,8 +15,6 @@ export const PORTAL_URL = PROVIDER_METADATA.externalHandoffUrl
 export const JOBS_API_URL = PROVIDER_METADATA.jobsApiUrl
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
-
-const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
 
 const normalizeWhitespace = (value) => {
   const normalized = String(value ?? '').replace(/\s+/g, ' ').trim()
@@ -42,24 +40,6 @@ const getLocation = (record = {}) => [record.City, record.State, record.Country]
   .map(normalizeWhitespace)
   .filter(Boolean)
   .join(', ') || null
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: `${SOURCE}-html`,
-  timeoutMs: 15000,
-})
-
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json,text/plain,*/*',
-  },
-  label: `${SOURCE}-json`,
-  timeoutMs: 15000,
-})
 
 export const hasOfficialCareersSignal = (html = '') => {
   const page = String(html ?? '')
@@ -121,39 +101,7 @@ export const extractIndiaJobs = (payload) => (Array.isArray(payload?.data) ? pay
   })
   .filter(Boolean)
 
-export const createMyOperatorScraper = ({
-  now = () => new Date().toISOString(),
-} = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    fetchJson = defaultFetchJson,
-  } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('The verified MyOperator careers shell no longer matches the trusted first-party surface')
-    }
-
-    const portalHtml = await fetchText(PORTAL_URL)
-    if (!hasOfficialPortalSignal(portalHtml)) {
-      throw new Error('The verified MyOperator portal no longer matches the trusted first-party Zoho surface')
-    }
-
-    const payload = await fetchJson(JOBS_API_URL)
-    if (payload?.code !== 'success' || !Array.isArray(payload?.data)) {
-      throw new Error('The verified MyOperator jobs API no longer returns the trusted public Zoho Recruit payload')
-    }
-
-    return extractIndiaJobs(payload).map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt: now(),
-      companyCareerPage: CAREERS_URL,
-      companyDomain: PROVIDER_METADATA.companyDomain,
-      atsPlatform: PROVIDER_METADATA.atsPlatform,
-    }))
-  },
-})
+export const createMyOperatorScraper = (defaults = {}) => ({run: (options = {}) => runCurrentMyOperator({...defaults,...options})})
 
 export const run = async (options = {}) => createMyOperatorScraper(options).run(options)
 

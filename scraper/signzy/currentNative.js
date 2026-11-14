@@ -5,6 +5,7 @@ import {readNativeDocument,extractActiveDescription} from '../../scraper-support
 import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 import {validateClientBinding} from './clientBinding.js'
 import config from './currentConfig.json' with {type:'json'}
+import {selectCurrentSignzyDeployment} from './deployment.js'
 
 const hash=value=>createHash('sha256').update(value).digest('hex')
 const clean=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
@@ -107,7 +108,7 @@ function validateDetail(html,role) {
 export async function run({fetchImpl=fetch,signal,onAudit,fetchText,fetchPage,fetchJson,maxPages,maxJobs}={}) {
   if(fetchText!==undefined||fetchPage!==undefined||fetchJson!==undefined)fail('legacy body-only transport is unsupported')
   if(maxPages!==undefined||maxJobs!==undefined)fail('inventory caps are unsupported')
-  const scope=createCurrentSourceScope({baselines:config.baselines,kekaRootUrl:root})
+  let deployment=config,scope=null
   const unreviewedStyles=new Set()
   let engineExpectedRaw=null
   const audit={source:'signzy',productionWrites:false,openingRecords:null,closingRecords:null,details:[],closingDetails:[],unresolvedNativeRoles:[],requests:[],clientBindings:[]}
@@ -118,20 +119,33 @@ export async function run({fetchImpl=fetch,signal,onAudit,fetchText,fetchPage,fe
     if(response.status!==200||response.url!==url)fail(`HTTP or redirect identity for ${url}`)
     const body=await response.text();signal?.throwIfAborted();timeout.throwIfAborted()
     audit.requests.push({url,status:response.status,responseUrl:response.url,sha256:hash(body)})
-    if(config.baselines[url])scope.observe(url,body)
-    if(config.baselines.$renderers[url]){
-      scope.observeRenderer(url,body)
-      if(/\.css(?:\?|$)|fonts.googleapis.com\/css/.test(url)&&hash(body)!==config.baselines.$renderers[url])unreviewedStyles.add(url)
+    if(scope&&deployment.baselines[url])scope.observe(url,body)
+    if(deployment.baselines.$renderers[url]){
+      scope?.observeRenderer(url,body)
+      if(/\.css(?:\?|$)|fonts.googleapis.com\/css/.test(url)&&hash(body)!==deployment.baselines.$renderers[url])unreviewedStyles.add(url)
     }
     return body
   }
   const assets=async()=>{
     const bodies=new Map()
-    for(const url of config.assets)bodies.set(url,await request(url))
+    // Independent public assets have no ordering dependency. Keep every
+    // reviewed byte/renderer check and both complete asset inventories, while
+    // bounding public read concurrency below the runner's source deadline.
+    for(let offset=0;offset<deployment.assets.length;offset+=4){
+      const urls=deployment.assets.slice(offset,offset+4)
+      const results=await Promise.allSettled(urls.map(async url=>[url,await request(url)]))
+      for(const result of results)if(result.status==='fulfilled')bodies.set(...result.value)
+      const failure=results.find(result=>result.status==='rejected')
+      if(failure)throw failure.reason
+    }
     return bodies
   }
-  const corporate=await request(config.officialUrl),openingAssets=await assets()
-  audit.clientBindings.push(validateClientBinding({corporateHtml:corporate,routeBody:openingAssets.get(config.routeUrl),bridgeBody:openingAssets.get(config.bridgeUrl)}))
+  const corporate=await request(config.officialUrl)
+  deployment=selectCurrentSignzyDeployment(corporate)
+  scope=createCurrentSourceScope({baselines:deployment.baselines,kekaRootUrl:root})
+  scope.observe(config.officialUrl,corporate)
+  const openingAssets=await assets()
+  audit.clientBindings.push(validateClientBinding({corporateHtml:corporate,routeBody:openingAssets.get(deployment.routeUrl),bridgeBody:openingAssets.get(deployment.bridgeUrl)},deployment))
   const shellUrl=root.slice(0,-1),shell=await request(shellUrl)
   const shellDoc=readNativeDocument(shell)
   const declarations=shellDoc.nodes(n=>n.tag==='script'&&!n.attrs.src).flatMap(n=>[...(n.raw||'').matchAll(/fetch\(\s*['"]([^'"]+careerportal\/[^'"]+\.html)['"]/g)].map(m=>new URL(m[1],shellUrl).href))
@@ -184,7 +198,7 @@ export async function run({fetchImpl=fetch,signal,onAudit,fetchText,fetchPage,fe
     if(!job.sourceDetailComplete)job.sourceDetailFailureKind=native.unresolved.length?'unreviewed-native-schema':'limited-source-content'
   }
   const closingCorporate=await request(config.officialUrl),closingAssets=await assets()
-  audit.clientBindings.push(validateClientBinding({corporateHtml:closingCorporate,routeBody:closingAssets.get(config.routeUrl),bridgeBody:closingAssets.get(config.bridgeUrl)}))
+  audit.clientBindings.push(validateClientBinding({corporateHtml:closingCorporate,routeBody:closingAssets.get(deployment.routeUrl),bridgeBody:closingAssets.get(deployment.bridgeUrl)},deployment))
   const closingPortal=await request(config.portalDocumentUrl)
   if(!hasLiteralActiveKekaConfiguration(closingPortal,config))fail('closing native configuration is inactive')
   const closingShell=await request(shellUrl)

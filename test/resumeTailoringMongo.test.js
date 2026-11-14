@@ -33,10 +33,10 @@ test('saved-job tailoring persists, isolates owners, retries and rejects stale g
   const jobId = new mongoose.Types.ObjectId();
   const owner = { _id: user };
   const job = String(jobId);
-  await User.collection.insertMany([{ _id: user, email: 'asha@example.test', role: 'user', sessionVersion: 0, savedJobs: [jobId] }, { _id: other, email: 'other@example.test', role: 'user', sessionVersion: 0, savedJobs: [] }]);
+  await User.collection.insertMany([{ _id: user, email: 'asha@example.test', role: 'user', sessionVersion: 0, resumeFeaturesAllowed: true, savedJobs: [jobId] }, { _id: other, email: 'other@example.test', role: 'user', sessionVersion: 0, resumeFeaturesAllowed: true, savedJobs: [] }]);
   await Job.collection.insertOne({ _id: jobId, title: 'React Engineer', company: 'Example', location: 'Pune, India', isPublicIndia: true, jobType: 'Full-time Experienced', status: 'active', description: 'Build React applications.', fingerprint: 'tailoring-job' });
   let dispatched = 0;
-  const options = { dispatch: async () => { dispatched++; } };
+  const options = { processingConsent: { version: '2026-11-14', accepted: true }, dispatch: async () => { dispatched++; } };
   await assert.rejects(requestTailoredResume({ _id: other }, job, options), /saved job/i);
   await assert.rejects(requestTailoredResume(owner, job, options), /upload.*resume/i);
   await assert.rejects(getTailoredResume(owner, 'invalid'), /job ID/i);
@@ -126,7 +126,7 @@ test('saved-job tailoring persists, isolates owners, retries and rejects stale g
       dispatches++;
       return { ok: true, status: 204 };
     });
-    const queued = await requestTailoredResume(owner, job, { regenerate: true });
+    const queued = await requestTailoredResume(owner, job, { regenerate: true, processingConsent: { version: '2026-11-14', accepted: true } });
     assert.equal(queued.status, 'queued');
     assert.equal(dispatches, 1);
     await drainTailoredResumes({ generate: async () => output });
@@ -141,7 +141,7 @@ test('saved-job tailoring persists, isolates owners, retries and rejects stale g
   const { token: csrf } = await csrfResponse.json();
   const cookie = csrfResponse.headers.getSetCookie().map(value => value.split(';')[0]).join('; ');
   const request = (suffix = '', { method = 'GET', identity = user, withCsrf = true } = {}) => fetch(`${base}/api/user/tailored-resumes/${job}${suffix}`, { method,
-    headers: { Origin: process.env.CORS_ORIGIN, Cookie: cookie, 'Content-Type': 'application/json', ...(identity ? { Authorization: `Bearer ${jwt.sign({ id: String(identity), sessionVersion: 0 }, process.env.JWT_SECRET)}` } : {}), ...(withCsrf ? { 'X-CSRF-Token': csrf } : {}) }, ...(method === 'POST' ? { body: '{}' } : {}) });
+    headers: { Origin: process.env.CORS_ORIGIN, Cookie: cookie, 'Content-Type': 'application/json', ...(identity ? { Authorization: `Bearer ${jwt.sign({ id: String(identity), sessionVersion: 0 }, process.env.JWT_SECRET)}` } : {}), ...(withCsrf ? { 'X-CSRF-Token': csrf } : {}) }, ...(method === 'POST' ? { body: JSON.stringify({ processingConsent: { version: '2026-11-14', accepted: true } }) } : {}) });
   assert.equal((await request('', { identity: null })).status, 401);
   assert.equal((await request('', { identity: other })).status, 404);
   assert.equal((await request('', { method: 'POST', withCsrf: false })).status, 403);

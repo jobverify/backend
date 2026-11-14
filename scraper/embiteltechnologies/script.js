@@ -39,6 +39,19 @@ const hasLink = (html, expected) => [...String(html).matchAll(/(?:href|src)=["']
 const indiaCity = location => /\bBangalore\b|\bBengaluru\b|^BLR-/i.test(location) ? 'Bangalore'
   : /\bPune\b/i.test(location) ? 'Pune' : null
 const validateHandoff = payload => {
+  // This is the first-party publisher reporting its own declared jobs service
+  // connection failure. It supplies neither an employer handoff nor inventory.
+  if (payload?.success === false && typeof payload.data === 'string' && payload.data.length <= 512
+    && /^cURL error 7: Failed to connect to wdhub\.embitel\.in port 443 after \d+ ms: Connection refused$/.test(payload.data)) {
+    throw Object.assign(new Error('Embitel first-party jobs service unavailable: ' + payload.data), {
+      code: 'EMBITEL_HANDOFF_UPSTREAM_UNAVAILABLE', softFailure: true, upstreamOutage: true,
+      failureKind: 'upstream_unavailable', abortRetries: true, requestUrl: JOBS_API_URL,
+      upstreamService: 'wdhub.embitel.in', upstreamCode: 7, upstreamMessage: payload.data,
+      sourceScopeComplete: false, sourceListingComplete: false, lifecycleCleanupAllowed: false,
+      recruitmentObservations: { source: SOURCE, surface: JOBS_API_URL, upstreamService: 'wdhub.embitel.in',
+        nativeHandoffResponse: structuredClone(payload), sourceScopeComplete: false, lifecycleCleanupAllowed: false },
+    })
+  }
   if (payload?.success !== true || !Array.isArray(payload.data) || !payload.data.length) fail('missing first-party Workday employer handoff')
   // This cached first-party list is identity evidence, not a current inventory:
   // live audit found 41 absent requisitions and 12 current roles missing from it.

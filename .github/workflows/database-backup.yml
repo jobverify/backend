@@ -1,0 +1,70 @@
+name: Encrypted database backup and restore drill
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 20 * * *' # 02:00 Asia/Kolkata, daily
+
+permissions:
+  contents: read
+
+concurrency:
+  group: database-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    # Configure the protected backups environment before enabling this variable.
+    if: vars.JOBVERIFY_BACKUPS_ENABLED == 'true'
+    environment: backups
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      BACKUP_TOOLS_CONTAINER: 'true'
+    services:
+      restore-mongo:
+        image: mongo:8.2.6
+        ports:
+          - 127.0.0.1:27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'quit(db.adminCommand({ping:1}).ok ? 0 : 1)'"
+          --health-interval 10s --health-timeout 5s --health-retries 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check backup safety rules
+        run: python test/databaseBackup_test.py
+      - name: Check the official Mongo tools image and local encryption tool
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker image inspect mongo:8.2.6 > /dev/null
+          command -v gpg
+      - name: Create an encrypted full application-database dump
+        env:
+          BACKUP_MONGO_URI: ${{ secrets.BACKUP_MONGO_URI }}
+          BACKUP_ENCRYPTION_PASSPHRASE: ${{ secrets.BACKUP_ENCRYPTION_PASSPHRASE }}
+        run: python scripts/databaseBackup.py backup --output "$RUNNER_TEMP/jobverify-backups"
+      - name: Restore only into the disposable local service and check every dumped collection
+        env:
+          BACKUP_ENCRYPTION_PASSPHRASE: ${{ secrets.BACKUP_ENCRYPTION_PASSPHRASE }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          archives=("$RUNNER_TEMP"/jobverify-backups/*.tar.gpg)
+          test "${#archives[@]}" -eq 1
+          python scripts/databaseBackup.py restore --archive "${archives[0]}"
+      - name: Store only encrypted, restore-verified backups outside MongoDB
+        uses: actions/upload-artifact@v7
+        with:
+          name: database-backup-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/jobverify-backups/*.tar.gpg
+            ${{ runner.temp }}/jobverify-backups/*.sha256
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30

@@ -104,45 +104,7 @@ const officialCareersHtml = `
 </html>
 `
 
-const officialCareersUsOnlyHtml = `
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <title>Careers at NexTurn | Build the Future with Innovation &amp; Purpose</title>
-    <link rel="canonical" href="https://nexturn.com/careers/" />
-    <meta property="og:site_name" content="NexTurn" />
-  </head>
-  <body>
-    <main>
-      <h1>Dream Big. Build Bold. Grow Limitlessly.</h1>
-      <h2 class="mb-4 section-title pb-3">Current Positions Available</h2>
-      <div class="row g-4">
-        <div class="col-12 col-md-6 job_post_thumb" id="job_post_thumb_24">
-          <div class="job-card">
-            <h3 class="whitecard-heading">Salesforce Business Analyst</h3>
-            <p class="job-subtitle">USA, King of Prussia, PA (Hybrid)</p>
-            <div class="mb-3 card-text-medium">
-              <strong class="job-subtitle">Work Experience:</strong>
-              12+ Years
-            </div>
-            <div class="mb-3 card-text-medium">
-              <strong class="job-subtitle">Qualifications:</strong>
-              Bachelor's degree in Computer Science, Engineering, Information Systems, or a related field.
-            </div>
-            <div class="my-4">
-              <strong class="job-subtitle">Job Description:</strong>
-              <p class="card-text-medium">
-                Collaborate with US-based stakeholders to deliver Salesforce business analysis programs.
-              </p>
-            </div>
-            <a href="https://nexturn.com/job/salesforce-business-analyst/" class="job-apply-btn mb-4">Apply</a>
-          </div>
-        </div>
-      </div>
-    </main>
-  </body>
-</html>
-`
+
 
 const verifiedAug32026HomepageHtml = `
 <!doctype html>
@@ -305,27 +267,7 @@ const sapConsultantDetailHtml = `
 </html>
 `
 
-const usBusinessAnalystDetailHtml = `
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <title>Salesforce Business Analyst - NexTurn</title>
-    <link rel="canonical" href="https://nexturn.com/job/salesforce-business-analyst/" />
-    <meta property="og:site_name" content="NexTurn" />
-  </head>
-  <body>
-    <a href="https://nexturn.com/careers/">Back to Career</a>
-    <h1>Salesforce Business Analyst</h1>
-    <p>Location: USA, King of Prussia, PA (Hybrid)</p>
-    <p>Work Experience: 12+ Years</p>
-    <p>Requirements: Collaborate with US-based stakeholders to define Salesforce delivery programs.</p>
-    <p>Qualifications: Bachelor's degree in Computer Science, Engineering, Information Systems, or a related field.</p>
-    <p>Job Description: Gather requirements and deliver business analysis for Salesforce programs.</p>
-    <a href="#application-form">Apply</a>
-    <section>Job Application Form</section>
-  </body>
-</html>
-`
+
 
 const loadNexTurnModule = async () => {
   try {
@@ -418,178 +360,17 @@ test('NexTurn accepts its known origin canonical only for the matching official 
   assert.equal(nexturn.hasOfficialJobDetailSignal(unrelated, sourceUrl), false)
 })
 
-test('NexTurn run validates the official surfaces, fetches same-domain India detail pages, and skips explicit US jobs', async () => {
+test('NexTurn acquisition requires original HTTP metadata rather than body-only callbacks', async () => {
   const nexturn = await loadNexTurnModule()
-  const requestedUrls = []
-
-  const jobs = await nexturn.createNexTurnScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === nexturn.HOMEPAGE_URL) return officialHomepageHtml
-      if (url === nexturn.CAREERS_URL) return officialCareersHtml
-      if (url === 'https://nexturn.com/job/java-linux-admin/') return javaLinuxAdminDetailHtml
-      if (url === 'https://nexturn.com/job/sap-techno-functional-consultant/') {
-        return sapConsultantDetailHtml
-      }
-      if (url === 'https://nexturn.com/job/salesforce-business-analyst/') {
-        return usBusinessAnalystDetailHtml
-      }
-
-      throw new Error(`Unexpected NexTurn URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    'https://nexturn.com/',
-    'https://nexturn.com/careers/',
-    'https://nexturn.com/job/java-linux-admin/',
-    'https://nexturn.com/job/sap-techno-functional-consultant/',
-  ])
-
-  assert.equal(jobs.length, 2)
-  assert.deepEqual(
-    jobs.map((job) => ({
-      title: job.title,
-      location: job.location,
-      city: job.city,
-      sourceUrl: job.sourceUrl,
-      applyUrl: job.applyUrl,
-      jobId: job.jobId,
-      requisitionId: job.requisitionId,
-      minimumQualification: job.minimumQualification,
-      experienceRequired: job.experienceRequired,
-    })),
-    [
-      {
-        title: 'Java & Linux Admin',
-        location: 'India, Remote',
-        city: 'Remote',
-        sourceUrl: 'https://nexturn.com/job/java-linux-admin/',
-        applyUrl: 'https://nexturn.com/job/java-linux-admin/',
-        jobId: 'nexturn-java-linux-admin',
-        requisitionId: 'nexturn-java-linux-admin',
-        minimumQualification: "Bachelor's or Master's degree in Computer Science, Information Technology, or a related field.",
-        experienceRequired: '5+ Years',
-      },
-      {
-        title: 'SAP Techno-Functional Consultant',
-        location: 'Hyderabad (Hybrid)',
-        city: 'Hyderabad',
-        sourceUrl: 'https://nexturn.com/job/sap-techno-functional-consultant/',
-        applyUrl: 'https://nexturn.com/job/sap-techno-functional-consultant/',
-        jobId: 'nexturn-sap-techno-functional-consultant',
-        requisitionId: 'nexturn-sap-techno-functional-consultant',
-        minimumQualification: "Bachelor's or Master's degree in Computer Science, Information Technology, or a related field.",
-        experienceRequired: '5+ Years',
-      },
-    ],
-  )
-  assert.match(jobs[0].jobDescription, /Build and support enterprise Java applications/i)
-  assert.match(jobs[1].jobDescription, /Drive SAP integration delivery/i)
-  assert.match(jobs[0].scrapedAt, /^\d{4}-\d{2}-\d{2}T/)
+  let calls = 0
+  await assert.rejects(nexturn.createNexTurnScraper().run({fetchText: async () => {calls++;return officialCareersHtml}}), /Original HTTP metadata is required/)
+  assert.equal(calls, 0)
 })
 
-test('NexTurn returns an honest zero-job result when the verified public careers surface has no India roles', async () => {
+test('NexTurn retains the reviewed historical pure signal mappings', async () => {
   const nexturn = await loadNexTurnModule()
-  const requestedUrls = []
-
-  const jobs = await nexturn.createNexTurnScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === nexturn.HOMEPAGE_URL) return officialHomepageHtml
-      if (url === nexturn.CAREERS_URL) return officialCareersUsOnlyHtml
-      if (url === 'https://nexturn.com/job/salesforce-business-analyst/') {
-        return usBusinessAnalystDetailHtml
-      }
-
-      throw new Error(`Unexpected NexTurn URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    'https://nexturn.com/',
-    'https://nexturn.com/careers/',
-  ])
-  assert.deepEqual(jobs, [])
-})
-
-test('NexTurn fails closed when the homepage, careers page, or job detail surface changes', async () => {
-  const nexturn = await loadNexTurnModule()
-
-  await assert.rejects(
-    nexturn.createNexTurnScraper().run({
-      fetchText: async (url) =>
-        url === nexturn.HOMEPAGE_URL
-          ? '<html><title>Unexpected homepage</title></html>'
-          : officialCareersHtml,
-    }),
-    /NexTurn official homepage changed/i,
-  )
-
-  await assert.rejects(
-    nexturn.createNexTurnScraper().run({
-      fetchText: async (url) => {
-        if (url === nexturn.HOMEPAGE_URL) return officialHomepageHtml
-        return '<html><body><h1>Careers</h1></body></html>'
-      },
-    }),
-    /NexTurn official careers surface changed/i,
-  )
-
-  await assert.rejects(
-    nexturn.createNexTurnScraper().run({
-      fetchText: async (url) => {
-        if (url === nexturn.HOMEPAGE_URL) return officialHomepageHtml
-        if (url === nexturn.CAREERS_URL) return officialCareersHtml
-        return '<html><body><h1>Java & Linux Admin</h1></body></html>'
-      },
-    }),
-    /NexTurn official job detail surface changed/i,
-  )
-})
-
-test('NexTurn accepts the verified Friday, August 7, 2026 homepage canonical drift', async () => {
-  const nexturn = await loadNexTurnModule()
-
   assert.equal(nexturn.hasOfficialHomepageSignal(verifiedAug32026HomepageHtml), true)
   assert.equal(nexturn.hasOfficialHomepageSignal(verifiedAug72026HomepageHtml), true)
   assert.equal(nexturn.hasOfficialCareersSignal(verifiedAug32026CareersHtml), true)
   assert.equal(nexturn.hasOfficialJobDetailSignal(verifiedAug32026DetailHtml), true)
-
-  const jobs = await nexturn.createNexTurnScraper().run({
-    fetchText: async (url) => {
-      if (url === nexturn.HOMEPAGE_URL) return verifiedAug72026HomepageHtml
-      if (url === nexturn.CAREERS_URL) return verifiedAug32026CareersHtml
-      if (url === 'https://nexturn.com/job/staff-full-stack-engineer/') {
-        return verifiedAug32026DetailHtml
-      }
-
-      throw new Error(`Unexpected NexTurn URL: ${url}`)
-    },
-  })
-
-  assert.equal(jobs.length, 1)
-  assert.deepEqual(
-    jobs.map((job) => ({
-      title: job.title,
-      location: job.location,
-      city: job.city,
-      experienceRequired: job.experienceRequired,
-      minimumQualification: job.minimumQualification,
-      sourceUrl: job.sourceUrl,
-    })),
-    [
-      {
-        title: 'Staff Full Stack Engineer',
-        location: 'India, Hyderabad (Hybrid + Remote)',
-        city: 'Hyderabad',
-        experienceRequired: '8+ Years',
-        minimumQualification: "Bachelor's or Master's degree in Computer Science, Information Technology, or a related field.",
-        sourceUrl: 'https://nexturn.com/job/staff-full-stack-engineer/',
-      },
-    ],
-  )
-  assert.match(jobs[0].jobDescription, /Platform Evolution/i)
 })

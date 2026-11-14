@@ -1,7 +1,7 @@
 import{createHash}from'node:crypto'
 import{activeHead,activeScripts,readNativeDocument}from'../../scraper-support/utils/activeNativeHtml.js'
 import{attachInventoryEvidence}from'../../scraper-support/utils/inventoryEvidence.js'
-import{readAixNativeInit}from'../bounteous/nativeScriptContract.js'
+import{readAixNativeInit}from'./nativeInit.js'
 import{assertNoPositiveAixInventory,readPositiveAixPage,readPositiveAixRole}from'./positiveAix.js'
 export const CURRENT_CAREERS='https://www.airindiaexpress.com/careers'
 const ROOT_MODEL='https://www.airindiaexpress.com/content/airindiaexpress/en.model.json',PAGE_MODEL='https://www.airindiaexpress.com/content/airindiaexpress/en/careers.model.json'
@@ -99,7 +99,7 @@ export async function runCurrentAix(options={}){
   observations:responses,failures:[],excludedRoles:closingRoles.filter(role=>role.excluded).map(role=>({publicId:role.state.publicId,reason:role.reason})),reason:isZero
    ?'Only current corporate-declared AIX brand public unfiltered board is explicitly zero in both native reads. Other recruitment channels/company-wide absence/lifecycle cleanup remain unproved.'
    :'Current corporate-declared AIX brand pagination, role IDs, explicit employer, canonical/apply identity, typed countries and full posting details reconcile across closing reads. Company-wide scope, other channels and lifecycle cleanup remain unproved.'}
- attachInventoryEvidence(jobs,{firstParty:true,surface:AIX_SEARCH,status:isZero?'verified-empty':'coverage-gap',listingComplete:isZero,pagesFetched:responses.length,reportedTotal:isZero?0:null,indiaFacetCount:isZero?0:null,verifiedAt:new Date().toISOString(),reason:audit.reason})
+ attachInventoryEvidence(jobs,{firstParty:true,surface:AIX_SEARCH,status:isZero?'verified-empty':'coverage-gap',listingComplete:isZero,lifecycleCleanupAllowed:false,pagesFetched:responses.length,reportedTotal:isZero?0:null,indiaFacetCount:isZero?0:null,verifiedAt:new Date().toISOString(),reason:audit.reason})
  if(options.onAudit)await wait(Promise.resolve().then(()=>options.onAudit(audit)))
  signal.throwIfAborted();return jobs
 }

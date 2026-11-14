@@ -35,5 +35,9 @@ export const explainPublishingGap = (row, { now = new Date(), maxAgeHours = 48 }
     && row.inventoryDelegation.publicChildSources.length > 0) return 'delegated-inventory-published-under-other-sources'
   if (row.savedJobs > 0) return 'saved-jobs-not-public-rule-inspection-required'
   if (row.attemptFresh && row.runtimeOutcome === 'verified-zero') return 'no-india-roles-on-checked-surface'
+  if (row.attemptFresh && row.completeSuccessfulCheck === true && row.runtimeOutcome === 'no-india-jobs'
+    && row.indiaJobs === 0 && isFreshCompleteInventoryEvidence(row.inventoryEvidence, { now, maxAgeHours })) {
+    return 'no-india-roles-on-checked-surface'
+  }
   return 'fresh-extraction-evidence-unavailable'
 }

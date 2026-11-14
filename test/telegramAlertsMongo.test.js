@@ -68,7 +68,7 @@ test('Telegram alert delivery through matching, durable scheduling and provider 
     await JobAlertDelivery.updateMany({}, { $set: { scheduledFor: new Date(0) } });
     await recoverQueuedJobAlerts();
     assert.equal(requests.length, 3);
-    for (const listing of jobs) assert.equal(requests.filter(payload => payload.text.includes(listing.sourceUrl)).length, 1);
+    for (const listing of jobs) assert.equal(requests.filter(payload => payload.text.includes(`https://jobs.example.test/jobs/${listing._id}`)).length, 1);
     assert.equal(await JobAlertDelivery.countDocuments(), 0);
   });
 
@@ -82,7 +82,7 @@ test('Telegram alert delivery through matching, durable scheduling and provider 
     await JobAlertDelivery.updateMany({}, { $set: { scheduledFor: new Date(0) } });
     await recoverQueuedJobAlerts();
     assert.equal(requests.length, 1);
-    assert.equal(requests[0].text, `${listing.title} at ${listing.company}\n${listing.sourceUrl}`);
+    assert.equal(requests[0].text, `${listing.title} at ${listing.company}\nhttps://jobs.example.test/jobs/${listing._id}`);
   });
 
   await t.test('a scheduled send drains more than one recovery page in the same run', async st => {
@@ -141,8 +141,8 @@ test('Telegram alert delivery through matching, durable scheduling and provider 
       const body = requests[index].text;
       assert.ok(body.length <= 4096);
       assert.ok(body.startsWith(`📌 Example is hiring ${item.title}\n`));
-      assert.ok(body.includes(item.sourceUrl));
-      for (const other of jobs) if (other.id !== item.id) assert.equal(body.includes(other.sourceUrl), false);
+      assert.ok(body.includes(`https://jobs.example.test/jobs/${item._id}`));
+      for (const other of jobs) if (other.id !== item.id) assert.equal(body.includes(`https://jobs.example.test/jobs/${other._id}`), false);
     }
     assert.equal((await User.findById(owner._id)).premium.telegramAlertsEnabled, true);
     assert.equal(await JobAlertDelivery.countDocuments(), 0);

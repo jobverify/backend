@@ -34,7 +34,7 @@ test('browser and token privilege flags cannot override the current stored user'
   const { default: jwt } = await import('jsonwebtoken');
   const { protect, authorize } = await import('../src/middleware/authMiddleware.js');
   const { getEffectiveAccess } = await import('../src/utils/accessControl.js');
-  const user = { _id: 'owner', role: 'user', accessRole: 'free_user', sessionVersion: 0, premium: { planId: 'free', status: 'inactive' } };
+  const user = { _id: 'owner', role: 'user', isVerified: true, accessRole: 'free_user', sessionVersion: 0, premium: { planId: 'free', status: 'inactive' } };
   t.mock.method(User, 'findById', () => ({ select: async () => user }));
   t.mock.method(BlacklistedToken, 'findOne', async () => null);
   const flags = { role: 'admin', isPro: true, isPremium: true, permissions: ['*'], accessRole: 'yearly_premium_user' };

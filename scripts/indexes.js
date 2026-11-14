@@ -19,6 +19,8 @@ const { default: Job } = await import("../src/models/Job.js");
 const { default: JobAlertOutbox } = await import('../src/models/JobAlertOutbox.js');
 const { default: JobAlertDelivery } = await import('../src/models/JobAlertDelivery.js');
 const { default: User } = await import("../src/models/User.js");
+const { default: AppleAuthChallenge } = await import('../src/models/AppleAuthChallenge.js');
+const { default: AppleTokenRevocation } = await import('../src/models/AppleTokenRevocation.js');
 const { default: Click } = await import("../src/models/Click.js");
 const { default: Subscription } = await import("../src/models/Subscription.js");
 const { default: AdminAudit } = await import("../src/models/AdminAudit.js");
@@ -27,6 +29,7 @@ const { default: BlacklistedToken } = await import("../src/models/BlacklistedTok
 const { default: JobDatasetSummary } = await import("../src/models/JobDatasetSummary.js");
 const { default: ScraperRun } = await import("../src/models/ScraperRun.js");
 const { default: UserSuggestion } = await import("../src/models/UserSuggestion.js");
+const { default: ContentReport } = await import('../src/models/ContentReport.js');
 const { default: HiringObservation } = await import('../src/models/HiringObservation.js');
 const { default: Application } = await import('../src/models/Application.js');
 const { default: ApplicationEvent } = await import('../src/models/ApplicationEvent.js');
@@ -55,6 +58,8 @@ const MODELS = [
   ['JobAlertOutbox', JobAlertOutbox],
   ['JobAlertDelivery', JobAlertDelivery],
   ["User", User],
+  ['AppleAuthChallenge', AppleAuthChallenge],
+  ['AppleTokenRevocation', AppleTokenRevocation],
   ["Click", Click],
   ["Subscription", Subscription],
   ["AdminAudit", AdminAudit],
@@ -63,6 +68,7 @@ const MODELS = [
   ["JobDatasetSummary", JobDatasetSummary],
   ["ScraperRun", ScraperRun],
   ["UserSuggestion", UserSuggestion],
+  ['ContentReport', ContentReport],
   ['HiringObservation', HiringObservation],
   ['Application', Application],
   ['ApplicationEvent', ApplicationEvent],

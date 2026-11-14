@@ -52,7 +52,10 @@ function revealStream(d,html){
    need(data.type==='ArrayExpression'&&data.elements.length===2&&data.elements[0].type==='Literal'&&data.elements[0].value===1&&data.elements[1].type==='Literal'&&typeof data.elements[1].value==='string','native flight data must be literal-only')
   }else hashes.push(createHash('sha256').update(raw).digest('hex'))
  }
- need(isDeepStrictEqual(hashes,revealProfile.inlineProgramSHA256)&&inline.filter(n=>n.raw===revealProfile.revealCall).length===1,'current executable reveal program set changed')
+ // Only the two complete observed orders are reviewed. Do not sort programs:
+ // the reveal definition must still precede its call and every occurrence counts.
+ const reviewedOrders=[revealProfile.inlineProgramSHA256,...(revealProfile.additionalInlineProgramSHA256Orders??[])]
+ need(reviewedOrders.some(order=>isDeepStrictEqual(hashes,order))&&inline.filter(n=>n.raw===revealProfile.revealCall).length===1,'current executable reveal program set changed')
  need(programs.some(n=>createHash('sha256').update(n.raw??'').digest('hex')===revealProfile.revealProgramSHA256),'reviewed native reveal routine missing')
  const projected=structuredClone(source)
  const unhide=(n,parentInert=false)=>{

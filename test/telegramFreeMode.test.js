@@ -8,13 +8,16 @@ import BlacklistedToken from '../src/models/BlacklistedToken.js';
 import SiteSettings from '../src/models/SiteSettings.js';
 import TelegramLinkToken from '../src/models/TelegramLinkToken.js';
 import Subscription from '../src/models/Subscription.js';
+import { mockActiveAccountWrites } from './helpers/activeAccountWriteDoubles.js';
 
 process.env.JWT_SECRET = 'telegram-free-mode-test-secret-at-least-32-characters';
 const { default: userRoutes } = await import('../src/routes/userRoutes.js');
 
 test('Telegram routes support linking, settings and schedules for free members only in free site mode', async t => {
+  mockActiveAccountWrites(t);
   const user = new User({
     email: 'telegram-free@example.test', password: 'hashed-password',
+    isVerified: true,
     telegram: { chatId: '123', linkedAt: new Date() },
     profile: { telegramAlertFilters: { company: ['Example'] } },
   });

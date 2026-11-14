@@ -72,12 +72,22 @@ const createProviderConfigurationError = () => new PaymentProviderError(
   "Payment provider is not configured.",
 );
 
+const requireProductionRazorpay = ({ checkout = false } = {}) => {
+  if (String(process.env.NODE_ENV || '').trim().toLowerCase() !== 'production') return;
+  if (!/^rzp_live_[A-Za-z0-9]+$/.test(process.env.RAZORPAY_KEY_ID || '')
+    || !String(process.env.RAZORPAY_KEY_SECRET || '').trim()
+    || (checkout && !String(process.env.RAZORPAY_WEBHOOK_SECRET || '').trim())) {
+    throw createProviderConfigurationError();
+  }
+};
+
 export const createRazorpayProvider = ({
   createClient = (options) => new Razorpay(options),
   fetchImpl = globalThis.fetch,
 } = {}) => ({
   name: "razorpay",
   async createCheckoutOrder({ purchase, planConfig, user }) {
+    requireProductionRazorpay({ checkout: true });
     const keyId = process.env.RAZORPAY_KEY_ID;
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
     if (!keyId || !keySecret) {
@@ -127,6 +137,7 @@ export const createRazorpayProvider = ({
     };
   },
   async fetchPayment({ providerPaymentId }) {
+    requireProductionRazorpay();
     const keyId = process.env.RAZORPAY_KEY_ID;
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
     if (!keyId || !keySecret) throw createProviderConfigurationError();
@@ -145,6 +156,7 @@ export const createRazorpayProvider = ({
     }
   },
   verifyPayment({ providerOrderId, providerPaymentId, providerSignature }) {
+    requireProductionRazorpay();
     const keySecret = process.env.RAZORPAY_KEY_SECRET;
     if (!keySecret) {
       throw createProviderConfigurationError();

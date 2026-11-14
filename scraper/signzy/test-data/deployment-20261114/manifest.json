@@ -1,0 +1,271 @@
+{
+  "source": "signzy",
+  "description": "Current first-party corporate deployment and all declared assets were fetched by public GET. Complete career route and NextScript bridge are byte-identical to the prior reviewed programs; native assets keep their original baselines. Public bodies retained in assets.json.gz; Response text decoding removes any UTF8 BOM.",
+  "captureDirectory": "signzy-baseline plus signzy-current-assets.receipts.json",
+  "assets": [
+    {
+      "requestedUrl": "https://www.signzy.com/careers",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/careers",
+      "sha256": "484c75aaa40efc93aec871abd4685e79577bac4918d7ee30997fd5158d2f4f81"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/main-app-b01f89e7993fba8d.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/main-app-b01f89e7993fba8d.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "cd99875f1c5edbb4add8ea909ffa8a33a749d8929f705ce748492c7a82fd74ce"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/4672-83f055d2f357f52f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/4672-83f055d2f357f52f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "f5f1a0b663365cb6a7903caed50d5a39cb3195f04b86c6134ab621e1b85b4d56"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/66292bb8-2c4cf67ededb555e.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/66292bb8-2c4cf67ededb555e.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "a61ed1711b8a332775199ee99749cda87c77787bf8d2e4e578efa61225b3f96c"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/2630-e086bcee3b2bfc1f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/2630-e086bcee3b2bfc1f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "5f5ffc3e7c20c7299afa185d01dfc82a520a25377ee8ca6401583e299f2b2858"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/1775-381ac64479f35059.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/1775-381ac64479f35059.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "df7cfa7d38c5b2976f0c5dc04357b4c132ebf7bd92ae9c9d3d1a2845912c1a22"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/2349-d586ae0e704a2b3f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/2349-d586ae0e704a2b3f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "b42265ee2b9714f4b822871a4d3868ae619402ec790b6a742209366b7c2f0fd4"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/careers/page-44158628e6d772d3.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/careers/page-44158628e6d772d3.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "04ffea217e72a90397cdccab93bc6735497f9328126e1eeb5116d8b3056c19cd"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/7957-083c9e333791fe73.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/7957-083c9e333791fe73.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "c85ff07be8ccd467160fc4eb745b8af25e61cc02e46499c8e2adf885e29bdbf1"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/5254-7c386ba737c880eb.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/5254-7c386ba737c880eb.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "da10862f14bad1c2e5662f553a0fbd361d7592295c00b5b26c61fc3f29aa368c"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/435-94bca03f1a8c801b.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/435-94bca03f1a8c801b.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "6e4b23d522ff518812332ed9499c2fe8f36d6325b688b8446c876d35438c0ea3"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/1115-746b598837f2567d.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/1115-746b598837f2567d.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "7c96f99bdd6682607a087137d5b11fddbc0e2e1f8e63ebd01e5dd20a80f8e7d0"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/1455-aa6ee14fbdca0af0.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/1455-aa6ee14fbdca0af0.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "01eb41c4f4ccdd44fa0e46c6759db917c0e6cc1f7f4bd8eed5722f50c49d6ab5"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/4644-71b85976b0707cb8.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/4644-71b85976b0707cb8.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "31450db15d09d55fdd40c7387b1fe8a636ca07a87b4c3c77e96d2691abd981db"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/layout-02409de202b5dd05.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/layout-02409de202b5dd05.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "4613b82f22f2f2c1ba1ebbd319a1c9a2c25bff0e66b581508d262c942e29a192"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/0b0944fb-90a0605b0ec9578f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/0b0944fb-90a0605b0ec9578f.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "bde041ad50f466a8b6a62513226a462d140c93b5f0615be672b1895ace4f10a9"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/app/layout-96b99cca4a00077a.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/app/layout-96b99cca4a00077a.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "42951ac665d62c1122c6e61146876e79d795df6a0d9bef9aaec708fcdc066308"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/page-e6877cc20b1699b7.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/page-e6877cc20b1699b7.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "831d6fb8b78b5c853c81fb65e684949d56b33634646512a509f3869144cac88c"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/719-ec477b5c4e10cec5.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/719-ec477b5c4e10cec5.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "9d4a0d62564335a4e725cf15d8807068b9d32c5a4716ce77f2dfc7975d61d1f9"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/polyfills-42372ed130431b0a.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/polyfills-42372ed130431b0a.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/(blog-listing)/layout-2785aee87f95f274.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/app/(frontend)/(blog-listing)/layout-2785aee87f95f274.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "1f04f74c83d58e7c5812026014161094d4476e79aae9d70b3b56832229089510"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/chunks/webpack-35832e21aef20912.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/chunks/webpack-35832e21aef20912.js?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "80d1e2d913de907aea5d2cafa5c72f5ab9e485bd73a44cf3f4085632e8428373"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/css/7e3d94ead5cd7a7b.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/css/7e3d94ead5cd7a7b.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "5c9dae59f73079ad4ba54c735eacff5a013dd19c54778e021ed14e9a77116e2a"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/css/0c4f482e0d20779c.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/css/0c4f482e0d20779c.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "c19ff237411b462c849c5eaf3eb83962cbc18a9eb44938f5d1bf80b894708c7a"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/css/5c9033ab8b96474a.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/css/5c9033ab8b96474a.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "82e95cd9bd7701489528e1976c44daaffbcb21db6b40c32f92b53d5d684d6c44"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/css/e24762243858d21f.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/css/e24762243858d21f.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "e41eacc9706fea00caff3fdcdda1550b93ad83655e7aa875dea44ebffd1ac377"
+    },
+    {
+      "requestedUrl": "https://www.signzy.com/_next/static/css/19f22c54d6830e8e.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "status": 200,
+      "finalUrl": "https://www.signzy.com/_next/static/css/19f22c54d6830e8e.css?dpl=dpl_2QWWHsgFY8JCznBCtwpQt3MCfo1A",
+      "sha256": "3fb2629bb24c6c8c872d6a0519f81bcad72bb71dc7665e1b3e6ed9cef775de37"
+    },
+    {
+      "requestedUrl": "https://signzy.keka.com/careers/api/embedjobs/js/54e30b3d-e138-4862-8055-8b2ce8c31009",
+      "status": 200,
+      "finalUrl": "https://signzy.keka.com/careers/api/embedjobs/js/54e30b3d-e138-4862-8055-8b2ce8c31009",
+      "sha256": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/shared/icons/1.0.16/keka-icons.css",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/shared/icons/1.0.16/keka-icons.css",
+      "sha256": "dce69c14c7f4fc5f20782247308ee49b7a969a3fdbf703e1b8b346fd383ca7f4"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/shared/careers-ui/0.0.8/dist/css/careers-ui.min.css",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/shared/careers-ui/0.0.8/dist/css/careers-ui.min.css",
+      "sha256": "4b3ceb40f184b74f4bc6261310d7f47e89bc2cff7314bf7dcc865986e1058ea0"
+    },
+    {
+      "requestedUrl": "https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Montserrat:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&family=Montserrat:wght@100;200;300;400;500;600;700&family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap",
+      "sha256": "0ff27b757ef67d32a42180d5319b998898fb8f6e830c96d2688e69e05da5e585"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/datepicker.css",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/datepicker.css",
+      "sha256": "25a11f6bb4b15800fb19219cfe9a143c8f5864ca0972822eb0ab71d65a26400a"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/css/bootstrap.css",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/css/bootstrap.css",
+      "sha256": "ddbf915b619044875fad3aa7813d60c0446caf53e8ff3f59a669b183f23c9e34"
+    },
+    {
+      "requestedUrl": "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap",
+      "status": 200,
+      "finalUrl": "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap",
+      "sha256": "b61f035517d57e3c2827595e875ac4f6b3f6fbe89201c4e1f1bfa574c8997ed8"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/select2/select2.min.css",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/select2/select2.min.css",
+      "sha256": "515e9ed5b42e14ccbc151927196cb58c9bb2246e67c3c6707251dd551aee4d7a"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.min.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.min.js",
+      "sha256": "ce9d07500ad91ec2b524c270764ec4c9a33e78320d8d374ec400ede488f6251b"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/theme.css",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/theme.css",
+      "sha256": "2907431ec7ff10bca6525f54c4a82a0e1efb792f0023dc6deae1767a8f6aa6e3"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.ui.widget.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.ui.widget.js",
+      "sha256": "309056eb88e06280afc04bdf04e6c4f56d6b71e1d4b33ea10315dbdff0e27ed8"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.fileupload.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.fileupload.js",
+      "sha256": "7bf41f6a3a5a7ae6117e58b8357847ce7f753c21755e8b625452e27355969f1b"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/modernizr-2.6.2.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/modernizr-2.6.2.js",
+      "sha256": "092eb6b28c378d7c7dc73637028706f2decb775f06103c425317057539f0321f"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/datepicker.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/datepicker.js",
+      "sha256": "0d56719afd995492ee408fc963265981baab53e9bb001df3a41b7fb4eda645d1"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.validate.min.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.validate.min.js",
+      "sha256": "a0c2a7a1d233e0904fc56dac825d2c939b934e2e8ea78bbed95b8998b8f42263"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/select2.min.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/lib/select2.min.js",
+      "sha256": "4154c46ec7be875ec7ff33453c62a7a5f591b7b6d93fb60cf5fc597768215e73"
+    },
+    {
+      "requestedUrl": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+      "status": 200,
+      "finalUrl": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+      "sha256": "e2585ba1c4a259792330b7524042e3376994836454234a6da414eb1eeaaf315f"
+    }
+  ]
+}

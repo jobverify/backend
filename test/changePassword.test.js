@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { passwordSafety } from '../src/services/passwordSafety.js';
+// These compatibility fixtures isolate the external password provider.
+test.beforeEach(t => { t.mock.method(passwordSafety, 'check', async () => {}); });
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator';
@@ -27,7 +30,7 @@ async function invoke(req, res) {
 }
 
 test('password change verifies the old password, hashes the replacement, clears reset links and renews the session', async (t) => {
-  const stored = { _id: 'user-id', role: 'user', password: await bcrypt.hash(oldPassword, 4), sessionVersion: 2 };
+  const stored = { _id: 'user-id', role: 'user', isVerified: true, password: await bcrypt.hash(oldPassword, 4), sessionVersion: 2 };
   t.mock.method(User, 'findById', async () => stored);
   let write;
   t.mock.method(User, 'findOneAndUpdate', async (filter, update) => {
@@ -50,7 +53,7 @@ test('password change verifies the old password, hashes the replacement, clears 
 
 for (const password of ['WrongPassword123', null]) {
   test(`password change rejects ${password ? 'incorrect old passwords' : 'accounts without a password'}`, async (t) => {
-    t.mock.method(User, 'findById', async () => ({ password: password ? await bcrypt.hash(oldPassword, 4) : null, sessionVersion: 2 }));
+    t.mock.method(User, 'findById', async () => ({ isVerified: true, password: password ? await bcrypt.hash(oldPassword, 4) : null, sessionVersion: 2 }));
     const write = t.mock.method(User, 'findOneAndUpdate', async () => assert.fail('Must not change password'));
     const res = response();
     await invoke(request({ oldPassword: password || oldPassword }), res);
@@ -73,7 +76,7 @@ for (const body of [{ confirmPassword: 'DifferentPassword123' }, { oldPassword: 
 }
 
 test('password change refuses a concurrent credential change', async (t) => {
-  t.mock.method(User, 'findById', async () => ({ password: await bcrypt.hash(oldPassword, 4), sessionVersion: 2 }));
+  t.mock.method(User, 'findById', async () => ({ isVerified: true, password: await bcrypt.hash(oldPassword, 4), sessionVersion: 2 }));
   t.mock.method(User, 'findOneAndUpdate', async () => null);
   const res = response();
   await invoke(request(), res);
@@ -83,12 +86,12 @@ test('password change refuses a concurrent credential change', async (t) => {
 
 test('password change accepts legacy accounts with a missing or null session version', async (t) => {
   const password = await bcrypt.hash(oldPassword, 4);
-  t.mock.method(User, 'findById', async () => ({ _id: 'user-id', role: 'user', password, sessionVersion: 0 }));
+  t.mock.method(User, 'findById', async () => ({ _id: 'user-id', role: 'user', isVerified: true, password, sessionVersion: 0 }));
   t.mock.method(User, 'findOneAndUpdate', async (filter, update) => {
     // MongoDB $in with null matches both explicit null and an absent field.
     assert.deepEqual(filter.sessionVersion, { $in: [0, null] });
     assert.equal(update.$set.sessionVersion, 1);
-    return { _id: 'user-id', role: 'user', sessionVersion: 1 };
+    return { _id: 'user-id', role: 'user', isVerified: true, sessionVersion: 1 };
   });
   const req = request();
   req.user.sessionVersion = 0;
@@ -108,7 +111,7 @@ test('password change route requires authentication', async () => {
 test('a password change revokes older sessions while the renewed session remains authorized', async (t) => {
   const { protect } = await import('../src/middleware/authMiddleware.js');
   t.mock.method(BlacklistedToken, 'findOne', async () => null);
-  t.mock.method(User, 'findById', () => ({ select: async () => ({ _id: 'user-id', sessionVersion: 3 }) }));
+  t.mock.method(User, 'findById', () => ({ select: async () => ({ _id: 'user-id', isVerified: true, sessionVersion: 3 }) }));
   for (const sessionVersion of [2, 3]) {
     const token = jwt.sign({ id: 'user-id', sessionVersion }, process.env.JWT_SECRET);
     const res = response();

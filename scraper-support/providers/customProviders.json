@@ -18539,20 +18539,6 @@
     "verifiedSurfaceSummary": "Verified on Friday, August 7, 2026 that https://www.juzgodigital.com/ remained JuzGoDigital Private Limited's first-party homepage and that its common same-domain careers routes such as https://www.juzgodigital.com/careers still returned a 403 AccessDenied response without exposing a trustworthy public jobs surface."
   },
   {
-    "source": "jyesta",
-    "companyName": "Jyesta Corporate Entity",
-    "adapter": "script",
-    "modulePath": "../jyesta/script.js",
-    "companyCareerPage": "https://www.jyesta.com/careers",
-    "atsPlatform": "official-company-careers",
-    "countryFilter": "India",
-    "paginationStrategy": "single-first-party-careers-page",
-    "extractionStrategy": "verified-first-party-careers-page+inline-job-cards+same-page-detail-toggles",
-    "parser": "custom-script",
-    "normalizationProfile": "engineering-default",
-    "companyDomain": "jyesta.com"
-  },
-  {
     "source": "jyoticncautomation",
     "companyName": "Jyoti CNC Automation Limited",
     "adapter": "script",
