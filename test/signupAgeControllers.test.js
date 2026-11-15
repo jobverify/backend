@@ -5,7 +5,7 @@ import nodemailer from 'nodemailer';
 import User from '../src/models/User.js';
 import PendingUser from '../src/models/PendingUser.js';
 import Challenge from '../src/models/AppleAuthChallenge.js';
-import { register, authenticateWithGoogle, verifyEmail } from '../src/controllers/authController.js';
+import { register, resendVerification, authenticateWithGoogle, verifyEmail } from '../src/controllers/authController.js';
 import { authenticateWithApple } from '../src/controllers/appleAuthController.js';
 import { googleIdentity } from '../src/utils/googleAuth.js';
 import { appleIdentity } from '../src/utils/appleAuth.js';
@@ -54,6 +54,34 @@ test('adult email signup retains the eligibility decision but never the birth da
   assert.equal(state.pending[0].ageEligibility.policyVersion, '2026-11-14');
   assert.ok(state.pending[0].ageEligibility.checkedAt instanceof Date);
   assert.equal(JSON.stringify(state.pending).includes(adult), false);
+});
+
+for (const action of [register, resendVerification]) test(`${action.name} verification links preserve a local job return path`, async t => {
+  const state = setup(t);
+  if (action === resendVerification) t.mock.method(PendingUser, 'findOneAndUpdate', async () => ({}));
+  const next = '/jobs/665f47f5f65f3f4d2e1d1001/frontend-engineer-example-corp?from=search';
+  await action({ body: { name: 'Apply Fixture', email: 'apply.fixture@gmail.com', dateOfBirth: adult, next } }, response());
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(state.mail.length, 1);
+  const link = new URL(state.mail[0].html.match(/href="([^"]+)"/)[1]);
+  assert.equal(link.origin, process.env.FRONTEND_ORIGIN);
+  assert.equal(link.pathname, '/verify-email');
+  assert.equal(link.searchParams.get('next'), next);
+  assert.ok(new URLSearchParams(link.hash.slice(1)).get('token'));
+});
+
+test('verification links never adopt an external return origin', async t => {
+  const state = setup(t);
+  for (const next of ['https://untrusted.example/path', '//untrusted.example/path', '/\\untrusted.example/path', 'x'.repeat(5000)]) {
+    await register({ body: { name: 'Apply Fixture', email: 'apply.fixture@gmail.com', dateOfBirth: adult, next } }, response());
+  }
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(state.mail.length, 4);
+  for (const message of state.mail) {
+    const link = new URL(message.html.match(/href="([^"]+)"/)[1]);
+    assert.equal(link.origin, process.env.FRONTEND_ORIGIN);
+    assert.equal(link.searchParams.get('next'), null);
+  }
 });
 
 for (const [dateOfBirth, expected] of [[undefined, 428], [tooYoung, 422], [adult, 200]]) {

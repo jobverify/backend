@@ -12,6 +12,7 @@ import TelegramChannelSchedule from '../src/models/TelegramChannelSchedule.js';
 import TelegramChannelDelivery from '../src/models/TelegramChannelDelivery.js';
 import AdminAudit from '../src/models/AdminAudit.js';
 import { DEFAULT_BROADCAST_TEMPLATE } from '../src/services/telegramBroadcastTemplate.js';
+import { stageTelegramChannelDeliveries } from '../src/services/telegramChannelService.js';
 
 process.env.JWT_SECRET = 'admin-broadcast-fixture-secret-at-least-32-characters';
 const { default: adminRoutes } = await import('../src/routes/adminRoutes.js');
@@ -30,12 +31,12 @@ test('admin owns separate Telegram broadcast configuration without member depend
     const response = await fetch(`http://127.0.0.1:${server.address().port}/api/admin/telegram-alerts${path}`, {
       method, headers: { ...(user ? { authorization: `Bearer ${jwt.sign({ id: String(user._id) }, process.env.JWT_SECRET)}` } : {}), 'content-type': 'application/json' },
       ...(body === undefined ? {} : { body: JSON.stringify(body) }),
-    }); return { status: response.status, body: await response.json() };
+    }); return { status: response.status, body: response.headers.get('content-type')?.includes('application/json') ? await response.json() : await response.text() };
   };
   const draft = { enabled: true, chatId: '@samplechannel', minIntervalMinutes: 20, maxIntervalMinutes: 30,
     matchAll: false, filters: { company: ['Example'] }, template: DEFAULT_BROADCAST_TEMPLATE, revision: 0 };
   assert.equal((await request(null)).status, 401);
-  for (const [path, method, body] of [['', 'GET'], ['/channel', 'PUT', draft], ['/preview', 'POST', { template: draft.template }], ['/logs', 'GET'], ['/channel/queue', 'DELETE']]) {
+  for (const [path, method, body] of [['', 'GET'], ['/channel', 'PUT', draft], ['/preview', 'POST', { template: draft.template }], ['/logs', 'GET'], ['/channel/queue', 'DELETE'], ['/channel/history', 'DELETE']]) {
     assert.equal((await request(member, path, method, body)).status, 403);
   }
   const initial = await request(admin); assert.equal(initial.status, 200);
@@ -52,7 +53,8 @@ test('admin owns separate Telegram broadcast configuration without member depend
   assert.equal(saved.body.data.filters.company[0], 'Example');
   assert.equal((await request(admin, '/channel', 'PUT', draft)).status, 409);
   assert.equal((await request(admin, '/group', 'PUT', { ...draft, chatId: '@samplechannel' })).status, 400);
-  const group = await request(admin, '/group', 'PUT', { ...draft, chatId: '-12345678', minIntervalMinutes: 45, maxIntervalMinutes: 45, matchAll: true });
+  const group = await request(admin, '/group', 'PUT', { ...draft, chatId: '-12345678', minIntervalMinutes: 45, maxIntervalMinutes: 45, matchAll: true,
+    postingWindows: [{ startTime: '00:00', endTime: '23:59' }] });
   assert.equal(group.status, 200);
   const preview = await request(admin, '/preview', 'POST', { template: '{company}\n{salary}\n{jobUrl}', sample: 'minimal' });
   assert.equal(preview.status, 200); assert.doesNotMatch(preview.body.data.text, /salary/i);
@@ -96,5 +98,36 @@ test('admin owns separate Telegram broadcast configuration without member depend
   await TelegramChannelSchedule.updateOne({ _id: '-12345678' }, { $set: { claimToken: 'posting', claimExpiresAt: new Date(Date.now() + 60000) } });
   assert.equal((await request(admin, '/group/queue', 'DELETE')).status, 409);
   assert.equal((await TelegramChannelDelivery.findById(other._id)).status, 'queued');
+
+  assert.equal((await request(null, '/channel/history', 'DELETE')).status, 401);
+  assert.equal((await request(admin, '/invalid/history', 'DELETE')).status, 400);
+  assert.equal((await request(admin, '/group/history', 'DELETE')).status, 409);
+  assert.equal((await TelegramChannelDelivery.findById(other._id)).status, 'queued');
+  await TelegramChannelSchedule.updateOne({ _id: '@updatedchannel' }, { $set: { lastSentAt: new Date() } });
+  await TelegramChannelDelivery.create({ channel: '@updatedchannel', destination: 'channel',
+    configRevision: 3, job: new mongoose.Types.ObjectId(), status: 'queued' });
+  await TelegramChannelDelivery.create({ channel: '@updatedchannel', job: new mongoose.Types.ObjectId(), status: 'uncertain' });
+  const beforeReset = await TelegramBroadcastSettings.findById('channel').lean();
+  const reset = await request(admin, '/channel/history', 'DELETE');
+  assert.equal(reset.status, 200);
+  assert.deepEqual(reset.body.data.destination.stats, {
+    queued: 0, sending: 0, sent: 0, skipped: 0, uncertain: 0, nextPostAt: null, lastSentAt: null,
+  });
+  assert.equal(await TelegramChannelDelivery.countDocuments({ destination: 'channel' }), 0);
+  assert.equal(await TelegramChannelDelivery.countDocuments({ channel: '@updatedchannel' }), 0);
+  assert.deepEqual((await request(admin, '/logs?destination=channel')).body.data, []);
+  assert.equal((await TelegramChannelDelivery.findById(other._id)).status, 'queued');
+  const afterReset = await TelegramBroadcastSettings.findById('channel').lean();
+  for (const key of ['enabled', 'chatId', 'revision', 'template']) assert.equal(afterReset[key], beforeReset[key]);
+  assert.equal(await AdminAudit.countDocuments({ action: 'telegram_broadcast_history_cleared' }), 1);
+  assert.equal((await request(admin, '/channel/history', 'DELETE')).status, 200);
+  await TelegramChannelSchedule.updateOne({ _id: '-12345678' }, { $set: { claimToken: null, claimExpiresAt: null } });
+  const resetGroup = await request(admin, '/group/history', 'DELETE');
+  assert.equal(resetGroup.status, 200);
+  assert.equal(resetGroup.body.data.destination.enabled, true);
+  assert.equal(resetGroup.body.data.destination.stats.nextPostAt, null);
+  await stageTelegramChannelDeliveries([{ _id: new mongoose.Types.ObjectId(), status: 'active', title: 'Software Engineer', company: 'Example' }]);
+  assert.equal(await TelegramChannelDelivery.countDocuments({ destination: 'group', status: 'queued' }), 1);
+  assert.ok((await TelegramChannelSchedule.findById('-12345678')).nextPostAt > new Date());
 
 });

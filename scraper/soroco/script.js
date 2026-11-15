@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentSoroco } from './currentNative.js'
 
 import SOROCO_CATALOG from './catalog.js'
 
@@ -17,8 +17,6 @@ export const VERIFIED_ON = SOROCO_CATALOG.verifiedOn
 export const COMPANY_DOMAIN = SOROCO_CATALOG.companyDomain
 export const PROVIDER_METADATA = SOROCO_CATALOG
 
-const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
-
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<[^>]+>/g, ' ')
   .replace(/&nbsp;/gi, ' ')
@@ -32,24 +30,6 @@ const slugify = (value) => normalizeWhitespace(value)
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-+|-+$/g, '')
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json,text/plain,*/*',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
 
 export const hasOfficialSorocoCareersSignal = (html) =>
   /<title>\s*Grow with Soroco\s*<\/title>/i.test(String(html))
@@ -78,6 +58,8 @@ const normalizeLocation = (record = {}) => {
   }
 }
 
+// Legacy discovery helpers remain available. Live output comes exclusively
+// from the current full original native-detail and closing qualification.
 export const extractIndiaJobsFromZohoPayload = (payload = {}) => (Array.isArray(payload?.data) ? payload.data : [])
   .filter((record) => /^india$/i.test(normalizeWhitespace(record?.Country) || ''))
   .map((record) => {
@@ -142,7 +124,7 @@ export const extractSorocoJobs = (html) => {
       department: null,
       location,
       city: /bangalore/i.test(location) ? 'Bangalore' : null,
-      country: /india|bangalore/i.test(location) ? 'India' : null,
+      country: /\bindia\b/i.test(location) ? 'India' : null,
       jobId: slugify(`${title}-${location}`),
       requisitionId: null,
       sourceUrl: resolvedUrl,
@@ -154,7 +136,8 @@ export const extractSorocoJobs = (html) => {
       requiredSkills: [],
       postingDate: null,
       closingDate: null,
-      jobDescription: `${title} - ${location}`,
+      jobDescription: null,
+      sourceDetailComplete: false,
       remoteStatus: null,
     })
   }
@@ -163,47 +146,7 @@ export const extractSorocoJobs = (html) => {
 }
 
 export const createSorocoScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchText = defaultFetchText, fetchJson = defaultFetchJson } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialSorocoCareersSignal(careersHtml)) {
-      throw new Error('Soroco verified official careers surface changed')
-    }
-
-    const visibleJobs = extractSorocoJobs(careersHtml)
-    if (visibleJobs.length > 0) {
-      return visibleJobs.map((job) => ({
-        ...job,
-        source: SOURCE,
-        link: job.applyUrl,
-        scrapedAt: now(),
-        companyCareerPage: CAREERS_URL,
-        companyDomain: COMPANY_DOMAIN,
-        atsPlatform: 'official-company-careers',
-      }))
-    }
-
-    const allOpeningsHtml = await fetchText(ALL_OPENINGS_URL)
-    if (!hasOfficialAllOpeningsSignal(allOpeningsHtml)) {
-      throw new Error('Soroco official all-openings page no longer exposes the verified Zoho careers handoff')
-    }
-
-    const payload = await fetchJson(ZOHO_JOBS_API_URL)
-    if (payload?.code !== 'success' || !Array.isArray(payload?.data)) {
-      throw new Error('Soroco public Zoho jobs API no longer returns the verified success payload')
-    }
-
-    const jobs = extractIndiaJobsFromZohoPayload(payload)
-
-    return jobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl,
-      scrapedAt: now(),
-      companyCareerPage: CAREERS_URL,
-      companyDomain: COMPANY_DOMAIN,
-      atsPlatform: 'official-company-careers',
-    }))
-  },
+  run: (options = {}) => runCurrentSoroco({ ...options, now: options.now ?? now }),
 })
 
 export const run = async (options = {}) => createSorocoScraper().run(options)

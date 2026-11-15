@@ -1,0 +1,95 @@
+{
+  "source": "verintsystems",
+  "reviewedAt": "2026-11-14T21:00:48.686Z",
+  "provenance": "repair-evidence/soft-native-round15/drift-handoff-discovery/verintsystems/exploration-2026-11-14T21-00-48-686Z",
+  "originalFixtureSHA256": "d29bf0d1dbbe0d2127b0ceabb1f27d629ef42b600ee5f4531e3bb65943274f6a",
+  "qualification": "Finite original native criteria as data; external CSS/client/application/rendered activation/company coverage unqualified.",
+  "documents": {
+    "https://www.verint.com/careers/": {
+      "bytes": 173992,
+      "originalEntitySHA256": "365c3b26d86ca3a7abd0b316908aba4343db1b793e7c4014c7e6cfaf48afbf2d",
+      "mime": "text/html; charset=UTF-8",
+      "slots": [],
+      "segments": [
+        {
+          "bytes": 173992,
+          "sha256": "365c3b26d86ca3a7abd0b316908aba4343db1b793e7c4014c7e6cfaf48afbf2d"
+        }
+      ]
+    },
+    "https://jobs.ashbyhq.com/27cfd344-670f-4dcd-8b13-0e18005b0d65": {
+      "bytes": 24569,
+      "originalEntitySHA256": "06b3e360a768a6d0fe9b132849bdfe1866f1c3a3bbe09ebd0a291b069ea5d0fb",
+      "mime": "text/html; charset=utf-8",
+      "slots": [
+        {
+          "start": 259,
+          "end": 302,
+          "kind": "public-csp-nonce-43-base64url"
+        },
+        {
+          "start": 4815,
+          "end": 4858,
+          "kind": "public-csp-nonce-43-base64url"
+        }
+      ],
+      "segments": [
+        {
+          "bytes": 259,
+          "sha256": "4bbe606d10595b2c1b3c16b1cff3c11a2e461ace8f744054fbb97f3f4a4d1390"
+        },
+        {
+          "bytes": 4513,
+          "sha256": "5444dfba5643cb2e16401a8129b62b681bc11dc71f9d81726d58c77ed9a3f6f8"
+        },
+        {
+          "bytes": 19711,
+          "sha256": "52d99f8112f874c7eefc512e65e34fa51c5768263cd5e3e7065d0ba9b1984c8f"
+        }
+      ]
+    },
+    "https://api.ashbyhq.com/posting-api/job-board/verint": {
+      "bytes": 239145,
+      "originalEntitySHA256": "0695b644c73e1a8c95fad036ae23cddd8f29a7056d1d99383dd759ccc9d44a6e",
+      "mime": "application/json; charset=utf-8",
+      "slots": [],
+      "segments": [
+        {
+          "bytes": 239145,
+          "sha256": "0695b644c73e1a8c95fad036ae23cddd8f29a7056d1d99383dd759ccc9d44a6e"
+        }
+      ]
+    },
+    "https://jobs.ashbyhq.com/verint/698d571e-d45c-4624-8a01-7d36224a6673": {
+      "bytes": 45051,
+      "originalEntitySHA256": "9fb587e1b6ac2676a20e8403d475890959bd88af40e73111664688f22adcf6cd",
+      "mime": "text/html; charset=utf-8",
+      "slots": [
+        {
+          "start": 259,
+          "end": 302,
+          "kind": "public-csp-nonce-43-base64url"
+        },
+        {
+          "start": 26783,
+          "end": 26826,
+          "kind": "public-csp-nonce-43-base64url"
+        }
+      ],
+      "segments": [
+        {
+          "bytes": 259,
+          "sha256": "4bbe606d10595b2c1b3c16b1cff3c11a2e461ace8f744054fbb97f3f4a4d1390"
+        },
+        {
+          "bytes": 26481,
+          "sha256": "77f077b5857ab350f0a09aaa5b9de31c7b575597e23040d5566cf01f0c22ef5b"
+        },
+        {
+          "bytes": 18225,
+          "sha256": "9aa32b29ef7cec20a34c7e750fc4dd2f7b99565773f0eebc0ea15be050ef1425"
+        }
+      ]
+    }
+  }
+}

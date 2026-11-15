@@ -1,0 +1,9 @@
+{
+  "source": "worley",
+  "catalogOverride": true,
+  "adapter": "script",
+  "modulePath": "../worley/script.js",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedSurfaceSummary": "The existing Worley Eightfold API collector retains its exact native country and detail identity checks, pagination, public access policy, rate limits and request deadlines. A source-local qualification step quarantines explicit recruiter copy/paste placeholders and preserves their original role text in audit evidence. Quarantine, rendered client/media/application authority, whole-company scope and lifecycle cleanup remain held."
+}

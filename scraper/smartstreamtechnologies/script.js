@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { SMARTSTREAM_TECHNOLOGIES_CATALOG as PROVIDER_METADATA } from './catalog.js'
+import { runCurrentSmartStream } from './currentNative.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -11,9 +12,6 @@ export const COMPANY = PROVIDER_METADATA.companyName
 export const HOMEPAGE_URL = PROVIDER_METADATA.homepageUrl
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&nbsp;|&#160;/gi, ' ')
@@ -75,43 +73,8 @@ export const isVerifiedCloudflareBlockedPage = (page = {}, requestedUrl) => {
     && !hasPublicJobsCatalogSignal(html)
 }
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-    signal: AbortSignal.timeout(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url || url,
-    headers: Object.fromEntries(response.headers.entries()),
-    html: await response.text(),
-  }
-}
-
 export const createSmartStreamTechnologiesScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (!isVerifiedCloudflareBlockedPage(homepage, HOMEPAGE_URL)) {
-      throw new Error('SmartStream Technologies homepage no longer matches the verified Cloudflare-blocked first-party state')
-    }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-    const careersHtml = getPageHtml(careersPage)
-    if (hasPublicJobsCatalogSignal(careersHtml)) {
-      throw new Error('SmartStream Technologies careers route now appears to expose a public jobs catalog')
-    }
-
-    if (!isVerifiedCloudflareBlockedPage(careersPage, CAREERS_URL)) {
-      throw new Error('SmartStream Technologies careers route no longer matches the verified Cloudflare-blocked first-party state')
-    }
-
-    return []
-  },
+  run: runCurrentSmartStream,
 })
 
 export const run = async (options = {}) => createSmartStreamTechnologiesScraper().run(options)

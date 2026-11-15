@@ -1,0 +1,478 @@
+{
+  "profile": "dripcapital-current-native-text-20261114",
+  "reviewedAt": "2026-11-14",
+  "scope": "Finite original native text only; external rendering, application qualification, activation, company scope and cleanup remain held.",
+  "corporateURL": "https://www.dripcapital.com/en-in/careers/",
+  "declaredViewJobsURL": "https://dripcapital.recruiterbox.com/#content",
+  "recruiterboxURL": "https://dripcapital.recruiterbox.com/",
+  "redirectStatus": 301,
+  "redirectLocation": "https://dripcapital.hire.trakstar.com/?",
+  "boardURL": "https://dripcapital.hire.trakstar.com/?",
+  "corporate": {
+    "originalEntitySHA256": "f8c15953fe74c2e3d5a922b54999874facbdc421efba460b05b22f88b005d98a",
+    "originalEntityBytes": 22139
+  },
+  "board": {
+    "originalEntitySHA256": "99bb280e706283ea50ebeba9224cb481e1febd420e730dd88addf462d08e9111",
+    "originalEntityBytes": 107166,
+    "segments": [
+      {
+        "bytes": 81663,
+        "sha256": "32a6061ecfca45f01f4cfd31f5725ee8e6a1affb1b8ed511d605951fb20e8789"
+      },
+      {
+        "bytes": 18157,
+        "sha256": "b9f4d768260169eb87245aaf8702d58f599dbc582452c13be26d12ee701399a3"
+      },
+      {
+        "bytes": 7279,
+        "sha256": "44292588db27d4a2d897b7357492f46778e8da59b64064ab2bc0666c53dffab3"
+      }
+    ],
+    "slots": [
+      {
+        "kind": "newrelic-application-time",
+        "maximumBytes": 16,
+        "minimum": 0,
+        "maximum": 9007199254740991
+      },
+      {
+        "kind": "public-hidden-csrf",
+        "bytes": 64
+      }
+    ],
+    "publicHiddenCSRFCount": 1,
+    "publicHiddenCSRFValuesEqual": true,
+    "immutableNewRelicSiblingsSHA256": "81175df7c01ff7b304266f36ac35ad099a6c1a2a5d4522ef28affa64257dd473",
+    "newRelicJSONKeys": [
+      "beacon",
+      "errorBeacon",
+      "licenseKey",
+      "applicationID",
+      "transactionName",
+      "queueTime",
+      "applicationTime",
+      "agent"
+    ]
+  },
+  "advertisedCards": [
+    {
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+      "href": "/jobs/fk0znmm/",
+      "title": "B2B Sales Manager (Banking /NBFC)",
+      "countries": [
+        "India"
+      ],
+      "fullCardText": "B2B Sales Manager (Banking /NBFC) Chennai , Tamil Nadu , India Growth India Full-time | Hybrid"
+    },
+    {
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+      "href": "/jobs/fk0zlaf/",
+      "title": "Finance Manager",
+      "countries": [
+        "India"
+      ],
+      "fullCardText": "Finance Manager Mumbai , Maharashtra , India Finance Full-time"
+    },
+    {
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+      "href": "/jobs/fk0zldg/",
+      "title": "Fund Raising & Investor Relations",
+      "countries": [
+        "India"
+      ],
+      "fullCardText": "Fund Raising & Investor Relations Mumbai , Maharashtra , India Capital Markets Full-time"
+    },
+    {
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0pfc9/",
+      "href": "/jobs/fk0pfc9/",
+      "title": "Senior Associate - Finance",
+      "countries": [
+        "India"
+      ],
+      "fullCardText": "Senior Associate - Finance Mumbai , Maharashtra , India Finance Full-time"
+    },
+    {
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlxm/",
+      "href": "/jobs/fk0zlxm/",
+      "title": "Trade Execution & Operations Executive",
+      "countries": [
+        "United States"
+      ],
+      "fullCardText": "Trade Execution & Operations Executive Houston , Texas , United States Commerce Full-time | Fully remote"
+    }
+  ],
+  "roles": [
+    {
+      "id": "fk0znmm",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+      "title": "B2B Sales Manager (Banking /NBFC)",
+      "country": "India",
+      "card": {
+        "url": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+        "href": "/jobs/fk0znmm/",
+        "title": "B2B Sales Manager (Banking /NBFC)",
+        "countries": [
+          "India"
+        ],
+        "fullCardText": "B2B Sales Manager (Banking /NBFC) Chennai , Tamil Nadu , India Growth India Full-time | Hybrid"
+      },
+      "originalEntitySHA256": "3343b2931766323f1b7a9d58a59c2e6dc8b69c8200bd8e94885c291dca76eb6a",
+      "originalEntityBytes": 120940,
+      "segments": [
+        {
+          "bytes": 81715,
+          "sha256": "3aebc1064d35a59d07d014e12ea588318efb81d0da1703daa2dd045e932a42e4"
+        },
+        {
+          "bytes": 7939,
+          "sha256": "6b0ea0230b5bfaa8ba6b0231bc05c34b9dba2cadde0832e04d659d0833dc7bf6"
+        },
+        {
+          "bytes": 13062,
+          "sha256": "588b6705470e3421545e3d93a5c9c8c16adc092826e0dde05c500b5e4ba59077"
+        },
+        {
+          "bytes": 18093,
+          "sha256": "1b0ca9c806ee370f9609a9507489c3f5c2d0423a489d7aa61fcd8fdc16a358fa"
+        }
+      ],
+      "slots": [
+        {
+          "kind": "newrelic-application-time",
+          "maximumBytes": 16,
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        }
+      ],
+      "publicHiddenCSRFCount": 2,
+      "publicHiddenCSRFValuesEqual": true,
+      "immutableNewRelicSiblingsSHA256": "89d3da0485ecf54a41e3f14fa114f464c4d72ccc367fbd5fd4f38fe9f3b23fa9",
+      "newRelicJSONKeys": [
+        "beacon",
+        "errorBeacon",
+        "licenseKey",
+        "applicationID",
+        "transactionName",
+        "queueTime",
+        "applicationTime",
+        "agent"
+      ],
+      "criteriaHTMLSHA256": "ca09ae5e5de092efbe224cc9f4c74e05a925e611dbb87f5026fa2540c6b5aeda",
+      "criteriaHTMLBytes": 2707
+    },
+    {
+      "id": "fk0zlaf",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+      "title": "Finance Manager",
+      "country": "India",
+      "card": {
+        "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+        "href": "/jobs/fk0zlaf/",
+        "title": "Finance Manager",
+        "countries": [
+          "India"
+        ],
+        "fullCardText": "Finance Manager Mumbai , Maharashtra , India Finance Full-time"
+      },
+      "originalEntitySHA256": "da69e72c1b48c2f38052d04d5bc32714d8b51f19191fc4b82160d608251ff960",
+      "originalEntityBytes": 119263,
+      "segments": [
+        {
+          "bytes": 81715,
+          "sha256": "3aebc1064d35a59d07d014e12ea588318efb81d0da1703daa2dd045e932a42e4"
+        },
+        {
+          "bytes": 6973,
+          "sha256": "c378ba5daa77afde60a08957d52eb5b400e56ab0fb404642fd5751ceaf2a45d6"
+        },
+        {
+          "bytes": 12226,
+          "sha256": "49ddf1e0431cc7a19882f9bbc243d041d15e59a437f905861d6fc76bf2e6088f"
+        },
+        {
+          "bytes": 18218,
+          "sha256": "b6cbcf23632687e4a714bed5d90b16d1461b23e3756d358e8b6848e4b5935642"
+        }
+      ],
+      "slots": [
+        {
+          "kind": "newrelic-application-time",
+          "maximumBytes": 16,
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        }
+      ],
+      "publicHiddenCSRFCount": 2,
+      "publicHiddenCSRFValuesEqual": true,
+      "immutableNewRelicSiblingsSHA256": "89d3da0485ecf54a41e3f14fa114f464c4d72ccc367fbd5fd4f38fe9f3b23fa9",
+      "newRelicJSONKeys": [
+        "beacon",
+        "errorBeacon",
+        "licenseKey",
+        "applicationID",
+        "transactionName",
+        "queueTime",
+        "applicationTime",
+        "agent"
+      ],
+      "criteriaHTMLSHA256": "3bd061aecf1b2108db1e96a6af09f68b4bcc9ab223ea11c97adbea0ab5b5c243",
+      "criteriaHTMLBytes": 1975
+    },
+    {
+      "id": "fk0zldg",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+      "title": "Fund Raising & Investor Relations",
+      "country": "India",
+      "card": {
+        "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+        "href": "/jobs/fk0zldg/",
+        "title": "Fund Raising & Investor Relations",
+        "countries": [
+          "India"
+        ],
+        "fullCardText": "Fund Raising & Investor Relations Mumbai , Maharashtra , India Capital Markets Full-time"
+      },
+      "originalEntitySHA256": "2e2c8638ed1134292543e54124c05a3b641d1bb6ded2ab9d31d895fcd4a2b1ba",
+      "originalEntityBytes": 128933,
+      "segments": [
+        {
+          "bytes": 81715,
+          "sha256": "3aebc1064d35a59d07d014e12ea588318efb81d0da1703daa2dd045e932a42e4"
+        },
+        {
+          "bytes": 11043,
+          "sha256": "4d76ceb1a67cf6ac58ec1f001ebe42517fde29f20ea444737928cd079a4ece13"
+        },
+        {
+          "bytes": 16516,
+          "sha256": "d2bf220c8e16407a12a7a6a02329023649db79c7ba108b16b6e3903bd3880d64"
+        },
+        {
+          "bytes": 19528,
+          "sha256": "0cfc7b093ea0f15942a0f3329aae01616bc9a3ab7bf16b069130d4d84e87182b"
+        }
+      ],
+      "slots": [
+        {
+          "kind": "newrelic-application-time",
+          "maximumBytes": 16,
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        }
+      ],
+      "publicHiddenCSRFCount": 2,
+      "publicHiddenCSRFValuesEqual": true,
+      "immutableNewRelicSiblingsSHA256": "89d3da0485ecf54a41e3f14fa114f464c4d72ccc367fbd5fd4f38fe9f3b23fa9",
+      "newRelicJSONKeys": [
+        "beacon",
+        "errorBeacon",
+        "licenseKey",
+        "applicationID",
+        "transactionName",
+        "queueTime",
+        "applicationTime",
+        "agent"
+      ],
+      "criteriaHTMLSHA256": "8a462e2e29155fa647bc2e5ea9c63cd7ff3dee65fe249c018e98233b425c5b32",
+      "criteriaHTMLBytes": 6213
+    },
+    {
+      "id": "fk0pfc9",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0pfc9/",
+      "title": "Senior Associate - Finance",
+      "country": "India",
+      "card": {
+        "url": "https://dripcapital.hire.trakstar.com/jobs/fk0pfc9/",
+        "href": "/jobs/fk0pfc9/",
+        "title": "Senior Associate - Finance",
+        "countries": [
+          "India"
+        ],
+        "fullCardText": "Senior Associate - Finance Mumbai , Maharashtra , India Finance Full-time"
+      },
+      "originalEntitySHA256": "ecdbc67f1261d84dd59f7b95b5418d72b2f1b36082e0887685ba07618ff7c991",
+      "originalEntityBytes": 120271,
+      "segments": [
+        {
+          "bytes": 81715,
+          "sha256": "3aebc1064d35a59d07d014e12ea588318efb81d0da1703daa2dd045e932a42e4"
+        },
+        {
+          "bytes": 7548,
+          "sha256": "bfe335801f2d4516d473211516e6b39987d2e7f9de09826a87e49e0ea3e0182a"
+        },
+        {
+          "bytes": 12768,
+          "sha256": "cbb38a4c99cbfd789552ad9283bed862552b93e12bb01ac976b444c91fc04e9e"
+        },
+        {
+          "bytes": 18109,
+          "sha256": "09527b7aeedc1bde43bd3ce580791304bbb546cbc7d618c7da2de4f8eb6bc3e6"
+        }
+      ],
+      "slots": [
+        {
+          "kind": "newrelic-application-time",
+          "maximumBytes": 16,
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        },
+        {
+          "kind": "public-hidden-csrf",
+          "bytes": 64
+        }
+      ],
+      "publicHiddenCSRFCount": 2,
+      "publicHiddenCSRFValuesEqual": true,
+      "immutableNewRelicSiblingsSHA256": "89d3da0485ecf54a41e3f14fa114f464c4d72ccc367fbd5fd4f38fe9f3b23fa9",
+      "newRelicJSONKeys": [
+        "beacon",
+        "errorBeacon",
+        "licenseKey",
+        "applicationID",
+        "transactionName",
+        "queueTime",
+        "applicationTime",
+        "agent"
+      ],
+      "criteriaHTMLSHA256": "5a2954142c8394f399264901771ee47ea1342f6397a7ee901c66bdc6a94e6d51",
+      "criteriaHTMLBytes": 2495
+    }
+  ],
+  "originalEntityProvenance": [
+    {
+      "index": 0,
+      "sha256": "f8c15953fe74c2e3d5a922b54999874facbdc421efba460b05b22f88b005d98a",
+      "bytes": 22139,
+      "requestedUrl": "https://www.dripcapital.com/en-in/careers/",
+      "url": "https://www.dripcapital.com/en-in/careers/",
+      "status": 200
+    },
+    {
+      "index": 1,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "requestedUrl": "https://dripcapital.recruiterbox.com/",
+      "url": "https://dripcapital.recruiterbox.com/",
+      "status": 301
+    },
+    {
+      "index": 2,
+      "sha256": "99bb280e706283ea50ebeba9224cb481e1febd420e730dd88addf462d08e9111",
+      "bytes": 107166,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/?",
+      "url": "https://dripcapital.hire.trakstar.com/?",
+      "status": 200
+    },
+    {
+      "index": 3,
+      "sha256": "3343b2931766323f1b7a9d58a59c2e6dc8b69c8200bd8e94885c291dca76eb6a",
+      "bytes": 120940,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+      "status": 200
+    },
+    {
+      "index": 4,
+      "sha256": "da69e72c1b48c2f38052d04d5bc32714d8b51f19191fc4b82160d608251ff960",
+      "bytes": 119263,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+      "status": 200
+    },
+    {
+      "index": 5,
+      "sha256": "2e2c8638ed1134292543e54124c05a3b641d1bb6ded2ab9d31d895fcd4a2b1ba",
+      "bytes": 128933,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+      "status": 200
+    },
+    {
+      "index": 6,
+      "sha256": "ecdbc67f1261d84dd59f7b95b5418d72b2f1b36082e0887685ba07618ff7c991",
+      "bytes": 120271,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0pfc9/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0pfc9/",
+      "status": 200
+    },
+    {
+      "index": 7,
+      "sha256": "efdd3b10de39cdabb265e974a0349d2ccc930d9548f3bcacdc991567244866ba",
+      "bytes": 122111,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0zlxm/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlxm/",
+      "status": 200
+    },
+    {
+      "index": 8,
+      "sha256": "a3cecf2e4a087dd2f08aa693255cfabb13e13bc668bee56dc210884f0d8b5c2b",
+      "bytes": 120940,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0znmm/",
+      "status": 200
+    },
+    {
+      "index": 9,
+      "sha256": "d1ce77a9093d13b8371beda385cfc963456b64dda67338d491553fc266bc07cb",
+      "bytes": 119263,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zlaf/",
+      "status": 200
+    },
+    {
+      "index": 10,
+      "sha256": "9738cbd2e20df40137f28686ea63ab03a342c903d245e6f42a811d0b22d77fe0",
+      "bytes": 128933,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+      "url": "https://dripcapital.hire.trakstar.com/jobs/fk0zldg/",
+      "status": 200
+    },
+    {
+      "index": 11,
+      "sha256": "bafee854ebe0817754a0b7a9e0ed8812bd5b0bbbde66a24b37099030e09f5add",
+      "bytes": 107166,
+      "requestedUrl": "https://dripcapital.hire.trakstar.com/?",
+      "url": "https://dripcapital.hire.trakstar.com/?",
+      "status": 200
+    },
+    {
+      "index": 12,
+      "sha256": "f8c15953fe74c2e3d5a922b54999874facbdc421efba460b05b22f88b005d98a",
+      "bytes": 22139,
+      "requestedUrl": "https://www.dripcapital.com/en-in/careers/",
+      "url": "https://www.dripcapital.com/en-in/careers/",
+      "status": 200
+    }
+  ],
+  "typedSlotReview": "Ordered immutable original byte segment lengths and SHA256 values bind every other entity byte, including exact owner, complete criteria, all attributes, complete program/style/form declaration inventory and all application questions. The sole timing slot is a canonical nonnegative safe integer inside the complete pinned NewRelic.info JSON assignment; hidden64ASCIIalphanumeric CSRF slots are exact original public hidden inputs outside criteria. These segment digests are not complete raw entity digests."
+}

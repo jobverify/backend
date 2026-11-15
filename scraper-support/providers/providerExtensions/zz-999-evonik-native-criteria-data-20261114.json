@@ -1,0 +1,16 @@
+{
+  "source": "evonik",
+  "catalogOverride": true,
+  "modulePath": "../evonik.workday/nativeCriteria20261114.js",
+  "atsPlatform": "workday-native-data",
+  "backfillMode": null,
+  "paginationStrategy": "complete-observed-india-page;ten-finite-role-pairs;one-unhydrated-row-held",
+  "extractionStrategy": "current-corporate-handoff-and-own-native-api-plus-jobposting-complete-criteria-as-data",
+  "verifiedOn": "2026-11-14",
+  "verifiedSurfaceSummary": "Own corporate careers and literal R47504 seed declare Evonik External_Careers. Ten finite original typed-India API/public JobPosting criteria pairs retain both full descriptions and two exact disclosed title vectors; the eleventh row remains unhydrated. All48 opening/closing observations,90s/15s/4MB and tighter24MB ceilings,500ms pacing and closing reserves are mandatory. Native absolute dates remain original; relative display counters are not clocks. Bootstrap programs/token values, dependencies/CSS/UI, application actions/questions, company scope and cleanup stay unqualified. Fixture closing reuse is replay only, never a live closure claim.",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "sourceActivationComplete": false,
+  "sourceRenderedCriteriaComplete": false,
+  "sourceApplicationQualificationComplete": false
+}

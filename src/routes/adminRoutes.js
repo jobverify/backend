@@ -6,7 +6,7 @@
 import express from "express";
 import { getPipelineSchedule, savePipelineSchedule } from '../controllers/pipelineController.js';
 import { updateSiteSettings } from "../controllers/siteSettingsController.js";
-import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs, clearAdminTelegramAlertQueue } from '../controllers/adminTelegramAlertsController.js';
+import { getAdminTelegramAlerts, saveAdminTelegramAlerts, previewAdminTelegramAlert, getAdminTelegramAlertLogs, clearAdminTelegramAlertQueue, clearAdminTelegramAlertHistory } from '../controllers/adminTelegramAlertsController.js';
 import { getPipelineStatus, savePipelineConfiguration, getPipelineCapabilities, triggerPipeline, getPipelineRuns, getPipelineRun, getPipelineLog, downloadPipeline, retiredPipelineControl, stopPipeline, stopAllPipelines } from '../controllers/pipelineController.js';
 import { getUserSuggestions, resolveUserSuggestion, deleteUserSuggestion } from "../controllers/userSuggestionController.js";
 import { purgeScraperJobs } from "../controllers/scraperMaintenanceController.js";
@@ -24,7 +24,6 @@ import {
   updateUserAccess,
   updateUserTelegramAccess,
   updateUserResumeAccess,
-  updateUserApplicationsAccess,
   getJobsTable,
   purgeAllJobs,
   updateJobStatus,
@@ -87,6 +86,7 @@ router.get('/telegram-alerts/logs', getAdminTelegramAlertLogs);
 router.post('/telegram-alerts/preview', previewAdminTelegramAlert);
 router.put('/telegram-alerts/:destination', saveAdminTelegramAlerts);
 router.delete('/telegram-alerts/:destination/queue', clearAdminTelegramAlertQueue);
+router.delete('/telegram-alerts/:destination/history', clearAdminTelegramAlertHistory);
 
 // Dashboard Overview and Time-Series Analytics
 router.get("/stats", getDashboardStats);
@@ -117,12 +117,6 @@ router.put(
   mongoIdParamValidation("id", "user ID"),
   validateRequest,
   updateUserResumeAccess,
-);
-router.put(
-  "/users/:id/applications-access",
-  mongoIdParamValidation("id", "user ID"),
-  validateRequest,
-  updateUserApplicationsAccess,
 );
 router.put(
   "/users/:id/access",

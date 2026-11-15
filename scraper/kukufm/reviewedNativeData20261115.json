@@ -1,0 +1,2146 @@
+{
+  "source": "kukufm",
+  "reviewedAt": "2026-11-15",
+  "evidenceScope": "native-role-criteria-as-data-only",
+  "provenance": {
+    "discoveryDirectory": "soft-native-round18/kukufm/native-discovery-2026-11-14T23-20-38.383Z",
+    "assessmentSHA256": "d572d8eeb2b3ea4f9c580049da629915b7fdce5fbfbeb72190c38b5ecbf4c342",
+    "fullDataAssessmentSHA256": "464965f562dccd8a939094b7929fd166f54505d9bb4a2df3a3f581456645a69f",
+    "genuinePhysicalObservations": 48,
+    "originalAggregateBytes": 2367918,
+    "actualWholeByteIdenticalPairs": 24,
+    "replayIsNotCurrentPhysicalEvidence": true
+  },
+  "nativeBoard": {
+    "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&company_uuid=8B92017E1E&isHeaderVisible=true&is_careers_page=true",
+    "bytes": 29976,
+    "rawEntitySHA256": "e5d15aa484e9e919f1b8ad88c1d9c30faadf65a0d7757e18a6c3d18dc1c99f18",
+    "originalReceiptIndex": 0
+  },
+  "reviewedCompleteBoardModel": {
+    "props": {
+      "pageProps": {
+        "isBot": false,
+        "companyDetails": {
+          "id": 9713,
+          "name": "Kuku FM",
+          "url": "https://kukufm.com",
+          "slug": "kuku-fm",
+          "location": "Bangalore/Bengaluru",
+          "address": null,
+          "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+          "primary_brand_colour": "#ff7442",
+          "secondary_brand_colour": "#86c68f",
+          "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+          "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+          "uuid": "8B92017E1E",
+          "phone_number": "+919461457680",
+          "email": null,
+          "banner_image_path": "",
+          "size": "200-1000",
+          "country": "Premium-Converted-India",
+          "show_company_name_on_career_page": true,
+          "allow_resume_drop_when_no_jobs": false,
+          "publish_jobs_to_ziprecruiter": true,
+          "is_careers_page_department_drop_down_disabled": false
+        }
+      },
+      "__N_SSP": true
+    },
+    "page": "/careers",
+    "query": {
+      "company": "Kuku FM",
+      "company_uuid": "8B92017E1E",
+      "isHeaderVisible": "true",
+      "is_careers_page": "true"
+    },
+    "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+    "isFallback": false,
+    "gssp": true,
+    "scriptLoader": []
+  },
+  "reviewedNativeCompany": {
+    "id": 9713,
+    "name": "Kuku FM",
+    "url": "https://kukufm.com",
+    "slug": "kuku-fm",
+    "location": "Bangalore/Bengaluru",
+    "address": null,
+    "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+    "primary_brand_colour": "#ff7442",
+    "secondary_brand_colour": "#86c68f",
+    "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+    "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+    "uuid": "8B92017E1E",
+    "phone_number": "+919461457680",
+    "email": null,
+    "banner_image_path": "",
+    "size": "200-1000",
+    "country": "Premium-Converted-India",
+    "show_company_name_on_career_page": true,
+    "allow_resume_drop_when_no_jobs": false,
+    "publish_jobs_to_ziprecruiter": true,
+    "is_careers_page_department_drop_down_disabled": false
+  },
+  "wholeCriticalClients": [
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+      "bytes": 870266,
+      "rawEntitySHA256": "f841c4112bc24caeb45737ae58aa543ddba6eae57caae48af60d0371832e5213",
+      "originalReceiptIndex": 1
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/pages/careers-16f2c2af341241eb34d3.js",
+      "bytes": 62342,
+      "rawEntitySHA256": "94adf09cc9598b297db5e2b3621e247215cdc0d8b613e5830df032cd68ac17b6",
+      "originalReceiptIndex": 2
+    },
+    {
+      "requestedURL": "https://app.pyjamahr.com/_next/static/chunks/2113-f86e2f5f8a77ea329883.js",
+      "bytes": 27887,
+      "rawEntitySHA256": "149238066c91134d90d88a3a32dd9cf7c0b98c392401a445a69c0dcb612520a6",
+      "originalReceiptIndex": 3
+    }
+  ],
+  "listingPages": [
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&page=1&is_careers_page=true",
+      "bytes": 3187,
+      "rawEntitySHA256": "f9f38724230fd5ea6ccf6291c466d9b90b36f2004faf60d2ba0e79c2fe80f20f",
+      "originalReceiptIndex": 4,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=2",
+        "previous": null,
+        "results": [
+          {
+            "id": 427400,
+            "slug": "promo-writer-performance-marketing-jd",
+            "title": "Promo Writer (Performance Marketing) – JD",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bangalore Urban, Karnataka, India",
+            "other_locations": [],
+            "department_name": "business",
+            "published_internally": false,
+            "workplace_type": null,
+            "product": null
+          },
+          {
+            "id": 427353,
+            "slug": "android-developer-3",
+            "title": "Android Developer",
+            "max_experience": 4,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bangalore Urban, Karnataka, India",
+            "other_locations": [],
+            "department_name": "Tech",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 425673,
+            "slug": "ai-sound-engineer-mumbai",
+            "title": "AI Sound Engineer - Mumbai",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 425392,
+            "slug": "fellowship-ai-director",
+            "title": "Fellowship AI Director",
+            "max_experience": 5,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Gurugram, Haryana, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 425389,
+            "slug": "fellowship-ai-writer-1",
+            "title": "Fellowship AI Writer",
+            "max_experience": 5,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Gurugram, Haryana, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 425354,
+            "slug": "fellowship-ai-writer",
+            "title": "Fellowship AI-Writer",
+            "max_experience": 5,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 424561,
+            "slug": "ai-video-editor-8",
+            "title": "AI - Video Editor",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 424507,
+            "slug": "promo-writer-hindi-12",
+            "title": "Promo Writer-HINDI",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 424390,
+            "slug": "ai-video-editor-architect-kannada-telugu-tamil-malayalam",
+            "title": "AI Video Editor - Architect ( Kannada , Telugu , Tamil , Malayalam)",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 423553,
+            "slug": "ai-writer-us-market",
+            "title": "AI Writer - US Market",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=2",
+      "bytes": 3204,
+      "rawEntitySHA256": "979688ee14b97515a4b593a0ebefc671c956e8fecff35c5056c7f550e9e640b8",
+      "originalReceiptIndex": 5,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=3",
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true",
+        "results": [
+          {
+            "id": 422556,
+            "slug": "admin",
+            "title": "Admin",
+            "max_experience": 3,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Human Resources (HR)",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 421464,
+            "slug": "social-media-intern-us-market",
+            "title": "Social Media Intern ( US Market )",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 420802,
+            "slug": "talent-acquisition-specialist-2",
+            "title": "Talent Acquisition Specialist",
+            "max_experience": 6,
+            "min_experience": 4,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 420741,
+            "slug": "video-editor-2",
+            "title": "Video Editor",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 420402,
+            "slug": "copywriter-kannada-malayalam",
+            "title": "Copywriter (Kannada + Malayalam)",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 419876,
+            "slug": "ai-architect-telugu",
+            "title": "AI Architect Fellowship (Telugu)",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419875,
+            "slug": "ai-architect-tamil",
+            "title": "AI Architect Fellowship (Tamil)",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419868,
+            "slug": "ai-architect-kannada",
+            "title": "AI Architect Fellowship (Kannada)",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419552,
+            "slug": "promo-producer-us-market-english",
+            "title": "Promo Producer – US Market (English)",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 419403,
+            "slug": "micro-drama-writer-jaipur",
+            "title": "Micro Drama Writer - Jaipur",
+            "max_experience": 5,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Jaipur, Rajasthan, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=3",
+      "bytes": 3171,
+      "rawEntitySHA256": "9a2f6af03d2f0c30c255b892889ee18a42b2071d5eb5b042084a38984fec8fc5",
+      "originalReceiptIndex": 6,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=4",
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=2",
+        "results": [
+          {
+            "id": 419402,
+            "slug": "micro-drama-writer-gurgaon",
+            "title": "Micro Drama Writer- Gurgaon",
+            "max_experience": 6,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Gurugram, Haryana, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419400,
+            "slug": "micro-drama-writer-delhi",
+            "title": "Micro Drama Writer - Delhi",
+            "max_experience": 4,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Delhi, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419395,
+            "slug": "ai-writer-delhi",
+            "title": "AI Writer - Delhi",
+            "max_experience": 5,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Delhi, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419386,
+            "slug": "ai-writer-jaipur",
+            "title": "AI - Writer ( Jaipur)",
+            "max_experience": 5,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Gurugram, Haryana, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419351,
+            "slug": "ai-director-malayalam",
+            "title": "AI - Director Fellowship (Malayalam)",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419350,
+            "slug": "ai-director-telugu",
+            "title": "AI - Director Fellowship (Telugu)",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419348,
+            "slug": "ai-director-tamil",
+            "title": "AI - Director Fellowship (Tamil)",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419347,
+            "slug": "ai-director-kannada",
+            "title": "AI - Director Fellowship (Kannada)",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419335,
+            "slug": "ai-writer-1",
+            "title": "AI- Writer",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Gurugram, Haryana, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419333,
+            "slug": "ai-writer-bengalure",
+            "title": "AI Writer-Bengaluru",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=4",
+      "bytes": 3316,
+      "rawEntitySHA256": "8160f11c75e2b34c2972dca0b1dc1c7702fd35caa673bb06d76e11939bbbe5e0",
+      "originalReceiptIndex": 7,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=5",
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=3",
+        "results": [
+          {
+            "id": 419330,
+            "slug": "ai-writer-fellowship-telugu",
+            "title": "AI-Writer Fellowship - Telugu",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419329,
+            "slug": "ai-writer-fellowship-tamil",
+            "title": "AI-Writer Fellowship-Tamil",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419325,
+            "slug": "ai-writer-fellowship-kannada",
+            "title": "AI-Writer Fellowship- Kannada",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419312,
+            "slug": "content-producer-bengaluru",
+            "title": "Content Producer (Bengaluru)",
+            "max_experience": 4,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bangalore Urban, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419206,
+            "slug": "ai-director-fellowship",
+            "title": "AI Director - Fellowship",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Jaipur, Rajasthan, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 419205,
+            "slug": "ai-writer-fellowship",
+            "title": "AI Writer - Fellowship",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Jaipur, Rajasthan, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 418723,
+            "slug": "creative-producer-english-us",
+            "title": "Creative Producer - English (US)",
+            "max_experience": 8,
+            "min_experience": 3,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 418468,
+            "slug": "ai-sound-engineer-3",
+            "title": "AI Sound Engineer",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": null,
+            "product": null
+          },
+          {
+            "id": 417835,
+            "slug": "management-trainees-ai-people-solutions",
+            "title": "Management Trainee – AI & People Solutions",
+            "max_experience": 2,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [
+              "Mumbai, Maharashtra, India"
+            ],
+            "department_name": "Human Resources (HR)",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 417831,
+            "slug": "hr-generalist",
+            "title": "HR - Generalist",
+            "max_experience": 2,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Human Resources (HR)",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=5",
+      "bytes": 3154,
+      "rawEntitySHA256": "f7e720e0c420ea37dfcffebcb18cd9a00cb61d7269d1b5be6323a67b870aab94",
+      "originalReceiptIndex": 8,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=6",
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=4",
+        "results": [
+          {
+            "id": 417753,
+            "slug": "ai-video-editor-7",
+            "title": "AI Video Editor",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 417591,
+            "slug": "ai-ops-intern-2",
+            "title": "AI Ops Intern",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 417518,
+            "slug": "software-engineer-infrastructure-1",
+            "title": "Software Engineer - Infrastructure",
+            "max_experience": 5,
+            "min_experience": 3,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 417462,
+            "slug": "ai-ops-intern-1",
+            "title": "AI Ops Intern",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": "Information Technology (IT)",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 416542,
+            "slug": "creative-producer-english",
+            "title": "Creative Producer - English",
+            "max_experience": 6,
+            "min_experience": 3,
+            "country": "India",
+            "location": "Bangalore Urban, Karnataka, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 416534,
+            "slug": "ai-microdrama-writer",
+            "title": "AI-Microdrama Writer",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "business",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 415389,
+            "slug": "promo-writer-hindi-11",
+            "title": "Promo Writer – Hindi",
+            "max_experience": 5,
+            "min_experience": 1,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 415341,
+            "slug": "video-editor-hindi-4",
+            "title": "Video Editor - Hindi",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 414232,
+            "slug": "promo-writer-tamil-5",
+            "title": "Promo Writer - Tamil",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 413991,
+            "slug": "ai-sound-engineer-2",
+            "title": "AI - Sound Engineer",
+            "max_experience": 3,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=6",
+      "bytes": 3308,
+      "rawEntitySHA256": "87f8bdf03b820ee3f6734ce6c134ec50e748a7894183e57ddd92c37043c060d5",
+      "originalReceiptIndex": 9,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=7",
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=5",
+        "results": [
+          {
+            "id": 412216,
+            "slug": "ios-developer-2",
+            "title": "iOS Developer",
+            "max_experience": 6,
+            "min_experience": 3,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 411077,
+            "slug": "ai-video-editor-microdrama-vertical",
+            "title": "AI - Video Editor",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 410694,
+            "slug": "creative-producer-us-english-1",
+            "title": "Creative Producer (US English)",
+            "max_experience": 5,
+            "min_experience": 3,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 409846,
+            "slug": "creative-producer-ai-show-runner-english",
+            "title": "Creative Producer - AI Show Runner - English",
+            "max_experience": 15,
+            "min_experience": 7,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 409716,
+            "slug": "creative-producer-ai-show-runner",
+            "title": "Creative Producer - AI Show Runner",
+            "max_experience": 15,
+            "min_experience": 7,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 407577,
+            "slug": "promo-writer-hindi-bengaluru-on-site",
+            "title": "Promo Writer – Hindi | Bengaluru (On-site)",
+            "max_experience": 5,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 407539,
+            "slug": "content-producer",
+            "title": "Content Producer (English US Market)",
+            "max_experience": 5,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 406823,
+            "slug": "ai-video-editor-bangalore",
+            "title": "AI VIDEO EDITOR BANGALORE",
+            "max_experience": 5,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 406468,
+            "slug": "ai-director-1",
+            "title": "AI-Director",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": "business",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 406463,
+            "slug": "promo-writer-hindi-10",
+            "title": "PROMO WRITER - HINDI",
+            "max_experience": 6,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=7",
+      "bytes": 3303,
+      "rawEntitySHA256": "624b5c2cf460b5cd6fece18e3751ede4136aa04bf6e3c83cb7c25fd29676d42c",
+      "originalReceiptIndex": 10,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=8",
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=6",
+        "results": [
+          {
+            "id": 406460,
+            "slug": "management-trainee-content-ai",
+            "title": "Management Trainee -  Content AI",
+            "max_experience": 1,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 404572,
+            "slug": "video-editor-multilingual-localisation-3",
+            "title": "Video Editor – Multilingual Localisation",
+            "max_experience": 3,
+            "min_experience": 2,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 403133,
+            "slug": "ai-sound-engineer-1",
+            "title": "AI - Sound Engineer",
+            "max_experience": 3,
+            "min_experience": 2,
+            "country": "India",
+            "location": "India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": "REMOTE",
+            "product": null
+          },
+          {
+            "id": 402138,
+            "slug": "manager-business-finance",
+            "title": "Manager - Business Finance",
+            "max_experience": 5,
+            "min_experience": 4,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [
+              "Bengaluru, Karnataka, India"
+            ],
+            "department_name": "Finance",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 401783,
+            "slug": "growth-manager-performance-marketing-1",
+            "title": "Growth Manager",
+            "max_experience": 5,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [
+              "Bengaluru, Karnataka, India"
+            ],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 401302,
+            "slug": "promo-writer-hindi-8",
+            "title": "PROMO WRITER - HINDI",
+            "max_experience": 3,
+            "min_experience": 0,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 397570,
+            "slug": "senior-ai-ml-engineer",
+            "title": "Senior AI/ML Engineer",
+            "max_experience": 6,
+            "min_experience": 4,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [
+              "Bengaluru, Karnataka, India"
+            ],
+            "department_name": "Tech",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 397504,
+            "slug": "ai-ml-engineer",
+            "title": "AI/ML Engineer",
+            "max_experience": 4,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [
+              "Bengaluru, Karnataka, India"
+            ],
+            "department_name": "Tech",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 397402,
+            "slug": "sr-ai-ml-engineer",
+            "title": "Senior AI/ML Engineer",
+            "max_experience": 6,
+            "min_experience": 4,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": "Tech",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 393866,
+            "slug": "ai-video-editor-5",
+            "title": "Video Editor - AI",
+            "max_experience": 7,
+            "min_experience": 2,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "business",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    },
+    {
+      "requestedURL": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=8",
+      "bytes": 1975,
+      "rawEntitySHA256": "4f2ed1fbdc77b1c138a2242e12fb719e48d2fa41420fa812fc1d03b1271bfb5f",
+      "originalReceiptIndex": 11,
+      "reviewedCompleteNativePage": {
+        "count": 76,
+        "next": null,
+        "previous": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=8B92017E1E&is_careers_page=true&page=7",
+        "results": [
+          {
+            "id": 391463,
+            "slug": "senior-software-engineer-connected-surfaces",
+            "title": "Senior Software Engineer – Connected Surfaces",
+            "max_experience": 6,
+            "min_experience": 3,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 391455,
+            "slug": "product-manager-engagement",
+            "title": "Product Manager - Engagement",
+            "max_experience": 6,
+            "min_experience": 3,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 391450,
+            "slug": "senior-software-engineer-identity-access",
+            "title": "Senior Software Engineer – Identity & Access",
+            "max_experience": 6,
+            "min_experience": 4,
+            "country": "India",
+            "location": "Bengaluru, Karnataka, India",
+            "other_locations": [],
+            "department_name": null,
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 389700,
+            "slug": "creative-producer-3",
+            "title": "Creative Producer",
+            "max_experience": 10,
+            "min_experience": 5,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "Content",
+            "published_internally": false,
+            "workplace_type": null,
+            "product": null
+          },
+          {
+            "id": 374127,
+            "slug": "ai-director",
+            "title": "AI - Director",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "business",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          },
+          {
+            "id": 374064,
+            "slug": "ai-writer",
+            "title": "AI - Writer",
+            "max_experience": 3,
+            "min_experience": 1,
+            "country": "India",
+            "location": "Mumbai, Maharashtra, India",
+            "other_locations": [],
+            "department_name": "business",
+            "published_internally": false,
+            "workplace_type": "ON_SITE",
+            "product": null
+          }
+        ]
+      }
+    }
+  ],
+  "reviewedSelectedRoles": [
+    {
+      "id": 427400,
+      "nativeAPIURL": "https://api.pyjamahr.com/api/career/jobs/427400/?company_uuid=8B92017E1E&is_careers_page=false",
+      "nativeLandingURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=427400&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "originalAPI": {
+        "requestedURL": "https://api.pyjamahr.com/api/career/jobs/427400/?company_uuid=8B92017E1E&is_careers_page=false",
+        "bytes": 4394,
+        "rawEntitySHA256": "0ddc1419541c70dab47ab75637ea4e87149dc7eeed2328e92c87eee09fc565af",
+        "originalReceiptIndex": 12
+      },
+      "originalPublicCarrier": {
+        "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=427400&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+        "bytes": 24943,
+        "rawEntitySHA256": "c505d80be96d0dc241e0a55b2c7f19d36b4df1c62c6f288bfcc3fb2a27add16e",
+        "originalReceiptIndex": 13
+      },
+      "nativeWorksite": {
+        "country": "India",
+        "location": "Bangalore Urban, Karnataka, India",
+        "other_locations": []
+      },
+      "reviewedComplete35FieldNativeDTO": {
+        "id": 427400,
+        "uuid": "2C8454A721",
+        "title": "Promo Writer (Performance Marketing) – JD",
+        "job_type": "FULLTIME",
+        "description": "<p><strong>About the role</strong><br>Are you a writer who can make someone tap \"Install\" or \"Buy now\" in under 10 seconds?<br>At Kuku, we're growing India's leading storytelling platform, and we're hiring PromoWriters who write to convert. You'll write the ads, creatives and copy that bring new usersinto Kuku TV, Kuku FM and our other apps, and you'll be measured on what that copy does&nbsp;to installs, sign-ups and subscriptions.<br><br>This is not a social media or brand content role. We want people who have writtenperformance marketing copy for a consumer app, e-commerce platform or D2C brand,&nbsp;and who know how to turn a product's value proposition into a clear reason to act.<br><br><strong>Key responsibilities</strong><br>* Write Hindi and English copy for performance marketing: Meta and Google ad&nbsp;creatives, video ad scripts, app store listings, push notifications, in-app banners and&nbsp;landing pages.<br>* Turn product features and offers into sharp value propositions that drive installs, trials, subscriptions and repeat usage.&nbsp;<br>* Write multiple hook and headline variants for every campaign so the growth team can&nbsp;A/B test them quickly.<br>* Read campaign data (CTR, CPI, conversion rate) with the growth team and use it to&nbsp;decide what to write next.<br>* Study competitor ads and top-performing creatives across consumer apps to spot&nbsp;patterns that convert.<br>* Work with growth, design and video editing teams to ship creatives at high volume&nbsp;and speed.<br><br><strong>What we're looking for</strong><br>* 0–3 years of experience, currently working in a consumer app, e-commerce company&nbsp;or D2C brand.<br>* Hands-on experience writing for performance marketing: paid ads, app install&nbsp;campaigns, CRM or push copy tied to conversion goals.<br>* A portfolio of ads or campaign copy you wrote, ideally with the results it delivered.<br>* Strong instinct for value propositions, offers and calls to action that make people act.<br>* Excellent written Hindi and English: crisp, persuasive and easy to scan on a phone.<br>* Comfort with data and fast testing cycles; you enjoy finding out which line won and&nbsp;why.<br>* Willing to work from our Bangalore office full-time.<br><strong><br>Not a fit</strong>: experience limited to social media management, organic content, blogs or&nbsp;general content marketing, or to OTT/microdrama promo production.<br><strong><br>Preferred background</strong><br>You're currently writing performance marketing copy at a fintech app, e-commerce or&nbsp;quick-commerce platform, or a new-age D2C brand.<br><strong><br>About Kuku</strong><br>Founded in 2018, Kuku is India's leading storytelling platform, offering a vast digital library&nbsp;of microdramas, audio stories and short courses. Kuku aims to be India's largest cultural&nbsp;exporter of stories, culture and history to the world, with a firm belief in \"Create In India,&nbsp;Create For The World\".<br><br>We deliver immersive entertainment and education through our OTT platforms: Kuku TV,Kuku FM, Guru and more.&nbsp; With a mission to provide high-quality, personalized stories across genres, formats and languages, Kuku continues to push boundaries and redefine&nbsp;India's entertainment industry.<br><br>Website: www.kukufm.com<br>Android: Google Play&nbsp;<br>iOS: App Store&nbsp;<br>LinkedIn: KUKU<br>Ready to make an impact? Apply now!</p>",
+        "max_salary": 1000000,
+        "min_salary": 500000,
+        "max_experience": 5,
+        "skill": [
+          "d2c",
+          "data",
+          "performance marketing"
+        ],
+        "education": [],
+        "seniority": [
+          "entry-level"
+        ],
+        "min_experience": 2,
+        "industry": null,
+        "country": "India",
+        "location": "Bangalore Urban, Karnataka, India",
+        "other_locations": [],
+        "department": 33298,
+        "department_name": "business",
+        "remote": false,
+        "created_at": "2026-11-12T14:48:52.115237+05:30",
+        "salary_type": "ANNUAL",
+        "is_salary_visible": true,
+        "published_internally": false,
+        "job_screening_questions": [],
+        "workplace_type": null,
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@kukufmb3.pyjamahr.com",
+        "email_domain": "kukufm.com",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-11T14:48:52.115237+05:30"
+      },
+      "carrier": {
+        "prefixBytes": 18050,
+        "prefixSHA256": "f27e480f552be5f141160a01678dad9ce43de77cd27cc42fcca16bca4b9c7bf1",
+        "suffixBytes": 23,
+        "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+        "reviewedNonJobModel": {
+          "props": {
+            "pageProps": {
+              "isBot": false,
+              "companyDetails": {
+                "id": 9713,
+                "name": "Kuku FM",
+                "url": "https://kukufm.com",
+                "slug": "kuku-fm",
+                "location": "Bangalore/Bengaluru",
+                "address": null,
+                "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+                "primary_brand_colour": "#ff7442",
+                "secondary_brand_colour": "#86c68f",
+                "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+                "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+                "uuid": "8B92017E1E",
+                "phone_number": "+919461457680",
+                "email": null,
+                "banner_image_path": "",
+                "size": "200-1000",
+                "country": "Premium-Converted-India",
+                "show_company_name_on_career_page": true,
+                "allow_resume_drop_when_no_jobs": false,
+                "publish_jobs_to_ziprecruiter": true,
+                "is_careers_page_department_drop_down_disabled": false
+              }
+            },
+            "__N_SSP": true
+          },
+          "page": "/careers",
+          "query": {
+            "company": "Kuku FM",
+            "job_id": "427400",
+            "company_uuid": "8B92017E1E",
+            "utm_source": "DIRECT",
+            "source": "DIRECT",
+            "isHeaderVisible": "true"
+          },
+          "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+          "isFallback": false,
+          "gssp": true,
+          "scriptLoader": []
+        }
+      }
+    },
+    {
+      "id": 427353,
+      "nativeAPIURL": "https://api.pyjamahr.com/api/career/jobs/427353/?company_uuid=8B92017E1E&is_careers_page=false",
+      "nativeLandingURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=427353&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "originalAPI": {
+        "requestedURL": "https://api.pyjamahr.com/api/career/jobs/427353/?company_uuid=8B92017E1E&is_careers_page=false",
+        "bytes": 4648,
+        "rawEntitySHA256": "c8f3bba07568e17f412d1120b02d929c30ad3fc04565abb741f167171828dcaa",
+        "originalReceiptIndex": 14
+      },
+      "originalPublicCarrier": {
+        "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=427353&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+        "bytes": 24474,
+        "rawEntitySHA256": "2c8b2251a6e7b62853e89b065e0af93888eca9ae48aa5b94a2966f3e7515011c",
+        "originalReceiptIndex": 15
+      },
+      "nativeWorksite": {
+        "country": "India",
+        "location": "Bangalore Urban, Karnataka, India",
+        "other_locations": []
+      },
+      "reviewedComplete35FieldNativeDTO": {
+        "id": 427353,
+        "uuid": "7DB67CC803",
+        "title": "Android Developer",
+        "job_type": "FULLTIME",
+        "description": "<p><strong>Role Overview</strong></p>\n<p>We are looking for an Android Developer with 2-3 years of hands-on experience building reliable, high-quality Android applications. You will work closely with product, design, backend, and engineering teams to develop and improve user-facing mobile experiences</p>\n<p>.</p>\n<p><strong>Key Responsibilities</strong></p>\n<ul>\n<li>Develop, test, maintain, and enhance Android applications.</li>\n<li>Build clean, reusable, and maintainable code using Kotlin and/or Java.</li>\n<li>Integrate REST APIs and work with backend services.</li>\n<li>Translate UI/UX designs and product requirements into responsive mobile experiences.</li>\n<li>Identify and resolve performance issues, crashes, and bugs.</li>\n<li>Participate in code reviews, testing, release cycles, and technical discussions.</li>\n<li>Work with Git-based development workflows and collaborate with cross-functional teams.</li>\n<li>Stay updated with Android platform changes and mobile development best practices.</li>\n</ul>\n<p><strong>Required Skills &amp; Qualifications</strong></p>\n<ul>\n<li>1-2 years of professional Android development experience.</li>\n<li>Strong knowledge of Kotlin; working knowledge of Java is preferred.</li>\n<li>Good understanding of Android SDK, Android Studio, Activities, Fragments, and application lifecycle.</li>\n<li>Experience with REST APIs, JSON, and third-party library integration.</li>\n<li>Understanding of MVVM/MVC or similar mobile architecture patterns.</li>\n<li>Familiarity with Git and version control.</li>\n<li>Good problem-solving, debugging, and communication skills.</li>\n<li>Bachelor's degree in Computer Science, Engineering, or a related field is preferred.</li>\n</ul>\n<p><strong>Good to Have</strong></p>\n<ul>\n<li>Experience with Jetpack components, Coroutines, Room, Retrofit, or dependency injection.</li>\n<li>Knowledge of app performance optimization and Play Store release processes.</li>\n<li>Experience working in a product-focused or fast-paced environment.</li>\n</ul>\n<p><strong>About KUKU</strong></p>\n<p>Founded in 2018, KUKU is India’s leading storytelling platform, offering a vast digital library of audio stories, short courses, and microdramas. KUKU aims to be India’s largest cultural exporter of stories, culture, and history to the world with a firm belief in “Create In India, Create For The World”.</p>\n<p>We deliver immersive entertainment and education through our OTT platforms: Kuku FM, Guru, Kuku TV, and more. With a mission to provide high-quality, personalized stories across genres in entertainment, spanning multiple formats and languages, KUKU continues to push boundaries and redefine India’s entertainment industry.</p>\n<p>🌐 Website: www.kukufm.com</p>\n<p>📱 Android App: Google Play</p>\n<p>📱 iOS App: App Store</p>\n<p>🔗 LinkedIn: KUKU</p>\n<p>📢 Ready to make an impact? Apply now!</p>\n<p></p>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 4,
+        "skill": [
+          "model-view-viewmodel (mvvm)",
+          "git",
+          "rest api",
+          "android sdk",
+          "github",
+          "kotlin",
+          "jetpack",
+          "android",
+          "mvc",
+          "android studio",
+          "java"
+        ],
+        "education": [],
+        "seniority": [
+          "associate"
+        ],
+        "min_experience": 2,
+        "industry": null,
+        "country": "India",
+        "location": "Bangalore Urban, Karnataka, India",
+        "other_locations": [],
+        "department": 2426,
+        "department_name": "Tech",
+        "remote": false,
+        "created_at": "2026-11-12T12:21:27.265091+05:30",
+        "salary_type": "ANNUAL",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "47838EF551",
+            "name": "yes_no_option",
+            "label": "Yes/No",
+            "question": "Are you ready to relocate to Bangalore and work 5 days a week from office?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "E45ADC2B24",
+            "name": "single_text",
+            "label": "Single Line text",
+            "question": "What is your current location?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "D33FF73686",
+            "name": "yes_no_option",
+            "label": "Yes/No",
+            "question": "Are you serving the notice?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@kukufmb3.pyjamahr.com",
+        "email_domain": "kukufm.com",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-11T12:21:27.265091+05:30"
+      },
+      "carrier": {
+        "prefixBytes": 17142,
+        "prefixSHA256": "d8732f30c84a227212113c9eace8a2d6f1a4a79cbc6ee80ffe21c401f6749298",
+        "suffixBytes": 23,
+        "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+        "reviewedNonJobModel": {
+          "props": {
+            "pageProps": {
+              "isBot": false,
+              "companyDetails": {
+                "id": 9713,
+                "name": "Kuku FM",
+                "url": "https://kukufm.com",
+                "slug": "kuku-fm",
+                "location": "Bangalore/Bengaluru",
+                "address": null,
+                "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+                "primary_brand_colour": "#ff7442",
+                "secondary_brand_colour": "#86c68f",
+                "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+                "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+                "uuid": "8B92017E1E",
+                "phone_number": "+919461457680",
+                "email": null,
+                "banner_image_path": "",
+                "size": "200-1000",
+                "country": "Premium-Converted-India",
+                "show_company_name_on_career_page": true,
+                "allow_resume_drop_when_no_jobs": false,
+                "publish_jobs_to_ziprecruiter": true,
+                "is_careers_page_department_drop_down_disabled": false
+              }
+            },
+            "__N_SSP": true
+          },
+          "page": "/careers",
+          "query": {
+            "company": "Kuku FM",
+            "job_id": "427353",
+            "company_uuid": "8B92017E1E",
+            "utm_source": "DIRECT",
+            "source": "DIRECT",
+            "isHeaderVisible": "true"
+          },
+          "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+          "isFallback": false,
+          "gssp": true,
+          "scriptLoader": []
+        }
+      }
+    },
+    {
+      "id": 425673,
+      "nativeAPIURL": "https://api.pyjamahr.com/api/career/jobs/425673/?company_uuid=8B92017E1E&is_careers_page=false",
+      "nativeLandingURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425673&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "originalAPI": {
+        "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425673/?company_uuid=8B92017E1E&is_careers_page=false",
+        "bytes": 3716,
+        "rawEntitySHA256": "cc84273961b43a878b4c78db4fa0e1ee1f849625d7c75cdcea8d4f6ae223f0de",
+        "originalReceiptIndex": 16
+      },
+      "originalPublicCarrier": {
+        "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425673&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+        "bytes": 22946,
+        "rawEntitySHA256": "2d7069c228e1baa0d3bdd9061b1b0ace0224c882ee0ab1f7546a25ea4e6fc09a",
+        "originalReceiptIndex": 17
+      },
+      "nativeWorksite": {
+        "country": "India",
+        "location": "Mumbai, Maharashtra, India",
+        "other_locations": []
+      },
+      "reviewedComplete35FieldNativeDTO": {
+        "id": 425673,
+        "uuid": "F6421C0F8B",
+        "title": "AI Sound Engineer - Mumbai",
+        "job_type": "FULLTIME",
+        "description": "<p><br>About the Role<br><br>We are looking for an AI Sound Engineer to join our AI Production team. In this role, you will be responsible for<br>creating high-quality AI-generated content using ElevenLabs and a range of advanced AI tools. Beyond voice<br>generation, you will design and optimize end-to-end AI voice production workflows, in combination with regular sound<br>design, audio mixing, and creative problem-solving to deliver polished, production-ready content that meets the<br>highest quality standards.<br><br>Key Responsibilities<br><br>• Generate natural AI voiceovers and multilingual dubbing using ElevenLabs and similar platforms.<br>• Build efficient AI workflows by combining voice generation, translation, transcription, lip-sync, audio<br>enhancement, and editing tools.<br>• Edit, clean, mix, master, and enhance audio to broadcast quality.<br>• Design immersive soundscapes using music, ambience, and sound effects.<br>• Synchronize AI voices with video and ensure natural pacing and emotion.<br>• Collaborate with writers, editors, and creative teams throughout production.<br><br>Skills &amp; Qualifications<br><br>• Hands-on experience with ElevenLabs and AI voice generation.<br>• Strong sound design, audio editing, mixing, and mastering skills.<br>• Proficiency with DAWs such as Adobe Audition, Reaper, Pro Tools, or similar.<br>• Experience with AI tools for translation, lip-sync, transcription, and audio restoration.<br>• Excellent attention to detail and creative judgment.<br>• Ability to work in a fast-paced, deadline-driven environment.<br>Preferred<br>• Experience with Google AI Studio, Flow, HeyGen, Runway, Descript, or similar AI tools.<br>• Experience in advertising, digital media, YouTube, or social media content production.<br>• Portfolio demonstrating AI dubbing and sound design projects.</p>\n<p>About KUKU</p>\n<p>Founded in 2018, KUKU is India’s leading storytelling platform, offering a vast digital library of audio stories, short courses, and microdramas. KUKU aims to be India’s largest cultural exporter of stories, culture, and history to the world with a firm belief in “Create In India, Create For The World”.</p>\n<p>We deliver immersive entertainment and education through our OTT platforms: Kuku FM, Guru, Kuku TV, and more. With a mission to provide high-quality, personalized stories across genres in entertainment, spanning multiple formats and languages, KUKU continues to push boundaries and redefine India’s entertainment industry.</p>\n<p>🌐 Website: www.kukufm.com</p>\n<p>📱 Android App: Google Play</p>\n<p>📱 iOS App: App Store</p>\n<p>🔗 LinkedIn: KUKU</p>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 5,
+        "skill": [
+          "elevenlabs",
+          "sound design",
+          "sound engineer"
+        ],
+        "education": [],
+        "seniority": [
+          "associate"
+        ],
+        "min_experience": 2,
+        "industry": null,
+        "country": "India",
+        "location": "Mumbai, Maharashtra, India",
+        "other_locations": [],
+        "department": null,
+        "department_name": null,
+        "remote": false,
+        "created_at": "2026-11-06T12:45:28.736770+05:30",
+        "salary_type": "ANNUAL",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@kukufmb3.pyjamahr.com",
+        "email_domain": "kukufm.com",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-05T12:45:28.736770+05:30"
+      },
+      "carrier": {
+        "prefixBytes": 16963,
+        "prefixSHA256": "65077f82b25141b3174cbaeb4099e2e79557872f231df408f6eb77fefd63ddd7",
+        "suffixBytes": 23,
+        "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+        "reviewedNonJobModel": {
+          "props": {
+            "pageProps": {
+              "isBot": false,
+              "companyDetails": {
+                "id": 9713,
+                "name": "Kuku FM",
+                "url": "https://kukufm.com",
+                "slug": "kuku-fm",
+                "location": "Bangalore/Bengaluru",
+                "address": null,
+                "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+                "primary_brand_colour": "#ff7442",
+                "secondary_brand_colour": "#86c68f",
+                "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+                "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+                "uuid": "8B92017E1E",
+                "phone_number": "+919461457680",
+                "email": null,
+                "banner_image_path": "",
+                "size": "200-1000",
+                "country": "Premium-Converted-India",
+                "show_company_name_on_career_page": true,
+                "allow_resume_drop_when_no_jobs": false,
+                "publish_jobs_to_ziprecruiter": true,
+                "is_careers_page_department_drop_down_disabled": false
+              }
+            },
+            "__N_SSP": true
+          },
+          "page": "/careers",
+          "query": {
+            "company": "Kuku FM",
+            "job_id": "425673",
+            "company_uuid": "8B92017E1E",
+            "utm_source": "DIRECT",
+            "source": "DIRECT",
+            "isHeaderVisible": "true"
+          },
+          "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+          "isFallback": false,
+          "gssp": true,
+          "scriptLoader": []
+        }
+      }
+    },
+    {
+      "id": 425392,
+      "nativeAPIURL": "https://api.pyjamahr.com/api/career/jobs/425392/?company_uuid=8B92017E1E&is_careers_page=false",
+      "nativeLandingURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425392&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "originalAPI": {
+        "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425392/?company_uuid=8B92017E1E&is_careers_page=false",
+        "bytes": 4421,
+        "rawEntitySHA256": "6d2822ec37b7caf5211ef80e0c567c626394b636028c0911f60615a66063e326",
+        "originalReceiptIndex": 18
+      },
+      "originalPublicCarrier": {
+        "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425392&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+        "bytes": 23740,
+        "rawEntitySHA256": "ccf721a4799f344edca77ff6ef824ae83580f1585c255bb70faac7a3edc37298",
+        "originalReceiptIndex": 19
+      },
+      "nativeWorksite": {
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": []
+      },
+      "reviewedComplete35FieldNativeDTO": {
+        "id": 425392,
+        "uuid": "2284FED225",
+        "title": "Fellowship AI Director",
+        "job_type": "INTERN",
+        "description": "<p><strong>Kuku AI Studio</strong> is building a large-scale AI-native microdrama production house, creating short-form shows for&nbsp;millions of viewers. We are looking for creative individuals who are excited about visual storytelling,&nbsp;filmmaking, content creation, and AI and want to explore AI as a new creative medium.<br><strong>About the Role</strong><br>As an AI Director, you will work closely with an AI Architect to create complete microdrama episodes using&nbsp;AI-powered video, image, and audio generation tools.<br>You will own the creative and visual direction - framing, composition, lighting, pacing, emotional impact, and&nbsp;overall visual quality - while your AI Architect partner handles the technical execution and generation pipeline.<br><strong>Key Responsibilities</strong><br>• Translate scripts and story briefs into strong visual concepts and AI prompts.<br>• Drive the visual style, framing, pacing, cuts, and emotional flow of each episode.<br>• Review and iterate on AI-generated output to achieve the desired creative quality.<br>• Create engaging short-form stories with strong hooks and cliffhanger endings.<br>• Experiment with AI video, image, and audio generation tools.<br>• Contribute creative ideas, prompts, and learnings to the wider team.<br><strong>What We're Looking For</strong><br>• Graduates or diploma holders from any discipline with a strong interest in filmmaking, visual<br>storytelling, content creation, or AI-powered media.<br>• Candidates from Film, Media, Mass Communication, Literature, Design, Animation, VFX, Creative Writing, and&nbsp;related creative fields are encouraged to apply, but we are open to candidates from other academic&nbsp;backgrounds as well.<br>• Strong creative thinking and an eye for visual storytelling.<br>• Understanding of engaging short-form and mobile-first content.<br>• Curiosity and willingness to learn and experiment with new AI tools.<br>• Comfortable working in a fast-paced, creative environment.<br>• A portfolio, showreel, or examples of creative work would be an advantage.<br><strong>About Kuku</strong><br>Founded in 2018, Kuku is one of India's leading storytelling platforms across Kuku TV, Kuku FM, Guru, and&nbsp;other products. Our vision is \"Create in India, Create for the World.\"<br>If you are excited about combining creativity, storytelling, filmmaking, and AI, we would love to hear from you.<br><strong>Ready to make an impact? Apply now!.</strong><br><strong>Application Link:</strong> https://docs.google.com/forms/d/e/1FAIpQLSdBUHCuTBmJ1ESZA8euqJ1kivcChLN9z8CrQJFuAH586VX6FQ/viewform?pli=1<br><br></p>",
+        "max_salary": 50000,
+        "min_salary": 50000,
+        "max_experience": 5,
+        "skill": [
+          "filmmaking",
+          "visual storytelling",
+          "content creation"
+        ],
+        "education": [],
+        "seniority": [
+          "entry-level"
+        ],
+        "min_experience": 0,
+        "industry": null,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department": 12412,
+        "department_name": "Content",
+        "remote": false,
+        "created_at": "2026-11-05T15:34:26.330313+05:30",
+        "salary_type": "MONTHLY",
+        "is_salary_visible": true,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "5E069F41DF",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Will you be able to join us from 23rd November?",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "8CAC441B5B",
+            "name": "single_text",
+            "label": "Single Line text",
+            "question": "Have you applied for any Full time position as well at kuku recently ? If yes please mention the position detail below.",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "5021D123AC",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Have you fillled the Google form mentioned in the Job Description?",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@kukufmb3.pyjamahr.com",
+        "email_domain": "kukufm.com",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-04T15:34:26.330313+05:30"
+      },
+      "carrier": {
+        "prefixBytes": 17013,
+        "prefixSHA256": "ad9f78adee2dbc37ff03cc286af3d375845677152ca3a40812adfcaccc70ad76",
+        "suffixBytes": 23,
+        "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+        "reviewedNonJobModel": {
+          "props": {
+            "pageProps": {
+              "isBot": false,
+              "companyDetails": {
+                "id": 9713,
+                "name": "Kuku FM",
+                "url": "https://kukufm.com",
+                "slug": "kuku-fm",
+                "location": "Bangalore/Bengaluru",
+                "address": null,
+                "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+                "primary_brand_colour": "#ff7442",
+                "secondary_brand_colour": "#86c68f",
+                "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+                "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+                "uuid": "8B92017E1E",
+                "phone_number": "+919461457680",
+                "email": null,
+                "banner_image_path": "",
+                "size": "200-1000",
+                "country": "Premium-Converted-India",
+                "show_company_name_on_career_page": true,
+                "allow_resume_drop_when_no_jobs": false,
+                "publish_jobs_to_ziprecruiter": true,
+                "is_careers_page_department_drop_down_disabled": false
+              }
+            },
+            "__N_SSP": true
+          },
+          "page": "/careers",
+          "query": {
+            "company": "Kuku FM",
+            "job_id": "425392",
+            "company_uuid": "8B92017E1E",
+            "utm_source": "DIRECT",
+            "source": "DIRECT",
+            "isHeaderVisible": "true"
+          },
+          "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+          "isFallback": false,
+          "gssp": true,
+          "scriptLoader": []
+        }
+      }
+    },
+    {
+      "id": 425389,
+      "nativeAPIURL": "https://api.pyjamahr.com/api/career/jobs/425389/?company_uuid=8B92017E1E&is_careers_page=false",
+      "nativeLandingURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425389&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "originalAPI": {
+        "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425389/?company_uuid=8B92017E1E&is_careers_page=false",
+        "bytes": 4304,
+        "rawEntitySHA256": "296cba5a2836010dd021afcc7f04f08c5e86a240577c9abc8d43aa911a6b711f",
+        "originalReceiptIndex": 20
+      },
+      "originalPublicCarrier": {
+        "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425389&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+        "bytes": 23641,
+        "rawEntitySHA256": "786733041f3c6d5c9156f4251793544cf13841f72ff123561fe12d1128a89e26",
+        "originalReceiptIndex": 21
+      },
+      "nativeWorksite": {
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": []
+      },
+      "reviewedComplete35FieldNativeDTO": {
+        "id": 425389,
+        "uuid": "8156FD8346",
+        "title": "Fellowship AI Writer",
+        "job_type": "INTERN",
+        "description": "<p><strong>About the Opportunity</strong><br>- We're looking for creative storytellers who are excited about the future of AI-powered entertainment. As an AI Writer, you'll create engaging fiction stories, web novels, and audio-first content using AI tools. You'll work on character development, episodic storytelling, and content optimization while helping build content that reaches real audiences.</p>\n<p><strong>Role &amp; Responsibilities</strong><br>- Write engaging fiction stories, serialized web novels, and audio scripts.<br>- Create compelling characters, plot arcs, cliffhangers, and episodic storytelling experiences.<br>- Use AI-powered writing tools to brainstorm, draft, edit, and optimize content.<br>- Adapt stories across formats, including audio, web novels, and microdrama narratives.<br>- Collaborate closely with writers, creative producers, and content teams.<br>- Analyze audience engagement signals and incorporate feedback into future content.<br>- Experiment with new storytelling formats and AI-native content workflows.<br>- Support end-to-end content creation from concept development to final publication.</p>\n<p><strong>Skills &amp; Qualifications&nbsp;Must-Have</strong><br>- Strong passion for fiction, storytelling, creative writing, and entertainment content.<br>- Excellent command of written English and/or Hindi.<br>- Curiosity and enthusiasm for working with AI tools and emerging creative technologies.<br>- Understanding of story structure, character development, dialogue writing, and narrative pacing.<br>- Ability to think creatively while maintaining attention to detail.<br>- Strong learning mindset and willingness to experiment with new formats.<br>- Freshers and candidates with 0-5 years of experience are encouraged to apply.<br>- Comfortable working full-time from our Delhi/Gurugram office.</p>\n<p><strong>Benefits &amp; Culture Highlights</strong><br>- Hands-on exposure to AI-native storytelling and content creation workflows.<br>- Opportunity to work on content consumed by real audiences.<br>- Mentorship from experienced content creators and storytellers.<br>- Experience using advanced AI content tools and creative platforms.<br>- Fast-track growth in one of the fastest-evolving areas of entertainment and media.</p>\n<p><b><i>Application Link : https://docs.google.com/forms/d/e/1FAIpQLSdBUHCuTBmJ1ESZA8euqJ1kivcChLN9z8CrQJFuAH586VX6FQ/viewform?pli=1</i></b><i></i></p>\n<p><i>If you love storytelling, enjoy experimenting with AI, and want to help shape the future of entertainment, we'd love to hear from you.</i></p>",
+        "max_salary": 50000,
+        "min_salary": 50000,
+        "max_experience": 5,
+        "skill": [
+          "fiction writing",
+          "storytelling",
+          "content creation"
+        ],
+        "education": [],
+        "seniority": [
+          "entry-level"
+        ],
+        "min_experience": 0,
+        "industry": null,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department": 12412,
+        "department_name": "Content",
+        "remote": false,
+        "created_at": "2026-11-05T15:24:24.195370+05:30",
+        "salary_type": "MONTHLY",
+        "is_salary_visible": true,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "BC54C6987F",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Will you able to join us from 23rd November?",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "A8B66959C3",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Have you filled the Google Form mentioned in the Job description?",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "551C589621",
+            "name": "single_text",
+            "label": "Single Line text",
+            "question": "Have you Applied for any Full time position as well at kuku recently? If Yes, please mentioned the Position details.",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@kukufmb3.pyjamahr.com",
+        "email_domain": "kukufm.com",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-04T15:24:24.195370+05:30"
+      },
+      "carrier": {
+        "prefixBytes": 16927,
+        "prefixSHA256": "b39ebf129a8f650680ae3c796409ddac695fdd72408dcd7ca5264aa2c51ae22c",
+        "suffixBytes": 23,
+        "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+        "reviewedNonJobModel": {
+          "props": {
+            "pageProps": {
+              "isBot": false,
+              "companyDetails": {
+                "id": 9713,
+                "name": "Kuku FM",
+                "url": "https://kukufm.com",
+                "slug": "kuku-fm",
+                "location": "Bangalore/Bengaluru",
+                "address": null,
+                "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+                "primary_brand_colour": "#ff7442",
+                "secondary_brand_colour": "#86c68f",
+                "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+                "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+                "uuid": "8B92017E1E",
+                "phone_number": "+919461457680",
+                "email": null,
+                "banner_image_path": "",
+                "size": "200-1000",
+                "country": "Premium-Converted-India",
+                "show_company_name_on_career_page": true,
+                "allow_resume_drop_when_no_jobs": false,
+                "publish_jobs_to_ziprecruiter": true,
+                "is_careers_page_department_drop_down_disabled": false
+              }
+            },
+            "__N_SSP": true
+          },
+          "page": "/careers",
+          "query": {
+            "company": "Kuku FM",
+            "job_id": "425389",
+            "company_uuid": "8B92017E1E",
+            "utm_source": "DIRECT",
+            "source": "DIRECT",
+            "isHeaderVisible": "true"
+          },
+          "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+          "isFallback": false,
+          "gssp": true,
+          "scriptLoader": []
+        }
+      }
+    },
+    {
+      "id": 425354,
+      "nativeAPIURL": "https://api.pyjamahr.com/api/career/jobs/425354/?company_uuid=8B92017E1E&is_careers_page=false",
+      "nativeLandingURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425354&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+      "originalAPI": {
+        "requestedURL": "https://api.pyjamahr.com/api/career/jobs/425354/?company_uuid=8B92017E1E&is_careers_page=false",
+        "bytes": 4184,
+        "rawEntitySHA256": "f393d0e7ae383732cbd16851c864f1a68eab4da8396b25338dcc57cce084067f",
+        "originalReceiptIndex": 22
+      },
+      "originalPublicCarrier": {
+        "requestedURL": "https://app.pyjamahr.com/careers?company=Kuku%20FM&job_id=425354&company_uuid=8B92017E1E&utm_source=DIRECT&source=DIRECT&isHeaderVisible=true",
+        "bytes": 23459,
+        "rawEntitySHA256": "ed9e17a85822e005ac7e93c2921b95da6821b589b89ac8d195c6db3ecd6eca78",
+        "originalReceiptIndex": 23
+      },
+      "nativeWorksite": {
+        "country": "India",
+        "location": "Mumbai, Maharashtra, India",
+        "other_locations": []
+      },
+      "reviewedComplete35FieldNativeDTO": {
+        "id": 425354,
+        "uuid": "8020A3BF42",
+        "title": "Fellowship AI-Writer",
+        "job_type": "INTERN",
+        "description": "<p><strong>About the Opportunity :</strong><br>We're looking for creative storytellers excited about the future of AI-powered entertainment. As an AI Writer, you'll create engaging fiction stories, web novels, and audio-first content using AI tools, working on character development, episodic storytelling, and content optimization to reach real audiences.</p>\n<p><strong>Role &amp; Responsibilities :</strong><br>- Write engaging fiction stories, serialized web novels, and audio scripts.<br>- Create compelling characters, plot arcs, cliffhangers, and episodic storytelling experiences.<br>- Use AI-powered writing tools to brainstorm, draft, edit, and optimize content.<br>- Adapt stories across formats, including audio, web novels, and microdrama narratives.<br>- Collaborate closely with writers, creative producers, and content teams.<br>- Analyze audience engagement signals and incorporate feedback into future content.<br>- Experiment with new storytelling formats and AI-native content workflows.<br>- Support end-to-end content creation from concept development to final publication.</p>\n<p><strong>Skills &amp; Qualifications </strong><strong>Must-Have:</strong><br>- Strong passion for fiction, storytelling, creative writing, and entertainment content.<br>- Excellent command of written English and/or Hindi.<br>- Curiosity and enthusiasm for working with AI tools and emerging creative technologies.<br>- Understanding of story structure, character development, dialogue writing, and narrative pacing.<br>- Ability to think creatively while maintaining attention to detail.<br>- Strong learning mindset and willingness to experiment with new formats.<br>- Freshers and candidates with 0-5 years of experience are encouraged to apply.<br>- Comfortable working full-time from our Mumbai office.</p>\n<p><strong>Benefits &amp; Culture Highlights</strong><br>- Hands-on exposure to AI-native storytelling and content creation workflows.<br>- Opportunity to work on content consumed by real audiences.<br>- Mentorship from experienced content creators and storytellers.<br>- Experience using advanced AI content tools and creative platforms.<br>- Fast-track growth in one of the fastest-evolving areas of entertainment and media.</p>\n<p><b><i>Application Link : </i></b><i>https://docs.google.com/forms/d/1265bPTSpMSHVPOkAFHS7xPkwhXCpjpouLdlnZDYw8jI/edit</i></p>\n<p><i>If you love storytelling, enjoy experimenting with AI, and want to help shape the future of entertainment, we'd love to hear from you.</i></p>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 5,
+        "skill": [
+          "storytelling",
+          "content creation",
+          "fiction writing"
+        ],
+        "education": [],
+        "seniority": [
+          "entry-level"
+        ],
+        "min_experience": 0,
+        "industry": null,
+        "country": "India",
+        "location": "Mumbai, Maharashtra, India",
+        "other_locations": [],
+        "department": 12412,
+        "department_name": "Content",
+        "remote": false,
+        "created_at": "2026-11-05T14:55:41.246868+05:30",
+        "salary_type": "MONTHLY",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "BE93BEC87E",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Can you join us from 12th November?",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "82C5CF71E7",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Have you filled the Google form mentioned in the Job Description?",
+            "choices": [
+              "Yes",
+              "No"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "28AE7A29D9",
+            "name": "single_text",
+            "label": "Single Line text",
+            "question": "Have you applied for any Full time position as well at Kuku recently?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@kukufmb3.pyjamahr.com",
+        "email_domain": "kukufm.com",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-04T14:55:41.246868+05:30"
+      },
+      "carrier": {
+        "prefixBytes": 16846,
+        "prefixSHA256": "bd93669540e837106240bc6cac597c96973c6418cb182cc43a7795774ee40e50",
+        "suffixBytes": 23,
+        "suffixSHA256": "69d3ca1a4f1fa2799183c629c03f2d0a873daf975cfc8f935db990f1a05b242a",
+        "reviewedNonJobModel": {
+          "props": {
+            "pageProps": {
+              "isBot": false,
+              "companyDetails": {
+                "id": 9713,
+                "name": "Kuku FM",
+                "url": "https://kukufm.com",
+                "slug": "kuku-fm",
+                "location": "Bangalore/Bengaluru",
+                "address": null,
+                "description": "<div><strong>About Kuku</strong></div><div>Kuku is India's leading mobile-first premium storytelling platform. Its flagship apps include Kuku TV for microdrama, Kuku FM for audiobooks and stories, and Guru for microlearning.</div><div><br></div><div>Kuku has grown to 400M+ installs across its apps, spanning 1,000+ cities in India. The platform hosts 20,000+ titles across 7+ languages and has empowered over 50,000 creators.</div><div><br></div><div style=\"text-align: justify;\">Founded in 2018 by three IITians and Forbes 30U30 honorees, Kuku is backed by marquee investors including MS Dhoni, Fundamentum, Krafton, Vertex Ventures, Granite Asia, IFC, and other leading global venture capital firms.</div>",
+                "primary_brand_colour": "#ff7442",
+                "secondary_brand_colour": "#86c68f",
+                "image_path": "files/company/img/kuku-black-color2x_AA24B14660.png",
+                "image_url": "https://assets.pyjamahr.com/backend/files/company/img/kuku-black-color2x_AA24B14660.png",
+                "uuid": "8B92017E1E",
+                "phone_number": "+919461457680",
+                "email": null,
+                "banner_image_path": "",
+                "size": "200-1000",
+                "country": "Premium-Converted-India",
+                "show_company_name_on_career_page": true,
+                "allow_resume_drop_when_no_jobs": false,
+                "publish_jobs_to_ziprecruiter": true,
+                "is_careers_page_department_drop_down_disabled": false
+              }
+            },
+            "__N_SSP": true
+          },
+          "page": "/careers",
+          "query": {
+            "company": "Kuku FM",
+            "job_id": "425354",
+            "company_uuid": "8B92017E1E",
+            "utm_source": "DIRECT",
+            "source": "DIRECT",
+            "isHeaderVisible": "true"
+          },
+          "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+          "isFallback": false,
+          "gssp": true,
+          "scriptLoader": []
+        }
+      }
+    }
+  ],
+  "sourceCorporateBindingQualified": false,
+  "sourceFormalLegalEntityQualified": false,
+  "sourceActivationComplete": false,
+  "sourceRenderedCriteriaComplete": false,
+  "sourceApplicationQualificationComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

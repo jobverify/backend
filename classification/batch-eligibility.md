@@ -13,7 +13,7 @@ anchor. A 3+ requirement produces an open upper bound, such as 2024 and earlier.
 `eligibleBatches` stores exact years. `eligibleBatchRange.maxYear` stores the
 inclusive upper bound for an open range. Their union is the matching set.
 `eligibleBatchesProvenance` is `source`, `inferred`, or null. Public displays mark
-inferred values as estimates. Operational evidence, hashes and progress are
+batch years without an estimate label. Operational evidence, hashes and progress are
 stored separately in `batchEligibility` and omitted from public job responses.
 
 The GLiClass worker stops before the local description instruction model starts.

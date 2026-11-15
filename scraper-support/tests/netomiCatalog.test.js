@@ -7,7 +7,7 @@ import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { hydrateProviderCatalogEntry } from '../providers/index.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const modulePath = path.resolve(currentDir, '../../scraper/netomi/script.js')
+const modulePath = path.resolve(currentDir, '../../scraper/netomi/nativeText20261115.js')
 
 const loadCatalogModule = async () => {
   try {
@@ -33,7 +33,12 @@ test("Netomi local catalog preserves the configured channel and unresolved curre
    assert.equal(p.verifiedPublicJobCount,null);assert.equal(p.verifiedIndiaJobCount,null);assert.equal(p.verifiedOn,null)
    assert.equal(p.countryFilter,'Global');assert.equal(p.adapter,'script');assert.equal(p.sourceScopeComplete,false)
    assert.equal(p.modulePath,modulePath);assert.equal(netomi.PROVIDER_METADATA.companyCareerPage,c.companyCareerPage)
-   assert.match(p.verifiedSurfaceSummary,/publisher binding may remain held/)
+   assert.match(p.verifiedSurfaceSummary,/own-native text data observations/)
+   assert.equal(p.sourceCorporateBindingQualified,false);assert.equal(p.sourceFormalLegalEntityQualified,false)
+   assert.equal(p.sourceActivationComplete,false);assert.equal(p.sourceRenderedCriteriaComplete,false)
+   assert.equal(p.sourceApplicationQualificationComplete,false);assert.equal(p.lifecycleCleanupAllowed,false)
+   assert.equal(p.sourceEvidenceScope,'own-native-text-data-only')
+   assert.equal(p.verificationDisposition,'own-native-text-data-observations-company-unverified')
   
 })
 
@@ -61,7 +66,7 @@ test('Netomi hydrated local catalog stays script-runner compatible for central r
   assert.equal(provider.companyName, 'Netomi')
   assert.equal(provider.companyCareerPage, 'https://www.netomi.com/careers')
   assert.equal(provider.companyDomain, 'netomi.com')
-  assert.match(provider.modulePath, /netomi[\\/]script\.js$/i)
+  assert.match(provider.modulePath, /netomi[\\/]nativeText20261115\.js$/i)
   assert.match(provider.dryRunFile, /netomi[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')
 })

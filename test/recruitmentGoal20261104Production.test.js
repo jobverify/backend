@@ -41,7 +41,7 @@ for(const capture of fixture.sources)test(capture.source+': current registered r
  // current 44-role opening/detail/closing contract with its genuine captures.
  if(capture.source==='moodys'||capture.source==='moodyscorporation'||capture.source==='evonik'){
   const {jobs,calls}=await assertSpecializedBatchExtraction(t,provider)
-  assert.equal(jobs.length,capture.source==='evonik'?7:44);assert.equal(calls.length,capture.source==='evonik'?38:104)
+  assert.equal(jobs.length,capture.source==='evonik'?10:44);assert.equal(calls.length,capture.source==='evonik'?48:104)
   return
  }
  // Dover's archived native role bytes use the separately captured current

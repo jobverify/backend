@@ -11,6 +11,21 @@ export const OFFICIAL_BINDING=Object.freeze({
  observationTransport:'actual-current-public-corporate-HTTP200-active-exact-native-India-link',companyScopeComplete:false,
 })
 const check=(ok,message)=>{if(!ok)throw Error('CommBank native contract: '+message)}
+export const CBA_ROLE_CRITERIA_UNAVAILABLE='CBA_NATIVE_ROLE_CRITERIA_UNAVAILABLE'
+const applicationStatements=[
+ "If you're already part of the Commonwealth Bank Group (including Bankwest, x15ventures), you'll need to apply through Sidekick to submit a valid application. We’re keen to support you with the next step in your career.",
+ "We're aware of some accessibility issues on this site, particularly for screen reader users. We want to make finding your dream job as easy as possible, so if you require additional support please contact HR Direct on 1800 989 696.",
+]
+const hasRoleCriteria=text=>{
+ // Exclude only the observed visible application/accessibility statements and
+ // advertising date while assessing criteria. Preserve all original HTML, and
+ // keep any authored text before, between or after these exact statements.
+ const roleText=applicationStatements.reduce((value,statement)=>value.replaceAll(statement,' '),text.replace(/\s+/g,' ').trim())
+  .replace(/\bAdvertising End Date:\s*\d{1,2}\/\d{1,2}\/\d{4}\b/g,' ')
+ const duties=/\b(?:responsibilit\w*|accountabilit\w*|impact|contribut\w*|design\w*|build\w*|develop\w*|deliver\w*|lead\w*|manag\w*|support\w*|implement\w*|execut\w*|analy[sz]\w*|oversee\w*|coordinat\w*|monitor\w*|assess\w*|review\w*|conduct\w*|perform\w*|drive\w*)\b/i
+ const qualifications=/\b(?:skills?|experienc\w*|qualif\w*|education\w*|expertise|proficien\w*|knowledg\w*|must|abilit\w*|capabilit\w*|requirements?|bachelor\w*|master\w*|degree\w*)\b/i
+ return roleText.replace(/[^\p{L}\p{N}]/gu,'').length>=100&&duties.test(roleText)&&qualifications.test(roleText)
+}
 export function validateCbaDescriptions(jobs){
  for(const job of jobs){
   check(typeof job.title==='string'&&job.title.trim()&&!/[<>\u0000-\u001f]/.test(job.title),'Native title malformed')
@@ -21,6 +36,7 @@ export function validateCbaDescriptions(jobs){
   check(!/\b(?:(?:this|the) (?:job|position|role) is (?:no longer available|closed)|(?:we are )?no longer accepting applications|(?:job|position|role) has (?:been (?:closed|filled)|expired))\b/i.test(text),'Native role explicitly unavailable')
   const substantive=sentences.filter(s=>!/^(?:please\s+)?(?:(?:click|select|press|tap)\s+(?:the\s+)?)?apply(?:\s+now)?(?:\s+button)?\b.*\b(?:view|learn|description|application|access|details|requirements|instructions|recruitment|qualifications|responsibilities)\b/i.test(s)&&!/^(?:please\s+)?(?:submit|complete|start|send)\s+(?:(?:your|an?|the)\s+)?application\b.*\b(?:view|access|learn|information|details|responsibilities|qualifications)\b/i.test(s)&&!/^(?:the\s+)?(?:full\s+|detailed\s+)?job description\b.*\b(?:unavailable|not available|available soon|coming soon|available\s+(?:after|once))\b/i.test(s)).join(' ').replace(/\b(?:job description|apply now|sample|placeholder|read more|coming soon)\b/gi,'').replace(/[^\p{L}\p{N}]/gu,'')
   check(substantive.length>=100,'Full native description missing, inactive or instructional only')
+  if(!hasRoleCriteria(text))throw Object.assign(new Error('CommBank native contract: Substantive role criteria unavailable outside application/organization boilerplate'),{code:CBA_ROLE_CRITERIA_UNAVAILABLE})
  }
  return jobs
 }

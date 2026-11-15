@@ -150,3 +150,26 @@ export async function clearBroadcastQueue(id, adminId) {
   const current = await TelegramBroadcastSettings.findById(id).lean();
   return { clearedCount, destination: await withStats(current ? asConfig(current) : defaults(id)) };
 }
+
+export async function clearBroadcastHistory(id, adminId) {
+  if (!BROADCAST_DESTINATIONS.includes(id)) fail('Choose channel or group.');
+  const clearedCount = await mongoose.connection.transaction(async session => {
+    const current = await TelegramBroadcastSettings.findById(id).session(session).lean();
+    const config = current ? asConfig(current) : defaults(id);
+    const schedule = await TelegramChannelSchedule.findById(config.chatId).session(session).lean();
+    if (schedule?.claimToken && schedule.claimExpiresAt > new Date()) {
+      fail('A Telegram post is in progress. Retry clearing shortly.', 409);
+    }
+    // Serialize the reset with settings saves and publication staging.
+    if (current) await TelegramBroadcastSettings.updateOne({ _id: id }, { $inc: { dispatchRevision: 1 } }, { session });
+    const result = await TelegramChannelDelivery.deleteMany({
+      $or: [{ destination: id }, { channel: config.chatId, destination: { $exists: false } }] }, { session });
+    // New publications create a fresh schedule after the reset.
+    await TelegramChannelSchedule.deleteOne({ _id: config.chatId }, { session });
+    await AdminAudit.create([{ admin: adminId, action: 'telegram_broadcast_history_cleared', targetType: 'TelegramBroadcastSettings',
+      details: JSON.stringify({ destination: id, clearedCount: result.deletedCount }) }], { session });
+    return result.deletedCount;
+  });
+  const current = await TelegramBroadcastSettings.findById(id).lean();
+  return { clearedCount, destination: await withStats(current ? asConfig(current) : defaults(id)) };
+}

@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 
-const modulePath = fileURLToPath(new URL('./script.js', import.meta.url))
+const modulePath = fileURLToPath(new URL('./nativeCareers20261114.js', import.meta.url))
 
 export const VERINT_SYSTEMS_CATALOG = {
   source: 'verintsystems',
@@ -16,13 +16,18 @@ export const VERINT_SYSTEMS_CATALOG = {
   detailApiBaseUrl: 'https://fa-epcb-saasfaprod1.fa.ocs.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitionDetails',
   publicJobsBaseUrl: 'https://fa-epcb-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/',
   siteNumber: 'CX',
-  atsPlatform: 'oracle-candidate-experience',
+  atsPlatform: 'ashby',
+  boardToken: 'verint',
+  nativeBoardUrl: 'https://jobs.ashbyhq.com/27cfd344-670f-4dcd-8b13-0e18005b0d65',
+  companyDomain: 'verint.com',
   countryFilter: 'India',
-  paginationStrategy: 'oracle-finder-location-query',
-  extractionStrategy: 'verified-first-party-careers-page+oracle-candidate-experience+india-location-filter',
-  verifiedOn: '2026-07-18',
+  paginationStrategy: 'finite-current-native-board-and-public-feed-opening-closing',
+  extractionStrategy: 'current-corporate-declared-own-ashby+original-full-native-India-criteria-as-data',
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
+  verifiedOn: '2026-11-14',
   verifiedSurfaceSummary:
-    'Verified on Saturday, July 18, 2026 that https://www.verint.com/careers/ handed off to Oracle Candidate Experience at the fa-epcb-saasfaprod1.fa.ocs.oraclecloud.com workspace and exposed Join Our Global Team on the first-party careers page.',
+    'The current corporate Join Our Global Team handoff declares the own Verint Ashby board. A finite November 14 native contract preserves full original criteria, explicit India postal countries and native publication dates, with complete opening/closing checked-board identity reconciliation. Native text-as-data only; external CSS/client/rendered activation, application questions, complete company scope and cleanup remain held. Historical Oracle URL fields are retained for pure parsing compatibility and are not used by the current collector.',
 }
 
 export default VERINT_SYSTEMS_CATALOG

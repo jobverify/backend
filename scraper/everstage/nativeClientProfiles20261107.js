@@ -29,15 +29,26 @@ const declarations={
   "https://ats.us1.rippling.com/_next/static/4yNB1FCH88tY6PbRSmFAH/_ssgManifest.js"
  ]
 }
+// Current public role/application pages use the same role program with a new
+// translated application program and an updated complete Next build context.
+// Keep both observed contexts; a leaf hash alone still cannot qualify a page.
+const current20261115={role:current.role,apply:'59bad43fd68985a50b80c47807f201e48a34e813be1bfadcce6602691fd2538d'}
+const declarations20261115=Object.fromEntries(Object.entries(declarations).map(([kind,urls])=>[kind,urls.map(url=>url
+ .replace('main-9b9f7dea66d0b54b.js','main-eb264300998e854e.js')
+ .replace('_app-e4ddd0e6f708a095.js','_app-906b68baa5ff46c1.js')
+ .replace('4yNB1FCH88tY6PbRSmFAH','6fvxwFNQJCv4SL9RqAcJL')
+ .replace('apply-530b431e9be29ff9.js','apply-b96f12938a22623b.js'))]))
 export function qualifyEverstageClient(document,url,body,kind){
  const sha=createHash('sha256').update(body).digest('hex')
  if(sha===legacy[kind])return '2026-10-21'
- if(sha!==current[kind])throw Error('Everstage native: Native '+kind+' executable client contract changed')
- const expected=declarations[kind],advertised=[]
+ const profiles=[{hashes:current,declarations,date:'2026-11-07'},{hashes:current20261115,declarations:declarations20261115,date:'2026-11-15'}].filter(profile=>profile.hashes[kind]===sha)
+ if(!profiles.length)throw Error('Everstage native: Native '+kind+' executable client contract changed')
+ const advertised=[]
  // Hidden/inert presentation does not remove an authored program declaration.
  const collect=node=>{if(node.tag==='script'&&node.attrs.src)advertised.push(node.attrs.src);for(const child of node.children??[])if(typeof child!=='string')collect(child)}
  for(const root of document.nodes(n=>n.tag==='root'))collect(root)
  const own=advertised.filter(src=>src.startsWith('https://ats.us1.rippling.com/')||src.includes('/_next/'))
- if(!expected.includes(url)||own.length!==expected.length||new Set(own).size!==own.length||!expected.every(src=>own.includes(src)))throw Error('Everstage native: Native '+kind+' client declaration context changed')
- return '2026-11-07'
+ const matched=profiles.find(profile=>{const expected=profile.declarations[kind];return expected.includes(url)&&own.length===expected.length&&new Set(own).size===own.length&&expected.every(src=>own.includes(src))})
+ if(!matched)throw Error('Everstage native: Native '+kind+' client declaration context changed')
+ return matched.date
 }

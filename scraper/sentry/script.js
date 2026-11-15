@@ -5,7 +5,7 @@ import { composeAbortSignals, fetchJsonWithRetry, fetchTextWithRetry } from '../
 import { createPublishingGapAtsScraper } from '../../scraper-support/utils/publishingGapAts.js'
 import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { attachSourceObservationEvidence } from '../../scraper-support/utils/sourceObservationEvidence.js'
-import { NATIVE_API_URL, check, checkCohort, isCohortDrift, digest, norm, ownCountries, readCorporateInventory, reconcileNativeInventory, reviewDescription } from './native.js'
+import { NATIVE_API_URL, check, checkCohort, isCohortDrift, criteriaDisagreementId, digest, norm, ownCountries, readCorporateInventory, readCorporateRoleCriteria, reconcileNativeInventory, reviewDescription } from './native.js'
 import SENTRY_CATALOG from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -127,21 +127,33 @@ export const createSentryScraper = ({ fetchImpl = globalThis.fetch } = {}) => ({
       const corporate = readCorporateInventory(await request(CURRENT_CAREERS_URL))
       const payload = await request(NATIVE_API_URL, true)
       let drift = null
-      const reconcile = (owner, native) => {
-        try { return reconcileNativeInventory(owner, native) } catch (error) {
-          if (!isCohortDrift(error)) throw error
-          drift ||= error
-          return null
+      const reconcile = async (owner, native) => {
+        const roleCriteria = new Map()
+        for (;;) {
+          try { return reconcileNativeInventory(owner, native, roleCriteria) } catch (error) {
+            if (!isCohortDrift(error)) throw error
+            const id = criteriaDisagreementId(error)
+            // A stable listing cache can lag the native posting. Confirm the
+            // employer's actual role document, independently on both reads.
+            if (cohortAttempt === 2 && id && !roleCriteria.has(id) && roleCriteria.size < 8) {
+              const record = native.jobs.find(record => record.id === id)
+              roleCriteria.set(id, readCorporateRoleCriteria(await request(`${CURRENT_CAREERS_URL}${id}/`), record, owner.rows.get(id)))
+              continue
+            }
+            drift ||= error
+            return null
+          }
         }
       }
-      const reconciliation = reconcile(corporate, payload)
+      const reconciliation = await reconcile(corporate, payload)
       const inner = await createPublishingGapAtsScraper({ source: SOURCE, companyName: COMPANY, atsPlatform: 'ashby', boardToken: 'sentry', companyCareerPage: CAREERS_PAGE_URL, sourceScopeComplete: false })
         .run({ signal: bounded, fetchJson: async url => { check(url === NATIVE_API_URL, 'unexpected native endpoint'); return payload } })
       const evidence = readInventoryEvidence(inner)
       const closingPayload = await request(NATIVE_API_URL, true), closingCorporate = readCorporateInventory(await request(CURRENT_CAREERS_URL))
-      reconcile(closingCorporate, closingPayload)
+      const closingReconciliation = await reconcile(closingCorporate, closingPayload)
       if (drift) throw drift
       checkCohort(digest(payload) === digest(closingPayload) && digest(corporate.props) === digest(closingCorporate.props), 'closing corporate/native full inventory, criteria, geography or publication changed')
+      checkCohort(digest(reconciliation.criteriaReconciliations) === digest(closingReconciliation.criteriaReconciliations), 'closing canonical employer role criteria changed')
       return { corporate, payload, reconciliation, inner, evidence, closingPayload, closingCorporate }
     }
     let cohort
@@ -156,6 +168,7 @@ export const createSentryScraper = ({ fetchImpl = globalThis.fetch } = {}) => ({
     const { corporate, payload, inner, evidence, closingPayload, closingCorporate } = cohort
     const { records, ...reconciliation } = cohort.reconciliation
     const nativeById = new Map(records.map(record => [record.id, record]))
+    const confirmedCriteria = new Map(reconciliation.criteriaReconciliations.map(role => [role.id, role]))
     const unresolvedCountryRoleIds = records.filter(record => !ownCountries(record).known).map(record => record.id)
     const observations = { ...reconciliation,
       unresolvedCountryRoleIds, closingInventoryAndCriteriaMatch: true, nativeRecords: records, hydratedProps: corporate.props,
@@ -169,12 +182,15 @@ export const createSentryScraper = ({ fetchImpl = globalThis.fetch } = {}) => ({
     const selected = inner.filter(job => { const country = ownCountries(nativeById.get(job.jobId)); return corporate.rows.has(job.jobId) && country.known && country.india })
     const capped = Number.isSafeInteger(maxJobs) && maxJobs > 0 ? selected.slice(0, maxJobs) : selected
     const jobs = capped.map(job => {
-      const native = nativeById.get(job.jobId), row = corporate.rows.get(job.jobId), description = reviewDescription(job.sourceDescription)
+      const native = nativeById.get(job.jobId), row = corporate.rows.get(job.jobId)
+      const criteria = confirmedCriteria.get(job.jobId)
+      const description = reviewDescription(criteria?.descriptionHtml ?? job.sourceDescription)
       const postingDate = native.publishedAt == null ? null : new Date(native.publishedAt).toISOString()
       return { ...job, source: SOURCE, company: COMPANY, country: 'India', postingDate, sourcePostingDate: postingDate,
         sourceDateEvidence: postingDate ? 'ashby-native-published-at' : null, sourceNativeDates: { publishedAt: native.publishedAt ?? null },
         compensationRange: norm(row.info.compensationTierSummary) || null, workplaceType: norm(row.info.workplaceType) || null,
         jobDescription: description, sourceDescription: description, sourceDetailComplete: !!description,
+        ...(criteria ? { sourceCriteriaEvidence: criteria } : {}),
         sourceNativeListingRecord: native, sourceNativeCorporateRole: row, sourceNativeInventory: observations,
         sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false }
     })

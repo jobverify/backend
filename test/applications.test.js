@@ -81,18 +81,18 @@ test('another user cannot confirm an application or create one by confirmation',
 
 test('application history is paginated, owner-scoped and retains snapshots without a live job', async () => {
   const rows = await Application.insertMany(Array.from({ length: 25 }, (_, index) => ({
-    user, job: new mongoose.Types.ObjectId(), status: index < 2 ? 'applied' : 'opened',
+    user, job: new mongoose.Types.ObjectId(), status: index < 23 ? 'applied' : 'opened',
     jobSnapshot: { ...job, applicationUrl: job.sourceUrl }, firstOpenedAt: new Date(Date.UTC(2026, 9, index + 1)),
   })));
   await TailoredResume.collection.insertMany(rows.map(row => ({ _id: `${user}:${row.job}`, user: new mongoose.Types.ObjectId(user), job: row.job, status: 'completed' })));
   const res = response();
-  await getApplications({ user: { _id: user }, query: { page: '2', status: 'opened' } }, res);
+  await getApplications({ user: { _id: user }, query: { page: '2', status: 'applied' } }, res);
   assert.equal(res.statusCode, 200);
-  assert.deepEqual(res.body.summary, { total: 25, opened: 23, applied: 2 });
+  assert.deepEqual(res.body.summary, { total: 23, opened: 0, applied: 23 });
   assert.equal(res.body.pagination.totalPages, 12);
   assert.equal(res.body.pagination.limit, 2);
   assert.equal(res.body.data.length, 2); assert.equal(res.body.pagination.total, 23);
-  assert.ok(res.body.data.every(item => item.status === 'opened' && item.stage === 'preparing'));
+  assert.ok(res.body.data.every(item => item.status === 'applied' && item.stage === 'applied'));
   assert.equal(res.body.data[0].jobSnapshot.applicationUrl, job.sourceUrl);
 });
 

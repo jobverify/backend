@@ -25,6 +25,11 @@ async function collect({ change = () => {}, closingChange = () => {}, maxJobs = 
   change(model)
   let calls = 0
   const fetchImpl = async (url, init = {}) => {
+    if (url === CAREERS + MATCHED + '/') {
+      const response = new Response('<html><title>Unconfirmed role</title></html>', { headers: { 'content-type': 'text/html' } })
+      Object.defineProperty(response, 'url', { value: url })
+      return response
+    }
     assert.equal(url, [CAREERS, API, API, CAREERS][calls++ % 4], 'only complete four-request cohorts are admitted')
     assert.ok(init.signal instanceof AbortSignal)
     let body = model.corporate

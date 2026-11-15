@@ -1,5 +1,4 @@
-import {fixture,replay,editHTML,editJSON,mutateNativePost} from '../native-sources/publicLeverChannels/fixtureReplay.js'
-import {syntheticPaginatedVgs} from '../native-sources/publicLeverChannels/testSupport.js'
+import {replayNative, withReplayClock, nativeFeed, ids, boardURL, feedURL} from '../../scraper/netomi/fixtures/replayNative20261115.js'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
@@ -140,32 +139,41 @@ test('Netomi extracts the live Lever payload shape into shared scraper job field
   assert.equal(jobs[1].title, 'Agentic Engineer')
 })
 
-test("Netomi restored public handoff qualifies full original models and applies caps after complete audit",async()=>{
-   const netomi=await loadNetomiModule(),r=replay((url,page)=>url===netomi.HOMEPAGE_URL?editHTML(page,html=>html+'<a href="https://jobs.lever.co/netomi">Open roles</a>'):page)
-   const jobs=await netomi.createNetomiScraper({maxJobs:1}).run(r.options)
-   assert.equal(r.audits[0].observations.length,20);assert.equal(jobs.length,1)
-   assert.equal(jobs[0].jobId,fixture.oracle.netomi.records[0].id)
-   assert.deepEqual(jobs[0].sourceNativeRecord,fixture.oracle.netomi.records[0].originalNative)
-   assert.equal(jobs[0].scrapedAt,'2026-10-31T21:51:00.000Z')
-  
+test('Netomi factory qualifies full original native text models and applies caller caps with closing reserved', async t => {
+   const netomi = await loadNetomiModule(), replay = replayNative()
+   const jobs = await withReplayClock(t, () => netomi.createNetomiScraper({maxJobs: 1}).run({...replay.options, now: () => '2026-11-15T00:00:00.000Z'}))
+   assert.equal(replay.audits[0].observations.length, 21)
+   assert.equal(jobs.length, 1)
+   assert.equal(jobs[0].jobId, ids[0])
+   assert.deepEqual(jobs[0].sourceNativeRecord, nativeFeed.find(row => row.id === ids[0]))
+   assert.equal(jobs[0].scrapedAt, '2026-11-15T00:00:00.000Z')
+   assert.equal(jobs[0].sourceCorporateBindingQualified, false)
+   assert.equal(jobs[0].sourceFormalLegalEntityQualified, false)
+   assert.equal(replay.calls.length, 6)
+   assert.deepEqual(replay.calls.slice(-2).map(row => row.url), [boardURL, feedURL])
 })
 
-test("Netomi retains configured native observations while the current referral homepage lacks a binding",async()=>{
-   const netomi=await loadNetomiModule(),r=replay(),jobs=await netomi.createNetomiScraper().run(r.options)
-   assert.equal(jobs.length,0);assert.equal(r.audits[0].observations.length,20)
-   assert.equal(r.audits[0].closing.publisherQualified,false)
-   assert.ok(r.requests.some(url=>url.startsWith('https://api.lever.co/v0/postings/netomi')))
-   assert.ok(r.audits[0].observations.every(row=>row.jobDescription&&!row.sourceCurrentNativePostingIdentityQualified))
-  
+test('Netomi exported run retains eight genuine paired native text observations while corporate and one closing remain held', async t => {
+   const netomi = await loadNetomiModule(), replay = replayNative()
+   const jobs = await withReplayClock(t, () => netomi.run(replay.options))
+   assert.equal(jobs.length, 8)
+   assert.equal(replay.audits[0].observations.length, 21)
+   assert.equal(replay.audits[0].corporateBindingQualified, false)
+   assert.equal(replay.audits[0].issues.length, 1)
+   assert.ok(jobs.every(row => row.sourceNativeTextComplete && !row.sourceCorporateBindingQualified && !row.sourceScopeComplete && !row.lifecycleCleanupAllowed))
+   assert.ok(replay.calls.every(row => !row.url.startsWith('https://api.lever.co/v0/postings/netomi/')))
+   assert.ok(replay.calls.every(row => !row.replayReuse))
 })
 
-test("Netomi retains unqualified publisher and feed errors while preserving independently readable role criteria",async()=>{
-   const netomi=await loadNetomiModule()
-   const primary=replay((url,page)=>url===netomi.HOMEPAGE_URL?editHTML(page,html=>html.replace('<title>Netomi</title>','<title>Other</title>')):page)
-   assert.equal((await netomi.run(primary.options)).length,0);assert.equal(primary.audits[0].closing.publisherQualified,false)
-   const feed=replay((url,page)=>url.includes('/postings/netomi?')?editJSON(page,()=>{}):page)
-   const broken=replay((url,page)=>url.includes('/postings/netomi?')?{...page,bodyBase64:Buffer.from('{"error":"unavailable"}').toString('base64'),html:'{"error":"unavailable"}',text:'{"error":"unavailable"}'}:page)
-   assert.equal((await netomi.run(broken.options)).length,0);assert.equal(broken.audits[0].closing.nativeListingComplete,false)
-   assert.equal(broken.audits[0].observations.length,20);assert.ok(broken.audits[0].observations.every(row=>row.jobDescription))
-  
+test('Netomi unknown original board/feed authority errors reject with retained receipts rather than inventing zero', async t => {
+   const netomi = await loadNetomiModule()
+   for (const target of [boardURL, feedURL]) {
+     const replay = replayNative({mutate: (url, entity) => url === target ? {...entity, bytes: Buffer.from('{"error":"unavailable"}')} : entity})
+     await assert.rejects(() => withReplayClock(t, () => netomi.run(replay.options)), error => {
+       assert.equal(error.sourceScopeComplete, false)
+       assert.equal(error.lifecycleCleanupAllowed, false)
+       assert.equal(error.nativeCollectionEvidence.rawPages.at(-1).url, target)
+       return true
+     })
+   }
 })

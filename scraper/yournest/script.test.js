@@ -1,6 +1,8 @@
 ﻿import assert from 'node:assert/strict'
 import test from 'node:test'
-import {run,createYourNestScraper} from './script.js'
+// Historical assertions stay on the unchanged native.js contract. Missing
+// historical originals remain explicit failures; current coverage is separate.
+import {runLegacy as run,createYourNestLegacyScraper as createYourNestScraper} from './script.js'
 const gap=e=>e.code==='YOURNEST_COVERAGE_GAP'&&e.inventoryEvidence.reportedTotal===null&&e.lifecycleCleanupAllowed===false
 const response=(body,url='https://yournest.in/')=>{const r=new Response(body);Object.defineProperty(r,'url',{value:url});return r}
 test('unverified inventory is a typed gap instead of static emptiness',async()=>{await assert.rejects(run({fetchImpl:async()=>response('<h1>YourNest</h1>')}),gap)})

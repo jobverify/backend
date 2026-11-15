@@ -73,11 +73,14 @@ function nativeURL(value,id,firstParty=false,foreignPublicTracking=false){
     const reviewedTracking=foreignPublicTracking&&Object.hasOwn(REVIEWED_FOREIGN_TRACKING,id)&&value===u.href&&u.pathname==='/job-openings/position/'+id+'/'&&createHash('sha256').update(u.search.slice(1)).digest('hex')===REVIEWED_FOREIGN_TRACKING[id]
     if(!reviewedTracking){
     const keys=[...u.searchParams.keys()]
-    check(new Set(keys).size===keys.length&&keys.every(k=>['ref',';t','Share','utm_search_query','jr_id','employee','t'].includes(k)),'Native official tracking query changed')
+    check(new Set(keys).size===keys.length&&keys.every(k=>['ref',';t','Share','utm_search_query','jr_id','employee','employeeShare','t'].includes(k)),'Native official tracking query changed')
     const params=u.searchParams
     check(!params.has('utm_search_query')||plain(params.get('utm_search_query')),'Native official search tracking malformed')
     check(!params.has('jr_id')||/^[a-f0-9]{24}$/.test(params.get('jr_id')),'Native official referral tracking malformed')
     check(!params.has('employee')||params.get('employee')===''&&params.has('Share')&&params.get('Share')===''&&params.has('t'),'Native official employee tracking malformed')
+    // The current public board also emits ?Share&employeeShare. These are
+    // empty referral flags; role identity and acquisition remain query-free.
+    check(!params.has('employeeShare')||params.get('employeeShare')===''&&params.has('Share')&&params.get('Share')==='','Native official employee share tracking malformed')
     // The declared board also publishes a standalone millisecond clock. Its
     // raw query remains data; native public identity uses the query-free UID.
     check(!params.has('t')||/^\d{13}$/.test(params.get('t'))&&(keys.length===1||params.has('Share')&&params.get('Share')===''&&params.has('employee')&&params.get('employee')===''),'Native official share tracking malformed')

@@ -1,7 +1,17 @@
 import { buildClassificationInput, cleanSourceText } from './jobClassificationPolicy.js';
 import { sourceGuardedClassification } from './postScrapeClassification.js';
 import { batchHash, batchSourceFields, batchSourceHash, batchYears, batchMaximum, graduationAnchor,
-  BATCH_ELIGIBILITY_VERSION } from '../utils/jobBatchEligibility.js';
+  BATCH_ELIGIBILITY_VERSION, hasBatchEligibility } from '../utils/jobBatchEligibility.js';
+
+// Alerts may be rendered before the asynchronous batch phase has saved its
+// result. Reuse deterministic policy rules without starting an extractor or
+// changing the job. A completed policy abstention must remain an abstention.
+export function batchEligibilityForAlert(job, { now = new Date() } = {}) {
+  if (hasBatchEligibility(job)
+    || (job.batchEligibility?.mode === 'policy' && job.batchEligibility.status === 'unknown')) return job;
+  const result = resolveBatchEligibility(batchEligibilityInput(job, { now }));
+  return result.needsExtraction ? job : result;
+}
 
 export function batchEligibilityInput(job, { now = new Date(), mode = 'policy' } = {}) {
   const source = batchSourceFields(job), sourceHash = batchSourceHash(job);

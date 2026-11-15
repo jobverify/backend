@@ -4,6 +4,7 @@ import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { Agent, getGlobalDispatcher, setGlobalDispatcher } from 'undici';
 import { generateResumeText } from '../resume-tailoring/resumeRuntime.js';
+import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
 
 test('generation can continue past eight minutes while staying inside the caller deadline', async t => {
   const timeouts = [];
@@ -14,8 +15,8 @@ test('generation can continue past eight minutes while staying inside the caller
   const deadline = Date.now() + 20 * 60000;
   const fetchImpl = async url => ({ ok: true, json: async () => url.endsWith('/apply-template')
     ? { prompt: 'synthetic prompt' } : url.endsWith('/tokenize') ? { tokens: [1, 2, 3] }
-      : { choices: [{ finish_reason: 'stop', message: { content: 'complete synthetic document' } }] } });
-  assert.equal(await generateResumeText('synthetic source', { fetchImpl, deadline }), 'complete synthetic document');
+      : { content: 'complete synthetic body', stop_type: 'eos' } });
+  assert.equal(await generateResumeText('synthetic source', { fetchImpl, deadline }), RESUME_LATEX_PREAMBLE + 'complete synthetic body');
   assert.equal(timeouts.length, 3);
   assert.ok(timeouts.every(milliseconds => milliseconds > 19 * 60000 && milliseconds <= 20 * 60000),
     'all model requests must use the caller deadline instead of an eight-minute cutoff');
@@ -31,8 +32,7 @@ async function startModelServer(t, completionDelay) {
     if (request.url === '/apply-template') return send({ prompt: 'synthetic prompt' });
     if (request.url === '/tokenize') return send({ tokens: [1, 2, 3] });
     const timer = setTimeout(() => send({
-      choices: [{ finish_reason: 'stop', message: { content: 'complete synthetic document' } }],
-      usage: { completion_tokens: 3 },
+      content: 'complete synthetic body', stop_type: 'eos', timings: { predicted_n: 3 },
     }), completionDelay);
     response.once('close', () => clearTimeout(timer));
   });
@@ -58,7 +58,7 @@ test('slow model responses outlive the default transport timeout without changin
   const result = await generateResumeText('synthetic source', {
     fetchImpl, deadline: Date.now() + 10000,
   });
-  assert.equal(result, 'complete synthetic document');
+  assert.equal(result, RESUME_LATEX_PREAMBLE + 'complete synthetic body');
   assert.equal(getGlobalDispatcher(), shortDispatcher);
 });
 

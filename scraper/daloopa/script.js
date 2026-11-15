@@ -3,11 +3,13 @@ import { fileURLToPath } from 'node:url'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
-import DALOOPA_CATALOG from './catalog.js'
+import DALOOPA_CATALOG, {LEGACY_DALOOPA_CATALOG} from './catalog.js'
+import {createDaloopaNativeDataScraper,runCurrentDaloopaData} from './nativeData20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const PROVIDER_METADATA = DALOOPA_CATALOG
+export const LEGACY_PROVIDER_METADATA = LEGACY_DALOOPA_CATALOG
 export const SOURCE = PROVIDER_METADATA.source
 export const COMPANY = PROVIDER_METADATA.companyName
 export const OFFICIAL_BRAND_NAME = PROVIDER_METADATA.officialBrandName
@@ -55,7 +57,7 @@ export const hasPublicJobsSignal = (html = '') => {
     || /\bopen roles\b/i.test(normalized)
 }
 
-export const createDaloopaScraper = () => ({
+export const createDaloopaLegacyScraper = () => ({
   async run({ fetchText = defaultFetchText } = {}) {
     const careersHtml = await fetchText(CAREERS_URL)
 
@@ -67,7 +69,9 @@ export const createDaloopaScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createDaloopaScraper().run(options)
+export const runLegacy = async (options = {}) => createDaloopaLegacyScraper().run(options)
+export const createDaloopaScraper = createDaloopaNativeDataScraper
+export const run = (options = {}) => runCurrentDaloopaData(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

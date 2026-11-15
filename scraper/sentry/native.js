@@ -7,8 +7,10 @@ import { nativeCountryName, nativeLocationCountryName } from '../../scraper-supp
 export const NATIVE_API_URL = 'https://api.ashbyhq.com/posting-api/job-board/sentry'
 const contractError = message => Object.assign(new Error('[sentry] Current native contract: ' + message), { abortRetries: true, failureKind: 'parser_or_contract_error' })
 const cohortDrifts = new WeakSet()
+const criteriaDisagreements = new WeakMap()
 export const check = (ok, message) => { if (!ok) throw contractError(message) }
 export const isCohortDrift = error => error !== null && typeof error === 'object' && cohortDrifts.has(error)
+export const criteriaDisagreementId = error => criteriaDisagreements.get(error)
 export const checkCohort = (ok, message) => {
   if (!ok) { const error = contractError(message); cohortDrifts.add(error); throw error }
 }
@@ -68,7 +70,31 @@ export const readCorporateInventory = html => {
   check(seen.size === rows.size, 'visible and hydrated role counts disagree')
   return { props, rows, nativePropsRaw: islands[0].attrs.props, componentUrl: islands[0].attrs['component-url'] }
 }
-export const reconcileNativeInventory = (corporate, payload) => {
+export const readCorporateRoleCriteria = (html, record, row) => {
+  const message = 'corporate/API full job criteria disagree: canonical employer role confirmation failed'
+  const sourceUrl = `https://sentry.io/careers/${record.id}/`
+  const doc = readVisibleNativeDocument(html, { strict: true })
+  const head = activeHead(html)
+  const bodies = doc.nodes(node => node.tag === 'body')
+  const articles = doc.nodes(node => node.tag === 'article' && (node.attrs.class || '').split(/\s+/).includes('job-description-content'))
+  check(head.titles.includes(`${norm(record.title)} - Careers at Sentry | Sentry`)
+    && head.metas.some(meta => meta.property === 'og:url' && meta.content === sourceUrl)
+    && doc.nodes(node => node.tag === 'h1' && doc.text(node) === norm(record.title)).length === 1
+    && doc.nodes(node => node.tag === 'p' && doc.text(node) === norm(record.location)).length >= 1
+    && doc.nodes(node => node.tag === 'a' && node.attrs.href === record.jobUrl && /apply for this role/i.test(doc.text(node))).length >= 1
+    && articles.length === 1 && bodies.length === 1
+    && !/\b(?:(?:this )?(?:job|position|role|requisition) (?:is|has been) (?:no longer (?:available|active)|closed|filled)|(?:we are )?no longer accepting applications)\b/i.test(doc.text(bodies[0])), message)
+  const description = doc.text(articles[0])
+  const corporateDescription = extractActiveDescription(row.info.descriptionHtml)
+  const nativeDescription = extractActiveDescription(record.descriptionHtml)
+  check(description && (description === corporateDescription || description === nativeDescription), message)
+  const descriptionSource = description === corporateDescription ? 'corporate-role' : 'native-posting'
+  const descriptionHtml = descriptionSource === 'corporate-role' ? row.info.descriptionHtml : record.descriptionHtml
+  check(reviewDescription(descriptionHtml), message)
+  return { id: record.id, sourceUrl, descriptionSource, description, descriptionHtml }
+}
+
+export const reconcileNativeInventory = (corporate, payload, roleCriteria = new Map()) => {
   check(Array.isArray(payload?.jobs) && payload.apiVersion === '1', 'native posting inventory envelope changed')
   const records = payload.jobs.filter(record => record.isListed === true), ids = new Set(), reconciledRoleIds = [], nativeOnlyRoleIds = []
   for (const record of records) {
@@ -81,7 +107,11 @@ export const reconcileNativeInventory = (corporate, payload) => {
         && norm(record.employmentType) === norm(row.info.employmentType), 'corporate/API employer, role identity, location or employment type disagrees')
       const nativeDescription = extractActiveDescription(record.descriptionHtml), corporateDescription = extractActiveDescription(row.info.descriptionHtml)
       check(nativeDescription && corporateDescription, 'corporate/API full job criteria disagree')
-      checkCohort(nativeDescription === corporateDescription, 'corporate/API full job criteria disagree')
+      const confirmed = roleCriteria.get(record.id)
+      try {
+        checkCohort(nativeDescription === corporateDescription || confirmed?.id === record.id
+          && [nativeDescription, corporateDescription].includes(confirmed.description), 'corporate/API full job criteria disagree')
+      } catch (error) { criteriaDisagreements.set(error, record.id); throw error }
       reconciledRoleIds.push(record.id)
     } else nativeOnlyRoleIds.push(record.id)
     if (record.publishedAt != null) check(typeof record.publishedAt === 'string' && /^\d{4}-\d\d-\d\dT/.test(record.publishedAt) && Number.isFinite(Date.parse(record.publishedAt)), 'native publication timestamp is malformed')
@@ -92,7 +122,7 @@ export const reconcileNativeInventory = (corporate, payload) => {
   return { records, corporateRoleCount: corporate.rows.size, nativeRoleCount: records.length,
     corporateNativeCountAgreement: records.length === corporate.rows.size,
     corporateNativeInventoryAgreement: nativeOnlyRoleIds.length === 0 && corporateOnlyRoleIds.length === 0,
-    reconciledRoleIds, nativeOnlyRoleIds, corporateOnlyRoleIds }
+    reconciledRoleIds, nativeOnlyRoleIds, corporateOnlyRoleIds, criteriaReconciliations: [...roleCriteria.values()] }
 }
 export const ownCountries = record => {
   const known = new Set(['location', 'address', 'secondaryLocations'])

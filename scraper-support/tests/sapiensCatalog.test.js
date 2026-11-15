@@ -16,7 +16,7 @@ test('getScraperCatalog includes Sapiens as an current official HiBob script pro
   assert.equal(provider.companyName, 'Sapiens')
   assert.equal(provider.companyCareerPage, 'https://sapiens.com/careers/')
   assert.equal(provider.companyDomain, 'sapiens.com')
-  assert.match(provider.modulePath, /sapiens[\\/]script\.js$/i)
+  assert.match(provider.modulePath, /sapiens[\\/]nativeData20261115\.js$/i)
 })
 
 test('buildScrapers exposes a runnable Sapiens scraper without changing the runner contract', () => {

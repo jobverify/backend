@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 import Application, { APPLICATION_STAGES } from '../models/Application.js';
 import TailoredResume from '../models/TailoredResume.js';
-import Job from '../models/Job.js';
 import { safeApplicationUrl, recordApplicationEvidence, publicApplication } from '../services/applicationService.js';
 import { respondWithInternalError } from '../utils/respondWithInternalError.js';
 
@@ -16,35 +15,23 @@ export async function getApplications(req, res) {
   }
   try {
     const filters = [...(status === 'all' ? [] : [{ $match: { status } }]), ...(stage === 'all' ? [] : [{ $match: { stage } }])];
-    // A tailored resume request is the only way a job enters this tracker.
-    // Employer-page clicks and submission evidence alone do not add entries.
-    const [result] = await TailoredResume.aggregate([
-      { $match: { user: new mongoose.Types.ObjectId(String(req.user._id)) } },
-      { $lookup: { from: Application.collection.name, let: { owner: '$user', jobId: '$job' }, pipeline: [
+    const owner = new mongoose.Types.ObjectId(String(req.user._id));
+    // Only confirmed submissions belong in My applications. Employer-page
+    // openings and resume requests remain outside the list and its counts.
+    const [result] = await Application.aggregate([
+      { $match: { user: owner, status: 'applied' } },
+      { $lookup: { from: TailoredResume.collection.name, let: { owner: '$user', jobId: '$job' }, pipeline: [
         { $match: { $expr: { $and: [{ $eq: ['$user', '$$owner'] }, { $eq: ['$job', '$$jobId'] }] } } },
-      ], as: 'application' } },
-      { $lookup: { from: Job.collection.name, localField: 'job', foreignField: '_id', pipeline: [
-        { $project: { title: 1, company: 1, location: 1, city: 1, jobType: 1, applicationUrl: 1, applyUrl: 1, sourceUrl: 1 } },
-      ], as: 'listing' } },
-      { $set: { application: { $first: '$application' }, listing: { $first: '$listing' } } },
-      { $match: { $or: [{ 'application._id': { $exists: true } }, { 'listing._id': { $exists: true } }] } },
+        { $project: { status: 1, requestedAt: 1, createdAt: 1 } }, { $limit: 1 },
+      ], as: 'resume' } },
+      { $set: { resume: { $first: '$resume' } } },
       { $project: {
-        _id: { $ifNull: ['$application._id', { $concat: ['resume:', { $toString: '$job' }] }] },
-        job: 1, status: { $ifNull: ['$application.status', 'opened'] },
-        stage: { $ifNull: ['$application.stage', { $cond: [{ $eq: ['$application.status', 'applied'] }, 'applied', 'preparing'] }] },
-        version: { $ifNull: ['$application.version', 0] },
-        canConfirm: { $ne: [{ $ifNull: ['$application._id', null] }, null] },
-        firstOpenedAt: { $ifNull: ['$application.firstOpenedAt', null] },
-        appliedAt: { $ifNull: ['$application.appliedAt', null] },
-        confirmationSource: { $ifNull: ['$application.confirmationSource', ''] },
-        evidence: { $ifNull: ['$application.evidence', []] },
-        resumeStatus: '$status', resumeRequestedAt: { $ifNull: ['$requestedAt', '$createdAt'] },
-        trackedAt: { $ifNull: ['$requestedAt', '$createdAt'] },
-        jobSnapshot: { $ifNull: ['$application.jobSnapshot', {
-          title: '$listing.title', company: '$listing.company',
-          location: { $ifNull: ['$listing.location', '$listing.city'] }, jobType: '$listing.jobType',
-          applicationUrl: '$listing.applicationUrl', applyUrl: '$listing.applyUrl', sourceUrl: '$listing.sourceUrl',
-        }] },
+        job: 1, status: 1, jobSnapshot: 1, firstOpenedAt: 1, appliedAt: 1,
+        stage: { $ifNull: ['$stage', 'applied'] }, version: { $ifNull: ['$version', 0] },
+        canConfirm: { $literal: true },
+        confirmationSource: { $ifNull: ['$confirmationSource', ''] }, evidence: { $ifNull: ['$evidence', []] },
+        resumeStatus: '$resume.status', resumeRequestedAt: { $ifNull: ['$resume.requestedAt', '$resume.createdAt'] },
+        trackedAt: { $ifNull: ['$appliedAt', '$firstOpenedAt'] },
       } },
       { $facet: {
         items: [

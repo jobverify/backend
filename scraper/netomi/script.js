@@ -1,4 +1,4 @@
-import {createPublicLeverSource, PUBLIC_LEVER_PROFILES} from '../../scraper-support/native-sources/publicLeverChannels/nativeCareers.js'
+import {createNetomiNativeTextScraper} from './nativeText20261115.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -230,7 +230,7 @@ export const extractLeverJobs = (leverJobs = []) => {
   })
 }
 
-export const createNetomiScraper = (options = {}) => createPublicLeverSource(PUBLIC_LEVER_PROFILES.netomi, options)
+export const createNetomiScraper = (options = {}) => createNetomiNativeTextScraper(options)
 
 export const run = async (options = {}) => createNetomiScraper(options).run(options)
 

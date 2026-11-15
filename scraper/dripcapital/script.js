@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { DRIP_CAPITAL_CATALOG } from './catalog.js'
+import {createNativeDripCapitalScraper} from './nativeCareers20261114.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -21,10 +22,8 @@ export const JOBS_URL = PROVIDER_METADATA.jobsPageUrl
 export const ROBOTS_TXT_URL = PROVIDER_METADATA.robotsTxtUrl
 export const SITEMAP_URL = PROVIDER_METADATA.sitemapUrl
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
+  /https:\/\/dripcapital\.recruiterbox\.com\/#content/i,
   /"@type"\s*:\s*"JobPosting"/i,
   /\bjobposting\b/i,
   /\bcurrent openings\b/i,
@@ -119,22 +118,6 @@ const hasExpectedPayloadUrl = (payloadUrl = '', routePath = '') =>
   String(payloadUrl || '').includes('/_nuxt/static/')
   && String(payloadUrl || '').endsWith(`${routePath}/payload.js`)
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
 export const hasPublicJobsSignal = (html = '') =>
   PUBLIC_JOBS_SIGNAL_PATTERNS.some((pattern) => pattern.test(String(html ?? '')))
 
@@ -204,11 +187,6 @@ export const extractCareerLikeUrlsFromSitemap = (sitemapXml = '') => (
     .filter((url) => /\/(?:(?:en-in|en-us)\/)?careers(?:\/|$)|\/jobs(?:\/|$)/i.test(url))
 )
 
-const hasOnlyVerifiedSitemapCareerShell = (sitemapXml = '') => {
-  const urls = extractCareerLikeUrlsFromSitemap(sitemapXml)
-  return urls.length === 1 && sameUrl(urls[0], CAREERS_PAGE_URL)
-}
-
 export const isVerifiedJobs404Route = (page = {}) => {
   const rawHtml = String(page.html ?? '')
   const normalized = normalizeWhitespace(rawHtml)
@@ -220,122 +198,7 @@ export const isVerifiedJobs404Route = (page = {}) => {
     && !hasPublicJobsSignal(rawHtml)
 }
 
-export const createDripCapitalScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (
-      homepage.status !== 200
-      || !sameUrl(homepage.url, HOMEPAGE_URL)
-      || !hasOfficialHomepageSignal(homepage.html)
-    ) {
-      throw new Error('Drip Capital verified homepage no longer matches the trusted first-party surface')
-    }
-
-    if (hasPublicJobsSignal(homepage.html)) {
-      throw new Error('Drip Capital homepage now exposes a public jobs surface')
-    }
-
-    const legacyCareersPage = await fetchPage(LEGACY_CAREERS_URL)
-    if (
-      legacyCareersPage.status !== 200
-      || !sameUrl(legacyCareersPage.url, LEGACY_CAREERS_URL)
-      || !hasCareersShellSignal(legacyCareersPage.html, {
-        routeUrl: LEGACY_CAREERS_URL,
-        routePath: '/careers',
-        requireTitle: false,
-        requireDescription: false,
-      })
-    ) {
-      throw new Error('Drip Capital verified legacy careers route no longer matches the trusted first-party surface')
-    }
-
-    const legacyPayloadUrl = extractPayloadUrl(legacyCareersPage.html)
-    const legacyPayloadPage = await fetchPage(legacyPayloadUrl)
-    if (
-      legacyPayloadPage.status !== 200
-      || !sameUrl(legacyPayloadPage.url, legacyPayloadUrl)
-      || !isVerifiedEmptyPayload(legacyPayloadPage.html, '/careers')
-    ) {
-      throw new Error('Drip Capital verified empty legacy careers payload changed')
-    }
-
-    const indiaCareersPage = await fetchPage(CAREERS_PAGE_URL)
-    if (
-      indiaCareersPage.status !== 200
-      || !sameUrl(indiaCareersPage.url, CAREERS_PAGE_URL)
-      || !hasCareersShellSignal(indiaCareersPage.html, {
-        routeUrl: CAREERS_PAGE_URL,
-        routePath: '/en-in/careers',
-        requireTitle: false,
-        requireDescription: false,
-      })
-    ) {
-      throw new Error('Drip Capital verified india careers route no longer matches the trusted first-party surface')
-    }
-
-    const indiaPayloadUrl = extractPayloadUrl(indiaCareersPage.html)
-    const indiaPayloadPage = await fetchPage(indiaPayloadUrl)
-    if (
-      indiaPayloadPage.status !== 200
-      || !sameUrl(indiaPayloadPage.url, indiaPayloadUrl)
-      || !isVerifiedEmptyPayload(indiaPayloadPage.html, '/en-in/careers')
-    ) {
-      throw new Error('Drip Capital verified empty india careers payload changed')
-    }
-
-    const usCareersPage = await fetchPage(US_CAREERS_URL)
-    if (
-      usCareersPage.status !== 200
-      || !sameUrl(usCareersPage.url, US_CAREERS_URL)
-      || !hasCareersShellSignal(usCareersPage.html, {
-        routeUrl: US_CAREERS_URL,
-        routePath: '/en-us/careers',
-        expectedTitle: 'Careers | Join Drip Capital',
-        expectedDescription:
-          'Join the Drip Capital team. Build the future of working capital access for SMBs. We are hiring engineers, analysts, and operators.',
-        requireTitle: true,
-        requireDescription: true,
-      })
-    ) {
-      throw new Error('Drip Capital verified US careers route no longer matches the trusted first-party surface')
-    }
-
-    const usPayloadUrl = extractPayloadUrl(usCareersPage.html)
-    const usPayloadPage = await fetchPage(usPayloadUrl)
-    if (
-      usPayloadPage.status !== 200
-      || !sameUrl(usPayloadPage.url, usPayloadUrl)
-      || !isVerifiedEmptyPayload(usPayloadPage.html, '/en-us/careers')
-    ) {
-      throw new Error('Drip Capital verified empty US careers payload changed')
-    }
-
-    const jobsRoutePage = await fetchPage(JOBS_URL)
-    if (!isVerifiedJobs404Route(jobsRoutePage)) {
-      throw new Error('Drip Capital verified jobs route changed or now exposes public jobs')
-    }
-
-    const robotsPage = await fetchPage(ROBOTS_TXT_URL)
-    if (
-      robotsPage.status !== 200
-      || !sameUrl(robotsPage.url, ROBOTS_TXT_URL)
-      || !hasRobotsSitemapSignal(robotsPage.html)
-    ) {
-      throw new Error('Drip Capital verified robots.txt sitemap signal changed')
-    }
-
-    const sitemapPage = await fetchPage(SITEMAP_URL)
-    if (
-      sitemapPage.status !== 200
-      || !sameUrl(sitemapPage.url, SITEMAP_URL)
-      || !hasOnlyVerifiedSitemapCareerShell(sitemapPage.html)
-    ) {
-      throw new Error('Drip Capital verified sitemap careers surface changed')
-    }
-
-    return []
-  },
-})
+export const createDripCapitalScraper = (options = {}) => createNativeDripCapitalScraper(options)
 
 export const run = async (options = {}) => createDripCapitalScraper().run(options)
 

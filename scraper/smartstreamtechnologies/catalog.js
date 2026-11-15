@@ -10,17 +10,22 @@ export const SMARTSTREAM_TECHNOLOGIES_CATALOG = {
   adapter: 'script',
   homepageUrl: 'https://smart.stream/',
   companyCareerPage: 'https://smart.stream/careers/',
-  atsPlatform: 'official-company-site-cloudflare-blocked-no-public-jobs-catalog',
+  atsPlatform: 'workable',
   countryFilter: 'India',
-  paginationStrategy: 'verified-cloudflare-blocked-homepage-and-careers-routes',
-  extractionStrategy: 'verified-cloudflare-blocked-homepage+verified-cloudflare-blocked-careers-route-return-empty',
+  paginationStrategy: 'paired-native-first-page-and-four-reviewed-full-india-role-pairs;unvisited-pages-held',
+  extractionStrategy: 'current-own-native-legal-employer-official-site-whole-role-client-and-complete-api-criteria',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   companyDomain: 'smart.stream',
-  verifiedOn: '2026-08-04',
+  verifiedOn: '2026-11-14',
   verifiedSurfaceSummary:
-    'Verified on Tuesday, August 4, 2026 that both https://smart.stream/ and https://smart.stream/careers/ currently return the same Cloudflare-backed HTTP 403 Forbidden shell with the title "Error 403 Forbidden" and no public job cards, detail links, ATS handoff, or structured jobs payload. Search snippets still reference older careers copy, but without a reachable first-party careers surface or trustworthy public jobs contract there is no enumerable public Smartstream jobs feed to scrape today.',
-  modulePath: path.resolve(currentDir, 'script.js'),
+    'Current own-account native Workable legal organization Smartstream Limited and official website https://smart.stream/ bind the reviewed public data contract. The historical corporate handoff and later corporate403 remain historical observations; the collector makes no corporate request or current corporate-bound/rendered claim. Exact whole reviewed role-client original bytes, complete ordered first-page records and four fixed reviewed India roles full23-field records/three rich criteria fields must agree at opening and closing under original45s/15s/16reads/6discovery/8details/4MBentity/24MBaggregate ceilings. The native client supplies trailing-slash job landing navigation; native application URL/action remain null/unverified. Original native published dates remain intact. Unvisited pages, undetailed records, company scope, current CSS/dependency closure, rendered activation, application questions and lifecycle cleanup remain held.',
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
+  sourceActivationComplete: false,
+  sourceRenderedCriteriaComplete: false,
+  sourceApplicationQualificationComplete: false,
+  modulePath: path.resolve(currentDir, 'nativeWorkable20261114.js'),
 }
 
 export default SMARTSTREAM_TECHNOLOGIES_CATALOG

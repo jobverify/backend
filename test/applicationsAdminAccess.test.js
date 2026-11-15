@@ -6,27 +6,29 @@ import jwt from 'jsonwebtoken';
 import User from '../src/models/User.js';
 import BlacklistedToken from '../src/models/BlacklistedToken.js';
 import SiteSettings from '../src/models/SiteSettings.js';
-import AdminAudit from '../src/models/AdminAudit.js';
+import Application from '../src/models/Application.js';
 import { buildAccessSummary } from '../src/utils/accessControl.js';
 
 process.env.JWT_SECRET = 'telegram-admin-access-test-secret-at-least-32-characters';
 const { default: userRoutes } = await import('../src/routes/userRoutes.js');
 const { default: adminRoutes } = await import('../src/routes/adminRoutes.js');
 
-test('admin can change applications access; disabled users cannot use any applications endpoint', async t => {
-  const admin = new User({ email: 'admin@example.test', role: 'admin' });
-  const member = new User({ email: 'member@example.test', telegram: { chatId: '123', linkedAt: new Date() } });
+test('new users and legacy disabled accounts always have applications enabled', () => {
+  assert.equal(new User({ email: 'new@example.test' }).applicationsAllowed, true);
+  assert.equal(buildAccessSummary({ applicationsAllowed: false }).applicationsAllowed, true);
+});
+
+test('all verified users can access applications and the admin toggle endpoint is retired', async t => {
+  const admin = new User({ email: 'admin@example.test', role: 'admin', isVerified: true });
+  const member = new User({ email: 'member@example.test', isVerified: true, applicationsAllowed: false });
   t.mock.method(SiteSettings, 'findById', () => ({ lean: async () => ({ billingEnabled: false }) }));
   t.mock.method(BlacklistedToken, 'findOne', async () => null);
   t.mock.method(User, 'findById', id => {
     const user = String(id) === String(admin._id) ? admin : member;
     return Object.assign(Promise.resolve(user), { select: async () => user });
   });
-  t.mock.method(User, 'findOneAndUpdate', async (_filter, update) => {
-    Object.assign(member, update.$set);
-    return member;
-  });
-  t.mock.method(AdminAudit, 'create', async () => ({}));
+  t.mock.method(Application, 'aggregate', async () => [{ items: [], counts: [], stageCounts: [], filteredCounts: [] }]);
+  t.mock.method(Application, 'findOne', () => ({ lean: async () => null }));
   const app = express();
   app.use(express.json());
   app.use('/api/admin', adminRoutes);
@@ -35,34 +37,28 @@ test('admin can change applications access; disabled users cannot use any applic
   await once(server, 'listening');
   t.after(() => new Promise(resolve => server.close(resolve)));
   const request = (user, path, method = 'GET', body) => fetch(`http://127.0.0.1:${server.address().port}${path}`, {
-    method, headers: { authorization: `Bearer ${jwt.sign({ id: String(user._id) }, process.env.JWT_SECRET)}`, 'content-type': 'application/json' },
+    method, headers: { ...(user ? { authorization: `Bearer ${jwt.sign({ id: String(user._id) }, process.env.JWT_SECRET)}` } : {}), 'content-type': 'application/json' },
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const adminPath = `/api/admin/users/${member._id}/applications-access`;
-  const initialApplications = await request(member, '/api/user/applications');
-  assert.equal(initialApplications.status, 403, 'new users must wait for an admin to enable applications');
-  assert.equal((await initialApplications.json()).code, 'APPLICATIONS_ACCESS_DISABLED');
-  assert.equal(buildAccessSummary(member).applicationsAllowed, false);
-  assert.equal((await request(member, adminPath, 'PUT', { enabled: false })).status, 403);
-  for (const enabled of ['false', 0, null]) {
-    assert.equal((await request(admin, adminPath, 'PUT', { enabled })).status, 400);
+  assert.equal((await request(null, '/api/user/applications')).status, 401);
+  for (const user of [member, admin]) {
+    const applications = await request(user, '/api/user/applications');
+    assert.equal(applications.status, 200);
+    assert.deepEqual((await applications.json()).data, []);
+    assert.equal((await request(user, `/api/user/applications/job/${member._id}`)).status, 200);
   }
-  const disabled = await request(admin, adminPath, 'PUT', { enabled: false });
-  assert.equal(disabled.status, 200);
-  assert.equal((await disabled.json()).data.applicationsAllowed, false);
   for (const [path, method, body] of [
-    ['/applications', 'GET'], ['/applications/job/example', 'GET'],
+    ['/applications/job/example', 'GET'],
     ['/applications/example/applied', 'PUT'], ['/applications/example/events', 'GET'],
     ['/applications/example/stage', 'PUT', {}], ['/applications/job/example/stage', 'PUT', {}],
   ]) {
     const response = await request(member, `/api/user${path}`, method, body);
-    assert.equal(response.status, 403, `${method} ${path}`);
-    assert.equal((await response.json()).code, 'APPLICATIONS_ACCESS_DISABLED');
+    assert.equal(response.status, 400, `${method} ${path} validates input instead of applying an access flag`);
   }
-  assert.equal(buildAccessSummary(member).applicationsAllowed, false);
-  const enabled = await request(admin, adminPath, 'PUT', { enabled: true });
-  assert.equal(enabled.status, 200);
-  assert.equal((await enabled.json()).data.applicationsAllowed, true);
+  for (const enabled of [false, true]) {
+    assert.equal((await request(admin, adminPath, 'PUT', { enabled })).status, 404);
+  }
   assert.equal(buildAccessSummary(member).applicationsAllowed, true);
   assert.equal(member.resumeFeaturesAllowed, false);
   assert.equal(buildAccessSummary({}).applicationsAllowed, true);

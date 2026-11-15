@@ -111,7 +111,7 @@ export const buildAccessSummary = (user, now = new Date()) => {
     canUseFilters: access.canUseFilters,
     canSkipAds: !access.shouldShowAds,
     resumeFeaturesAllowed: user?.resumeFeaturesAllowed !== false,
-    applicationsAllowed: user?.applicationsAllowed !== false,
+    applicationsAllowed: true,
     telegramAlertsAllowed: user?.telegramAlertsAllowed !== false,
     hasTelegramAlerts: user?.telegramAlertsAllowed !== false
       && (access.isAdmin || Boolean(access.planConfig.hasTelegramAlerts && !access.isExpired && access.status === "active")),

@@ -4,10 +4,10 @@ import test from 'node:test'
 import { fileURLToPath } from 'node:url'
 
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
-import { hydrateProviderCatalogEntry } from '../providers/index.js'
+import { getScraperCatalog, hydrateProviderCatalogEntry } from '../providers/index.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const modulePath = path.resolve(currentDir, '../../scraper/verintsystems/script.js')
+const modulePath = path.resolve(currentDir, '../../scraper/verintsystems/nativeCareers20261114.js')
 
 const loadCatalogModule = async () => {
   try {
@@ -17,7 +17,7 @@ const loadCatalogModule = async () => {
   }
 }
 
-test('Verint Systems local catalog captures the verified Oracle Candidate Experience handoff', async () => {
+test('Verint Systems current catalog registers own Ashby and retains historical Oracle helper metadata', async () => {
   const { VERINT_SYSTEMS_CATALOG, default: defaultCatalog } = await loadCatalogModule()
   const provider = hydrateProviderCatalogEntry(VERINT_SYSTEMS_CATALOG)
 
@@ -46,17 +46,22 @@ test('Verint Systems local catalog captures the verified Oracle Candidate Experi
     'https://fa-epcb-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/',
   )
   assert.equal(provider.siteNumber, 'CX')
-  assert.equal(provider.atsPlatform, 'oracle-candidate-experience')
+  assert.equal(provider.atsPlatform, 'ashby')
+  assert.equal(provider.boardToken, 'verint')
+  assert.equal(provider.nativeBoardUrl, 'https://jobs.ashbyhq.com/27cfd344-670f-4dcd-8b13-0e18005b0d65')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'oracle-finder-location-query')
+  assert.equal(provider.paginationStrategy, 'finite-current-native-board-and-public-feed-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-careers-page+oracle-candidate-experience+india-location-filter',
+    'current-corporate-declared-own-ashby+original-full-native-India-criteria-as-data',
   )
-  assert.equal(provider.verifiedOn, '2026-07-18')
+  assert.equal(provider.verifiedOn, '2026-11-14')
   assert.equal(provider.modulePath, modulePath)
   assert.match(provider.verifiedSurfaceSummary, /Join Our Global Team/i)
-  assert.match(provider.verifiedSurfaceSummary, /Oracle Candidate Experience/i)
+  assert.equal(provider.sourceScopeComplete, false)
+  assert.equal(provider.lifecycleCleanupAllowed, false)
+  const registered = getScraperCatalog().find(row => row.source === 'verintsystems')
+  for (const key of ['modulePath', 'atsPlatform', 'boardToken', 'nativeBoardUrl', 'sourceScopeComplete', 'lifecycleCleanupAllowed']) assert.equal(registered[key], provider[key])
 })
 
 test('Verint Systems exact backlog row resolves from the local catalog contract', async () => {

@@ -220,7 +220,9 @@ test('extractJobDetail prefers Sapiens embedded title metadata when the visible 
 
 test('current sapiens extraction requires transport response identity', async () => {
   const module = await import('../../scraper/sapiens/script.js')
-  await assert.rejects(module.createSapiensScraper().run({ fetchText: async () => '' }), /transport requires fetchPage/)
+  let calls = 0
+  await assert.rejects(module.createSapiensScraper().run({ fetchText: async () => { calls++; return '' } }), /Original Response metadata is required/)
+  assert.equal(calls, 0)
   assert.equal(module.PROVIDER_METADATA.atsPlatform, 'hibob')
   assert.equal(module.PROVIDER_METADATA.countryFilter, 'India')
 })
