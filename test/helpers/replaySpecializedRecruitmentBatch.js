@@ -91,6 +91,11 @@ function currentTransport(t,source,denied=false){
  return{fixture,rows,calls,fetchImpl}
 }
 export async function assertSpecializedBatchExtraction(t,provider){
+ if(provider.source==='evonik'){
+  sourceFixture('evonik') // Preserve every historical original byte/hash assertion.
+  const {assertEvonikCurrentExtraction}=await import('../../scraper/evonik.workday/test-data/replayNativeData20261114.js')
+  return assertEvonikCurrentExtraction(t,provider)
+ }
  if(provider.source==='onsemiconductor'||provider.source==='lennoxinternational')return assertRegistrationRepairExtraction(t,provider)
  if(provider.source==='bigeye')return assertBigeyeGemContract(t,provider)
  if(provider.source==='jabil')return assertJabilCurrentExtraction(t,provider)
@@ -168,6 +173,11 @@ export async function assertSpecializedBatchExtraction(t,provider){
  return{jobs,calls:io.calls}
 }
 export async function assertSpecializedBatchDenial(t,provider){
+ if(provider.source==='evonik'){
+  sourceFixture('evonik')
+  const {assertEvonikCurrentDenial}=await import('../../scraper/evonik.workday/test-data/replayNativeData20261114.js')
+  return assertEvonikCurrentDenial(t,provider)
+ }
  if(provider.source==='onsemiconductor'||provider.source==='lennoxinternational')return assertRegistrationRepairDenial(t,provider)
  if(provider.source==='bigeye')return assertBigeyeGemDenial(t,provider)
  if(provider.source==='jabil')return assertJabilPrimaryDenial(t,provider)

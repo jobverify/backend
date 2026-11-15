@@ -592,40 +592,6 @@ export const updateUserResumeAccess = async (req, res) => {
   }
 };
 
-export const updateUserApplicationsAccess = async (req, res) => {
-  try {
-    if (!isValidObjectId(req.params.id)) {
-      return res.status(400).json({ success: false, message: "Invalid user ID" });
-    }
-    if (typeof req.body?.enabled !== "boolean") {
-      return res.status(400).json({ success: false, message: "enabled must be a boolean" });
-    }
-    // Update only the administrative permission; a concurrent member save of
-    // their profile cannot overwrite this separate field.
-    const user = await User.findOneAndUpdate(
-      { _id: req.params.id },
-      { $set: { applicationsAllowed: req.body.enabled } },
-      { new: true, runValidators: true },
-    );
-    if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
-    }
-    await AdminAudit.create({
-      admin: req.user._id,
-      action: "updateUserApplicationsAccess",
-      targetType: "User",
-      targetId: user._id,
-      details: `Applications menu access ${user.applicationsAllowed ? "enabled" : "disabled"}`,
-    });
-    return res.status(200).json({
-      success: true,
-      data: { id: user._id, applicationsAllowed: user.applicationsAllowed },
-    });
-  } catch (err) {
-    return respondWithAdminInternalError(res, err);
-  }
-};
-
 // Updates a user's plan role and premium expiry, with automatic expiry defaults for paid plans.
 export const updateUserAccess = async (req, res) => {
   try {

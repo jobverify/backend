@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { replayVerint } from '../../scraper/verintsystems/currentFixture20261114.js'
 
 const officialCareersHtml = `
 <!doctype html>
@@ -114,7 +115,7 @@ const loadModule = async () => {
   }
 }
 
-test('Verint Systems keeps the verified Oracle careers handoff pinned', async () => {
+test('Verint Systems historical Oracle pure validators retain their original contract', async () => {
   const verint = await loadModule()
 
   assert.equal(verint.CAREERS_URL, 'https://www.verint.com/careers/')
@@ -161,6 +162,7 @@ test('Verint Systems extracts India requisitions from the Oracle payloads', asyn
     ],
   )
 
+  assert.equal(verint.extractJobDetail(detailPayload3921, listings[1]).jobId, '3921')
   assert.deepEqual(verint.extractJobDetail(detailPayload3884, listings[0]), {
     title: 'Software Engineer',
     company: 'Verint Systems',
@@ -185,68 +187,29 @@ test('Verint Systems extracts India requisitions from the Oracle payloads', asyn
   })
 })
 
-test('Verint Systems run verifies the careers handoff, Oracle shell, and public India jobs payload', async () => {
+test('Verint Systems run verifies the current corporate handoff and original India native criteria', async () => {
   const verint = await loadModule()
-  const requestedTextUrls = []
-  const requestedJsonUrls = []
-
-  const jobs = await verint.createVerintSystemsScraper({
-    maxPages: 1,
-    now: () => '2026-07-18T00:00:00.000Z',
-    fetchText: async (url) => {
-      requestedTextUrls.push(url)
-      if (url === verint.CAREERS_URL) return officialCareersHtml
-      if (url === verint.CANDIDATE_EXPERIENCE_URL) return candidateExperienceHtml
-      throw new Error(`Unexpected text URL: ${url}`)
-    },
-    fetchJson: async (url) => {
-      requestedJsonUrls.push(url)
-      if (url === verint.buildSearchUrl()) return listingPayload
-      if (url === verint.buildJobDetailApiUrl('3884')) return detailPayload3884
-      if (url === verint.buildJobDetailApiUrl('3921')) return detailPayload3921
-      throw new Error(`Unexpected JSON URL: ${url}`)
-    },
-  }).run()
-
-  assert.deepEqual(requestedTextUrls, [verint.CAREERS_URL, verint.CANDIDATE_EXPERIENCE_URL])
-  assert.deepEqual(requestedJsonUrls, [
-    verint.buildSearchUrl(),
-    verint.buildJobDetailApiUrl('3884'),
-    verint.buildJobDetailApiUrl('3921'),
+  const { jobs, requests } = await replayVerint(verint.run)
+  assert.deepEqual(jobs.map(row => [row.title, row.country, row.postingDate]), [
+    ['ServiceNow Adminstrator', 'India', '2026-11-12T13:47:09.067+00:00'],
   ])
-  assert.deepEqual(
-    jobs.map((job) => [job.title, job.department, job.location, job.source]),
-    [
-      ['Software Engineer', 'Engineering', 'Bengaluru, Karnataka, India', 'verintsystems'],
-      ['SOC L1 Analyst', 'Security Operations', 'Bengaluru, Karnataka, India', 'verintsystems'],
-    ],
-  )
+  assert.equal(jobs[0].sourceNativeDetailRecord.descriptionHtml, jobs[0].jobDescription)
+  assert.equal(jobs[0].sourceNativeJobPosting.description, jobs[0].jobDescription)
+  assert.equal(requests.length, 8)
+  assert.equal(jobs[0].sourceScopeComplete, false)
+  assert.equal(jobs[0].lifecycleCleanupAllowed, false)
 })
 
-test('Verint Systems fails closed when the verified first-party or Oracle shell drifts materially', async () => {
+test('Verint Systems fails closed when the current corporate or native full criteria change', async () => {
   const verint = await loadModule()
-
-  await assert.rejects(
-    verint.createVerintSystemsScraper({
-      fetchText: async (url) => {
-        if (url === verint.CAREERS_URL) {
-          return officialCareersHtml.replace('Join Our Global Team', 'Browse roles')
-        }
-        return candidateExperienceHtml
-      },
-      fetchJson: async () => listingPayload,
-    }).run(),
-    /verified Verint careers page/i,
-  )
-
-  await assert.rejects(
-    verint.createVerintSystemsScraper({
-      fetchText: async (url) => {
-        if (url === verint.CAREERS_URL) return officialCareersHtml
-        return candidateExperienceHtml.replace('data-sitenumber="CX"', 'data-sitenumber="CX_2"')
-      },
-      fetchJson: async () => listingPayload,
-    }).run(),
-    /verified Oracle candidate experience page/i,
-  )
+  for (const target of [0, 3]) {
+    await assert.rejects(replayVerint(verint.run, { mutate: (entity, index) => {
+      if (index !== target) return entity
+      const html = entity.body.toString('utf8')
+      const changed = target === 0 ? html.replace('Join Our Global Team', 'Browse roles')
+        : html.replace('About the Role:', 'This role is closed')
+      assert.notEqual(changed, html)
+      return { ...entity, body: Buffer.from(changed, 'utf8') }
+    } }), /Current native text contract/)
+  }
 })

@@ -34,6 +34,11 @@ const cohort=model=>[model.corporate,model.payload,model.payload,model.corporate
 function collect(bodies,{controller,abortAt}={}){
  const calls=[],reason=Object.freeze({caller:'stop fresh Sentry cohort'})
  const fetchImpl=async(url,init)=>{
+  if(url===CAREERS+ID+'/'){
+   calls.push({url,headers:init.headers})
+   const response=new Response('<html><title>Unconfirmed role</title></html>',{headers:{'content-type':'text/html'}})
+   Object.defineProperty(response,'url',{value:url});return response
+  }
   const index=calls.length
   assert.equal(url,protocol[index%4])
   assert.ok(index<bodies.length,'source exceeded its two complete acquisition cohorts')
@@ -89,7 +94,7 @@ test('Sentry discards a changed native inventory model before accepting a fresh 
  assert.deepEqual(jobs.nativeCollectionEvidence.closing.payload,fresh.payload)
 })
 
-test('Sentry persistent full criteria contradictions remain hard after exactly one fresh cohort retry',async()=>{
+test('Sentry persistent full criteria contradictions remain hard without a qualified canonical role after one fresh cohort retry',async()=>{
  const model=indiaModel(),wrong=structuredClone(model.payload)
  wrong.jobs.find(j=>j.id===ID).descriptionHtml+='<p>Unreconciled mandatory licence.</p>'
  const attempt=collect([model.corporate,wrong,wrong,model.corporate,model.corporate,wrong,wrong,model.corporate])
@@ -98,7 +103,8 @@ test('Sentry persistent full criteria contradictions remain hard after exactly o
   assert.equal(error.failureKind,'parser_or_contract_error')
   return true
  })
- assert.equal(attempt.calls.length,8)
+ assert.equal(attempt.calls.length,7)
+ assert.equal(attempt.calls.at(-1).url,CAREERS+ID+'/')
 })
 
 for(const abortAt of [4,5])test('Sentry caller abort stops cohort reads at request '+abortAt,async()=>{

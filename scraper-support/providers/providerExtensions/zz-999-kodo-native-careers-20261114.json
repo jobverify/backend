@@ -1,0 +1,15 @@
+{
+  "source": "kodo",
+  "catalogOverride": true,
+  "modulePath": "../kodo/native.js",
+  "atsPlatform": "pyjamahr",
+  "paginationStrategy": "paired-exact-corporate-board-three-clients-two-listing-pages-fourteen-native-dtos-two-public-carriers",
+  "extractionStrategy": "source-local-exact-false-header-own-account-domain-tuple-full-native-criteria-as-data",
+  "verificationDisposition": "native-criteria-data-partial-company-unverified",
+  "verifiedSurfaceSummary": "Finite Kodo native criteria-as-data contract: exact current corporate false-header Pyjama handoff and kodo.in declaration, whole corporate/board/three critical clients, full14 native DTOs and two unexpired own public data carriers. Native creation is not publication; postingDate stays null and exact expiry is enforced. Company/global inventory, formal legal entity, full renderer/CSS/dependency/application authority and lifecycle cleanup remain unverified. Fresh default48-read completion requires separate registered acquisition evidence.",
+  "sourceEvidenceScope": "native-role-criteria-as-data-only",
+  "sourceFormalLegalEntityQualified": false,
+  "sourceActivationComplete": false,
+  "sourceRenderedCriteriaComplete": false,
+  "sourceApplicationQualificationComplete": false
+}

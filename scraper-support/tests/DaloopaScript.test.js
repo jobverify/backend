@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {createDaloopaReplay,withDaloopaReplayClock,assertDaloopaCurrentJobs} from '../../scraper/daloopa/fixtures/replayNativeData20261115.js'
 
 const careersPageHtml = `
 <!doctype html>
@@ -18,13 +19,14 @@ const careersPageHtml = `
 
 const loadModule = async () => {
   try {
-    return await import('../../scraper/daloopa/script.js')
+    const current = await import('../../scraper/daloopa/script.js')
+    return {...current,createDaloopaScraper:current.createDaloopaLegacyScraper,VERIFIED_ON:current.LEGACY_PROVIDER_METADATA.verifiedOn}
   } catch {
     assert.fail('Expected Daloopa scraper module at ../../scraper/daloopa/script.js')
   }
 }
 
-test('Daloopa sentinel stays pinned to the verified careers landing page without public role cards', async () => {
+test('historical Daloopa sentinel stays pinned to the verified careers landing page without public role cards', async () => {
   const daloopa = await loadModule()
 
   assert.equal(daloopa.SOURCE, 'daloopa')
@@ -40,7 +42,7 @@ test('Daloopa sentinel stays pinned to the verified careers landing page without
   )
 })
 
-test('Daloopa sentinel returns [] only while the verified careers page has no public role cards', async () => {
+test('historical Daloopa sentinel returns [] only while the verified careers page has no public role cards', async () => {
   const daloopa = await loadModule()
   const jobs = await daloopa.createDaloopaScraper().run({
     fetchText: async (url) => {
@@ -52,7 +54,7 @@ test('Daloopa sentinel returns [] only while the verified careers page has no pu
   assert.deepEqual(jobs, [])
 })
 
-test('Daloopa sentinel fails closed when public job cards appear on the verified first-party page', async () => {
+test('historical Daloopa sentinel fails closed when public job cards appear on the verified first-party page', async () => {
   const daloopa = await loadModule()
 
   await assert.rejects(
@@ -69,4 +71,19 @@ test('Daloopa sentinel fails closed when public job cards appear on the verified
     }),
     /verified Daloopa careers page/i,
   )
+})
+
+for(const route of ['run','factory'])test('current Daloopa '+route+' preserves original full Response authority and two complete undated India data records',async()=>{
+  const current=await import('../../scraper/daloopa/script.js'),io=createDaloopaReplay()
+  const jobs=await withDaloopaReplayClock(()=>route==='run'?current.run({fetchImpl:io.fetchImpl}):current.createDaloopaScraper({fetchImpl:io.fetchImpl}).run())
+  assertDaloopaCurrentJobs(jobs,io.fixture)
+  assert.equal(io.calls.length,14)
+  assert.equal(current.VERIFIED_ON,null)
+  assert.equal(current.PROVIDER_METADATA.firstParty,false)
+})
+
+test('current Daloopa rejects a body-only historical callback before any I/O',async()=>{
+  const current=await import('../../scraper/daloopa/script.js');let calls=0
+  await assert.rejects(current.run({fetchText:async()=>{calls++;return careersPageHtml}}),error=>error.code==='DALOOPA_NATIVE_DATA_GAP'&&error.abortRetries===true)
+  assert.equal(calls,0)
 })

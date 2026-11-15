@@ -1,13 +1,12 @@
 import {createHash} from 'node:crypto'
-import {fileURLToPath} from 'node:url'
 import {attachInventoryEvidence,normalizeInventoryEvidence,readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {collectYourNestNative} from './native.js'
-import candidate from './catalog-candidate.json' with {type:'json'}
+import {runCurrentYourNestData,createYourNestNativeDataScraper,PROVIDER_METADATA as CURRENT_PROVIDER_METADATA} from './nativeData20261115.js'
 
 export const SOURCE='yournest', COMPANY='YourNest'
 export const FIRST_PARTY_ROOT_URL='https://yournest.in/'
-export const PROVIDER_METADATA={...candidate,modulePath:fileURLToPath(import.meta.url)}
-export const createYourNestScraper=(defaults={})=>({async run(options={}) {
+export const PROVIDER_METADATA=CURRENT_PROVIDER_METADATA
+export const createYourNestLegacyScraper=(defaults={})=>({async run(options={}) {
  const {fetchImpl=globalThis.fetch,signal,timeoutMs=30000,now=new Date()}={...defaults,...options}
  signal?.throwIfAborted()
  const controller=new AbortController(),retainedResponses=[]
@@ -54,7 +53,9 @@ export const createYourNestScraper=(defaults={})=>({async run(options={}) {
  catch(error){if(signal?.aborted)throw signal.reason;if(error?.code==='YOURNEST_COVERAGE_GAP')throw error;throw gap('Native source transport, body or inventory unavailable',error)}
  finally{clearTimeout(timer);signal?.removeEventListener('abort',onAbort);controller.abort()}
 }})
-export const run=async(options={})=>createYourNestScraper(options).run(options)
+export const runLegacy=async(options={})=>createYourNestLegacyScraper(options).run(options)
+export const createYourNestScraper=createYourNestNativeDataScraper
+export const run=options=>runCurrentYourNestData(options)
 if(process.argv[1]?.replaceAll('\\','/').endsWith('/scraper/yournest/script.js')){
  const jobs=await run()
  if(readInventoryEvidence(jobs)?.listingComplete!==true){console.error(readInventoryEvidence(jobs)?.reason);process.exitCode=1}

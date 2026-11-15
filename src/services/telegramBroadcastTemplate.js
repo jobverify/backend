@@ -2,10 +2,11 @@ import { normalizePublicJobCategory } from '../utils/publicJobNormalization.js';
 import { normalizePublicWorkArrangement } from '../utils/publicWorkArrangement.js';
 import { telegramJobLink } from './jobAlertService.js';
 import { formatBatchEligibility } from '../utils/jobBatchEligibility.js';
+import { batchEligibilityForAlert } from './jobBatchEligibility.js';
 
 export const BROADCAST_TOKENS = [
   ['company', 'Company'], ['title', 'Job title'], ['jobType', 'Job type'], ['location', 'Location'],
-  ['batch', 'Graduation years (estimates marked)'], ['experience', 'Source-stated experience'], ['workMode', 'Work mode'],
+  ['batch', 'Graduation years'], ['experience', 'Source-stated experience'], ['workMode', 'Work mode'],
   ['skills', 'Required skills'], ['salary', 'Source-stated salary'], ['jobUrl', 'Jobverify job page'],
 ].map(([name, label]) => ({ name, label }));
 
@@ -51,8 +52,9 @@ export function validateBroadcastTemplate(template) {
 
 function valuesFor(job) {
   const category = normalizePublicJobCategory(job);
-  const batches = ['source', 'inferred'].includes(job.eligibleBatchesProvenance)
-    ? formatBatchEligibility(job, { markEstimate: true }) : '';
+  const eligibility = batchEligibilityForAlert(job);
+  const batches = ['source', 'inferred'].includes(eligibility.eligibleBatchesProvenance)
+    ? formatBatchEligibility(eligibility) : '';
   const profile = job.experienceProfile;
   const min = profile?.minimumYears; const max = profile?.maximumYears;
   let experience = '';

@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-export const APPLICATION_STAGES = ['preparing', 'applied', 'screening', 'responded', 'interview', 'offer', 'accepted', 'rejected', 'withdrawn', 'expired'];
+export const APPLICATION_STAGES = ['preparing', 'applied', 'screening', 'responded', 'interview', 'offer', 'selected', 'accepted', 'rejected', 'withdrawn', 'expired'];
 
 // History is independent of the live job inventory. Keep a small snapshot when
 // listings expire or a source is removed, rather than losing the user's record.

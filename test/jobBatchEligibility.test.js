@@ -46,7 +46,7 @@ test('employer experience supplies bounded, fractional and open batch eligibilit
   const open = resolve({ ...engineer, sourceDescription: 'At least 3 years of professional experience is required.' });
   assert.deepEqual(open.eligibleBatchRange, { maxYear: 2024 });
   assert.deepEqual(open.eligibleBatches, []);
-  assert.equal(formatBatchEligibility(open, { markEstimate: true }), '2024 and earlier (estimated)');
+  assert.equal(formatBatchEligibility(open), '2024 and earlier');
   assert.equal(matchesBatchYear(open, 2023), true);
   assert.equal(matchesBatchYear(open, 2025), false);
 });

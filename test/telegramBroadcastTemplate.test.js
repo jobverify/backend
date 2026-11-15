@@ -8,6 +8,39 @@ after(() => {
   else process.env.FRONTEND_ORIGIN = previousOrigin;
 });
 import { renderBroadcastTemplate, validateBroadcastTemplate, DEFAULT_BROADCAST_TEMPLATE, BROADCAST_SAMPLE_JOBS } from '../src/services/telegramBroadcastTemplate.js';
+import { graduationAnchor } from '../src/utils/jobBatchEligibility.js';
+import { buildTelegramMessageBody } from '../src/services/jobAlertService.js';
+
+test('intern and fresher alerts estimate missing batches before the batch phase completes', () => {
+  for (const job of [
+    { title: 'Engineering Intern', jobType: 'Intern', sourceDescription: 'Currently pursuing a bachelor degree. Build software with the team.' },
+    { title: 'Graduate Engineer', jobType: 'Full-time Fresher', sourceDescription: 'Fresh graduates are welcome. No prior experience is required.' },
+  ]) {
+    const expected = `Batch :- ${graduationAnchor()}`;
+    assert.ok(renderBroadcastTemplate(DEFAULT_BROADCAST_TEMPLATE, job).includes(expected));
+    assert.ok(buildTelegramMessageBody([job]).includes(expected));
+    assert.ok(buildTelegramMessageBody([job], DEFAULT_BROADCAST_TEMPLATE).includes(expected));
+    assert.doesNotMatch(renderBroadcastTemplate(DEFAULT_BROADCAST_TEMPLATE, job), /estimated/i);
+    assert.doesNotMatch(buildTelegramMessageBody([job]), /estimated/i);
+    assert.equal(job.eligibleBatches, undefined);
+  }
+});
+
+test('alert batch fallback preserves source years and abstains on ambiguous graduation constraints', () => {
+  const base = { title: 'Engineering Intern', jobType: 'Intern' };
+  for (const render of [job => renderBroadcastTemplate(DEFAULT_BROADCAST_TEMPLATE, job), job => buildTelegramMessageBody([job])]) {
+    const explicit = render({ ...base, sourceDescription: 'Only 2025 and 2026 graduates can apply.' });
+    assert.match(explicit, /Batch :- 2025, 2026/);
+    assert.doesNotMatch(explicit, /estimated/);
+    const saved = render({ ...base, eligibleBatches: [2024], eligibleBatchesProvenance: 'source' });
+    assert.match(saved, /Batch :- 2024/);
+    assert.doesNotMatch(saved, /estimated/);
+    const ambiguous = render({ ...base, sourceDescription: 'Graduates before 2026 are not eligible.' });
+    assert.doesNotMatch(ambiguous, /Batch :-/);
+    const unresolved = render({ ...base, batchEligibility: { status: 'unknown', mode: 'policy', basis: 'conflicting_source' } });
+    assert.doesNotMatch(unresolved, /Batch :-/);
+  }
+});
 
 test('preview and delivery share the same template renderer and verified data', () => {
   const text = renderBroadcastTemplate(DEFAULT_BROADCAST_TEMPLATE, BROADCAST_SAMPLE_JOBS.complete);

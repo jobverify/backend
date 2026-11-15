@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import { readFileSync } from 'node:fs'
+import { gunzipSync } from 'node:zlib'
 
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
-import { hydrateProviderCatalogEntry } from '../providers/index.js'
+import { createCatalogScraper, hydrateProviderCatalogEntry } from '../providers/index.js'
+import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
 const CAREERS_HTML = `
 <!doctype html>
@@ -37,7 +40,22 @@ const loadScraperModule = async () => {
   }
 }
 
-test('Soroco local catalog captures the visible first-party careers role-card contract', async () => {
+const fixture = JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/soroco/test-data/current-native-20261114.json.gz', import.meta.url))))
+const transport = (change = () => {}) => {
+  const calls = []
+  return { calls, fetchImpl: async (url, init = {}) => {
+    const row = structuredClone(fixture.captures.find(packet => packet.requestUrl === url))
+    assert.ok(row, 'Unexpected original public request ' + url)
+    change(row)
+    calls.push({ url, method: init.method || 'GET' })
+    const response = new Response(Buffer.from(row.bodyBase64, 'base64'), { status: row.status, headers: row.headers })
+    Object.defineProperty(response, 'url', { value: row.finalUrl })
+    return response
+  } }
+}
+const registered = async () => createCatalogScraper(hydrateProviderCatalogEntry((await loadCatalogModule()).SOROCO_CATALOG))
+
+test('Soroco local catalog identifies its current declared own native full-role contract', async () => {
   const { SOROCO_CATALOG } = await loadCatalogModule()
   const soroco = await loadScraperModule()
   const provider = hydrateProviderCatalogEntry(SOROCO_CATALOG)
@@ -47,9 +65,11 @@ test('Soroco local catalog captures the visible first-party careers role-card co
   assert.equal(provider.companyCareerPage, 'https://soroco.com/careers/')
   assert.equal(provider.allOpeningsUrl, 'https://soroco.com/all-job-openings/')
   assert.equal(provider.embeddedGreenhouseApiUrl, 'https://boards-api.greenhouse.io/v1/boards/soroco/jobs?content=true')
-  assert.equal(provider.verifiedPublicJobCount, 1)
-  assert.equal(provider.verifiedIndiaJobCount, 1)
-  assert.match(provider.verifiedSurfaceSummary, /Account Based Marketing Manager/i)
+  assert.equal(provider.verifiedPublicJobCount, 2)
+  assert.equal(provider.verifiedIndiaJobCount, 2)
+  assert.match(provider.verifiedSurfaceSummary, /complete original rich criteria/i)
+  assert.match(provider.verifiedSurfaceSummary, /August Date_Opened values are retained/i)
+  assert.match(provider.verifiedSurfaceSummary, /cleanup held/i)
   assert.equal(soroco.PROVIDER_METADATA.source, provider.source)
 })
 
@@ -64,41 +84,56 @@ test('Soroco exact backlog row resolves from the local catalog object', async ()
   assert.equal(report.unmatchedCount, 0)
 })
 
-test('Soroco scraper validates the first-party careers page and maps visible role cards into shared job fields', async () => {
-  const soroco = await loadScraperModule()
-
-  assert.equal(soroco.hasOfficialSorocoCareersSignal(CAREERS_HTML), true)
-  assert.deepEqual(soroco.extractSorocoJobs(CAREERS_HTML), [
-    {
-      title: 'Account Based Marketing Manager',
-      company: 'Soroco',
-      department: null,
-      location: 'Bangalore',
-      city: 'Bangalore',
-      country: 'India',
-      jobId: 'account-based-marketing-manager-bangalore',
-      requisitionId: null,
-      sourceUrl: 'https://soroco.com/all-job-openings/',
-      applyUrl: 'https://soroco.com/all-job-openings/',
-      employmentType: null,
-      experienceRequired: null,
-      minimumQualification: null,
-      preferredQualification: null,
-      requiredSkills: [],
-      postingDate: null,
-      closingDate: null,
-      jobDescription: 'Account Based Marketing Manager - Bangalore',
-      remoteStatus: null,
-    },
-  ])
-
-  const jobs = await soroco.createSorocoScraper({
-    now: () => '2026-07-18T00:00:00.000Z',
-  }).run({
-    fetchText: async () => CAREERS_HTML,
-  })
-
-  assert.equal(jobs.length, 1)
+test('registered Soroco maps only complete own native India criteria with original dates and cleanup holds', async () => {
+  const wire = transport(), jobs = await (await registered()).run({ fetchImpl: wire.fetchImpl, now: () => fixture.capturedAt })
+  assert.equal(jobs.length, 2)
   assert.equal(jobs[0].source, 'soroco')
-  assert.equal(jobs[0].link, 'https://soroco.com/all-job-openings/')
+  assert.equal(jobs[0].title, 'General Counsel')
+  assert.equal(jobs[0].company, 'Soroco')
+  assert.equal(jobs[0].city, 'Bangalore South')
+  assert.equal(jobs[0].country, 'India')
+  assert.equal(jobs[0].jobId, '836634000001765193')
+  assert.equal(jobs[0].link, 'https://soroco.zohorecruit.com/jobs/Careers/836634000001765193/General-Counsel?source=CareerSite')
+  assert.equal(jobs[0].sourceDescription, jobs[0].sourceNativeDetailRecord.Job_Description)
+  assert.ok(jobs[0].sourceDescription.length > 10000)
+  assert.equal(jobs[0].sourceNativeDetailRecord.Zip_Code, '560078')
+  assert.deepEqual(jobs.map(job => job.postingDate), ['2026-08-17', '2026-08-26'])
+  assert.ok(jobs.every(job => job.sourceClosingReconciled && job.lifecycleCleanupAllowed === false && job.sourceScopeComplete === false && job.activationVerified === false))
+  assert.equal(readInventoryEvidence(jobs).listingComplete, false)
+  assert.equal(wire.calls.length, 24)
+  assert.ok(wire.calls.every(call => call.method === 'GET'))
+})
+
+test('Soroco legacy city-only brief remains a discovery record and body-only input rejects before I/O', async () => {
+  const soroco = await loadScraperModule(), legacy = soroco.extractSorocoJobs(CAREERS_HTML)
+  assert.equal(legacy.length, 1)
+  assert.equal(legacy[0].title, 'Account Based Marketing Manager')
+  assert.equal(legacy[0].city, 'Bangalore')
+  assert.equal(legacy[0].country, null)
+  assert.equal(legacy[0].jobDescription, null)
+  assert.equal(legacy[0].sourceDetailComplete, false)
+  let calls = 0
+  await assert.rejects((await registered()).run({ fetchText: async () => { calls++; return CAREERS_HTML } }), /Original HTTP metadata is required/)
+  assert.equal(calls, 0)
+})
+
+test('registered Soroco retains exact current first-party authority before reading native roles', async () => {
+  const wire = transport(row => {
+    if (row.requestUrl === 'https://soroco.com/careers') row.bodyBase64 = Buffer.concat([Buffer.from(row.bodyBase64, 'base64'), Buffer.from('<p>Changed publisher</p>')]).toString('base64')
+  })
+  await assert.rejects((await registered()).run({ fetchImpl: wire.fetchImpl }), /corporate document original entity changed/)
+  assert.equal(wire.calls.length, 2)
+  assert.ok(wire.calls.every(call => new URL(call.url).hostname === 'soroco.com'))
+})
+
+test('registered Soroco cannot replace a missing literal native country with Bangalore', async () => {
+  const wire = transport(row => {
+    if (row.requestUrl.includes('/Job_Openings?')) {
+      const payload = JSON.parse(Buffer.from(row.bodyBase64, 'base64'))
+      delete payload.data[0].Country
+      row.bodyBase64 = Buffer.from(JSON.stringify(payload)).toString('base64')
+    }
+  })
+  await assert.rejects((await registered()).run({ fetchImpl: wire.fetchImpl }), /Native listing role schema changed/)
+  assert.ok(wire.calls.every(call => !call.url.includes('/jobs/Careers/')))
 })

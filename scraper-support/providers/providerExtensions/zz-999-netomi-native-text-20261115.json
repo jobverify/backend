@@ -1,0 +1,15 @@
+{
+  "source": "netomi",
+  "catalogOverride": true,
+  "modulePath": "../netomi/nativeText20261115.js",
+  "paginationStrategy": "paired-whole-native-board-full-feed-and-nine-typed-india-html-pairs",
+  "extractionStrategy": "finite-original-raw-entity-own-native-text-data-only-no-own-role-api-visits",
+  "verificationDisposition": "own-native-text-data-observations-company-unverified",
+  "sourceEvidenceScope": "own-native-text-data-only",
+  "verifiedSurfaceSummary": "Finite Netomi own-native text data observations only: the exact known Lever account, employer label/logo, full native feed and nine typed India single-location role HTML pairs are qualified against reviewed original bytes. Current corporate endorsement and formal legal entity remain unverified; the literal native http://netomi.com backlink is not equated with https://www.netomi.com/. Rendered/client/CSS/application authority, whole-company inventory and lifecycle cleanup remain held. Unknown changes or unavailable pairs are coverage gaps, never verified zero. Current live nine-pair completion requires separate acquisition evidence.",
+  "sourceCorporateBindingQualified": false,
+  "sourceFormalLegalEntityQualified": false,
+  "sourceActivationComplete": false,
+  "sourceRenderedCriteriaComplete": false,
+  "sourceApplicationQualificationComplete": false
+}

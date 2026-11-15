@@ -97,18 +97,23 @@ test('report regression: completed HTML output receives a Markdown correction', 
   assert.match(server.requests[1].messages[0].content, /unsafe_output/);
 });
 
-test('report regression: repeated completed HTML retains exact source with explicit fallback quality', async t => {
+test('report regression: repeated completed HTML retains source wording with explicit fallback and layout quality', async t => {
   const server = await serverFor(t, source => source.replace('\n', '<br>'));
   const input = inputFor(htmlSource), client = createRewriteClient(server);
   const response = await client.generate(input);
   assert.equal(response.validationFailure, undefined);
   const checked = validateProseRewrite(response.value, input, response.finishReason);
   assert.equal(checked.ok, true);
-  assert.equal(checked.description, htmlSource);
+  assert.equal(checked.description, 'Build reliable Python services.\n\nMaintain automated tests.');
+  assert.doesNotMatch(checked.description, /<br>/);
+  assert.equal(checked.quality.layoutParagraphBreaks, 1);
   assert.equal(checked.quality.sourceFallbackBlocks, 1);
   assert.equal(checked.quality.modelEditedBlocks, 0);
+  assert.equal(checked.quality.modelWordingEditedBlocks, 0);
+  assert.equal(checked.quality.modelLayoutEditedBlocks, 0);
   assert.equal(checked.quality.outcome, 'source_fallback');
   assert.equal(response.value.parts[0].text, response.value.parts[0].source);
+  assert.equal(response.value.parts[0].source, htmlSource);
   assert.equal(response.generationRequests, 2);
   const next = await client.generate(input);
   assert.equal(next.cachedModelPlan, undefined);

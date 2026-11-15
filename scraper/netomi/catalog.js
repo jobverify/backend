@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const VERIFIED_SURFACE_SUMMARY =
-  'Verified on Saturday, August 15, 2026 that https://www.netomi.com/careers now redirects to the live first-party homepage at https://www.netomi.com/, that the homepage exposes the referral-only marketing copy "We create intelligent experiences for the world\'s most ambitious companies." and "New engagements are by referral.", and that the first-party HTML no longer embeds or links a public careers or Lever handoff. The standalone Lever API at https://api.lever.co/v0/postings/netomi?mode=json remained reachable on Saturday, August 15, 2026 and exposed 22 public jobs including India roles, but without a current first-party careers proof this scraper returns [] until Netomi restores a trustworthy public jobs surface.'
+  'Finite Netomi own-native text data observations only: the exact known Lever account, employer label/logo, full native feed and nine typed India single-location role HTML pairs are qualified against reviewed original bytes. Current corporate endorsement and formal legal entity remain unverified; the literal native http://netomi.com backlink is not equated with https://www.netomi.com/. Rendered/client/CSS/application authority, whole-company inventory and lifecycle cleanup remain held. Unknown changes or unavailable pairs are coverage gaps, never verified zero. Current live nine-pair completion requires separate acquisition evidence.'
 
 const NETOMI_CATALOG_HISTORICAL = {
   source: 'netomi',
@@ -32,6 +32,18 @@ const NETOMI_CATALOG_HISTORICAL = {
   verifiedSurfaceSummary: VERIFIED_SURFACE_SUMMARY,
 }
 
-export const NETOMI_CATALOG = publicLeverMetadata(PUBLIC_LEVER_PROFILES.netomi, NETOMI_CATALOG_HISTORICAL)
+export const NETOMI_CATALOG = {...publicLeverMetadata(PUBLIC_LEVER_PROFILES.netomi, NETOMI_CATALOG_HISTORICAL),
+  modulePath: path.resolve(currentDir, 'nativeText20261115.js'),
+  paginationStrategy: 'paired-whole-native-board-full-feed-and-nine-typed-india-html-pairs',
+  extractionStrategy: 'finite-original-raw-entity-own-native-text-data-only-no-own-role-api-visits',
+  verificationDisposition: 'own-native-text-data-observations-company-unverified',
+  sourceEvidenceScope: 'own-native-text-data-only',
+  verifiedSurfaceSummary: VERIFIED_SURFACE_SUMMARY,
+  sourceCorporateBindingQualified: false,
+  sourceFormalLegalEntityQualified: false,
+  sourceActivationComplete: false,
+  sourceRenderedCriteriaComplete: false,
+  sourceApplicationQualificationComplete: false,
+}
 
 export default NETOMI_CATALOG

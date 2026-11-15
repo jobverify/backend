@@ -139,20 +139,21 @@ test('application stages and durable events preserve submission, concurrency and
     }
   });
 
-  await t.test('stage filtering and pagination use stage independently of confirmed submission', async () => {
+  await t.test('stage filtering and pagination exclude unconfirmed jobs', async () => {
     const owner = oid();
     await User.collection.insertOne({ _id: owner, email: 'filters@example.test' });
     let interview = await applicationService.recordApplicationOpen(owner, job());
     interview = await applicationService.changeApplicationStage(owner, interview._id, { stage: 'interview', expectedVersion: interview.version, eventKey: 'filter-interview' });
+    interview = await applicationService.recordApplicationEvidence(owner, interview._id, { key: 'manual', source: 'self_reported', observedAt: new Date() });
     const preparing = await applicationService.recordApplicationOpen(owner, job());
     await TailoredResume.collection.insertMany([interview, preparing].map(row => ({ _id: `${owner}:${row.job}`, user: owner, job: row.job, status: 'completed' })));
     const response = () => ({ statusCode: 200, status(code) { this.statusCode = code; return this; }, json(body) { this.body = body; return this; } });
     const res = response();
-    await getApplications({ user: { _id: owner }, query: { stage: 'interview', status: 'opened' } }, res);
+    await getApplications({ user: { _id: owner }, query: { stage: 'interview', status: 'applied' } }, res);
     assert.equal(res.statusCode, 200); assert.equal(res.body.data.length, 1);
     assert.equal(res.body.data[0].stage, 'interview'); assert.equal(res.body.data[0].version, interview.version);
     assert.equal(res.body.pagination.total, 1); assert.equal(res.body.stageSummary.interview, 1);
-    assert.deepEqual(res.body.summary, { total: 2, opened: 2, applied: 0 });
+    assert.deepEqual(res.body.summary, { total: 1, opened: 0, applied: 1 });
     const bad = response();
     await getApplications({ user: { _id: owner }, query: { stage: 'invented' } }, bad);
     assert.equal(bad.statusCode, 400);

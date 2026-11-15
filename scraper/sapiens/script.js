@@ -3,18 +3,17 @@ import { fileURLToPath } from 'node:url'
 
 import { createHiBobNativeInventory } from '../../scraper-support/hibob/nativeInventory.js'
 import CATALOG, { NATIVE_CONFIG } from './catalog.js'
+import {createSapiensNativeDataScraper,runCurrentSapiensData} from './nativeData20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 const BASE_URL = 'https://careers.sapiens.com'
 const DEFAULT_LOCALE = 'en_US'
-const PAGE_SIZE = 15
 export const PROVIDER_METADATA = CATALOG
 // Pure SuccessFactors helpers below preserve archived fixture contracts only.
 
 export const SEARCH_PAGE_URL = `${BASE_URL}/search/?createNewAlert=false&q=&locationsearch=`
 
-const COMPANY_NAME = 'Sapiens'
 const SOURCE = 'sapiens'
 
 const decodeHtmlEntities = (value) => String(value ?? '')
@@ -264,9 +263,11 @@ export const extractJobDetail = (html, listing = {}) => {
   }
 }
 
-export const createSapiensScraper = (options = {}) => createHiBobNativeInventory(NATIVE_CONFIG, options)
+export const createSapiensLegacyScraper = (options = {}) => createHiBobNativeInventory(NATIVE_CONFIG, options)
+export const runLegacy = async (options = {}) => createSapiensLegacyScraper().run(options)
+export const createSapiensScraper = createSapiensNativeDataScraper
 
-export const run = async (options = {}) => createSapiensScraper().run(options)
+export const run = runCurrentSapiensData
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

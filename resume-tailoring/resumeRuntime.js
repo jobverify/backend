@@ -10,7 +10,7 @@ import { spawn } from 'node:child_process';
 import { Agent } from 'undici';
 import { resumeFailure, safeResumeDiagnostic } from './resumeDiagnostics.js';
 import { RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
-import { buildResumeLatexGrammar } from '../src/utils/resumeLatexFormat.js';
+import { buildResumeLatexGrammar, RESUME_LATEX_PREAMBLE, RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION } from '../src/utils/resumeLatexFormat.js';
 
 export const RESUME_MODEL = JSON.parse(await fs.readFile(new URL('./resume-model.json', import.meta.url), 'utf8'));
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -87,8 +87,11 @@ function modelRequestFailure(error, signal, fallbackCode) {
   const timedOut = signal.aborted || modelTimeoutCodes.has(error?.code) || modelTimeoutCodes.has(error?.cause?.code);
   return resumeFailure(timedOut ? 'model_timeout' : fallbackCode);
 }
-export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, allowedLinks = [], onDiagnostic = () => {} } = {}) {
-  const messages = [{ role: 'user', content: prompt }];
+export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {} } = {}) {
+  // Replace only our complete trusted instruction block. The actual template
+  // follows as the assistant prefix; source/repair JSON and audit evidence stay
+  // intact, including any template-looking text supplied by a candidate.
+  const messages = [{ role: 'user', content: comparison ? prompt : prompt.replace(RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION) }];
   const maxTokens = comparison ? RESUME_MODEL.comparisonOutputTokens : RESUME_MODEL.maxOutputTokens;
   const request = async (endpoint, body) => {
     const timeout = AbortSignal.timeout(remainingBudget(deadline, RESUME_WORKER_BUDGET_MS));
@@ -107,16 +110,24 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
   };
   const rendered = await request('/apply-template', { messages });
   if (typeof rendered.prompt !== 'string') throw resumeFailure('model_protocol_invalid');
-  const tokens = await request('/tokenize', { content: rendered.prompt, add_special: true, parse_special: true });
+  // The grammar previously forced every byte of this immutable prefix through
+  // slow token decoding. Prefill those same bytes in the assistant context and
+  // generate only the candidate body; no layout or candidate facts are rewritten.
+  const prefix = comparison ? '' : RESUME_LATEX_PREAMBLE;
+  const fullPrompt = rendered.prompt + prefix;
+  const tokens = await request('/tokenize', { content: fullPrompt, add_special: true, parse_special: true });
   if (!Array.isArray(tokens.tokens) || !tokens.tokens.every(Number.isInteger)) throw resumeFailure('model_protocol_invalid');
   onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: 'started', inputTokens: tokens.tokens.length }));
   if (tokens.tokens.length + maxTokens + 32 > RESUME_MODEL.contextTokens) throw resumeFailure('input_too_large', { statusCode: 422 });
-  const payload = await request('/v1/chat/completions', { messages, temperature: comparison ? 0 : 0.1, max_tokens: maxTokens, stream: false,
-    ...(comparison ? { response_format: { type: 'json_schema', json_schema: { name: 'resume_source_comparison', strict: true, schema: comparisonSchema } } }
-      : { grammar: buildResumeLatexGrammar(allowedLinks) }),
-  });
-  const choice = payload.choices?.[0];
-  onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: choice?.finish_reason === 'stop' ? 'passed' : 'model_output_incomplete', outputTokens: payload.usage?.completion_tokens }));
-  if (choice?.finish_reason !== 'stop' || typeof choice.message?.content !== 'string') throw resumeFailure('model_output_incomplete');
-  return choice.message.content;
+  const payload = comparison
+    ? await request('/v1/chat/completions', { messages, temperature: 0, max_tokens: maxTokens, stream: false,
+      response_format: { type: 'json_schema', json_schema: { name: 'resume_source_comparison', strict: true, schema: comparisonSchema } } })
+    : await request('/completion', { prompt: fullPrompt, temperature: 0.1, n_predict: maxTokens, stream: false,
+      grammar: buildResumeLatexGrammar(allowedLinks, pagination, { includePreamble: false, sectionTitles, layout, headerChoices }) });
+  const content = comparison ? payload.choices?.[0]?.message?.content : payload.content;
+  const complete = comparison ? payload.choices?.[0]?.finish_reason === 'stop' : payload.stop_type === 'eos' && payload.truncated !== true;
+  onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: complete ? 'passed' : 'model_output_incomplete',
+    outputTokens: comparison ? payload.usage?.completion_tokens : payload.timings?.predicted_n }));
+  if (!complete || typeof content !== 'string') throw resumeFailure('model_output_incomplete');
+  return prefix + content;
 }

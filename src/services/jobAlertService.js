@@ -16,6 +16,7 @@ import { getSiteSettings } from "./siteSettingsService.js";
 import { normalizePublicJobCategory } from "../utils/publicJobNormalization.js";
 import { renderBroadcastTemplate } from './telegramBroadcastTemplate.js';
 import { formatBatchEligibility } from '../utils/jobBatchEligibility.js';
+import { batchEligibilityForAlert } from './jobBatchEligibility.js';
 
 const MAX_JOBS_PER_MESSAGE = 1;
 const CLAIM_TTL_MS = 5 * 60 * 1000;
@@ -47,7 +48,7 @@ export const buildTelegramMessageBody = (jobs, template) => {
   const job = jobs[0];
   if (!job) return '';
   if (template) return renderBroadcastTemplate(template, job);
-  const batches = formatBatchEligibility(job, { markEstimate: true });
+  const batches = formatBatchEligibility(batchEligibilityForAlert(job));
   const category = normalizePublicJobCategory(job);
   const type = /^full[ -]time/i.test(category) ? 'Full time' : category;
   const location = compactText(job.city || job.location, 100);

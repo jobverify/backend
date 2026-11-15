@@ -59,7 +59,10 @@ function listing(html,maxRecords){
  need(same(a.filtersConfig,{workLocations:[],departments:[]}),'Native board filters changed')
  const queries=p.dehydratedState?.queries;need(Array.isArray(queries),'Native queries missing')
  const found=queries.filter(q=>q.queryKey?.[2]==='job-posts');need(found.length===1,'Native listing query missing/ambiguous')
- const q=found[0];need(same(q.queryKey,['board','everstage','job-posts',false,{searchQuery:'',departments:[],workplaceType:null,country:'',state:'',city:'',page:0,pageSize:20}]),'Native unqualified filter/pagination query changed')
+ const q=found[0],expectedQuery=['board','everstage','job-posts',false,{searchQuery:'',departments:[],workplaceType:null,country:'',state:'',city:'',page:0,pageSize:20}]
+ // Current Rippling hydration adds its already-verified page locale to the
+ // cache key. The native filters and pagination must still match in full.
+ need(same(q.queryKey,expectedQuery)||same(q.queryKey,[...expectedQuery,n.locale]),'Native unqualified filter/pagination query changed')
  need(q.state?.status==='success'&&q.state.error==null,'Native listing query error')
  const v=q.state.data;envelope(v)
  need(same(Object.keys(v).sort(),['items','page','pageSize','totalItems','totalPages'].sort()),'Native listing envelope changed')
@@ -152,3 +155,4 @@ export async function runNativeEverstage(options={}){
  return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:EMBED,firstParty:true,listingComplete:false,pagesFetched:2,reportedTotal:null,indiaFacetCount:null,verifiedAt:now,reason:'current-terminal-native-board-enumerated-and-rechecked-whole-company-scope-unproven'})
 }
 export const run=runNativeEverstage
+export { listing as parseEverstageListing }

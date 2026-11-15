@@ -92,8 +92,14 @@ const buildFrontendVerifySuccessUrl = () => {
   return url.toString();
 };
 
-const buildVerificationLink = (verificationToken) => {
+const buildVerificationLink = (verificationToken, next) => {
   const url = new URL("/verify-email", getFrontendOrigin());
+  if (typeof next === 'string' && next.startsWith('/') && next.length <= 4096) {
+    try {
+      const destination = new URL(next, url.origin);
+      if (destination.origin === url.origin) url.searchParams.set('next', `${destination.pathname}${destination.search}${destination.hash}`);
+    } catch { /* An invalid return path must not prevent account verification. */ }
+  }
   url.hash = new URLSearchParams({ token: verificationToken }).toString();
   return url.toString();
 };
@@ -208,7 +214,7 @@ export const register = async (req, res) => {
 
     await pending.save();
 
-    const magicLink = buildVerificationLink(verificationToken.token);
+    const magicLink = buildVerificationLink(verificationToken.token, req.body.next);
     sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
       console.error(`[Email Delivery Error] Failed to send email to ${normalizedEmail}:`, err.message);
     });
@@ -242,7 +248,7 @@ export const redirectVerifyEmail = async (req, res) => {
     });
   }
 
-  return res.redirect(buildVerificationLink(token));
+  return res.redirect(buildVerificationLink(token, req.query.next));
 };
 
 // Only the mailbox owner holding the link may establish the account password.
@@ -405,7 +411,7 @@ export const resendVerification = async (req, res) => {
       });
     }
 
-    const magicLink = buildVerificationLink(verificationToken.token);
+    const magicLink = buildVerificationLink(verificationToken.token, req.body.next);
     sendVerificationEmail(normalizedEmail, magicLink).catch((err) => {
       console.error(`[Email Delivery Error] Failed to send email to ${normalizedEmail}:`, err.message);
     });

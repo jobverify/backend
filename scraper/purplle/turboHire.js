@@ -2,6 +2,7 @@ import {createHash} from 'node:crypto'
 import {readNativeDocument,decodeNativeEntities,extractActiveDescription} from '../../scraper-support/utils/activeNativeHtml.js'
 import {turboHireWorkplaces,turboHireDate,turboHireRecruitmentRecord} from '../../scraper-support/utils/turboHireNativeFacts.js'
 import reviewedShell from './reviewedTurboHireShell.json' with {type:'json'}
+import reviewedShell20261114 from './reviewedTurboHireShell20261114.json' with {type:'json'}
 export const POST_URL='https://www.linkedin.com/posts/purplle-com_hiringmadeeasy-purpllecareers-wearehiring-activity-7316045361444265984-q2bG'
 export const SHORT_URL='https://lnkd.in/gqG86pHt'
 export const TINY_URL='https://tinyurl.com/Purplle-Careers'
@@ -18,6 +19,7 @@ const clients={
  '/24.52ad9596a317e0433e77.chunk.js':'947f1d46af7076821bd671d0049574fa109d04a97ca093b59bba0adc2e1ad926',
  '/40.3ec75e9eb87caff145b7.chunk.js':'37422a4a8d2f7c78a4f9fc5fa6b0d7d951cb950e165ccc80e9d9d537ce5cbc94',
 }
+const clientVersions=[{shell:reviewedShell,clients},{shell:reviewedShell20261114,clients:reviewedShell20261114.clients}]
 const sha=body=>createHash('sha256').update(body).digest('hex')
 const check=(ok,message)=>{if(!ok)throw Error('Purplle TurboHire native contract: '+message)}
 const clean=value=>typeof value==='string'?value.replace(/\s+/g,' ').trim():''
@@ -52,14 +54,17 @@ function shellContract(html){
  check(roots.length===1&&nodes.find(n=>n.attrs.id==='root')===roots[0],'active native root changed')
  const scripts=nodes.filter(n=>n.tag==='script'&&n.attrs.src)
  // Hash observed URLs only where the reviewed reference is a fingerprint.
- const scriptAttributes=scripts.map((n,index)=>/^sha256:[a-f0-9]{64}$/.test(reviewedShell.scripts[index]?.src||'')
-  ? {...n.attrs,src:'sha256:'+sha(n.attrs.src)} : n.attrs)
- check(canonical(scriptAttributes)===canonical(reviewedShell.scripts),'native public program declarations changed')
- check(canonical(nodes.filter(n=>n.tag==='script'&&!n.attrs.src&&n.attrs.type!=='application/ld+json').map(n=>sha(n.raw)))===canonical(reviewedShell.inlineSHA256),'native inline programs changed')
- check(canonical(nodes.filter(n=>n.tag==='link'&&n.attrs.rel==='stylesheet').map(n=>n.attrs))===canonical(reviewedShell.styles),'native stylesheets changed')
+ const version=clientVersions.find(candidate=>{
+  const scriptAttributes=scripts.map((n,index)=>/^sha256:[a-f0-9]{64}$/.test(candidate.shell.scripts[index]?.src||'')
+   ? {...n.attrs,src:'sha256:'+sha(n.attrs.src)} : n.attrs)
+  return canonical(scriptAttributes)===canonical(candidate.shell.scripts)
+ })
+ check(version,'native public program declarations changed')
+ check(canonical(nodes.filter(n=>n.tag==='script'&&!n.attrs.src&&n.attrs.type!=='application/ld+json').map(n=>sha(n.raw)))===canonical(version.shell.inlineSHA256),'native inline programs changed')
+ check(canonical(nodes.filter(n=>n.tag==='link'&&n.attrs.rel==='stylesheet').map(n=>n.attrs))===canonical(version.shell.styles),'native stylesheets changed')
  check(!nodes.some(n=>n.tag==='link'&&n.attrs.rel==='canonical'),'new native canonical carrier requires reconciliation')
  check(!d.nodes(n=>['iframe','object','embed'].includes(n.tag)).some(n=>n.attrs.src),'unreviewed active native frame')
- return d
+ return {document:d,version}
 }
 const metadata=(d,name)=>{
  const values=documentElements(d).filter(n=>n.tag==='meta'&&n.attrs.property===name)
@@ -77,8 +82,9 @@ const listContract=v=>{
  return v
 }
 const plain=html=>{let text=String(html);for(let i=0;i<3;i++){const next=decodeNativeEntities(text);if(next===text)break;text=next}const d=readNativeDocument(text);return d.text(d.nodes(n=>n.tag==='root')[0]).replace(/\s/g,'')}
-function roleContract(row,dto,html,now){
- const d=shellContract(html),postings=schema(d,'JobPosting')
+function roleContract(row,dto,html,now,expectedVersion){
+ const {document:d,version}=shellContract(html),postings=schema(d,'JobPosting')
+ check(version===expectedVersion,'native board/role client deployment disagreement')
  check(postings.length===1,'native JobPosting missing or ambiguous');const p=postings[0]
  check(Object.keys(p).every(k=>['@context','@type','title','datePosted','description','hiringOrganization','jobLocation','industry','workHours','skills','validThrough','employmentType'].includes(k)),'new native structured criteria/date/scope carrier requires reconciliation')
  check(p.title===dto.JobTitle&&clean(dto.JobTitle)===clean(row.JobTitle)&&dto.JobId===row.JobId&&dto.JobCode===row.JobCode,'listing/detail/schema role identity conflict')
@@ -153,9 +159,9 @@ export async function collectPurplleTurboHire({fetchImpl,signal,now,retainedResp
   const publisher=postContract(await read(POST_URL)),short=readNativeDocument(await read(SHORT_URL))
   check(short.nodes(n=>n.tag==='a'&&n.attrs['data-tracking-control-name']==='external_url_click'&&n.attrs.href===TINY_URL).length===1,'declared LinkedIn short-link destination changed')
   const tiny=await read(TINY_URL,{redirect:true});check([301,302].includes(tiny.status)&&tiny.location===BOARD_URL,'declared tenant redirect changed')
-  const board=shellContract(await read(BOARD_URL))
+  const {document:board,version}=shellContract(await read(BOARD_URL))
   check(metadata(board,'og:title')==='Purplle.com - Career Page'&&metadata(board,'og:site_name')==='Purplle.com'&&metadata(board,'og:description')==='Explore job opportunities at Purplle.com','native board OpenGraph employer changed')
-  for(const [url,hash]of Object.entries(clients))check(sha(await read(ORIGIN+url))===hash,'current native client bytes changed')
+  for(const [url,hash]of Object.entries(version.clients))check(sha(await read(ORIGIN+url))===hash,'current native client bytes changed')
   await read(API+'/api/token/noauth',{anonymous:true})
   const lookup=organization(JSON.parse(await read(API+'/api/publicorganizations?accountName=purplle'))),org=organization(JSON.parse(await read(API+'/api/publicorganizations/'+ORG_ID)))
   check(canonical(lookup)===canonical(org),'organization lookup/detail disagreement')
@@ -163,13 +169,13 @@ export async function collectPurplleTurboHire({fetchImpl,signal,now,retainedResp
   const listing=listContract(JSON.parse(await read(LIST_URL,{method:'POST',body}))),jobs=[]
   for(const row of listing.Result.slice(0,maxJobs)){
    const html=await read(ORIGIN+'/job/publicjobs/'+row.JobId+'?utm_source=CareerPage'),dto=JSON.parse(await read(API+'/api/publicjobs/'+row.JobId+'?fieldVisibility=CareerPage'))
-   jobs.push(roleContract(row,dto,html,clock))
+   jobs.push(roleContract(row,dto,html,clock,version))
   }
   const closing=listContract(JSON.parse(await read(LIST_URL,{method:'POST',body})))
   check(canonical(listing.Result)===canonical(closing.Result),'closing native inventory changed')
   check(canonical(org)===canonical(organization(JSON.parse(await read(API+'/api/publicorganizations/'+ORG_ID)))),'closing native employer changed')
   check(jobs.length>0,'no native detail verified; inventory remains unknown')
-  for(const job of jobs){job.activeApplyVerified=false;job.nativeApplicationVerification='Current public role DTO and same-role public page verified; rendered Apply control or form not inspected';job.nativeSourceRecord.nativePublisher={corporateURL:'https://www.purplle.com/careers',corporateUnavailable,post:publisher,boardURL:BOARD_URL,organization:org,clientSHA256:clients}}
+  for(const job of jobs){job.activeApplyVerified=false;job.nativeApplicationVerification='Current public role DTO and same-role public page verified; rendered Apply control or form not inspected';job.nativeSourceRecord.nativePublisher={corporateURL:'https://www.purplle.com/careers',corporateUnavailable,post:publisher,boardURL:BOARD_URL,organization:org,clientSHA256:{...version.clients}}}
   return {jobs,firstParty:true,inventoryStatus:'coverage-gap',facts:{nativeRecordCount:listing.Result.length,nativeReportedIndiaFilteredCount:null,visitedDetailCount:jobs.length,stopReason:'bounded-TurboHire-details',countryUnknownRecoveredCount:0,nativeSurface:BOARD_URL,declaredPost:publisher,corporateUnavailable},reason:`Current company-post-declared TurboHire board: ${listing.Total} records observed; ${jobs.length} full native India details verified within bounded selection. ${corporateUnavailable?'Corporate careers remains HTTP'+corporateUnavailable.status+'; independently verified official publisher and reciprocal ATS supply this subset. ':''}LinkedIn employer/job channel remains inaccessible; exact numeric LinkedIn author mapping, company-wide inventory and remaining detail scope remain unknown. Public application context verified; rendered Apply control not inspected. Lifecycle cleanup disabled.`}
  }finally{token=null}
 }

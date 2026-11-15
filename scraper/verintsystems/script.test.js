@@ -15,6 +15,7 @@ import {
   hasOfficialCandidateExperienceSignal,
   hasOfficialCareersPageSignal,
 } from './script.js'
+import { replayVerint } from './currentFixture20261114.js'
 
 const careersHtml = `
   <html>
@@ -82,7 +83,7 @@ const detailPayload = {
   offset: 0,
 }
 
-test('Verint recognizes the current careers handoff and Oracle candidate shell', () => {
+test('Verint retains historical Oracle handoff and shell pure validators', () => {
   assert.equal(SOURCE, 'verintsystems')
   assert.equal(COMPANY_NAME, 'Verint Systems')
   assert.equal(CAREERS_URL, 'https://www.verint.com/careers/')
@@ -143,30 +144,14 @@ test('Verint extracts India listings and enriches a requisition detail payload',
   })
 })
 
-test('Verint runner follows the first-party handoff and Oracle APIs', async () => {
-  const requestedTextUrls = []
-  const requestedJsonUrls = []
-  const jobs = await createVerintSystemsScraper({
-    maxPages: 1,
-    now: () => '2026-08-06T00:00:00.000Z',
-    fetchText: async (url) => {
-      requestedTextUrls.push(url)
-      if (url === CAREERS_URL) return careersHtml
-      if (url === CANDIDATE_EXPERIENCE_URL) return candidateExperienceHtml
-      throw new Error(`Unexpected text URL: ${url}`)
-    },
-    fetchJson: async (url) => {
-      requestedJsonUrls.push(url)
-      if (url === buildSearchUrl({ page: 0 })) return listingPayload
-      if (url === buildJobDetailApiUrl('3889')) return detailPayload
-      throw new Error(`Unexpected JSON URL: ${url}`)
-    },
-  }).run()
-
-  assert.deepEqual(requestedTextUrls, [CAREERS_URL, CANDIDATE_EXPERIENCE_URL])
-  assert.deepEqual(requestedJsonUrls, [buildSearchUrl({ page: 0 }), buildJobDetailApiUrl('3889')])
+test('Verint runner follows the current corporate declaration and complete native Ashby responses', async () => {
+  const { jobs, requests } = await replayVerint(options => createVerintSystemsScraper(options).run())
   assert.equal(jobs.length, 1)
-  assert.equal(jobs[0].source, SOURCE)
-  assert.equal(jobs[0].link, jobs[0].applyUrl)
-  assert.equal(jobs[0].scrapedAt, '2026-08-06T00:00:00.000Z')
+  assert.equal(jobs[0].jobId, '698d571e-d45c-4624-8a01-7d36224a6673')
+  assert.equal(jobs[0].source, 'verintsystems')
+  assert.equal(jobs[0].country, 'India')
+  assert.equal(jobs[0].sourceClosingReconciled, true)
+  assert.equal(jobs[0].lifecycleCleanupAllowed, false)
+  assert.equal(requests.length, 8)
+  assert(requests.every(row => !row.url.includes('oraclecloud.com')))
 })

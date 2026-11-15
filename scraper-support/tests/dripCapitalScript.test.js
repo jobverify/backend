@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {replayNative, originalBody} from '../../scraper/dripcapital/fixtures/nativeReplay20261114.js'
 
 const homepageHtml = `
 <!DOCTYPE html>
@@ -131,13 +132,13 @@ const loadDripCapitalModule = async () => {
   }
 }
 
-test('Drip Capital helpers stay pinned to the verified homepage, careers shells, empty payloads, jobs 404, robots, and sitemap evidence', async () => {
+test('Historical Drip pure surface validators remain available alongside accurate current provider identity', async () => {
   const dripCapital = await loadDripCapitalModule()
 
   assert.equal(dripCapital.SOURCE, 'dripcapital')
   assert.equal(dripCapital.COMPANY, 'Drip Capital')
   assert.equal(dripCapital.OFFICIAL_BRAND_NAME, 'Drip Capital')
-  assert.equal(dripCapital.VERIFIED_ON, '2026-08-13')
+  assert.equal(dripCapital.VERIFIED_ON, '2026-11-14')
   assert.equal(dripCapital.HOMEPAGE_URL, 'https://www.dripcapital.com/')
   assert.equal(dripCapital.CAREERS_PAGE_URL, 'https://www.dripcapital.com/en-in/careers/')
   assert.equal(dripCapital.LEGACY_CAREERS_URL, 'https://www.dripcapital.com/careers/')
@@ -225,275 +226,37 @@ test('Drip Capital helpers stay pinned to the verified homepage, careers shells,
   assert.equal(dripCapital.hasPublicJobsSignal(publicJobsHtml), true)
 })
 
-test('Drip Capital sentinel returns [] only while the verified careers shells and empty payload evidence remain unchanged', async () => {
+test('Drip factory now returns current own-employer India native text with explicit application and company holds', async () => {
   const dripCapital = await loadDripCapitalModule()
-  const requestedUrls = []
-
-  const jobs = await dripCapital.createDripCapitalScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === dripCapital.HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
-
-      if (url === dripCapital.LEGACY_CAREERS_URL) {
-        return { status: 200, url, html: legacyCareersHtml }
-      }
-
-      if (url === dripCapital.CAREERS_PAGE_URL) {
-        return { status: 200, url, html: indiaCareersHtml }
-      }
-
-      if (url === dripCapital.US_CAREERS_URL) {
-        return { status: 200, url, html: usCareersHtml }
-      }
-
-      if (url === dripCapital.LEGACY_CAREERS_PAYLOAD_URL) {
-        return { status: 200, url, html: emptyLegacyPayload }
-      }
-
-      if (url === dripCapital.INDIA_CAREERS_PAYLOAD_URL) {
-        return { status: 200, url, html: emptyIndiaPayload }
-      }
-
-      if (url === dripCapital.US_CAREERS_PAYLOAD_URL) {
-        return { status: 200, url, html: emptyUsPayload }
-      }
-
-      if (url === dripCapital.JOBS_URL) {
-        return { status: 404, url, html: jobs404Html }
-      }
-
-      if (url === dripCapital.ROBOTS_TXT_URL) {
-        return { status: 200, url, html: robotsTxt }
-      }
-
-      if (url === dripCapital.SITEMAP_URL) {
-        return { status: 200, url, html: sitemapXml }
-      }
-
-      throw new Error(`Unexpected Drip Capital URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    dripCapital.HOMEPAGE_URL,
-    dripCapital.LEGACY_CAREERS_URL,
-    dripCapital.LEGACY_CAREERS_PAYLOAD_URL,
-    dripCapital.CAREERS_PAGE_URL,
-    dripCapital.INDIA_CAREERS_PAYLOAD_URL,
-    dripCapital.US_CAREERS_URL,
-    dripCapital.US_CAREERS_PAYLOAD_URL,
-    dripCapital.JOBS_URL,
-    dripCapital.ROBOTS_TXT_URL,
-    dripCapital.SITEMAP_URL,
-  ])
-  assert.deepEqual(jobs, [])
+  const replay = replayNative()
+  const jobs = await dripCapital.createDripCapitalScraper().run({fetchImpl: replay.fetchImpl})
+  assert.equal(jobs.length, 4)
+  assert.equal(replay.reads.length, 14)
+  assert.ok(jobs.every(job => job.country === 'India' && job.companyDomain === 'dripcapital.com' && job.atsPlatform === 'trakstar-hire'))
+  assert.ok(jobs.every(job => job.sourceDetailComplete && job.sourceDescriptionHTML.includes('jobdesciption') && job.datePosted === null))
+  assert.ok(jobs.every(job => !job.sourceScopeComplete && !job.lifecycleCleanupAllowed && !job.sourceApplicationQualificationComplete && !job.sourceRenderedCriteriaComplete))
+  assert.equal(jobs.nativeCollectionEvidence.openingCards.length, 5)
+  assert.equal(jobs.nativeCollectionEvidence.explicitOutOfCountryRecords.length, 1)
+  assert.equal(jobs.nativeCollectionEvidence.closingRecords.length, 4)
 })
 
-test('Drip Capital sentinel fails closed when the homepage, careers shells, payloads, jobs route, robots, or sitemap drift into a public jobs surface', async () => {
+test('Drip factory rejects current authority/country/criteria/closing drift and never certifies a historical shell as zero', async () => {
   const dripCapital = await loadDripCapitalModule()
-
-  await assert.rejects(
-    dripCapital.createDripCapitalScraper().run({
-      fetchPage: async (url) => {
-        if (url === dripCapital.HOMEPAGE_URL) {
-          return { status: 200, url, html: '<html><head><title>Unexpected</title></head><body></body></html>' }
-        }
-
-        throw new Error(`Unexpected Drip Capital URL: ${url}`)
-      },
-    }),
-    /homepage/i,
-  )
-
-  await assert.rejects(
-    dripCapital.createDripCapitalScraper().run({
-      fetchPage: async (url) => {
-        if (url === dripCapital.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_URL) {
-          return { status: 200, url, html: legacyCareersHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyLegacyPayload }
-        }
-
-        if (url === dripCapital.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: '<html><body>Current Openings</body></html>' }
-        }
-
-        throw new Error(`Unexpected Drip Capital URL: ${url}`)
-      },
-    }),
-    /india careers route/i,
-  )
-
-  await assert.rejects(
-    dripCapital.createDripCapitalScraper().run({
-      fetchPage: async (url) => {
-        if (url === dripCapital.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_URL) {
-          return { status: 200, url, html: legacyCareersHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyLegacyPayload }
-        }
-
-        if (url === dripCapital.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: indiaCareersHtml }
-        }
-
-        if (url === dripCapital.INDIA_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: publicJobsHtml }
-        }
-
-        throw new Error(`Unexpected Drip Capital URL: ${url}`)
-      },
-    }),
-    /empty india careers payload/i,
-  )
-
-  await assert.rejects(
-    dripCapital.createDripCapitalScraper().run({
-      fetchPage: async (url) => {
-        if (url === dripCapital.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_URL) {
-          return { status: 200, url, html: legacyCareersHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyLegacyPayload }
-        }
-
-        if (url === dripCapital.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: indiaCareersHtml }
-        }
-
-        if (url === dripCapital.INDIA_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyIndiaPayload }
-        }
-
-        if (url === dripCapital.US_CAREERS_URL) {
-          return { status: 200, url, html: usCareersHtml }
-        }
-
-        if (url === dripCapital.US_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyUsPayload }
-        }
-
-        if (url === dripCapital.JOBS_URL) {
-          return { status: 200, url, html: publicJobsHtml }
-        }
-
-        throw new Error(`Unexpected Drip Capital URL: ${url}`)
-      },
-    }),
-    /jobs route/i,
-  )
-
-  await assert.rejects(
-    dripCapital.createDripCapitalScraper().run({
-      fetchPage: async (url) => {
-        if (url === dripCapital.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_URL) {
-          return { status: 200, url, html: legacyCareersHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyLegacyPayload }
-        }
-
-        if (url === dripCapital.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: indiaCareersHtml }
-        }
-
-        if (url === dripCapital.INDIA_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyIndiaPayload }
-        }
-
-        if (url === dripCapital.US_CAREERS_URL) {
-          return { status: 200, url, html: usCareersHtml }
-        }
-
-        if (url === dripCapital.US_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyUsPayload }
-        }
-
-        if (url === dripCapital.JOBS_URL) {
-          return { status: 404, url, html: jobs404Html }
-        }
-
-        if (url === dripCapital.ROBOTS_TXT_URL) {
-          return { status: 200, url, html: 'User-agent: *' }
-        }
-
-        throw new Error(`Unexpected Drip Capital URL: ${url}`)
-      },
-    }),
-    /robots/i,
-  )
-
-  await assert.rejects(
-    dripCapital.createDripCapitalScraper().run({
-      fetchPage: async (url) => {
-        if (url === dripCapital.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_URL) {
-          return { status: 200, url, html: legacyCareersHtml }
-        }
-
-        if (url === dripCapital.LEGACY_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyLegacyPayload }
-        }
-
-        if (url === dripCapital.CAREERS_PAGE_URL) {
-          return { status: 200, url, html: indiaCareersHtml }
-        }
-
-        if (url === dripCapital.INDIA_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyIndiaPayload }
-        }
-
-        if (url === dripCapital.US_CAREERS_URL) {
-          return { status: 200, url, html: usCareersHtml }
-        }
-
-        if (url === dripCapital.US_CAREERS_PAYLOAD_URL) {
-          return { status: 200, url, html: emptyUsPayload }
-        }
-
-        if (url === dripCapital.JOBS_URL) {
-          return { status: 404, url, html: jobs404Html }
-        }
-
-        if (url === dripCapital.ROBOTS_TXT_URL) {
-          return { status: 200, url, html: robotsTxt }
-        }
-
-        if (url === dripCapital.SITEMAP_URL) {
-          return { status: 200, url, html: sitemapWithPublicJobsXml }
-        }
-
-        throw new Error(`Unexpected Drip Capital URL: ${url}`)
-      },
-    }),
-    /sitemap/i,
-  )
+  for (const [requestIndex, before, after] of [
+    [0, 'https://dripcapital.recruiterbox.com/#content', 'https://other.recruiterbox.com/#content'],
+    [2, 'View 5\n', 'View 0\n'],
+    [3, 'meta-job-location-country">India', 'meta-job-location-country">United States'],
+    [3, '<div class="jobdesciption">', '<div class="jobdesciption" hidden>'],
+    [3, '<div class="jobdesciption">', '<div class="jobdesciption">This role has been filled.'],
+    [7, '<div class="jobdesciption">', '<div class="jobdesciption">Changed closing qualification'],
+  ]) {
+    const replay = replayNative({mutate: reply => {
+      if (reply.requestIndex !== requestIndex) return undefined
+      const html = reply.raw.toString()
+      assert.ok(html.includes(before))
+      return Buffer.from(html.replace(before, after))
+    }})
+    await assert.rejects(dripCapital.createDripCapitalScraper().run({fetchImpl: replay.fetchImpl}), /coverage gap/)
+  }
+  await assert.rejects(dripCapital.createDripCapitalScraper().run({fetchPage: async url => ({url, status: 200, html: originalBody(0).toString()})}), /complete original manual HTTP Response/)
 })

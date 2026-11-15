@@ -1,18 +1,16 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { fetchPageWithRetry } from '../../scraper-support/utils/fetchPageWithRetry.js'
+import {runCurrentEnerparc} from './currentNative.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const CAREERS_URL = 'https://enerparc.in/apply-now/'
 
 export const SOURCE = 'enerparcenergy'
-export const VERIFIED_ON = '2026-08-14'
+export const VERIFIED_ON = '2026-11-14'
 export const VERIFIED_SURFACE_SUMMARY =
-  'Verified on August 14, 2026 that https://enerparc.in/apply-now/ still exposes the official Enerparc Energy careers page with an Apply Now handoff to https://enerparc.zohorecruit.in/jobs/Careers and no first-party public openings listed on the page. Direct Node fetch probes to the verified careers URL returned a Cloudflare 403 "Attention Required! | Cloudflare" block page, so API-only runs must treat that verified block as a graceful no-data condition instead of crashing.'
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36'
+  'Current own Zoho internal Enerparc legal employer and official-site metadata bind the independently observed public native account. One complete original India criteria pair and the whole25-row closing inventory are qualified under the original stricter budgets. Corporate handoff remains historical and the observed corporate403 is retained;24unhydrated roles, full-company/CSS/dependency/activation/application/cleanup scopes remain held.'
 
 export const hasOfficialCareersSignal = (html) => {
   const page = String(html ?? '')
@@ -31,16 +29,6 @@ export const hasNoPublicListingsSignal = (html) => {
 
 const getPageHtml = (page = {}) => String(page.html ?? page.body ?? page.text ?? '')
 
-const getHeader = (page = {}, name) => {
-  const normalizedName = String(name ?? '').toLowerCase()
-  const headers = page?.headers
-  if (!headers) return ''
-  if (typeof headers.get === 'function') {
-    return String(headers.get(normalizedName) || headers.get(name) || '')
-  }
-  return String(headers[normalizedName] || headers[name] || '')
-}
-
 export const hasVerifiedCloudflareChallengeSignal = (page = {}) => {
   const html = getPageHtml(page)
   const text = String(html ?? '').replace(/\s+/g, ' ').trim()
@@ -57,60 +45,9 @@ export const hasVerifiedCloudflareChallengeSignal = (page = {}) => {
     )
 }
 
-const isVerifiedCloudflareChallengedPage = (page = {}, expectedUrl) => {
-  const finalUrl = String(page.url || expectedUrl)
+export const createEnerparcEnergyScraper = () => ({run:runCurrentEnerparc})
 
-  return finalUrl === expectedUrl
-    && /cloudflare/i.test(getHeader(page, 'server'))
-    && getHeader(page, 'cf-ray').trim().length > 0
-    && hasVerifiedCloudflareChallengeSignal(page)
-}
-
-const defaultFetchPage = (url) => fetchPageWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Language': 'en-IN,en-US;q=0.9,en;q=0.8',
-    Referer: CAREERS_URL,
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const createFetchPageFromText = (fetchText) => async (url) => ({
-  status: 200,
-  url,
-  headers: {},
-  html: await fetchText(url),
-})
-
-export const createEnerparcEnergyScraper = () => ({
-  async run({ fetchPage, fetchText } = {}) {
-    const effectiveFetchPage = typeof fetchPage === 'function'
-      ? fetchPage
-      : typeof fetchText === 'function'
-        ? createFetchPageFromText(fetchText)
-        : defaultFetchPage
-
-    const careersPage = await effectiveFetchPage(CAREERS_URL)
-    if (isVerifiedCloudflareChallengedPage(careersPage, CAREERS_URL)) {
-      return []
-    }
-
-    const careersHtml = getPageHtml(careersPage)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('Enerparc Energy careers page no longer matches the verified official careers surface')
-    }
-
-    if (!hasNoPublicListingsSignal(careersHtml)) {
-      throw new Error('Enerparc Energy careers page no longer matches the verified official no-public-listings surface')
-    }
-
-    return []
-  },
-})
-
-export const run = async (options = {}) => createEnerparcEnergyScraper().run(options)
+export const run = runCurrentEnerparc
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

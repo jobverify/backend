@@ -39,6 +39,12 @@ test('protected facts retain the candidate identity, each employer, dates, degre
   assert.equal(fidelity(source.text).valid, true);
 });
 
+test('a repeated visible phone stays a contact rather than becoming an achievement metric', () => {
+  const text = source.text + '\nasha@example.test | +91 98765 43210';
+  assert.deepEqual(fidelity(text).issues, []);
+  assert.ok(fidelity(text + '\nDelivered 91 projects.').issues.includes('Unsupported number or metric: 91.'));
+});
+
 test('academic grades may move beside the degree without changing the institution or grade', () => {
   for (const label of ['CGPA', 'GPA']) {
     const grade = `${label}: 7.49`;

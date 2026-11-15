@@ -175,7 +175,8 @@ const UserSchema = new Schema(
     // Administrative permission, independent of the member's delivery opt-in.
     telegramAlertsAllowed: { type: Boolean, default: true },
     resumeFeaturesAllowed: { type: Boolean, default: false },
-    applicationsAllowed: { type: Boolean, default: false },
+    // Kept for older clients; application access no longer depends on this field.
+    applicationsAllowed: { type: Boolean, default: true },
     profile: { type: ProfileSchema, default: () => ({}) },
     savedJobs: {
       type: [{

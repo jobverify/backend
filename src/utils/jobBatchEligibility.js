@@ -31,11 +31,11 @@ export function matchesBatchYear(job, year) {
   return validBatchYear(selected) && (batchYears(job.eligibleBatches).includes(selected) || (maximum !== null && selected <= maximum));
 }
 export const hasBatchEligibility = job => batchYears(job.eligibleBatches).length > 0 || batchMaximum(job) !== null;
-export function formatBatchEligibility(job, { markEstimate = false } = {}) {
+export function formatBatchEligibility(job) {
   const maximum = batchMaximum(job);
   const years = batchYears(job.eligibleBatches).filter(year => maximum === null || year > maximum);
   const value = [maximum === null ? '' : `${maximum} and earlier`, years.join(', ')].filter(Boolean).join('; ');
-  return value && markEstimate && job.eligibleBatchesProvenance === 'inferred' ? `${value} (estimated)` : value;
+  return value;
 }
 export const batchYearExpression = year => ({ $or: [
   { $in: [year, { $ifNull: ['$eligibleBatches', []] }] },

@@ -1,0 +1,718 @@
+{
+  "source": "netomi",
+  "authority": "own-native-text-data-only",
+  "employerLabel": "Netomi",
+  "boardURL": "https://jobs.lever.co/netomi",
+  "feedURL": "https://api.lever.co/v0/postings/netomi?mode=json&skip=0&limit=100",
+  "corporateURL": "https://www.netomi.com/careers",
+  "literalNativeHomepageHref": "http://netomi.com",
+  "logoURL": "https://lever-client-logos.s3.us-west-2.amazonaws.com/8fdaa115-540a-4eb9-a0a9-5315fc4a280b-1726499769015.png",
+  "fullFeed": {
+    "bytes": 240185,
+    "rawEntitySHA256": "b969c22974ba7ab84040212288144c1df855c4ece294aea577d68c4a3e9aa3cf",
+    "count": 21
+  },
+  "htmlEntities": {
+    "https://jobs.lever.co/netomi": {
+      "url": "https://jobs.lever.co/netomi",
+      "originalEntityBytes": 734840,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 733809,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 733830,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 734039,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 733809,
+          "immutableRawSegmentSHA256": "fb2b6e69bde72bca8ab1646b8c97634b503a825ff169f32e9eb32cca373fc415"
+        },
+        {
+          "byteOffset": 733825,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 733846,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 734055,
+          "byteLength": 785,
+          "immutableRawSegmentSHA256": "9ee06dacb04c9c39cdc46ae13a4125324a901abe6e5b70c2ddfbc03e18d991d1"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/0e6b7355-330a-4d10-b8d5-c235bd555622": {
+      "url": "https://jobs.lever.co/netomi/0e6b7355-330a-4d10-b8d5-c235bd555622",
+      "originalEntityBytes": 717989,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 717040,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 717061,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 717270,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 717040,
+          "immutableRawSegmentSHA256": "352deb8198801333e3cc79012bfce2ac730c31fa3471479c800a120149fc940e"
+        },
+        {
+          "byteOffset": 717056,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 717077,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 717286,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/02b45afd-5a49-41b2-a244-b0ca76306692": {
+      "url": "https://jobs.lever.co/netomi/02b45afd-5a49-41b2-a244-b0ca76306692",
+      "originalEntityBytes": 721888,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 720939,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 720960,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 721169,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 720939,
+          "immutableRawSegmentSHA256": "b632814396f3071f37d0a1801ff3103f1aa8cfab479e2c44c04e84bc81697b87"
+        },
+        {
+          "byteOffset": 720955,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 720976,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 721185,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/a8cc0d22-25b4-48f4-a6b1-0d1fd37bcc84": {
+      "url": "https://jobs.lever.co/netomi/a8cc0d22-25b4-48f4-a6b1-0d1fd37bcc84",
+      "originalEntityBytes": 722872,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 721923,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 721944,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 722153,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 721923,
+          "immutableRawSegmentSHA256": "d4aa3171a56c12a202e1fbcc2d9e6bd04169cf9f4a62f4cc0660336ddb742632"
+        },
+        {
+          "byteOffset": 721939,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 721960,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 722169,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/929d62de-1e00-4b54-ba38-3378cc440fb2": {
+      "url": "https://jobs.lever.co/netomi/929d62de-1e00-4b54-ba38-3378cc440fb2",
+      "originalEntityBytes": 722237,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 721288,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 721309,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 721518,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 721288,
+          "immutableRawSegmentSHA256": "01cadd84c8422342c15846573bd2e8d298dccb905e35ea46a9e96cd70e7f6f6c"
+        },
+        {
+          "byteOffset": 721304,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 721325,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 721534,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/f24c0390-c103-4609-b8e4-abab0aca928c": {
+      "url": "https://jobs.lever.co/netomi/f24c0390-c103-4609-b8e4-abab0aca928c",
+      "originalEntityBytes": 726243,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 725294,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 725315,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 725524,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 725294,
+          "immutableRawSegmentSHA256": "898e117b714acbe8c0a3861045972e52613da53cb6b5609c8bb4c9fd28c236bd"
+        },
+        {
+          "byteOffset": 725310,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 725331,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 725540,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/ffe81537-5d1b-437e-a5e8-43546aa8c655": {
+      "url": "https://jobs.lever.co/netomi/ffe81537-5d1b-437e-a5e8-43546aa8c655",
+      "originalEntityBytes": 719938,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 718989,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 719010,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 719219,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 718989,
+          "immutableRawSegmentSHA256": "ec3f9b271f65a91c5592b053552c4860865e71cfd9216bf151d327882be89ac7"
+        },
+        {
+          "byteOffset": 719005,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 719026,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 719235,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/bd9d56b2-4ba4-4454-9e91-ab7ab63c110f": {
+      "url": "https://jobs.lever.co/netomi/bd9d56b2-4ba4-4454-9e91-ab7ab63c110f",
+      "originalEntityBytes": 720318,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 719369,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 719390,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 719599,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 719369,
+          "immutableRawSegmentSHA256": "bf636104b2362e46ffd3bc34d35408b0412d435f7f4bd50675bf68a123988dfc"
+        },
+        {
+          "byteOffset": 719385,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 719406,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 719615,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/fd6df307-38b8-4f0d-81e9-392216edcaa2": {
+      "url": "https://jobs.lever.co/netomi/fd6df307-38b8-4f0d-81e9-392216edcaa2",
+      "originalEntityBytes": 718505,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 717556,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 717577,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 717786,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 717556,
+          "immutableRawSegmentSHA256": "a518ae33395b76f993990f057b2605452863402fb698d7e0689a7421e08d3f94"
+        },
+        {
+          "byteOffset": 717572,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 717593,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 717802,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    },
+    "https://jobs.lever.co/netomi/946847b5-c634-4808-9076-79e49f041ddb": {
+      "url": "https://jobs.lever.co/netomi/946847b5-c634-4808-9076-79e49f041ddb",
+      "originalEntityBytes": 727047,
+      "cfProgramOriginalBytes": 1097,
+      "exactCFScriptAttrs": {},
+      "slots": [
+        {
+          "key": "CF.params.r",
+          "byteOffset": 726098,
+          "byteLength": 16,
+          "type": "lowercaseASCIIhex16"
+        },
+        {
+          "key": "CF.params.t",
+          "byteOffset": 726119,
+          "byteLength": 16,
+          "type": "canonicalBase64Exactly10ASCIIdigits"
+        },
+        {
+          "key": "CF.declaredFixedPath.query.ray",
+          "byteOffset": 726328,
+          "byteLength": 16,
+          "type": "exactlyEqualCF.params.r"
+        }
+      ],
+      "immutableRawSegments": [
+        {
+          "byteOffset": 0,
+          "byteLength": 726098,
+          "immutableRawSegmentSHA256": "445bac78be0b9a94111db401e50b79cb55e503d451ca9ec3135095701586fe1e"
+        },
+        {
+          "byteOffset": 726114,
+          "byteLength": 5,
+          "immutableRawSegmentSHA256": "4b394a48246cae7067322cec2f6c025c6a44ff77d51872b62dee1aff7f197292"
+        },
+        {
+          "byteOffset": 726135,
+          "byteLength": 193,
+          "immutableRawSegmentSHA256": "f009b89db0e19c016aaa5ec95ade107e3c7ad1f7b8f3e8d8f60acd814a513ce0"
+        },
+        {
+          "byteOffset": 726344,
+          "byteLength": 703,
+          "immutableRawSegmentSHA256": "8124900dbaf9d0ef5e746aa29c3a3c1efeabbcf34a4b5e0409a6a2bd3dc12cbf"
+        }
+      ],
+      "coupledSlots": [
+        "CF.params.r===CF.declaredFixedPath.query.ray"
+      ],
+      "semanticRoleDateUse": false
+    }
+  },
+  "roles": [
+    {
+      "id": "0e6b7355-330a-4d10-b8d5-c235bd555622",
+      "title": "Agentic Engineer Level II/III",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full-time",
+        "department": "Global Services & Delivery",
+        "location": "Remote - India",
+        "team": "Agentic Delivery",
+        "allLocations": [
+          "Remote - India"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/0e6b7355-330a-4d10-b8d5-c235bd555622",
+      "applyUrl": "https://jobs.lever.co/netomi/0e6b7355-330a-4d10-b8d5-c235bd555622/apply",
+      "createdAt": 1787568814518,
+      "schemaDatePosted": "2026-08-24"
+    },
+    {
+      "id": "a8cc0d22-25b4-48f4-a6b1-0d1fd37bcc84",
+      "title": "Agentic Product Manager",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full-time",
+        "department": "Global Services & Delivery",
+        "location": "Gurugram",
+        "team": "Agentic Delivery",
+        "allLocations": [
+          "Gurugram"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/a8cc0d22-25b4-48f4-a6b1-0d1fd37bcc84",
+      "applyUrl": "https://jobs.lever.co/netomi/a8cc0d22-25b4-48f4-a6b1-0d1fd37bcc84/apply",
+      "createdAt": 1782970696293,
+      "schemaDatePosted": "2026-07-02"
+    },
+    {
+      "id": "02b45afd-5a49-41b2-a244-b0ca76306692",
+      "title": "Data Engineer I",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full Time - Remote",
+        "department": "Product Engineering",
+        "location": "Remote - India",
+        "team": "Product Development",
+        "allLocations": [
+          "Remote - India"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/02b45afd-5a49-41b2-a244-b0ca76306692",
+      "applyUrl": "https://jobs.lever.co/netomi/02b45afd-5a49-41b2-a244-b0ca76306692/apply",
+      "createdAt": 1789995492415,
+      "schemaDatePosted": "2026-09-21"
+    },
+    {
+      "id": "929d62de-1e00-4b54-ba38-3378cc440fb2",
+      "title": "Data Engineer II",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full Time - Remote",
+        "department": "Product Engineering",
+        "location": "Remote - India",
+        "team": "Product Development",
+        "allLocations": [
+          "Remote - India"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/929d62de-1e00-4b54-ba38-3378cc440fb2",
+      "applyUrl": "https://jobs.lever.co/netomi/929d62de-1e00-4b54-ba38-3378cc440fb2/apply",
+      "createdAt": 1789995825111,
+      "schemaDatePosted": "2026-09-21"
+    },
+    {
+      "id": "f24c0390-c103-4609-b8e4-abab0aca928c",
+      "title": "Data Scientist - II",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full-time",
+        "department": "Product Engineering",
+        "location": "Gurugram",
+        "team": "Data Science",
+        "allLocations": [
+          "Gurugram"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/f24c0390-c103-4609-b8e4-abab0aca928c",
+      "applyUrl": "https://jobs.lever.co/netomi/f24c0390-c103-4609-b8e4-abab0aca928c/apply",
+      "createdAt": 1772466437148,
+      "schemaDatePosted": "2026-03-02"
+    },
+    {
+      "id": "ffe81537-5d1b-437e-a5e8-43546aa8c655",
+      "title": "Devops Engineer - I",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full Time - Remote",
+        "department": "Product Engineering",
+        "location": "Gurugram",
+        "team": "DevOps & Infrastructure",
+        "allLocations": [
+          "Gurugram"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/ffe81537-5d1b-437e-a5e8-43546aa8c655",
+      "applyUrl": "https://jobs.lever.co/netomi/ffe81537-5d1b-437e-a5e8-43546aa8c655/apply",
+      "createdAt": 1791807515169,
+      "schemaDatePosted": "2026-10-12"
+    },
+    {
+      "id": "bd9d56b2-4ba4-4454-9e91-ab7ab63c110f",
+      "title": "Product Support Engineer (AI Platform)",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full Time - Remote",
+        "department": "Global Services & Delivery",
+        "location": "Gurugram",
+        "team": "Technical Support",
+        "allLocations": [
+          "Gurugram"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/bd9d56b2-4ba4-4454-9e91-ab7ab63c110f",
+      "applyUrl": "https://jobs.lever.co/netomi/bd9d56b2-4ba4-4454-9e91-ab7ab63c110f/apply",
+      "createdAt": 1791873099351,
+      "schemaDatePosted": "2026-10-13"
+    },
+    {
+      "id": "fd6df307-38b8-4f0d-81e9-392216edcaa2",
+      "title": "Senior Data Scientist (Agentic Solutions)",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full Time - Remote",
+        "department": "Product Engineering",
+        "location": "Remote - India",
+        "team": "Data Science",
+        "allLocations": [
+          "Remote - India"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/fd6df307-38b8-4f0d-81e9-392216edcaa2",
+      "applyUrl": "https://jobs.lever.co/netomi/fd6df307-38b8-4f0d-81e9-392216edcaa2/apply",
+      "createdAt": 1785133154388,
+      "schemaDatePosted": "2026-07-27"
+    },
+    {
+      "id": "946847b5-c634-4808-9076-79e49f041ddb",
+      "title": "Senior Technical PM, Applied AI",
+      "country": "IN",
+      "categories": {
+        "commitment": "Full-time",
+        "department": "Product",
+        "location": "Remote - India",
+        "team": "Product Management",
+        "allLocations": [
+          "Remote - India"
+        ]
+      },
+      "hostedUrl": "https://jobs.lever.co/netomi/946847b5-c634-4808-9076-79e49f041ddb",
+      "applyUrl": "https://jobs.lever.co/netomi/946847b5-c634-4808-9076-79e49f041ddb/apply",
+      "createdAt": 1792049331546,
+      "schemaDatePosted": "2026-10-15"
+    }
+  ],
+  "corpus": {
+    "completeOriginalHTMLs": 22,
+    "currentRoleHTMLPairs": 1,
+    "historicalCompleteIndiaHTMLPairs": 8,
+    "missingHistoricalClosingHTML": "fd6df307-38b8-4f0d-81e9-392216edcaa2",
+    "fixtureSHA256": "ee54d1e4a6f1a666e85eb2dd01d72d41cff244ee4fd7f17a8bfdbf0978009db4"
+  },
+  "reviewSHA256": {
+    "netomi-own-native-text-plan.md": "5e2e888e2def7e75be08f54dc365c3173b01f39abfa9b24143de686a25e6498c",
+    "whole-entity-data-slot-contract-proposal.json": "a30a25d326cbb751d29914f40034951e48a2b4284ba9c3b9ad443b7779a7f344",
+    "complete-program-envelope-review.json": "3d143ef8150e1a87b77a782c9ea70bc1a7cda0bd9a23d6d0125cfc351f2c1eb5",
+    "complete-all-node-envelope-review.json": "f58de222df2690d0a8cc507662a2885630e0d139bf6df1b79f914f651aa305cb"
+  },
+  "corporateBindingQualified": false,
+  "formalLegalEntityQualified": false,
+  "sourceScopeComplete": false,
+  "activationRenderedApplicationAndCleanupQualified": false
+}

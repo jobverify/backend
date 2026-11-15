@@ -1,0 +1,2652 @@
+{
+  "source": "yournest",
+  "nativeBrand": "YourNest Venture Capital",
+  "companyId": 6566,
+  "companyUUID": "987EE7EF32",
+  "website": "https://yournest.in/",
+  "boardUrl": "https://jobs.pyjamahr.com/yournest-venture-capital",
+  "listUrl": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=987EE7EF32&page=1&is_careers_page=true",
+  "company": {
+    "id": 6566,
+    "name": "YourNest Venture Capital",
+    "url": "https://yournest.in/",
+    "slug": "yournest-venture-capital",
+    "location": "Gurgaon, Haryana",
+    "address": {
+      "address_line_1": "416, 4th Floor, MGF Metropolis (Lifestyle) Mall Metro Station, near, Mehrauli-Gurgaon Rd, Gurugram, Haryana 122002"
+    },
+    "description": "<div><br></div><div><span style=\"color: rgb(0, 0, 0);\">YourNest Venture Capital is a sharply focused, </span><span style=\"color: rgb(255, 0, 0);\">early-stage VC firm</span><span style=\"color: rgb(0, 0, 0);\">. Currently deploying its 4th fund (INR 1500 Crore) to invest in startups with a focus on innovative, tech-led products and a vision to nurture global market leaders from India, we are focused on disruptive technologies to enhance how mankind leverages the value of time.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing </span><a href=\"https://www.yournest.in/team\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\"> of passionate professionals who are strong thought leaders and natural team players, enjoying reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent and enjoy an open-door, all-time-access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our </span><a href=\"https://www.yournest.in/portfolio\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\"> companies are at the forefront of innovation and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and join something truly extraordinary. We look forward to welcoming new talent to YourNest and our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we actively support.</span></div>",
+    "primary_brand_colour": "#bd400a",
+    "secondary_brand_colour": "#000000",
+    "image_path": "files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+    "image_url": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+    "uuid": "987EE7EF32",
+    "phone_number": "+917666750052",
+    "email": "openings@yournest.in",
+    "banner_image_path": "files/company/img/banner/Careers_Page_Banner_Designs_MH_310323.002_111C5628A3.jpeg",
+    "size": "10-50",
+    "country": "Premium-Converted-India",
+    "show_company_name_on_career_page": true,
+    "allow_resume_drop_when_no_jobs": false,
+    "publish_jobs_to_ziprecruiter": true,
+    "is_careers_page_department_drop_down_disabled": false
+  },
+  "boardFullSSR": {
+    "props": {
+      "pageProps": {
+        "companyDetails": {
+          "id": 6566,
+          "name": "YourNest Venture Capital",
+          "url": "https://yournest.in/",
+          "slug": "yournest-venture-capital",
+          "location": "Gurgaon, Haryana",
+          "address": {
+            "address_line_1": "416, 4th Floor, MGF Metropolis (Lifestyle) Mall Metro Station, near, Mehrauli-Gurgaon Rd, Gurugram, Haryana 122002"
+          },
+          "description": "<div><br></div><div><span style=\"color: rgb(0, 0, 0);\">YourNest Venture Capital is a sharply focused, </span><span style=\"color: rgb(255, 0, 0);\">early-stage VC firm</span><span style=\"color: rgb(0, 0, 0);\">. Currently deploying its 4th fund (INR 1500 Crore) to invest in startups with a focus on innovative, tech-led products and a vision to nurture global market leaders from India, we are focused on disruptive technologies to enhance how mankind leverages the value of time.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing </span><a href=\"https://www.yournest.in/team\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\"> of passionate professionals who are strong thought leaders and natural team players, enjoying reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent and enjoy an open-door, all-time-access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our </span><a href=\"https://www.yournest.in/portfolio\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\"> companies are at the forefront of innovation and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and join something truly extraordinary. We look forward to welcoming new talent to YourNest and our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we actively support.</span></div>",
+          "primary_brand_colour": "#bd400a",
+          "secondary_brand_colour": "#000000",
+          "image_path": "files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+          "image_url": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+          "uuid": "987EE7EF32",
+          "phone_number": "+917666750052",
+          "email": "openings@yournest.in",
+          "banner_image_path": "files/company/img/banner/Careers_Page_Banner_Designs_MH_310323.002_111C5628A3.jpeg",
+          "size": "10-50",
+          "country": "Premium-Converted-India",
+          "show_company_name_on_career_page": true,
+          "allow_resume_drop_when_no_jobs": false,
+          "publish_jobs_to_ziprecruiter": true,
+          "is_careers_page_department_drop_down_disabled": false
+        },
+        "companySlug": "yournest-venture-capital"
+      },
+      "__N_SSP": true
+    },
+    "page": "/[company]",
+    "query": {
+      "company": "yournest-venture-capital"
+    },
+    "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+    "isFallback": false,
+    "gssp": true,
+    "scriptLoader": []
+  },
+  "boardDeclarations": [
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "icon",
+        "href": "/images/Monogram.svg"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "shortcut icon",
+        "href": "/images/Monogram.svg"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload stylesheet",
+        "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700",
+        "as": "style"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload stylesheet",
+        "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css",
+        "as": "style"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "type": "text/javascript",
+        "src": "/rawJsFromFile.js",
+        "segment_key": "SbrhadfGPD452CwAgrFhJPgymPpgsLlV"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "canonical",
+        "href": "https://jobs.pyjamahr.com/yournest-venture-capital"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "icon",
+        "href": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "shortcut icon",
+        "href": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/4a9153793217009282ad.css",
+        "as": "style"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/4a9153793217009282ad.css",
+        "data-n-g": ""
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "preload",
+        "href": "/_next/static/css/3e4761263d621ce50d4f.css",
+        "as": "style"
+      }
+    },
+    {
+      "tag": "link",
+      "attrs": {
+        "rel": "stylesheet",
+        "href": "/_next/static/css/3e4761263d621ce50d4f.css",
+        "data-n-p": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "defer": "",
+        "nomodule": "",
+        "src": "/_next/static/chunks/polyfills-a40ef1678bae11e696dba45124eadd70.js"
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/webpack-37d229a845c5768d0ce8.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/framework-34c5a4b8137ffdbfac41.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/main-0108c4a9ec75d22b4307.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/7909-48c429cdfd6355ebc7af.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/4298-071f4f211a666ba5514b.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/874-c81b8deb0bca984d7bc5.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/3695-b3290b9b685b1c7d4d4f.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/1821-09adcfa9e004daa6ab32.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/8393-62691fc00b03035ba6ef.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/177-77ffe9f31296a66c10bf.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/1554-c41427d8d93e03cc1508.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/chunks/pages/%5Bcompany%5D-ef4752c2d0322bce4004.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_buildManifest.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_ssgManifest.js",
+        "defer": ""
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "id": "jss-server-side"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-styled": "",
+        "data-styled-version": "5.3.6"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css vubbuv"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css feqhe6"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css-global 1prfaxn"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1y9nyv0"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1a6giau"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css vubbuv"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1ixds2g"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 19w1uun"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css igs3ac"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css hdw1oc"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 3iigni-container"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 7pg0cj-a11yText"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1b3ka49-control"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css d13vai"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 14el2xx-placeholder"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1e10oqq"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1wy0on6"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css at12u2-loadingIndicator"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 19b349s animation-stj4i2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1f06n0c animation-stj4i2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1lqdfpi animation-stj4i2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 109onse-indicatorSeparator"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css tpaeio-indicatorContainer"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 8mmkcg"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 3iigni-container"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 7pg0cj-a11yText"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1b3ka49-control"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css d13vai"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 14el2xx-placeholder"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1e10oqq"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1wy0on6"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css at12u2-loadingIndicator"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 19b349s animation-stj4i2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1f06n0c animation-stj4i2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 1lqdfpi animation-stj4i2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 109onse-indicatorSeparator"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css tpaeio-indicatorContainer"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 8mmkcg"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css 78jar2"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css ovnx7g"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css z5rrv1"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css io6do9 animation-c7515d"
+      }
+    },
+    {
+      "tag": "style",
+      "attrs": {
+        "data-emotion": "css otz8yo"
+      }
+    },
+    {
+      "tag": "script",
+      "attrs": {
+        "id": "__NEXT_DATA__",
+        "type": "application/json"
+      }
+    }
+  ],
+  "listing": {
+    "count": 4,
+    "next": null,
+    "previous": null,
+    "results": [
+      {
+        "id": 425748,
+        "slug": "intern-investment-management",
+        "title": "Intern - Investment Management",
+        "max_experience": 2.0,
+        "min_experience": 0.0,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department_name": null,
+        "published_internally": false,
+        "workplace_type": "ON_SITE",
+        "product": null
+      },
+      {
+        "id": 376083,
+        "slug": "associate-sr-associate-foundation",
+        "title": "Associate/Sr. Associate - Foundation",
+        "max_experience": 8.0,
+        "min_experience": 3.0,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department_name": null,
+        "published_internally": false,
+        "workplace_type": "ON_SITE",
+        "product": null
+      },
+      {
+        "id": 374870,
+        "slug": "associate-principal-principal-growth-equity-exits",
+        "title": "Associate Principal/Principal - Venture Capital",
+        "max_experience": 12.0,
+        "min_experience": 8.0,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department_name": null,
+        "published_internally": false,
+        "workplace_type": "ON_SITE",
+        "product": null
+      },
+      {
+        "id": 43774,
+        "slug": "interested-in-vcstartups-across-india",
+        "title": "Interested in VC/Startups (Across India)",
+        "max_experience": 20.0,
+        "min_experience": 0.0,
+        "country": "India",
+        "location": "Remote",
+        "other_locations": [],
+        "department_name": null,
+        "published_internally": false,
+        "workplace_type": "REMOTE",
+        "product": null
+      }
+    ]
+  },
+  "entities": [
+    {
+      "requestedUrl": "https://jobs.pyjamahr.com/yournest-venture-capital",
+      "kind": "board",
+      "label": "board",
+      "bytes": 45542,
+      "sha256": "c52633be8f5b17275527713fa44ebb77236598ecf1a5d20ad0c948f49f4650da"
+    },
+    {
+      "requestedUrl": "https://api.pyjamahr.com/api/career/jobs/?company_uuid=987EE7EF32&page=1&is_careers_page=true",
+      "kind": "json",
+      "label": "listing",
+      "bytes": 1325,
+      "sha256": "c043001352f7a9014c3ee1da72bde42cc9dad03c7a45fa8f0debd24560edc2a9"
+    },
+    {
+      "requestedUrl": "https://api.pyjamahr.com/api/career/jobs/425748/?company_uuid=987EE7EF32&is_careers_page=false",
+      "kind": "json",
+      "label": "api-425748",
+      "bytes": 8160,
+      "sha256": "a6c55ca1a865081fa7108b170c1f20e49a81986435f189eee8c1a2d26d6f6c01"
+    },
+    {
+      "requestedUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/intern-investment-management",
+      "kind": "role",
+      "label": "html-425748",
+      "bytes": 36207,
+      "sha256": "920816b48aca28b9598b33b225c97a81549b3226ef908bed73937a6306bf0761"
+    },
+    {
+      "requestedUrl": "https://api.pyjamahr.com/api/career/jobs/376083/?company_uuid=987EE7EF32&is_careers_page=false",
+      "kind": "json",
+      "label": "api-376083",
+      "bytes": 11292,
+      "sha256": "f8c5d1ac8902cb6ae4d70d24f07bc85ee1ef23722491d49661caf57e13cb404b"
+    },
+    {
+      "requestedUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/associate-sr-associate-foundation",
+      "kind": "role",
+      "label": "html-376083",
+      "bytes": 46790,
+      "sha256": "894cf0e677131c20a7bb3c1fc4bdb66377171a144c7814521f7e9c405c23f283"
+    },
+    {
+      "requestedUrl": "https://api.pyjamahr.com/api/career/jobs/374870/?company_uuid=987EE7EF32&is_careers_page=false",
+      "kind": "json",
+      "label": "api-374870",
+      "bytes": 8548,
+      "sha256": "461e13eb44e854027ca5e494e741fc3099543b41cc0ff05859cddbf49872d6e9"
+    },
+    {
+      "requestedUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/associate-principal-principal-growth-equity-exits",
+      "kind": "role",
+      "label": "html-374870",
+      "bytes": 36264,
+      "sha256": "a2868d8113e064eedb366c54f7929fbd0a4f1a8b0bf1f75b8253cb994387d21a"
+    },
+    {
+      "requestedUrl": "https://api.pyjamahr.com/api/career/jobs/43774/?company_uuid=987EE7EF32&is_careers_page=false",
+      "kind": "json",
+      "label": "api-43774",
+      "bytes": 4175,
+      "sha256": "44c6758b9de9cc8fc980c38b2547e02a7f340409fda9e16e3a30f28f3474d317"
+    },
+    {
+      "requestedUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/interested-in-vcstartups-across-india",
+      "kind": "role",
+      "label": "html-43774",
+      "bytes": 21244,
+      "sha256": "8ed13d6f8ed42d2fe22a7e483d83fa27ecf694ddc2ee8a611ea9a95a404826fe"
+    }
+  ],
+  "roles": [
+    {
+      "id": 425748,
+      "uuid": "AC1D694FEA",
+      "ownEmployerRole": true,
+      "apiUrl": "https://api.pyjamahr.com/api/career/jobs/425748/?company_uuid=987EE7EF32&is_careers_page=false",
+      "publicUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/intern-investment-management",
+      "APIRecord": {
+        "id": 425748,
+        "uuid": "AC1D694FEA",
+        "title": "Intern - Investment Management",
+        "job_type": "INTERN",
+        "description": "<p><b>Do you have what it takes to build India's most-envied VC firm?</b></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Empowering their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest's journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund totalling $160 million, being the first to focus on DeepTech startups, delivering more than 10 exits in the last 5 years, and ensuring we remain among India's best-performing early-stage funds, <b>we've made it a habit to set new benchmarks</b> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders and investors to help them succeed.</p>\n<p>After we invest, our team works alongside founders through fundraising, hiring, go-to-market and governance. The <b>Founder Resource Portal</b> is how we package that support. Now we're hiring an \"Intern - Investment Management\" to join us in this mission.</p>\n<p><b>How does this role contribute?</b></p>\n<p>We need a hands-on builder for two months to help us finalise the Founder Resource Portal and make it live for our portfolio founders. The portal is a login-gated library of playbooks, templates, expert connections and peer resources for every founder in our portfolio.</p>\n<p>The YourNest team has built a working alpha with AI-assisted coding, and the foundations are in place. We now need your help to finish it, stabilise it and launch it as a product our founders use every week. The modules in scope are the resource library (legal, finance, fundraise readiness, hiring), a 100-day playbook, customer and expert connections, and peer resources.</p>\n<p><b>You own — directly and accountably</b></p>\n<p><b>The Platform You'll Work Across</b></p>\n<p>● <b>Founder Front End: </b>Used by portfolio founders behind a login to browse the resource library, playbooks and templates, and to request access, intros and expert time.</p>\n<p>● <b>Analyst Back End: </b>Used by YourNest analysts and associates to manage founder accounts and access, handle requests and track engagement.</p>\n<p>● <b>CMS: </b>Used by the YourNest team to add, edit, tag and publish resources without touching code.</p>\n<p>●&nbsp; <b>Database: </b>Powers all three, holding founders, companies, resources, requests, access roles and usage data.</p>\n<p><b>Build, Fix &amp; Launch</b></p>\n<p>● <b>Codebase Ownership: </b>Read the codebase, document how it works, and fix what's broken or fragile in the alpha.</p>\n<p>●&nbsp; <b>Database &amp; Access Control: </b>Review and tighten the database schema so data, roles and access rules hold up and founder data stays private.</p>\n<p>●&nbsp; <b>Founder Experience: </b>Improve the founder front end: navigation, search, request flows and mobile usability.</p>\n<p>●&nbsp; <b>Analyst Tools: </b>Build out the analyst back end so the team can manage founders, requests and access on their own.</p>\n<p>●&nbsp; <b>Content Management: </b>Make the CMS simple enough that associates can publish and update resources without help, and load content clusters such as Legal and Fundraise Readiness with the team.</p>\n<p>●&nbsp; &nbsp;<b>Pilot Testing: </b>Run testing with a small group of founders and analysts, and turn their feedback into fixes.</p>\n<p>●&nbsp;&nbsp; <b>Handover: </b>Leave clean documentation so the next owner can run and extend the portal.</p>\n<p><b>Your Next Two Months:</b></p>\n<p>●&nbsp; <b>Weeks 1–2: </b>Onboard, audit the alpha, and review the schema and stack.</p>\n<p>●&nbsp; <b>Weeks 3–5: </b>Build and fix across the front end, back end and CMS.</p>\n<p>●&nbsp; <b>Weeks 6–7: </b>Pilot with selected founders and analysts.</p>\n<p>●&nbsp;&nbsp; <b>Week 8: </b>Stabilise and hand over.</p>\n<p><b>KPIs and Impact Measurement</b></p>\n<p>●&nbsp; <b>Audit: </b>A written audit and prioritised fix list, agreed with the team by the end of week 2.</p>\n<p>●&nbsp; <b>Beta: </b>A beta with 2–3 content clusters live by the end of week 5.</p>\n<p>●&nbsp;&nbsp; <b>Pilot: </b>Feedback from founders and analysts logged, and the key issues fixed, by the end of week 7.</p>\n<p>●&nbsp;&nbsp; <b>Go-Live: </b>A release-ready portal, handover documentation and a walkthrough by the end of week 8.</p>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<p>At YourNest, we don't measure success by degrees or accolades alone. We care more about what you've built than about your degree. Final-year students, recent graduates and career-switchers are all welcome.</p>\n<p>●&nbsp; <b>Experience: </b>You have shipped a working web app end to end, covering front end, back end and database. A personal project, hackathon or previous internship counts.</p>\n<p>●&nbsp; <b>AI Coding Tools: </b>You are fluent with Claude Code, Cursor, Copilot or similar, and can read, debug and judge the code they produce.</p>\n<p>●&nbsp; <b>Tech Stack: </b>You are comfortable with a modern web stack, such as JavaScript/TypeScript, React or Next.js, Node or Python, and SQL databases like Postgres.</p>\n<p>●&nbsp;&nbsp; <b>Security: </b>You understand login, user roles and access control well enough to keep founder data private.</p>\n<p>●&nbsp;&nbsp; <b>Mindset: </b>You pick up someone else's codebase quickly, write clear documentation, work independently, flag problems early, and explain things in plain language to non-technical teammates.</p>\n<p>●&nbsp;&nbsp; <b>Good to Have: </b>Experience with a headless CMS or simple admin tools, basic cloud deployment (Vercel, Supabase, AWS, OCI or similar), a good eye for UI/UX, and an interest in startups, deep tech or venture capital.</p>\n<p><b>Engagement details</b></p>\n<p>●&nbsp; <b>Duration: </b>2 months, full-time, starting immediately.</p>\n<p>●&nbsp; &nbsp;<b>Location: </b>Gurugram.</p>\n<p>●&nbsp;&nbsp; <b>Reports to: </b>Principal – Growth, working day to day with the analyst team.</p>\n<p>●&nbsp;&nbsp; <b>What You'll Get: </b>Ownership of a live product, direct exposure to a VC fund and its founders, and a certificate and letter of recommendation on completion.</p>\n<p><b></b></p>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 2.0,
+        "skill": [
+          "postgresql",
+          "cursor",
+          "next.js",
+          "python",
+          "supabase",
+          "claude code",
+          "oci",
+          "github copilot",
+          "javascript",
+          "vercel",
+          "headless cms",
+          "typescript",
+          "node.js",
+          "react",
+          "sql",
+          "aws"
+        ],
+        "education": [],
+        "seniority": [
+          "entry-level"
+        ],
+        "min_experience": 0.0,
+        "industry": null,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department": null,
+        "department_name": null,
+        "remote": false,
+        "created_at": "2026-11-06T16:48:45.086766+05:30",
+        "salary_type": "MONTHLY",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "7AF511F537",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "This role requires you to work out of Gurugram? Are you willing to relocate?",
+            "choices": [
+              "Yes",
+              "No",
+              "Already in Delhi/NCR"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "327E8C9C7A",
+            "name": "single_text",
+            "label": "Single Line text",
+            "question": "“What are your available dates for the internship? Please specify the months and exact start and end dates you would be available.”",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@yournest.pyjamahr.com",
+        "email_domain": "yournest.in",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": true,
+        "valid_through": "2027-01-05T16:48:45.086766+05:30"
+      },
+      "FullSSR": {
+        "props": {
+          "pageProps": {
+            "companyDetails": {
+              "id": 6566,
+              "name": "YourNest Venture Capital",
+              "url": "https://yournest.in/",
+              "slug": "yournest-venture-capital",
+              "location": "Gurgaon, Haryana",
+              "address": {
+                "address_line_1": "416, 4th Floor, MGF Metropolis (Lifestyle) Mall Metro Station, near, Mehrauli-Gurgaon Rd, Gurugram, Haryana 122002"
+              },
+              "description": "<div><br></div><div><span style=\"color: rgb(0, 0, 0);\">YourNest Venture Capital is a sharply focused, </span><span style=\"color: rgb(255, 0, 0);\">early-stage VC firm</span><span style=\"color: rgb(0, 0, 0);\">. Currently deploying its 4th fund (INR 1500 Crore) to invest in startups with a focus on innovative, tech-led products and a vision to nurture global market leaders from India, we are focused on disruptive technologies to enhance how mankind leverages the value of time.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing </span><a href=\"https://www.yournest.in/team\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\"> of passionate professionals who are strong thought leaders and natural team players, enjoying reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent and enjoy an open-door, all-time-access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our </span><a href=\"https://www.yournest.in/portfolio\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\"> companies are at the forefront of innovation and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and join something truly extraordinary. We look forward to welcoming new talent to YourNest and our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we actively support.</span></div>",
+              "primary_brand_colour": "#bd400a",
+              "secondary_brand_colour": "#000000",
+              "image_path": "files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "image_url": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "uuid": "987EE7EF32",
+              "phone_number": "+917666750052",
+              "email": "openings@yournest.in",
+              "banner_image_path": "files/company/img/banner/Careers_Page_Banner_Designs_MH_310323.002_111C5628A3.jpeg",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            },
+            "jobDetails": {
+              "id": 425748,
+              "uuid": "AC1D694FEA",
+              "title": "Intern - Investment Management",
+              "job_type": "INTERN",
+              "description": "<p><b>Do you have what it takes to build India's most-envied VC firm?</b></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Empowering their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest's journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund totalling $160 million, being the first to focus on DeepTech startups, delivering more than 10 exits in the last 5 years, and ensuring we remain among India's best-performing early-stage funds, <b>we've made it a habit to set new benchmarks</b> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders and investors to help them succeed.</p>\n<p>After we invest, our team works alongside founders through fundraising, hiring, go-to-market and governance. The <b>Founder Resource Portal</b> is how we package that support. Now we're hiring an \"Intern - Investment Management\" to join us in this mission.</p>\n<p><b>How does this role contribute?</b></p>\n<p>We need a hands-on builder for two months to help us finalise the Founder Resource Portal and make it live for our portfolio founders. The portal is a login-gated library of playbooks, templates, expert connections and peer resources for every founder in our portfolio.</p>\n<p>The YourNest team has built a working alpha with AI-assisted coding, and the foundations are in place. We now need your help to finish it, stabilise it and launch it as a product our founders use every week. The modules in scope are the resource library (legal, finance, fundraise readiness, hiring), a 100-day playbook, customer and expert connections, and peer resources.</p>\n<p><b>You own — directly and accountably</b></p>\n<p><b>The Platform You'll Work Across</b></p>\n<p>● <b>Founder Front End: </b>Used by portfolio founders behind a login to browse the resource library, playbooks and templates, and to request access, intros and expert time.</p>\n<p>● <b>Analyst Back End: </b>Used by YourNest analysts and associates to manage founder accounts and access, handle requests and track engagement.</p>\n<p>● <b>CMS: </b>Used by the YourNest team to add, edit, tag and publish resources without touching code.</p>\n<p>●&nbsp; <b>Database: </b>Powers all three, holding founders, companies, resources, requests, access roles and usage data.</p>\n<p><b>Build, Fix &amp; Launch</b></p>\n<p>● <b>Codebase Ownership: </b>Read the codebase, document how it works, and fix what's broken or fragile in the alpha.</p>\n<p>●&nbsp; <b>Database &amp; Access Control: </b>Review and tighten the database schema so data, roles and access rules hold up and founder data stays private.</p>\n<p>●&nbsp; <b>Founder Experience: </b>Improve the founder front end: navigation, search, request flows and mobile usability.</p>\n<p>●&nbsp; <b>Analyst Tools: </b>Build out the analyst back end so the team can manage founders, requests and access on their own.</p>\n<p>●&nbsp; <b>Content Management: </b>Make the CMS simple enough that associates can publish and update resources without help, and load content clusters such as Legal and Fundraise Readiness with the team.</p>\n<p>●&nbsp; &nbsp;<b>Pilot Testing: </b>Run testing with a small group of founders and analysts, and turn their feedback into fixes.</p>\n<p>●&nbsp;&nbsp; <b>Handover: </b>Leave clean documentation so the next owner can run and extend the portal.</p>\n<p><b>Your Next Two Months:</b></p>\n<p>●&nbsp; <b>Weeks 1–2: </b>Onboard, audit the alpha, and review the schema and stack.</p>\n<p>●&nbsp; <b>Weeks 3–5: </b>Build and fix across the front end, back end and CMS.</p>\n<p>●&nbsp; <b>Weeks 6–7: </b>Pilot with selected founders and analysts.</p>\n<p>●&nbsp;&nbsp; <b>Week 8: </b>Stabilise and hand over.</p>\n<p><b>KPIs and Impact Measurement</b></p>\n<p>●&nbsp; <b>Audit: </b>A written audit and prioritised fix list, agreed with the team by the end of week 2.</p>\n<p>●&nbsp; <b>Beta: </b>A beta with 2–3 content clusters live by the end of week 5.</p>\n<p>●&nbsp;&nbsp; <b>Pilot: </b>Feedback from founders and analysts logged, and the key issues fixed, by the end of week 7.</p>\n<p>●&nbsp;&nbsp; <b>Go-Live: </b>A release-ready portal, handover documentation and a walkthrough by the end of week 8.</p>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<p>At YourNest, we don't measure success by degrees or accolades alone. We care more about what you've built than about your degree. Final-year students, recent graduates and career-switchers are all welcome.</p>\n<p>●&nbsp; <b>Experience: </b>You have shipped a working web app end to end, covering front end, back end and database. A personal project, hackathon or previous internship counts.</p>\n<p>●&nbsp; <b>AI Coding Tools: </b>You are fluent with Claude Code, Cursor, Copilot or similar, and can read, debug and judge the code they produce.</p>\n<p>●&nbsp; <b>Tech Stack: </b>You are comfortable with a modern web stack, such as JavaScript/TypeScript, React or Next.js, Node or Python, and SQL databases like Postgres.</p>\n<p>●&nbsp;&nbsp; <b>Security: </b>You understand login, user roles and access control well enough to keep founder data private.</p>\n<p>●&nbsp;&nbsp; <b>Mindset: </b>You pick up someone else's codebase quickly, write clear documentation, work independently, flag problems early, and explain things in plain language to non-technical teammates.</p>\n<p>●&nbsp;&nbsp; <b>Good to Have: </b>Experience with a headless CMS or simple admin tools, basic cloud deployment (Vercel, Supabase, AWS, OCI or similar), a good eye for UI/UX, and an interest in startups, deep tech or venture capital.</p>\n<p><b>Engagement details</b></p>\n<p>●&nbsp; <b>Duration: </b>2 months, full-time, starting immediately.</p>\n<p>●&nbsp; &nbsp;<b>Location: </b>Gurugram.</p>\n<p>●&nbsp;&nbsp; <b>Reports to: </b>Principal – Growth, working day to day with the analyst team.</p>\n<p>●&nbsp;&nbsp; <b>What You'll Get: </b>Ownership of a live product, direct exposure to a VC fund and its founders, and a certificate and letter of recommendation on completion.</p>\n<p><b></b></p>",
+              "max_salary": null,
+              "min_salary": null,
+              "max_experience": 2,
+              "skill": [
+                "postgresql",
+                "cursor",
+                "next.js",
+                "python",
+                "supabase",
+                "claude code",
+                "oci",
+                "github copilot",
+                "javascript",
+                "vercel",
+                "headless cms",
+                "typescript",
+                "node.js",
+                "react",
+                "sql",
+                "aws"
+              ],
+              "education": [],
+              "seniority": [
+                "entry-level"
+              ],
+              "min_experience": 0,
+              "industry": null,
+              "country": "India",
+              "location": "Gurugram, Haryana, India",
+              "other_locations": [],
+              "department": null,
+              "department_name": null,
+              "remote": false,
+              "created_at": "2026-11-06T16:48:45.086766+05:30",
+              "salary_type": "MONTHLY",
+              "is_salary_visible": false,
+              "published_internally": false,
+              "job_screening_questions": [
+                {
+                  "uuid": "7AF511F537",
+                  "name": "multi_choice",
+                  "label": "Multiple choice",
+                  "question": "This role requires you to work out of Gurugram? Are you willing to relocate?",
+                  "choices": [
+                    "Yes",
+                    "No",
+                    "Already in Delhi/NCR"
+                  ],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "327E8C9C7A",
+                  "name": "single_text",
+                  "label": "Single Line text",
+                  "question": "“What are your available dates for the internship? Please specify the months and exact start and end dates you would be available.”",
+                  "choices": [],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                }
+              ],
+              "workplace_type": "ON_SITE",
+              "currency": "INR",
+              "company_country": "Premium-Converted-India",
+              "is_hr_job": false,
+              "referral_email": "refer@yournest.pyjamahr.com",
+              "email_domain": "yournest.in",
+              "email_provider": null,
+              "is_employee_referral_flow_enabled": false,
+              "company_career_page_url": null,
+              "is_seo_indexable": true,
+              "valid_through": "2027-01-05T16:48:45.086766+05:30"
+            },
+            "companySlug": "yournest-venture-capital"
+          },
+          "__N_SSP": true
+        },
+        "page": "/[company]/[jobId]",
+        "query": {
+          "company": "yournest-venture-capital",
+          "jobId": "intern-investment-management"
+        },
+        "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "JobPosting": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Intern - Investment Management",
+        "description": "<p><b>Do you have what it takes to build India's most-envied VC firm?</b></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Empowering their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest's journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund totalling $160 million, being the first to focus on DeepTech startups, delivering more than 10 exits in the last 5 years, and ensuring we remain among India's best-performing early-stage funds, <b>we've made it a habit to set new benchmarks</b> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders and investors to help them succeed.</p>\n<p>After we invest, our team works alongside founders through fundraising, hiring, go-to-market and governance. The <b>Founder Resource Portal</b> is how we package that support. Now we're hiring an \"Intern - Investment Management\" to join us in this mission.</p>\n<p><b>How does this role contribute?</b></p>\n<p>We need a hands-on builder for two months to help us finalise the Founder Resource Portal and make it live for our portfolio founders. The portal is a login-gated library of playbooks, templates, expert connections and peer resources for every founder in our portfolio.</p>\n<p>The YourNest team has built a working alpha with AI-assisted coding, and the foundations are in place. We now need your help to finish it, stabilise it and launch it as a product our founders use every week. The modules in scope are the resource library (legal, finance, fundraise readiness, hiring), a 100-day playbook, customer and expert connections, and peer resources.</p>\n<p><b>You own — directly and accountably</b></p>\n<p><b>The Platform You'll Work Across</b></p>\n<p>● <b>Founder Front End: </b>Used by portfolio founders behind a login to browse the resource library, playbooks and templates, and to request access, intros and expert time.</p>\n<p>● <b>Analyst Back End: </b>Used by YourNest analysts and associates to manage founder accounts and access, handle requests and track engagement.</p>\n<p>● <b>CMS: </b>Used by the YourNest team to add, edit, tag and publish resources without touching code.</p>\n<p>●&nbsp; <b>Database: </b>Powers all three, holding founders, companies, resources, requests, access roles and usage data.</p>\n<p><b>Build, Fix &amp; Launch</b></p>\n<p>● <b>Codebase Ownership: </b>Read the codebase, document how it works, and fix what's broken or fragile in the alpha.</p>\n<p>●&nbsp; <b>Database &amp; Access Control: </b>Review and tighten the database schema so data, roles and access rules hold up and founder data stays private.</p>\n<p>●&nbsp; <b>Founder Experience: </b>Improve the founder front end: navigation, search, request flows and mobile usability.</p>\n<p>●&nbsp; <b>Analyst Tools: </b>Build out the analyst back end so the team can manage founders, requests and access on their own.</p>\n<p>●&nbsp; <b>Content Management: </b>Make the CMS simple enough that associates can publish and update resources without help, and load content clusters such as Legal and Fundraise Readiness with the team.</p>\n<p>●&nbsp; &nbsp;<b>Pilot Testing: </b>Run testing with a small group of founders and analysts, and turn their feedback into fixes.</p>\n<p>●&nbsp;&nbsp; <b>Handover: </b>Leave clean documentation so the next owner can run and extend the portal.</p>\n<p><b>Your Next Two Months:</b></p>\n<p>●&nbsp; <b>Weeks 1–2: </b>Onboard, audit the alpha, and review the schema and stack.</p>\n<p>●&nbsp; <b>Weeks 3–5: </b>Build and fix across the front end, back end and CMS.</p>\n<p>●&nbsp; <b>Weeks 6–7: </b>Pilot with selected founders and analysts.</p>\n<p>●&nbsp;&nbsp; <b>Week 8: </b>Stabilise and hand over.</p>\n<p><b>KPIs and Impact Measurement</b></p>\n<p>●&nbsp; <b>Audit: </b>A written audit and prioritised fix list, agreed with the team by the end of week 2.</p>\n<p>●&nbsp; <b>Beta: </b>A beta with 2–3 content clusters live by the end of week 5.</p>\n<p>●&nbsp;&nbsp; <b>Pilot: </b>Feedback from founders and analysts logged, and the key issues fixed, by the end of week 7.</p>\n<p>●&nbsp;&nbsp; <b>Go-Live: </b>A release-ready portal, handover documentation and a walkthrough by the end of week 8.</p>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<p>At YourNest, we don't measure success by degrees or accolades alone. We care more about what you've built than about your degree. Final-year students, recent graduates and career-switchers are all welcome.</p>\n<p>●&nbsp; <b>Experience: </b>You have shipped a working web app end to end, covering front end, back end and database. A personal project, hackathon or previous internship counts.</p>\n<p>●&nbsp; <b>AI Coding Tools: </b>You are fluent with Claude Code, Cursor, Copilot or similar, and can read, debug and judge the code they produce.</p>\n<p>●&nbsp; <b>Tech Stack: </b>You are comfortable with a modern web stack, such as JavaScript/TypeScript, React or Next.js, Node or Python, and SQL databases like Postgres.</p>\n<p>●&nbsp;&nbsp; <b>Security: </b>You understand login, user roles and access control well enough to keep founder data private.</p>\n<p>●&nbsp;&nbsp; <b>Mindset: </b>You pick up someone else's codebase quickly, write clear documentation, work independently, flag problems early, and explain things in plain language to non-technical teammates.</p>\n<p>●&nbsp;&nbsp; <b>Good to Have: </b>Experience with a headless CMS or simple admin tools, basic cloud deployment (Vercel, Supabase, AWS, OCI or similar), a good eye for UI/UX, and an interest in startups, deep tech or venture capital.</p>\n<p><b>Engagement details</b></p>\n<p>●&nbsp; <b>Duration: </b>2 months, full-time, starting immediately.</p>\n<p>●&nbsp; &nbsp;<b>Location: </b>Gurugram.</p>\n<p>●&nbsp;&nbsp; <b>Reports to: </b>Principal – Growth, working day to day with the analyst team.</p>\n<p>●&nbsp;&nbsp; <b>What You'll Get: </b>Ownership of a live product, direct exposure to a VC fund and its founders, and a certificate and letter of recommendation on completion.</p>\n<p><b></b></p>",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Intern - Investment Management",
+          "value": 425748
+        },
+        "datePosted": "2026-11-06T16:48:45.086766+05:30",
+        "employmentType": "INTERN",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "YourNest Venture Capital",
+          "sameAs": "https://yournest.in/",
+          "logo": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "India",
+            "addressLocality": "Gurugram, Haryana, India",
+            "addressRegion": null,
+            "streetAddress": null
+          }
+        },
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "directApply": true,
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "INR",
+          "value": {
+            "@type": "QuantitativeValue",
+            "value": null,
+            "unitText": "MONTH"
+          }
+        },
+        "validThrough": "2027-01-05T16:48:45.086766+05:30"
+      },
+      "rawApplyHref": "/careers?company=YourNest%20Venture%20Capital&job_id=425748&company_uuid=undefined&utm_source=DIRECT&source=DIRECT&isHeaderVisible=undefined&apply_now=true",
+      "declarations": [
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "shortcut icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "text/javascript",
+            "src": "/rawJsFromFile.js",
+            "segment_key": "SbrhadfGPD452CwAgrFhJPgymPpgsLlV"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "canonical",
+            "href": "https://jobs.pyjamahr.com/yournest-venture-capital/intern-investment-management"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "application/ld+json"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "data-n-g": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "defer": "",
+            "nomodule": "",
+            "src": "/_next/static/chunks/polyfills-a40ef1678bae11e696dba45124eadd70.js"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/webpack-37d229a845c5768d0ce8.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/framework-34c5a4b8137ffdbfac41.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/main-0108c4a9ec75d22b4307.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/7909-48c429cdfd6355ebc7af.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4298-071f4f211a666ba5514b.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/874-c81b8deb0bca984d7bc5.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/3695-b3290b9b685b1c7d4d4f.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1821-09adcfa9e004daa6ab32.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/8806-5c6fb43dd92b9becf779.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1517-60c5491073f755edb215.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4728-306e7874a80b492862ff.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/2113-f86e2f5f8a77ea329883.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/%5Bcompany%5D/%5BjobId%5D-df9f67b265fc2b315eec.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_buildManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_ssgManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "id": "jss-server-side"
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "data-styled": "",
+            "data-styled-version": "5.3.6"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "id": "__NEXT_DATA__",
+            "type": "application/json"
+          }
+        }
+      ]
+    },
+    {
+      "id": 376083,
+      "uuid": "03FA105459",
+      "ownEmployerRole": true,
+      "apiUrl": "https://api.pyjamahr.com/api/career/jobs/376083/?company_uuid=987EE7EF32&is_careers_page=false",
+      "publicUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/associate-sr-associate-foundation",
+      "APIRecord": {
+        "id": 376083,
+        "uuid": "03FA105459",
+        "title": "Associate/Sr. Associate - Foundation",
+        "job_type": "FULLTIME",
+        "description": "<p><strong>Do you have what it takes to build India’s most valuable startups?</strong></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Enabling their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest’s journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund adding up to $ 160 mn, being the first to focus on DeepTech startups, having delivered more than 10 exits in last 5-years, and while ensuring we remain among India's best-performing early-stage funds, <strong>we've made it a habit to set new benchmarks</strong> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders to help them succeed.</p>\n<p>YourNest is all set to launch its flagship<strong> Fund IV of INR 1500 crores</strong> and is seeking to strengthen its Portfolio Management and Growth team. Now, we’re looking for a dynamic professional to take on the role of Associate &amp; Senior Associate - Foundation, who owns the outcomes across the 0→1 portfolio companies and helps founders move faster on the decisions that matter most. Most VC associates support deals. This role owns outcomes.</p>\n<p><strong>How does this role contribute?</strong></p>\n<p>Foundation (0→1) is the most founder-critical, most relationship-intensive part of YourNest's portfolio work. Companies at this stage are pre-product-market fit, navigating the hardest stretch of their journey — and they need a YourNest business partner who shows up weekly, knows their business as well as the founders do, and can make decisions with them, not just advise them from a distance. While doing this, the associate will simultaneously be building YourNest’'s investable track record with each company.&nbsp;<b></b></p>\n<p><strong>What will help you succeed?</strong></p>\n<ul>\n<li>\n<p><strong>0→1 Execution Mindset:</strong> Comfort operating in ambiguity with early-stage founders; the ability to convert loose hypotheses into structured action, iterate quickly, and stay resilient through non-linear progress.</p>\n</li>\n<li>\n<p><strong>Strong Problem Solving &amp; First-Principles Thinking: </strong>Ability to break down ambiguous growth, product or organizational challenges into clear components, identify root causes, and drive practical, high-leverage solutions rather than theoretical recommendations</p>\n</li>\n<li>\n<p><strong>Founder Empathy with High Ownership: </strong>Ability to build trust with founders while holding a high bar on outcomes; knowing when to listen, when to challenge, and when to escalate.</p>\n</li>\n<li>\n<p><strong>Commercial &amp; Capital Efficiency Orientation: </strong>Strong understanding of revenue drivers, unit economics, hiring leverage, and trade-offs that shape early-stage company progress.</p>\n</li>\n<li>\n<p><strong>Judgment under pressure: </strong>Ability to make calls in real time, especially when a founder is stuck, a company is under strain, or the path forward is unclear.</p>\n</li>\n</ul>\n<p><strong>You own — directly and accountably</strong></p>\n<ul>\n<li>\n<p>Nurture Capital, you are the tip of the spear that carries the Nurture Capital ethos to the founders</p>\n</li>\n<li>\n<p>Two to five founder relationships in your portfolio companies' 0→1 journey, end-to-end. You are the primary YourNest contact. The founder calls you first.</p>\n</li>\n<li>\n<p>Weekly rhythm of engagement with each owned company. Not monthly check-ins. Not 'I'll get back to you.' Weekly presence on the substantive questions of the business.</p>\n</li>\n<li>\n<p>100-day playbook execution for each company — Capital (who to raise from next), People (which 2-3 hires unlock the next stage), Revenue (what drives early traction).</p>\n</li>\n<li>\n<p>Capital, People &amp; Revenue milestones across all owned companies, with measurable outcomes you are personally accountable for.</p>\n</li>\n<li>\n<p>Targeted network activation for your companies — customer intros, hire intros, advisor connections, co-investor warm leads. Tracked by outcome, not volume.</p>\n</li>\n<li>\n<p>Pre-Series A fundraise readiness for your companies — narrative coordination with the Principal, and with Growth Equity &amp; Exit team for companies approaching the Pre-Series A close (they lead the close, you've built the runway up to it).</p>\n</li>\n<li>\n<p>Board pack preparation for your companies' board meetings — substantive content, not just logistics.</p>\n</li>\n<li>\n<p>Founder trust — the qualitative signal that your companies' founders consider you a genuine partner, not a process check-in.</p>\n</li>\n<li>\n<p>Strengthening data led Fund Raise Narrative - Build and maintain the narrative record for each owned company, the measurable 'before/after' of your YourNest’s engagement, so the investor story writes itself at fundraise time</p>\n</li>\n</ul>\n<p><strong>You do not own — Four distinct lanes sit elsewhere</strong></p>\n<ul>\n<li>\n<p><strong>Growth-stage rounds and exits</strong> — Growth Equity &amp; Exit team. When one of your companies is ready for its Pre-Series A close or beyond, the Growth Equity &amp; Exit team leads the round execution and engagement with growth-stage / PE investors. You hand over the relationship context; they drive the close. Same applies to acquirer conversations and exit execution.</p>\n</li>\n<li>\n<p><strong>LP relationships </strong>— Fund Raise &amp; IR team. All LP engagement, fund-level fundraising, LP reporting, and IR work sits with the Fund Raise &amp; IR team. You do not interface with LPs in this role.</p>\n</li>\n<li>\n<p><strong>Compliance, board minutes, statutory work </strong>— Governance &amp; IM cohort. Routine compliance, board minute preparation, rights tracker, audit cycles, statutory filings all sit with Governance &amp; IM. You collaborate with them tightly but you do not duplicate them. Their Principal owns the portfolio's governance continuity; your role is the business outcome of your 2-4 companies.</p>\n</li>\n<li>\n<p><strong>Sourcing new deals</strong> — Deal Cultivation. Deal Cultivation handles the pipeline. You are post-investment-focused, not pre-investment.</p>\n</li>\n</ul>\n<p><b>KPIs and Impact Measurement</b></p>\n<ul>\n<li><strong>Time-to-PMF improvement across 3-6 owned companies: </strong>Baseline established at onboarding for each company (months expected to PMF given starting position). Measured at 6-month intervals — actual vs. baseline. Score: % of companies tracking ahead of, on, or behind baseline. Threshold target: 75%+ on or ahead of baseline across the book.</li>\n<li><strong>Fundraise narrative: </strong>the documented before/after of YN's engagement with each company, built continuously, not at fundraise time. This is what makes the Series A story credible before the book goes out.</li>\n<li><strong>100-day playbook completion rate: </strong>Each new investment has a written 100-day playbook with 8-12 milestones (split across C, P, R). Measured at day 100 per company. Threshold target: 80%+ milestones completed across the book; 90%+ have plans in place for misses. Quality of milestones reviewed by the Principal, not just completion %.</li>\n<li><strong>Founder trust signal across all companies:</strong> Structured founder feedback at mid-year and year-end — five qualitative anchors: responsiveness, judgment, follow-through, network value, partnership feel. Anonymous to the founder, attributable to you. Threshold: positive on 4 of 5 anchors across the book; no founder rating you 'replaceable' on partnership feel.</li>\n<li><strong>Demonstrated independence trajectory: </strong>Principal tracks frequency and substance of escalations to them across two dimensions: routine (asking for input on decisions you should be making) and substantive (escalating real judgement calls). Routine escalations should trend down quarter-on-quarter; substantive escalations stay roughly stable. Threshold: by month 18, routine escalations &lt;1 per week across the book.</li>\n</ul>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<ul>\n<li>\n<p>Relevant experience across operating roles, consulting, venture, portfolio operations, founder-support, or business-building environments with 0→1 or early-stage startups, with exposure to founder problem solving, execution, scaling, or fundraise readiness 5–8 years for Senior Associate, 4-6 years for Associates.</p>\n</li>\n<li>\n<p><strong>Financial modelling in Excel: </strong>Ability to Build a clean 3-statement model (P&amp;L, cash, balance sheet) from scratch. Comfortable with sensitivities, scenario modelling, unit economics breakdowns. Knows when a model is over-engineered and when it's under-built.</p>\n</li>\n<li>\n<p><strong>Cap table mechanics: </strong>Reads and builds cap tables fluently. Understands pre-money / post-money, dilution math, ESOP pool sizing, anti-dilution mechanics, liquidation preferences. Can model a notional Pre-Series A round and articulate founder impact in plain English.</p>\n</li>\n<li>\n<p><strong>Written communication:</strong> Writes a 1-page memo on a complex situation in 30 minutes. Sharp framing, no padding, can hold a senior reader's attention. Comfortable writing IC notes, board pack inputs, founder follow-up summaries.</p>\n</li>\n<li>\n<p><strong>Founder-facing conversation: </strong>Can run a 60-min founder check-in without scripts. Knows when to listen, when to challenge, when to coach, when to escalate. Comfortable being the most junior person in a board meeting.</p>\n</li>\n<li>\n<p><strong>Spreadsheet / data fluency: </strong>Advanced Excel/Google Sheets &amp; dashboard building. Comfortable structuring messy data into a usable view in under 2 hours.</p>\n</li>\n<li>\n<p><strong>Calendar and commitment discipline:</strong> Manages 3-6 simultaneous founder relationships without anything dropping. Founders never wait more than 24 hours for a substantive reply.</p>\n</li>\n</ul>\n<p></p>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 8.0,
+        "skill": [
+          "financial modelling",
+          "pmf",
+          "revenue & profit growth",
+          "gtm",
+          "foundation",
+          "0-1 execution"
+        ],
+        "education": [],
+        "seniority": [
+          "associate"
+        ],
+        "min_experience": 3.0,
+        "industry": null,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department": null,
+        "department_name": null,
+        "remote": false,
+        "created_at": "2026-07-07T12:41:03.836418+05:30",
+        "salary_type": "ANNUAL",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@yournest.pyjamahr.com",
+        "email_domain": "yournest.in",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": false,
+        "valid_through": "2026-09-05T12:41:03.836418+05:30"
+      },
+      "FullSSR": {
+        "props": {
+          "pageProps": {
+            "companyDetails": {
+              "id": 6566,
+              "name": "YourNest Venture Capital",
+              "url": "https://yournest.in/",
+              "slug": "yournest-venture-capital",
+              "location": "Gurgaon, Haryana",
+              "address": {
+                "address_line_1": "416, 4th Floor, MGF Metropolis (Lifestyle) Mall Metro Station, near, Mehrauli-Gurgaon Rd, Gurugram, Haryana 122002"
+              },
+              "description": "<div><br></div><div><span style=\"color: rgb(0, 0, 0);\">YourNest Venture Capital is a sharply focused, </span><span style=\"color: rgb(255, 0, 0);\">early-stage VC firm</span><span style=\"color: rgb(0, 0, 0);\">. Currently deploying its 4th fund (INR 1500 Crore) to invest in startups with a focus on innovative, tech-led products and a vision to nurture global market leaders from India, we are focused on disruptive technologies to enhance how mankind leverages the value of time.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing </span><a href=\"https://www.yournest.in/team\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\"> of passionate professionals who are strong thought leaders and natural team players, enjoying reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent and enjoy an open-door, all-time-access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our </span><a href=\"https://www.yournest.in/portfolio\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\"> companies are at the forefront of innovation and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and join something truly extraordinary. We look forward to welcoming new talent to YourNest and our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we actively support.</span></div>",
+              "primary_brand_colour": "#bd400a",
+              "secondary_brand_colour": "#000000",
+              "image_path": "files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "image_url": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "uuid": "987EE7EF32",
+              "phone_number": "+917666750052",
+              "email": "openings@yournest.in",
+              "banner_image_path": "files/company/img/banner/Careers_Page_Banner_Designs_MH_310323.002_111C5628A3.jpeg",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            },
+            "jobDetails": {
+              "id": 376083,
+              "uuid": "03FA105459",
+              "title": "Associate/Sr. Associate - Foundation",
+              "job_type": "FULLTIME",
+              "description": "<p><strong>Do you have what it takes to build India’s most valuable startups?</strong></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Enabling their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest’s journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund adding up to $ 160 mn, being the first to focus on DeepTech startups, having delivered more than 10 exits in last 5-years, and while ensuring we remain among India's best-performing early-stage funds, <strong>we've made it a habit to set new benchmarks</strong> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders to help them succeed.</p>\n<p>YourNest is all set to launch its flagship<strong> Fund IV of INR 1500 crores</strong> and is seeking to strengthen its Portfolio Management and Growth team. Now, we’re looking for a dynamic professional to take on the role of Associate &amp; Senior Associate - Foundation, who owns the outcomes across the 0→1 portfolio companies and helps founders move faster on the decisions that matter most. Most VC associates support deals. This role owns outcomes.</p>\n<p><strong>How does this role contribute?</strong></p>\n<p>Foundation (0→1) is the most founder-critical, most relationship-intensive part of YourNest's portfolio work. Companies at this stage are pre-product-market fit, navigating the hardest stretch of their journey — and they need a YourNest business partner who shows up weekly, knows their business as well as the founders do, and can make decisions with them, not just advise them from a distance. While doing this, the associate will simultaneously be building YourNest’'s investable track record with each company.&nbsp;<b></b></p>\n<p><strong>What will help you succeed?</strong></p>\n<ul>\n<li>\n<p><strong>0→1 Execution Mindset:</strong> Comfort operating in ambiguity with early-stage founders; the ability to convert loose hypotheses into structured action, iterate quickly, and stay resilient through non-linear progress.</p>\n</li>\n<li>\n<p><strong>Strong Problem Solving &amp; First-Principles Thinking: </strong>Ability to break down ambiguous growth, product or organizational challenges into clear components, identify root causes, and drive practical, high-leverage solutions rather than theoretical recommendations</p>\n</li>\n<li>\n<p><strong>Founder Empathy with High Ownership: </strong>Ability to build trust with founders while holding a high bar on outcomes; knowing when to listen, when to challenge, and when to escalate.</p>\n</li>\n<li>\n<p><strong>Commercial &amp; Capital Efficiency Orientation: </strong>Strong understanding of revenue drivers, unit economics, hiring leverage, and trade-offs that shape early-stage company progress.</p>\n</li>\n<li>\n<p><strong>Judgment under pressure: </strong>Ability to make calls in real time, especially when a founder is stuck, a company is under strain, or the path forward is unclear.</p>\n</li>\n</ul>\n<p><strong>You own — directly and accountably</strong></p>\n<ul>\n<li>\n<p>Nurture Capital, you are the tip of the spear that carries the Nurture Capital ethos to the founders</p>\n</li>\n<li>\n<p>Two to five founder relationships in your portfolio companies' 0→1 journey, end-to-end. You are the primary YourNest contact. The founder calls you first.</p>\n</li>\n<li>\n<p>Weekly rhythm of engagement with each owned company. Not monthly check-ins. Not 'I'll get back to you.' Weekly presence on the substantive questions of the business.</p>\n</li>\n<li>\n<p>100-day playbook execution for each company — Capital (who to raise from next), People (which 2-3 hires unlock the next stage), Revenue (what drives early traction).</p>\n</li>\n<li>\n<p>Capital, People &amp; Revenue milestones across all owned companies, with measurable outcomes you are personally accountable for.</p>\n</li>\n<li>\n<p>Targeted network activation for your companies — customer intros, hire intros, advisor connections, co-investor warm leads. Tracked by outcome, not volume.</p>\n</li>\n<li>\n<p>Pre-Series A fundraise readiness for your companies — narrative coordination with the Principal, and with Growth Equity &amp; Exit team for companies approaching the Pre-Series A close (they lead the close, you've built the runway up to it).</p>\n</li>\n<li>\n<p>Board pack preparation for your companies' board meetings — substantive content, not just logistics.</p>\n</li>\n<li>\n<p>Founder trust — the qualitative signal that your companies' founders consider you a genuine partner, not a process check-in.</p>\n</li>\n<li>\n<p>Strengthening data led Fund Raise Narrative - Build and maintain the narrative record for each owned company, the measurable 'before/after' of your YourNest’s engagement, so the investor story writes itself at fundraise time</p>\n</li>\n</ul>\n<p><strong>You do not own — Four distinct lanes sit elsewhere</strong></p>\n<ul>\n<li>\n<p><strong>Growth-stage rounds and exits</strong> — Growth Equity &amp; Exit team. When one of your companies is ready for its Pre-Series A close or beyond, the Growth Equity &amp; Exit team leads the round execution and engagement with growth-stage / PE investors. You hand over the relationship context; they drive the close. Same applies to acquirer conversations and exit execution.</p>\n</li>\n<li>\n<p><strong>LP relationships </strong>— Fund Raise &amp; IR team. All LP engagement, fund-level fundraising, LP reporting, and IR work sits with the Fund Raise &amp; IR team. You do not interface with LPs in this role.</p>\n</li>\n<li>\n<p><strong>Compliance, board minutes, statutory work </strong>— Governance &amp; IM cohort. Routine compliance, board minute preparation, rights tracker, audit cycles, statutory filings all sit with Governance &amp; IM. You collaborate with them tightly but you do not duplicate them. Their Principal owns the portfolio's governance continuity; your role is the business outcome of your 2-4 companies.</p>\n</li>\n<li>\n<p><strong>Sourcing new deals</strong> — Deal Cultivation. Deal Cultivation handles the pipeline. You are post-investment-focused, not pre-investment.</p>\n</li>\n</ul>\n<p><b>KPIs and Impact Measurement</b></p>\n<ul>\n<li><strong>Time-to-PMF improvement across 3-6 owned companies: </strong>Baseline established at onboarding for each company (months expected to PMF given starting position). Measured at 6-month intervals — actual vs. baseline. Score: % of companies tracking ahead of, on, or behind baseline. Threshold target: 75%+ on or ahead of baseline across the book.</li>\n<li><strong>Fundraise narrative: </strong>the documented before/after of YN's engagement with each company, built continuously, not at fundraise time. This is what makes the Series A story credible before the book goes out.</li>\n<li><strong>100-day playbook completion rate: </strong>Each new investment has a written 100-day playbook with 8-12 milestones (split across C, P, R). Measured at day 100 per company. Threshold target: 80%+ milestones completed across the book; 90%+ have plans in place for misses. Quality of milestones reviewed by the Principal, not just completion %.</li>\n<li><strong>Founder trust signal across all companies:</strong> Structured founder feedback at mid-year and year-end — five qualitative anchors: responsiveness, judgment, follow-through, network value, partnership feel. Anonymous to the founder, attributable to you. Threshold: positive on 4 of 5 anchors across the book; no founder rating you 'replaceable' on partnership feel.</li>\n<li><strong>Demonstrated independence trajectory: </strong>Principal tracks frequency and substance of escalations to them across two dimensions: routine (asking for input on decisions you should be making) and substantive (escalating real judgement calls). Routine escalations should trend down quarter-on-quarter; substantive escalations stay roughly stable. Threshold: by month 18, routine escalations &lt;1 per week across the book.</li>\n</ul>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<ul>\n<li>\n<p>Relevant experience across operating roles, consulting, venture, portfolio operations, founder-support, or business-building environments with 0→1 or early-stage startups, with exposure to founder problem solving, execution, scaling, or fundraise readiness 5–8 years for Senior Associate, 4-6 years for Associates.</p>\n</li>\n<li>\n<p><strong>Financial modelling in Excel: </strong>Ability to Build a clean 3-statement model (P&amp;L, cash, balance sheet) from scratch. Comfortable with sensitivities, scenario modelling, unit economics breakdowns. Knows when a model is over-engineered and when it's under-built.</p>\n</li>\n<li>\n<p><strong>Cap table mechanics: </strong>Reads and builds cap tables fluently. Understands pre-money / post-money, dilution math, ESOP pool sizing, anti-dilution mechanics, liquidation preferences. Can model a notional Pre-Series A round and articulate founder impact in plain English.</p>\n</li>\n<li>\n<p><strong>Written communication:</strong> Writes a 1-page memo on a complex situation in 30 minutes. Sharp framing, no padding, can hold a senior reader's attention. Comfortable writing IC notes, board pack inputs, founder follow-up summaries.</p>\n</li>\n<li>\n<p><strong>Founder-facing conversation: </strong>Can run a 60-min founder check-in without scripts. Knows when to listen, when to challenge, when to coach, when to escalate. Comfortable being the most junior person in a board meeting.</p>\n</li>\n<li>\n<p><strong>Spreadsheet / data fluency: </strong>Advanced Excel/Google Sheets &amp; dashboard building. Comfortable structuring messy data into a usable view in under 2 hours.</p>\n</li>\n<li>\n<p><strong>Calendar and commitment discipline:</strong> Manages 3-6 simultaneous founder relationships without anything dropping. Founders never wait more than 24 hours for a substantive reply.</p>\n</li>\n</ul>\n<p></p>",
+              "max_salary": null,
+              "min_salary": null,
+              "max_experience": 8,
+              "skill": [
+                "financial modelling",
+                "pmf",
+                "revenue & profit growth",
+                "gtm",
+                "foundation",
+                "0-1 execution"
+              ],
+              "education": [],
+              "seniority": [
+                "associate"
+              ],
+              "min_experience": 3,
+              "industry": null,
+              "country": "India",
+              "location": "Gurugram, Haryana, India",
+              "other_locations": [],
+              "department": null,
+              "department_name": null,
+              "remote": false,
+              "created_at": "2026-07-07T12:41:03.836418+05:30",
+              "salary_type": "ANNUAL",
+              "is_salary_visible": false,
+              "published_internally": false,
+              "job_screening_questions": [],
+              "workplace_type": "ON_SITE",
+              "currency": "INR",
+              "company_country": "Premium-Converted-India",
+              "is_hr_job": false,
+              "referral_email": "refer@yournest.pyjamahr.com",
+              "email_domain": "yournest.in",
+              "email_provider": null,
+              "is_employee_referral_flow_enabled": false,
+              "company_career_page_url": null,
+              "is_seo_indexable": false,
+              "valid_through": "2026-09-05T12:41:03.836418+05:30"
+            },
+            "companySlug": "yournest-venture-capital"
+          },
+          "__N_SSP": true
+        },
+        "page": "/[company]/[jobId]",
+        "query": {
+          "company": "yournest-venture-capital",
+          "jobId": "associate-sr-associate-foundation"
+        },
+        "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "JobPosting": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Associate/Sr. Associate - Foundation",
+        "description": "<p><strong>Do you have what it takes to build India’s most valuable startups?</strong></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Enabling their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest’s journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund adding up to $ 160 mn, being the first to focus on DeepTech startups, having delivered more than 10 exits in last 5-years, and while ensuring we remain among India's best-performing early-stage funds, <strong>we've made it a habit to set new benchmarks</strong> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders to help them succeed.</p>\n<p>YourNest is all set to launch its flagship<strong> Fund IV of INR 1500 crores</strong> and is seeking to strengthen its Portfolio Management and Growth team. Now, we’re looking for a dynamic professional to take on the role of Associate &amp; Senior Associate - Foundation, who owns the outcomes across the 0→1 portfolio companies and helps founders move faster on the decisions that matter most. Most VC associates support deals. This role owns outcomes.</p>\n<p><strong>How does this role contribute?</strong></p>\n<p>Foundation (0→1) is the most founder-critical, most relationship-intensive part of YourNest's portfolio work. Companies at this stage are pre-product-market fit, navigating the hardest stretch of their journey — and they need a YourNest business partner who shows up weekly, knows their business as well as the founders do, and can make decisions with them, not just advise them from a distance. While doing this, the associate will simultaneously be building YourNest’'s investable track record with each company.&nbsp;<b></b></p>\n<p><strong>What will help you succeed?</strong></p>\n<ul>\n<li>\n<p><strong>0→1 Execution Mindset:</strong> Comfort operating in ambiguity with early-stage founders; the ability to convert loose hypotheses into structured action, iterate quickly, and stay resilient through non-linear progress.</p>\n</li>\n<li>\n<p><strong>Strong Problem Solving &amp; First-Principles Thinking: </strong>Ability to break down ambiguous growth, product or organizational challenges into clear components, identify root causes, and drive practical, high-leverage solutions rather than theoretical recommendations</p>\n</li>\n<li>\n<p><strong>Founder Empathy with High Ownership: </strong>Ability to build trust with founders while holding a high bar on outcomes; knowing when to listen, when to challenge, and when to escalate.</p>\n</li>\n<li>\n<p><strong>Commercial &amp; Capital Efficiency Orientation: </strong>Strong understanding of revenue drivers, unit economics, hiring leverage, and trade-offs that shape early-stage company progress.</p>\n</li>\n<li>\n<p><strong>Judgment under pressure: </strong>Ability to make calls in real time, especially when a founder is stuck, a company is under strain, or the path forward is unclear.</p>\n</li>\n</ul>\n<p><strong>You own — directly and accountably</strong></p>\n<ul>\n<li>\n<p>Nurture Capital, you are the tip of the spear that carries the Nurture Capital ethos to the founders</p>\n</li>\n<li>\n<p>Two to five founder relationships in your portfolio companies' 0→1 journey, end-to-end. You are the primary YourNest contact. The founder calls you first.</p>\n</li>\n<li>\n<p>Weekly rhythm of engagement with each owned company. Not monthly check-ins. Not 'I'll get back to you.' Weekly presence on the substantive questions of the business.</p>\n</li>\n<li>\n<p>100-day playbook execution for each company — Capital (who to raise from next), People (which 2-3 hires unlock the next stage), Revenue (what drives early traction).</p>\n</li>\n<li>\n<p>Capital, People &amp; Revenue milestones across all owned companies, with measurable outcomes you are personally accountable for.</p>\n</li>\n<li>\n<p>Targeted network activation for your companies — customer intros, hire intros, advisor connections, co-investor warm leads. Tracked by outcome, not volume.</p>\n</li>\n<li>\n<p>Pre-Series A fundraise readiness for your companies — narrative coordination with the Principal, and with Growth Equity &amp; Exit team for companies approaching the Pre-Series A close (they lead the close, you've built the runway up to it).</p>\n</li>\n<li>\n<p>Board pack preparation for your companies' board meetings — substantive content, not just logistics.</p>\n</li>\n<li>\n<p>Founder trust — the qualitative signal that your companies' founders consider you a genuine partner, not a process check-in.</p>\n</li>\n<li>\n<p>Strengthening data led Fund Raise Narrative - Build and maintain the narrative record for each owned company, the measurable 'before/after' of your YourNest’s engagement, so the investor story writes itself at fundraise time</p>\n</li>\n</ul>\n<p><strong>You do not own — Four distinct lanes sit elsewhere</strong></p>\n<ul>\n<li>\n<p><strong>Growth-stage rounds and exits</strong> — Growth Equity &amp; Exit team. When one of your companies is ready for its Pre-Series A close or beyond, the Growth Equity &amp; Exit team leads the round execution and engagement with growth-stage / PE investors. You hand over the relationship context; they drive the close. Same applies to acquirer conversations and exit execution.</p>\n</li>\n<li>\n<p><strong>LP relationships </strong>— Fund Raise &amp; IR team. All LP engagement, fund-level fundraising, LP reporting, and IR work sits with the Fund Raise &amp; IR team. You do not interface with LPs in this role.</p>\n</li>\n<li>\n<p><strong>Compliance, board minutes, statutory work </strong>— Governance &amp; IM cohort. Routine compliance, board minute preparation, rights tracker, audit cycles, statutory filings all sit with Governance &amp; IM. You collaborate with them tightly but you do not duplicate them. Their Principal owns the portfolio's governance continuity; your role is the business outcome of your 2-4 companies.</p>\n</li>\n<li>\n<p><strong>Sourcing new deals</strong> — Deal Cultivation. Deal Cultivation handles the pipeline. You are post-investment-focused, not pre-investment.</p>\n</li>\n</ul>\n<p><b>KPIs and Impact Measurement</b></p>\n<ul>\n<li><strong>Time-to-PMF improvement across 3-6 owned companies: </strong>Baseline established at onboarding for each company (months expected to PMF given starting position). Measured at 6-month intervals — actual vs. baseline. Score: % of companies tracking ahead of, on, or behind baseline. Threshold target: 75%+ on or ahead of baseline across the book.</li>\n<li><strong>Fundraise narrative: </strong>the documented before/after of YN's engagement with each company, built continuously, not at fundraise time. This is what makes the Series A story credible before the book goes out.</li>\n<li><strong>100-day playbook completion rate: </strong>Each new investment has a written 100-day playbook with 8-12 milestones (split across C, P, R). Measured at day 100 per company. Threshold target: 80%+ milestones completed across the book; 90%+ have plans in place for misses. Quality of milestones reviewed by the Principal, not just completion %.</li>\n<li><strong>Founder trust signal across all companies:</strong> Structured founder feedback at mid-year and year-end — five qualitative anchors: responsiveness, judgment, follow-through, network value, partnership feel. Anonymous to the founder, attributable to you. Threshold: positive on 4 of 5 anchors across the book; no founder rating you 'replaceable' on partnership feel.</li>\n<li><strong>Demonstrated independence trajectory: </strong>Principal tracks frequency and substance of escalations to them across two dimensions: routine (asking for input on decisions you should be making) and substantive (escalating real judgement calls). Routine escalations should trend down quarter-on-quarter; substantive escalations stay roughly stable. Threshold: by month 18, routine escalations &lt;1 per week across the book.</li>\n</ul>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<ul>\n<li>\n<p>Relevant experience across operating roles, consulting, venture, portfolio operations, founder-support, or business-building environments with 0→1 or early-stage startups, with exposure to founder problem solving, execution, scaling, or fundraise readiness 5–8 years for Senior Associate, 4-6 years for Associates.</p>\n</li>\n<li>\n<p><strong>Financial modelling in Excel: </strong>Ability to Build a clean 3-statement model (P&amp;L, cash, balance sheet) from scratch. Comfortable with sensitivities, scenario modelling, unit economics breakdowns. Knows when a model is over-engineered and when it's under-built.</p>\n</li>\n<li>\n<p><strong>Cap table mechanics: </strong>Reads and builds cap tables fluently. Understands pre-money / post-money, dilution math, ESOP pool sizing, anti-dilution mechanics, liquidation preferences. Can model a notional Pre-Series A round and articulate founder impact in plain English.</p>\n</li>\n<li>\n<p><strong>Written communication:</strong> Writes a 1-page memo on a complex situation in 30 minutes. Sharp framing, no padding, can hold a senior reader's attention. Comfortable writing IC notes, board pack inputs, founder follow-up summaries.</p>\n</li>\n<li>\n<p><strong>Founder-facing conversation: </strong>Can run a 60-min founder check-in without scripts. Knows when to listen, when to challenge, when to coach, when to escalate. Comfortable being the most junior person in a board meeting.</p>\n</li>\n<li>\n<p><strong>Spreadsheet / data fluency: </strong>Advanced Excel/Google Sheets &amp; dashboard building. Comfortable structuring messy data into a usable view in under 2 hours.</p>\n</li>\n<li>\n<p><strong>Calendar and commitment discipline:</strong> Manages 3-6 simultaneous founder relationships without anything dropping. Founders never wait more than 24 hours for a substantive reply.</p>\n</li>\n</ul>\n<p></p>",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Associate/Sr. Associate - Foundation",
+          "value": 376083
+        },
+        "datePosted": "2026-07-07T12:41:03.836418+05:30",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "YourNest Venture Capital",
+          "sameAs": "https://yournest.in/",
+          "logo": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "India",
+            "addressLocality": "Gurugram, Haryana, India",
+            "addressRegion": null,
+            "streetAddress": null
+          }
+        },
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "directApply": true,
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "INR",
+          "value": {
+            "@type": "QuantitativeValue",
+            "value": null,
+            "unitText": "YEAR"
+          }
+        },
+        "validThrough": "2026-09-05T12:41:03.836418+05:30"
+      },
+      "rawApplyHref": "/careers?company=YourNest%20Venture%20Capital&job_id=376083&company_uuid=undefined&utm_source=DIRECT&source=DIRECT&isHeaderVisible=undefined&apply_now=true",
+      "declarations": [
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "shortcut icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "text/javascript",
+            "src": "/rawJsFromFile.js",
+            "segment_key": "SbrhadfGPD452CwAgrFhJPgymPpgsLlV"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "canonical",
+            "href": "https://jobs.pyjamahr.com/yournest-venture-capital/associate-sr-associate-foundation"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "application/ld+json"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "data-n-g": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "defer": "",
+            "nomodule": "",
+            "src": "/_next/static/chunks/polyfills-a40ef1678bae11e696dba45124eadd70.js"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/webpack-37d229a845c5768d0ce8.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/framework-34c5a4b8137ffdbfac41.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/main-0108c4a9ec75d22b4307.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/7909-48c429cdfd6355ebc7af.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4298-071f4f211a666ba5514b.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/874-c81b8deb0bca984d7bc5.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/3695-b3290b9b685b1c7d4d4f.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1821-09adcfa9e004daa6ab32.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/8806-5c6fb43dd92b9becf779.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1517-60c5491073f755edb215.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4728-306e7874a80b492862ff.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/2113-f86e2f5f8a77ea329883.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/%5Bcompany%5D/%5BjobId%5D-df9f67b265fc2b315eec.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_buildManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_ssgManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "id": "jss-server-side"
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "data-styled": "",
+            "data-styled-version": "5.3.6"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "id": "__NEXT_DATA__",
+            "type": "application/json"
+          }
+        }
+      ]
+    },
+    {
+      "id": 374870,
+      "uuid": "81DE63CFC2",
+      "ownEmployerRole": true,
+      "apiUrl": "https://api.pyjamahr.com/api/career/jobs/374870/?company_uuid=987EE7EF32&is_careers_page=false",
+      "publicUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/associate-principal-principal-growth-equity-exits",
+      "APIRecord": {
+        "id": 374870,
+        "uuid": "81DE63CFC2",
+        "title": "Associate Principal/Principal - Venture Capital",
+        "job_type": "FULLTIME",
+        "description": "<p><strong>Do you have what it takes to build India’s most valuable startups?</strong></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Enabling their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest’s journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund adding up to $ 160 mn, being the first to focus on DeepTech startups, having delivered more than 10 exits in last 5-years, and while ensuring we remain among India's best-performing early-stage funds, <strong>we've made it a habit to set new benchmarks</strong> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders to help them succeed.</p>\n<p>YourNest is all set to launch its flagship <strong>Fund IV of INR 1500 crores </strong>and is seeking to strengthen its Portfolio Management and Growth team. Now we're hiring an <strong>\"Associate Principal - Growth Equity &amp; Exits\" </strong>to join us in this mission.&nbsp;</p>\n<p><strong>How does this role contribute?</strong></p>\n<p>As an Associate Principal/Principal - Growth Equity &amp; Exits, you will lead the growth equity and exits, telling the portfolio company's story to the right buyer with years of context, not a cold introduction. Ensures the founder's outcome reflects the journey, not just the numbers. Lead the end-to-end strategy and execution for portfolio exits and facilitates critical follow-on funding rounds (Series A and beyond). This role is designed to ensure fund-level outcomes specifically meeting DPI targets while providing institutional memory and \"near-Partner\" leadership for founders during high-stakes transactions. The Impact is at Fund level.&nbsp;<b></b></p>\n<p><strong>What will help you succeed?</strong></p>\n<ul>\n<li>\n<p><strong>Drive Exit Strategy &amp; Execution </strong>(structuring acquisitions, secondaries, IPOs) and Exit Readiness &amp; Compliance (aligning stakeholders on deal terms, documentation, and value realisation).</p>\n</li>\n<li>\n<p><strong>Power Ecosystem Relationship Management </strong>— centralising and deepening relationships with VCs, CVCs, and investment bankers, and maintaining a live database of investor theses.</p>\n</li>\n<li>\n<p><strong>Fuel Fundraising Support </strong>— strengthening investment narratives, refining pitches, and aligning KPIs at least 3 months pre-raise; also shapes how exit stories are pitched to the right buyer.</p>\n</li>\n</ul>\n<p><strong>You own — directly and accountably</strong></p>\n<ul>\n<li>\n<p><strong>Exit Strategy &amp; Execution: </strong>Partner with core management to shape and execute tailored exit strategies through acquisitions, secondaries, or IPOs, ensuring value maximisation and stakeholder readiness.</p>\n</li>\n<li>\n<p><strong>Fundraising Support: </strong>Drive early momentum for portfolio companies' subsequent rounds by strengthening investment narratives, refining pitches, and aligning KPIs at least three months before initiating fundraising.</p>\n</li>\n<li>\n<p><strong>Ecosystem Relationship Management: </strong>Centralise and manage high-level relationships with hundreds of VCs, CVCs, and investment bankers. Maintain an updated database of investor theses and partner-level interests to avoid fragmented outreach.</p>\n</li>\n<li>\n<p><strong>Structured Scenario Planning:</strong> Construct realistic, visionary, and \"missed\" exit scenarios for each portfolio company, identifying clear triggers and aligning founders with fund-wise objectives.</p>\n</li>\n<li>\n<p><strong>Exit Readiness &amp; Compliance: </strong>Formalise institutional memory by creating playbooks and checklists for readiness (e.g., share dematerialisation, audit completion, and shareholder documentation).</p>\n</li>\n</ul>\n<p><b>KPIs and Impact Measurement</b></p>\n<ul>\n<li>\n<p><strong>Fund Performance: </strong>Achieving specific DPI milestones (e.g., Fund II DPI of 1.15x to 2.0x within next 9-months).</p>\n</li>\n<li>\n<p><strong>Fundraising Success: </strong>Enabling 75%–85% of eligible portfolio companies to receive their next round of funding within 18 months of YourNest's investment.</p>\n</li>\n<li>\n<p><strong>Relationship Depth: </strong>Continuously securing new high-impact VC/CVC partners.</p>\n</li>\n<li>\n<p><strong>Operational Excellence: </strong>Growth narrative, High-impact pitch deck, Data room completeness, diligence turnaround time, and valuation realised versus benchmarks.</p>\n</li>\n<li>\n<p><strong>Founders Connect &amp; Engagement: </strong>Founder “NPS equivalent” post-exit.&nbsp;</p>\n</li>\n</ul>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<ul>\n<li>\n<p>Associate Principal (8–12 years of experience): You have deep transaction experience. You manage 2–4 exit processes or portfolio companies, leading strategy and execution with minimal oversight.</p>\n</li>\n<li>\n<p>Principal (12+ years of experience): You have extensive experience navigating the full exit landscape. You lead 2–4 exit processes or portfolio companies with complete autonomy, mentor APs, and shape fund-level exit strategy.</p>\n</li>\n</ul>\n<ul>\n<li>\n<p>8–12 years (AP) or 12+ years (Principal) of experience structuring and closing complex transactions (M&amp;A, secondaries, IPOs), ideally within growth equity, investment banking, or venture capital, with a demonstrated ability to negotiate high-stakes deals and maximise value for stakeholders.</p>\n</li>\n<li>\n<p>Hands-on experience building and managing relationships with VCs, CVCs, and investment bankers, gained through prior roles in venture capital, investment banking, or startup ecosystems.</p>\n</li>\n<li>\n<p>Experience supporting companies through funding rounds — shaping investment narratives, refining pitches, and aligning teams on KPIs ahead of a raise, ideally in a VC, startup, or advisory capacity.</p>\n</li>\n<li>\n<p>Experience in scenario planning, exit-readiness processes, or building structured frameworks/playbooks (e.g. compliance, documentation, stakeholder alignment) for high-stakes transactions, preferably in a PE, VC, or M&amp;A advisory setting.</p>\n</li>\n</ul>\n<p></p>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 12.0,
+        "skill": [
+          "negotiation skills",
+          "ipo readiness",
+          "communication",
+          "venture capital",
+          "due diligence",
+          "fundraising",
+          "exits",
+          "deal structuring",
+          "m&a",
+          "scenario planning"
+        ],
+        "education": [],
+        "seniority": [
+          "mid-senior-level"
+        ],
+        "min_experience": 8.0,
+        "industry": null,
+        "country": "India",
+        "location": "Gurugram, Haryana, India",
+        "other_locations": [],
+        "department": null,
+        "department_name": null,
+        "remote": false,
+        "created_at": "2026-07-03T14:50:27.461782+05:30",
+        "salary_type": "ANNUAL",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "9D39A0C01B",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "This role is required to operate from Gurugram? Are you willing to relocate?",
+            "choices": [
+              "Yes",
+              "No",
+              "Already in Delhi NCR"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "6132BB9CA6",
+            "name": "multi_line_text",
+            "label": "Multi Line text",
+            "question": "Tell us about a time you led an end-to-end exit (acquisition, secondary, or IPO). What was your specific role, how did you structure the process, and what was the final outcome for stakeholders?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "927EC62337",
+            "name": "multi_line_text",
+            "label": "Multi Line text",
+            "question": "Tell us about a time you built a scenario-planning framework or exit-readiness checklist for a company. What triggers did you plan around, and how did reality end up diverging from the plan?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "ON_SITE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@yournest.pyjamahr.com",
+        "email_domain": "yournest.in",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": false,
+        "valid_through": "2026-09-01T14:50:27.461782+05:30"
+      },
+      "FullSSR": {
+        "props": {
+          "pageProps": {
+            "companyDetails": {
+              "id": 6566,
+              "name": "YourNest Venture Capital",
+              "url": "https://yournest.in/",
+              "slug": "yournest-venture-capital",
+              "location": "Gurgaon, Haryana",
+              "address": {
+                "address_line_1": "416, 4th Floor, MGF Metropolis (Lifestyle) Mall Metro Station, near, Mehrauli-Gurgaon Rd, Gurugram, Haryana 122002"
+              },
+              "description": "<div><br></div><div><span style=\"color: rgb(0, 0, 0);\">YourNest Venture Capital is a sharply focused, </span><span style=\"color: rgb(255, 0, 0);\">early-stage VC firm</span><span style=\"color: rgb(0, 0, 0);\">. Currently deploying its 4th fund (INR 1500 Crore) to invest in startups with a focus on innovative, tech-led products and a vision to nurture global market leaders from India, we are focused on disruptive technologies to enhance how mankind leverages the value of time.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing </span><a href=\"https://www.yournest.in/team\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\"> of passionate professionals who are strong thought leaders and natural team players, enjoying reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent and enjoy an open-door, all-time-access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our </span><a href=\"https://www.yournest.in/portfolio\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\"> companies are at the forefront of innovation and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and join something truly extraordinary. We look forward to welcoming new talent to YourNest and our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we actively support.</span></div>",
+              "primary_brand_colour": "#bd400a",
+              "secondary_brand_colour": "#000000",
+              "image_path": "files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "image_url": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "uuid": "987EE7EF32",
+              "phone_number": "+917666750052",
+              "email": "openings@yournest.in",
+              "banner_image_path": "files/company/img/banner/Careers_Page_Banner_Designs_MH_310323.002_111C5628A3.jpeg",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            },
+            "jobDetails": {
+              "id": 374870,
+              "uuid": "81DE63CFC2",
+              "title": "Associate Principal/Principal - Venture Capital",
+              "job_type": "FULLTIME",
+              "description": "<p><strong>Do you have what it takes to build India’s most valuable startups?</strong></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Enabling their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest’s journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund adding up to $ 160 mn, being the first to focus on DeepTech startups, having delivered more than 10 exits in last 5-years, and while ensuring we remain among India's best-performing early-stage funds, <strong>we've made it a habit to set new benchmarks</strong> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders to help them succeed.</p>\n<p>YourNest is all set to launch its flagship <strong>Fund IV of INR 1500 crores </strong>and is seeking to strengthen its Portfolio Management and Growth team. Now we're hiring an <strong>\"Associate Principal - Growth Equity &amp; Exits\" </strong>to join us in this mission.&nbsp;</p>\n<p><strong>How does this role contribute?</strong></p>\n<p>As an Associate Principal/Principal - Growth Equity &amp; Exits, you will lead the growth equity and exits, telling the portfolio company's story to the right buyer with years of context, not a cold introduction. Ensures the founder's outcome reflects the journey, not just the numbers. Lead the end-to-end strategy and execution for portfolio exits and facilitates critical follow-on funding rounds (Series A and beyond). This role is designed to ensure fund-level outcomes specifically meeting DPI targets while providing institutional memory and \"near-Partner\" leadership for founders during high-stakes transactions. The Impact is at Fund level.&nbsp;<b></b></p>\n<p><strong>What will help you succeed?</strong></p>\n<ul>\n<li>\n<p><strong>Drive Exit Strategy &amp; Execution </strong>(structuring acquisitions, secondaries, IPOs) and Exit Readiness &amp; Compliance (aligning stakeholders on deal terms, documentation, and value realisation).</p>\n</li>\n<li>\n<p><strong>Power Ecosystem Relationship Management </strong>— centralising and deepening relationships with VCs, CVCs, and investment bankers, and maintaining a live database of investor theses.</p>\n</li>\n<li>\n<p><strong>Fuel Fundraising Support </strong>— strengthening investment narratives, refining pitches, and aligning KPIs at least 3 months pre-raise; also shapes how exit stories are pitched to the right buyer.</p>\n</li>\n</ul>\n<p><strong>You own — directly and accountably</strong></p>\n<ul>\n<li>\n<p><strong>Exit Strategy &amp; Execution: </strong>Partner with core management to shape and execute tailored exit strategies through acquisitions, secondaries, or IPOs, ensuring value maximisation and stakeholder readiness.</p>\n</li>\n<li>\n<p><strong>Fundraising Support: </strong>Drive early momentum for portfolio companies' subsequent rounds by strengthening investment narratives, refining pitches, and aligning KPIs at least three months before initiating fundraising.</p>\n</li>\n<li>\n<p><strong>Ecosystem Relationship Management: </strong>Centralise and manage high-level relationships with hundreds of VCs, CVCs, and investment bankers. Maintain an updated database of investor theses and partner-level interests to avoid fragmented outreach.</p>\n</li>\n<li>\n<p><strong>Structured Scenario Planning:</strong> Construct realistic, visionary, and \"missed\" exit scenarios for each portfolio company, identifying clear triggers and aligning founders with fund-wise objectives.</p>\n</li>\n<li>\n<p><strong>Exit Readiness &amp; Compliance: </strong>Formalise institutional memory by creating playbooks and checklists for readiness (e.g., share dematerialisation, audit completion, and shareholder documentation).</p>\n</li>\n</ul>\n<p><b>KPIs and Impact Measurement</b></p>\n<ul>\n<li>\n<p><strong>Fund Performance: </strong>Achieving specific DPI milestones (e.g., Fund II DPI of 1.15x to 2.0x within next 9-months).</p>\n</li>\n<li>\n<p><strong>Fundraising Success: </strong>Enabling 75%–85% of eligible portfolio companies to receive their next round of funding within 18 months of YourNest's investment.</p>\n</li>\n<li>\n<p><strong>Relationship Depth: </strong>Continuously securing new high-impact VC/CVC partners.</p>\n</li>\n<li>\n<p><strong>Operational Excellence: </strong>Growth narrative, High-impact pitch deck, Data room completeness, diligence turnaround time, and valuation realised versus benchmarks.</p>\n</li>\n<li>\n<p><strong>Founders Connect &amp; Engagement: </strong>Founder “NPS equivalent” post-exit.&nbsp;</p>\n</li>\n</ul>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<ul>\n<li>\n<p>Associate Principal (8–12 years of experience): You have deep transaction experience. You manage 2–4 exit processes or portfolio companies, leading strategy and execution with minimal oversight.</p>\n</li>\n<li>\n<p>Principal (12+ years of experience): You have extensive experience navigating the full exit landscape. You lead 2–4 exit processes or portfolio companies with complete autonomy, mentor APs, and shape fund-level exit strategy.</p>\n</li>\n</ul>\n<ul>\n<li>\n<p>8–12 years (AP) or 12+ years (Principal) of experience structuring and closing complex transactions (M&amp;A, secondaries, IPOs), ideally within growth equity, investment banking, or venture capital, with a demonstrated ability to negotiate high-stakes deals and maximise value for stakeholders.</p>\n</li>\n<li>\n<p>Hands-on experience building and managing relationships with VCs, CVCs, and investment bankers, gained through prior roles in venture capital, investment banking, or startup ecosystems.</p>\n</li>\n<li>\n<p>Experience supporting companies through funding rounds — shaping investment narratives, refining pitches, and aligning teams on KPIs ahead of a raise, ideally in a VC, startup, or advisory capacity.</p>\n</li>\n<li>\n<p>Experience in scenario planning, exit-readiness processes, or building structured frameworks/playbooks (e.g. compliance, documentation, stakeholder alignment) for high-stakes transactions, preferably in a PE, VC, or M&amp;A advisory setting.</p>\n</li>\n</ul>\n<p></p>",
+              "max_salary": null,
+              "min_salary": null,
+              "max_experience": 12,
+              "skill": [
+                "negotiation skills",
+                "ipo readiness",
+                "communication",
+                "venture capital",
+                "due diligence",
+                "fundraising",
+                "exits",
+                "deal structuring",
+                "m&a",
+                "scenario planning"
+              ],
+              "education": [],
+              "seniority": [
+                "mid-senior-level"
+              ],
+              "min_experience": 8,
+              "industry": null,
+              "country": "India",
+              "location": "Gurugram, Haryana, India",
+              "other_locations": [],
+              "department": null,
+              "department_name": null,
+              "remote": false,
+              "created_at": "2026-07-03T14:50:27.461782+05:30",
+              "salary_type": "ANNUAL",
+              "is_salary_visible": false,
+              "published_internally": false,
+              "job_screening_questions": [
+                {
+                  "uuid": "9D39A0C01B",
+                  "name": "multi_choice",
+                  "label": "Multiple choice",
+                  "question": "This role is required to operate from Gurugram? Are you willing to relocate?",
+                  "choices": [
+                    "Yes",
+                    "No",
+                    "Already in Delhi NCR"
+                  ],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "6132BB9CA6",
+                  "name": "multi_line_text",
+                  "label": "Multi Line text",
+                  "question": "Tell us about a time you led an end-to-end exit (acquisition, secondary, or IPO). What was your specific role, how did you structure the process, and what was the final outcome for stakeholders?",
+                  "choices": [],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "927EC62337",
+                  "name": "multi_line_text",
+                  "label": "Multi Line text",
+                  "question": "Tell us about a time you built a scenario-planning framework or exit-readiness checklist for a company. What triggers did you plan around, and how did reality end up diverging from the plan?",
+                  "choices": [],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                }
+              ],
+              "workplace_type": "ON_SITE",
+              "currency": "INR",
+              "company_country": "Premium-Converted-India",
+              "is_hr_job": false,
+              "referral_email": "refer@yournest.pyjamahr.com",
+              "email_domain": "yournest.in",
+              "email_provider": null,
+              "is_employee_referral_flow_enabled": false,
+              "company_career_page_url": null,
+              "is_seo_indexable": false,
+              "valid_through": "2026-09-01T14:50:27.461782+05:30"
+            },
+            "companySlug": "yournest-venture-capital"
+          },
+          "__N_SSP": true
+        },
+        "page": "/[company]/[jobId]",
+        "query": {
+          "company": "yournest-venture-capital",
+          "jobId": "associate-principal-principal-growth-equity-exits"
+        },
+        "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "JobPosting": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Associate Principal/Principal - Venture Capital",
+        "description": "<p><strong>Do you have what it takes to build India’s most valuable startups?</strong></p>\n<p>Startups aspire to change the way we live and work. They are here to create economic value. Enabling their founders with empathy and assertiveness is an art. We are seeking such partners as part of YourNest’s journey to nurture success for DeepTech startups.</p>\n<p>At YourNest, we've been scouting for diamonds in the rough since 2011: with three flagship funds and a continuum fund adding up to $ 160 mn, being the first to focus on DeepTech startups, having delivered more than 10 exits in last 5-years, and while ensuring we remain among India's best-performing early-stage funds, <strong>we've made it a habit to set new benchmarks</strong> in the country's venture capital sector. And we've done this thanks to an enterprising team of committed young people who work closely with our founders to help them succeed.</p>\n<p>YourNest is all set to launch its flagship <strong>Fund IV of INR 1500 crores </strong>and is seeking to strengthen its Portfolio Management and Growth team. Now we're hiring an <strong>\"Associate Principal - Growth Equity &amp; Exits\" </strong>to join us in this mission.&nbsp;</p>\n<p><strong>How does this role contribute?</strong></p>\n<p>As an Associate Principal/Principal - Growth Equity &amp; Exits, you will lead the growth equity and exits, telling the portfolio company's story to the right buyer with years of context, not a cold introduction. Ensures the founder's outcome reflects the journey, not just the numbers. Lead the end-to-end strategy and execution for portfolio exits and facilitates critical follow-on funding rounds (Series A and beyond). This role is designed to ensure fund-level outcomes specifically meeting DPI targets while providing institutional memory and \"near-Partner\" leadership for founders during high-stakes transactions. The Impact is at Fund level.&nbsp;<b></b></p>\n<p><strong>What will help you succeed?</strong></p>\n<ul>\n<li>\n<p><strong>Drive Exit Strategy &amp; Execution </strong>(structuring acquisitions, secondaries, IPOs) and Exit Readiness &amp; Compliance (aligning stakeholders on deal terms, documentation, and value realisation).</p>\n</li>\n<li>\n<p><strong>Power Ecosystem Relationship Management </strong>— centralising and deepening relationships with VCs, CVCs, and investment bankers, and maintaining a live database of investor theses.</p>\n</li>\n<li>\n<p><strong>Fuel Fundraising Support </strong>— strengthening investment narratives, refining pitches, and aligning KPIs at least 3 months pre-raise; also shapes how exit stories are pitched to the right buyer.</p>\n</li>\n</ul>\n<p><strong>You own — directly and accountably</strong></p>\n<ul>\n<li>\n<p><strong>Exit Strategy &amp; Execution: </strong>Partner with core management to shape and execute tailored exit strategies through acquisitions, secondaries, or IPOs, ensuring value maximisation and stakeholder readiness.</p>\n</li>\n<li>\n<p><strong>Fundraising Support: </strong>Drive early momentum for portfolio companies' subsequent rounds by strengthening investment narratives, refining pitches, and aligning KPIs at least three months before initiating fundraising.</p>\n</li>\n<li>\n<p><strong>Ecosystem Relationship Management: </strong>Centralise and manage high-level relationships with hundreds of VCs, CVCs, and investment bankers. Maintain an updated database of investor theses and partner-level interests to avoid fragmented outreach.</p>\n</li>\n<li>\n<p><strong>Structured Scenario Planning:</strong> Construct realistic, visionary, and \"missed\" exit scenarios for each portfolio company, identifying clear triggers and aligning founders with fund-wise objectives.</p>\n</li>\n<li>\n<p><strong>Exit Readiness &amp; Compliance: </strong>Formalise institutional memory by creating playbooks and checklists for readiness (e.g., share dematerialisation, audit completion, and shareholder documentation).</p>\n</li>\n</ul>\n<p><b>KPIs and Impact Measurement</b></p>\n<ul>\n<li>\n<p><strong>Fund Performance: </strong>Achieving specific DPI milestones (e.g., Fund II DPI of 1.15x to 2.0x within next 9-months).</p>\n</li>\n<li>\n<p><strong>Fundraising Success: </strong>Enabling 75%–85% of eligible portfolio companies to receive their next round of funding within 18 months of YourNest's investment.</p>\n</li>\n<li>\n<p><strong>Relationship Depth: </strong>Continuously securing new high-impact VC/CVC partners.</p>\n</li>\n<li>\n<p><strong>Operational Excellence: </strong>Growth narrative, High-impact pitch deck, Data room completeness, diligence turnaround time, and valuation realised versus benchmarks.</p>\n</li>\n<li>\n<p><strong>Founders Connect &amp; Engagement: </strong>Founder “NPS equivalent” post-exit.&nbsp;</p>\n</li>\n</ul>\n<p><b>What qualifications &amp; experience must you have?</b></p>\n<ul>\n<li>\n<p>Associate Principal (8–12 years of experience): You have deep transaction experience. You manage 2–4 exit processes or portfolio companies, leading strategy and execution with minimal oversight.</p>\n</li>\n<li>\n<p>Principal (12+ years of experience): You have extensive experience navigating the full exit landscape. You lead 2–4 exit processes or portfolio companies with complete autonomy, mentor APs, and shape fund-level exit strategy.</p>\n</li>\n</ul>\n<ul>\n<li>\n<p>8–12 years (AP) or 12+ years (Principal) of experience structuring and closing complex transactions (M&amp;A, secondaries, IPOs), ideally within growth equity, investment banking, or venture capital, with a demonstrated ability to negotiate high-stakes deals and maximise value for stakeholders.</p>\n</li>\n<li>\n<p>Hands-on experience building and managing relationships with VCs, CVCs, and investment bankers, gained through prior roles in venture capital, investment banking, or startup ecosystems.</p>\n</li>\n<li>\n<p>Experience supporting companies through funding rounds — shaping investment narratives, refining pitches, and aligning teams on KPIs ahead of a raise, ideally in a VC, startup, or advisory capacity.</p>\n</li>\n<li>\n<p>Experience in scenario planning, exit-readiness processes, or building structured frameworks/playbooks (e.g. compliance, documentation, stakeholder alignment) for high-stakes transactions, preferably in a PE, VC, or M&amp;A advisory setting.</p>\n</li>\n</ul>\n<p></p>",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Associate Principal/Principal - Venture Capital",
+          "value": 374870
+        },
+        "datePosted": "2026-07-03T14:50:27.461782+05:30",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "YourNest Venture Capital",
+          "sameAs": "https://yournest.in/",
+          "logo": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "India",
+            "addressLocality": "Gurugram, Haryana, India",
+            "addressRegion": null,
+            "streetAddress": null
+          }
+        },
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "directApply": true,
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "INR",
+          "value": {
+            "@type": "QuantitativeValue",
+            "value": null,
+            "unitText": "YEAR"
+          }
+        },
+        "validThrough": "2026-09-01T14:50:27.461782+05:30"
+      },
+      "rawApplyHref": "/careers?company=YourNest%20Venture%20Capital&job_id=374870&company_uuid=undefined&utm_source=DIRECT&source=DIRECT&isHeaderVisible=undefined&apply_now=true",
+      "declarations": [
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "shortcut icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "text/javascript",
+            "src": "/rawJsFromFile.js",
+            "segment_key": "SbrhadfGPD452CwAgrFhJPgymPpgsLlV"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "canonical",
+            "href": "https://jobs.pyjamahr.com/yournest-venture-capital/associate-principal-principal-growth-equity-exits"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "application/ld+json"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "data-n-g": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "defer": "",
+            "nomodule": "",
+            "src": "/_next/static/chunks/polyfills-a40ef1678bae11e696dba45124eadd70.js"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/webpack-37d229a845c5768d0ce8.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/framework-34c5a4b8137ffdbfac41.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/main-0108c4a9ec75d22b4307.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/7909-48c429cdfd6355ebc7af.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4298-071f4f211a666ba5514b.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/874-c81b8deb0bca984d7bc5.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/3695-b3290b9b685b1c7d4d4f.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1821-09adcfa9e004daa6ab32.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/8806-5c6fb43dd92b9becf779.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1517-60c5491073f755edb215.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4728-306e7874a80b492862ff.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/2113-f86e2f5f8a77ea329883.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/%5Bcompany%5D/%5BjobId%5D-df9f67b265fc2b315eec.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_buildManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_ssgManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "id": "jss-server-side"
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "data-styled": "",
+            "data-styled-version": "5.3.6"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "id": "__NEXT_DATA__",
+            "type": "application/json"
+          }
+        }
+      ]
+    },
+    {
+      "id": 43774,
+      "uuid": "B79F7D2B07",
+      "ownEmployerRole": false,
+      "apiUrl": "https://api.pyjamahr.com/api/career/jobs/43774/?company_uuid=987EE7EF32&is_careers_page=false",
+      "publicUrl": "https://jobs.pyjamahr.com/yournest-venture-capital/interested-in-vcstartups-across-india",
+      "APIRecord": {
+        "id": 43774,
+        "uuid": "B79F7D2B07",
+        "title": "Interested in VC/Startups (Across India)",
+        "job_type": "FULLTIME",
+        "description": "<div><strong style=\"font-size: 18px; color: rgb(0, 0, 0);\">If you have interest in working with YourNest and/or our portfolio companies, just drop in your details here and we will be excited to connect with you.</strong></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing&nbsp;</span><a href=\"https://yournest.in/people/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\">&nbsp;of passionate professionals who are strong thought leaders, natural team players who enjoy reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent, and enjoy an open door, all-time access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our&nbsp;</span><a href=\"https://yournest.in/our-portfolio/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\">&nbsp;companies are at the forefront of innovation, and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and be part of something truly extraordinary. We look forward to welcoming new talent to YourNest and to our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we support actively.</span></div><div><br></div><div><br></div>",
+        "max_salary": null,
+        "min_salary": null,
+        "max_experience": 20.0,
+        "skill": [
+          "venture capital",
+          "startup",
+          "deep tech"
+        ],
+        "education": [],
+        "seniority": [
+          "mid-senior-level",
+          "director-vp",
+          "associate",
+          "entry-level",
+          "executive-president",
+          "internship"
+        ],
+        "min_experience": 0.0,
+        "industry": null,
+        "country": "India",
+        "location": "Remote",
+        "other_locations": [],
+        "department": null,
+        "department_name": null,
+        "remote": true,
+        "created_at": "2023-05-31T15:03:45.624257+05:30",
+        "salary_type": "ANNUAL",
+        "is_salary_visible": false,
+        "published_internally": false,
+        "job_screening_questions": [
+          {
+            "uuid": "F442189FD8",
+            "name": "multi_choice",
+            "label": "Multiple choice",
+            "question": "Are you interested in working with YourNest and/or Portfolio companies?",
+            "choices": [
+              "YourNest",
+              "Portfolio Company",
+              "Both"
+            ],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "8201E16988",
+            "name": "multi_line_text",
+            "label": "Multi Line text",
+            "question": "What excites you about the VC's and Startups?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "C14856D888",
+            "name": "multi_line_text",
+            "label": "Multi Line text",
+            "question": "What excites you about the Deeptech Industry?",
+            "choices": [],
+            "mandatory": true,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "8890500A5C",
+            "name": "multi_line_text",
+            "label": "Multi Line text",
+            "question": "Which of our portfolio company you would be interested to work with and why?",
+            "choices": [],
+            "mandatory": false,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "0809AB2E8F",
+            "name": "single_text",
+            "label": "Single Line text",
+            "question": "Your preferred location?",
+            "choices": [],
+            "mandatory": false,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          },
+          {
+            "uuid": "3ACBA9D0C5",
+            "name": "multi_line_text",
+            "label": "Multi Line text",
+            "question": "Anything else you think we should know about you?",
+            "choices": [],
+            "mandatory": false,
+            "maximum_range": null,
+            "minimum_range": null,
+            "open_range": null
+          }
+        ],
+        "workplace_type": "REMOTE",
+        "currency": "INR",
+        "company_country": "Premium-Converted-India",
+        "is_hr_job": false,
+        "referral_email": "refer@yournest.pyjamahr.com",
+        "email_domain": "yournest.in",
+        "email_provider": null,
+        "is_employee_referral_flow_enabled": false,
+        "company_career_page_url": null,
+        "is_seo_indexable": false,
+        "valid_through": "2023-07-30T15:03:45.624257+05:30"
+      },
+      "FullSSR": {
+        "props": {
+          "pageProps": {
+            "companyDetails": {
+              "id": 6566,
+              "name": "YourNest Venture Capital",
+              "url": "https://yournest.in/",
+              "slug": "yournest-venture-capital",
+              "location": "Gurgaon, Haryana",
+              "address": {
+                "address_line_1": "416, 4th Floor, MGF Metropolis (Lifestyle) Mall Metro Station, near, Mehrauli-Gurgaon Rd, Gurugram, Haryana 122002"
+              },
+              "description": "<div><br></div><div><span style=\"color: rgb(0, 0, 0);\">YourNest Venture Capital is a sharply focused, </span><span style=\"color: rgb(255, 0, 0);\">early-stage VC firm</span><span style=\"color: rgb(0, 0, 0);\">. Currently deploying its 4th fund (INR 1500 Crore) to invest in startups with a focus on innovative, tech-led products and a vision to nurture global market leaders from India, we are focused on disruptive technologies to enhance how mankind leverages the value of time.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing </span><a href=\"https://www.yournest.in/team\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\"> of passionate professionals who are strong thought leaders and natural team players, enjoying reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent and enjoy an open-door, all-time-access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our </span><a href=\"https://www.yournest.in/portfolio\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\"> companies are at the forefront of innovation and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and join something truly extraordinary. We look forward to welcoming new talent to YourNest and our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we actively support.</span></div>",
+              "primary_brand_colour": "#bd400a",
+              "secondary_brand_colour": "#000000",
+              "image_path": "files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "image_url": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg",
+              "uuid": "987EE7EF32",
+              "phone_number": "+917666750052",
+              "email": "openings@yournest.in",
+              "banner_image_path": "files/company/img/banner/Careers_Page_Banner_Designs_MH_310323.002_111C5628A3.jpeg",
+              "size": "10-50",
+              "country": "Premium-Converted-India",
+              "show_company_name_on_career_page": true,
+              "allow_resume_drop_when_no_jobs": false,
+              "publish_jobs_to_ziprecruiter": true,
+              "is_careers_page_department_drop_down_disabled": false
+            },
+            "jobDetails": {
+              "id": 43774,
+              "uuid": "B79F7D2B07",
+              "title": "Interested in VC/Startups (Across India)",
+              "job_type": "FULLTIME",
+              "description": "<div><strong style=\"font-size: 18px; color: rgb(0, 0, 0);\">If you have interest in working with YourNest and/or our portfolio companies, just drop in your details here and we will be excited to connect with you.</strong></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing&nbsp;</span><a href=\"https://yournest.in/people/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\">&nbsp;of passionate professionals who are strong thought leaders, natural team players who enjoy reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent, and enjoy an open door, all-time access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our&nbsp;</span><a href=\"https://yournest.in/our-portfolio/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\">&nbsp;companies are at the forefront of innovation, and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and be part of something truly extraordinary. We look forward to welcoming new talent to YourNest and to our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we support actively.</span></div><div><br></div><div><br></div>",
+              "max_salary": null,
+              "min_salary": null,
+              "max_experience": 20,
+              "skill": [
+                "venture capital",
+                "startup",
+                "deep tech"
+              ],
+              "education": [],
+              "seniority": [
+                "mid-senior-level",
+                "director-vp",
+                "associate",
+                "entry-level",
+                "executive-president",
+                "internship"
+              ],
+              "min_experience": 0,
+              "industry": null,
+              "country": "India",
+              "location": "Remote",
+              "other_locations": [],
+              "department": null,
+              "department_name": null,
+              "remote": true,
+              "created_at": "2023-05-31T15:03:45.624257+05:30",
+              "salary_type": "ANNUAL",
+              "is_salary_visible": false,
+              "published_internally": false,
+              "job_screening_questions": [
+                {
+                  "uuid": "F442189FD8",
+                  "name": "multi_choice",
+                  "label": "Multiple choice",
+                  "question": "Are you interested in working with YourNest and/or Portfolio companies?",
+                  "choices": [
+                    "YourNest",
+                    "Portfolio Company",
+                    "Both"
+                  ],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "8201E16988",
+                  "name": "multi_line_text",
+                  "label": "Multi Line text",
+                  "question": "What excites you about the VC's and Startups?",
+                  "choices": [],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "C14856D888",
+                  "name": "multi_line_text",
+                  "label": "Multi Line text",
+                  "question": "What excites you about the Deeptech Industry?",
+                  "choices": [],
+                  "mandatory": true,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "8890500A5C",
+                  "name": "multi_line_text",
+                  "label": "Multi Line text",
+                  "question": "Which of our portfolio company you would be interested to work with and why?",
+                  "choices": [],
+                  "mandatory": false,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "0809AB2E8F",
+                  "name": "single_text",
+                  "label": "Single Line text",
+                  "question": "Your preferred location?",
+                  "choices": [],
+                  "mandatory": false,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                },
+                {
+                  "uuid": "3ACBA9D0C5",
+                  "name": "multi_line_text",
+                  "label": "Multi Line text",
+                  "question": "Anything else you think we should know about you?",
+                  "choices": [],
+                  "mandatory": false,
+                  "maximum_range": null,
+                  "minimum_range": null,
+                  "open_range": null
+                }
+              ],
+              "workplace_type": "REMOTE",
+              "currency": "INR",
+              "company_country": "Premium-Converted-India",
+              "is_hr_job": false,
+              "referral_email": "refer@yournest.pyjamahr.com",
+              "email_domain": "yournest.in",
+              "email_provider": null,
+              "is_employee_referral_flow_enabled": false,
+              "company_career_page_url": null,
+              "is_seo_indexable": false,
+              "valid_through": "2023-07-30T15:03:45.624257+05:30"
+            },
+            "companySlug": "yournest-venture-capital"
+          },
+          "__N_SSP": true
+        },
+        "page": "/[company]/[jobId]",
+        "query": {
+          "company": "yournest-venture-capital",
+          "jobId": "interested-in-vcstartups-across-india"
+        },
+        "buildId": "-zl3jPji-ZXJ2VHuKkmQd",
+        "isFallback": false,
+        "gssp": true,
+        "scriptLoader": []
+      },
+      "JobPosting": {
+        "@context": "https://schema.org/",
+        "@type": "JobPosting",
+        "title": "Interested in VC/Startups (Across India)",
+        "description": "<div><strong style=\"font-size: 18px; color: rgb(0, 0, 0);\">If you have interest in working with YourNest and/or our portfolio companies, just drop in your details here and we will be excited to connect with you.</strong></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">We are a growing&nbsp;</span><a href=\"https://yournest.in/people/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">team</a><span style=\"color: rgb(0, 0, 0);\">&nbsp;of passionate professionals who are strong thought leaders, natural team players who enjoy reimagining the future and crafting global solutions. And we do not believe that age, gender, ethnicity or physical differences define one's potential. We believe in nurturing talent, and enjoy an open door, all-time access culture.&nbsp;</span></div><div><br></div><div><span style=\"color: rgb(0, 0, 0);\">Our&nbsp;</span><a href=\"https://yournest.in/our-portfolio/\" rel=\"noopener noreferrer\" target=\"_blank\" style=\"color: rgb(17, 85, 204);\">portfolio</a><span style=\"color: rgb(0, 0, 0);\">&nbsp;companies are at the forefront of innovation, and are always looking for talented individuals to join their teams. If you are passionate about technology and committed to the startup ecosystem, you’ve come to the right place. Our startups&nbsp;offer a range of open positions to drive your career. We encourage candidates with a strong entrepreneurial spirit and a desire to make a difference to apply and be part of something truly extraordinary. We look forward to welcoming new talent to YourNest and to our portfolio companies – a dynamic set of ‘Challengineer’ founders whose ambitions we support actively.</span></div><div><br></div><div><br></div>",
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Interested in VC/Startups (Across India)",
+          "value": 43774
+        },
+        "datePosted": "2023-05-31T15:03:45.624257+05:30",
+        "employmentType": "FULL_TIME",
+        "hiringOrganization": {
+          "@type": "Organization",
+          "name": "YourNest Venture Capital",
+          "sameAs": "https://yournest.in/",
+          "logo": "https://assets.pyjamahr.com/backend/files/company/img/YourNest_Logo-highres_66C543C18E.jpg"
+        },
+        "jobLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "India",
+            "addressLocality": "Remote",
+            "addressRegion": null,
+            "streetAddress": null
+          }
+        },
+        "applicantLocationRequirements": {
+          "@type": "Country",
+          "name": "India"
+        },
+        "jobLocationType": "TELECOMMUTE",
+        "directApply": true,
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "INR",
+          "value": {
+            "@type": "QuantitativeValue",
+            "value": null,
+            "unitText": "YEAR"
+          }
+        },
+        "validThrough": "2023-07-30T15:03:45.624257+05:30"
+      },
+      "rawApplyHref": "/careers?company=YourNest%20Venture%20Capital&job_id=43774&company_uuid=undefined&utm_source=DIRECT&source=DIRECT&isHeaderVisible=undefined&apply_now=true",
+      "declarations": [
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "shortcut icon",
+            "href": "/images/Monogram.svg"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7CRoboto:300,400,500,600,700"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "text/javascript",
+            "src": "/rawJsFromFile.js",
+            "segment_key": "SbrhadfGPD452CwAgrFhJPgymPpgsLlV"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "canonical",
+            "href": "https://jobs.pyjamahr.com/yournest-venture-capital/interested-in-vcstartups-across-india"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "type": "application/ld+json"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "preload",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "as": "style"
+          }
+        },
+        {
+          "tag": "link",
+          "attrs": {
+            "rel": "stylesheet",
+            "href": "/_next/static/css/4a9153793217009282ad.css",
+            "data-n-g": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "defer": "",
+            "nomodule": "",
+            "src": "/_next/static/chunks/polyfills-a40ef1678bae11e696dba45124eadd70.js"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/webpack-37d229a845c5768d0ce8.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/framework-34c5a4b8137ffdbfac41.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/main-0108c4a9ec75d22b4307.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/_app-7dcb0c5e576f1dda5091.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/7909-48c429cdfd6355ebc7af.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4298-071f4f211a666ba5514b.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/874-c81b8deb0bca984d7bc5.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/3695-b3290b9b685b1c7d4d4f.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1821-09adcfa9e004daa6ab32.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/8806-5c6fb43dd92b9becf779.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/1517-60c5491073f755edb215.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/4728-306e7874a80b492862ff.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/2113-f86e2f5f8a77ea329883.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/chunks/pages/%5Bcompany%5D/%5BjobId%5D-df9f67b265fc2b315eec.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_buildManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "src": "/_next/static/-zl3jPji-ZXJ2VHuKkmQd/_ssgManifest.js",
+            "defer": ""
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "id": "jss-server-side"
+          }
+        },
+        {
+          "tag": "style",
+          "attrs": {
+            "data-styled": "",
+            "data-styled-version": "5.3.6"
+          }
+        },
+        {
+          "tag": "script",
+          "attrs": {
+            "id": "__NEXT_DATA__",
+            "type": "application/json"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Finite whole original native data carriers only. Corporate handoff, formal legal employer, programs, CSS, rendered activation, application, company totals and cleanup unqualified."
+}

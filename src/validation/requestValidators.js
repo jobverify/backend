@@ -470,7 +470,10 @@ export const userProfileValidation = [
     return true;
   }),
   body("branch").optional().custom((value) => {
-    if (String(value ?? "").trim().length > MAX_TEXT_LENGTH) {
+    if (typeof value !== "string" || !value.trim()) {
+      throw new Error("Branch is required.");
+    }
+    if (value.trim().length > MAX_TEXT_LENGTH) {
       throw new Error(`Branch must be ${MAX_TEXT_LENGTH} characters or fewer.`);
     }
     return true;

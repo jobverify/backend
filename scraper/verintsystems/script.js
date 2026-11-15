@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { run as runCurrentVerint } from './nativeCareers20261114.js'
 
 import { VERINT_SYSTEMS_CATALOG } from './catalog.js'
 
@@ -18,9 +18,6 @@ export const PUBLIC_JOBS_BASE_URL = VERINT_SYSTEMS_CATALOG.publicJobsBaseUrl
 export const SITE_NUMBER = VERINT_SYSTEMS_CATALOG.siteNumber
 export const DEFAULT_LOCATION = 'India'
 export const DEFAULT_LIMIT = 24
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
@@ -269,69 +266,10 @@ export const extractJobDetail = (payload, listing = {}) => {
   }
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 20000,
-})
-
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json,text/plain,*/*',
-  },
-  label: SOURCE,
-  timeoutMs: 30000,
-})
-
-export const createVerintSystemsScraper = ({
-  maxPages = Number.POSITIVE_INFINITY,
-  fetchText = defaultFetchText,
-  fetchJson = defaultFetchJson,
-  now = () => new Date().toISOString(),
-} = {}) => ({
-  async run() {
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersPageSignal(careersHtml)) {
-      throw new Error('Verint Systems verified Verint careers page no longer matches the pinned first-party handoff')
-    }
-
-    const candidateExperienceHtml = await fetchText(CANDIDATE_EXPERIENCE_URL)
-    if (!hasOfficialCandidateExperienceSignal(candidateExperienceHtml)) {
-      throw new Error('Verint Systems verified Oracle candidate experience page no longer matches the pinned public shell')
-    }
-
-    const jobs = []
-    const seenJobIds = new Set()
-
-    for (let page = 0; page < maxPages; page += 1) {
-      const payload = await fetchJson(buildSearchUrl({ page }))
-      const pageJobs = extractSearchResults(payload)
-      const summary = extractPaginationSummary(payload, { page })
-
-      for (const listing of pageJobs) {
-        if (seenJobIds.has(listing.jobId)) continue
-        seenJobIds.add(listing.jobId)
-
-        const detailPayload = await fetchJson(buildJobDetailApiUrl(listing.jobId))
-        const detail = extractJobDetail(detailPayload, listing)
-
-        jobs.push({
-          ...detail,
-          source: SOURCE,
-          link: detail.applyUrl || detail.sourceUrl,
-          scrapedAt: now(),
-        })
-      }
-
-      if (!summary.hasNext) break
-    }
-
-    return jobs
-  },
+// Historical Oracle parsing helpers above remain available for old fixtures.
+// Both public entry points use the current declared native handoff.
+export const createVerintSystemsScraper = (defaults = {}) => ({
+  run: (options = {}) => runCurrentVerint({ ...defaults, ...options }),
 })
 
 export const run = async (options = {}) => createVerintSystemsScraper(options).run()

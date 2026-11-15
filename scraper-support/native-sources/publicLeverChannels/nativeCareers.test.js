@@ -1,14 +1,18 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-import {fixture,replay} from './fixtureReplay.js'
-import {createNetomiScraper} from '../../../scraper/netomi/script.js'
+import {createPublicLeverSource, PUBLIC_LEVER_PROFILES} from './nativeCareers.js'
+import {replayNative, withReplayClock} from '../../../scraper/netomi/fixtures/replayNative20261115.js'
 import {createIonicScraper} from '../../../scraper/ionic/script.js'
 import {createVeryGoodSecurityIndiaScraper} from '../../../scraper/verygoodsecurityindia/script.js'
 import {getScraperCatalog,createCatalogScraper} from '../../../scraper-support/providers/index.js'
 import {readInventoryEvidence} from '../../../scraper-support/utils/inventoryEvidence.js'
 globalThis.fetch=async()=>{throw Error('Only immutable original entities; network/DB/website execution prohibited')}
+// Retain the historical shared collector's contract; its absent original corpus
+// remains an explicit file-load failure in these cases, never a fabricated replay.
+const createNetomiScraper = options => createPublicLeverSource(PUBLIC_LEVER_PROFILES.netomi, options)
 
 for(const [source,create] of [['netomi',createNetomiScraper],['verygoodsecurityindia',createVeryGoodSecurityIndiaScraper]])test(source+' retains every original native own model and complete criteria before selection',async()=>{
+ const {fixture,replay}=await import('./fixtureReplay.js')
  const r=replay(),jobs=await create().run(r.options),oracle=fixture.oracle[source]
  assert.equal(r.audits.length,1,'A detached awaited complete audit is required')
  const audit=r.audits[0];assert.equal(audit.observations.length,oracle.records.length)
@@ -39,6 +43,7 @@ for(const [source,create] of [['netomi',createNetomiScraper],['verygoodsecurityi
  }
 })
 test('Ionic failed proxy is retained as unavailable selected channel without an empty-feed claim',async()=>{
+ const {fixture,replay}=await import('./fixtureReplay.js')
  const r=replay(),jobs=await createIonicScraper().run(r.options);assert.equal(jobs.length,0)
  assert.equal(r.audits.length,1);const audit=r.audits[0]
  for(const phase of ['opening','closing']){
@@ -57,7 +62,14 @@ test('registered metadata removes stale dates/counts and keeps the actual config
   assert.equal(provider.sourceScopeComplete,false);assert.equal(provider.lifecycleCleanupAllowed,false)
  }
 })
-test('actual registered dispatch exposes the Netomi native observations while publisher binding stays held',async()=>{
- const p=getScraperCatalog().find(p=>p.source==='netomi'),r=replay(),jobs=await createCatalogScraper(p).run(r.options)
- assert.equal(jobs.length,0);assert.equal(r.audits.length,1);assert.equal(r.audits[0].observations.length,20)
+test('actual registered dispatch exposes genuine Netomi native text pairs while corporate and missing closing stay held',async t=>{
+ const p=getScraperCatalog().find(p=>p.source==='netomi'),r=replayNative()
+ const jobs=await withReplayClock(t,()=>createCatalogScraper(p).run(r.options))
+ assert.equal(jobs.length,8);assert.equal(r.audits.length,1);assert.equal(r.audits[0].observations.length,21)
+ assert.match(p.modulePath,/netomi[\\/]nativeText20261115\.js$/)
+ assert.equal(r.audits[0].corporateBindingQualified,false)
+ assert.equal(r.audits[0].formalLegalEntityQualified,false)
+ assert.equal(r.audits[0].issues.length,1)
+ assert.equal(readInventoryEvidence(jobs).lifecycleCleanupAllowed,false)
+ assert.ok(r.calls.every(row=>!row.replayReuse))
 })

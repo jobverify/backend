@@ -4,7 +4,7 @@ import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS } from './
 import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
 import { resumePageBudget } from '../src/utils/resumePresentation.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
-  buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations } from '../src/services/resumeLatexContent.js';
+  buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations, resumeSectionTitles, resumeSourceLayout, resumeSubheadingChoices } from '../src/services/resumeLatexContent.js';
 
 export async function prepareResumeRuntime({ deadline = Date.now() + RESUME_WORKER_BUDGET_MS,
   prepareCompiler = prepareResumeCompiler, prepareModel = prepareResumeModel, ...options } = {}) {
@@ -35,6 +35,9 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   // evidence. Historic artifact metadata cannot weaken factual validation.
   const facts = buildSourceFacts(source);
   const allowedLinks = resumeLinkDestinations(facts);
+  const sectionTitles = resumeSectionTitles(source, facts);
+  let layout = resumeSourceLayout(source, facts);
+  const headerChoices = resumeSubheadingChoices(facts);
   const originalPrompt = tailored ? buildLatexTailoringPrompt({ ...input, source, facts }) : buildPreparationPrompt({ ...input, source, facts });
   let prompt = originalPrompt;
   let failureCode = 'processing_failed';
@@ -56,9 +59,9 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
     try {
       await phase(attempt === 1 ? 'generating' : 'repairing');
       diagnose('started');
-      latex = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal, allowedLinks, onDiagnostic }));
+      latex = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal, allowedLinks, pagination, sectionTitles, layout, headerChoices, onDiagnostic }));
       await phase('latex');
-      latex = validateLatexSource(latex, { requireTemplate: true });
+      latex = validateLatexSource(latex, { requireTemplate: true, pagination, sectionTitles, layout });
       await phase('compiling');
       // Compile the validated model document exactly as generated. Useful links
       // belong inline; never append a generated reference appendix.
@@ -73,6 +76,10 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
             ? 'Increase the spacing between sections and entries and distribute the existing content over the required pages, using a page break at a natural section boundary if needed. Do not add filler or blank pages. '
             : 'Condense repeated wording, combine related bullets, and reduce excess spacing to fit the page budget. ')
           + 'Preserve the Abey template, protected candidate facts and readable text of at least 10pt.');
+        if (layout.pageBreakBefore) {
+          layout = { ...layout, pageBreakBefore: undefined };
+          issues.push('The estimated section boundary did not fit. Choose a new page break between closed entry lists within a long section if needed.');
+        }
       }
       const fidelity = validateResumeFidelity({ facts, text: result.text, links: result.links, tailored });
       if (!fidelity.valid) {
