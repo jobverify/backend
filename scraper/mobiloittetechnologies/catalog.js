@@ -13,14 +13,19 @@ export const MOBILOITTE_TECHNOLOGIES_CATALOG = {
   companyDomain: 'mobiloitte.com',
   atsPlatform: 'first-party-careers-page',
   countryFilter: 'India',
-  paginationStrategy: 'single-first-party-careers-page-visible-cards',
+  paginationStrategy: 'current-visible-own-role-links-with-independent-closing-recheck',
   extractionStrategy:
-    'verified-first-party-role-cards+canonical-role-details+empty-state-fallback',
+    'current-corporate-handoff+own-canonical-JobPosting+visible-full-criteria+typed-country+closing-role-recheck',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
-  verifiedOn: '2026-10-03',
+  verifiedOn: null,
+  verifiedPublicJobCount: null,
+  verifiedIndiaJobCount: null,
+  sourceScopeComplete: false,
+  lifecycleCleanupAllowed: false,
+  zeroResultPolicy: 'coverage-gap',
   verifiedSurfaceSummary:
-    'Verified on October 3, 2026 that the official Mobiloitte careers page displays four Delhi job cards with role-specific canonical detail pages. The visible cards are collected and marked listing-incomplete because the page does not advertise a total count.',
+    'Current own role canonical identity, visible legal employer heading, native brand organization, typed work-country and every visible full criteria section are checked against the JobPosting. Corporate handoff, listing and each own role are reread before partial positive output. Company totals and empty inventory remain unproved; cleanup is forbidden.',
   modulePath: path.resolve(currentDir, 'script.js'),
   dryRunFile: 'mobiloittetechnologies/jobs.json',
 }

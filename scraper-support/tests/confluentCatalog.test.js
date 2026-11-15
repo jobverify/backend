@@ -7,17 +7,17 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes Confluent as a verified Ashby-backed source', () => {
+test('getScraperCatalog routes Confluent through its current employer IBM handoff', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'confluent')
 
   assert.ok(provider)
   assert.equal(provider.companyName, 'Confluent')
   assert.equal(provider.adapter, 'script')
-  assert.equal(provider.atsPlatform, 'ashby')
+  assert.equal(provider.atsPlatform, 'ibm-careers-search')
   assert.equal(provider.companyCareerPage, 'https://careers.confluent.io/')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'ashby-public-board-pagination')
-  assert.equal(provider.extractionStrategy, 'public-ashby-board-api')
+  assert.equal(provider.paginationStrategy, 'bounded-native-IBM-exact-total-search')
+  assert.equal(provider.extractionStrategy, 'current-employer-301-IBM-native-search-explicit-brand-and-country')
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
   assert.equal(provider.companyDomain, 'careers.confluent.io')

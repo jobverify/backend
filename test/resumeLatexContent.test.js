@@ -290,6 +290,30 @@ test('generation and independent comparison prompts ground facts in untrusted so
   assert.match(repair, /complete.*LaTeX|LaTeX.*complete/i);
 });
 
+test('generation keeps the full source while avoiding duplicated extraction records and link data', () => {
+  const original = { text: 'Alex Example\nalex@example.test\nEXPERIENCE\nSoftware Engineer | Cedar Systems | Jan 2022 - Present\nBuilt Python services, reducing latency by 25%.\nEDUCATION\nBSc Computer Science | Valley University | 2016 - 2020\nSKILLS\nPython, SQL\nCERTIFICATIONS\nCloud Foundations',
+    links: ['https://example.test/cloud_foundations'], linkLabels: [{ url: 'https://example.test/cloud_foundations', label: 'Cloud Foundations' }] };
+  const facts = buildSourceFacts(original);
+  const validationFacts = structuredClone(facts);
+  const prompt = buildPreparationPrompt({ source: original, facts });
+  assert.deepEqual(facts, validationFacts, 'prompt compaction must not weaken the full validator evidence');
+  const payload = JSON.parse(prompt.split('\n').find(line => line.startsWith('{"originalResume":')));
+  assert.deepEqual(payload.originalResume, { text: original.text, links: original.links });
+  assert.equal(payload.protectedFacts.name, 'Alex Example');
+  assert.deepEqual(payload.protectedFacts.metrics, ['25%']);
+  assert.equal(payload.protectedFacts.employment[0].employer, 'Cedar Systems');
+  assert.equal(payload.protectedFacts.employment[0].title, 'Software Engineer');
+  assert.deepEqual(payload.protectedFacts.employment[0].dates, ['Jan 2022 - Present']);
+  assert.equal(payload.protectedFacts.education[0].institution, 'Valley University');
+  for (const field of ['sourceText', 'links', 'linkLabels', 'skills']) assert.equal(payload.protectedFacts[field], undefined, `${field} is already available in original source data`);
+  for (const record of [...payload.protectedFacts.employment, ...payload.protectedFacts.education]) {
+    assert.equal(record.source, undefined, 'raw source rows are already in originalResume');
+    assert.equal(record.anchors, undefined, 'extraction anchors are needed by validation, not inference');
+  }
+  assert.ok(payload.allowedLinkDestinations.every(link => typeof link.latexTarget === 'string' && link.url === undefined));
+  assert.ok(prompt.includes(JSON.stringify(String.raw`\href{https://example.test/cloud\_foundations}{Cloud Foundations}`)), 'useful destination/label pairs must remain available');
+});
+
 test('LaTeX validation accepts a complete standalone readable document', () => {
   assert.equal(validateLatexSource(latex), latex);
 });

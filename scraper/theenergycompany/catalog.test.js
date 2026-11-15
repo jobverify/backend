@@ -16,14 +16,18 @@ test('The ENERGY COMPANY is registered against its verified first-party careers 
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'first-party-server-rendered-careers')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-first-party-careers-page-plus-missing-routes-validation')
+  assert.equal(provider.paginationStrategy, 'current-native-html-role-accordions-plus-independent-publisher-application-style-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-careers-page+inline-role-cards+contact-page-apply-link+verified-missing-routes',
+    'current-own-configured-publisher+visible-scoped-native-country+complete-role-and-common-hiring-criteria+exact-own-role-query-application+fresh-closing',
   )
   assert.equal(provider.parser, 'custom-script')
+  assert.equal(provider.backfillMode, null)
+  assert.equal(provider.sourceScopeComplete, false)
+  assert.equal(provider.sourceListingComplete, false)
+  assert.equal(provider.lifecycleCleanupAllowed, false)
   assert.equal(provider.normalizationProfile, 'engineering-default')
   assert.equal(provider.companyDomain, 'energycompany.in')
   assert.match(provider.modulePath, /theenergycompany[\\/]script\.js$/i)

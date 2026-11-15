@@ -69,7 +69,9 @@ const allowedURL = value => {
   try {
     const url = new URL(value)
     if (url.username || url.password || url.hash || url.protocol !== 'https:') return false
-    if (url.href === CAREERS_URL || url.href === API_URL) return true
+    if (url.href === CAREERS_URL || url.href === API_URL
+      || url.href === 'https://www.bazaarvoice.com/company/careers'
+      || url.href === 'https://www.bazaarvoice.com/company/careers/career-job-listing') return true
     if (url.origin === 'https://www.bazaarvoice.com') return /^\/wp-content\/themes\/bazaarvoice\/js\/bv-[a-f0-9]+-app\.js$/.test(url.pathname) && !url.search
     if (url.origin === 'https://jobs.lever.co') return /^\/bazaarvoice\/[0-9a-f-]{36}(?:\/apply)?$/.test(url.pathname) && !url.search
     return url.origin === 'https://api.lever.co' && url.pathname === '/v0/postings/bazaarvoice'
@@ -256,6 +258,10 @@ function detail(html, row) {
   need(!closing.iso || (!posted.iso || closing.iso >= posted.iso) && Date.parse(closing.iso) > Date.now(), 'native-role-expired-or-contradictory-date')
   return { row, schema, addresses: locations.map(value => value.address), descriptionHTML, posted, closing }
 }
+
+// The current Next careers handoff reuses the same original Lever role checks.
+// Export the readers without promoting their source-wide inventory scope.
+export { listing as inspectBazaarvoiceNativeListing, detail as inspectBazaarvoiceNativeRole }
 
 function application(html, row) {
   const doc = visibleDocument(html)

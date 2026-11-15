@@ -515,12 +515,26 @@ export async function collectNativeEpam({ options, maxJobs, project, headers }) 
 export async function runNativeEpam(args) {
   const collected = await collectNativeEpam(args)
   const original = collected[EVIDENCE]
+  const ownOpening = original.openingProgramContext, ownClosing = original.closingProgramContext
   const qualified = original.sourceCurrentAdmissionQualified === true
-  const jobs = qualified ? [...collected] : []
+    && ownOpening?.nativeRoleId === ownClosing?.nativeRoleId
+    && ownOpening?.fingerprint === ownClosing?.fingerprint
+  // A producer prototype cannot replace another role's current own page. Only
+  // the independently acquired full opening/closing role context is admitted;
+  // every other original feed model remains retained as an unselected record.
+  const jobs = qualified ? collected.filter(job => job.nativeUniqueId === ownOpening.nativeRecord.unique_id)
+    .map(job => ({ ...job, sourceListingComplete: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+      nativeJobPosting: ownOpening.nativeJobPosting,
+      sourceNativeClosingContext: { ownFullRoleRechecked: true, ownNativeFeedRechecked: true,
+        currentProgramsAndStylesRechecked: true, currentPublicApplyEnabled: true } })) : []
+  const publishedIDs = new Set(jobs.map(job => job.nativeUniqueId))
   const batch = freeze({ ...original,
     sourceCurrentAdmissionQualified: qualified,
-    publicationHeldNativeIDs: qualified ? [] : collected.map(job => job.nativeUniqueId),
+    publicationHeldNativeIDs: collected.filter(job => !publishedIDs.has(job.nativeUniqueId)).map(job => job.nativeUniqueId),
+    publicationScope: 'individually-acquired-own-opening-and-closing-role-context-only',
+    sourceListingComplete: false,
     extractedDetailJobs: jobs.length,
+    excludedDetailJobs: collected.length - jobs.length,
     firstExtractedJobID: jobs[0]?.jobId ?? null,
     ...(qualified ? {} : { publicationHold: 'current-complete-renderer-criteria-and-application-contract-not-qualified' }),
     recordKind: 'vacancy-rows',
@@ -534,13 +548,13 @@ export async function runNativeEpam(args) {
   Object.defineProperty(jobs, EVIDENCE, { value: batch })
   if (jobs[0]) jobs[0].nativeCollectionEvidence = batch
   attachInventoryEvidence(jobs, {
-    status: qualified && jobs.length ? 'complete-inventory' : 'coverage-gap',
+    status: 'coverage-gap',
     firstParty: batch.handoffVerified, surface: nativeSearchUrl(0),
-    listingComplete: qualified && jobs.length > 0, lifecycleCleanupAllowed: false,
+    listingComplete: false, lifecycleCleanupAllowed: false,
     pagesFetched: batch.passes.reduce((sum, pass) => sum + pass.pages.length, 0),
     reportedTotal: batch.reportedTotal ?? null, indiaFacetCount: null,
     verifiedAt: qualified ? batch.verifiedAt : null,
-    reason: qualified ? 'qualified-current-native-India-subset;all-observations-retained;company-scope-and-cleanup-unproved'
+    reason: qualified ? 'individually-qualified-own-native-India-role;all-feed-observations-retained;company-scope-and-cleanup-unproved'
       : 'publication-held;current-renderer-criteria-and-application-proof-incomplete;not-verified-empty',
   })
   return jobs

@@ -6,6 +6,7 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 
 import { ATOS_CATALOG } from './catalog.js'
+import { runCurrentAtos } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -253,7 +254,7 @@ export const createAtosScraper = ({
   },
 })
 
-export const run = async (options = {}) => createAtosScraper(options).run(options)
+export const run = async (options = {}) => runCurrentAtos(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

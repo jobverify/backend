@@ -1,10 +1,9 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { runCurrentKpit } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const config = loadConfig(currentDir)
 
 const BASE_URL = 'https://www.kpit.com'
 const TALENTOJO_BASE_URL = 'https://talentojo.kpit.com'
@@ -202,66 +201,7 @@ export const extractJobDetail = (payload, listing = {}) => {
   }
 }
 
-const fetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
-}
-
-const fetchJson = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
-      Accept: 'application/json,text/plain,*/*',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.json()
-}
-
-export const run = async () => {
-  const jobs = []
-  const seenJobIds = new Set()
-  const maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null
-
-  const html = await fetchText(buildSearchUrl())
-  const listings = extractSearchResults(html)
-
-  for (const listing of listings) {
-    if (seenJobIds.has(listing.jobId)) continue
-    seenJobIds.add(listing.jobId)
-
-    const detailPayload = await fetchJson(buildJobDetailApiUrl(listing.jobId))
-    const detail = extractJobDetail(detailPayload, listing)
-
-    jobs.push({
-      ...detail,
-      company: 'KPIT',
-      source: 'kpit',
-      link: detail.applyUrl || detail.sourceUrl,
-      scrapedAt: new Date().toISOString(),
-    })
-
-    if (maxJobs && jobs.length >= maxJobs) {
-      return jobs
-    }
-  }
-
-  return jobs
-}
+export const run = options => runCurrentKpit(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -17,6 +17,7 @@ import { normalizePublicJobCategory } from "../utils/publicJobNormalization.js";
 import { renderBroadcastTemplate } from './telegramBroadcastTemplate.js';
 import { formatBatchEligibility } from '../utils/jobBatchEligibility.js';
 import { batchEligibilityForAlert } from './jobBatchEligibility.js';
+import { canProcessClassifiedJobAlerts } from './jobAlertClassificationGate.js';
 
 const MAX_JOBS_PER_MESSAGE = 1;
 const CLAIM_TTL_MS = 5 * 60 * 1000;
@@ -113,6 +114,7 @@ const sendWithTimeout = async (provider, payload) => {
 
 const processRecords = async (user, records) => {
   for (let offset = 0; offset < records.length; offset += MAX_JOBS_PER_MESSAGE) {
+    if (!await canProcessClassifiedJobAlerts()) return;
     const batch = records.slice(offset, offset + MAX_JOBS_PER_MESSAGE);
     const now = new Date();
     const token = randomUUID();
@@ -262,6 +264,7 @@ export const recoverQueuedJobAlerts = async () => {
   if (recoveryInProgress) return;
   recoveryInProgress = true;
   try {
+    if (!await canProcessClassifiedJobAlerts()) return;
     await cleanupSentDeliveries();
     const dueAt = new Date();
     let cursor;

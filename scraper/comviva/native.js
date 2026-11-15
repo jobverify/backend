@@ -7,6 +7,7 @@ import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourc
 import {nativeCriterion} from './criterionRendering.js'
 import {parseNativeJSON} from './nativeJSON.js'
 import {qualifyCorporatePublisher} from './publisherContext.js'
+import {qualifyCurrentNativeDelegation,readDeclaredNativeRoleView,matchingNativeViewContracts} from './currentNativeView.js'
 
 const profile=JSON.parse(fs.readFileSync(new URL('./native.scope.json',import.meta.url)))
 export const careers='https://www.comviva.com/careers/explore-opportunity/'
@@ -72,7 +73,7 @@ async function concurrent(rows,work){
  await Promise.all(Array.from({length:Math.min(4,rows.length)},async()=>{while(cursor<rows.length&&!failure){const index=cursor++;try{result[index]=await work(rows[index],index)}catch(error){failure=error;throw error}}}))
  return result
 }
-async function surface(html,read){
+async function surface(html,read,receipts){
  const publisherProof=publisher(html)
  const program=await read(widgetProgram);need(sha(program)===profile.assets[widgetProgram],'declared corporate widget program changed')
  const result=parseNativeJSON(await read(handoff,{headers:handoffHeaders}))
@@ -84,6 +85,7 @@ async function surface(html,read){
  const declared=[...doc.nodes(node=>node.tag==='script'&&node.attrs.src).map(node=>new URL(node.attrs.src,widget).href),...doc.nodes(node=>node.tag==='link'&&node.attrs.rel==='stylesheet').map(node=>new URL(node.attrs.href,widget).href)]
  need(declared.length===14&&new Set(declared).size===14&&declared.every(url=>profile.assets[url]),'current declared renderer or stylesheet contract changed')
  await concurrent(declared,async url=>{const body=await read(url);need(sha(body)===profile.assets[url],'declared native renderer or stylesheet changed: '+url)})
+ publisherProof.nativeDelegation=qualifyCurrentNativeDelegation(html,receipts,profile)
  // Whole shell/program/style hashes above also bind the enabled EasyApply
  // modal, same-job dynamic_job_id, required controls and submit button. No
  // website JavaScript, modal action, captcha or application is executed.
@@ -178,7 +180,7 @@ function inspect(row,detail,lookup,sharedListingRenderingComplete){
   internalPostingMetadata:{is_ijp_job:detail.custom_fields?.is_ijp_job??null,meaning:'Native IJP metadata is ambiguous alongside the enabled public application UI; no backend acceptance is assumed.'}}
 }
 export async function readCurrentNative({careersHTML,read,receipts,options,maxJobs,maxPages}){
- const openingSurface=await surface(careersHTML,read),opening=await inventory(read,maxPages)
+ const openingSurface=await surface(careersHTML,read,receipts),opening=await inventory(read,maxPages)
  const openingApplicationLookups=await applicationLookups(read)
  const india=opening.rows.filter(row=>row.country==='India')
  async function fullDetail(row){
@@ -193,7 +195,17 @@ export async function readCurrentNative({careersHTML,read,receipts,options,maxJo
    return{value:null,originalUnqualifiedBody:originalBody||null,error:String(error.message||error)}
   }
  }
- const before=await concurrent(india,fullDetail),closing=await inventory(read,maxPages)
+ const roleViews=async(details,currentSurface,lookups,renderingComplete,openingViews=null)=>{
+  const views=new Map()
+  if(!currentSurface.publisher.nativeDelegation?.complete)return views
+  const candidates=india.filter((row,index)=>(!openingViews||openingViews.get(row.id)?.complete)&&inspect(row,details[index].value,lookups,renderingComplete).complete)
+  const observed=await concurrent(candidates,row=>readDeclaredNativeRoleView(row,{read,receipts,nativeScope:profile}))
+  for(let index=0;index<candidates.length;index++)views.set(candidates[index].id,observed[index])
+  return views
+ }
+ const before=await concurrent(india,fullDetail)
+ const openingNativeRoleViews=await roleViews(before,openingSurface,openingApplicationLookups,opening.renderingComplete)
+ const closing=await inventory(read,maxPages)
  need(canonical(opening.rows.map(row=>stableNative(row)))===canonical(closing.rows.map(row=>stableNative(row))),'closing full native inventory or final membership changed')
  const after=await concurrent(india,fullDetail)
  const closingApplicationLookups=await applicationLookups(read)
@@ -202,26 +214,35 @@ export async function readCurrentNative({careersHTML,read,receipts,options,maxJo
   openingApplicationLookups.complete=false;closingApplicationLookups.complete=false
   openingApplicationLookups.holds.push('closing-native-required-applicant-controls-changed');closingApplicationLookups.holds.push('closing-native-required-applicant-controls-changed')
  }
- const closingSurface=await surface(await read(careers,{headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',Accept:'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}}),read)
+ const closingSurface=await surface(await read(careers,{headers:{'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',Accept:'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}}),read,receipts)
  const {publisher:openingPublisher,...openingNativeSurface}=openingSurface,{publisher:closingPublisher,...closingNativeSurface}=closingSurface
  need(canonical(openingNativeSurface)===canonical(closingNativeSurface),'closing current native application contract changed')
  const publisherOpeningClosingMatched=canonical(openingPublisher)===canonical(closingPublisher)
+ const nativeDelegationOpeningClosingMatched=matchingNativeViewContracts(openingPublisher.nativeDelegation,closingPublisher.nativeDelegation)
+ const closingNativeRoleViews=await roleViews(after,closingSurface,closingApplicationLookups,closing.renderingComplete,openingNativeRoleViews)
  const jobs=[],proofs=[]
  for(let index=0;index<india.length;index++){
   const native=india[index],start=before[index],end=after[index],first=inspect(native,start.value,openingApplicationLookups,opening.renderingComplete),last=inspect(native,end.value,closingApplicationLookups,closing.renderingComplete)
   let stable=false
   try{stable=Boolean(start.value&&end.value&&canonical(stableNative(start.value,true))===canonical(stableNative(end.value,true)))}catch{}
   const nativeComplete=first.complete&&last.complete&&stable,publisherComplete=openingPublisher.complete&&closingPublisher.complete&&publisherOpeningClosingMatched
-  for(const proof of[first,last])if(proof.application){proof.application.corporatePublisherQualified=publisherComplete;proof.application.activePublicUI=publisherComplete&&proof.application.nativeWidgetUIQualified}
-  const complete=nativeComplete&&publisherComplete
-  proofs.push({id:native.id,jobCode:native.job_code,complete,nativeComplete,publisherComplete,publicationHolds:publisherComplete?[]:['unqualified-current-corporate-public-application-rendering'],openingProof:first,closingProof:last,stableNativeRole:stable,openingNativeDetail:start.value,closingNativeDetail:end.value,openingUnqualifiedBody:start.originalUnqualifiedBody||null,closingUnqualifiedBody:end.originalUnqualifiedBody||null,openingDetailSHA256:start.sha256||null,closingDetailSHA256:end.sha256||null,openingError:start.error||null,closingError:end.error||null,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
+  const openingNativeRoleView=openingNativeRoleViews.get(native.id)||null,closingNativeRoleView=closingNativeRoleViews.get(native.id)||null
+  const nativeRoleViewQualified=nativeDelegationOpeningClosingMatched&&matchingNativeViewContracts(openingNativeRoleView,closingNativeRoleView)
+  for(const proof of[first,last])if(proof.application){
+   proof.application.corporatePublisherQualified=publisherComplete
+   proof.application.activePublicUI=nativeRoleViewQualified&&proof.application.nativeWidgetUIQualified
+   if(nativeRoleViewQualified){proof.application.method='independently-read-current-delegated-native-same-job-EasyApply-view;corporate-UI-remains-unqualified';proof.application.nativeRoleViewURL=openingNativeRoleView.viewURL}
+  }
+  const complete=nativeComplete&&nativeRoleViewQualified
+  proofs.push({id:native.id,jobCode:native.job_code,complete,nativeComplete,publisherComplete,nativeRoleViewQualified,openingNativeRoleView,closingNativeRoleView,publicationHolds:nativeRoleViewQualified?[]:['unqualified-current-independent-native-role-view'],openingProof:first,closingProof:last,stableNativeRole:stable,openingNativeDetail:start.value,closingNativeDetail:end.value,openingUnqualifiedBody:start.originalUnqualifiedBody||null,closingUnqualifiedBody:end.originalUnqualifiedBody||null,openingDetailSHA256:start.sha256||null,closingDetailSHA256:end.sha256||null,openingError:start.error||null,closingError:end.error||null,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
   if(!complete)continue
-  const detail=start.value,sourceURL=careers+'?job_id='+native.id
+  const detail=start.value,sourceURL=openingNativeRoleView.viewURL
   jobs.push({source:'comviva',company:'Comviva',companyDomain:'comviva.com',companyCareerPage:careers,atsPlatform:'ceipal-widget',jobId:native.job_code,sourceJobId:native.job_code,requisitionId:native.job_code,sourceNativeId:native.id,title:native.public_job_title,
    country:'India',location:detail.multpile_job_location+', India',locations:detail.multpile_job_location.match(/\([^()]+\)/g).map(value=>value.slice(1,-1)+', India'),sourceCountryEvidence:first.country,
    sourceURL,sourceUrl:sourceURL,applyUrl:sourceURL,link:sourceURL,jobDescription:first.renderedDescription,sourceDescription:detail.public_job_desc,sourceNativeListing:native,sourceNativeDetail:detail,
    sourceApplicationEvidence:first.application,sourceInternalPostingMetadata:first.internalPostingMetadata,sourceModifiedAt:detail.modified,postingDate:null,sourcePublishedDateUnknown:true,employmentType:native.tax_terms||null,
-   experienceRequired:detail.experience,requiredSkills:detail.primary_skills,sourceDetailComplete:true,sourceNativeCriteriaComplete:true,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+   sourceCorporateUIQualified:false,sourceNativeRoleView:openingNativeRoleView,sourceNativeClosingRoleView:closingNativeRoleView,
+   experienceRequired:detail.experience,requiredSkills:detail.primary_skills,sourceDetailComplete:true,sourceNativeCriteriaComplete:true,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,
    sourceNativeDetailSHA256:start.sha256,sourceNativeClosingDetailSHA256:end.sha256,scrapedAt:new Date().toISOString()})
  }
  const result=maxJobs>0?jobs.slice(0,maxJobs):jobs
@@ -229,11 +250,12 @@ export async function readCurrentNative({careersHTML,read,receipts,options,maxJo
   sourceNativeRaw:opening.rows,closingNativeRaw:closing.rows,openingNativePages:opening.pages,closingNativePages:closing.pages,nativeIndiaDetailProofs:proofs,openingSurface,closingSurface,openingApplicationLookups,closingApplicationLookups,
   openingListingRenderingProofs:opening.renderingProofs,closingListingRenderingProofs:closing.renderingProofs,
   foreignNativeRecords:opening.rows.filter(row=>row.country!=='India'),qualifiedNativeCount:jobs.length,returnedNativeCount:result.length,withheldIndiaCount:proofs.filter(row=>!row.complete).length,
-  intrinsicallyQualifiedIndiaCount:proofs.filter(row=>row.nativeComplete).length,individuallyUnqualifiedIndiaCount:proofs.filter(row=>!row.nativeComplete).length,publisherBlockedIndiaCount:proofs.filter(row=>row.nativeComplete&&!row.publisherComplete).length,
+  intrinsicallyQualifiedIndiaCount:proofs.filter(row=>row.nativeComplete).length,individuallyUnqualifiedIndiaCount:proofs.filter(row=>!row.nativeComplete).length,publisherBlockedIndiaCount:proofs.filter(row=>row.nativeComplete&&!row.complete).length,
+  corporatePublisherBlockedIndiaCount:proofs.filter(row=>row.nativeComplete&&!row.publisherComplete).length,independentlyQualifiedNativeViewCount:proofs.filter(row=>row.nativeRoleViewQualified).length,nativeDelegationOpeningClosingMatched,
   openingClosingMatched:publisherOpeningClosingMatched&&applicationLookupsMatched&&proofs.every(row=>row.stableNativeRole),boardOpeningClosingMatched:true,publisherOpeningClosingMatched,applicationLookupsMatched,publicRequestReceipts:receipts,publicRequestContext:{nativeAPIHeaders:apiHeaders,widgetHandoffHeaders:handoffHeaders,unfilteredSearchFields:nativeSearchRequest(1).fields},
   internalPostingMetadataAmbiguity:'Original is_ijp_job metadata is preserved. Native widget controls are reviewed separately; corporate programs/styles remain unqualified. No application is submitted, public availability asserted or backend acceptance assumed.',
-  productionWrites:false,websiteJavaScriptExecuted:false,reason:'current-published-employer-bound-native-board; all-pages-and-full-India-details-reconciled; unreviewed-corporate-programs-and-styles-hold-current-public-application; company-scope-remains-unknown'}
+  productionWrites:false,websiteJavaScriptExecuted:false,reason:'current-published-employer-bound-native-board; all-pages-and-full-India-details-reconciled; independently-read-delegated-native-role-views-only; corporate-programs-and-styles-remain-unqualified; company-scope-remains-unknown'}
  attachSourceObservationEvidence(result,audit);Object.defineProperty(result,'nativeCollectionEvidence',{value:audit,configurable:true})
  options.onAudit?.(structuredClone(audit))
- return attachInventoryEvidence(result,{status:result.length?'discovery-only':'coverage-gap',firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,surface:careers,pagesFetched:receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:options.now?.()||new Date().toISOString(),reason:audit.reason})
+ return attachInventoryEvidence(result,{status:'coverage-gap',firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,surface:careers,pagesFetched:receipts.length,reportedTotal:null,indiaFacetCount:null,verifiedAt:options.now?.()||new Date().toISOString(),reason:audit.reason})
 }

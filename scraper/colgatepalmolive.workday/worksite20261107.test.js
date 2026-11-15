@@ -10,7 +10,8 @@ import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEviden
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 const sha=b=>createHash('sha256').update(b).digest('hex'),compressed=fs.readFileSync(new URL('./test-inputs/current-worksites-20261107.json.gz',import.meta.url))
 assert.equal(sha(compressed),'4355b8727d6e108a179db616dccac3eefe13fa11b8a720c8131e3ee019f933a2')
-const fixture=JSON.parse(gunzipSync(compressed)),raw=fixture.models.rows.find(r=>r.id==='177064'),heldPacket=fixture.packets.find(p=>p.url.endsWith('/177064-en_US')),heldHTML=Buffer.from(heldPacket.bodyBase64,'base64').toString(),options={allowReviewedWorksiteGap:true},provider=getScraperCatalog().find(p=>p.source==='colgatepalmolive')
+const fixture=JSON.parse(gunzipSync(compressed)),raw=fixture.models.rows.find(r=>r.id==='177064'),heldPacket=fixture.packets.find(p=>p.url.endsWith('/177064-en_US')),heldHTML=Buffer.from(heldPacket.bodyBase64,'base64').toString(),options={allowReviewedWorksiteGap:true}
+const provider={...getScraperCatalog().find(p=>p.source==='colgatepalmolive'),modulePath:new URL('./test-inputs/legacy-reader-20261107.mjs',import.meta.url).href}
 function guardDatabase(t){
  let databaseAttempts=0
  const require=createRequire(import.meta.url),mongoose=require('mongoose'),{MongoClient}=require('mongodb'),deny=()=>{databaseAttempts++;throw Error('Colgate worksite offline DB tripwire')}
@@ -38,7 +39,7 @@ test('finite reviewed record validates all offices and yields a full explicit po
  assert.deepEqual(model.nativeRawLocations,raw.jobLocationShort);assert.equal(model.nativeDetailLocation,'Ahmedabad, Gujarat, India');assert.equal(model.nativeCompanyBrand,'Colgate-Palmolive');assert.equal(model.nativeLegalEmployer,null)
  assert.equal(model.sourceDetailComplete,true);assert.ok(model.jobDescription.includes('active pooling'));assert.ok(model.jobDescription.includes('must apply again'));assert.equal(model.postedAt,'2026-10-29T00:00:00.000Z')
 })
-test('registered current flow retains all24 raw records, returns23 complete Mumbai roles and preserves full explicit pool hold/closing',async t=>{
+test('historical native flow retains all24 raw records, returns23 complete Mumbai roles and preserves full explicit pool hold/closing',async t=>{
  const r=await replay(t),jobs=await r.run();assert.equal(jobs.length,23);assert.equal(r.calls.length,39)
  assert.ok(jobs.every(j=>j.country==='India'&&j.city==='Mumbai'&&j.sourceDetailComplete&&j.nativeLegalEmployer===null));assert.equal(jobs.some(j=>j.jobId==='177064'),false)
  const audit=jobs.nativeCollectionEvidence;assert.equal(audit.nativeModels.length,24);assert.deepEqual(audit.openingNativeRows,fixture.models.rows);assert.deepEqual(audit.closingNativeRows,fixture.models.rows)
@@ -72,7 +73,7 @@ test('a foreign coordinate carrier is not downgraded into a successful hold',asy
  const r=await replay(t,{rowChange:row=>{row.jobLocationShortWithCoordinates[0].countryCode='US'}});await assert.rejects(r.run())
 })
 
-test('actual no-options default replays ALL39 original responses/init/79clocks and ENTIRE23jobs/24records/held audit/inventory output',async t=>{
+test('historical public reader replays ALL39 original responses/init/79clocks and ENTIRE23jobs/24records/held audit/inventory output',async t=>{
  guardDatabase(t)
  const captured=fixture.registeredDefault,clocks=[...captured.sourceClocks],RealDate=Date,calls=[];let sharedSignal
  globalThis.Date=new Proxy(RealDate,{construct(Target,args,newTarget){if(args.length===0&&/scraper[\\/]colgatepalmolive\.workday[\\/]nativeRun\.js/.test(new Error().stack)){const clock=clocks.shift();assert.equal(clock?.kind,'construct');return Reflect.construct(Target,[clock.value],newTarget)}return Reflect.construct(Target,args,newTarget)},get(Target,key,receiver){if(key==='now')return()=>{if(/scraper[\\/]colgatepalmolive\.workday[\\/]nativeRun\.js/.test(new Error().stack)){const clock=clocks.shift();assert.equal(clock?.kind,'now');return clock.value}return Target.now()};return Reflect.get(Target,key,receiver)}})

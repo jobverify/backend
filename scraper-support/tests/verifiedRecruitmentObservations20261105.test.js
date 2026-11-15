@@ -60,15 +60,20 @@ const audit = (jobs, records, vacancies = records, kind = vacancies === records 
 // Read the one trusted local pure declaration. Do not import runner.js: its
 // top-level environment/database/storage effects are forbidden by the guard.
 const runnerText = readFileSync(new URL('../runner.js', import.meta.url), 'utf8')
-const runnerDeclaration = parse(runnerText, { ecmaVersion: 'latest', sourceType: 'module' }).body
+const runnerProgram = parse(runnerText, { ecmaVersion: 'latest', sourceType: 'module' }).body
+const recoveryDeclaration = runnerProgram.filter(node => node.type === 'VariableDeclaration')
+  .flatMap(node => node.declarations).find(node => node.id.name === 'readOwnRecoveryDiagnostics')
+const readOwnRecoveryDiagnostics = new Function('return ('
+  + runnerText.slice(recoveryDeclaration.init.start, recoveryDeclaration.init.end) + ')')()
+const runnerDeclaration = runnerProgram
   .filter(node => node.type === 'ExportNamedDeclaration').flatMap(node => node.declaration?.declarations || [])
   .find(node => node.id.name === 'buildScraperAttemptDiagnostics')
 assert.equal(runnerDeclaration.init.type, 'ArrowFunctionExpression')
 const diagnostics = new Function('analyzePublishableJobs', 'extractionRawJobMetrics', 'readInventoryEvidence',
   'extractionDetailHealth', 'readInventoryDelegationEvidence', 'readSourceObservationEvidence', 'jobIdentityHashes',
-  'return (' + runnerText.slice(runnerDeclaration.init.start, runnerDeclaration.init.end) + ')')(
+  'readOwnRecoveryDiagnostics', 'return (' + runnerText.slice(runnerDeclaration.init.start, runnerDeclaration.init.end) + ')')(
   analyzePublishableJobs, extractionRawJobMetrics, readInventoryEvidence, extractionDetailHealth,
-  readInventoryDelegationEvidence, readSourceObservationEvidence, jobIdentityHashes)
+  readInventoryDelegationEvidence, readSourceObservationEvidence, jobIdentityHashes, readOwnRecoveryDiagnostics)
 
 test.beforeEach(t => {
   t.mock.method(globalThis, 'fetch', () => assert.fail('Synthetic recruitment observation tests forbid network'))

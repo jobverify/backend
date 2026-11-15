@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
+import { runCurrentImmidart } from './currentNative20261115.js'
 import { fetchVerifiedHttpsPage } from '../../scraper-support/utils/verifiedHttps.js'
 import { parseJavaScriptLiteral } from '../../scraper-support/utils/safeLiteral.js'
 
@@ -10,7 +10,7 @@ const currentDir = path.dirname(fileURLToPath(import.meta.url))
 export const SOURCE = 'immidarttechnologiesllp'
 export const COMPANY = 'Immidart Technologies LLP'
 export const HOMEPAGE_URL = 'https://www.immidart.com/'
-export const CAREERS_URL = 'https://www.immidart.com/company/careers'
+export const CAREERS_URL = 'https://www.immidart.com/careers/'
 
 const USER_AGENT =
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
@@ -24,21 +24,6 @@ const normalizeWhitespace = (value) => String(value ?? '')
 const normalizeStringArray = (value) => Array.isArray(value)
   ? value.map((item) => normalizeWhitespace(item)).filter(Boolean)
   : []
-
-const buildBundleUrl = (bundlePath) => new URL(bundlePath, HOMEPAGE_URL).toString()
-
-const deriveLocation = (location) => {
-  const normalized = normalizeWhitespace(location)
-  return normalized ? `${normalized}, India` : null
-}
-
-const deriveCity = (location) => {
-  const normalized = normalizeWhitespace(location)
-  if (!normalized) return null
-
-  const firstToken = normalizeWhitespace(normalized.split(',')[0])
-  return firstToken ? normalizeCity(firstToken) : null
-}
 
 const sanitizeEmbeddedJob = (job) => {
   const responsibilities = normalizeStringArray(job?.responsibilities)
@@ -177,55 +162,7 @@ export const fetchImmidartText = async (url, options = {}) => {
   return page.html;
 }
 
-const defaultFetchText = fetchImmidartText
-
-export const createImmidartTechnologiesLlpScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('Immidart verified official homepage changed; refusing to scrape guessed careers data')
-    }
-
-    const homepageBundlePath = extractBundlePath(homepageHtml)
-    if (!homepageBundlePath) {
-      throw new Error('Immidart homepage no longer exposes the verified first-party bundle')
-    }
-
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialHomepageSignal(careersHtml) || extractBundlePath(careersHtml) !== homepageBundlePath) {
-      throw new Error('Immidart verified official careers route no longer matches the known first-party SPA shell')
-    }
-
-    const bundleJs = await fetchText(buildBundleUrl(homepageBundlePath))
-    if (!hasEmbeddedCareersRoute(bundleJs)) {
-      throw new Error('Immidart verified careers route no longer exposes the known embedded first-party careers flow')
-    }
-
-    return extractEmbeddedJobs(bundleJs).map((job) => ({
-      title: job.title,
-      company: COMPANY,
-      location: deriveLocation(job.location),
-      city: deriveCity(job.location),
-      country: 'India',
-      source: SOURCE,
-      sourceUrl: CAREERS_URL,
-      applyUrl: CAREERS_URL,
-      link: CAREERS_URL,
-      jobId: `${SOURCE}-${job.id}`,
-      requisitionId: `${SOURCE}-${job.id}`,
-      department: job.department,
-      experienceRequired: job.experience,
-      employmentType: 'Full-time',
-      remoteStatus: 'On-site',
-      jobDescription: job.description,
-      requiredSkills: job.requirements || [],
-      preferredQualification: null,
-      closingDate: null,
-      postingDate: null,
-      scrapedAt: new Date().toISOString(),
-    }))
-  },
-})
+export const createImmidartTechnologiesLlpScraper = () => ({ run: options => runCurrentImmidart(options) })
 
 export const run = async (options = {}) => createImmidartTechnologiesLlpScraper().run(options)
 

@@ -14,6 +14,13 @@ const packets = receipts.map(receipt => {
   assert.equal(sha(body), receipt.sha256)
   return { ...receipt, body }
 })
+const bootstrapPackets = JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/bootstrap-20261115.json.gz', import.meta.url)))).packets
+  .map(packet => {
+    const body = Buffer.from(packet.bodyBase64, 'base64')
+    assert.equal(body.length, packet.bytes)
+    assert.equal(sha(body), packet.sha256)
+    return { ...packet, body }
+  })
 const evidenceKey = Symbol.for('jobverify.epam-native-inventory')
 const firstPayload = JSON.parse(packets.find(row => row.requestedUrl.includes('&from=0&')).body)
 const selectedId = firstPayload.data.jobs[0].unique_id
@@ -26,7 +33,7 @@ async function replay({ mutateRecord, changeResponse } = {}) {
     calls.push(url)
     assert.equal(init.method, 'GET')
     assert.equal(init.redirect, 'manual')
-    const packet = packets.find(row => row.requestedUrl === url)
+    const packet = [...packets, ...bootstrapPackets].find(row => row.requestedUrl === url)
     if (!packet) {
       unrecorded.push(url)
       throw Error('Missing actual response for ' + url)
@@ -79,6 +86,10 @@ test('the reviewed current program admits complete native India vacancies while 
   assert.equal(audit.passes[0].rawCount, 256)
   assert.equal(audit.closingMatches, true)
   assert.ok(jobs.length > 0, 'The actual current native acquisition must produce qualified roles')
+  assert.equal(jobs.length, 1, 'Only the own role read in both independent native page contexts may publish')
+  assert.equal(jobs[0].nativeUniqueId, selectedId)
+  assert.equal(jobs[0].sourceListingComplete, false)
+  assert.ok(audit.publicationHeldNativeIDs.length > 100, 'Other full native models remain explicit held observations')
   for (const job of jobs) {
     assert.equal(job.country, 'India')
     assert.equal(job.sourceDetailComplete, true)
@@ -87,6 +98,112 @@ test('the reviewed current program admits complete native India vacancies while 
     assert.equal(job.lifecycleCleanupAllowed, false)
     assert.ok(job.jobDescription.includes('Requirements'))
   }
+})
+
+for (const [name, change] of [
+  ['active foreign base', html => html.replace('<head>', '<head><base href="https://unrelated.invalid/">')],
+  ['inert declared Next bootstrap', html => html.replace(/<script\b[^>]*src="\/_next\/static\/chunks\/main-[^"]+"[^>]*>[\s\S]*?<\/script>/,
+    script => '<template>' + script + '</template>')],
+  ['active current filled notice', html => html.replace('<body>', '<body><p>This position has been filled.</p>')],
+  ['active current not-available notice', html => html.replace('<body>', '<body><p>This job is not available.</p>')],
+  ['active current unavailable notice', html => html.replace('<body>', '<body><p>This position is currently unavailable.</p>')],
+]) test(`current EPAM holds ${name} despite unchanged original models`, async () => {
+  let mutations = 0
+  const { jobs, audit } = await replay({ changeResponse: (response, url) => {
+    if (new URL(url).pathname.startsWith('/en/vacancy/')) {
+      const original = response.body.toString('utf8'), changed = change(original)
+      assert.notEqual(changed, original)
+      response.body = Buffer.from(changed)
+      mutations++
+    }
+    return response
+  } })
+  assert.ok(mutations > 0)
+  assert.equal(jobs.length, 0)
+  assert.equal(audit.sourceCurrentAdmissionQualified, false)
+  assert.equal(audit.lifecycleCleanupAllowed, false)
+})
+
+test('current EPAM retains a hidden notice as inactive prose rather than contradicting the own current role', async () => {
+  const { jobs } = await replay({ changeResponse: (response, url) => {
+    if (new URL(url).pathname.startsWith('/en/vacancy/')) response.body = Buffer.from(response.body.toString('utf8')
+      .replace('<body>', '<body><p hidden>This position has been filled.</p>'))
+    return response
+  } })
+  assert.equal(jobs.length, 1)
+})
+
+for (const notice of ['<p hidden>This job is not available.</p>', '<template><p>This position is currently unavailable.</p></template>'])
+  test(`current EPAM preserves the own role when unavailability prose is inactive: ${notice}`, async () => {
+    const { jobs } = await replay({ changeResponse: (response, url) => {
+      if (new URL(url).pathname.startsWith('/en/vacancy/')) response.body = Buffer.from(response.body.toString('utf8')
+        .replace('<body>', '<body>' + notice))
+      return response
+    } })
+    assert.equal(jobs.length, 1)
+  })
+
+for (const [name, mutate] of [
+  ['different own schema role', posting => { posting.identifier.value = 'different-native-role' }],
+  ['different own schema employer', posting => { posting.hiringOrganization.name = 'Different employer' }],
+  ['foreign own schema typed country', posting => { posting.jobLocation[0].address.addressCountry = 'United States' }],
+  ['truncated own schema core criteria', posting => { posting.description = posting.description.slice(0, 250) }],
+  ['additional own schema country restriction', posting => { posting.applicantLocationRequirements = { '@type': 'Country', name: 'United States' } }],
+  ['changed own schema generated date', posting => { posting.validThrough = '2001-01-01T00:00' }],
+]) test(`current EPAM holds ${name} while retaining the full native feed`, async () => {
+  let mutations = 0
+  const { jobs, audit } = await replay({ changeResponse: (response, url) => {
+    if (new URL(url).pathname.startsWith('/en/vacancy/')) response.body = Buffer.from(response.body.toString('utf8')
+      .replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g, (all, start, body, end) => {
+        const posting = JSON.parse(body)
+        if (posting['@type'] !== 'JobPosting') return all
+        mutate(posting)
+        mutations++
+        return start + JSON.stringify(posting) + end
+      }))
+    return response
+  } })
+  assert.ok(mutations > 0)
+  assert.equal(jobs.length, 0)
+  assert.equal(audit.observations.length, 256)
+})
+
+for (const notice of ['This position has been filled.', 'This job is not available.', 'This position is currently unavailable.'])
+  test(`current EPAM requires the own closing page to remain current despite a stable closing feed: ${notice}`, async () => {
+  let ownReads = 0
+  const { jobs, audit } = await replay({ changeResponse: (response, url) => {
+    if (new URL(url).pathname.startsWith('/en/vacancy/') && ++ownReads === 2) response.body = Buffer.from(response.body.toString('utf8')
+      .replace('<body>', '<body><p>' + notice + '</p>'))
+    return response
+  } })
+  assert.equal(ownReads, 2)
+  assert.equal(jobs.length, 0)
+  assert.equal(audit.closingObservations.length, 256)
+})
+
+test('current EPAM rechecks the previously omitted renderer bytes after its closing native feed', async () => {
+  let reads = 0
+  const target = bootstrapPackets.find(packet => packet.url.includes('/main-')).url
+  const { jobs } = await replay({ changeResponse: (response, url) => {
+    if (url === target && ++reads === 2) response.body = Buffer.concat([response.body, Buffer.from('\n;self.unreviewedFinalChange=true;')])
+    return response
+  } })
+  assert.equal(reads, 2)
+  assert.equal(jobs.length, 0)
+})
+
+for (const packet of bootstrapPackets) test(`current EPAM requires the actual omitted client ${new URL(packet.url).pathname.split('/').at(-1)}`, async () => {
+  let mutations = 0
+  const { jobs, audit } = await replay({ changeResponse: (response, url) => {
+    if (url === packet.url) {
+      response.body = Buffer.concat([response.body, Buffer.from('\n;self.unreviewedNativeChange=true;')])
+      mutations++
+    }
+    return response
+  } })
+  assert.ok(mutations > 0, 'The actual declared bootstrap must be fetched, not merely its URL accepted')
+  assert.equal(jobs.length, 0)
+  assert.equal(audit.sourceCurrentAdmissionQualified, false)
 })
 
 for (const [name, mutateRecord] of [

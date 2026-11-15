@@ -93,3 +93,41 @@ for (const [phase, code] of [
     });
   });
 }
+test('long inference reports numeric progress without exposing slot prompts and stops polling on completion', async t => {
+  let tick, intervalCleared = false, slotSignal;
+  t.mock.method(globalThis, 'setInterval', callback => { tick = callback; return { unref() {} }; });
+  t.mock.method(globalThis, 'clearInterval', () => { intervalCleared = true; });
+  const started = Promise.withResolvers();
+  const completed = Promise.withResolvers();
+  const diagnostics = [];
+  const fetchImpl = async (url, options) => {
+    if (url.endsWith('/apply-template')) return { ok: true, json: async () => ({ prompt: 'full' }) };
+    if (url.endsWith('/tokenize')) return { ok: true, json: async () => ({ tokens: [1, 2, 3] }) };
+    if (url.endsWith('/slots')) {
+      slotSignal = options.signal;
+      return { ok: true, json: async () => [{ is_processing: true, n_prompt_tokens_processed: 2,
+        next_token: [{ n_decoded: 17 }], params: { prompt: 'private candidate and source data' } }] };
+    }
+    started.resolve();
+    await completed.promise;
+    return { ok: true, json: async () => ({ content: '\\end{document}', stop_type: 'eos', timings: { predicted_n: 19 } }) };
+  };
+  const pending = generateResumeText('private source', { fetchImpl, onDiagnostic: event => diagnostics.push(event) });
+  try {
+    await started.promise;
+    assert.equal(typeof tick, 'function', 'long generations need a progress monitor before waiting on completion');
+    await tick();
+    const progress = diagnostics.find(event => event.code === 'progress');
+    assert.equal(progress.stage, 'generating');
+    assert.equal(progress.inputTokens, 3);
+    assert.equal(progress.processedTokens, 2);
+    assert.equal(progress.outputTokens, 17);
+    assert.ok(Number.isFinite(progress.seconds));
+    assert.doesNotMatch(JSON.stringify(diagnostics), /private|candidate|params|prompt/);
+  } finally {
+    completed.resolve();
+    await pending;
+  }
+  assert.equal(intervalCleared, true);
+  assert.equal(slotSignal.aborted, true, 'completion must also abort any in-flight progress request');
+});

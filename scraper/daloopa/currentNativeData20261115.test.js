@@ -244,3 +244,15 @@ test('durability: Remote/city/currency never supplies missing current role-owned
  const io=createDaloopaReplay((bytes,item)=>item.label==='listing'?alterJSON(bytes,value=>{for(const row of value.reqDetailsBOList)row.jdDisplay=row.jdDisplay.replace('Location: India (Remote)','Location: Remote')}):bytes)
  await withDaloopaReplayClock(()=>assert.rejects(script.run({fetchImpl:io.fetchImpl}),error=>authority(error)&&/Fewer than two/.test(error.message)));assert.equal(io.calls.length,3)
 })
+
+for(const[name,change,expectedReads]of [
+ ['literal HTML in plain listing',listing=>listing.reqDetailsBOList.find(row=>row.reqId===46).jdDisplay+='\n<p>Additional Location: United States</p>',3],
+ ['entity-escaped HTML in plain listing',listing=>listing.reqDetailsBOList.find(row=>row.reqId===46).jdDisplay+='\n&lt;p&gt;Additional Location: United States&lt;/p&gt;',3],
+ ['literal HTML in plain education',(_listing,details)=>details[0].data.reqDetailsBO.educationList=['<p hidden>Additional mandatory professional license.</p>'],4],
+ ['entity-escaped HTML in plain education',(_listing,details)=>details[0].data.reqDetailsBO.educationList=['&lt;p hidden&gt;Additional mandatory professional license.&lt;/p&gt;'],4],
+])test('plain-domain correction: paired synthetic '+name+' is held by the actual registered route',async()=>{
+ const io=futureReplay(futureScenario(change)),provider=getScraperCatalog().find(row=>row.source==='daloopa');let jobs,error
+ try{jobs=await withDaloopaReplayClock(()=>createCatalogScraper(provider).run({fetchImpl:io.fetchImpl}))}catch(failure){error=failure}
+ assert.equal(error?.code,'DALOOPA_NATIVE_DATA_GAP',JSON.stringify({name,acceptedJobs:jobs?.map(row=>({id:row.jobId,country:row.country,complete:row.sourceDetailComplete})),actualPhysicalReads:io.calls.length}))
+ assert(authority(error));assert.equal(io.calls.length,expectedReads)
+})

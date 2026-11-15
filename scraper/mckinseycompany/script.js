@@ -121,13 +121,42 @@ const nativeFailure = message => Object.assign(new Error('McKinsey native '+mess
   softFailure: true, abortRetries: true, lifecycleCleanupAllowed: false,
 })
 
+const nativeModelSignature = records => JSON.stringify(records.slice().sort((a,b)=>String(a.jobID).localeCompare(String(b.jobID))),
+  (_,value)=>value&&typeof value==='object'&&!Array.isArray(value)
+    ?Object.fromEntries(Object.entries(value).sort(([a],[b])=>a.localeCompare(b))):value)
+
+const supplementalCriteria = record => {
+  const original={},sections=[]
+  for(const [field,label]of [
+    ['jobSalaryBenefits','Additional published salary and benefits (location applicability unverified)'],
+    ['compensationRange','Published compensation range (location applicability unverified)'],
+    ['compensationRangeCanada','Published compensation range (Canada)'],
+    ['compensationRangeItaly','Published compensation range (Italy)'],
+  ]){
+    if(!Object.hasOwn(record,field))continue
+    const value=record[field];original[field]=structuredClone(value)
+    if(value==null)continue
+    const entries=Array.isArray(value)?value:[value]
+    if(!entries.every(entry=>typeof entry==='string'))throw nativeFailure('supplemental full criteria malformed')
+    const rendered=entries.filter(entry=>entry.trim()).map(entry=>{
+      const visible=extractActiveDescription(entry)
+      if(!visible)throw nativeFailure('supplemental full criteria are not visible')
+      return visible
+    })
+    if(rendered.length)sections.push(label+': '+rendered.join('\n'))
+  }
+  return{original,sections}
+}
+
 const nativeDescription = record => {
+  const supplemental=supplementalCriteria(record)
   const fields = ['whoYouWillWorkWith', 'whatYouWillDo', 'yourBackground']
-  if (!fields.some(key => Object.hasOwn(record, key))) return { description: extractActiveDescription(record.shortJobSummary), complete: false }
+  if (!fields.some(key => Object.hasOwn(record, key))) return { description: extractActiveDescription(record.shortJobSummary), complete: false, supplemental:supplemental.original }
   const descriptions = fields.map(key => typeof record[key] === 'string' ? extractActiveDescription(record[key]) : null)
-  if (!descriptions[1] && !descriptions[2]) return { description: null, complete: false }
+  if (!descriptions[1] && !descriptions[2]) return { description: null, complete: false, supplemental:supplemental.original }
   const headings = ['Who you will work with', 'What you will do', 'Your background']
-  return { description: descriptions.flatMap((value, index) => value ? [`${headings[index]}: ${value}`] : []).join('\n\n'),
+  return { description: [...descriptions.flatMap((value, index) => value ? [`${headings[index]}: ${value}`] : []),...supplemental.sections].join('\n\n'),
+    supplemental:supplemental.original,
     complete: Boolean(descriptions[1] && descriptions[2] && (!Object.hasOwn(record, fields[0]) || descriptions[0])) }
 }
 
@@ -135,7 +164,7 @@ const isOwnApplication = (value, id) => {
   try {
     const url = new URL(value)
     return url.origin === 'https://mckinsey.avature.net' && !url.username && !url.password && !url.hash
-      && url.pathname === '/careers/ApplicationMethods' && [...url.searchParams].length === 1
+      && ['/careers/ApplicationMethods','/en_US/careers/ApplicationMethods'].includes(url.pathname) && [...url.searchParams].length === 1
       && url.searchParams.get('folderId') === id
   } catch { return false }
 }
@@ -146,13 +175,16 @@ const toJob = (record = {}, { now = () => new Date().toISOString() } = {}) => {
   const jobId = nativeLabel(record.jobID)
   const title = nativeLabel(record.title)
   if (!title || !/^\d+$/.test(jobId || '') || !isOwnApplication(applyUrl, jobId)) throw nativeFailure('title/application/requisition identity conflicts')
+  const alternatives=record.cities.map((city,index)=>({city,country:record.countries[index]}))
+  if(alternatives.some(pair=>!nativeLabel(pair.city)||!nativeLabel(pair.country)))throw nativeFailure('full native location alternatives malformed')
   const description = nativeDescription(record)
 
   return {
     title,
     company: COMPANY,
     department: normalizeValue(record.interest),
-    location: buildLocation(indiaPairs),
+    location: buildLocation(alternatives),
+    locations:alternatives.map(pair=>buildLocation([pair])),
     city: indiaPairs.length > 1 ? 'Multiple Locations' : (indiaPairs[0]?.city ?? null),
     country: 'India',
     jobId,
@@ -167,6 +199,11 @@ const toJob = (record = {}, { now = () => new Date().toISOString() } = {}) => {
     postingDate: normalizeDate(record.postedToLinkedInDate),
     closingDate: null,
     jobDescription: description.description,
+    sourceNativeRecord:structuredClone(record),
+    sourceNativeLocationAlternatives:structuredClone(alternatives),
+    sourceCountryEvidence:{method:'matching-role-owned-parallel-native-city-and-country-arrays',qualifiedIndiaPairs:structuredClone(indiaPairs),originalNativeAlternatives:structuredClone(alternatives)},
+    sourceSupplementalNativeCriteria:description.supplemental,
+    sourceNativeCriteriaComplete:description.complete,
     sourceScopeComplete: false,
     sourceListingComplete: false,
     sourceDetailComplete: description.complete,
@@ -253,6 +290,13 @@ export const createMckinseyCompanyScraper = ({
     const effectiveFetchText = (url, options) => read(rawFetchText, url, options)
     const effectiveFetchJson = (url, options) => read(rawFetchJson, url, options)
 
+    let opening=null,closing=null,entireNativeModelsClosingMatched=false
+    const nativeAudit=()=>({source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:opening?.records.length??0,
+      observedVacancyCount:opening?.records.length??0,sourceNativeRaw:structuredClone(opening?.records||[]),closingNativeRaw:structuredClone(closing?.records||[]),
+      openingNativeReportedTotal:opening?.reportedTotal??null,closingNativeReportedTotal:closing?.reportedTotal??null,entireNativeModelsClosingMatched,
+      qualifiedIndiaNativeIDs:(opening?.records||[]).filter(isIndiaJob).map(record=>record.jobID),
+      heldNativeRecords:(opening?.records||[]).filter(record=>!isIndiaJob(record)).map(record=>({nativeID:record.jobID,reason:'outside-qualified-explicit-India-alternatives',originalNativeRecord:structuredClone(record)})),
+      sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null,lifecycleCleanupAllowed:false})
     try {
     const indiaCareersHtml = await effectiveFetchText(INDIA_CAREERS_URL)
     if (!hasOfficialIndiaCareersSignal(indiaCareersHtml)) {
@@ -293,24 +337,28 @@ export const createMckinseyCompanyScraper = ({
       throw nativeFailure('native inventory pagination request budget exceeded')
     }
 
-    const opening = await collect()
+    opening = await collect()
     if (opening.reportedTotal !== null) {
       const closingIndia = await effectiveFetchText(INDIA_CAREERS_URL)
       const closingSearch = await effectiveFetchText(SEARCH_JOBS_URL)
       if (!hasOfficialIndiaCareersSignal(closingIndia) || !hasPublicJobsSearchSignal(closingSearch)) throw nativeFailure('closing current publisher declaration changed')
-      const closing = await collect()
-      const signature = records => JSON.stringify(records.map(record => [record.jobID, record.title, record.cities, record.countries,
-        record.jobApplyURL, record.whoYouWillWorkWith, record.whatYouWillDo, record.yourBackground,
-        record.shortJobSummary, record.postedToLinkedInDate]).sort((a, b) => String(a[0]).localeCompare(String(b[0]))))
-      if (closing.reportedTotal !== opening.reportedTotal || signature(closing.records) !== signature(opening.records)) throw nativeFailure('closing native inventory or role criteria changed')
+      closing = await collect()
+      if (closing.reportedTotal !== opening.reportedTotal || nativeModelSignature(closing.records) !== nativeModelSignature(opening.records)) throw nativeFailure('closing native inventory or role criteria changed')
+      entireNativeModelsClosingMatched=true
     }
     const jobs = opening.records.filter(isIndiaJob).map(record => toJob(record, { now })).filter(job => job.title)
+    const audit=nativeAudit()
+    await override.onAudit?.(structuredClone(audit))
     check()
     attachSourceObservationEvidence(jobs, { source: SOURCE, recordKind: 'vacancy-rows', observedRecordCount: opening.records.length,
       observedVacancyCount: opening.records.length, sourceScopeComplete: false, companyGlobalTotal: null, companyIndiaTotal: null })
+    Object.defineProperty(jobs,'nativeCollectionEvidence',{value:audit,configurable:true})
     return attachInventoryEvidence(jobs, { status: 'coverage-gap', surface: INDIA_CAREERS_URL, firstParty: false,
       listingComplete: false, lifecycleCleanupAllowed: false, reportedTotal: null, indiaFacetCount: null,
       verifiedAt: null, reason: 'native-page-index-pagination-and-own-full-criteria;company-scope-and-legacy-transport-metadata-unverified;cleanup-forbidden' })
+    } catch(error) {
+      if(!caller?.aborted&&opening)error.sourceAudit=nativeAudit()
+      throw error
     } finally {
       clearTimeout(sourceTimer)
       controller.abort()

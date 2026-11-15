@@ -1,0 +1,48 @@
+{
+  "reviewedAt": "2026-11-15",
+  "scope": "The seven infrastructure programs already declared by the exact reviewed anonymous vacancy page, omitted from the original resource closure. No new vacancy fields, countries, relocation modes or application modes are admitted.",
+  "review": [
+    "The exact Next webpack runtime registers modules and resolves its fixed same-origin chunk map; the current /vacancy/[jobId] route manifest resolves to the already reviewed vacancy chunks and styles.",
+    "The Next main program reads the same __NEXT_DATA__ model and hydrates the declared app/route; React DOM supplies the framework renderer. Neither infrastructure producer contains EPAM vacancy criteria, country or application-mode alternatives.",
+    "The legacy nomodule polyfill provides language/runtime compatibility. Its declaration and bytes are retained even though modern clients skip it.",
+    "The build and SSG manifests register fixed route/resource lists and callbacks; they do not supply vacancy content.",
+    "The Cloudflare decoder only rewrites protected-email anchors/text and recursively processes template content, then removes its own script. Original authored criterion markup remains independently restricted by the role-model reader."
+  ],
+  "files": [
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "mime": "application/javascript",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/webpack-ed260533bee3566a.js",
+      "mime": "application/javascript",
+      "sha256": "a0e6da4182f7673422cd438d4721ca67ba3a3d26e04926a31d7a1133f5ba5a55"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/framework-0675a4b5b92df616.js",
+      "mime": "application/javascript",
+      "sha256": "0b4f168b91d8cb315dfd9a79a3cc063395ea27102a63854aa5c5e49b101369fe"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/chunks/main-c9b84127e25ca27f.js",
+      "mime": "application/javascript",
+      "sha256": "700d0a4b2ed6804a0c90623a82b8d3251f5420b550e6ba2f146a5dc3648c8bd3"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/bpOW3k09BiBTgJL-NJ0KY/_buildManifest.js",
+      "mime": "application/javascript",
+      "sha256": "980fe5c319682c0f16f875369e2cbb627e3f9b765f23806d8eac1d4d078a8abd"
+    },
+    {
+      "url": "https://careers.epam.com/_next/static/bpOW3k09BiBTgJL-NJ0KY/_ssgManifest.js",
+      "mime": "application/javascript",
+      "sha256": "b76572d68d57dcd4db7fcbd030f338030438e348e38ac3ecc29751e441215f41"
+    },
+    {
+      "url": "https://careers.epam.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+      "mime": "application/javascript",
+      "sha256": "2595496fe48df6fcf9b1bc57c29a744c121eb4dd11566466bc13d2e52e6bbcc8"
+    }
+  ]
+}

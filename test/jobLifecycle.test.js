@@ -12,12 +12,12 @@ import {
   startOfUtcDay,
 } from '../src/utils/jobLifecycle.js'
 
-test('publishable cutoff subtracts one calendar month and clamps to the last day of shorter months', () => {
+test('publishable cutoff subtracts three calendar months and clamps to the last day of shorter months', () => {
   for (const [now, expected] of [
-    ['2026-10-21T12:00:00Z', '2026-09-21T00:00:00.000Z'],
-    ['2026-03-31T12:00:00Z', '2026-02-28T00:00:00.000Z'],
-    ['2024-03-31T12:00:00Z', '2024-02-29T00:00:00.000Z'],
-    ['2026-01-01T12:00:00Z', '2025-12-01T00:00:00.000Z'],
+    ['2026-10-21T12:00:00Z', '2026-07-21T00:00:00.000Z'],
+    ['2026-05-31T12:00:00Z', '2026-02-28T00:00:00.000Z'],
+    ['2024-05-31T12:00:00Z', '2024-02-29T00:00:00.000Z'],
+    ['2026-01-01T12:00:00Z', '2025-10-01T00:00:00.000Z'],
   ]) assert.equal(buildPublishableJobPostedAtCutoff(new Date(now)).toISOString(), expected)
 })
 

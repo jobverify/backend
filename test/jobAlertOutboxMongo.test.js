@@ -8,6 +8,10 @@ import User from '../src/models/User.js';
 import Subscription from '../src/models/Subscription.js';
 import JobAlertDelivery from '../src/models/JobAlertDelivery.js';
 import JobAlertOutbox from '../src/models/JobAlertOutbox.js';
+import PipelineRun from '../src/models/PipelineRun.js';
+import { completeWorkflow, recordStageResult } from '../src/pipeline/execution.js';
+import { recoverQueuedJobAlerts } from '../src/services/jobAlertService.js';
+import { recoverTelegramChannelAlerts } from '../src/services/telegramChannelService.js';
 import TelegramChannelDelivery from '../src/models/TelegramChannelDelivery.js';
 import TelegramChannelSchedule from '../src/models/TelegramChannelSchedule.js';
 import TelegramBroadcastSettings from '../src/models/TelegramBroadcastSettings.js';
@@ -60,7 +64,7 @@ test('job persistence retains the alert obligation without a running worker', { 
     await mongoose.connection.db.command({ collMod: 'telegramchanneldeliveries', validator: {} });
     await Promise.all([Job.deleteMany({}), User.deleteMany({}), Subscription.deleteMany({}), JobAlertDelivery.deleteMany({}),
       JobAlertOutbox.deleteMany({}), TelegramChannelDelivery.deleteMany({}), TelegramChannelSchedule.deleteMany({}),
-      TelegramBroadcastSettings.deleteMany({})]);
+      TelegramBroadcastSettings.deleteMany({}), PipelineRun.deleteMany({})]);
   };
   const publish = (fingerprint = 'outbox-fixture', extra = {}) => persistJobChangesWithAlertOutbox(Job, [{ updateOne: {
     filter: { fingerprint }, update: { $set: { fingerprint, title: 'Software Engineer', company: 'Example', city: 'Bengaluru',
@@ -72,6 +76,51 @@ test('job persistence retains the alert obligation without a running worker', { 
   const configure = id => TelegramBroadcastSettings.create({ _id: id, enabled: true,
     chatId: id === 'channel' ? '@examplechannel' : '@examplegroup', filters: { company: ['Example'] },
     minIntervalMinutes: 2, maxIntervalMinutes: 3, template: DEFAULT_BROADCAST_TEMPLATE, revision: 1 });
+
+  await t.test('Telegram fanout waits for classification workflow completion, including after shard results are reported', async () => {
+    await reset();
+    await publish();
+    await subscriber('classification-gate@example.test');
+    await configure('channel');
+    await PipelineRun.create({ _id: 'previous-classification', origin: 'github', target: 'github',
+      createdAt: new Date('2000-01-01'), stages: [{ key: 'classification', enabled: true, status: 'completed' }] });
+    await PipelineRun.create({ _id: 'classification-gate', activeKey: 'database', origin: 'github', target: 'github',
+      stages: [{ key: 'classification', enabled: true, status: 'running', githubRunId: 321 }] });
+    for (const status of ['waiting', 'queued', 'preparing', 'running', 'failed', 'cancelled', 'incomplete', 'interrupted', 'blocked', 'disabled']) {
+      await PipelineRun.updateOne({ _id: 'classification-gate' }, { $set: { 'stages.0.status': status } });
+      assert.deepEqual(await recoverJobAlertOutbox(), { completed: 0, failed: 0 }, status);
+      const event = await JobAlertOutbox.findOne().lean();
+      assert.equal(event.status, 'pending');
+      assert.equal(event.attemptCount, 0, 'Waiting for classification must not consume attempts.');
+      assert.equal(await JobAlertDelivery.countDocuments(), 0);
+      assert.equal(await TelegramChannelDelivery.countDocuments(), 0);
+    }
+    await PipelineRun.updateOne({ _id: 'classification-gate' }, { $set: { 'stages.0.status': 'running' } });
+    await recordStageResult('classification-gate', 'classification', { outcome: 'completed', summary: {} });
+    assert.deepEqual(await recoverJobAlertOutbox(), { completed: 0, failed: 0 }, 'The report job is still inside the workflow.');
+    await completeWorkflow(321, 'success', async () => { throw new Error('No later stage expected.'); });
+    assert.deepEqual(await recoverJobAlertOutbox(), { completed: 1, failed: 0 });
+    assert.equal(await JobAlertDelivery.countDocuments(), 1);
+    assert.equal(await TelegramChannelDelivery.countDocuments(), 1);
+  });
+
+  await t.test('personal and public delivery workers leave queued alerts untouched while classification runs', async gateTest => {
+    await reset();
+    await PipelineRun.create({ _id: 'delivery-gate', origin: 'github', target: 'github',
+      stages: [{ key: 'classification', enabled: true, status: 'running' }] });
+    // Any attempt to scan a delivery queue would allow a send before completion.
+    gateTest.mock.method(JobAlertDelivery, 'find', () => { throw new Error('Personal delivery scanned before classification.'); });
+    gateTest.mock.method(TelegramBroadcastSettings, 'find', () => { throw new Error('Public delivery scanned before classification.'); });
+    const enabled = process.env.TELEGRAM_ENABLED;
+    process.env.TELEGRAM_ENABLED = 'true';
+    try {
+      await recoverQueuedJobAlerts();
+      await recoverTelegramChannelAlerts();
+    } finally {
+      if (enabled === undefined) delete process.env.TELEGRAM_ENABLED;
+      else process.env.TELEGRAM_ENABLED = enabled;
+    }
+  });
 
   await t.test('failed outbox persistence rolls back a new job and updates in the same batch', async () => {
     await reset();

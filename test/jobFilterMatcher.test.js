@@ -131,3 +131,22 @@ test("more-than-thirty-days database filter requires a real historical date", ()
   assert.equal(filters.postedAt.$type, "date");
   assert.ok(filters.postedAt.$lt instanceof Date);
 });
+
+
+test("calendar posted periods use Monday weeks and full previous months", () => {
+  const now = new Date(2026, 10, 15, 12);
+  for (const [period, inside, outside] of [
+    ['this-week', new Date(2026, 10, 9), new Date(2026, 10, 8, 23, 59)],
+    ['last-week', new Date(2026, 10, 8, 23, 59), new Date(2026, 10, 9)],
+    ['this-month', new Date(2026, 10, 1), new Date(2026, 9, 31, 23, 59)],
+    ['last-month', new Date(2026, 9, 1), new Date(2026, 10, 1)],
+  ]) {
+    const filters = { datePostedDays: [period] };
+    assert.equal(jobMatchesSavedFilters({ job: { postedAt: inside }, filters, now }), true, period);
+    assert.equal(jobMatchesSavedFilters({ job: { postedAt: outside }, filters, now }), false, period);
+    assert.equal(jobMatchesSavedFilters({ job: { postedAt: null }, filters, now }), false, period);
+    const query = buildJobFilterConditions(filters);
+    assert.ok(query.postedAt?.$gte instanceof Date, period);
+    assert.ok(query.postedAt?.$lt instanceof Date, period);
+  }
+});

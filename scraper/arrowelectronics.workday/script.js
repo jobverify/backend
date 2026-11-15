@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { runNative } from './native.js'
+import { runCurrentNative } from './currentNative.js'
 import { PROVIDER_METADATA } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -14,7 +14,7 @@ export const DISPOSITION = 'official-native-Phenom-India-coverage-gap'
 export const VERIFIED_ON = null
 export const VERIFIED_SURFACE_SUMMARY = 'Arrow same-domain ARELUS native public search and full detail models; legal employer, first-ever publication and whole-company completeness unknown. Cleanup forbidden.'
 
-export const run = (options = {}) => runNative(options)
+export const run = (options = {}) => runCurrentNative(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

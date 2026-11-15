@@ -82,6 +82,24 @@ const listContract=v=>{
  return v
 }
 const plain=html=>{let text=String(html);for(let i=0;i<3;i++){const next=decodeNativeEntities(text);if(next===text)break;text=next}const d=readNativeDocument(text);return d.text(d.nodes(n=>n.tag==='root')[0]).replace(/\s/g,'')}
+const criteriaKeys=[
+ 'JobId','JobIdObfuscated','RequisitionId','JobCode','JobTitle','Location','Department','Type','JobTypeV2',
+ 'NumberOfVacancy','HideVacancy','Experience','Skills','JobDescV2','JobDescription','JobDescriptionV2',
+ 'RolesAndResponsibilities','RolesAndResponsibilitiesV2','Eligibility','EligibilityV2','ClientDesc','ClientDescV2',
+ 'CTCInfo','CreatedDate','UpdatedDate','PublishedDate','PublishedDates','ExpiryDates','IsPublic','IsDraft','JobStatus',
+ 'PublishedJobBoards','JobDescriptionBlobUrl','ApplicationEnquiryTemplateId','ReferralEnquiryTemplateId',
+ 'IjpEnquiryTemplateId','ClientName','ShowClientName','CompanyUrl',
+]
+const nativeCriteria=record=>Object.fromEntries(criteriaKeys.filter(key=>Object.hasOwn(record,key)).map(key=>[key,record[key]])
+ .concat(Object.hasOwn(record,'AdditionalFields')?[['AdditionalFields',record.AdditionalFields.map(field=>({
+  JobCustomField:Object.fromEntries(['FieldName','FieldDescription','FieldType','IsMandatory'].filter(key=>Object.hasOwn(field.JobCustomField,key)).map(key=>[key,field.JobCustomField[key]])),Value:field.Value,
+ }))]]:[]))
+const escapedData=value=>JSON.stringify(value,(_key,item)=>{check(typeof item!=='number'||Number.isFinite(item),'nonfinite native criterion');return item})
+ .replace(/[&<>"']/g,character=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]))
+const typedArrayPrototype=Object.getPrototypeOf(Uint8Array.prototype)
+const nativeByteLength=Object.getOwnPropertyDescriptor(typedArrayPrototype,'byteLength').get
+const nativeByteOffset=Object.getOwnPropertyDescriptor(typedArrayPrototype,'byteOffset').get
+const nativeBuffer=Object.getOwnPropertyDescriptor(typedArrayPrototype,'buffer').get
 function roleContract(row,dto,html,now,expectedVersion){
  const {document:d,version}=shellContract(html),postings=schema(d,'JobPosting')
  check(version===expectedVersion,'native board/role client deployment disagreement')
@@ -127,16 +145,33 @@ function roleContract(row,dto,html,now,expectedVersion){
  check(dto.Experience&&canonical(dto.Experience)===canonical(row.Experience)&&Number.isFinite(dto.Experience.MinExp)&&Number.isFinite(dto.Experience.MaxExp)&&dto.Experience.MinExp>=0&&dto.Experience.MaxExp>=dto.Experience.MinExp,'native experience conflict')
  check(Array.isArray(dto.AdditionalFields)&&dto.AdditionalFields.every(f=>['Department','Job Type'].includes(f.JobCustomField?.FieldName)&&typeof f.Value==='string'&&(f.JobCustomField.FieldName!=='Job Type'||f.Value===dto.JobTypeV2)),'new native custom criteria/scope requires reconciliation')
  if(p.employmentType!=null)check(clean(p.employmentType).replace(/[ _-]/g,'').toLowerCase()===clean(dto.JobTypeV2).replace(/[ _-]/g,'').toLowerCase(),'native employment type conflict')
- const sourceUrl=ORIGIN+'/job/publicjobs/'+dto.JobId+'?utm_source=CareerPage',description=sections.join('\n\n'),first=places[0]
+ const sourceUrl=ORIGIN+'/job/publicjobs/'+dto.JobId+'?utm_source=CareerPage',first=places[0]
+ const description=sections.join('\n\n')+'\n\n<h2>Original native JobPosting</h2><pre>'+escapedData(p)+'</pre>'
+  +'\n\n<h2>Original native role criteria</h2><p>Original native values; custom-field definitions and CTC controls are reference metadata, not newly verified screening requirements or pay amounts.</p><pre>'
+  +escapedData({listing:nativeCriteria(row),detail:nativeCriteria(dto)})+'</pre>'
  return {source:'purplle',company:'Purplle',jobId:dto.JobId,sourceJobId:dto.JobId,jobCode:dto.JobCode,requisitionId:uuid(dto.RequisitionId)?dto.RequisitionId:null,title:clean(dto.JobTitle),country:'India',city:first.city,region:first.state,location:places.map(v=>v.address).join(' / '),nativeLocations:places,postingDate,nativeListingPublicationDate:row.PublishedDate,nativeDetailPublicationDate:dto.PublishedDates.CAREERPAGE,nativeGeneralPublicationDate:dto.PublishedDate,closingDate,sourceNativeClosingDate:dto.ExpiryDates?.CAREERPAGE??null,sourceClosingDateIsExact:Boolean(closingDate?.endsWith('Z')),employmentType:dto.JobTypeV2,experienceRequired:dto.Experience.MinExp+'-'+dto.Experience.MaxExp+' years',requiredSkills:dto.Skills,jobDescription:description,sourceDescription:description,sourceDetailComplete:true,sourceDetailStatus:'complete',activeApplyVerified:true,applicationPublicContextValidated:true,publicRolePageFetched:true,applicationSubmitted:false,sourceUrl,applyUrl:sourceUrl,link:sourceUrl,sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,scrapedAt:now,nativeSourceRecord:{nativeListing:turboHireRecruitmentRecord(row),nativeDetail:turboHireRecruitmentRecord(dto),nativeJobPosting:p,nativeApplicationTemplateId:dto.ApplicationEnquiryTemplateId,nativeCustomFields:dto.AdditionalFields.map(f=>({name:f.JobCustomField.FieldName,value:f.Value}))}}
 }
 
 export async function collectPurplleTurboHire({fetchImpl,signal,now,retainedResponses,maxJobs=2,requestIntervalMs=800,corporateUnavailable=null}){
  check(Number.isSafeInteger(maxJobs)&&maxJobs>=1&&maxJobs<=20,'invalid bounded detail cap')
  check(Number.isSafeInteger(requestIntervalMs)&&requestIntervalMs>=0,'invalid request pacing')
- const clock=new Date(typeof now==='function'?now():now).toISOString(),previous=new Map();let token=null,totalBytes=0,requests=0
- const read=async(url,{method='GET',body,redirect=false,anonymous=false}={})=>{
-  signal.throwIfAborted();check(++requests<=64,'aggregate request bound exceeded')
+ const clock=new Date(typeof now==='function'?now():now).toISOString(),previous=new Map(),reservations=new Map()
+ let token=null,totalBytes=0,requests=0,closingReads=2,closingBytes=0
+ const capacity=ok=>{if(!ok)throw Object.assign(Error('Purplle TurboHire closing read capacity exceeded'),{
+  code:'PURPLLE_CLOSING_CAPACITY_GAP',partial:true,abortRetries:true,sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+ })}
+ const read=async(url,{method='GET',body,redirect=false,anonymous=false,reserveClosing=false,closing=false,roleEntity=false}={})=>{
+  signal.throwIfAborted()
+  let reservation
+  if(closing){
+   check(closingReads>0,'closing request reservation unavailable');closingReads--
+   reservation=reservations.get(url);check(reservation&&reservation.roleEntity===roleEntity,'closing body reservation unavailable')
+  }else if(reserveClosing){
+   check(!reservations.has(url),'duplicate opening body reservation')
+   reservation={remaining:0,bytes:0,sha256:null,roleEntity};reservations.set(url,reservation)
+  }
+  capacity(requests+1+closingReads<=64)
+  check(++requests<=64,'aggregate request bound exceeded')
   const origin=new URL(url).origin,wait=requestIntervalMs-(Date.now()-(previous.get(origin)||0))
   if(wait>0)await new Promise((resolve,reject)=>{const timer=setTimeout(done,wait);function done(){signal.removeEventListener('abort',abort);resolve()}function abort(){clearTimeout(timer);signal.removeEventListener('abort',abort);reject(signal.reason)}signal.addEventListener('abort',abort,{once:true})})
   previous.set(origin,Date.now())
@@ -149,11 +184,27 @@ export async function collectPurplleTurboHire({fetchImpl,signal,now,retainedResp
   check(response.body?.getReader,'bounded native stream unavailable');const reader=response.body.getReader(),chunks=[];let bytes=0
   const cancel=()=>{void reader.cancel(signal.reason).catch(()=>{})}
   signal.addEventListener('abort',cancel,{once:true});if(signal.aborted)cancel()
-  try{while(true){signal.throwIfAborted();const{done,value}=await reader.read();if(done)break;bytes+=value.byteLength;totalBytes+=value.byteLength;if(bytes>15000000||totalBytes>35000000){void reader.cancel().catch(()=>{});throw Error('Purplle TurboHire bounded native body exceeded')}chunks.push(Buffer.from(value))}}finally{signal.removeEventListener('abort',cancel);reader.releaseLock()}
-  signal.throwIfAborted();const raw=Buffer.concat(chunks).toString('utf8');check(raw.trim(),'empty native response')
+  try{while(true){
+   signal.throwIfAborted();const{done,value}=await reader.read();if(done)break
+   check(value instanceof Uint8Array,'invalid native stream chunk')
+   const length=Reflect.apply(nativeByteLength,value,[])
+   bytes+=length;totalBytes+=length
+   if(reserveClosing){reservation.remaining+=length;closingBytes+=length}
+   if(closing){const consumed=Math.min(length,reservation.remaining);reservation.remaining-=consumed;closingBytes-=consumed}
+   if(bytes>15000000||totalBytes>35000000||totalBytes+closingBytes>35000000){void reader.cancel().catch(()=>{});throw Error('Purplle TurboHire bounded native body exceeded closing byte reservation')}
+   if(closing&&roleEntity&&bytes>reservation.bytes){void reader.cancel().catch(()=>{});throw Error('Purplle TurboHire closing native role original bytes changed')}
+   chunks.push(Buffer.from(new Uint8Array(Reflect.apply(nativeBuffer,value,[]),Reflect.apply(nativeByteOffset,value,[]),length)))
+  }}finally{signal.removeEventListener('abort',cancel);reader.releaseLock()}
+  signal.throwIfAborted();const original=Buffer.concat(chunks),raw=original.toString('utf8');check(raw.trim(),'empty native response')
   if(anonymous){const v=JSON.parse(raw);check(typeof v.access_token==='string'&&v.token_type==='Bearer'&&v.ShouldRedirect===false&&v.expires_in>0,'anonymous public session contract changed');token=v.access_token;retainedResponses.push({...record,bodyBytes:bytes,anonymousSessionCredentialsRetained:false});return null}
-  retainedResponses.push({...record,body:raw,bodyBytes:bytes,bodySHA256:sha(raw),location:response.headers.get('location')})
-  return redirect?{body:raw,location:response.headers.get('location'),status:response.status}:raw
+  const originalSHA256=sha(original)
+  if(reserveClosing){reservation.bytes=bytes;reservation.sha256=originalSHA256}
+  if(closing){
+   if(roleEntity)check(bytes===reservation.bytes&&originalSHA256===reservation.sha256,'closing native role original bytes changed')
+   closingBytes-=reservation.remaining;reservation.remaining=0;reservations.delete(url)
+  }
+  retainedResponses.push({...record,body:raw,bodyBytes:bytes,bodySHA256:sha(raw),originalBodySHA256:originalSHA256,location:response.headers.get('location')})
+  return roleEntity?{body:raw,bytes,sha256:originalSHA256}:redirect?{body:raw,location:response.headers.get('location'),status:response.status}:raw
  }
  try{
   const publisher=postContract(await read(POST_URL)),short=readNativeDocument(await read(SHORT_URL))
@@ -163,17 +214,27 @@ export async function collectPurplleTurboHire({fetchImpl,signal,now,retainedResp
   check(metadata(board,'og:title')==='Purplle.com - Career Page'&&metadata(board,'og:site_name')==='Purplle.com'&&metadata(board,'og:description')==='Explore job opportunities at Purplle.com','native board OpenGraph employer changed')
   for(const [url,hash]of Object.entries(version.clients))check(sha(await read(ORIGIN+url))===hash,'current native client bytes changed')
   await read(API+'/api/token/noauth',{anonymous:true})
-  const lookup=organization(JSON.parse(await read(API+'/api/publicorganizations?accountName=purplle'))),org=organization(JSON.parse(await read(API+'/api/publicorganizations/'+ORG_ID)))
+  const lookup=organization(JSON.parse(await read(API+'/api/publicorganizations?accountName=purplle'))),org=organization(JSON.parse(await read(API+'/api/publicorganizations/'+ORG_ID,{reserveClosing:true})))
   check(canonical(lookup)===canonical(org),'organization lookup/detail disagreement')
   const body=JSON.stringify({SortByV2:{Key:'PostedDate',Order:2},...Object.fromEntries(['BunitIds','Experience','JobTypes','JobTypeV2','Locations','CreatedDate','Compensation','Skills','ClientIds'].map(k=>[k,{Value:null,FilterType:0}])),Keyword:'',Department:'',CustomFields:{}})
-  const listing=listContract(JSON.parse(await read(LIST_URL,{method:'POST',body}))),jobs=[]
-  for(const row of listing.Result.slice(0,maxJobs)){
-   const html=await read(ORIGIN+'/job/publicjobs/'+row.JobId+'?utm_source=CareerPage'),dto=JSON.parse(await read(API+'/api/publicjobs/'+row.JobId+'?fieldVisibility=CareerPage'))
-   jobs.push(roleContract(row,dto,html,clock,version))
+  const listing=listContract(JSON.parse(await read(LIST_URL,{method:'POST',body,reserveClosing:true}))),jobs=[]
+  const selected=listing.Result.slice(0,maxJobs)
+  capacity(requests+4*selected.length+closingReads<=64)
+  closingReads+=2*selected.length
+  for(const row of selected){
+   const html=await read(ORIGIN+'/job/publicjobs/'+row.JobId+'?utm_source=CareerPage',{reserveClosing:true,roleEntity:true})
+   const dto=await read(API+'/api/publicjobs/'+row.JobId+'?fieldVisibility=CareerPage',{reserveClosing:true,roleEntity:true})
+   jobs.push(roleContract(row,JSON.parse(dto.body),html.body,clock,version))
   }
-  const closing=listContract(JSON.parse(await read(LIST_URL,{method:'POST',body})))
+  for(const row of selected){
+   const html=await read(ORIGIN+'/job/publicjobs/'+row.JobId+'?utm_source=CareerPage',{closing:true,roleEntity:true})
+   const dto=await read(API+'/api/publicjobs/'+row.JobId+'?fieldVisibility=CareerPage',{closing:true,roleEntity:true})
+   roleContract(row,JSON.parse(dto.body),html.body,clock,version)
+  }
+  const closing=listContract(JSON.parse(await read(LIST_URL,{method:'POST',body,closing:true})))
   check(canonical(listing.Result)===canonical(closing.Result),'closing native inventory changed')
-  check(canonical(org)===canonical(organization(JSON.parse(await read(API+'/api/publicorganizations/'+ORG_ID)))),'closing native employer changed')
+  check(canonical(org)===canonical(organization(JSON.parse(await read(API+'/api/publicorganizations/'+ORG_ID,{closing:true})))),'closing native employer changed')
+  check(closingReads===0&&closingBytes===0&&reservations.size===0,'native closing reservations incomplete')
   check(jobs.length>0,'no native detail verified; inventory remains unknown')
   for(const job of jobs){job.activeApplyVerified=false;job.nativeApplicationVerification='Current public role DTO and same-role public page verified; rendered Apply control or form not inspected';job.nativeSourceRecord.nativePublisher={corporateURL:'https://www.purplle.com/careers',corporateUnavailable,post:publisher,boardURL:BOARD_URL,organization:org,clientSHA256:{...version.clients}}}
   return {jobs,firstParty:true,inventoryStatus:'coverage-gap',facts:{nativeRecordCount:listing.Result.length,nativeReportedIndiaFilteredCount:null,visitedDetailCount:jobs.length,stopReason:'bounded-TurboHire-details',countryUnknownRecoveredCount:0,nativeSurface:BOARD_URL,declaredPost:publisher,corporateUnavailable},reason:`Current company-post-declared TurboHire board: ${listing.Total} records observed; ${jobs.length} full native India details verified within bounded selection. ${corporateUnavailable?'Corporate careers remains HTTP'+corporateUnavailable.status+'; independently verified official publisher and reciprocal ATS supply this subset. ':''}LinkedIn employer/job channel remains inaccessible; exact numeric LinkedIn author mapping, company-wide inventory and remaining detail scope remain unknown. Public application context verified; rendered Apply control not inspected. Lifecycle cleanup disabled.`}

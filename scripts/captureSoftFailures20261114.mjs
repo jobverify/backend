@@ -78,15 +78,19 @@ globalThis.fetch = async (input, options = {}) => {
 }
 
 const startedAt = new Date().toISOString()
+const captureBudgetMs = Number(process.env.SOFT_FAILURE_BUDGET_MS) || 360000
 const runtimeFiles = new Set(['scraper-support/runner.js', 'scraper-support/providers/index.js',
+  'scraper-support/providers/customProviders.json', 'scraper-support/providers/apiPortalProviders.json', 'scraper-support/apiPortal/engine.js',
+  'scraper-support/myworkday/engine.js', 'scraper-support/myworkday/companies.json',
   'scraper-support/utils/inventoryEvidence.js', 'scraper-support/utils/sourceObservationEvidence.js',
   'scraper-support/utils/activeNativeHtml.js', 'scraper-support/utils/visibleNativeHtml.js',
   'scraper-support/shared/verifiedEmployerLinkedIn.js',
   'scraper-support/utils/emptyOnlyRecruitmentRecovery.js', 'scraper-support/utils/verifiedRecruitment.js',
+  'scraper-support/utils/recruitmentPublisher.js', 'scraper-support/utils/recruitmentDarwinbox.js',
   'scraper-support/utils/scraperOutcome.js', 'scraper-support/utils/publishableJobMetrics.js',
   'scripts/captureSoftFailures20261114.mjs', 'scripts/softFailureAssessment20261113.mjs',
   'scripts/publicReadTransport20261114.py', 'scripts/publicReadRequest20261114.mjs'])
-for (const directory of [`scraper/${source}`, `scraper/${source}.workday`]) {
+for (const directory of [`scraper/${source}`, `scraper/${source}.workday`, `scraper/${source}.rmk`]) {
   try {
     for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
       if (entry.isFile() && /\.(?:js|json)$/.test(entry.name) && !/\.test\.js$|^jobs(?:\.|$)/.test(entry.name)) {
@@ -95,20 +99,47 @@ for (const directory of [`scraper/${source}`, `scraper/${source}.workday`]) {
     }
   } catch (error) { if (error.code !== 'ENOENT') throw error }
 }
-const codeHashes = async () => Object.fromEntries(await Promise.all([...runtimeFiles].sort().map(async file =>
-  [file, createHash('sha256').update(await fs.readFile(file)).digest('hex')])) )
+const codeHashes = async () => {
+  const files = new Set(runtimeFiles)
+  // Resolve source overrides and shared reader dependencies at both boundaries,
+  // including additions or removals during a capture. An override can replace
+  // the entire adapter; shared readers may import another native parser.
+  for (const [directory, extension] of [
+    ['scraper-support/providers/providerExtensions', '.json'],
+    ['scraper-support/utils', '.js'],
+    ['scraper-support/shared', '.js'],
+    ['scraper-support/detailExtractors', '.js'],
+  ]) {
+    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+      if (entry.isFile() && entry.name.endsWith(extension)) files.add(path.posix.join(directory, entry.name))
+    }
+  }
+  // Several source wrappers delegate to nested native readers and their
+  // reviewed JSON profiles. Include these actual runtime contracts too.
+  const nativeReaders = async directory => {
+    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+      const file = path.posix.join(directory, entry.name)
+      if (entry.isDirectory() && !/^(?:tests?|fixtures|test-data)(?:-|$)/.test(entry.name)) await nativeReaders(file)
+      else if (entry.isFile() && /\.(?:js|json)$/.test(entry.name) && !/\.test\.js$|^jobs(?:\.|$)/.test(entry.name)) files.add(file)
+    }
+  }
+  await nativeReaders('scraper-support/native-sources')
+  return Object.fromEntries(await Promise.all([...files].sort().map(async file =>
+    [file, createHash('sha256').update(await fs.readFile(file)).digest('hex')])) )
+}
 const codeAtStart = await codeHashes()
-let result
+let result, configuredSourceTimeoutMs = null
 try {
   const { getScraperCatalog, createCatalogScraper } = await import('../scraper-support/providers/index.js')
   const provider = getScraperCatalog().find(row => row.source === source)
   if (!provider) throw Error('Source is not in the current catalog')
+  configuredSourceTimeoutMs = provider.scraperTimeoutMs ?? null
   const scraper = createCatalogScraper(provider), options = JSON.parse(process.env.SOFT_FAILURE_OPTIONS_JSON || '{}')
   const configured = { ...scraper, run: operationOptions => scraper.run({ ...options, ...operationOptions }) }
   // Do not inject a fetchImpl option: it intentionally disables empty-only
   // production recovery. The real global fetch is captured above instead.
   const jobs = await runScraperWithTimeout(configured, undefined,
-    { signal: AbortSignal.timeout(Number(process.env.SOFT_FAILURE_BUDGET_MS) || 360000) })
+    { signal: AbortSignal.timeout(captureBudgetMs) })
   const assessment = assessSoftFailureAcquisition(provider, jobs)
   const jobsFile = `${source}.jobs.json.gz`
   await fs.writeFile(path.join(output, jobsFile), gzipSync(JSON.stringify(jobs, publicReadJsonReplacer)), { flag: 'wx' })
@@ -126,6 +157,8 @@ try {
     audit: error.recruitmentObservations || error.sourceAudit || null, stack: error.stack }
 }
 result.captureTransport = process.argv.includes('--python') ? 'python-byte-preserving-v2' : 'native-fetch'
+result.captureBudgetMs = captureBudgetMs
+result.configuredSourceTimeoutMs = configuredSourceTimeoutMs
 result.codeAtStart = codeAtStart
 result.codeAtEnd = await codeHashes()
 result.codeUnchangedDuringCapture = JSON.stringify(result.codeAtStart) === JSON.stringify(result.codeAtEnd)

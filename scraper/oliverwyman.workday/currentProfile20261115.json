@@ -1,0 +1,641 @@
+{
+  "source": "oliverwyman",
+  "company": "Oliver Wyman",
+  "corporate": "https://www.oliverwyman.com/careers.html",
+  "board": "https://careers.marsh.com/global/en/oliver-wyman-search",
+  "roles": [
+    {
+      "jobId": "R_364807",
+      "jobSeqNo": "MAMCGLOBALR364807EXTERNALENGLOBAL",
+      "title": "Oliver Wyman - Analyst (Energy Trading and Risk Management) - Bengaluru",
+      "url": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+      "applyURL": "https://mmc.wd1.myworkdayjobs.com/MMC/job/Bengaluru---Prestige/Oliver-Wyman---Analyst--Energy-Trading-and-Risk-Management----Bengaluru_R_364807-1/apply",
+      "fullCriteriaCharacters": 6279,
+      "fullCriteriaSHA256": "29bb9937691f8dcfae242d21bb65b3608793683ae1e1877344cfd8d005e033ba",
+      "nativeDateRepresentations": {
+        "jobPostedDate": "2026-09-04T00:00:00.000+0000",
+        "schemaDatePosted": "2026-11-12",
+        "jobUpdatedDate": "2026-11-06T16:33:42.731+0000",
+        "dateCreated": "2026-09-04T12:32:58.478+0000",
+        "recruitmentStartDate": "2026-09-04"
+      },
+      "scalarPostingDate": null,
+      "scalarClosingDate": null,
+      "observedOwnApplyURL": "https://careers.marsh.com/global/en/apply?jobSeqNo=MAMCGLOBALR364807EXTERNALENGLOBAL",
+      "reviewedBrowserContext": {
+        "capturedAt": "2026-11-15T14:10:04.186Z",
+        "sourceURL": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+        "fullCriterionSHA256": "29bb9937691f8dcfae242d21bb65b3608793683ae1e1877344cfd8d005e033ba",
+        "fullCriterionCharacters": 6279,
+        "fullCriterionOwnerVisible": true,
+        "actualOwnApplyURL": "https://careers.marsh.com/global/en/apply?jobSeqNo=MAMCGLOBALR364807EXTERNALENGLOBAL",
+        "enabledApplyCopies": 2,
+        "applicationInteracted": false,
+        "renderedApplicationOperationQualified": false
+      }
+    },
+    {
+      "jobId": "R_364805",
+      "jobSeqNo": "MAMCGLOBALR364805EXTERNALENGLOBAL",
+      "title": "Oliver Wyman - Senior Analyst (Energy Trading and Risk Management) - Bengaluru",
+      "url": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+      "applyURL": "https://mmc.wd1.myworkdayjobs.com/MMC/job/Bengaluru---Prestige/Oliver-Wyman---Senior-Analyst--Energy-Trading-and-Risk-Management----Bengaluru_R_364805-2/apply",
+      "fullCriteriaCharacters": 6874,
+      "fullCriteriaSHA256": "82f5593b923484f7b1545ef2332f80012e4661211db3d215840df19b8dba7c59",
+      "nativeDateRepresentations": {
+        "jobPostedDate": "2026-09-04T00:00:00.000+0000",
+        "schemaDatePosted": "2026-11-12",
+        "jobUpdatedDate": "2026-11-06T16:33:42.731+0000",
+        "dateCreated": "2026-09-04T12:32:58.476+0000",
+        "recruitmentStartDate": "2026-09-04"
+      },
+      "scalarPostingDate": null,
+      "scalarClosingDate": null,
+      "observedOwnApplyURL": "https://careers.marsh.com/global/en/apply?jobSeqNo=MAMCGLOBALR364805EXTERNALENGLOBAL",
+      "reviewedBrowserContext": {
+        "capturedAt": "2026-11-15T14:10:54.837Z",
+        "sourceURL": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+        "fullCriterionSHA256": "82f5593b923484f7b1545ef2332f80012e4661211db3d215840df19b8dba7c59",
+        "fullCriterionCharacters": 6874,
+        "fullCriterionOwnerVisible": true,
+        "actualOwnApplyURL": "https://careers.marsh.com/global/en/apply?jobSeqNo=MAMCGLOBALR364805EXTERNALENGLOBAL",
+        "enabledApplyCopies": 2,
+        "applicationInteracted": false,
+        "renderedApplicationOperationQualified": false
+      }
+    }
+  ],
+  "query": {
+    "url": "https://careers.marsh.com/widgets",
+    "body": "{\"lang\":\"en_global\",\"deviceType\":\"desktop\",\"country\":\"global\",\"pageName\":\"Oliver Wyman Search\",\"ddoKey\":\"eagerLoadRefineSearch\",\"sortBy\":\"\",\"subsearch\":\"\",\"from\":0,\"irs\":false,\"jobs\":true,\"counts\":true,\"all_fields\":[\"category\",\"country\",\"state\",\"city\",\"timeType\",\"business\",\"workFromHome\",\"campus\",\"jobType\",\"phLocSlider\"],\"pageType\":\"landingPage\",\"size\":10,\"rk\":\"l-oliver-wyman-search\",\"clearAll\":false,\"jdsource\":\"facets\",\"isSliderEnable\":true,\"pageId\":\"page52-prod-ds\",\"siteType\":\"external\",\"keywords\":\"\",\"global\":true,\"selected_fields\":{\"business\":[\"Oliver Wyman\"],\"country\":[\"India\"]},\"locationData\":{\"sliderRadius\":25,\"aboveMaxRadius\":false,\"LocationUnit\":\"miles\"},\"rkstatus\":true,\"s\":\"1\"}"
+  },
+  "documents": {
+    "https://www.oliverwyman.com/careers.html": {
+      "contextSHA256": "ae7a2270d53873602fa20da5a529cf41972c4235c20af4329bd5ac69e70fb672",
+      "app": null,
+      "schemas": [
+        {
+          "@context": "http://schema.org",
+          "@type": "Organization",
+          "name": "Oliver Wyman",
+          "legalName": "Oliver Wyman",
+          "url": "https://www.oliverwyman.com/",
+          "logo": "https://www.oliverwyman.com/content/dam/oliver-wyman/global/en/images/designs/logo.png",
+          "foundingDate": "1984",
+          "founders": [
+            {
+              "@type": "Person",
+              "name": "Alex Oliver"
+            },
+            {
+              "@type": "Person",
+              "name": "Bill Wyman"
+            }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "1166 Avenue of the Americas",
+            "addressLocality": "New York City",
+            "addressRegion": "NY",
+            "postalCode": "10036",
+            "addressCountry": "USA"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer support",
+            "telephone": "[+212-345-8000]",
+            "email": "info-other@oliverwyman.com"
+          },
+          "sameAs": [
+            "https://www.facebook.com/oliverwyman",
+            "https://twitter.com/OliverWyman",
+            "https://plus.google.com/+oliverwyman",
+            "https://en.wikipedia.org/wiki/Oliver_Wyman",
+            "https://www.linkedin.com/company/2454"
+          ]
+        }
+      ],
+      "sessionSemanticParameters": null,
+      "publicationModelSHA256": null
+    },
+    "https://careers.marsh.com/global/en/oliver-wyman-search": {
+      "contextSHA256": "b81efa05d73fdd6102f092ac076e424026292edcb06e934673f24b21cc03738b",
+      "app": {
+        "widgetApiEndpoint": "https://careers.marsh.com/widgets",
+        "country": "global",
+        "deviceType": "desktop",
+        "locale": "en_global",
+        "absUrl": true,
+        "refNum": "MAMCGLOBAL",
+        "cdnUrl": "https://cdn.phenompeople.com/CareerConnectResources/prod",
+        "baseUrl": "https://careers.marsh.com/global/en/",
+        "baseDomain": "https://careers.marsh.com",
+        "phenomTrackURL": "careers.marsh.com/global/en/phenomtrack.min.js",
+        "pageName": "search-results",
+        "siteType": "external",
+        "rootDomain": "https://careers.marsh.com",
+        "pageId": "page23"
+      },
+      "schemas": [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "inLanguage": "en_global",
+          "name": "Oliver Wyman Search",
+          "url": "https://careers.marsh.com/global/en/oliver-wyman-search",
+          "datePublished": "2026-08-29",
+          "dateModified": "2026-08-29"
+        },
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://careers.marsh.com/global/en"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Oliver Wyman Search",
+              "item": "https://careers.marsh.com/global/en/oliver-wyman-search"
+            }
+          ]
+        }
+      ],
+      "sessionSemanticParameters": {
+        "from": "0",
+        "jdsource": "",
+        "pageName": "Oliver%20Wyman%20Search",
+        "pageType": "landingPage",
+        "rk": "l-oliver-wyman-search",
+        "sortBy": "Most%20relevant"
+      },
+      "publicationModelSHA256": "43d936c12d3f7d4ef54d48f404993daef74e50b0134bc03ec8137a1439577a92"
+    },
+    "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru": {
+      "contextSHA256": "900a741c5a6009820d2b3d9bcc05ebb0f560188cefb5262af1ada100727a2afb",
+      "app": {
+        "widgetApiEndpoint": "https://careers.marsh.com/widgets",
+        "country": "global",
+        "deviceType": "desktop",
+        "locale": "en_global",
+        "absUrl": true,
+        "refNum": "MAMCGLOBAL",
+        "cdnUrl": "https://cdn.phenompeople.com/CareerConnectResources/pp",
+        "baseUrl": "https://careers.marsh.com/global/en/",
+        "baseDomain": "https://careers.marsh.com",
+        "phenomTrackURL": "careers.marsh.com/global/en/phenomtrack.min.js",
+        "pageId": "page217-prod-ds",
+        "pageName": "job",
+        "siteType": "external",
+        "rootDomain": "https://careers.marsh.com"
+      },
+      "schemas": [
+        {
+          "identifier": {
+            "@type": "PropertyValue",
+            "name": "Marsh McLennan",
+            "value": "R_364807"
+          },
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": "Oliver Wyman Group",
+            "sameAs": "https://careers.marsh.com/global/en",
+            "url": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+            "logo": "https://assets.phenompeople.com/CareerConnectResources/pp/MAMCGLOBAL/images/job_logo_config--1671483665631.png"
+          },
+          "jobLocation": {
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "12.97194",
+              "longitude": "77.59369"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "postalCode": "560048",
+              "addressCountry": "India",
+              "addressLocality": "Bengaluru",
+              "addressRegion": ""
+            },
+            "@type": "Place"
+          },
+          "employmentType": [
+            "OTHER"
+          ],
+          "@type": "JobPosting",
+          "workHours": "40",
+          "description": "&lt;div&gt;&lt;p&gt;&lt;b&gt;&lt;span&gt;About Oliver Wyman&lt;/span&gt;&lt;/b&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;span&gt;At Oliver Wyman, a Marsh (NYSE: MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations navigate their most defining transformative moments.  &lt;/span&gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;span&gt; &lt;/span&gt;&lt;/span&gt;&lt;span&gt;&lt;span&gt; &lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span&gt;As a business of Marsh, we work alongside the world’s leading experts across risk, reinsurance and capital, people and investments, and management consulting. Together with Marsh Risk, Guy Carpenter, and Mercer, we help organizations build resilience and competitive advantages from every angle. With annual revenue over $24 billion and more than 90,000 colleagues in 130 countries, Marsh helps build the confidence to thrive through the power of perspective.  &lt;/span&gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;span&gt;For more information, visit &lt;/span&gt;&lt;/span&gt;&lt;a href=\"http://www.oliverwyman.com/\" target=\"_blank\"&gt;&lt;span&gt;&lt;span&gt;oliverwyman.com&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt;&lt;span&gt;, or follow us on &lt;/span&gt;&lt;/span&gt;&lt;a href=\"https://www.linkedin.com/company/oliver-wyman\" target=\"_blank\"&gt;&lt;span&gt;&lt;span&gt;LinkedIn &lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt;&lt;span&gt;and &lt;/span&gt;&lt;/span&gt;&lt;a href=\"https://x.com/OliverWyman\" target=\"_blank\"&gt;&lt;span&gt;&lt;span&gt;X&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;About the job &lt;/b&gt; &lt;/p&gt;&lt;p&gt;&lt;b&gt;Job Overview: &lt;/b&gt; &lt;/p&gt;&lt;p&gt;Passionate about impacting companies? Energized by helping clients overcome challenging problems? Join Veritas, a Business of Oliver Wyman specializing in Energy Trading and Risk Management (ETRM), as a Consultant with at least 2 years of experience in the Energy Trading and Risk Management (ETRM) landscape.&lt;/p&gt;&lt;p&gt;In this role, you&#39;ll work with multidisciplinary teams to help energy and commodity trading organizations solve complex business and technology challenges, shaping scalable solutions across trading, risk, operations, data, and technology. You bring enthusiasm, expertise, and strategic leadership. We provide growth and opportunities to succeed. &lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;We Have:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Multidisciplinary delivery teams comprising consultants, developers, architects, data engineers, testers, and client stakeholders&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Complex ETRM implementation, upgrade, integration, migration, and optimization programs&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;A culture that challenges conventional thinking and delivers innovative, customized solutions with tangible client impact&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;You Bring:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A Bachelor&#39;s degree or equivalent professional experience in technology, engineering, finance, economics, business or a related field&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;At least 2 years of relevant experience in ETRM consulting, implementation, application support or commodity-trading technology&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Consulting Skills&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Strong analytical, problem-solving and troubleshooting skills, with close attention to detail and a commitment to delivering high-quality work&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Ability to maintain momentum in complex delivery environments and, respect confidentiality.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Functional Knowledge&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A good understanding of the energy and commodity trading lifecycle across front, middle and back office, including trade capture, valuation, position, P&amp;L, risk, scheduling, logistics, settlement, tax and accounting&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Experience in one or more commodities, such as gas, power, LNG, crude, refined products, renewables, environmental products, agriculture or metals&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Experience delivering assigned functional or technical activities within an ETRM project&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Hands-on experience configuring ETRM reference data, transaction structures, price curves, matching rules or operational workflows&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br /&gt;&lt;b&gt;Cultural Fit&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A high level of energy&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Motivation to collaborate, learn, and improve&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Drive to make an impact&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Ability to organize complex problems into a clear plan of action&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;We Also Value:&lt;br /&gt;&lt;br /&gt;Application Knowledge&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Hands-on experience on at least one leading ETRM platform, with Openlink Endur strongly preferred, followed by RightAngle and Allegro&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Exposure to additional platforms such as ENTRADE, Fusion or Beacon would be good to have.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Technical Skills&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A solid foundation in object-oriented programming, with hands-on experience in Java, C# or Python fundamentals&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Basic to working knowledge of SQL, relational databases and ETRM data models, together with basic experience of SQL or NoSQL databases and web services&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Exposure to DevOps and a cloud fundamentals certification, such as Microsoft Azure Fundamentals (AZ-900) or AWS Certified Cloud Practitioner&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Understanding of APIs, interfaces, batch processing, reporting, and ETRM configuration, and extension frameworks&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Experience working within Agile, hybrid, or traditional delivery methodologies&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Understanding of source control, CI/CD, automated testing, and modern software-delivery practices&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Interview Process&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;Our selection process typically includes functional and/or technical assessment, case study or practical exercise, behavioral interviews, and team fit discussions.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Compensation &amp; Benefits&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;We offer a competitive total rewards package that includes base salary, performance-based incentives, comprehensive health and wellness benefits, and professional development opportunities.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Diversity &amp; Inclusion&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;We are committed to creating a workplace where all employees feel valued, respected, and included. We embrace diversity of background, experience, perspective, and identity. We are an equal opportunity employer and welcome applicants from all backgrounds. We provide reasonable accommodation throughout the recruitment process and workplace for individuals with disabilities.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;&lt;br&gt;&lt;p&gt; Oliver Wyman is a business of Marsh (NYSE: MRSH), a global leader in risk, reinsurance and capital, people and investments, and management consulting, advising clients in 130 countries. With annual revenue of over $27 billion and more than 95,000 colleagues, Marsh helps build the confidence to thrive through the power of perspective. For more information, visit oliverwyman.com, or follow us on LinkedIn and X. &lt;br&gt;&lt;br&gt;Marsh is committed to providing an inclusive work environment. We aim to attract and retain the best, most qualified people and value colleagues of all backgrounds, without regard to age, background, caste, disability, ethnic origin, family duties, gender orientation or expression, gender reassignment, marital status, nationality, parental status, personal or social status, political affiliation, race, religion and beliefs, sex/gender, sexual orientation or expression, skin color, or any other characteristic protected by applicable law.&lt;br&gt;&lt;br&gt;Marsh is committed to hybrid work, which includes the flexibility of working remotely and the collaboration, connections and professional development benefits of working together in the office. All Marsh colleagues are expected to be in their local office or working onsite with clients at least three days per week. Office-based teams will identify at least one “anchor day” per week on which their full team will be together in person.&lt;br&gt;&lt;br&gt;&lt;/p&gt;",
+          "title": "Oliver Wyman - Analyst (Energy Trading and Risk Management) - Bengaluru",
+          "datePosted": "2026-11-12",
+          "@context": "http://schema.org",
+          "occupationalCategory": "Consulting",
+          "directApply": false
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "inLanguage": "en_global",
+          "name": "India",
+          "url": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+          "datePublished": "2026-11-09",
+          "dateModified": "2026-11-09"
+        },
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://careers.marsh.com/global/en/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "job-india",
+              "item": "https://"
+            }
+          ]
+        }
+      ],
+      "sessionSemanticParameters": {},
+      "publicationModelSHA256": "dea6ccb7c8b151b168db4b1dde0f3df0a520f101f1f14615da644735f5ba5180"
+    },
+    "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru": {
+      "contextSHA256": "8cf0c4086643aa6ab2daa3b946b7086b015fbfc108958b98934d9afef8c86297",
+      "app": {
+        "widgetApiEndpoint": "https://careers.marsh.com/widgets",
+        "country": "global",
+        "deviceType": "desktop",
+        "locale": "en_global",
+        "absUrl": true,
+        "refNum": "MAMCGLOBAL",
+        "cdnUrl": "https://cdn.phenompeople.com/CareerConnectResources/pp",
+        "baseUrl": "https://careers.marsh.com/global/en/",
+        "baseDomain": "https://careers.marsh.com",
+        "phenomTrackURL": "careers.marsh.com/global/en/phenomtrack.min.js",
+        "pageId": "page217-prod-ds",
+        "pageName": "job",
+        "siteType": "external",
+        "rootDomain": "https://careers.marsh.com"
+      },
+      "schemas": [
+        {
+          "identifier": {
+            "@type": "PropertyValue",
+            "name": "Marsh McLennan",
+            "value": "R_364805"
+          },
+          "hiringOrganization": {
+            "@type": "Organization",
+            "name": "Oliver Wyman Group",
+            "sameAs": "https://careers.marsh.com/global/en",
+            "url": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+            "logo": "https://assets.phenompeople.com/CareerConnectResources/pp/MAMCGLOBAL/images/job_logo_config--1671483665631.png"
+          },
+          "jobLocation": {
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "12.97194",
+              "longitude": "77.59369"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "postalCode": "560048",
+              "addressCountry": "India",
+              "addressLocality": "Bengaluru",
+              "addressRegion": ""
+            },
+            "@type": "Place"
+          },
+          "employmentType": [
+            "OTHER"
+          ],
+          "@type": "JobPosting",
+          "workHours": "40",
+          "description": "&lt;div&gt;&lt;p&gt;&lt;b&gt;&lt;span&gt;About Oliver Wyman&lt;/span&gt;&lt;/b&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;span&gt;At Oliver Wyman, a Marsh (NYSE: MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations navigate their most defining transformative moments.  &lt;/span&gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;span&gt; &lt;/span&gt;&lt;/span&gt;&lt;span&gt;&lt;span&gt; &lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;span&gt;&lt;span&gt;As a business of Marsh, we work alongside the world’s leading experts across risk, reinsurance and capital, people and investments, and management consulting. Together with Marsh Risk, Guy Carpenter, and Mercer, we help organizations build resilience and competitive advantages from every angle. With annual revenue over $24 billion and more than 90,000 colleagues in 130 countries, Marsh helps build the confidence to thrive through the power of perspective.  &lt;/span&gt;&lt;/span&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;div&gt;&lt;p&gt;&lt;span&gt;&lt;span&gt;For more information, visit &lt;/span&gt;&lt;/span&gt;&lt;a href=\"http://www.oliverwyman.com/\" target=\"_blank\"&gt;&lt;span&gt;&lt;span&gt;oliverwyman.com&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt;&lt;span&gt;, or follow us on &lt;/span&gt;&lt;/span&gt;&lt;a href=\"https://www.linkedin.com/company/oliver-wyman\" target=\"_blank\"&gt;&lt;span&gt;&lt;span&gt;LinkedIn &lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt;&lt;span&gt;and &lt;/span&gt;&lt;/span&gt;&lt;a href=\"https://x.com/OliverWyman\" target=\"_blank\"&gt;&lt;span&gt;&lt;span&gt;X&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;span&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Job Overview:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Passionate about impacting companies? Energized by helping clients overcome challenging problems? Join Veritas, a business of Oliver Wyman specializing in Energy Trading and Risk Management (ETRM), as a Senior Consultant with 3-7 years of experience in the ETRM landscape.&lt;/p&gt;&lt;p&gt;In this role, you&#39;ll operate in multidisciplinary teams to help energy and commodity trading organizations solve complex business and technology challenges, shaping scalable solutions across trading, risk, operations, data, and technology. You bring enthusiasm, expertise, and strategic leadership. We provide growth and opportunities to succeed.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;We Have:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Multidisciplinary delivery teams comprising consultants, developers, architects, data engineers, testers, and client stakeholders&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Complex ETRM implementation, upgrade, integration, migration, and optimization programs&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;A culture that challenges conventional thinking and delivers innovative, customized solutions with tangible client impact&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;You Bring:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A Bachelor&#39;s or Master&#39;s degree in Business Management, IT, Computer Science, technology, engineering, finance, or a related discipline; equivalent professional experience will also be considered&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;3-7 years of relevant experience in ETRM consulting, implementation, application support, or commodity-trading technology&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Consulting Skills&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Strong consulting, problem-solving, and communication skills, with the ability to convert complex business and technical challenges into practical, scalable solutions&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Ability to build trusted client relationships, maintain momentum in complex delivery environments, respect confidentiality, and travel as required&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Functional Knowledge&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A strong understanding of the end-to-end energy and commodity trading lifecycle across front, middle, and back office&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Knowledge of trade capture, valuation, positions, P&amp;L, risk, scheduling, logistics, settlements, tax, and accounting&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Experience preparing and executing functional, integration, regression, and user-acceptance testing, including reconciliation, controls, and production-readiness activities&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Experience across one or more commodities, such as gas, power, LNG, crude, refined products, renewables, environmental products, agriculture, or metals&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Strong analytical, problem-solving, and troubleshooting skills across applications, data, interfaces, and reporting&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Confident and engaging communication and collaboration skills, with the ability to contribute to workshops, work independently, challenge requirements constructively, and deliver high-quality work with strong attention to detail&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br /&gt;&lt;b&gt;Cultural Fit&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;A high level of energy&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Motivation to collaborate, learn, and improve&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Drive to make an impact&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Ability to organize complex problems into a clear plan of action&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;We Also Value:&lt;br /&gt;&lt;br /&gt;Application Knowledge&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Deep implementation expertise in at least one leading ETRM platform, with Openlink Endur strongly preferred, followed by RightAngle and Allegro&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Exposure to additional platforms such as ENTRADE, Fusion or Beacon would be good to have.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Technical Skills&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;p&gt;Practical experience with Java, C#, Python, or related technologies, along with working knowledge of SQL, relational databases, and ETRM data models&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Exposure to DevOps and ability to appreciate ETRM &amp; related systems hosted across on-prem/cloud/hybrid setups; Nice to have – Cloud Foundations Certifications such as Microsoft Azure Fundamentals (AZ-900) or AWS Certified Cloud Practitioner&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Understanding of APIs, interfaces, batch processing, data migration, reporting, and ETRM configuration, customization, and extension frameworks&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Experience working within Agile, hybrid, or traditional delivery methodologies&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Understanding of source control, CI/CD, automated testing, and modern solution-delivery practices&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;The ability to understand and review technical designs, custom developments, and integration approaches&lt;/p&gt;&lt;/li&gt;&lt;li&gt;&lt;p&gt;Relevant ETRM, Agile, cloud, or technical certifications&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Interview Process&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Our selection process typically includes functional and/or technical assessment, case study or practical exercise, behavioral interviews, and team fit discussions.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Compensation &amp; Benefits&lt;/b&gt;&lt;/p&gt;&lt;p&gt;We offer a competitive total rewards package that includes base salary, performance-based incentives, comprehensive health and wellness benefits, and professional development opportunities.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Diversity &amp; Inclusion&lt;/b&gt;&lt;/p&gt;&lt;p&gt;We are committed to creating a workplace where all employees feel valued, respected, and included. We embrace diversity of background, experience, perspective, and identity. We are an equal opportunity employer and welcome applicants from all backgrounds. We provide reasonable accommodation throughout the recruitment process and workplace for individuals with disabilities.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;&lt;p&gt;&lt;/p&gt;&lt;br&gt;&lt;p&gt; Oliver Wyman is a business of Marsh (NYSE: MRSH), a global leader in risk, reinsurance and capital, people and investments, and management consulting, advising clients in 130 countries. With annual revenue of over $27 billion and more than 95,000 colleagues, Marsh helps build the confidence to thrive through the power of perspective. For more information, visit oliverwyman.com, or follow us on LinkedIn and X. &lt;br&gt;&lt;br&gt;Marsh is committed to providing an inclusive work environment. We aim to attract and retain the best, most qualified people and value colleagues of all backgrounds, without regard to age, background, caste, disability, ethnic origin, family duties, gender orientation or expression, gender reassignment, marital status, nationality, parental status, personal or social status, political affiliation, race, religion and beliefs, sex/gender, sexual orientation or expression, skin color, or any other characteristic protected by applicable law.&lt;br&gt;&lt;br&gt;Marsh is committed to hybrid work, which includes the flexibility of working remotely and the collaboration, connections and professional development benefits of working together in the office. All Marsh colleagues are expected to be in their local office or working onsite with clients at least three days per week. Office-based teams will identify at least one “anchor day” per week on which their full team will be together in person.&lt;br&gt;&lt;br&gt;&lt;/p&gt;",
+          "title": "Oliver Wyman - Senior Analyst (Energy Trading and Risk Management) - Bengaluru",
+          "datePosted": "2026-11-12",
+          "@context": "http://schema.org",
+          "occupationalCategory": "Consulting",
+          "directApply": false
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "inLanguage": "en_global",
+          "name": "India",
+          "url": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+          "datePublished": "2026-11-09",
+          "dateModified": "2026-11-09"
+        },
+        {
+          "@context": "https://schema.org/",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://careers.marsh.com/global/en/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "job-india",
+              "item": "https://"
+            }
+          ]
+        }
+      ],
+      "sessionSemanticParameters": {},
+      "publicationModelSHA256": "f58fd60c3311461e2924fc86bee76d388ebb0f18d4c011dab680cf0a1a47ce4c"
+    }
+  },
+  "responseContracts": {
+    "https://www.oliverwyman.com/careers.html": {
+      "status": 200,
+      "finalURL": "https://www.oliverwyman.com/careers.html",
+      "effectiveHeaders": {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-security-policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' *; img-src data: * ; frame-ancestors 'self'; form-action 'self' https://*.facebook.com https://*.azureedge.net https://*.dynamics.com;",
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "https://careers.marsh.com/global/en/oliver-wyman-search": {
+      "status": 200,
+      "finalURL": "https://careers.marsh.com/global/en/oliver-wyman-search",
+      "effectiveHeaders": {
+        "content-type": "text/html; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru": {
+      "status": 200,
+      "finalURL": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364807EXTERNALENGLOBAL/Oliver-Wyman-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+      "effectiveHeaders": {
+        "content-type": "text/html; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru": {
+      "status": 200,
+      "finalURL": "https://careers.marsh.com/global/en/job/MAMCGLOBALR364805EXTERNALENGLOBAL/Oliver-Wyman-Senior-Analyst-Energy-Trading-and-Risk-Management-Bengaluru",
+      "effectiveHeaders": {
+        "content-type": "text/html; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "https://careers.marsh.com/widgets": {
+      "status": 200,
+      "finalURL": "https://careers.marsh.com/widgets",
+      "effectiveHeaders": {
+        "content-type": "application/json",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    }
+  },
+  "selectedQueryModels": {
+    "R_364807": {
+      "subCategory": "Technical Product Consulting",
+      "ml_skills": [
+        "energy trading",
+        "risk management",
+        "etrm implementation",
+        "commodity trading technology",
+        "openlink endur",
+        "rightangle",
+        "allegro",
+        "entrade",
+        "fusion",
+        "beacon",
+        "object-oriented programming",
+        "java",
+        "c#",
+        "python",
+        "sql",
+        "relational databases",
+        "etrm data models",
+        "nosql databases",
+        "web services",
+        "devops",
+        "cloud fundamentals",
+        "microsoft azure fundamentals",
+        "aws certified cloud practitioner",
+        "apis",
+        "agile",
+        "ci/cd",
+        "automated testing",
+        "batch processing",
+        "reporting",
+        "etrm configuration"
+      ],
+      "type": "Regular",
+      "descriptionTeaser": "We are expanding our team: As an Analyst in Energy Trading and Risk Management, you will support complex business and technology challenges for energy and commodity trading organisations. Collaborate with multidisciplinary teams and deliver scalable solutions. Ideal for candidates with at least 2 years' ETRM consulting experience and a strong understanding of trading operations.",
+      "state": "",
+      "siteType": "external",
+      "multi_category": [
+        "Consulting"
+      ],
+      "reqId": "R_364807",
+      "city": "Bengaluru",
+      "latitude": "12.97194",
+      "industry": "Real Estate",
+      "multi_location": [
+        "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India"
+      ],
+      "address": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India",
+      "applyUrl": "https://mmc.wd1.myworkdayjobs.com/MMC/job/Bengaluru---Prestige/Oliver-Wyman---Analyst--Energy-Trading-and-Risk-Management----Bengaluru_R_364807-1/apply",
+      "ml_job_parser": {
+        "descriptionTeaser": "We are expanding our team: As an Analyst in Energy Trading and Risk Management, you will support complex business and technology challenges for energy and commodity trading organisations. Collaborate with multidisciplinary teams and deliver scalable solutions. Ideal for candidates with at least 2 years' ETRM consulting experience and a strong understanding of trading operations.",
+        "descriptionTeaser_ats": "About Oliver Wyman At Oliver Wyman, a Marsh (NYSE .  MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations navi",
+        "descriptionTeaser_keyword": "About Oliver Wyman. At Oliver Wyman, a Marsh (NYSE: MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations nav...",
+        "descriptionTeaser_first200": "About Oliver Wyman . At Oliver Wyman, a Marsh (NYSE: MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations..."
+      },
+      "externalApply": false,
+      "locationLatlong": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India",
+      "cityState": "Bengaluru",
+      "country": "India",
+      "visibilityType": "External",
+      "longitude": "77.59369",
+      "jobId": "R_364807",
+      "locale": "en_GLOBAL",
+      "title": "Oliver Wyman - Analyst (Energy Trading and Risk Management) - Bengaluru",
+      "jobSeqNo": "MAMCGLOBALR364807EXTERNALENGLOBAL",
+      "postedDate": "2026-09-04T00:00:00.000+0000",
+      "dateCreated": "2026-09-04T12:32:58.478+0000",
+      "cityStateCountry": "Bengaluru, India",
+      "jobVisibility": [
+        "external"
+      ],
+      "location": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India",
+      "category": "Consulting",
+      "isMultiLocation": true,
+      "multi_location_array": [
+        {
+          "latlong": {
+            "lon": 77.59369,
+            "lat": 12.97194
+          },
+          "location": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India"
+        }
+      ],
+      "isMultiCategory": false,
+      "multi_category_array": [
+        {
+          "category": "Consulting"
+        }
+      ],
+      "badge": ""
+    },
+    "R_364805": {
+      "subCategory": "Technical Product Consulting",
+      "ml_skills": [
+        "etrm platform implementation",
+        "energy trading",
+        "risk management",
+        "commodity trading",
+        "java",
+        "c#",
+        "python",
+        "sql",
+        "openlink endur",
+        "rightangle",
+        "allegro",
+        "entrade",
+        "fusion",
+        "beacon",
+        "cloud foundations certification",
+        "microsoft azure fundamentals",
+        "aws certified cloud practitioner",
+        "devops",
+        "agile",
+        "relational databases",
+        "etrm data models",
+        "api integration",
+        "batch processing",
+        "data migration",
+        "etrm configuration",
+        "etrm customization",
+        "etrm extension frameworks",
+        "functional testing",
+        "regression testing",
+        "user acceptance testing"
+      ],
+      "type": "Regular",
+      "descriptionTeaser": "Exciting opportunity for a Senior Analyst to drive impactful solutions in energy trading and risk management. Collaborate with multidisciplinary teams to address complex business and technology challenges. Ideal for candidates with 3–7 years’ ETRM consulting experience and strong analytical and communication skills.",
+      "state": "",
+      "siteType": "external",
+      "multi_category": [
+        "Consulting"
+      ],
+      "reqId": "R_364805",
+      "city": "Bengaluru",
+      "latitude": "12.97194",
+      "industry": "Real Estate",
+      "multi_location": [
+        "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India"
+      ],
+      "address": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India",
+      "applyUrl": "https://mmc.wd1.myworkdayjobs.com/MMC/job/Bengaluru---Prestige/Oliver-Wyman---Senior-Analyst--Energy-Trading-and-Risk-Management----Bengaluru_R_364805-2/apply",
+      "ml_job_parser": {
+        "descriptionTeaser": "Exciting opportunity for a Senior Analyst to drive impactful solutions in energy trading and risk management. Collaborate with multidisciplinary teams to address complex business and technology challenges. Ideal for candidates with 3–7 years’ ETRM consulting experience and strong analytical and communication skills.",
+        "descriptionTeaser_ats": "About Oliver Wyman At Oliver Wyman, a Marsh (NYSE .  MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations navi",
+        "descriptionTeaser_keyword": "About Oliver Wyman. At Oliver Wyman, a Marsh (NYSE: MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations nav...",
+        "descriptionTeaser_first200": "About Oliver Wyman . At Oliver Wyman, a Marsh (NYSE: MRSH) business, we bring deep industry insight, bold innovation, and a collaborative approach that cuts through complexity to help organizations..."
+      },
+      "externalApply": false,
+      "locationLatlong": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India",
+      "cityState": "Bengaluru",
+      "country": "India",
+      "visibilityType": "External",
+      "longitude": "77.59369",
+      "jobId": "R_364805",
+      "locale": "en_GLOBAL",
+      "title": "Oliver Wyman - Senior Analyst (Energy Trading and Risk Management) - Bengaluru",
+      "jobSeqNo": "MAMCGLOBALR364805EXTERNALENGLOBAL",
+      "postedDate": "2026-09-04T00:00:00.000+0000",
+      "dateCreated": "2026-09-04T12:32:58.476+0000",
+      "cityStateCountry": "Bengaluru, India",
+      "jobVisibility": [
+        "external"
+      ],
+      "location": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India",
+      "category": "Consulting",
+      "isMultiLocation": true,
+      "multi_location_array": [
+        {
+          "latlong": {
+            "lon": 77.59369,
+            "lat": 12.97194
+          },
+          "location": "Prestige Shantiniketan, Tower B, ITPL Main Road, Bengaluru- 560048, India"
+        }
+      ],
+      "isMultiCategory": false,
+      "multi_category_array": [
+        {
+          "category": "Consulting"
+        }
+      ],
+      "badge": ""
+    }
+  },
+  "metadataAuthorityOnly": true,
+  "renderedApplicationQualified": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

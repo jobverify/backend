@@ -1,5 +1,6 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runCurrentEllucian } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -7,9 +8,6 @@ export const SOURCE = 'ellucianhighereducationsystems'
 export const COMPANY = 'Ellucian Higher Education Systems'
 export const COMPANY_DOMAIN = 'careers.ellucian.com'
 export const INDIA_SEARCH_URL = 'https://careers.ellucian.com/jobs/locations/country/India'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/&nbsp;|&#160;/gi, ' ')
@@ -63,7 +61,7 @@ export const buildJobsApiUrl = ({ page, searchConfig }) => {
   return `https://careers.ellucian.com/api/jobs?page=${page}&country=${searchConfig.query.country}&internal=${searchConfig.query.internal}&separator=${searchConfig.query.separator}&facetField=${searchConfig.query.facetField}`
 }
 
-export const extractSearchResults = (payload) => (payload?.jobs ?? []).map((job) => ({
+export const extractSearchResults = (payload) => (payload?.jobs ?? []).map((row) => row?.data ?? row).map((job) => ({
   title: normalizeWhitespace(job.title),
   company: COMPANY,
   department: normalizeWhitespace(job.categories?.[0]?.name) || null,
@@ -84,49 +82,11 @@ export const extractSearchResults = (payload) => (payload?.jobs ?? []).map((job)
   jobDescription: stripTags(job.description) || null,
 })).filter((job) => job.title && job.jobId && job.sourceUrl)
 
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  return response.text()
-}
-
-const defaultFetchJson = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'application/json,text/plain,*/*',
-    },
-  })
-
-  return response.json()
-}
-
 export const createEllucianHigherEducationSystemsScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({ fetchText = defaultFetchText, fetchJson = defaultFetchJson } = {}) {
-    const indiaSearchHtml = await fetchText(INDIA_SEARCH_URL)
-    const searchConfig = extractOfficialSearchConfig(indiaSearchHtml)
-
-    if (!hasOfficialIndiaSearchSignal(indiaSearchHtml) || !searchConfig) {
-      throw new Error('Ellucian India location page no longer matches the verified first-party Jibe surface')
-    }
-
-    return extractSearchResults(
-      await fetchJson(buildJobsApiUrl({ page: 1, searchConfig })),
-    ).map((job) => ({
-      ...job,
-      source: SOURCE,
-      companyDomain: COMPANY_DOMAIN,
-      atsPlatform: 'official-jibe-search',
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt: now(),
-    }))
+  run(options = {}) {
+    return runCurrentEllucian({ now, ...options })
   },
 })
 

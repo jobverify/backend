@@ -1,0 +1,28 @@
+{
+  "observedWidgetBuild": "b2611m.4",
+  "moduleVersion": "4.81.1",
+  "companyToken": "colgate",
+  "assets": [
+    {
+      "url": "https://jobs.colgate.com/platform/js/widgets/reactWidgetLoader.js",
+      "sha256": "84b47b264d90a783d23c93e7b332ce635972d92fc08216315e7aa3cebacae77e"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/ui/widget-loader/resources/widget-loader.js",
+      "sha256": "65d5f8ac028b81b94457acfaaeac9bed823b86542fbabc0e05266010a5dd149a"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/rmk-jobs-search/index.json?tag=b2611m.4",
+      "sha256": "159fe7dee25c75163db1624d84a98f71ea113863bf74cd694cd865d8452a97e4"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/ui/rmk-jobs-search/resources_4.81.1/asset-manifest-entrypoints.json?tag=b2611m.4",
+      "sha256": "eede539dd9e067e0b679c8e90e55d08191505b79c6bd350a467496efad392444"
+    },
+    {
+      "url": "https://performancemanager4.successfactors.com/verp/vmod_3/ui/rmk-jobs-search/resources_4.81.1/static/js/main.fb2b337c.js",
+      "sha256": "3cd671e9ca3d1e3ebc3a5890beb945645cb1ff66dd2fb5f4db3e960c87fb4f02"
+    }
+  ],
+  "provenance": "Genuine currently advertised public search -> unchanged loader -> b2611m.4 index -> 4.81.1 manifest -> complete program captured 2026-11-15. Program retains literal anonymous same-origin POST search/facet routes, public CSRF header and observed Country=filter1 model. Every body and URI is pinned; no publisher program is executed."
+}

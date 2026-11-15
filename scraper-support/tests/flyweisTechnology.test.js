@@ -43,14 +43,12 @@ test('Flyweis Technology helpers stay pinned to the verified marketing homepage 
   assert.equal(flyweis.hasCareersSignal(homepageHtml), false)
 })
 
-test('Flyweis Technology run stays fail-closed while the verified first-party site has no public careers surface', async () => {
+test('Flyweis Technology cannot certify zero from its historical marketing-only text snapshot', async () => {
   const flyweis = await loadModule()
 
-  const jobs = await flyweis.createFlyweisTechnologyScraper().run({
+  await assert.rejects(flyweis.createFlyweisTechnologyScraper().run({
     fetchText: async () => homepageHtml,
-  })
-
-  assert.deepEqual(jobs, [])
+  }), /text-only transport cannot verify current public careers surface/i)
 })
 
 test('Flyweis Technology fails closed when a careers route appears on the homepage', async () => {

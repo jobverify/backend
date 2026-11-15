@@ -24,35 +24,36 @@ const loadModule = async () => {
   }
 }
 
-test('Mobiloitte Technologies accepts the verified no-jobs empty state', async () => {
+test('Mobiloitte Technologies empty wording is an observation and body-only data cannot prove zero', async () => {
   const mobiloitte = await loadModule()
 
   assert.equal(mobiloitte.hasOfficialCareersSignal(careersHtml), true)
   assert.equal(mobiloitte.hasNoJobsFoundState(careersHtml), true)
-  assert.deepEqual(
-    await mobiloitte.createMobiloitteTechnologiesScraper().run({
+  await assert.rejects(
+    mobiloitte.createMobiloitteTechnologiesScraper().run({
       fetchText: async () => careersHtml,
     }),
-    [],
+    /native HTTP metadata|scope|unverified/i,
   )
 })
 
-test('Mobiloitte Technologies can recover with a browser-backed careers page when direct requests are blocked', async () => {
+test('Mobiloitte Technologies retains a native denial without silently enabling a browser', async () => {
   const mobiloitte = await loadModule()
   const browserUrls = []
 
-  const jobs = await mobiloitte.createMobiloitteTechnologiesScraper().run({
-    fetchText: async () => {
-      throw new Error(`HTTP 403 for ${mobiloitte.CAREERS_URL}`)
+  await assert.rejects(mobiloitte.createMobiloitteTechnologiesScraper().run({
+    fetchImpl: async url => {
+      const response = new Response('Forbidden', {status:403,headers:{'Content-Type':'text/html'}})
+      Object.defineProperty(response,'url',{value:url})
+      return response
     },
     fetchBrowserText: async (url) => {
       browserUrls.push(url)
       return careersHtml
     },
-  })
+  }), /403/)
 
-  assert.deepEqual(browserUrls, [mobiloitte.CAREERS_URL])
-  assert.deepEqual(jobs, [])
+  assert.deepEqual(browserUrls, [])
 })
 
 const liveLikeCareersHtml = careersHtml
@@ -60,9 +61,9 @@ const liveLikeCareersHtml = careersHtml
   .replace("<p>We couldn't find any jobs matching your criteria.</p>", '')
 const roleDetail = (title, id) => '<html><title>Apply For ' + title + ' At Mobiloitte Technologies India Pvt. Ltd.</title><link rel="canonical" href="https://www.mobiloitte.com/careers/' + id + '"></html>'
 
-test('Mobiloitte Technologies collects first-party Delhi roles from its current careers page', async () => {
+test('Mobiloitte Technologies legacy title metadata and card teasers cannot assert Delhi or full criteria', async () => {
   const mobiloitte = await loadModule()
-  const jobs = await mobiloitte.run({
+  await assert.rejects(mobiloitte.run({
     fetchText: async (url) => {
       if (url === mobiloitte.CAREERS_URL) return liveLikeCareersHtml
       if (url.endsWith('/JOB000016')) return roleDetail('Interns-Software Engineer', 'JOB000016')
@@ -70,17 +71,12 @@ test('Mobiloitte Technologies collects first-party Delhi roles from its current 
       throw new Error('Unexpected URL: ' + url)
     },
     now: () => '2026-10-03T00:00:00.000Z',
-  })
-  assert.deepEqual(jobs.map((job) => job.jobId), ['JOB000016', 'JOB000013'])
-  assert.deepEqual(jobs.map((job) => job.title), ['Interns-Software Engineer', 'Sr Business Development Manager'])
-  assert.equal(jobs[0].location, 'Delhi, India')
-  assert.equal(jobs[0].applyUrl, 'https://www.mobiloitte.com/careers/JOB000016')
-  assert.equal(jobs[0].scrapedAt, '2026-10-03T00:00:00.000Z')
+  }), /metadata|schema|criteria|publisher/i)
 })
 
 test('Mobiloitte Technologies rejects a role card without a valid first-party detail link', async () => {
   const mobiloitte = await loadModule()
   await assert.rejects(mobiloitte.run({
     fetchText: async () => liveLikeCareersHtml.replace('/careers/JOB000013', 'https://other.example/job'),
-  }), /card|role|link/i)
+  }), /metadata|card|role|link/i)
 })

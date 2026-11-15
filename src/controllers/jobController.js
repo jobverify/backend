@@ -1,3 +1,4 @@
+import { CALENDAR_POSTED_PERIODS, buildPostedDateRange } from "../utils/jobPostedDateFilter.js";
 /**
  * @file Controllers for job listing searches, metadata extraction, and analytics tracking.
  * @module controllers/jobController
@@ -14,7 +15,6 @@ import {
   DATE_POSTED_NA_VALUE,
   DATE_POSTED_OLDER_THAN_30_VALUE,
   DATE_POSTED_OPTIONS,
-  DATE_POSTED_WINDOW_OPTIONS,
   EXPERIENCE_BUCKET_OPTIONS,
   EXPERIENCE_BUCKET_VALUES,
   ROLE_DOMAIN_OPTIONS,
@@ -394,6 +394,7 @@ const normalizeOptionValues = (value, options = []) => [...new Set(
 
 const normalizeDatePostedDays = (value) => {
   const normalized = String(value ?? "").trim().toLowerCase();
+  if (CALENDAR_POSTED_PERIODS.includes(normalized)) return normalized;
   if (normalized === DATE_POSTED_NA_VALUE) return DATE_POSTED_NA_VALUE;
 
   if (!/^\d+$/u.test(normalized)) return null;
@@ -403,21 +404,12 @@ const normalizeDatePostedDays = (value) => {
 };
 
 const normalizeDatePostedDaysValues = (value) => [...new Set(
-  normalizeList(value, { maxItems: DATE_POSTED_OPTIONS.length, maxLength: 8 })
+  normalizeList(value, { maxItems: DATE_POSTED_OPTIONS.length, maxLength: 16 })
     .map((item) => normalizeDatePostedDays(item))
     .filter((item) => item != null)
 )];
 
-const buildDatePostedRange = (days) => {
-  const start = new Date();
-  start.setHours(0, 0, 0, 0);
-  start.setDate(start.getDate() - days);
-
-  const end = new Date(start);
-  end.setDate(end.getDate() + 1);
-
-  return { $gte: start, $lt: end };
-};
+const buildDatePostedRange = buildPostedDateRange;
 
 const buildOlderThanThirtyDaysRange = () => {
   const cutoff = new Date();
@@ -1069,7 +1061,7 @@ const resolveScopedDatePostedOptions = async (queryParams = {}, siteSettings) =>
   const baseConditions = buildJobFilterConditions(withoutQueryKeys(queryParams, ["datePostedDays"]));
 
   const matchesByWindow = await Promise.all(
-    [...DATE_POSTED_WINDOW_OPTIONS, DATE_POSTED_OLDER_THAN_30_VALUE].map(async (days) => {
+    [0, 1, ...CALENDAR_POSTED_PERIODS].map(async (days) => {
       const count = await Job.countDocuments(
         applyPublicJobVisibility({
           ...baseConditions,
@@ -1762,7 +1754,7 @@ export const getJobMeta = async (req, res) => {
             roleDomains: ROLE_DOMAIN_OPTIONS,
             seniorityLevels: SENIORITY_LEVELS,
             workArrangements: WORK_ARRANGEMENT_OPTIONS,
-            datePostedOptions: [...DATE_POSTED_WINDOW_OPTIONS, DATE_POSTED_OLDER_THAN_30_VALUE],
+            datePostedOptions: [0, 1, ...CALENDAR_POSTED_PERIODS],
           },
         });
       }
@@ -1818,7 +1810,7 @@ export const getJobMeta = async (req, res) => {
         : Promise.resolve(WORK_ARRANGEMENT_OPTIONS),
       hasScopedFilters
         ? resolveScopedDatePostedOptions(queryParams, req.siteSettings)
-        : Promise.resolve([...DATE_POSTED_WINDOW_OPTIONS, DATE_POSTED_OLDER_THAN_30_VALUE]),
+        : Promise.resolve([0, 1, ...CALENDAR_POSTED_PERIODS]),
     ]);
 
     return res.status(200).json({

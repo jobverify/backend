@@ -1,0 +1,235 @@
+{
+  "version": "current-lightmetrics-native-20261115",
+  "source": "lightmetrics",
+  "company": "Lightmetrics",
+  "brand": "LightMetrics",
+  "configuredHome": "https://www.lightmetrics.co/",
+  "home": "https://www.lightmetrics.ai/",
+  "board": "https://www.lightmetrics.ai/company/careers",
+  "roleModels": [
+    {
+      "url": "https://www.lightmetrics.ai/career/software-engineer---ai",
+      "title": "Software Engineer – AI",
+      "location": "Bangalore, India",
+      "employmentLabel": "Full time"
+    },
+    {
+      "url": "https://www.lightmetrics.ai/career/software-engineer---android",
+      "title": "Software Engineer - Android",
+      "location": "Bengaluru, India",
+      "employmentLabel": "Full Time"
+    }
+  ],
+  "documentURLs": [
+    "https://www.lightmetrics.co/",
+    "https://www.lightmetrics.ai/",
+    "https://www.lightmetrics.ai/company/careers",
+    "https://www.lightmetrics.ai/career/software-engineer---ai",
+    "https://www.lightmetrics.ai/career/software-engineer---android"
+  ],
+  "assetURLs": [
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/css/lightmetrics-ef.webflow.shared.92e1f49b8.min.css",
+    "https://unpkg.com/lenis@1.3.27/dist/lenis.css",
+    "https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js",
+    "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6ad9f08dfaf67d94accd7c55",
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.c42549641b7d4501.js",
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.cfeff0054978c1fa.js",
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.121b0d7ff03e0f4a.js",
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.1480913c3571b049.js",
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.cde3266e.c48b3f90b992606e.js",
+    "https://unpkg.com/lenis@1.3.27/dist/lenis.min.js",
+    "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js",
+    "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-P2RRRFTF",
+    "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js",
+    "https://cdn.jsdelivr.net/npm/@finsweet/attributes@2/attributes.js",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js",
+    "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+    "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js",
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.b049d1f4.3baead785c62a8be.js"
+  ],
+  "originalPackets": {
+    "https://www.lightmetrics.co/": {
+      "status": 301,
+      "finalURL": "https://www.lightmetrics.co/",
+      "bytes": 166,
+      "sha256": "87a9323ac85ce28867d5d7ce590c8f29b8d1a999961fca71bb33adef48683691",
+      "mime": "text/html",
+      "location": "https://www.lightmetrics.ai/"
+    },
+    "https://www.lightmetrics.ai/": {
+      "status": 200,
+      "finalURL": "https://www.lightmetrics.ai/",
+      "bytes": 740085,
+      "sha256": "b7535d12f0caff4662b42a5e297998dc635bd2cb37cf5695d0067e7efe2a471f",
+      "mime": "text/html"
+    },
+    "https://www.lightmetrics.ai/company/careers": {
+      "status": 200,
+      "finalURL": "https://www.lightmetrics.ai/company/careers",
+      "bytes": 487252,
+      "sha256": "9485ae7d38710c24883624e62b5ba7e36d3f063f8e81e6dbc632b8f19c71aaca",
+      "mime": "text/html"
+    },
+    "https://www.lightmetrics.ai/career/software-engineer---ai": {
+      "status": 200,
+      "finalURL": "https://www.lightmetrics.ai/career/software-engineer---ai",
+      "bytes": 332215,
+      "sha256": "87a57829e07127d217efbbfa3fc3a6b40ef0bdfd36cce840dc64c97f7b6a41d6",
+      "mime": "text/html"
+    },
+    "https://www.lightmetrics.ai/career/software-engineer---android": {
+      "status": 200,
+      "finalURL": "https://www.lightmetrics.ai/career/software-engineer---android",
+      "bytes": 332328,
+      "sha256": "ba9b0fbc56a02cd9a8d901ff3a9fe6db4396ecd1a8b2c31ac077b132ecc6034d",
+      "mime": "text/html"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/css/lightmetrics-ef.webflow.shared.92e1f49b8.min.css": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/css/lightmetrics-ef.webflow.shared.92e1f49b8.min.css",
+      "bytes": 454279,
+      "sha256": "fc1d86d8faddec3d9d2e5401040c6f8bfe94bec5e8a28a80182a4d6cfbc97b74",
+      "mime": "text/css"
+    },
+    "https://unpkg.com/lenis@1.3.27/dist/lenis.css": {
+      "status": 200,
+      "finalURL": "https://unpkg.com/lenis@1.3.27/dist/lenis.css",
+      "bytes": 513,
+      "sha256": "2f668ae84a668327f246faf8a770383a2bf69196d214290fbc4d5548910606c5",
+      "mime": "text/css"
+    },
+    "https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js": {
+      "status": 200,
+      "finalURL": "https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js",
+      "bytes": 2779,
+      "sha256": "b9d1bc52ce68d7de76ef4f9debff844813578210118c63f499c90688a34b6575",
+      "mime": "application/javascript"
+    },
+    "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6ad9f08dfaf67d94accd7c55": {
+      "status": 200,
+      "finalURL": "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6ad9f08dfaf67d94accd7c55",
+      "bytes": 89476,
+      "sha256": "f7f6a5894f1d19ddad6fa392b2ece2c5e578cbf7da4ea805b6885eb6985b6e3d",
+      "mime": "application/javascript"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.c42549641b7d4501.js": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.c42549641b7d4501.js",
+      "bytes": 304844,
+      "sha256": "607722432d4ddeba975fd45aad48dd4ac68c28c8b8511f25b64f3a5c1e86fc06",
+      "mime": "text/javascript"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.cfeff0054978c1fa.js": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.cfeff0054978c1fa.js",
+      "bytes": 53591,
+      "sha256": "86e5772378b99b6e8554240973f3a195fcb0d92544e85ebd16e1b4be28412fd0",
+      "mime": "text/javascript"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.121b0d7ff03e0f4a.js": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.121b0d7ff03e0f4a.js",
+      "bytes": 3247,
+      "sha256": "53fd172162279e64b54acefc8ddb9a5a871b20403aba15e10f9c85973068fce1",
+      "mime": "text/javascript"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.1480913c3571b049.js": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.schunk.1480913c3571b049.js",
+      "bytes": 17229,
+      "sha256": "6f410ebf9951bd9f429fc251974f820e4891ea1a45466c4f64e720dc50753189",
+      "mime": "text/javascript"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.cde3266e.c48b3f90b992606e.js": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.cde3266e.c48b3f90b992606e.js",
+      "bytes": 1134,
+      "sha256": "c4290dd78f3dd4e2d0b479c17a3dd90524cc354fbe891110043f6ac3828a06d7",
+      "mime": "text/javascript"
+    },
+    "https://unpkg.com/lenis@1.3.27/dist/lenis.min.js": {
+      "status": 200,
+      "finalURL": "https://unpkg.com/lenis@1.3.27/dist/lenis.min.js",
+      "bytes": 18815,
+      "sha256": "80f53e77f1c13e379fc246d2b5e299188e20bcb2b2fe7ebb13e8e8c7563a6da7",
+      "mime": "text/javascript"
+    },
+    "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js",
+      "bytes": 73357,
+      "sha256": "3d1bea374ab1b703cc5c4105358eec63c4465efdc573931dc116e34a0a190c1b",
+      "mime": "application/javascript"
+    },
+    "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js",
+      "bytes": 44683,
+      "sha256": "b5bb360661f478f0ff6ffa11500d8ce5e2b6aaf6f7288237cdca3aac9548035a",
+      "mime": "application/javascript"
+    },
+    "https://www.googletagmanager.com/gtm.js?id=GTM-P2RRRFTF": {
+      "status": 200,
+      "finalURL": "https://www.googletagmanager.com/gtm.js?id=GTM-P2RRRFTF",
+      "bytes": 548137,
+      "sha256": "b4fe76a06ee5e43f813851d3e586a2f06edccd134ed85ec85d15fa35603388f2",
+      "mime": "application/javascript"
+    },
+    "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js",
+      "bytes": 7955,
+      "sha256": "7b299a6b26b36fd5ce1c0712f31d6d25f98f9a9860778c2d3a78ce8f880f2edf",
+      "mime": "application/javascript"
+    },
+    "https://cdn.jsdelivr.net/npm/@finsweet/attributes@2/attributes.js": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/@finsweet/attributes@2/attributes.js",
+      "bytes": 3656,
+      "sha256": "67584fbeb46f3d91e43c0f0a9c0f2a4f0fc2e0485773e2164967653f7294c363",
+      "mime": "application/javascript"
+    },
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js",
+      "bytes": 72435,
+      "sha256": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
+      "mime": "application/javascript"
+    },
+    "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css",
+      "bytes": 16493,
+      "sha256": "322d15d99efb792c941a5202fa8fc7ee9e932847227383ff9605163338a08eac",
+      "mime": "text/css"
+    },
+    "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js",
+      "bytes": 143706,
+      "sha256": "f645b12f27c4e9c1210d5725cfa894b86464372e7b1becbe47126a5fe82f9ade",
+      "mime": "application/javascript"
+    },
+    "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.b049d1f4.3baead785c62a8be.js": {
+      "status": 200,
+      "finalURL": "https://cdn.prod.website-files.com/6ad9f08dfaf67d94accd7c55/js/webflow.b049d1f4.3baead785c62a8be.js",
+      "bytes": 1085,
+      "sha256": "8bc3433fcc0276b9220c944df097952e8d554eb3dc41473e968048fd8b3efe74",
+      "mime": "text/javascript"
+    }
+  },
+  "reviewedWholeProgramVariants": {
+    "https://www.googletagmanager.com/gtm.js?id=GTM-P2RRRFTF": [
+      {
+        "bytes": 548137,
+        "sha256": "b4fe76a06ee5e43f813851d3e586a2f06edccd134ed85ec85d15fa35603388f2"
+      },
+      {
+        "bytes": 548155,
+        "sha256": "fbb348b5d6c3810581c3d5f79b8b5a7cc8c63afb71569f3aeacc2d21c0627df9"
+      }
+    ]
+  },
+  "reviewedWholeProgramVariantContract": "Two exact complete currently published GTM programs; the only two complete-AST statement changes assign existing service-worker feature flag10 after flag11. All publisher documents, original native role criteria/countries, other code and styles remain exact; no arbitrary script, literal or code normalization."
+}

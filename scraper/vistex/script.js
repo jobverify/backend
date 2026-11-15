@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentVistex } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -14,9 +14,6 @@ export const ABOUT_URL = 'https://www.vistex.com/about-us/'
 export const CONTACT_URL = 'https://www.vistex.com/contact/'
 export const ULTIPRO_BOARD_URL =
   'https://recruiting2.ultipro.com/VIS1012VISX/JobBoard/23e64b4e-ff01-4579-9e5a-835480ac7a51/?o=postedDateDesc&q='
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value) =>
   String(value ?? '')
@@ -35,15 +32,6 @@ const decodeUrlEntities = (value) =>
   String(value ?? '')
     .replace(/&amp;/gi, '&')
     .trim()
-
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
 
 export const extractOfficialUltiproUrl = (html = '') => {
   const anchors = [...String(html ?? '').matchAll(
@@ -140,49 +128,9 @@ export const hasOfficialUltiproBoardSignal = (html) => {
     && normalized.includes('https://www.vistex.com/careers/')
 }
 
-export const createVistexScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('Vistex homepage no longer matches the verified official site')
-    }
+export const createVistexScraper = () => ({ run: runCurrentVistex })
 
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('Vistex careers page no longer matches the verified official surface')
-    }
-    if (extractOfficialUltiproUrl(careersHtml) !== ULTIPRO_BOARD_URL) {
-      throw new Error('Vistex UltiPro handoff no longer matches the verified official surface')
-    }
-
-    const indiaCareersHtml = await fetchText(INDIA_CAREERS_URL)
-    if (!hasOfficialIndiaCareersSignal(indiaCareersHtml)) {
-      throw new Error('Vistex India careers page no longer matches the verified official surface')
-    }
-    if (extractOfficialUltiproUrl(indiaCareersHtml) !== ULTIPRO_BOARD_URL) {
-      throw new Error('Vistex UltiPro handoff no longer matches the verified official surface')
-    }
-
-    const aboutHtml = await fetchText(ABOUT_URL)
-    if (!hasOfficialAboutSignal(aboutHtml)) {
-      throw new Error('Vistex about page no longer matches the verified official site')
-    }
-
-    const contactHtml = await fetchText(CONTACT_URL)
-    if (!hasOfficialContactSignal(contactHtml)) {
-      throw new Error('Vistex contact page no longer matches the verified official site')
-    }
-
-    const boardHtml = await fetchText(ULTIPRO_BOARD_URL)
-    if (!hasOfficialUltiproBoardSignal(boardHtml)) {
-      throw new Error('Vistex UKG board handoff no longer matches the verified public surface')
-    }
-
-    return []
-  },
-})
-
-export const run = async (options = {}) => createVistexScraper().run(options)
+export const run = (options = {}) => runCurrentVistex(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

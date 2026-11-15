@@ -5,6 +5,7 @@ import { fetchPageWithRetry } from '../../scraper-support/utils/fetchPageWithRet
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { fetchHitachiParadoxJobs, normalizeHitachiParadoxJob } from '../../scraper-support/shared/hitachiParadoxJobs.js'
+import { confirmHitachiIndiaNativeZero } from './currentZeroInventory.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -412,15 +413,21 @@ export const createHitachiIndiaScraper = ({
       || (overrideFetchText ? createFetchPageFromText(fetchPageText) : fetchPage)
 
     const fetchCurrentJobs = async () => {
+      const responses = []
       const currentJobs = await fetchHitachiParadoxJobs({
         brand: 'Hitachi India Pvt. Ltd',
         country: 'India',
         legalName: COMPANY_NAME,
-        fetchText: fetchPageText,
+        fetchText: async url => {
+          const html = await fetchPageText(url)
+          responses.push({ url, html })
+          return html
+        },
       })
-      return currentJobs
+      const jobs = currentJobs
         .slice(0, overrideMaxJobs || currentJobs.length)
         .map((job) => normalizeHitachiParadoxJob(job, { company: COMPANY_NAME, source: SOURCE, now }))
+      return confirmHitachiIndiaNativeZero({ jobs, responses, fetchText: fetchPageText, now })
     }
     if (!useLegacySearchPage) return fetchCurrentJobs()
 

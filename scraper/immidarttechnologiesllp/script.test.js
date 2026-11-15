@@ -24,13 +24,13 @@ const loadImmidartModule = async () => {
   }
 }
 
-test('Immidart Technologies LLP scraper constants stay pinned to the verified official careers SPA surface', async () => {
+test('Immidart keeps original employer identity while current native careers replace the legacy SPA reader', async () => {
   const immidart = await loadImmidartModule()
 
   assert.equal(immidart.SOURCE, 'immidarttechnologiesllp')
   assert.equal(immidart.COMPANY, 'Immidart Technologies LLP')
   assert.equal(immidart.HOMEPAGE_URL, 'https://www.immidart.com/')
-  assert.equal(immidart.CAREERS_URL, 'https://www.immidart.com/company/careers')
+  assert.equal(immidart.CAREERS_URL, 'https://www.immidart.com/careers/')
   assert.equal(immidart.hasOfficialHomepageSignal(homepageHtml), true)
   assert.equal(immidart.extractBundlePath(homepageHtml), '/assets/index-C11kHmGj.js')
   assert.equal(immidart.extractBundlePath(careersHtml), '/assets/index-C11kHmGj.js')
@@ -80,56 +80,13 @@ test('Immidart extracts the first-party role array after a bundle minifier renam
   assert.equal(jobs[0].title, 'Business Development Manager')
 })
 
-test('Immidart Technologies LLP run decorates official first-party careers jobs from the embedded bundle payload', async () => {
+test('Immidart legacy body-only bundle data cannot publish country or teaser-only jobs', async () => {
   const immidart = await loadImmidartModule()
-  const requestedUrls = []
-
-  const jobs = await immidart.createImmidartTechnologiesLlpScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === immidart.HOMEPAGE_URL) return homepageHtml
-      if (url === immidart.CAREERS_URL) return careersHtml
-      if (url === 'https://www.immidart.com/assets/index-C11kHmGj.js') return routeBundle
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    immidart.HOMEPAGE_URL,
-    immidart.CAREERS_URL,
-    'https://www.immidart.com/assets/index-C11kHmGj.js',
-  ])
-  assert.equal(jobs.length, 10)
-  assert.deepEqual(jobs[0], {
-      title: 'Business Development Manager',
-      company: 'Immidart Technologies LLP',
-      location: 'Bangalore, India',
-      city: 'Bangalore',
-    country: 'India',
-    source: 'immidarttechnologiesllp',
-    sourceUrl: 'https://www.immidart.com/company/careers',
-    applyUrl: 'https://www.immidart.com/company/careers',
-    link: 'https://www.immidart.com/company/careers',
-    jobId: 'immidarttechnologiesllp-bdm-1',
-    requisitionId: 'immidarttechnologiesllp-bdm-1',
-    department: 'business',
-    experienceRequired: '10+ Years',
-    employmentType: 'Full-time',
-    remoteStatus: 'On-site',
-    jobDescription: 'Drive business growth and strategic partnerships for our global mobility solutions.',
-    requiredSkills: [],
-    preferredQualification: null,
-    closingDate: null,
-    postingDate: null,
-    scrapedAt: jobs[0].scrapedAt,
-  })
-  assert.match(jobs[0].scrapedAt, /\d{4}-\d{2}-\d{2}T/)
-  assert.equal(jobs[8].jobId, 'immidarttechnologiesllp-mt-hr-1')
-  assert.equal(jobs[8].requiredSkills.length, 3)
-  assert.equal(jobs[9].jobId, 'immidarttechnologiesllp-sm-1')
-  assert.equal(jobs[9].requiredSkills.length, 4)
+  let calls = 0
+  await assert.rejects(immidart.createImmidartTechnologiesLlpScraper().run({
+    fetchText: async () => { calls++; return routeBundle },
+  }), /native HTTP metadata|body-only/i)
+  assert.equal(calls, 0)
 })
 
 test('Immidart certificate failures propagate without a second request', async () => {
@@ -183,43 +140,13 @@ test('Immidart transport always verifies TLS for the verified host', async () =>
   )
 })
 
-test('Immidart Technologies LLP fails closed when the verified first-party careers surface changes or loses embedded openings', async () => {
+test('Immidart legacy empty or shell markers cannot certify current native inventory', async () => {
   const immidart = await loadImmidartModule()
-
-  await assert.rejects(
-    immidart.createImmidartTechnologiesLlpScraper().run({
-      fetchText: async (url) => {
-        if (url === immidart.HOMEPAGE_URL) return '<html><title>Unexpected</title></html>'
-        if (url === immidart.CAREERS_URL) return careersHtml
-        return routeBundle
-      },
-    }),
-    /verified official homepage/i,
-  )
-
-  await assert.rejects(
-    immidart.createImmidartTechnologiesLlpScraper().run({
-      fetchText: async (url) => {
-        if (url === immidart.HOMEPAGE_URL) return homepageHtml
-        if (url === immidart.CAREERS_URL) {
-          return careersHtml.replace('/assets/index-C11kHmGj.js', '/assets/index-other.js')
-        }
-        return routeBundle
-      },
-    }),
-    /verified official careers route/i,
-  )
-
-  await assert.rejects(
-    immidart.createImmidartTechnologiesLlpScraper().run({
-      fetchText: async (url) => {
-        if (url === immidart.HOMEPAGE_URL) return homepageHtml
-        if (url === immidart.CAREERS_URL) return careersHtml
-        return routeBundle.replace('const $3=[', 'const $3=[]')
-      },
-    }),
-    /embedded first-party job payload/i,
-  )
+  for (const html of [homepageHtml, careersHtml, '<h1>No jobs available</h1>']) {
+    await assert.rejects(immidart.createImmidartTechnologiesLlpScraper().run({
+      fetchText: async () => html,
+    }), /native HTTP metadata|body-only/i)
+  }
 })
 
 const roleLiteral = (extra = '') => '{id:"one",title:"Engineer",location:"Bangalore",experience:"1-3 Years",department:"engineering",description:"Develop our product."' + extra + '}'

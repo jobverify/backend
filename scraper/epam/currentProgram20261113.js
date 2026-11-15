@@ -4,6 +4,8 @@ import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml
 import { readLiteralModel } from '../../scraper-support/native-sources/literalModel.js'
 
 export const currentEpamProgram = JSON.parse(readFileSync(new URL('./reviewedProgram20261113.json', import.meta.url)))
+const bootstrap = JSON.parse(readFileSync(new URL('./reviewedBootstrap20261115.json', import.meta.url)))
+currentEpamProgram.programAndStyleFiles.push(...bootstrap.files)
 const sha = value => createHash('sha256').update(value).digest('hex')
 const canonical = value => JSON.stringify(value, (_key, item) => item && typeof item === 'object' && !Array.isArray(item)
   ? Object.fromEntries(Object.keys(item).sort().map(key => [key, item[key]])) : item)
@@ -21,6 +23,30 @@ const potentialStyle = node => node.tag === 'style' || node.tag === 'link'
     || /(?:text\/css|\.css(?:[?#]|$))/i.test((node.attrs.type || '') + ' ' + (node.attrs.href || ''))
     || Object.hasOwn(node.attrs, 'onload'))
 
+// Exact producer in pinned app module34123 and its date helper21915. The
+// generated one-year validThrough remains raw schema provenance; it is not
+// promoted to the role's application deadline or used as positive OPEN proof.
+function expectedJobPosting(record) {
+  const posted = new Date(record.updated_at || record.created_at), through = new Date(record.created_at)
+  requireProgram(Number.isFinite(posted.getTime()) && Number.isFinite(through.getTime()), 'native-role-schema-date-unqualified')
+  const month = through.getUTCMonth()
+  through.setUTCFullYear(through.getUTCFullYear() + 1)
+  if (through.getUTCMonth() !== month) through.setUTCDate(0)
+  const root = 'https://careers.epam.com/'
+  const result = { '@context': 'http://schema.org/', '@type': 'JobPosting', title: record.name,
+    description: record.text, skills: record.skills.join(', '), datePosted: posted.toISOString().slice(0, 10),
+    image: root + 'static/assets/logo/EPAM_Systems.svg',
+    hiringOrganization: { '@type': 'Organization', name: 'EPAM Systems', sameAs: root, logo: root + 'static/assets/logo/EPAM_Systems.svg' },
+    validThrough: through.toISOString().slice(0, 16),
+    identifier: { '@type': 'PropertyValue', name: 'EPAM Systems', value: record.uid } }
+  requireProgram(['Office', 'Remote', 'Hybrid'].includes(record.vacancy_type), 'native-role-schema-workplace-unqualified')
+  if (record.vacancy_type !== 'Remote') result.jobLocation = record.country.map(country => ({ '@type': 'Place',
+    address: { '@type': 'PostalAddress', addressCountry: country.name } }))
+  if (record.vacancy_type !== 'Office') Object.assign(result, { jobLocationType: 'TELECOMMUTE',
+    applicantLocationRequirements: record.country.map(country => ({ '@type': 'Country', name: country.name })) })
+  return result
+}
+
 // This is the public, anonymous, own-role context. It establishes the currently
 // declared renderer/control prototype; individual native models still need
 // their own complete country, criteria, application-mode and closing proof.
@@ -34,6 +60,11 @@ export async function verifyCurrentEpamProgram({ html, sourceUrl, nativeRecord, 
     while (node) { nodes.unshift({ tag: node.tag, attrs: normalizedAttrs(node) }); node = parents.get(node) }
     return nodes
   }
+  requireProgram(!raw.some(node => node.tag === 'base'), 'native-role-base-unqualified')
+  const activeDeclaration = node => !node.inert && !node.nativeTagUnqualified
+    && !path(node).some(parent => ['template', 'object', 'svg', 'math', 'noscript'].includes(parent.tag))
+  requireProgram(raw.filter(node => node.tag === 'script' && !/^application\/(?:ld\+)?json$/i.test(node.attrs.type || ''))
+    .every(activeDeclaration), 'native-role-inert-program-declaration')
   const models = doc.nodes(node => node.tag === 'script' && node.attrs.id === '__NEXT_DATA__'
     && node.attrs.type === 'application/json')
   requireProgram(models.length === 1, 'native-role-context-model-ambiguous')
@@ -47,6 +78,12 @@ export async function verifyCurrentEpamProgram({ html, sourceUrl, nativeRecord, 
   requireProgram(role && role.uid === nativeRecord.uid && role.unique_id === nativeRecord.unique_id
     && canonical(Object.fromEntries(Object.entries(role).filter(([key]) => key !== 'localizations'))) === canonical(nativeRecord)
     && canonical(role.localizations) === canonical([{ locale: 'en-us' }]), 'native-role-context-original-model-disagrees')
+  const postings = doc.nodes(node => node.tag === 'script' && node.attrs.type === 'application/ld+json')
+    .map(node => readLiteralModel(node.raw).value).filter(value => value?.['@type'] === 'JobPosting')
+  requireProgram(postings.length === 1, 'native-role-own-schema-missing-or-ambiguous')
+  const posting = postings[0]
+  requireProgram(canonical(posting) === canonical(expectedJobPosting(nativeRecord)),
+  'native-role-own-schema-country-identity-or-full-core-criteria-disagree')
   requireProgram(props.staticData?.uid === currentEpamProgram.contextCmsUid,
     'native-role-context-cms-producer-changed')
   const otherPageProps = Object.fromEntries(Object.entries(props)
@@ -85,6 +122,12 @@ export async function verifyCurrentEpamProgram({ html, sourceUrl, nativeRecord, 
   }
   requireProgram(doc.text(criteria[0]) === nativeRecord.text.replace(/\s+/g, ' ').trim(),
     'native-role-rendered-original-criteria-disagree')
+  const bodies = doc.nodes(node => node.tag === 'body')
+  requireProgram(bodies.length === 1, 'native-role-current-body-hidden-or-ambiguous')
+  const currentText = doc.text(bodies[0])
+  requireProgram(!/\b(?:this|the)\s+(?:job|position|role|vacancy|opportunity|requisition)\s+(?:(?:has|have)\s+been\s+|(?:is|was)\s+)(?:(?:currently|now|temporarily)\s+)?(?:filled|closed|expired|cancelled|canceled|unavailable|(?:not|no\s+longer)\s+(?:available|open|accepting\s+applications))\b/i.test(currentText)
+    && !/\bapplications?\s+(?:for\s+(?:this|the)\s+(?:job|position|role|vacancy)\s+)?(?:are|is|have\s+been|has\s+been)\s+(?:closed|no\s+longer\s+(?:accepted|being\s+accepted))\b/i.test(currentText),
+  'native-role-current-visible-closure-contradiction')
 
   // A declaration URL does not bind the executable at that URL. Bootstrap
   // programs can load other producers; unread programs cannot be presumed
@@ -105,6 +148,7 @@ export async function verifyCurrentEpamProgram({ html, sourceUrl, nativeRecord, 
   // does not claim an authenticated user's eligibility or a submitted form.
   const evidence = {
     sourceUrl, nativeRoleId: nativeRecord.uid, nativeRecord: role,
+    nativeJobPosting: posting,
     nativeCmsModel: props.staticData, nativeCommonCmsProps: props.commonCmsProps,
     nativeOtherPageProps: otherPageProps, publicAnonymousApplyEnabled: true,
     formSubmitted: false, userAuthenticated: false, declaredProgramsAndStyles: files,

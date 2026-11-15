@@ -2,6 +2,7 @@ import { disposeResponseBody } from '../../scraper-support/shared/responseBodyDi
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 import { readVisibleNativeDocument } from '../../scraper-support/utils/visibleNativeHtml.js'
 import { explicitWorkdayCountryScope } from '../../scraper-support/myworkday/countryInventoryProof.js'
+import { hasCurrentIqviaEnvelope, readCurrentIqviaListing, runCurrentIqvia } from './currentNative.js'
 
 export const IQVIA_ORIGIN = 'https://jobs.iqvia.com'
 export const CAREERS_URL = `${IQVIA_ORIGIN}/en`
@@ -200,7 +201,8 @@ const defaultFetchText = async (url, { signal, disposalSignal } = {}) => {
   const html = await response.text()
   signal?.throwIfAborted()
   if (/<title[^>]*>\s*(?:Just a moment|Attention Required|Access Denied|Forbidden|Robot Check|Security Verification|Verify you are human)/i.test(html)
-    || /(?:cf-chl-|\/cdn-cgi\/challenge-platform|datadome\.co\/captcha|px-captcha|id=["']challenge-form)/i.test(html)) {
+    || /(?:cf-chl-|datadome\.co\/captcha|px-captcha|id=["']challenge-form)/i.test(html)
+    || (/\/cdn-cgi\/challenge-platform/i.test(html) && !hasCurrentIqviaEnvelope(html, url))) {
     throw Object.assign(new Error('IQVIA public careers access challenge; inventory remains unknown'), { abortRetries: true, failureKind: 'blocked_or_access_denied', softFailure: true })
   }
   return html
@@ -260,10 +262,10 @@ export const createIqviaScraper = ({ fetchText = defaultFetchText } = {}) => ({
       pagesFetched++
       return html
     }
-    const enumerate = async () => {
+    const enumerate = async firstHtml => {
       const rows = [], pages = [], seen = new Set(); let total = null
       for (let page = 1; page <= totalPages; page++) {
-        const url = buildListingUrl(page), html = await read(url)
+        const url = buildListingUrl(page), html = page === 1 && firstHtml !== undefined ? firstHtml : await read(url)
         const listings = extractAllSearchResults(html), pageTotal = extractResultCount(html)
         if (total === null) total = pageTotal
         if (pageTotal !== null && total !== pageTotal) throw coverageError('IQVIA native result total changed during pagination')
@@ -288,7 +290,9 @@ export const createIqviaScraper = ({ fetchText = defaultFetchText } = {}) => ({
       return true
     }
     try {
-      const opening = await enumerate(), retained = []
+      const firstHtml = await read(JOBS_URL), current = readCurrentIqviaListing(firstHtml)
+      if (current) return await runCurrentIqvia({ opening: current, read, normalize: toNormalizedJob, signal })
+      const opening = await enumerate(firstHtml), retained = []
       for (const listing of opening.rows) {
         signal.throwIfAborted()
         if (listing.country !== 'India') continue

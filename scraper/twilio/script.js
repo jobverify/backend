@@ -1,14 +1,14 @@
 import path from 'node:path'
 import {readFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
-import {createVerifiedRecruitmentScraper} from '../../scraper-support/utils/verifiedRecruitment.js'
+import {runCurrentTwilio} from './currentCollector20261115.js'
 
 export const SOURCE='twilio'
 export const COMPANY='Twilio'
 export const CAREERS_URL='https://www.twilio.com/en-us/careers'
 const provider=JSON.parse(readFileSync(new URL('../../scraper-support/providers/providerExtensions/zz-299-twilio-current-native-20261111.json',import.meta.url),'utf8'))
 if(provider.source!==SOURCE||provider.companyName!==COMPANY||provider.companyCareerPage!==CAREERS_URL)throw Error('Current Twilio source registration changed')
-export const run=options=>createVerifiedRecruitmentScraper(provider).run(options)
+export const run=options=>runCurrentTwilio(options)
 
 if(process.argv[1]===fileURLToPath(import.meta.url)){
   const {saveToDB,saveToFile}=await import('../../scraper-support/utils/saveToDB.js')

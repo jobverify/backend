@@ -169,6 +169,7 @@ const buildProfilePayload = (user, savedJobsCount) => ({
   profile: user.profile,
   profileOverview: buildProfileOverview(user, savedJobsCount),
   onboardingCompleted: user.onboardingCompleted,
+  gettingStartedStatus: user.gettingStartedStatus,
   lastLoginAt: user.lastLoginAt,
 });
 
@@ -199,6 +200,9 @@ export const updateUserProfile = async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if (user) {
+      if (req.body.gettingStartedStatus !== undefined) {
+        user.gettingStartedStatus = req.body.gettingStartedStatus;
+      }
       // Update profile fields if provided
       if (req.body.name !== undefined) user.profile.name = normalizeProfileText(req.body.name);
       if (req.body.graduateEducation !== undefined) user.profile.graduateEducation = normalizeProfileText(req.body.graduateEducation);

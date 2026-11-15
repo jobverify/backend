@@ -11,6 +11,13 @@ test('diagnostics permit fixed codes, stages and bounded numbers only', () => {
   assert.doesNotMatch(JSON.stringify(resumeFailure('private@example.test')), /private/);
 });
 
+test('model progress permits bounded counters and excludes slot contents', () => {
+  assert.deepEqual(safeResumeDiagnostic({ stage: 'generating', code: 'progress', seconds: 60, inputTokens: 7563,
+    processedTokens: 4096, outputTokens: 122, params: { prompt: 'private source' } }),
+  { stage: 'generating', code: 'progress', seconds: 60, inputTokens: 7563, processedTokens: 4096, outputTokens: 122 });
+  assert.equal(safeResumeDiagnostic({ stage: 'generating', code: 'progress', processedTokens: 'private' }).processedTokens, undefined);
+});
+
 test('only allowlisted LaTeX validation reasons can appear in public diagnostics', () => {
   assert.deepEqual(safeResumeDiagnostic({ stage: 'latex', code: 'latex_invalid', reason: 'unsupported_package' }),
     { stage: 'latex', code: 'latex_invalid', reason: 'unsupported_package' });

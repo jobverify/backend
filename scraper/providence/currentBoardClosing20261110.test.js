@@ -24,11 +24,13 @@ test('Providence independently admits both observed board cache declarations wit
  assert.notEqual(boards[0].sha256,closing.sha256)
 })
 
-test('Providence retains all configured observations and 63 qualified roles after the captured closing board cache change',async()=>{
+test('Providence retains all configured observations and 63 qualified roles at the captured closing-board clock',async()=>{
  const pages=new Map(),counts=new Map()
  for(const packet of capture.responses){const queue=pages.get(packet.requestUrl)||[];queue.push(packet);pages.set(packet.requestUrl,queue)}
  let audit
- const jobs=await createProvidenceScraper().run({onAudit:value=>{audit=value},fetchImpl:async url=>{
+ // Evaluate this historical availability regression at its native capture
+ // clock; three formerly qualified roles have since crossed their deadlines.
+ const jobs=await createProvidenceScraper().run({now:()=>capture.responses[0].capturedAt,onAudit:value=>{audit=value},fetchImpl:async url=>{
   const queue=pages.get(url);assert.ok(queue,'Uncaptured request: '+url)
   const index=counts.get(url)||0;counts.set(url,index+1)
   // The live run stopped at the closing board. Only the final corporate

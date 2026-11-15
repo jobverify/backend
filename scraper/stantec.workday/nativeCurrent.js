@@ -1,6 +1,6 @@
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
-import {CORPORATE_CHAIN,BOARD,INDIA,CORPORATE_CLIENTS,NATIVE_CLIENTS,ROLE_BASE,SEARCH,need,json,readCorporate,readBoard,verifyClient,verifyIndiaRoute,searchURL} from './nativeDeclarations.js'
+import {CORPORATE_CHAIN,BOARD,INDIA,CORPORATE_CLIENTS,ROLE_BASE,SEARCH,need,json,readCorporate,readBoard,readNativeClientContracts,verifyClient,verifyIndiaRoute,searchURL} from './nativeDeclarations.js'
 import {readIndiaFacet,readIndiaPage,readRole,reconcileModels,reconcileIndiaEnvelope,mapRole} from './nativeModels.js'
 import {cap,transport} from './nativeTransport.js'
 
@@ -33,10 +33,12 @@ export async function runNativeStantec(options={}){
    for(const contract of CORPORATE_CLIENTS){io.allow(contract.url);verifyClient((await io.read(contract.url,'javascript')).bytes,contract)}
    io.allow(BOARD);const boardHTML=(await io.read(BOARD)).text,native=readBoard(boardHTML)
    verifyIndiaRoute(boardHTML)
-   io.allow(INDIA);const countryView=readBoard((await io.read(INDIA)).text)
+   const nativeClients=readNativeClientContracts(boardHTML)
+   io.allow(INDIA);const countryHTML=(await io.read(INDIA)).text,countryView=readBoard(countryHTML)
    need(JSON.stringify(native)===JSON.stringify(countryView),'board/country configuration differs')
-   for(const contract of NATIVE_CLIENTS){io.allow(contract.url);verifyClient((await io.read(contract.url,'javascript')).bytes,contract)}
-   return{corporate,native,countryView,clientContracts:[...CORPORATE_CLIENTS,...NATIVE_CLIENTS].map(c=>({...c})),programsExecuted:false}
+   need(JSON.stringify(nativeClients)===JSON.stringify(readNativeClientContracts(countryHTML)),'board/country application build differs')
+   for(const contract of nativeClients){io.allow(contract.url);verifyClient((await io.read(contract.url,'javascript')).bytes,contract)}
+   return{corporate,native,countryView,clientContracts:[...CORPORATE_CLIENTS,...nativeClients].map(c=>({...c})),programsExecuted:false}
   }
   const openingDeclaration=await declarations(),globalURL=searchURL(1,false);io.allow(globalURL)
   const openingGlobal=json((await io.read(globalURL,'json')).text),total=readIndiaFacet(openingGlobal).value

@@ -20,6 +20,16 @@ const property=node=>!node?.computed&&node?.property?.type==='Identifier'?node.p
 const pathOf=node=>node?.type==='Identifier'?[node.name]:node?.type==='MemberExpression'?[...pathOf(node.object),property(node)]:[]
 const selected=node=>{const parts=pathOf(node),at=parts[0]==='j2w'?0:['window','globalThis','self'].includes(parts[0])&&parts[1]==='j2w'?1:-1;return at>=0&&(parts.length===at+1||parts[at+1]==='SearchResults'||parts[at+1]==null)}
 const readyBinding=node=>{const parts=pathOf(node);return parts.length===1&&parts[0]==='$'||parts.length===2&&['window','globalThis','self'].includes(parts[0])&&parts[1]==='$'}
+const globalRoots=['window','globalThis','self']
+const boundNames=node=>!node?[]:node.type==='Identifier'?[node.name]:node.type==='RestElement'?boundNames(node.argument):node.type==='AssignmentPattern'?boundNames(node.left)
+ :node.type==='ArrayPattern'?node.elements.flatMap(boundNames):node.type==='ObjectPattern'?node.properties.flatMap(item=>boundNames(item.type==='RestElement'?item.argument:item.value)):[]
+const globalRootBinding=node=>{const parts=pathOf(node);return parts.length===1&&globalRoots.includes(parts[0])||parts.length===2&&globalRoots.includes(parts[0])&&globalRoots.includes(parts[1])}
+// The current native referrer bootstrap preserves an existing global namespace.
+// This exact unconditional AST is distinct from a namespace reset or alias.
+const sameWindowEmptyFallback=node=>node?.type==='AssignmentExpression'&&node.operator==='='&&node.left?.type==='MemberExpression'&&!node.left.computed
+ &&node.left.object?.type==='Identifier'&&node.left.object.name==='window'&&node.left.property?.type==='Identifier'&&node.left.property.name==='j2w'
+ &&node.right?.type==='LogicalExpression'&&node.right.operator==='||'&&canonical(node.left)===canonical(node.right.left)
+ &&node.right.right?.type==='ObjectExpression'&&node.right.right.properties.length===0
 
 export function readCurrentAoSmithInitializer(html){
  const doc=readRmkDocument(html),scripts=[]
@@ -29,19 +39,25 @@ export function readCurrentAoSmithInitializer(html){
   for(const child of node.children??[])visitNodes(child)
  }
  visitNodes(doc.root)
- const programs=scripts.filter(node=>!node.attrs.src&&/\bj2w\b|\$/.test(node.raw??''))
+ const programs=scripts.filter(node=>!node.attrs.src)
  const initializers=[]
  for(const script of programs){
   const ast=parse(script.raw,{ecmaVersion:'latest',sourceType:script.attrs.type==='module'?'module':'script'})
   const bootstraps=new Set(ast.body.filter(node=>node.type==='VariableDeclaration'&&node.kind==='var').flatMap(node=>node.declarations)
    .filter(node=>node.id?.name==='j2w'&&node.init?.type==='LogicalExpression'&&node.init.operator==='||'&&node.init.left?.type==='Identifier'&&node.init.left.name==='j2w'
     &&node.init.right?.type==='ObjectExpression'&&node.init.right.properties.length===0))
+  const preservingAssignments=new Set(ast.body.filter(node=>node.type==='ExpressionStatement'&&sameWindowEmptyFallback(node.expression)).map(node=>node.expression))
   const visit=(node,functionDepth=0)=>{
    if(!node||typeof node!=='object')return
+   const bindings=node.type==='VariableDeclarator'||node.type==='FunctionDeclaration'||node.type==='ClassDeclaration'?boundNames(node.id)
+    :node.type==='CatchClause'?boundNames(node.param):['ImportSpecifier','ImportNamespaceSpecifier','ImportDefaultSpecifier'].includes(node.type)?boundNames(node.local):[]
+   if(bindings.some(name=>globalRoots.includes(name))||['FunctionDeclaration','FunctionExpression','ArrowFunctionExpression'].includes(node.type)&&node.params.flatMap(boundNames).some(name=>name==='j2w'||globalRoots.includes(name))
+    ||node.type==='AssignmentExpression'&&globalRootBinding(node.left)||node.type==='UpdateExpression'&&globalRootBinding(node.argument)||node.type==='UnaryExpression'&&node.operator==='delete'&&globalRootBinding(node.argument))throw fail('public initializer global root is shadowed or replaced')
+   if(bindings.includes('j2w')&&!bootstraps.has(node))throw fail('public initializer namespace is shadowed or reassigned')
    if(functionDepth===0&&(['VariableDeclarator','FunctionDeclaration','ClassDeclaration'].includes(node.type)&&node.id?.name==='$'
     ||node.type==='AssignmentExpression'&&readyBinding(node.left)||node.type==='UpdateExpression'&&readyBinding(node.argument)))throw fail('public ready function binding is replaced')
    if(functionDepth===0&&(node.type==='VariableDeclarator'&&selected(node.init)||node.type==='AssignmentExpression'&&selected(node.right)))throw fail('public initializer namespace escapes through an alias')
-   if(node.type==='AssignmentExpression'&&selected(node.left)||node.type==='UpdateExpression'&&selected(node.argument)||node.type==='UnaryExpression'&&node.operator==='delete'&&selected(node.argument)
+   if(node.type==='AssignmentExpression'&&selected(node.left)&&!preservingAssignments.has(node)||node.type==='UpdateExpression'&&selected(node.argument)||node.type==='UnaryExpression'&&node.operator==='delete'&&selected(node.argument)
     ||['VariableDeclarator','FunctionDeclaration','ClassDeclaration'].includes(node.type)&&node.id?.name==='j2w'&&!bootstraps.has(node))throw fail('public initializer namespace is reassigned')
    if(node.type==='CallExpression'&&pathOf(node.callee).join('.')==='j2w.SearchResults.init')initializers.push({node,ast,script})
    else if(node.type==='CallExpression'&&selected(node.callee))throw fail('unreviewed public initializer namespace call')
