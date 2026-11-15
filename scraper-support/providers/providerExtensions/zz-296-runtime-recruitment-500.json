@@ -1230,8 +1230,8 @@
     "verifiedIndiaJobCount": null,
     "bindingEvidence": null,
     "remediationStatus": "runtime-native-records-require-review",
-    "verifiedSurfaceSummary": "Replaces the always-empty/discovery-only executable with current public recruitment extraction. Runtime failures and unsupported current page contracts remain unresolved; company-wide inventory, persistence and public visibility are not asserted.",
-    "requireNativeEmployerName": false,
+    "verifiedSurfaceSummary": "Current corporate-declared Brookfield Workday India roles require exact reviewed Brooksolutions legal employers, native own work countries/full criteria, and fresh closing corporate/listing/detail checks. Partial source inventory; cleanup forbidden.",
+    "requireNativeEmployerName": true,
     "runtimeValidation": {
       "checkedAt": "2026-11-03T17:40:40.862Z",
       "method": "current-code-replay-of-hashed-same-day-public-responses-with-uncached-public-requests",
@@ -1258,7 +1258,27 @@
     "searchIndiaWithoutFacet": true,
     "allowVerifiedCorporateRedirects": true,
     "lifecycleCleanupAllowed": false,
-    "discoverLiteralRecruitmentData": true
+    "discoverLiteralRecruitmentData": true,
+    "nativeEmployerNames": [
+      "Brooksolutions Global Services Pvt Ltd",
+      "Brooksolutions Global Services Private Limited"
+    ],
+    "nativeWorkdayLegalEmployerNames": [
+      "Brooksolutions Global Services Pvt Ltd",
+      "Brooksolutions Global Services Private Limited"
+    ],
+    "reconcileWorkdayNativeContext": true,
+    "nativeWorkdaySiteId": "brookfield",
+    "reviewedLegalEmployerRelationship": {
+      "kind": "issuer-filed-consolidated-subsidiary-list",
+      "documentURL": "https://www.sec.gov/Archives/edgar/data/1937926/000162828026013098/exhibit211.htm",
+      "documentSha256": "a956970acd5e29f6fb19e700b4b8db8e4a53d8f7316f6fd71b247ac5f5f26e8d",
+      "issuer": "Brookfield Asset Management Ltd.",
+      "asOf": "2025-12-31",
+      "filedLegalEmployer": "Brooksolutions Global Services Private Limited",
+      "jurisdiction": "India",
+      "qualification": "Exact reviewed employer relationship only; the jurisdiction does not establish a role work country."
+    }
   },
   {
     "source": "brownforman",
@@ -4287,7 +4307,7 @@
       "kind": "native-role-corporate-workplace-declaration",
       "field": "CorporateDescriptionStr",
       "heading": "Join an Award-Winning Workplace Culture",
-      "prefix": "At Hilton, we don\u2019t just deliver exceptional experiences for our guests\u2014we build an exceptional workplace for the Team Members who make it all possible."
+      "prefix": "At Hilton, we don’t just deliver exceptional experiences for our guests—we build an exceptional workplace for the Team Members who make it all possible."
     },
     "runtimeValidation": {
       "checkedAt": "2026-11-03T17:41:28.108Z",
@@ -20214,15 +20234,15 @@
     "officialHomepageUrl": "https://www.essilorluxottica.com/en/careers/",
     "catalogOverride": true,
     "adapter": "script",
-    "modulePath": "../../scraper/essilorluxottica.workday/script.js",
-    "dryRunFile": "essilorluxottica.workday/jobs.json",
-    "atsPlatform": "runtime-first-party-recruitment",
+    "modulePath": "../../scraper/essilorluxottica.rmk/script.js",
+    "dryRunFile": "essilorluxottica.rmk/jobs.json",
+    "atsPlatform": "successfactors-rmk",
     "countryFilter": "India",
-    "parser": "runtime-verified-recruitment",
+    "parser": "custom-script",
     "normalizationProfile": "engineering-default",
-    "backfillMode": "workday",
-    "paginationStrategy": "bounded-native-pagination-and-current-role-pages",
-    "extractionStrategy": "current-official-links+native-ats-inventory-or-JobPosting+explicit-native-india-country+native-employer-and-description",
+    "backfillMode": null,
+    "paginationStrategy": "current-native-country-facet-terminal-page-partial-company-scope",
+    "extractionStrategy": "configured-first-party-legal-publisher+typed-native-country-selector+own-full-role+closing-context",
     "sourceScopeComplete": false,
     "zeroResultPolicy": "evidence-required",
     "verifiedOn": null,
@@ -20258,7 +20278,8 @@
     "searchIndiaWithoutFacet": true,
     "allowVerifiedCorporateRedirects": true,
     "lifecycleCleanupAllowed": false,
-    "discoverLiteralRecruitmentData": true
+    "discoverLiteralRecruitmentData": true,
+    "originalAtsPlatform": null
   },
   {
     "source": "etisalat",

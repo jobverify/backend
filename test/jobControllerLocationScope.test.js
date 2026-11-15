@@ -193,7 +193,7 @@ test('buildPublicJobLocationScope relies on the stored public-visibility flag', 
   assert.equal(scope.isPublicIndia, true)
 })
 
-test('buildPublicJobLocationScope excludes jobs older than one month, future and past-closing jobs', () => {
+test('buildPublicJobLocationScope excludes jobs older than three months, future and past-closing jobs', () => {
   const now = new Date('2026-07-25T12:00:00.000Z')
   const scope = buildPublicJobLocationScope(now)
 
@@ -208,7 +208,7 @@ test('buildPublicJobLocationScope excludes jobs older than one month, future and
   )
   assert.equal(
     scope.$expr.$and[2].$gte[1].toISOString(),
-    '2026-06-25T00:00:00.000Z',
+    '2026-04-25T00:00:00.000Z',
   )
 })
 

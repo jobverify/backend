@@ -2,6 +2,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
+import { runCurrentNike } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -223,48 +224,10 @@ export const extractJobDetail = (html, listing = {}) => {
   }
 }
 
-const fetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; Jobverify Nike scraper)',
-      Accept: 'text/html,application/xhtml+xml',
-    },
-  })
-  if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`)
-  return response.text()
-}
-
-export const run = async () => {
-  const jobs = []
-  const seenJobIds = new Set()
-  const maxPages = Number.isInteger(config.maxPages) ? config.maxPages : 1
-
-  for (let page = 1; page <= maxPages; page += 1) {
-    const listingUrl = buildSearchUrl({ page })
-    const listingHtml = await fetchText(listingUrl)
-    const listings = extractSearchResults(listingHtml)
-    const pagination = extractPaginationSummary(listingHtml)
-
-    for (const listing of listings) {
-      if (seenJobIds.has(listing.jobId)) continue
-      seenJobIds.add(listing.jobId)
-      const detail = extractJobDetail(await fetchText(listing.sourceUrl), listing)
-      jobs.push({
-        ...listing,
-        ...detail,
-        company: 'Nike',
-        link: detail.applyUrl || detail.sourceUrl || listing.sourceUrl,
-        source: 'nike',
-        remoteStatus: /remote/i.test(detail.location || '') ? 'Remote' : 'On-site',
-        scrapedAt: new Date().toISOString(),
-      })
-    }
-
-    if (!pagination.hasNext || pagination.nextPage !== page + 1) break
-  }
-
-  return jobs
-}
+export const run = (options = {}) => runCurrentNike({
+  ...options,
+  maxPages: Number.isInteger(config.maxPages) ? config.maxPages : 1,
+})
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

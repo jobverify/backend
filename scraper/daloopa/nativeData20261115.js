@@ -34,6 +34,8 @@ const byteLength=intrinsic('byteLength'),byteOffset=intrinsic('byteOffset'),arra
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value)
 const exact=(value,keys)=>object(value)&&same(Object.keys(value).sort(),[...keys].sort())
 const string=value=>typeof value==='string'&&value.isWellFormed()&&!/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value)
+const plainMarkup=/<(?:\/?[a-z][\w:-]*(?=[\s/>]|$)|[!?])/i
+const plainText=value=>string(value)&&!plainMarkup.test(value)&&!plainMarkup.test(decodeHTML(value))
 const safe=value=>Number.isSafeInteger(value)&&value>=0,positive=value=>safe(value)&&value>0
 const numeric=value=>typeof value==='number'&&Number.isFinite(value)&&value>=0&&value<=Number.MAX_SAFE_INTEGER&&!Object.is(value,-0)
 const listState=new WeakMap()
@@ -84,7 +86,7 @@ const locationLabel=/^(?:(?:job|work|primary|additional|secondary)\s+)?locations
 const flat=value=>decodeHTML(value).replace(/\s+/g,' ').trim()
 function worksite(value){need(Array.isArray(value)&&value.length===1&&exact(value[0],['office','address'])&&same(Object.keys(value[0]),['office','address'])&&string(value[0].office)&&string(value[0].address),'Unsupported native one-office/address worksite model')}
 function approval(value){need(/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}\+0000$/.test(value),'Unsupported native approval format');const ms=Date.parse(value);need(Number.isFinite(ms)&&new Date(ms).toISOString().slice(0,23)===value.slice(0,23),'Invalid native approval calendar')}
-function plainIndia(row){const lines=row.jdDisplay.split(/\r?\n/).map(flat).filter(line=>locationLabel.test(line));return lines.length===1&&lines[0]==='Location: India (Remote)'&&row.location==='Remote'&&row.locationAddress==='Remote'&&same(row.locationList,[{office:'Remote',address:'Remote'}])&&!closedNotice.test(flat(row.jdDisplay))}
+function plainIndia(row){if(!plainText(row.jdDisplay))return false;const lines=row.jdDisplay.split(/\r?\n/).map(flat).filter(line=>locationLabel.test(line));return lines.length===1&&lines[0]==='Location: India (Remote)'&&row.location==='Remote'&&row.locationAddress==='Remote'&&same(row.locationList,[{office:'Remote',address:'Remote'}])&&!closedNotice.test(flat(row.jdDisplay))}
 export function readDaloopaListing(page){
  representation(page,'listing');const parsed=readDaloopaStrictJSON(page.text),value=parsed.value
  need(exact(value,['requesterTitle','reqDetailsBOList','hrXmlModel'])&&string(value.requesterTitle)&&value.hrXmlModel===null&&Array.isArray(value.reqDetailsBOList)&&value.reqDetailsBOList.length<=500,'Unsupported complete native listing envelope')
@@ -92,6 +94,7 @@ export function readDaloopaListing(page){
  for(const[index,row]of value.reqDetailsBOList.entries()){
   need(exact(row,listFields)&&positive(row.reqId)&&!ids.has(row.reqId),'Complete44-field native row schema/ID changed');ids.add(row.reqId)
   need(stringListFields.every(key=>string(row[key]))&&row.reqTitle.trim().length>0&&nullListFields.every(key=>row[key]===null),'Native row text/null/control model changed')
+  need(plainText(row.jdDisplay),'Unsupported markup in native plain listing criteria')
   need(row.statusId===3&&row.priority===301&&row.positionType===1&&row.screeningMatchPercent===0&&row.fresher===false&&exact(row.customFields,[])&&Array.isArray(row.locationGroup)&&row.locationGroup.length===0,'Unreviewed native control/availability model')
   need(['expMin','expMax','ctcBandHighEnd','ctcBandLowEnd'].every(key=>numeric(row[key]))&&positive(row.totalPositions)&&safe(row.roleId),'Native numeric experience/band/count model changed');approval(row.approvedOn);worksite(row.locationList)
   const span=parsed.spans.get('/reqDetailsBOList/'+index);need(span,'Complete original listing row token unavailable');rawRows.set(row.reqId,span.raw)
@@ -129,7 +132,7 @@ export function readDaloopaDetail(page,id,row){
  const original=envelopeView(page),value=original.value,data=value.data,record=data?.reqDetailsBO
  need(exact(data,['requesterTitle','activeApplicationCount','maxActiveApplication','reqDetailsBO'])&&string(data.requesterTitle)&&safe(data.activeApplicationCount)&&safe(data.maxActiveApplication),'Unsupported complete four-data/count model')
  need(exact(record,roleFields)&&record.reqId===id&&record.reqTitle===row.reqTitle&&record.statusId===3&&record.requisitionPublished===true&&record.fresher===false,'Current native role identity/control/availability changed')
- need(record.mandatorySkillList===null&&record.nonMandatorySkillList===null&&Array.isArray(record.requisitionLocationGroup)&&record.requisitionLocationGroup.length===0&&Array.isArray(record.educationList)&&record.educationList.length<=100&&record.educationList.every(string)&&numeric(record.expMin)&&numeric(record.expMax),'Unsupported native education/experience/null/control model')
+ need(record.mandatorySkillList===null&&record.nonMandatorySkillList===null&&Array.isArray(record.requisitionLocationGroup)&&record.requisitionLocationGroup.length===0&&Array.isArray(record.educationList)&&record.educationList.length<=100&&record.educationList.every(plainText)&&numeric(record.expMin)&&numeric(record.expMax),'Unsupported native education/experience/null/control model')
  worksite(record.locationList);need(same(record.locationList,row.locationList),'Native plain/detail worksite contradiction');richIndia(record.jdDisplay)
  return{roleId:id,envelope:value,data,record,rawDataJSON:original.rawDataJSON,rawRoleJSON:original.rawRoleJSON,rawDataSHA256:sha(Buffer.from(original.rawDataJSON)),rawDataBase64:Buffer.from(original.rawDataJSON).toString('base64'),nativeVersion:value.v,rawVersionToken:original.rawVersionToken,nonDiagnosticBodyBase64:original.nonDiagnosticBodyBase64}
 }

@@ -28,6 +28,8 @@ import { declaredPyjamaRecruitment, readPyjamaRecruitment } from './recruitmentP
 import { declaredEightfoldRecruitment, readEightfoldRecruitment } from './recruitmentEightfold.js'
 import { declaredEightfoldPcsxRecruitment, readEightfoldPcsxRecruitment } from './recruitmentEightfoldPcsx.js'
 import { declaredEightfoldPcsxTwilioRecruitment, readEightfoldPcsxTwilioRecruitment } from './recruitmentEightfoldPcsxTwilio.js'
+import { structuredRecruitmentPublisherState, recruitmentSchemaContext } from './recruitmentPublisher.js'
+import { darwinboxRecruitmentBoard, readDarwinboxRecruitment } from './recruitmentDarwinbox.js'
 
 export const RECRUITMENT_OBSERVATIONS = Symbol.for('jobverify.verified-recruitment-observations')
 const sha = value => createHash('sha256').update(value).digest('hex')
@@ -190,14 +192,18 @@ export function recruitmentEmployerMatches(config, value) {
   return Boolean(domain && value.trim().toLowerCase() === domain)
 }
 
+const jobPostingSchemaContexts = new WeakMap()
 export function recruitmentJobPostings(document) {
   const postings = []
-  const visit = (item, depth = 0) => {
+  const visit = (item, depth = 0, inheritedContext = false) => {
     if (!item || depth > 12) return
-    if (Array.isArray(item)) { for (const row of item.slice(0, 2000)) visit(row, depth + 1); return }
+    if (Array.isArray(item)) { for (const row of item.slice(0, 2000)) visit(row, depth + 1, inheritedContext); return }
     if (typeof item !== 'object') return
-    if (asArray(item['@type']).some(type => type === 'JobPosting' || type === 'https://schema.org/JobPosting')) postings.push(item)
-    for (const field of ['@graph', 'itemListElement', 'item', 'mainEntity']) visit(item[field], depth + 1)
+    const context = Object.hasOwn(item, '@context') ? recruitmentSchemaContext(item['@context']) : inheritedContext
+    if (asArray(item['@type']).some(type => type === 'JobPosting' || type === 'https://schema.org/JobPosting')) {
+      postings.push(item); jobPostingSchemaContexts.set(item, context === true)
+    }
+    for (const field of ['@graph', 'itemListElement', 'item', 'mainEntity']) visit(item[field], depth + 1, context)
   }
   for (const node of document.nodes(node => node.tag === 'script' && !node.attrs.src && node.attrs.type === 'application/ld+json')) {
     try { visit(JSON.parse(node.raw || '')) } catch { /* Invalid schema is not evidence of an empty inventory. */ }
@@ -211,6 +217,8 @@ export function recruitmentBoard(value) {
   const publicBoard = identifyPublicAtsBoard(url.href)
   if (publicBoard) return { kind: publicBoard.atsPlatform, token: publicBoard.boardToken,
     region: publicBoard.region || 'global', url: url.href }
+  const darwinbox = darwinboxRecruitmentBoard(url.href)
+  if (darwinbox) return darwinbox
   const parts = url.pathname.split('/').filter(Boolean)
   const workday = url.hostname.match(/^([a-z\d-]+)\.wd\d+\.myworkdayjobs\.com$/i)
   if (workday) {
@@ -348,6 +356,9 @@ export function createVerifiedRecruitmentScraper(config) {
     const official = url => hosts.some(host => url.hostname === host || url.hostname.endsWith('.' + host))
     const grants = [], receipts = [], failures = [], failureCauses = [], jobs = [], seenJobs = new Set(), boards = new Map(), queue = []
     const identifiedCompanyHosts = new Set()
+    const structuredEmployerDeclarations = new Map(), conflictingPublisherIdentities = new Set()
+    const exactPublisherKeys = [config.companyName, ...(config.publisherNames || [])]
+      .map(value => companyKey(legalName(value))).filter(value => value.length >= 3)
     const phenomSearches = new Map()
     const unifiedSearchOrigins = new Set(), nativeSearchCandidates = new Map()
     const jibeSearchOrigins = new Set()
@@ -564,6 +575,20 @@ export function createVerifiedRecruitmentScraper(config) {
           employerBinding: { method: 'explicit-native-role-employer-statement', field: 'description',
             statement: statement.statement, surface: native.url, legalEmployer: null } }
       }
+      if (!matchingEmployer(native.employer?.name) && !native.employerBinding && !config.requireNativeEmployerName
+        && native.publisherContextQualified === true) {
+        const roleURL = https(native.url), employer = native.record?.hiringOrganization
+        const employerContext = employer && (!Object.hasOwn(employer, '@context') || recruitmentSchemaContext(employer['@context']) === true)
+        const proof = roleURL && official(roleURL) && employerContext && [...structuredEmployerDeclarations.values()].find(({ publisher }) =>
+          employer?.['@id'] === publisher.identity && employer?.url === publisher.url
+          && publisher.names.some(({ name }) => companyKey(legalName(name)) === companyKey(legalName(native.employer?.name))))
+        if (proof) native = { ...native, employerBinding: {
+          method: 'current-structured-publisher-and-native-employer-identity', officialURL: proof.officialURL,
+          publisherIdentity: proof.publisher.identity, publisherURL: proof.publisher.url,
+          publishedNames: proof.publisher.names, corporateBodySHA256: proof.bodySHA256,
+          nativeEmployerName: native.employer.name, configuredCompanyName: config.companyName,
+        } }
+      }
       if (!matchingEmployer(native.employer?.name) && !(native.employerBinding && !config.requireNativeEmployerName)) { observed.unresolved.push('native-employer-mismatch'); return }
       if (!sourceDescription(native.description)) { observed.unresolved.push('native-full-description-unavailable'); return }
       if (closed(native.closing, now)) return
@@ -648,6 +673,22 @@ export function createVerifiedRecruitmentScraper(config) {
       catch (error) { problem('official-page', error); continue }
       const pageURL = new URL(page.url)
       const corporatePage = official(pageURL)
+      const publisherState = corporatePage ? structuredRecruitmentPublisherState(doc, page.url) : null
+      const structuredPublishers = publisherState?.publishers.filter(publisher => publisher.names.some(({ name }) =>
+        exactPublisherKeys.includes(companyKey(legalName(name))))) || []
+      for (const identity of publisherState?.conflictingIdentities || []) {
+        conflictingPublisherIdentities.add(identity); structuredEmployerDeclarations.delete(identity)
+      }
+      for (const publisher of publisherState?.publishers || []) {
+        const previous = structuredEmployerDeclarations.get(publisher.identity)
+        if (previous && !publisher.names.some(({ name }) => previous.publisher.names.some(prior =>
+          companyKey(legalName(prior.name)) === companyKey(legalName(name))))) {
+          conflictingPublisherIdentities.add(publisher.identity); structuredEmployerDeclarations.delete(publisher.identity)
+        }
+      }
+      for (const publisher of structuredPublishers) if (!conflictingPublisherIdentities.has(publisher.identity)) {
+        structuredEmployerDeclarations.set(publisher.identity, { publisher, officialURL: page.url, bodySHA256: sha(page.html) })
+      }
       const delegatedPublisherPage = !corporatePage && config.prioritizeRecruitmentSearch && config.allowDeclaredExternalCareersPages && allowed(pageURL)
       let companyIdentified = !config.requireCorporateIdentityMatch || identifiedCompanyHosts.has(pageURL.hostname.replace(/^www\./, ''))
       if ((corporatePage || delegatedPublisherPage) && !companyIdentified) {
@@ -656,10 +697,12 @@ export function createVerifiedRecruitmentScraper(config) {
         publisherNames.push(...doc.nodes(node => node.tag === 'meta' && node.attrs.property === 'og:site_name').map(node => node.attrs.content || ''))
         const expected = [config.companyName, ...(config.publisherNames || [])].map(companyKey).filter(value => value.length >= 2)
         companyIdentified = publisherNames.some(name => expected.some(value => companyKey(name).includes(value)) || matchingPublisher(name))
+        companyIdentified ||= structuredPublishers.length > 0
         if (companyIdentified) {
           identifiedCompanyHosts.add(pageURL.hostname.replace(/^www\./, ''))
           observed.corporateIdentityEvidence ||= []
-          observed.corporateIdentityEvidence.push({ url: page.url, publisherNames })
+          observed.corporateIdentityEvidence.push({ url: page.url, publisherNames,
+            ...(structuredPublishers.length ? { structuredPublishers } : {}) })
         }
       }
       const canDelegate = companyIdentified && (corporatePage || delegatedPublisherPage)
@@ -866,6 +909,7 @@ export function createVerifiedRecruitmentScraper(config) {
         addJob({ id: posting.identifier?.value || posting['@id'] || nativeURL.href, title, url: nativeURL.href,
           description, employer: posting.hiringOrganization, location: [address.addressLocality, address.addressRegion, 'India'].filter(Boolean).join(', '),
           posted: posting.datePosted, closing: posting.validThrough, employmentType: posting.employmentType,
+          publisherContextQualified: jobPostingSchemaContexts.get(posting) === true && publisherState?.complete === true,
           record: nativeCandidate ? {...posting,nativeListingRecord:nativeCandidate.record} : posting,
           ...(visibleRoles.has(posting) && !posting.hiringOrganization && canDelegate && !config.requireNativeEmployerName
             ? { employerBinding: { method: 'current-native-visible-role-publisher', surface: page.url, legalEmployer: null } } : {}) })
@@ -1027,7 +1071,18 @@ export function createVerifiedRecruitmentScraper(config) {
       if (observed.requestCount >= maxRequests) break
       const jobsBeforeBoard=jobs.length
       try {
-        if (['ashby', 'greenhouse', 'lever'].includes(board.kind)) {
+        if (board.kind === 'darwinbox') {
+          await readDarwinboxRecruitment(board, { config, readPage: read,
+            readRenderer: (url, init) => read(url, init, 'renderer'), readJson, permit, matchingEmployer, addJob,
+            canRead: () => observed.requestCount < maxRequests, maxPages, maxDetails,
+            inventoryRead: value => observed.nativeInventoryReads.push(value),
+            recordRead: (row, account) => {
+              observed.nativeRecords++
+              observeNative({ scope: 'darwinbox:' + account.origin + ':' + account.companyId,
+                id: row.id, title: row.title, url: account.roleURL })
+            },
+            unresolved: value => observed.unresolved.push(value) })
+        } else if (['ashby', 'greenhouse', 'lever'].includes(board.kind)) {
           if (board.kind === 'greenhouse' && new URL(board.url).hostname.includes('.eu.')) throw Error('European Greenhouse requires its regional extractor')
           const token = encodeURIComponent(board.token)
           const api = board.kind === 'ashby' ? `https://api.ashbyhq.com/posting-api/job-board/${token}`
@@ -1407,6 +1462,14 @@ export function createVerifiedRecruitmentScraper(config) {
       }
     }
     signal.throwIfAborted()
+    if (conflictingPublisherIdentities.size) {
+      for (let index = jobs.length - 1; index >= 0; index--) {
+        const proof = jobs[index].nativeEmployerBinding
+        if (proof?.method === 'current-structured-publisher-and-native-employer-identity'
+          && conflictingPublisherIdentities.has(proof.publisherIdentity)) jobs.splice(index, 1)
+      }
+      observed.unresolved.push('current-structured-publisher-identity-conflict')
+    }
     observed.returnedIndiaJobs = jobs.length
     observed.unresolved = [...new Set(observed.unresolved)]
     observed.boards = [...boards.values()]

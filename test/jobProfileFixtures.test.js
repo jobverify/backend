@@ -48,7 +48,7 @@ test('rolling fixtures provide current public inventory across categories and co
     && hasSourceDescription(job) && !isAggregateHiringSignalJob(job)
     && categories.includes(normalizePublicJobCategory(job)));
 
-  assert.equal(cutoff.toISOString(), '2026-10-02T00:00:00.000Z');
+  assert.equal(cutoff.toISOString(), '2026-08-02T00:00:00.000Z');
   assert.equal(visible.length, 1721);
   assert.equal(new Set(visible.map(job => job.company)).size, 1242);
   assert.deepEqual(Object.fromEntries(categories.map(category => [category,

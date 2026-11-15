@@ -1,0 +1,410 @@
+{
+  "reviewedAt": "2026-11-15T13:19:51.598Z",
+  "source": "nike",
+  "nativeBuild": "6891f740f9",
+  "nativeCompanyScopeComplete": false,
+  "qualification": {
+    "url": "https://careers.nike.com/lead-software-engineer-itc/job/R-97392",
+    "visible": true,
+    "normalizedWholeOwnerCharacters": 6112,
+    "normalizedWholeOwnerSHA256": "ca5f761ba4a3b55e4a3a08e18231d33f165c92799ae69519e2a026e49c9f9415",
+    "viewport": {
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "stateConfigurationSHA256": {
+    "listing": "5a46871581e24ea4aa00ab5ff4670814ec31b4c551d37a6830577f875690b561",
+    "role": "eceabacf5b9f2e6ebf227cc54d60991932df537fb6979be4bf9bbdc34e1424b7"
+  },
+  "assets": {
+    "https://careers.nike.com/cookiebot.css?v=0.7.36": {
+      "headerSHA256": "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28",
+      "bytes": 1927,
+      "sha256": "b043d2518ff145829204c0ff494ef5efe6d741a47f48970cc7a86f17eca6fb0e"
+    },
+    "https://careers.nike.com/vendor.css?v=0.7.36": {
+      "headerSHA256": "d3aa7ed233eadbe64e3016e120a6337eb50d4d1235fc86af7a56b687636e4229",
+      "bytes": 102854,
+      "sha256": "92100bf759aa47da39939162bd00ec0a1ef47e3e885411144931d062f2bee275"
+    },
+    "https://careers.nike.com/template.css?v=0.7.36": {
+      "headerSHA256": "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28",
+      "bytes": 5399,
+      "sha256": "56248e326feaf15225ec333acd7a697f56c103a599b9cad91c831136e9fe2074"
+    },
+    "https://careers.nike.com/dialog-polyfill.css?v=0.7.36": {
+      "headerSHA256": "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28",
+      "bytes": 803,
+      "sha256": "d9dc12e701e6f2023840e27204034587520cfb6016ebb5f3cd2f287ef7b0491c"
+    },
+    "https://careers.nike.com/job-list.css?v=0.7.36": {
+      "headerSHA256": "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28",
+      "bytes": 80818,
+      "sha256": "f888ba04487e2fde94f02d3fde545bc4ac9721f53dac9b520940855d0c7547e5"
+    },
+    "https://careers.nike.com/job-detail.css?v=0.7.36": {
+      "headerSHA256": "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28",
+      "bytes": 19023,
+      "sha256": "f6da641764003abfafc2b9a23c2f882da48799bad1b98074e2362681653c3d66"
+    },
+    "https://careers.nike.com/index.js?v=0.7.36": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 36426,
+      "sha256": "750d406c4f986ed08248e0292fc2a24d7d4455e4c910bd78a651543bb0486634"
+    },
+    "https://careers.nike.com/embla-carousel.js?v=0.7.36": {
+      "headerSHA256": "fee518be8f06ad607cb1a62e41a5c099197fd2b9363e50fba318834768cf4a66",
+      "bytes": 21443,
+      "sha256": "b3cdf3a6ceed371405ba07489e0a27d22feffa1f4b8dd564f75f2e68bcd28ed0"
+    },
+    "https://careers.nike.com/style.css?v=0.7.36": {
+      "headerSHA256": "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28",
+      "bytes": 83287,
+      "sha256": "1b10458ef37c0aed266022e81e17b75e5bb0ff315b8d8c4e0071fd6f1a383329"
+    },
+    "https://careers.nike.com/embla-carousel-autoplay.js?v=0.7.36": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 2903,
+      "sha256": "8a3e7c24799bbb0b00eb3086c4364f3cd5e2d356a4321af68d4d77312a45608c"
+    },
+    "https://careers.nike.com/embla-carousel-fade.js?v=0.7.36": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 3725,
+      "sha256": "91651eda2dda908a29f294a417a97f3e728037dba987539d01f0a3b220800cbf"
+    },
+    "https://careers.nike.com/dialog-polyfill.js?v=0.7.36": {
+      "headerSHA256": "fee518be8f06ad607cb1a62e41a5c099197fd2b9363e50fba318834768cf4a66",
+      "bytes": 32920,
+      "sha256": "68bde0544762e2bf8123dd2a63a39272aea0709d8cd2b0d89091576b364ad1b4"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/main.css": {
+      "headerSHA256": "a76034cc2ae6c92db78c92974165067becd1834259bbbb8f4a7450ee1d277d4c",
+      "bytes": 16016,
+      "sha256": "6e8aa736af17f15bb50cf93147086cead35d09a79cd84ebdd966cbebafa88232"
+    },
+    "https://cdn.sites.paradox.ai/common-libraries/gsap-3.9.1/gsap.min.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 64148,
+      "sha256": "6dbe9c2e13cf06c6633ea3fcf6d7bd30452561202a205c75a035cd1d8b93368f"
+    },
+    "https://cdn.sites.paradox.ai/common-libraries/gsap-3.9.1/ScrollTrigger.min.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 24528,
+      "sha256": "068b6cce4ba0c45621e5c2947ebcc3f6701a90c841ce4f210c935f0047a19ead"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/vendors.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 468501,
+      "sha256": "0049fc7ba793d900fe711ea6db704a7a28a96582365621a68a587aae94878602"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/main.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 8160,
+      "sha256": "eff6a4e416e30d3d665edd26e93ba1992428abf81ad85a53ddaa7688f8d7c819"
+    },
+    "https://cdn.sites.paradox.ai/common-libraries/font-awesome-4.7.0/css/font-awesome.min.css": {
+      "headerSHA256": "a76034cc2ae6c92db78c92974165067becd1834259bbbb8f4a7450ee1d277d4c",
+      "bytes": 31000,
+      "sha256": "799aeb25cc0373fdee0e1b1db7ad6c2f6a0e058dfadaa3379689f583213190bd"
+    },
+    "https://careers.nike.com/carousel.js": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 4396,
+      "sha256": "97c5bf2424f60431bfaf509fd315bb4021101fe7e1dd44277c90a49ecdbeaf63"
+    },
+    "https://careers.nike.com/jobModule.js?v=0.1.9": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 23008,
+      "sha256": "e50ac08ec86d5c66316af32e67f660386db2bfc805cb96b663d655a4424830c4"
+    },
+    "https://careers.nike.com/language.js?v=0.1.3": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 16235,
+      "sha256": "85579a9ce0770c4b0cd5b250dbf3e264dedff887955e5fb50520cef909316126"
+    },
+    "https://careers.nike.com/ugc.js?v=0.0.1": {
+      "headerSHA256": "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a",
+      "bytes": 229969,
+      "sha256": "03c0c5ec4bffcdfcbdb1a06d87a87c564fb6012078eb9759fe894d9dc8a01f0c"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/search-box.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 83812,
+      "sha256": "f3a4d8b73323f97e02cf29561e36ce18c1ba1f96072cd17ab7ab69d5b7621e5d"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-current-searches.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 38071,
+      "sha256": "da78d446b0c1e37f3a5edc7d0644ad9a58df6a68801d35ec492baeade0e75b79"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-filter.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 42840,
+      "sha256": "5a2e4f780d1f45d52a761f5088bdac400a06c25e4b584caa5a5c8d7052651094"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-list-header.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 34586,
+      "sha256": "64a86bf409e895e93fca708b72ad0f537a3dd48c6403b09b8300c0f6e69d3f2a"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-current-location.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 33795,
+      "sha256": "7f3afe5da4813415cc35e493f3a10e279399545a9748bb4fda9177b50abc3961"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-sort-by.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 38383,
+      "sha256": "2bc823e7458e0abecd72523111ac36ee0645fc950bc4ff53e8eeaf645a89fe08"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-radius.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 38453,
+      "sha256": "0a13ebc9d545180231a797a66ec906fa15f9e707fc1da493d29f55aca7dee943"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-pagination.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 46165,
+      "sha256": "e1d0f228c85ad09f5651b232379696685920b744414008a920314226ade71ec9"
+    },
+    "https://cdn.sites.paradox.ai/paradox-prod-careersites/6891f740f9/jobs-list-only.bundle.js": {
+      "headerSHA256": "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d",
+      "bytes": 61624,
+      "sha256": "6d8af1742d45b006593b291ffe72cd8050d0d67ae641ee1b5627b9b1c387be80"
+    }
+  },
+  "imports": {
+    "https://careers.nike.com/index.js?v=0.7.36": [
+      {
+        "literal": "./jobModule.js?v=0.1.9"
+      },
+      {
+        "literal": "./carousel.js"
+      },
+      {
+        "literal": "./ugc.js?v=0.0.1"
+      },
+      {
+        "literal": "./language.js?v=0.1.3"
+      }
+    ]
+  },
+  "documentHeaderSHA256": {
+    "listing": "ad90673152bcf51d0fcbf98a83b4944ef85c903ed90bd34722bce44f257423c3",
+    "role": "ad90673152bcf51d0fcbf98a83b4944ef85c903ed90bd34722bce44f257423c3",
+    "application": "b2e47ca7c5b1f0d795e148c3b9e34a801003655be6ae983c9738e805aa5a7502"
+  },
+  "effectiveHeaderContracts": {
+    "63588efe3f118a1f8cbcb6fb7dffef79f12629c2fd9e9ad8c6649cb4f6f94c28": {
+      "content-type": "text/css; charset=utf-8",
+      "refresh": null,
+      "content-security-policy": "img-src 'self' data: dy5f5j6i37p1a.cloudfront.net olivia.paradox.ai dokumfe7mps0i.cloudfront.net i.ytimg.com *.google-analytics.com fonts.gstatic.com *.recruiting.com *.paradox.ai d2i2zd9axwkr7h.cloudfront.net www.googletagmanager.com d25zu39ynyitwy.cloudfront.net imgsct.cookiebot.com *.imagekit.io; font-src d2ir6gu3mx7cqv.cloudfront.net dokumfe7mps0i.cloudfront.net maxcdn.bootstrapcdn.com fonts.gstatic.com 'self' *.paradox.ai cdnjs.cloudflare.com d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net data:; frame-src 'self' *.recruiting.com www.youtube.com www.google.com www.youtube-nocookie.com players.brightcove.net consentcdn.cookiebot.com dokumfe7mps0i.cloudfront.net *.nike.com recaptcha.google.com; style-src 'self' https: dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net 'unsafe-inline' *.paradox.ai; script-src 'self' *.googleapis.com d2ir6gu3mx7cqv.cloudfront.net www.youtube.com player.vimeo.com *.google-analytics.com *.googletagmanager.com www.gstatic.com *.pardot.com dokumfe7mps0i.cloudfront.net www.google.com 'unsafe-inline' 'unsafe-eval' *.paradox.ai cdnjs.cloudflare.com unpkg.com d25zu39ynyitwy.cloudfront.net players.brightcove.net consent.cookiebot.com consentcdn.cookiebot.com; default-src 'self' *.recruiting.com *.google-analytics.com stats.g.doubleclick.net consent.cookiebot.com olivia.paradox.ai dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net o1000039.ingest.sentry.io www.google.com wss://ws.paradox.ai wss://ws.stg.paradox.ai *.paradox.ai d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net ws.stg.paradox.ai consentcdn.cookiebot.com; form-action 'self'; frame-ancestors 'self'; object-src 'none';",
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "sameorigin"
+    },
+    "d3aa7ed233eadbe64e3016e120a6337eb50d4d1235fc86af7a56b687636e4229": {
+      "content-type": "text/css; charset=utf-8",
+      "refresh": null,
+      "content-security-policy": "img-src 'self' data: dy5f5j6i37p1a.cloudfront.net olivia.paradox.ai dokumfe7mps0i.cloudfront.net i.ytimg.com *.google-analytics.com fonts.gstatic.com *.recruiting.com *.paradox.ai d2i2zd9axwkr7h.cloudfront.net www.googletagmanager.com d25zu39ynyitwy.cloudfront.net imgsct.cookiebot.com *.imagekit.io; font-src d2ir6gu3mx7cqv.cloudfront.net dokumfe7mps0i.cloudfront.net maxcdn.bootstrapcdn.com fonts.gstatic.com 'self' *.paradox.ai cdnjs.cloudflare.com d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net data: design.workdaycdn.com; frame-src 'self' *.recruiting.com www.youtube.com www.google.com www.youtube-nocookie.com players.brightcove.net consentcdn.cookiebot.com dokumfe7mps0i.cloudfront.net *.nike.com recaptcha.google.com; style-src 'self' https: dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net 'unsafe-inline' *.paradox.ai; script-src 'self' *.googleapis.com d2ir6gu3mx7cqv.cloudfront.net www.youtube.com player.vimeo.com *.google-analytics.com *.googletagmanager.com www.gstatic.com *.pardot.com dokumfe7mps0i.cloudfront.net www.google.com 'unsafe-inline' 'unsafe-eval' *.paradox.ai cdnjs.cloudflare.com unpkg.com d25zu39ynyitwy.cloudfront.net players.brightcove.net consent.cookiebot.com consentcdn.cookiebot.com; default-src 'self' *.recruiting.com *.google-analytics.com stats.g.doubleclick.net consent.cookiebot.com olivia.paradox.ai dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net o1000039.ingest.sentry.io www.google.com wss://ws.paradox.ai wss://ws.stg.paradox.ai *.paradox.ai d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net ws.stg.paradox.ai consentcdn.cookiebot.com ai-paradox-prod-use1-mediaservice.s3.us-east-1.amazonaws.com unpkg.com; form-action 'self'; frame-ancestors 'self'; object-src 'none';",
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "sameorigin"
+    },
+    "0f68fa002aba2af0d59248ba9b30a2f5310a281d4804150775cb3e8e1609e62a": {
+      "content-type": "application/javascript; charset=utf-8",
+      "refresh": null,
+      "content-security-policy": "img-src 'self' data: dy5f5j6i37p1a.cloudfront.net olivia.paradox.ai dokumfe7mps0i.cloudfront.net i.ytimg.com *.google-analytics.com fonts.gstatic.com *.recruiting.com *.paradox.ai d2i2zd9axwkr7h.cloudfront.net www.googletagmanager.com d25zu39ynyitwy.cloudfront.net imgsct.cookiebot.com *.imagekit.io; font-src d2ir6gu3mx7cqv.cloudfront.net dokumfe7mps0i.cloudfront.net maxcdn.bootstrapcdn.com fonts.gstatic.com 'self' *.paradox.ai cdnjs.cloudflare.com d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net data: design.workdaycdn.com; frame-src 'self' *.recruiting.com www.youtube.com www.google.com www.youtube-nocookie.com players.brightcove.net consentcdn.cookiebot.com dokumfe7mps0i.cloudfront.net *.nike.com recaptcha.google.com; style-src 'self' https: dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net 'unsafe-inline' *.paradox.ai; script-src 'self' *.googleapis.com d2ir6gu3mx7cqv.cloudfront.net www.youtube.com player.vimeo.com *.google-analytics.com *.googletagmanager.com www.gstatic.com *.pardot.com dokumfe7mps0i.cloudfront.net www.google.com 'unsafe-inline' 'unsafe-eval' *.paradox.ai cdnjs.cloudflare.com unpkg.com d25zu39ynyitwy.cloudfront.net players.brightcove.net consent.cookiebot.com consentcdn.cookiebot.com; default-src 'self' *.recruiting.com *.google-analytics.com stats.g.doubleclick.net consent.cookiebot.com olivia.paradox.ai dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net o1000039.ingest.sentry.io www.google.com wss://ws.paradox.ai wss://ws.stg.paradox.ai *.paradox.ai d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net ws.stg.paradox.ai consentcdn.cookiebot.com ai-paradox-prod-use1-mediaservice.s3.us-east-1.amazonaws.com unpkg.com; form-action 'self'; frame-ancestors 'self'; object-src 'none';",
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "sameorigin"
+    },
+    "fee518be8f06ad607cb1a62e41a5c099197fd2b9363e50fba318834768cf4a66": {
+      "content-type": "application/javascript; charset=utf-8",
+      "refresh": null,
+      "content-security-policy": "img-src 'self' data: dy5f5j6i37p1a.cloudfront.net olivia.paradox.ai dokumfe7mps0i.cloudfront.net i.ytimg.com *.google-analytics.com fonts.gstatic.com *.recruiting.com *.paradox.ai d2i2zd9axwkr7h.cloudfront.net www.googletagmanager.com d25zu39ynyitwy.cloudfront.net imgsct.cookiebot.com *.imagekit.io; font-src d2ir6gu3mx7cqv.cloudfront.net dokumfe7mps0i.cloudfront.net maxcdn.bootstrapcdn.com fonts.gstatic.com 'self' *.paradox.ai cdnjs.cloudflare.com d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net data:; frame-src 'self' *.recruiting.com www.youtube.com www.google.com www.youtube-nocookie.com players.brightcove.net consentcdn.cookiebot.com dokumfe7mps0i.cloudfront.net *.nike.com recaptcha.google.com; style-src 'self' https: dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net 'unsafe-inline' *.paradox.ai; script-src 'self' *.googleapis.com d2ir6gu3mx7cqv.cloudfront.net www.youtube.com player.vimeo.com *.google-analytics.com *.googletagmanager.com www.gstatic.com *.pardot.com dokumfe7mps0i.cloudfront.net www.google.com 'unsafe-inline' 'unsafe-eval' *.paradox.ai cdnjs.cloudflare.com unpkg.com d25zu39ynyitwy.cloudfront.net players.brightcove.net consent.cookiebot.com consentcdn.cookiebot.com; default-src 'self' *.recruiting.com *.google-analytics.com stats.g.doubleclick.net consent.cookiebot.com olivia.paradox.ai dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net o1000039.ingest.sentry.io www.google.com wss://ws.paradox.ai wss://ws.stg.paradox.ai *.paradox.ai d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net ws.stg.paradox.ai consentcdn.cookiebot.com; form-action 'self'; frame-ancestors 'self'; object-src 'none';",
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "sameorigin"
+    },
+    "a76034cc2ae6c92db78c92974165067becd1834259bbbb8f4a7450ee1d277d4c": {
+      "content-type": "text/css",
+      "refresh": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "b1cd36a66f71bee8fde7a96f3ea0e2d66cc70b8200b542b53e6766797da9140d": {
+      "content-type": "application/javascript",
+      "refresh": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "SAMEORIGIN"
+    },
+    "ad90673152bcf51d0fcbf98a83b4944ef85c903ed90bd34722bce44f257423c3": {
+      "content-type": "text/html; charset=utf-8",
+      "refresh": null,
+      "content-security-policy": "img-src 'self' data: dy5f5j6i37p1a.cloudfront.net olivia.paradox.ai dokumfe7mps0i.cloudfront.net i.ytimg.com *.google-analytics.com fonts.gstatic.com *.recruiting.com *.paradox.ai d2i2zd9axwkr7h.cloudfront.net www.googletagmanager.com d25zu39ynyitwy.cloudfront.net imgsct.cookiebot.com *.imagekit.io; font-src d2ir6gu3mx7cqv.cloudfront.net dokumfe7mps0i.cloudfront.net maxcdn.bootstrapcdn.com fonts.gstatic.com 'self' *.paradox.ai cdnjs.cloudflare.com d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net data: design.workdaycdn.com; frame-src 'self' *.recruiting.com www.youtube.com www.google.com www.youtube-nocookie.com players.brightcove.net consentcdn.cookiebot.com dokumfe7mps0i.cloudfront.net *.nike.com recaptcha.google.com; style-src 'self' https: dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net 'unsafe-inline' *.paradox.ai; script-src 'self' *.googleapis.com d2ir6gu3mx7cqv.cloudfront.net www.youtube.com player.vimeo.com *.google-analytics.com *.googletagmanager.com www.gstatic.com *.pardot.com dokumfe7mps0i.cloudfront.net www.google.com 'unsafe-inline' 'unsafe-eval' *.paradox.ai cdnjs.cloudflare.com unpkg.com d25zu39ynyitwy.cloudfront.net players.brightcove.net consent.cookiebot.com consentcdn.cookiebot.com; default-src 'self' *.recruiting.com *.google-analytics.com stats.g.doubleclick.net consent.cookiebot.com olivia.paradox.ai dy5f5j6i37p1a.cloudfront.net dokumfe7mps0i.cloudfront.net o1000039.ingest.sentry.io www.google.com wss://ws.paradox.ai wss://ws.stg.paradox.ai *.paradox.ai d25zu39ynyitwy.cloudfront.net d2k2mg2temmavv.cloudfront.net ws.stg.paradox.ai consentcdn.cookiebot.com ai-paradox-prod-use1-mediaservice.s3.us-east-1.amazonaws.com unpkg.com; form-action 'self'; frame-ancestors 'self'; object-src 'none';",
+      "content-security-policy-report-only": null,
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "sameorigin"
+    },
+    "b2e47ca7c5b1f0d795e148c3b9e34a801003655be6ae983c9738e805aa5a7502": {
+      "content-type": "text/html",
+      "refresh": null,
+      "content-security-policy": null,
+      "content-security-policy-report-only": "script-src 'none'; connect-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=<ANONYMOUS-NATIVE-REPORT>; report-to cf-<ANONYMOUS-NATIVE-GROUP>",
+      "x-content-security-policy": null,
+      "x-webkit-csp": null,
+      "content-disposition": null,
+      "link": null,
+      "location": null,
+      "content-location": null,
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "report-to": "[{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=<ANONYMOUS-NATIVE-NEL>\"}]},{\"group\":\"cf-<ANONYMOUS-NATIVE-GROUP>\",\"max_age\":86400,\"endpoints\":[{\"url\":\"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=<ANONYMOUS-NATIVE-REPORT>\"}]}]",
+      "reporting-endpoints": "cf-<ANONYMOUS-NATIVE-GROUP>=\"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=<ANONYMOUS-NATIVE-REPORT>\""
+    }
+  },
+  "passiveExternalScripts": [
+    "https://consent.cookiebot.com/uc.js"
+  ],
+  "cardAttributes": {
+    "class": "c-jobs-list-only-wrap jobs-list-only",
+    "data-react-component": "jobs-list-only",
+    "data-guid": "d8d3840c-9f87-4ea7-8c2f-870aeaef6573",
+    "data-variant": "jobs-list-only",
+    "data-react-prop-classname": "c-jobs-list-only",
+    "data-react-prop-show_brand": "false",
+    "data-react-prop-show_reference": "true",
+    "data-react-prop-apply_button_text": "View Job",
+    "data-react-prop-street_format": "{city}, {state_abbr}, {country}",
+    "data-react-prop-clear_result_suggestions_title_text": "Suggestions",
+    "data-react-prop-clear_result_suggestions_line1_text": "Try different keywords",
+    "data-react-prop-clear_result_suggestions_line2_text": "Make sure everything is spelled correctly",
+    "data-react-prop-clear_result_suggestions_line3_text": "If possible, consider trying jobs at a different location, perhaps another nearby city.",
+    "data-react-prop-clear_result_suggestions_line4_text": "Try clearing your search filters and starting over.",
+    "data-react-prop-no_results_line1_text": "Sorry, we're not able to load results for your search.",
+    "data-react-prop-no_results_line2_text": "Please refine your keywords in the search bar and try again.",
+    "data-react-prop-target_list_enabled": "false",
+    "data-react-prop-target_list": "{\"feed_id\":{}}",
+    "data-react-prop-show_employment_type": "false",
+    "data-react-prop-multi_location_text": "More Locations",
+    "data-react-prop-remote_location_text": "Remote",
+    "data-react-prop-target_language_enabled": "false",
+    "data-react-prop-target_language": "",
+    "data-react-prop-job_card_extra_fields_enabled": "true",
+    "data-react-prop-job_card_extra_fields": "[{\"classname\":\"results-list__categories\",\"attribute_name\":\"job_categories\"}]",
+    "data-react-prop-search_mode": "undefined",
+    "data-react-prop-variant_name": "jobs-list-only",
+    "data-react-prop-variant_id": "d8d3840c-9f87-4ea7-8c2f-870aeaef6573"
+  },
+  "programs": {
+    "listing": "424f8cc23cb3643bfb4bac4f1bc5edace7f639613d3e29d7dcfe27268a10bf8f",
+    "role": "0d3d25e9e9ed4d77553ec4b4ecd2502b8af3998950b010abab22819b7ca76c95",
+    "application": "0028373789bb69e702efa2d6c416f86e0d7ecd0887af377184d1060a8b965c34"
+  },
+  "styles": {
+    "listing": "6f6f926d53044209732f81d02c00b880da33524b1e6ded0bb5845c1419277bf8",
+    "role": "7ff020e969a9fecd2475af32dbc0e6e8d8c819cf3471d0114822ea8fcf290ce4",
+    "application": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "authority": {
+    "role": {
+      "treeSHA256": "57b513949fadd9587d682e6895acce989af4ce1320d6d7e0cd665e4df6d76cb1",
+      "outsideAuthorTextSHA256": "4d1ef9053dcc1cbbba22f8f44b2fec1e05fd83ac4920a783881f2c132f8bff9c",
+      "inactiveOwnerAuthorTextSHA256": "aa3b6fc61f067241a505b2aa8b62effbab14f4c53ec00028a596a88029c7c62f",
+      "nonProgramRawTextSHA256": "9d21e8e958250f67633bdf3ad21c079a261e3a9ad0dcbcda3cb11e3cafa64b9d"
+    },
+    "application": {
+      "treeSHA256": "18bd149cf11e1cd071e235bd2f695d2aa05aedd0bcab6285bdac2a73aa8d55cd",
+      "outsideAuthorTextSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inactiveOwnerAuthorTextSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "nonProgramRawTextSHA256": "4598780a0872ec49b9438318cbb49e681f50c3899dfda30805ebadbb0677f3f8"
+    }
+  },
+  "descriptionShapes": {
+    "role": "a98dac2d42a7ad499ee62d943fbecaf734da779b90e7e421ef4bca2702f96dc7",
+    "application": "5a55b7775e82295ac1ff76adcc72f3c782a3fe692c4defc04b59e78fd79ea2e4"
+  },
+  "nativeLocationBindings": {
+    "R-97392": {
+      "sourceUrl": "https://careers.nike.com/lead-software-engineer-itc/job/R-97392",
+      "applyUrl": "https://nike.wd1.myworkdayjobs.com/nke/job/Karnataka-India/Lead-Software-Engineer--ITC_R-97392/apply",
+      "nativeLegalEmployer": "NIKE India Technology Center Private Limited",
+      "ownJobLocation": [
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4/F, WeWork, Embassy GolfLinks",
+            "addressLocality": "Karnataka",
+            "addressRegion": "Karnātaka",
+            "postalCode": "560093",
+            "addressCountry": "IN"
+          }
+        }
+      ],
+      "atsJobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "India",
+          "addressLocality": "INDIA TECHNOLOGY CENTER"
+        }
+      },
+      "evidence": {
+        "fixture": "fixtures/current-native-20261115.json.gz",
+        "fixtureSHA256": "1c66dd0efe9d638a898c21b74f8c2e0999529fa0d19350406437364a59dae8f0",
+        "ownPacketSHA256": "66ace229e9f9c58149bbb959916ecb998259e2e2c206d9198523763a230e83bf",
+        "atsPacketSHA256": "78bac34cc2539578554204fb95f0bf93fbd70ec18411e15feeff78e82e643b43",
+        "semantics": "Two independently published complete native representations of this exact requisition/title/legal employer and native Apply URL. ATS addressLocality is the facility label INDIA TECHNOLOGY CENTER; own addressLocality is Karnataka. Preserve both originals without geographic alias/inference. Unknown address/facility/all-alternative/property changes require review."
+      }
+    }
+  }
+}

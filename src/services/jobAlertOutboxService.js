@@ -5,6 +5,7 @@ import JobAlertOutbox from '../models/JobAlertOutbox.js';
 import { findJobAlertRecipientPage, stageJobAlertDeliveries } from './jobAlertService.js';
 import { retryMongoOperation } from '../utils/mongoOperationalError.js';
 import { stageTelegramChannelDeliveries } from './telegramChannelService.js';
+import { canProcessClassifiedJobAlerts } from './jobAlertClassificationGate.js';
 
 const CLAIM_TTL_MS = 5 * 60_000;
 const INGESTION_BATCH_SIZE = 100;
@@ -40,13 +41,16 @@ export const persistJobChangesWithAlertOutbox = async (JobModel, operations, { e
   return combined;
 };
 
-export const claimJobAlertEvent = async (now = new Date()) => JobAlertOutbox.findOneAndUpdate({
+export const claimJobAlertEvent = async (now = new Date()) => {
+  if (!await canProcessClassifiedJobAlerts()) return null;
+  return JobAlertOutbox.findOneAndUpdate({
   $or: [
     { status: 'pending', nextAttemptAt: { $lte: now } },
     { status: 'processing', claimExpiresAt: { $lte: now } },
   ],
 }, { $set: { status: 'processing', claimToken: randomUUID(), claimExpiresAt: new Date(now.getTime() + CLAIM_TTL_MS) },
   $inc: { attemptCount: 1 } }, { new: true, sort: { createdAt: 1, _id: 1 }, lean: true });
+};
 
 export const processClaimedJobAlertEvent = async event => {
   const owned = { _id: event._id, status: 'processing', claimToken: event.claimToken };

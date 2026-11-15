@@ -1,0 +1,12 @@
+{
+  "reviewedAt": "2026-11-15",
+  "profileID": "comviva-declared-independent-native-role-view-20261115",
+  "corporateNormalizedHTMLSHA256": "6664cf22bb52162d4837aed951cb4d22ba7420b63ef407a4e1e76dbd14ca06f3",
+  "corporateNormalizedCSPSHA256": "f3689d721472e1fa1f6e628cd3faa5785ff5957f9e5863410780a763f7fbc8da",
+  "requestNoncePlaceholder": "<COMVIVA_REQUEST_NONCE>",
+  "domNonceCount": 24,
+  "flightNonceCount": 23,
+  "nativeAssetSetSHA256": "df3768809cea83bb35d550e89d2c667bab3110ddaf981ad3cefaa636921b9efa",
+  "nativeShellSHA256": "07372a753afdf69f76f1377296aaabb97420968942e3ea33ecf769b8679fe9ed",
+  "qualification": "Exact current corporate declaration only; corporate UI/rendering remains unqualified. Each accepted role independently reads the actual returned same-job native iframe at opening and closing, with the reviewed whole native shell/program/style profile and complete native role criteria/country/employer identity. No company scope, zero or cleanup claim."
+}

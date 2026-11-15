@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import RX_LOGIX_CORPORATION_CATALOG from './catalog.js'
+import {runCurrentRxLogix} from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -184,7 +185,7 @@ export const createRxLogixCorporationScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createRxLogixCorporationScraper().run(options)
+export const run = async (options = {}) => runCurrentRxLogix(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

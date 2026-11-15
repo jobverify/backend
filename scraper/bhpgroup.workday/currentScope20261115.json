@@ -1,0 +1,220 @@
+{
+  "observedAt": "2026-11-15T11:07:00.000Z",
+  "handoff": "https://careers.bhp.com/search/?createNewAlert=false&q=&optionsFacetsDD_location=&optionsFacetsDD_customfield1=&optionsFacetsDD_title=&optionsFacetsDD_customfield4=",
+  "programs": {
+    "search": "fa5ff2176ceae96db57f313de05bf1628130da2a561cb4215c1d521b5287a460",
+    "query": "81bc3161a71b35c87709b52de9d397cc7bd3e3d2f0d52904a3a2d0a73fd2862a",
+    "role": "5bb8a79094ef5a826996bba35c01cfab66cc44aff07564772af27795c22b3719"
+  },
+  "antiSHA256": "4a1ab69ed7fa61e5385ca970bf06b3e1afafc49efaeace8ec022766e16e72433",
+  "passiveExternalScripts": [
+    "https://www.googletagmanager.com/gtag/js?id=G-STF004VKQ3"
+  ],
+  "assets": {
+    "https://careers.bhp.com/platform/bootstrap/3.4.8_NES/css/bootstrap.min.css": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 121430,
+      "sha256": "203d74d5220b847d5c9d4e776e27fd5a767cdcc4b39d8fc189e7e9c57366f6e7"
+    },
+    "https://careers.bhp.com/platform/css/j2w/min/bootstrapV3.global.responsive.min.css?h=2fd162d1": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 14164,
+      "sha256": "bcd5d96c427760e39d9685d026c0afa634de9d4a91186743de7c4a17ba5de4e1"
+    },
+    "https://careers.bhp.com/platform/js/j2w/j2w.fallbacks.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 985,
+      "sha256": "06e9166ad77fad200fa35740c20643fd0b2d11f14d1266b8cc45e7c45e4548e5"
+    },
+    "https://performancemanager8.successfactors.com/verp/vmod_v1/ui/extlib/jquery_3.5.1/jquery.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 100493,
+      "sha256": "9b594ee0e5daa316c4210f6589d1e7cfc3e0181159253da58383ddd8fcbd3e59"
+    },
+    "https://performancemanager8.successfactors.com/verp/vmod_v1/ui/extlib/jquery_3.5.1/jquery-migrate.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 11015,
+      "sha256": "1c1963cabeded366f036b30b1bfa4402b5deee0efa4011632f8ac20eb4db21cf"
+    },
+    "https://careers.bhp.com/platform/js/jquery/jquery-migrate-1.4.1.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 23497,
+      "sha256": "c68a880944aa03082e88bbe6c7df7747ee45f506fa777e76fb41709a0ba5a935"
+    },
+    "https://rmkcdn.successfactors.com/49d8af2d/b3e937de-924d-49eb-8580-8.css": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 80280,
+      "sha256": "cea1e25eca8f059a08236965220542272b5ec4f0442a188023571e0a6f37e1a5"
+    },
+    "https://careers.bhp.com/platform/csb/css/header1.css?h=2fd162d1": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 6690,
+      "sha256": "68ea2308d8ab1f84cfbe7a0aa366f56fe81a15d75768bc97f0ec24fa688f64ab"
+    },
+    "https://careers.bhp.com/platform/css/j2w/min/sitebuilderframework.min.css?h=2fd162d1": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 37958,
+      "sha256": "f35445226da06782b4e51fe4a6e2aa9fb4c4af48bace6d2a6f2c68546af5690e"
+    },
+    "https://careers.bhp.com/platform/css/j2w/min/BS3ColumnizedSearch.min.css?h=2fd162d1": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 3681,
+      "sha256": "7cc8b4aeece9f2719efd58cb1ccc3c192f83b3e67705b2559877bc1473cac75f"
+    },
+    "https://careers.bhp.com/platform/fontawesome4.7/css/font-awesome-4.7.0.min.css?h=2fd162d1": {
+      "kind": "style",
+      "mime": "text/css",
+      "bytes": 30999,
+      "sha256": "c4047043368afb4baf1aed25d358a5c2a333842a3b436b58491ab36aeee65b9d"
+    },
+    "https://careers.bhp.com/platform/js/j2w/j2w.bootstrap.collapse.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 4974,
+      "sha256": "d6b49666d39b890891501159a54a1d5adf39dcd243f5f0b450922f74590c744b"
+    },
+    "https://careers.bhp.com/platform/js/j2w/j2w.bootstrap.dropdown.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 2877,
+      "sha256": "6c71fe5e05ed6da3370d3df2922d592e4f15875586ed7d81b0355924223a30ff"
+    },
+    "https://careers.bhp.com/platform/js/jquery/jquery.watermark.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 19229,
+      "sha256": "016f9cfa001792db7ad2be1e1ea1424cea09f108f68e7efb1caf4c5e65ac1335"
+    },
+    "https://careers.bhp.com/platform/bootstrap/3.4.8_NES/js/lib/dompurify/purify.min.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 28438,
+      "sha256": "dbabb5b205a333ec49c8c09e7fca30ef66df0523bb8bc0fa9ea843841f111dbd"
+    },
+    "https://careers.bhp.com/platform/bootstrap/3.4.8_NES/js/bootstrap.min.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 40516,
+      "sha256": "37707328ff5bb6b2a2647cf4f5b709951928a5953eab8e43589b2dfbbea37598"
+    },
+    "https://careers.bhp.com/platform/js/localized/strings_en_GB.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 21901,
+      "sha256": "20faf4691891d492fd735a2acf4d5951c86a93d4d2997a5be835f888093568a4"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.core.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 5189,
+      "sha256": "c9e76ddd606e88f22b76f149b0f7e279358e7e64c733bb15ac0a79ae461e0280"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.tc.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 4529,
+      "sha256": "b384bd5b54f1a70308b2682089b9afb8c4754e6da23968291b7099e3d5a111b8"
+    },
+    "https://careers.bhp.com/platform/js/search/search.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 768,
+      "sha256": "4e1f588af647b3744a85abf20f9615e03f1aceea8258667bb7f6c30f597b7945"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.user.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 13983,
+      "sha256": "a49e46b53267af8dfea2da4f24ec3bd9c9e83d80754e190b765448268027479b"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.employee.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 571,
+      "sha256": "8d43a0cfcf7fa8c8fb83ee38e9993af15680190d31e24a0e6b34be513a5072a7"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.agent.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 3621,
+      "sha256": "671287fdbc7c129fcd8a0a2f2d283f74a884c3c7b2917154f6fca9e5e081a4c5"
+    },
+    "https://careers.bhp.com/platform/js/jquery/js.cookie-2.2.1.min.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 1642,
+      "sha256": "31d1799663bbb6029214d90ba7db9cdc725fa02c16d4b090add3721e44238b6b"
+    },
+    "https://careers.bhp.com/platform/js/jquery/jquery.lightbox_me.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 3271,
+      "sha256": "f72c5c12308bd46d0ab3de6d0e15b483f3f69bb780f5033d8f2eb1bf0eb9795a"
+    },
+    "https://careers.bhp.com/platform/js/jquery/jquery.placeholder.2.0.7.min.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 2161,
+      "sha256": "81156585e8f0e4eeeca66c3b8204462a2d38f448ea03c24d550aa6fec56e9f5c"
+    },
+    "https://careers.bhp.com/js/override.js?locale=en_GB&i=<CACHE>": {
+      "kind": "script",
+      "mime": "application/x-javascript",
+      "bytes": 593,
+      "sha256": "ade2178ae746e92338cc77bc43d5850c856596b71e493aadb8f82a71337c99e5"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.apply.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 4499,
+      "sha256": "20adc341e5801be21b4e334311a7996029a6e88aafe58e6aab80408d231cafe0"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/options-search.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 2466,
+      "sha256": "eb3cdee25a3692f74f8fb599b59d6d5179dc16ef2ffc34b8069c385579d622ea"
+    },
+    "https://careers.bhp.com/platform/js/tc/subscribeWidget.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 5326,
+      "sha256": "b7192c7374347059b61640d8d2221b24f83f3ef25846fd654c8162462800158a"
+    },
+    "https://d1hgczpbubj217.cloudfront.net/video-widget/PJumfIQH/init.js": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 1147,
+      "sha256": "b4ea55a0e971a41fa6e77f05e896e58d2a013d091889618750522dc9bc189205"
+    },
+    "https://careers.bhp.com/platform/js/j2w/min/j2w.sso.min.js?h=2fd162d1": {
+      "kind": "script",
+      "mime": "application/javascript",
+      "bytes": 11508,
+      "sha256": "8705172509f13b562955a5b86b8a75b8d874feec75b7b4e9aae621d61fd7cec5"
+    }
+  },
+  "outsideOwnerAuthorTextSHA256": "160cdc3cbafca246dffba39e57b3107c2f65339dbd2e4a34577e7f25c5fd694b",
+  "applyAttributes": {
+    "xml:lang": "en-GB",
+    "lang": "en-GB",
+    "class": "btn btn-primary btn-large btn-lg apply dialogApplyBtn ",
+    "href": "<NATIVE-APPLY>"
+  },
+  "styles": {
+    "search": "b3a581aa985500606dcf7e9cedbb5678ab4c4ec5facfbf6c24355043755d7b7f",
+    "query": "989f68d4cb4d6fcdf436c7d21ded96f7acf39648843119c238444e3071348257",
+    "role": "8f4c29beb2c2682347195c5b516c271511ec999d1858ba7bdf4e87ffc7b84ef2"
+  },
+  "bodyAuthoritySHA256": "83b303fc0248783e012b21652e6ee6ce7a62ff34fb813c0b56a19f42cbd692c1"
+}

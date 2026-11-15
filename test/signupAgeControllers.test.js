@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { generateKeyPairSync } from 'node:crypto';
+import { generateKeyPairSync, randomBytes } from 'node:crypto';
 import nodemailer from 'nodemailer';
 import User from '../src/models/User.js';
 import PendingUser from '../src/models/PendingUser.js';
@@ -20,7 +20,7 @@ const tooYoung = '2020-01-15';
 function setup(t) {
   const names = ['JWT_SECRET', 'FRONTEND_ORIGIN', 'EMAIL_RELAY_URL', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_FROM'];
   const previous = Object.fromEntries(names.map(name => [name, process.env[name]]));
-  Object.assign(process.env, { JWT_SECRET: 'signup-age-fixture-secret-at-least-32-characters',
+  Object.assign(process.env, { JWT_SECRET: randomBytes(32).toString('hex'),
     FRONTEND_ORIGIN: 'http://127.0.0.1:5173', EMAIL_RELAY_URL: '', SMTP_HOST: '127.0.0.1',
     SMTP_PORT: '1025', SMTP_USER: 'fixture', SMTP_PASS: 'fixture', SMTP_FROM: 'fixture@example.com' });
   t.after(() => { for (const name of names) { if (previous[name] === undefined) delete process.env[name]; else process.env[name] = previous[name]; } });

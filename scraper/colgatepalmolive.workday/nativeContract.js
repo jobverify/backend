@@ -57,14 +57,16 @@ function directProperty(object,wanted){
  return found
 }
 export function verifyCorporate(body){const d=readNativeDocument(body);check(d.nodes(n=>n.tag==='title').some(n=>/Colgate-Palmolive/.test(n.raw)),'Corporate title missing');const canonical=d.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical');check(canonical.length===1&&canonical[0].attrs.href===CORPORATE,'Corporate canonical missing or conflicting');check(d.nodes(n=>n.tag==='a'&&n.attrs.href===ORIGIN+'/').length>0,'Active corporate native careers handoff missing')}
-export function verifySearch(body){
+export function verifySearch(body,{widgetBuild='b2605.31'}={}){
  const d=readNativeDocument(body),scripts=activeScripts(d)
  const initializers=scripts.flatMap(s=>topLevelMatches(s,/\bj2w\.init\s*\(\s*\{/g).map(m=>nativeObject(s,m.index+m[0].length-1)))
  const styles=scripts.flatMap(s=>topLevelMatches(s,/\bif\s*\(\s*typeof\s+resultStyles\s*===\s*'undefined'\s*\)\s*\{\s*var\s+resultStyles\s*=\s*\{/g).map(m=>nativeObject(s,m.index+m[0].length-1)))
  check(initializers.length===1&&styles.length===1,'Current top-level native initialization unavailable')
  const sso=directProperty(initializers[0],'ssoCompanyId'),company=directProperty(styles[0],'companyId')
  check(/^(['"])colgate\1$/.test(sso??'')&&/^(['"])colgate\1$/.test(company??''),'Native company token must be a matching direct literal property')
- check(scripts.some(s=>topLevelMatches(s,/\bvar\s+unifyBuildVersion\s*=\s*"RMK\/j2w-all-multibranch-CI\/b2605\.31"/g).length===1&&s.includes('xweb/rmk-jobs-search')&&s.includes('https://performancemanager4.successfactors.com/verp/vmod_3')&&s.includes('asset-manifest-entrypoints.json?tag=')),'Current advertised widget version/shape changed')
+ check(['b2605.31','b2611m.4'].includes(widgetBuild),'Unreviewed widget build')
+ const buildPattern=widgetBuild==='b2611m.4'?/\bvar\s+unifyBuildVersion\s*=\s*"RMK\/j2w-all-multibranch-CI\/b2611m\.4"/g:/\bvar\s+unifyBuildVersion\s*=\s*"RMK\/j2w-all-multibranch-CI\/b2605\.31"/g
+ check(scripts.some(s=>topLevelMatches(s,buildPattern).length===1&&s.includes('xweb/rmk-jobs-search')&&s.includes('https://performancemanager4.successfactors.com/verp/vmod_3')&&s.includes('asset-manifest-entrypoints.json?tag=')),'Current advertised widget version/shape changed')
  check(scripts.some(s=>s.includes('fieldId:"filter1"')&&s.includes('label:"Country"')),'Current native country facet unavailable')
  const srcs=d.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')).map(n=>n.attrs.src)
  check(srcs.includes('/platform/js/widgets/reactWidgetLoader.js')&&srcs.includes('https://performancemanager4.successfactors.com/verp/vmod_3/ui/widget-loader/resources/widget-loader.js'),'Advertised active widget loaders missing')
@@ -89,7 +91,7 @@ function currentLocationCarriers(row){
  for(const [key,value]of Object.entries(row))if(/country|address|location/i.test(key)&&!['jobLocationShort','jobLocationShortWithCoordinates'].includes(key))check(value==null||value===''||Array.isArray(value)&&value.length===0,'Unreviewed native country/address/location carrier')
  for(const office of row.jobLocationShortWithCoordinates??[])check(office&&typeof office==='object'&&Object.keys(office).every(k=>['value','key'].includes(k)),'Unreviewed native coordinate carrier')
 }
-export function validateRow(row,now,{allowReviewedWorksiteGap=false}={}){
+export function validateRow(row,now,{allowReviewedWorksiteGap=false,allowCurrentSricity=false}={}){
  checkEnvelope(row);check(typeof row.id==='string'&&/^[1-9]\d{3,8}$/.test(row.id),'Native requisition identity malformed');check(typeof row.unifiedStandardTitle==='string'&&row.unifiedStandardTitle.trim()&&!/[<>\u0000-\u001f]/.test(row.unifiedStandardTitle),'Native title malformed')
  check(Array.isArray(row.filter5)&&row.filter5.length===1&&row.filter5[0]==='Colgate-Palmolive','Native company brand mismatch')
  check(Array.isArray(row.supportedLocales)&&row.supportedLocales.includes('en_US'),'Native locale unavailable')
@@ -98,7 +100,7 @@ export function validateRow(row,now,{allowReviewedWorksiteGap=false}={}){
  if(reviewedGap)reviewWorksites(row)
  else{
  check(Array.isArray(row.jobLocationShort)&&row.jobLocationShort.length===1&&typeof row.jobLocationShort[0]==='string','Native location scope missing')
- const location=row.jobLocationShort[0].split(',').map(s=>s.trim());check(location.length===4&&location[0]==='Mumbai'&&location[1]==='MH'&&location[2]==='IND'&&location[3]==='','Native location outside verified Mumbai/Maharashtra/India scope')
+ const location=row.jobLocationShort[0].split(',').map(s=>s.trim());check(location.length===4&&(location[0]==='Mumbai'&&location[1]==='MH'||allowCurrentSricity&&location[0]==='Sricity'&&location[1]==='AP')&&location[2]==='IND'&&location[3]==='','Native location outside reviewed typed India worksite scope')
  check(Array.isArray(row.jobLocationShortWithCoordinates)&&row.jobLocationShortWithCoordinates.length===1&&row.jobLocationShortWithCoordinates[0].value===row.jobLocationShort[0],'Native location fields conflict')
  }
  const slug=row.unifiedUrlTitle;check(typeof slug==='string'&&slug.length>0&&/^(?:[A-Za-z0-9_%.,()-]|&amp;)+$/.test(slug)&&!/%(?:2f|5c|3f|23)/i.test(slug)&&row.urlTitle===slug,'Native URL title mismatch')
@@ -106,13 +108,14 @@ export function validateRow(row,now,{allowReviewedWorksiteGap=false}={}){
 }
 export function parsePage(d,page,now,expectedTotal,options){checkEnvelope(d);check(Number.isSafeInteger(d.totalJobs)&&d.totalJobs>=0&&d.totalJobs<=500,'Native total invalid or exceeds bound');check(expectedTotal==null||d.totalJobs===expectedTotal,'Native total drift');check(Array.isArray(d.jobSearchResult)&&d.jobSearchResult.length===Math.min(10,Math.max(0,d.totalJobs-page*10)),'Native page size/range mismatch');return{total:d.totalJobs,rows:d.jobSearchResult.map(j=>{check(j&&typeof j==='object'&&!Array.isArray(j),'Native row envelope malformed');return validateRow(j.response,now,options)})}}
 const serialize=n=>typeof n==='string'?n:n.inert||['script','style'].includes(n.tag)?'':`<${n.tag}>${n.children.map(serialize).join('')}</${n.tag}>`
-export function parseDetail(body,row,now,{allowReviewedWorksiteGap=false}={}){
+export function parseDetail(body,row,now,{allowReviewedWorksiteGap=false,allowCurrentSricity=false}={}){
  const reviewedGap=allowReviewedWorksiteGap&&row.nativeWorksiteReview==='finite-four-office-record-requires-own-detail-hold'
  if(reviewedGap){const original={...row};for(const key of ['sourceURL','postedAt','closingDate','nativeWorksiteReview'])delete original[key];check(JSON.stringify(validateRow(original,now,{allowReviewedWorksiteGap:true}))===JSON.stringify(row),'Reviewed worksite detail row proof changed')}
+ const sricity=allowCurrentSricity&&row.jobLocationShort?.length===1&&row.jobLocationShort[0]==='Sricity, AP, IND, ',city=sricity?'Sricity':'Mumbai',state=sricity?'Andhra Pradesh':'Maharashtra',location=city+', '+state+', India'
  const d=readNativeDocument(body),canonicals=d.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical');check(canonicals.length===1&&canonicals[0].attrs.href===decodeNativeHtml(row.sourceURL)+'/','Native canonical identity mismatch')
  const titles=d.nodes(n=>n.attrs.itemprop==='title');check(titles.length===1&&d.text(titles[0])===row.unifiedStandardTitle,'Native detail title mismatch')
  const sections=d.nodes(n=>n.attrs.itemprop==='description');check(sections.length===3,'Native full description sections unavailable')
- const text=sections.map(n=>d.text(n));check((reviewedGap?/^(?:No Relocation Assistance Offered|Relocation Assistance Offered Within Country) Job Number #177064 - Ahmedabad, Gujarat, India Who We Are /.test(text[0]):text[0].includes('Job Number #'+row.id+' - Mumbai, Maharashtra, India'))&&text[0].includes('Colgate-Palmolive Company'),'Native detail requisition/country/company context mismatch')
+ const text=sections.map(n=>d.text(n));check((reviewedGap?/^(?:No Relocation Assistance Offered|Relocation Assistance Offered Within Country) Job Number #177064 - Ahmedabad, Gujarat, India Who We Are /.test(text[0]):text[0].includes('Job Number #'+row.id+' - '+location))&&text[0].includes('Colgate-Palmolive Company'),'Native detail requisition/country/company context mismatch')
  const main=text[1],meaningful=main.split(/(?<=[.!?])\s+/).filter(s=>!/^(?:please\s+)?(?:(?:click\s+(?:the\s+)?)?apply\s+now|submit\s+(?:your\s+)?application)\b/i.test(s)&&!/^.{0,25}job description\b.*\b(?:unavailable|not available|available soon|coming soon|attached)\b/i.test(s)).join(' ').replace(/\b(?:job description|apply now|sample|placeholder|read more|coming soon)\b/gi,'').replace(/[^\p{L}\p{N}]/gu,'')
  check(!/\b(?:(?:this|the) (?:job|position|role|vacancy) (?:is (?:no longer available|closed)|has been (?:closed|filled))|no longer accepting applications)\b/i.test(text.join(' ')),'Native role explicitly closed');check(meaningful.length>=100,'Native substantive role description missing; company boilerplate cannot replace it')
  if(reviewedGap)check(main.startsWith(POOL_NOTICE),'Reviewed pooling-signal provenance changed')
@@ -120,5 +123,5 @@ export function parseDetail(body,row,now,{allowReviewedWorksiteGap=false}={}){
  const ends=labels.filter(s=>s.startsWith('Posting End Date:')).map(s=>norm(s.slice('Posting End Date:'.length)));check(row.closingDate?ends.length===1&&ends[0]===row.unifiedStandardEnd:ends.length===0,'Native detail closing date mismatch')
  const applyPath='/talentcommunity/apply/'+row.id+'/?locale=en_US',applies=d.nodes(n=>n.tag==='a'&&/^Apply now$/i.test(d.text(n)));check(applies.length>0&&applies.every(n=>n.attrs.href===applyPath),'Native active application identity mismatch')
  const sourceDescription=sections.map(n=>n.children.map(serialize).join('')).join('\n'),jobDescription=text.join('\n\n')
- return{source:'colgatepalmolive',company:'Colgate-Palmolive',jobId:row.id,requisitionId:row.id,title:row.unifiedStandardTitle,sourceUrl:row.sourceURL,link:row.sourceURL,applyUrl:ORIGIN+applyPath,location:reviewedGap?null:'Mumbai, Maharashtra, India',locations:reviewedGap?[]:['Mumbai, Maharashtra, India'],city:reviewedGap?null:'Mumbai',state:reviewedGap?null:'Maharashtra',country:'India',postedAt:row.postedAt,closingDate:row.closingDate,sourceClosingDateIsExact:false,sourceDescription,jobDescription,nativeCompanyBrand:row.filter5[0],nativeLegalEmployer:null,nativeRawLocations:row.jobLocationShort,nativePostedDate:row.unifiedStandardStart,nativeClosingDate:row.unifiedStandardEnd??null,sourceDetailComplete:true,sourceListingComplete:false,sourceScopeComplete:false,sourceCompanyCoverageComplete:false,sourceGlobalJobCount:null,sourceIndiaJobCount:null,scrapedAt:now,...(reviewedGap?{nativeRecordKind:'hiring-signal',sourceWorksiteStatus:'held',nativeDetailLocation:'Ahmedabad, Gujarat, India'}:{})}
+ return{source:'colgatepalmolive',company:'Colgate-Palmolive',jobId:row.id,requisitionId:row.id,title:row.unifiedStandardTitle,sourceUrl:row.sourceURL,link:row.sourceURL,applyUrl:ORIGIN+applyPath,location:reviewedGap?null:location,locations:reviewedGap?[]:[location],city:reviewedGap?null:city,state:reviewedGap?null:state,country:'India',postedAt:row.postedAt,closingDate:row.closingDate,sourceClosingDateIsExact:false,sourceDescription,jobDescription,nativeCompanyBrand:row.filter5[0],nativeLegalEmployer:null,nativeRawLocations:row.jobLocationShort,nativePostedDate:row.unifiedStandardStart,nativeClosingDate:row.unifiedStandardEnd??null,sourceDetailComplete:true,sourceListingComplete:false,sourceScopeComplete:false,sourceCompanyCoverageComplete:false,sourceGlobalJobCount:null,sourceIndiaJobCount:null,scrapedAt:now,...(reviewedGap?{nativeRecordKind:'hiring-signal',sourceWorksiteStatus:'held',nativeDetailLocation:'Ahmedabad, Gujarat, India'}:{})}
 }

@@ -56,6 +56,7 @@ const buildSessionUserPayload = (user) => ({
   access: buildAccessSummary(user),
   profile: user.profile,
   onboardingCompleted: user.onboardingCompleted,
+  gettingStartedStatus: user.gettingStartedStatus,
 });
 
 const GOOGLE_AUTH_FAILURE_MESSAGE = "Google sign-in failed. Please try again.";

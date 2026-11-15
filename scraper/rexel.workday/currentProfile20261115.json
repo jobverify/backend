@@ -1,0 +1,943 @@
+{
+  "capturedAt": "2026-11-15T09:08:47.666Z",
+  "styles": {
+    "https://attraxcdnprod1-freshed3dgayb7c3.z01.azurefd.net/StaticFiles/V1/productrolloutfiles/FA6/css/all.min.css?v=2026.8.17.12892": "47fa052403c7d34842ea0bc3c48d1a753e48214b55ff2a5c4f161a7fbc48157a",
+    "https://attraxcdnprod1-freshed3dgayb7c3.z01.azurefd.net/1481237/c9a90ad6-fb01-47c9-b449-37dca208ff1d/2026.8.17.12892/Blob/css/style.attrax.min.css?v=2026.8.17.12892": "9b910ed8e01e919b3952090649bb15be4a9c07ed12c3708ba887474b86593b8f"
+  },
+  "nativeStyles": [
+    {
+      "rel": "stylesheet",
+      "href": "https://attraxcdnprod1-freshed3dgayb7c3.z01.azurefd.net/StaticFiles/V1/productrolloutfiles/FA6/css/all.min.css?v=2026.8.17.12892"
+    },
+    {
+      "rel": "stylesheet",
+      "href": "https://attraxcdnprod1-freshed3dgayb7c3.z01.azurefd.net/1481237/c9a90ad6-fb01-47c9-b449-37dca208ff1d/2026.8.17.12892/Blob/css/style.attrax.min.css?v=2026.8.17.12892"
+    }
+  ],
+  "inlineStyles": {
+    "/": [
+      {
+        "attrs": {},
+        "sha256": "8a147157cee068f8d9153703af779e3a1c9c6567cf7acc7ea5f195eb6df4ee87"
+      }
+    ],
+    "/india": [
+      {
+        "attrs": {},
+        "sha256": "8a147157cee068f8d9153703af779e3a1c9c6567cf7acc7ea5f195eb6df4ee87"
+      }
+    ],
+    "role": [
+      {
+        "attrs": {},
+        "sha256": "8a147157cee068f8d9153703af779e3a1c9c6567cf7acc7ea5f195eb6df4ee87"
+      },
+      {
+        "attrs": {},
+        "sha256": "84b1e494dd65a5a93e618ebf0a552e0d3f4c9d2d80e0384d75434354fa5041e6"
+      }
+    ]
+  },
+  "roles": {
+    "https://careers.rexel.com/job/sales-engineer-in-bengaluru-karnataka-india-india-jid-5539": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/project-sales-manager-in-raipur-india-jid-4321": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/sourcing-leader-in-chennai-india-jid-5618": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/business-development-manager-epc-in-mumbai-india-jid-5729": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/senior-sales-engineer-in-pune-mh-india-jid-4793": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/senior-sales-engineer-in-badmal-od-india-jid-4820": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/senior-sales-engineer-in-ker-jh-india-jid-4821": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/senior-sales-engineer-in-wardha-mh-india-jid-4990": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/sales-engineer-in-kolkata-wb-india-jid-4904": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    },
+    "https://careers.rexel.com/job/senior-sales-engineer-in-hyderabad-ts-india-jid-4902": {
+      "criterionAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "lang": "en-GB",
+            "dir": "ltr"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {
+            "id": "body",
+            "data-context-optionids-pushnotifications": "",
+            "data-page-id": "7f6b6712-937b-4150-76a2-08dd8e2076e1",
+            "data-layout-id": " ",
+            "class": "page-job-details   rexel culture-en-us"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main-site-main-content"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "id": "54d4d960-c8fd-4922-b087-08dd8e206a76",
+            "class": "layout ",
+            "data-name": "Blank",
+            "data-level": "1",
+            "data-id": "54d4d960-c8fd-4922-b087-08dd8e206a76"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "main-content-block dragElement widget cop-widget content-widget",
+            "data-mode": "readonly",
+            "data-category": "Container",
+            "name": "primary-content",
+            "id": "7f6b6712-937b-4150-76a2-08dd8e2076e1"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "row dragElement widget container-widget page-job-details__main-content-container",
+            "data-category": "Container",
+            "data-custom-classes": "page-job-details__main-content-container"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "container-col ui-droppable col-md-6",
+            "id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "data-id": "a90eb595-c78b-c446-ac91-245eb1ce168e",
+            "style": "zoom: 1;"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "cop-widget dynamic-widget     description-widget ",
+            "data-type": "DescriptionWidget",
+            "id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c",
+            "data-id": "2cf76e87-3652-2b91-d55d-a300c5ab5a1c"
+          }
+        }
+      ],
+      "widgetTypes": [
+        "MainNav",
+        "BannerPoolWidget",
+        "TitleWidget",
+        "JobInformationWidget",
+        "VacancyOptionsWidget",
+        "SalaryWidget",
+        "DescriptionWidget",
+        "VacancyButtonsWidget",
+        "ListWidget",
+        "BrandLogoWidget",
+        "SearchWidget"
+      ]
+    }
+  }
+}

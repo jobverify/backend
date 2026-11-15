@@ -1,0 +1,20 @@
+[
+  {
+    "source": "stmicroelectronics",
+    "adapter": "script",
+    "modulePath": "../../scraper/stmicroelectronics/script.js",
+    "companyName": "STMicroelectronics",
+    "companyCareerPage": "https://www.st.com/content/st_com/en/about/careers/job-categories.html",
+    "companyDomain": "st.com",
+    "atsPlatform": "eightfold-classic",
+    "countryFilter": "India",
+    "paginationStrategy": "bounded-selected-native-observations-incomplete",
+    "extractionStrategy": "current-corporate-map-handoff+full-own-native-role+typed-country+current-open",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "catalogOverride": true
+  }
+]

@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {run} from './script.js'
+import {runNative as run} from './nativeRun.js'
 import {readInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 const fixture=()=>JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/native-20261021.json.gz',import.meta.url))))
 async function replay(change,options={}){

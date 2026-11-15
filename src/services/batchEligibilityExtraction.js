@@ -52,6 +52,7 @@ export function validateBatchExtraction(value, text) {
     if (value.graduationMaxYear !== null && (!graduation.includes(String(value.graduationMaxYear))
       || !/\b(?:earlier|before|prior)\b/i.test(graduation))) invalid();
   }
+  const groundedRanges = [];
   for (const range of value.experienceRanges) {
     if (!range || !quoted(range.evidence) || typeof range.alternative !== 'boolean'
       || typeof range.isOpenEnded !== 'boolean' || !Number.isFinite(range.minimumYears) || range.minimumYears < 0 || range.minimumYears > 40
@@ -59,7 +60,8 @@ export function validateBatchExtraction(value, text) {
         || range.maximumYears < range.minimumYears || range.maximumYears > 40)) invalid();
     const evidence = numericEvidence(normalized(range.evidence));
     if (!/\b(?:experience|background|worked|work history|served)\b/i.test(evidence)
-      || /\b(?:preferred|desirable|nice.to.have|bonus|founded|company history)\b/i.test(evidence)) invalid();
+      || /\b(?:preferred|desirable|nice.to.have|bonus|founded|company history)\b/i.test(evidence)
+      || /\b(?:not|never)\s+(?:required|needed|necessary)\b/i.test(evidence)) invalid();
     const position = source.indexOf(normalized(range.evidence));
     const context = source.slice(Math.max(0, position - 500), position);
     const sections = [...context.matchAll(/\b(preferred|required|minimum|basic|desirable)\s+(?:qualifications?|requirements?|experience)\s*:/gi)];
@@ -77,8 +79,16 @@ export function validateBatchExtraction(value, text) {
     })) invalid();
     if (range.isOpenEnded && !/(?:\+|\bat least\b|\bminimum\b|\bor more\b|\band (?:above|over)\b)/i.test(evidence)) invalid();
     if (range.alternative && !/\b(?:degree|bachelor|master|ph\.?d|diploma)\b/i.test(evidence)) invalid();
+    // A model may repeat a stated minimum as a finite maximum. Repair
+    // only a single grounded quantity with an explicit minimum-only cue.
+    // All numeric and source checks above still apply before normalization.
+    const minimumOnly = numbers.length === 1
+      && /(?:\b(?:at least|minimum(?: of)?)\s+\d+(?:\.\d+)?\s*(?:years?|yrs?|months?)\b|\b\d+(?:\.\d+)?\s*\+\s*(?:years?|yrs?|months?)\b|\b\d+(?:\.\d+)?\s*(?:years?|yrs?|months?)\s+(?:or more|and (?:above|over))\b)/i.test(evidence)
+      && !/\b(?:exactly|at most|up to|maximum|not|no|never|without|except|excluding)\b/i.test(evidence);
+    groundedRanges.push(!range.isOpenEnded && range.minimumYears === range.maximumYears && minimumOnly
+      ? { ...range, maximumYears: null, isOpenEnded: true } : range);
   }
-  const ranges = [...new Map(value.experienceRanges.map(range => [JSON.stringify([range.minimumYears, range.maximumYears, range.isOpenEnded]), range])).values()];
+  const ranges = [...new Map(groundedRanges.map(range => [JSON.stringify([range.minimumYears, range.maximumYears, range.isOpenEnded]), range])).values()];
   if (ranges.length > 1 && !ranges.every(range => range.alternative)) return empty('conflicting');
   return { ...value, graduationYears: batchYears(value.graduationYears), experienceRanges: ranges };
 }
@@ -105,7 +115,7 @@ export function batchEvidenceFacts(chunk) {
   return facts;
 }
 
-async function extractChunk(worker, chunk, { signal, onCompletion }) {
+export async function extractBatchChunk(worker, chunk, { signal, onCompletion }) {
   const facts = batchEvidenceFacts(chunk), value = empty('not_stated');
   if (!facts.length) return value;
   const sourceIds = selected => ({ type: 'integer', enum: selected.map(fact => fact.id) });
@@ -147,6 +157,19 @@ async function extractChunk(worker, chunk, { signal, onCompletion }) {
         && !/\b(?:preferred|desirable|optional|nice.to.have|bonus|about us|our company|company has|company history|we have|founded|established)\b/i.test(context);
     });
     if (!experienceFacts.length) return value;
+    // Plain minimum-only clauses have no upper bound to ask a model to guess.
+    // Match the complete clause; extra limits, conditions and degree routes
+    // must still go through extraction and source validation.
+    const minimums = experienceFacts.map(fact => {
+      const match = numericEvidence(fact.text).match(/^(?:(?:at least|(?:a )?minimum(?: of)?)\s+(\d+(?:\.\d+)?)|(\d+(?:\.\d+)?)\s*\+)\s*(years?|yrs?|months?)\s+(?:of\s+)?(?:prior\s+)?(?:professional\s+|relevant\s+)?(?:work\s+)?experience(?:\s+is\s+required)?[.!]?$/i);
+      if (!match) return null;
+      const minimumYears = Number(match[1] ?? match[2]) / (/^month/i.test(match[3]) ? 12 : 1);
+      if (minimumYears > 40) return null;
+      return { minimumYears, maximumYears: null, isOpenEnded: true, alternative: false, evidence: fact.text };
+    });
+    if (minimums.every(Boolean) && !/\b(?:or|unless|instead|alternatively|if)\b/i.test(chunk)) {
+      return validateBatchExtraction({ ...value, status: 'supported', experienceRanges: minimums }, chunk);
+    }
     const experience = await request('Extract required prior professional experience in years. For each range give minimumYears, maximumYears and sourceId. Numbers written as words count: between three and five means 3 to 5. For at least 3 years use 3 and null; for exactly 2 use 2 and 2. Convert months to years. Separate alternative degree routes. Ignore preferences, company history, age, courses, future training and job duration. Never estimate from duties or title. If no numeric requirement is stated return ranges: [].', {
       type: 'object', additionalProperties: false, properties: { ranges: { type: 'array', maxItems: 16, items: {
         type: 'object', additionalProperties: false, properties: { minimumYears: { type: 'number', minimum: 0, maximum: 40 },
@@ -166,11 +189,16 @@ export async function validateBatchExtractor(extractor) {
   for (const sample of samples) {
     let result;
     try { result = await extractor.extract({ text: sample.text }); }
-    catch (error) { throw new Error(`Batch extractor validation failed: ${sample.id}`, { cause: error }); }
+    catch (error) { throw Object.assign(new Error(`Batch extractor validation failed: ${sample.id}`, { cause: error }),
+      { validationFailure: { sampleId: sample.id, expected: sample.expected, errorType: error.name, message: String(error.message).slice(0, 300) } }); }
     const actual = { status: result.status, graduationYears: result.graduationYears, graduationMaxYear: result.graduationMaxYear,
       experienceRanges: result.experienceRanges.map(({ minimumYears, maximumYears, isOpenEnded }) => ({ minimumYears, maximumYears, isOpenEnded })) };
-    if (JSON.stringify(actual) !== JSON.stringify(sample.expected)) throw new Error(`Batch extractor validation failed: ${sample.id}`,
-      { cause: { actual, expected: sample.expected } });
+    if (JSON.stringify(actual) !== JSON.stringify(sample.expected)) {
+      const compact = value => JSON.stringify([value.status, value.graduationYears, value.graduationMaxYear,
+        value.experienceRanges.map(range => [range.minimumYears, range.maximumYears, range.isOpenEnded])]);
+      throw Object.assign(new Error(`Batch extractor validation failed: ${sample.id}; expected ${compact(sample.expected)}; received ${compact(actual)}`,
+        { cause: { actual, expected: sample.expected } }), { validationFailure: { sampleId: sample.id, actual, expected: sample.expected } });
+    }
     results.push(sample.id);
   }
   return { passed: results.length, identity: BATCH_EXTRACTION_IDENTITY };
@@ -184,7 +212,7 @@ export async function startBatchExtractor({ signal, allowDownload = true, port =
     const combined = empty('not_stated');
     for (const chunk of batchExtractionChunks(text)) {
       worker.assertAlive();
-      const raw = await extractChunk(worker, chunk, { signal, onCompletion });
+      const raw = await extractBatchChunk(worker, chunk, { signal, onCompletion });
       const value = validateBatchExtraction(raw, text);
       if (value.status === 'conflicting') return value;
       if (value.status === 'supported') combined.status = 'supported';

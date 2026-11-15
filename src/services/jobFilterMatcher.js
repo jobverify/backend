@@ -1,3 +1,4 @@
+import { CALENDAR_POSTED_PERIODS, buildPostedDateRange } from "../utils/jobPostedDateFilter.js";
 import { getPreferredJobTypeMatches } from "../constants/preferredJobTypes.js";
 import { withSemanticExperienceConstraint, matchesExperienceFilter } from '../utils/classifiedExperienceFilters.js';
 import {
@@ -63,10 +64,7 @@ const buildDatePostedFilter = (values) => {
       start.setDate(start.getDate() - 30);
       return { postedAt: { $type: "date", $lt: start } };
     }
-    start.setDate(start.getDate() - value);
-    const end = new Date(start);
-    end.setDate(end.getDate() + 1);
-    return { postedAt: { $gte: start, $lt: end } };
+    return { postedAt: buildPostedDateRange(value) };
   });
   return clauses.length === 1 ? clauses[0] : { $or: clauses };
 };
@@ -109,13 +107,8 @@ const isPostedInCalendarDayWindow = (postedAt, days, now) => {
   const postedDate = new Date(postedAt);
   if (Number.isNaN(postedDate.getTime())) return false;
 
-  const start = new Date(now);
-  start.setHours(0, 0, 0, 0);
-  start.setDate(start.getDate() - Number(days));
-  const end = new Date(start);
-  end.setDate(end.getDate() + 1);
-
-  return postedDate >= start && postedDate < end;
+  const range = buildPostedDateRange(days, now);
+  return postedDate >= range.$gte && postedDate < range.$lt;
 };
 
 const isPostedMoreThanThirtyDaysAgo = (postedAt, now) => {
@@ -173,7 +166,7 @@ export const buildJobFilterConditions = (queryParams = {}, { includeExperienceYe
   if (seniorityValue) filters.seniority = seniorityValue;
   const postedValues = [...new Set(normalizeList(datePostedDays, { maxItems: DATE_POSTED_OPTIONS.length, maxLength: 16 }).map((value) => {
     const normalized = value.toLowerCase();
-    return normalized === DATE_POSTED_NA_VALUE || normalized === DATE_POSTED_OLDER_THAN_30_VALUE
+    return CALENDAR_POSTED_PERIODS.includes(normalized) || normalized === DATE_POSTED_NA_VALUE || normalized === DATE_POSTED_OLDER_THAN_30_VALUE
       ? normalized
       : /^\d+$/u.test(normalized) && DATE_POSTED_OPTIONS.includes(Number(normalized)) ? Number(normalized) : null;
   }).filter((value) => value != null))];

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { graduationAnchor, batchSourceHash, batchRescrapePatch, formatBatchEligibility, matchesBatchYear } from '../src/utils/jobBatchEligibility.js';
 import { batchEligibilityInput, resolveBatchEligibility } from '../src/services/jobBatchEligibility.js';
-import { validateBatchExtraction, batchExtractionChunks } from '../src/services/batchEligibilityExtraction.js';
+import { validateBatchExtraction, validateBatchExtractor, batchExtractionChunks } from '../src/services/batchEligibilityExtraction.js';
 import { buildClassificationInput } from '../src/services/jobClassificationPolicy.js';
 
 const now = new Date('2026-11-13T00:00:00Z');
@@ -91,6 +91,39 @@ test('extraction requires grounded required quantities and safely abstains on pr
   assert.equal(validateBatchExtraction(conflicting, alternative).status, 'conflicting');
   const upper = 'Have no more than two years of professional work experience';
   assert.equal(validateBatchExtraction(extracted(upper, { minimumYears: 0, maximumYears: 2 }), upper).status, 'supported');
+});
+
+test('experience extraction preserves finite bounds and still rejects ungrounded quantities', () => {
+  for (const [evidence, minimumYears, maximumYears] of [
+    ['Exactly 3 years of professional experience is required.', 3, 3],
+    ['Minimum 3-5 years of professional experience is required.', 3, 5],
+    ['At least 3 and at most 5 years of professional experience is required.', 3, 5],
+    ['No more than 3 years of professional experience is required.', 0, 3],
+  ]) {
+    const value = validateBatchExtraction(extracted(evidence, { minimumYears, maximumYears }), evidence);
+    assert.deepEqual(value.experienceRanges, [{ minimumYears, maximumYears, isOpenEnded: false,
+      alternative: false, evidence }], evidence);
+  }
+  const evidence = 'At least 3 years of professional experience is required.';
+  assert.throws(() => validateBatchExtraction(extracted(evidence, { minimumYears: 9, maximumYears: 9 }), evidence));
+  assert.throws(() => validateBatchExtraction(extracted(evidence, { maximumYears: 9 }), evidence));
+  assert.throws(() => validateBatchExtraction(extracted(evidence, { maximumYears: 3 }), 'Build services.'));
+});
+
+test('extractor startup errors identify expected and received experience bounds', async () => {
+  await assert.rejects(validateBatchExtractor({ extract: async ({ text }) => extracted(text,
+    { maximumYears: text.includes('At least') ? 3 : 5 }) }), error => {
+    assert.match(error.message, /open-experience/);
+    assert.deepEqual(error.validationFailure, { sampleId: 'open-experience', actual: {
+      status: 'supported', graduationYears: [], graduationMaxYear: null,
+      experienceRanges: [{ minimumYears: 3, maximumYears: 3, isOpenEnded: false }],
+    }, expected: {
+      status: 'supported', graduationYears: [], graduationMaxYear: null,
+      experienceRanges: [{ minimumYears: 3, maximumYears: null, isOpenEnded: true }],
+    } });
+    assert.equal(error.cause.actual.experienceRanges[0].maximumYears, 3);
+    return true;
+  });
 });
 
 test('long-source extraction covers the full source rather than truncating later evidence', () => {

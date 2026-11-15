@@ -1,0 +1,703 @@
+{
+  "reviewedAt": "2026-11-15T08:26:25.368Z",
+  "styles": {
+    "https://www.wpp.com/_next/static/chunks/10-sa6n0m_tzk.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM": "f5a87348a934f4b5148a1e121462e90326293d379610326ee4d7b92b908f5e4d",
+    "https://www.wpp.com/_next/static/chunks/22r45i7cmhs_4.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM": "d7501273c6df451c314e34ad5a4dbc7e802c58e7a1df1673a1cd8a4f27ae5f8a",
+    "https://www.wpp.com/_next/static/chunks/39ikpqquso448.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM": "742d1bb93cd41c6a96dc0bca45357e38a11720d295addcb00e0f8468da4d4a12",
+    "https://cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/css-min-style.css": "ca68138fa5e0b78dbbf41c5c858dade13ed0a726d51143ab90b3d612bb897b68",
+    "https://cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/59a68cfc5b9a3201a05fb652/files/mwis.css": "d9487d23e17338278913fac70939bae4172027f1236dbbe0f3dab8cd09bba4c0",
+    "https://cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/xs-min-style.css": "35087944a0641665cf42537ba86b3eff0d642f27bcb0a93c8dcea09544c0f232",
+    "https://cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/sm-min-style.css": "981ef55f73164dccc3b6691e278e0df2e88d32a80e0e5e225f9935bc18d11c8c",
+    "https://job-boards.cdn.greenhouse.io/assets/entry-nimHAKwV.css": "502375948b27ffd6ef1f5e764f56f0bdad3daf0664111bfe9850785166b68084",
+    "https://job-boards.cdn.greenhouse.io/assets/vendor-CKKDukwa.css": "55a6b1772c7c18fc5c6d7d55d6961bbee1f30b53875b8fb8c065c95d68a2de73"
+  },
+  "styleDeclarations": {
+    "https://www.wpp.com/en": [
+      {
+        "rel": "stylesheet",
+        "href": "/_next/static/chunks/10-sa6n0m_tzk.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM",
+        "data-precedence": "next"
+      },
+      {
+        "href": "/_next/static/chunks/22r45i7cmhs_4.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM",
+        "rel": "stylesheet",
+        "as": "style",
+        "data-precedence": "dynamic"
+      },
+      {
+        "href": "/_next/static/chunks/39ikpqquso448.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM",
+        "rel": "stylesheet",
+        "as": "style",
+        "data-precedence": "dynamic"
+      }
+    ],
+    "https://www.wpp.com/en/careers/search-and-apply": [
+      {
+        "rel": "stylesheet",
+        "href": "/_next/static/chunks/10-sa6n0m_tzk.css?dpl=dpl_Ef4wMUnvc747HJ84T2kF83H9qRPM",
+        "data-precedence": "next"
+      }
+    ],
+    "https://wpp.careersitecloud.com/": [
+      {
+        "rel": "stylesheet",
+        "media": "all",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/css-min-style.css"
+      },
+      {
+        "rel": "stylesheet",
+        "media": "all",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/59a68cfc5b9a3201a05fb652/files/mwis.css"
+      },
+      {
+        "rel": "stylesheet",
+        "media": "screen and (max-width: 767px)",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/xs-min-style.css"
+      },
+      {
+        "rel": "stylesheet",
+        "media": "screen and (min-width: 768px)",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/sm-min-style.css"
+      }
+    ],
+    "https://wpp.careersitecloud.com/job-6af4594397c98829424e00ea-manager-category-travel-andheri": [
+      {
+        "rel": "stylesheet",
+        "media": "all",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/css-min-style.css"
+      },
+      {
+        "rel": "stylesheet",
+        "media": "all",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/59a68cfc5b9a3201a05fb652/files/mwis.css"
+      },
+      {
+        "rel": "stylesheet",
+        "media": "screen and (max-width: 767px)",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/xs-min-style.css"
+      },
+      {
+        "rel": "stylesheet",
+        "media": "screen and (min-width: 768px)",
+        "href": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/sm-min-style.css"
+      }
+    ],
+    "https://job-boards.greenhouse.io/wpp/jobs/8931621002": [
+      {
+        "rel": "stylesheet",
+        "href": "https://job-boards.cdn.greenhouse.io/assets/entry-nimHAKwV.css"
+      },
+      {
+        "rel": "stylesheet",
+        "href": "https://job-boards.cdn.greenhouse.io/assets/vendor-CKKDukwa.css"
+      }
+    ]
+  },
+  "rolePrograms": [
+    {
+      "attrs": {},
+      "sha256": "8054439d36e394dae8ac9816e2ce859ae1caeab23c01f22031e85283471e6c1e"
+    },
+    {
+      "attrs": {},
+      "sha256": "2edc98b67f383d357fc2d2c24a9c67b3b6aa7455d952ba78ca1aa47bd811e051"
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "sha256": "b0d4a163761daf05fe950e0362cf88578151bd9f63f6e966d14faa18f7c8365c"
+    },
+    {
+      "attrs": {},
+      "sha256": "a1ccd34c80b6d5179a80b29c89e72c5187648bb411b3071a7ff0ac7f8776623c"
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "sha256": "66edc5c298e4edb6c9cd8d1125e2acaebf68fc65cec8d68e78fc2828c411566d"
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "sha256": "c98e21749f6f09deebcc46908bce33fc8360b9eec8a8bab4b85f814402e9a2fe"
+    },
+    {
+      "attrs": {},
+      "sha256": "266a23654f3be9ca5eae435201949a17fb95e1a2336957bb430ccfd0d747465a"
+    }
+  ],
+  "roleExternalScripts": [
+    {
+      "src": "https://cloudfront.careersitecloud.com/csc-engine/static/jquery-2.1.4.min.js"
+    },
+    {
+      "src": "https://cloudfront.careersitecloud.com/csc-engine/static/jquery.bifrost-1.0.2.min.js"
+    },
+    {
+      "src": "//www.dropbox.com/static/api/2/dropins.js",
+      "id": "dropboxjs",
+      "data-app-key": "ooyucd5grn1sjs3"
+    },
+    {
+      "src": "//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+    },
+    {
+      "src": "https://www.google.com/recaptcha/api.js",
+      "async": "",
+      "defer": ""
+    },
+    {
+      "src": "https://www.google.com/recaptcha/api.js",
+      "async": "",
+      "defer": ""
+    },
+    {
+      "async": "",
+      "src": "https://www.googletagmanager.com/gtag/js?id="
+    },
+    {
+      "src": "//cloudfront.careersitecloud.com/data/545ca6c8ccf26946da752a77/5559f4030cf2b137fbab98d3/layoutrepo%24layout/598c26226bc6bf02492e4655/files/js.js"
+    }
+  ],
+  "nativeRoleURL": "https://wpp.careersitecloud.com/job-6af4594397c98829424e00ea-manager-category-travel-andheri",
+  "nativeUID": "8931621002",
+  "inlineStyles": {
+    "https://www.wpp.com/en": [
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "--nav-text:var(--color-primary-wpp-navy);--nav-surface:var(--color-primary-wpp-white);--nav-border:var(--color-new-web-colors-grey-3);--nav-panel-bg:var(--color-primary-wpp-white);--nav-panel-ring:rgba(0 0 80 / 0.1);--nav-scrollbar:rgba(0 0 80 / 0.12);--nav-bar-bg:var(--color-primary-wpp-navy);--nav-bar-text:var(--color-primary-wpp-white);--nav-bar-border:rgba(255 255 255 / 0.1);--nav-bar-hover:var(--color-secondary-tint-900)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "header",
+        "attrs": {
+          "style": "opacity:1;width:85%"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "button",
+        "attrs": {
+          "style": "opacity:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "span",
+        "attrs": {
+          "style": "opacity:1;transform:none"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(100%)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(30px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:scale(0.85)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:scale(1.411764705882353)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "style": "position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(32px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(32px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(32px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(32px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(100%)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "width:12px"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:scale(0.85)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:scale(1.411764705882353)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(30vh)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(100%)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(100%)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(32px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(100%)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "width:12px"
+        },
+        "raw": null
+      },
+      {
+        "tag": "footer",
+        "attrs": {
+          "style": "--nav-text:var(--color-primary-wpp-navy);--nav-surface:var(--color-primary-wpp-cream);--nav-border:var(--color-new-web-colors-grey-3);--nav-panel-bg:var(--color-primary-wpp-cream);--nav-panel-ring:rgba(0 0 80 / 0.1);--nav-scrollbar:rgba(0 0 80 / 0.12);--nav-bar-bg:var(--color-primary-wpp-navy);--nav-bar-text:var(--color-primary-wpp-white);--nav-bar-border:rgba(255 255 255 / 0.1);--nav-bar-hover:var(--color-secondary-tint-900)"
+        },
+        "raw": null
+      }
+    ],
+    "https://www.wpp.com/en/careers/search-and-apply": [
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "--nav-text:var(--color-primary-wpp-navy);--nav-surface:var(--color-primary-wpp-white);--nav-border:var(--color-new-web-colors-grey-3);--nav-panel-bg:var(--color-primary-wpp-white);--nav-panel-ring:rgba(0 0 80 / 0.1);--nav-scrollbar:rgba(0 0 80 / 0.12);--nav-bar-bg:var(--color-primary-wpp-navy);--nav-bar-text:var(--color-primary-wpp-white);--nav-bar-border:rgba(255 255 255 / 0.1);--nav-bar-hover:var(--color-secondary-tint-900)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "header",
+        "attrs": {
+          "style": "opacity:1;width:85%"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "button",
+        "attrs": {
+          "style": "opacity:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "span",
+        "attrs": {
+          "style": "opacity:1;transform:none"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "width:1px;height:0px;padding:0;overflow:hidden;position:fixed;top:1px;left:1px"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:translateY(100%)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(32px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "opacity:0;transform:translateY(30px)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:scale(0.85)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "transform:scale(1.411764705882353)"
+        },
+        "raw": null
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "style": "position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+        },
+        "raw": null
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "min-height:1000px;overflow-x:hidden;overflow-y:hidden"
+        },
+        "raw": null
+      },
+      {
+        "tag": "img",
+        "attrs": {
+          "style": "position:absolute;height:100%;width:100%;left:0;top:0;right:0;bottom:0;color:transparent"
+        },
+        "raw": null
+      },
+      {
+        "tag": "footer",
+        "attrs": {
+          "style": "--nav-text:var(--color-primary-wpp-navy);--nav-surface:var(--color-primary-wpp-cream);--nav-border:var(--color-new-web-colors-grey-3);--nav-panel-bg:var(--color-primary-wpp-cream);--nav-panel-ring:rgba(0 0 80 / 0.1);--nav-scrollbar:rgba(0 0 80 / 0.12);--nav-bar-bg:var(--color-primary-wpp-navy);--nav-bar-text:var(--color-primary-wpp-white);--nav-bar-border:rgba(255 255 255 / 0.1);--nav-bar-hover:var(--color-secondary-tint-900)"
+        },
+        "raw": null
+      }
+    ],
+    "https://wpp.careersitecloud.com/": [
+      {
+        "tag": "style",
+        "attrs": {},
+        "raw": ".autocomplete-items{max-height:300px;overflow:auto}.autocomplete{position:relative}.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-bottom:none;border-top:none;z-index:99;top:100%;left:0;right:4px;text-align:left}.autocomplete-items div{padding:10px;cursor:pointer;background-color:#fff;border-bottom:1px solid #d4d4d4;color:#000}.autocomplete-items div:hover{background-color:#e9e9e9}.autocomplete-active{background-color:#1e90ff!important;color:#fff}\r\n\r\n\r\n/*\r\n@font-face {\r\n  font-family: 'WPP Black';\r\n  src:  url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Black.woff2') format('woff2'),\r\n        url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Black.woff') format('woff');\r\n  font-display: fallback;\r\n}\r\n*/\r\n\r\n@font-face {\r\n  font-family: 'WPP Bold';\r\n  src:  url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Bold.woff2') format('woff2'),\r\n        url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Bold.woff') format('woff');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'WPP Light';\r\n  src:  url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Light.woff2') format('woff2'),\r\n        url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Light.woff') format('woff');\r\n  font-display: swap;\r\n}\r\n\r\nbody {\r\n  margin: 20px 0 0 0;  \r\n}\r\n\r\na,\r\n.refine ul li.link-more {\r\n    color: #000050;\r\n}\r\n\r\n.message-warning {\r\n  display: none !important;\r\n}\r\n\r\n.job-listing-full li a, \r\n.job-listing li a {\r\n  color: #000050;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6,\r\n.main-pic__heading,\r\n.refine-subheading,\r\nstrong,\r\n.job-listing li a {\r\n  font-family: \"WPP Bold\", sans-serif;\r\n}\r\n\r\nbody,\r\ninput,\r\nbutton,\r\nselect,\r\ntextarea,\r\n.btn,\r\n.form-control {\r\n  font-family: \"WPP Light\", sans-serif;\r\n}\r\n\r\n.form__alert {\r\n    border: 0;\r\n    background-color: #e6ebef;\r\n}\r\n\r\n.form__alert .form-header {\r\n  margin-bottom: 10px;\r\n  font-size: 14px;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.form__alert p {\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.form__alert p a {\r\n  color: #000;\r\n}\r\n\r\n.form__alert .form-group {\r\n  width: auto;\r\n  margin-right: 10px;\r\n}\r\n\r\n.form__alert input[type=\"text\"] {\r\n    width: 100%;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    box-shadow: 0 1px 1px #ccc;\r\n}\r\n\r\nbody .form__alert .btn {\r\n    width: auto;\r\n    padding: 0;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    background-color: transparent;\r\n    border: 0;\r\n    color: #000;\r\n}\r\n.pager span {\r\n    background-color: #000050;\r\n    color: #fff;\r\n}\r\n.pager a:hover {\r\n    background-color: #000050;\r\n    border-color: #000050\r\n}\r\n.btn-primary{\r\n    color: #fff;\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n    border-radius:5px;\r\n}\r\n}\r\n\r\n.form__search .btn-primary {\r\n  background-color: #000050;\r\n  border-color: #000050;\r\n  border-radius: 5px;\r\n}\r\n\r\n@media (max-width: 767px) { \r\n  body,\r\n  .holder-inner .form__search {\r\n     margin-top: 0;\r\n  }\r\n\r\n  .page {\r\n    padding-bottom: 0;;\r\n  }\r\n\r\n  .form__alert__default {\r\n    margin-bottom: 0;\r\n  }\r\n\r\n  .form__alert__default {\r\n    border: 0;\r\n    background-color: #e6ebef;\r\n}\r\n\r\n.form__alert__default .form-header {\r\n  margin-bottom: 10px;\r\n  font-size: 14px;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.form__alert__default p {\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.form__alert__default p a {\r\n  color: #000;\r\n}\r\n\r\n.form__alert__default .form-group {\r\n  width: auto;\r\n  margin-right: 10px;\r\n}\r\n\r\n.form__alert__default input[type=\"text\"] {\r\n    width: 100%;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    box-shadow: 0 1px 1px #ccc;\r\n}\r\n\r\nbody .form__alert__default .btn {\r\n    width: auto;\r\n    padding: 0;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    background-color: transparent;\r\n    border: 0;\r\n    color: #000;\r\n  }\r\n}\r\n\r\n@media (min-width: 768px) {\r\n  .form__alert .form-group { \r\n    width: 240px;\r\n  }\r\n  .form__alert input[type=\"text\"] {\r\n    max-width: 100%;\r\n  }\r\n  .browse-header, .form-header, .job-listing__header {\r\n    font-size: 20px;\r\n  }\r\n}\r\n\r\n.main-pic .form__search .form-control:focus {\r\n  border-bottom-color: #000050;\r\n}\r\n.btn-success{\r\n    color: #fff;\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n    border-radius:5px;\r\n}\r\n.form__alert .form-control, .form__search .form-control {\r\n    height: 50px;\r\n    padding: 2px 12px 0;\r\n    line-height: 50px;\r\n    font-size: 20px;\r\n    border-radius: 5px;\r\n}\r\n.form__alert__default .form-control {\r\n    margin-bottom: 10px;\r\n    box-shadow: none;\r\n    border: 1px solid #ccc;\r\n    border-radius: 5px;\r\n}\r\n.form__alert__default .btn:hover {\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n}\r\n\r\n.btn-primary:hover {\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n}\r\n\r\n.form-control:focus {\r\n    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.22);\r\n    -moz-box-shadow: 0 2px 4px rgba(0,0,0,.22);\r\n    box-shadow: 0 2px 4px rgba(0,0,0,.22);\r\n}\r\n\r\n#btn-apply-top { display: none; }"
+      },
+      {
+        "tag": "div",
+        "attrs": {
+          "style": "background: url('//atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/labelrepo%24label/673322a093eba316fd784b8b/value/WPP-Career-Explorer-1600x300-Gradient.jpg');"
+        },
+        "raw": null
+      }
+    ],
+    "https://wpp.careersitecloud.com/job-6af4594397c98829424e00ea-manager-category-travel-andheri": [
+      {
+        "tag": "style",
+        "attrs": {},
+        "raw": ".autocomplete-items{max-height:300px;overflow:auto}.autocomplete{position:relative}.autocomplete-items{position:absolute;border:1px solid #d4d4d4;border-bottom:none;border-top:none;z-index:99;top:100%;left:0;right:4px;text-align:left}.autocomplete-items div{padding:10px;cursor:pointer;background-color:#fff;border-bottom:1px solid #d4d4d4;color:#000}.autocomplete-items div:hover{background-color:#e9e9e9}.autocomplete-active{background-color:#1e90ff!important;color:#fff}\r\n\r\n\r\n/*\r\n@font-face {\r\n  font-family: 'WPP Black';\r\n  src:  url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Black.woff2') format('woff2'),\r\n        url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Black.woff') format('woff');\r\n  font-display: fallback;\r\n}\r\n*/\r\n\r\n@font-face {\r\n  font-family: 'WPP Bold';\r\n  src:  url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Bold.woff2') format('woff2'),\r\n        url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Bold.woff') format('woff');\r\n  font-display: swap;\r\n}\r\n\r\n@font-face {\r\n  font-family: 'WPP Light';\r\n  src:  url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Light.woff2') format('woff2'),\r\n        url('https://atl-csc.s3.amazonaws.com/data/5f0478b0edc858c7ed2b07a3/5f047abeedc858c7ed2b07aa/layoutrepo%24layout/5fbe424324543f44d21948c2/files/WPP-Light.woff') format('woff');\r\n  font-display: swap;\r\n}\r\n\r\nbody {\r\n  margin: 20px 0 0 0;  \r\n}\r\n\r\na,\r\n.refine ul li.link-more {\r\n    color: #000050;\r\n}\r\n\r\n.message-warning {\r\n  display: none !important;\r\n}\r\n\r\n.job-listing-full li a, \r\n.job-listing li a {\r\n  color: #000050;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\nh5,\r\nh6,\r\n.main-pic__heading,\r\n.refine-subheading,\r\nstrong,\r\n.job-listing li a {\r\n  font-family: \"WPP Bold\", sans-serif;\r\n}\r\n\r\nbody,\r\ninput,\r\nbutton,\r\nselect,\r\ntextarea,\r\n.btn,\r\n.form-control {\r\n  font-family: \"WPP Light\", sans-serif;\r\n}\r\n\r\n.form__alert {\r\n    border: 0;\r\n    background-color: #e6ebef;\r\n}\r\n\r\n.form__alert .form-header {\r\n  margin-bottom: 10px;\r\n  font-size: 14px;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.form__alert p {\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.form__alert p a {\r\n  color: #000;\r\n}\r\n\r\n.form__alert .form-group {\r\n  width: auto;\r\n  margin-right: 10px;\r\n}\r\n\r\n.form__alert input[type=\"text\"] {\r\n    width: 100%;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    box-shadow: 0 1px 1px #ccc;\r\n}\r\n\r\nbody .form__alert .btn {\r\n    width: auto;\r\n    padding: 0;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    background-color: transparent;\r\n    border: 0;\r\n    color: #000;\r\n}\r\n.pager span {\r\n    background-color: #000050;\r\n    color: #fff;\r\n}\r\n.pager a:hover {\r\n    background-color: #000050;\r\n    border-color: #000050\r\n}\r\n.btn-primary{\r\n    color: #fff;\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n    border-radius:5px;\r\n}\r\n}\r\n\r\n.form__search .btn-primary {\r\n  background-color: #000050;\r\n  border-color: #000050;\r\n  border-radius: 5px;\r\n}\r\n\r\n@media (max-width: 767px) { \r\n  body,\r\n  .holder-inner .form__search {\r\n     margin-top: 0;\r\n  }\r\n\r\n  .page {\r\n    padding-bottom: 0;;\r\n  }\r\n\r\n  .form__alert__default {\r\n    margin-bottom: 0;\r\n  }\r\n\r\n  .form__alert__default {\r\n    border: 0;\r\n    background-color: #e6ebef;\r\n}\r\n\r\n.form__alert__default .form-header {\r\n  margin-bottom: 10px;\r\n  font-size: 14px;\r\n  text-transform: uppercase;\r\n}\r\n\r\n.form__alert__default p {\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.form__alert__default p a {\r\n  color: #000;\r\n}\r\n\r\n.form__alert__default .form-group {\r\n  width: auto;\r\n  margin-right: 10px;\r\n}\r\n\r\n.form__alert__default input[type=\"text\"] {\r\n    width: 100%;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    box-shadow: 0 1px 1px #ccc;\r\n}\r\n\r\nbody .form__alert__default .btn {\r\n    width: auto;\r\n    padding: 0;\r\n    height: 36px;\r\n    line-height: 36px;\r\n    font-size: 14px;\r\n    background-color: transparent;\r\n    border: 0;\r\n    color: #000;\r\n  }\r\n}\r\n\r\n@media (min-width: 768px) {\r\n  .form__alert .form-group { \r\n    width: 240px;\r\n  }\r\n  .form__alert input[type=\"text\"] {\r\n    max-width: 100%;\r\n  }\r\n  .browse-header, .form-header, .job-listing__header {\r\n    font-size: 20px;\r\n  }\r\n}\r\n\r\n.main-pic .form__search .form-control:focus {\r\n  border-bottom-color: #000050;\r\n}\r\n.btn-success{\r\n    color: #fff;\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n    border-radius:5px;\r\n}\r\n.form__alert .form-control, .form__search .form-control {\r\n    height: 50px;\r\n    padding: 2px 12px 0;\r\n    line-height: 50px;\r\n    font-size: 20px;\r\n    border-radius: 5px;\r\n}\r\n.form__alert__default .form-control {\r\n    margin-bottom: 10px;\r\n    box-shadow: none;\r\n    border: 1px solid #ccc;\r\n    border-radius: 5px;\r\n}\r\n.form__alert__default .btn:hover {\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n}\r\n\r\n.btn-primary:hover {\r\n    background-color: #000050;\r\n    border-color: #000050;\r\n}\r\n\r\n.form-control:focus {\r\n    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.22);\r\n    -moz-box-shadow: 0 2px 4px rgba(0,0,0,.22);\r\n    box-shadow: 0 2px 4px rgba(0,0,0,.22);\r\n}\r\n\r\n#btn-apply-top { display: none; }"
+      }
+    ],
+    "https://job-boards.greenhouse.io/wpp/jobs/8931621002": [
+      {
+        "tag": "style",
+        "attrs": {},
+        "raw": "\n      @font-face {\n        font-family: &quot;WPP-Medium&quot;;\n        src: url(&quot;https://s2-recruiting.cdn.greenhouse.io/job_board_renderer/custom_fonts/fonts/400/000/300/original/WPP-Medium.woff2?1747733700&quot;);\n        font-weight: normal;\n        font-style: normal;\n      }\n    \n      @font-face {\n        font-family: &quot;WPP-Medium&quot;;\n        src: url(&quot;https://s2-recruiting.cdn.greenhouse.io/job_board_renderer/custom_fonts/fonts/400/000/300/original/WPP-Medium.woff2?1747733700&quot;);\n        font-weight: normal;\n        font-style: normal;\n      }\n    "
+      },
+      {
+        "tag": "body",
+        "attrs": {
+          "style": "--custom-link-color:#31117C;--custom-active-field-color:#328FFF;--custom-focus-color:#328FFF;--custom-list-hover-color:#FFFFFF;--custom-primary-typography-color:#000050;--custom-button-color:#31117C;--custom-button-hover-color:#6B15D5;--custom-button-text-color:#FFFFFF;--custom-primary-font-family:\"WPP-Medium\";--custom-secondary-font-family:\"WPP-Medium\";--custom-dropdown-selection-color:#328FFF;--custom-secondary-typography-color:#262626;--custom-secondary-typography-10:#2626261A;--custom-secondary-typography-30:#2626264D;--custom-secondary-typography-60:#26262699;--custom-background-color:#ffffff"
+        },
+        "raw": null
+      },
+      {
+        "tag": "span",
+        "attrs": {
+          "style": "margin-left:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "span",
+        "attrs": {
+          "style": "color: rgb(236, 240, 241);"
+        },
+        "raw": null
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css b62m3t-container"
+        },
+        "raw": ".remix-css-b62m3t-container{position:relative;box-sizing:border-box;}"
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css 7pg0cj-a11yText"
+        },
+        "raw": ".remix-css-7pg0cj-a11yText{z-index:9999;border:0;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;position:absolute;overflow:hidden;padding:0;white-space:nowrap;}"
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css 13cymwt-control"
+        },
+        "raw": ".remix-css-13cymwt-control{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;cursor:default;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;min-height:38px;outline:0!important;position:relative;-webkit-transition:all 100ms;transition:all 100ms;background-color:hsl(0, 0%, 100%);border-color:hsl(0, 0%, 80%);border-radius:4px;border-style:solid;border-width:1px;box-sizing:border-box;}.remix-css-13cymwt-control:hover{border-color:hsl(0, 0%, 70%);}"
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css hlgwow"
+        },
+        "raw": ".remix-css-hlgwow{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:grid;-webkit-flex:1;-ms-flex:1;flex:1;-webkit-box-flex-wrap:wrap;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-overflow-scrolling:touch;position:relative;overflow:hidden;padding:2px 8px;box-sizing:border-box;}"
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css 1jqq78o-placeholder"
+        },
+        "raw": ".remix-css-1jqq78o-placeholder{grid-area:1/1/2/3;color:hsl(0, 0%, 50%);margin-left:2px;margin-right:2px;box-sizing:border-box;}"
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css 19bb58m"
+        },
+        "raw": ".remix-css-19bb58m{visibility:visible;-webkit-flex:1 1 auto;-ms-flex:1 1 auto;flex:1 1 auto;display:inline-grid;grid-area:1/1/2/3;grid-template-columns:0 min-content;margin:2px;padding-bottom:2px;padding-top:2px;color:hsl(0, 0%, 20%);box-sizing:border-box;}.remix-css-19bb58m:after{content:attr(data-value) \" \";visibility:hidden;white-space:pre;grid-area:1/2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0;}"
+      },
+      {
+        "tag": "input",
+        "attrs": {
+          "style": "label:input;color:inherit;background:0;opacity:1;width:100%;grid-area:1 / 2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css 1wy0on6"
+        },
+        "raw": ".remix-css-1wy0on6{-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-align-self:stretch;-ms-flex-item-align:stretch;align-self:stretch;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;box-sizing:border-box;}"
+      },
+      {
+        "tag": "style",
+        "attrs": {
+          "data-emotion": "remix-css 1a0ro4n-requiredInput"
+        },
+        "raw": ".remix-css-1a0ro4n-requiredInput{opacity:0;pointer-events:none;position:absolute;bottom:0;left:0;right:0;width:100%;}"
+      },
+      {
+        "tag": "input",
+        "attrs": {
+          "style": "label:input;color:inherit;background:0;opacity:1;width:100%;grid-area:1 / 2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "input",
+        "attrs": {
+          "style": "label:input;color:inherit;background:0;opacity:1;width:100%;grid-area:1 / 2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "input",
+        "attrs": {
+          "style": "label:input;color:inherit;background:0;opacity:1;width:100%;grid-area:1 / 2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "input",
+        "attrs": {
+          "style": "label:input;color:inherit;background:0;opacity:1;width:100%;grid-area:1 / 2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "input",
+        "attrs": {
+          "style": "label:input;color:inherit;background:0;opacity:1;width:100%;grid-area:1 / 2;font:inherit;min-width:2px;border:0;margin:0;outline:0;padding:0"
+        },
+        "raw": null
+      },
+      {
+        "tag": "text",
+        "attrs": {
+          "style": "visibility:hidden"
+        },
+        "raw": null
+      }
+    ]
+  },
+  "roleAncestors": [
+    {
+      "tag": "root",
+      "attrs": {}
+    },
+    {
+      "tag": "html",
+      "attrs": {
+        "lang": "en"
+      }
+    },
+    {
+      "tag": "body",
+      "attrs": {}
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "holder-inner holder-page-job"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "page"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "container"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "row page__container"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "col-xs-12 col-sm-9 js-job-view"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "job-view"
+      }
+    },
+    {
+      "tag": "table",
+      "attrs": {
+        "class": "job-view-fields"
+      }
+    },
+    {
+      "tag": "tr",
+      "attrs": {}
+    },
+    {
+      "tag": "td",
+      "attrs": {
+        "class": "job-field-value",
+        "colspan": "2"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "description-info"
+      }
+    }
+  ]
+}

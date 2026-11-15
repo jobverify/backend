@@ -1,0 +1,3318 @@
+{
+  "capturedAt": "2026-11-15T09:40:17.169Z",
+  "configuredRoot": "https://www.energycompany.in/",
+  "configuredCareers": "https://www.energycompany.in/we-are-hiring",
+  "home": "https://energycompany.in/",
+  "board": "https://energycompany.in/we-are-hiring",
+  "nativeBoardTitle": "Careers at The Energy Company | Bengaluru",
+  "nativeCountryScope": "Bengaluru, India",
+  "nativeRoleScope": "5 positions. All in Bengaluru.",
+  "nativeVisibleCommonHiringContextSHA256": "a888501391b772e795259d216aba7d94cd496d186baaaa4e84caf39b3a2acd45",
+  "nativePostingLabel": "5 open roles · Posted October 2026",
+  "nativePostingMonth": "2026-10",
+  "roles": [
+    {
+      "title": "Head of Finance",
+      "department": "Finance",
+      "specialty": "Leadership",
+      "nativeLocation": "Bengaluru · Full-time",
+      "applyURL": "https://energycompany.in/contact-us?interest=Jobs&role=Head%20of%20Finance",
+      "nativeApplyHref": "/contact-us?interest=Jobs&role=Head%20of%20Finance",
+      "roleAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "data-wf-domain": "energycompany.in",
+            "data-wf-page": "66f0f96f844a3da978a619a5",
+            "data-wf-site": "66cf0bfda5a7741a22d2b581",
+            "lang": "en"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "code-embed-3-copy w-embed w-script"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "tw tp"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main"
+          }
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "t-art"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-roles"
+          }
+        }
+      ],
+      "nativeRoleAttributes": {
+        "class": "t-role"
+      }
+    },
+    {
+      "title": "Head of Manufacturing",
+      "department": "Operations",
+      "specialty": "Leadership",
+      "nativeLocation": "Bengaluru · Full-time",
+      "applyURL": "https://energycompany.in/contact-us?interest=Jobs&role=Head%20of%20Manufacturing",
+      "nativeApplyHref": "/contact-us?interest=Jobs&role=Head%20of%20Manufacturing",
+      "roleAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "data-wf-domain": "energycompany.in",
+            "data-wf-page": "66f0f96f844a3da978a619a5",
+            "data-wf-site": "66cf0bfda5a7741a22d2b581",
+            "lang": "en"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "code-embed-3-copy w-embed w-script"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "tw tp"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main"
+          }
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "t-art"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-roles"
+          }
+        }
+      ],
+      "nativeRoleAttributes": {
+        "class": "t-role"
+      }
+    },
+    {
+      "title": "Embedded Software Engineer",
+      "department": "Firmware",
+      "specialty": "Embedded",
+      "nativeLocation": "Bengaluru · Full-time",
+      "applyURL": "https://energycompany.in/contact-us?interest=Jobs&role=Embedded%20Software%20Engineer",
+      "nativeApplyHref": "/contact-us?interest=Jobs&role=Embedded%20Software%20Engineer",
+      "roleAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "data-wf-domain": "energycompany.in",
+            "data-wf-page": "66f0f96f844a3da978a619a5",
+            "data-wf-site": "66cf0bfda5a7741a22d2b581",
+            "lang": "en"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "code-embed-3-copy w-embed w-script"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "tw tp"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main"
+          }
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "t-art"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-roles"
+          }
+        }
+      ],
+      "nativeRoleAttributes": {
+        "class": "t-role"
+      }
+    },
+    {
+      "title": "Power Electronics Engineer",
+      "department": "Hardware",
+      "specialty": "Power Electronics",
+      "nativeLocation": "Bengaluru · Full-time",
+      "applyURL": "https://energycompany.in/contact-us?interest=Jobs&role=Power%20Electronics%20Engineer",
+      "nativeApplyHref": "/contact-us?interest=Jobs&role=Power%20Electronics%20Engineer",
+      "roleAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "data-wf-domain": "energycompany.in",
+            "data-wf-page": "66f0f96f844a3da978a619a5",
+            "data-wf-site": "66cf0bfda5a7741a22d2b581",
+            "lang": "en"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "code-embed-3-copy w-embed w-script"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "tw tp"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main"
+          }
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "t-art"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-roles"
+          }
+        }
+      ],
+      "nativeRoleAttributes": {
+        "class": "t-role"
+      }
+    },
+    {
+      "title": "Service Engineer",
+      "department": "Field service",
+      "specialty": "Installation",
+      "nativeLocation": "Bengaluru · Full-time, travel",
+      "applyURL": "https://energycompany.in/contact-us?interest=Jobs&role=Service%20Engineer",
+      "nativeApplyHref": "/contact-us?interest=Jobs&role=Service%20Engineer",
+      "roleAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "data-wf-domain": "energycompany.in",
+            "data-wf-page": "66f0f96f844a3da978a619a5",
+            "data-wf-site": "66cf0bfda5a7741a22d2b581",
+            "lang": "en"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "code-embed-3-copy w-embed w-script"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "tw tp"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main"
+          }
+        },
+        {
+          "tag": "article",
+          "attrs": {
+            "class": "t-art"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-roles"
+          }
+        }
+      ],
+      "nativeRoleAttributes": {
+        "class": "t-role"
+      }
+    }
+  ],
+  "pages": {
+    "home": {
+      "scriptInventory": [
+        {
+          "attrs": {
+            "src": "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js",
+            "type": "text/javascript"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "sha256": "635d6d97dbdf61c48428f791789d261da8530a6b65e6dd7fddc9ee660a32eb07",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "sha256": "9a37601d1f5a5f2fba3b000694d4bf5e035c606d5485dd94e2997cbe2efe5c26",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "application/ld+json"
+          },
+          "sha256": "2af3e57b7e22cfd26b5dc2f3008453dafca5325f44b25e905b3633400553fb83",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-3MJ41FL77M"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "11d041ac3c627e6ae2ebc44b74e619036de24bf9aa64ba932a48d6419ce958a5",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "7f90e88d7a93417e6debab6aebfb531bab30f410932d78f3387acaa29c28312a",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "13d548c06b12efe057267328197a8bb8acf1649c7b97efc23a14c150c3a39427",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "717c09011c11f5b9628066db5a3d8e3b68a5315314ffa158b8442270fb182392",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "aa6db85a4dfebc3dd31f69e0c25ed0a4898bef838e498858b5049d2adf4da79d",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "36e29701c4130bb3ae3b470ecb8a74f02811584b1f6e29efac9d3396211305c2",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            },
+            {
+              "tag": "section",
+              "attrs": {
+                "class": "section_hero text-color-white"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "section2-copy w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "f9132f879db10229ca600a21dbf21b674b4ba600d51def4351e12324eb246408",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            },
+            {
+              "tag": "section",
+              "attrs": {
+                "class": "section_hero text-color-white"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66cf0bfda5a7741a22d2b581",
+            "type": "text/javascript",
+            "integrity": "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.schunk.f2efb3c5440a81cf.js",
+            "type": "text/javascript",
+            "integrity": "sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.schunk.807e1921fd9041ce.js",
+            "type": "text/javascript",
+            "integrity": "sha384-NPwFKGQ3YOPhcJpFXb3r0amFKgX8pO0Iq2X+0pTq+zIvW1tsWMlSdxAM/ZHaphSe",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.572eda57.50df31fbd2177f8d.js",
+            "type": "text/javascript",
+            "integrity": "sha384-bysjA27n4PwYO95AYVwjZSpJT6bW5HQiHtDuvxXp0A+6GeaWalbbOYWzLg0YIDZ0",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js",
+            "type": "text/javascript"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-1TLLV7GXHE"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "eeb97aa75d700e241e8a2ed8dee200dcd614974e6008f8c0a8be1e846ccf0f14",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "6968af3da5a2fb06551a9d30",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {
+                "class": "body-7"
+              }
+            }
+          ]
+        }
+      ],
+      "inlineStyles": [
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "c5ef425cc745293b06bc24fcdac7772214d96bf3e68463e73b55bda8535a9808"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "9995633180d8ffe0d23bf2cb5603b9835ae93991451c3c77161a6bb52d88cf74"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "4d17dd9c0318f7a99db4d0bf145abbc53cb54c259bf491dc47396b91526273a4"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "1f73a521d80d6170d8308b3f197aac52180e70acd5e243c31896ae610677cd87"
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "aspect-ratio:988/790;height:100%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:169.23%;height:119.11%;left:-43.12%;top:-10.89%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "aspect-ratio:1658/616;width:100%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:107.00%;height:143.99%;left:-5.43%;top:-25.65%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "aspect-ratio:414/680;height:100%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:371.01%;height:150.59%;left:-136.71%;top:-25.59%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "aspect-ratio:1776/712;width:100%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:107.83%;height:115.31%;left:-6.64%;top:-9.27%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "5b15302e8e6023fa38cf193d9bef4c66ee8a0f111cd37cf917b9e35d5c61e00b"
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:78;--h:50"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:101.42%;height:104.69%;left:-1.36%;top:-2.78%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:94;--h:42"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:103.92%;height:144.09%;left:-0.68%;top:-24.21%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:73;--h:54"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:120.11%;height:100.00%;left:-4.49%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:95;--h:41"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:142.05%;left:0.00%;top:-26.70%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:85;--h:46"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:114.42%;left:0.00%;top:-7.78%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:62;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:170.74%;height:111.86%;left:-35.89%;top:-6.49%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:46;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:202.80%;height:100.00%;left:-51.39%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:86;--h:45"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:117.10%;left:0.00%;top:-7.96%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:78;--h:50"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:101.42%;height:104.69%;left:-1.36%;top:-2.78%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:94;--h:42"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:103.92%;height:144.09%;left:-0.68%;top:-24.21%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:73;--h:54"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:120.11%;height:100.00%;left:-4.49%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:95;--h:41"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:142.05%;left:0.00%;top:-26.70%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:85;--h:46"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:114.42%;left:0.00%;top:-7.78%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:62;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:170.74%;height:111.86%;left:-35.89%;top:-6.49%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:46;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:202.80%;height:100.00%;left:-51.39%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:86;--h:45"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:117.10%;left:0.00%;top:-7.96%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:58;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.30%;height:101.08%;left:-0.30%;top:-0.29%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:83;--h:47"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:105.95%;height:115.74%;left:-3.31%;top:-12.50%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:109;--h:36"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:100.00%;left:0.00%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:86;--h:46"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:100.00%;left:0.00%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:73;--h:54"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:109.65%;height:148.37%;left:0.00%;top:-4.15%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:72;--h:54"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:132.35%;height:174.37%;left:-16.17%;top:-37.28%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:102;--h:38"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:137.99%;height:366.03%;left:-18.92%;top:-133.20%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:63;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:207.04%;height:224.87%;left:-56.38%;top:-59.10%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "style": "background:#18185e;border-color:#18185e"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:95;--h:41"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:171.23%;height:393.70%;left:-35.62%;top:-146.85%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:58;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.30%;height:101.08%;left:-0.30%;top:-0.29%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:83;--h:47"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:105.95%;height:115.74%;left:-3.31%;top:-12.50%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:109;--h:36"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:100.00%;left:0.00%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:86;--h:46"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:100.00%;height:100.00%;left:0.00%;top:0.00%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:73;--h:54"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:109.65%;height:148.37%;left:0.00%;top:-4.15%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:72;--h:54"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:132.35%;height:174.37%;left:-16.17%;top:-37.28%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:102;--h:38"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:137.99%;height:366.03%;left:-18.92%;top:-133.20%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:63;--h:58"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:207.04%;height:224.87%;left:-56.38%;top:-59.10%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "style": "background:#18185e;border-color:#18185e"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "style": "--w:95;--h:41"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "img",
+          "attrs": {
+            "style": "width:171.23%;height:393.70%;left:-35.62%;top:-146.85%"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "p",
+          "attrs": {
+            "style": "font-size:.82rem;line-height:1.5;color:rgba(255,255,255,.7)"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "strong",
+          "attrs": {
+            "style": "color:#fff"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "strong",
+          "attrs": {
+            "style": "color:#fff"
+          },
+          "sha256": null
+        }
+      ],
+      "stylesheets": [
+        {
+          "href": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/css/the-energy-company.webflow.shared.d580baaa0.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-1YC6qgOMwAilAXjVm81nwkaKBmcp34cXPJRkZXF2buP3laXdA2vCt9EFLd84ijva",
+          "crossorigin": "anonymous"
+        },
+        {
+          "href": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Raleway:wght@600;700;800&display=swap",
+          "rel": "stylesheet"
+        },
+        {
+          "href": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Raleway:wght@600;700;800&display=swap",
+          "rel": "stylesheet"
+        }
+      ],
+      "mainTextSHA256": "329a8fe51c38853bd4f0acae03b16c7afb59705ca2c7a0954363c73140e25414",
+      "publishedBodyTextSHA256": "97032906cd10c669e4301524383dcdca7b272f4ebdb2ac3965d007c8f783122d",
+      "authorityCarriers": [
+        {
+          "tag": "meta",
+          "attrs": {
+            "charset": "utf-8"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "The Energy Company builds intelligent battery infrastructure for India. Storage that pays for itself, fleets that don't stop, and batteries that talk back. FlexiPack · FlexiPod · FlexiPower · VPP.",
+            "name": "description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "The Intelligent Storage Layer | The Energy Company",
+            "property": "og:title"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "The Energy Company builds intelligent battery infrastructure for India. Storage that pays for itself, fleets that don't stop, and batteries that talk back. FlexiPack · FlexiPod · FlexiPower · VPP.",
+            "property": "og:description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "The Intelligent Storage Layer | The Energy Company",
+            "name": "twitter:title"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "The Energy Company builds intelligent battery infrastructure for India. Storage that pays for itself, fleets that don't stop, and batteries that talk back. FlexiPack · FlexiPod · FlexiPower · VPP.",
+            "name": "twitter:description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "property": "og:type",
+            "content": "website"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "summary_large_image",
+            "name": "twitter:card"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "width=device-width, initial-scale=1",
+            "name": "viewport"
+          }
+        }
+      ],
+      "formAncestors": null,
+      "formShape": null,
+      "messageControlAttributes": null
+    },
+    "board": {
+      "scriptInventory": [
+        {
+          "attrs": {
+            "src": "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js",
+            "type": "text/javascript"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "sha256": "635d6d97dbdf61c48428f791789d261da8530a6b65e6dd7fddc9ee660a32eb07",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "sha256": "9a37601d1f5a5f2fba3b000694d4bf5e035c606d5485dd94e2997cbe2efe5c26",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-3MJ41FL77M"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "11d041ac3c627e6ae2ebc44b74e619036de24bf9aa64ba932a48d6419ce958a5",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "06a6afdfe05a636b11ea54986a047f83f3e3d2f6e77c748d8b32612b5d9b128b",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3-copy w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "7f90e88d7a93417e6debab6aebfb531bab30f410932d78f3387acaa29c28312a",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "13d548c06b12efe057267328197a8bb8acf1649c7b97efc23a14c150c3a39427",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "717c09011c11f5b9628066db5a3d8e3b68a5315314ffa158b8442270fb182392",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "aa6db85a4dfebc3dd31f69e0c25ed0a4898bef838e498858b5049d2adf4da79d",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66cf0bfda5a7741a22d2b581",
+            "type": "text/javascript",
+            "integrity": "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.schunk.f2efb3c5440a81cf.js",
+            "type": "text/javascript",
+            "integrity": "sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.schunk.807e1921fd9041ce.js",
+            "type": "text/javascript",
+            "integrity": "sha384-NPwFKGQ3YOPhcJpFXb3r0amFKgX8pO0Iq2X+0pTq+zIvW1tsWMlSdxAM/ZHaphSe",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.572eda57.50df31fbd2177f8d.js",
+            "type": "text/javascript",
+            "integrity": "sha384-bysjA27n4PwYO95AYVwjZSpJT6bW5HQiHtDuvxXp0A+6GeaWalbbOYWzLg0YIDZ0",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66f0f96f844a3da978a619a5",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        }
+      ],
+      "inlineStyles": [
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "8125ad2d844c00dcb04c5f6e83b5cd85c69c773130c4815603f6a6e886066d3b"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "c5ef425cc745293b06bc24fcdac7772214d96bf3e68463e73b55bda8535a9808"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "9995633180d8ffe0d23bf2cb5603b9835ae93991451c3c77161a6bb52d88cf74"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "4d17dd9c0318f7a99db4d0bf145abbc53cb54c259bf491dc47396b91526273a4"
+        }
+      ],
+      "stylesheets": [
+        {
+          "href": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/css/the-energy-company.webflow.shared.d580baaa0.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-1YC6qgOMwAilAXjVm81nwkaKBmcp34cXPJRkZXF2buP3laXdA2vCt9EFLd84ijva",
+          "crossorigin": "anonymous"
+        },
+        {
+          "href": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Raleway:wght@600;700;800&display=swap",
+          "rel": "stylesheet"
+        }
+      ],
+      "mainTextSHA256": "05237fc8dd22e1359fb9bd5409bb83dc33af7707e21adc82b3a59ee17e66d570",
+      "publishedBodyTextSHA256": "c6e486d932844f52300cc0c02ec6492c60d418e1f74fac0e25b4877a8221686b",
+      "authorityCarriers": [
+        {
+          "tag": "meta",
+          "attrs": {
+            "charset": "utf-8"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Join The Energy Company in Bengaluru. Open roles in hardware design, embedded firmware and software for India's energy storage and EV battery infrastructure.",
+            "name": "description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Careers at The Energy Company | Bengaluru",
+            "property": "og:title"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Join The Energy Company in Bengaluru. Open roles in hardware design, embedded firmware and software for India's energy storage and EV battery infrastructure.",
+            "property": "og:description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Careers at The Energy Company | Bengaluru",
+            "name": "twitter:title"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Join The Energy Company in Bengaluru. Open roles in hardware design, embedded firmware and software for India's energy storage and EV battery infrastructure.",
+            "name": "twitter:description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "property": "og:type",
+            "content": "website"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "summary_large_image",
+            "name": "twitter:card"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "width=device-width, initial-scale=1",
+            "name": "viewport"
+          }
+        }
+      ],
+      "formAncestors": null,
+      "formShape": null,
+      "messageControlAttributes": null
+    },
+    "application": {
+      "scriptInventory": [
+        {
+          "attrs": {
+            "src": "https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js",
+            "type": "text/javascript"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "sha256": "635d6d97dbdf61c48428f791789d261da8530a6b65e6dd7fddc9ee660a32eb07",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "text/javascript"
+          },
+          "sha256": "9a37601d1f5a5f2fba3b000694d4bf5e035c606d5485dd94e2997cbe2efe5c26",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "type": "application/ld+json"
+          },
+          "sha256": "df66dc8c547b4d76b14eaa94b950a8fe145fbf5e7108648e052946386fc890f1",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "async": "",
+            "src": "https://www.googletagmanager.com/gtag/js?id=G-3MJ41FL77M"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "11d041ac3c627e6ae2ebc44b74e619036de24bf9aa64ba932a48d6419ce958a5",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "head",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "35978c5aeec4bfd093b6e8c42425f4d5175986ac4e5bab7e5fa922c0b6e64210",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3-copy w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "518e3e3efc68ad0f438c85a0b4cff7e9a5c692a5061e94773fdfb556cb1b239c",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3-copy w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "7f90e88d7a93417e6debab6aebfb531bab30f410932d78f3387acaa29c28312a",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "13d548c06b12efe057267328197a8bb8acf1649c7b97efc23a14c150c3a39427",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "717c09011c11f5b9628066db5a3d8e3b68a5315314ffa158b8442270fb182392",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "aa6db85a4dfebc3dd31f69e0c25ed0a4898bef838e498858b5049d2adf4da79d",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "data-animation": "over-right",
+                "data-collapse": "medium",
+                "data-duration": "400",
+                "data-easing": "ease",
+                "data-easing2": "ease",
+                "role": "banner",
+                "class": "navbar w-nav"
+              }
+            },
+            {
+              "tag": "div",
+              "attrs": {
+                "class": "code-embed-3 w-embed w-script"
+              }
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=66cf0bfda5a7741a22d2b581",
+            "type": "text/javascript",
+            "integrity": "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.schunk.f2efb3c5440a81cf.js",
+            "type": "text/javascript",
+            "integrity": "sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.schunk.807e1921fd9041ce.js",
+            "type": "text/javascript",
+            "integrity": "sha384-NPwFKGQ3YOPhcJpFXb3r0amFKgX8pO0Iq2X+0pTq+zIvW1tsWMlSdxAM/ZHaphSe",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/js/webflow.572eda57.50df31fbd2177f8d.js",
+            "type": "text/javascript",
+            "integrity": "sha384-bysjA27n4PwYO95AYVwjZSpJT6bW5HQiHtDuvxXp0A+6GeaWalbbOYWzLg0YIDZ0",
+            "crossorigin": "anonymous"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {
+            "src": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.min.js"
+          },
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        },
+        {
+          "attrs": {},
+          "sha256": "91d50fbe9809ffcb899c45c98ba1b192d7d4295e920b6d1738200e934f021cf3",
+          "parents": [
+            {
+              "tag": "root",
+              "attrs": {}
+            },
+            {
+              "tag": "html",
+              "attrs": {
+                "data-wf-domain": "energycompany.in",
+                "data-wf-page": "66e838257068e09ef7c13fa6",
+                "data-wf-site": "66cf0bfda5a7741a22d2b581",
+                "lang": "en"
+              }
+            },
+            {
+              "tag": "body",
+              "attrs": {}
+            }
+          ]
+        }
+      ],
+      "inlineStyles": [
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "3bc0571d4e6f330b9ef3b9cc70a73f1555f4f28001230fda3658608b2984858e"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "9db9ec72ab414085df218e7a5229e5acf58250db025bad873aff9dbbc4116203"
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "style": "align-items:start"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "h2",
+          "attrs": {
+            "style": "font-size:1.6rem"
+          },
+          "sha256": null
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "c5ef425cc745293b06bc24fcdac7772214d96bf3e68463e73b55bda8535a9808"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "9995633180d8ffe0d23bf2cb5603b9835ae93991451c3c77161a6bb52d88cf74"
+        },
+        {
+          "tag": "style",
+          "attrs": {},
+          "sha256": "4d17dd9c0318f7a99db4d0bf145abbc53cb54c259bf491dc47396b91526273a4"
+        }
+      ],
+      "stylesheets": [
+        {
+          "href": "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/css/the-energy-company.webflow.shared.d580baaa0.css",
+          "rel": "stylesheet",
+          "type": "text/css",
+          "integrity": "sha384-1YC6qgOMwAilAXjVm81nwkaKBmcp34cXPJRkZXF2buP3laXdA2vCt9EFLd84ijva",
+          "crossorigin": "anonymous"
+        },
+        {
+          "href": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css",
+          "rel": "stylesheet"
+        },
+        {
+          "href": "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Raleway:wght@600;700;800&display=swap",
+          "rel": "stylesheet"
+        }
+      ],
+      "mainTextSHA256": "10678e78604a557aa8ee0359bc4a2a836e9b88790239ef971a57a38469497838",
+      "publishedBodyTextSHA256": "047f83468d631dfae9a22e03bdeb5b8cd49fe40e949c53551b5b3e627ed2b048",
+      "authorityCarriers": [
+        {
+          "tag": "meta",
+          "attrs": {
+            "charset": "utf-8"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Contact The Energy Company for FlexiPod, FlexiPack, FlexiPower, FlexiTwin, distributorship, VPP enrolment, investor relations, or careers. Bengaluru, India.",
+            "name": "description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Contact Us | The Energy Company",
+            "property": "og:title"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Contact The Energy Company for FlexiPod, FlexiPack, FlexiPower, FlexiTwin, distributorship, VPP enrolment, investor relations, or careers. Bengaluru, India.",
+            "property": "og:description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Contact Us | The Energy Company",
+            "name": "twitter:title"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "Contact The Energy Company for FlexiPod, FlexiPack, FlexiPower, FlexiTwin, distributorship, VPP enrolment, investor relations, or careers. Bengaluru, India.",
+            "name": "twitter:description"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "property": "og:type",
+            "content": "website"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "summary_large_image",
+            "name": "twitter:card"
+          }
+        },
+        {
+          "tag": "meta",
+          "attrs": {
+            "content": "width=device-width, initial-scale=1",
+            "name": "viewport"
+          }
+        }
+      ],
+      "formAncestors": [
+        {
+          "tag": "root",
+          "attrs": {}
+        },
+        {
+          "tag": "html",
+          "attrs": {
+            "data-wf-domain": "energycompany.in",
+            "data-wf-page": "66e838257068e09ef7c13fa6",
+            "data-wf-site": "66cf0bfda5a7741a22d2b581",
+            "lang": "en"
+          }
+        },
+        {
+          "tag": "body",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "code-embed-3-copy w-embed w-script"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "tw t-scope-pg1"
+          }
+        },
+        {
+          "tag": "main",
+          "attrs": {
+            "id": "main"
+          }
+        },
+        {
+          "tag": "section",
+          "attrs": {
+            "class": "t-section"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-wrap"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-split t-split--wide-left",
+            "style": "align-items:start"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-form-card t-reveal"
+          }
+        }
+      ],
+      "formShape": [
+        {
+          "tag": "form",
+          "attrs": {
+            "class": "t-form",
+            "data-t-form": "contact",
+            "data-subject": "Website enquiry"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-form-row"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "contact-name"
+          }
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "class": "t-req"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "id": "contact-name",
+            "name": "name",
+            "autocomplete": "name",
+            "required": ""
+          }
+        },
+        {
+          "tag": "p",
+          "attrs": {
+            "class": "t-field-error"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "contact-company"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "id": "contact-company",
+            "name": "company",
+            "autocomplete": "organization"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-form-row"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "contact-email"
+          }
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "class": "t-req"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "id": "contact-email",
+            "name": "email",
+            "type": "email",
+            "autocomplete": "email",
+            "required": ""
+          }
+        },
+        {
+          "tag": "p",
+          "attrs": {
+            "class": "t-field-error"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "contact-phone"
+          }
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "class": "t-req"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "id": "contact-phone",
+            "name": "phone",
+            "type": "tel",
+            "autocomplete": "tel",
+            "required": "",
+            "placeholder": "+91"
+          }
+        },
+        {
+          "tag": "p",
+          "attrs": {
+            "class": "t-field-error"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-form-row"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "interest"
+          }
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "class": "t-req"
+          }
+        },
+        {
+          "tag": "select",
+          "attrs": {
+            "id": "interest",
+            "name": "interest",
+            "required": ""
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": ""
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiPod"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiPod for QSR"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiPower"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiPack 2.7"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiMax 9.6"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiLoad (MHE)"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "FlexiTwin"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "VPP enrolment"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "Financier Dashboard"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "Fleet Dashboard"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "Distributorship"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "Investor relations"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "Jobs"
+          }
+        },
+        {
+          "tag": "option",
+          "attrs": {
+            "value": "Other"
+          }
+        },
+        {
+          "tag": "p",
+          "attrs": {
+            "class": "t-field-error"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "contact-city"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "id": "contact-city",
+            "name": "city",
+            "autocomplete": "address-level2"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-field"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "for": "contact-msg"
+          }
+        },
+        {
+          "tag": "span",
+          "attrs": {
+            "class": "t-req"
+          }
+        },
+        {
+          "tag": "textarea",
+          "attrs": {
+            "id": "contact-msg",
+            "name": "message",
+            "required": "",
+            "minlength": "10",
+            "placeholder": "Site type, current backup, approximate load, number of vehicles…"
+          }
+        },
+        {
+          "tag": "p",
+          "attrs": {
+            "class": "t-field-error"
+          }
+        },
+        {
+          "tag": "label",
+          "attrs": {
+            "class": "t-checkbox"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "type": "checkbox",
+            "name": "consent_updates",
+            "value": "yes"
+          }
+        },
+        {
+          "tag": "span",
+          "attrs": {}
+        },
+        {
+          "tag": "a",
+          "attrs": {
+            "href": "/privacy-policy"
+          }
+        },
+        {
+          "tag": "input",
+          "attrs": {
+            "class": "t-hp-field",
+            "name": "_gotcha",
+            "tabindex": "-1",
+            "autocomplete": "off",
+            "aria-hidden": "true"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {}
+        },
+        {
+          "tag": "button",
+          "attrs": {
+            "class": "t-btn t-btn--dark",
+            "type": "submit"
+          }
+        },
+        {
+          "tag": "div",
+          "attrs": {
+            "class": "t-form-status",
+            "aria-live": "polite"
+          }
+        }
+      ],
+      "messageControlAttributes": {
+        "id": "contact-msg",
+        "name": "message",
+        "required": "",
+        "minlength": "10",
+        "placeholder": "Site type, current backup, approximate load, number of vehicles…"
+      }
+    }
+  },
+  "styles": {
+    "https://cdn.prod.website-files.com/66cf0bfda5a7741a22d2b581/css/the-energy-company.webflow.shared.d580baaa0.css": {
+      "sha256": "266a85cb6b6c7ca74fbc7d6d23fcc202bc0f6c5e6f37597fef714d466cd0e7ce",
+      "bytes": 1014355
+    },
+    "https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Raleway:wght@600;700;800&display=swap": {
+      "sha256": "ae5efed151b54cdae1704818df1dac947f8b1d3e5e2b84ecaa32fd9834719cb7",
+      "bytes": 10911
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css": {
+      "sha256": "c6956e8710cf477f7014440385ae16ee4b8cc7ecfd02fddd4d2f0c6c7fd15845",
+      "bytes": 19157
+    }
+  }
+}

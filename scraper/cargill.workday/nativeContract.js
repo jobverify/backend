@@ -15,8 +15,8 @@ function failure(p){prove(p&&typeof p==='object'&&!Array.isArray(p),'Native enve
 function day(value,now){prove(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value),'Native day unavailable');const d=new Date(value+'T00:00:00.000Z');prove(Number.isFinite(+d)&&d.toISOString().slice(0,10)===value&&+d<=Date.parse(now),'Invalid/future native day');return d.toISOString()}
 function rmkDate(value,now,publication){prove(typeof value==='string','Native timestamp unavailable');const m=value.match(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (\d{2}) (\d{2}):(\d{2}):(\d{2}) UTC (\d{4})$/);prove(m,'Native timestamp format changed');const d=new Date(value);prove(Number.isFinite(+d)&&d.getUTCDate()===Number(m[3])&&d.getUTCFullYear()===Number(m[7])&&d.getUTCHours()===Number(m[4])&&d.getUTCMinutes()===Number(m[5])&&d.getUTCSeconds()===Number(m[6])&&(!publication||+d<=Date.parse(now)),'Invalid/future native timestamp');return d.toISOString()}
 const cityKey=s=>norm(s).toLowerCase().replace(/^bengaluru$/,'bangalore')
-const countryCodes={India:'IN',Malaysia:'MY',Singapore:'SG',China:'CN',Poland:'PL'}
-const postalPatterns={India:/^\d{6}$/,Malaysia:/^\d{5}$/,Singapore:/^\d{6}$/,China:/^\d{6}$/,Poland:/^\d{2}-\d{3}$/}
+const countryCodes={India:'IN',Malaysia:'MY',Singapore:'SG',China:'CN',Poland:'PL',Brazil:'BR'}
+const postalPatterns={India:/^\d{6}$/,Malaysia:/^\d{5}$/,Singapore:/^\d{6}$/,China:/^\d{6}$/,Poland:/^\d{2}-\d{3}$/,Brazil:/^\d{5}-\d{3}$/}
 const sameRegion=(country,city,left,right)=>norm(left)===norm(right)||country==='China'&&cityKey(city)==='shanghai'&&[left,right].every(value=>['Shanghai','Shanghai Municipality'].includes(norm(value)))
 export class CargillSameCountryWorksiteDisagreement extends Error {
  constructor(validatedModel){
@@ -49,7 +49,11 @@ const withdrawnProfiles=[{requisitionId:'329403',publicJobId:'96958018784',title
  {requisitionId:'335262',publicJobId:'101740330512',title:'Sales Executive',
  sourceUrl:CAREERS+'en/job/satara/sales-executive/23251/101740330512',
  applicationURL:'https://career2.successfactors.eu/sfcareer/jobreqcareer?jobId=335262&company=cargill&locale=en_US',
- nativeURL:NATIVE+'/job/Satara-Sales-Executive-Maha-415001/1374457657/',nativeRmkPublicId:'1374457657'}]
+ nativeURL:NATIVE+'/job/Satara-Sales-Executive-Maha-415001/1374457657/',nativeRmkPublicId:'1374457657'},
+ {requisitionId:'328292',publicJobId:'96288117680',title:'Platform Engineer',
+ sourceUrl:CAREERS+'en/job/bengaluru/platform-engineer/23251/96288117680',
+ applicationURL:'https://career2.successfactors.eu/sfcareer/jobreqcareer?jobId=328292&company=cargill&locale=en_US',
+ nativeURL:NATIVE+'/job/Bangalore-Platform-Engineer-Karn-560087/1363455457/',nativeRmkPublicId:'1363455457'}]
 const clickGuardStyle='<style id="antiClickjack" type="text/css">body{display:none !important;}</style>'
 function readReviewedWithdrawal(html,finalURL,official,document){
  const withdrawnProfile=withdrawnProfiles.find(profile=>['requisitionId','publicJobId','title','sourceUrl','applicationURL'].every(key=>official[key]===profile[key])&&finalURL===profile.nativeURL)
@@ -57,24 +61,26 @@ function readReviewedWithdrawal(html,finalURL,official,document){
  const publicModel=official.nativePublicJobPosting
  if(publicModel?.identifier?.value!==withdrawnProfile.requisitionId||publicModel.identifier.name!=='Job ID'||publicModel.title!==official.title
   ||publicModel.url!==official.sourceUrl||publicModel.hiringOrganization?.name!=='Cargill')return null
- const walk=node=>[node,...node.children.filter(child=>typeof child!=='string').flatMap(walk)],all=walk(document.nodes(n=>n.tag==='root')[0])
+ const walk=node=>[node,...node.children.filter(child=>typeof child!=='string').flatMap(walk)],all=walk(document.nodes(n=>n.tag==='root')[0]),activeNodes=new Set(document.nodes(()=>true))
  const codes=all.filter(n=>Object.hasOwn(n.attrs,'data-company-job-code')),titles=all.filter(n=>n.tag==='meta'&&n.attrs.property==='og:title'),pageTitles=all.filter(n=>n.tag==='title')
  const companyJobCode=withdrawnProfile.requisitionId+'-en_US'
- if(codes.length!==1||codes[0].tag!=='script'||codes[0].attrs.type!=='IN/AwliWidget'||codes[0].attrs['data-company-job-code']!==companyJobCode
+ if(codes.length!==1||!activeNodes.has(codes[0])||codes[0].tag!=='script'||codes[0].attrs.type!=='IN/AwliWidget'||codes[0].attrs['data-company-job-code']!==companyJobCode
   ||codes[0].attrs['data-integration-context']!=='urn:li:organization:2678'||titles.length!==1||titles[0].attrs.content!==official.title
-  ||pageTitles.length!==1||norm(pageTitles[0].raw)!==withdrawnProfile.title+' Job Details | cargill')return null
+  ||!activeNodes.has(titles[0])||pageTitles.length!==1||!activeNodes.has(pageTitles[0])||norm(pageTitles[0].raw)!==withdrawnProfile.title+' Job Details | cargill')return null
  // A filled tombstone has none of the active role metadata. Unexpected role,
  // employer, country, date or criteria assertions remain a real guard failure.
  const roleProperties=new Set(['title','description','datePosted','validThrough','hiringOrganization','addressCountry','jobLocation','identifier'])
  if(all.some(n=>(n.attrs.itemprop??'').split(/\s+/).some(value=>roleProperties.has(value))||n.attrs['data-careersite-propertyid']==='customfield1'
-  ||/\/JobPosting$/.test(n.attrs.itemtype??'')||n.tag==='script'&&n.attrs.type==='application/ld+json'))return null
+  ||(n.attrs.itemtype??'').split(/\s+/).some(type=>/(?:^|\/)JobPosting\/?$/i.test(type))
+  ||n.tag==='script'&&(n.attrs.type??'').split(';',1)[0].trim().toLowerCase()==='application/ld+json'))return null
  // Exact native standalone frame protection removes only this style when
  // self===top. Bind its full original program; preserve every other CSS rule.
- const styles=all.filter(n=>n.tag==='style'&&n.attrs.id==='antiClickjack'),activators=all.filter(n=>n.tag==='script'&&n.attrs.id==='antiClickJackScript')
+ const styles=all.filter(n=>n.tag==='style'&&n.attrs.id==='antiClickjack'),activators=all.filter(n=>n.tag==='script'&&n.attrs.id==='antiClickJackScript'),heads=document.nodes(n=>n.tag==='head')
  const scriptMatches=[...html.matchAll(/<script\b[^>]*\bid="antiClickJackScript"[^>]*>[\s\S]*?<\/script>/g)]
  const styleIndex=html.indexOf(clickGuardStyle),headEnd=html.indexOf('</head>')
- if(styles.length!==1||styles[0].raw!=='body{display:none !important;}'||Object.keys(styles[0].attrs).sort().join(',')!=='id,type'||styles[0].attrs.type!=='text/css'
+ if(heads.length!==1||styles.length!==1||!heads[0].children.includes(styles[0])||styles[0].raw!=='body{display:none !important;}'||Object.keys(styles[0].attrs).sort().join(',')!=='id,type'||styles[0].attrs.type!=='text/css'
   ||activators.length!==1||Object.keys(activators[0].attrs).sort().join(',')!=='id,type'||activators[0].attrs.type!=='text/javascript'
+  ||!activeNodes.has(activators[0])||!heads[0].children.includes(activators[0])
   ||hash(activators[0].raw??'')!=='4a1ab69ed7fa61e5385ca970bf06b3e1afafc49efaeace8ec022766e16e72433'
   ||styleIndex<0||scriptMatches.length!==1||scriptMatches[0].index<styleIndex+clickGuardStyle.length||scriptMatches[0].index+scriptMatches[0][0].length>headEnd)return null
  const visible=readVisibleNativeDocument(html.replace(clickGuardStyle,''),{strict:true}),visibleNodes=visible.nodes(()=>true)
@@ -157,7 +163,10 @@ export function parseCargillRmkDetail(html,finalURL,official,{now=new Date().toI
  const locations=d.nodes(n=>d.hasClass(n,'jobGeoLocation')).map(n=>d.text(n));prove(locations.length>0&&new Set(locations).size===locations.length,'Native role locations missing or duplicated')
  const offices=locations.map(location=>{const parts=location.split(',').map(norm),country=Object.keys(countryCodes).find(name=>parts[2]===countryCodes[name]+' '+name);prove(parts.length===4&&country&&postalPatterns[country].test(parts[3]),'Native role country or postal identity unavailable');const address=official.addresses.find(a=>a.addressCountry===country&&cityKey(a.addressLocality)===cityKey(parts[0])&&sameRegion(country,parts[0],a.addressRegion,parts[1]));return{address,country,code:countryCodes[country],parts}})
  const countries=meta('addressCountry');prove(countries.length>0&&countries.every(c=>typeof c==='string'&&offices.some(o=>o.code===c))&&offices.every(o=>countries.includes(o.code)),'Native country missing or conflicting')
- const normalized=offices.map(o=>[o.parts[0],o.parts[1],o.code,o.parts[3]].join(', ')),indiaLocations=official.addresses.filter(a=>a.addressCountry==='India').map(a=>{const o=offices.find(o=>o.address===a);return[a.addressLocality,a.addressRegion,'India',...(o?[o.parts[3]]:[])].join(', ')}),nativePostedAt=rmkDate(one(meta('datePosted'),'native publication'),now,true),ends=meta('validThrough');prove(ends.length<=1,'Native expiry ambiguous');const closingDate=ends.length?rmkDate(ends[0],now,false):null;prove(!closingDate||Date.parse(closingDate)>=Date.parse(nativePostedAt),'Native expiry precedes publication')
+ // An India-filtered public copy can link to a currently Brazil-only native
+ // application. Both own surfaces must corroborate an India office for output.
+ const nativeIndiaOfficeCorroborated=offices.some(office=>office.country==='India'&&office.address)
+ const normalized=offices.map(o=>[o.parts[0],o.parts[1],o.code,o.parts[3]].join(', ')),indiaLocations=(nativeIndiaOfficeCorroborated?official.addresses.filter(a=>a.addressCountry==='India'):[]).map(a=>{const o=offices.find(o=>o.address===a);return[a.addressLocality,a.addressRegion,'India',...(o?[o.parts[3]]:[])].join(', ')}),nativePostedAt=rmkDate(one(meta('datePosted'),'native publication'),now,true),ends=meta('validThrough');prove(ends.length<=1,'Native expiry ambiguous');const closingDate=ends.length?rmkDate(ends[0],now,false):null;prove(!closingDate||Date.parse(closingDate)>=Date.parse(nativePostedAt),'Native expiry precedes publication')
  const full=one(d.nodes(n=>n.attrs.itemprop==='description'),'native full description'),text=d.text(full)
  // A long notice or application instruction is still not role content. Ignore
  // these sentences only when evaluating content; preserve actual full native JD.
@@ -165,11 +174,11 @@ export function parseCargillRmkDetail(html,finalURL,official,{now=new Date().toI
  const meaningful=substantive.replace(/\b(?:Job Purpose and Impact|Key Accountabilities|Qualifications|Minimum Qualifications|Preferred Qualifications|Apply now|Sample|Job Description|Coming soon|Read more)\b/gi,'').replace(/[^\p{L}]/gu,'');const description=meaningful.length>=40&&extractActiveDescription(text)?text:null
  // Native addresses repeat the explicit country code and name. Normalize
  // only those already-validated geo spans for the existing RMK adapter.
- const adapterHtml=html.replace(/(<span\b[^>]*class="jobGeoLocation"[^>]*>)([\s\S]*?)(<\/span>)/g,(_m,a,b,c)=>a+b.replace(/\b(IN India|MY Malaysia|SG Singapore|CN China|PL Poland)\b/g,value=>value.slice(0,2))+c)
+ const adapterHtml=html.replace(/(<span\b[^>]*class="jobGeoLocation"[^>]*>)([\s\S]*?)(<\/span>)/g,(_m,a,b,c)=>a+b.replace(/\b(IN India|MY Malaysia|SG Singapore|CN China|PL Poland|BR Brazil)\b/g,value=>value.slice(0,2))+c)
  const mapped=parseRmkDetail(adapterHtml,{jobId:publicId,title:official.title,sourceUrl:finalURL,locations:normalized,expectedLocationCount:normalized.length,country:offices[0].country},{source:'cargill',companyName:'Cargill',origin:NATIVE,companyToken:'cargill'})
  const postedAt=new Date(Math.min(Date.parse(official.publicPostedAt),Date.parse(nativePostedAt))).toISOString()
- const model={...mapped,jobId:official.requisitionId,requisitionId:official.requisitionId,nativeRmkPublicId:publicId,nativePublicJobId:official.publicJobId,nativePublicRoleURL:official.sourceUrl,nativeSapApplicationURL:official.applicationURL,nativePublicPostedAt:official.publicPostedAt,nativeRmkPostedAt:nativePostedAt,nativeLocations:locations,nativePublicLocations:official.addresses,nativeListingLocation:official.nativeListingLocation,sourceLocationCorroborationComplete:offices.length===official.addresses.length,locations:indiaLocations,location:indiaLocations.join(' / '),country:'India',city:indiaLocations.length===1?indiaLocations[0].split(',')[0].trim():null,nativeEmployer:'cargill',postedAt,postingDate:postedAt,closingDate,sourceClosingDateIsExact:Boolean(closingDate),jobDescription:description,sourceDescription:description,sourceDetailComplete:Boolean(description),sourceDetailStatus:description?'complete':'native-full-description-missing',sourceListingComplete:false,sourceScopeComplete:false,scrapedAt:now}
- if(offices.some(office=>!office.address)||official.incompletePublicOffices?.length){
+ const model={...mapped,jobId:official.requisitionId,requisitionId:official.requisitionId,nativeRmkPublicId:publicId,nativePublicJobId:official.publicJobId,nativePublicRoleURL:official.sourceUrl,nativeSapApplicationURL:official.applicationURL,nativePublicPostedAt:official.publicPostedAt,nativeRmkPostedAt:nativePostedAt,nativeLocations:locations,nativePublicLocations:official.addresses,nativeListingLocation:official.nativeListingLocation,sourceLocationCorroborationComplete:offices.length===official.addresses.length,nativeIndiaOfficeCorroborated,locations:indiaLocations,location:indiaLocations.join(' / ')||null,country:nativeIndiaOfficeCorroborated?'India':null,city:indiaLocations.length===1?indiaLocations[0].split(',')[0].trim():null,nativeEmployer:'cargill',postedAt,postingDate:postedAt,closingDate,sourceClosingDateIsExact:Boolean(closingDate),jobDescription:description,sourceDescription:description,sourceDetailComplete:Boolean(description),sourceDetailStatus:description?'complete':'native-full-description-missing',sourceListingComplete:false,sourceScopeComplete:false,scrapedAt:now}
+ if(offices.some(office=>!office.address)||!nativeIndiaOfficeCorroborated||official.incompletePublicOffices?.length){
   // Only a complete, otherwise validated same-country role can become a hold.
   // Every native primary country must be explicitly present in the own public
   // posting. Additional public offices do not resolve a native locality clash:

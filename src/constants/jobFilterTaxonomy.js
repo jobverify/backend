@@ -1,3 +1,4 @@
+import { CALENDAR_POSTED_PERIODS } from "../utils/jobPostedDateFilter.js";
 const skill = ({ id, label, category, aliases = [], patterns = [] }) => ({
   id,
   label,
@@ -78,6 +79,7 @@ export const DATE_POSTED_WINDOW_OPTIONS = Object.freeze(
 
 export const DATE_POSTED_OPTIONS = Object.freeze([
   ...DATE_POSTED_WINDOW_OPTIONS,
+  ...CALENDAR_POSTED_PERIODS,
   DATE_POSTED_OLDER_THAN_30_VALUE,
   DATE_POSTED_NA_VALUE,
 ]);

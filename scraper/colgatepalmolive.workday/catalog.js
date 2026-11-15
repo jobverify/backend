@@ -42,7 +42,7 @@ const PROVIDER_METADATA={...{
       }
     ]
   },
-  "sourceScopeNotes": "Observed native India country facet only. Group brand is Colgate-Palmolive; individual legal employers are not supplied. Whole-company and other recruiting surfaces remain unresolved. Only the explicitly current Mumbai/Maharashtra/IND office contract qualifies; new or ambiguous native locations fail closed. Raw original dates are retained; eligibility uses current workspace policy, not capture age renewal.",
+  "sourceScopeNotes": "Observed native India country facet only. Group brand is Colgate-Palmolive; individual legal employers are not supplied. Whole-company and other recruiting surfaces remain unresolved. The reviewed Mumbai/Maharashtra/IND and Sricity/Andhra Pradesh/IND native office/header contracts qualify only with full own detail and closing proof; pooling and ambiguous sites stay held. Complete visible own role conditions and raw original dates are retained; eligibility uses current workspace policy, not capture age renewal.",
   "verifiedSurfaceSummary": "Current corporate active link to the exact public SAP site; current advertised React client is pinned and all India pages/details/recheck must reconcile. Metadata contains no runtime counts."
 },modulePath:path.join(currentDir,'script.js'),dryRunFile:path.join(currentDir,'jobs.json')}
 export default PROVIDER_METADATA

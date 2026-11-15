@@ -48,8 +48,8 @@ test('exact reviewed Aeries31 packets preserve original24 rows and two real plac
   const f = fixture()
   const original = JSON.parse(f.files.get('evidence/frozen-trial.json'))
   const generalEligibility = analyzePublishableJobs(original.jobs, { now })
-  assert.equal(generalEligibility.eligibleJobs.length, 6, 'current eligibility excludes the 18 archived roles older than one calendar month')
-  assert.equal(generalEligibility.filterCounts.old, 18)
+  assert.equal(generalEligibility.eligibleJobs.length, 24, 'current eligibility includes archived roles within three calendar months')
+  assert.equal(generalEligibility.filterCounts.old, 0)
   assert.equal(generalEligibility.filterCounts.emptyDescription, 0)
   const args = await trialFor(f), result = await verifyAeriesPartialPublishingTrial(args)
   assert.deepEqual(Object.keys(AERIES_PARTIAL_CONTRACTS), ['aeriestechnology'])
@@ -67,8 +67,8 @@ test('exact reviewed Aeries31 packets preserve original24 rows and two real plac
   assert.equal(isSuccessfulPublishingGapTrial(args.trial, { source: f.source, now }), false)
 })
 
-test('current publication policy rejects the historical Aeries proof without renewing its original job dates', async () => {
-  await assert.rejects(deriveCurrentAeriesPartialEvidence(fixture()), /all and only22 original full native descriptions may qualify/)
+test('current publication policy rejects the historical Aeries proof after the reviewed source code changes', async () => {
+  await assert.rejects(deriveCurrentAeriesPartialEvidence(fixture()), /current reviewed source-code identity changed/)
 })
 test('native selected identity, descriptions, dates, partial diagnostics and original clocks cannot be changed or truncated', async () => {
   const args = await trialFor(fixture())

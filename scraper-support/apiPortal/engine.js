@@ -343,6 +343,16 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
     || config.detail.enabled !== true || config.detail.requireListingIdentity !== true)) {
     throw Object.assign(new Error('API portal public access recovery requires verified Eightfold detail identities'), { abortRetries: true })
   }
+  const earlyStagedHydration = config.detail.hydrateDuringSnapshot === true
+  if (config.detail.hydrateDuringSnapshot !== undefined && typeof config.detail.hydrateDuringSnapshot !== 'boolean'
+    || earlyStagedHydration && (!stagedTraversal || !publicAccessRecovery)) {
+    throw Object.assign(new Error('API portal early snapshot hydration requires staged verified Eightfold public access recovery'), { abortRetries: true })
+  }
+  const indiaDetailHydration = config.detail.countryFilter === 'India'
+  if (config.detail.countryFilter !== undefined && (!indiaDetailHydration || provider.countryFilter !== 'India'
+    || provider.atsPlatform !== 'eightfold' || config.detail.enabled !== true || config.detail.requireListingIdentity !== true)) {
+    throw Object.assign(new Error('API portal country-specific hydration requires native Eightfold India country identities'), { abortRetries: true })
+  }
   const deniedOrigins = new Map(), verifiedPublicJobs = new Set()
   const denialStatus = error => {
     const seen = new Set()
@@ -473,6 +483,7 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
   let indiaCount = 0
   let continuation = false
   const seenIdentities = new Set()
+  const skippedForeignNativeRecords = []
   const incompleteReasons = new Set()
   const markIncomplete = reason => { inventoryComplete = false; incompleteReasons.add(reason) }
 
@@ -547,6 +558,26 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
         if (config.mapping.location?.strategy === 'eightfold-location' && !record.locations.length) {
           markIncomplete('native-location-scope-unresolved')
           return null
+        }
+        if (indiaDetailHydration) {
+          // Pruning a detail request must not prune the listing's identity
+          // contract. Reuse the existing guard against the original listing
+          // itself to require its native ID/title/requisition/locations and
+          // exact employer position URL before country selection.
+          assertEightfoldDetailIdentity(record, { data: record }, provider)
+          const scope = readEightfoldLocationScope(record)
+          // Keep all original listing/count/snapshot records. Only an exact
+          // fully resolved foreign scope can avoid an unnecessary own-detail
+          // request; India, mixed and unresolved scopes keep the same checks.
+          if (!scope.unresolved && scope.indiaLocations.length === 0) {
+            const identity = getMappedValue(record, config.mapping.jobId)
+              ?? getMappedValue(record, config.mapping.requisitionId) ?? record.positionUrl
+            const key = String(identity)
+            if (seenIdentities.has(key)) markIncomplete('repeated-vacancy-identity')
+            seenIdentities.add(key)
+            skippedForeignNativeRecords.push(structuredClone(record))
+            return null
+          }
         }
         let detailPayload = {}
         let detailObservation = 'not-requested'
@@ -669,7 +700,7 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
         })
       } catch (error) {
         checkTraversalAbort()
-        if (!publicAccessRecovery || stagedTraversal || !denialStatus(error) || cohortPagesFetched < 1
+        if (!publicAccessRecovery || stagedTraversal && !earlyStagedHydration || !denialStatus(error) || cohortPagesFetched < 1
           || !jobs.some(job => verifiedPublicJobs.has(job))) throw error
         // A later denial cannot erase full native details already bound to an
         // exact employer role. Stop this origin and keep only those proofs.
@@ -771,14 +802,17 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
   }
 
   try {
-    const opening = await traverseListing(!stagedTraversal)
+    const opening = await traverseListing(!stagedTraversal || earlyStagedHydration)
     state = opening.state; recordsFetched = opening.recordsFetched; reportedTotal = opening.reportedTotal; continuation = opening.continuation
     if (stagedTraversal) {
       // Capture the opening raw records before hydration. No field is ignored:
       // order may change, but native IDs, locations, dates, URLs and all other
       // record values must reconcile with an independent complete closing pass.
       const openingIdentities = snapshotIdentities(opening, 'opening')
-      await hydrateRecords(opening.records)
+      // Opted-in sources bind details while reading the opening cohort, so a
+      // later denial can retain those exact positives. Complete claims still
+      // require the same independent closing snapshot of original records.
+      if (!earlyStagedHydration) await hydrateRecords(opening.records)
       checkTraversalAbort()
       try {
         const closing = await traverseListing(false), closingIdentities = snapshotIdentities(closing, 'closing')
@@ -808,6 +842,12 @@ export const runApiPortalScraper = async ({ provider, fetchJson, fetchBrowserJso
     if (!complete) for (const job of jobs) {
       job.sourceListingComplete = false
       if (publicAccessRecovery || directGreenhouseScope) { job.sourceScopeComplete = false; job.lifecycleCleanupAllowed = false }
+    }
+    if (indiaDetailHydration) {
+      Object.defineProperty(jobs, 'sourceSkippedForeignNativeRecords', { value: skippedForeignNativeRecords })
+      Object.defineProperty(jobs, 'nativeCollectionEvidence', { value: {
+        source: provider.source, skippedForeignNativeRecords,
+      } })
     }
     return attachInventoryEvidence(jobs, {
       status: complete ? recordsFetched === 0 ? 'verified-empty' : 'complete-inventory' : 'discovery-only',

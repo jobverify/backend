@@ -4,6 +4,7 @@ import {decodeHTML} from 'entities/decode'
 import {readNativeDocument,readNativeAttributeTokens} from '../../scraper-support/utils/activeNativeHtml.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {attachSourceObservationEvidence,readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+import {hasCurrentProvidenceBuild,describeCurrentProvidencePassiveTree,acceptCurrentProvidencePassiveTree,isReviewedCurrentProvidenceAuthorityContext,currentProvidenceClosureNotice,currentProvidenceHeaderContext,isReviewedCurrentProvidenceHeaderContext} from './currentPassive20261115.js'
 
 export const PROVIDENCE_INDIA_CAREERS_URL='https://www.providence.in/experienced-professionals/'
 export const PROVIDENCE_INDIA_BOARD_URL='https://careers.providence.in/'
@@ -244,6 +245,7 @@ const typedPassiveDataClass=(d,kind,publicId,listingContext=null)=>{
  return{frame,programs,...(kind==='detail'?{evidence:{opaqueInternalId}}:{})}
 }
 const passiveSurface=(d,reviewedOwner=null,kind='detail',publicId=null,listingContext=null)=>{
+ if(['board','listing','detail'].includes(kind)&&hasCurrentProvidenceBuild(d))return acceptCurrentProvidencePassiveTree(d,kind,publicId,passiveCarrierFrame).evidence
  let frame=passiveCarrierFrame(d),boardData=null,typedData=null
  if(kind==='board'&&!passiveClassesByKind.board.includes(frame.sha256)){boardData=boardPassiveDataClass(d);frame=boardData.frame}
  if(['corporate','listing','detail'].includes(kind)&&!passiveClassesByKind[kind].includes(frame.sha256)){typedData=typedPassiveDataClass(d,kind,publicId,listingContext);frame=typedData.frame}
@@ -492,8 +494,17 @@ const validateAuthorityLinks=(d,hrefs,kind)=>{
    ancestors.unshift({tag:a.tag,attrsSHA256:sha(JSON.stringify(a.attrs)),siblingTagIndex:a.parent?a.parent.children.filter(x=>typeof x!=='string'&&x.tag===a.tag).indexOf(a):0});a=a.parent
   }
   const context=sha(JSON.stringify({outerSHA256:sha(d.outer(n)),ancestors}))
-  need(authorityLinkProfiles[kind]?.includes(context),'Unreviewed whole handoff carrier/context',{kind,context})
+  need(authorityLinkProfiles[kind]?.includes(context)||hasCurrentProvidenceBuild(d)&&isReviewedCurrentProvidenceAuthorityContext(kind,context),'Unreviewed whole handoff carrier/context',{kind,context})
  }
+}
+export const describeProvidenceAuthorityValidationLinks20261115=html=>{
+ const d=tree(html)
+ return d.nodes.filter(node=>node.tag==='a'&&!node.inactive&&['https://careers.providence.in/search/','https://www.providence.in','https://www.providence.in/'].includes(node.attrs.href)).map(node=>{
+  const ancestors=[]
+  for(let parent=node.parent;parent;parent=parent.parent)ancestors.unshift({tag:parent.tag,attrsSHA256:sha(JSON.stringify(parent.attrs)),siblingTagIndex:parent.parent?parent.parent.children.filter(child=>typeof child!=='string'&&child.tag===parent.tag).indexOf(parent):0})
+  const outerHTML=d.outer(node)
+  return{kind:node.attrs.href==='https://careers.providence.in/search/'?'boardSearch':'reciprocal',context:sha(JSON.stringify({outerSHA256:sha(outerHTML),ancestors})),href:node.attrs.href,outerHTML,ancestors}
+ })
 }
 // Authority records keep their public two-field contract. The complete validated
 // selection belongs to this module; raw page digests are never canonicalized.
@@ -524,7 +535,7 @@ const rememberAuthority=(d,url,nextURL,html)=>{
  return record
 }
 export const readProvidenceAuthorityHTML=(html,url)=>{
- const d=tree(html);passiveSurface(d,null,url===PROVIDENCE_INDIA_CAREERS_URL?'corporate':'board')
+ const d=tree(html),passive=passiveSurface(d,null,url===PROVIDENCE_INDIA_CAREERS_URL?'corporate':'board')
  need(!d.nodes.some(n=>n.tag==='base'),'Unreviewed handoff base')
  if(url===PROVIDENCE_INDIA_CAREERS_URL){
   canonical(d,url);validateAuthorityLinks(d,[PROVIDENCE_INDIA_BOARD_URL],'corporate')
@@ -533,8 +544,11 @@ export const readProvidenceAuthorityHTML=(html,url)=>{
  need(url===PROVIDENCE_INDIA_BOARD_URL,'Unreviewed authority URL');tenant(d)
  validateAuthorityLinks(d,[PROVIDENCE_INDIA_SEARCH_URL],'boardSearch')
  validateAuthorityLinks(d,['https://www.providence.in','https://www.providence.in/'],'reciprocal')
- return rememberAuthority(d,url,PROVIDENCE_INDIA_SEARCH_URL,html)
+ const record=rememberAuthority(d,url,PROVIDENCE_INDIA_SEARCH_URL,html)
+ if(passive?.currentMetadataAuthorityRevision)record.currentMetadataAuthorityRevision=passive.currentMetadataAuthorityRevision
+ return record
 }
+export const describeProvidencePassive20261115=(html,kind,publicId=null)=>describeCurrentProvidencePassiveTree(tree(html),kind,publicId,passiveCarrierFrame)
 const compareAuthorityClosing=(opening,closing,kind,audit)=>{
  const first=validatedAuthorityModels.get(opening),last=validatedAuthorityModels.get(closing)
  const message=kind==='board'?'Native board authority changed during closing':'Corporate authority changed during closing'
@@ -587,7 +601,10 @@ export const describeProvidenceOwnerFrame=model=>{
 }
 
 
-const ownerFrames=new Set(['f456aaaea26d4ef0387dee9e3b65bbcebca7c5d7d0fa0712051997c9fb469e25','3bef704ac013205d52c008e1072fd3cca894c305ae3f8b8f426ef60916e44798'])
+// The 20261115 frame changes only the exact indentation around the same
+// customPlugin carrier. Its complete scripts/styles and every non-field byte
+// remain pinned; no general whitespace or executable-source masking is used.
+const ownerFrames=new Set(['f456aaaea26d4ef0387dee9e3b65bbcebca7c5d7d0fa0712051997c9fb469e25','3bef704ac013205d52c008e1072fd3cca894c305ae3f8b8f426ef60916e44798','fe3069e8d64a72f1c14d4e54ebfc3ab0540ce4b9924f773645a95ded63836228'])
 const limits={maxPages:12,maxDetails:120,maxRequests:280,sourceTimeoutMs:180000,requestTimeoutMs:15000,maxBodyBytes:3*1024*1024,maxTotalBytes:32*1024*1024}
 const optionsWithBounds=options=>{
  const result={...limits}
@@ -617,6 +634,7 @@ export const createProvidenceReader=(options={})=>{
  const fetchImpl=options.fetchImpl??globalThis.fetch;need(typeof fetchImpl==='function','Missing fetch implementation')
  const fetchCallbackErrors=new Set()
  let bytes=0,closed=false
+ const effectiveHeadersByURL=new Map()
  const stop=reason=>{if(!controller.signal.aborted)controller.abort(reason)}
  const callerAbort=()=>stop(caller.reason)
  if(caller){need(typeof caller.addEventListener==='function','Invalid caller signal');caller.addEventListener('abort',callerAbort,{once:true});if(caller.aborted)callerAbort()}
@@ -659,6 +677,8 @@ export const createProvidenceReader=(options={})=>{
    const response=await abortRace(owned,local.signal);checkRequest()
    need(response&&Number.isInteger(response.status)&&response.status>=100&&response.status<=599,'Malformed native response',{url,stage,rawStatus:response?.status})
    receipt.status=response.status;receipt.finalURL=response.url;receipt.MIME=response.headers?.get?.('content-type')??null
+   receipt.responseHeaders=typeof response.headers?.entries==='function'?Object.fromEntries(response.headers.entries()):currentProvidenceHeaderContext(response.headers)
+   receipt.effectiveHeaderContext=currentProvidenceHeaderContext(response.headers)
    need(response.url===url,'Response URL changed',{requested:url,actual:response.url})
    state.authorityValidated=true
    state.reader=response.body?.getReader?.()
@@ -673,7 +693,13 @@ export const createProvidenceReader=(options={})=>{
    const body=Buffer.concat(chunks);receipt.bodySHA256=sha(body)
    receipt.body=new TextDecoder('utf-8',{fatal:true}).decode(body);checkRequest();receipt.complete=true
    if(receipt.status!==200)throw httpError()
-   need(/^text\/html(?:\s*;|$)/i.test(receipt.MIME||''),'Unreviewed native MIME',{url,MIME:receipt.MIME})
+   need(/^text\/html(?:\s*;\s*charset\s*=\s*(?:utf-?8|"utf-?8"))?\s*$/i.test(receipt.MIME||''),'Unreviewed native MIME or declared charset',{url,MIME:receipt.MIME})
+   need(['refresh','content-disposition','location','content-location'].every(name=>receipt.effectiveHeaderContext[name]===null),'Unreviewed native response navigation or disposition',{url,headers:receipt.effectiveHeaderContext})
+   need(receipt.effectiveHeaderContext.link===null||isReviewedCurrentProvidenceHeaderContext(url,receipt.effectiveHeaderContext),'Unreviewed native linked response authority',{url,headers:receipt.effectiveHeaderContext})
+   if(hasCurrentProvidenceBuild(tree(receipt.body)))need(isReviewedCurrentProvidenceHeaderContext(url,receipt.effectiveHeaderContext),'Unreviewed current complete effective response headers',{url,headers:receipt.effectiveHeaderContext})
+   const previousHeaders=effectiveHeadersByURL.get(url)
+   need(!previousHeaders||JSON.stringify(previousHeaders)===JSON.stringify(receipt.effectiveHeaderContext),'Native effective response headers changed during closing',{url,opening:previousHeaders,closing:receipt.effectiveHeaderContext})
+   effectiveHeadersByURL.set(url,receipt.effectiveHeaderContext)
    const result={html:receipt.body,receipt};deadlines.set(result,deadline);return result
   }catch(error){
    if(caller?.aborted)throw caller.reason
@@ -770,8 +796,9 @@ const currentRole=(html,row,now)=>{
    result.authoredCriteriaLabelEvidence=authoredCriteriaLabelEvidence
   }
  }
- const closingNotice=result.model.descriptionText.match(/(?:^|[.!?]\s+)(?:this|the)\s+(?:position|role|vacancy|job)\s+(?:has been (?:filled|closed)|is (?:closed|on hold|paused)|is no longer accepting applications)\b/i)
- if(closingNotice){result.held=true;result.reasons.push('native-affirmative-own-role-closure');result.model.nativeClosureNotice=closingNotice[0]}
+ const currentActiveClosure=hasCurrentProvidenceBuild(d)?currentProvidenceClosureNotice(d.active.text(one(d.active.nodes(n=>n.tag==='body'),'current active native role body'))):null
+ const closingNotice=currentActiveClosure||result.model.descriptionText.match(/(?:^|[.!?]\s+)(?:this|the)\s+(?:position|role|vacancy|job)\s+(?:has been (?:filled|closed)|is (?:closed|on hold|paused)|is no longer accepting applications)\b/i)
+ if(closingNotice){result.held=true;result.reasons.push('native-affirmative-own-role-closure');result.model.nativeClosureNotice=typeof closingNotice==='string'?closingNotice:closingNotice[0]}
  for(const display of row.displayLocation||[]){
   const parts=display.split(',').map(x=>x.trim()),code=parts.at(-1)
   if(parts.length>=2&&/^[A-Z]{2}$/.test(code)&&code!==result.model.address.addressCountry){result.held=true;result.reasons.push('listing-detail-explicit-country-disagreement')}
@@ -791,6 +818,8 @@ export const createProvidenceScraper=(constructorOptions={})=>({
   try{
    audit.openingCorporate=await step(PROVIDENCE_INDIA_CAREERS_URL,'opening-corporate',html=>readProvidenceAuthorityHTML(html,PROVIDENCE_INDIA_CAREERS_URL))
    audit.openingBoard=await step(PROVIDENCE_INDIA_BOARD_URL,'opening-board',html=>readProvidenceAuthorityHTML(html,PROVIDENCE_INDIA_BOARD_URL))
+   const currentSubset=audit.openingBoard.currentMetadataAuthorityRevision==='20261115'
+   if(currentSubset){const receipt=one(audit.receipts.filter(receipt=>receipt.stage==='opening-corporate'),'current opening corporate response');need(isReviewedCurrentProvidenceHeaderContext(PROVIDENCE_INDIA_CAREERS_URL,receipt.effectiveHeaderContext),'Unreviewed current corporate effective response headers',{headers:receipt.effectiveHeaderContext})}
    const known=new Map([[0,PROVIDENCE_INDIA_SEARCH_URL]]),readOffsets=new Set(),rows=[],rowIDs=new Set();let total=null
    while([...known.keys()].some(x=>!readOffsets.has(x))){
     need(audit.openingListings.length<config.maxPages,'Native page cap reached',{knownOffsets:[...known.keys()],readOffsets:[...readOffsets]})
@@ -806,11 +835,15 @@ export const createProvidenceScraper=(constructorOptions={})=>({
    const pages=[...audit.openingListings].sort((a,b)=>a.start-b.start)
    need(pages[0]?.start===1&&pages.at(-1)?.end===total&&pages.every((p,i)=>!i||pages[i-1].end+1===p.start),'Native listing ranges are not contiguous')
    audit.nativeReportedChannelTotal=total;audit.nativeObservedRows=rows.length
-   need(rows.length<=config.maxDetails,'Native detail cap reached before complete role inspection',{observed:rows.length,maxDetails:config.maxDetails})
+   if(currentSubset)audit.currentReadOnlyMetadataSubset=true
+   else need(rows.length<=config.maxDetails,'Native detail cap reached before complete role inspection',{observed:rows.length,maxDetails:config.maxDetails})
+   let currentQualified=0
    for(const row of rows){
+    if(currentSubset&&(audit.openingRoles.length>=Math.min(8,config.maxDetails)||currentQualified>=2))break
     const record=await reader.read(row.sourceUrl,'opening-detail');let result
     try{result=reader.parse(record,html=>currentRole(html,row,clock()))}catch(error){if(callbackFailure||!ownedErrors.has(error)||error.nativeBudgetFailure)throw error;reader.check();result={held:true,reasons:[error.message],model:null,rawHTML:record.html,nativeEvidence:error.nativeRoleEvidence??error.nativeEvidence}}
     audit.openingRoles.push({row,...result})
+    if(!result.held)currentQualified++
    }
    for(const original of audit.openingRoles){
     const record=await reader.read(original.row.sourceUrl,'closing-detail');let result
@@ -824,6 +857,11 @@ export const createProvidenceScraper=(constructorOptions={})=>({
    audit.closingCorporate=await step(PROVIDENCE_INDIA_CAREERS_URL,'closing-corporate',html=>readProvidenceAuthorityHTML(html,PROVIDENCE_INDIA_CAREERS_URL))
    compareAuthorityClosing(audit.openingCorporate,audit.closingCorporate,'corporate',audit)
    audit.configuredBoardReconciled=true;audit.held=audit.openingRoles.filter(x=>x.held)
+   if(currentSubset){
+    const inspected=new Set(audit.openingRoles.map(item=>item.row.publicId))
+    audit.uninspectedNativeRows=rows.filter(row=>!inspected.has(row.publicId))
+    audit.held.push(...audit.uninspectedNativeRows.map(row=>({row,held:true,reasons:['full-current-native-detail-uninspected-in-bounded-subset']})))
+   }
    const allQualified=audit.openingRoles.filter(x=>!x.held),selected=config.maxJobs===null?allQualified:allQualified.slice(0,config.maxJobs)
    audit.outputLimited=selected.length!==allQualified.length
    const jobs=selected.map(({model:m})=>({source:'providence',company:'Providence',legalEmployer:null,title:m.title,jobId:m.publicId,requisitionId:null,nativePublicJobId:m.publicId,sourceUrl:m.sourceUrl,applyUrl:m.applyUrl,link:m.applyUrl,country:'India',city:m.address.addressLocality,state:m.address.addressRegion,location:[m.address.addressLocality,m.address.addressRegion,'India'].join(', '),department:null,employmentType:null,experienceRequired:null,minimumQualification:null,preferredQualification:null,requiredSkills:[],jobDescription:m.descriptionText,sourceDescription:m.descriptionText,nativeDescriptionHTML:m.descriptionHTML,postingDate:m.postingDate,closingDate:m.closingDate,nativeDatePosted:m.datePosted,nativeValidThrough:m.validThrough,originalPublicationDate:null,nativeEmployerLabel:m.employer,sourceNativeCountryEvidence:{kind:'own-JobPosting-Place-PostalAddress-addressCountry',rawCountry:m.address.addressCountry,rawAddress:m.address},sourceNativeCriteriaEvidence:{kind:'entire-own-native-description',rawHTML:m.descriptionHTML,fullText:m.descriptionText,ownerFrame:m.ownerFrame},sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceParser:audit.parser,nativeOpeningClosingMatched:true,scrapedAt:clock()}))

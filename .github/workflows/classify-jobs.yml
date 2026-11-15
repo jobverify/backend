@@ -133,6 +133,9 @@ jobs:
         run: bash scripts/portableRewriteRuntime.sh build
       - name: Verify batch extraction runtime
         run: bash scripts/portableRewriteRuntime.sh activate
+      - name: Validate batch extractor before classifying jobs
+        timeout-minutes: 5
+        run: node scripts/validateBatchEligibilityExtractor.js --verbose --download-assets
       - name: Classify saved MongoDB descriptions
         run: node scripts/classifySavedJobs.js
         env:

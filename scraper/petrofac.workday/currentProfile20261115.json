@@ -1,0 +1,2912 @@
+{
+  "source": "petrofac",
+  "company": "Petrofac",
+  "capturedAt": "2026-11-15T11:50:23.206Z",
+  "configuredHome": "https://www.petrofac.com/",
+  "careers": "https://www.petrofac.com/careers",
+  "board": "https://petrofac.referrals.selectminds.com/",
+  "documents": [
+    "https://www.petrofac.com/",
+    "https://www.petrofac.com/careers",
+    "https://petrofac.referrals.selectminds.com/",
+    "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+    "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218"
+  ],
+  "assetURLs": [
+    "https://www.petrofac.com/css/style.min.css?v=VOd8F_LuiOQpDmOI9yjtLcPzqfZeLWoWnQkVhS4uejM",
+    "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js",
+    "https://www.petrofac.com/js/global.min.js?v=M8qgHwOVXjIflZYFDD4NDEvJKg4eZLfLztI8yWMQ7dM",
+    "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js",
+    "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/promise-polyfill/dist/polyfill.min.js?v=13.9.12",
+    "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/aspnet-client-validation/dist/aspnet-validation.min.js?v=13.9.12",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-NXX7FF5",
+    "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+    "https://petrofac.referrals.selectminds.com/styles/core.css?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/styles/portal.css?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/site_css",
+    "https://petrofac.referrals.selectminds.com/js-dict?v=202307250625_0",
+    "https://petrofac.referrals.selectminds.com/teeintegration/detect_nested_iframe.js",
+    "https://petrofac.referrals.selectminds.com/detectWidthOrientation.js",
+    "https://petrofac.referrals.selectminds.com/LAB.min.js",
+    "https://petrofac.referrals.selectminds.com/portal.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/job_list.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/job_search_banner.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/facebook_status_post.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/persona.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/rfl.apply.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/modal.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/login.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/user.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/changePassword.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/desktop.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.fileupload.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.paging.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.inlineEdit.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.blurjs.min.js",
+    "https://petrofac.referrals.selectminds.com/social_api.js",
+    "https://petrofac.referrals.selectminds.com/sha1.js",
+    "https://petrofac.referrals.selectminds.com/plugins/sanitize.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.validate.1.21.0.min.js",
+    "https://petrofac.referrals.selectminds.com/plugins/chosen.jquery.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.detectmobilebrowser.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.history.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.easing.1.3.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.colorbox.min.js",
+    "https://petrofac.referrals.selectminds.com/plugins/bootstrap/bootstrap-popover.js",
+    "https://petrofac.referrals.selectminds.com/plugins/json2.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery-ui-1.14.0.custom.min.js",
+    "https://petrofac.referrals.selectminds.com/jquery/jquery-3.7.1.min.js",
+    "https://petrofac.referrals.selectminds.com/styles/job_details.css?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/job_details.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/referral.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/video.js?v=apptss.2026.PRD.1.5.10",
+    "https://petrofac.referrals.selectminds.com/jquery/jquery.autosize-min.js",
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.jscrollpane.min.js"
+  ],
+  "nativeDeclaredReferences": [
+    {
+      "url": "https://www.petrofac.com/css/style.min.css?v=VOd8F_LuiOQpDmOI9yjtLcPzqfZeLWoWnQkVhS4uejM",
+      "parent": "https://www.petrofac.com/",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js",
+      "parent": "https://www.petrofac.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.petrofac.com/js/global.min.js?v=M8qgHwOVXjIflZYFDD4NDEvJKg4eZLfLztI8yWMQ7dM",
+      "parent": "https://www.petrofac.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js",
+      "parent": "https://www.petrofac.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/promise-polyfill/dist/polyfill.min.js?v=13.9.12",
+      "parent": "https://www.petrofac.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/aspnet-client-validation/dist/aspnet-validation.min.js?v=13.9.12",
+      "parent": "https://www.petrofac.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-NXX7FF5",
+      "parent": "https://www.petrofac.com/",
+      "kind": "current-exact-inline-GTM-loader"
+    },
+    {
+      "url": "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+      "parent": "https://www.petrofac.com/",
+      "kind": "current-exact-inline-ApplicationInsights-loader"
+    },
+    {
+      "url": "https://www.petrofac.com/css/style.min.css?v=VOd8F_LuiOQpDmOI9yjtLcPzqfZeLWoWnQkVhS4uejM",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.petrofac.com/js/global.min.js?v=M8qgHwOVXjIflZYFDD4NDEvJKg4eZLfLztI8yWMQ7dM",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/promise-polyfill/dist/polyfill.min.js?v=13.9.12",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/aspnet-client-validation/dist/aspnet-validation.min.js?v=13.9.12",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://www.googletagmanager.com/gtm.js?id=GTM-NXX7FF5",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "current-exact-inline-GTM-loader"
+    },
+    {
+      "url": "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+      "parent": "https://www.petrofac.com/careers",
+      "kind": "current-exact-inline-ApplicationInsights-loader"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/styles/core.css?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/styles/portal.css?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/site_css",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/js-dict?v=202307250625_0",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/teeintegration/detect_nested_iframe.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/detectWidthOrientation.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/LAB.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/portal.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/job_list.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/job_search_banner.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/facebook_status_post.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/persona.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/rfl.apply.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/modal.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/login.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/user.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/changePassword.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/desktop.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.fileupload.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.paging.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.inlineEdit.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.blurjs.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/social_api.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/sha1.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/sanitize.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.validate.1.21.0.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/chosen.jquery.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.detectmobilebrowser.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.history.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.easing.1.3.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.colorbox.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/bootstrap/bootstrap-popover.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/json2.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery-ui-1.14.0.custom.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jquery/jquery-3.7.1.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/styles/core.css?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/styles/job_details.css?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/site_css",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/js-dict?v=202307250625_0",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/teeintegration/detect_nested_iframe.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/detectWidthOrientation.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/LAB.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/job_details.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/referral.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/video.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/facebook_status_post.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/persona.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/rfl.apply.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/modal.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/login.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/user.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/changePassword.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/desktop.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.fileupload.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jquery/jquery.autosize-min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.jscrollpane.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/social_api.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/sha1.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/sanitize.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.validate.1.21.0.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/chosen.jquery.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.detectmobilebrowser.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.history.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.easing.1.3.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.colorbox.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/bootstrap/bootstrap-popover.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/json2.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery-ui-1.14.0.custom.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jquery/jquery-3.7.1.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/styles/core.css?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/styles/job_details.css?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/site_css",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-link"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/js-dict?v=202307250625_0",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/teeintegration/detect_nested_iframe.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/detectWidthOrientation.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/LAB.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "direct-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/job_details.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/referral.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/video.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/facebook_status_post.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/persona.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/rfl.apply.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/modal.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/login.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/user.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/changePassword.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/desktop.js?v=apptss.2026.PRD.1.5.10",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.fileupload.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jquery/jquery.autosize-min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.jscrollpane.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/social_api.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/sha1.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/sanitize.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.validate.1.21.0.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/chosen.jquery.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.detectmobilebrowser.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.history.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.easing.1.3.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery.colorbox.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/bootstrap/bootstrap-popover.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/json2.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/plugins/jquery-ui-1.14.0.custom.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jquery/jquery-3.7.1.min.js",
+      "parent": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "kind": "current-LAB-script"
+    }
+  ],
+  "originalPackets": {
+    "https://www.petrofac.com/": {
+      "status": 200,
+      "finalURL": "https://www.petrofac.com/",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 123501,
+      "sha256": "59b292de777ce821a9f076b4204415a84dacf022b316fa136a0d2598d2754d0c",
+      "normalizedDocumentSHA256": "59b292de777ce821a9f076b4204415a84dacf022b316fa136a0d2598d2754d0c",
+      "securityHeaders": {
+        "content-security-policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' script.hotjar.com static.hotjar.com js.monitor.azure.com https://www.gstatic.com https://www.google.com https://accounts.google.com https://apikeys.civiccomputing.com https://cc.cdn.civiccomputing.com https://cdnjs.cloudflare.com https://connect.facebook.net https://optimize.google.com https://snap.licdn.com https://www.civicuk.com https://www.google-analytics.com https://www.googleanalytics.com https://www.googleoptimize.com https://www.googletagmanager.com; object-src 'self'; frame-ancestors 'self'; child-src https://s2.chorus-mk.thirdlight.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/; frame-src td.doubleclick.net marketplace.umbraco.com https://www.google.com/ https://s2.chorus-mk.thirdlight.com/ https://s3.chorus-mk.thirdlight.com/ https://s4.chorus-mk.thirdlight.com/ https://www.buzzsprout.com/ https://open.spotify.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/ www.googletagmanager.com https://optimize.google.com; img-src 'self' data: storage.googleapis.com dashboard.umbraco.com i.ytimg.com https://p.adsymptotic.com https://www.gstatic.com https://dc.ads.linkedin.com https://px.ads.linkedin.com https://www.facebook.com https://optimize.google.com https://www.google-analytics.com https://www.googletagmanager.com www.linkedin.com; style-src 'self' 'unsafe-inline' https://optimize.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "https://www.petrofac.com/careers": {
+      "status": 200,
+      "finalURL": "https://www.petrofac.com/careers",
+      "mime": "text/html; charset=utf-8",
+      "bytes": 148627,
+      "sha256": "448d0b8ee3946521059d20e83c5624496727fbb5d800146a5add9cae462a8e98",
+      "normalizedDocumentSHA256": "448d0b8ee3946521059d20e83c5624496727fbb5d800146a5add9cae462a8e98",
+      "securityHeaders": {
+        "content-security-policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' script.hotjar.com static.hotjar.com js.monitor.azure.com https://www.gstatic.com https://www.google.com https://accounts.google.com https://apikeys.civiccomputing.com https://cc.cdn.civiccomputing.com https://cdnjs.cloudflare.com https://connect.facebook.net https://optimize.google.com https://snap.licdn.com https://www.civicuk.com https://www.google-analytics.com https://www.googleanalytics.com https://www.googleoptimize.com https://www.googletagmanager.com; object-src 'self'; frame-ancestors 'self'; child-src https://s2.chorus-mk.thirdlight.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/; frame-src td.doubleclick.net marketplace.umbraco.com https://www.google.com/ https://s2.chorus-mk.thirdlight.com/ https://s3.chorus-mk.thirdlight.com/ https://s4.chorus-mk.thirdlight.com/ https://www.buzzsprout.com/ https://open.spotify.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/ www.googletagmanager.com https://optimize.google.com; img-src 'self' data: storage.googleapis.com dashboard.umbraco.com i.ytimg.com https://p.adsymptotic.com https://www.gstatic.com https://dc.ads.linkedin.com https://px.ads.linkedin.com https://www.facebook.com https://optimize.google.com https://www.google-analytics.com https://www.googletagmanager.com www.linkedin.com; style-src 'self' 'unsafe-inline' https://optimize.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/",
+      "mime": "text/html;charset=utf-8",
+      "bytes": 34695,
+      "sha256": "588945aafd06684eacb3f902c2a618d099d3079975e78cea203b6913b1ea367e",
+      "normalizedDocumentSHA256": "880d55f293b102b04e6efeafed859eed80c50297fc10cd2d43db8d78b7a554cc",
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "mime": "text/html;charset=utf-8",
+      "bytes": 56800,
+      "sha256": "d0861faaacde503026d73649409665dd5726c14f62ca38dbdc1848a7b70f5691",
+      "normalizedDocumentSHA256": "bf0c1d90abb593c05ebaf4b94480dc2afb1b756cc306b2d7aa7fd969d2f14798",
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "mime": "text/html;charset=utf-8",
+      "bytes": 48485,
+      "sha256": "41a091b16b91916ff11ae820fbbeda163202568f9e05414655f91ed01c53af99",
+      "normalizedDocumentSHA256": "9a4a39b47dc5d23ee20b88e6b335466adc944763d5ffd8686c69732e1a4012b8",
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://www.petrofac.com/css/style.min.css?v=VOd8F_LuiOQpDmOI9yjtLcPzqfZeLWoWnQkVhS4uejM": {
+      "status": 200,
+      "finalURL": "https://www.petrofac.com/css/style.min.css?v=VOd8F_LuiOQpDmOI9yjtLcPzqfZeLWoWnQkVhS4uejM",
+      "mime": "text/css",
+      "bytes": 265832,
+      "sha256": "54e77c17f2ee88e4290e6388f728ed2dc3f3a9f65e2d6a169d0915852e2e7a33",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' script.hotjar.com static.hotjar.com js.monitor.azure.com https://www.gstatic.com https://www.google.com https://accounts.google.com https://apikeys.civiccomputing.com https://cc.cdn.civiccomputing.com https://cdnjs.cloudflare.com https://connect.facebook.net https://optimize.google.com https://snap.licdn.com https://www.civicuk.com https://www.google-analytics.com https://www.googleanalytics.com https://www.googleoptimize.com https://www.googletagmanager.com; object-src 'self'; frame-ancestors 'self'; child-src https://s2.chorus-mk.thirdlight.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/; frame-src td.doubleclick.net marketplace.umbraco.com https://www.google.com/ https://s2.chorus-mk.thirdlight.com/ https://s3.chorus-mk.thirdlight.com/ https://s4.chorus-mk.thirdlight.com/ https://www.buzzsprout.com/ https://open.spotify.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/ www.googletagmanager.com https://optimize.google.com; img-src 'self' data: storage.googleapis.com dashboard.umbraco.com i.ytimg.com https://p.adsymptotic.com https://www.gstatic.com https://dc.ads.linkedin.com https://px.ads.linkedin.com https://www.facebook.com https://optimize.google.com https://www.google-analytics.com https://www.googletagmanager.com www.linkedin.com; style-src 'self' 'unsafe-inline' https://optimize.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js": {
+      "status": 200,
+      "finalURL": "https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.4/lottie.min.js",
+      "mime": "application/javascript; charset=utf-8",
+      "bytes": 279441,
+      "sha256": "461dc565cc5bb7cce19c7ce7b71037a33e5d27f83ad37c8f3afccd53862662c5",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://www.petrofac.com/js/global.min.js?v=M8qgHwOVXjIflZYFDD4NDEvJKg4eZLfLztI8yWMQ7dM": {
+      "status": 200,
+      "finalURL": "https://www.petrofac.com/js/global.min.js?v=M8qgHwOVXjIflZYFDD4NDEvJKg4eZLfLztI8yWMQ7dM",
+      "mime": "text/javascript",
+      "bytes": 556040,
+      "sha256": "33caa01f03955e321f9596050c3e0d0c4bc92a0e1e64b7cbced23cc96310edd3",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' script.hotjar.com static.hotjar.com js.monitor.azure.com https://www.gstatic.com https://www.google.com https://accounts.google.com https://apikeys.civiccomputing.com https://cc.cdn.civiccomputing.com https://cdnjs.cloudflare.com https://connect.facebook.net https://optimize.google.com https://snap.licdn.com https://www.civicuk.com https://www.google-analytics.com https://www.googleanalytics.com https://www.googleoptimize.com https://www.googletagmanager.com; object-src 'self'; frame-ancestors 'self'; child-src https://s2.chorus-mk.thirdlight.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/; frame-src td.doubleclick.net marketplace.umbraco.com https://www.google.com/ https://s2.chorus-mk.thirdlight.com/ https://s3.chorus-mk.thirdlight.com/ https://s4.chorus-mk.thirdlight.com/ https://www.buzzsprout.com/ https://open.spotify.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/ www.googletagmanager.com https://optimize.google.com; img-src 'self' data: storage.googleapis.com dashboard.umbraco.com i.ytimg.com https://p.adsymptotic.com https://www.gstatic.com https://dc.ads.linkedin.com https://px.ads.linkedin.com https://www.facebook.com https://optimize.google.com https://www.google-analytics.com https://www.googletagmanager.com www.linkedin.com; style-src 'self' 'unsafe-inline' https://optimize.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js": {
+      "status": 200,
+      "finalURL": "https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.1/iframeResizer.min.js",
+      "mime": "application/javascript; charset=utf-8",
+      "bytes": 14132,
+      "sha256": "4bc7f443f57d55c7eba98816a3d1054bdcee0cc74f4c1302f82056d118f141bb",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/promise-polyfill/dist/polyfill.min.js?v=13.9.12": {
+      "status": 200,
+      "finalURL": "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/promise-polyfill/dist/polyfill.min.js?v=13.9.12",
+      "mime": "text/javascript",
+      "bytes": 4402,
+      "sha256": "e555151e63c492ea4f05ecedbcaf488acecfdf147d814e1920bcef9b028968ab",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' script.hotjar.com static.hotjar.com js.monitor.azure.com https://www.gstatic.com https://www.google.com https://accounts.google.com https://apikeys.civiccomputing.com https://cc.cdn.civiccomputing.com https://cdnjs.cloudflare.com https://connect.facebook.net https://optimize.google.com https://snap.licdn.com https://www.civicuk.com https://www.google-analytics.com https://www.googleanalytics.com https://www.googleoptimize.com https://www.googletagmanager.com; object-src 'self'; frame-ancestors 'self'; child-src https://s2.chorus-mk.thirdlight.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/; frame-src td.doubleclick.net marketplace.umbraco.com https://www.google.com/ https://s2.chorus-mk.thirdlight.com/ https://s3.chorus-mk.thirdlight.com/ https://s4.chorus-mk.thirdlight.com/ https://www.buzzsprout.com/ https://open.spotify.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/ www.googletagmanager.com https://optimize.google.com; img-src 'self' data: storage.googleapis.com dashboard.umbraco.com i.ytimg.com https://p.adsymptotic.com https://www.gstatic.com https://dc.ads.linkedin.com https://px.ads.linkedin.com https://www.facebook.com https://optimize.google.com https://www.google-analytics.com https://www.googletagmanager.com www.linkedin.com; style-src 'self' 'unsafe-inline' https://optimize.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/aspnet-client-validation/dist/aspnet-validation.min.js?v=13.9.12": {
+      "status": 200,
+      "finalURL": "https://www.petrofac.com/App_Plugins/UmbracoForms/Assets/aspnet-client-validation/dist/aspnet-validation.min.js?v=13.9.12",
+      "mime": "text/javascript",
+      "bytes": 20681,
+      "sha256": "533dc84c7a5fec0d77edf9635b3dd382488b380bae1fcf8450f4cdb99fc6acbc",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "script-src 'self' 'unsafe-eval' 'unsafe-inline' script.hotjar.com static.hotjar.com js.monitor.azure.com https://www.gstatic.com https://www.google.com https://accounts.google.com https://apikeys.civiccomputing.com https://cc.cdn.civiccomputing.com https://cdnjs.cloudflare.com https://connect.facebook.net https://optimize.google.com https://snap.licdn.com https://www.civicuk.com https://www.google-analytics.com https://www.googleanalytics.com https://www.googleoptimize.com https://www.googletagmanager.com; object-src 'self'; frame-ancestors 'self'; child-src https://s2.chorus-mk.thirdlight.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/; frame-src td.doubleclick.net marketplace.umbraco.com https://www.google.com/ https://s2.chorus-mk.thirdlight.com/ https://s3.chorus-mk.thirdlight.com/ https://s4.chorus-mk.thirdlight.com/ https://www.buzzsprout.com/ https://open.spotify.com/ https://tools.eurolandir.com/ https://www.linkedin.com/ https://www.petrofac.com/ https://www.youtube.com/ www.googletagmanager.com https://optimize.google.com; img-src 'self' data: storage.googleapis.com dashboard.umbraco.com i.ytimg.com https://p.adsymptotic.com https://www.gstatic.com https://dc.ads.linkedin.com https://px.ads.linkedin.com https://www.facebook.com https://optimize.google.com https://www.google-analytics.com https://www.googletagmanager.com www.linkedin.com; style-src 'self' 'unsafe-inline' https://optimize.google.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://www.googletagmanager.com/gtm.js?id=GTM-NXX7FF5": {
+      "status": 200,
+      "finalURL": "https://www.googletagmanager.com/gtm.js?id=GTM-NXX7FF5",
+      "mime": "application/javascript; charset=utf-8",
+      "bytes": 426509,
+      "sha256": "906425864d88b4ea8084baa7715b61b5d6912e80ad7e69473e83d549efeac8c7",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://js.monitor.azure.com/scripts/b/ai.2.min.js": {
+      "status": 200,
+      "finalURL": "https://js.monitor.azure.com/scripts/b/ai.2.min.js",
+      "mime": "text/javascript; charset=utf-8",
+      "bytes": 123063,
+      "sha256": "bde9be4cbe799089a419225f87c2a9986043f6c7cb55853aaadab7200713f136",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/styles/core.css?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/styles/core.css?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/css",
+      "bytes": 396038,
+      "sha256": "8261a731882ea96d89fb6cccb671d54165cae888d83249b7d60d95d0519eabbe",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/styles/portal.css?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/styles/portal.css?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/css",
+      "bytes": 169376,
+      "sha256": "1d5393890e555b03e55896270792c9cd66a75cba0ce38a19a327dd6173109b05",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/site_css": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/site_css",
+      "mime": "text/css;charset=utf-8",
+      "bytes": 18919,
+      "sha256": "d8c92352335ca6c9e2c42b6e1aada2dee01db83d7a111dd1a75e7c09e6c6bf99",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/js-dict?v=202307250625_0": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/js-dict?v=202307250625_0",
+      "mime": "text/javascript;charset=utf-8",
+      "bytes": 33991,
+      "sha256": "e8e30ba594d599fc4968864fc78604923d5b7f93e2f0fa086da93ab76b98308e",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/teeintegration/detect_nested_iframe.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/teeintegration/detect_nested_iframe.js",
+      "mime": "text/javascript",
+      "bytes": 573,
+      "sha256": "f920fb0861826775323064b18018bb0523a391a047288ca78c24edd6cabb32ab",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/detectWidthOrientation.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/detectWidthOrientation.js",
+      "mime": "text/javascript",
+      "bytes": 1091,
+      "sha256": "991710b599457fa2939870c7d4a200a9cf29852822adcc82f20d74df2d6d86f1",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/LAB.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/LAB.min.js",
+      "mime": "text/javascript",
+      "bytes": 5490,
+      "sha256": "bf1fce150ff945b16370d23bed230287f97d36a1b0a13f62abeb89c2ca3f61e7",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/portal.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/portal.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 6088,
+      "sha256": "7f745d98d53f4c892919207ccfbe650ce13a2fd4517ef79792e5060b082c4ef3",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/job_list.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/job_list.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 49585,
+      "sha256": "ff26ffd7e5828c13e67a45e46cbe4f8722a9d6bba79607ebbe999fe038949da4",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/job_search_banner.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/job_search_banner.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 26336,
+      "sha256": "22999543c51d7edb56938b36017e866548af15344dc9c1c833ac3b509cd02beb",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/facebook_status_post.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/facebook_status_post.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 7888,
+      "sha256": "ea8dc5ca2d9b6fd2ae0ec59285686c3026cef114b7771df3ccb528b27975cb9b",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/persona.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/persona.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 6009,
+      "sha256": "9bde3e7b31766f38d11854eb79597a8500339e72c664bd26885267ee222f4c48",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/rfl.apply.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/rfl.apply.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 33086,
+      "sha256": "70b713057827d0e249ac226edd64e5a3ad0824543b4bdf664bdb8244c7ed42a6",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/modal.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/modal.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 17041,
+      "sha256": "891a188ded9377e59bbd06e5f40087f27f1d70c898599988af1a5e4142ac4c36",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/login.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/login.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 23811,
+      "sha256": "e837e6db78b485e75e563278dcc8386193560d8e23e9e2fc227d1c081624610a",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/user.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/user.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 31516,
+      "sha256": "1ade491b4cdcc611627e5bd288df7e4045bb4a23eb942a5728e974d9d748e601",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/changePassword.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/changePassword.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 10513,
+      "sha256": "5d14595e045bdc7e4999660e6cfdde714d6c2554fa6db79864422c8008e502a1",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/desktop.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/desktop.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 134484,
+      "sha256": "d04b7f4116e976c6789809c95c3ec282813546114dec547fec99305b7a3d8dc4",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.fileupload.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.fileupload.js",
+      "mime": "text/javascript",
+      "bytes": 63101,
+      "sha256": "d5fec125af2b1f86e056fc96d6ea1a2e5b9be91fead0409d4b79f78f6b96e2ff",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.paging.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.paging.js",
+      "mime": "text/javascript",
+      "bytes": 17901,
+      "sha256": "1a2a5a479a3d98c3173224e2b319ec6d4f29acf8c2dd9d8655f8a2558f1a551d",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.inlineEdit.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.inlineEdit.js",
+      "mime": "text/javascript",
+      "bytes": 11338,
+      "sha256": "f940c6fa0b0300f57ea6025f10f6fa3d88cc7882b90bcc691171180768d04c8b",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.blurjs.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.blurjs.min.js",
+      "mime": "text/javascript",
+      "bytes": 5701,
+      "sha256": "877d327ab40ed3d03414094c72cb6798916632a2602cfdbfd6b788fe16560f14",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/social_api.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/social_api.js",
+      "mime": "text/javascript",
+      "bytes": 2253,
+      "sha256": "f5db2e8f7c231da87e1800bf3c15fcb637fc41100d1673f357532d85331fad34",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/sha1.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/sha1.js",
+      "mime": "text/javascript",
+      "bytes": 3014,
+      "sha256": "e738f6664718da2330682d40d4c94cc15316fb47accdea48e75d80d61d812316",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/sanitize.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/sanitize.js",
+      "mime": "text/javascript",
+      "bytes": 9009,
+      "sha256": "17e8f4cfb39ed994b00c9a0df4040975a487ea507dcd39bfca65795a027ee654",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.validate.1.21.0.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.validate.1.21.0.min.js",
+      "mime": "text/javascript",
+      "bytes": 25308,
+      "sha256": "ba66d3685c4fdf516fe8ed62b692d2ff7fafe5f3805832ce533966bce19a295e",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/chosen.jquery.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/chosen.jquery.js",
+      "mime": "text/javascript",
+      "bytes": 50789,
+      "sha256": "edca2b6dc2639f85f3054791f1f138ac96c95417e5f5aaeefdf348ae428146ca",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.detectmobilebrowser.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.detectmobilebrowser.js",
+      "mime": "text/javascript",
+      "bytes": 2256,
+      "sha256": "b2f436b9f4290ab0cc27dad8d309eb7fb0aa2eb75e78f2970d302cf95e07980b",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.history.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.history.js",
+      "mime": "text/javascript",
+      "bytes": 24459,
+      "sha256": "9973e32aa822e04b3d446633817aad0219607fca9a6ebbf47d3968f8b8269548",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.easing.1.3.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.easing.1.3.js",
+      "mime": "text/javascript",
+      "bytes": 8063,
+      "sha256": "63709f8c3cbb640f3476eeca0379d3d1016f1d61f2b3e34e612c76d8b3486eb3",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.colorbox.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.colorbox.min.js",
+      "mime": "text/javascript",
+      "bytes": 10868,
+      "sha256": "327ed2fcb1a2bb39d4cafd13a62000cbc31af0f67a16dc65bff0598130b97cd0",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/bootstrap/bootstrap-popover.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/bootstrap/bootstrap-popover.js",
+      "mime": "text/javascript",
+      "bytes": 19967,
+      "sha256": "5daa4ce678f568bcb55293f67fccbb1dd41b10e18b000df3bf53dc486436c8fc",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/json2.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/json2.js",
+      "mime": "text/javascript",
+      "bytes": 17382,
+      "sha256": "edc64f32f58fe144f7b0db84d73c7879f696e1ffcb4788c39959d8b8bf26e415",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery-ui-1.14.0.custom.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery-ui-1.14.0.custom.min.js",
+      "mime": "text/javascript",
+      "bytes": 252068,
+      "sha256": "07e6752be4bd97d9cccbec5023e31e027297c52fdf913b7d045f2560e06945d5",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/jquery/jquery-3.7.1.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/jquery/jquery-3.7.1.min.js",
+      "mime": "text/javascript",
+      "bytes": 87533,
+      "sha256": "fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/styles/job_details.css?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/styles/job_details.css?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/css",
+      "bytes": 138279,
+      "sha256": "d76469891f3a829113e738d848971da9a96d80b4d75a86ac98661d97afc96dea",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/job_details.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/job_details.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 24076,
+      "sha256": "db3700cb03bf018cd989d5982d326b30eec6e88e951c243e35e6f36da55fb115",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/referral.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/referral.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 39184,
+      "sha256": "c68ede5cc4ee6bd1d7ff70d53b013be7d8597a1b863cde8c9d358173ba7e3982",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/video.js?v=apptss.2026.PRD.1.5.10": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/video.js?v=apptss.2026.PRD.1.5.10",
+      "mime": "text/javascript",
+      "bytes": 14796,
+      "sha256": "66a4ed2a3af862d2c310b25542d757b661b672118be7f13acfcf9e90ac66c003",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/jquery/jquery.autosize-min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/jquery/jquery.autosize-min.js",
+      "mime": "text/javascript",
+      "bytes": 1918,
+      "sha256": "44367bcf139fbfc9b4b646e4d5950acfb01b70188238eadeeb1648de6fc42169",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    },
+    "https://petrofac.referrals.selectminds.com/plugins/jquery.jscrollpane.min.js": {
+      "status": 200,
+      "finalURL": "https://petrofac.referrals.selectminds.com/plugins/jquery.jscrollpane.min.js",
+      "mime": "text/javascript",
+      "bytes": 17642,
+      "sha256": "16c3622e71ef862f7bf048286b13f62e1723c0fce6986ae4aa4450946f37b0ae",
+      "normalizedDocumentSHA256": null,
+      "securityHeaders": {
+        "content-security-policy": "upgrade-insecure-requests;frame-ancestors 'self' *.facebook.com *.tbe.com;",
+        "content-security-policy-report-only": null,
+        "content-disposition": null,
+        "refresh": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    }
+  },
+  "reviewedWholeProgramVariants": {
+    "https://www.googletagmanager.com/gtm.js?id=GTM-NXX7FF5": [
+      {
+        "bytes": 426509,
+        "sha256": "906425864d88b4ea8084baa7715b61b5d6912e80ad7e69473e83d549efeac8c7"
+      },
+      {
+        "bytes": 426491,
+        "sha256": "51905b9062e41b59ecaca475d797610a45e22f91e0ca94f9cddd263516f2daed"
+      }
+    ]
+  },
+  "roleModels": [
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "title": "HR Digital Associate - Data Management",
+      "location": "Chennai, India",
+      "nativeID": "12272",
+      "requisition": "093682",
+      "criteriaCharacters": 4025,
+      "criteriaSHA256": "315f585ed5d01b672ddcef7af541db5313aa3a2f107de49759f91cc8fd0e3194",
+      "nativeMetadata": [
+        {
+          "attrs": {
+            "class": "field_category"
+          },
+          "text": "📁 HR Digital Associate - Data Management"
+        },
+        {
+          "attrs": {
+            "class": "pref_field field_job_post_date"
+          },
+          "text": "📅    Nov 02, 2026 Post Date"
+        },
+        {
+          "attrs": {
+            "class": "pref_field field_job_external_id"
+          },
+          "text": "📅    093682 Requisition #"
+        }
+      ],
+      "nativeRoleProgramFragment": "job: {\n\t\t\tid: \"12272\",\n\t\t\ttitle: \"HR Digital Associate - Data Management\",\n\t\t\tlocation: { name: \"Chennai, India\", id: \"2083\" },\n\t\t\tcategory: { name: \"HR Digital Associate - Data Management\", id: \"3475\" },\n\t\t\tcountry: { name: \"India\", id: \"0\" },\n\t\t\tjobco: { name: \"Human Resources:HR Digital:Data Management:Corporate:SS\", id: \"15252\" },\n\t\t\tcompany: \"Human Resources:HR Digital:Data Management:Corporate:SS\"\n\t\t},"
+    },
+    {
+      "url": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "title": "Senior Engineer- Electrical",
+      "location": "Chennai, India",
+      "nativeID": "12218",
+      "requisition": "092345",
+      "criteriaCharacters": 4639,
+      "criteriaSHA256": "4436cb70851d537449effee4fcc9f3a091117ff16c048ccd8cefee76be8720d9",
+      "nativeMetadata": [
+        {
+          "attrs": {
+            "class": "field_category"
+          },
+          "text": "📁 Senior Engineer - Electrical"
+        },
+        {
+          "attrs": {
+            "class": "pref_field field_job_post_date"
+          },
+          "text": "📅    Sep 02, 2026 Post Date"
+        },
+        {
+          "attrs": {
+            "class": "pref_field field_job_external_id"
+          },
+          "text": "📅    092345 Requisition #"
+        }
+      ],
+      "nativeRoleProgramFragment": "job: {\n\t\t\tid: \"12218\",\n\t\t\ttitle: \"Senior Engineer- Electrical\",\n\t\t\tlocation: { name: \"Chennai, India\", id: \"2083\" },\n\t\t\tcategory: { name: \"Senior Engineer - Electrical\", id: \"651\" },\n\t\t\tcountry: { name: \"India\", id: \"0\" },\n\t\t\tjobco: { name: \"Engineering:Electrical:Onshore\", id: \"13874\" },\n\t\t\tcompany: \"Engineering:Electrical:Onshore\"\n\t\t},"
+    }
+  ],
+  "cards": [
+    {
+      "title": "HR Digital Associate - Data Management",
+      "url": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+      "nativeCardText": "New Hot HR Digital Associate - Data Management 🔍 Chennai, India We are seeking an experienced Data Management Specialist with 4-8 years of experience in Oracle HCM Cloud to manage HR master data, data quality,... HR Digital Associate - Data Management Nov 02, 2026 Post Date",
+      "originalNativeCard": {
+        "tag": "div",
+        "attrs": {
+          "id": "job_list_12272",
+          "class": "job_list_row jlr_Odd"
+        },
+        "children": [
+          "\n\n\t\t\t\t\t\t\t\t\t\t",
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "jlr_right_hldr"
+            },
+            "children": [
+              "\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_title"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "flg_hldr"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "span",
+                        "attrs": {
+                          "class": "job_flg font_header_bold new_flg"
+                        },
+                        "children": [
+                          "New"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "span",
+                        "attrs": {
+                          "class": "job_flg font_header_bold hot_flg priority_on"
+                        },
+                        "children": [
+                          "Hot"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/hr-digital-associate-data-management-12272",
+                          "class": "job_link font_bold"
+                        },
+                        "children": [
+                          "HR Digital Associate - Data Management"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      }
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {
+                      "class": "jlr_location"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/12272/other-jobs-matching/location-only",
+                          "class": "location"
+                        },
+                        "children": [
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "loc_icon entypo"
+                            },
+                            "children": [
+                              "&#128269;"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "Chennai, India"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              "\n\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_content"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_left"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_description"
+                        },
+                        "children": [
+                          "We are seeking an experienced Data Management Specialist with 4-8 years of experience in Oracle HCM Cloud to manage HR master data, data quality,..."
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_right"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_category_field job_category"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold"
+                            },
+                            "children": [
+                              "HR Digital Associate - Data Management"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_preferred_field job_post_date"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold job_post_date"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_value"
+                                },
+                                "children": [
+                                  "Nov 02, 2026"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              },
+                              " ",
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_label"
+                                },
+                                "children": [
+                                  "Post Date"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              " ",
+              "\n\t\t\t\t\t\t\t\t\t\t"
+            ],
+            "activeFrame": false,
+            "inert": false
+          },
+          "\n\n\t\t\t\t\t\t\t\t\t"
+        ],
+        "activeFrame": false,
+        "inert": false
+      }
+    },
+    {
+      "title": "Senior Engineer- Electrical",
+      "url": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+      "nativeCardText": "Hot Senior Engineer- Electrical 🔍 Chennai, India Petrofac is a leading international service provider to the energy industry, with a diverse client portfolio including many of the world’s leading... Senior Engineer - Electrical Sep 02, 2026 Post Date",
+      "originalNativeCard": {
+        "tag": "div",
+        "attrs": {
+          "id": "job_list_12218",
+          "class": "job_list_row jlr_Even"
+        },
+        "children": [
+          "\n\n\t\t\t\t\t\t\t\t\t\t",
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "jlr_right_hldr"
+            },
+            "children": [
+              "\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_title"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "flg_hldr"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "span",
+                        "attrs": {
+                          "class": "job_flg font_header_bold hot_flg priority_on"
+                        },
+                        "children": [
+                          "Hot"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/senior-engineer-electrical-12218",
+                          "class": "job_link font_bold"
+                        },
+                        "children": [
+                          "Senior Engineer- Electrical"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      }
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {
+                      "class": "jlr_location"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/12218/other-jobs-matching/location-only",
+                          "class": "location"
+                        },
+                        "children": [
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "loc_icon entypo"
+                            },
+                            "children": [
+                              "&#128269;"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "Chennai, India"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              "\n\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_content"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_left"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_description"
+                        },
+                        "children": [
+                          "Petrofac is a leading international service provider to the energy industry, with a diverse client portfolio including many of the world’s leading..."
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_right"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_category_field job_category"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold"
+                            },
+                            "children": [
+                              "Senior Engineer - Electrical"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_preferred_field job_post_date"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold job_post_date"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_value"
+                                },
+                                "children": [
+                                  "Sep 02, 2026"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              },
+                              " ",
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_label"
+                                },
+                                "children": [
+                                  "Post Date"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              " ",
+              "\n\t\t\t\t\t\t\t\t\t\t"
+            ],
+            "activeFrame": false,
+            "inert": false
+          },
+          "\n\n\t\t\t\t\t\t\t\t\t"
+        ],
+        "activeFrame": false,
+        "inert": false
+      }
+    },
+    {
+      "title": "Senior Manager - Electrical",
+      "url": "https://petrofac.referrals.selectminds.com/jobs/senior-manager-electrical-12204",
+      "nativeCardText": "Hot Senior Manager - Electrical 🔍 Chennai, India Petrofac is a leading international service provider to the energy industry, with a diverse client portfolio including many of the world’s leading... Senior Manager - Electrical Aug 25, 2026 Post Date",
+      "originalNativeCard": {
+        "tag": "div",
+        "attrs": {
+          "id": "job_list_12204",
+          "class": "job_list_row jlr_Odd"
+        },
+        "children": [
+          "\n\n\t\t\t\t\t\t\t\t\t\t",
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "jlr_right_hldr"
+            },
+            "children": [
+              "\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_title"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "flg_hldr"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "span",
+                        "attrs": {
+                          "class": "job_flg font_header_bold hot_flg priority_on"
+                        },
+                        "children": [
+                          "Hot"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/senior-manager-electrical-12204",
+                          "class": "job_link font_bold"
+                        },
+                        "children": [
+                          "Senior Manager - Electrical"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      }
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {
+                      "class": "jlr_location"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/12204/other-jobs-matching/location-only",
+                          "class": "location"
+                        },
+                        "children": [
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "loc_icon entypo"
+                            },
+                            "children": [
+                              "&#128269;"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "Chennai, India"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              "\n\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_content"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_left"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_description"
+                        },
+                        "children": [
+                          "Petrofac is a leading international service provider to the energy industry, with a diverse client portfolio including many of the world’s leading..."
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_right"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_category_field job_category"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold"
+                            },
+                            "children": [
+                              "Senior Manager - Electrical"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_preferred_field job_post_date"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold job_post_date"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_value"
+                                },
+                                "children": [
+                                  "Aug 25, 2026"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              },
+                              " ",
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_label"
+                                },
+                                "children": [
+                                  "Post Date"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              " ",
+              "\n\t\t\t\t\t\t\t\t\t\t"
+            ],
+            "activeFrame": false,
+            "inert": false
+          },
+          "\n\n\t\t\t\t\t\t\t\t\t"
+        ],
+        "activeFrame": false,
+        "inert": false
+      }
+    },
+    {
+      "title": "Manager - Engineering Quality",
+      "url": "https://petrofac.referrals.selectminds.com/jobs/manager-engineering-quality-12203",
+      "nativeCardText": "Hot Manager - Engineering Quality 🔍 Chennai, India Petrofac is a leading international service provider to the energy industry, with a diverse client portfolio including many of the world’s leading... Manager - Engineering Quality Aug 25, 2026 Post Date",
+      "originalNativeCard": {
+        "tag": "div",
+        "attrs": {
+          "id": "job_list_12203",
+          "class": "job_list_row jlr_Even"
+        },
+        "children": [
+          "\n\n\t\t\t\t\t\t\t\t\t\t",
+          {
+            "tag": "div",
+            "attrs": {
+              "class": "jlr_right_hldr"
+            },
+            "children": [
+              "\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_title"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "flg_hldr"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "span",
+                        "attrs": {
+                          "class": "job_flg font_header_bold hot_flg priority_on"
+                        },
+                        "children": [
+                          "Hot"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {},
+                    "children": [
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/manager-engineering-quality-12203",
+                          "class": "job_link font_bold"
+                        },
+                        "children": [
+                          "Manager - Engineering Quality"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      }
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "p",
+                    "attrs": {
+                      "class": "jlr_location"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "a",
+                        "attrs": {
+                          "href": "https://petrofac.referrals.selectminds.com/jobs/12203/other-jobs-matching/location-only",
+                          "class": "location"
+                        },
+                        "children": [
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "loc_icon entypo"
+                            },
+                            "children": [
+                              "&#128269;"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "Chennai, India"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              "\n\n\t\t\t\t\t\t\t\t\t\t\t",
+              {
+                "tag": "div",
+                "attrs": {
+                  "class": "jlr_content"
+                },
+                "children": [
+                  "\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_left"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_description"
+                        },
+                        "children": [
+                          "Petrofac is a leading international service provider to the energy industry, with a diverse client portfolio including many of the world’s leading..."
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\n\t\t\t\t\t\t\t\t\t\t\t\t",
+                  {
+                    "tag": "div",
+                    "attrs": {
+                      "class": "jlr_content_half jlr_content_right"
+                    },
+                    "children": [
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_category_field job_category"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold"
+                            },
+                            "children": [
+                              "Manager - Engineering Quality"
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                      {
+                        "tag": "p",
+                        "attrs": {
+                          "class": "jlr_preferred_field job_post_date"
+                        },
+                        "children": [
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_label"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "job_icon entypo"
+                                },
+                                "children": [],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",
+                          {
+                            "tag": "span",
+                            "attrs": {
+                              "class": "jlr_value font_bold job_post_date"
+                            },
+                            "children": [
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_value"
+                                },
+                                "children": [
+                                  "Aug 25, 2026"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              },
+                              " ",
+                              {
+                                "tag": "span",
+                                "attrs": {
+                                  "class": "field_label"
+                                },
+                                "children": [
+                                  "Post Date"
+                                ],
+                                "activeFrame": false,
+                                "inert": false
+                              }
+                            ],
+                            "activeFrame": false,
+                            "inert": false
+                          },
+                          "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
+                        ],
+                        "activeFrame": false,
+                        "inert": false
+                      },
+                      "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t"
+                    ],
+                    "activeFrame": false,
+                    "inert": false
+                  },
+                  "\n\t\t\t\t\t\t\t\t\t\t\t"
+                ],
+                "activeFrame": false,
+                "inert": false
+              },
+              " ",
+              "\n\t\t\t\t\t\t\t\t\t\t"
+            ],
+            "activeFrame": false,
+            "inert": false
+          },
+          "\n\n\t\t\t\t\t\t\t\t\t"
+        ],
+        "activeFrame": false,
+        "inert": false
+      }
+    }
+  ],
+  "scope": "Two exact current own featured role observations; full company inventory, zero, external application operation and cleanup unqualified."
+}

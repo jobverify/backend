@@ -1,0 +1,78 @@
+{
+  "capturedAt": "2026-11-15T10:30:50.046Z",
+  "home": "https://www.shivaami.com/",
+  "board": "https://www.shivaami.com/careers/",
+  "mainURL": "https://www.shivaami.com/assets/index-DoKRdTmC.js",
+  "careersURL": "https://www.shivaami.com/assets/Careers-mOwE3exF.js",
+  "careerImports": [
+    "https://www.shivaami.com/assets/index-DoKRdTmC.js",
+    "https://www.shivaami.com/assets/careers-banner-y4qZfbjF.js",
+    "https://www.shivaami.com/assets/captcha-Cxco26NR.js",
+    "https://www.shivaami.com/assets/clock-CSvmKlIu.js",
+    "https://www.shivaami.com/assets/trending-up-CYy1dr1x.js"
+  ],
+  "nativeRoleArray": "w",
+  "nativeBenefitsArray": "U",
+  "assets": {
+    "https://www.shivaami.com/": {
+      "sha256": "d66742574fe7714e5b03e55749326305df575786567b416a0cc3b14707018b61",
+      "bytes": 4709,
+      "mime": "text/html"
+    },
+    "https://www.shivaami.com/careers/": {
+      "sha256": "d66742574fe7714e5b03e55749326305df575786567b416a0cc3b14707018b61",
+      "bytes": 4709,
+      "mime": "text/html"
+    },
+    "https://www.shivaami.com/assets/index-DoKRdTmC.js": {
+      "sha256": "01a8ed507e245d939b817eb0b5006d291b3acb23f7dca1de01a5f6caa5e88f61",
+      "bytes": 612453,
+      "mime": "application/javascript"
+    },
+    "https://www.shivaami.com/assets/Careers-mOwE3exF.js": {
+      "sha256": "d0de67698e7fa6fb682a94777b2d968547d5d237617a75d0581617e066075b79",
+      "bytes": 13350,
+      "mime": "application/javascript"
+    },
+    "https://www.shivaami.com/assets/careers-banner-y4qZfbjF.js": {
+      "sha256": "b02a687227048583e83caf07a5862cc5053363e77d347fd0434c26af582ba0f9",
+      "bytes": 62,
+      "mime": "application/javascript"
+    },
+    "https://www.shivaami.com/assets/captcha-Cxco26NR.js": {
+      "sha256": "5c8413d7261f91261fdccbb1247e97d9f1ef5ac842656475bc8901ca9c0cd22d",
+      "bytes": 334,
+      "mime": "application/javascript"
+    },
+    "https://www.shivaami.com/assets/clock-CSvmKlIu.js": {
+      "sha256": "0737899de40a915197dfcf5e99b0a9006abca852f80081fa4c6c3ca54e60aa88",
+      "bytes": 352,
+      "mime": "application/javascript"
+    },
+    "https://www.shivaami.com/assets/trending-up-CYy1dr1x.js": {
+      "sha256": "09a3d19946110aecdf5660d195875c0c8bc42fe8678c12cf3898dd0def775a7e",
+      "bytes": 373,
+      "mime": "application/javascript"
+    },
+    "https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Roboto:wght@400;500&display=swap": {
+      "sha256": "2310f380bdce3caca47e6f0c27a8f7efda95aa1811f1576bf08c6c199b94db42",
+      "bytes": 1196,
+      "mime": "text/css"
+    },
+    "https://www.shivaami.com/assets/index-DonCM9UI.css": {
+      "sha256": "4b77d28fa66e9c24bd4f9a446e796e2c4b19b7f344b3c0aaf6e90fa4be9a9ff9",
+      "bytes": 140819,
+      "mime": "text/css"
+    }
+  },
+  "reviewedNativeSemantics": {
+    "currentCareersRoute": "/careers",
+    "roleDescriptionRenderedInFull": true,
+    "roleArrayUsedAsCurrentOpenings": true,
+    "applicationProfileIsExactNativeRoleTitle": true,
+    "submissionPerformed": false,
+    "renderedApplicationQualified": false,
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false
+  }
+}

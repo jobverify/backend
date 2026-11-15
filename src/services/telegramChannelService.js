@@ -9,6 +9,7 @@ import { getActiveBroadcastSettings, jobMatchesBroadcastFilters } from './telegr
 import { renderBroadcastTemplate } from './telegramBroadcastTemplate.js';
 import { isAggregateHiringSignalJob } from '../utils/jobListingEvidence.js';
 import { isBroadcastWindowOpen, nextBroadcastWindowAt } from './telegramBroadcastWindow.js';
+import { canProcessClassifiedJobAlerts } from './jobAlertClassificationGate.js';
 
 const LEASE_MS = 5 * 60_000;
 export const nextChannelPostAt = (now = new Date(), choose = randomInt, settings = {}) => {
@@ -57,6 +58,7 @@ export async function stageTelegramChannelDeliveries(jobs = [], { session: outer
 
 export async function recoverTelegramChannelAlerts({ provider = getTelegramProvider() } = {}) {
   if (!isTelegramDeliveryEnabled()) return;
+  if (!await canProcessClassifiedJobAlerts()) return;
   const errors = [];
   for (const cfg of await destinations()) {
     try { await recoverDestination(cfg, provider); }

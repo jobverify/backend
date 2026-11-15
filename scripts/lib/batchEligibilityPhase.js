@@ -115,7 +115,8 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
           await model.updateOne({ _id: job._id, 'batchEligibility.owner': owner }, { $set: { 'batchEligibility.status': 'pending',
             'batchEligibility.reason': 'source_changed' }, $unset: { 'batchEligibility.owner': '', 'batchEligibility.leaseUntil': '' } });
         }
-        outcome = 'failed'; details = { reason: failed.reason, errorType: error.name, message: String(error.message).slice(0, 300) };
+        outcome = 'failed'; details = { reason: failed.reason, errorType: error.name, message: String(error.message).slice(0, 300),
+          ...(error.validationFailure ? { validationFailure: error.validationFailure } : {}) };
       }
       await emit(outcome, details);
     }

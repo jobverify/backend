@@ -10,7 +10,9 @@ export const stagedProvider = ({ staged = true, pagination = {}, detail = {}, ti
   provider.scraperTimeoutMs = timeoutMs
   delete provider.config.pagination.traversalMode
   Object.assign(provider.config.pagination, { pageSize: 2 }, staged ? { traversalMode: 'staged-snapshot' } : {}, pagination)
-  Object.assign(provider.config.detail, { concurrency: 2 }, detail)
+  // These fixtures exercise the original staged default independently from
+  // Qualcomm's production opt-in to binding opening details early.
+  Object.assign(provider.config.detail, { concurrency: 2, hydrateDuringSnapshot: false }, detail)
   provider.config.rateLimit = { minimumIntervalMs: 0, maxRetries: 1, baseDelayMs: 0, maxDelayMs: 0 }
   return provider
 }

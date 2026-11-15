@@ -87,6 +87,31 @@ function modelRequestFailure(error, signal, fallbackCode) {
   const timedOut = signal.aborted || modelTimeoutCodes.has(error?.code) || modelTimeoutCodes.has(error?.cause?.code);
   return resumeFailure(timedOut ? 'model_timeout' : fallbackCode);
 }
+function monitorModelProgress({ fetchImpl, deadline, signal, onDiagnostic, stage, inputTokens }) {
+  const stopped = new AbortController();
+  const started = Date.now();
+  let polling = false;
+  const timer = setInterval(async () => {
+    if (polling || stopped.signal.aborted) return;
+    polling = true;
+    const dispatcher = new Agent({ headersTimeout: 0, bodyTimeout: 0 });
+    try {
+      const timeout = AbortSignal.timeout(remainingBudget(deadline, 5000));
+      const response = await fetchImpl(`${serverUrl}/slots`, { method: 'GET', dispatcher,
+        signal: AbortSignal.any([stopped.signal, timeout, ...(signal ? [signal] : [])]) });
+      if (!response.ok) return;
+      const slots = await response.json();
+      const slot = Array.isArray(slots) && slots.find(value => value?.is_processing === true);
+      if (!slot || stopped.signal.aborted) return;
+      // Slots also contain private prompts and settings. Never forward them.
+      onDiagnostic(safeResumeDiagnostic({ stage, code: 'progress', seconds: (Date.now() - started) / 1000, inputTokens,
+        processedTokens: slot.n_prompt_tokens_processed, outputTokens: slot.next_token?.[0]?.n_decoded }));
+    } catch { /* Progress is optional; inference retains its own deadline. */ }
+    finally { polling = false; await dispatcher.destroy(); }
+  }, 60000);
+  timer.unref?.();
+  return () => { clearInterval(timer); stopped.abort(); };
+}
 export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {} } = {}) {
   // Replace only our complete trusted instruction block. The actual template
   // follows as the assistant prefix; source/repair JSON and audit evidence stay
@@ -119,11 +144,16 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
   if (!Array.isArray(tokens.tokens) || !tokens.tokens.every(Number.isInteger)) throw resumeFailure('model_protocol_invalid');
   onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: 'started', inputTokens: tokens.tokens.length }));
   if (tokens.tokens.length + maxTokens + 32 > RESUME_MODEL.contextTokens) throw resumeFailure('input_too_large', { statusCode: 422 });
-  const payload = comparison
-    ? await request('/v1/chat/completions', { messages, temperature: 0, max_tokens: maxTokens, stream: false,
-      response_format: { type: 'json_schema', json_schema: { name: 'resume_source_comparison', strict: true, schema: comparisonSchema } } })
-    : await request('/completion', { prompt: fullPrompt, temperature: 0.1, n_predict: maxTokens, stream: false,
-      grammar: buildResumeLatexGrammar(allowedLinks, pagination, { includePreamble: false, sectionTitles, layout, headerChoices }) });
+  const stopProgress = monitorModelProgress({ fetchImpl, deadline, signal: parentSignal, onDiagnostic,
+    stage: comparison ? 'comparing' : 'generating', inputTokens: tokens.tokens.length });
+  let payload;
+  try {
+    payload = comparison
+      ? await request('/v1/chat/completions', { messages, temperature: 0, max_tokens: maxTokens, stream: false,
+        response_format: { type: 'json_schema', json_schema: { name: 'resume_source_comparison', strict: true, schema: comparisonSchema } } })
+      : await request('/completion', { prompt: fullPrompt, temperature: 0.1, n_predict: maxTokens, stream: false,
+        grammar: buildResumeLatexGrammar(allowedLinks, pagination, { includePreamble: false, sectionTitles, layout, headerChoices }) });
+  } finally { stopProgress(); }
   const content = comparison ? payload.choices?.[0]?.message?.content : payload.content;
   const complete = comparison ? payload.choices?.[0]?.finish_reason === 'stop' : payload.stop_type === 'eos' && payload.truncated !== true;
   onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: complete ? 'passed' : 'model_output_incomplete',

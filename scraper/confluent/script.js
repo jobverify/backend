@@ -1,17 +1,14 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchJsonWithRetry } from '../../scraper-support/utils/fetch.js'
 import { filterIndiaJobs } from '../../scraper-support/utils/indiaLocationFilter.js'
+import { runCurrentConfluentInventory } from './currentIBM.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
 export const CAREER_PAGE_URL = 'https://careers.confluent.io/'
 export const PUBLIC_BOARD_URL = 'https://jobs.ashbyhq.com/confluent'
 export const ASHBY_JOB_BOARD_URL = 'https://api.ashbyhq.com/posting-api/job-board/confluent'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36'
 
 const INDIA_REMOTE_LABEL_REGEX = /^IN(?:\s|[-(]).*India$/i
 
@@ -93,26 +90,8 @@ export const extractAshbyJobs = (payload = {}) => (
     .filter(Boolean)
 )
 
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json',
-  },
-  label: 'confluent',
-  timeoutMs: 15000,
-})
-
 export const createConfluentScraper = () => ({
-  async run({ fetchJson = defaultFetchJson } = {}) {
-    const payload = await fetchJson(ASHBY_JOB_BOARD_URL)
-
-    return extractAshbyJobs(payload).map((job) => ({
-      ...job,
-      source: 'confluent',
-      link: job.applyUrl,
-      scrapedAt: new Date().toISOString(),
-    }))
-  },
+  run: runCurrentConfluentInventory,
 })
 
 export const run = async (options) => createConfluentScraper().run(options)

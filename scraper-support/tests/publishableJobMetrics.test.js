@@ -24,7 +24,7 @@ test('missing descriptions do not bypass geography, age, expiry, URL or individu
   const result = analyzePublishableJobs([
     { ...base, jobId: 'eligible' },
     { ...base, jobId: 'foreign', location: 'London, United Kingdom' },
-    { ...base, jobId: 'old', postingDate: '2026-08-01' },
+    { ...base, jobId: 'old', postingDate: '2026-07-01' },
     { ...base, jobId: 'closed', closingDate: '2026-10-19' },
     { ...base, jobId: 'invalid', applyUrl: 'javascript:alert(1)' },
     { ...base, title: 'Current openings at Example', jobId: 'example-current-openings', applyUrl: 'https://wellfound.com/company/example/jobs' },
@@ -33,7 +33,7 @@ test('missing descriptions do not bypass geography, age, expiry, URL or individu
   assert.deepEqual(result.filterCounts, { nonIndia: 1, old: 1, closed: 1, invalidUrl: 1, nonJob: 1, emptyDescription: 0 })
 })
 
-test('excludes an open India job posted before the previous calendar month', () => {
+test('excludes an open India job posted more than three calendar months ago', () => {
   const result = analyzePublishableJobs([{
     title: 'Open legacy role',
     location: 'Bengaluru, India',
@@ -49,14 +49,15 @@ test('excludes an open India job posted before the previous calendar month', () 
 test('posting age keeps the cutoff day and unknown dates, with source dates taking precedence over scraping', () => {
   const base = { title: 'Engineer', location: 'India', applyUrl: 'https://example.test/jobs/1', description: 'Build APIs.' }
   const jobs = [
-    { ...base, jobId: 'old', postingDate: '2026-09-20T23:59:59.999Z', scrapedAt: '2026-10-21' },
-    { ...base, jobId: 'cutoff', postingDate: '2026-09-21' },
+    { ...base, jobId: 'old', postingDate: '2026-07-20T23:59:59.999Z', scrapedAt: '2026-10-21' },
+    { ...base, jobId: 'cutoff', postingDate: '2026-07-21' },
+    { ...base, jobId: 'two-months', postingDate: '2026-08-21' },
     { ...base, jobId: 'recent', postedAt: '2026-10-20' },
-    { ...base, jobId: 'old-postedAt', postedAt: '2026-08-01' },
+    { ...base, jobId: 'old-postedAt', postedAt: '2026-07-01' },
     { ...base, jobId: 'unknown', postingDate: 'NA' },
   ]
   const result = analyzePublishableJobs(jobs, { now: new Date('2026-10-21T12:00:00Z') })
-  assert.deepEqual(result.eligibleJobs.map(job => job.jobId), ['cutoff', 'recent', 'unknown'])
+  assert.deepEqual(result.eligibleJobs.map(job => job.jobId), ['cutoff', 'two-months', 'recent', 'unknown'])
   assert.equal(result.filterCounts.old, 2)
 })
 

@@ -24,10 +24,12 @@
     ]
   },
   "styles": {
-    "https://www.grab.careers/phb/style.css.v639302004092521550": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f"
+    "https://www.grab.careers/phb/style.css.v639302004092521550": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f",
+    "https://www.grab.careers/phb/style.css.v639302868077536290": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f"
   },
   "styleDeclarations": [
-    "00d3cf701fefbe0de0514b8c8be1506a2b43e56e729bf375988e3a652122e5f8"
+    "00d3cf701fefbe0de0514b8c8be1506a2b43e56e729bf375988e3a652122e5f8",
+    "bd263ddfc308bbce2c443e51e015635578068644d2d14488517f170eb52ca704"
   ],
   "board": {
     "programSHA256": "ae91550e6e91e359d501dbd951aec4dc6c143951ea733ddc63129c1619b87bcf",

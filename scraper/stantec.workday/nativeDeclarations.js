@@ -26,6 +26,26 @@ export const NATIVE_CLIENTS=[
  ['D3KNJQhc.js','7dab69885d6a45799d329f59afae365ed65e5dadecf508195eb2d5c59e463261'],
  ['BfULQbXb.js','0435837b8c21635b43637506d1d0706ba18c0c7ad534abf75f38bd33f5287d64'],
 ].map(([file,sha256])=>({url:BOARD+'_nuxt/'+file,sha256}))
+// The current deployment changes only declared import filenames in the entry,
+// search and role modules. Their complete decoded source matches the previous
+// reviewed modules after normalizing those import paths; API helpers are exact
+// byte matches. Keep complete deployment profiles, never mix per-file versions.
+const CURRENT_NATIVE_CLIENTS=[
+ ['CmsqKLby.js','232bbae0bab838e78d1bd00ce7b0115bffef2ef4aebfa9b6f4f739d593333276'],
+ ['CKSRjIP12.js','8775320f92ee1679e522572ed44fdf2ee0903c8994b14d5e8fe9ac852945a097'],
+ ['Cd6C8PDS.js','c00f2dedd4f5a41d2d5958863a9ed650267d6a4150118b31e2b7943b7b91a3e3'],
+ ...NATIVE_CLIENTS.slice(3).map(contract=>[new URL(contract.url).pathname.split('/').at(-1),contract.sha256]),
+].map(([file,sha256])=>({url:BOARD+'_nuxt/'+file,sha256}))
+const nativeClientProfile=doc=>{
+ const scriptType=node=>(node.attrs.type||'').trim().toLowerCase()
+ need(!doc.nodes(n=>n.tag==='script'&&scriptType(n)==='importmap').length,'unreviewed native importmap')
+ const entries=doc.nodes(n=>n.tag==='script'&&scriptType(n)==='module')
+ need(entries.length===1&&!Object.hasOwn(entries[0].attrs,'nomodule'),'active reviewed Nuxt entry missing or ambiguous')
+ const clients=[NATIVE_CLIENTS,CURRENT_NATIVE_CLIENTS].find(profile=>entries[0].attrs.src===new URL(profile[0].url).pathname)
+ need(clients,'active reviewed Nuxt entry missing or ambiguous')
+ return clients.map(contract=>({...contract}))
+}
+export const readNativeClientContracts=html=>nativeClientProfile(readNativeDocument(html))
 export const json=text=>{try{return parseNativeJSON(text)}catch(error){throw failure('JSON '+error.message)}}
 // DOM selectors include a template element, but never enter its content.
 const domDescendants=node=>node.children.flatMap(c=>typeof c==='string'?[]:[c,...(c.tag==='template'?[]:domDescendants(c))])
@@ -58,7 +78,7 @@ export function readBoard(html){
  const carrier=carriers[0],type=(carrier.attrs.type||'').trim().toLowerCase()
  need(['','text/javascript','application/javascript'].includes(type)&&!['src','nomodule','language'].some(k=>Object.hasOwn(carrier.attrs,k)),'native configuration is not a supported executable inline script')
  const config=readNativeConfig(carrier.raw),p=config.public
- need(doc.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src===new URL(NATIVE_CLIENTS[0].url).pathname).length===1,'active reviewed Nuxt entry missing')
+ nativeClientProfile(doc)
  need(p&&['google_talent','solr'].includes(p.source)&&p['x-origin']==='stantec.jobs'&&p['job-folder']==='stantec-jobs'&&p.num_items===50&&p['add-assets']===true&&p.use_solr_filters===true,'native search or role configuration changed')
  need(!Object.hasOwn(p,'api-url')&&!Object.hasOwn(p,'buids'),'unreviewed native endpoint or business filter override')
  need(p.filters?.filter(f=>f.display==='Country'&&f.key==='country'&&f.name==='location').length===1,'native country filter changed')

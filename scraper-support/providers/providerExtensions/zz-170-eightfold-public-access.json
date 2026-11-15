@@ -66,6 +66,7 @@
       "detail": {
         "enabled": true,
         "requireListingIdentity": true,
+        "hydrateDuringSnapshot": true,
         "concurrency": 2,
         "urlTemplate": "https://careers.qualcomm.com/api/pcsx/position_details?position_id={{jobId}}&domain=qualcomm.com&hl=en",
         "method": "GET",
@@ -1123,6 +1124,7 @@
       },
       "detail": {
         "enabled": true,
+        "countryFilter": "India",
         "urlTemplate": "https://ralliant.eightfold.ai/api/pcsx/position_details?position_id={{jobId}}&domain=ralliant.com&hl=en",
         "method": "GET",
         "headers": {

@@ -13,8 +13,8 @@ const backend=path.resolve(directory,'../..')
 const support=path.join(directory,'readerCleanupFirstCitizensRmk20261112')
 const self=fileURLToPath(import.meta.url)
 const proofFile=path.join(support,'proof.mjs'),closureFile=path.join(support,'closure.json')
-const proofSHA256='0a55633acb6c76e50293bf559c4e7637bf99218c9be59fa04a4b819b6ce6af30'
-const closureSHA256='6fe56aead208e7b6fd92738cf05eb4b877f5d1a808838e4de9386afbf6c08ec3'
+const proofSHA256='0f78aaae041ed60dc8658ac687e8980f96518ef30dc41013de066f90f6522470'
+const closureSHA256='c1b8a96f7b6c56e210236bc69b6306c74e75cc33f0e7ba7eeaf3b6ac7f42b7ed'
 const sha=raw=>createHash('sha256').update(raw).digest('hex')
 const exactCounts={tests:28,pass:28,fail:0,cancelled:0,skipped:0,todo:0}
 const exactAttempts={network:0,database:0,browser:0,child:0,worker:0,addon:0,fsWrite:0,unexpectedModule:0,unexpectedRead:0,unexpectedRequest:0}
@@ -41,7 +41,7 @@ test('First Citizens and RMK reader cleanup retains28 guarded native cases',{tim
  const wrapperSHA256=sha(fs.readFileSync(self))
  const checkPins=()=>{
   const rawProof=fs.readFileSync(proofFile),rawClosure=fs.readFileSync(closureFile)
-  assert.equal(sha(rawProof),proofSHA256,'Retained proof changed');assert.equal(rawProof.length,32375)
+  assert.equal(sha(rawProof),proofSHA256,'Retained proof changed');assert.equal(rawProof.length,32301)
   assert.equal(sha(rawClosure),closureSHA256,'Retained closure changed');assert.equal(rawClosure.length,3494)
   const closure=JSON.parse(rawClosure.toString('utf8'))
   assert.equal(closure.modules.length,17);assert.equal(closure.additional_reads.length,1)

@@ -29,7 +29,7 @@ const failures = {
   time_limit: 'The resume processing time limit was reached. Please retry.',
 };
 const stages = new Set(['worker', 'startup', 'formatting', 'rendering', 'generating', 'repairing', 'latex', 'compiling', 'validating', 'comparing', 'completed']);
-const codes = new Set([...Object.keys(failures), 'started', 'passed']);
+const codes = new Set([...Object.keys(failures), 'started', 'progress', 'passed']);
 const fidelityIssuePatterns = {
   identity: /^Missing or changed candidate name\./,
   contact: /^(?:Missing original visible (?:email|phone number)|Unsupported or changed (?:email|phone number)|(?:Email|Phone) link target does not match)/,
@@ -58,7 +58,7 @@ export function safeResumeDiagnostic(event = {}) {
   const result = { stage: stages.has(event.stage) ? event.stage : 'worker', code: codes.has(event.code) ? event.code : 'processing_failed' };
   if (result.stage === 'latex' && result.code === 'latex_invalid' && typeof event.reason === 'string' && Object.hasOwn(RESUME_LATEX_REASONS, event.reason)) result.reason = event.reason;
   if (result.stage === 'compiling' && result.code === 'compiler_failed' && typeof event.reason === 'string' && Object.hasOwn(RESUME_COMPILER_REASONS, event.reason)) result.reason = event.reason;
-  for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'outputTokens', 'pageCount']) {
+  for (const key of ['attempt', 'seconds', 'issueCount', 'inputTokens', 'processedTokens', 'outputTokens', 'pageCount']) {
     if (typeof event[key] === 'number' && Number.isFinite(event[key]) && event[key] >= 0 && event[key] <= 1000000) result[key] = Math.round(event[key] * 100) / 100;
   }
   if (result.stage === 'validating' && result.code === 'factual_validation_failed' && event.issueCounts && typeof event.issueCounts === 'object') {

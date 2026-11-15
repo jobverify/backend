@@ -7,7 +7,7 @@ const need=(ok,message)=>{if(!ok)throw Error('Arrow native: '+message);};
 export function verifySearch(html){
  const m=models(html),a=m.app;need(a.refNum==='ARELUS'&&a.widgetApiEndpoint===WIDGET&&a.locale===WIDGET_FIXED.lang&&a.deviceType===WIDGET_FIXED.deviceType&&a.country===WIDGET_FIXED.country&&a.pageName===WIDGET_FIXED.pageName&&a.baseDomain==='https://careers.arrow.com'&&a.baseUrl==='https://careers.arrow.com/us/en/'&&a.siteType==='external'&&m.ddo.eagerLoadRefineSearch?.status===200,'native ARELUS/public client binding mismatch');return m;
 }
-function validateListing(row){need(typeof row.reqId==='string'&&/^R[1-9]\d*$/.test(row.reqId)&&row.jobId===row.reqId&&row.jobSeqNo==='ARELUS'+row.reqId+'ENUS'&&typeof row.title==='string'&&row.title.trim()&&typeof row.country==='string','incomplete native listing identity/country');}
+export function validateListing(row){need(typeof row.reqId==='string'&&/^R[1-9]\d*$/.test(row.reqId)&&row.jobId===row.reqId&&row.jobSeqNo==='ARELUS'+row.reqId+'ENUS'&&typeof row.title==='string'&&row.title.trim()&&typeof row.country==='string','incomplete native listing identity/country');}
 export function detailURL(row){validateListing(row);const slug=row.title.replace(/\s+/g,' ').trim().normalize('NFKD').replace(/[^\w\s-]/g,'').replace(/_/g,' ').replace(/\s+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');need(slug,'missing native detail title slug');return validateRequest('https://careers.arrow.com/us/en/job/'+row.reqId+'/'+slug);}
 export function toJob(row,html,now){
  const j=parseDetail(row,html,{now,inventoryComplete:false}),d=j.nativeDetail,india=j.locationEvidence.primaryIndia||j.locationEvidence.secondaryIndia;

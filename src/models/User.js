@@ -186,6 +186,12 @@ const UserSchema = new Schema(
       default: [],
     },
     onboardingCompleted: { type: Boolean, default: false },
+    gettingStartedStatus: {
+      type: String,
+      enum: ['pending', 'in_progress', 'skipped', 'completed'],
+      // Existing complete profiles should keep their normal browsing experience.
+      default() { return this.onboardingCompleted ? 'completed' : 'pending'; },
+    },
     isVerified: { type: Boolean, default: false },
     pendingEmailChange: {
       type: new Schema({

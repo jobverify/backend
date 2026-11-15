@@ -428,7 +428,7 @@ test("job metadata hides the legacy NA date-posted option from public filters", 
     await getJobMeta({ query: {} }, res);
     assert.equal(res.statusCode, 200);
     assert.equal(res.body.data.datePostedOptions.includes("na"), false);
-    assert.deepEqual(res.body.data.datePostedOptions, [...Array.from({ length: 31 }, (_, index) => index), "older-than-30"]);
+    assert.deepEqual(res.body.data.datePostedOptions, [0, 1, "this-week", "last-week", "this-month", "last-month"]);
   } finally {
     JobDatasetSummary.findOne = originalFindOne;
   }

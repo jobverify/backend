@@ -82,23 +82,20 @@ test('extractAshbyJobs keeps listed IN Remote India jobs and excludes non-India 
   })
 })
 
-test('run reads the public Confluent Ashby board only and returns runner metadata', async () => {
+test('run requires a current employer handoff before trusting parsed native results', async () => {
   const confluent = await loadConfluentModule()
   const requestedUrls = []
 
-  const jobs = await confluent.createConfluentScraper().run({
+  await assert.rejects(confluent.createConfluentScraper().run({
+    fetchPage: async (url) => ({ status: 200, url, headers: {}, html: '<title>Confluent careers</title>' }),
     fetchJson: async (url) => {
       requestedUrls.push(url)
       return { jobs: [indiaRemoteJob] }
     },
-  })
+  }), /current employer IBM handoff changed/)
 
   assert.equal(confluent.CAREER_PAGE_URL, 'https://careers.confluent.io/')
   assert.equal(confluent.PUBLIC_BOARD_URL, 'https://jobs.ashbyhq.com/confluent')
   assert.equal(confluent.ASHBY_JOB_BOARD_URL, 'https://api.ashbyhq.com/posting-api/job-board/confluent')
-  assert.deepEqual(requestedUrls, [confluent.ASHBY_JOB_BOARD_URL])
-  assert.equal(jobs.length, 1)
-  assert.equal(jobs[0].source, 'confluent')
-  assert.equal(jobs[0].link, 'https://jobs.ashbyhq.com/confluent/confluent-india-remote/application')
-  assert.match(jobs[0].scrapedAt, /^\d{4}-\d{2}-\d{2}T/)
+  assert.deepEqual(requestedUrls, [])
 })

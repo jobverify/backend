@@ -1,0 +1,699 @@
+{
+  "source": "rxlogixcorporation",
+  "company": "RxLogix Corporation",
+  "publisher": "Rxlogix",
+  "corporate": "https://rxlogix.com/",
+  "board": "https://rxlogix.com/careers/",
+  "reviewedAt": "2026-11-15T12:19:36.773Z",
+  "rawCardCount": 22,
+  "uniqueRoleURLCount": 21,
+  "documents": {
+    "https://rxlogix.com/careers/": {
+      "normalizedSHA256": "240bf97c0263d59f9795c96e645171aabad1169eb6b354cdfb95afd23d031326",
+      "nativeTitleCopies": 3,
+      "nativeCanonicalCopies": 2,
+      "nativeSchemaCopies": 2,
+      "seedSetters": {
+        "ak_js_1": "b530c77a5e49063500a82773e440b891cc0679b20e981658543f10091894b7a2"
+      }
+    },
+    "https://rxlogix.com/technical-architect/": {
+      "normalizedSHA256": "578ffa151498d32eaeb46063cb211cf90b3d273e0ec05af0376a805e14f6170b",
+      "nativeTitleCopies": 3,
+      "nativeCanonicalCopies": 2,
+      "nativeSchemaCopies": 2,
+      "seedSetters": {
+        "ak_js_1": "b530c77a5e49063500a82773e440b891cc0679b20e981658543f10091894b7a2",
+        "ak_js_2": "9b58da7e8532926b15eb9b5639262294072d85ec38e75589ae88f600980a90a5"
+      }
+    },
+    "https://rxlogix.com/performance-test-engineer/": {
+      "normalizedSHA256": "5bb071a872c0020a95985cc8c92332671b75de5cf3aa10450206606b9e2ca18f",
+      "nativeTitleCopies": 3,
+      "nativeCanonicalCopies": 2,
+      "nativeSchemaCopies": 2,
+      "seedSetters": {
+        "ak_js_1": "b530c77a5e49063500a82773e440b891cc0679b20e981658543f10091894b7a2",
+        "ak_js_2": "9b58da7e8532926b15eb9b5639262294072d85ec38e75589ae88f600980a90a5"
+      }
+    }
+  },
+  "originalPackets": {
+    "https://rxlogix.com/careers/": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/careers/",
+      "mime": "text/html",
+      "effectiveHeaders": {
+        "content-type": "text/html; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": "default-src 'self' data: ; script-src 'self' https://www.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com ajax.googleapis.com translate.googleapis.com translate.google.com; style-src 'self' data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com fonts.googleapis.com translate.googleapis.com; img-src 'self' data: https://s.w.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com secure.gravatar.com www.gravatar.com translate.googleapis.com translate.google.com www.google.com www.gstatic.com i.ytimg.com; connect-src 'self' https://www.google.com translate.googleapis.com; font-src 'self' data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com fonts.gstatic.com fonts.googleapis.com; media-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com; frame-src 'self' https://www.google.com www.youtube.com; child-src 'self' www.youtube.com; worker-src 'self' ;",
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": "<https://cdn.gtranslate.net/>; rel=dns-prefetch, <https://rxlogix.com/wp-json/>; rel=\"https://api.w.org/\", <https://rxlogix.com/wp-json/wp/v2/pages/5692>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://rxlogix.com/?p=5692>; rel=shortlink"
+      },
+      "bytes": 100645,
+      "sha256": "dbbc0660bcab39343f494fa6091b9ca8d1c2500bc238f01c77a9ea3acb9d87b1"
+    },
+    "https://rxlogix.com/technical-architect/": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/technical-architect/",
+      "mime": "text/html",
+      "effectiveHeaders": {
+        "content-type": "text/html; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": "default-src 'self' data: ; script-src 'self' https://www.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com ajax.googleapis.com translate.googleapis.com translate.google.com; style-src 'self' data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com fonts.googleapis.com translate.googleapis.com; img-src 'self' data: https://s.w.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com secure.gravatar.com www.gravatar.com translate.googleapis.com translate.google.com www.google.com www.gstatic.com i.ytimg.com; connect-src 'self' https://www.google.com translate.googleapis.com; font-src 'self' data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com fonts.gstatic.com fonts.googleapis.com; media-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com; frame-src 'self' https://www.google.com www.youtube.com; child-src 'self' www.youtube.com; worker-src 'self' ;",
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": "<https://cdn.gtranslate.net/>; rel=dns-prefetch, <https://rxlogix.com/wp-json/>; rel=\"https://api.w.org/\", <https://rxlogix.com/wp-json/wp/v2/posts/810>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://rxlogix.com/?p=810>; rel=shortlink"
+      },
+      "bytes": 104013,
+      "sha256": "fc4b8bc0b39e9f0f76a4a35c21678925c2472a17e404641d19ea5bfaa393120b"
+    },
+    "https://rxlogix.com/performance-test-engineer/": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/performance-test-engineer/",
+      "mime": "text/html",
+      "effectiveHeaders": {
+        "content-type": "text/html; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": "default-src 'self' data: ; script-src 'self' https://www.gstatic.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com ajax.googleapis.com translate.googleapis.com translate.google.com; style-src 'self' data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com fonts.googleapis.com translate.googleapis.com; img-src 'self' data: https://s.w.org https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com secure.gravatar.com www.gravatar.com translate.googleapis.com translate.google.com www.google.com www.gstatic.com i.ytimg.com; connect-src 'self' https://www.google.com translate.googleapis.com; font-src 'self' data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com fonts.gstatic.com fonts.googleapis.com; media-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.google.com; frame-src 'self' https://www.google.com www.youtube.com; child-src 'self' www.youtube.com; worker-src 'self' ;",
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": "<https://cdn.gtranslate.net/>; rel=dns-prefetch, <https://rxlogix.com/wp-json/>; rel=\"https://api.w.org/\", <https://rxlogix.com/wp-json/wp/v2/posts/7482>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://rxlogix.com/?p=7482>; rel=shortlink"
+      },
+      "bytes": 114579,
+      "sha256": "101f83c288855c4bffd5803bbd123454497bf33a5c5cf6dace34d97f1130af5f"
+    },
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/css/styles.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/css/styles.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 3077,
+      "sha256": "765b4163a5a1a4a94f21c27912c10df2f9976a6707c80621fb2112d15b1d47ac"
+    },
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/css/intlTelInput.min.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/css/intlTelInput.min.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 21275,
+      "sha256": "e83e04798b38e55e49ddbe5cfb258009bbc02aae25b04599775a0309425a0fe4"
+    },
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/css/countrySelect.min.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/css/countrySelect.min.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 20493,
+      "sha256": "77402f4f26c61fd2572093b0316d47f8e12ae3c29976c6ae0356f84c7fc65345"
+    },
+    "https://rxlogix.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/css/spam-protect-for-contact-form7.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/css/spam-protect-for-contact-form7.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 98,
+      "sha256": "547dda3c14b284819be511be1e410da94a5efc6ccc4a9afe1c75394f9333191a"
+    },
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/bootstrap/css/bootstrap.min.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/bootstrap/css/bootstrap.min.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 232116,
+      "sha256": "596a918e5d4c71cb731b23412d5b145e429c2203a23e9bf7ba90eff3e291bbb8"
+    },
+    "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css": {
+      "status": 200,
+      "finalURL": "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 98255,
+      "sha256": "4ffa6bea4304d2eda418683f56261685ed47bf00995039f27e5ad62d53938d2d"
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css": {
+      "status": 200,
+      "finalURL": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 31000,
+      "sha256": "799aeb25cc0373fdee0e1b1db7ad6c2f6a0e058dfadaa3379689f583213190bd"
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css": {
+      "status": 200,
+      "finalURL": "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 14966,
+      "sha256": "15d6ad4dfdb43d0affad683e70029f97a8f8fc8637a28845009ee0542dccdf81"
+    },
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/global.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/global.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 17190,
+      "sha256": "3f84d3bbf28febf7c059bc23af9f01e5d13c284555faaf94a5204e634b929eaf"
+    },
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/templates/career.css": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/templates/career.css",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 3363,
+      "sha256": "e3e877944cbf019b98561250cf4cf0151a73ee369d7689799129e73dea04ba14"
+    },
+    "https://rxlogix.com/wp-includes/js/jquery/jquery.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-includes/js/jquery/jquery.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 87553,
+      "sha256": "cb6f2d32c49d1c2b25e9ffc9aaafa3f83075346c01bcd4ae6eb187392a4292cf"
+    },
+    "https://rxlogix.com/wp-includes/js/jquery/jquery-migrate.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-includes/js/jquery/jquery-migrate.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 13577,
+      "sha256": "5274f11e6fb32ae0cf2dfb9f8043272865c397a7c4223b4cfa7d50ea52fbde89"
+    },
+    "https://rxlogix.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/js/spam-protect-for-contact-form7.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/js/spam-protect-for-contact-form7.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 838,
+      "sha256": "57a50c99a31ef4e89e86664e96f6dfbdde163a2eb96e88b3b492c49aa4be2f37"
+    },
+    "https://www.googletagmanager.com/gtag/js?id=G-5N9GRWCJB3": {
+      "status": 200,
+      "finalURL": "https://www.googletagmanager.com/gtag/js?id=G-5N9GRWCJB3",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript; charset=UTF-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 598902,
+      "sha256": "60e965348c02ab4786009872997c1b4d138e89d1811bc7e1df55716a1f19555f"
+    },
+    "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap": {
+      "status": 200,
+      "finalURL": "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 844,
+      "sha256": "5a67134b484c1f6c5980f9d296ea0608eba8062753c561fd69c89b90a063c6b9"
+    },
+    "https://rxlogix.com/wp-includes/js/dist/hooks.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-includes/js/dist/hooks.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 5107,
+      "sha256": "fc774906082b59dedcfc55b8ef127783b6d056578ff4586a8ebbdb81bbe286f1"
+    },
+    "https://rxlogix.com/wp-includes/js/dist/i18n.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-includes/js/dist/i18n.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 5791,
+      "sha256": "5083905862c2b7aa8a84c4f2313d359d2288fb25fbe1ff577fa7325eff2ed2d9"
+    },
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 18307,
+      "sha256": "94010bdf799ebf7ebd25c44cda0c2aca9d5707cbf8d054d1ee8b1db2224dce74"
+    },
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/js/index.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/js/index.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 13046,
+      "sha256": "2449bcdb76bb77ecd953f38a63ed4bc38906758048eb24581013b24f023bdc97"
+    },
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/js/intlTelInput.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/js/intlTelInput.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 23839,
+      "sha256": "a81bcb14202d3a3874277d5010e94b8ca2ed4b705a47b20501084db201698528"
+    },
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/js/countrySelect.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/js/countrySelect.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 17280,
+      "sha256": "37d0f8b07b5358d209cf39ca8bd3c7be679a610afa59c5b5ea4f164131204f38"
+    },
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/jQuery/jquery.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/jQuery/jquery.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js": {
+      "status": 200,
+      "finalURL": "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 70851,
+      "sha256": "00501810e93307a8882a74d864e7547fd1458deea539361dc1124ac133799a4b"
+    },
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/bootstrap/js/bootstrap.bundle.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 80502,
+      "sha256": "6c75a7cf1bda55690683f20364392d197e8637a4bb12e98d78cf650973d63fff"
+    },
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/js/global.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/js/global.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 4533,
+      "sha256": "4cce806602bae482aa8c7d17d8ba1066106ed28ab93208992890894d19119da9"
+    },
+    "https://www.google.com/recaptcha/api.js?render=6LfEghYsAAAAAGdZTQIgDe-SHiZ9F_GM4XlUADe7": {
+      "status": 200,
+      "finalURL": "https://www.google.com/recaptcha/api.js?render=6LfEghYsAAAAAGdZTQIgDe-SHiZ9F_GM4XlUADe7",
+      "mime": "text/javascript",
+      "effectiveHeaders": {
+        "content-type": "text/javascript; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 1010,
+      "sha256": "bf87b50540a43d29519b956a86fbe5043f1f4f0993847e3c45928ff04392904e"
+    },
+    "https://rxlogix.com/wp-includes/js/dist/vendor/wp-polyfill.min.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-includes/js/dist/vendor/wp-polyfill.min.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 29874,
+      "sha256": "cb9f8f2640f1887595b9346f7323dfc3407edea4e2e4bf544d67012b01feaea5"
+    },
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 913,
+      "sha256": "bfa14457f20a557c708634290d33a1ddc72ed9f457ed015090e26c66630a5765"
+    },
+    "https://rxlogix.com/wp-content/plugins/gtranslate/js/dropdown.js": {
+      "status": 200,
+      "finalURL": "https://rxlogix.com/wp-content/plugins/gtranslate/js/dropdown.js",
+      "mime": "application/javascript",
+      "effectiveHeaders": {
+        "content-type": "application/javascript",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 11650,
+      "sha256": "49c2a6137f3847ad4f43a8a14b893e4899b757cc5b17ec4c91be85a12595be3e"
+    },
+    "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap": {
+      "status": 200,
+      "finalURL": "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap",
+      "mime": "text/css",
+      "effectiveHeaders": {
+        "content-type": "text/css; charset=utf-8",
+        "refresh": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "content-disposition": null,
+        "link": null
+      },
+      "bytes": 1055,
+      "sha256": "5988d3c8711dd0391113390c258c2b36d827fccf9e0a56e5e0a81877b5ce8d25"
+    }
+  },
+  "assetURLs": [
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/css/styles.css",
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/css/intlTelInput.min.css",
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/css/countrySelect.min.css",
+    "https://rxlogix.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/css/spam-protect-for-contact-form7.css",
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/bootstrap/css/bootstrap.min.css",
+    "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css",
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/global.css",
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/templates/career.css",
+    "https://rxlogix.com/wp-includes/js/jquery/jquery.min.js",
+    "https://rxlogix.com/wp-includes/js/jquery/jquery-migrate.min.js",
+    "https://rxlogix.com/wp-content/plugins/wp-contact-form-7-spam-blocker/frontend/js/spam-protect-for-contact-form7.js",
+    "https://www.googletagmanager.com/gtag/js?id=G-5N9GRWCJB3",
+    "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700&display=swap",
+    "https://rxlogix.com/wp-includes/js/dist/hooks.min.js",
+    "https://rxlogix.com/wp-includes/js/dist/i18n.min.js",
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js",
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/includes/js/index.js",
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/js/intlTelInput.min.js",
+    "https://rxlogix.com/wp-content/plugins/country-phone-field-contact-form-7/assets/js/countrySelect.min.js",
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/jQuery/jquery.min.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js",
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/vendor/bootstrap/js/bootstrap.bundle.min.js",
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/js/global.js",
+    "https://www.google.com/recaptcha/api.js?render=6LfEghYsAAAAAGdZTQIgDe-SHiZ9F_GM4XlUADe7",
+    "https://rxlogix.com/wp-includes/js/dist/vendor/wp-polyfill.min.js",
+    "https://rxlogix.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js",
+    "https://rxlogix.com/wp-content/plugins/gtranslate/js/dropdown.js",
+    "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap"
+  ],
+  "cssImports": {
+    "https://rxlogix.com/wp-content/themes/rxlogix-theme/assets/css/global.css": [
+      "https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap"
+    ]
+  },
+  "roleModels": [
+    {
+      "url": "https://rxlogix.com/technical-architect/",
+      "title": "Technical Architect",
+      "location": "Noida, India",
+      "department": "Technical / Enterprise Architect",
+      "employmentType": "Full Time",
+      "nativeDocumentPostContext": "810",
+      "criteriaCharacters": 3641
+    },
+    {
+      "url": "https://rxlogix.com/performance-test-engineer/",
+      "title": "Performance Test Engineer",
+      "location": "Noida, India",
+      "department": "TECHNOLOGY",
+      "employmentType": null,
+      "nativeDocumentPostContext": "7482",
+      "criteriaCharacters": 2148
+    }
+  ],
+  "reviewedWholeProgramVariants": {
+    "https://www.googletagmanager.com/gtag/js?id=G-5N9GRWCJB3": [
+      {
+        "bytes": 598902,
+        "sha256": "60e965348c02ab4786009872997c1b4d138e89d1811bc7e1df55716a1f19555f"
+      },
+      {
+        "bytes": 598902,
+        "sha256": "dcf72b018502026fec856f27d2e29e3934b360a84d3a334f2e5ca827eab8cc2c"
+      },
+      {
+        "bytes": 598251,
+        "sha256": "50b9f0490b6342fa3442fe10f3a602f2cc8f48fc4483c2feb93f6b20044f8869"
+      }
+    ]
+  },
+  "reviewedDocumentVariation": "Only six coupled GTranslate identity references plus known hidden initial Akismet seeds immediately replaced by exact native setters; full other original document bytes pinned.",
+  "scopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "verifiedZero": false,
+  "reviewedWholeProgramVariantProofs": {
+    "50b9f0490b6342fa3442fe10f3a602f2cc8f48fc4483c2feb93f6b20044f8869": {
+      "kind": "one-exact-current-whole-program-at-existing-account-URL",
+      "nativeCapture": "rxlogix-native-current-production-v2-20261115T1219Z/rxlogixcorporation.result.json audit.originalResponses.16",
+      "exactReconstruction": "goal-workday/rxlogix-current/actual-v2-analytics-exact-reconstruction.json",
+      "scopedSerializedSymbols": "goal-workday/rxlogix-current/actual-v2-scoped-schema-symbols.json",
+      "nativeResourceConfigurationByteIdentical": true,
+      "runtimeNormalization": false,
+      "rootReview": "Parent explicitly reviewed and authorized this exact full-byte SHA only; all four optional free-hook spelling changes remain separately unqualified.",
+      "optionalSingleUseUndefinedDestinationHooks": {
+        "DC": "PP→OP",
+        "GF": "TP→SP",
+        "HA": "VP→UP",
+        "UA": "lQ→kQ"
+      },
+      "configuredOwnAccountBranch": "G; native whole account/resource configuration unchanged"
+    }
+  }
+}

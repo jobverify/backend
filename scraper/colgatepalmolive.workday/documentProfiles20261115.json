@@ -1,0 +1,15 @@
+{
+  "search": "2d2ca2a647000720cf7b60f0ddfd6bd0490ef2758e997ceed69b5960939bdeef",
+  "role": "a0261c7ddfb8a6d244c654f67b3b4f9cc26c762bcc5e1649ffb77b8727f7604f",
+  "reviewedOverrideURLs": [
+    "/js/override.js?locale=en_US&i=1065263287",
+    "/js/override.js?locale=en_US&i=1756331826",
+    "/js/override.js?locale=en_US&i=1088340890",
+    "/js/override.js?locale=en_US&i=1270349049",
+    "/js/override.js?locale=en_US&i=621357577",
+    "/js/override.js?locale=en_US&i=696538097",
+    "/js/override.js?locale=en_US&i=1994298829",
+    "/js/override.js?locale=en_US&i=1364765654"
+  ],
+  "provenance": "Complete script attributes, source URIs, ordering, execution/inert modes and whole inline source frames from all genuine 2026-11-15 search/27 role documents. Only native anonymous CSRF/visit UUID literals and same-ID application literals are framed. Eight exact observed override URIs share the same document profile; a new URI/program requires review."
+}

@@ -85,10 +85,10 @@ test('Ellucian Higher Education Systems pins the verified India Jibe search conf
   ])
 })
 
-test('Ellucian Higher Education Systems run returns [] when the official India Jibe filter is empty', async () => {
+test('Ellucian body-only legacy callbacks cannot certify a current empty India inventory', async () => {
   const ellucian = await loadEllucianModule()
   const urls = []
-  const jobs = await ellucian.createEllucianHigherEducationSystemsScraper({
+  await assert.rejects(ellucian.createEllucianHigherEducationSystemsScraper({
     now: () => '2026-07-18T00:00:00.000Z',
   }).run({
     fetchText: async () => indiaSearchHtml,
@@ -96,10 +96,7 @@ test('Ellucian Higher Education Systems run returns [] when the official India J
       urls.push(url)
       return { jobs: [], totalCount: 0 }
     },
-  })
+  }), /current native HTTP metadata required/)
 
-  assert.deepEqual(urls, [
-    'https://careers.ellucian.com/api/jobs?page=1&country=India&internal=false&separator=%7C&facetField=tags2%7Cstate%7Ccity%7Ccountry%7Ctags1',
-  ])
-  assert.deepEqual(jobs, [])
+  assert.deepEqual(urls, [])
 })

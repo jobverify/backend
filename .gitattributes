@@ -121,3 +121,26 @@ scraper/bmcsoftware/fixtures/role-47205-http.html -text
 
 # The compiler entrypoint must execute inside Linux containers on every checkout.
 /resume-tailoring/compiler/compile.sh text eol=lf
+
+# Strict reader-cleanup tests hash these files; keep their bytes stable on every OS.
+/scraper-support/shared/nativeJobPosting.js text eol=lf
+/scraper-support/shared/responseBodyDisposal.js text eol=lf
+/scraper-support/shared/rmkNativePair.js text eol=lf
+/scraper-support/shared/rmkNativePairHtml.js text eol=lf
+/scraper-support/shared/successFactorsRmk.js text eol=lf
+/scraper-support/utils/activeNativeHtml.js text eol=lf
+/scraper-support/utils/fetch.js text eol=lf
+/scraper-support/utils/inventoryEvidence.js text eol=lf
+/scraper-support/utils/retry.js text eol=lf
+/scraper-support/utils/retryPressure.js text eol=lf
+/scraper-support/utils/sourceObservationEvidence.js text eol=lf
+/scraper/abmknowledgeware/publicIntake.js text eol=lf
+/scraper/firstcitizensindia/currentNative20261111.js text eol=lf
+/scraper/firstcitizensindia/script.js text eol=lf
+/scraper/hershey.workday/script.js text eol=lf
+/scraper/hubbell.workday/script.js text eol=lf
+/src/utils/jobSourceContent.js text eol=lf
+/package.json text eol=lf
+/scraper-support/tests/readerCleanupFirstCitizensRmk20261112/proof.mjs text eol=lf
+/scraper-support/tests/readerCleanupFirstCitizensRmk20261112/closure.json text eol=lf
+/scraper-support/tests/readerCleanupFirstCitizensRmk20261112.test.js text eol=lf

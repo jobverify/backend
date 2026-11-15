@@ -1,0 +1,213 @@
+{
+  "revision": "20261115",
+  "nativeBuild": "2fd162d1",
+  "frames": {
+    "board": [
+      "61d3343d907641461181679771dd867fb6659966336bd71689f17dbe07de7202"
+    ],
+    "listing": [
+      "4585e874a026ba041a61fe76e1def7251a4af600591b7efb2cbd373719788e71",
+      "61a9e1de9bea6b8a0a24b470f8bbd33da954ff1841384b4ee9fa5ff9d752af69",
+      "96c88f9d925ecc3b809125c05bcf2e855d47e66a30f4f858f9e580254ec50640",
+      "6acd31b8c764799d9242df61ae9b12a60ed17c170618cfb4e55018cebfd6e286",
+      "7345502b2d43a5574ce87c5881479d518af35ea72c9d5314667e4b2c5e66d930"
+    ],
+    "detail": [
+      "93fb77ef41383f7d2a9db7ee25037809b32b0a215cdc518a8dc12885a3eb2696"
+    ]
+  },
+  "programsExecuted": false,
+  "externalProgramsFetched": false,
+  "renderedOperationQualified": false,
+  "qualification": "Exact complete current native passive carrier contexts;original declarations retained. No downloaded program equivalence or execution claim.",
+  "reviewedAt": "2026-11-15T16:15:48.223Z",
+  "originalNativeCohortSHA256": "4589e675d3e120d1791ba43c7028fe1f359ce0782f4bb7c4b272f2aa3141dbe8",
+  "currentNativeRoleSubset": [
+    "57209344",
+    "57209144"
+  ],
+  "currentNativeRowObservations": 69,
+  "anonymousLiteralRule": "Exact AST-bound ct id and csrf UUIDv4;publicIDs bind the original own role;every other program byte and carrier context remains pinned.",
+  "unexecutedOverrideCacheKeyRule": "Exact active own /js/override.js?locale=en_US&i=positiveInt32 declaration only. Its body is never requested/executed/used as job data. Original complete declarations remain in raw receipts;no program equivalence claimed.",
+  "authorityLinkProfiles": {
+    "boardSearch": [
+      "90e88f9135a2f4ff54033046621dfa533af9ef34f7d6b4fe8f68a40b2d06809c",
+      "52591b13e429dfd6bed2074a4b9188114c40eb30cc799c25076d8aaad889ae55",
+      "5a5f466302983c8101f21f094b12b8c14d16ee036e765860db747ea680971f9b"
+    ],
+    "reciprocal": [
+      "7f67180e3f034610acb0a2c46cbdb4c6c22f251e314ebc6c2d5e5983d8e02d0d",
+      "49acddf77946b394d095e67ecbd979eb2addcf136ceaa5151a539babb35d8445",
+      "57cba8c47bf99a411ec94893dd36917dfab1e6aec04b664ab6e7de30655f5ac5",
+      "9cac1c8b418d4c9dcd3c3493a07e63dfc973d42fb882f4344cc81ab2355bf08c",
+      "d332f155d9ce3c787657c07cb8703465fed9349dee6db77eb6f099bd4b246e2d",
+      "55a61fd98ba5c9d092b8beed77aaf81dea822809762ca17fcdb406b469ace59e"
+    ]
+  },
+  "currentReciprocalLinkReview": "Two native logos moved accessible name from childimg alt to sameanchor aria-label Providence;exact href/image/style/other4reciprocal links unchanged;complete currentcontexts pinned.",
+  "currentOwnerFrameReview": {
+    "sourceFrameSHA256": "fe3069e8d64a72f1c14d4e54ebfc3ab0540ce4b9924f773645a95ded63836228",
+    "priorReviewedSourceFrameSHA256": "3bef704ac013205d52c008e1072fd3cca894c305ae3f8b8f426ef60916e44798",
+    "change": "Exact four-line indentation and one blank-line change around the existing customPlugin carrier;all script/style bytes and all remaining native-field-bound owner bytes unchanged.",
+    "programSpansMasked": 0,
+    "originalWholeOwnerSHA256": [
+      "bf921cf231d6dc532259a5a2d8f12874aa3f46378715913eee4ca081c3dea8d8",
+      "7e42ef396ac0442f0f5a949ecc8a9ad94ed4bdc00534b43500cd7886956a4e29"
+    ]
+  },
+  "detailOutsideOwnerFrames": {
+    "57209144": [
+      "e1e7a62e3830aa83f6efe9d301acfe7ccfc3c86b8e5f468dfa4eceb2bbdf8643"
+    ],
+    "57209344": [
+      "5c6e6898290fb3d576decc79c4f080a3821048edee3906e47b110cc8d093c5fe"
+    ]
+  },
+  "responseHeaderContexts": {
+    "https://www.providence.in/experienced-professionals/": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": "<https://www.providence.in/wp-json/>; rel=\"https://api.w.org/\", <https://www.providence.in/wp-json/wp/v2/pages/4851>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://www.providence.in/?p=4851>; rel=shortlink",
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": null,
+        "x-frame-options": null
+      }
+    ],
+    "https://careers.providence.in/": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/search/": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/search/?q=&sortColumn=referencedate&sortDirection=desc&startrow=15": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/search/?q=&sortColumn=referencedate&sortDirection=desc&startrow=30": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/search/?q=&sortColumn=referencedate&sortDirection=desc&startrow=45": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/search/?q=&sortColumn=referencedate&sortDirection=desc&startrow=60": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/job/Hyderabad-Senior-Service-Engineer-Tela/57209344/": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ],
+    "https://careers.providence.in/job/Hyderabad-Senior-Service-Engineer-Tela/57209144/": [
+      {
+        "content-type": "text/html;charset=utf-8",
+        "refresh": null,
+        "content-disposition": null,
+        "location": null,
+        "content-location": null,
+        "link": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "x-content-security-policy": null,
+        "x-webkit-csp": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN"
+      }
+    ]
+  },
+  "outsideOwnerFrameRule": "Complete original document outside the independently fully parsed and exact field-bound native JobPosting. Only already-reviewed exact anonymous/program/cache bindings,2same-parent notification-frequency inputID/labelFor pairs with all other controller/attributes/text pinned,and isolated inert plain closure fallbacks may project;all other text/attributes/required inputs/controls remain bound. Full inactive fallback declarations remain in raw responses and metadata evidence."
+}

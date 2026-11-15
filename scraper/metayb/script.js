@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 import METAYB_CATALOG from './catalog.js'
+import { runCurrentMetayb } from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -82,7 +83,7 @@ export const createMetaybScraper = () => ({
   },
 })
 
-export const run = async (options = {}) => createMetaybScraper().run(options)
+export const run = async (options = {}) => runCurrentMetayb(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

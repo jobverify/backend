@@ -275,7 +275,7 @@ export const buildPublicJobLifecycleDateScope = (
 
   return {
     // Unknown dates are not proof that a role has closed, so they remain visible.
-    // Known posting dates must fall within the last calendar month.
+    // Known posting dates must fall within the last three calendar months.
     $expr: {
       $and: [
         {

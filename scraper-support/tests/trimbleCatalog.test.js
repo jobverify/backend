@@ -7,37 +7,26 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes the Trimble Eightfold apiPortal provider with official metadata', () => {
+test('getScraperCatalog includes the current Trimble corporate Paradox reader with incomplete scope', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'trimble')
 
   assert.ok(provider)
-  assert.equal(provider.adapter, 'apiPortal')
-  assert.equal(provider.atsPlatform, 'eightfold')
-  assert.equal(provider.companyName, 'Trimble Inc')
+  assert.equal(provider.adapter, 'script')
+  assert.equal(provider.atsPlatform, 'paradox-first-party-careers')
+  assert.equal(provider.companyName, 'Trimble')
   assert.equal(provider.companyCareerPage, 'https://www.trimble.com/en/careers')
   assert.equal(provider.companyDomain, 'trimble.com')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'offset-limit')
-  assert.equal(provider.extractionStrategy, 'api+detail')
-  assert.equal(provider.parser, 'api-portal')
+  assert.equal(provider.paginationStrategy, 'bounded-native-Paradox-pages-coverage-incomplete')
+  assert.equal(provider.extractionStrategy, 'current-corporate-handoff+visible-own-role+typed-country+native-application')
+  assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
-  assert.equal(
-    provider.config.discovery.listingApiUrl,
-    'https://trimblecareers.trimble.com/api/pcsx/search',
-  )
-  assert.equal(provider.config.request.query.domain, 'trimble.com')
-  assert.equal(provider.config.request.query.location, 'India')
-  assert.equal(provider.config.mapping.title, 'name')
-  assert.deepEqual(provider.config.mapping.location, {strategy:'eightfold-location'})
-  assert.deepEqual(provider.config.mapping.country, {strategy:'eightfold-country'})
-  assert.equal(
-    provider.config.detail.urlTemplate,
-    'https://trimblecareers.trimble.com/api/pcsx/position_details?position_id={{jobId}}&domain=trimble.com&hl=en',
-  )
-  assert.match(provider.config.resultFilter.include[0].pattern, /india/i)
+  assert.match(provider.modulePath, /trimble[\\/]script\.js$/)
+  assert.equal(provider.sourceScopeComplete, false)
+  assert.equal(provider.lifecycleCleanupAllowed, false)
 })
 
-test('buildScrapers and company coverage resolve Trimble Inc to a runnable apiPortal source', () => {
+test('buildScrapers and company coverage preserve Trimble Inc source identity after the native migration', () => {
   const scraper = buildScrapers().find((item) => item.name === 'trimble')
 
   assert.ok(scraper)
@@ -54,6 +43,6 @@ test('buildScrapers and company coverage resolve Trimble Inc to a runnable apiPo
   assert.equal(report.unmatchedCount, 0)
   assert.deepEqual(
     report.matched.map((item) => [item.companyName, item.source, item.provider?.companyName ?? null]),
-    [['Trimble Inc', 'trimble', 'Trimble Inc']],
+    [['Trimble Inc', 'trimble', 'Trimble']],
   )
 })

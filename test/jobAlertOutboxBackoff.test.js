@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import mongoose from 'mongoose';
 import JobAlertOutbox from '../src/models/JobAlertOutbox.js';
+import PipelineRun from '../src/models/PipelineRun.js';
 import { recoverJobAlertOutbox } from '../src/services/jobAlertOutboxService.js';
 
 for (const entry of [
@@ -14,6 +15,7 @@ for (const entry of [
   const event = { _id: new mongoose.Types.ObjectId(), claimToken: 'local-claim',
     attemptCount: entry.claims, failedAttemptCount: entry.failures };
   let update;
+  t.mock.method(PipelineRun.Query.prototype, 'exec', async () => null);
   t.mock.method(JobAlertOutbox, 'findOneAndUpdate', async () => event);
   t.mock.method(mongoose.connection, 'transaction', async () => { throw new Error('controlled page failure'); });
   t.mock.method(JobAlertOutbox, 'updateOne', async (filter, value) => {

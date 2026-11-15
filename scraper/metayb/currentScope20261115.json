@@ -1,0 +1,181 @@
+{
+  "version": "current-metayb-keka-native-20261115",
+  "source": "metayb",
+  "brand": "Metayb",
+  "nativeEmployer": "Metayb Private Limited",
+  "linkedIn": "https://www.linkedin.com/company/metayb/",
+  "urls": {
+    "home": "https://metayb.ai/",
+    "entry": "https://metayb.ai/assets/index-_o8rh6rv.js",
+    "board": "https://metayb.keka.com/careers/",
+    "portal": "https://metayb.keka.com/ats/documents/c7f3951a-6709-4b6b-a5d3-1e58ba9ae906/careerportal/95de8f4db9784dfa94470efea5531a0f.html",
+    "renderer": "https://metayb.keka.com/careers/api/embedjobs/js/c7f3951a-6709-4b6b-a5d3-1e58ba9ae906",
+    "account": "https://metayb.keka.com/careers/api/organization/default/careerportalinfo",
+    "feed": "https://metayb.keka.com/careers/api/embedjobs/default/active/c7f3951a-6709-4b6b-a5d3-1e58ba9ae906"
+  },
+  "exactCurrentBodies": {
+    "https://metayb.ai/": "4c839c4e8dd05b803ee7cb06a4b7aa4c374e3fbdbbc4dd4a8c935704d8e6a7cc",
+    "https://metayb.ai/assets/index-_o8rh6rv.js": "f02259cdd39cb94f954a969a3ae18605d8def542883a07252ae854c7909d1cc2",
+    "https://metayb.keka.com/careers/": "a0e6119814a47df0b9684f2a0b3a45406a09c38f0e5f68d4bc3cb6044423dccd",
+    "https://metayb.keka.com/ats/documents/c7f3951a-6709-4b6b-a5d3-1e58ba9ae906/careerportal/95de8f4db9784dfa94470efea5531a0f.html": "222645a05c100eef8738861a3c9321d37f29d1e563320cd13ccb6ac0763b88c9",
+    "https://metayb.keka.com/careers/api/embedjobs/js/c7f3951a-6709-4b6b-a5d3-1e58ba9ae906": "176878893ddcd1a0dabb3b84d1c8a98bde7c16c6ace1af2871db06c741fa022b",
+    "https://metayb.keka.com/careers/api/organization/default/careerportalinfo": "14471bf6085df62f52021aa4296c78fb6883582f5a2948f026991babd03b7643"
+  },
+  "roleResources": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap",
+      "sha256": "b61f035517d57e3c2827595e875ac4f6b3f6fbe89201c4e1f1bfa574c8997ed8",
+      "bytes": 7935,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/css/bootstrap.css",
+      "sha256": "ddbf915b619044875fad3aa7813d60c0446caf53e8ff3f59a669b183f23c9e34",
+      "bytes": 172080,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/datepicker.css",
+      "sha256": "25a11f6bb4b15800fb19219cfe9a143c8f5864ca0972822eb0ab71d65a26400a",
+      "bytes": 3973,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/select2/select2.min.css",
+      "sha256": "515e9ed5b42e14ccbc151927196cb58c9bb2246e67c3c6707251dd551aee4d7a",
+      "bytes": 14615,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/css/jquery-ui/theme.css",
+      "sha256": "2907431ec7ff10bca6525f54c4a82a0e1efb792f0023dc6deae1767a8f6aa6e3",
+      "bytes": 18561,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/shared/icons/1.0.16/keka-icons.css",
+      "sha256": "dce69c14c7f4fc5f20782247308ee49b7a969a3fdbf703e1b8b346fd383ca7f4",
+      "bytes": 33142,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/shared/careers-ui/0.0.8/dist/css/careers-ui.min.css",
+      "sha256": "4b3ceb40f184b74f4bc6261310d7f47e89bc2cff7314bf7dcc865986e1058ea0",
+      "bytes": 17026,
+      "mime": "text/css",
+      "kind": "css"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.min.js",
+      "sha256": "ce9d07500ad91ec2b524c270764ec4c9a33e78320d8d374ec400ede488f6251b",
+      "bytes": 89503,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/modernizr-2.6.2.js",
+      "sha256": "092eb6b28c378d7c7dc73637028706f2decb775f06103c425317057539f0321f",
+      "bytes": 52874,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.ui.widget.js",
+      "sha256": "309056eb88e06280afc04bdf04e6c4f56d6b71e1d4b33ea10315dbdff0e27ed8",
+      "bytes": 22172,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.fileupload.js",
+      "sha256": "7bf41f6a3a5a7ae6117e58b8357847ce7f753c21755e8b625452e27355969f1b",
+      "bytes": 58235,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/datepicker.js",
+      "sha256": "0d56719afd995492ee408fc963265981baab53e9bb001df3a41b7fb4eda645d1",
+      "bytes": 82904,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/select2.min.js",
+      "sha256": "4154c46ec7be875ec7ff33453c62a7a5f591b7b6d93fb60cf5fc597768215e73",
+      "bytes": 70892,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/lib/jquery.validate.min.js",
+      "sha256": "a0c2a7a1d233e0904fc56dac825d2c939b934e2e8ea78bbed95b8998b8f42263",
+      "bytes": 24433,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://cdn.keka.com/careers/v/2026/scripts/app/app.min.js",
+      "sha256": "e2585ba1c4a259792330b7524042e3376994836454234a6da414eb1eeaaf315f",
+      "bytes": 79753,
+      "mime": "application/x-javascript",
+      "kind": "javascript"
+    }
+  ],
+  "roleSurroundingTexts": [
+    "Home $TITLE$ $EXPERIENCE$ $LOCATIONS$ $JOBTYPE$ $DESCRIPTION$ $SKILLS$ Apply for this job Share with someone awesome View all job openings",
+    "Home $TITLE$ $EXPERIENCE$ $LOCATIONS$ $JOBTYPE$ $DESCRIPTION$ Apply for this job Share with someone awesome View all job openings"
+  ],
+  "roleMetricFormats": {
+    "experienceSuffix": " Years",
+    "employmentType": {
+      "2": "Full-Time"
+    }
+  },
+  "nativeRoleKeys": [
+    "id",
+    "title",
+    "description",
+    "departmentIdentifier",
+    "departmentName",
+    "excerpt",
+    "jobLocations",
+    "jobType",
+    "experience",
+    "jobNumber",
+    "salaryRange",
+    "salaryRangeFormat",
+    "publishedOn",
+    "publishedSinceDays",
+    "skillNames"
+  ],
+  "nativeLocationKeys": [
+    "id",
+    "name",
+    "city",
+    "state",
+    "countryCode",
+    "countryName",
+    "locationIdentifier"
+  ],
+  "nativeSalaryKeys": [
+    "minimum",
+    "maximum",
+    "currency",
+    "salaryPeriod",
+    "cultureInfo"
+  ],
+  "limitations": {
+    "corporateUIQualified": false,
+    "renderedApplicationQualified": false,
+    "companyInventoryComplete": false,
+    "verifiedZero": false,
+    "lifecycleCleanupAllowed": false
+  }
+}

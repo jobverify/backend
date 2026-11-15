@@ -9,7 +9,9 @@ import { activateWebhookPurchase, verifyAndActivatePurchase, reconcileWebhookRef
 
 test('payment ownership, validation, idempotency, refunds and rollback use real transactions', { timeout: 120_000 }, async t => {
   process.env.MONGOMS_RUNTIME_DOWNLOAD = 'false';
-  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 }, binary: {
+  // A cold database start on a busy runner can exceed the ten-second default.
+  const mongo = await MongoMemoryReplSet.create({ replSet: { count: 1 },
+    instanceOpts: [{ launchTimeout: 60_000 }], binary: {
     version: '8.2.6', downloadDir: path.resolve(import.meta.dirname, '../../.cache/mongodb-binaries'),
   } });
   t.after(async () => { await mongoose.disconnect(); await mongo.stop(); });

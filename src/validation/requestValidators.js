@@ -463,6 +463,9 @@ export const mongoIdParamValidation = (name, label) => [
 ];
 
 export const userProfileValidation = [
+  body('gettingStartedStatus').optional().isString().bail()
+    .isIn(['pending', 'in_progress', 'skipped', 'completed'])
+    .withMessage('Getting started status is invalid.'),
   body("name").optional().custom((value) => {
     if (String(value ?? "").trim().length > MAX_TEXT_LENGTH) {
       throw new Error(`Name must be ${MAX_TEXT_LENGTH} characters or fewer.`);

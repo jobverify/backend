@@ -209,96 +209,12 @@ test('Vistex validates the verified homepage, careers pages, about page, contact
   assert.equal(vistex.hasOfficialUltiproBoardSignal(ultiproBoardHtml), true)
 })
 
-test('Vistex run returns an empty list only while the verified official pages expose the same UKG handoff contract', async () => {
+test('Vistex current runtime requires original bytes and HTTP metadata instead of a text-only empty sentinel', async () => {
   const vistex = await loadModule()
-  assert.ok(vistex, 'Vistex scraper module should load')
-
-  const requestedUrls = []
-  const jobs = await vistex.createVistexScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === vistex.HOMEPAGE_URL) return homepageHtml
-      if (url === vistex.CAREERS_URL) return careersHtml
-      if (url === vistex.INDIA_CAREERS_URL) return indiaHtml
-      if (url === vistex.ABOUT_URL) return aboutHtml
-      if (url === vistex.CONTACT_URL) return contactHtml
-      if (url === vistex.ULTIPRO_BOARD_URL) return ultiproBoardHtml
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    vistex.HOMEPAGE_URL,
-    vistex.CAREERS_URL,
-    vistex.INDIA_CAREERS_URL,
-    vistex.ABOUT_URL,
-    vistex.CONTACT_URL,
-    vistex.ULTIPRO_BOARD_URL,
-  ])
-  assert.deepEqual(jobs, [])
-})
-
-test('Vistex fails closed when the homepage, careers page, india page, about page, contact page, or UKG handoff changes materially', async () => {
-  const vistex = await loadModule()
-  assert.ok(vistex, 'Vistex scraper module should load')
-
-  await assert.rejects(
-    vistex.createVistexScraper().run({
-      fetchText: async (url) => {
-        if (url === vistex.HOMEPAGE_URL) return '<html><body><h1>Placeholder</h1></body></html>'
-        if (url === vistex.CAREERS_URL) return careersHtml
-        if (url === vistex.INDIA_CAREERS_URL) return indiaHtml
-        if (url === vistex.ABOUT_URL) return aboutHtml
-        if (url === vistex.CONTACT_URL) return contactHtml
-        if (url === vistex.ULTIPRO_BOARD_URL) return ultiproBoardHtml
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /homepage/i,
-  )
-
-  await assert.rejects(
-    vistex.createVistexScraper().run({
-      fetchText: async (url) => {
-        if (url === vistex.HOMEPAGE_URL) return homepageHtml
-        if (url === vistex.CAREERS_URL) return '<html><body><h1>Jobs</h1></body></html>'
-        if (url === vistex.INDIA_CAREERS_URL) return indiaHtml
-        if (url === vistex.ABOUT_URL) return aboutHtml
-        if (url === vistex.CONTACT_URL) return contactHtml
-        if (url === vistex.ULTIPRO_BOARD_URL) return ultiproBoardHtml
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /careers page/i,
-  )
-
-  await assert.rejects(
-    vistex.createVistexScraper().run({
-      fetchText: async (url) => {
-        if (url === vistex.HOMEPAGE_URL) return homepageHtml
-        if (url === vistex.CAREERS_URL) return careersHtml
-        if (url === vistex.INDIA_CAREERS_URL) return indiaHtml.replace(vistex.ULTIPRO_BOARD_URL, 'https://example.com')
-        if (url === vistex.ABOUT_URL) return aboutHtml
-        if (url === vistex.CONTACT_URL) return contactHtml
-        if (url === vistex.ULTIPRO_BOARD_URL) return ultiproBoardHtml
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /ultipro handoff/i,
-  )
-
-  await assert.rejects(
-    vistex.createVistexScraper().run({
-      fetchText: async (url) => {
-        if (url === vistex.HOMEPAGE_URL) return homepageHtml
-        if (url === vistex.CAREERS_URL) return careersHtml
-        if (url === vistex.INDIA_CAREERS_URL) return indiaHtml
-        if (url === vistex.ABOUT_URL) return aboutHtml
-        if (url === vistex.CONTACT_URL) return contactHtml
-        if (url === vistex.ULTIPRO_BOARD_URL) return '<html><body><p>Board unavailable</p></body></html>'
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /board/i,
-  )
+  assert.ok(vistex)
+  let reads = 0
+  const fetchText = async () => { reads++; return ultiproBoardHtml }
+  await assert.rejects(vistex.run({ fetchText }), new RegExp('original byte/HTTP metadata transport required'))
+  await assert.rejects(vistex.createVistexScraper().run({ fetchText }), new RegExp('original byte/HTTP metadata transport required'))
+  assert.equal(reads, 0)
 })

@@ -1,0 +1,21 @@
+[
+  {
+    "source": "hsbctechnologyindia",
+    "adapter": "script",
+    "modulePath": "../../scraper/hsbctechnologyindia/script.js",
+    "companyName": "HSBC Technology India",
+    "officialEmployerNames": ["HSBC Software Development India"],
+    "companyCareerPage": "https://www.hsbc.com/careers/find-a-job",
+    "companyDomain": "hsbc.com",
+    "atsPlatform": "eightfold-classic",
+    "countryFilter": "India",
+    "paginationStrategy": "native-selected-technology-observations-incomplete",
+    "extractionStrategy": "current-corporate-handoff+classic-full-role+custom-JD-application-deadline",
+    "parser": "custom-script",
+    "normalizationProfile": "engineering-default",
+    "zeroResultPolicy": "evidence-required",
+    "sourceScopeComplete": false,
+    "lifecycleCleanupAllowed": false,
+    "catalogOverride": true
+  }
+]

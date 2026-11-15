@@ -137,7 +137,7 @@ export async function runNative(config,{fetchText,signal,now=new Date().toISOStr
   for(let hop=0;hop<=5;hop++){
    activeSignal.throwIfAborted();requireNative(!visited.has(current.href),'Native redirect loop');visited.add(current.href)
    const requestSignal=AbortSignal.any([activeSignal,AbortSignal.timeout(30000)])
-   const r=await fetch(current.href,{method:'GET',redirect:'manual',signal:requestSignal,headers:{accept:'text/html','user-agent':'Mozilla/5.0'}});let consumed=false,failed=false,failure
+   const r=await fetch(current.href,{method:'GET',redirect:'manual',signal:requestSignal,headers:{accept:'text/html','user-agent':'Mozilla/5.0'}});let consumed=false,failed=false,failure,html
    try{
     requireNative(!r.redirected&&r.url===current.href,'Native fetch followed an unvalidated redirect')
     if([301,302,303,307,308].includes(r.status)){
@@ -145,20 +145,21 @@ export async function runNative(config,{fetchText,signal,now=new Date().toISOStr
      requireNative(hop<5,'Native redirect hop bound exceeded')
      let destination;try{destination=new URL(location,current)}catch{requireNative(false,'Native redirect invalid URL')}
      current=approveURL(destination.href,initial.origin);requireNative(!visited.has(current.href),'Native redirect loop')
-     continue
+    }else{
+     requireNative(r.ok,'Native HTTP '+r.status);requestSignal.throwIfAborted()
+     html=await r.text();consumed=true;requestSignal.throwIfAborted()
     }
-    requireNative(r.ok,'Native HTTP '+r.status);requestSignal.throwIfAborted()
-    const html=await r.text();consumed=true;requestSignal.throwIfAborted();return html
    }catch(error){
-    failed=true;failure=error;throw error
-   }finally{
-    if(!consumed&&r.body){
-     // Valid redirects need strict cleanup; observed failures keep their priority.
-     const cleanupSignal=failed&&!(requestSignal.aborted&&failure===requestSignal.reason)?activeSignal:requestSignal
-     try{await disposeResponseBody(r,{signal:cleanupSignal,bestEffort:failed})}
-     catch(error){if(signal?.aborted)throw signal.reason;throw error}
-    }
+    failed=true;failure=error
    }
+   if(!consumed&&r.body){
+    // Valid redirects need strict cleanup; observed failures keep their priority.
+    const cleanupSignal=failed&&!(requestSignal.aborted&&failure===requestSignal.reason)?activeSignal:requestSignal
+    try{await disposeResponseBody(r,{signal:cleanupSignal,bestEffort:failed})}
+    catch(error){if(signal?.aborted)throw signal.reason;throw error}
+   }
+   if(failed)throw failure
+   if(consumed)return html
   }
   requireNative(false,'Native redirect hop bound exceeded')
  }

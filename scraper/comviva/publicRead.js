@@ -23,7 +23,7 @@ export function createPublicReader(options,receipts){
   const signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
   let acquiredBody
   try{
-   let bytes,status=200,finalURL=url
+   let bytes,status=200,finalURL=url,responseHeadersObserved=false,headers=null
    const request={...init,signal,redirect:'manual'}
    if(options.fetchText){
     const value=await pendingWithSignal(()=>options.fetchText(url,request),signal)
@@ -35,6 +35,8 @@ export function createPublicReader(options,receipts){
     status=response.status;finalURL=response.url||url
     if(status!==200||finalURL!==url){cancel(response.body);throw Object.assign(Error('comviva native public response status or final URL changed: '+status+' '+finalURL),{status})}
     const type=response.headers.get('content-type')||''
+    responseHeadersObserved=true
+    headers={'content-type':type,'content-security-policy':response.headers.get('content-security-policy'),'content-security-policy-report-only':response.headers.get('content-security-policy-report-only')}
     if(!/^(?:text\/(?:html|css|javascript)|application\/(?:json|javascript|x-javascript))/i.test(type)){cancel(response.body);throw Error('comviva native public response type changed')}
     if(response.body?.getReader){
      const reader=response.body.getReader(),chunks=[];let count=0
@@ -48,7 +50,7 @@ export function createPublicReader(options,receipts){
    // can expose a wire gzip body; the magic bytes prevent double decoding.
    if(bytes[0]===0x1f&&bytes[1]===0x8b)bytes=gunzipSync(bytes,{maxOutputLength:limit})
    if(bytes.length>limit)throw Error('comviva native decoded byte budget exceeded')
-   receipts.push({url,method:init.method||'GET',status,finalURL,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),startedAt,completedAt:new Date().toISOString()})
+   receipts.push({url,method:init.method||'GET',status,finalURL,responseHeadersObserved,headers,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),startedAt,completedAt:new Date().toISOString()})
    return bytes.toString('utf8')
   }catch(error){options.signal?.throwIfAborted();receipts.push({url,method:init.method||'GET',startedAt,completedAt:new Date().toISOString(),failed:true,error:String(error.message||error)});throw error}
   finally{clearTimeout(timeout);cancel(acquiredBody)}
