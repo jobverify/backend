@@ -9,6 +9,7 @@ import {getScraperCatalog,createCatalogScraper} from '../../scraper-support/prov
 import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const fixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-native-20261115.json.gz',import.meta.url))))
+const filledFixture=JSON.parse(gunzipSync(fs.readFileSync(new URL('./fixtures/current-filled-20261116.json.gz',import.meta.url))))
 const body=p=>Buffer.from(p.bodyBase64,'base64').toString('utf8')
 const sha=s=>createHash('sha256').update(s).digest('hex')
 async function replay(change,options={}){
@@ -34,6 +35,65 @@ async function replay(change,options={}){
  }catch(error){return{jobs:[],calls,mutations,error}}
 }
 export {replay as replayCurrentAtos}
+
+const newlyFilledIDs=['1437260133','1409482933','1446494433']
+const useFilledPacket=(packet,url,ids=newlyFilledIDs)=>{
+ if(!ids.some(id=>url.endsWith('/'+id+'/')))return false
+ const original=filledFixture.packets.find(packet=>packet.requestedURL===url);assert.ok(original,'genuine current filled packet')
+ Object.assign(packet,{body:body(original),headers:structuredClone(original.headers),status:original.status,url:original.url});return true
+}
+
+test('genuine native filled transition preserves independently current roles and complete negative receipts',async()=>{
+ const targetID='1437260133',result=await replay((packet,url)=>useFilledPacket(packet,url,[targetID]))
+ assert.ifError(result.error);assert.equal(result.jobs.length,24);assert.equal(result.calls.length,68)
+ const evidence=result.jobs.nativeCollectionEvidence,original=filledFixture.packets.find(packet=>packet.requestedURL.endsWith('/'+targetID+'/'))
+ assert.equal(evidence.nativeRows.length,27);assert.equal(evidence.observedVacancyCount,25);assert.equal(evidence.holds.length,3)
+ assert.ok(evidence.holds.some(hold=>hold.routeID===targetID&&hold.originalNativeRecord.nativeObservationKind==='explicit-unavailable-without-JobPosting'))
+ assert.ok(!result.jobs.some(job=>job.sourceNativeIdentity.routeID===targetID))
+ const packets=evidence.originalResponses.filter(packet=>packet.requestedURL===original.requestedURL);assert.equal(packets.length,2)
+ for(const packet of packets){assert.equal(packet.bodyBase64,original.bodyBase64);assert.deepEqual(packet.headers,original.headers)}
+ assert.equal(evidence.sourceScopeComplete,false);assert.equal(evidence.verifiedZero,false);assert.equal(evidence.lifecycleCleanupAllowed,false)
+})
+
+test('genuine native filled transitions preserve 27 raw rows and 23 vacancy observations with 22 eligible roles',async()=>{
+ const result=await replay((packet,url)=>useFilledPacket(packet,url));assert.ifError(result.error);assert.equal(result.jobs.length,22);assert.equal(result.calls.length,68)
+ const evidence=result.jobs.nativeCollectionEvidence
+ assert.equal(evidence.nativeRows.length,27);assert.equal(evidence.closingNativeRows.length,27);assert.equal(evidence.observedVacancyCount,23)
+ assert.equal(evidence.holds.length,5);assert.equal(evidence.holds.filter(hold=>/filled/.test(hold.reason)).length,4);assert.equal(evidence.holds.filter(hold=>/unconfirmed/.test(hold.reason)).length,1)
+ assert.deepEqual(evidence.nativeRows.map(row=>row.url),fixture.passes[0].rows.map(row=>row.url))
+ assert.deepEqual(evidence.openingModels,evidence.closingModels)
+ for(const job of result.jobs){
+  const original=fixture.passes[0].roles.find(role=>role.url===job.sourceUrl);assert.equal(job.sourceNativeFullCriteria,original.description[0].text)
+  assert.equal(job.country,'India');assert.equal(job.nativeLegalEmployer,null);assert.equal(job.sourceRenderedApplicationQualified,false)
+ }
+ assert.equal(evidence.sourceScopeComplete,false);assert.equal(evidence.verifiedZero,false);assert.equal(evidence.lifecycleCleanupAllowed,false)
+})
+
+for(const [label,change]of[
+ ['an active JobPosting and native role Apply owner',packet=>{packet.body=packet.body.replace('</body>','<div class="jobDisplayShell" itemscope="itemscope" itemtype="http://schema.org/JobPosting"><a class="dialogApplyBtn" href="/talentcommunity/apply/1437260133/?locale=en_US">Apply now »</a></div></body>')}],
+ ['an active native role Apply action without JobPosting',packet=>{packet.body=packet.body.replace('</body>','<a class="dialogApplyBtn" href="/talentcommunity/apply/1437260133/?locale=en_US">Apply now »</a></body>')}],
+ ['a foreign canonical',packet=>{packet.body=packet.body.replace(/(<link rel="canonical" href=")[^"]*"/,'$1https://example.invalid/foreign-role"')}],
+ ['an unrelated subscription route',packet=>{packet.body=packet.body.replace('jobid=1437260133','jobid=9999999999')}],
+ ['an unrelated disabled SSO route',packet=>{packet.body=packet.body.replace("jobID    : '1437260133'","jobID    : '9999999999'")}],
+ ['a new employer property',packet=>{packet.body=packet.body.replace('</head>','<meta itemprop="hiringOrganization" content="Acme Corporation"></head>')}],
+ ['changed own career navigation',packet=>{packet.body=packet.body.replace('href="https://atos.net/en/careers"','href="https://example.invalid/careers"')}],
+ ['activation of the native SSO context',packet=>{packet.body=packet.body.replace('enabled  : false','enabled  : true')}],
+ ['a changed effective navigation header',packet=>{packet.headers.refresh='0; url=https://example.invalid/foreign-role'}],
+ ['a missing filled notice',packet=>{packet.body=packet.body.replace('Sorry, this position has been filled.','Please return to the careers page.')}],
+ ['an inactive filled notice',packet=>{packet.body=packet.body.replace('Sorry, this position has been filled.','<span hidden>Sorry, this position has been filled.</span>')}],
+ ['new authored criteria outside a vacancy owner',packet=>{packet.body=packet.body.replace('</body>','<p>Applicants must hold a cryptography doctorate before applying.</p></body>')}],
+])test('genuine filled shell rejects '+label,async()=>{
+ let changed=0
+ const result=await replay((packet,url)=>{if(!useFilledPacket(packet,url,['1437260133']))return;const before=JSON.stringify([packet.body,packet.headers]);change(packet);assert.notEqual(JSON.stringify([packet.body,packet.headers]),before,'actual retained packet changed');changed++})
+ assert.ok(changed>0);assert.ok(result.error);assert.equal(result.error.failureKind,'coverage_gap');assert.equal(result.jobs.length,0)
+ assert.equal(result.error.sourceScopeComplete,false);assert.equal(result.error.lifecycleCleanupAllowed,false)
+})
+
+test('positive-to-genuine-filled closing drift remains a safe source hold',async()=>{
+ const result=await replay((packet,url,index)=>{if(index===1)useFilledPacket(packet,url,['1437260133'])})
+ assert.ok(result.mutations.length>0);assert.ok(result.error);assert.equal(result.jobs.length,0);assert.equal(result.error.failureKind,'coverage_gap')
+ assert.equal(result.error.sourceScopeComplete,false);assert.equal(result.error.lifecycleCleanupAllowed,false)
+})
 
 test('registered original Atos source follows current corporate publication and preserves full native India criteria',async()=>{
  const r=await replay();assert.ifError(r.error);assert.equal(r.jobs.length,25);assert.equal(r.calls.length,68)

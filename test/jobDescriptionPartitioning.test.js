@@ -20,20 +20,21 @@ test('unsupported partition counts fail before reading the database', () => {
   }
 });
 
-test('automatic queue planning uses up to 64 parallel runners', async () => {
+test('automatic queue planning uses one wave of up to 64 shards', async () => {
   const { buildRewritePlan } = await import('../rewriting/partitioning.js').catch(() => ({}));
   assert.equal(typeof buildRewritePlan, 'function');
   const plan = buildRewritePlan(27660);
-  assert.equal(plan.shardCount, 128);
+  assert.equal(plan.shardCount, 64);
   assert.equal(plan.maxParallel, 64);
-  assert.equal(plan.estimatedJobsPerShard, 217);
-  assert.deepEqual(plan.matrix.shard, Array.from({ length: 128 }, (_, index) => index));
+  assert.equal(plan.estimatedJobsPerShard, 433);
+  assert.equal(plan.plannedWaves, 1);
+  assert.deepEqual(plan.matrix.shard, Array.from({ length: 64 }, (_, index) => index));
   assert.equal(buildRewritePlan(0).shardCount, 1);
   assert.equal(buildRewritePlan(1).shardCount, 1);
   assert.equal(buildRewritePlan(2).shardCount, 2);
   assert.equal(buildRewritePlan(0).maxParallel, 1);
   assert.equal(buildRewritePlan(2).maxParallel, 2);
-  assert.equal(buildRewritePlan(1000000).shardCount, 128);
+  assert.equal(buildRewritePlan(1000000).shardCount, 64);
   assert.equal(buildRewritePlan(1000000).maxParallel, 64);
   assert.equal(buildRewritePlan(1000000).capacityLimited, false);
   assert.equal(buildRewritePlan(1000000, { jobsPerShard: 350 }).capacityLimited, true);
@@ -41,6 +42,15 @@ test('automatic queue planning uses up to 64 parallel runners', async () => {
   for (const queued of [-1, 1.5, NaN, Infinity]) assert.throws(() => buildRewritePlan(queued), /queue/i);
   assert.throws(() => buildRewritePlan(10, { jobsPerShard: 0 }), /partition/i);
   assert.throws(() => buildRewritePlan(10, { maxParallel: 0 }), /parallel/i);
+});
+
+test('the November 16 queue stays complete in 64 automatic partitions', async () => {
+  const { buildRewritePlan } = await import('../rewriting/partitioning.js');
+  const plan = buildRewritePlan(40559);
+  assert.equal(plan.queued, 40559);
+  assert.equal(plan.shardCount, 64);
+  assert.equal(plan.jobsPerShard, 634);
+  assert.equal(plan.plannedWaves, 1);
 });
 
 test('a configured four-shard plan keeps the complete queue in four workers', async () => {

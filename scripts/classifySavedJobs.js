@@ -18,6 +18,8 @@ import { classificationSkipReason, createClassificationReport, recordClassificat
   recordClassificationInference } from '../classification/reporting.js'
 import { assignedSavedJobs } from './lib/assignedSavedJobs.js'
 import { refreshJobBatchEligibility } from './lib/batchEligibilityPhase.js'
+import { stageOutcome, describeStageCompletion } from '../src/pipeline/policy.js'
+import { isFatalProcessingError } from '../src/pipeline/processingErrors.js'
 
 export async function classifySavedJobs({ model = Job, worker, now = () => new Date(),
   mode = 'shadow', shard = 0, shardCount = 1, budgetSeconds = 18000, concurrency = 1, signal,
@@ -175,6 +177,7 @@ export async function classifySavedJobs({ model = Job, worker, now = () => new D
           $set: { 'postClassification.status': 'failed', 'postClassification.reason': String(error.message).slice(0, 300) },
           $unset: { 'postClassification.owner': '', 'postClassification.leaseUntil': '' },
         }), jobTimings)
+        if (isFatalProcessingError(error)) throw error
       }
       await emit(outcome, { ...details, modelRequest: inferred })
   }
@@ -250,10 +253,12 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
           ...(value.batchEligibility ? { batchEligibility: value.batchEligibility } : {}) }
         persist(value)
       }, onResult: row => fs.appendFileSync(diagnostics, JSON.stringify(row) + '\n') })
+    if (controller.signal.aborted) Object.assign(summary, { cancelled: true, interrupted: true, stopReason: 'cancelled' })
+    summary.outcome = stageOutcome('classification', summary, 0)
+    Object.assign(summary, describeStageCompletion('classification', summary, summary.outcome))
     persist(summary)
     console.log(JSON.stringify(summary))
-    if (summary.failed || summary.stale || summary.budgetExhausted || summary.batchEligibility.failed
-      || summary.batchEligibility.pending || summary.batchEligibility.budgetExhausted) process.exitCode = 1
+    if (summary.outcome !== 'completed') process.exitCode = 1
   } finally {
     progress.stop()
     await worker?.stop()

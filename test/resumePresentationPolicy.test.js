@@ -36,9 +36,11 @@ for (const mode of ['base', 'tailored']) {
           pagePlans.push(options.layout.pageBreakBefore || null);
           assert.deepEqual(options.pagination, { originalPageCount: originalPages, targetPages: expectedPages, exact: true });
           if (++generations === 2) {
-            const feedback = JSON.parse(prompt.split('\n').at(-1));
-            assert.ok(feedback.issues.some(issue => issue.includes(String(firstPages)) && /page/i.test(issue)));
+            assert.equal(options.paginationRepair, true);
+            assert.ok(prompt.includes(`currently has ${firstPages} pages`));
             assert.match(prompt, /spacing/i);
+            assert.doesNotMatch(prompt, /Alex Example|Cedar Labs|documentclass/);
+            return JSON.stringify({ spacing: firstPages > expectedPages ? 'compact' : 'original', breakBefore: expectedPages === 2 ? 0 : null });
           }
           return expectedPages === 2 ? latex.replace('\\section{EDUCATION}', '\\newpage\n\\section{EDUCATION}') : latex;
         },
@@ -54,7 +56,11 @@ for (const mode of ['base', 'tailored']) {
   test(`${mode}: a second page-count mismatch never publishes a document`, async () => {
     let generations = 0, comparisons = 0;
     await assert.rejects(processResumeDocument({ mode, source: { ...source, pageCount: 1 }, baseLatex: latex }, {
-      generate: async (_prompt, options) => { if (options.comparison) { comparisons++; return supported; } generations++; return latex; },
+      generate: async (_prompt, options) => {
+        if (options.comparison) { comparisons++; return supported; }
+        generations++;
+        return options.paginationRepair ? '{"spacing":"compact","breakBefore":null}' : latex;
+      },
       compile: async () => ({ ...compiled, pageCount: 2 }),
     }), { code: 'pagination_failed' });
     assert.equal(generations, 2);

@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 
-export const APPLICATION_STAGES = ['preparing', 'applied', 'screening', 'responded', 'interview', 'offer', 'selected', 'accepted', 'rejected', 'withdrawn', 'expired'];
+// Retain historical values so existing applications and timeline events remain valid.
+export const APPLICATION_STAGES = ['applied', 'resume_shortlisted', 'resume_rejected', 'connected_with_hr', 'waiting_for_interview_call', 'accepted', 'rejected_after_interview', 'offer_rejected',
+  'preparing', 'screening', 'responded', 'interview', 'offer', 'selected', 'rejected', 'withdrawn', 'expired'];
 
 // History is independent of the live job inventory. Keep a small snapshot when
 // listings expire or a source is removed, rather than losing the user's record.

@@ -13,6 +13,42 @@ test('durable pipeline claims, handoffs, failures and configuration snapshots', 
  const mongo=await MongoMemoryServer.create({binary:{version:'8.2.6',downloadDir:fileURLToPath(new URL('../.cache/mongodb-binaries/',import.meta.url))}});
  t.after(async()=>{await mongoose.disconnect();await mongo.stop();});
  await mongoose.connect(mongo.getUri());await PipelineRun.init();
+ await t.test('item failures and unfinished work complete every enabled stage locally and on GitHub',async()=>{
+  const summaries={
+   scraper:{scanned:4566,failed:6,warnings:2917,pendingEstimate:1},
+   rewrite:{published:3,failed:2,pendingEstimate:5,staleSources:1},
+   classification:{completed:3,failed:2,stale:1,leased:1,budgetExhausted:true,
+    batchEligibility:{failed:1,pending:3,budgetExhausted:true}},
+  };
+  for(const target of ['local','github']) {
+   const run=await createPipeline({configuration:defaultConfiguration(),target,origin:'admin'});
+   const dispatched=[];const dispatch=async(_row,stage)=>dispatched.push(stage.key);
+   await dispatchNext(run._id,dispatch);
+   let runId=5900;
+   for(const key of ['scraper','rewrite','classification']) {
+    const queued=await PipelineRun.findById(run._id).lean();
+    const stage=queued.stages.find(s=>s.key===key);
+    assert.equal(stage.status,'queued');
+    await claimStage(run._id,key,{runId:target==='github'?++runId:undefined,token:stage.dispatchToken});
+    const summary=summaries[key],outcome=stageOutcome(key,summary,0);
+    if(target==='github') {
+     await recordStageResult(run._id,key,{outcome,summary});
+     await completeWorkflow(runId,'success',dispatch);
+    } else {
+     await completeLocalStage(run._id,key,outcome,summary);
+     await dispatchNext(run._id,dispatch);
+    }
+   }
+   const completed=await PipelineRun.findById(run._id).lean();
+   assert.equal(completed.status,'completed');assert.equal(completed.activeKey,undefined);
+   assert.deepEqual(dispatched,['scraper','rewrite','classification']);
+   for(const stage of completed.stages) {
+    assert.equal(stage.status,'completed');assert.equal(stage.summary.handoffReady,true);
+    assert.equal(stage.summary.processingComplete,false);
+    assert.equal(stage.summary.failed,summaries[stage.key].failed);
+   }
+  }
+ });
  await t.test('stop requests retain the execution slot until cancellation is acknowledged',async()=>{
   const run=await createPipeline({configuration:defaultConfiguration(),target:'github',origin:'admin'});
   await dispatchNext(run._id,async()=>{});

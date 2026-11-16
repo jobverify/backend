@@ -39,7 +39,7 @@ test('application stages and durable events preserve submission, concurrency and
 
   await t.test('all requested stages are independently editable and notes record prior/new stage', async () => {
     let row = await open();
-    for (const stage of ['applied', 'screening', 'responded', 'interview', 'offer', 'accepted', 'rejected', 'withdrawn', 'expired', 'preparing']) {
+    for (const stage of ['applied', 'resume_shortlisted', 'resume_rejected', 'connected_with_hr', 'waiting_for_interview_call', 'accepted', 'rejected_after_interview', 'offer_rejected', 'screening', 'responded', 'interview', 'offer', 'rejected', 'withdrawn', 'expired', 'preparing']) {
       const previous = row.stage;
       row = await change(row, stage, { note: 'Candidate update' });
       assert.equal(row.stage, stage); assert.equal(row.status, 'opened'); assert.equal(row.appliedAt, null);

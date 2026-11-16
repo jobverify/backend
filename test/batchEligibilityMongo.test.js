@@ -11,6 +11,7 @@ import { batchYearExpression } from '../src/utils/jobBatchEligibility.js';
 import { batchEligibilityInput, resolveBatchEligibility } from '../src/services/jobBatchEligibility.js';
 import { aggregateClassificationSummaries } from '../classification/reporting.js';
 import { stageOutcome } from '../src/pipeline/policy.js';
+import { extractBatchChunk } from '../src/services/batchEligibilityExtraction.js';
 import { buildTelegramMessageBody } from '../src/services/jobAlertService.js';
 import { renderBroadcastTemplate } from '../src/services/telegramBroadcastTemplate.js';
 
@@ -117,10 +118,46 @@ test('batch eligibility final phase, caching, concurrency, source persistence an
     await Job.updateOne({ _id: job._id }, { $set: { sourceDescription: ambiguous } });
     const failed = await phase({ extractorFactory: async () => { throw new Error('local model unavailable'); } });
     assert.equal(failed.failed, 1);
-    assert.equal(stageOutcome('classification', { batchEligibility: failed }), 'failed');
+    assert.equal(stageOutcome('classification', { batchEligibility: failed }), 'completed');
     const retry = await phase({ extractorFactory: async () => ({ extract: async () => notStated }) });
     assert.equal(retry.unknown, 1);
     assert.equal((await Job.findById(job._id).lean()).classification, undefined);
+  });
+
+  await t.test('malformed model JSON and model transport errors remain soft extraction failures', async sub => {
+    for (const mode of ['invalid-response', 'invalid-content', 'invalid-shape', 'validation-json', 'transport']) {
+      await Job.deleteMany({});
+      await seed({ sourceDescription: ambiguous });
+      const mock = sub.mock.method(globalThis, 'fetch', async () => {
+        if (mode === 'transport') throw new TypeError('fetch failed', { cause: Object.assign(new Error('reset'), { code: 'ECONNRESET' }) });
+        return mode === 'invalid-response' ? new Response('not JSON')
+          : Response.json({ choices: [{ finish_reason: 'stop', message: { content: mode === 'invalid-shape' ? '{}' : '{' } }] });
+      });
+      try {
+        const result = await phase({ extractorFactory: async () => {
+          if (mode === 'validation-json') throw Object.assign(new Error('Validation failed', { cause: new SyntaxError('invalid model JSON') }),
+            { validationFailure: { sampleId: 'fixture' } });
+          return { extract: () => extractBatchChunk({ endpoint: 'http://model.test' }, ambiguous, {}) };
+        } });
+        assert.equal(result.failed, 1);
+        assert.equal(stageOutcome('classification', { batchEligibility: result }), 'completed');
+      } finally { mock.mock.restore(); }
+    }
+  });
+
+  await t.test('batch extraction code, memory and MongoDB failures stop execution', async () => {
+    for (const error of [new SyntaxError('invalid extractor code'),
+      Object.assign(new Error('allocation failed'), { code: 'ENOMEM' }),
+      Object.assign(new Error('database failed'), { name: 'MongoNetworkError' })]) {
+      await Job.deleteMany({});
+      await seed({ sourceDescription: ambiguous });
+      await assert.rejects(phase({ extractorFactory: async () => {
+        if (error instanceof SyntaxError) throw error;
+        return { extract: async () => { throw error; } };
+      } }),
+        received => received === error);
+      assert.equal(await Job.countDocuments({ 'batchEligibility.status': 'processing' }), 0);
+    }
   });
 
   await t.test('a live batch lease prevents duplicate extraction and expired claims resume', async () => {
@@ -167,8 +204,8 @@ test('batch eligibility final phase, caching, concurrency, source persistence an
     assert.match(renderBroadcastTemplate('{batch}\n{jobUrl}', stored), /2024 and earlier \(estimated\)/);
     const summary = aggregateClassificationSummaries([{ batchEligibility: { inferred: 1, pending: 2, failed: 0 } }]);
     assert.equal(summary.batchEligibility.inferred, 1); assert.equal(summary.batchEligibility.pending, 2);
-    assert.equal(stageOutcome('classification', summary), 'incomplete');
-    assert.equal(stageOutcome('classification', { ...summary, failed: 1 }), 'failed');
+    assert.equal(stageOutcome('classification', summary), 'completed');
+    assert.equal(stageOutcome('classification', { ...summary, failed: 1 }), 'completed');
   });
 
   await t.test('real re-scrapes retain unchanged inferred batches and clear them when employer requirements change', async () => {

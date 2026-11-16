@@ -41,7 +41,6 @@ import { passwordSafety, PasswordSafetyError } from '../services/passwordSafety.
 const respondWithPasswordSafetyError = (res, error) => res.status(error.statusCode).json({
   code: error.statusCode, success: false, error: error.code, message: error.message,
 });
-import { createAdultEligibility, resolveAdultEligibility, SignupAgeError, replySignupAgeError } from '../utils/signupAge.js';
 
 const GENERIC_REGISTRATION_MESSAGE = "If this email can be registered, a verification email will be sent.";
 const GENERIC_RESEND_MESSAGE = "If a pending registration exists for this email, a verification email will be sent when eligible.";
@@ -86,12 +85,6 @@ const getTokenExpiresAt = (token) => {
 };
 
 const getFrontendOrigin = () => resolveFrontendOrigin(process.env);
-
-const buildFrontendVerifySuccessUrl = () => {
-  const url = new URL("/verify-email", getFrontendOrigin());
-  url.searchParams.set("verified", "1");
-  return url.toString();
-};
 
 const buildVerificationLink = (verificationToken, next) => {
   const url = new URL("/verify-email", getFrontendOrigin());
@@ -178,7 +171,6 @@ export const register = async (req, res) => {
   const normalizedEmail = normalizeEmailAddress(email);
 
   try {
-    const ageEligibility = createAdultEligibility(req.body.dateOfBirth);
     const user = await User.findOne({ email: normalizedEmail });
     if (user) {
       return res.status(201).json({
@@ -206,7 +198,6 @@ export const register = async (req, res) => {
     const pending = new PendingUser({
       email: normalizedEmail,
       password: null,
-      ageEligibility,
       profile: { name },
       verificationTokenHash: verificationToken.tokenHash,
       verificationTokenExpiresAt: verificationToken.expiresAt,
@@ -227,7 +218,6 @@ export const register = async (req, res) => {
       message: GENERIC_REGISTRATION_MESSAGE,
     });
   } catch (err) {
-    if (err instanceof SignupAgeError) return replySignupAgeError(res, err);
     console.error(err.message);
     res.status(500).json({
       code: 500,
@@ -299,7 +289,6 @@ export const verifyEmail = async (req, res) => {
       });
     }
 
-    resolveAdultEligibility(pendingUser.ageEligibility, req.body.dateOfBirth);
     await passwordSafety.check(password);
     const passwordHash = await bcrypt.hash(password, 10);
     // Consume the exact live token and create its account in one commit. A
@@ -314,7 +303,6 @@ export const verifyEmail = async (req, res) => {
       if (!consumed) return null;
       const user = new User({
         email: consumed.email,
-        ageEligibility: resolveAdultEligibility(consumed.ageEligibility, req.body.dateOfBirth),
         telegramAlertsAllowed: false,
         password: passwordHash,
         profile: consumed.profile ? { name: consumed.profile.name } : {},
@@ -333,15 +321,15 @@ export const verifyEmail = async (req, res) => {
     }
 
     clearPendingRegistrationCookie(res);
+    setAuthCookie(res, generateToken(created._id, created.role, created.sessionVersion ?? 0));
 
     return res.status(200).json({
       code: 200,
       success: true,
-      message: "Email verified successfully. You can now sign in.",
-      redirectTo: buildFrontendVerifySuccessUrl(),
+      message: "Email verified successfully. Your account is ready.",
+      user: buildSessionUserPayload(created),
     });
   } catch (err) {
-    if (err instanceof SignupAgeError) return replySignupAgeError(res, err);
     if (err instanceof PasswordSafetyError) return respondWithPasswordSafetyError(res, err);
     console.error('Email verification could not complete.');
     if (err?.code === 11000) {
@@ -779,12 +767,10 @@ export const authenticateWithGoogle = async (req, res) => {
       return res.status(400).json({ code: 400, success: false, message: ASCII_EMAIL_MESSAGE });
     }
 
-    const ageEligibility = createAdultEligibility(req.body.dateOfBirth);
     const pendingUser = await PendingUser.findOne({ email: normalizedEmail });
     if (pendingUser) {
       const promotedUser = new User({
         email: normalizedEmail,
-        ageEligibility,
         telegramAlertsAllowed: false,
         // Pending registration data may belong to someone else. Trust only the
         // verified Google identity; email sign-in can be added by password reset.
@@ -802,7 +788,6 @@ export const authenticateWithGoogle = async (req, res) => {
 
     const newUser = new User({
       email: normalizedEmail,
-      ageEligibility,
       telegramAlertsAllowed: false,
       password: null,
       profile: identity.name
@@ -816,7 +801,6 @@ export const authenticateWithGoogle = async (req, res) => {
 
     return issueAuthenticatedSession(newUser, res, "Logged in successfully");
   } catch (error) {
-    if (error instanceof SignupAgeError) return replySignupAgeError(res, error);
     console.error("Google authentication failed:", error.message);
     return res.status(401).json({
       code: 401,

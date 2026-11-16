@@ -81,3 +81,84 @@ test('quoted minimums repair repeated endpoints but reject requirement negation'
   assert.throws(() => extraction.validateBatchExtraction({ status: 'supported', graduationYears: [], graduationMaxYear: null, graduationEvidence: [],
     experienceRanges: [{ minimumYears: 3, maximumYears: 3, isOpenEnded: false, alternative: false, evidence }] }, evidence));
 });
+
+test('structured preference fields cannot supply required experience', async t => {
+  t.mock.method(globalThis, 'fetch', () => assert.fail('preferences must be filtered before model inference'));
+  const requirement = '1 - 4 years of Sales/Business Development experience with B2B corporate sales experience';
+  for (const text of [`preferredQualification:\n${requirement}`, `preferredQualification: ${requirement}`]) {
+    const value = await extraction.extractBatchChunk({ endpoint: 'http://invalid.test' }, text, {});
+    assert.equal(value.status, 'not_stated');
+    assert.deepEqual(value.experienceRanges, []);
+    for (const evidence of [requirement, text]) assert.throws(() => extraction.validateBatchExtraction({ status: 'supported',
+      graduationYears: [], graduationMaxYear: null, graduationEvidence: [], experienceRanges: [{ minimumYears: 1,
+        maximumYears: 4, isOpenEnded: false, alternative: false, evidence }] }, text));
+  }
+});
+
+test('model decoding can only use quantities from the cited experience clause', async t => {
+  let schema;
+  t.mock.method(globalThis, 'fetch', async (_url, options) => {
+    schema = JSON.parse(options.body).response_format.json_schema.schema;
+    return Response.json({ choices: [{ finish_reason: 'stop', message: { content: '{"ranges":[]}' } }] });
+  });
+  await extraction.extractBatchChunk({ endpoint: 'http://extractor.test' },
+    'Required qualifications:\nApplicants need exactly 10 years of cybersecurity experience.\nHave no more than 18 months of professional experience.', {});
+  const clauses = schema.properties.ranges.items.oneOf;
+  assert.ok(Array.isArray(clauses), 'decoding must select a schema constrained to one source clause');
+  assert.equal(clauses.length, 3);
+  assert.deepEqual(clauses.map(clause => clause.properties.sourceId.enum), [[1], [2], [2]]);
+  assert.deepEqual(clauses.map(clause => clause.properties.minimumYears.enum), [[10], [0], [1.5]]);
+  assert.deepEqual(clauses.map(clause => clause.properties.maximumYears.enum), [[10], [1.5], [1.5]]);
+});
+
+test('a separate degree requirement does not turn experience into alternative degree routes', async t => {
+  t.mock.method(globalThis, 'fetch', async () => Response.json({ choices: [{ finish_reason: 'stop', message: {
+    content: '{"ranges":[{"minimumYears":3,"maximumYears":5,"sourceId":2}]}' } }] }));
+  const text = 'A bachelor degree or equivalent is required.\nApplicants must have 3-5 years of professional experience.';
+  const value = extraction.validateBatchExtraction(await extraction.extractBatchChunk({ endpoint: 'http://extractor.test' }, text, {}), text);
+  assert.equal(value.status, 'supported');
+  assert.equal(value.experienceRanges[0].alternative, false);
+});
+
+test('decoding cannot mix a stated range with a separate minimum in the same clause', async t => {
+  let schema;
+  t.mock.method(globalThis, 'fetch', async (_url, options) => {
+    schema = JSON.parse(options.body).response_format.json_schema.schema;
+    return Response.json({ choices: [{ finish_reason: 'stop', message: { content: '{"ranges":[]}' } }] });
+  });
+  await extraction.extractBatchChunk({ endpoint: 'http://extractor.test' },
+    '6-8 years of experience, with a minimum of 5 years in Strategy or Management Consulting.', {});
+  const clauses = schema.properties.ranges.items.oneOf;
+  assert.deepEqual(clauses.map(clause => [clause.properties.minimumYears.enum, clause.properties.maximumYears.enum]), [[[6], [8]]]);
+});
+
+test('approximate experience cannot become an exact eligibility bound', async t => {
+  t.mock.method(globalThis, 'fetch', () => assert.fail('approximate quantities cannot establish eligibility bounds'));
+  const value = await extraction.extractBatchChunk({ endpoint: 'http://invalid.test' },
+    'Significant experience (around 10 years or equivalent) in cybersecurity.', {});
+  assert.equal(value.status, 'not_stated');
+  assert.deepEqual(value.experienceRanges, []);
+});
+
+test('year quantities cannot borrow a unit from a later monthly subrequirement', async t => {
+  let schema;
+  t.mock.method(globalThis, 'fetch', async (_url, options) => {
+    schema = JSON.parse(options.body).response_format.json_schema.schema;
+    return Response.json({ choices: [{ finish_reason: 'stop', message: { content: '{"ranges":[]}' } }] });
+  });
+  await extraction.extractBatchChunk({ endpoint: 'http://extractor.test' },
+    'Years of experience: 3 to 5, including 6 months in leadership.', {});
+  const pairs = schema.properties.ranges.items.oneOf.map(clause =>
+    [clause.properties.minimumYears.enum[0], clause.properties.maximumYears.enum[0]]);
+  assert.ok(pairs.some(([min, max]) => min === 3 && max === 5), 'the stated year range must remain selectable');
+  assert.ok(pairs.every(pair => pair.every(value => [0.5, 3, 5].includes(value))), 'only source quantities with their own units may be used');
+});
+
+test('approximate team sizes do not suppress exact experience requirements', async t => {
+  t.mock.method(globalThis, 'fetch', async () => Response.json({ choices: [{ finish_reason: 'stop', message: {
+    content: '{"ranges":[{"minimumYears":3,"maximumYears":3,"sourceId":1}]}' } }] }));
+  const text = 'Applicants need 3 years of experience managing approximately 20 engineers.';
+  const value = await extraction.extractBatchChunk({ endpoint: 'http://extractor.test' }, text, {});
+  assert.equal(value.status, 'supported');
+  assert.equal(extraction.validateBatchExtraction(value, text).experienceRanges[0].minimumYears, 3);
+});

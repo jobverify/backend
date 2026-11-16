@@ -28,25 +28,19 @@ export const directConfiguration = start => {
 };
 export const createStages = config => config.stages.map(s=>({...s,status:s.enabled?'waiting':'disabled'}));
 export function stageOutcome(key, summary={}, code=0) {
-  if (['worker_error','disabled'].includes(summary.reason)) return 'failed';
-  if (key === 'scraper' && code !== 0) return 'failed';
-  if (key === 'classification' && summary.batchEligibility) {
-    if (summary.failed || summary.stale || summary.batchEligibility.failed || summary.batchEligibility.stale) return 'failed';
-    if (summary.batchEligibility.pending || summary.batchEligibility.leased || summary.batchEligibility.budgetExhausted) return 'incomplete';
-  }
-  if (key==='rewrite') {
-    // A normal budget stop leaves durable work for a later run. It must not
-    // block classification, and it must never conceal an execution failure.
-    if (code!==0 || summary.errorType || summary.stale>0 || summary.missingShards?.length || summary.failedShards?.length) return 'failed';
-    // One runner's normal budget/quality handoff cannot hide unfinished peers.
-    if (summary.incompleteShards?.length) return 'incomplete';
-    if (summary.cancelled || summary.stopReason==='cancelled') return 'incomplete';
-    if (summary.qualityStopped && summary.reason==='model_quality_unavailable') return 'completed';
-    if (summary.stopReason==='budget_exhausted' || summary.budgetExhausted || summary.reason==='workflow_budget_exhausted') return 'completed';
-  }
-  if (summary.interrupted || summary.budgetExhausted || summary.pendingEstimate>0 || summary.leased>0 || ['interrupted','workflow_budget_exhausted'].includes(summary.reason)) return 'incomplete';
-  // Individual rewrite failures retain employer content; only execution errors block handoff.
-  if (code!==0 || summary.stale>0 || (key!=='rewrite' && ((key!=='scraper'&&summary.failed>0) || summary.staleSources>0 || summary.concurrentChanges>0))) return 'failed';
+  // Worker execution and database failures take precedence over work counters
+  // and normal budget/quality stops, for every kind of stage.
+  const fatalReasons = ['worker_error','disabled','runner_error','database_unavailable','run_lease_held'];
+  if (code!==0 || summary.errorType || summary.persistencePending>0
+    || fatalReasons.includes(summary.reason) || fatalReasons.includes(summary.stopReason)
+    || summary.missingShards?.length || summary.failedShards?.length) return 'failed';
+  if (summary.cancelled || summary.stopReason==='cancelled' || summary.incompleteShards?.length) return 'incomplete';
+  const normalStop = summary.budgetExhausted || summary.stopReason==='budget_exhausted'
+    || summary.reason==='workflow_budget_exhausted'
+    || (summary.qualityStopped && summary.reason==='model_quality_unavailable');
+  if (!normalStop && (summary.interrupted || summary.reason==='interrupted')) return 'incomplete';
+  // Rejected items, changed sources, leases and pending business work are
+  // diagnostic. Saved work can always hand off to the next enabled stage.
   return 'completed';
 }
 export const isTerminal = status => ['completed','failed','incomplete','cancelled','interrupted'].includes(status);
@@ -55,13 +49,16 @@ export const isTerminal = status => ['completed','failed','incomplete','cancelle
 export const describeStageCompletion = (key, summary = {}, outcome) => {
  const processingComplete = outcome === 'completed' && !summary.interrupted && !summary.budgetExhausted && !summary.qualityStopped
     && summary.stopReason !== 'budget_exhausted' && summary.reason !== 'workflow_budget_exhausted'
-    && !(summary.pendingEstimate > 0) && !(summary.leased > 0);
+    && !['failed','warnings','stale','staleSources','concurrentChanges','pendingEstimate','leased'].some(field=>summary[field]>0)
+    && !['failed','stale','pending','leased'].some(field=>summary.batchEligibility?.[field]>0)
+    && !summary.batchEligibility?.budgetExhausted && !(summary.extractionChecks?.incomplete>0)
+    && summary.coverageComplete!==false && summary.health!=='degraded';
  return {
   ...summary,
   handoffReady: outcome === 'completed',
   processingComplete,
-  ...(key === 'rewrite' ? { processingStatus: outcome === 'failed' ? 'failed'
-    : summary.cancelled || summary.stopReason === 'cancelled' ? 'cancelled' : processingComplete ? 'complete' : 'partial' } : {}),
+  processingStatus: outcome === 'failed' ? 'failed'
+    : outcome === 'cancelled' || summary.cancelled || summary.stopReason === 'cancelled' ? 'cancelled' : processingComplete ? 'complete' : 'partial',
   ...(key === 'rewrite' && Number.isFinite(summary.queued) ? {
     unpublishedEstimate: Math.max(0, summary.queued - (summary.published || 0)),
   } : {}),

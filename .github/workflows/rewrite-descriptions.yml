@@ -61,7 +61,7 @@ jobs:
           JOB_DESCRIPTION_REWRITE_REQUIRE_NATIVE_TESTS: '1'
         run: |
           bash -n scripts/portableRewriteRuntime.sh
-          node --test test/descriptionRewriteWorkflow.test.js test/jobDescriptionPartitioning.test.js test/jobDescriptionPlanCli.test.js test/descriptionRewriteReporting.test.js test/jobDescriptionReport20261105.test.js test/jobDescriptionPortableRuntime.test.js test/jobDescriptionNativeDiagnostics.test.js test/jobDescriptionWorkerHealth.test.js
+          node --test test/descriptionRewriteWorkflow.test.js test/jobDescriptionPartitioning.test.js test/jobDescriptionPlanCli.test.js test/descriptionRewriteReporting.test.js test/jobDescriptionReport20261105.test.js test/jobDescriptionPortableRuntime.test.js test/jobDescriptionNativeDiagnostics.test.js test/jobDescriptionWorkerHealth.test.js test/jobDescriptionReadiness20261116.test.js test/jobDescriptionPreflight.test.js test/jobDescriptionReadinessReporting.test.js
       - name: Claim pipeline stage
         run: node scripts/pipelineGithub.js register
         env:
@@ -108,6 +108,31 @@ jobs:
       - name: Verify portable runtime before distributing it
         if: steps.description_queue.outputs.queued != '0'
         run: bash scripts/portableRewriteRuntime.sh activate
+      - name: Cache immutable model for the readiness check
+        if: steps.description_queue.outputs.queued != '0'
+        uses: actions/cache@v6
+        with:
+          path: .cache/description-rewriter
+          key: description-lfm12b-model-${{ runner.os }}-bb741ebb
+      - name: Check model readiness before starting the shard matrix
+        if: steps.description_queue.outputs.queued != '0'
+        timeout-minutes: 10
+        run: node scripts/checkDescriptionReadiness.js
+        env:
+          JOB_DESCRIPTION_REWRITE_REQUIRE_CUSTOM_BINARY: '1'
+          JOB_DESCRIPTION_REWRITE_NATIVE_BACKTRACE: '1'
+          JOB_DESCRIPTION_REWRITE_CPU_THREADS: ${{ vars.JOB_DESCRIPTION_REWRITE_CPU_THREADS || '4' }}
+          JOB_DESCRIPTION_REWRITE_CONCURRENCY: ${{ vars.JOB_DESCRIPTION_REWRITE_CONCURRENCY || '4' }}
+          JOB_DESCRIPTION_REWRITE_CORRECTION_MODE: ${{ vars.JOB_DESCRIPTION_REWRITE_CORRECTION_MODE || 'adaptive' }}
+      - name: Upload readiness diagnostics even when the matrix is blocked
+        if: always() && steps.description_queue.outputs.queued != '0'
+        uses: actions/upload-artifact@v7
+        with:
+          name: description-readiness-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .cache/scraper-actions/description-readiness*
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
       - name: Upload portable runtime for all rewrite shards
         if: steps.description_queue.outputs.queued != '0'
         uses: actions/upload-artifact@v7
@@ -188,9 +213,9 @@ jobs:
         uses: actions/cache/restore@v6
         with:
           path: .cache/description-rewrites
-          key: description-lfm12b-rewrites-${{ runner.os }}-v31-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: description-lfm12b-rewrites-${{ runner.os }}-v32-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            description-lfm12b-rewrites-${{ runner.os }}-v31-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-
+            description-lfm12b-rewrites-${{ runner.os }}-v32-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-
       - name: Prepare native crash diagnostics
         if: steps.description_queue.outcome == 'success' && steps.description_queue.outputs.queued != '0'
         run: |
@@ -210,7 +235,7 @@ jobs:
         uses: actions/cache/save@v6
         with:
           path: .cache/description-rewrites
-          key: description-lfm12b-rewrites-${{ runner.os }}-v31-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: description-lfm12b-rewrites-${{ runner.os }}-v32-${{ github.ref }}-partitions-${{ needs.register.outputs.shard_count }}-shard-${{ matrix.shard }}-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Upload generation quality and capacity diagnostics
         if: always()
         uses: actions/upload-artifact@v7

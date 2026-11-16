@@ -84,6 +84,46 @@ export const buildPairListUrl=(source,offset)=>{proof(Number.isSafeInteger(offse
 export const buildPairDetailUrl=(source,id)=>spec(source).origin+'/api/cp/rest/altone/cp/job/'+code(id)+'/v2?part='+PEOPLESTRONG_NATIVE_PARTS+'&isReqId=false'
 export const buildPairOrganizationUrl=(source,id)=>spec(source).origin+'/api/cp/rest/altone/cp/job/organizationDetails?jobCode='+code(id)
 
+// Preserve public native carriers without inventing pay period, currency or
+// normalized amounts. Compare only like-named fields; salary and budget are
+// distinct native concepts, and ctcRange remains original opaque text.
+function nativeCompensation(listing,detail,organization){
+ const amounts=new Set(['minSalary','maxSalary','minBudgetSalary','maxBudgetSalary'])
+ const fields=[...amounts,'currency','ctcRange','CTCRange'],issues=[],compared=new Map()
+ const original=Object.fromEntries(Object.entries({listing,detail,organization}).map(([owner,model])=>[owner,Object.fromEntries(fields.filter(field=>Object.hasOwn(model,field)).map(field=>[field,structuredClone(model[field])]))]))
+ const decimal=value=>{
+  if(typeof value!=='string'&&typeof value!=='number')return null
+  if(typeof value==='number'&&(!Number.isFinite(value)||value<0||Number.isInteger(value)&&!Number.isSafeInteger(value)))return null
+  const text=String(value).trim();if(!/^\d{1,100}(?:\.\d{1,100})?$/.test(text))return null
+  const[whole,fraction='']=text.split('.'),integer=whole.replace(/^0+(?=\d)/,''),tail=fraction.replace(/0+$/,'')
+  return integer+(tail?'.'+tail:'')
+ }
+ const compare=(a,b)=>{
+  const[ai,af='']=a.split('.'),[bi,bf='']=b.split('.')
+  if(ai.length!==bi.length)return ai.length>bi.length?1:-1
+  if(ai!==bi)return ai>bi?1:-1
+  const length=Math.max(af.length,bf.length),left=af.padEnd(length,'0'),right=bf.padEnd(length,'0')
+  return left===right?0:left>right?1:-1
+ }
+ let present=false
+ for(const[owner,model]of Object.entries(original)){
+  const tokens={}
+  for(const[field,value]of Object.entries(model)){
+   if(value==null||typeof value==='string'&&!value.trim())continue
+   present=true
+   const token=amounts.has(field)?decimal(value):typeof value==='string'?value.trim():null
+   if(token===null){issues.push({owner,field,reason:'unqualified-original-native-compensation-value'});continue}
+   tokens[field]=token
+   if(compared.has(field)&&compared.get(field)!==token)issues.push({owner,field,reason:'original-native-compensation-fields-disagree'})
+   else compared.set(field,token)
+  }
+  for(const[min,max]of[['minSalary','maxSalary'],['minBudgetSalary','maxBudgetSalary']])if(tokens[min]!=null&&tokens[max]!=null&&compare(tokens[min],tokens[max])>0)issues.push({owner,field:min+'/'+max,reason:'original-native-compensation-range-inverted'})
+ }
+ // Bounds can be supplied by different original carriers for the same role.
+ for(const[min,max]of[['minSalary','maxSalary'],['minBudgetSalary','maxBudgetSalary']])if(compared.has(min)&&compared.has(max)&&compare(compared.get(min),compared.get(max))>0)issues.push({owner:'original-native-carriers',field:min+'/'+max,reason:'original-native-compensation-range-inverted'})
+ return{original,normalized:null,qualified:issues.length===0,status:issues.length?'unqualified':present?'retained-native-fields':'absent',issues}
+}
+
 export function mapPeopleStrongPairRole(source,listing,detail,organization,{organizationRequestJobCode=listing.jobCode,now=new Date().toISOString()}={}){
  const s=spec(source),id=code(listing.jobCode),url=s.origin+'/job/detail/'+id
  proof(detail.requisitionCode===id&&organizationRequestJobCode===id&&norm(detail.jobTitle)===norm(listing.jobTitle),'Native detail/request identity conflict')
@@ -110,8 +150,9 @@ export function mapPeopleStrongPairRole(source,listing,detail,organization,{orga
  const additional={};for(const k of ['employmentTenureType','roleType','roleContributionType','programType','employmentType','requisitionType','EducationSepecializationID','educationSepecialization','functionalDesignationID','jobRoleID','JobFamilyCode','shiftFrom','shiftTo','RoleName','Onsite','payGroup','functionalArea','industryName'])if(detail[k]!=null)additional[k]=detail[k]
  for(const k of ['industry','functionalArea','role','departmentHierarchy','buHierarchy','divisionHierarchy'])if(organization[k]!=null)additional[k]=organization[k]
  const nativePublicFields={jobDescription:detail.jobDescription,qualifications:detail.qualifications??[],skills:detail.skills??[],certifications:detail.certifications??[],languages:detail.languages??[],minimumExp:detail.minimumExp??null,maximumExp:detail.maximumExp??null,CandidatePortalStartDate:detail.CandidatePortalStartDate??null,CandidatePortalEndDate:detail.CandidatePortalEndDate??null}
- const complete=Boolean(projected.text)&&projected.complete&&Boolean(posted)
- return{source,company:s.company,nativeRoleCompany:company,brand:s.employers.some(x=>key(x)===key(company))?s.employers[0]:company,legalEmployer:null,targetEmployer:s.employers.some(x=>key(x)===key(company)),title:norm(detail.jobTitle),department:typed(organization.orgUnitHierarchy,['Department']),jobId:id,postingId:id,requisitionId:String(detail.requisitionId),sourceRequisitionID:String(detail.requisitionId),requisitionCode:id,sourceUrl:url,applyUrl:url,link:url,applicationIdentity:{publicPostingCode:id,formalRequisitionId:String(detail.requisitionId),entityID:String(detail.entityID),hrOrgUnitID:String(detail.hrOrgUnitID),worksiteID:String(detail.worksiteID)},country,city,location:[worksite,city,state,country].filter(Boolean).join(', '),sourceCountryEvidence:countryEvidence,sourceCountryUnknownReason:country?null:'missing-ambiguous-or-conflicting-native-role-country',employmentType:norm(detail.employmentType),workMode:null,workplaceType:null,experienceRequired:experience,minimumQualification:qualifications.join('; ')||null,preferredQualification:null,requiredSkills:skills,nativeSkills:detail.skills??[],qualifications,certifications,languages,sourceAdditionalCriteria:additional,postingDate:posted,postedAt:posted,closingDate:closing,nativePublicationPrecision:posted?'day':null,nativeExpiryPrecision:closing?'day':null,sourceClosingDateIsExact:false,firstEverPublication:null,sourceDescription:content,jobDescription:content,nativePublicFields,nativeOrganizationHierarchy:organization.orgUnitHierarchy,nativeWorksiteHierarchy:organization.workSiteHierarchy,nativeRequisitionStatus:norm(detail.requisitionStatus),sourceDetailComplete:complete,sourceDetailStatus:complete?'complete':'partial',sourceListingComplete:false,sourceScopeComplete:false,sourceLocationCorroborationComplete:Boolean(country),lifecycleCleanupAllowed:false,scrapedAt:new Date(now).toISOString()}
+ const sourceNativeCompensation=nativeCompensation(listing,detail,organization),sourceNativeOriginalModels=structuredClone({listing,detail,organization})
+ const complete=Boolean(projected.text)&&projected.complete&&Boolean(posted)&&sourceNativeCompensation.qualified
+ return{source,company:s.company,nativeRoleCompany:company,brand:s.employers.some(x=>key(x)===key(company))?s.employers[0]:company,legalEmployer:null,targetEmployer:s.employers.some(x=>key(x)===key(company)),title:norm(detail.jobTitle),department:typed(organization.orgUnitHierarchy,['Department']),jobId:id,postingId:id,requisitionId:String(detail.requisitionId),sourceRequisitionID:String(detail.requisitionId),requisitionCode:id,sourceUrl:url,applyUrl:url,link:url,applicationIdentity:{publicPostingCode:id,formalRequisitionId:String(detail.requisitionId),entityID:String(detail.entityID),hrOrgUnitID:String(detail.hrOrgUnitID),worksiteID:String(detail.worksiteID)},country,city,location:[worksite,city,state,country].filter(Boolean).join(', '),sourceCountryEvidence:countryEvidence,sourceCountryUnknownReason:country?null:'missing-ambiguous-or-conflicting-native-role-country',employmentType:norm(detail.employmentType),workMode:null,workplaceType:null,experienceRequired:experience,minimumQualification:qualifications.join('; ')||null,preferredQualification:null,requiredSkills:skills,nativeSkills:detail.skills??[],qualifications,certifications,languages,sourceAdditionalCriteria:additional,postingDate:posted,postedAt:posted,closingDate:closing,nativePublicationPrecision:posted?'day':null,nativeExpiryPrecision:closing?'day':null,sourceClosingDateIsExact:false,firstEverPublication:null,sourceDescription:content,jobDescription:content,nativePublicFields,sourceNativeCompensation,sourceNativeOriginalModels,nativeOrganizationHierarchy:organization.orgUnitHierarchy,nativeWorksiteHierarchy:organization.workSiteHierarchy,nativeRequisitionStatus:norm(detail.requisitionStatus),sourceDetailComplete:complete,sourceDetailStatus:complete?'complete':'partial',sourceListingComplete:false,sourceScopeComplete:false,sourceLocationCorroborationComplete:Boolean(country),lifecycleCleanupAllowed:false,scrapedAt:new Date(now).toISOString()}
 }
 
 const cancelLateResponse=value=>{try{Promise.resolve(value?.body?.cancel?.()).catch(()=>{})}catch{}}

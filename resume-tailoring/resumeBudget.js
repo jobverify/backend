@@ -3,6 +3,16 @@ import { resumeFailure } from './resumeDiagnostics.js';
 // Leave time in the 30-minute Actions job for cache saving and cleanup.
 export const RESUME_WORKER_BUDGET_MS = 28 * 60000;
 
+// Estimate CPU retry cost from this request's measured prefill/decode rates.
+// Conservative defaults also cover failures before the runtime returns usage.
+export function estimateResumeRepairMs({ inputCharacters, outputTokens, usage = {} }) {
+  const rate = (tokens, milliseconds, fallback) => Number.isFinite(tokens) && tokens > 0
+    && Number.isFinite(milliseconds) && milliseconds > 0 ? Math.min(fallback, tokens * 1000 / milliseconds) : fallback;
+  const prefillRate = rate(usage.inputTokens, usage.promptMilliseconds, 15);
+  const decodeRate = rate(usage.outputTokens, usage.outputMilliseconds, 3);
+  return Math.ceil(1.2 * (Math.ceil(inputCharacters / 3) / prefillRate + outputTokens / decodeRate) * 1000 + 15000);
+}
+
 export function resumeWorkerDeadline(startedAt, now = Date.now()) {
   const started = Date.parse(startedAt || '');
   return Math.min(Number.isFinite(started) ? started : now, now) + RESUME_WORKER_BUDGET_MS;

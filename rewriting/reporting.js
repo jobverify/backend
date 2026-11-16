@@ -3,14 +3,31 @@ import { validateRewriteShard } from './partitioning.js';
 import { summarizeRewriteCapacity } from './capacity.js';
 export { summarizeRewriteCapacity } from './capacity.js';
 
+/** Unknown historical probe costs stay unknown rather than looking like zero inference. */
+export function summarizeRewriteReadiness(parts) {
+  const probes = parts.map(part => part.workerProbe).filter(Boolean);
+  const sum = field => probes.length && probes.every(probe => Number.isSafeInteger(probe[field]) && probe[field] >= 0)
+    ? probes.reduce((total, probe) => total + probe[field], 0) : null;
+  const outcomesMeasured = probes.length && probes.every(probe => Array.isArray(probe.probes) && probe.probes.length === probe.requests);
+  const outcome = name => outcomesMeasured ? probes.flatMap(probe => probe.probes).filter(probe => probe.outcome === name).length : null;
+  return { checks: sum('requests'), passed: outcome('passed'), rejected: outcome('rejected'), failed: outcome('failed'),
+    ...Object.fromEntries(['generationRequests', 'correctionRequests', 'correctionsAccepted', 'correctionsRejected', 'correctionsSkipped']
+      .map(field => [field, sum(field)])) };
+}
+
 /** A publication count is not a count of successful wording rewrites. */
 export function formatRewriteReport(summary = {}) {
   const capacity = summary.capacity || {};
+  const readiness = summary.readiness || summarizeRewriteReadiness(summary.workers || [summary]);
   const count = value => Number.isFinite(value) ? String(value) : 'Not measured';
   const rate = (value, fraction) => Number.isFinite(fraction) ? `${count(value)} (${(fraction * 100).toFixed(1)}%)` : 'Not measured';
   const wordingMeasured = summary.published > 0 && capacity.wordingMetricsRecordedDescriptions === summary.published;
   const rows = [
+    ['Stop reason', [summary.reason, summary.stopReason].filter(Boolean).join(' / ') || 'None'],
     ['Queued', count(summary.queued)], ['Published', count(summary.published)],
+    ['Readiness checks', count(readiness.checks)], ['Readiness rejected', count(readiness.rejected)],
+    ['Readiness generation requests', count(readiness.generationRequests)],
+    ['Production model requests', count(capacity.modelRequests)],
     ['Pending estimate', count(summary.pendingEstimate)], ['Interrupted attempts', count(summary.interruptedAttempts)],
     ['Wording edits', wordingMeasured ? rate(capacity.modelWordingEditedDescriptions, capacity.modelWordingEditRate) : 'Not measured'],
     ['Model layout edits only', wordingMeasured ? rate(capacity.modelLayoutOnlyDescriptions, capacity.modelLayoutOnlyRate) : 'Not measured'],
@@ -22,6 +39,7 @@ export function formatRewriteReport(summary = {}) {
   return `## Description rewrite results\n\nProcessing: ${summary.processingStatus || 'not measured'}; handoff: ${summary.handoffReady ? 'ready' : 'not ready'}.\n\n`
     + '| Metric | Result |\n| --- | --- |\n' + rows.map(([label, value]) => `| ${label} | ${value} |`).join('\n')
     + '\n\nPublished includes validated source fallback and formatting. Wording edits are measured changes, not a semantic quality score. '
+    + 'Readiness generation requests are separate from production model requests. '
     + 'Runner timings cover rewrite processing only; they exclude setup and artifact upload and are not billed runner usage.\n';
 }
 
@@ -90,6 +108,7 @@ export function aggregateRewriteSummaries(parts, { shardCount = 4 } = {}) {
   }
   for (let shard = 0; shard < shardCount; shard++) if (!seen.has(shard)) summary.missingShards.push(shard);
   summary.workers.sort((left, right) => left.shard - right.shard);
+  summary.readiness = summarizeRewriteReadiness(summary.workers);
   summary.capacity = summarizeRewriteCapacity(parts.flatMap(part => part.results || []), {
     startedAt: summary.startedAt, finishedAt: summary.finishedAt, attempted: summary.attempted,
   });

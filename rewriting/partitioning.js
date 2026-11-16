@@ -24,9 +24,9 @@ export function buildRewritePlan(queued, { jobsPerShard = 'auto', maxParallel = 
   const automatic = jobsPerShard === 'auto' || jobsPerShard === 'automatic';
   if (!automatic && (!Number.isSafeInteger(jobsPerShard) || jobsPerShard < 1)) throw new Error('Invalid rewrite partition target');
   if (!Number.isSafeInteger(maxParallel) || maxParallel < 1 || maxParallel > MAX_REWRITE_SHARDS) throw new Error('Invalid rewrite parallel runner limit');
-  // Target two waves before power-of-two rounding, without a fixed jobs target.
+  // Target one wave before power-of-two rounding, without a fixed jobs target.
   // This distributes known work; it is not a model throughput estimate.
-  const needed = automatic ? Math.max(1, Math.min(queued, maxParallel * 2, MAX_REWRITE_SHARDS))
+  const needed = automatic ? Math.max(1, Math.min(queued, maxParallel, MAX_REWRITE_SHARDS))
     : Math.max(1, Math.ceil(queued / jobsPerShard));
   if (shardCount === undefined) {
     shardCount = 1;

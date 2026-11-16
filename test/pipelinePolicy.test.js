@@ -38,12 +38,12 @@ test('a rewrite budget handoff is explicitly reported as unfinished processing',
     assert.equal(describeStageCompletion('rewrite', stop, stageOutcome('rewrite', stop, 0)).processingComplete, false);
   }
 });
-test('outcomes stop execution errors or unfinished work and accept individual rewrite failures', () => {
+test('outcomes stop execution errors and allow unfinished business work and item failures', () => {
   assert.equal(stageOutcome('rewrite',{queued:0,reason:'empty_queue'},0),'completed');
   assert.equal(stageOutcome('rewrite',{skipped:5},0),'completed');
   assert.equal(stageOutcome('rewrite',{failed:1},0),'completed');
-  assert.equal(stageOutcome('rewrite',{pendingEstimate:1},0),'incomplete');
-  assert.equal(stageOutcome('classification',{budgetExhausted:true},1),'incomplete');
+  assert.equal(stageOutcome('rewrite',{pendingEstimate:1},0),'completed');
+  assert.equal(stageOutcome('classification',{budgetExhausted:true},1),'failed');
   assert.equal(stageOutcome('scraper',{},1),'failed');
   assert.equal(stageOutcome('rewrite',{reason:'interrupted'},0),'incomplete');
 });
@@ -52,18 +52,18 @@ test('scraper and rewrite item failures do not hide failed execution', () => {
   assert.equal(stageOutcome('scraper',{failed:2,warnings:315},0),'completed');
   assert.equal(stageOutcome('scraper',{failed:4654,warnings:4654},0),'completed');
   assert.equal(stageOutcome('scraper',{failed:2,warnings:315},1),'failed');
-  assert.equal(stageOutcome('scraper',{failed:2,pendingEstimate:1},0),'incomplete');
+  assert.equal(stageOutcome('scraper',{failed:2,pendingEstimate:1},0),'completed');
   assert.equal(stageOutcome('scraper',{failed:2,interrupted:true},0),'incomplete');
   assert.equal(stageOutcome('scraper',{reason:'worker_error'},0),'failed');
   assert.equal(stageOutcome('rewrite',{failed:1,warnings:1},0),'completed');
-  assert.equal(stageOutcome('classification',{failed:1,warnings:1},0),'failed');
+  assert.equal(stageOutcome('classification',{failed:1,warnings:1},0),'completed');
 });
 
 test('a scraper code failure overrides simultaneous pending operational work', () => {
   assert.equal(stageOutcome('scraper', { pendingEstimate: 1 }, 1), 'failed');
-  assert.equal(stageOutcome('scraper', { pendingEstimate: 1 }, 0), 'incomplete');
-  const summary = describeStageCompletion('scraper', { pendingEstimate: 1 }, 'incomplete');
-  assert.equal(summary.handoffReady, false);
+  assert.equal(stageOutcome('scraper', { pendingEstimate: 1 }, 0), 'completed');
+  const summary = describeStageCompletion('scraper', { pendingEstimate: 1 }, 'completed');
+  assert.equal(summary.handoffReady, true);
   assert.equal(summary.processingComplete, false);
 });
 
@@ -74,7 +74,7 @@ test('rewrite item failures and source races are non-blocking while execution er
   assert.equal(stageOutcome('rewrite', { failed: 1 }, 1), 'failed');
   assert.equal(stageOutcome('rewrite', { failed: 1, reason: 'worker_error' }, 0), 'failed');
   assert.equal(stageOutcome('rewrite', { reason: 'worker_error', pendingEstimate: 2 }, 1), 'failed');
-  assert.equal(stageOutcome('rewrite', { failed: 1, pendingEstimate: 2 }, 0), 'incomplete');
+  assert.equal(stageOutcome('rewrite', { failed: 1, pendingEstimate: 2 }, 0), 'completed');
 });
 
 test('a normal rewrite budget stop hands off pending work without hiding real errors or cancellation', () => {
@@ -86,7 +86,7 @@ test('a normal rewrite budget stop hands off pending work without hiding real er
   assert.equal(stageOutcome('rewrite', { ...summary, errorType: 'MongoServerError' }, 0), 'failed');
   assert.equal(stageOutcome('rewrite', { ...summary, reason: 'worker_error' }, 0), 'failed');
   assert.equal(stageOutcome('rewrite', { ...summary, cancelled: true, stopReason: 'cancelled' }, 0), 'incomplete');
-  assert.equal(stageOutcome('classification', summary, 0), 'incomplete');
+  assert.equal(stageOutcome('classification', summary, 0), 'completed');
 });
 test('classification uses only a current published rewrite with original fallback and identity', () => {
   const original={sourceDescription:'Employer original',description:'Validated rewrite'};

@@ -49,17 +49,17 @@ test('queue planning defaults to 64 parallel runners with automatic shard sizing
   delete env.JOB_DESCRIPTION_REWRITE_JOBS_PER_SHARD;
   const { stdout } = await exec(process.execPath, [script, summary], { cwd, windowsHide: true, env });
   const plan = JSON.parse(stdout.trim());
-  assert.equal(plan.shardCount, 128);
+  assert.equal(plan.shardCount, 64);
   assert.equal(plan.maxParallel, 64);
-  assert.equal(plan.estimatedJobsPerShard, 217);
-  assert.equal(plan.jobsPerShard, 217);
+  assert.equal(plan.estimatedJobsPerShard, 433);
+  assert.equal(plan.jobsPerShard, 433);
   assert.equal(plan.partitionSizing, 'automatic');
   const fields = Object.fromEntries((await fs.readFile(output, 'utf8')).trim().split('\n').map(line => {
     const at = line.indexOf('='); return [line.slice(0, at), line.slice(at + 1)];
   }));
-  assert.equal(fields.shard_count, '128');
+  assert.equal(fields.shard_count, '64');
   assert.equal(fields.max_parallel, '64');
-  assert.deepEqual(JSON.parse(fields.matrix).shard, Array.from({ length: 128 }, (_, index) => index));
+  assert.deepEqual(JSON.parse(fields.matrix).shard, Array.from({ length: 64 }, (_, index) => index));
 });
 
 test('planning CLI accepts explicit auto and automatic values and computes the target from runner capacity', async t => {
@@ -73,9 +73,9 @@ test('planning CLI accepts explicit auto and automatic values and computes the t
     delete env.GITHUB_OUTPUT;
     const { stdout } = await exec(process.execPath, [script, summary], { cwd, windowsHide: true, env });
     const plan = JSON.parse(stdout.trim());
-    assert.equal(plan.shardCount, 16);
+    assert.equal(plan.shardCount, 8);
     assert.equal(plan.maxParallel, 8);
-    assert.equal(plan.jobsPerShard, 800);
+    assert.equal(plan.jobsPerShard, 1600);
     assert.equal(plan.partitionSizing, 'automatic');
   }
 });

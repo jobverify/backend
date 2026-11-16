@@ -18,6 +18,16 @@ test('model progress permits bounded counters and excludes slot contents', () =>
   assert.equal(safeResumeDiagnostic({ stage: 'generating', code: 'progress', processedTokens: 'private' }).processedTokens, undefined);
 });
 
+test('deployment and repair diagnostics allow only fixed policy values and bounded measurements', () => {
+  const event = safeResumeDiagnostic({ stage: 'repairing', code: 'repair_budget_insufficient',
+    policyVersion: 'abey-pagination-v2', mode: 'base', repairKind: 'pagination', targetPages: 2, sourceBlockCount: 54,
+    estimatedSeconds: 600, remainingSeconds: 400, prompt: 'private resume' });
+  assert.deepEqual(event, { stage: 'repairing', code: 'repair_budget_insufficient', targetPages: 2, sourceBlockCount: 54,
+    estimatedSeconds: 600, remainingSeconds: 400, policyVersion: 'abey-pagination-v2', mode: 'base', repairKind: 'pagination' });
+  assert.deepEqual(safeResumeDiagnostic({ stage: 'generating', code: 'started', policyVersion: 'private@example.test',
+    mode: 'private', repairKind: 'private', targetPages: Infinity, sourceBlockCount: -1 }), { stage: 'generating', code: 'started' });
+});
+
 test('only allowlisted LaTeX validation reasons can appear in public diagnostics', () => {
   assert.deepEqual(safeResumeDiagnostic({ stage: 'latex', code: 'latex_invalid', reason: 'unsupported_package' }),
     { stage: 'latex', code: 'latex_invalid', reason: 'unsupported_package' });

@@ -91,8 +91,8 @@ test('generation reserves time for PDF compilation and the independent audit wit
     },
     compile: async (_latex, options) => { compilationDeadline = options.deadline; return compiled; },
   });
-  assert.ok(generationDeadline <= deadline - 3 * 60000, 'inference must leave three minutes for validation on a warm worker');
-  assert.ok(generationDeadline > deadline - 4 * 60000);
+  assert.ok(generationDeadline <= deadline - 5 * 60000 + 100, 'inference must leave five minutes for compilation and the factual audit');
+  assert.ok(generationDeadline > deadline - 6 * 60000);
   assert.equal(compilationDeadline, deadline);
   assert.equal(auditDeadline, deadline);
 });
@@ -119,11 +119,173 @@ test('the actual generation and independent audit consume confirmed candidate ev
 test('one repair can fix pagination, with no unbounded model loop', async () => {
   let generations = 0, compilations = 0;
   const result = await processResumeDocument({ mode: 'tailored', source, baseLatex: latex, jobSnapshot: { title: 'Engineer' } }, {
-    generate: async (_prompt, options) => options.comparison ? supported : (generations++, latex),
+    generate: async (_prompt, options) => options.comparison ? supported
+      : (generations++, options.paginationRepair ? '{"spacing":"compact","breakBefore":null}' : latex),
     compile: async () => ({ ...compiled, pageCount: ++compilations === 1 ? 3 : 2 }),
   });
   assert.equal(generations, 2);
   assert.equal(result.pageCount, 2);
+});
+
+test('three-page output uses a short layout-only repair and still receives the independent factual audit', async () => {
+  const requests = [], documents = [], events = [];
+  const result = await processResumeDocument({ mode: 'base', source }, {
+    generate: async (prompt, options) => {
+      requests.push({ prompt, ...options });
+      if (options.comparison) return supported;
+      if (requests.length === 1) return latex;
+      assert.equal(options.paginationRepair, true);
+      assert.ok(prompt.length < requests[0].prompt.length);
+      assert.doesNotMatch(prompt, /Alex Example|alex@|Example Corp|documentclass/);
+      return '{"spacing":"compact","breakBefore":null}';
+    },
+    compile: async document => { documents.push(document); return { ...compiled, pageCount: documents.length === 1 ? 3 : 2 }; },
+    onDiagnostic: event => events.push(event),
+  });
+  assert.equal(requests.length, 3);
+  assert.equal(requests[2].comparison, true);
+  assert.match(documents[1], /Developed Java services and automated tests/);
+  assert.equal(result.pageCount, 2);
+  assert.ok(events.some(event => event.stage === 'repairing' && event.repairKind === 'pagination'));
+  assert.ok(events.some(event => event.policyVersion === 'abey-pagination-v2'));
+});
+
+test('a full repair is declined before inference when the measured generation cannot fit the remaining budget', async t => {
+  let now = Date.now(), generations = 0;
+  const deadline = now + 28 * 60000;
+  t.mock.method(Date, 'now', () => now);
+  const events = [];
+  await assert.rejects(processResumeDocument({ mode: 'base', source }, {
+    deadline,
+    generate: async (_prompt, options) => {
+      generations++;
+      options.onUsage({ inputTokens: 5500, outputTokens: 2200, promptMilliseconds: 340000, outputMilliseconds: 610000 });
+      now += 16 * 60000;
+      return latex;
+    },
+    compile: async () => ({ ...compiled, text: source.text.replace('alex@example.com', 'changed@example.test') }),
+    onDiagnostic: event => events.push(event),
+  }), { code: 'repair_budget_insufficient' });
+  assert.equal(generations, 1);
+  assert.ok(events.some(event => event.code === 'repair_budget_insufficient' && event.estimatedSeconds > event.remainingSeconds));
+});
+
+test('incomplete document repairs use observed output cost rather than an empty-document estimate', async t => {
+  let now = Date.now(), calls = 0;
+  const deadline = now + 28 * 60000;
+  t.mock.method(Date, 'now', () => now);
+  await assert.rejects(processResumeDocument({ mode: 'base', source }, {
+    deadline,
+    generate: async (_prompt, options) => {
+      calls++;
+      options.onUsage({ inputTokens: 5500, outputTokens: 2200, promptMilliseconds: 100000, outputMilliseconds: 610000 });
+      now += 12 * 60000;
+      throw Object.assign(new Error('private partial resume'), { code: 'model_output_incomplete' });
+    },
+    compile: async () => assert.fail('incomplete output must not compile'),
+  }), { code: 'repair_budget_insufficient' });
+  assert.equal(calls, 1);
+});
+
+test('an incomplete response without timing data cannot be budgeted as a short empty document', async t => {
+  let now = Date.now(), calls = 0;
+  const deadline = now + 28 * 60000;
+  t.mock.method(Date, 'now', () => now);
+  await assert.rejects(processResumeDocument({ mode: 'base', source }, {
+    deadline,
+    generate: async () => {
+      calls++;
+      now += 12 * 60000;
+      throw Object.assign(new Error('private partial resume'), { code: 'model_output_incomplete' });
+    },
+    compile: async () => assert.fail('incomplete output must not compile'),
+  }), { code: 'repair_budget_insufficient' });
+  assert.equal(calls, 1);
+});
+
+test('a short pagination repair fits after a sixteen-minute generation while preserving audit time', async t => {
+  let now = Date.now(), documents = 0;
+  const deadline = now + 28 * 60000;
+  t.mock.method(Date, 'now', () => now);
+  const calls = [];
+  const result = await processResumeDocument({ mode: 'base', source }, {
+    deadline,
+    generate: async (_prompt, options) => {
+      calls.push(options);
+      if (options.comparison) return supported;
+      if (options.paginationRepair) { now += 60000; return '{"spacing":"compact","breakBefore":null}'; }
+      options.onUsage({ inputTokens: 5500, outputTokens: 2200, promptMilliseconds: 340000, outputMilliseconds: 610000 });
+      now += 16 * 60000;
+      return latex;
+    },
+    compile: async () => ({ ...compiled, pageCount: ++documents === 1 ? 3 : 2 }),
+  });
+  assert.equal(calls.length, 3);
+  assert.equal(calls[1].paginationRepair, true);
+  assert.ok(calls[1].deadline <= deadline - 5 * 60000);
+  assert.equal(calls[2].deadline, deadline);
+  assert.equal(result.pageCount, 2);
+});
+
+test('pagination cannot bypass missing facts and the full repair retains the original finite slots', async () => {
+  const original = { ...source, pageCount: 1, text: source.text.replace('Developed Java', '• Developed Java') };
+  let generations = 0, compilations = 0;
+  const result = await processResumeDocument({ mode: 'base', source: original }, {
+    generate: async (prompt, options) => {
+      if (options.comparison) return supported;
+      if (++generations === 2) {
+        assert.equal(options.paginationRepair, undefined);
+        assert.equal(options.layout.condenseOriginal, true);
+        assert.ok(options.layout.preservationBlocks?.length);
+        assert.match(prompt, /Missing original visible email/);
+      }
+      return latex;
+    },
+    compile: async () => ++compilations === 1
+      ? { ...compiled, text: source.text.replace('alex@example.com', ''), pageCount: 2 }
+      : { ...compiled, text: original.text, pageCount: 1 },
+  });
+  assert.equal(result.pageCount, 1);
+  assert.equal(generations, 2);
+});
+
+test('invalid layout JSON is rejected without another document generation or an audit', async () => {
+  let generations = 0, compilations = 0;
+  await assert.rejects(processResumeDocument({ mode: 'base', source }, {
+    generate: async (_prompt, options) => {
+      assert.equal(options.comparison, undefined);
+      generations++;
+      return options.paginationRepair ? '{"spacing":"compact","breakBefore":null,"latex":"replacement"}' : latex;
+    },
+    compile: async () => { compilations++; return { ...compiled, pageCount: 3 }; },
+  }), { code: 'pagination_repair_invalid' });
+  assert.equal(generations, 2);
+  assert.equal(compilations, 1);
+});
+
+test('pagination-only overflow preserves the finite original entries and wording', async () => {
+  const original = { pageCount: 1, links: source.links, text: 'Alex Example\nalex@example.com\nEXPERIENCE\nExample Corp | Jan 2022 - Present\nSoftware Engineer\n• Developed Java services and automated tests for reliable internal APIs and supported production issues.\nEDUCATION\nExample University | 2018 - 2022\nBSc Computer Science' };
+  let generations = 0, compilations = 0, blocks;
+  const result = await processResumeDocument({ mode: 'base', source: original }, {
+    generate: async (prompt, options) => {
+      if (options.comparison) return supported;
+      if (++generations === 1) {
+        blocks = options.layout.preservationBlocks;
+        assert.ok(blocks?.length);
+        assert.equal(options.layout.condenseOriginal, undefined);
+      } else {
+        assert.deepEqual(options.layout.preservationBlocks, blocks);
+        assert.equal(options.layout.condenseOriginal, undefined);
+        assert.equal(options.paginationRepair, true);
+        assert.doesNotMatch(prompt, /Developed Java|Condense each narrative bullet/);
+        return '{"spacing":"compact","breakBefore":null}';
+      }
+      return latex;
+    },
+    compile: async () => ({ ...compiled, text: original.text, pageCount: ++compilations === 1 ? 2 : 1 }),
+  });
+  assert.equal(result.pageCount, 1);
+  assert.equal(generations, 2);
 });
 
 test('a failed comparison never publishes a document and permits only one repair', async () => {
@@ -139,7 +301,8 @@ test('a failed comparison never publishes a document and permits only one repair
 test('base resumes with unknown original pagination still have a two-page ceiling', async () => {
   let generations = 0;
   await assert.rejects(processResumeDocument({ mode: 'base', source }, {
-    generate: async (_prompt, options) => options.comparison ? assert.fail('oversized documents must be revised before auditing') : (generations++, latex),
+    generate: async (_prompt, options) => options.comparison ? assert.fail('oversized documents must be revised before auditing')
+      : (generations++, options.paginationRepair ? '{"spacing":"compact","breakBefore":null}' : latex),
     compile: async () => ({ ...compiled, pageCount: 4 }),
   }), { code: 'pagination_failed' });
   assert.equal(generations, 2);

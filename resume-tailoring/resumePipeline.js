@@ -1,7 +1,9 @@
 import { prepareResumeModel, generateResumeText, RESUME_MODEL } from './resumeRuntime.js';
 import { prepareResumeCompiler, compileResumeLatex } from './latexCompiler.js';
-import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
+import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS, estimateResumeRepairMs } from './resumeBudget.js';
 import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
+import { applyPaginationRepair, buildPaginationRepairPlan, PAGINATION_REPAIR_MAX_TOKENS, RESUME_PIPELINE_POLICY } from './resumePaginationRepair.js';
+import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
 import { resumePageBudget } from '../src/utils/resumePresentation.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
   buildLatexRepairPrompt, buildComparisonPrompt, validateLatexSource, validateResumeFidelity, resumeLinkDestinations, resumeSectionTitles, resumeSourceLayout, resumeSubheadingChoices } from '../src/services/resumeLatexContent.js';
@@ -36,16 +38,17 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   const facts = buildSourceFacts(source);
   const allowedLinks = resumeLinkDestinations(facts);
   const sectionTitles = resumeSectionTitles(source, facts);
-  let layout = resumeSourceLayout(source, facts);
+  let layout = resumeSourceLayout(source, facts, { preserveOriginal: !tailored });
   const headerChoices = resumeSubheadingChoices(facts);
-  const originalPrompt = tailored ? buildLatexTailoringPrompt({ ...input, source, facts }) : buildPreparationPrompt({ ...input, source, facts });
+  let originalPrompt = tailored ? buildLatexTailoringPrompt({ ...input, source, facts }) : buildPreparationPrompt({ ...input, source, facts });
   let prompt = originalPrompt;
   let failureCode = 'processing_failed';
   let stage = 'generating';
+  let repairPlan, generationUsage = {};
   const started = Date.now();
   // Long CPU generations may exceed eight minutes. Keep them inside the worker
   // deadline while reserving time to compile, inspect and independently audit.
-  const generationDeadline = deadline - Math.min(3 * 60000, Math.floor((deadline - started) / 5));
+  const generationDeadline = deadline - Math.min(5 * 60000, Math.floor((deadline - started) / 4));
   const phase = async next => {
     stage = next;
     await withinResumeBudget(deadline, signal => onPhase(stage, { deadline, signal }));
@@ -55,11 +58,18 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
     const diagnose = (code, extra = {}) => onDiagnostic(safeResumeDiagnostic({ stage, code, attempt,
       seconds: (Date.now() - started) / 1000, ...extra }));
     let latex = '', result, issueCounts;
+    let paginationOnly = false;
     const issues = [];
     try {
       await phase(attempt === 1 ? 'generating' : 'repairing');
-      diagnose('started');
-      latex = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal, allowedLinks, pagination, sectionTitles, layout, headerChoices, onDiagnostic }));
+      diagnose('started', { policyVersion: RESUME_PIPELINE_POLICY, mode: tailored ? 'tailored' : 'base',
+        targetPages: pagination.targetPages, sourceBlockCount: layout.preservationBlocks?.length || 0,
+        ...(attempt === 2 ? { repairKind: repairPlan ? 'pagination' : 'document' } : {}) });
+      const generated = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal,
+        allowedLinks, pagination, sectionTitles, layout, headerChoices, onDiagnostic,
+        ...(repairPlan ? { paginationRepair: true, paginationBreakIds: repairPlan.candidates.map(candidate => candidate.id) } : {}),
+        onUsage: usage => { generationUsage = usage; } }));
+      latex = repairPlan ? applyPaginationRepair(repairPlan, generated) : generated;
       await phase('latex');
       latex = validateLatexSource(latex, { requireTemplate: true, pagination, sectionTitles, layout });
       await phase('compiling');
@@ -69,6 +79,7 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       result = await withinResumeBudget(deadline, signal => compile(latex, { deadline, signal }));
       await phase('validating');
       if (result.pageCount > pagination.targetPages || (pagination.exact && result.pageCount !== pagination.targetPages)) {
+        paginationOnly = true;
         failureCode = 'pagination_failed';
         const target = `${pagination.targetPages} ${pagination.targetPages === 1 ? 'page' : 'pages'}`;
         issues.push(`The compiled PDF has ${result.pageCount} pages; ${pagination.exact ? 'the required layout is exactly' : 'the maximum is'} ${target}. `
@@ -76,13 +87,14 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
             ? 'Increase the spacing between sections and entries and distribute the existing content over the required pages, using a page break at a natural section boundary if needed. Do not add filler or blank pages. '
             : 'Condense repeated wording, combine related bullets, and reduce excess spacing to fit the page budget. ')
           + 'Preserve the Abey template, protected candidate facts and readable text of at least 10pt.');
-        if (layout.pageBreakBefore) {
-          layout = { ...layout, pageBreakBefore: undefined };
+        if (layout.pageBreakBefore || layout.preservationBreak) {
+          layout = { ...layout, pageBreakBefore: undefined, preservationBreak: undefined };
           issues.push('The estimated section boundary did not fit. Choose a new page break between closed entry lists within a long section if needed.');
         }
       }
       const fidelity = validateResumeFidelity({ facts, text: result.text, links: result.links, tailored });
       if (!fidelity.valid) {
+        paginationOnly = false;
         failureCode = 'factual_validation_failed';
         issues.push(...fidelity.issues);
         issueCounts = summarizeResumeFidelityIssues(fidelity.issues);
@@ -102,6 +114,7 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       }
       if (issues.length) diagnose(failureCode, { issueCount: issues.length, pageCount: result.pageCount, issueCounts });
     } catch (error) {
+      paginationOnly = false;
       failureCode = safeResumeDiagnostic({ stage, code: error.code || ({ latex: 'latex_invalid', compiling: 'compiler_failed',
         validating: 'pdf_invalid', comparing: 'comparison_invalid' }[stage]) }).code;
       diagnose(failureCode, { reason: error.reason });
@@ -118,7 +131,28 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
       return { latex, pdf: result.pdf, pageCount: result.pageCount, facts,
         modelVersion: `${RESUME_MODEL.modelId}@${RESUME_MODEL.revision}:${RESUME_MODEL.sha256}`, styleVersion: RESUME_MODEL.styleVersion };
     }
-    if (attempt === 1) prompt = buildLatexRepairPrompt({ originalPrompt, latex, issues });
+    if (attempt === 1) {
+      repairPlan = paginationOnly ? buildPaginationRepairPlan(latex, pagination, { pageCount: result.pageCount }) : null;
+      if (!repairPlan && !tailored && result?.pageCount > pagination.targetPages && layout.preservationBlocks) {
+        layout = { ...layout, condenseOriginal: true };
+        originalPrompt = buildPreparationPrompt({ ...input, source, facts, condenseOriginal: true });
+        issues.push('Condense the narrative bullet text within its original finite entry and item slots. Preserve fixed headers, grades, dates, skill categories, useful links, and all substantive facts.');
+      }
+      prompt = repairPlan ? repairPlan.prompt : buildLatexRepairPrompt({ originalPrompt, latex, issues });
+      const estimatedMs = estimateResumeRepairMs({
+        inputCharacters: prompt.length + (repairPlan ? 0 : RESUME_LATEX_PREAMBLE.length + (layout.contactHeader?.length || 0)),
+        outputTokens: repairPlan ? PAGINATION_REPAIR_MAX_TOKENS : generationUsage.outputTokens
+          || Math.max(latex ? 512 : 2048, Math.ceil(Math.max(0, latex.length - RESUME_LATEX_PREAMBLE.length) / 3)),
+        usage: generationUsage,
+      });
+      const remainingMs = generationDeadline - Date.now();
+      if (estimatedMs > remainingMs) {
+        stage = 'repairing';
+        diagnose('repair_budget_insufficient', { attempt: 2, repairKind: repairPlan ? 'pagination' : 'document',
+          estimatedSeconds: estimatedMs / 1000, remainingSeconds: Math.max(0, remainingMs) / 1000 });
+        throw resumeFailure('repair_budget_insufficient');
+      }
+    }
   }
   throw resumeFailure(failureCode);
 }

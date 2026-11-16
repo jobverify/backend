@@ -1,3 +1,4 @@
+import { passwordSafety, PasswordSafetyError } from '../src/services/passwordSafety.js';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { generateKeyPairSync, randomBytes } from 'node:crypto';
@@ -15,7 +16,6 @@ const response = () => ({ statusCode: 200, body: null,
   json(body) { this.body = body; return this; }, cookie() { return this; }, clearCookie() { return this; },
 });
 const adult = '2000-01-15';
-const tooYoung = '2020-01-15';
 
 function setup(t) {
   const names = ['JWT_SECRET', 'FRONTEND_ORIGIN', 'EMAIL_RELAY_URL', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'SMTP_FROM'];
@@ -35,25 +35,13 @@ function setup(t) {
   return { pending, saved, mail };
 }
 
-for (const [birthDate, expected] of [[undefined, 428], [tooYoung, 422], ['2024-02-30', 400], ['2999-01-01', 400]]) {
-  test(`email signup rejects ${birthDate ?? 'missing age evidence'} before storing personal data or mailing`, async t => {
-    const state = setup(t), res = response();
-    await register({ body: { name: 'Age Fixture', email: 'age.fixture@gmail.com', dateOfBirth: birthDate } }, res);
-    assert.equal(res.statusCode, expected);
-    assert.deepEqual(state.pending, []);
-    assert.deepEqual(state.saved, []);
-    assert.deepEqual(state.mail, []);
-  });
-}
-
-test('adult email signup retains the eligibility decision but never the birth date', async t => {
+test('email signup sends verification without requiring or storing a birth date', async t => {
   const state = setup(t), res = response();
-  await register({ body: { name: 'Age Fixture', email: 'age.fixture@gmail.com', dateOfBirth: adult } }, res);
+  await register({ body: { name: 'Signup Fixture', email: 'signup.fixture@gmail.com' } }, res);
   assert.equal(res.statusCode, 201);
-  assert.equal(state.pending[0].ageEligibility.minimumAge, 18);
-  assert.equal(state.pending[0].ageEligibility.policyVersion, '2026-11-14');
-  assert.ok(state.pending[0].ageEligibility.checkedAt instanceof Date);
-  assert.equal(JSON.stringify(state.pending).includes(adult), false);
+  assert.equal(state.pending.length, 1);
+  assert.equal(state.pending[0].ageEligibility, undefined);
+  assert.equal(state.pending[0].dateOfBirth, undefined);
 });
 
 for (const action of [register, resendVerification]) test(`${action.name} verification links preserve a local job return path`, async t => {
@@ -84,13 +72,13 @@ test('verification links never adopt an external return origin', async t => {
   }
 });
 
-for (const [dateOfBirth, expected] of [[undefined, 428], [tooYoung, 422], [adult, 200]]) {
-  test(`new Google account requires adult eligibility (${expected})`, async t => {
+for (const [dateOfBirth, expected] of [[undefined, 200], [adult, 200]]) {
+  test(`new Google account can sign up without a birth date (${expected})`, async t => {
     const state = setup(t), res = response();
     t.mock.method(googleIdentity, 'verifyCredential', async () => ({ email: 'google.age@gmail.com', emailVerified: true, sub: 'age-subject', name: 'Age Fixture' }));
     await authenticateWithGoogle({ body: { credential: 'offline-fixture', dateOfBirth } }, res);
     assert.equal(res.statusCode, expected);
-    if (expected === 200) assert.equal(state.saved[0].ageEligibility.minimumAge, 18);
+    if (expected === 200) assert.equal(state.saved[0].ageEligibility, undefined);
     else assert.deepEqual(state.saved, []);
     assert.equal(JSON.stringify(state.saved).includes(adult), false);
   });
@@ -108,16 +96,20 @@ test('an existing Google account can sign in without supplying a birth date', as
   assert.equal(existing.ageEligibility, undefined);
 });
 
-test('legacy pending verification needs a fresh age check before creating an account', async t => {
+test('legacy pending verification creates an account without a birth date', async t => {
   const state = setup(t), res = response();
   t.mock.method(PendingUser, 'findOne', async () => new PendingUser({ email: 'pending.age@gmail.com',
     profile: { name: 'Age Fixture' }, verificationTokenHash: 'fixture', verificationTokenExpiresAt: new Date(Date.now() + 60_000) }));
+  t.mock.method(passwordSafety, 'check', async () => {});
+  t.mock.method(User.db, 'transaction', async callback => callback({}));
+  t.mock.method(PendingUser, 'findOneAndDelete', async () => new PendingUser({ email: 'pending.age@gmail.com', profile: { name: 'Signup Fixture' } }));
   await verifyEmail({ body: { token: 'fixture', password: 'AgeFixturePassword123!' } }, res);
-  assert.equal(res.statusCode, 428);
-  assert.deepEqual(state.saved, []);
+  assert.equal(res.statusCode, 200);
+  assert.equal(state.saved.length, 1);
+  assert.equal(state.saved[0].ageEligibility, undefined);
 });
 
-test('Apple account creation applies the same gate while returning users keep access', async t => {
+test('Apple account creation and returning sign-in work without a birth date', async t => {
   const state = setup(t);
   const signing = generateKeyPairSync('ec', { namedCurve: 'P-256' });
   const values = { APPLE_AUTH_ENABLED: 'true', APPLE_CLIENT_ID: 'in.jobverify.web', APPLE_TEAM_ID: 'TESTTEAM12',
@@ -130,13 +122,13 @@ test('Apple account creation applies the same gate while returning users keep ac
   t.mock.method(appleIdentity, 'verifyResponse', async () => ({ sub: 'apple-age-subject', email: 'age@icloud.com', emailVerified: true, refreshToken: 'offline-fixture' }));
   let existing = null;
   t.mock.method(User, 'findOne', () => ({ select: async () => existing }));
-  for (const [dateOfBirth, expected] of [[undefined, 428], [tooYoung, 422], [adult, 200]]) {
+  for (const [dateOfBirth, expected] of [[undefined, 200], [adult, 200]]) {
     const res = response();
     await authenticateWithApple({ headers: { cookie: `jobverify_apple_challenge=${'b'.repeat(43)}` },
       body: { state: 's'.repeat(43), idToken: 'offline-token', code: 'offline-code', dateOfBirth } }, res);
     assert.equal(res.statusCode, expected);
   }
-  assert.equal(state.saved[0].ageEligibility.minimumAge, 18);
+  assert.equal(state.saved[0].ageEligibility, undefined);
   existing = new User({ email: 'age@icloud.com', apple: { sub: 'apple-age-subject' }, isVerified: true });
   existing.isNew = false;
   const res = response();

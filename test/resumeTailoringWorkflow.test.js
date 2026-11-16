@@ -215,11 +215,15 @@ test('dedicated AI workflow caches pinned model and compiler dependencies on CPU
   assert.match(workflow, /runs-on: ubuntu-latest/);
   assert.match(workflow, /timeout-minutes: 30/);
   assert.match(workflow, /timeout-minutes: 28/);
+  assert.match(workflow, /Resume worker revision: %s\\n' "\$GITHUB_SHA"/);
   assert.match(workflow, /sparse-checkout:/);
   assert.match(workflow, /cache: 'npm'/);
-  assert.match(workflow, /\.cache\/resume-models\/Qwen3-4B-Instruct-2507-Q4_K_M\.gguf/);
-  assert.match(workflow, /\.cache\/resume-runtime\/b11146\/llama-b11146-bin-ubuntu-x64\.tar\.gz/);
-  assert.match(workflow, /\.cache\/resume-compiler\/image\.tar/);
+  const pin = JSON.parse(await readFile(new URL('../resume-tailoring/resume-model.json', import.meta.url), 'utf8'));
+  for (const asset of [`.cache/resume-models/${pin.file}`, `.cache/resume-runtime/${pin.runtimeTag}/${pin.runtimeFile}`, '.cache/resume-compiler/image.tar']) {
+    assert.equal(workflow.split(asset).length - 1, 3, `${asset} must match the pin in restore, completeness checking and save`);
+  }
+  const cacheKey = workflow.match(/^\s+key: (resume-[^\r\n]+)/m)?.[1];
+  assert.ok(cacheKey?.includes("hashFiles('resume-tailoring/resume-model.json'"), 'model pin changes must invalidate the immutable dependency cache');
   assert.match(workflow, /actions\/cache\/restore@/);
   assert.match(workflow, /actions\/cache\/save@/);
   assert.match(workflow, /secrets\.MONGO_URI/);
