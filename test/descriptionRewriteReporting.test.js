@@ -49,14 +49,14 @@ test('one worker execution failure overrides normal budget and quality handoffs'
   assert.equal(summary.workers[2].errorType, 'RewriteWorkerError');
 });
 
-test('an incomplete or cancelled worker is not hidden by another worker budget handoff', () => {
+test('pending worker items hand off while cancellation is not hidden by a peer budget stop', () => {
   for (const incomplete of [{ pendingEstimate: 5 }, { cancelled: true, stopReason: 'cancelled', interrupted: true }]) {
     const workers = parts();
     Object.assign(workers[0], { budgetExhausted: true, interrupted: true, stopReason: 'budget_exhausted' });
     Object.assign(workers[1], incomplete);
     const summary = aggregateRewriteSummaries(workers);
-    assert.deepEqual(summary.incompleteShards, [1]);
-    assert.equal(stageOutcome('rewrite', summary), 'incomplete');
+    assert.deepEqual(summary.incompleteShards, incomplete.cancelled ? [1] : []);
+    assert.equal(stageOutcome('rewrite', summary), incomplete.cancelled ? 'incomplete' : 'completed');
   }
 });
 

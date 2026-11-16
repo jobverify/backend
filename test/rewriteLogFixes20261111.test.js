@@ -54,13 +54,13 @@ test('capacity reports measured edit yield and corrections without classifying h
 
 test('automatic partitions distribute the queue over the configured runner pool and expose scheduling waves', () => {
   const plan = buildRewritePlan(27826);
-  assert.equal(plan.shardCount, 128);
-  assert.equal(plan.estimatedJobsPerShard, 218);
+  assert.equal(plan.shardCount, 64);
+  assert.equal(plan.estimatedJobsPerShard, 435);
   assert.equal(plan.capacityLimited, false);
-  assert.equal(plan.plannedWaves, 2);
+  assert.equal(plan.plannedWaves, 1);
   const fixed = buildRewritePlan(27826, { shardCount: 32, jobsPerShard: 350 });
   assert.equal(fixed.capacityLimited, true);
-  assert.equal(buildRewritePlan(27826, { maxParallel: 20 }).plannedWaves, 4);
+  assert.equal(buildRewritePlan(27826, { maxParallel: 20 }).plannedWaves, 2);
 });
 
 test('a partial handoff has explicit processing status and a report that distinguishes publication from wording edits', () => {

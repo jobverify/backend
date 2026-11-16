@@ -66,7 +66,7 @@ test('rewrite repository variables default to 64 runners and configure CPU threa
   threads: Number(environmentValue(shards, 'JOB_DESCRIPTION_REWRITE_CPU_THREADS', variables)),
   parallelism: Number(environmentValue(shards, 'JOB_DESCRIPTION_REWRITE_CONCURRENCY', variables)),
  });
- assert.equal(planFor({}).shardCount,128);
+  assert.equal(planFor({}).shardCount,64);
  assert.equal(planFor({}).maxParallel,64);
  assert.deepEqual(workerFor({}),{threads:4,parallelism:4,contextTokens:32768});
  const variables={JOB_DESCRIPTION_REWRITE_SHARD_COUNT:'64',JOB_DESCRIPTION_REWRITE_MAX_PARALLEL:'24',
@@ -96,6 +96,10 @@ test('rewrite builds one portable runtime and activates the verified artifact be
   assert.match(register,/JOB_DESCRIPTION_REWRITE_REQUIRE_NATIVE_TESTS: '1'/);
  assert.match(register,/runtime_artifact: description-runtime-avx2-\$\{\{ github.run_id \}\}-\$\{\{ github.run_attempt \}\}/);
  assert.match(register,/name: description-runtime-avx2-\$\{\{ github.run_id \}\}-\$\{\{ github.run_attempt \}\}/);
+  const preflight = register.indexOf('run: node scripts/checkDescriptionReadiness.js');
+  assert.ok(preflight > register.indexOf('run: bash scripts/portableRewriteRuntime.sh activate'));
+  assert.ok(preflight < register.indexOf('name: Upload portable runtime for all rewrite shards'));
+  assert.match(register,/if: always\(\) && steps\.description_queue\.outputs\.queued != '0'[\s\S]*name: description-readiness-/);
  assert.match(shards,/name: \$\{\{ needs.register.outputs.runtime_artifact \}\}/);
  for(const section of [register,shards]) assert.match(section,/steps\.description_queue\.outputs\.queued != '0'/);
  assert.match(shards,/portableRewriteRuntime\.sh activate/);

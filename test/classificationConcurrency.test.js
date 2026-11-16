@@ -73,6 +73,30 @@ test('bounded classification overlap preserves Mongo ownership, cache reuse and 
     assert.equal(summary.completed, 3)
   })
 
+  await t.test('an item inference failure is recorded and remaining jobs continue', async () => {
+    await seed(3)
+    const summary = await classifySavedJobs({ mode: 'policy', now: () => now,
+      worker: { classify: async input => {
+        if (input.title === 'Engineer 0') throw new Error('Prediction unavailable for this description')
+        return prediction
+      } } })
+    assert.equal(summary.completed, 2)
+    assert.equal(summary.failed, 1)
+    assert.equal(await Job.countDocuments({ 'postClassification.status': 'processing' }), 0)
+  })
+
+  await t.test('code, memory and MongoDB exceptions cannot become soft item failures', async () => {
+    for (const error of [new SyntaxError('invalid code'), new ReferenceError('missing binding'),
+      new TypeError('invalid worker result'), Object.assign(new Error('allocation failed'), { code: 'ENOMEM' }),
+      Object.assign(new Error('server unavailable'), { name: 'MongoServerError' })]) {
+      await seed(3)
+      let requests = 0
+      await assert.rejects(classifySavedJobs({ mode: 'policy', now: () => now,
+        worker: { classify: async () => { requests++; throw error } } }), received => received === error)
+      assert.equal(requests, 1)
+    }
+  })
+
   await t.test('a source edit under overlap still rejects the old prediction', async () => {
     const jobs = await seed(3)
     const firstId = jobs[0]._id

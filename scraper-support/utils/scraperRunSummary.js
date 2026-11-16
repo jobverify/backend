@@ -26,5 +26,6 @@ export const summarizeScraperRun = (rows = [], { interrupted = false, persistenc
     inserted: rows.reduce((sum, row) => sum + (row.inserted || 0), 0),
     updated: rows.reduce((sum, row) => sum + (row.updated || 0), 0),
     interrupted, pendingEstimate: rows.filter(row => row.classificationPending || row.persistencePending).length + Number(Boolean(persistencePending)),
+    persistencePending: rows.filter(row => row.persistencePending).length + Number(Boolean(persistencePending)),
   };
 };

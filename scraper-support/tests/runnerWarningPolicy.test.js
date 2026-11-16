@@ -129,11 +129,11 @@ for (const parallel of [false, true]) {
     assert.equal(result.summary.warnings, 2)
     assert.equal(stageOutcome('scraper', result.summary, result.status), 'completed')
   })
-  test(`${mode} CLI keeps unfinished persistence blocking the next stage`, t => {
+  test(`${mode} CLI hands off pending job work without blocking the next stage`, t => {
     const result = runScenario(t, 'pending', parallel)
     assert.equal(result.status, 0)
     assert.equal(result.summary.pendingEstimate, 1)
-    assert.equal(stageOutcome('scraper', result.summary, result.status), 'incomplete')
+    assert.equal(stageOutcome('scraper', result.summary, result.status), 'completed')
   })
   test(`${mode} CLI isolates provider DNS errors without inventing pending database work`, t => {
     const result = runScenario(t, 'source-network-error', parallel)
@@ -143,11 +143,11 @@ for (const parallel of [false, true]) {
     assert.equal(stageOutcome('scraper', result.summary, result.status), 'completed')
   })
   for (const scenario of ['transaction-error', 'quota-error', 'database-seed-error', 'database-active-status-error', 'database-status-write-error']) {
-    test(`${mode} CLI reports ${scenario} as resumable incomplete work without failing execution`, t => {
+    test(`${mode} CLI retains ${scenario} for recovery and fails the pipeline for database errors`, t => {
       const result = runScenario(t, scenario, parallel)
       assert.equal(result.status, 0, result.stdout + result.stderr)
       assert.ok(result.summary.pendingEstimate > 0)
-      assert.equal(stageOutcome('scraper', result.summary, result.status), 'incomplete')
+      assert.equal(stageOutcome('scraper', result.summary, result.status), 'failed')
       const checkpoint = JSON.parse(fs.readFileSync(path.join(result.directory, 'run-state.json'), 'utf8'))
       assert.equal(checkpoint.status, 'interrupted')
       if (!scenario.startsWith('database-seed')) assert.ok(result.state.started.includes('healthy'))
@@ -157,7 +157,7 @@ for (const parallel of [false, true]) {
     const result = runScenario(t, 'database-finish-error', parallel)
     assert.equal(result.status, 0, result.stdout + result.stderr)
     assert.equal(result.summary.pendingEstimate, 1)
-    assert.equal(stageOutcome('scraper', result.summary, result.status), 'incomplete')
+    assert.equal(stageOutcome('scraper', result.summary, result.status), 'failed')
     const checkpoint = JSON.parse(fs.readFileSync(path.join(result.directory, 'run-state.json'), 'utf8'))
     assert.equal(checkpoint.completedCount, 2)
     assert.equal(checkpoint.status, 'interrupted')

@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import HIVER_CATALOG from './catalog.js'
+import {runCurrentHiver} from './currentNative20261115.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -13,9 +14,6 @@ export const PINPOINT_POSTINGS_URL = HIVER_CATALOG.pinpointPostingsUrl
 export const PINPOINT_RSS_URL = HIVER_CATALOG.pinpointRssUrl
 export const VERIFIED_ON = HIVER_CATALOG.verifiedOn
 export const PROVIDER_METADATA = HIVER_CATALOG
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value) => {
   if (value == null) return null
@@ -54,36 +52,6 @@ const normalizeUrl = (value, baseUrl = PINPOINT_BOARD_URL) => {
     return new URL(normalized, baseUrl).toString()
   } catch {
     return normalized
-  }
-}
-
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
   }
 }
 
@@ -131,39 +99,9 @@ export const hasOfficialPinpointEmptyBoardSignal = (html) => {
     && text.includes('register your interest')
 }
 
-export const createHiverScraper = () => ({
-  async run({
-    fetchPage = defaultFetchPage,
-  } = {}) {
-    const careersPage = await fetchPage(CAREERS_URL)
-    if (
-      careersPage.status !== 200
-      || !sameUrl(careersPage.url, CAREERS_URL)
-      || !hasOfficialCareersSignal(careersPage.html)
-    ) {
-      throw new Error('Hiver verified first-party careers page no longer matches the known public surface')
-    }
-
-    if (!sameUrl(extractPinpointBoardUrl(careersPage.html), PINPOINT_BOARD_URL)) {
-      throw new Error('Hiver verified first-party careers page no longer links to the verified Pinpoint board')
-    }
-
-    const pinpointBoard = await fetchPage(PINPOINT_BOARD_URL)
-    if (
-      pinpointBoard.status !== 200
-      || !sameUrl(pinpointBoard.url, PINPOINT_BOARD_URL)
-      || !hasOfficialPinpointEmptyBoardSignal(pinpointBoard.html)
-    ) {
-      throw new Error('Hiver verified Pinpoint empty board changed materially or now exposes public openings')
-    }
-
-    if (!sameUrl(extractPinpointPostingsUrl(pinpointBoard.html), PINPOINT_POSTINGS_URL)) {
-      throw new Error('Hiver verified Pinpoint board no longer advertises the verified postings feed')
-    }
-
-    return []
-  },
-})
+// Historical exported markup predicates remain available to callers. Current
+// acquisition never treats their empty-template wording as native inventory.
+export const createHiverScraper = () => ({run:runCurrentHiver})
 
 export const run = async (options = {}) => createHiverScraper().run(options)
 

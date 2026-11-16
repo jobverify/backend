@@ -16,7 +16,9 @@ jobs:
       NODE_OPTIONS: '--use-system-ca'
     steps:
       - name: Record worker budget start
-        run: printf 'TAILORED_RESUME_WORKFLOW_STARTED_AT=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+        run: |
+          printf 'TAILORED_RESUME_WORKFLOW_STARTED_AT=%s\n' "$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_ENV"
+          printf 'Resume worker revision: %s\n' "$GITHUB_SHA"
       - uses: actions/checkout@v7
         with:
           sparse-checkout-cone-mode: false
@@ -43,7 +45,7 @@ jobs:
             .cache/resume-models/Qwen3-4B-Instruct-2507-Q4_K_M.gguf
             .cache/resume-runtime/b11146/llama-b11146-bin-ubuntu-x64.tar.gz
             .cache/resume-compiler/image.tar
-          key: resume-qwen4b-3605803b-runtime-c150306e-${{ hashFiles('resume-tailoring/compiler/**', 'resume-tailoring/templates/**') }}
+          key: resume-pinned-${{ hashFiles('resume-tailoring/resume-model.json', 'resume-tailoring/compiler/**', 'resume-tailoring/templates/**') }}
       - name: Prepare or tailor one requested resume
         timeout-minutes: 28
         env:

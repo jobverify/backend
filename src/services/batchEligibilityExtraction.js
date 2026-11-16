@@ -19,9 +19,20 @@ const properties = {
 };
 export const BATCH_EXTRACTION_SCHEMA = { type: 'object', additionalProperties: false, properties, required: Object.keys(properties) };
 const empty = status => ({ status, graduationYears: [], graduationMaxYear: null, graduationEvidence: [], experienceRanges: [] });
-const invalid = () => { throw new Error('Invalid source-backed batch extraction'); };
+const invalid = () => { throw Object.assign(new Error('Invalid source-backed batch extraction'), { code: 'INVALID_BATCH_EXTRACTION' }); };
 const numberWords = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty'];
 const numericEvidence = text => text.replace(new RegExp(`\\b(${numberWords.join('|')})\\b`, 'gi'), word => String(numberWords.indexOf(word.toLowerCase())));
+const sectionWords = text => text.replace(/([a-z])([A-Z])/g, '$1 $2');
+const experienceQuantities = text => {
+  const evidence = numericEvidence(text);
+  return [...new Set([...evidence.matchAll(/\b\d+(?:\.\d+)?\b/g)].map(match => {
+    const after = evidence.slice(match.index + match[0].length);
+    const unit = after.match(/^\s*(?:\+|plus|or more|and (?:above|over))?\s*(years?|yrs?|months?)\b/i)
+      || after.match(/^\s*(?:-|\u2013|\u2014|to|and)\s*(?:(?:at least|at most)\s*)?\d+(?:\.\d+)?\s*\+?\s*(years?|yrs?|months?)\b/i)
+      || evidence.slice(0, match.index).match(/\b(years?|yrs?|months?)\s+(?:of\s+)?(?:(?:professional|relevant|work)\s+)*experience\s*(?::|is|=)?\s*(?:\d+(?:\.\d+)?\s*(?:-|to|and)\s*)?$/i);
+    return unit ? Number(match[0]) / (/^month/i.test(unit[1]) ? 12 : 1) : null;
+  }).filter(value => value !== null && value >= 0 && value <= 40))].sort((a, b) => a - b);
+};
 const unsupportedGraduation = text => /\b(?:not|except|exclud\w*|after|since|later|newer|above|onwards?)\b/i.test(text)
   || /\b(?:before|prior\s+to)\s+(?:19|20|21)\d{2}\b/i.test(text);
 
@@ -58,12 +69,12 @@ export function validateBatchExtraction(value, text) {
       || typeof range.isOpenEnded !== 'boolean' || !Number.isFinite(range.minimumYears) || range.minimumYears < 0 || range.minimumYears > 40
       || (range.isOpenEnded ? range.maximumYears !== null : !Number.isFinite(range.maximumYears)
         || range.maximumYears < range.minimumYears || range.maximumYears > 40)) invalid();
-    const evidence = numericEvidence(normalized(range.evidence));
+    const evidence = numericEvidence(normalized(sectionWords(range.evidence)));
     if (!/\b(?:experience|background|worked|work history|served)\b/i.test(evidence)
       || /\b(?:preferred|desirable|nice.to.have|bonus|founded|company history)\b/i.test(evidence)
       || /\b(?:not|never)\s+(?:required|needed|necessary)\b/i.test(evidence)) invalid();
     const position = source.indexOf(normalized(range.evidence));
-    const context = source.slice(Math.max(0, position - 500), position);
+    const context = sectionWords(source.slice(Math.max(0, position - 500), position));
     const sections = [...context.matchAll(/\b(preferred|required|minimum|basic|desirable)\s+(?:qualifications?|requirements?|experience)\s*:/gi)];
     if (/^(?:preferred|desirable)$/i.test(sections.at(-1)?.[1] || '')) invalid();
     const numbers = [...evidence.matchAll(/\b\d+(?:\.\d+)?\b/g)].map(match => Number(match[0]));
@@ -151,9 +162,10 @@ export async function extractBatchChunk(worker, chunk, { signal, onCompletion })
   }
   if (!value.graduationYears.length && value.graduationMaxYear === null) {
     const experienceFacts = facts.filter(fact => {
-      const context = `${fact.section} ${fact.text}`;
+      const context = sectionWords(`${fact.section} ${fact.text}`);
       return /\b(?:experience|background|worked|work history|served|tenure)\b/i.test(context)
         && /\b(?:years?|yrs?|months?)\b/i.test(fact.text) && /\b\d+(?:\.\d+)?\b/.test(numericEvidence(fact.text))
+        && !/(?:\b(?:around|approximately|roughly|about|circa)\s*|~\s*)\d+(?:\.\d+)?(?:\s*(?:-|to)\s*\d+(?:\.\d+)?)?\s*(?:years?|yrs?|months?)\b/i.test(numericEvidence(fact.text))
         && !/\b(?:preferred|desirable|optional|nice.to.have|bonus|about us|our company|company has|company history|we have|founded|established)\b/i.test(context);
     });
     if (!experienceFacts.length) return value;
@@ -170,15 +182,37 @@ export async function extractBatchChunk(worker, chunk, { signal, onCompletion })
     if (minimums.every(Boolean) && !/\b(?:or|unless|instead|alternatively|if)\b/i.test(chunk)) {
       return validateBatchExtraction({ ...value, status: 'supported', experienceRanges: minimums }, chunk);
     }
-    const experience = await request('Extract required prior professional experience in years. For each range give minimumYears, maximumYears and sourceId. Numbers written as words count: between three and five means 3 to 5. For at least 3 years use 3 and null; for exactly 2 use 2 and 2. Convert months to years. Separate alternative degree routes. Ignore preferences, company history, age, courses, future training and job duration. Never estimate from duties or title. If no numeric requirement is stated return ranges: [].', {
-      type: 'object', additionalProperties: false, properties: { ranges: { type: 'array', maxItems: 16, items: {
-        type: 'object', additionalProperties: false, properties: { minimumYears: { type: 'number', minimum: 0, maximum: 40 },
-          maximumYears: { type: ['number', 'null'], minimum: 0, maximum: 40 }, sourceId: sourceIds(experienceFacts) }, required: ['minimumYears', 'maximumYears', 'sourceId'],
-      } } }, required: ['ranges'],
+    const alternativeRoute = evidence => /\bor\b/i.test(chunk) && /\b(?:degree|bachelor|master|ph\.?d|diploma)\b/i.test(evidence);
+    const clauses = new Map();
+    for (const fact of experienceFacts) {
+      const quantities = experienceQuantities(fact.text);
+      const minimums = /\b(?:up to|at most|maximum|no more than|not more than)\b/i.test(fact.text)
+        ? [...new Set([0, ...quantities])] : quantities;
+      // Constrain complete ranges, not just individual numbers: otherwise the
+      // model can combine a stated sub-skill minimum with an unrelated maximum.
+      for (const minimumYears of minimums) for (const maximumYears of [...quantities, null]) {
+        let range;
+        try {
+          [range] = validateBatchExtraction({ ...empty('supported'), experienceRanges: [{ minimumYears, maximumYears,
+            isOpenEnded: maximumYears === null, alternative: alternativeRoute(fact.text), evidence: fact.text }] }, chunk).experienceRanges;
+        } catch (error) {
+          if (error.code !== 'INVALID_BATCH_EXTRACTION') throw error;
+          continue;
+        }
+        const key = JSON.stringify([fact.id, range.minimumYears, range.maximumYears]);
+        clauses.set(key, { type: 'object', additionalProperties: false,
+          properties: { minimumYears: { type: 'number', enum: [range.minimumYears] },
+            maximumYears: { type: ['number', 'null'], enum: [range.maximumYears] }, sourceId: sourceIds([fact]) },
+          required: ['minimumYears', 'maximumYears', 'sourceId'] });
+      }
+    }
+    const clauseSchemas = [...clauses.values()];
+    if (!clauseSchemas.length) return value;
+    const experience = await request('Extract required prior professional experience in years. For each range give minimumYears, maximumYears and sourceId. Use only quantities in the cited source clause. A minimum or plus sign has a null maximum; an exact quantity repeats the same endpoints. Convert months to years. Separate alternative degree routes. Ignore preferences, company history, age, courses, future training and job duration. Never estimate from duties or title. If no numeric requirement is stated return ranges: [].', {
+      type: 'object', additionalProperties: false, properties: { ranges: { type: 'array', maxItems: 16, items: { oneOf: clauseSchemas } } }, required: ['ranges'],
     }, experienceFacts);
-    const alternatives = /\bor\b/i.test(chunk) && /\b(?:degree|bachelor|master|ph\.?d|diploma)\b/i.test(chunk);
     value.experienceRanges = experience.ranges.map(range => ({ minimumYears: range.minimumYears, maximumYears: range.maximumYears,
-      isOpenEnded: range.maximumYears === null, alternative: alternatives, evidence: quote(range.sourceId) }));
+      isOpenEnded: range.maximumYears === null, alternative: alternativeRoute(quote(range.sourceId)), evidence: quote(range.sourceId) }));
   }
   if (value.graduationYears.length || value.graduationMaxYear !== null || value.experienceRanges.length) value.status = 'supported';
   return value;

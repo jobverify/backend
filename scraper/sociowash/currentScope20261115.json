@@ -1,0 +1,2202 @@
+{
+  "source": "sociowash",
+  "reviewedOn": "2026-11-15",
+  "fixtureSHA256": "577163e71f455bfb10b94bc3ed78782a9db3d053da44e7698177e5fa466a14d9",
+  "scope": "two selected current corporate-published native roles; all 48 advertised modern board rows retained; legacy/root and company scope unqualified",
+  "headers": {
+    "https://www.sociowash.com/about": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": null,
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    },
+    "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      },
+      "observedAlternatives": [
+        {
+          "content-type": "text/css; charset=utf-8",
+          "content-disposition": null,
+          "content-security-policy": null,
+          "content-security-policy-report-only": null,
+          "refresh": null,
+          "link": null,
+          "location": null,
+          "content-location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": null,
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=<NATIVE-ANONYMOUS-REPORTING-TOKEN>\"}]}",
+          "reporting-endpoints": null,
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.01,\"max_age\":604800}",
+          "access-control-allow-origin": "*",
+          "cross-origin-resource-policy": "cross-origin"
+        }
+      ]
+    },
+    "https://unpkg.com/aos@next/dist/aos.css": {
+      "status": 302,
+      "headers": {
+        "content-type": "text/plain;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": "/aos@3.0.0-beta.6/dist/aos.css",
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://www.sociowash.com/style.css?v=25": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": null,
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    },
+    "https://code.jquery.com/jquery-3.7.1.min.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": null,
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://unpkg.com/aos@next/dist/aos.js": {
+      "status": 302,
+      "headers": {
+        "content-type": "text/plain;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": "/aos@3.0.0-beta.6/dist/aos.js",
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=<NATIVE-ANONYMOUS-REPORTING-TOKEN>\"}]}",
+        "reporting-endpoints": null,
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.01,\"max_age\":604800}",
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=<NATIVE-ANONYMOUS-REPORTING-TOKEN>\"}]}",
+        "reporting-endpoints": null,
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.01,\"max_age\":604800}",
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/TextPlugin.min.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/javascript; charset=utf-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://sociowash.zohorecruit.com/jobs/Careers": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/html;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": "script-src 'self' 'unsafe-inline' https://www.linkedin.com https://platform.linkedin.com https://js.zohostatic.com https://static.zohocdn.com https://static.zohocdn.com.cn https://accounts.zoho.in https://accounts.zoho.com https://accounts.zoho.eu https://accounts.zoho.com.cn https://accounts.zoho.com.au https://accounts.zoho.jp https://accounts.zoho.uk https://accounts.zohocloud.ca https://accounts.zoho.sa https://apply.indeed.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com ;  report-uri https://logsapi.zoho.com/csplog?service=RecruitCrm",
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/custom-elements-es5-adapter.cff507bc95ad1d6bf1a415cc9c8852b0.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/lyte.28de407fe7c8be3b8aa51de42ffdc728.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/I18n/en_GB.3a4e1b638b33badc44a7b11fd327d98f.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/helpers/helper.d97005042885bab77ab37a16085ec731.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/I18n/crux_en_GB.d846d588874d451b6ea4efc3fc978540.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-elements.bb667948080011477591e6f899e24787.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-accessibility-mixin.0b6b14c0ed8276b31118db9354fe3da0.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/crux-criteria.718d010de18f22dc52fd68e90f244494.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/assets/Utils/currencyUtils.2a491e3027e57cd903eadfb4c3b850ed.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/css/career-fonts.66999af951f1093dcb30018f9972c8b9.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/css/career-website-commonlyte.04677051249747c3281ead04d48c2013.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/css/career-website-common.ec3ad56936780e537bc552ba0ffff3a1.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/theme/compiledCSS/default/ltr/lyte-ui-components.b8e20b3be880dbfabf4e032d82c79acc.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/javascript/career-website-common.e098b32b8e59c3522a0599bd2176f5cc.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/javascript/i18n/zohocrm_cw_en_GB.0ca063b6de241430192541a2cbe01ffd.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/components/lyte-calendar.79c8ea995c4b98c6da66835d63f9bde3.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://sociowash.zohorecruit.com/jobs/Careers/414709000015839005/Account-Director?source=CareerSite": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/html;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": "script-src 'self' 'unsafe-inline' https://www.linkedin.com https://platform.linkedin.com https://js.zohostatic.com https://static.zohocdn.com https://static.zohocdn.com.cn https://accounts.zoho.in https://accounts.zoho.com https://accounts.zoho.eu https://accounts.zoho.com.cn https://accounts.zoho.com.au https://accounts.zoho.jp https://accounts.zoho.uk https://accounts.zohocloud.ca https://accounts.zoho.sa https://apply.indeed.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com ;  report-uri https://logsapi.zoho.com/csplog?service=RecruitCrm",
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    },
+    "https://static.zohocdn.com/recruit/css/career-website-detailapply.a117d7c7f4f1fa7be51de67942a068b7.css": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/css;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://static.zohocdn.com/recruit/javascript/career-website-detailapply.f84d20800c62f5d5c6559f0ba60cf736.js": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/javascript;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": null,
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": "*",
+        "cross-origin-resource-policy": "cross-origin"
+      }
+    },
+    "https://sociowash.zohorecruit.com/recruit/v2/public/Job_Openings/414709000015839005/apply/414709000000072351?pagename=Careers&source=CareerSite": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/json;charset=utf-8",
+        "content-disposition": "attachment; filename=response.json",
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    },
+    "https://sociowash.zohorecruit.com/jobs/Careers/414709000017915013/Lead-Account-Manager?source=CareerSite": {
+      "status": 200,
+      "headers": {
+        "content-type": "text/html;charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": null,
+        "content-security-policy-report-only": "script-src 'self' 'unsafe-inline' https://www.linkedin.com https://platform.linkedin.com https://js.zohostatic.com https://static.zohocdn.com https://static.zohocdn.com.cn https://accounts.zoho.in https://accounts.zoho.com https://accounts.zoho.eu https://accounts.zoho.com.cn https://accounts.zoho.com.au https://accounts.zoho.jp https://accounts.zoho.uk https://accounts.zohocloud.ca https://accounts.zoho.sa https://apply.indeed.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com ;  report-uri https://logsapi.zoho.com/csplog?service=RecruitCrm",
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    },
+    "https://sociowash.zohorecruit.com/recruit/v2/public/Job_Openings/414709000017915013/apply/414709000000072351?pagename=Careers&source=CareerSite": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/json;charset=utf-8",
+        "content-disposition": "attachment; filename=response.json",
+        "content-security-policy": null,
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": null,
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "DENY",
+        "report-to": null,
+        "reporting-endpoints": null,
+        "nel": null,
+        "access-control-allow-origin": null,
+        "cross-origin-resource-policy": null
+      }
+    }
+  },
+  "contracts": {
+    "https://www.sociowash.com/about": {
+      "treeSHA256": "caf47e9ab13148072dffcd7ec88e3c55cc2e77053112df1382e4d1988baca5b9",
+      "commentsSHA256": "0f5d5e460552fcef3318905d2bd8b19eb95d0e30f0135b0d0dde9b3c5989ac8e",
+      "doctype": "<!DOCTYPE html>"
+    },
+    "https://sociowash.zohorecruit.com/jobs/Careers": {
+      "treeSHA256": "ffd7aae0be2755e8718991ec4e94a33b91c250714efea89dcf8bc7ab7976a1e4",
+      "commentsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "doctype": "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">"
+    },
+    "https://sociowash.zohorecruit.com/jobs/Careers/414709000015839005/Account-Director?source=CareerSite": {
+      "treeSHA256": "e719791ba60e0f1a108d62bed786b27fb449b97af1d5a25cbc03c393a0642e84",
+      "commentsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "doctype": "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">"
+    },
+    "https://sociowash.zohorecruit.com/jobs/Careers/414709000017915013/Lead-Account-Manager?source=CareerSite": {
+      "treeSHA256": "957af936c37c31220d17ee4db4b9a56aa4cfe6051922167fddc215e03d30ec54",
+      "commentsSHA256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "doctype": "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">"
+    }
+  },
+  "assets": {
+    "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css": {
+      "sha256": "74ca6aae5468dbc924790c3b4d219a089b90a34bad53a0f7ca3a73e73b6f5ab8",
+      "bytes": 18454
+    },
+    "https://unpkg.com/aos@next/dist/aos.css": {
+      "sha256": "9d58470c60488ae621e788b659a5b07b30ba8c2fd0e2520bafdfc58ea4a2e425",
+      "bytes": 45,
+      "redirectTo": "https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css"
+    },
+    "https://unpkg.com/aos@3.0.0-beta.6/dist/aos.css": {
+      "sha256": "8695f5fc64d65593f9763a5b28d14bc34e3cf802317e1ffad2125a7c8fedfafe",
+      "bytes": 28765
+    },
+    "https://www.sociowash.com/style.css?v=25": {
+      "sha256": "3327ebac0682193c24b00ef4dc3b72aeabd95e5a0a26f62fad2926314e011c89",
+      "bytes": 40139
+    },
+    "https://code.jquery.com/jquery-3.7.1.min.js": {
+      "sha256": "fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a",
+      "bytes": 87533
+    },
+    "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js": {
+      "sha256": "985f1224c0eeec99d367a9db35e58e44b21e7eb9ce45831b15b4c108e41fd97f",
+      "bytes": 154597
+    },
+    "https://unpkg.com/aos@next/dist/aos.js": {
+      "sha256": "82a084451987b6b517ff3ed5eaa14efe02d3e1a869237428ad42506ef3b07c4a",
+      "bytes": 44,
+      "redirectTo": "https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js"
+    },
+    "https://unpkg.com/aos@3.0.0-beta.6/dist/aos.js": {
+      "sha256": "dd1f9acf13b12f189da475e0f23c7c505767859ab620aac636964974093c281d",
+      "bytes": 13800
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js": {
+      "sha256": "28033e449a31ebcc396e5be8b13b63152bf03094288fb5867034321927bce087",
+      "bytes": 72214
+    },
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js": {
+      "sha256": "ad33c2df9ada8a663c2147357828f980d0b7ca731ef33eb3c6e4f327c3b2cda5",
+      "bytes": 43380
+    },
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/TextPlugin.min.js": {
+      "sha256": "c78645b4815fc9aabac58a6b0effa04313dff881ac49e7fb715b106b0e6dffce",
+      "bytes": 10638
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/custom-elements-es5-adapter.cff507bc95ad1d6bf1a415cc9c8852b0.js": {
+      "sha256": "152307e0e0a84178ea99ee4f548ee691b2f1d27cc6933e3d9d9ec15f0b707eaf",
+      "bytes": 922
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/lyte.28de407fe7c8be3b8aa51de42ffdc728.js": {
+      "sha256": "06225237979362cbe663e60029d59a7ed61b50f97be25392315bdfd84f29f75a",
+      "bytes": 508076
+    },
+    "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/I18n/en_GB.3a4e1b638b33badc44a7b11fd327d98f.js": {
+      "sha256": "8907805a373d8d3b4f0013bb3e2f5a962619cb21a658ebbcc4e87b7b4df824fa",
+      "bytes": 9011
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/helpers/helper.d97005042885bab77ab37a16085ec731.js": {
+      "sha256": "bdb02276d5c20d2ae4f508b7c38d0a73e224403ad55c218f860362e2d1f08313",
+      "bytes": 9703
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/I18n/crux_en_GB.d846d588874d451b6ea4efc3fc978540.js": {
+      "sha256": "c20e75a0219cbba13ccc059975951638b31fe665996651c580ff0f13c65ef0a4",
+      "bytes": 33403
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-elements.bb667948080011477591e6f899e24787.js": {
+      "sha256": "0a4ad3b1513e5c01cce18d0fd81f4e4211ebe7e36a27b86063cdef3d9813041f",
+      "bytes": 838714
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-accessibility-mixin.0b6b14c0ed8276b31118db9354fe3da0.js": {
+      "sha256": "53192985acaa2ab944627d672221f850dfaa4e917a172df87d317db876add8f4",
+      "bytes": 79921
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/crux-criteria.718d010de18f22dc52fd68e90f244494.js": {
+      "sha256": "66e4d99105364efcf389f7bdc5dd18e9e59def081d8a325dbda955ba0ae87ef3",
+      "bytes": 197148
+    },
+    "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/assets/Utils/currencyUtils.2a491e3027e57cd903eadfb4c3b850ed.js": {
+      "sha256": "f8d79552a646df56859aa829611f9e3891a5ab56226a39c64293d2cd38ce2867",
+      "bytes": 12530
+    },
+    "https://static.zohocdn.com/recruit/css/career-fonts.66999af951f1093dcb30018f9972c8b9.css": {
+      "sha256": "51333f816af78287e92b4c376f42090d001d92d4b64a86bfe77199b7feeb8bc9",
+      "bytes": 40670
+    },
+    "https://static.zohocdn.com/recruit/css/career-website-commonlyte.04677051249747c3281ead04d48c2013.css": {
+      "sha256": "4bb88033a6821ad8b1f44fa9a78e48a77161cedd6257f24c7e9ec859622fc211",
+      "bytes": 163226
+    },
+    "https://static.zohocdn.com/recruit/css/career-website-common.ec3ad56936780e537bc552ba0ffff3a1.css": {
+      "sha256": "5e9f3d7e15a3b43acd19de2a075c9a49693a9f25ece791f32699366902be624e",
+      "bytes": 809038
+    },
+    "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/theme/compiledCSS/default/ltr/lyte-ui-components.b8e20b3be880dbfabf4e032d82c79acc.css": {
+      "sha256": "64c270fa619b45ff652578b6b91a7cba10826f0b60a27919fa7caae58d0e5bac",
+      "bytes": 294761
+    },
+    "https://static.zohocdn.com/recruit/javascript/career-website-common.e098b32b8e59c3522a0599bd2176f5cc.js": {
+      "sha256": "89fbf5332cebc02bdf1fdfc0e9936c4bba377d4d82560d047af905d29f36ba10",
+      "bytes": 2368408
+    },
+    "https://static.zohocdn.com/recruit/javascript/i18n/zohocrm_cw_en_GB.0ca063b6de241430192541a2cbe01ffd.js": {
+      "sha256": "053adec9b16b7b4af8d0f87732078d7e06dd94b5d4eedbd08db1006811588573",
+      "bytes": 33162
+    },
+    "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/components/lyte-calendar.79c8ea995c4b98c6da66835d63f9bde3.js": {
+      "sha256": "0e8bc17cc8c006bcc521005fcb72cb0fdece63f86d2b0bbae178bf4e787ee448",
+      "bytes": 128407
+    },
+    "https://static.zohocdn.com/recruit/css/career-website-detailapply.a117d7c7f4f1fa7be51de67942a068b7.css": {
+      "sha256": "2a58aa66fd315507b733395813b2df367ef9a959e6600c163f5e298baa77d074",
+      "bytes": 73029
+    },
+    "https://static.zohocdn.com/recruit/javascript/career-website-detailapply.f84d20800c62f5d5c6559f0ba60cf736.js": {
+      "sha256": "0bed818e7ffc641183884b632c8ae83c9102e52ea7edafbb95e7068eb67011d1",
+      "bytes": 651942
+    }
+  },
+  "passiveDeclarations": [
+    "https://www.googletagmanager.com/gtag/js?id=G-E995FX1VXZ",
+    "https://accounts.zoho.com/accounts/js/tplibs/password_strength.js",
+    "https://static.zohocdn.com/recruit/dist/addons/@zia/ziaSkillsSdk/assets/js/zia-skills-sdk.098f8a4715fefaa9ceff31883a8457e9.js",
+    "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/screening-bot-models.49f9b5d5f9dbef18adb8c6e0c3c4689e.js",
+    "https://static.zohocdn.com/recruit/dist/screening-bot-models.1c6e39d5be9579d7679bbe18ad0f765f.css"
+  ],
+  "roles": [
+    {
+      "url": "https://sociowash.zohorecruit.com/jobs/Careers/414709000015839005/Account-Director?source=CareerSite",
+      "id": "414709000015839005",
+      "title": "Account Director",
+      "form": "https://sociowash.zohorecruit.com/recruit/v2/public/Job_Openings/414709000015839005/apply/414709000000072351?pagename=Careers&source=CareerSite",
+      "modelKeys": [
+        "Posting_Title",
+        "Is_Locked",
+        "City",
+        "Agency_Experience",
+        "Industry",
+        "Job_Description",
+        "Work_Experience",
+        "Job_Type",
+        "Job_Opening_Name",
+        "State",
+        "Country",
+        "Zip_Code",
+        "id",
+        "Department_Name",
+        "Publish",
+        "Date_Opened",
+        "Keep_on_Career_Site"
+      ],
+      "address": {
+        "City": "New Delhi",
+        "State": "Delhi",
+        "Country": "India",
+        "Zip_Code": "110020"
+      },
+      "criteriaAuthorityClaims": [
+        "native-role-authority-block: We are dreamers, we are comedians, we are rebels, we are philosophers, but above all, we are the best at what we do. If you see yourself working in a team of goal-driven, fun-loving people (of all shapes and sizes), apply on the given link, and perhaps, we will figure something out together.",
+        "native-role-authority-block: We work in an uber-collaborative atmosphere, always on the go, creating kickass content for all our stakeholders."
+      ],
+      "boardRowKeys": [
+        "Posting_Title",
+        "Is_Locked",
+        "City",
+        "Industry",
+        "Job_Description",
+        "Work_Experience",
+        "Job_Type",
+        "Job_Opening_Name",
+        "State",
+        "Country",
+        "id",
+        "Department_Name",
+        "Publish",
+        "Date_Opened",
+        "Keep_on_Career_Site"
+      ]
+    },
+    {
+      "url": "https://sociowash.zohorecruit.com/jobs/Careers/414709000017915013/Lead-Account-Manager?source=CareerSite",
+      "id": "414709000017915013",
+      "title": "Lead Account Manager",
+      "form": "https://sociowash.zohorecruit.com/recruit/v2/public/Job_Openings/414709000017915013/apply/414709000000072351?pagename=Careers&source=CareerSite",
+      "modelKeys": [
+        "Posting_Title",
+        "Is_Locked",
+        "City",
+        "Agency_Experience",
+        "Industry",
+        "Job_Description",
+        "Work_Experience",
+        "Job_Type",
+        "Job_Opening_Name",
+        "State",
+        "Country",
+        "Zip_Code",
+        "id",
+        "Department_Name",
+        "Publish",
+        "Date_Opened",
+        "Keep_on_Career_Site"
+      ],
+      "address": {
+        "City": "Mumbai",
+        "State": "Maharashtra",
+        "Country": "India",
+        "Zip_Code": "400069"
+      },
+      "criteriaAuthorityClaims": [
+        "native-role-authority-block: We are dreamers, we are comedians, we are rebels, we are philosophers, but above all, we are the best at what we do. If you see yourself working in a team of goal-driven, fun-loving people (of all shapes and sizes), apply on the given link, and perhaps, we will figure something out together.",
+        "native-role-authority-block: We work in an uber-collaborative atmosphere, always on the go, creating kickass content for all our stakeholders."
+      ],
+      "boardRowKeys": [
+        "Posting_Title",
+        "Is_Locked",
+        "City",
+        "Industry",
+        "Job_Description",
+        "Work_Experience",
+        "Job_Type",
+        "Job_Opening_Name",
+        "State",
+        "Country",
+        "id",
+        "Department_Name",
+        "Publish",
+        "Date_Opened",
+        "Keep_on_Career_Site"
+      ]
+    }
+  ],
+  "descriptionAttributes": [
+    {
+      "tag": "span",
+      "attrs": {
+        "id": "spandesc"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:115%; margin-bottom:0cm; margin-left:1.27cm; text-align:left",
+        "class": "align-left"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:16px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "colour",
+        "style": "color:rgb(67, 67, 67)"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size:13px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family:arial, helvetica, sans-serif, sans-serif"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:115%; margin-bottom:0cm; widows:2; border:none; padding:0cm; orphans:2; background:transparent; text-align:left",
+        "align": "left",
+        "class": "align-left"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:115%; margin-bottom:0cm; widows:2; margin-left:1.27cm; orphans:2; border:none; padding:0cm; background:transparent; text-align:left",
+        "align": "left",
+        "class": "align-left"
+      }
+    },
+    {
+      "tag": "div",
+      "attrs": {
+        "class": "align-left",
+        "style": "text-align:left"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:120%; margin-bottom:0cm; text-align:left",
+        "class": "align-left"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "text-decoration:none"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-style:normal"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:115%; margin-bottom:0cm; margin-top:0px; text-align:left",
+        "class": "align-left"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "id": "spanreq"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:120%; margin-bottom:0cm; widows:2; border:none; padding:0cm; orphans:2; page-break-inside:auto; background:transparent; page-break-before:auto; page-break-after:auto",
+        "align": "left"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:120%; margin-bottom:0cm; widows:2; orphans:2; border:none; padding:0cm; background:transparent; margin-top:0px"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:115%; margin-bottom:0cm; margin-top:0px"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:120%; margin-bottom:0cm; widows:2; orphans:2; border:none; padding:0cm; page-break-inside:auto; background:transparent; page-break-after:auto",
+        "align": "left"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "id": "spanben"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:120%; margin-bottom:0cm"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "highlight",
+        "style": "background-color: rgb(255, 255, 255)"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family: -apple-system, system-ui, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", \"Fira Sans\", Ubuntu, Oxygen, \"Oxygen Sans\", Cantarell, \"Droid Sans\", \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Lucida Grande\", Helvetica, Arial, sans-serif"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; float: none"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "font",
+        "style": "font-family: tahoma, arial, helvetica, sans-serif, sans-serif"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "class": "size",
+        "style": "font-size: 13.3333px"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "color:rgb(23, 27, 39); font-family:PuviRegular, sans-serif; font-size:14px; font-style:normal; font-weight:400; letter-spacing:normal; orphans:2; text-indent:0px; text-transform:none; widows:2; word-spacing:0px; white-space:normal",
+        "id": "spandesc"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:1.38; margin-left:36pt; margin-top:0pt; margin-bottom:0pt",
+        "dir": "ltr"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "font-size:10pt; font-family:Arial; color:rgb(67, 67, 67); background-color:rgb(255, 255, 255); font-weight:400; font-style:normal; font-variant:normal; text-decoration:none; vertical-align:baseline; white-space:pre-wrap"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "color:rgb(23, 27, 39); font-family:PuviRegular, sans-serif; font-size:14px; font-style:normal; font-weight:400; letter-spacing:normal; orphans:2; text-indent:0px; text-transform:none; widows:2; word-spacing:0px; white-space:normal",
+        "id": "spanreq"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "style": "color:rgb(23, 27, 39); font-family:PuviRegular, sans-serif; font-size:14px; font-style:normal; font-weight:400; letter-spacing:normal; orphans:2; text-indent:0px; text-transform:none; widows:2; word-spacing:0px; white-space:normal",
+        "id": "spanben"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "style": "line-height:1.44; margin-top:0pt; margin-bottom:0pt",
+        "dir": "ltr"
+      }
+    },
+    {
+      "tag": "span",
+      "attrs": {
+        "id": "spanreq",
+        "style": "color:rgb(23, 27, 39); font-family:PuviRegular, sans-serif; font-size:14px; font-style:normal; font-weight:400; letter-spacing:normal; orphans:2; text-indent:0px; text-transform:none; widows:2; word-spacing:0px; white-space:normal"
+      }
+    },
+    {
+      "tag": "ul",
+      "attrs": {
+        "style": "margin-top:0px; margin-bottom:0px"
+      }
+    },
+    {
+      "tag": "li",
+      "attrs": {
+        "dir": "ltr",
+        "style": "list-style-type:disc; font-size:10pt; font-family:Arial; color:rgb(67, 67, 67); background-color:transparent; font-weight:400; font-style:normal; font-variant:normal; text-decoration:none; vertical-align:baseline; white-space:pre"
+      }
+    },
+    {
+      "tag": "p",
+      "attrs": {
+        "dir": "ltr",
+        "style": "line-height:1.38; margin-top:0px; margin-bottom:0pt"
+      }
+    },
+    {
+      "tag": "li",
+      "attrs": {
+        "dir": "ltr",
+        "style": "list-style-type:disc; font-size:10pt; font-family:\"Proxima Nova\", sans-serif; color:rgb(67, 67, 67); background-color:transparent; font-weight:400; font-style:normal; font-variant:normal; text-decoration:none; vertical-align:baseline; white-space:pre"
+      }
+    }
+  ],
+  "employerIntroductions": [
+    "Sociowash is an Integrated Advertising Agency with a mission to add value to the brands we work with.",
+    "Sociowash is a Creative Digital Agency with a mission to add value to the brands we work with."
+  ],
+  "moduleMeta": [
+    {
+      "api_name": "Job_Openings",
+      "id": "414709000000063058",
+      "module_name": "Potentials",
+      "fields": [
+        {
+          "id": "414709000000063482"
+        },
+        {
+          "id": "414709000000063496"
+        },
+        {
+          "id": "414709000000063492"
+        },
+        {
+          "id": "414709000000063470"
+        },
+        {
+          "id": "414709000000063508"
+        },
+        {
+          "id": "414709000000063524"
+        },
+        {
+          "id": "414709000000912092"
+        },
+        {
+          "id": "414709000000063502"
+        },
+        {
+          "id": "414709000000063504"
+        },
+        {
+          "id": "414709000000063506"
+        },
+        {
+          "id": "414709000000169001"
+        },
+        {
+          "id": "414709000000063536"
+        }
+      ],
+      "layouts": [
+        {
+          "id": "414709000000132019",
+          "sections": [
+            {
+              "display_label": "{0} Information",
+              "name": "Potential Information",
+              "id": "1",
+              "fields": [
+                {
+                  "custom_field": false,
+                  "ui_type": 1,
+                  "api_name": "Job_Opening_Name",
+                  "field_label": "Posting Title",
+                  "data_type": "text",
+                  "length": 250,
+                  "id": "414709000000063482",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 4,
+                  "api_name": "Department_Name",
+                  "field_label": "Department Name",
+                  "data_type": "lookup",
+                  "length": 200,
+                  "id": "414709000000063496",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 24,
+                  "api_name": "Date_Opened",
+                  "field_label": "Date Opened",
+                  "data_type": "date",
+                  "length": 25,
+                  "id": "414709000000063492",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 2,
+                  "api_name": "Job_Type",
+                  "field_label": "Job Type",
+                  "data_type": "picklist",
+                  "length": 120,
+                  "id": "414709000000063470",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 2,
+                  "api_name": "Industry",
+                  "field_label": "Industry",
+                  "data_type": "picklist",
+                  "length": 120,
+                  "id": "414709000000063508",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 2,
+                  "api_name": "Work_Experience",
+                  "field_label": "Work Experience",
+                  "data_type": "picklist",
+                  "length": 120,
+                  "id": "414709000000063524",
+                  "required": false
+                },
+                {
+                  "custom_field": true,
+                  "ui_type": 2,
+                  "api_name": "Agency_Experience",
+                  "field_label": "Agency Experience",
+                  "data_type": "picklist",
+                  "length": 100,
+                  "id": "414709000000912092",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "display_label": "Address Information",
+              "name": "Address Information",
+              "id": "5",
+              "fields": [
+                {
+                  "custom_field": false,
+                  "ui_type": 1,
+                  "api_name": "City",
+                  "field_label": "City",
+                  "data_type": "text",
+                  "length": 120,
+                  "id": "414709000000063502",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 1,
+                  "api_name": "State",
+                  "field_label": "Province",
+                  "data_type": "text",
+                  "length": 120,
+                  "id": "414709000000063504",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 2,
+                  "api_name": "Country",
+                  "field_label": "Country",
+                  "data_type": "picklist",
+                  "length": 120,
+                  "id": "414709000000063506",
+                  "required": false
+                },
+                {
+                  "custom_field": false,
+                  "ui_type": 1,
+                  "api_name": "Zip_Code",
+                  "field_label": "Postal Code",
+                  "data_type": "text",
+                  "length": 30,
+                  "id": "414709000000169001",
+                  "required": false
+                }
+              ]
+            },
+            {
+              "display_label": "Description Information",
+              "name": "Description Information",
+              "id": "3",
+              "fields": [
+                {
+                  "custom_field": false,
+                  "ui_type": 5501,
+                  "api_name": "Job_Description",
+                  "field_label": "Job Description",
+                  "data_type": "richtext",
+                  "length": 32000,
+                  "id": "414709000000063536",
+                  "required": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "api_name": "Candidates",
+      "module_name": "Leads",
+      "id": "414709000000063052"
+    }
+  ],
+  "pageJson": {
+    "detail": {
+      "advsettings": {
+        "timezone": "Asia/Kolkata",
+        "meta": {
+          "image": {
+            "bgcolor": "#cccccc",
+            "name": "hiring-for-zoho.jpg",
+            "textcolor": "#cccccc",
+            "type": "meta"
+          },
+          "keywords": "Jobs, Jobs at Sociowash, Careers, Careers at Sociowash",
+          "description": "This page is used to invite job applications at Sociowash for interested candidates that want to apply at Sociowash for a career in Digital Advertising and Marketing.",
+          "title": "Careers",
+          "type": "meta"
+        },
+        "language": "en_GB",
+        "type": "setting"
+      },
+      "sync_candidate_portal": false,
+      "section": {
+        "data": [
+          {
+            "cvid": "414709000000112170",
+            "blocktype": "jobs",
+            "facetfields": [
+              "414709000000063496",
+              "414709000000063502",
+              "414709000000063524",
+              "414709000000063470"
+            ],
+            "sort_by": "414709000000063518",
+            "title": "",
+            "type": "jobs1",
+            "remote": false,
+            "detaillayout": 2,
+            "layout": 3,
+            "subtitle": "",
+            "sysname": "jobs",
+            "name": "Jobs",
+            "is_chatbot_enabled": false,
+            "applynow": "I'm interested",
+            "issystem": false,
+            "sort_order": "desc",
+            "isenabled": true,
+            "register": false
+          }
+        ],
+        "footer": {
+          "privacy_message": false,
+          "sysname": "footer",
+          "name": "Footer",
+          "type": "footer"
+        },
+        "header": {
+          "layout": 2,
+          "favicon": {
+            "bgcolor": "#cccccc",
+            "name": "favicon-03.png",
+            "textcolor": "#cccccc",
+            "type": "favicon"
+          },
+          "social": {
+            "links": [
+              {
+                "linkto": "https://facebook.com/sociowash/",
+                "name": "facebook",
+                "type": "facebook",
+                "isenabled": true
+              },
+              {
+                "linkto": "https://twitter.com/sociowash",
+                "name": "twitter",
+                "type": "twitter",
+                "isenabled": false
+              },
+              {
+                "linkto": "https://linkedin.com//company/sociowash",
+                "name": "linkedin",
+                "type": "linkedin",
+                "isenabled": true
+              },
+              {
+                "linkto": "https://instagram.com/sociowash/",
+                "name": "instagram",
+                "type": "instagram",
+                "isenabled": true
+              },
+              {
+                "linkto": "https://youtube.com/",
+                "name": "youtube",
+                "type": "youtube",
+                "isenabled": false
+              },
+              {
+                "linkto": "https://sociowash.zohorecruit.com/jobs/Careers/rss",
+                "name": "rss",
+                "type": "rss",
+                "isenabled": false
+              }
+            ],
+            "type": "social",
+            "isenabled": true
+          },
+          "background": {
+            "bgcolor": "#000000",
+            "transparency": "1",
+            "name": "download.jpg",
+            "textcolor": "#FFFFFF",
+            "type": "background"
+          },
+          "sysname": "header",
+          "name": "Header",
+          "logo": {
+            "bgcolor": "#cccccc",
+            "name": "SW_network-white.png",
+            "textcolor": "#cccccc",
+            "type": "logo"
+          },
+          "headings": {
+            "button": "Apply Now",
+            "subtitle": "Do you have the right mix of digital and chill?",
+            "description": "",
+            "type": "headings",
+            "title": ""
+          },
+          "links": [
+            {
+              "linkto": "Home",
+              "name": "Home",
+              "linktype": 2,
+              "linkurl": "http://www.sociowash.com",
+              "type": "link1",
+              "issystem": true
+            },
+            {
+              "linkto": "Jobs",
+              "name": "Jobs",
+              "linktype": 1,
+              "type": "link2",
+              "issystem": true
+            }
+          ],
+          "type": "header",
+          "defaultimage": 3
+        },
+        "type": "section"
+      },
+      "type": "detail",
+      "font": {
+        "color": {
+          "heading": "#000000",
+          "text": "#171B27",
+          "type": "color",
+          "brand": "#FD6A03",
+          "subheading": "#646d8c"
+        },
+        "family": "montserrat",
+        "type": "font"
+      }
+    }
+  },
+  "applicationModel": {
+    "code": "success",
+    "meta": {
+      "layout_rules": [],
+      "apply_with_details": {
+        "apply_with_indeed": {
+          "details": {},
+          "status": false
+        },
+        "apply_with_linkedin": {
+          "status": false
+        },
+        "apply_with_login": {
+          "status": false
+        },
+        "apply_with_seek": {
+          "status": false
+        }
+      },
+      "is_eeo_enabled": false,
+      "currency": {
+        "BASE_CURRENCY": "",
+        "CURRENCY_DETAILS": {}
+      },
+      "portal_user": {
+        "is_loggedin": false
+      }
+    },
+    "webforms": [
+      {
+        "cancel_name": "Cancel",
+        "is_system": true,
+        "label_color": "#646d8c",
+        "pixel_url": "",
+        "module": {
+          "api_name": "Candidates",
+          "name": "Leads",
+          "id": "414709000000063052",
+          "label": "Candidates"
+        },
+        "font_size": 15,
+        "heading_color": "#2b2b2b",
+        "layout_type": 1,
+        "brand_color": "#296acf",
+        "type": "application",
+        "description_color": "#646d8c",
+        "sections": [
+          {
+            "display_label": "Basic Info",
+            "sequence_number": 1,
+            "system_name": "Basic Info",
+            "id": "1",
+            "fields": [
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "First Name",
+                "column_name": "FIRSTNAME",
+                "length": 125,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 0,
+                "hide_prefix": false,
+                "ui_type": 27,
+                "api_name": "First_Name",
+                "data_type": "text",
+                "id": "414709000000063542",
+                "decimal_place": 2
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Last Name",
+                "column_name": "LASTNAME",
+                "length": 125,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 1,
+                "ui_type": 127,
+                "api_name": "Last_Name",
+                "data_type": "text",
+                "id": "414709000000063544",
+                "decimal_place": 2
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Mobile",
+                "column_name": "MOBILE",
+                "length": 30,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 2,
+                "ui_type": 33,
+                "allow_valid": true,
+                "api_name": "Mobile",
+                "data_type": "phone",
+                "id": "414709000000063554",
+                "decimal_place": 2
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Email ID",
+                "column_name": "EMAIL",
+                "length": 255,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 3,
+                "ui_type": 25,
+                "api_name": "Email",
+                "data_type": "email",
+                "id": "414709000000063548",
+                "decimal_place": 2
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Salutation",
+                "column_name": "SALUTATION",
+                "length": 25,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "sequence_number": 4,
+                "ui_type": 2,
+                "api_name": "Salutation",
+                "data_type": "picklist",
+                "id": "414709000000063600",
+                "decimal_place": 2,
+                "pick_list_values": [
+                  {
+                    "display_value": "-None-",
+                    "sequence_number": 1,
+                    "actual_value": "-None-",
+                    "id": "414709000000064070"
+                  },
+                  {
+                    "display_value": "Mr.",
+                    "sequence_number": 2,
+                    "actual_value": "Mr.",
+                    "id": "414709000000064072"
+                  },
+                  {
+                    "display_value": "Mrs.",
+                    "sequence_number": 3,
+                    "actual_value": "Mrs.",
+                    "id": "414709000000064074"
+                  },
+                  {
+                    "display_value": "Ms.",
+                    "sequence_number": 4,
+                    "actual_value": "Ms.",
+                    "id": "414709000000064076"
+                  }
+                ]
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "City Applied For",
+                "column_name": "LEADCF5",
+                "length": 100,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 5,
+                "ui_type": 2,
+                "api_name": "City_Applied_For",
+                "data_type": "picklist",
+                "id": "414709000002528235",
+                "decimal_place": 2,
+                "pick_list_values": [
+                  {
+                    "display_value": "-None-",
+                    "sequence_number": 1,
+                    "actual_value": "-None-",
+                    "id": "414709000002528241"
+                  },
+                  {
+                    "display_value": "Delhi",
+                    "sequence_number": 2,
+                    "actual_value": "Delhi",
+                    "id": "414709000002528237"
+                  },
+                  {
+                    "display_value": "Mumbai",
+                    "sequence_number": 3,
+                    "actual_value": "Mumbai",
+                    "id": "414709000002774036"
+                  },
+                  {
+                    "display_value": "Bengaluru",
+                    "sequence_number": 4,
+                    "actual_value": "Bengaluru",
+                    "id": "414709000002774037"
+                  }
+                ]
+              }
+            ],
+            "istabular": false
+          },
+          {
+            "display_label": "Professional Details",
+            "sequence_number": 3,
+            "system_name": "Professional Details",
+            "id": "3",
+            "fields": [
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 0,
+                "field_label": "Experience in Years",
+                "column_name": "EXP_YEARS",
+                "length": 5,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 0,
+                "ui_type": 38,
+                "api_name": "Experience_in_Years",
+                "data_type": "double",
+                "id": "414709000000063570",
+                "decimal_place": 2
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Agency Experience",
+                "column_name": "LEADCF1",
+                "length": 100,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "default_value": "No",
+                "required": true,
+                "sequence_number": 1,
+                "ui_type": 2,
+                "api_name": "Agency_Experience",
+                "data_type": "picklist",
+                "id": "414709000000912082",
+                "decimal_place": 2,
+                "pick_list_values": [
+                  {
+                    "display_value": "-None-",
+                    "sequence_number": 1,
+                    "actual_value": "-None-",
+                    "id": "414709000000912084"
+                  },
+                  {
+                    "display_value": "Yes",
+                    "sequence_number": 2,
+                    "actual_value": "Yes",
+                    "id": "414709000000912086"
+                  },
+                  {
+                    "display_value": "No",
+                    "sequence_number": 3,
+                    "actual_value": "No",
+                    "id": "414709000000912081"
+                  }
+                ]
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 0,
+                "field_label": "Expected Salary (per annum)",
+                "column_name": "EXPECTED_SALARY",
+                "length": 16,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 2,
+                "ui_type": 143,
+                "api_name": "Expected_Salary",
+                "data_type": "currency",
+                "id": "414709000000063580",
+                "decimal_place": 0
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 0,
+                "field_label": "Current Salary (per annum)",
+                "column_name": "CURRENT_SALARY",
+                "length": 16,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 3,
+                "ui_type": 143,
+                "api_name": "Current_Salary",
+                "data_type": "currency",
+                "id": "414709000000063582",
+                "decimal_place": 0
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Notice Period",
+                "column_name": "LEADCF2",
+                "length": 100,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": true,
+                "sequence_number": 4,
+                "ui_type": 2,
+                "api_name": "Notice_Period",
+                "data_type": "picklist",
+                "id": "414709000000912113",
+                "decimal_place": 2,
+                "pick_list_values": [
+                  {
+                    "display_value": "-None-",
+                    "sequence_number": 1,
+                    "actual_value": "-None-",
+                    "id": "414709000000912115"
+                  },
+                  {
+                    "display_value": "1 week",
+                    "sequence_number": 2,
+                    "actual_value": "1 week",
+                    "id": "414709000000912117"
+                  },
+                  {
+                    "display_value": "2 weeks",
+                    "sequence_number": 3,
+                    "actual_value": "2 weeks",
+                    "id": "414709000000912119"
+                  },
+                  {
+                    "display_value": "3 weeks",
+                    "sequence_number": 4,
+                    "actual_value": "3 weeks",
+                    "id": "414709000000912121"
+                  },
+                  {
+                    "display_value": "4 weeks",
+                    "sequence_number": 5,
+                    "actual_value": "4 weeks",
+                    "id": "414709000000912123"
+                  },
+                  {
+                    "display_value": "5 weeks",
+                    "sequence_number": 6,
+                    "actual_value": "5 weeks",
+                    "id": "414709000000912125"
+                  },
+                  {
+                    "display_value": "6 weeks",
+                    "sequence_number": 7,
+                    "actual_value": "6 weeks",
+                    "id": "414709000000912127"
+                  },
+                  {
+                    "display_value": "7 weeks",
+                    "sequence_number": 8,
+                    "actual_value": "7 weeks",
+                    "id": "414709000000912129"
+                  },
+                  {
+                    "display_value": "8 weeks",
+                    "sequence_number": 9,
+                    "actual_value": "8 weeks",
+                    "id": "414709000000912131"
+                  },
+                  {
+                    "display_value": "9 weeks",
+                    "sequence_number": 10,
+                    "actual_value": "9 weeks",
+                    "id": "414709000000912133"
+                  },
+                  {
+                    "display_value": "10 weeks",
+                    "sequence_number": 11,
+                    "actual_value": "10 weeks",
+                    "id": "414709000000912135"
+                  },
+                  {
+                    "display_value": "11 weeks",
+                    "sequence_number": 12,
+                    "actual_value": "11 weeks",
+                    "id": "414709000000912137"
+                  },
+                  {
+                    "display_value": "12 weeks",
+                    "sequence_number": 13,
+                    "actual_value": "12 weeks",
+                    "id": "414709000000912139"
+                  },
+                  {
+                    "display_value": "13 weeks",
+                    "sequence_number": 14,
+                    "actual_value": "13 weeks",
+                    "id": "414709000000912141"
+                  },
+                  {
+                    "display_value": "14 weeks",
+                    "sequence_number": 15,
+                    "actual_value": "14 weeks",
+                    "id": "414709000000912143"
+                  }
+                ]
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Portfolio Link",
+                "column_name": "LEADCF3",
+                "length": 250,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": false,
+                "sequence_number": 5,
+                "ui_type": 21,
+                "api_name": "Portfolio_Link",
+                "data_type": "website",
+                "id": "414709000000912557",
+                "decimal_place": 2
+              }
+            ],
+            "istabular": false
+          },
+          {
+            "display_label": "Social Links",
+            "sequence_number": 7,
+            "system_name": "Social Links",
+            "id": "6",
+            "fields": [
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "LinkedIn",
+                "column_name": "LINKEDIN",
+                "length": 255,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": false,
+                "sequence_number": 0,
+                "ui_type": 21,
+                "api_name": "LinkedIn__s",
+                "data_type": "website",
+                "id": "414709000011078001",
+                "decimal_place": 2
+              },
+              {
+                "custom_field": false,
+                "visible": true,
+                "round_off": 2,
+                "field_label": "Instagram",
+                "column_name": "FACEBOOK",
+                "length": 255,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "required": false,
+                "sequence_number": 1,
+                "ui_type": 21,
+                "api_name": "Facebook__s",
+                "data_type": "website",
+                "id": "414709000011078002",
+                "decimal_place": 2
+              }
+            ],
+            "istabular": false
+          },
+          {
+            "display_label": "Attachment Information",
+            "sequence_number": 6601,
+            "system_name": "Attachment Information",
+            "id": 6601,
+            "attachmenttypes": [
+              {
+                "sequence_number": 0,
+                "ui_type": 8899,
+                "$accept": "application/pdf,application/rtf,application/x-zip,application/msword,application/vnd.ms-word,application/vnd.oasis.opendocument.text,text/css,text/rtf,text/html,text/sgml,text/plain,text/richtext,text/enriched,text/tab-separated-values,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/zip,audio/*,video/*,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-powerpoint,image/x-icon,image/svg+xml,image/png,image/ief,image/rgb,image/jpeg,image/tiff,image/x-rgb,image/g3fax,image/x-xpixmap,image/gif,image/x-xbitmap,pdf,rtf,zipx,zip,doc,dot,docx,dotx,odt,css,html,htm,sgml,txt,xls,xlt,xla,xlsx,xltx,ppt,pot,pptx,pot,potx,mdb,jpeg,jpg,tiff,fax,png,gif,ico,svg",
+                "$instant": false,
+                "$limit": "10485760",
+                "api_name": "RESUME",
+                "field_label": "Resume",
+                "data_type": "file",
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "id": "414709000000072325",
+                "bulk": false,
+                "required": true
+              },
+              {
+                "sequence_number": 1,
+                "ui_type": 8899,
+                "$accept": "application/pdf,application/rtf,application/x-zip,application/msword,application/vnd.ms-word,application/vnd.oasis.opendocument.text,text/css,text/rtf,text/html,text/sgml,text/plain,text/richtext,text/enriched,text/tab-separated-values,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,application/zip,audio/*,video/*,application/vnd.openxmlformats-officedocument.presentationml.presentation,application/vnd.ms-powerpoint,image/x-icon,image/svg+xml,image/png,image/ief,image/rgb,image/jpeg,image/tiff,image/x-rgb,image/g3fax,image/x-xpixmap,image/gif,image/x-xbitmap,pdf,rtf,zipx,zip,doc,dot,docx,dotx,odt,css,html,htm,sgml,txt,xls,xlt,xla,xlsx,xltx,ppt,pot,pptx,pot,potx,mdb,jpeg,jpg,tiff,fax,png,gif,ico,svg",
+                "$instant": false,
+                "$limit": "10485760",
+                "api_name": "COVERLETTER",
+                "field_label": "Portfolio",
+                "data_type": "file",
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "id": "414709000000072329",
+                "bulk": false,
+                "required": false
+              }
+            ],
+            "presence": false,
+            "isattachment": true,
+            "istabular": false
+          },
+          {
+            "display_label": "CAPTCHA",
+            "sequence_number": 7001,
+            "api_name": "CAPTCHA",
+            "system_name": "CAPTCHA",
+            "id": "7001",
+            "presence": false,
+            "fields": [
+              {
+                "ui_type": 222111,
+                "visible": true,
+                "api_name": "$Captcha",
+                "field_label": "CAPTCHA",
+                "data_type": "captcha",
+                "length": 10,
+                "view_type": {
+                  "edit": true,
+                  "create": true
+                },
+                "id": "444333222111",
+                "required": true
+              }
+            ],
+            "istabular": false
+          }
+        ],
+        "layout": {
+          "name": "Standard",
+          "id": "414709000000132009"
+        },
+        "mandate_assessment": false,
+        "name": "Candidate application form",
+        "id": "414709000000833003",
+        "font_family": "montserrat",
+        "submit_name": "Submit Application",
+        "captcha_info": {
+          "cipher": "ca826128b6f889dbfce9b96f376a10587edc7c08eb251fdef91a4146fde63c213decf2e46907f6be26797b73a33ed101add2395f62a81e13dd61c19c8c6ae754225830801d067039abb06bac22aa4bdb",
+          "url": "/recruit/GenerateCAPTCHA"
+        }
+      }
+    ]
+  },
+  "vacancyRowKeys": [
+    "City",
+    "Country",
+    "Date_Opened",
+    "Department_Name",
+    "Industry",
+    "Is_Locked",
+    "Job_Description",
+    "Job_Opening_Name",
+    "Job_Type",
+    "Keep_on_Career_Site",
+    "Posting_Title",
+    "Publish",
+    "State",
+    "Work_Experience",
+    "id"
+  ]
+}

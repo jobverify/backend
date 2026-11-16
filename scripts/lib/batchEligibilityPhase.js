@@ -5,6 +5,7 @@ import { batchEligibilityInput, resolveBatchEligibility } from '../../src/servic
 import { BATCH_ELIGIBILITY_VERSION } from '../../src/utils/jobBatchEligibility.js';
 import { BATCH_EXTRACTION_IDENTITY, startBatchExtractor, validateBatchExtraction } from '../../src/services/batchEligibilityExtraction.js';
 import { assignedSavedJobs } from './assignedSavedJobs.js';
+import { isFatalProcessingError, ModelResponseError } from '../../src/pipeline/processingErrors.js';
 
 const snapshotValue = (job, field) => {
   let value = job;
@@ -78,11 +79,25 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
             if (extractorError) throw extractorError;
             if (!extractor) {
               try { extractor = await extractorFactory({ signal: combinedSignal }); summary.extractorValidation = extractor.validation || null; }
-              catch (error) { extractorError = error; throw error; }
+              catch (error) {
+                extractorError = error.validationFailure ? new ModelResponseError('Batch extractor validation rejected the model response', { cause: error }) : error;
+                throw extractorError;
+              }
             }
             combinedSignal.throwIfAborted();
             summary.modelRequests++;
-            extraction = validateBatchExtraction(await extractor.extract({ text: input.text, signal: combinedSignal }), input.text);
+            let response;
+            try { response = await extractor.extract({ text: input.text, signal: combinedSignal }); }
+            catch (error) {
+              // This model API decodes JSON and traverses its response schema.
+              // Syntax/type errors here describe unusable model output; the
+              // surrounding pipeline, database and memory errors remain fatal.
+              if (error instanceof SyntaxError || error instanceof TypeError) {
+                throw new ModelResponseError('Batch extractor response unavailable or invalid', { cause: error });
+              }
+              throw error;
+            }
+            extraction = validateBatchExtraction(response, input.text);
           }
           result = resolveBatchEligibility(input, extraction);
         }
@@ -117,6 +132,7 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
         }
         outcome = 'failed'; details = { reason: failed.reason, errorType: error.name, message: String(error.message).slice(0, 300),
           ...(error.validationFailure ? { validationFailure: error.validationFailure } : {}) };
+        if (isFatalProcessingError(error)) throw error;
       }
       await emit(outcome, details);
     }

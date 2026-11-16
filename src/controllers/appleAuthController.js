@@ -2,7 +2,6 @@ import { randomBytes } from 'node:crypto';
 import User from '../models/User.js';
 import { ASCII_EMAIL_MESSAGE, isAsciiEmailIdentity } from '../utils/authSecurity.js';
 import PendingUser from '../models/PendingUser.js';
-import { createAdultEligibility, SignupAgeError, replySignupAgeError } from '../utils/signupAge.js';
 import AppleAuthChallenge from '../models/AppleAuthChallenge.js';
 import { issueAuthenticatedSession } from './authController.js';
 import { clearPendingRegistrationCookie, getCookieSecurityOptions, getRequestCookie } from '../utils/authCookies.js';
@@ -61,7 +60,6 @@ export const authenticateWithApple = async (req, res) => {
         'An account already uses this email. Sign in with your existing method.');
       const name = sanitizeAppleName(req.body.name);
       user = new User({ email: identity.email, password: null, isVerified: true, telegramAlertsAllowed: false,
-        ageEligibility: createAdultEligibility(req.body.dateOfBirth),
         profile: name ? { name } : {}, apple: { sub: identity.sub, clientId: config.clientId,
           privateEmail: identity.privateEmail, linkedAt: new Date() } });
     }
@@ -73,7 +71,6 @@ export const authenticateWithApple = async (req, res) => {
     clearPendingRegistrationCookie(res);
     return issueAuthenticatedSession(user, res);
   } catch (error) {
-    if (error instanceof SignupAgeError) return replySignupAgeError(res, error);
     if (error.code === 11000) return reply(res, 409, 'An account already uses these sign-in details. Use your existing sign-in method.');
     return reply(res, 401, 'Apple sign-in failed. Please try again.');
   }

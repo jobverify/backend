@@ -67,6 +67,16 @@ test('a large name font cannot leak into the centered contact row', () => {
   assert.equal(validateLatexSource(accented, { requireTemplate: true }), accented.trim());
 });
 
+test('new Abey output cannot repeat centered name and contact blocks', () => {
+  const firstHeader = body.slice(0, body.indexOf('\\section{EXPERIENCE}'));
+  for (const extra of [firstHeader, '\\textbf{' + firstHeader + '}']) {
+    const repeated = document().replace('\\section{EXPERIENCE}', extra + '\\section{EXPERIENCE}');
+    assert.throws(() => validateLatexSource(repeated, { requireTemplate: true }), error => error.reason === 'header_structure');
+  }
+  const commented = document().replace('\\section{EXPERIENCE}', '% \\begin{center}\n\\section{EXPERIENCE}');
+  assert.equal(validateLatexSource(commented, { requireTemplate: true }), commented.trim());
+});
+
 test('Abey lists must close before a new section, with actionable feedback that omits candidate text', () => {
   const missing = document().replace('\\resumeSubHeadingListEnd\n\\section{EDUCATION}', '\\section{EDUCATION}');
   assert.throws(() => validateLatexSource(missing, { requireTemplate: true }), error => {

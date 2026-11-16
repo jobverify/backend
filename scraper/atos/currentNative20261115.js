@@ -20,7 +20,18 @@ const criterionAuthority=[
  // Authority-bearing subjects pin the complete original paragraph regardless
  // of punctuation, intervening words or affirmative sentence grammar. We do
  // not interpret a new country/entity/date from prose or enumerate countries.
+ // Review complete application, employer and assignment subject blocks even
+ // when a new paragraph uses different deadline verbs or a neutral entity name.
+ /\b(?:applications?|apply|cvs?|r[eé]sum[eé]s?|curricul(?:um|a)\s+vitae|cover[- ]letters?|hiring|employing|duty\s+stations?|stationed)(?![\p{L}\p{N}_])|\b(?:work(?:ing)?\s+for|assigned\s+to)\b/iu,
  /\b(?:locations?|countries|country|workplaces?|worksites?|located|based|remote|hybrid|on[- ]?site|employers?|employment|employed|hired|hiring\s+organi[sz]ation|citizenship|residency)\b|\bwork\s+(?:in|from|at|out\s+of)\b/i,
+ // Residence and the place of work are authority subjects even without a
+ // particular modal, hiring verb, country name or sentence prefix. "Live"
+ // technical systems are not a residence declaration without that complement.
+ /\b(?:residen(?:ce|cy|ts?|tial)|resid(?:e[sd]?|ing)|domicil(?:e[sd]?|iary)|liv(?:e[sd]?|ing)\s+(?:in|at|within|outside|near))\b|\b(?:places?|addresses?)\s+of\s+work\b/i,
+ // Bind complete definite/possessive appointment or contract subjects and
+ // standalone contractual headings, regardless of their predicate. An
+ // indefinite technical object inside a qualification is still variable.
+ /\b(?:your|our|their|his|her|its|my|the|this|that|these|those)\s+(?:[\p{L}\p{N}][\p{L}\p{N}'\u2019_-]*\s+)*(?:appointments?|contracts?|agreements?|engagements?)(?![\p{L}\p{N}_])|(?:^|[.;:!?]\s*)(?:an?\s+)?(?:(?:service|employment|work)\s+)?(?:appointments?|contracts?|agreements?|engagements?)(?![\p{L}\p{N}_])|\b(?:contractual|contracting|appointing|engaging)\s+(?:entit(?:y|ies)|compan(?:y|ies)|organi[sz]ations?)\b/iu,
  /\b(?:deadlines?|closing\s+date|expiry\s+date|expiration\s+date|valid\s+through|date\s+posted|posting\s+date|publication\s+date|(?:job|role|position)\s+title|(?:requisition|reference|job|posting)\s*(?:id|code|number|no\.?))\b/i,
  /\b(?:(?:work(?:ing)?|job|role|office|primary|posting|employment|legal)\s+(?:location|country|countries|employer|organization)|hiring\s+organization|employer|location|country(?:\s+of\s+employment)?)\s*[:=\u2013-]/i,
  /\b(?:based\s+(?:in|at|out\s+of)|remote\s+(?:in|from)|(?:on[- ]?site|hybrid)\s+(?:in|at)|(?:authorized|authorised|eligible|right)\s+to\s+work\s+(?:in|from)|relocat(?:e|ion)\s+to|(?:must|will|shall)\s+(?:be\s+)?(?:work|located|based|reside)\s+(?:in|from|at)|(?:employment|employed|hired)\s+(?:is\s+)?(?:by|through|with))\b/i,
@@ -322,6 +333,58 @@ export function currentAtosRole(proof,url){
  return{routeID,url,canonical,title,nativeObservationKind:'native-JobPosting',nativeEmployerLabel:'Atos',legalEmployer:null,referenceNo,datePosted,displayedDate,datePostedISO,validThrough,expirationISO,criteria,criteriaCharacters:criteria.length,criteriaSHA256:currentAtosSHA(criteria),descriptionFieldBinding:proof.descriptionBinding.identity,descriptionOriginalTree:description,ownerText:d.text(owner),ownerContextText:d.text(criterionTree(owner,description)),ownerOriginalTree:owner,addresses,links,applyURL:ORIGIN+applyPath,originalApplicationAnchors:applications.map(n=>({attrs:n.attrs,text:d.text(n)})),nativeProperties:own.filter(n=>n.attrs.itemprop).map(n=>({tag:n.tag,attrs:n.attrs,text:d.text(n)})),held:unconfirmed,holdReason:unconfirmed?'authored-native-work-location-unconfirmed':null}
 }
 
+// A filled document can only contribute a negative observation. Four genuine
+// whole native pages have this same complete shell; their role metadata stays
+// bound to each original listing/page and never becomes positive vacancy data.
+// Reproduce the unchanged core projection before projecting those exact bound
+// head fields and the two passive route carriers. Every other byte is pinned.
+export function currentAtosFilledContext(proof,binding){
+ const {url,routeID,headFields}=binding,source=proof.originalHTML,count=(text,value)=>text.split(value).length-1
+ need(typeof routeID==='string'&&/^\d+$/.test(routeID)&&new URL(url).origin===ORIGIN&&new URL(url).pathname.endsWith('/'+routeID+'/'),'unbound native filled route')
+ need(proof.descriptionBinding===null&&!proof.nodes.some(node=>node.attrs.itemtype==='http://schema.org/JobPosting'),'filled shell has a native vacancy owner')
+ const role=currentAtosRole(proof,url)
+ need(role.held&&role.nativeObservationKind==='explicit-unavailable-without-JobPosting','filled shell lacks the active original negative notice')
+ need(!proof.nodes.some(node=>hasClass(node,'dialogApplyBtn')||['a','form'].includes(node.tag)&&/^(?:https:\/\/jobs\.atos\.net)?\/talentcommunity\/apply(?:\/|[?#]|$)/.test(node.attrs.href??node.attrs.action??'')),'filled shell still declares a native role application')
+ let context=source
+ const replace=(original,value)=>{need(typeof original==='string'&&original.length>0&&count(context,original)===1,'ambiguous complete native filled projection');context=context.replace(original,value)}
+ const tracking=[]
+ for(const program of proof.programs)walk(parse(program.body,{ecmaVersion:'latest',sourceType:'script'}),node=>{if(node.type==='VariableDeclarator'&&node.id?.name==='ctid')tracking.push(node.init.value)})
+ replace(proof.token,'CURRENT_NATIVE_CSRF');replace(one(tracking,'filled native tracking literal'),'CURRENT_NATIVE_TRACKING_ID')
+ const override=one(proof.nodes.filter(node=>node.tag==='script'&&/^\/js\/override\.js\?locale=en_US&i=\d{1,10}$/.test(node.attrs.src??'')),'filled native override declaration'),escaped=override.attrs.src.replaceAll('&','&amp;')
+ replace('src="'+escaped+'"','src="'+escaped.replace(/i=\d+$/,'i=CURRENT_PASSIVE_CACHE_ID')+'"')
+ for(const [index,input]of proof.nodes.filter(node=>node.tag==='input'&&node.attrs.name==='frequency').entries()){
+  need(count(context,input.attrs.id)===2,'unbound filled native alert control');context=context.replaceAll(input.attrs.id,'CURRENT_PASSIVE_ALERT_'+index)
+ }
+ need(currentAtosSHA(context)===proof.contextSHA256,'filled shell does not reproduce the unchanged core projection')
+ const specs=[{key:'title',tag:'title'},...['keywords','description'].map(name=>({key:name,tag:'meta',name})),{key:'canonical',tag:'link',rel:'canonical'},...['og:title','og:description'].map(property=>({key:property,tag:'meta',property})),...['twitter:title','twitter:description'].map(name=>({key:name,tag:'meta',name}))]
+ need(headFields&&same(Object.keys(headFields),specs.map(spec=>spec.key)),'unreviewed original native filled metadata inventory')
+ for(const spec of specs){
+  const matches=node=>node.tag===spec.tag&&['name','property','rel'].every(key=>!spec[key]||node.attrs[key]===spec[key]),node=one(proof.nodes.filter(matches),'filled native head '+spec.key),original=headFields[spec.key]
+  need(typeof original==='string'&&count(source,original)===1,'filled head differs from its original native page')
+  const originalNode=one(all(root(readNativeDocument(original))).filter(matches),'reviewed original native head '+spec.key)
+  need(same(node.attrs,originalNode.attrs)&&(spec.tag!=='title'||node.raw===originalNode.raw),'filled native head authority changed')
+  if(spec.key==='canonical')need(node.attrs.href===url,'filled canonical differs from its exact published route')
+  const projected=spec.tag==='title'?'<title>CURRENT_FILLED_ROLE_TITLE</title>':original.replace(/((?:content|href)=")[^"]*(")/,'$1CURRENT_FILLED_'+spec.key.toUpperCase().replaceAll(':','_')+'$2')
+  need(projected!==original,'missing original native filled metadata value');replace(original,projected)
+ }
+ const form=one(proof.nodes.filter(node=>node.tag==='form'&&node.attrs.name==='emailsubscribe'),'filled native passive subscription form')
+ need(form.attrs.action==='/talentcommunity/subscribe/?locale=en_US&jobid='+routeID,'filled passive subscription route changed')
+ const rawForm=one([...source.matchAll(/<form\b[^>]*>/g)].map(match=>match[0]).filter(tag=>tag.includes('name="emailsubscribe"')),'complete filled passive subscription tag')
+ need(count(rawForm,routeID)===1,'ambiguous filled passive subscription route');replace(rawForm,rawForm.replace(routeID,'CURRENT_FILLED_ROLE_ROUTE_ID'))
+ const sso=[]
+ for(const program of proof.programs)for(const statement of parse(program.body,{ecmaVersion:'latest',sourceType:'script'}).body){
+  const call=statement.expression,callee=call?.callee
+  if(call?.type==='CallExpression'&&callee?.type==='MemberExpression'&&!callee.computed&&callee.property.name==='init'&&callee.object?.type==='MemberExpression'&&!callee.object.computed&&callee.object.property.name==='SSO'&&callee.object.object?.name==='j2w')sso.push({program,call})
+ }
+ const init=one(sso,'filled native disabled SSO initializer'),settings=literal(one(init.call.arguments,'filled native SSO argument'))
+ need(same(settings,{email:'',enabled:false,jobID:routeID,locale:'en_US',tcaction:'job',logoutDefaultPath:'jobs.atos.net',usingRD:true}),'filled native disabled SSO authority changed')
+ const property=one(init.call.arguments[0].properties.filter(property=>(property.key.name??property.key.value)==='jobID'),'filled native SSO route property'),body=init.program.body
+ need(body.slice(property.value.start,property.value.end)==="'"+routeID+"'"&&count(context,routeID)===1,'unbound filled native SSO route')
+ replace(body,body.slice(0,property.value.start+1)+'CURRENT_FILLED_ROLE_ROUTE_ID'+body.slice(property.value.end-1))
+ need(!context.includes(routeID),'unprojected filled native route occurrence')
+ return currentAtosSHA(context)
+}
+
 export async function runCurrentAtos(options={}){
  const profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url),'utf8'))
  need(profile.source==='atos'&&profile.company==='Atos','current source profile unavailable')
@@ -351,7 +414,13 @@ export async function runCurrentAtos(options={}){
   let html;try{html=new TextDecoder('utf8',{fatal:true,ignoreBOM:true}).decode(bytes)}catch{throw failure('original native UTF8 bytes unavailable')}
   return{html,headers:p.headers,url:p.url,status:p.status}
  }
- const document=async url=>{const p=await read(url),proof=currentAtosDocument(p.html,p),expected=profile.documents[url];need(expected?.contextSHA256.includes(proof.contextSHA256),'whole current authored publication/control/style context changed');return proof}
+ const document=async url=>{
+  const p=await read(url),proof=currentAtosDocument(p.html,p),expected=profile.documents[url],filledBinding=profile.filledDocumentContract?.originalNativeRoleBindings.find(binding=>binding.url===url)
+  if(filledBinding&&!proof.nodes.some(node=>node.attrs.itemtype==='http://schema.org/JobPosting')){
+   need(currentAtosFilledContext(proof,filledBinding)===profile.filledDocumentContract.contextSHA256,'whole current native filled-document contract changed');proof.qualifiedFilledDocument=true
+  }else need(expected?.contextSHA256.includes(proof.contextSHA256),'whole current authored publication/control/style context changed')
+  return proof
+ }
  const pass=async()=>{
   const redirect=await read(profile.root);need(redirect.status===301&&redirect.headers.location===profile.corporate,'original current corporate delegation changed')
   allowed.add(redirect.headers.location);const corporate=await document(redirect.headers.location)
@@ -378,7 +447,7 @@ export async function runCurrentAtos(options={}){
   const listing=await document(url.href),rows=currentAtosRows(listing)
   need(rows.length===india.count&&same(rows,profile.rows)&&listing.document.text(one(listing.document.nodes(n=>n.tag==='body'),'native selected listing body')).includes('Results 1 – '+rows.length+' of '+rows.length+' Page 1 of 1'),'current original country membership or terminal listing changed')
   const roles=Array(rows.length);let next=0,firstFailure
-  const worker=async()=>{while(!firstFailure){const index=next++;if(index>=rows.length)return;try{const row=rows[index],expected=profile.roles[index];need(row.url===expected.url,'native role row/profile mismatch');allowed.add(row.url);const page=await document(row.url),role=currentAtosRole(page,row.url);need(currentAtosRoleContext(role)===expected.modelContextSHA256,'complete current native role/employer/country/criterion/application model changed');if(!role.held)need(Date.parse(role.datePostedISO)<=Date.parse(observedAt)&&monthDay(row.publishDate)<=observedAt.slice(0,10),'native publication calendar is in the future');roles[index]={row,role,originalHTML:page.originalHTML,contextSHA256:page.contextSHA256}}catch(error){if(!firstFailure){firstFailure=error;controller.abort(error)}}}}
+  const worker=async()=>{while(!firstFailure){const index=next++;if(index>=rows.length)return;try{const row=rows[index],expected=profile.roles[index];need(row.url===expected.url,'native role row/profile mismatch');allowed.add(row.url);const page=await document(row.url),role=currentAtosRole(page,row.url);if(role.nativeObservationKind==='explicit-unavailable-without-JobPosting')need(page.qualifiedFilledDocument===true&&role.held,'unqualified filled native negative observation');else need(currentAtosRoleContext(role)===expected.modelContextSHA256,'complete current native role/employer/country/criterion/application model changed');if(!role.held)need(Date.parse(role.datePostedISO)<=Date.parse(observedAt)&&monthDay(row.publishDate)<=observedAt.slice(0,10),'native publication calendar is in the future');roles[index]={row,role,originalHTML:page.originalHTML,contextSHA256:page.contextSHA256}}catch(error){if(!firstFailure){firstFailure=error;controller.abort(error)}}}}
   await Promise.allSettled([worker(),worker()]);if(firstFailure)throw firstFailure
   return{countryModel,india,rows,roles}
  }
@@ -407,7 +476,7 @@ export async function runCurrentAtos(options={}){
     sourceNativePublishedApplication:{url:r.applyURL,originalAnchors:r.originalApplicationAnchors,originalNativeRouteID:r.routeID,declaredByOwnHTML:true,renderedEnabledQualified:false,operationQualified:false},sourceDetailComplete:true,sourceNativeClosingReconciled:true,sourceScopeComplete:false,sourceListingComplete:false,lifecycleCleanupAllowed:false,sourceRenderedApplicationQualified:false,sourceNativeMetadataAuthorityOnly:true,scrapedAt:observedAt}
   })
   const observedVacancyCount=opening.roles.filter(entry=>entry.role.nativeObservationKind==='native-JobPosting').length
-  const evidence={source:'atos',observedAt,closingObservedAt:closedAt,recordKind:'mixed',observedRecordCount:opening.rows.length,observedVacancyCount,companyGlobalTotal:null,companyIndiaTotal:null,observationCountSemantics:'original native record shapes before country/eligibility/expiry/caller limits:26 typed JobPostings include the unconfirmed-location hold;1filled/no-JobPosting observation is nonvacancy',nativeRows:opening.rows,closingNativeRows:closing.rows,openingModels:opening.roles.map(e=>e.role),closingModels:closing.roles.map(e=>e.role),originalResponses:receipts,holds,nativeCountrySelectorRecord:opening.india,originalCountryFacetModel:opening.countryModel,currentNativeSelectedListingTerminal:true,
+  const evidence={source:'atos',observedAt,closingObservedAt:closedAt,recordKind:'mixed',observedRecordCount:opening.rows.length,observedVacancyCount,companyGlobalTotal:null,companyIndiaTotal:null,observationCountSemantics:`original native record shapes before country/eligibility/expiry/caller limits: ${observedVacancyCount} native JobPostings include eligibility/country holds; ${opening.rows.length-observedVacancyCount} filled/no-JobPosting observations are nonvacancy`,nativeRows:opening.rows,closingNativeRows:closing.rows,openingModels:opening.roles.map(e=>e.role),closingModels:closing.roles.map(e=>e.role),originalResponses:receipts,holds,nativeCountrySelectorRecord:opening.india,originalCountryFacetModel:opening.countryModel,currentNativeSelectedListingTerminal:true,
    independentNativeClosingReconciled:true,completeNativeCriteriaPreserved:true,metadataAuthorityOnly:true,externalProgramsExecuted:false,externalResourceBytesUsedAsRoleData:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false,verifiedZero:false,renderedApplicationQualified:false,applicationSubmitted:false}
   attachSourceObservationEvidence(jobs,{source:'atos',recordKind:'mixed',observedRecordCount:opening.rows.length,observedVacancyCount,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
   Object.defineProperty(jobs,'nativeCollectionEvidence',{value:evidence,configurable:true})

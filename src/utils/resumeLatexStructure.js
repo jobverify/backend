@@ -12,6 +12,8 @@ const itemEnvironments = new Set(['itemize', 'enumerate', 'description']);
 const nameFonts = new Set(['Huge', 'huge', 'LARGE', 'Large', 'large', 'scshape']);
 
 export function resumeLatexHeaderIssue(body) {
+  const centers = [...body.matchAll(/%[^\r\n]*|\\(begin|end)\s*\{([^}]+)\}|\\([A-Za-z]+|[^\r\n])/g)].filter(token => token[1] === 'begin' && token[2] === 'center');
+  if (centers.length > 1) return 'Use exactly one centered name/contact header, followed by the source sections. Do not repeat centered blocks or move entry links into the header.';
   for (const header of body.matchAll(/\\begin\{center\}([\s\S]*?)\\end\{center\}/g)) {
     let depth = 0;
     for (const token of header[1].matchAll(/%[^\r\n]*|\\([A-Za-z]+|[^\r\n])|[{}]/g)) {

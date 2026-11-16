@@ -82,7 +82,7 @@ test('execution completion and extraction health remain independent at handoff',
     { success: false, softFailure: true }, { success: false, softFailure: false }]);
   const completed = describeStageCompletion('scraper', summary, 'completed');
   assert.equal(completed.handoffReady, true);
-  assert.equal(completed.processingComplete, true);
+  assert.equal(completed.processingComplete, false);
   assert.equal(completed.coverageComplete, false);
   assert.equal(completed.health, 'degraded');
   assert.equal(completed.partialSuccessfulTasks, 1);

@@ -75,7 +75,7 @@ try {
       currentKey==='rewrite'?['scripts/rewriteJobDescriptions.js','--apply']:['scripts/classifySavedJobs.js'];
     const progress=setInterval(()=>{void fs.readFile(summaryFile,'utf8').then(JSON.parse).then(summary=>updateStage(id,stage.key,{summary})).catch(()=>{});},5000);
     let code;try{code=await command(process.execPath,args,common);}finally{clearInterval(progress);}
-    let summary={};try{summary=JSON.parse(await fs.readFile(summaryFile,'utf8'));}catch{if(currentKey!=='scraper')code=1;}
+    let summary={};try{summary=JSON.parse(await fs.readFile(summaryFile,'utf8'));}catch{code=1;}
     const outcome=stageOutcome(currentKey,summary,code);
     await completeLocalStage(id,currentKey,outcome,summary);
     if(outcome!=='completed')break;

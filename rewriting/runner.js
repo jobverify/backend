@@ -263,10 +263,14 @@ export const probeRewriteClient = async (client, { concurrency = 1, deadline = D
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > MAX_REWRITE_CONCURRENCY) throw new Error('Invalid probe concurrency');
   const started = Date.now();
   const records = [];
+  const costFields = ['generationRequests', 'correctionRequests', 'correctionsAccepted', 'correctionsRejected', 'correctionsSkipped'];
   const emit = value => { try { onProbeEvent(value); } catch { /* diagnostics must not change readiness */ } };
   const probes = await Promise.allSettled(Array.from({ length: concurrency }, async (_, slot) => {
     const probeStarted = Date.now();
     const record = { slot, startedAt: new Date(probeStarted).toISOString() };
+    const recordCosts = value => {
+      for (const field of costFields) if (Number.isSafeInteger(value?.[field]) && value[field] >= 0) record[field] = value[field];
+    };
     records[slot] = record;
     emit({ event: 'probe_started', slot, timestamp: record.startedAt });
     try {
@@ -274,6 +278,7 @@ export const probeRewriteClient = async (client, { concurrency = 1, deadline = D
     const input = buildRewriteInput({ title: 'Software Engineer', company: 'Worker health check',
       sourceDescription: `Role overview: Build Python services for customer group ${slot + 1}. Responsibilities: Design reliable APIs and maintain Python services. Required qualifications: At least 2 years of software development experience is required. Preferred qualifications: AWS experience is nice to have.` });
     const response = await client.generate(input, { signal, remainingMs: Math.max(1, deadline - Date.now()), cacheMode: 'refresh', allowSourceFallback: false });
+    recordCosts(response);
     signal?.throwIfAborted();
     if (response.cachedModelPlan || response.renderedWithoutInference) throw new RewriteWorkerError('generation_probe');
     const checked = response.finishReason === 'stop' && response.validationFailure
@@ -284,6 +289,7 @@ export const probeRewriteClient = async (client, { concurrency = 1, deadline = D
     }
     record.outcome = 'passed';
     } catch (error) {
+      recordCosts(error);
       record.outcome = error instanceof RewriteGenerationError ? 'rejected' : 'failed';
       if (error.validationReason) record.reason = error.validationReason;
       record.error = error.errorDiagnostic || captureRewriteError(error, { phase: 'probe_worker' });
@@ -297,6 +303,8 @@ export const probeRewriteClient = async (client, { concurrency = 1, deadline = D
   const rejections = probes.filter(result => result.status === 'rejected');
   const details = { requests: concurrency, durationMs: Date.now() - started, ready: rejections.length === 0, probes: records,
     ...(rejections.length ? { warnings: rejections.length } : {}) };
+  for (const field of costFields) details[field] = records.every(record => Number.isSafeInteger(record[field]))
+    ? records.reduce((total, record) => total + record[field], 0) : null;
   try { onProbeComplete(details); } catch { /* diagnostics must not replace the original outcome */ }
   const failure = rejections.find(result => !(result.reason instanceof RewriteGenerationError) && !['TimeoutError','AbortError'].includes(result.reason?.name));
   if (failure) {

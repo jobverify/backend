@@ -10,6 +10,7 @@ import { spawn } from 'node:child_process';
 import { Agent } from 'undici';
 import { resumeFailure, safeResumeDiagnostic } from './resumeDiagnostics.js';
 import { RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
+import { PAGINATION_REPAIR_MAX_TOKENS, paginationRepairSchema } from './resumePaginationRepair.js';
 import { buildResumeLatexGrammar, RESUME_LATEX_PREAMBLE, RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION } from '../src/utils/resumeLatexFormat.js';
 
 export const RESUME_MODEL = JSON.parse(await fs.readFile(new URL('./resume-model.json', import.meta.url), 'utf8'));
@@ -79,7 +80,7 @@ export async function prepareResumeModel({ cacheRoot = root, deadline = Date.now
   finally { await healthDispatcher.destroy(); }
 }
 const comparisonSchema = { type: 'object', additionalProperties: false, required: ['evidence', 'missingFacts', 'unsupportedClaims', 'supported'], properties: {
-  evidence: { type: 'string', minLength: 1, maxLength: 4096 },
+  evidence: { type: 'string', minLength: 1, maxLength: 512 },
   missingFacts: { type: 'array', items: { type: 'string' } }, unsupportedClaims: { type: 'array', items: { type: 'string' } }, supported: { type: 'boolean' },
 } };
 const modelTimeoutCodes = new Set(['UND_ERR_HEADERS_TIMEOUT', 'UND_ERR_BODY_TIMEOUT', 'UND_ERR_CONNECT_TIMEOUT', 'ETIMEDOUT']);
@@ -112,12 +113,14 @@ function monitorModelProgress({ fetchImpl, deadline, signal, onDiagnostic, stage
   timer.unref?.();
   return () => { clearInterval(timer); stopped.abort(); };
 }
-export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {} } = {}) {
+export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, paginationRepair = false, paginationBreakIds, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {}, onUsage = () => {} } = {}) {
   // Replace only our complete trusted instruction block. The actual template
   // follows as the assistant prefix; source/repair JSON and audit evidence stay
   // intact, including any template-looking text supplied by a candidate.
-  const messages = [{ role: 'user', content: comparison ? prompt : prompt.replace(RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION) }];
-  const maxTokens = comparison ? RESUME_MODEL.comparisonOutputTokens : RESUME_MODEL.maxOutputTokens;
+  const json = comparison || paginationRepair;
+  const stage = comparison ? 'comparing' : paginationRepair ? 'repairing' : 'generating';
+  const messages = [{ role: 'user', content: json ? prompt : prompt.replace(RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION) }];
+  const maxTokens = comparison ? RESUME_MODEL.comparisonOutputTokens : paginationRepair ? PAGINATION_REPAIR_MAX_TOKENS : RESUME_MODEL.maxOutputTokens;
   const request = async (endpoint, body) => {
     const timeout = AbortSignal.timeout(remainingBudget(deadline, RESUME_WORKER_BUDGET_MS));
     const signal = parentSignal ? AbortSignal.any([parentSignal, timeout]) : timeout;
@@ -133,31 +136,40 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
       try { return await response.json(); } catch (error) { throw modelRequestFailure(error, signal, 'model_protocol_invalid'); }
     } finally { await dispatcher.destroy(); }
   };
-  const rendered = await request('/apply-template', { messages });
+  const chatTemplateKwargs = { enable_thinking: false };
+  const rendered = await request('/apply-template', { messages, chat_template_kwargs: chatTemplateKwargs });
   if (typeof rendered.prompt !== 'string') throw resumeFailure('model_protocol_invalid');
   // The grammar previously forced every byte of this immutable prefix through
   // slow token decoding. Prefill those same bytes in the assistant context and
   // generate only the candidate body; no layout or candidate facts are rewritten.
-  const prefix = comparison ? '' : RESUME_LATEX_PREAMBLE;
+  const prefix = json ? '' : RESUME_LATEX_PREAMBLE + (layout?.contactHeader || '');
   const fullPrompt = rendered.prompt + prefix;
   const tokens = await request('/tokenize', { content: fullPrompt, add_special: true, parse_special: true });
   if (!Array.isArray(tokens.tokens) || !tokens.tokens.every(Number.isInteger)) throw resumeFailure('model_protocol_invalid');
-  onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: 'started', inputTokens: tokens.tokens.length }));
+  onDiagnostic(safeResumeDiagnostic({ stage, code: 'started', inputTokens: tokens.tokens.length }));
   if (tokens.tokens.length + maxTokens + 32 > RESUME_MODEL.contextTokens) throw resumeFailure('input_too_large', { statusCode: 422 });
   const stopProgress = monitorModelProgress({ fetchImpl, deadline, signal: parentSignal, onDiagnostic,
-    stage: comparison ? 'comparing' : 'generating', inputTokens: tokens.tokens.length });
+    stage, inputTokens: tokens.tokens.length });
   let payload;
   try {
-    payload = comparison
-      ? await request('/v1/chat/completions', { messages, temperature: 0, max_tokens: maxTokens, stream: false,
-        response_format: { type: 'json_schema', json_schema: { name: 'resume_source_comparison', strict: true, schema: comparisonSchema } } })
-      : await request('/completion', { prompt: fullPrompt, temperature: 0.1, n_predict: maxTokens, stream: false,
-        grammar: buildResumeLatexGrammar(allowedLinks, pagination, { includePreamble: false, sectionTitles, layout, headerChoices }) });
+    payload = json
+      ? await request('/v1/chat/completions', { messages, chat_template_kwargs: chatTemplateKwargs, temperature: 0, max_tokens: maxTokens, stream: false,
+        response_format: { type: 'json_schema', json_schema: { name: comparison ? 'resume_source_comparison' : 'resume_pagination_repair', strict: true,
+          schema: comparison ? comparisonSchema : paginationRepairSchema(pagination, paginationBreakIds) } } })
+      : await request('/completion', { prompt: fullPrompt, temperature: 0.7, top_p: 0.8, top_k: 20, min_p: 0,
+        presence_penalty: 1.5, n_predict: maxTokens, stream: false,
+        grammar: buildResumeLatexGrammar(allowedLinks, pagination, { includePreamble: false, includeHeader: false, sectionTitles, layout, headerChoices }) });
   } finally { stopProgress(); }
-  const content = comparison ? payload.choices?.[0]?.message?.content : payload.content;
-  const complete = comparison ? payload.choices?.[0]?.finish_reason === 'stop' : payload.stop_type === 'eos' && payload.truncated !== true;
-  onDiagnostic(safeResumeDiagnostic({ stage: comparison ? 'comparing' : 'generating', code: complete ? 'passed' : 'model_output_incomplete',
-    outputTokens: comparison ? payload.usage?.completion_tokens : payload.timings?.predicted_n }));
+  const content = json ? payload.choices?.[0]?.message?.content : payload.content;
+  const complete = json ? payload.choices?.[0]?.finish_reason === 'stop' : payload.stop_type === 'eos' && payload.truncated !== true;
+  onDiagnostic(safeResumeDiagnostic({ stage, code: complete ? 'passed' : 'model_output_incomplete',
+    outputTokens: json ? payload.usage?.completion_tokens : payload.timings?.predicted_n }));
+  const usage = {};
+  for (const [key, value] of Object.entries({ inputTokens: payload.timings?.prompt_n, outputTokens: payload.timings?.predicted_n,
+    promptMilliseconds: payload.timings?.prompt_ms, outputMilliseconds: payload.timings?.predicted_ms })) {
+    if (typeof value === 'number' && Number.isFinite(value) && value > 0) usage[key] = value;
+  }
+  onUsage(usage);
   if (!complete || typeof content !== 'string') throw resumeFailure('model_output_incomplete');
   return prefix + content;
 }

@@ -62,15 +62,17 @@ test(`report preserves source warnings and respects the ${jobResult} workflow re
     stages: [{ key: 'scraper', status: 'running', githubRunId: 31 }],
   }) }));
   t.mock.method(PipelineRun, 'findOneAndUpdate', (_filter, update) => ({ lean: async () => {
-    assert.equal(update.$set.stages[0].processingOutcome, jobResult === 'success' ? 'completed' : jobResult === 'incomplete' ? 'incomplete' : 'failed');
+    assert.equal(update.$set.stages[0].processingOutcome, jobResult === 'failure' ? 'failed' : 'completed');
     assert.equal(update.$set.stages[0].summary.failed, 10);
     assert.equal(update.$set.stages[0].summary.warnings, 10);
+    assert.equal(update.$set.stages[0].summary.processingComplete, false);
+    assert.equal(update.$set.stages[0].summary.handoffReady, jobResult !== 'failure');
     return update.$set;
   } }));
   await import(`../scripts/pipelineGithub.js?diagnostic=report-${jobResult}`);
-  assert.equal(process.exitCode, jobResult === 'success' ? undefined : 1);
+  assert.equal(process.exitCode, jobResult === 'failure' ? 1 : undefined);
   const output = messages.join('\n');
-  assert.match(output, new RegExp(`scraper.*${jobResult === 'success' ? 'completed' : jobResult === 'incomplete' ? 'incomplete' : 'failed'}`));
+  assert.match(output, new RegExp(`scraper.*${jobResult === 'failure' ? 'failed' : 'completed'}`));
   assert.match(output, /"failed":10/);
   assert.match(output, /"scanned":4654/);
 });
