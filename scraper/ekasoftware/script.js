@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import EKA_SOFTWARE_CATALOG from './catalog.js'
+import { runCurrentEka } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -16,9 +17,6 @@ export const CAREERS_PAGE_URL = PROVIDER_METADATA.careersPageUrl
 export const SITEMAP_URL = PROVIDER_METADATA.sitemapUrl
 export const SITEMAP_CAREER_ROUTE_URLS = PROVIDER_METADATA.sitemapCareerRouteUrls
 export const NO_PUBLIC_JOB_ROUTE_URLS = PROVIDER_METADATA.noPublicJobRouteUrls
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const PUBLIC_JOB_SIGNAL_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
@@ -63,37 +61,6 @@ const normalizeWhitespace = (value) => decodeHtmlEntities(
 )
 
 const normalizeText = (value) => normalizeWhitespace(value).toLowerCase()
-
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,text/plain;q=0.8,*/*;q=0.7',
-    },
-    redirect: 'follow',
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
 
 const getFinalUrl = (page, fallbackUrl) => page?.url || fallbackUrl
 
@@ -184,39 +151,7 @@ export const isVerifiedMissingPublicJobRoute = (page = {}, requestedUrl) => {
 }
 
 export const createEkaSoftwareScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Eka Software verified official homepage no longer matches the known public surface')
-    }
-
-    if (extractHomepageCareerUrl(homepage.html) !== CAREERS_PAGE_URL) {
-      throw new Error('Eka Software verified homepage Careers link changed materially')
-    }
-
-    const careersPage = await fetchPage(CAREERS_PAGE_URL)
-
-    if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
-      throw new Error('Eka Software verified careers page changed materially or now exposes public jobs')
-    }
-
-    const sitemap = await fetchPage(SITEMAP_URL)
-
-    if (sitemap.status !== 200 || !hasExpectedCareerRouteSet(sitemap.html)) {
-      throw new Error('Eka Software verified sitemap career route set changed materially')
-    }
-
-    for (const routeUrl of NO_PUBLIC_JOB_ROUTE_URLS) {
-      const routePage = await fetchPage(routeUrl)
-
-      if (!isVerifiedMissingPublicJobRoute(routePage, routeUrl)) {
-        throw new Error('Eka Software verified no-public-job route changed materially or now exposes public jobs')
-      }
-    }
-
-    return []
-  },
+  run: runCurrentEka,
 })
 
 export const run = async (options = {}) => createEkaSoftwareScraper().run(options)

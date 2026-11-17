@@ -13,18 +13,28 @@ export const defaultScraperConcurrency = () => {
   const value=Number(process.env.SCRAPER_CONCURRENCY);
   return Number.isSafeInteger(value)&&value>0?value:FALLBACK_PARALLEL_SCRAPER_CONCURRENCY;
 };
-export const defaultConfiguration = () => ({ stages: STAGES.map(key => ({ key, enabled: true })), scraperConcurrency:defaultScraperConcurrency() });
+export const defaultConfiguration = () => ({ stages: STAGES.map(key => ({ key, enabled: true,
+  ...(key !== 'scraper' ? { runForAllExistingJobs: false } : {}),
+})), scraperConcurrency:defaultScraperConcurrency() });
 export function validateConfiguration(value) {
   const stages=value?.stages;
   if (!Array.isArray(stages) || stages.length!==3 || new Set(stages.map(s=>s?.key)).size!==3
     || stages.some(s=>!STAGES.includes(s?.key)||typeof s.enabled!=='boolean') || !stages.some(s=>s.enabled)) {
     throw Object.assign(new Error('Provide all three unique pipeline stages and enable at least one.'),{status:400});
   }
-  return {stages:stages.map(({key,enabled})=>({key,enabled})),scraperConcurrency:validateScraperConcurrency(value.scraperConcurrency===undefined?defaultScraperConcurrency():value.scraperConcurrency)};
+  if (stages.some(stage => stage.key !== 'scraper' && stage.runForAllExistingJobs !== undefined
+    && typeof stage.runForAllExistingJobs !== 'boolean')) {
+    throw Object.assign(new Error('Run for all existing jobs must be on or off.'), {status:400});
+  }
+  return {stages:stages.map(({key,enabled,runForAllExistingJobs})=>({key,enabled,
+    ...(key !== 'scraper' ? {runForAllExistingJobs:runForAllExistingJobs ?? false} : {}),
+  })),scraperConcurrency:validateScraperConcurrency(value.scraperConcurrency===undefined?defaultScraperConcurrency():value.scraperConcurrency)};
 }
-export const directConfiguration = start => {
+export const directConfiguration = (start, configuration = defaultConfiguration()) => {
   if (!STAGES.includes(start)) throw new Error('Unknown stage');
-  return {stages:STAGES.map((key,i)=>({key,enabled:i>=STAGES.indexOf(start)}))};
+  return {stages:STAGES.map((key,i)=>({key,enabled:i>=STAGES.indexOf(start),
+    ...(key !== 'scraper' ? {runForAllExistingJobs:configuration.stages.find(stage=>stage.key===key)?.runForAllExistingJobs ?? false} : {}),
+  }))};
 };
 export const createStages = config => config.stages.map(s=>({...s,status:s.enabled?'waiting':'disabled'}));
 export function stageOutcome(key, summary={}, code=0) {

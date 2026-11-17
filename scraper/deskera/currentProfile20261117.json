@@ -1,0 +1,132 @@
+{
+  "reviewedOn": "2026-11-17",
+  "root": "https://www.deskera.com/",
+  "programs": [
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/26g4tn5b226u5.js",
+        "async": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/2q4-4somkyld6.js",
+        "async": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/2zx3q7e7c69qs.js",
+        "async": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/turbopack-3s064thphfgt0.js",
+        "async": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/1rn529do4mj7g.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/1ri_sh8evylo6.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/034mtjh-x2s55.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/1p0k415owejgp.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/0uk3r098pwem8.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/3jc4thtmfy26m.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/0h4dumbl6g9l2.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/3p8bgtjgvdaum.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/0okzu-pfqdf9z.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/0xm67c2c63wyq.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/1q1cayt72tag-.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/2mubmkehgrhl4.js",
+        "async": "",
+        "crossorigin": ""
+      }
+    },
+    {
+      "attrs": {
+        "src": "/_next/static/chunks/431bw722fec3m.js",
+        "id": "_R_",
+        "async": ""
+      }
+    },
+    {
+      "attrs": {},
+      "sha256": "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+    },
+    {
+      "attrs": {},
+      "sha256": "d9c8cebcf5f95620cd02754852a44f4759430e4d4e9fdfcd26206b11d1afc42f"
+    }
+  ],
+  "home": "https://www.deskera.com/in",
+  "title": "All In One Business Software with Accounting, Inventory, CRM, Payroll and HRMS.",
+  "native": "https://www.linkedin.com/jobs/deskera-jobs"
+}

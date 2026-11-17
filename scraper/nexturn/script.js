@@ -1,4 +1,4 @@
-import {runCurrentNexTurn} from './currentNative.js'
+import {runCurrentNexTurn,isReviewedNexTurnCanonical} from './currentNative.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -268,6 +268,14 @@ export const hasOfficialJobDetailSignal = (html, sourceUrl = null) => {
         && normalizePathname(canonical.pathname) === normalizePathname(new URL(sourceUrl).pathname)
     } catch {
       trustedCanonical = false
+    }
+  }
+
+  if (!trustedCanonical && sourceUrl) {
+    const shortlinks = extractTags(page, 'link').filter(tag => extractAttribute(tag, 'rel') === 'shortlink')
+    const shortlink = shortlinks.length === 1 ? extractAttribute(shortlinks[0], 'href') : null
+    if (/^https:\/\/nexturn\.com\/\?p=[1-9]\d*$/.test(shortlink || '')) {
+      trustedCanonical = isReviewedNexTurnCanonical(canonicalUrl, sourceUrl, new URL(shortlink).searchParams.get('p'))
     }
   }
 

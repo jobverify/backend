@@ -25,7 +25,7 @@ const loadScraperModule = async () => {
   }
 }
 
-test('MosChip Technologies local catalog captures the verified first-party no-public-jobs careers sentinel state', async () => {
+test('MosChip local catalog retains its dated historical provider metadata', async () => {
   const {
     MOSCHIP_TECHNOLOGIES_CATALOG,
     default: defaultCatalog,

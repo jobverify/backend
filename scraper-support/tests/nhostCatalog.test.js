@@ -16,12 +16,12 @@ test('Nhost is registered directly against the verified first-party careers surf
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-first-party-careers-page')
+  assert.equal(provider.atsPlatform, 'official-current-native-careers-hidden-role-model')
   assert.equal(provider.countryFilter, 'Global')
-  assert.equal(provider.paginationStrategy, 'single-first-party-careers-page-inline-role-pages')
+  assert.equal(provider.paginationStrategy, 'own-home-current-careers-and-declared-whole-publication-programme-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-careers-page+verified-first-party-role-pages+global-remote-role-pages',
+    'whole-authored-hidden-role-criteria-and-native-visibility-filter+general-hiring-invitation+company-country-and-application-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

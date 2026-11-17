@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { SAPPHIRE_SOFTWARE_SOLUTIONS_INDIA_CATALOG } from './catalog.js'
+import { runCurrentSapphire } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -11,8 +12,6 @@ export const COMPANY = PROVIDER_METADATA.companyName
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
-
-const USER_AGENT = 'Mozilla/5.0 (compatible; Jobverify scraper)'
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<[^>]+>/g, ' ')
@@ -25,21 +24,6 @@ const slugify = (value) => normalizeWhitespace(value)
   .toLowerCase()
   .replace(/[^a-z0-9]+/g, '-')
   .replace(/^-+|-+$/g, '')
-
-const defaultFetchText = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-  })
-
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${url}`)
-  }
-
-  return response.text()
-}
 
 export const hasOfficialCareersSignal = (html = '') => {
   const page = String(html ?? '')
@@ -61,9 +45,12 @@ export const extractJobs = (html = '') => [...String(html ?? '').matchAll(
     return {
       title,
       company: COMPANY,
-      location: city ? `${city}, India` : null,
+      location: city || null,
       city,
-      country: 'India',
+      country: null,
+      sourceCountryScopeUnresolved: true,
+      sourceDetailComplete: false,
+      lifecycleCleanupAllowed: false,
       jobId,
       requisitionId: jobId,
       sourceUrl: CAREERS_URL,
@@ -79,24 +66,8 @@ export const extractJobs = (html = '') => [...String(html ?? '').matchAll(
     }
   })
 
-export const createSapphireSoftwareSolutionsIndiaScraper = ({
-  fetchText = defaultFetchText,
-  now = () => new Date().toISOString(),
-} = {}) => ({
-  async run({ fetchText: overrideFetchText } = {}) {
-    const html = await (overrideFetchText || fetchText)(CAREERS_URL)
-
-    if (!hasOfficialCareersSignal(html)) {
-      throw new Error('The verified Sapphire Software Solutions careers page no longer matches the pinned current openings surface')
-    }
-
-    return extractJobs(html).map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt: now(),
-    }))
-  },
+export const createSapphireSoftwareSolutionsIndiaScraper = (options = {}) => ({
+  async run(runOptions = {}) { return runCurrentSapphire({ ...options, ...runOptions }) },
 })
 
 export const run = async (options = {}) => createSapphireSoftwareSolutionsIndiaScraper().run(options)

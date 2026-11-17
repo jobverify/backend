@@ -5,6 +5,7 @@ import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { createDarwinboxScraper } from '../darwinbox/script.js'
 
 import { HARBINGER_SYSTEMS_CATALOG } from './catalog.js'
+import { runCurrentHarbinger } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -65,32 +66,7 @@ export const createHarbingerSystemsScraper = ({
   maxJobs = null,
   maxPages = undefined,
 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    fetchListingPage,
-    signal,
-  } = {}) {
-    signal?.throwIfAborted()
-    try {
-      const careersHtml = await fetchText(CAREERS_URL, { signal })
-      signal?.throwIfAborted()
-      if (!hasOfficialCareersSignal(careersHtml)) {
-        throw new Error('The verified Harbinger Systems careers page no longer matches the trusted first-party handoff')
-      }
-
-      const jobs = await darwinboxScraper.run({
-        fetchListingPage,
-        maxJobs,
-        maxPages,
-        signal,
-      })
-      signal?.throwIfAborted()
-      return jobs
-    } catch (error) {
-      signal?.throwIfAborted()
-      throw error
-    }
-  },
+  run: runCurrentHarbinger,
 })
 
 export const run = async (options = {}) => createHarbingerSystemsScraper().run(options)

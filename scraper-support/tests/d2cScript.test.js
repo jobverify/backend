@@ -78,71 +78,12 @@ test('D2C sentinel targets the verified first-party homepage shell and missing c
   }), true)
 })
 
-test('D2C sentinel returns no jobs while the verified homepage stays live and careers routes stay missing', async () => {
-  const d2c = await loadD2CModule()
-  const requestedUrls = []
-
-  const jobs = await d2c.run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === d2c.HOMEPAGE_URL) {
-        return { status: 200, url, html: officialHomepageHtml }
-      }
-
-      if (d2c.NO_PUBLIC_CAREERS_ROUTE_URLS.includes(url)) {
-        return { status: 404, url, html: missingCareersRouteHtml }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    d2c.HOMEPAGE_URL,
-    ...d2c.NO_PUBLIC_CAREERS_ROUTE_URLS,
-  ])
-  assert.deepEqual(jobs, [])
+test('D2C historical body-only and missing-route fixtures cannot establish current inventory', async () => {
+ const source=await loadD2CModule();let calls=0
+ await assert.rejects(source.createD2CScraper().run({fetchPage:async()=>{calls++;return {status:200,html:officialHomepageHtml}}}),/unsupported metadata-free/)
+ assert.equal(calls,0)
 })
-
-test('D2C sentinel fails closed when the homepage changes or a first-party careers route starts resolving', async () => {
-  const d2c = await loadD2CModule()
-
-  await assert.rejects(
-    d2c.run({
-      fetchPage: async (url) => {
-        if (url === d2c.HOMEPAGE_URL) {
-          return {
-            status: 200,
-            url,
-            html: '<html><head><title>D2C</title></head><body><h1>Jobs</h1></body></html>',
-          }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified official homepage/i,
-  )
-
-  await assert.rejects(
-    d2c.run({
-      fetchPage: async (url) => {
-        if (url === d2c.HOMEPAGE_URL) {
-          return { status: 200, url, html: officialHomepageHtml }
-        }
-
-        if (url === d2c.NO_PUBLIC_CAREERS_ROUTE_URLS[0]) {
-          return {
-            status: 200,
-            url,
-            html: '<html><body><h1>Open Positions</h1><a href="/apply">Apply now</a></body></html>',
-          }
-        }
-
-        return { status: 404, url, html: missingCareersRouteHtml }
-      },
-    }),
-    /verified no-public-careers surface/i,
-  )
+test('D2C opaque pre-aborted caller owns cancellation before reading the publisher', async () => {
+ const source=await loadD2CModule(),owner=new AbortController(),reason=Object.freeze({cancel:'d2c'});owner.abort(reason)
+ await assert.rejects(source.run({signal:owner.signal,fetchImpl:async()=>assert.fail('unexpected fetch')}),value=>value===reason)
 })

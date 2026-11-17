@@ -18,12 +18,12 @@ export const EDELWEISS_CATALOG = {
   companyDomain: 'edelweissfin.com',
   applicationEmail: 'GroupTalent.Acquisition@edelweissfin.com',
   applicationUrl: 'mailto:GroupTalent.Acquisition@edelweissfin.com',
-  atsPlatform: 'official-company-site-no-public-careers',
+  atsPlatform: 'official-company-general-cv-intake-with-unqualified-vacancy-inventory',
   countryFilter: 'India',
   paginationStrategy:
-    'verified-homepage-plus-informational-careers-page-plus-legacy-no-public-job-routes',
+    'current-own-home-and-career-model-opening-closing-reconciliation-with-native-http-admission',
   extractionStrategy:
-    'verified-first-party-homepage+verified-informational-careers-page-email-resume-handoff-without-public-listings+verified-legacy-no-public-job-routes-return-empty',
+    'current-first-party-career-general-cv-model+protected-contact-and-inventory-holds+observed-denial-preserved',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   verifiedOn: '2026-08-02',

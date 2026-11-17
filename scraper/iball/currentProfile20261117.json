@@ -1,0 +1,15 @@
+{
+  "source": "iball",
+  "root": "https://iball.co.in/",
+  "titles": [
+    "iBall – Electronics & Peripherals"
+  ],
+  "canonical": [
+    {
+      "rel": "canonical",
+      "href": "https://iball.co.in/"
+    }
+  ],
+  "careersLabel": "Careers",
+  "handoff": "mailto:hr@iball.co.in"
+}

@@ -1,0 +1,39 @@
+{
+  "root": "https://mikuni.co.in/",
+  "rootTitles": [
+    "Mikuni India Private Limited"
+  ],
+  "listing": "https://mikuni.co.in/vacant-positions/",
+  "listingTitles": [
+    "Vacant positions – Mikuni India Private Limited"
+  ],
+  "application": "https://mikuni.co.in/open-positions-linked-with-naukri-portal/",
+  "applicationTitles": [
+    "Open Positions (Linked with Naukri Portal) – Mikuni India Private Limited"
+  ],
+  "publications": [
+    {
+      "url": "https://mikuni.co.in/vacant-positions/",
+      "id": 1163,
+      "api": "https://mikuni.co.in/wp-json/wp/v2/pages/1163"
+    },
+    {
+      "url": "https://mikuni.co.in/open-positions-linked-with-naukri-portal/",
+      "id": 556,
+      "api": "https://mikuni.co.in/wp-json/wp/v2/pages/556"
+    }
+  ],
+  "gridWidgetId": "2455fad",
+  "applicationWidgetId": "ebabe89",
+  "programmes": [
+    {
+      "url": "https://mikuni.co.in/wp-content/uploads/essential-addons-elementor/eael-1163.js?ver=1708595934",
+      "attrs": {
+        "id": "eael-1163-js",
+        "src": "https://mikuni.co.in/wp-content/uploads/essential-addons-elementor/eael-1163.js?ver=1708595934"
+      },
+      "bytes": 55720,
+      "sha256": "90712b5d60789c782e15875797166396e2af2d7346d8bc3156a1901452a5f8cb"
+    }
+  ]
+}

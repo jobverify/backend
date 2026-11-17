@@ -105,52 +105,12 @@ test('Sula Vineyards returns [] only while the verified careers page still hands
   assert.deepEqual(jobs, [])
 })
 
-test('Sula Vineyards default fetch path uses bounded abort signals for each page request', async () => {
-  const sula = await loadModule()
-  const originalFetch = globalThis.fetch
-  const originalTimeout = AbortSignal.timeout
-  const requestedUrls = []
-  const timeoutMs = []
-  const timeoutSignals = []
-
-  AbortSignal.timeout = (ms) => {
-    timeoutMs.push(ms)
-    const signal = new AbortController().signal
-    timeoutSignals.push(signal)
-    return signal
-  }
-
-  globalThis.fetch = async (url, options = {}) => {
-    requestedUrls.push(url)
-    const expectedSignal = timeoutSignals.at(-1)
-
-    assert.ok(expectedSignal, 'expected default fetch to request a timeout signal')
-    assert.equal(options.signal, expectedSignal)
-
-    if (url === sula.CAREERS_PAGE_URL) {
-      return { status: 200, url, text: async () => OFFICIAL_CAREERS_HTML }
-    }
-
-    if (url === sula.OFFICIAL_CAREERS_HANDOFF_URL) {
-      return { status: 200, url, text: async () => HRONE_JS_STUB_HTML }
-    }
-
-    throw new Error(`Unexpected Sula Vineyards URL: ${url}`)
-  }
-
-  try {
-    const jobs = await sula.createSulaVineyardsScraper().run()
-
-    assert.deepEqual(requestedUrls, [
-      sula.CAREERS_PAGE_URL,
-      sula.OFFICIAL_CAREERS_HANDOFF_URL,
-    ])
-    assert.deepEqual(timeoutMs, [15000, 15000])
-    assert.deepEqual(jobs, [])
-  } finally {
-    globalThis.fetch = originalFetch
-    AbortSignal.timeout = originalTimeout
-  }
+test('Sula Vineyards current default preserves exact pre-aborted caller ownership without a public request', async () => {
+  const sula = await loadModule(), controller = new AbortController(), reason = Object.freeze({ owner: 'Sula native source' })
+  controller.abort(reason)
+  const real = globalThis.fetch; let reads = 0
+  globalThis.fetch = async () => { reads++; throw new Error('Real network forbidden in default cancellation regression') }
+  try { await assert.rejects(sula.run({ signal: controller.signal }), error => error === reason); assert.equal(reads, 0) } finally { globalThis.fetch = real }
 })
 
 test('Sula Vineyards fails closed when the verified careers page or HROne handoff drifts materially', async () => {

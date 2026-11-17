@@ -1,0 +1,30 @@
+{
+  "source": "talenttechservicesots",
+  "provenance": "Actual current own public HTTP originals; finite complete publisher and inline-programme variants only. No vacancy/company/country completeness claim.",
+  "documents": [
+    {
+      "url": "https://talenttechservices.com/",
+      "bytes": 16741,
+      "sha256": "d7778e2966a6009329a6721380d04981a3b9a1b573a9baa2248668b22fdbbd16",
+      "titles": [
+        "Talent Tech Services | The Right People. The Right Fit."
+      ]
+    },
+    {
+      "url": "https://talenttechservices.com/about.html",
+      "bytes": 18783,
+      "sha256": "cfe7fa638f24238570be5ad7d8e1dd49d1e5be9d6dc5ce92a035df1beb4d0ef7",
+      "titles": [
+        "About Us | Talent Tech Services"
+      ]
+    },
+    {
+      "url": "https://talenttechservices.com/contact.html",
+      "bytes": 21321,
+      "sha256": "75f894e7848d474ff0fb662e219d433768306efdbdec3cb845145d861c7bc039",
+      "titles": [
+        "Contact Us | Talent Tech Services Staffing"
+      ]
+    }
+  ]
+}

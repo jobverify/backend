@@ -10,7 +10,7 @@ export const NETRACK_CATALOG = {
   adapter: 'script',
   homepageUrl: 'https://www.netrackindia.com/en',
   companyCareerPage: 'https://www.netrackindia.com/en',
-  contactUrl: 'https://www.netrackindia.com/en/contact-0',
+  contactUrl: 'https://www.netrackindia.com/en/contact',
   teamUrl: 'https://www.netrackindia.com/en/about-us/about-company/team',
   blockedRouteUrls: [
     'https://www.netrackindia.com/en',
@@ -22,12 +22,12 @@ export const NETRACK_CATALOG = {
     'https://www.netrackindia.com/jobs',
   ],
   companyDomain: 'netrackindia.com',
-  atsPlatform: 'official-company-site-no-public-careers',
+  atsPlatform: 'official-current-corporate-recruitment-inventory-unqualified',
   countryFilter: 'India',
   paginationStrategy:
-    'verified-first-party-informational-pages-plus-missing-common-careers-route-validation',
+    'active-own-home-current-contact-team-and-about-whole-models-opening-closing',
   extractionStrategy:
-    'verified-first-party-informational-pages+missing-common-hiring-routes+no-trustworthy-public-jobs-surface-return-empty',
+    'whole-current-own-corporate-and-enquiry-models+unknown-native-hiring-inventory+no-role-country-or-company-zero-inference',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   verifiedOn: '2026-08-03',

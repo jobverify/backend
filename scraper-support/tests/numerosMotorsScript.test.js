@@ -210,179 +210,24 @@ const officialOpenPositionsHtml = `
 </html>
 `
 
-test('Numeros Motors scraper validates the verified homepage, careers handoff, and public open positions page', async () => {
-  const numerosMotors = await loadNumerosMotorsModule()
-
-  assert.equal(numerosMotors.SOURCE, 'numerosmotors')
-  assert.equal(numerosMotors.COMPANY, 'Numeros Motors')
-  assert.equal(numerosMotors.HOMEPAGE_URL, 'https://numerosmotors.com/')
-  assert.equal(numerosMotors.CAREERS_URL, 'https://numerosmotors.com/careers/')
-  assert.equal(numerosMotors.OPEN_POSITIONS_URL, 'https://numerosmotors.com/open-positions/')
-  assert.equal(numerosMotors.APPLY_URL, 'https://numerosmotors.com/open-positions/')
-  assert.equal(numerosMotors.hasOfficialHomepageSignal(officialHomepageHtml), true)
-  assert.equal(numerosMotors.extractCareersUrlFromHomepage(officialHomepageHtml), numerosMotors.CAREERS_URL)
-  assert.equal(numerosMotors.hasOfficialCareersSignal(officialCareersHtml), true)
-  assert.equal(numerosMotors.extractOpenPositionsUrl(officialCareersHtml), numerosMotors.OPEN_POSITIONS_URL)
-  assert.equal(numerosMotors.hasOfficialOpenPositionsSignal(officialOpenPositionsHtml), true)
-
-  const jobs = numerosMotors.extractOpenings(officialOpenPositionsHtml)
-
-  assert.equal(jobs.length, 6)
-  assert.deepEqual(
-    jobs.map((job) => job.title),
-    [
-      'Senior Engineer - Embedded Hardware',
-      'Manager - Sales (Chennai)',
-      'Applied Research Engineer - Electrical & Electronics (Advanced Engineering & Research)',
-      'Intern - Marketing',
-      'Lead - IP & Strategy',
-      'Senior Manager - Sales (Kerala)',
-    ],
-  )
-  assert.deepEqual(jobs[0], {
-    title: 'Senior Engineer - Embedded Hardware',
-    department: null,
-    location: null,
-    city: null,
-    country: 'India',
-    sourceUrl: 'https://numerosmotors.com/open-positions/',
-    applyUrl: 'https://numerosmotors.com/open-positions/',
-    jobId: 'numerosmotors-senior-engineer-embedded-hardware',
-    requisitionId: 'numerosmotors-senior-engineer-embedded-hardware',
-    employmentType: null,
-    experienceRequired: '04-06 Year of Exp.',
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: 'Official Numeros Motors opening listed on the public open positions page. Experience: 04-06 Year of Exp.',
-    remoteStatus: null,
-  })
-  assert.deepEqual(jobs[1], {
-    title: 'Manager - Sales (Chennai)',
-    department: null,
-    location: 'Chennai, India',
-    city: 'Chennai',
-    country: 'India',
-    sourceUrl: 'https://numerosmotors.com/open-positions/',
-    applyUrl: 'https://numerosmotors.com/open-positions/',
-    jobId: 'numerosmotors-manager-sales-chennai',
-    requisitionId: 'numerosmotors-manager-sales-chennai',
-    employmentType: null,
-    experienceRequired: '08-12 Year of Exp.',
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: 'Official Numeros Motors opening listed on the public open positions page. Location: Chennai, India. Experience: 08-12 Year of Exp.',
-    remoteStatus: null,
-  })
-  assert.equal(jobs[2].location, null)
-  assert.equal(jobs[3].employmentType, 'Internship')
-  assert.equal(jobs[4].experienceRequired, '10-15 Year of Exp.')
-  assert.equal(jobs[5].location, 'Kerala, India')
-  assert.equal(jobs[5].city, null)
+test('Numeros legacy brief cards preserve title/experience parsing without inferring India or inventing full criteria',async()=>{
+ const m=await loadNumerosMotorsModule()
+ assert.equal(m.hasOfficialHomepageSignal(officialHomepageHtml),true)
+ assert.equal(m.extractCareersUrlFromHomepage(officialHomepageHtml),m.CAREERS_URL)
+ assert.equal(m.hasOfficialCareersSignal(officialCareersHtml),true)
+ assert.equal(m.extractOpenPositionsUrl(officialCareersHtml),m.OPEN_POSITIONS_URL)
+ assert.equal(m.hasOfficialOpenPositionsSignal(officialOpenPositionsHtml),true)
+ const rows=m.extractOpenings(officialOpenPositionsHtml)
+ assert.equal(rows.length,6)
+ assert.deepEqual(rows.map(r=>r.title),['Senior Engineer - Embedded Hardware','Manager - Sales (Chennai)','Applied Research Engineer - Electrical & Electronics (Advanced Engineering & Research)','Intern - Marketing','Lead - IP & Strategy','Senior Manager - Sales (Kerala)'])
+ assert.equal(rows[0].experienceRequired,'04-06 Year of Exp.');assert.equal(rows[4].experienceRequired,'10-15 Year of Exp.');assert.equal(rows[3].employmentType,'Internship')
+ for(const row of rows){assert.equal(row.country,null);assert.equal(row.city,null);assert.equal(row.location,null);assert.equal(row.jobDescription,null);assert.equal(row.sourceDetailComplete,false);assert.equal(row.lifecycleCleanupAllowed,false)}
 })
-
-test('Numeros Motors run validates the verified first-party flow and decorates the scraped openings', async () => {
-  const numerosMotors = await loadNumerosMotorsModule()
-  const requestedUrls = []
-
-  const jobs = await numerosMotors.createNumerosMotorsScraper({
-    now: () => '2026-07-11T09:30:00.000Z',
-  }).run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === numerosMotors.HOMEPAGE_URL) return officialHomepageHtml
-      if (url === numerosMotors.CAREERS_URL) return officialCareersHtml
-      if (url === numerosMotors.OPEN_POSITIONS_URL) return officialOpenPositionsHtml
-
-      throw new Error(`Unexpected Numeros Motors URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    numerosMotors.HOMEPAGE_URL,
-    numerosMotors.CAREERS_URL,
-    numerosMotors.OPEN_POSITIONS_URL,
-  ])
-  assert.equal(jobs.length, 6)
-  assert.deepEqual(jobs[0], {
-    title: 'Senior Engineer - Embedded Hardware',
-    department: null,
-    company: 'Numeros Motors',
-    location: null,
-    city: null,
-    country: 'India',
-    source: 'numerosmotors',
-    companyCareerPage: 'https://numerosmotors.com/open-positions/',
-    companyDomain: 'numerosmotors.com',
-    atsPlatform: 'official-company-careers',
-    sourceUrl: 'https://numerosmotors.com/open-positions/',
-    applyUrl: 'https://numerosmotors.com/open-positions/',
-    link: 'https://numerosmotors.com/open-positions/',
-    jobId: 'numerosmotors-senior-engineer-embedded-hardware',
-    requisitionId: 'numerosmotors-senior-engineer-embedded-hardware',
-    employmentType: null,
-    experienceRequired: '04-06 Year of Exp.',
-    minimumQualification: null,
-    preferredQualification: null,
-    requiredSkills: [],
-    postingDate: null,
-    closingDate: null,
-    jobDescription: 'Official Numeros Motors opening listed on the public open positions page. Experience: 04-06 Year of Exp.',
-    remoteStatus: null,
-    scrapedAt: '2026-07-11T09:30:00.000Z',
-  })
-  assert.equal(jobs[3].employmentType, 'Internship')
-  assert.equal(jobs[4].jobId, 'numerosmotors-lead-ip-strategy')
+test('Numeros body-only legacy surface cannot publish title/experience summaries as India jobs',async()=>{
+ const m=await loadNumerosMotorsModule();let calls=0
+ await assert.rejects(m.createNumerosMotorsScraper({now:()=> '2026-07-11T09:30:00.000Z'}).run({fetchText:async url=>{calls++;return url===m.HOMEPAGE_URL?officialHomepageHtml:url===m.CAREERS_URL?officialCareersHtml:officialOpenPositionsHtml}}),/original HTTP metadata|body-only/i)
+ assert.equal(calls,0)
 })
-
-test('Numeros Motors fails closed when the verified homepage handoff or jobs surface drifts', async () => {
-  const numerosMotors = await loadNumerosMotorsModule()
-
-  await assert.rejects(
-    numerosMotors.createNumerosMotorsScraper().run({
-      fetchText: async (url) => {
-        if (url === numerosMotors.HOMEPAGE_URL) {
-          return '<html><head><title>Unexpected</title></head><body></body></html>'
-        }
-
-        throw new Error(`Unexpected Numeros Motors URL: ${url}`)
-      },
-    }),
-    /verified official homepage/i,
-  )
-
-  await assert.rejects(
-    numerosMotors.createNumerosMotorsScraper().run({
-      fetchText: async (url) => {
-        if (url === numerosMotors.HOMEPAGE_URL) return officialHomepageHtml
-        if (url === numerosMotors.CAREERS_URL) {
-          return officialCareersHtml.replace('/open-positions', '/join-us')
-        }
-
-        throw new Error(`Unexpected Numeros Motors URL: ${url}`)
-      },
-    }),
-    /verified open positions handoff/i,
-  )
-
-  await assert.rejects(
-    numerosMotors.createNumerosMotorsScraper().run({
-      fetchText: async (url) => {
-        if (url === numerosMotors.HOMEPAGE_URL) return officialHomepageHtml
-        if (url === numerosMotors.CAREERS_URL) return officialCareersHtml
-        if (url === numerosMotors.OPEN_POSITIONS_URL) {
-          return officialOpenPositionsHtml.replaceAll('Apply Now', 'Submit Resume')
-        }
-
-        throw new Error(`Unexpected Numeros Motors URL: ${url}`)
-      },
-    }),
-    /verified open positions page/i,
-  )
+test('Numeros pure legacy extractor still rejects an unrelated page',async()=>{
+ const m=await loadNumerosMotorsModule();assert.throws(()=>m.extractOpenings('<html><title>Contact</title></html>'),/verified open positions page/)
 })

@@ -1,3 +1,4 @@
+import {runCurrentD2c} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -17,9 +18,6 @@ export const NO_PUBLIC_CAREERS_ROUTE_URLS = [
   'https://d2c.in/work-with-us',
   'https://d2c.in/openings',
 ]
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const PUBLIC_JOBS_SIGNAL_PATTERNS = [
   /\bwe(?:'|’)re hiring\b/i,
@@ -41,7 +39,7 @@ const PUBLIC_JOBS_SIGNAL_PATTERNS = [
 ]
 
 const CAREER_ROUTE_LINK_PATTERN =
-  /href=["'][^"']*\/(?:careers?|jobs?|join-us|work-with-us|openings)(?:[\/"'?#]|$)/i
+  /href=["'][^"']*\/(?:careers?|jobs?|join-us|work-with-us|openings)(?:[/"'?#]|$)/i
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
@@ -85,43 +83,7 @@ export const isVerifiedMissingCareerRoute = (page = {}) => {
     && !hasPublicJobsSignal(html)
 }
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
-
-export const createD2CScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('D2C verified official homepage no longer matches the trusted first-party surface')
-    }
-
-    if (hasPublicJobsSignal(homepage.html) || hasCareerRouteLinkSignal(homepage.html)) {
-      throw new Error('D2C homepage now appears to expose a public jobs surface')
-    }
-
-    for (const routeUrl of NO_PUBLIC_CAREERS_ROUTE_URLS) {
-      const routePage = await fetchPage(routeUrl)
-      if (!isVerifiedMissingCareerRoute(routePage)) {
-        throw new Error(`D2C verified no-public-careers surface changed: ${routePage.url || routeUrl}`)
-      }
-    }
-
-    return []
-  },
-})
+export const createD2CScraper = () => ({run:runCurrentD2c})
 
 export const run = async (options = {}) => createD2CScraper().run(options)
 

@@ -298,7 +298,11 @@ export const createIValueScraper = ({maxJobs = Number.isInteger(config.maxJobs) 
    if(!active){
     if(!hasOfficialCareersBlockSignal(officialHtml))throw new Error('iValue official handoff unavailable without verified interstitial')
     const proof=IVALUE_CATALOG.approvedCorporateBinding,age=Date.parse(scrapedAt)-Date.parse(proof?.checkedAt)
-    if(proof?.officialURL!==OFFICIAL_CAREERS_URL||proof?.target!==JOBS_PAGE_URL||proof?.verified!==true||!Number.isFinite(age)||age<0||age>48*3600000)throw new Error('iValue blocked corporate check requires fresh approved binding or current fetchOfficialPage hook')
+    if(proof?.officialURL!==OFFICIAL_CAREERS_URL||proof?.target!==JOBS_PAGE_URL||proof?.verified!==true||!Number.isFinite(age)||age<0||age>48*3600000)throw Object.assign(new Error('iValue corporate Incapsula interstitial requires fresh approved binding or current fetchOfficialPage hook'),{
+     source:SOURCE,softFailure:true,upstreamOutage:true,failureKind:'blocked_or_access_denied',abortRetries:true,
+     requestURL:OFFICIAL_CAREERS_URL,lifecycleCleanupAllowed:false,
+     failureEvidence:{stage:'official-corporate-handoff',interstitial:'incapsula',bindingCheckedAt:proof?.checkedAt??null,bindingExpired:Number.isFinite(age)&&age>48*3600000,observedListingCount:null,inventoryComplete:false,cleanupAllowed:false},
+    })
     corporateCheck='blocked-interstitial-used-fresh-approved-binding'
    }
    validateBoard(await request(fetchText,JOBS_PAGE_URL))

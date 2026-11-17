@@ -1,6 +1,8 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { isDeepStrictEqual } from 'node:util'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
@@ -337,7 +339,7 @@ export const extractPublishedRoleDetails = (html = '', listing = {}) => {
   }
 }
 
-export const extractCurrentRoleDetails = (html = '', listing = {}) => {
+const currentRoleModel = (html = '', listing = {}) => {
   const payload = parseCareersPayload(html)?.props?.pageProps?.data
   const title = normalizeWhitespace(payload?.job_title)
   const description = normalizeWhitespace(payload?.job_description)
@@ -347,12 +349,27 @@ export const extractCurrentRoleDetails = (html = '', listing = {}) => {
     || payload?.department_id !== listing.departmentId
     || payload?.slug !== listing.slug
     || title !== listing.title
-    || payload?.is_deleted !== false
+    || typeof payload?.is_deleted !== 'boolean'
     || !description
     || !CURRENT_APPLY_URL_PATTERN.test(applyUrl || '')
   ) {
     throw new Error('Filo current role detail changed materially')
   }
+  return payload
+}
+
+export const extractCurrentRoleDetails = (html = '', listing = {}) => {
+  const payload = currentRoleModel(html, listing)
+  // A currently advertised role can retain its public page while its exact
+  // native model is marked deleted. Withhold that observation; do not infer a
+  // country, closure date, replacement vacancy, or company inventory from it.
+  if (payload.is_deleted) throw Object.assign(new Error('Filo native role marked deleted'), {
+    code: 'FILO_NATIVE_ROLE_MARKED_DELETED', nativeRoleMarkedDeleted: true,
+    nativeRoleModel: structuredClone(payload), countryQualified: false,
+    publicationQualified: false, sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+  })
+  const description = normalizeWhitespace(payload.job_description)
+  const applyUrl = normalizeWhitespace(payload.apply_link)
 
   const location = normalizeWhitespace(payload.location)
     || normalizeWhitespace(
@@ -382,10 +399,13 @@ export const extractCurrentRoleDetails = (html = '', listing = {}) => {
     employmentType,
     postingDate,
     jobDescription: description,
+    sourceDescription: payload.job_description,
+    nativeRoleModel: structuredClone(payload),
   }
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
+const defaultFetchText = (url, {signal} = {}) => fetchTextWithRetry(url, {
+  signal,
   headers: {
     'User-Agent': USER_AGENT,
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -442,6 +462,9 @@ const buildCurrentJob = (listing, detail, scrapedAt) => ({
   postingDate: detail.postingDate,
   closingDate: null,
   jobDescription: detail.jobDescription,
+  sourceDescription: detail.sourceDescription,
+  sourceDescriptionFormat: 'Markdown',
+  sourceNativeDetailPayload: structuredClone(detail.nativeRoleModel),
   source: SOURCE,
   link: listing.detailUrl,
   scrapedAt,
@@ -451,8 +474,14 @@ export const createFiloScraper = ({ maxJobs = null } = {}) => ({
   async run({
     fetchText = defaultFetchText,
     now = () => new Date().toISOString(),
+    signal,
   } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
+    const read = async url => {
+      signal?.throwIfAborted()
+      try {const html = await fetchText(url, {signal}); signal?.throwIfAborted(); return html}
+      catch (error) {signal?.throwIfAborted(); throw error}
+    }
+    const careersHtml = await read(CAREERS_URL)
 
     if (!hasOfficialCareersPageSignal(careersHtml)) {
       throw new Error('Filo verified official careers surface changed materially')
@@ -465,14 +494,28 @@ export const createFiloScraper = ({ maxJobs = null } = {}) => ({
     const scrapedAt = now()
     const jobs = []
     const unqualifiedLocationIds=[]
+    const deletedRoleIds=[],heldNativeRecords=[],nativeRoleModels=[]
+    let pagesFetched=1
     const currentApplications = new Map()
 
     for (const listing of selectedRoles) {
       if (listing.kind === 'current') {
-        const detailHtml = await fetchText(listing.detailUrl)
+        const detailHtml = await read(listing.detailUrl)
+        const openingModel = currentRoleModel(detailHtml, listing)
+        const closingModel = currentRoleModel(await read(listing.detailUrl), listing)
+        pagesFetched+=2
+        if (!isDeepStrictEqual(openingModel, closingModel)) throw new Error('Filo closing full native role model changed')
+        nativeRoleModels.push({id:listing.id,opening:structuredClone(openingModel),closing:structuredClone(closingModel)})
         let detail
         try{detail=extractCurrentRoleDetails(detailHtml,listing)}catch(error){
-          if(error.nativeLocationScopeUnverified===true){unqualifiedLocationIds.push(String(listing.id));continue}
+          if(error.nativeRoleMarkedDeleted===true || error.nativeLocationScopeUnverified===true){
+            const deleted=error.nativeRoleMarkedDeleted===true
+            ;(deleted?deletedRoleIds:unqualifiedLocationIds).push(String(listing.id))
+            heldNativeRecords.push({id:listing.id,reason:deleted?'native-role-marked-deleted':'unverified-native-worksite-country',
+              nativeRoleModel:structuredClone(openingModel),publicationQualified:false,countryQualified:false,
+              sourceScopeComplete:false,lifecycleCleanupAllowed:false})
+            continue
+          }
           throw error
         }
         const prior = currentApplications.get(detail.applyUrl)
@@ -492,22 +535,46 @@ export const createFiloScraper = ({ maxJobs = null } = {}) => ({
         continue
       }
       try {
-        const detailHtml = await fetchText(listing.documentUrl)
+        const detailHtml = await read(listing.documentUrl)
+        pagesFetched++
         const detail = extractPublishedRoleDetails(detailHtml, listing)
         jobs.push(buildJob(listing, detail, scrapedAt))
       } catch (error) {
+        signal?.throwIfAborted()
         console.warn(`  [${SOURCE}] Skipping ${listing.title}: ${error.message}`)
       }
     }
 
-    if(unqualifiedLocationIds.length){
-      Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:SOURCE,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
-        observedVacancyCount:roles.length,retainedIndiaRoleCount:jobs.length,unqualifiedLocationIds},configurable:true})
-      return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:false,
-        pagesFetched:selectedRoles.length+1,reportedTotal:null,indiaFacetCount:null,verifiedAt:scrapedAt,
-        reason:'current-native-full-role-criteria;unverified-worksite-country-ids:'+unqualifiedLocationIds.join(',')})
+    const openingDepartments=parseCareersPayload(careersHtml)?.props?.pageProps?.data
+    if(Array.isArray(openingDepartments)){
+      const closingHtml=await read(CAREERS_URL);pagesFetched++
+      if(!hasOfficialCareersPageSignal(closingHtml)||!isDeepStrictEqual(openingDepartments,parseCareersPayload(closingHtml)?.props?.pageProps?.data)){
+        throw new Error('Filo closing complete department/listing model changed')
+      }
     }
-    return jobs
+    // Only a fully hydrated current cohort whose complete role and department
+    // models agree at closing supports these observations. Deleted native rows
+    // remain advertised records, but are not counted as vacancies.
+    const observation = roles.length > 0 && Array.isArray(openingDepartments)
+      && selectedRoles.length === roles.length && roles.every(role=>role.kind==='current')
+      && nativeRoleModels.length === roles.length
+      ? {source:SOURCE,recordKind:deletedRoleIds.length?'mixed':'vacancy-rows',
+        observedRecordCount:nativeRoleModels.length,
+        observedVacancyCount:nativeRoleModels.filter(role=>role.opening.is_deleted===false).length,
+        sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null}
+      : null
+    if(observation)attachSourceObservationEvidence(jobs,observation)
+    for(const job of jobs)Object.assign(job,{sourceListingComplete:false,sourceScopeComplete:false,lifecycleCleanupAllowed:false})
+    Object.defineProperty(jobs,'nativeCollectionEvidence',{value:{source:SOURCE,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+      ...observation,
+      observedNativeRoleCount:roles.length,retainedIndiaRoleCount:jobs.filter(j=>j.country==='India').length,
+      unqualifiedLocationIds,deletedRoleIds,heldNativeRecords,nativeRoleModels,
+      nativeRoleModelsClosingReconciled:nativeRoleModels.length===selectedRoles.filter(r=>r.kind==='current').length},configurable:true})
+    signal?.throwIfAborted()
+    return attachInventoryEvidence(jobs,{status:'coverage-gap',surface:CAREERS_URL,firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,
+      pagesFetched,reportedTotal:null,indiaFacetCount:null,verifiedAt:scrapedAt,
+      reason:'current-native-full-role-criteria;company-scope-unqualified'+(unqualifiedLocationIds.length?';unverified-worksite-country-ids:'+unqualifiedLocationIds.join(','):'')
+        +(deletedRoleIds.length?';native-role-marked-deleted-ids:'+deletedRoleIds.join(','):'')})
   },
 })
 

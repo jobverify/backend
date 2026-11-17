@@ -11,12 +11,12 @@ export const AKERS_BIOSCIENCES_INDIA_CATALOG = {
   companyCareerPage: 'https://akersbio.com/',
   companyDomain: 'akersbio.com',
   parkedExactNameUrl: 'https://akersbiosciences.com/',
-  atsPlatform: 'official-company-site-no-public-careers',
+  atsPlatform: 'configured-canonical-host-access-denied-inventory-unavailable',
   countryFilter: 'India',
   paginationStrategy:
-    'verified-parked-exact-name-domain-plus-official-host-missing-job-route-validation',
+    'single-current-configured-root-metadata-first-denial',
   extractionStrategy:
-    'verified-parked-exact-name-domain+official-host-no-public-job-routes-return-empty',
+    'current-configured-root-http403+original-denial-metadata-retained+company-inventory-unknown',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   verifiedOn: '2026-07-19',

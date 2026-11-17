@@ -5,19 +5,19 @@ import companyAliases from '../../scraper-support/providers/companyAliases.json'
 import { generateCompanyCoverageReport } from '../../scraper-support/providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../../scraper-support/providers/index.js'
 
-test('ION EXCHANGE ZERO B is registered as a verified first-party careers nonlisting provider without aliases', () => {
+test('ION EXCHANGE ZERO B is registered with current own regional sales cohort observations without aliases', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'ionexchangezerob')
 
   assert.ok(provider)
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'ION EXCHANGE ZERO B')
-  assert.equal(provider.companyCareerPage, 'https://ionexchangeglobal.com/careers/')
-  assert.equal(provider.atsPlatform, 'official-company-careers-nonlisting')
+  assert.equal(provider.companyCareerPage, 'https://www.zerobonline.com/careers/')
+  assert.equal(provider.atsPlatform, 'official-current-zerob-regional-sales-role-areas-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'zerob-homepage-plus-story-and-ion-careers-validation')
+  assert.equal(provider.paginationStrategy, 'active-own-careers-listing-and-regional-cohort-detail-models-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-zerob-homepage+verified-story-page+verified-ion-careers-page+outbound-careers-handoff-and-email-without-public-job-records-return-empty',
+    'whole-native-regional-sales-cohort-criteria+role-area-observations+distinct-requisition-country-application-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.companyDomain, 'zerobonline.com')
@@ -43,6 +43,6 @@ test('ION EXCHANGE ZERO B matches company coverage directly from provider metada
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'ionexchangezerob')
-  assert.equal(scraper.provider.companyCareerPage, 'https://ionexchangeglobal.com/careers/')
+  assert.equal(scraper.provider.companyCareerPage, 'https://www.zerobonline.com/careers/')
   assert.match(scraper.dryRunFile, /ionexchangezerob[\\/]jobs\.json$/i)
 })

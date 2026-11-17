@@ -1,3 +1,4 @@
+import {runCurrentNexval} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -83,21 +84,7 @@ export const hasBlockedCareersRouteSignal = ({ status, url, html } = {}) => {
 }
 
 export const createNexvalInfotechScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Nexval Infotech verified official homepage no longer matches the trusted live domain')
-    }
-
-    for (const url of VERIFICATION_URLS) {
-      const page = await fetchPage(url)
-      if (!hasBlockedCareersRouteSignal(page)) {
-        throw new Error('Nexval Infotech public jobs surface changed materially; replace the fail-closed sentinel')
-      }
-    }
-
-    return []
-  },
+  async run(options={}) { return runCurrentNexval(options) },
 })
 
 export const run = async (options = {}) => createNexvalInfotechScraper().run(options)

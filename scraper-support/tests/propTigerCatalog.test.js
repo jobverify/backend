@@ -29,15 +29,15 @@ test('PropTiger catalog captures the verified first-party empty careers board su
   assert.equal(PROPTIGER_CATALOG.companyCareerPage, 'https://www.proptiger.com/careers')
   assert.equal(PROPTIGER_CATALOG.aboutPageUrl, 'https://www.proptiger.com/aboutus')
   assert.equal(PROPTIGER_CATALOG.companyDomain, 'proptiger.com')
-  assert.equal(PROPTIGER_CATALOG.atsPlatform, 'official-company-careers-empty-board')
+  assert.equal(PROPTIGER_CATALOG.atsPlatform, 'official-current-careers-empty-model-general-intake-unqualified')
   assert.equal(PROPTIGER_CATALOG.countryFilter, 'India')
   assert.equal(
     PROPTIGER_CATALOG.paginationStrategy,
-    'official-careers-page-empty-state-validation',
+    'whole-own-careers-flight-general-form-and-thirteen-declared-programmes-opening-closing',
   )
   assert.equal(
     PROPTIGER_CATALOG.extractionStrategy,
-    'verified-first-party-careers-page+verified-empty-open-roles-state+return-empty',
+    'native-empty-openings-and-general-intake-model+one-hiring-signal-not-a-vacancy+company-country-criteria-and-application-scope-held',
   )
   assert.equal(PROPTIGER_CATALOG.parser, 'custom-script')
   assert.equal(PROPTIGER_CATALOG.normalizationProfile, 'engineering-default')

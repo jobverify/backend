@@ -1,3 +1,7 @@
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
+import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.js'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
@@ -144,7 +148,7 @@ const loadSharekhanModule = async () => {
   }
 }
 
-test('Sharekhan helpers pin the verified first-party careers table and detail-page contract', async () => {
+test('Sharekhan pure historical helpers retain the dated July table/detail contract', async () => {
   const sharekhan = await loadSharekhanModule()
 
   assert.equal(sharekhan.SOURCE, 'sharekhan')
@@ -226,64 +230,49 @@ test('Sharekhan helpers pin the verified first-party careers table and detail-pa
   ])
 })
 
-test('Sharekhan run validates the official careers page before returning first-party roles', async () => {
-  const sharekhan = await loadSharekhanModule()
-  const requestedUrls = []
 
-  const jobs = await sharekhan.createSharekhanScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === sharekhan.CAREERS_URL) return CAREERS_HTML
-      if (DETAIL_PAGES[url]) return DETAIL_PAGES[url]
-      throw new Error(`Unexpected Sharekhan fixture URL: ${url}`)
-    },
-    now: () => '2026-07-17T00:00:00.000Z',
-  })
+function currentNativeReplay(source,change=()=>{}){
+ const captures=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/'+source+'/fixtures/current-native-20261117.json.gz',import.meta.url)))),calls=[],seen=new Map()
+ return{calls,fetchImpl:async(url,init)=>{
+  const original=captures.find(row=>row.requestedUrl===url);assert.ok(original,'Unbound current native URL '+url)
+  assert.equal(init.method??'GET','GET');assert.equal(init.redirect,'manual');assert.ok(init.signal instanceof AbortSignal)
+  const nth=(seen.get(url)||0)+1;seen.set(url,nth);calls.push({url,nth})
+  const row={...structuredClone(original),body:Buffer.from(original.bodyBase64,'base64').toString()};change(row,url,nth)
+  const response=new Response(row.body,{status:row.status,headers:row.headers});Object.defineProperty(response,'url',{value:row.url});return response
+ }}
+}
 
-  assert.deepEqual(requestedUrls, [
-    sharekhan.CAREERS_URL,
-    'https://www.sharekhan.com/careers/job-details/senior-manager-campaign-management-290029',
-    'https://www.sharekhan.com/careers/job-details/manager-digital-marketing-290020',
-    'https://www.sharekhan.com/careers/job-details/ui-ux-designer-289891',
-  ])
-  assert.equal(jobs.length, 3)
-  assert.equal(jobs[0].source, 'sharekhan')
+test('Sharekhan current originals expose general intake rather than a bound Research Analyst vacancy',async()=>{
+ const source=await loadSharekhanModule(),transport=currentNativeReplay('sharekhan')
+ const jobs=await source.createSharekhanScraper().run({fetchImpl:transport.fetchImpl})
+ assert.equal(jobs.length,0);assert.equal(transport.calls.length,6)
+ const summary=readSourceObservationEvidence(jobs,'sharekhan');assert.equal(summary.recordKind,'hiring-signals');assert.equal(summary.observedRecordCount,1);assert.equal(summary.observedVacancyCount,0)
+ const observation=jobs.nativeCollectionEvidence.observations[0]
+ assert.deepEqual(observation.nativeBannerTitles,['Research Analyst']);assert.equal(observation.nativeApplicationJobID,'');assert.equal(observation.nativeApplicationRoleLabel,'Lead Page CTA')
+ assert.deepEqual(observation.nativeOpeningModel,observation.nativeClosingModel)
+ assert.equal(readInventoryEvidence(jobs).status,'coverage-gap');assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+ assert.equal(jobs.nativeCollectionEvidence.companyIndiaZeroProven,false);assert.equal(jobs.nativeCollectionEvidence.companyGlobalTotal,null)
 })
-
-test('Sharekhan fails closed when the first-party careers shell or detail-page contract drifts', async () => {
-  const sharekhan = await loadSharekhanModule()
-
-  await assert.rejects(
-    sharekhan.createSharekhanScraper().run({
-      fetchText: async (url) => {
-        if (url === sharekhan.CAREERS_URL) return DRIFTED_CAREERS_HTML
-        throw new Error(`Unexpected Sharekhan fixture URL: ${url}`)
-      },
-    }),
-    /verified first-party careers page/i,
-  )
-
-  await assert.rejects(
-    sharekhan.createSharekhanScraper().run({
-      fetchText: async (url) => {
-        if (url === sharekhan.CAREERS_URL) return INVALID_DETAIL_LINK_HTML
-        throw new Error(`Unexpected Sharekhan fixture URL: ${url}`)
-      },
-    }),
-    /detail links/i,
-  )
-
-  await assert.rejects(
-    sharekhan.createSharekhanScraper().run({
-      fetchText: async (url) => {
-        if (url === sharekhan.CAREERS_URL) return CAREERS_HTML
-        if (url === 'https://www.sharekhan.com/careers/job-details/senior-manager-campaign-management-290029') {
-          return DRIFTED_DETAIL_HTML
-        }
-        if (DETAIL_PAGES[url]) return DETAIL_PAGES[url]
-        throw new Error(`Unexpected Sharekhan fixture URL: ${url}`)
-      },
-    }),
-    /detail page/i,
-  )
+test('Sharekhan current employer transport must retain original response authority',async()=>{
+ const source=await loadSharekhanModule(),transport=currentNativeReplay('sharekhan',row=>{row.url='https://other.example/careers'})
+ await assert.rejects(source.run({fetchImpl:transport.fetchImpl}),/original.*URL|authority/i);assert.equal(transport.calls.length,1)
+})
+test('Sharekhan original public denial remains a blocker rather than zero inventory',async()=>{
+ const source=await loadSharekhanModule(),transport=currentNativeReplay('sharekhan',row=>{row.status=403;row.body='<html>Access denied</html>'})
+ await assert.rejects(source.run({fetchImpl:transport.fetchImpl}),error=>error.status===403&&error.failureKind==='blocked_or_access_denied')
+ assert.equal(transport.calls.length,1)
+})
+test('Sharekhan rejects a new application job ID instead of upgrading the generic template copy',async()=>{
+ const source=await loadSharekhanModule(),transport=currentNativeReplay('sharekhan',(row,url)=>{if(url.endsWith('/careers/job-details')){assert.ok(row.body.includes('var jobid = ""'));row.body=row.body.replace('var jobid = ""','var jobid = "unreviewed-role-id"')}})
+ await assert.rejects(source.run({fetchImpl:transport.fetchImpl}),/unreviewed vacancy binding/i)
+})
+test('Sharekhan closing-only general intake criteria cannot be dropped from reconciliation',async()=>{
+ const source=await loadSharekhanModule(),transport=currentNativeReplay('sharekhan',(row,url,nth)=>{if(url.endsWith('/careers/job-details')&&nth===2){assert.ok(row.body.includes('Tracking the assigned sector'));row.body=row.body.replace('Tracking the assigned sector','New mandatory eligibility. Tracking the assigned sector')}})
+ await assert.rejects(source.run({fetchImpl:transport.fetchImpl}),/opening.*closing.*criteria changed/i)
+})
+for(const inflight of [false,true])test('Sharekhan exact frozen opaque caller abort survives '+(inflight?'native transport':'pre-abort'),async()=>{
+ const source=await loadSharekhanModule(),controller=new AbortController(),reason=Object.freeze({opaque:true,caller:'sharekhan',inflight});let reads=0
+ if(!inflight)controller.abort(reason)
+ await assert.rejects(source.run({signal:controller.signal,fetchImpl:async()=>{reads++;controller.abort(reason);throw Object.freeze(Error('Replacement native error'))}}),error=>error===reason)
+ assert.equal(reads,inflight?1:0)
 })

@@ -64,12 +64,12 @@ test('Nexval Infotech local catalog records the verified August 3, 2026 blocked 
   assert.equal(provider.companyCareerPage, 'https://www.nexval.ai/careers/')
   assert.equal(provider.legacyCareerPageUrl, 'https://nexval.com/careers/')
   assert.equal(provider.companyDomain, 'nexval.ai')
-  assert.equal(provider.atsPlatform, 'no-public-jobs-surface')
+  assert.equal(provider.atsPlatform, 'current-own-locale-product-publisher-recruitment-unknown')
   assert.equal(provider.countryFilter, 'Global')
-  assert.equal(provider.paginationStrategy, 'fail-closed-no-current-careers-surface')
+  assert.equal(provider.paginationStrategy, 'exact-own-root307-current-locale-whole-corporate-model-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-current-homepage+careers-routes-403+legacy-careers-domain-timeout+fail-closed-sentinel',
+    'whole-current-locale-product-demo-and-form-context+old-unlinked-careers-routes-historical-only+native-employment-and-company-inventory-unqualified',
   )
   assert.equal(provider.verifiedOn, '2026-08-03')
   assert.equal(provider.modulePath, modulePath)
@@ -100,7 +100,7 @@ test('Nexval Infotech runner catalog resolves the dry-run file inside the curren
   assert.equal(scraper.provider.verifiedOn, '2026-08-03')
   assert.equal(
     scraper.provider.extractionStrategy,
-    'verified-current-homepage+careers-routes-403+legacy-careers-domain-timeout+fail-closed-sentinel',
+    'whole-current-locale-product-demo-and-form-context+old-unlinked-careers-routes-historical-only+native-employment-and-company-inventory-unqualified',
   )
 })
 
@@ -120,59 +120,8 @@ test('Nexval Infotech constants stay pinned to the verified August 3, 2026 block
   )
 })
 
-test('Nexval Infotech sentinel returns [] while the live domain keeps all public careers routes at 403 AccessDenied', async () => {
-  const nexval = await loadScriptModule()
-  const jobs = await nexval.run({
-    fetchPage: async (url) => {
-      if (url === nexval.HOMEPAGE_URL) {
-        return { status: 200, url, html: homepageHtml }
-      }
 
-      if (nexval.VERIFICATION_URLS.includes(url)) {
-        return blockedCareersRoute(url)
-      }
 
-      assert.fail(`Unexpected fetchPage URL: ${url}`)
-    },
-  })
 
-  assert.deepEqual(jobs, [])
-})
 
-test('Nexval Infotech sentinel fails closed if the homepage drifts or a live public careers route reappears', async () => {
-  const nexval = await loadScriptModule()
-
-  await assert.rejects(
-    nexval.run({
-      fetchPage: async (url) => {
-        if (url === nexval.HOMEPAGE_URL) {
-          return { status: 200, url, html: '<html><head><title>Unexpected</title></head><body>Broken</body></html>' }
-        }
-
-        return blockedCareersRoute(url)
-      },
-    }),
-    /verified official homepage/i,
-  )
-
-  await assert.rejects(
-    nexval.run({
-      fetchPage: async (url) => {
-        if (url === nexval.HOMEPAGE_URL) {
-          return { status: 200, url, html: homepageHtml }
-        }
-
-        if (url === nexval.CAREERS_URL) {
-          return {
-            status: 200,
-            url,
-            html: '<html><head><title>Careers - Nexval</title></head><body>Open Positions</body></html>',
-          }
-        }
-
-        return blockedCareersRoute(url)
-      },
-    }),
-    /public jobs surface changed materially/i,
-  )
-})
+test('Current acquisition rejects historical body-only fetchPage fixtures without returning an empty inventory',async()=>{const source=await loadScriptModule();let calls=0;await assert.rejects(source.createNexvalInfotechScraper().run({fetchPage:async()=>{calls++;return ({...blockedCareersRoute('https://www.nexval.ai/careers/'),html:homepageHtml})}}),/metadata-aware fetchImpl/);assert.equal(calls,0)})

@@ -16,12 +16,12 @@ test('Talent Tech Services (OTS) is registered as a verified no-public-careers s
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, HOMEPAGE_URL)
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-configured-staffing-template-general-jobseeker-intake')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-contact-robots-sitemaps-and-missing-careers-route-validation')
+  assert.equal(provider.paginationStrategy, 'own-current-home-declared-about-contact-models-whole-raw-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-contact+verified-robots+sitemaps+verified-missing-careers-routes-return-empty',
+    'whole-current-talentbridge-brand-template-and-general-seeker-form+placeholder-opening-anchor-retained+ots-employer-country-vacancy-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

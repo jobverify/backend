@@ -8,6 +8,7 @@ import { reconcileRetainedWorkdayRoleProof } from '../../scraper-support/shared/
 import { currentWorkdayBoardReceipt, WORKDAY_COUNTRY_INVENTORY_PROOF } from '../../scraper-support/myworkday/countryInventoryProof.js'
 import { readNativeDocument, activeScripts, activeIframeSources, activeHead } from '../../scraper-support/utils/activeNativeHtml.js'
 import { attachInventoryEvidence, readInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { requireNativeHttpResponse } from '../../scraper-support/shared/nativeHttpResponse.js'
 
 const directory = path.dirname(fileURLToPath(import.meta.url))
 const OFFICIAL = 'https://www.lexmark.com/en_us/about-us/careers.html'
@@ -22,6 +23,7 @@ async function boardSnapshot(signal) {
   signal?.throwIfAborted()
   const response = await fetch(BOARD, { signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(20000)]) : AbortSignal.timeout(20000),
     headers: { Accept: 'text/html' }, redirect: 'error' })
+  await requireNativeHttpResponse(response, BOARD, { context: 'Lexmark native inventory: invalid native board HTTP identity', signal })
   const html = await response.text(), document = readNativeDocument(html)
   signal?.throwIfAborted()
   requireNative(response.status === 200 && response.url === BOARD && /^text\/html\b/i.test(response.headers.get('content-type') || '')

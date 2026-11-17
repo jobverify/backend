@@ -18,11 +18,12 @@ import { classificationSkipReason, createClassificationReport, recordClassificat
   recordClassificationInference } from '../classification/reporting.js'
 import { assignedSavedJobs } from './lib/assignedSavedJobs.js'
 import { refreshJobBatchEligibility } from './lib/batchEligibilityPhase.js'
+import { loadPipelineJobFilter } from '../src/pipeline/jobScope.js'
 import { stageOutcome, describeStageCompletion } from '../src/pipeline/policy.js'
 import { isFatalProcessingError } from '../src/pipeline/processingErrors.js'
 
 export async function classifySavedJobs({ model = Job, worker, now = () => new Date(),
-  mode = 'shadow', shard = 0, shardCount = 1, budgetSeconds = 18000, concurrency = 1, signal,
+  mode = 'shadow', shard = 0, shardCount = 1, budgetSeconds = 18000, concurrency = 1, signal, jobFilter = {},
   monotonicNow = () => performance.now(),
   onProgress = () => {}, onResult = () => {} } = {}) {
   if (!['shadow', 'policy'].includes(mode)) throw new Error('Mode must be shadow or policy')
@@ -53,7 +54,7 @@ export async function classifySavedJobs({ model = Job, worker, now = () => new D
     try { return operation() } finally { recordTiming(phase, began, jobTimings) }
   }
   const shouldStop = () => signal?.aborted || Date.now()-started >= budgetSeconds*1000
-  const cursor = assignedSavedJobs(model, shard, shardCount, summary, shouldStop)
+  const cursor = assignedSavedJobs(model, shard, shardCount, summary, shouldStop, jobFilter)
   let reportQueue = Promise.resolve()
   const processJob = async job => {
       summary.assigned++
@@ -240,10 +241,11 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     fs.writeFileSync(diagnostics, '')
     progress.phase('connect')
     await connectDB()
+    const jobFilter = await loadPipelineJobFilter('classification')
     progress.phase('start_worker')
     worker = await startGliclassWorker()
     progress.phase('process_queue')
-    const summary = await classifyJobsWithBatches({ worker, shard, shardCount: Number(process.env.CLASSIFICATION_SHARD_COUNT || 1),
+    const summary = await classifyJobsWithBatches({ worker, jobFilter, shard, shardCount: Number(process.env.CLASSIFICATION_SHARD_COUNT || 1),
       mode: process.env.POST_SCRAPE_CLASSIFICATION_MODE || 'shadow',
       concurrency: Number(process.env.CLASSIFICATION_CONCURRENCY || 1),
       budgetSeconds: Number(process.env.CLASSIFICATION_BUDGET_SECONDS || 18000), signal: controller.signal,

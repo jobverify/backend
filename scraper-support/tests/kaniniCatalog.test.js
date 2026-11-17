@@ -5,7 +5,7 @@ import companyAliases from '../providers/companyAliases.json' with { type: 'json
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 
-test('KANINI is registered as a verified first-party zero-job scraper without aliases', () => {
+test('KANINI registers its current first-party native recruitment path without aliases', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'kanini')
 
   assert.ok(provider, 'Expected KANINI provider to be registered in customProviders.json')
@@ -14,10 +14,10 @@ test('KANINI is registered as a verified first-party zero-job scraper without al
   assert.equal(provider.companyCareerPage, 'https://kanini.com/careers/open-positions/')
   assert.equal(provider.atsPlatform, 'official-company-careers')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-page-plus-open-positions-validation')
+  assert.equal(provider.paginationStrategy, 'native-read-only-ajax-pagination+own-role-details+opening-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-careers-page+verified-open-positions-zero-jobs',
+    'official-homepage+declared-native-query-client+full-role-criteria+public-candidate-form-model',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

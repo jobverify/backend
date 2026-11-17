@@ -16,12 +16,12 @@ test('System Two is registered as a verified no-public-careers sentinel without 
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, HOMEPAGE_URL)
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-configured-root-original-http404-deployment-missing')
   assert.equal(provider.countryFilter, 'Global')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-about-page-plus-404-careers-and-jobs-route-validation')
+  assert.equal(provider.paginationStrategy, 'one-exact-configured-root-original-status-preservation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-about-page+verified-404-careers-and-jobs-routes-return-empty',
+    'actual-http404-vercel-deployment-not-found-retained+no-stale-body-predicate-or-zero-inventory-recovery+native-employer-inventory-unavailable',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

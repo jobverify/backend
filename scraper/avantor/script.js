@@ -1,8 +1,12 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { isDeepStrictEqual } from 'node:util'
 
 import { createPhenomScraper } from '../../scraper-support/phenom/engine.js'
 import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import { readParadoxPreload } from '../../scraper-support/shared/paradoxPublicInventory.js'
+import { activeHead } from '../../scraper-support/utils/activeNativeHtml.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const BASE_URL = 'https://careers.avantorsciences.com'
@@ -20,11 +24,12 @@ export const buildSearchResultsPageUrl = (page = 1) => {
 }
 
 export const extractSearchPayload = (html, page = 1) => {
-  const match = String(html ?? '').match(/window\.__PRELOAD_STATE__\s*=\s*([\s\S]*?);\s*window\.__BUILD__/)
-  if (!match || !/<title>\s*Search Jobs at Avantor\s*<\/title>/i.test(html)) {
+  const { titles } = activeHead(html)
+  const state = readParadoxPreload(html)
+  if (!state || titles.length !== 1 || titles[0] !== 'Search Jobs at Avantor') {
     throw new Error('Avantor current first-party jobs inventory is missing')
   }
-  const search = JSON.parse(match[1])?.jobSearch
+  const search = state.jobSearch
   if (!Array.isArray(search?.jobs) || !Number.isSafeInteger(search?.totalJob) || search.totalJob < 0
     || search.isLoading !== false || Number(search.params?.page_number) !== page
     || search.params?.filter?.country?.length !== 1 || search.params.filter.country[0] !== 'India') {
@@ -69,14 +74,26 @@ export const extractJobDetail = (html, listing) => {
   return { ...listing, ...detail }
 }
 
-const defaultFetchText = (url, { signal } = {}) => fetchTextWithRetry(url, {
+const defaultFetchText = async (url, { signal } = {}) => {
+  const response = await fetchTextWithRetry(url, {
   headers: { Accept: 'text/html', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/138.0.0.0 Safari/537.36' },
-  label: 'avantor', timeoutMs: 15000, signal,
-})
+    label: 'avantor', timeoutMs: 15000, signal, redirect: 'manual', includeResponseMetadata: true,
+  })
+  signal?.throwIfAborted()
+  if (response.status !== 200 || response.url !== new URL(url).href) {
+    throw Object.assign(new Error('Avantor native response identity changed: HTTP ' + response.status), {
+      softFailure: true, abortRetries: true, failureKind: 'parser_or_contract_error',
+      lifecycleCleanupAllowed: false, sourceScopeComplete: false,
+    })
+  }
+  return response.html
+}
 
 export const run = async ({ fetchText = defaultFetchText, signal, maxPages = MAX_PAGES, maxJobs = Infinity } = {}) => {
   signal?.throwIfAborted()
   const listings = []
+  const openingPages = []
+  let pagesFetched = 0
   const seenIds = new Set()
   let total = null
   let complete = false
@@ -84,11 +101,13 @@ export const run = async ({ fetchText = defaultFetchText, signal, maxPages = MAX
     signal?.throwIfAborted()
     const search = extractSearchPayload(await fetchText(buildSearchResultsPageUrl(page), { signal }), page)
     signal?.throwIfAborted()
+    pagesFetched += 1
     if (total === null) total = search.totalJob
     if (search.totalJob !== total || total > MAX_PAGES * PAGE_SIZE || maxJobs < total
       || search.jobs.length !== Math.min(PAGE_SIZE, total - listings.length)) {
       throw new Error('Avantor current India inventory is incomplete or changed during pagination')
     }
+    openingPages.push({ page, jobs: structuredClone(search.jobs) })
     for (const listing of extractSearchResults(search)) {
       if (seenIds.has(listing.jobId)) throw new Error('Avantor current India inventory contains duplicate requisitions')
       seenIds.add(listing.jobId)
@@ -104,7 +123,22 @@ export const run = async ({ fetchText = defaultFetchText, signal, maxPages = MAX
     signal?.throwIfAborted()
     jobs.push({ ...detail, company: 'Avantor', source: 'avantor', link: listing.applyUrl, scrapedAt: new Date().toISOString() })
   }
-  return jobs
+  for (const opening of openingPages) {
+    signal?.throwIfAborted()
+    const closing = extractSearchPayload(await fetchText(buildSearchResultsPageUrl(opening.page), { signal }), opening.page)
+    signal?.throwIfAborted()
+    pagesFetched += 1
+    if (closing.totalJob !== total || !isDeepStrictEqual(closing.jobs, opening.jobs)) {
+      throw new Error('Avantor closing India inventory changed during detail acquisition')
+    }
+  }
+  return attachInventoryEvidence(jobs, {
+    status: total === 0 ? 'verified-empty' : 'complete-inventory',
+    surface: buildSearchResultsPageUrl(), firstParty: true, listingComplete: true,
+    pagesFetched, reportedTotal: total, indiaFacetCount: jobs.length,
+    verifiedAt: new Date().toISOString(),
+    reason: 'avantor-current-india-filter-unique-requisitions-native-details-and-closing-reconciled',
+  })
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

@@ -12,7 +12,14 @@ const STYLES = {
   '/_next/static/css/8ac2af147fdd4582.css': '4910d9fcd19489bab5a8f33ce21b61dec8576fc322c61d20f5db4c375c01030c',
   '/_next/static/css/f19dbbf993f3b973.css': '728cc0b90a816cae17b95f62b714d614bcf52262f039769d31bd7993e575a0c3',
   '/_next/static/css/3ad56064251c9581.css': 'a10da25a72f0559457d817f97847fc27656e842a86fd4247c2ac2ea7d6debec3',
+  '/_next/static/css/c37ef131e7ddc94a.css': 'db762ed4e21b623e2b3d7544d8f517c03ada2234d125d8e4a60968383615ce09',
 }
+// The current base CSS changes only two TechWall CTA spacing rules. Keep exact
+// full-byte hashes and paired ordered declarations; never normalize CSS at run time.
+const STYLE_PROFILES = [
+  ['/_next/static/css/8ac2af147fdd4582.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
+  ['/_next/static/css/c37ef131e7ddc94a.css','/_next/static/css/f19dbbf993f3b973.css','/_next/static/css/3ad56064251c9581.css'],
+]
 const sha = value => createHash('sha256').update(value).digest('hex')
 const text = value => typeof value === 'string' ? value.replace(/\s+/gu, ' ').trim() : ''
 const need = (ok, message) => { if (!ok) throw Object.assign(Error('Flyweis current native: ' + message), { softFailure: true, abortRetries: true, failureKind: 'surface_drift_or_fail_closed' }) }
@@ -137,7 +144,7 @@ export const createCurrentFlyweisScraper = () => ({ async run(options = {}) {
   signal.throwIfAborted()
   need(!options.fetchText, 'legacy text-only transport cannot verify current public careers surface')
   const allowed = new Set([OFFICIAL]), receipts = [], styleCache = new Map(), prior = new Map()
-  let requests = 0, aggregate = 0
+  let requests = 0, aggregate = 0, styleProfile = null
   const read = async (url, kind = 'html') => {
     signal.throwIfAborted(); need(allowed.has(url) && ++requests <= 48, 'public read outside current native declaration/budget')
     if (!options.fetchImpl) {
@@ -168,8 +175,12 @@ export const createCurrentFlyweisScraper = () => ({ async run(options = {}) {
     const result = await read(url), raw = readNativeDocument(result.html)
     need(!raw.nodes(n => n.tag === 'base').length, 'unreviewed native base')
     const styles = raw.nodes(n => n.tag === 'link' && n.attrs.rel === 'stylesheet').map(n => new URL(n.attrs.href, url))
-    const expected = Object.keys(STYLES).slice(0, new URL(url).pathname === '/' ? 3 : 2)
-    need(styles.length === expected.length && styles.every((value, i) => value.origin === new URL(url).origin && !value.search && !value.hash && value.pathname === expected[i]), 'native stylesheet declarations changed')
+    const count = new URL(url).pathname === '/' ? 3 : 2
+    const matched = STYLE_PROFILES.find(profile => styles.length === count && styles.every((value, i) =>
+      value.origin === new URL(url).origin && !value.search && !value.hash && value.pathname === profile[i]))
+    need(matched, 'native stylesheet declarations changed')
+    need(!styleProfile || styleProfile === matched, 'native stylesheet release changed during acquisition')
+    styleProfile = matched
     const css = []
     for (const style of styles) {
       allowed.add(style.href)

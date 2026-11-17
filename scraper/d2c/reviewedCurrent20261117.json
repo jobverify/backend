@@ -1,0 +1,20 @@
+{
+  "source": "d2c",
+  "observedAt": "2026-11-17T00:27:27.197Z",
+  "documents": [
+    {
+      "url": "https://ai.miravlabs.com/",
+      "bytes": 66817,
+      "sha256": "a16e36b0e0989299808460f82193448df29f1b953ff38c537cad33a91d7ed06b"
+    }
+  ],
+  "redirects": [
+    {
+      "url": "https://d2c.in/",
+      "status": 301,
+      "location": "https://ai.miravlabs.com/",
+      "bytes": 306,
+      "sha256": "74306f6a5474f89a4d420847f39d6d504bcd2a69c8572442c1567e0a283a2273"
+    }
+  ]
+}

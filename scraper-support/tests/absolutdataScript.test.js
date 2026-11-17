@@ -35,109 +35,11 @@ test('Absolutdata validates the verified timeout-only first-party surface for th
   assert.equal(absolutdata.isUnexpectedReachableSurface({ errorKind: 'timeout' }), false)
 })
 
-test('Absolutdata run verifies the exact-name first-party roots and common careers routes before returning []', async () => {
-  const absolutdata = await loadAbsolutdataModule()
-  const requestedUrls = []
-
-  const jobs = await absolutdata.createAbsolutdataScraper().run({
-    probeUrl: async (url) => {
-      requestedUrls.push(url)
-
-      if (
-        url === 'https://absolutdata.com/'
-        || url === 'https://www.absolutdata.com/'
-        || url === 'https://absolutdata.com/careers'
-        || url === 'https://www.absolutdata.com/careers'
-        || url === 'https://absolutdata.com/jobs'
-        || url === 'https://www.absolutdata.com/jobs'
-      ) {
-        return {
-          url,
-          finalUrl: url,
-          status: null,
-          html: null,
-          errorKind: 'timeout',
-        }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    'https://absolutdata.com/',
-    'https://www.absolutdata.com/',
-    'https://absolutdata.com/careers',
-    'https://www.absolutdata.com/careers',
-    'https://absolutdata.com/jobs',
-    'https://www.absolutdata.com/jobs',
-  ])
-  assert.deepEqual(jobs, [])
+test('Absolutdata historical timeout callback cannot establish current empty inventory', async () => {
+ const source=await loadAbsolutdataModule()
+ await assert.rejects(source.createAbsolutdataScraper().run({probeUrl:async url=>({url,errorKind:'timeout'})}),/unsupported metadata-free/)
 })
-
-test('Absolutdata fails closed when a first-party root or common careers route becomes reachable', async () => {
-  const absolutdata = await loadAbsolutdataModule()
-
-  await assert.rejects(
-    absolutdata.createAbsolutdataScraper().run({
-      probeUrl: async (url) => {
-        if (url === 'https://absolutdata.com/') {
-          return {
-            url,
-            finalUrl: url,
-            status: 200,
-            html: '<html><title>Absolutdata</title><body>Homepage now responds.</body></html>',
-            errorKind: null,
-          }
-        }
-
-        return {
-          url,
-          finalUrl: url,
-          status: null,
-          html: null,
-          errorKind: 'timeout',
-        }
-      },
-    }),
-    /official first-party root/i,
-  )
-
-  await assert.rejects(
-    absolutdata.createAbsolutdataScraper().run({
-      probeUrl: async (url) => {
-        if (url === 'https://www.absolutdata.com/jobs') {
-          return {
-            url,
-            finalUrl: url,
-            status: 200,
-            html: '<html><title>Jobs</title><body><a href="/apply">Apply now</a></body></html>',
-            errorKind: null,
-          }
-        }
-
-        return {
-          url,
-          finalUrl: url,
-          status: null,
-          html: null,
-          errorKind: 'timeout',
-        }
-      },
-    }),
-    /public jobs surface/i,
-  )
-
-  await assert.rejects(
-    absolutdata.createAbsolutdataScraper().run({
-      probeUrl: async (url) => ({
-        url,
-        finalUrl: url,
-        status: null,
-        html: null,
-        errorKind: 'dns',
-      }),
-    }),
-    /verified unreachable surface/i,
-  )
+test('Absolutdata opaque pre-aborted caller owns cancellation before any transport', async () => {
+ const source=await loadAbsolutdataModule(),owner=new AbortController(),reason=Object.freeze({cancel:'absolutdata'});owner.abort(reason)
+ await assert.rejects(source.run({signal:owner.signal,fetchImpl:async()=>assert.fail('unexpected fetch')}),value=>value===reason)
 })

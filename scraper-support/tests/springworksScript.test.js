@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
+import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.js'
+import {sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
 
 const aboutHtml = `
 <!doctype html>
@@ -108,7 +110,7 @@ test('Springworks scraper parses verified public role cards from the Goodfit job
   })
 
   assert.deepEqual(
-    jobs.map((job) => [job.title, job.location, job.applyUrl]),
+    extractedJobs.map((job) => [job.title, job.location, job.applyUrl]),
     [
       ['Software Development Engineer in Test Intern', 'Remote', 'https://jobs.goodfit.so/jobs/springworks/Software-Development-Engineer-in-Test-Intern?id=019f89eb-6a85-749d-a595-5c80eaa876fd'],
       ['Sales/ SDR Intern', 'Remote', 'https://jobs.goodfit.so/jobs/springworks/Sales-SDR-Intern?id=51214997-9646-4249-84b9-d98f4b21fa3e'],
@@ -117,6 +119,10 @@ test('Springworks scraper parses verified public role cards from the Goodfit job
       ['Customer Success Associate', 'Remote', 'https://jobs.goodfit.so/jobs/springworks/Customer-Success-Associate?id=4ab07500-6a67-4096-96d0-2eac8bdff306'],
     ],
   )
+  assert.equal(jobs.length,0,'Remote and missing own criteria cannot qualify a card')
+  assert.ok(extractedJobs.every(job=>job.country===null))
+  assert.equal(readSourceObservationEvidence(jobs,'springworks').observedRecordCount,5)
+  assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
 })
 
 test('Springworks scraper fails closed when the about, handoff, or jobs surfaces drift', async () => {
@@ -162,7 +168,15 @@ test('Springworks accepts the current direct jobs handoff and rejects partial co
   const fetchPage = async (url) => url === s.ABOUT_URL
     ? { status: 200, url, html: aboutHtml }
     : { status: 200, url: s.JOBS_URL, html: jobsHtml }
-  assert.equal((await s.run({ fetchPage })).length, 5)
+  const observed=await s.run({fetchPage})
+  assert.equal(observed.length,0)
+  assert.equal(readSourceObservationEvidence(observed,'springworks').observedRecordCount,5)
+  const explicitIndiaBriefs=await s.run({fetchPage:async url=>{
+    const page=await fetchPage(url)
+    return url===s.ABOUT_URL?page:{...page,html:page.html.replaceAll('>Remote</span>','>India</span>')}
+  }})
+  assert.equal(explicitIndiaBriefs.length,0,'Explicit India still requires complete own role criteria')
+  assert.equal(sourceLifecycleCleanupForbidden(explicitIndiaBriefs),true)
   await assert.rejects(s.run({ fetchPage: async (url) => {
     const page = await fetchPage(url)
     return url === s.ABOUT_URL ? page : { ...page, html: page.html.replace('<span>5</span>', '<span>6</span>') }

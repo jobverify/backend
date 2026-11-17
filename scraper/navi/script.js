@@ -1,8 +1,10 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import {isDeepStrictEqual} from 'node:util'
 
 import { extractJobFilterSignals } from '../../src/utils/jobFilterSignals.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 import {extractOfficialRecruitmentLinks} from '../../scripts/officialRecruitmentLinks.js'
 import {validateNativeInventory,validateNativeDetail} from './nativeContract.js'
 import {hydrateTurboHireJobs} from '../../scraper-support/utils/turboHireDetails.js'
@@ -247,9 +249,10 @@ export const createNaviScraper = (options = {}) => ({
         headers: { ...headers, 'Content-Type': 'application/json' }, signal }
       const payload = await fetchJson(FILTERED_JOBS_URL, listingRequest)
       const openingNativeInventory = validateNativeInventory(payload, { now: now() })
+      let closingFullNativeInventory=null
       const jobs = extractPublicJobs(payload).map(job => ({ ...job, source: SOURCE,
         link: job.applyUrl, scrapedAt: now() }))
-      return await hydrateTurboHireJobs({ source: SOURCE, orgId: ORG_ID, employer: 'NAVI TECHNOLOGIES LIMITED',
+      const result=await hydrateTurboHireJobs({ source: SOURCE, orgId: ORG_ID, employer: currentClient.nativeEmployerLabel??'NAVI TECHNOLOGIES LIMITED',
         origin: ORIGIN, apiBaseUrl: API_BASE_URL, boardUrl: TURBOHIRE_BOARD_URL, payload, jobs,
         fetchJson: async (url, init) => {
           const response = await fetchJson(url, init)
@@ -259,6 +262,8 @@ export const createNaviScraper = (options = {}) => ({
               throw Object.assign(new Error('Navi closing native qualification snapshot changed'), {
                 abortRetries: true, incompleteScope: true,
               })
+            if(!isDeepStrictEqual(payload,response))throw Object.assign(new Error('Navi closing full native inventory model changed'),{abortRetries:true,incompleteScope:true})
+            closingFullNativeInventory=structuredClone(response)
           }
           return response
         }, headers, listingUrl: FILTERED_JOBS_URL, listingRequest, maxJobs, signal, now,
@@ -273,6 +278,15 @@ export const createNaviScraper = (options = {}) => ({
         retainNativeProof: true, verifyPublisher,
         publisherProof: { corporateURL: CAREERS_PAGE_URL, boardURL: TURBOHIRE_BOARD_URL, orgId: ORG_ID, client: currentClient },
       })
+      const observation=closingFullNativeInventory?{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:payload.Result.length,
+        observedVacancyCount:payload.Result.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null}:null
+      if(observation)attachSourceObservationEvidence(result,observation)
+      Object.defineProperty(result,'nativeCollectionEvidence',{configurable:true,value:{
+        ...result[Symbol.for('jobverify.verified-recruitment-observations')],...observation,source:SOURCE,
+        nativeOpeningInventory:structuredClone(payload),nativeClosingInventory:closingFullNativeInventory,
+        closingFullNativeInventoryMatch:Boolean(closingFullNativeInventory),sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+      }})
+      return result
     } finally { transport.close() }
   },
 })

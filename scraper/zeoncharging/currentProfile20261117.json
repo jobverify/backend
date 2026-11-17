@@ -1,0 +1,92 @@
+{
+  "source": "zeoncharging",
+  "provenance": "Exact current own public original HTTP entities, finite whole programme AST/bytes. No browser/dependency/company-scope equivalence asserted.",
+  "documents": [
+    {
+      "url": "https://zeoncharging.com/",
+      "bytes": 141899,
+      "sha256": "f19cd3e28a37553bddd305311fe6c6e6919b451253bb1dda806f6872f2ab01be",
+      "titles": [
+        "Zeon Charging | Fast EV Charging Stations in India"
+      ]
+    },
+    {
+      "url": "https://zeoncharging.com/about_us",
+      "bytes": 69402,
+      "sha256": "b6bb8a41f58ad53a1a9fef21d46dcc1bf2eb2025cb605bb26c252244d7654552",
+      "titles": [
+        "About Zeon Charging | India's EV Charging Company"
+      ]
+    },
+    {
+      "url": "https://zeoncharging.com/contact_us",
+      "bytes": 72326,
+      "sha256": "16ab1925c30d4397c727132c60b3254630a1af9a8e9396ac25d1c1931baac753",
+      "titles": [
+        "Contact Zeon Charging | EV Charging Support India"
+      ]
+    }
+  ],
+  "programmes": [
+    {
+      "url": "https://zeoncharging.com/_next/static/chunks/0q.jqcob1nte4.js",
+      "bytes": 27708,
+      "sha256": "449e5417d67fc662f0448acff70791136c7d51fd30e8778a1b4bac00384bba5b",
+      "wholeASTSHA256": "6015b74633fdcba953186a4943a6d3c0546ab70f2410c32cb84b1bb52d2edfd3",
+      "parent": "https://zeoncharging.com/about_us",
+      "attrs": {
+        "src": "/_next/static/chunks/0q.jqcob1nte4.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://zeoncharging.com/_next/static/chunks/08ag3towgqsv1.js",
+      "bytes": 58530,
+      "sha256": "3aea2768e2af294baa57ace51e9ff79567d365f11093fe19e2ba6912239cd787",
+      "wholeASTSHA256": "4d12bbbc6a5591efd87713da6916280884f416b9698ef20bac5e9035f2b5b969",
+      "parent": "https://zeoncharging.com/about_us",
+      "attrs": {
+        "src": "/_next/static/chunks/08ag3towgqsv1.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://zeoncharging.com/_next/static/chunks/0cp1-lnx7rmc3.js",
+      "bytes": 234955,
+      "sha256": "61d6b38984b2d814cc285bbdf96c1360ab8aa669e83b640fd19f12a71032647a",
+      "wholeASTSHA256": "a94b5a7b7c8ebbc35358456c1d57ff77ef5dd85b40c6a8ff6175bda19d3fab44",
+      "parent": "https://zeoncharging.com/about_us",
+      "attrs": {
+        "src": "/_next/static/chunks/0cp1-lnx7rmc3.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://zeoncharging.com/_next/static/chunks/16okrwav5m0...js",
+      "bytes": 89858,
+      "sha256": "0448d9e2fb1917ecf1df9b081c4368cefe9bc62de668f862524778132c99d0d4",
+      "wholeASTSHA256": "b33d1d7753d5e803b884a0723105694401e73287695d2e8970a938c6f255d102",
+      "parent": "https://zeoncharging.com/about_us",
+      "attrs": {
+        "src": "/_next/static/chunks/16okrwav5m0...js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://zeoncharging.com/_next/static/chunks/0sua8mdzuc44g.js",
+      "bytes": 18160,
+      "sha256": "f39f661de6eeed8d4552c7cf3179e5fa38ebe84e29c9a85639f6128e8b434e48",
+      "wholeASTSHA256": "f26563cade04abdaaf52f85475f8e2a99ab5d981d11a750ecae1ad58723fdb26",
+      "parent": "https://zeoncharging.com/forms/apply_job?job_id=186003",
+      "attrs": {
+        "src": "/_next/static/chunks/0sua8mdzuc44g.js",
+        "async": ""
+      }
+    }
+  ],
+  "redirect": {
+    "url": "https://zeonelectric.in/",
+    "status": 301,
+    "location": "https://zeoncharging.com"
+  }
+}

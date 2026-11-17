@@ -1,0 +1,20 @@
+{
+  "root": "https://manthan.com/",
+  "redirect": {
+    "status": 301,
+    "location": "https://adaglobal.com/"
+  },
+  "currentPublisher": "https://adaglobal.com/",
+  "currentPublisherTitles": [
+    "ADA Global | The Data & AI Experience Company"
+  ],
+  "careers": "https://adaglobal.com/careers/",
+  "careersTitles": [
+    "Careers | Build What the Next Era Runs On | ADA Global"
+  ],
+  "nativeBoard": "https://adaglobal.darwinbox.com/ms/candidatev2/main/careers/allJobs",
+  "nativeBoardTitles": [
+    "ADA"
+  ],
+  "publishedRelationship": "Algonomy (formerly RichRelevance and Manthan) is now part of ADA"
+}

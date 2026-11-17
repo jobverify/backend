@@ -5,22 +5,22 @@ import companyAliases from '../../scraper-support/providers/companyAliases.json'
 import { generateCompanyCoverageReport } from '../../scraper-support/providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../../scraper-support/providers/index.js'
 
-test('Mozark is registered as a verified first-party zero-job sentinel without aliases', () => {
+test('Mozark is registered as a current corporate observation source with unknown vacancy inventory and no aliases', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'mozark')
 
   assert.ok(provider, 'Expected Mozark provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Mozark')
   assert.equal(provider.companyCareerPage, 'https://www.mozark.ai/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-client-with-unqualified-native-recruitment-inventory')
   assert.equal(provider.countryFilter, 'Global')
   assert.equal(
     provider.paginationStrategy,
-    'homepage-plus-missing-sitemap-endpoints-plus-missing-careers-routes',
+    'current-homepage-declared-client-and-about-opening-closing-reconciliation',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-missing-sitemap-endpoints+missing-careers-routes-return-empty',
+    'current-first-party-shell+whole-declared-native-client-and-about-models+unknown-vacancy-inventory-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

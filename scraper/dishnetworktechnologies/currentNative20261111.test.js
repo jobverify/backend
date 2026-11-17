@@ -74,6 +74,28 @@ test('the current corporate India declaration and native Jibe models recover fou
   assert.equal(reads.length, 22)
 })
 
+test('the native compact UTC expiry retains its original value and does not replace the original publication date', async t => {
+  // Role 105084 currently publishes this exact validThrough shape alongside the
+  // millisecond-Z shape used by the older native models in this replay.
+  publisher(t, value => value.url === ROLE ? { ...value,
+    body: schemaChange(value.body, posting => ({ ...posting, validThrough: '2026-11-18T05:00:00+0000' })) } : value)
+  const jobs = await run({ now: () => '2026-11-16T16:45:00.000Z' })
+  assert.equal(jobs[0].nativeSchemaValidThrough, '2026-11-18T05:00:00+0000')
+  assert.equal(jobs[0].nativeJobPosting.validThrough, '2026-11-18T05:00:00+0000')
+  assert.equal(jobs[0].postingDate, '2026-05-26T04:59:00+0000')
+  assert.equal(jobs[0].closingDate, null)
+  assert.equal(sourceLifecycleCleanupForbidden(jobs), true)
+})
+
+for (const value of ['2027-02-30T05:00:00+0000', '2027-11-18T24:00:00+0000',
+  '2027-11-18T05:00:00+9999', '2026-01-01T05:00:00+0000']) {
+  test('the native compact expiry rejects an impossible, unsupported or expired value: ' + value, async t => {
+    publisher(t, packet => packet.url === ROLE ? { ...packet,
+      body: schemaChange(packet.body, posting => ({ ...posting, validThrough: value })) } : packet)
+    await assert.rejects(run({ now: () => '2026-11-16T16:45:00.000Z' }), /date|calendar|time|availability expired/i)
+  })
+}
+
 for (const [name, modify, reason] of [
   ['an absent explicit work country', p => { delete p.jobs[0].data.country }, /country/i],
   ['a country label contradicting its country code', p => { p.jobs[0].data.country = 'United States' }, /country/i],

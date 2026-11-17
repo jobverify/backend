@@ -43,15 +43,15 @@ test('Pepperfry local catalog captures the verified first-party careers page and
   assert.equal(provider.homepageUrl, 'https://www.pepperfry.com/')
   assert.equal(provider.companyCareerPage, 'https://www.pepperfry.com/pages/careers.html?type=footer')
   assert.equal(provider.companyDomain, 'pepperfry.com')
-  assert.equal(provider.atsPlatform, 'first-party-careers-page+darwinbox-apply-handoff')
+  assert.equal(provider.atsPlatform, 'current-own-native-role-cards-and-darwinbox-metadata-details')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'single-first-party-careers-page',
+    'current-own-home-careers-and-every-exact-native-detail-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage-footer-careers-link+verified-first-party-careers-listings+darwinbox-apply-links',
+    'whole-native-role-cards-and-all-declared-detail-shells+role-country-full-criteria-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -121,7 +121,7 @@ test('Pepperfry hydrated local catalog stays script-runner compatible for shared
   assert.equal(provider.companyName, 'Pepperfry')
   assert.equal(provider.companyCareerPage, 'https://www.pepperfry.com/pages/careers.html?type=footer')
   assert.equal(provider.companyDomain, 'pepperfry.com')
-  assert.equal(provider.atsPlatform, 'first-party-careers-page+darwinbox-apply-handoff')
+  assert.equal(provider.atsPlatform, 'current-own-native-role-cards-and-darwinbox-metadata-details')
   assert.match(provider.modulePath, /pepperfry[\\/]script\.js$/i)
   assert.match(provider.dryRunFile, /pepperfry[\\/]jobs\.json$/i)
   assert.equal(typeof module.run, 'function')

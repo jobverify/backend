@@ -2,6 +2,9 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import SPRINGWORKS_CATALOG from './catalog.js'
+import {runCurrentSpringworks} from './currentNative20261117.js'
+import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
+import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -101,7 +104,7 @@ export const hasGoodfitJobsSignal = (html = '') => {
 
   return rawHtml.includes('https://jobs.goodfit.so/jobs/springworks')
     && normalized.includes('open positions')
-    && normalized.includes('remote')
+    && extractSpringworksJobs(html).length>0
     && /\/jobs\/springworks\//i.test(String(html ?? ''))
 }
 
@@ -126,7 +129,7 @@ export const extractSpringworksJobs = (html = '') => {
       department: null,
       location: locationText,
       city: null,
-      country: /india/i.test(locationText) || /remote/i.test(locationText) ? 'India' : null,
+      country: /^(?:India|Remote,\s*India)$/i.test(locationText) ? 'India' : null,
       jobId: sourceUrl.split('id=').pop() || relativeUrl,
       requisitionId: sourceUrl.split('id=').pop() || relativeUrl,
       sourceUrl,
@@ -146,7 +149,8 @@ export const extractSpringworksJobs = (html = '') => {
 }
 
 export const createSpringworksScraper = () => ({
-  async run({ fetchPage = defaultFetchPage, now = () => new Date().toISOString(), signal } = {}) {
+  async run({ fetchPage = defaultFetchPage, now = () => new Date().toISOString(), signal, ...options } = {}) {
+    if(options.fetchImpl||fetchPage===defaultFetchPage)return runCurrentSpringworks({...options,signal},extractSpringworksJobs)
     signal?.throwIfAborted()
     const aboutPage = await fetchPage(ABOUT_URL, { signal })
     signal?.throwIfAborted()
@@ -188,12 +192,20 @@ export const createSpringworksScraper = () => ({
       throw new Error('Springworks incomplete jobs snapshot: public role count does not match parsed cards')
     }
 
-    return jobs.filter((job) => job.country === 'India').map((job) => ({
+    const selected=jobs.filter((job) => job.country === 'India'&&job.jobDescription).map((job) => ({
       ...job,
       source: SOURCE,
       link: job.applyUrl || job.sourceUrl,
       scrapedAt: now(),
     }))
+    attachSourceObservationEvidence(selected,{source:SOURCE,recordKind:'vacancy-rows',observedRecordCount:jobs.length,
+      observedVacancyCount:jobs.length,sourceScopeComplete:false,companyGlobalTotal:null,companyIndiaTotal:null})
+    Object.defineProperty(selected,'nativeCollectionEvidence',{configurable:true,value:{...selected.nativeCollectionEvidence,
+      observations:jobs,legacyBodyCallbacksUnverified:true,sourceScopeComplete:false,lifecycleCleanupAllowed:false,
+      fullOwnRoleCriteriaQualified:false,publicApplicationEligibilityQualified:false}})
+    return attachInventoryEvidence(selected,{status:'coverage-gap',surface:JOBS_URL,firstParty:true,listingComplete:false,
+      lifecycleCleanupAllowed:false,pagesFetched:3,reportedTotal:null,indiaFacetCount:null,verifiedAt:now(),
+      reason:'legacy-native-card-observations-only;explicit-job-country-and-full-own-criteria-required'})
   },
 })
 

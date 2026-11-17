@@ -21,7 +21,7 @@ test('all permutations and enabled subsets preserve configured order', () => {
   }
   for (const stages of [[], [{key:'scraper',enabled:true}], defaultConfiguration().stages.map(s=>({...s,enabled:false})), [{key:'scraper',enabled:true},{key:'scraper',enabled:true},{key:'rewrite',enabled:true}]]) assert.throws(()=>validateConfiguration({stages}));
 });
-test('direct GitHub starts use the fixed suffix and ignore admin configuration', () => {
+test('direct GitHub starts use the fixed suffix order', () => {
   assert.deepEqual(directConfiguration('rewrite').stages.filter(s=>s.enabled).map(s=>s.key),['rewrite','classification']);
   assert.equal(createStages(defaultConfiguration()).filter(s=>s.status==='waiting').length,3);
 });

@@ -1,8 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { readCurrentNumeros } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -14,12 +13,6 @@ export const CAREERS_URL = 'https://numerosmotors.com/careers/'
 export const OPEN_POSITIONS_URL = 'https://numerosmotors.com/open-positions/'
 export const APPLY_URL = OPEN_POSITIONS_URL
 export const APPLY_POPUP_CLASS = 'popmake-14016'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
-const NON_LOCATION_PARENTHETICAL_PATTERN = /\b(engineering|research|strategy|electronics|electrical|dynamics|control|software|hardware|marketing|process|integration|controller)\b/i
-const NON_CITY_LOCATION_PATTERN = /^(kerala|mp(?:\s+cg)?|cg)$/i
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&#x([0-9a-f]+);/gi, (_, codePoint) => String.fromCodePoint(Number.parseInt(codePoint, 16)))
@@ -104,52 +97,6 @@ const normalizeExperience = (value) => {
     .replace(/-{2,}/g, '-')
 }
 
-const isLikelyLocationHint = (value) => {
-  const normalized = normalizeWhitespace(value)
-  if (!normalized) return false
-  if (/[&/]/.test(normalized)) return false
-  if (NON_LOCATION_PARENTHETICAL_PATTERN.test(normalized)) return false
-  return normalized.split(/\s+/).length <= 3
-}
-
-const extractLocationHintFromTitle = (title) => {
-  const normalizedTitle = normalizeJobTitle(title)
-  const match = normalizedTitle?.match(/\(([^()]*)\)\s*$/)
-  const candidate = normalizeWhitespace(match?.[1] ?? null)
-
-  return isLikelyLocationHint(candidate) ? candidate : null
-}
-
-const toIndiaLocation = (value) => {
-  const normalized = normalizeWhitespace(value)
-  if (!normalized) return null
-  return /,\s*India$/i.test(normalized) || /\bIndia$/i.test(normalized)
-    ? normalized
-    : `${normalized}, India`
-}
-
-const deriveCity = (locationHint) => {
-  const normalized = normalizeWhitespace(locationHint)
-  if (!normalized || NON_CITY_LOCATION_PATTERN.test(normalized)) return null
-
-  const city = normalizeCity(normalized)
-  return city || null
-}
-
-const ensureSentence = (value, label) => {
-  const normalized = normalizeWhitespace(value)
-  if (!normalized) return null
-  return `${label}: ${normalized.endsWith('.') ? normalized : `${normalized}.`}`
-}
-
-const buildJobDescription = ({ location, experienceRequired }) => [
-  'Official Numeros Motors opening listed on the public open positions page.',
-  ensureSentence(location, 'Location'),
-  ensureSentence(experienceRequired, 'Experience'),
-]
-  .filter(Boolean)
-  .join(' ')
-
 export const hasOfficialHomepageSignal = (html) => {
   const page = String(html ?? '')
 
@@ -226,9 +173,7 @@ export const extractOpenings = (html) => {
       throw new Error('Numeros Motors verified open positions page no longer exposes the expected inline role cards')
     }
 
-    const locationHint = extractLocationHintFromTitle(title)
-    const location = toIndiaLocation(locationHint)
-    const dedupeKey = [title, location || ''].join('::')
+    const dedupeKey = title
     if (seen.has(dedupeKey)) continue
 
     seen.add(dedupeKey)
@@ -236,9 +181,9 @@ export const extractOpenings = (html) => {
     jobs.push({
       title,
       department: null,
-      location,
-      city: deriveCity(locationHint),
-      country: 'India',
+      location: null,
+      city: null,
+      country: null,
       sourceUrl: OPEN_POSITIONS_URL,
       applyUrl: APPLY_URL,
       jobId: `${SOURCE}-${slugify(title)}`,
@@ -250,7 +195,10 @@ export const extractOpenings = (html) => {
       requiredSkills: [],
       postingDate: null,
       closingDate: null,
-      jobDescription: buildJobDescription({ location, experienceRequired }),
+      jobDescription: null,
+      sourceDetailComplete: false,
+      sourceDetailStatus: 'native-title-experience-brief-only',
+      lifecycleCleanupAllowed: false,
       remoteStatus: null,
     })
   }
@@ -262,51 +210,8 @@ export const extractOpenings = (html) => {
   return jobs
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
 export const createNumerosMotorsScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchText = defaultFetchText, now: overrideNow } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('Numeros Motors verified official homepage no longer matches the trusted first-party surface')
-    }
-
-    const careersUrl = extractCareersUrlFromHomepage(homepageHtml)
-    if (careersUrl !== CAREERS_URL) {
-      throw new Error('Numeros Motors homepage no longer links to the verified official careers page')
-    }
-
-    const careersHtml = await fetchText(CAREERS_URL)
-    if (!hasOfficialCareersSignal(careersHtml)) {
-      throw new Error('Numeros Motors verified careers page no longer matches the trusted first-party surface')
-    }
-
-    const openPositionsUrl = extractOpenPositionsUrl(careersHtml)
-    if (openPositionsUrl !== OPEN_POSITIONS_URL) {
-      throw new Error('Numeros Motors careers page no longer points to the verified open positions handoff')
-    }
-
-    const jobsHtml = await fetchText(OPEN_POSITIONS_URL)
-    const jobs = extractOpenings(jobsHtml)
-
-    return jobs.map((job) => ({
-      ...job,
-      company: COMPANY,
-      source: SOURCE,
-      companyCareerPage: OPEN_POSITIONS_URL,
-      companyDomain: COMPANY_DOMAIN,
-      atsPlatform: 'official-company-careers',
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt: (overrideNow || now)(),
-    }))
-  },
+  run: (options = {}) => readCurrentNumeros({ ...options, now: options.now ?? now }),
 })
 
 export const run = async (options = {}) => createNumerosMotorsScraper().run(options)

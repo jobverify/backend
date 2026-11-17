@@ -1,10 +1,18 @@
 import {createHash} from 'node:crypto'
 import {extractOfficialRecruitmentLinks} from '../../scripts/officialRecruitmentLinks.js'
 import {parseRmkDetail} from '../../scraper-support/shared/successFactorsRmk.js'
-import {readNativeDocument,extractActiveDescription} from './nativeHtml.js'
+import {readNativeDocument,extractActiveDescription,decodeNativeHtml} from './nativeHtml.js'
 import {cargillGuardError,parseCargillJson,tagCargillError} from './nativeErrors.js'
 import {readVisibleNativeDocument} from '../../scraper-support/utils/visibleNativeHtml.js'
 export const HOME='https://www.cargill.com/',CAREERS='https://careers.cargill.com/',SEARCH=CAREERS+'en/search-jobs',NATIVE='https://jobs.cargill.com',CLIENT='https://tbcdn.talentbrew.com/js/client/search.js',CORE='https://tbcdn.talentbrew.com/bundles/tb-corepack.js'
+// The current employer-declared deployment retains the pinned search program
+// and its recursive bindQueryParams serializer. This complete core artifact is
+// also byte-identical to the retained November7 original. Unknown assets remain
+// unqualified; neither pagination/count checks nor role guards inherit a bypass.
+const reviewedCoreHashes=new Set([
+ 'f1b4a0bc9413818f043290fe4b6944567a92888aa9e0a004673b1e90cd17c6a7',
+ '679b3cbd2d0f1c7c867f2a1c3a2b5394042ce544acb547a791a0c1ce0199f669',
+])
 const prove=(ok,message)=>{if(!ok)throw cargillGuardError('CONTRACT',message)},norm=s=>typeof s==='string'?s.replace(/\s+/g,' ').trim():'',plain=s=>typeof s==='string'&&norm(s).length>2&&!/[<>]/.test(s),id=s=>typeof s==='string'&&/^[1-9]\d*$/.test(s),one=(a,label)=>{prove(a.length===1,'Expected one '+label);return a[0]},hash=s=>createHash('sha256').update(s).digest('hex')
 const links=(html,base)=>{
  const d=readNativeDocument(html),active=new Set(d.nodes(n=>n.tag==='a'&&typeof n.attrs.href==='string').flatMap(n=>{try{return[new URL(n.attrs.href,base).href]}catch{return[]}}))
@@ -53,7 +61,11 @@ const withdrawnProfiles=[{requisitionId:'329403',publicJobId:'96958018784',title
  {requisitionId:'328292',publicJobId:'96288117680',title:'Platform Engineer',
  sourceUrl:CAREERS+'en/job/bengaluru/platform-engineer/23251/96288117680',
  applicationURL:'https://career2.successfactors.eu/sfcareer/jobreqcareer?jobId=328292&company=cargill&locale=en_US',
- nativeURL:NATIVE+'/job/Bangalore-Platform-Engineer-Karn-560087/1363455457/',nativeRmkPublicId:'1363455457'}]
+  nativeURL:NATIVE+'/job/Bangalore-Platform-Engineer-Karn-560087/1363455457/',nativeRmkPublicId:'1363455457'},
+ {requisitionId:'336637',publicJobId:'102773845824',title:'Analyst Accounting Ag&Trading NA Oilseeds United States',
+ sourceUrl:CAREERS+'en/job/bengaluru/analyst-accounting-ag-and-trading-na-oilseeds-united-states/23251/102773845824',
+ applicationURL:'https://career2.successfactors.eu/sfcareer/jobreqcareer?jobId=336637&company=cargill&locale=en_US',
+ nativeURL:NATIVE+'/job/Bangalore-Analyst-Accounting-Ag&Trading-NA-Oilseeds-United-States-Karn-560087/1376461257/',nativeRmkPublicId:'1376461257'}]
 const clickGuardStyle='<style id="antiClickjack" type="text/css">body{display:none !important;}</style>'
 function readReviewedWithdrawal(html,finalURL,official,document){
  const withdrawnProfile=withdrawnProfiles.find(profile=>['requisitionId','publicJobId','title','sourceUrl','applicationURL'].every(key=>official[key]===profile[key])&&finalURL===profile.nativeURL)
@@ -66,7 +78,7 @@ function readReviewedWithdrawal(html,finalURL,official,document){
  const companyJobCode=withdrawnProfile.requisitionId+'-en_US'
  if(codes.length!==1||!activeNodes.has(codes[0])||codes[0].tag!=='script'||codes[0].attrs.type!=='IN/AwliWidget'||codes[0].attrs['data-company-job-code']!==companyJobCode
   ||codes[0].attrs['data-integration-context']!=='urn:li:organization:2678'||titles.length!==1||titles[0].attrs.content!==official.title
-  ||!activeNodes.has(titles[0])||pageTitles.length!==1||!activeNodes.has(pageTitles[0])||norm(pageTitles[0].raw)!==withdrawnProfile.title+' Job Details | cargill')return null
+  ||!activeNodes.has(titles[0])||pageTitles.length!==1||!activeNodes.has(pageTitles[0])||norm(decodeNativeHtml(pageTitles[0].raw))!==withdrawnProfile.title+' Job Details | cargill')return null
  // A filled tombstone has none of the active role metadata. Unexpected role,
  // employer, country, date or criteria assertions remain a real guard failure.
  const roleProperties=new Set(['title','description','datePosted','validThrough','hiringOrganization','addressCountry','jobLocation','identifier'])
@@ -99,7 +111,7 @@ function readReviewedWithdrawal(html,finalURL,official,document){
 export function parseCargillSearch(corporate,careers,search,client,core){
  prove(links(corporate,HOME).includes(CAREERS),'Current corporate careers handoff unavailable');prove(links(careers,CAREERS+'en').includes(SEARCH),'Current official search handoff unavailable')
  const d=readNativeDocument(search),scripts=d.nodes(n=>n.tag==='script'&&!Object.hasOwn(n.attrs,'nomodule')&&[undefined,'','text/javascript','application/javascript'].includes(n.attrs.type)&&n.attrs.src).map(n=>new URL(n.attrs.src,SEARCH).href)
- prove(scripts.includes(CLIENT)&&scripts.includes(CORE)&&hash(client)==='f58913158b9aa603a2a21969c4533ae9023d26ff6699d5ac505ef9d469bd85dd'&&hash(core)==='f1b4a0bc9413818f043290fe4b6944567a92888aa9e0a004673b1e90cd17c6a7','Current public native query client changed')
+ prove(scripts.includes(CLIENT)&&scripts.includes(CORE)&&hash(client)==='f58913158b9aa603a2a21969c4533ae9023d26ff6699d5ac505ef9d469bd85dd'&&reviewedCoreHashes.has(hash(core)),'Current public native query client changed')
  const india=one(d.nodes(n=>n.tag==='input'&&n.attrs['data-facet-type']==='2'&&n.attrs['data-display']==='India'),'India country facet');prove(india.attrs['data-id']==='1269750','Native India country identity mismatch')
  const section=one(d.nodes(n=>n.attrs.id==='search-results'),'native search results');prove(section.attrs['data-ajax-url']==='/en/search-jobs/results'&&section.attrs['data-records-per-page']==='15','Native public pagination endpoint changed')
  const total=number(india.attrs['data-count']);prove(total>0&&total<=300,'Native India inventory unavailable or beyond bounded scope');return{total,globalDisplayedTotal:number(section.attrs['data-total-results'])}

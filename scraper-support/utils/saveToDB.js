@@ -577,11 +577,14 @@ export const saveToDB = async (jobs, source, options = {}) => {
           },
           // Insert-only fallback protects the first stored observation even if
           // another writer inserts or recovers a source date after our lookup.
-          ...(observationOnly && publicationDate.date ? { $setOnInsert: {
-            postedAt: publicationDate.date,
-            sortDate: publicationDate.date,
-            postedAtProvenance: 'observation',
-            postedAtProvenanceValue: publicationDate.provenanceValue,
+          ...(observationOnly && publicationDate.date || process.env.PIPELINE_ID ? { $setOnInsert: {
+            ...(process.env.PIPELINE_ID ? { firstSeenPipelineId: process.env.PIPELINE_ID } : {}),
+            ...(observationOnly && publicationDate.date ? {
+              postedAt: publicationDate.date,
+              sortDate: publicationDate.date,
+              postedAtProvenance: 'observation',
+              postedAtProvenanceValue: publicationDate.provenanceValue,
+            } : {}),
           } } : {}),
           ...(deferred && Object.keys(deferred.unset).length ? { $unset: deferred.unset } : {}),
         },

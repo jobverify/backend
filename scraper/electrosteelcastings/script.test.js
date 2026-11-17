@@ -1,193 +1,46 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-
-import {
-  CAREERS_URL,
-  HOMEPAGE_URL,
-  LEGACY_CAREERS_ENQUIRY_URL,
-  LEGACY_LIFE_AT_URL,
-  SOURCE,
-  VERIFIED_ON,
-  createElectrosteelCastingsScraper,
-  hasBrandedMissingRouteSignal,
-  hasCareerInfoOnlySignal,
-  hasOfficialHomepageSignal,
-} from './script.js'
-
-const homepageHtml = `
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <title>Home | Electrosteel Castings Limited</title>
-    </head>
-    <body>
-      <p>MANUFACTURING EXCELLENCE.</p>
-      <p>A proud make in india company With Global Outreach</p>
-      <p>We are the largest manufacturer of Ductile Iron (DI) Pipes in the Indian sub-continent.</p>
-    </body>
-  </html>
-`
-
-const careerInfoHtml = `
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <title>Electrosteel</title>
-    </head>
-    <body>
-      <h1>Build the Future with Electrosteel Castings Limited</h1>
-      <h2>WHY JOIN ELECTROSTEEL</h2>
-      <h2>OUR PROMISE</h2>
-      <h2>Explore Opportunities at Electrosteel</h2>
-      <h2>Khoj The Campus Drive</h2>
-      <h3>Roles Offered Under Khoj</h3>
-      <p>Final-year students pursuing B.Tech, MBA, CA, B.Sc., B.A., B.Com., and other relevant disciplines from recognised universities and institutes across India</p>
-    </body>
-  </html>
-`
-
-test('homepage identity survives changes to Electrosteel rotating campaign copy', () => {
-  const currentHomepage = homepageHtml.replace('MANUFACTURING EXCELLENCE.', 'SUSTAINABLE TODAY. RESPONSIBLE ALWAYS.')
-  assert.equal(hasOfficialHomepageSignal(currentHomepage), true)
-  assert.equal(hasOfficialHomepageSignal(currentHomepage.replace('Home | Electrosteel Castings Limited', 'Unrelated company')), false)
+import {HOMEPAGE_URL,CAREERS_URL,ENQUIRY_URL,run} from './script.js'
+import {PROGRAM_URL,readCurrentElectrosteel,readCurrentElectrosteelCareer,readCurrentElectrosteelEnquiry} from './currentNative20261117.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261117.json.gz',import.meta.url))))
+const original=url=>fixture.responses.find(r=>r.url===url),body=r=>Buffer.from(r.bodyBase64,'base64').toString()
+function replay(edit=(row,text)=>text){const calls=[],counts=new Map();return {calls,fetchImpl:async(url,init)=>{const row=original(url);assert.ok(row);calls.push(url);assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');assert.equal(init.body,undefined);const n=(counts.get(url)??0)+1;counts.set(url,n);return Object.defineProperty(new Response(edit(row,body(row),n),{status:row.status,headers:row.headers}),'url',{value:row.url})}}}
+test('Electrosteel native Khoj observations are four unactivated campus role areas with no work country or requisition identity',()=>{
+ const model=readCurrentElectrosteelCareer(readCurrentElectrosteel(body(original(CAREERS_URL)),CAREERS_URL))
+ assert.equal(model.roleAreas.length,4);assert.ok(model.roleAreas.every(row=>row.recordKind==='programme-role-area'&&row.country===null&&row.jobId===null&&row.criteriaQualified===false&&row.streamActivationQualified===false))
+ assert.equal(model.wholeNativeCareerStream.attrs.hidden,'');assert.equal(model.nativeVacancyCohortQualified,false);assert.ok(model.roleAreas[0].label.includes('Graduate Engineer Trainees'));assert.ok(model.roleAreas[3].label.includes('Finance Trainees'))
 })
-
-const missingRouteHtml = `
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <title>Electrosteel</title>
-    </head>
-    <body>
-      <h1>404 / Page Not Found</h1>
-      <p>THIS PAGE IS OFF THE GRID.</p>
-      <p>Routing Status 404</p>
-      <p>Destination unavailable.</p>
-    </body>
-  </html>
-`
-
-test('validates the Thursday, August 20, 2026 Electrosteel homepage, careers hub, and accepted legacy no-openings routes', async () => {
-  const requestedUrls = []
-  const scraper = createElectrosteelCastingsScraper()
-
-  assert.equal(SOURCE, 'electrosteelcastings')
-  assert.equal(VERIFIED_ON, '2026-08-20')
-  assert.equal(hasOfficialHomepageSignal(homepageHtml), true)
-  assert.equal(hasCareerInfoOnlySignal(careerInfoHtml), true)
-  assert.equal(hasBrandedMissingRouteSignal(missingRouteHtml), true)
-
-  const jobs = await scraper.run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === HOMEPAGE_URL) return homepageHtml
-      if (url === CAREERS_URL) return careerInfoHtml
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === LEGACY_CAREERS_ENQUIRY_URL || url === LEGACY_LIFE_AT_URL) {
-        return { status: 404, url, html: missingRouteHtml }
-      }
-
-      throw new Error(`Unexpected page URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    HOMEPAGE_URL,
-    CAREERS_URL,
-    LEGACY_CAREERS_ENQUIRY_URL,
-    LEGACY_LIFE_AT_URL,
-  ])
-  assert.deepEqual(jobs, [])
+test('Electrosteel complete general candidate form retains native field models and document declaration while PDF/role binding/visible eligibility stay unqualified',()=>{
+ const model=readCurrentElectrosteelEnquiry(readCurrentElectrosteel(body(original(ENQUIRY_URL)),ENQUIRY_URL))
+ assert.equal(model.nativeFields.length,8);assert.ok(model.nativeFields.some(field=>field.attrs.name==='post_applied_for'&&field.tag==='input'));assert.equal(model.nativeDocumentURL,HOMEPAGE_URL+'api/career-enquiry-document')
+ assert.equal(model.nativeDocumentRead,false);assert.equal(model.roleSpecificBindingQualified,false);assert.equal(model.publicApplicationEligibilityQualified,false);assert.equal(model.streamActivationQualified,false)
+ assert.ok(body(original(PROGRAM_URL)).includes('submitCareerEnquiry'));assert.ok(body(original(PROGRAM_URL)).includes('File must be 5MB or smaller'))
 })
-
-test('accepts the current Electrosteel legacy route redirects when they still resolve to verified official no-openings surfaces', async () => {
-  const scraper = createElectrosteelCastingsScraper()
-
-  const jobs = await scraper.run({
-    fetchText: async (url) => {
-      if (url === HOMEPAGE_URL) return homepageHtml
-      if (url === CAREERS_URL) return careerInfoHtml
-      throw new Error(`Unexpected text URL: ${url}`)
-    },
-    fetchPage: async (url) => {
-      if (url === LEGACY_CAREERS_ENQUIRY_URL) {
-        return { status: 200, url: CAREERS_URL, html: careerInfoHtml }
-      }
-
-      if (url === LEGACY_LIFE_AT_URL) {
-        return { status: 200, url: HOMEPAGE_URL, html: homepageHtml }
-      }
-
-      throw new Error(`Unexpected page URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(jobs, [])
+test('Electrosteel literal programme role-area list supports an additional current observation without a frozen four-row cohort or India inference',()=>{
+ const native=body(original(CAREERS_URL)),marker='<div>Finance Trainees — CA / CMA / Finance &amp; Accounts</div>';assert.ok(native.includes(marker))
+ const changed=native.replace(marker,marker+'</span></li><li><span><div>Additional Native Programme Area</div>'),model=readCurrentElectrosteelCareer(readCurrentElectrosteel(changed,CAREERS_URL))
+ assert.equal(model.roleAreas.length,5);assert.equal(model.roleAreas.at(-1).label,'Additional Native Programme Area');assert.equal(model.roleAreas.at(-1).country,null)
 })
-
-test('fails closed when the Electrosteel homepage, careers hub, or legacy 404 routes drift', async () => {
-  await assert.rejects(
-    createElectrosteelCastingsScraper().run({
-      fetchText: async (url) => {
-        if (url === HOMEPAGE_URL) {
-          return '<html><body>No manufacturing overview</body></html>'
-        }
-
-        return careerInfoHtml
-      },
-    }),
-    /Electrosteel homepage no longer matches the verified official public site/i,
-  )
-
-  await assert.rejects(
-    createElectrosteelCastingsScraper().run({
-      fetchText: async (url) => {
-        if (url === HOMEPAGE_URL) return homepageHtml
-        if (url === CAREERS_URL) return '<html><body>Apply now for open roles</body></html>'
-        throw new Error(`Unexpected text URL: ${url}`)
-      },
-      fetchPage: async (url) => ({ status: 404, url, html: missingRouteHtml }),
-    }),
-    /career information page no longer matches the verified official no-openings surface/i,
-  )
-
-  await assert.rejects(
-    createElectrosteelCastingsScraper().run({
-      fetchText: async (url) => {
-        if (url === HOMEPAGE_URL) return homepageHtml
-        if (url === CAREERS_URL) return careerInfoHtml
-        throw new Error(`Unexpected text URL: ${url}`)
-      },
-      fetchPage: async (url) => {
-        if (url === LEGACY_CAREERS_ENQUIRY_URL) {
-          return { status: 200, url, html: '<html><body>Open roles listed here</body></html>' }
-        }
-
-        return { status: 404, url, html: missingRouteHtml }
-      },
-    }),
-    /legacy careers routes no longer match the verified official no-openings surfaces/i,
-  )
+test('Electrosteel whole closing programme-role-area and general form field models reject drift',async()=>{
+ for(const mode of ['role','form']){const {fetchImpl}=replay((row,text,n)=>n===2?mode==='role'&&row.url===CAREERS_URL?text.replace('Graduate Engineer Trainees (GET)','Changed Native Programme Requirement'):mode==='form'&&row.url===ENQUIRY_URL?text.replace('accept="application/pdf"','accept="image/png"'):text:text)
+  await assert.rejects(run({fetchImpl}),/Closing.*changed/,mode)
+ }
 })
-
-
-test('Electrosteel retries transient legacy-route gateway errors and preserves verified 404 responses', async () => {
-  const { createFetchPage } = await import('./script.js')
-  let calls = 0
-  const fetchPage = createFetchPage({ baseDelayMs: 0, fetchImpl: async () => {
-    calls += 1
-    return calls === 1 ? new Response('Proxy Error', { status: 502 }) : new Response(missingRouteHtml, { status: 404 })
-  } })
-  const page = await fetchPage(LEGACY_CAREERS_ENQUIRY_URL)
-  assert.equal(calls, 2)
-  assert.equal(page.status, 404)
-  assert.equal(hasBrandedMissingRouteSignal(page.html), true)
-  await assert.rejects(createFetchPage({ attempts: 2, baseDelayMs: 0,
-    fetchImpl: async () => new Response('Proxy Error', { status: 502 }) })(LEGACY_CAREERS_ENQUIRY_URL), /HTTP 502/)
+test('Electrosteel entire native enquiry programme and direct/nested/URI JobPosting models cannot silently change',async()=>{
+ const {fetchImpl}=replay((row,text)=>row.url===PROGRAM_URL?text+';globalThis.ELECTROSTEEL_EXECUTED=true':text)
+ await assert.rejects(run({fetchImpl}),/Whole native enquiry client/);assert.equal(globalThis.ELECTROSTEEL_EXECUTED,undefined)
+ for(const model of [{'@type':'JobPosting'},{'@graph':[{'@type':'JobPosting'}]},[{'@type':['Thing','https://schema.org/JobPosting']}]] )assert.throws(()=>readCurrentElectrosteel(body(original(CAREERS_URL)).replace('</head>','<script type="application/ld+json">'+JSON.stringify(model)+'</script></head>'),CAREERS_URL),/JobPosting/)
+})
+test('Electrosteel metadata and original denial/challenge boundaries forbid body-only or alternate-source acquisition',async()=>{
+ let callbacks=0;await assert.rejects(run({fetchText:async()=>{callbacks++}}),/Original HTTP metadata/);assert.equal(callbacks,0)
+ for(const status of [403,202]){let calls=0,reads=0
+  await assert.rejects(run({fetchImpl:async url=>{calls++;return {status,url,headers:new Headers(status===202?{'x-amzn-waf-action':'challenge'}:{}),body:{getReader(){reads++;assert.fail('No denied body read')},cancel:async()=>{}}}}}),error=>error.httpStatus===status&&error.failureKind==='blocked_or_access_denied');assert.equal(calls,1);assert.equal(reads,0)
+ }
+})
+test('Electrosteel frozen opaque in-flight caller cancellation survives fulfilled/rejected original fetches',async()=>{
+ for(const mode of ['fulfil','reject']){const controller=new AbortController(),reason=Object.freeze({owner:'electrosteel-'+mode});let calls=0
+  await assert.rejects(run({signal:controller.signal,fetchImpl:async url=>{calls++;controller.abort(reason);if(mode==='reject')throw Error('transport');return Object.defineProperty(new Response('opaque'),'url',{value:url})}}),error=>error===reason);assert.equal(calls,1)
+ }
 })

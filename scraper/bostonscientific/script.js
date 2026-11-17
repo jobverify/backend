@@ -29,10 +29,11 @@ export async function run({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.pars
  try{
   const corporate=await request(fetchText,CORPORATE);ensure(extractOfficialRecruitmentLinks(corporate,CORPORATE).some(l=>l.href===BOARD),'Current exact official handoff unavailable')
   validateBoard(await request(fetchText,BOARD))
-  const rows=[],ids=new Set(),unresolvedScopes=[],scopeById=new Map();let total=null,firstSnapshot,pages=0
+  const rows=[],ids=new Set(),unresolvedScopes=[],scopeById=new Map(),globalPages=new Map();let total=null,pages=0
   for(let start=0;start<=1000;start+=10){
    const data=page(await request(fetchJson,search(start)));pages++
-   if(total===null){total=data.count;firstSnapshot=JSON.stringify(data.positions)}else ensure(total===data.count,'Native total drift')
+   if(total===null)total=data.count;else ensure(total===data.count,'Native total drift')
+   globalPages.set(start,JSON.stringify(data))
    if(start>=total){ensure(data.positions.length===0,'Terminal page not empty');break}
    ensure(data.positions.length===Math.min(10,total-start),'Truncated native page')
    for(const row of data.positions){
@@ -86,7 +87,13 @@ export async function run({fetchText=nativeFetch,fetchJson=async(u,o)=>JSON.pars
   ensure(observedIndia.size===expectedIndia.length&&jobs.length===expectedIndia.length,'Shared extraction did not reconcile selected India identities')
   ensure(facetIdentities.size===facetTotal&&quarantinedFacetRoles.size+observedIndia.size===facetTotal,'Country facet native row count did not reconcile')
   const terminal=page(await request(fetchJson,search(Math.ceil(facetTotal/10)*10,true)),{country:true});ensure(terminal.count===facetTotal&&terminal.positions.length===0,'India terminal drift')
-  const final=page(await request(fetchJson,search(0)));ensure(final.count===total&&JSON.stringify(final.positions)===firstSnapshot,'Final native snapshot drift')
+  // A middle page can retain its count and identities while a complete native
+  // record changes. Close every issued page, including the terminal response,
+  // against its complete original data model before returning any acquisition.
+  for(const [start,snapshot]of globalPages){
+   const final=page(await request(fetchJson,search(start)))
+   ensure(final.count===total&&JSON.stringify(final)===snapshot,'Closing complete native page/model drift')
+  }
   const searchCeilingUnresolved=total>=OBSERVED_NATIVE_SEARCH_CEILING
   const complete=!searchCeilingUnresolved&&unresolvedScopes.length===0&&maxJobs>=jobs.length&&readInventoryEvidence(jobs)?.listingComplete===true
   const selected=jobs.slice(0,maxJobs).map(job=>{const detail=details.get(job.jobId),native=byId.get(job.jobId);return{...job,city:detail.scope.indiaLocations[0].city,postingDate:new Date(native.postedTs*1000).toISOString(),sourceListingComplete:complete,...(!complete?{sourceScopeComplete:false,lifecycleCleanupAllowed:false}:{}),sourceDetailComplete:detail.sourceDetailComplete,sourceDetailStatus:detail.sourceDetailComplete?'complete':'missing-content',sourceNativeLocations:native.locations,sourceNativeStandardizedLocations:native.standardizedLocations,scrapedAt:startedAt}})

@@ -12,12 +12,12 @@ test('JuzGoDigital is registered as a verified first-party zero-job scraper with
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Juzgodigital Private Limited')
   assert.equal(provider.companyCareerPage, 'https://www.juzgodigital.com/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-team-general-cv-intake-inventory-unavailable')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-common-careers-route-validation')
+  assert.equal(provider.paginationStrategy, 'active-own-home-and-team-general-cv-models-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage-plus-blocked-first-party-careers-routes-return-empty',
+    'whole-current-own-team-model+general-hr-cv-compose-retained+vacancy-country-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

@@ -4,22 +4,22 @@ import test from 'node:test'
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 
-test('Turso is registered as a fail-closed provider against the verified first-party legal and careers surfaces', () => {
+test('Turso is registered as a current corporate publisher with unresolved employer vacancy inventory', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'turso')
 
   assert.ok(provider, 'Expected Turso provider to be registered in customProviders.json')
   assert.equal(provider.companyName, 'Turso')
-  assert.equal(provider.companyCareerPage, 'https://turso.tech/careers')
+  assert.equal(provider.companyCareerPage, 'https://turso.tech/')
   assert.equal(provider.companyDomain, 'turso.tech')
   assert.equal(provider.termsOfUseUrl, 'https://turso.tech/terms-of-use')
   assert.equal(provider.publicAshbyBoardUrl, 'https://jobs.ashbyhq.com/turso')
   assert.equal(provider.publicLegalNameBoardUrl, 'https://jobs.ashbyhq.com/chiselstrike')
-  assert.equal(provider.atsPlatform, 'no-trustworthy-public-jobs-surface')
+  assert.equal(provider.atsPlatform, 'official-current-native-corporate-employer-inventory-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'fail-closed-sentinel')
+  assert.equal(provider.paginationStrategy, 'own-home-terms-about-and-authored-acquisition-publication-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-legal-identity+careers-route-redirects-home+unconfigured-public-ashby-shells+return-empty',
+    'whole-current-legal-corporate-and-acquisition-models+parent-jobs-not-target-jobs+role-country-and-company-inventory-unknown',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

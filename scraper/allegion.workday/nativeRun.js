@@ -2,6 +2,7 @@ import {extractWorkdayStructuredDetail} from '../../scraper-support/myworkday/en
 import {toPlainText} from '../../scraper-support/detailExtractors/shared.js'
 import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvidence.js'
 import {BOARD} from './nativeBinding.js'
+import {requireNativeHttpResponse} from '../../scraper-support/shared/nativeHttpResponse.js'
 
 const API='https://allegion.wd5.myworkdayjobs.com/wday/cxs/allegion/careers'
 const INDIA='c4f78be1a8f14da0ab49ce1162348a5e',BANGALORE='bcf71f1c5971014066533f84bf001941'
@@ -52,7 +53,7 @@ export async function runAllegionNative({signal,now}){
   const headers={Accept:body?'application/json':url===BOARD?'text/html':'text/html,application/json','User-Agent':'Mozilla/5.0',...(body?{'Content-Type':'application/json'}:{}),...(cookie?{Cookie:cookie}:{}),...(body&&csrf?{'x-calypso-csrf-token':csrf}:{})}
   return bounded(signal,async()=>{
    const response=await fetch(url,{method:body?'POST':'GET',headers,...(body?{body:JSON.stringify(body)}:{}),redirect:'error',signal})
-   check(response.status===200&&response.url===url,'Native HTTP status or final URL failure')
+   await requireNativeHttpResponse(response,url,{context:'Allegion native inventory: Native HTTP status or final URL failure',signal})
    if(url===BOARD){const set=response.headers.getSetCookie?.()||[];cookie=set.map(v=>v.split(';')[0]).join('; ');csrf=set.find(v=>v.startsWith('CALYPSO_CSRF_TOKEN='))?.split(';')[0].slice('CALYPSO_CSRF_TOKEN='.length)||''}
    return await response.text()
   })

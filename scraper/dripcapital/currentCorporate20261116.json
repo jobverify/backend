@@ -1,0 +1,10 @@
+{
+  "provenance": "Current complete original Drip India corporate careers entity differs from November14 only in two app bundle references17f59ec->4494c27 and four static deployment references1794576571->1794829081. Original organization, complete SSR markup, text, styles and exact current Recruiterbox handoff remain byte-identical. No renderer or whole-company scope authority inferred; all native entity segments, role country, criteria, questions and opening/closing guards remain mandatory.",
+  "fixture": "fixtures/corporate-20261116.json.gz",
+  "originalEntities": [
+    {
+      "originalEntityBytes": 22139,
+      "originalEntitySHA256": "a95bd3b1181b441c63fcfbe309de77d45f9fd6b1b635333a9c2f180310ef05e7"
+    }
+  ]
+}

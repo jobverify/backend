@@ -1,8 +1,9 @@
+import {runCurrentPletra} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+
+
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -13,9 +14,6 @@ export const CONTACT_URL = 'https://pletratech.com/contact-us/'
 export const CAREERS_URL = 'https://pletratech.com/careers-pletra-technologies/'
 export const CAREERS_ALIAS_URLS = ['https://pletratech.com/careers-page/']
 export const COMPANY_DOMAIN = 'pletratech.com'
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const ACCORDION_ITEM_PATTERN = /<div\b[^>]*class=["'][^"']*elementor-accordion-item[^"']*["'][^>]*>[\s\S]*?<a\b[^>]*class=["'][^"']*elementor-accordion-title[^"']*["'][^>]*>([\s\S]*?)<\/a>[\s\S]*?<div\b[^>]*class=["'][^"']*elementor-tab-content[^"']*["'][^>]*>([\s\S]*?)<\/div>/gi
 
@@ -48,41 +46,6 @@ const stripTagsToLines = (value) => decodeHtmlEntities(String(value ?? ''))
   .split('\n')
   .map((line) => normalizeWhitespace(line))
   .filter(Boolean)
-
-const slugify = (value) => normalizeWhitespace(value)
-  ?.toLowerCase()
-  .replace(/[^a-z0-9]+/g, '-')
-  .replace(/^-+|-+$/g, '') || null
-
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
 
 const normalizeUrl = (value) => {
   try {
@@ -184,8 +147,6 @@ const normalizeJobLocation = (rawLocation) => {
   if (!normalized) return { location: null, city: null, country: null }
   if (/^belgium$/i.test(normalized)) return { location: 'Belgium', city: null, country: 'Belgium' }
   if (/^india$/i.test(normalized)) return { location: 'India', city: null, country: 'India' }
-  const city = normalizeCity(normalized)
-  if (city && /^(?:Pune|Mumbai|Bengaluru|Bangalore|Hyderabad|Chennai|Delhi|New Delhi|Noida|Gurugram|Gurgaon|Kolkata|Ahmedabad)$/i.test(normalized) && !/^india$/i.test(city)) return { location: city + ', India', city, country: 'India' }
   return { location: normalized, city: null, country: null }
 }
 
@@ -203,7 +164,6 @@ export const extractPublicJobs = (html) => {
       if (lines.length === 0) throw new Error('Pletra incomplete public opening: missing description')
 
       const { location, city, country } = normalizeJobLocation(rawLocation)
-      const identitySlug = slugify(`${title}-${location || 'unresolved'}`)
 
       return {
         title,
@@ -211,8 +171,8 @@ export const extractPublicJobs = (html) => {
         location,
         city,
         country,
-        jobId: `${SOURCE}-${identitySlug}`,
-        requisitionId: `${SOURCE}-${identitySlug}`,
+        jobId: null,
+        requisitionId: null,
         sourceUrl: CAREERS_URL,
         applyUrl: CAREERS_URL,
         employmentType: null,
@@ -233,61 +193,11 @@ export const extractPublicJobs = (html) => {
   }
 
   const advertised = (String(html).match(/class=["'][^"']*\belementor-accordion-item\b[^"']*["']/gi) || []).length
-  if (advertised !== jobs.length || new Set(jobs.map(job => job.jobId)).size !== jobs.length) throw new Error('Pletra incomplete or duplicate public opening inventory')
+  if (advertised !== jobs.length || new Set(jobs.map(job => JSON.stringify([job.title, job.location, job.jobDescription]))).size !== jobs.length) throw new Error('Pletra incomplete or duplicate public opening inventory')
   return jobs
 }
 
-export const createPletraTechnologiesIndiaScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchPage = defaultFetchPage, now: overrideNow } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Pletra verified official homepage no longer matches the known first-party surface')
-    }
-
-    if (!hasVerifiedCareersLink(homepage.html)) {
-      throw new Error('Pletra homepage no longer links to the verified careers surface')
-    }
-
-    const contactPage = await fetchPage(CONTACT_URL)
-    if (contactPage.status !== 200 || !hasOfficialContactSignal(contactPage.html)) {
-      throw new Error('Pletra verified India contact page no longer matches the known first-party surface')
-    }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-    if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
-      throw new Error('Pletra verified careers surface no longer matches the known first-party page')
-    }
-
-    for (const aliasUrl of CAREERS_ALIAS_URLS) {
-      const aliasPage = await fetchPage(aliasUrl)
-
-      if (!isVerifiedCareersAlias(aliasPage)) {
-        throw new Error('Pletra careers alias changed materially')
-      }
-    }
-
-    const globalJobs = extractPublicJobs(careersPage.html)
-    const listingComplete = globalJobs.every(job => Boolean(job.country))
-    const indiaJobs = globalJobs.filter(job => job.country === 'India')
-
-    if (indiaJobs.length === 0) {
-      throw new Error('Pletra careers page no longer exposes India-scoped public openings')
-    }
-
-    const scrapedAt = (overrideNow || now)()
-
-    return attachInventoryEvidence(indiaJobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt,
-      companyCareerPage: CAREERS_URL,
-      companyDomain: COMPANY_DOMAIN,
-      atsPlatform: 'official-company-careers',
-      ...(listingComplete ? {} : { sourceListingComplete: false }),
-    })), { status: listingComplete ? 'complete-inventory' : 'coverage-gap', surface: CAREERS_URL, firstParty: true, listingComplete, pagesFetched: 1, reportedTotal: globalJobs.length, indiaFacetCount: listingComplete ? indiaJobs.length : null, verifiedAt: scrapedAt, reason: listingComplete ? 'all-inline-opening-locations-verified' : 'one-or-more-published-roles-have-unresolved-country' })
-  },
-})
+export const createPletraTechnologiesIndiaScraper = () => ({run:runCurrentPletra})
 
 export const run = async (options = {}) => createPletraTechnologiesIndiaScraper().run(options)
 

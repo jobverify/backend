@@ -38,9 +38,9 @@ test('INDI IT SOLUTIONS extracts the live text-based opportunity cards from the 
   assert.equal(roles.length, 3)
   assert.deepEqual(roles[0], {
     title: 'Marketing Analyst',
-    location: 'India',
+    location: null,
     city: null,
-    country: 'India',
+    country: null,
     experienceRequired: 'Minimum 2 years of experience',
     vacancies: '2 Vacancies',
     applyUrl: indiit.SHARED_APPLY_URL,
@@ -49,27 +49,7 @@ test('INDI IT SOLUTIONS extracts the live text-based opportunity cards from the 
   })
 })
 
-test('INDI IT SOLUTIONS falls back to a browser-backed careers page loader when Node fetch times out', async () => {
-  const indiit = await loadModule()
-  const requestedPrimaryUrls = []
-  const requestedBrowserUrls = []
-
-  const jobs = await indiit.createIndiItSolutionsScraper({
-    now: () => '2026-08-02T11:00:00.000Z',
-  }).run({
-    fetchText: async (url) => {
-      requestedPrimaryUrls.push(url)
-      throw new TypeError('fetch failed | Connect Timeout Error')
-    },
-    fetchBrowserText: async (url) => {
-      requestedBrowserUrls.push(url)
-      return careersHtml
-    },
-  })
-
-  assert.deepEqual(requestedPrimaryUrls, [indiit.OFFICIAL_CAREERS_URL])
-  assert.deepEqual(requestedBrowserUrls, [indiit.OFFICIAL_CAREERS_URL])
-  assert.equal(jobs.length, 3)
-  assert.equal(jobs[0].source, 'indiitsolutions')
-  assert.equal(jobs[0].scrapedAt, '2026-08-02T11:00:00.000Z')
+test('Indi IT legacy browser/text callbacks cannot qualify brief cards or current inventory',async()=>{
+ const source=await loadModule();let calls=0
+ await assert.rejects(source.run({fetchText:async()=>{calls++;return careersHtml},fetchBrowserText:async()=>careersHtml}),/unsupported metadata-free/);assert.equal(calls,0)
 })

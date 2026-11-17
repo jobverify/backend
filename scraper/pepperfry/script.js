@@ -1,12 +1,10 @@
+import { runCurrentPepperfry } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { PEPPERFRY_CATALOG } from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
 const PUBLIC_JOB_PATTERNS = [
   /"@type"\s*:\s*"JobPosting"/i,
   /\bcurrent openings\b/i,
@@ -51,20 +49,6 @@ const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/\u00a0/g, ' ')
   .replace(/\s+/g, ' ')
   .trim()
-
-const matchesExpectedUrl = (value, expected) => {
-  try {
-    const actualUrl = new URL(value)
-    const expectedUrl = new URL(expected)
-    const normalizePath = (pathname) => pathname === '/' ? '/' : pathname.replace(/\/+$/g, '')
-
-    return actualUrl.hostname.replace(/^www\./i, '').toLowerCase() === expectedUrl.hostname.replace(/^www\./i, '').toLowerCase()
-      && normalizePath(actualUrl.pathname) === normalizePath(expectedUrl.pathname)
-      && actualUrl.search === expectedUrl.search
-  } catch {
-    return false
-  }
-}
 
 export const pageExposesPublicJobListings = (html = '') =>
   extractCareerListings(html).length > 0
@@ -130,19 +114,6 @@ const normalizeLocation = (value = '') => {
   return parts.join(', ') || null
 }
 
-const extractCity = (location) => {
-  const parts = String(location ?? '').split(',').map((part) => part.trim()).filter(Boolean)
-  return parts.length === 1 ? parts[0] : null
-}
-
-const buildJobId = (applyUrl) => {
-  try {
-    return new URL(applyUrl).pathname.split('/').filter(Boolean).pop() || applyUrl
-  } catch {
-    return applyUrl
-  }
-}
-
 export const extractCareerListings = (html = '') => [...String(html ?? '').matchAll(
   /<span[^>]*class=["'][^"']*crpg-opn-listitem-ttl[^"']*["'][^>]*>([\s\S]*?)<\/span>[\s\S]*?<span[^>]*class=["'][^"']*crpg-opn-listitem-location[^"']*["'][^>]*>([\s\S]*?)<\/span>[\s\S]*?<a[^>]*href=["'](https:\/\/trendsys\.darwinbox\.in\/ms\/candidate\/careers\/[^"']+)["'][^>]*>/gi,
 )].map((match) => ({
@@ -151,75 +122,9 @@ export const extractCareerListings = (html = '') => [...String(html ?? '').match
   applyUrl: match[3],
 })).filter((listing) => listing.title && listing.location && listing.applyUrl)
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-      'User-Agent': USER_AGENT,
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url || url,
-    html: await response.text(),
-  }
-}
-
-export const createPepperfryScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (
-      Number(homepage.status) !== 200
-      || !matchesExpectedUrl(homepage.url, HOMEPAGE_URL)
-      || !hasOfficialHomepageSignal(homepage.html)
-    ) {
-      throw new Error('Pepperfry verified official homepage changed materially')
-    }
-
-    const verifiedCareersPageUrl = extractVerifiedCareersPageUrl(homepage.html)
-    if (!matchesExpectedUrl(verifiedCareersPageUrl, CAREERS_PAGE_URL)) {
-      throw new Error('Pepperfry verified homepage careers handoff changed materially')
-    }
-
-    const careersPage = await fetchPage(CAREERS_PAGE_URL)
-    const listings = extractCareerListings(careersPage.html)
-    if (
-      Number(careersPage.status) !== 200
-      || !matchesExpectedUrl(careersPage.url, CAREERS_PAGE_URL)
-      || listings.length === 0
-    ) {
-      throw new Error('Pepperfry verified first-party careers listings changed materially')
-    }
-
-    return listings.map((listing) => {
-      const location = `${listing.location}, India`
-
-      return {
-        title: listing.title,
-        company: COMPANY,
-        department: null,
-        location,
-        city: extractCity(listing.location),
-        country: 'India',
-        jobId: buildJobId(listing.applyUrl),
-        requisitionId: buildJobId(listing.applyUrl),
-        sourceUrl: listing.applyUrl,
-        applyUrl: listing.applyUrl,
-        employmentType: null,
-        experienceRequired: null,
-        minimumQualification: null,
-        preferredQualification: null,
-        requiredSkills: [],
-        postingDate: null,
-        closingDate: null,
-        jobDescription: `Pepperfry current openings listing. Location: ${listing.location}. Apply via Darwinbox.`,
-        publicExperienceChecked: true,
-        remoteStatus: 'On-site',
-      }
-    })
-  },
+// Historical format parsers above are pure helpers; every runtime caller uses the current native contract.
+export const createPepperfryScraper = (defaults = {}) => ({
+  run: (options = {}) => runCurrentPepperfry({...defaults, ...options}),
 })
 
 export const run = async (options = {}) => createPepperfryScraper().run(options)

@@ -5,19 +5,19 @@ import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 import companyAliases from '../providers/companyAliases.json' with { type: 'json' }
 
-test('getScraperCatalog includes Genworx as a verified zero-job first-party SPA sentinel', () => {
+test('getScraperCatalog includes the employer-declared Genworx native Zoho collector with bounded scope', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'genworx')
 
   assert.ok(provider, 'Expected Genworx provider to be registered in customProviders.json')
   assert.equal(provider.companyName, 'Genworx')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyCareerPage, 'https://genworx.ai/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'zohorecruit')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'official-homepage-plus-spa-route-bundle-plus-checked-no-careers-routes')
+  assert.equal(provider.paginationStrategy, 'native-listing-detail-and-public-form-models-with-opening-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-spa-route-bundle+verified-no-public-careers-routes',
+    'official-homepage+declared-primary-module+zoho-native-roles+own-details-and-public-form-models',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

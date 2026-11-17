@@ -33,15 +33,15 @@ test('Manthan local catalog captures the verified first-party careers page metad
   assert.equal(provider.companyCareerPage, 'https://manthan.com/careers/')
   assert.equal(provider.companyDomain, 'manthan.com')
   assert.equal(provider.officialHomepageUrl, 'https://manthan.com/')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'current-own-declared-parent-recruitment-shell-target-inventory-unavailable')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'single-first-party-careers-page-with-inline-opening-blocks',
+    'exact-own-root-redirect-current-publisher-careers-and-declared-parent-board-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-careers-page+inline-opening-blocks+linkedin-apply-links',
+    'whole-current-corporate-relationship-and-parent-native-models+per-role-manthan-employer-country-criteria-application-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

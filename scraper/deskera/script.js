@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { DESKERA_CATALOG } from './catalog.js'
+import { runCurrentDeskera } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -126,7 +127,9 @@ export const isVerifiedGenericLinkedInJobsSearchPage = ({ status, url, html }) =
 }
 
 export const createDeskeraScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentDeskera(options)
+    const { fetchPage = defaultFetchPage } = options
     const homepage = await fetchPage(HOMEPAGE_URL)
 
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {

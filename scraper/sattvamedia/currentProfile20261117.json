@@ -1,0 +1,500 @@
+{
+  "root": "https://www.sattva.co.in/join-us/",
+  "rootTitles": [
+    "Join Sattva | Meaningful careers in sustainability & impact"
+  ],
+  "careers": "https://www.sattva.co.in/join-us/careers/",
+  "careersTitles": [
+    "Careers - Sattva Consulting"
+  ],
+  "board": "https://careers.kula.ai/sattva",
+  "boardTitles": [
+    "Sattva Consulting Pvt Ltd Careers | Open Jobs"
+  ],
+  "privacy": "https://www.sattva.co.in/privacy-policy/",
+  "privacyTitles": [
+    "Privacy Policy - Sattva Consulting"
+  ],
+  "privacyLegalName": "Sattva Media and Consulting Private Limited",
+  "privacyCIN": "U74300KA2009PTC049429",
+  "accountName": "sattva",
+  "accountId": 1566,
+  "api": "https://careers.kula.ai/api/internal/ats_job_posts?accountName=sattva&page=1&type=ats_job_post.index&items=99",
+  "pdf": "https://www.sattva.co.in/wp-content/uploads/2022/09/Prep-Tools-and-Resources-Careers-page-.pdf",
+  "pdfBytes": 195966,
+  "pdfSHA256": "547d643e7f9fb4c8cf3c93b3bcbb91ceb2040608e112db05491f0190935f4e0b",
+  "reviewedPostSemantics": [
+    {
+      "id": 59098,
+      "title": "Senior Consultant - Foundations Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59100,
+      "title": "Tech Lead-CSR Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59103,
+      "title": "Project Lead - Government Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59104,
+      "title": "Analyst - Government Consulting",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59105,
+      "title": "Analyst - Business FinOps",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59106,
+      "title": "Consultant-CSR Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59110,
+      "title": "Lead - Government Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59111,
+      "title": "Associate Consultant - Growth Strategy and Sales Operations",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59112,
+      "title": "Analyst - India Partner Network (IPN)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59114,
+      "title": "Associate Consultant - Government Consulting",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59116,
+      "title": "Associate Consultant - Innovation Practice",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59117,
+      "title": "Senior Consultant - Innovation Practice",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59118,
+      "title": "Lead- Education",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59119,
+      "title": "Senior Consultant - People (HRBP)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59120,
+      "title": "Senior Consultant - People (HRBP)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59122,
+      "title": "Senior Consultant - Education",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59127,
+      "title": "Consultant - MEL & Strategy",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59128,
+      "title": "Associate Consultant – Sustainability & ESG Reporting (Implant)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59129,
+      "title": "Consultant (ESG) | Implant",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59132,
+      "title": "Consultant-CSR Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59133,
+      "title": "Analyst - Business Operations",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59135,
+      "title": "Data Intern - India Data Insights",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59139,
+      "title": "Sattva Internship Form",
+      "kind": "hiring-signal"
+    },
+    {
+      "id": 59142,
+      "title": "Associate Consultant - CSR Advisory (South)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59143,
+      "title": "Associate Consultant-CSR Advisory(Implant)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59401,
+      "title": "Senior Consultant - Skilling",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59412,
+      "title": "Consultant - Education",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59420,
+      "title": "Consultant - Legal & Policy Advisory ",
+      "kind": "vacancy"
+    },
+    {
+      "id": 59938,
+      "title": "Short Term Project ( 3 months), Impact Assessment",
+      "kind": "vacancy"
+    },
+    {
+      "id": 60094,
+      "title": "Consultant - Non Profit Advisory (Sales Ops)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 62070,
+      "title": " Associate Consultant-CSR Advisory (Implant)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 62085,
+      "title": "Senior Consultant, Sustainability and Business Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 62122,
+      "title": "Associate Consultant, Foundations Advisory (Energy and EV)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 62250,
+      "title": "Consultant, Business & Financial Operations",
+      "kind": "vacancy"
+    },
+    {
+      "id": 62596,
+      "title": "Associate Consultant- CSR Advisory-Kannada Mandatory(Implant)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 62675,
+      "title": "Engagement Manager- Government Advisory",
+      "kind": "vacancy"
+    },
+    {
+      "id": 64141,
+      "title": "Associate Consultant - Foundations Advisory (IMPLANT - Embedded at Ministry of Skill Development and Entrepreneurship)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 64782,
+      "title": "Associate Consultant(Data)- CSR Advisory -(Implant)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 66095,
+      "title": "Senior Consultant- Corporate Gender Practice",
+      "kind": "vacancy"
+    },
+    {
+      "id": 66128,
+      "title": "AI Solution Lead",
+      "kind": "vacancy"
+    },
+    {
+      "id": 69128,
+      "title": "Senior Consultant-CSR Advisory(Implant)",
+      "kind": "vacancy"
+    },
+    {
+      "id": 69153,
+      "title": "Associate Consultant - Finance",
+      "kind": "vacancy"
+    }
+  ],
+  "reactControlProof": [
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/8434-d79ae4d355548689.js",
+      "bytes": 241518,
+      "sha256": "d46e13ca8cbb52bd101611976b69bd21c2187a7ab6cc3a29102a99d23fbc9de2",
+      "versions": [
+        "19.3.0-canary-cbb046ab-20260731"
+      ]
+    }
+  ],
+  "programmes": [
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/33d7a86f-2e5721a930ea3691.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/33d7a86f-2e5721a930ea3691.js",
+        "async": ""
+      },
+      "bytes": 201060,
+      "sha256": "c77947a297d603f4a030eeca98ca3cd4dbd8410f8c35782055f90f5fd5b64515",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/8434-d79ae4d355548689.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/8434-d79ae4d355548689.js",
+        "async": ""
+      },
+      "bytes": 241518,
+      "sha256": "d46e13ca8cbb52bd101611976b69bd21c2187a7ab6cc3a29102a99d23fbc9de2",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/main-app-7e4c7668b10f8307.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/main-app-7e4c7668b10f8307.js",
+        "async": ""
+      },
+      "bytes": 483,
+      "sha256": "ccc60656c3f2ade5d00fec8279f8a96736d11b10a0eff51f3a9a3d4c8cd7c97b",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/5f33cac9-8cbc38dc918ebe2b.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/5f33cac9-8cbc38dc918ebe2b.js",
+        "async": ""
+      },
+      "bytes": 2211133,
+      "sha256": "16679c4670b908eb2725b58214e3bacfd73da639b2dff0fe094a3b583c660df0",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/0bbdf7f2-204a0e18a7ecaaa4.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/0bbdf7f2-204a0e18a7ecaaa4.js",
+        "async": ""
+      },
+      "bytes": 3337,
+      "sha256": "372503fc30099f92aa7a12c194268083b3cef95e10f7b2da9eb96ffc8162e9c2",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/3885-babd6acf1d139d27.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/3885-babd6acf1d139d27.js",
+        "async": ""
+      },
+      "bytes": 19640,
+      "sha256": "30dd60014f20e4dba7145ccb312d671cb8f52a765f2e9f3001e2aeccea58edf1",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/6415-aa11f50a5caecb7d.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/6415-aa11f50a5caecb7d.js",
+        "async": ""
+      },
+      "bytes": 14172,
+      "sha256": "bb168d5022b7747e318f74768d1f74f8c0fe70e6dabe45f76a737f29f3af04ef",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/4494-1807b47e2786372d.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/4494-1807b47e2786372d.js",
+        "async": ""
+      },
+      "bytes": 299739,
+      "sha256": "be74be75346eb70e575a43e38c11d2128e80d19d407b83220354561261f973ad",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/935-bbbd05f0ef7ada4c.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/935-bbbd05f0ef7ada4c.js",
+        "async": ""
+      },
+      "bytes": 205283,
+      "sha256": "bdf44967d125b859a03e4ffc4f5016804cb7749e3fe2af18f62ef767f5a5a8d5",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/7215-c2b44b2d3d281129.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/7215-c2b44b2d3d281129.js",
+        "async": ""
+      },
+      "bytes": 41626,
+      "sha256": "5c16b03c330f6070b5528229bbce968a4aa786f6a7360da93510d429095d9a10",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/59-7bb2c38be65cbaf7.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/59-7bb2c38be65cbaf7.js",
+        "async": ""
+      },
+      "bytes": 289239,
+      "sha256": "8c38cfaf7e5101364e720379dd4112f7190ed14bc92e3ca92bd72b20ce7b9f05",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/4038-1697c9bbf88e6fde.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/4038-1697c9bbf88e6fde.js",
+        "async": ""
+      },
+      "bytes": 377747,
+      "sha256": "c4daac4c66a6db91fa270c6412612bfb934520aae037722e07af773d25c91b7e",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/1446-43da6028ca5c5146.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/1446-43da6028ca5c5146.js",
+        "async": ""
+      },
+      "bytes": 8560,
+      "sha256": "9bea1fda2cfec96081789071d1bdb22bdc3fed89df74e09590cf0a3c4d6a1531",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/5927-9f7513869f6ecb88.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/5927-9f7513869f6ecb88.js",
+        "async": ""
+      },
+      "bytes": 22180,
+      "sha256": "3984dc3c4c46e698fdb607e1a6bf8af3ed52ffec9b21f0e009fadd1ddf68c498",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/6388-6c692519a8c73e3f.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/6388-6c692519a8c73e3f.js",
+        "async": ""
+      },
+      "bytes": 102065,
+      "sha256": "eaaf138a9ef51f8dfdeeea75a2624ceb45fc533ab77a7cbdaa633aa402c1498d",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/182-6554c8cab313a3c3.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/182-6554c8cab313a3c3.js",
+        "async": ""
+      },
+      "bytes": 9344,
+      "sha256": "70f764bc312e0bb0e2adc59b1fcffe9bf768ecfa3beec75e3e49f1d30253e538",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/3087-4ff4a1029792e0fe.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/3087-4ff4a1029792e0fe.js",
+        "async": ""
+      },
+      "bytes": 22922,
+      "sha256": "e1b9f8e12e816a3ca5a224248d3511ff7095140d87771100e161250f3027ebff",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/180-db38e689fa3194c4.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/180-db38e689fa3194c4.js",
+        "async": ""
+      },
+      "bytes": 15038,
+      "sha256": "c53af2c3b50b5b3a93e9828f7653bf9434a0f10be44db918de8c5e4d41f2744b",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/7327-e7c0489aa3696b7c.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/7327-e7c0489aa3696b7c.js",
+        "async": ""
+      },
+      "bytes": 35712,
+      "sha256": "1a8808c50a2845afcc7d172458aae3e8849a0558d737f1efa17549badf2478d7",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/4901-c930058d7372eda7.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/4901-c930058d7372eda7.js",
+        "async": ""
+      },
+      "bytes": 41088,
+      "sha256": "815c00a14b862b83e06f6599db47257abeeefd3b8fe5006dc70c880bdecae645",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/app/%5BaccountName%5D/page-0627a90383570059.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/app/%5BaccountName%5D/page-0627a90383570059.js",
+        "async": ""
+      },
+      "bytes": 17899,
+      "sha256": "d6577e2d7c1bdc67b403b49bd04f7c1ee069240167e24ae5b5bd26b0551478df",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/app/global-error-e5909d2194068b5f.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/app/global-error-e5909d2194068b5f.js",
+        "async": ""
+      },
+      "bytes": 4629,
+      "sha256": "ebe862807b1b8f6a71520217088f75ab7c6d4ab14c87b872bbe8c99f768dc14f",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/webpack-d318d485bb3eaec4.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/webpack-d318d485bb3eaec4.js",
+        "id": "_R_",
+        "async": ""
+      },
+      "bytes": 5398,
+      "sha256": "12a2f1feb488204a7090b55d9532c3212432aa1705899d9041d429a434337aa2",
+      "parent": "board"
+    },
+    {
+      "url": "https://careers-cdn.kula.ai/_next/static/chunks/app/%5BaccountName%5D/%5Bslug%5D/page-1ba781edee4629cc.js",
+      "attrs": {
+        "src": "https://careers-cdn.kula.ai/_next/static/chunks/app/%5BaccountName%5D/%5Bslug%5D/page-1ba781edee4629cc.js",
+        "async": ""
+      },
+      "bytes": 17633,
+      "sha256": "50461466e2d555a5c84ecb3978c051ab4c51750148aafdd7c9a7c18db8bdf1d3",
+      "parent": "role"
+    }
+  ],
+  "reviewedDetailMetadata": [
+    {
+      "id": 66128,
+      "nativeTitle": "AI Solution Lead",
+      "titles": [
+        "AI Solution Lead – Bengaluru | Sattva Consulting Pvt Ltd Careers"
+      ]
+    }
+  ]
+}

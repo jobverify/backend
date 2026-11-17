@@ -2,7 +2,7 @@ import { prepareResumeModel, generateResumeText, RESUME_MODEL } from './resumeRu
 import { prepareResumeCompiler, compileResumeLatex } from './latexCompiler.js';
 import { remainingBudget, withinResumeBudget, RESUME_WORKER_BUDGET_MS, estimateResumeRepairMs } from './resumeBudget.js';
 import { safeResumeDiagnostic, resumeFailure, summarizeResumeFidelityIssues } from './resumeDiagnostics.js';
-import { applyPaginationRepair, buildPaginationRepairPlan, PAGINATION_REPAIR_MAX_TOKENS, RESUME_PIPELINE_POLICY } from './resumePaginationRepair.js';
+import { applyPaginationRepair, buildPaginationRepairPlan, buildPreservedPreparationPlan, PAGINATION_REPAIR_MAX_TOKENS, RESUME_PIPELINE_POLICY } from './resumePaginationRepair.js';
 import { RESUME_LATEX_PREAMBLE } from '../src/utils/resumeLatexFormat.js';
 import { resumePageBudget } from '../src/utils/resumePresentation.js';
 import { buildSourceFacts, sourceWithCandidateEvidence, buildPreparationPrompt, buildLatexTailoringPrompt,
@@ -39,6 +39,10 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
   const allowedLinks = resumeLinkDestinations(facts);
   const sectionTitles = resumeSectionTitles(source, facts);
   let layout = resumeSourceLayout(source, facts, { preserveOriginal: !tailored });
+  const preparationPlan = tailored ? null : buildPreservedPreparationPlan(layout, pagination);
+  // The bounded planner chooses a safe boundary rather than the word-count
+  // estimate. Physical pagination and full factual checks remain mandatory.
+  if (preparationPlan) layout = { ...layout, pageBreakBefore: undefined, preservationBreak: undefined };
   const headerChoices = resumeSubheadingChoices(facts);
   let originalPrompt = tailored ? buildLatexTailoringPrompt({ ...input, source, facts }) : buildPreparationPrompt({ ...input, source, facts });
   let prompt = originalPrompt;
@@ -67,6 +71,7 @@ export async function processResumeDocument(input, { deadline = Date.now() + RES
         ...(attempt === 2 ? { repairKind: repairPlan ? 'pagination' : 'document' } : {}) });
       const generated = await withinResumeBudget(generationDeadline, signal => generate(prompt, { deadline: generationDeadline, signal,
         allowedLinks, pagination, sectionTitles, layout, headerChoices, onDiagnostic,
+        ...(attempt === 1 && preparationPlan ? { preparationPlan } : {}),
         ...(repairPlan ? { paginationRepair: true, paginationBreakIds: repairPlan.candidates.map(candidate => candidate.id) } : {}),
         onUsage: usage => { generationUsage = usage; } }));
       latex = repairPlan ? applyPaginationRepair(repairPlan, generated) : generated;

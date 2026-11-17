@@ -1,8 +1,8 @@
+import {runCurrentSharekhan} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import SHAREKHAN_CATALOG from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
@@ -16,8 +16,6 @@ export const LISTING_TABLE_URL = PROVIDER_METADATA.listingTableUrl
 export const VERIFIED_SAMPLE_JOB_URL = PROVIDER_METADATA.verifiedSampleJobUrl
 export const VERIFIED_ON = PROVIDER_METADATA.verifiedOn
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const decodeHtmlEntities = (value) => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
@@ -210,36 +208,7 @@ export const extractJobsFromPages = (
   }
 })
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: 'sharekhan-html',
-  timeoutMs: 15000,
-})
-
-export const createSharekhanScraper = () => ({
-  async run({
-    fetchText = defaultFetchText,
-    now = () => new Date().toISOString(),
-  } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
-
-    if (!hasVerifiedCareersPageSignal(careersHtml)) {
-      throw new Error('Sharekhan verified first-party careers page no longer matches the trusted jobs surface')
-    }
-
-    const detailPages = {}
-    for (const row of extractListingRows(careersHtml)) {
-      detailPages[row.detailUrl] = await fetchText(row.detailUrl)
-    }
-
-    return extractJobsFromPages(careersHtml, detailPages, {
-      scrapedAt: now(),
-    })
-  },
-})
+export const createSharekhanScraper = () => ({run:runCurrentSharekhan})
 
 export const run = async (options = {}) => createSharekhanScraper(options).run(options)
 

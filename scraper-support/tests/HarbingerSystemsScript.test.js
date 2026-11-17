@@ -42,7 +42,7 @@ const loadModule = async () => {
   }
 }
 
-test('Harbinger Systems accepts the current first-party careers title and Darwinbox handoff', async () => {
+test('Harbinger retains its historical first-party title and Darwinbox handoff helpers', async () => {
   const harbingerSystems = await loadModule()
 
   assert.equal(harbingerSystems.hasOfficialCareersSignal(careersHtml), true)
@@ -52,31 +52,9 @@ test('Harbinger Systems accepts the current first-party careers title and Darwin
   )
 })
 
-test('Harbinger Systems run validates the current careers shell before using Darwinbox listings', async () => {
-  const harbingerSystems = await loadModule()
-  const requested = []
-
-  const jobs = await harbingerSystems.createHarbingerSystemsScraper({
-    maxPages: 1,
-    maxJobs: 1,
-  }).run({
-    fetchText: async (url) => {
-      requested.push({ type: 'text', url })
-      if (url === harbingerSystems.CAREERS_URL) return careersHtml
-      throw new Error(`Unexpected Harbinger Systems fixture URL: ${url}`)
-    },
-    fetchListingPage: async (params) => {
-      requested.push({ type: 'listing', params })
-      return darwinboxPayload
-    },
-  })
-
-  assert.deepEqual(requested, [
-    { type: 'text', url: harbingerSystems.CAREERS_URL },
-    { type: 'listing', params: { page: 1, pageSize: 10, companyId: 'main', signal: undefined } },
-  ])
-  assert.equal(jobs.length, 1)
-  assert.equal(jobs[0].source, 'harbingersystems')
-  assert.equal(jobs[0].company, 'Harbinger Systems')
-  assert.equal(jobs[0].location, 'Pune, India')
+// Historical parser helpers remain below their original verification date.
+// Current source-directory tests replay complete original native HTTP inputs.
+test('Harbinger current acquisition requires the original native tenant and HTTP blocker receipts', async () => {
+  const harbinger = await loadModule()
+  await assert.rejects(harbinger.createHarbingerSystemsScraper().run({ fetchText: async () => careersHtml, fetchListingPage: async () => darwinboxPayload }), /original HTTP metadata|body-only/i)
 })

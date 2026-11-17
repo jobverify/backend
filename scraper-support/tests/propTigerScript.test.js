@@ -79,39 +79,10 @@ test('PropTiger pins the verified first-party empty-board careers page contract'
   )
 })
 
-test('PropTiger returns an honest zero-job result while the official careers page remains in the verified empty state', async () => {
-  const propTiger = await loadPropTigerModule()
-  const requests = []
 
-  const jobs = await propTiger.createPropTigerScraper().run({
-    fetchText: async (url) => {
-      requests.push(url)
-      if (url === propTiger.CAREERS_URL) return officialCareersHtml
-      throw new Error(`Unexpected URL ${url}`)
-    },
-  })
-
-  assert.deepEqual(requests, ['https://www.proptiger.com/careers'])
-  assert.deepEqual(jobs, [])
+test('PropTiger current runtime rejects body-only historical empty-board publication',async()=>{
+ const propTiger=await loadPropTigerModule();let calls=0;await assert.rejects(propTiger.run({fetchText:async()=>{calls++;return officialCareersHtml}}),/metadata|unsupported/);assert.equal(calls,0)
 })
-
-test('PropTiger fails closed when the verified careers page or empty-board signal drifts', async () => {
-  const propTiger = await loadPropTigerModule()
-
-  await assert.rejects(
-    propTiger.createPropTigerScraper().run({
-      fetchText: async () => '<html><body><h1>Unexpected</h1></body></html>',
-    }),
-    /verified careers page/i,
-  )
-
-  await assert.rejects(
-    propTiger.createPropTigerScraper().run({
-      fetchText: async () =>
-        officialCareersHtml
-          .replace('There are currently no jobs available', 'Browse our open roles')
-          .replace('<div class="jobs"></div>', '<div class="jobs"><article>Relationship Manager</article></div>'),
-    }),
-    /empty open roles state/i,
-  )
+test('PropTiger observed corporate502 cannot be substituted with a company-zero receipt',async()=>{
+ const propTiger=await loadPropTigerModule();let calls=0;await assert.rejects(propTiger.run({requestIntervalMs:0,fetchImpl:async url=>{calls++;const r=new Response('Bad Gateway',{status:502,headers:{'content-type':'text/html'}});Object.defineProperty(r,'url',{value:url});return r}}),error=>error.status===502);assert.equal(calls,1)
 })

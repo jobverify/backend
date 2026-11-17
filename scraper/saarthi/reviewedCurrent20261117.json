@@ -1,0 +1,211 @@
+{
+  "source": "saarthi",
+  "provenance": "Actual currently declared own HTTP originals; finite whole executable programme variants, no role country or company inventory completeness claim",
+  "pages": [
+    {
+      "url": "https://joinsaarthi.com/about",
+      "titles": [
+        "About Saarthi - AI Career Coach for Freshers"
+      ],
+      "nativePage": "/about",
+      "scriptDeclarations": [
+        {
+          "defer": "",
+          "crossorigin": "",
+          "nomodule": "",
+          "src": "/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"
+        },
+        {
+          "src": "/_next/static/chunks/webpack-4cf3a1b70f9bcafa.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/framework-1594f84e519182f7.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/main-a899ecc1115d0822.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/pages/_app-03fa55497e28fd2c.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/4264-c19f13c868e57435.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/4856-908e8844d12066d1.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/pages/about-47a5e77f7298bb06.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/gYqbfKe9aXLZT2EkIx5PV/_buildManifest.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/gYqbfKe9aXLZT2EkIx5PV/_ssgManifest.js",
+          "defer": "",
+          "crossorigin": ""
+        }
+      ],
+      "order": 0
+    },
+    {
+      "url": "https://joinsaarthi.com/",
+      "titles": [
+        "Saarthi — Best App for Fresher Jobs & Internships in India"
+      ],
+      "nativePage": "/",
+      "scriptDeclarations": [
+        {
+          "defer": "",
+          "nomodule": "",
+          "src": "/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"
+        },
+        {
+          "src": "/_next/static/chunks/webpack-4cf3a1b70f9bcafa.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/framework-1594f84e519182f7.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/main-a899ecc1115d0822.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/pages/_app-03fa55497e28fd2c.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/4264-c19f13c868e57435.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/5675-2efa97fbb23f3457.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/4856-908e8844d12066d1.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/7665-a6c35f2b27ab9ac6.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/6138-eda2f538257d636b.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/chunks/pages/index-970512250d13541e.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/gYqbfKe9aXLZT2EkIx5PV/_buildManifest.js",
+          "defer": ""
+        },
+        {
+          "src": "/_next/static/gYqbfKe9aXLZT2EkIx5PV/_ssgManifest.js",
+          "defer": ""
+        }
+      ],
+      "order": 1
+    },
+    {
+      "url": "https://joinsaarthi.com/ambassador",
+      "titles": [
+        "Saarthi Campus Ambassador - Lead, Earn & Make Impact"
+      ],
+      "nativePage": "/ambassador",
+      "scriptDeclarations": [
+        {
+          "defer": "",
+          "crossorigin": "",
+          "nomodule": "",
+          "src": "/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"
+        },
+        {
+          "src": "/_next/static/chunks/webpack-4cf3a1b70f9bcafa.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/framework-1594f84e519182f7.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/main-a899ecc1115d0822.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/pages/_app-03fa55497e28fd2c.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/4264-c19f13c868e57435.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/4856-908e8844d12066d1.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/chunks/pages/ambassador-082bbe78786aa5a8.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/gYqbfKe9aXLZT2EkIx5PV/_buildManifest.js",
+          "defer": "",
+          "crossorigin": ""
+        },
+        {
+          "src": "/_next/static/gYqbfKe9aXLZT2EkIx5PV/_ssgManifest.js",
+          "defer": "",
+          "crossorigin": ""
+        }
+      ],
+      "order": 2
+    }
+  ],
+  "programmes": [
+    {
+      "url": "https://joinsaarthi.com/_next/static/chunks/pages/about-47a5e77f7298bb06.js",
+      "kind": "js",
+      "bytes": 4265,
+      "sha256": "528d7df22a7f5ab3badeed0cfef0a66c97c6a3dd7a97c96dad82ec24a7aa2976"
+    },
+    {
+      "url": "https://joinsaarthi.com/_next/static/chunks/pages/index-970512250d13541e.js",
+      "kind": "js",
+      "bytes": 36125,
+      "sha256": "23cb94e93630707e34b1494016a28d18d12af1c812f3032d68bc5203f9f62aa1"
+    },
+    {
+      "url": "https://joinsaarthi.com/_next/static/chunks/pages/ambassador-082bbe78786aa5a8.js",
+      "kind": "js",
+      "bytes": 7838,
+      "sha256": "34d70fa8af3878f50e7782a8266d16ae379db3f1ed381161c9d28c8189f9c111"
+    }
+  ]
+}

@@ -48,7 +48,8 @@ export const hasEmptyOpeningsSignal = body => {
     && !Object.keys(model).some(key => /^(?:error|errors|fault|exception)$/i.test(key))
     && model.success !== false && model.ok !== false
     && Array.isArray(model.departments) && model.labels && typeof model.labels === 'object' && !Array.isArray(model.labels)
-    && model.departments.every(department => Array.isArray(department.jobs) && department.jobs.length === 0)
+    && model.departments.every(department => department && typeof department === 'object' && !Array.isArray(department)
+      && !Object.hasOwn(department, 'jobs') && Array.isArray(department.positions) && department.positions.length === 0)
 }
 
 export const createUtopusInsightsScraper = () => ({
@@ -56,7 +57,7 @@ export const createUtopusInsightsScraper = () => ({
     options.signal?.throwIfAborted()
     const now = options.now || (() => new Date().toISOString())
     if (options.maxJobs === 0) return attachInventoryEvidence([], { status: 'coverage-gap', surface: OPEN_POSITIONS_URL,
-      firstParty: true, listingComplete: false, pagesFetched: 0, verifiedAt: now(), reason: 'caller-cap-zero-no-public-reads' })
+      firstParty: true, listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 0, verifiedAt: now(), reason: 'caller-cap-zero-no-public-reads' })
     const transport = createBoundedPublicCareerTransport({ source: SOURCE, ...options,
       allowedURL: (url, method) => method === 'GET' && [CAREERS_URL, OPEN_POSITIONS_URL, BAMBOOHR_SCRIPT_URL, BAMBOOHR_EMBED_URL].includes(url) })
     const { fetchText, fetchScript } = transport
@@ -80,14 +81,16 @@ export const createUtopusInsightsScraper = () => ({
     const bambooHrEmbedHtml = await fetchText(BAMBOOHR_EMBED_URL)
     if (!bambooHrEmbedHtml.trim()) {
       throw Object.assign(Error('Utopus current BambooHR JSON widget response is empty; no verified inventory'), {
-        abortRetries: true, incompleteScope: true,
-        recruitmentObservations: { source: SOURCE, nativeInventoryReads: [{ url: BAMBOOHR_EMBED_URL, usable: false }],
-          failures: [{ stage: 'native-widget', failureKind: 'empty-native-json-response' }], sourceScopeComplete: false },
+        abortRetries: true, incompleteScope: true, softFailure: true, upstreamOutage: true, failureKind: 'source_inventory_unavailable',
+        sourceScopeComplete: false, lifecycleCleanupAllowed: false,
+        recruitmentObservations: { source: SOURCE, nativeInventoryReads: [{ url: BAMBOOHR_EMBED_URL, method: 'GET', usable: false,
+          httpStatus: 200, bodyBytes: Buffer.byteLength(bambooHrEmbedHtml), bodySHA256: createHash('sha256').update(bambooHrEmbedHtml).digest('hex') }],
+          failures: [{ stage: 'native-widget', failureKind: 'empty-native-json-response' }], sourceScopeComplete: false, lifecycleCleanupAllowed: false },
       })
     }
     if (!hasEmptyOpeningsSignal(bambooHrEmbedHtml)) throw Error('Utopus native widget is nonempty or malformed; full public role qualification required')
     return attachInventoryEvidence([], { status: 'coverage-gap', surface: OPEN_POSITIONS_URL, firstParty: true,
-      listingComplete: false, pagesFetched: 4, verifiedAt: now(), reason: 'observed-declared-widget-empty;company-inventory-unqualified' })
+      listingComplete: false, lifecycleCleanupAllowed: false, pagesFetched: 4, verifiedAt: now(), reason: 'observed-declared-widget-empty;company-inventory-unqualified' })
     } finally { transport.close() }
   },
 })

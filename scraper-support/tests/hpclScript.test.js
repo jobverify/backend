@@ -1,242 +1,36 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-
-const FIXED_SCRAPED_AT = '2026-07-16T00:00:00.000Z'
-
-const careersPageHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>HPCL Careers | Oil Gas Industry Jobs | Hindustan Petroleum Corporation Ltd</title>
-  </head>
-  <body>
-    <h3>Careers</h3>
-    <div>Latest Announcements</div>
-    <div>Documents</div>
-    <a href="/job-openings">Job Openings</a>
-    <a href="https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp" target="_blank">Candidate Login</a>
-    <strong>FRAUD ALERT!</strong>
-    <p>This is to bring to your attention that a fraudulent email is currently circulating among colleges and students.</p>
-    <h4>What's Your Interest</h4>
-  </body>
-</html>
-`
-
-const jobOpeningsHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Job Opening | HPCL Careers | Oil Gas Industry Jobs</title>
-  </head>
-  <body>
-    <h4 class="inner-page-block-heading">Our Current Openings</h4>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Engagement of HPCL Graduate Apprentice Trainees (2026-27)</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/documents/pdf/Advertisement of HPCL ALL INDIA MARKETING Apprentice Engagement - English.pdf">Advertisement copy English</a></li>
-          <li><a href="../../scraper/documents/pdf/Advertisement of HPCL ALL INDIA MARKETING Apprentice Engagement - Hindi.pdf">Advertisement copy Hindi</a></li>
-          <li><a href="http://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp">Click here to Apply</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Recruitment of Officers 2026-27</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/documents/pdf/140X160 MM AD.pdf">Corrigendum/ Addendum dated 2nd July, 2026</a></li>
-          <li><a href="../../scraper/documents/pdf/Officers 26-27.pdf">View Window Advertisement</a></li>
-          <li><a href="../../scraper/documents/pdf/Recruitment of Officers- July-26_Final_1.pdf">Detailed Advertisement (pdf attached)</a></li>
-          <li><a href="https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp">Click here to Apply</a></li>
-          <li>Online Application will be accepted from 1600 hrs on 1st July 2026 till 1500 hrs on 20th July 2026.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Advertisement for the Selection for the post for Director (Marketing), HPCL, a scheduled 'A' CPSE</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/documents/pdf/Advertisement -Dir Marketing.pdf">View Window Advertisement</a></li>
-          <li><a href="https://pesb.gov.in/UserAccount/Login">Click here to Apply</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Recruitment of Officers 2026</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/documents/pdf/CBT Cut-offs.pdf">Position Wise Cut-off Marks in all Categories for Computer Based Test (CBT) held on 3rd May, 2026</a></li>
-          <li>Results for Computer Based Test (CBT) held on 3rd May, 2026 have been made live for all positions. Candidates can view their results under Candidate Login.</li>
-          <li><a href="../../scraper/documents/pdf/Recruitment of Officers- Feb 2026_Final_as on 9th March 2026.pdf">Detailed Advertisement (pdf attached)</a></li>
-          <li><a href="https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp">Click here to Apply</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Engagement of HPCL Graduate Apprentice Trainees (2026-27) for Refineries Division</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/documents/pdf/Advertisement of  HPCL GAT - Refineries Division FY26-27.pdf">View Window Advertisement</a></li>
-          <li><a href="https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp">Click here to Apply</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Engagement of HPCL Graduate Apprentice Trainees (2026-27)</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/documents/pdf/Engagement_of_HPCL_Graduate_Apprentice_Trainees_2025-26_Advt_English.pdf">View Detailed Advertisement - (English)</a></li>
-          <li><a href="../../scraper/documents/pdf/Engagement_of_HPCL_Graduate_Apprentice_Trainees_2025-26_Advt_Hindi.pdf">View Detailed Advertisement - (Hindi)</a></li>
-          <li><a href="https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp">Click here to Apply</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Job Updates Form</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="https://careerpages.hpcl.co.in/CareerPages/preContactForm">Click here</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <span>Documents</span>
-      </div>
-      <div class="card-body">
-        <ul class="bullet">
-          <li><a href="../../scraper/images/HP_OBC.pdf">Download Caste Certificate format for OBC</a></li>
-        </ul>
-      </div>
-    </div>
-  </body>
-</html>
-`
-
-const loadModule = async () => {
-  try {
-    return await import('../../scraper/hpcl/script.js')
-  } catch {
-    assert.fail('Expected HPCL scraper module at ../../scraper/hpcl/script.js')
-  }
-}
-
-test('HPCL pins the verified first-party careers page, job-openings page, and apply portals', async () => {
-  const hpcl = await loadModule()
-
-  assert.equal(hpcl.SOURCE, 'hpcl')
-  assert.equal(hpcl.COMPANY, 'HPCL')
-  assert.equal(hpcl.CAREERS_URL, 'https://www.hindustanpetroleum.com/careers')
-  assert.equal(hpcl.JOB_OPENINGS_URL, 'https://www.hindustanpetroleum.com/job-openings')
-  assert.deepEqual(hpcl.VERIFIED_APPLY_PORTAL_URLS, [
-    'https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp',
-    'https://pesb.gov.in/UserAccount/Login',
-  ])
-  assert.equal(hpcl.hasOfficialCareersSignal(careersPageHtml), true)
-  assert.equal(hpcl.hasOfficialJobOpeningsSignal(jobOpeningsHtml), true)
-  assert.equal(hpcl.normalizeApplyUrl('http://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp'), 'https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp')
-  assert.equal(hpcl.parseApplicationWindow('Online Application will be accepted from 1600 hrs on 1st July 2026 till 1500 hrs on 20th July 2026.'), JSON.stringify({
-    postingDate: '2026-07-01',
-    closingDate: '2026-07-20',
-  }))
-
-  const cards = hpcl.extractOpeningCards(jobOpeningsHtml)
-  assert.equal(cards.length, 6)
-  assert.equal(cards[0].title, 'Engagement of HPCL Graduate Apprentice Trainees (2026-27)')
-  assert.equal(cards[1].title, 'Recruitment of Officers 2026-27')
-  assert.equal(cards[3].title, 'Recruitment of Officers 2026')
-  assert.equal(cards[4].title, 'Engagement of HPCL Graduate Apprentice Trainees (2026-27) for Refineries Division')
-  assert.equal(hpcl.isLikelyActiveOpening(cards[3]), false)
-  assert.equal(hpcl.isLikelyActiveOpening(cards[1]), true)
+import {run} from '../../scraper/hpcl/script.js'
+import {sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/hpcl/fixtures/native-20261117.json.gz',import.meta.url))))
+const row=url=>fixture.responses.find(r=>(r.url??r.finalUrl)===url),body=r=>Buffer.from(r.bodyBase64,'base64').toString()
+function replay(edit=(r,text)=>text){const counts=new Map(),calls=[];return {calls,fetchImpl:async(url,init)=>{const r=row(url);assert.ok(r,'No actual source original for '+url);assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');assert.equal(init.body,undefined);const n=(counts.get(url)??0)+1;counts.set(url,n);calls.push(url);return Object.defineProperty(new Response(edit(r,/^application\/pdf(?:;|$)/i.test(r.headers['content-type']??'')?Buffer.from(r.bodyBase64,'base64'):body(r),n),{status:r.status,headers:r.headers}),'url',{value:r.url??r.finalUrl})}}}
+import {HOMEPAGE_URL,JOB_OPENINGS_URL,readCurrentHpcl,readCurrentHpclAnnouncements} from '../../scraper/hpcl/currentNative20261117.js'
+const notices=()=>readCurrentHpclAnnouncements(readCurrentHpcl(body(row(JOB_OPENINGS_URL)),JOB_OPENINGS_URL))
+test('HPCL current four full recruitment announcement models retain native PDFs dates and own application declarations without treating notices as India vacancies',()=>{
+ const r=notices();assert.equal(r.observations.length,4);assert.ok(r.observations.some(n=>n.nativeText.includes('20th July 2026')));assert.ok(r.observations[0].nativeDeclarations.some(n=>n.resolvedURL.endsWith('.docx')))
+ for(const n of r.observations){assert.equal(n.country,null);assert.equal(n.jobId,null);assert.equal(n.individualVacancyQualified,false);assert.equal(n.documentCriteriaQualified,false);assert.equal(n.loginIsVacancyAuthority,false);assert.ok(n.wholeNativeCard);assert.ok(n.nativeDeclarations.length>0)}
+})
+test('HPCL Job Updates general contact and document library are not vacancy records and collapsed card activation stays unqualified',()=>{
+ const r=notices();assert.ok(r.observations.every(n=>!['Job Updates Form','Documents'].includes(n.title)));assert.equal(r.browserAccordionActivationQualified,false);assert.ok(r.observations.some(n=>n.nativeDeclarations.some(a=>a.resolvedURL==='https://pesb.gov.in/UserAccount/Login')))
+})
+test('HPCL future structured native vacancy declarations require qualification before a zero observed-vacancy announcement receipt',()=>{
+ for(const model of [{'@type':'JobPosting'},{'@graph':[{'@type':'JobPosting'}]},[{'@type':['Thing','https://schema.org/JobPosting']}]])assert.throws(()=>readCurrentHpcl(body(row(JOB_OPENINGS_URL)).replace('</head>','<script type="application/ld+json">'+JSON.stringify(model)+'</script></head>'),JOB_OPENINGS_URL),/individual vacancy/)
+})
+test('HPCL own employer identity and whole closing announcement dates/document bindings remain mandatory',async()=>{
+ assert.throws(()=>readCurrentHpcl(body(row(HOMEPAGE_URL)).replace('Hindustan Petroleum Corporation Ltd. | Oil and Gas Company in India | HPCL','Other Employer'),HOMEPAGE_URL),/title/)
+ const {fetchImpl}=replay((r,text,n)=>r.url===JOB_OPENINGS_URL&&n===2?text.replaceAll('Detailed Advertisement (pdf attached)','Detailed Advertisement (pdf attached; changed criteria)'):text);await assert.rejects(run({fetchImpl}),/Closing whole native notification/)
+})
+test('HPCL actual current source reads declared job-openings page rather than empty old careers or application login and retains cleanup holds',async()=>{
+ const r=replay(),jobs=await run(r);assert.equal(jobs.length,0);assert.equal(r.calls.length,16);assert.ok(r.calls.every(u=>u===HOMEPAGE_URL||u===JOB_OPENINGS_URL||u.startsWith(HOMEPAGE_URL+'documents/pdf/')));assert.equal(jobs.nativeCollectionEvidence.observedRecordCount,4);assert.equal(jobs.nativeCollectionEvidence.nativeAdvertisementDocumentsRead,true);assert.equal(jobs.nativeCollectionEvidence.nativeOpening.documents.length,6);assert.equal(jobs.nativeCollectionEvidence.advertisementCriteriaQualified,false);assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
 })
 
-test('HPCL run validates the official pages and returns only active current opening cards', async () => {
-  const hpcl = await loadModule()
-  const requestedUrls = []
-
-  const jobs = await hpcl.createHpclScraper({
-    now: () => FIXED_SCRAPED_AT,
-  }).run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === hpcl.CAREERS_URL) return careersPageHtml
-      if (url === hpcl.JOB_OPENINGS_URL) return jobOpeningsHtml
-
-      throw new Error(`Unexpected HPCL text URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    hpcl.CAREERS_URL,
-    hpcl.JOB_OPENINGS_URL,
-  ])
-  assert.equal(jobs.length, 5)
-  assert.deepEqual(jobs.map((job) => [job.title, job.applyUrl, job.postingDate, job.closingDate, job.employmentType]), [
-    [
-      'Engagement of HPCL Graduate Apprentice Trainees (2026-27)',
-      'https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp',
-      null,
-      null,
-      'Apprenticeship',
-    ],
-    [
-      'Recruitment of Officers 2026-27',
-      'https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp',
-      '2026-07-01',
-      '2026-07-20',
-      null,
-    ],
-    [
-      "Advertisement for the Selection for the post for Director (Marketing), HPCL, a scheduled 'A' CPSE",
-      'https://pesb.gov.in/UserAccount/Login',
-      null,
-      null,
-      null,
-    ],
-    [
-      'Engagement of HPCL Graduate Apprentice Trainees (2026-27) for Refineries Division',
-      'https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp',
-      null,
-      null,
-      'Apprenticeship',
-    ],
-    [
-      'Engagement of HPCL Graduate Apprentice Trainees (2026-27)',
-      'https://jobs.hpcl.co.in/Recruit_New/recruitlogin.jsp',
-      null,
-      null,
-      'Apprenticeship',
-    ],
-  ])
-  assert.deepEqual(jobs.map((job) => job.source), ['hpcl', 'hpcl', 'hpcl', 'hpcl', 'hpcl'])
-  assert.deepEqual(jobs.map((job) => job.scrapedAt), [
-    FIXED_SCRAPED_AT,
-    FIXED_SCRAPED_AT,
-    FIXED_SCRAPED_AT,
-    FIXED_SCRAPED_AT,
-    FIXED_SCRAPED_AT,
-  ])
+test('HPCL original403 and202 WAF priority preserve native denial before any body read without alternate requests',async()=>{
+ for(const status of [403,202]){let calls=0,reads=0;await assert.rejects(run({fetchImpl:async url=>{calls++;return {status,url,headers:new Headers(status===202?{'x-amzn-waf-action':'challenge'}:{}),body:{getReader(){reads++;assert.fail('No denied entity consumption')},cancel:async()=>{}}}}}),e=>e.httpStatus===status&&e.failureKind==='blocked_or_access_denied');assert.equal(calls,1);assert.equal(reads,0)}
+})
+test('HPCL body-only callback cannot qualify native acquisition and fulfilled/rejected opaque caller abort keeps exact frozen owner reason',async()=>{
+ let calls=0;await assert.rejects(run({fetchText:async()=>{calls++;assert.fail('Body-only callback must not run')}}),/Original HTTP metadata/);assert.equal(calls,0)
+ for(const mode of ['fulfil','reject']){const controller=new AbortController(),reason=Object.freeze({owner:'HPCL-'+mode});await assert.rejects(run({signal:controller.signal,fetchImpl:async url=>{controller.abort(reason);if(mode==='reject')throw Error('transport');return Object.defineProperty(new Response('opaque'),'url',{value:url})}}),e=>e===reason)}
 })

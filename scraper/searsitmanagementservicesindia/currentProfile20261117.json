@@ -1,0 +1,84 @@
+{
+  "root": "https://searsholdingsindia.in/",
+  "rootTitles": [
+    "Sears India | Transforming Retail through Technology"
+  ],
+  "careers": "https://searsholdingsindia.in/careers/",
+  "careersTitles": [
+    "Careers | Sears India"
+  ],
+  "api": "https://searsholdingsindia.in/api/careers-openings",
+  "apiDeclaredURL": "/api/careers-openings",
+  "client": {
+    "attrs": {},
+    "bytes": 6756,
+    "sha256": "904c4e7aaf9c35d56c563937e942b0757fcf3e6c57c1d2fac1fb1716459ab00c",
+    "wholeASTSHA256": "f0a832399217c1a6cad01356a0de39402a37e6d9a4ff3ff73a37c20817792672"
+  },
+  "executableDeclarations": [
+    {
+      "attrs": {},
+      "sha256": "f374bfb8bef7bd8f318ee9128303da6383cf202c78c12cc04936bfd38585c852"
+    },
+    {
+      "attrs": {
+        "id": "tailwind-js",
+        "src": "https://cdn.tailwindcss.com?plugins=forms,container-queries"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "id": "tailwind-js-after"
+      },
+      "sha256": "b68c678d9dcd42caee8dbce947e5a1a60310840417edf0838dd96083ea5b2ac5"
+    },
+    {
+      "attrs": {},
+      "sha256": "0b4fbb280261bc17c690c415467e5dfe8f405818691305c8a9c0a68df012ef96"
+    },
+    {
+      "attrs": {},
+      "sha256": "904c4e7aaf9c35d56c563937e942b0757fcf3e6c57c1d2fac1fb1716459ab00c"
+    },
+    {
+      "attrs": {},
+      "sha256": "9b91f4a638d617ca666aefb21d8535266fadeccdaf9ea3f660903fbd029ba62f"
+    },
+    {
+      "attrs": {},
+      "sha256": "18cf9bcbee084b33585433b824d4f179815e0b148044e5179b06c5640cfff2ba"
+    },
+    {
+      "attrs": {
+        "id": "angie-canvas-template-js-before"
+      },
+      "sha256": "306a976be399645eff054742adfc20a3f1f40402e60dcb749a9d4cf8d661cf78"
+    },
+    {
+      "attrs": {
+        "type": "module"
+      },
+      "sha256": "5bd756a57796ea526641d51640562d672c92c6a75d37112cbffc04c8056cfc67"
+    },
+    {
+      "attrs": {},
+      "sha256": "2c9eae9ef602dad966eb0bacca170b81488eaa489d9acc2cc3e9c6a341ae3160"
+    },
+    {
+      "attrs": {},
+      "sha256": "dd9b10398b9cd06b89a3e0a5dac6b4bcfcb0c836d038c003d0c497dddbf20b7e"
+    },
+    {
+      "attrs": {},
+      "sha256": "107b854fc832809a763ca32c4e379f3da6a9a96fce0152e377972bc5905cb70c"
+    },
+    {
+      "attrs": {
+        "src": "https://img1.wsimg.com/traffic-assets/js/tccl-tti.min.js",
+        "onload": "window.tti.calculateTTI()"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

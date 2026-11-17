@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { readNativeDocument } from '../utils/activeNativeHtml.js'
 import { hashWorkdayProof, workdayInventoryIdentity } from '../myworkday/countryInventoryProof.js'
+import { requireNativeHttpResponse } from './nativeHttpResponse.js'
 
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex')
 const requireProof = (value, reason) => { if (!value) throw new Error(`Current Workday raw scope: ${reason}`) }
@@ -40,7 +41,7 @@ export async function auditCurrentWorkdayRawScope({ apiUrl, boardUrl, schema, si
     const deadline = signal ? AbortSignal.any([signal, AbortSignal.timeout(requestTimeoutMs)]) : AbortSignal.timeout(requestTimeoutMs)
     const response = await fetch(url, { ...init, redirect: 'error', signal: deadline,
       headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0 (compatible; Jobverify scraper)' } })
-    requireProof(response.status === 200 && response.url === url, 'native HTTP status or observed response URL mismatch')
+    await requireNativeHttpResponse(response, url, { context: 'Current Workday raw scope: native HTTP status or observed response URL mismatch', signal: deadline, callerSignal: signal ?? null })
     const payload = await response.json()
     deadline.throwIfAborted()
     requireProof(payload && typeof payload === 'object' && !Array.isArray(payload), 'native payload unavailable')

@@ -18,7 +18,7 @@ const loadCatalogModule = async () => {
   }
 }
 
-test('INDI IT SOLUTIONS local catalog captures the verified first-party career openings page', async () => {
+test('INDI IT SOLUTIONS local catalog retains dated evidence and current marketing inventory hold', async () => {
   const { INDI_IT_SOLUTIONS_CATALOG, default: defaultCatalog } = await loadCatalogModule()
   const provider = hydrateProviderCatalogEntry(INDI_IT_SOLUTIONS_CATALOG)
 
@@ -30,10 +30,10 @@ test('INDI IT SOLUTIONS local catalog captures the verified first-party career o
   assert.equal(provider.companyCareerPage, 'https://indiit.com/career/')
   assert.equal(provider.officialCareersPageUrl, 'https://indiit.com/career/')
   assert.equal(provider.companyDomain, 'indiit.com')
-  assert.equal(provider.atsPlatform, 'first-party-html-open-roles')
+  assert.equal(provider.atsPlatform, 'official-company-current-marketing-publisher-inventory-unavailable')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-public-page')
-  assert.equal(provider.extractionStrategy, 'verified-first-party-careers-page+html-opportunity-cards')
+  assert.equal(provider.paginationStrategy, 'literal-root-redirect-and-seven-declared-programmes-opening-closing')
+  assert.equal(provider.extractionStrategy, 'whole-current-publisher+literal-careers-null-preference+native-inventory-unavailable+company-scope-held')
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
   assert.equal(provider.verifiedOn, '2026-08-02')

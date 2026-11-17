@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import test from 'node:test'
 import { fileURLToPath } from 'node:url'
+import { readInventoryEvidence } from '../utils/inventoryEvidence.js'
 
 const loadAvantorModule = () => import('../../scraper/avantor/script.js')
 const fixturesDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'fixtures', 'avantor')
@@ -52,15 +53,39 @@ test('Avantor uses the current Paradox route and completes the India inventory a
   assert.equal(jobs[0].jobDescription, 'Maintain ERP and CRM systems with 5+ years experience.')
   assert.equal(jobs[0].experienceRequired, '5+ years')
   assert.equal(jobs[0].employmentType, 'Full-time')
+  const evidence = readInventoryEvidence(jobs)
+  assert.equal(evidence?.status, 'complete-inventory')
+  assert.equal(evidence?.listingComplete, true)
+  assert.equal(evidence?.reportedTotal, 26)
+  assert.equal(evidence?.indiaFacetCount, 26)
+  assert.equal(evidence?.pagesFetched, 6)
 })
 
 test('Avantor accepts a verified empty current India inventory', async () => {
   const { run } = await loadAvantorModule()
-  assert.deepEqual(await run({ fetchText: fixtureFetcher({ mutateSearch: (_page, search) => {
+  const jobs = await run({ fetchText: fixtureFetcher({ mutateSearch: (_page, search) => {
     search.totalJob = 0
     search.jobs = []
-  } }) }), [])
+  } }) })
+  assert.deepEqual(jobs, [])
+  assert.equal(readInventoryEvidence(jobs)?.status, 'verified-empty')
+  assert.equal(readInventoryEvidence(jobs)?.reportedTotal, 0)
+  assert.equal(readInventoryEvidence(jobs)?.pagesFetched, 2)
 })
+
+for (const change of ['count', 'identity']) {
+  test('Avantor cannot certify inventory when closing ' + change + ' changes', async () => {
+    const { run } = await loadAvantorModule()
+    const seen = new Map()
+    await assert.rejects(run({ fetchText: fixtureFetcher({ mutateSearch: (page, search) => {
+      const count = (seen.get(page) || 0) + 1
+      seen.set(page, count)
+      if (count !== 2 || page !== 1) return
+      if (change === 'count') search.totalJob += 1
+      else search.jobs[0].title += ' changed during details'
+    } }) }), /closing.*inventory.*changed/i)
+  })
+}
 
 for (const [name, mutateSearch, expectedError] of [
   ['country filter disappears', (_page, search) => { search.params.filter = {} }, /filter or page contract/i],
@@ -80,6 +105,33 @@ for (const [name, mutateSearch, expectedError] of [
 test('Avantor rejects an unrecognized page instead of treating it as empty', async () => {
   const { run } = await loadAvantorModule()
   await assert.rejects(run({ fetchText: async () => '<title>Maintenance</title>' }), /inventory is missing/i)
+})
+
+test('Avantor cannot certify inert or ambiguous native inventory carriers as empty', async () => {
+  const { run } = await loadAvantorModule()
+  const search = searchForPage(1)
+  search.jobs = []; search.totalJob = 0
+  const active = renderSearch(search)
+  for (const html of [
+    '<title>Search Jobs at Avantor</title><!--' + active + '-->',
+    '<title>Search Jobs at Avantor</title><template>' + active + '</template>',
+    '<title>Search Jobs at Avantor</title><noscript>' + active + '</noscript>',
+    active.replace('<script>', '<script type="application/json">'),
+    active + active,
+  ]) await assert.rejects(run({ fetchText: async () => html }))
+})
+
+test('Avantor default transport rejects foreign final URLs and non-200 successful statuses', async () => {
+  const { run } = await loadAvantorModule()
+  const search = searchForPage(1)
+  search.jobs = []; search.totalJob = 0
+  const original = globalThis.fetch
+  try {
+    for (const [status, finalURL] of [[200, 'https://unrelated.example/jobs'], [201, null]]) {
+      globalThis.fetch = async url => Object.defineProperty(new Response(renderSearch(search), {status}), 'url', {value: finalURL || String(url)})
+      await assert.rejects(run(), /response identity|HTTP 201/i)
+    }
+  } finally { globalThis.fetch = original }
 })
 
 for (const [name, mutatePosting] of [
@@ -104,6 +156,17 @@ for (const options of [{ maxPages: 1 }, { maxJobs: 25 }]) {
 test('Avantor preserves upstream detail failure instead of returning partial jobs', async () => {
   const { run } = await loadAvantorModule()
   await assert.rejects(run({ fetchText: fixtureFetcher({ failDetails: true }) }), (error) => error.status === 404)
+})
+
+test('Avantor inactive detail metadata cannot qualify a native job description', async () => {
+  const { run } = await loadAvantorModule()
+  for (const wrap of [html => '<!--' + html + '-->', html => '<template>' + html + '</template>', html => '<noscript>' + html + '</noscript>']) {
+    const original = fixtureFetcher()
+    await assert.rejects(run({ fetchText: async url => {
+      const html = await original(url)
+      return url.includes('/job/') ? wrap(html) : html
+    } }), /job detail identity|job description/i)
+  }
 })
 
 test('Avantor honors cancellation before fetching inventory', async () => {

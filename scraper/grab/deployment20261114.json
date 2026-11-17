@@ -1,5 +1,7 @@
 {
   "reviewedOn": "2026-11-14",
+  "currentDeploymentReviewedOn": "2026-11-16",
+  "currentDeploymentReview": "Exact current declarations and original entity hashes. The six first-party programs differ from reviewed variants only in terminal sourceMappingURL deployment comments; executable prefixes and Acorn ASTs are identical. Current complete CSS and all seven dependencies retain their reviewed bytes.",
   "programs": {
     "https://www.grab.careers/phb/dataLayer.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "ebb4ecc4cd82a694e6c49e873320bdfbd9519943589567742c310e401e3823ff",
     "https://www.grab.careers/phb/app.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "07aa038a1f30a79f8622d148e30a0cd3dce874a114306e66f804d105b82090f1",
@@ -13,7 +15,13 @@
     "https://d2fp31zpw6nk03.cloudfront.net/conversational-service/web-config/injectV2.js": "90ba643bf3dc813fa1300c31b191779ca53155842177707c9abd28d20fc9850b",
     "https://d2fp31zpw6nk03.cloudfront.net/conversational-service/web-config/bots/0ca91ea5-745a-42a2-8a9f-c927b2129912.js": "81447e474cc81d68b98345eac6be7051b4491ffe54105e4d4b8f98a2231bcb58",
     "https://www.grab.careers/phb/lookups.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "4c84b4fbac657acf14a7a0c845e0a6687b818a98b6229caaee072660a9fc7cc0",
-    "https://www.grab.careers/phb/jobAlerts.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "7aa9f9d808757e6c60c5723cee09208bb52c7acb00c354ccdc39b45734e31007"
+    "https://www.grab.careers/phb/jobAlerts.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": "7aa9f9d808757e6c60c5723cee09208bb52c7acb00c354ccdc39b45734e31007",
+    "https://www.grab.careers/phb/dataLayer.js.ve785ce3c0c820dfb62cf9b139c72b19a0e689510": "b553f50fca7808a520e3f542e49cff966662ef69008df0bc07c257a62b07aba2",
+    "https://www.grab.careers/phb/app.js.ve785ce3c0c820dfb62cf9b139c72b19a0e689510": "5b22b1a31227346c4832eec006116996a687b7ff120ac3a9b21d13aece2d32ae",
+    "https://www.grab.careers/phb/cookieAlert.js.ve785ce3c0c820dfb62cf9b139c72b19a0e689510": "b1a70aaa0bb523ec1030b579a0b600b93689bb19666add5222eb726cd191edb2",
+    "https://www.grab.careers/phb/lookups.js.ve785ce3c0c820dfb62cf9b139c72b19a0e689510": "fdb58829039bd41fcbf236908282464e2e0c293d20a8bf901f4d13f1e420f3ba",
+    "https://www.grab.careers/phb/jobAlerts.js.ve785ce3c0c820dfb62cf9b139c72b19a0e689510": "eacd5ad8a5e89c2a7dcd5bbe7f6ec2f19003c40a4d07a5dac931e1a87fe3f1f9",
+    "https://www.grab.careers/phb/jobDetail.js.ve785ce3c0c820dfb62cf9b139c72b19a0e689510": "e37d1d03b28ab907db783bec4cf7f12b107adf409cc7f6c9a580a634b6edc526"
   },
   "programByteVariants": {
     "https://www.grab.careers/phb/dataLayer.js.vf523dd962ea30b3cf0072a2d0e141bef5818c8ca": [
@@ -25,18 +33,24 @@
   },
   "styles": {
     "https://www.grab.careers/phb/style.css.v639302004092521550": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f",
-    "https://www.grab.careers/phb/style.css.v639302868077536290": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f"
+    "https://www.grab.careers/phb/style.css.v639302868077536290": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f",
+    "https://www.grab.careers/phb/style.css.v639304430131514243": "927513b1f386722265f7731c85530d6c6dec0cac6ed2c7f788bd85e79b17983f"
   },
   "styleDeclarations": [
     "00d3cf701fefbe0de0514b8c8be1506a2b43e56e729bf375988e3a652122e5f8",
-    "bd263ddfc308bbce2c443e51e015635578068644d2d14488517f170eb52ca704"
+    "bd263ddfc308bbce2c443e51e015635578068644d2d14488517f170eb52ca704",
+    "cc10124cee03c9281943654c6ad851ce811d15c83d1c56bed78181faa40e421b"
   ],
   "board": {
     "programSHA256": "ae91550e6e91e359d501dbd951aec4dc6c143951ea733ddc63129c1619b87bcf",
+    "programSHA256Variants": [
+      "0e5143d784692ba147d295945c7798c2a1803c1de882cd8de52a20c8b693bd37"
+    ],
     "events": []
   },
   "detailPrograms": [
-    "78294b87e5b1ba092cb1997675376e6977e91e2161f67eacda351ba339f9dd69"
+    "78294b87e5b1ba092cb1997675376e6977e91e2161f67eacda351ba339f9dd69",
+    "d6d78dbb9ad687b470fd19ac7a8f17dd0568b8c95afbc1c0c500cd4187c4d388"
   ],
   "detailEvents": [
     {

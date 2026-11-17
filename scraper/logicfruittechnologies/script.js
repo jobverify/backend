@@ -2,7 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import { runCurrentLogicFruit } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -220,106 +220,12 @@ export const extractOpenings = (html) => {
   return jobs
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-
 export const CURRENT_JOBS_API_URL = 'https://api.logic-fruit.com/api/jobs'
-
-const hasVerifiedPublicJobsApiSignal = (bundle = '') =>
-  bundle.includes('https://api.logic-fruit.com/api')
-  && /async getJobs\(/.test(bundle)
-  && /label:`Career`,page:`career`,href:`\/careers`/.test(bundle)
-  && bundle.includes('CURRENT OPENINGS')
-  && bundle.includes('/career/jobs-current-opening/')
-
-const extractCurrentApiJobs = (payload, scrapedAt) => {
-  if (payload?.success !== true || !Array.isArray(payload.data) || Number(payload.count) !== payload.data.length) {
-    throw new Error('Logic Fruit public jobs feed changed materially or is incomplete')
-  }
-  return payload.data.filter((record) => record?.status === 'published').map((record) => {
-    if (record.entityType !== 'job' || !record.id || !record.slug || !record.title || !record.location) {
-      throw new Error('Logic Fruit public jobs feed changed materially: invalid published job')
-    }
-    if (!/\b(?:India|Gurugram|Gurgaon|Bengaluru|Bangalore|Hyderabad|Noida|Chennai|Pune|Mumbai|Delhi)\b/i.test(record.location)) return null
-    const sourceUrl = new URL('/jobs-current-opening/' + encodeURIComponent(record.slug) + '/', HOMEPAGE_URL).toString()
-    const location = normalizeLocation(record.location)
-    return {
-      title: normalizeWhitespace(record.title), company: COMPANY, source: SOURCE,
-      jobId: SOURCE + '-' + record.id, requisitionId: record.id,
-      location, city: deriveCity(location), country: 'India',
-      department: normalizeWhitespace(record.department),
-      employmentType: /full[- ]?time/i.test(record.type || '') ? 'Full-time' : normalizeWhitespace(record.type),
-      experienceRequired: normalizeWhitespace(record.experience),
-      remoteStatus: /remote/i.test(record.workMode || '') ? 'Remote' : /hybrid/i.test(record.workMode || '') ? 'Hybrid' : 'On-site',
-      minimumQualification: stripTags(record.qualifications), preferredQualification: null,
-      requiredSkills: Array.isArray(record.skills) ? record.skills.filter((skill) => typeof skill === 'string') : [],
-      jobDescription: [record.overview, record.description, record.responsibilities, record.qualifications].map(stripTags).filter(Boolean).join('\n') || null,
-      postingDate: record.createdAt || null, closingDate: null,
-      sourceUrl, applyUrl: sourceUrl, link: sourceUrl,
-      companyCareerPage: HOMEPAGE_URL + 'careers', companyDomain: 'logic-fruit.com', atsPlatform: 'official-company-careers', scrapedAt,
-    }
-  }).filter(Boolean)
-}
 
 export const createLogicFruitTechnologiesScraper = ({
   now = () => new Date().toISOString(),
 } = {}) => ({
-  async run({ fetchText = defaultFetchText, fetchJson = (url) => fetchJsonWithRetry(url, { label: SOURCE, timeoutMs: 15000 }) } = {}) {
-    let html
-    try {
-      html = await fetchText(CAREERS_URL)
-    } catch (error) {
-      if (!/HTTP 404 for https:\/\/www\.logic-fruit\.com\/career\/jobs-current-opening\//i.test(String(error?.message))) {
-        throw error
-      }
-
-      const homepageHtml = await fetchText(HOMEPAGE_URL)
-      if (!hasCurrentHomepageSignal(homepageHtml)) {
-        throw new Error('Logic Fruit Technologies current official app shell changed materially')
-      }
-      const bundleUrl = extractCurrentAppBundleUrl(homepageHtml)
-      const bundle = await fetchText(bundleUrl)
-      if (hasVerifiedPublicJobsApiSignal(bundle)) {
-        return extractCurrentApiJobs(await fetchJson(CURRENT_JOBS_API_URL), now())
-      }
-      if (!hasVerifiedCurrentCareersBundleSignal(bundle)) {
-        throw new Error('Logic Fruit Technologies current careers app changed materially or now exposes public jobs')
-      }
-      return []
-    }
-    const scrapedAt = now()
-
-    return extractOpenings(html).map((job) => {
-      const identitySlug = slugify(`${job.title}-${job.location}`)
-
-      return {
-        ...job,
-        company: COMPANY,
-        department: null,
-        country: 'India',
-        jobId: `${SOURCE}-${identitySlug}`,
-        requisitionId: `${SOURCE}-${identitySlug}`,
-        employmentType: null,
-        experienceRequired: null,
-        minimumQualification: null,
-        preferredQualification: null,
-        requiredSkills: [],
-        postingDate: null,
-        closingDate: null,
-        jobDescription: null,
-        source: SOURCE,
-        link: job.applyUrl || job.sourceUrl,
-        scrapedAt,
-      }
-    })
-  },
+  run: (options = {}) => runCurrentLogicFruit({ now, ...options }),
 })
 
 export const run = async (options = {}) => createLogicFruitTechnologiesScraper().run(options)

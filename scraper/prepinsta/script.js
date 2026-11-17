@@ -1,5 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runCurrentPrepinsta } from './currentNative20261117.js'
+import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -144,7 +146,15 @@ export const hasEmptyPublicJobsSignal = ({ status, url, html } = {}) => {
 }
 
 export const createPrepinstaScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    options.signal?.throwIfAborted()
+    if (!options.fetchPage) return runCurrentPrepinsta(options)
+    const { fetchPage = defaultFetchPage } = options
+    const heldLegacyObservation = () => attachInventoryEvidence([], {
+      status: 'coverage-gap', surface: PUBLIC_JOBS_URL, firstParty: true, listingComplete: false,
+      lifecycleCleanupAllowed: false, reportedTotal: null, indiaFacetCount: null,
+      reason: 'legacy-callback-observation-cannot-certify-current-native-company-inventory',
+    })
     let careersPage = null
     let verifiedCareersHandoff = false
 
@@ -186,17 +196,16 @@ export const createPrepinstaScraper = () => ({
 
     if (publicJobsPage) {
       if (hasBlockedPublicJobsSignal(publicJobsPage) || hasEmptyPublicJobsSignal(publicJobsPage)) {
-        return []
+        return heldLegacyObservation()
       }
 
       throw new Error('PrepInsta public jobs surface now appears usable or changed shape')
     }
 
     if (verifiedCareersHandoff || !careersPage) {
-      // Verified on the same date that the public Wellfound board represented
-      // an honest empty state; preserve that sentinel while one or both routes
-      // are temporarily timeout- or block-gated from this runtime.
-      return []
+      // Legacy callbacks retain an observation with unknown inventory even
+      // when an old empty message or temporarily denied route is supplied.
+      return heldLegacyObservation()
     }
 
     throw new Error('PrepInsta public jobs surface is temporarily unavailable')

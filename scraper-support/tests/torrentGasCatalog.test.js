@@ -7,17 +7,17 @@ import {
   getScraperCatalog,
 } from '../providers/index.js'
 
-test('getScraperCatalog includes Torrent Gas as an official zero-public-jobs careers scraper', () => {
+test('getScraperCatalog includes Torrent Gas with current account access and unknown inventory', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'torrentgas')
 
   assert.ok(provider)
   assert.equal(provider.companyName, 'Torrent Gas')
   assert.equal(provider.adapter, 'script')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-company-aspnet-careers-account-access-inventory-unavailable')
   assert.equal(provider.companyCareerPage, 'https://careers.torrentgas.com/')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'official-careers-page-plus-login-gate')
-  assert.equal(provider.extractionStrategy, 'verified-careers-copy-plus-login-gate-zero-public-job-records')
+  assert.equal(provider.paginationStrategy, 'declared-current-root-redirect-home-login-and-programmes-opening-closing')
+  assert.equal(provider.extractionStrategy, 'active-owned-aspnet-careers+whole-account-challenge-context+inventory-unavailable+company-scope-held')
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
   assert.equal(provider.companyDomain, 'careers.torrentgas.com')

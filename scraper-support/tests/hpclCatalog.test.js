@@ -45,12 +45,12 @@ test('HPCL local catalog captures the verified first-party careers pages and off
     'https://pesb.gov.in/UserAccount/Login',
   ])
   assert.equal(provider.companyDomain, 'hindustanpetroleum.com')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-recruitment-notices-and-public-pdf-criteria-held')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-first-party-job-openings-page')
+  assert.equal(provider.paginationStrategy, 'current-own-home-openings-selected-declared-pdfs-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-careers-page+verified-job-openings-page+html-opening-cards+stale-result-filter',
+    'whole-current-native-announcements+selected-declared-public-pdf-binaries+bounded-pinned-text-core+criteria-country-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -90,7 +90,7 @@ test('getScraperCatalog includes HPCL as a verified first-party careers provider
   assert.equal(provider.companyName, 'HPCL')
   assert.equal(provider.companyCareerPage, 'https://www.hindustanpetroleum.com/careers')
   assert.equal(provider.companyDomain, 'hindustanpetroleum.com')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-recruitment-notices-and-public-pdf-criteria-held')
   assert.match(provider.modulePath, /hpcl[\\/]script\.js$/i)
 })
 
@@ -100,6 +100,6 @@ test('buildScrapers exposes a runnable HPCL scraper without changing the runner 
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'hpcl')
-  assert.equal(scraper.provider.atsPlatform, 'official-company-careers')
+  assert.equal(scraper.provider.atsPlatform, 'official-current-recruitment-notices-and-public-pdf-criteria-held')
   assert.match(scraper.dryRunFile, /hpcl[\\/]jobs\.json$/i)
 })

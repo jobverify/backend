@@ -1,16 +1,11 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+import {runCurrentOxyzo} from './currentNative20261117.js'
 
 import OXYZO_CATALOG from './catalog.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
-
-const MAX_CATEGORY_PAGES = 20
 
 export const SOURCE = OXYZO_CATALOG.source
 export const COMPANY = OXYZO_CATALOG.companyName
@@ -56,26 +51,6 @@ const htmlToLines = (html = '') => decodeHtmlEntities(String(html ?? ''))
   .map((line) => normalizeWhitespace(line))
   .filter(Boolean)
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const defaultWait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
-const sameHost = (url, expectedHost) => {
-  try {
-    const actual = new URL(url)
-    return actual.hostname.replace(/^www\./i, '').toLowerCase() === expectedHost.toLowerCase()
-  } catch {
-    return false
-  }
-}
-
 const extractHeadings = (html = '') => (
   [...String(html ?? '').matchAll(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/gi)]
     .map((match) => stripTags(match[1]))
@@ -92,8 +67,6 @@ const extractSectionText = (lines = []) => {
 
   return slice.length > 0 ? slice.join('\n') : null
 }
-
-const buildCity = (location) => normalizeWhitespace(location)?.split(/[\/,]/)[0]?.trim() || null
 
 export const buildCategoriesPageUrl = (pageNumber) => (
   Number(pageNumber) <= 1
@@ -163,8 +136,8 @@ export const extractJobFromDetailPage = (html = '', sourceUrl = '') => {
     company: COMPANY,
     department,
     location,
-    city: buildCity(location),
-    country: 'India',
+    city: null,
+    country: null,
     jobId,
     requisitionId: jobId,
     sourceUrl,
@@ -180,72 +153,7 @@ export const extractJobFromDetailPage = (html = '', sourceUrl = '') => {
   }
 }
 
-export const createOxyzoScraper = ({
-  now = () => new Date().toISOString(),
-  maxPages = MAX_CATEGORY_PAGES,
-  delayMs = 250,
-} = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    wait = defaultWait,
-  } = {}) {
-    const homepageHtml = await fetchText(HOMEPAGE_URL)
-    if (!hasOfficialHomepageSignal(homepageHtml)) {
-      throw new Error('The verified official Oxyzo homepage changed materially')
-    }
-
-    const jobUrls = []
-    const seenUrls = new Set()
-
-    for (let pageNumber = 1; pageNumber <= maxPages; pageNumber += 1) {
-      if (pageNumber > 1 && delayMs > 0) {
-        await wait(delayMs)
-      }
-
-      const pageHtml = await fetchText(buildCategoriesPageUrl(pageNumber))
-
-      if (pageNumber === 1 && !hasOfficialCategoriesSignal(pageHtml)) {
-        throw new Error('The verified Oxyzo careers listing surface changed materially')
-      }
-
-      const pageJobUrls = extractJobDetailUrls(pageHtml)
-      if (pageJobUrls.length === 0) {
-        if (pageNumber === 1) {
-          throw new Error('The verified Oxyzo careers listing surface changed materially')
-        }
-        break
-      }
-
-      for (const jobUrl of pageJobUrls) {
-        if (!jobUrl.startsWith(JOB_PAGE_PREFIX) || seenUrls.has(jobUrl)) continue
-        seenUrls.add(jobUrl)
-        jobUrls.push(jobUrl)
-      }
-    }
-
-    const scrapedAt = now()
-    const jobs = []
-
-    for (const jobUrl of jobUrls) {
-      if (delayMs > 0) {
-        await wait(delayMs)
-      }
-
-      const detailHtml = await fetchText(jobUrl)
-      jobs.push({
-        ...extractJobFromDetailPage(detailHtml, jobUrl),
-        source: SOURCE,
-        link: jobUrl,
-        scrapedAt,
-        companyCareerPage: CAREERS_PAGE_URL,
-        companyDomain: PROVIDER_METADATA.companyDomain,
-        atsPlatform: PROVIDER_METADATA.atsPlatform,
-      })
-    }
-
-    return jobs
-  },
-})
+export const createOxyzoScraper = () => ({run:runCurrentOxyzo})
 
 export const run = async (options = {}) => createOxyzoScraper(options).run(options)
 

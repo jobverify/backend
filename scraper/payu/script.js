@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { PAYU_CATALOG } from './catalog.js'
+import {fetchReviewedPayUPage,isCurrentPayUSurface,runCurrentPayU} from './currentNative20261116.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -14,9 +15,6 @@ export const HOMEPAGE_URL = PROVIDER_METADATA.homepageUrl
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 export const GLOBAL_JOB_BOARD_URL = PROVIDER_METADATA.globalJobBoardUrl
 export const VERIFIED_SURFACE_SUMMARY = PROVIDER_METADATA.verifiedSurfaceSummary
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const decodeHtml = (value) => String(value ?? '')
   .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number.parseInt(code, 10)))
@@ -49,21 +47,7 @@ const normalizeComparableUrl = (value) => {
   }
 }
 
-const defaultFetchPage = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}
+const defaultFetchPage = fetchReviewedPayUPage
 
 export const hasOfficialCareersSignal = (html = '') => {
   const rawHtml = String(html ?? '')
@@ -105,8 +89,22 @@ export const jobBoardHasIndiaLocations = (html = '') =>
   extractVisibleJobLocations(html).some((location) => /\bindia\b/i.test(location))
 
 export const createPayUScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const careersPage = await fetchPage(CAREERS_URL)
+  async run({ fetchPage = defaultFetchPage, signal, now } = {}) {
+    signal?.throwIfAborted()
+    const read = async (url) => {
+      signal?.throwIfAborted()
+      try {
+        const page = await fetchPage(url,{signal})
+        signal?.throwIfAborted()
+        return page
+      } catch (error) {
+        signal?.throwIfAborted()
+        throw error
+      }
+    }
+    const careersPage = await read(CAREERS_URL)
+    signal?.throwIfAborted()
+    if(isCurrentPayUSurface(careersPage))return runCurrentPayU({initialPage:careersPage,fetchPage,signal,now})
 
     if (
       careersPage.status !== 200
@@ -116,7 +114,8 @@ export const createPayUScraper = () => ({
       throw new Error('PayU careers page no longer matches the verified India careers handoff surface')
     }
 
-    const jobBoardPage = await fetchPage(GLOBAL_JOB_BOARD_URL)
+    const jobBoardPage = await read(GLOBAL_JOB_BOARD_URL)
+    signal?.throwIfAborted()
 
     if (
       jobBoardPage.status !== 200
@@ -135,6 +134,7 @@ export const createPayUScraper = () => ({
       throw new Error('PayU global job board now exposes India roles')
     }
 
+    signal?.throwIfAborted()
     return []
   },
 })

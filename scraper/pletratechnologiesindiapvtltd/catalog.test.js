@@ -15,15 +15,15 @@ test('Pletra Technologies India Pvt. Ltd. is registered against the verified fir
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-native-accordion-observations-application-scope-held')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'homepage-plus-contact-page-plus-first-party-careers-page-plus-alias-validation',
+    'active-own-home-careers-and-declared-full-page50-criteria-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-india-contact-page+verified-careers-accordion+country-filtered-inline-openings+verified-careers-alias',
+    'whole-native-role-criteria-html-api-and-dom-identities+unpublished-application-role-code-retained+country-employer-browser-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

@@ -73,12 +73,18 @@ function headerFields(doc,node){
 }
 export function readListing(html,{requestedURL=profile.frameURL,pageNumber=1,maxPages=1}={}){
  need([1,2].includes(maxPages)&&Number.isSafeInteger(pageNumber)&&pageNumber>=1&&pageNumber<=maxPages,'bounded native page context changed')
- const reviewedPage=maxPages===2?currentProfile.listingPages.find(page=>page.requestedURL===requestedURL&&page.pageNumber===pageNumber):null
- need(maxPages===1?requestedURL===profile.frameURL&&pageNumber===1:reviewedPage,'native pagination endpoint or facet changed')
- const doc=activeDocument(html);noBase(doc);canonical(doc,reviewedPage?.canonicalURL??profile.listingCanonical)
+ const context=maxPages===2?currentProfile.listingPages.find(page=>page.requestedURL===requestedURL&&page.pageNumber===pageNumber):null
+ need(maxPages===1?requestedURL===profile.frameURL&&pageNumber===1:context,'native pagination endpoint or facet changed')
+ const doc=activeDocument(html);noBase(doc)
  const header=doc.text(one(doc.nodes(n=>cls(n,'iCIMS_SearchResultsHeader')),'native pagination header'))
  const pageMatch=/\bPage ([1-9]\d*) of ([1-9]\d*)\b/.exec(header)
- need(pageMatch&&Number(pageMatch[1])===pageNumber&&Number(pageMatch[2])===maxPages,'bounded native listing pagination changed')
+ const declaredPageCount=Number(pageMatch?.[2])
+ // The executable profile bounds acquisition; the publisher's current header
+ // declares membership. The same reviewed program can shrink to one terminal
+ // page without changing its employer, facet, or transport authority.
+ need(pageMatch&&Number(pageMatch[1])===pageNumber&&declaredPageCount>=pageNumber&&declaredPageCount<=maxPages,'bounded native listing pagination changed')
+ const reviewedPage=declaredPageCount===2?context:null
+ canonical(doc,reviewedPage?.canonicalURL??profile.listingCanonical)
  if(reviewedPage){
   const declarations=doc.nodes(n=>n.tag==='a'&&n.attrs.href?.includes('/jobs/search?')).map(n=>({attributes:n.attrs,text:doc.text(n)}))
   need(isDeepStrictEqual(declarations,reviewedPage.paginationDeclarations),'native pagination count, selected page, endpoint or facet declaration changed')
@@ -88,9 +94,13 @@ export function readListing(html,{requestedURL=profile.frameURL,pageNumber=1,max
   need(isDeepStrictEqual(doc.nodes(n=>n.tag==='a',owner).map(n=>({attributes:n.attrs,text:doc.text(n)})),reviewedPage.paginationDeclarations),'native pagination owner anchor inventory changed')
   const links=doc.nodes(n=>n.tag==='link'&&/(?:^|\s)(?:next|prev)(?:\s|$)/i.test(n.attrs.rel||'')).map(n=>({tag:n.tag,attributes:n.attrs,text:doc.text(n)}))
   need(isDeepStrictEqual(links,reviewedPage.paginationLinks),'native pagination head continuation declarations changed')
- }else need(!doc.nodes(n=>n.tag==='a'&&/^(?:next|previous)$/i.test(doc.text(n))).length,'bounded native listing pagination changed')
+ }else{
+  const owners=doc.nodes(n=>['iCIMS_Paginator_Bottom','iCIMS_Paging','iCIMS_PagingBatch'].some(value=>cls(n,value)))
+  need(isDeepStrictEqual(owners.map(n=>({tag:n.tag,attributes:n.attrs})),[currentProfile.listingPages[0].paginationOwners[0]])&&owners[0].children.every(n=>typeof n==='string'?!norm(decodeHTML(n)):n.inert),'single-page native pagination owner changed')
+  need(!doc.nodes(n=>n.tag==='link'&&/(?:^|\s)(?:next|prev)(?:\s|$)/i.test(n.attrs.rel||'')).length,'single-page native pagination head continuation changed')
+ }
  const cards=doc.nodes(n=>n.tag==='li'&&cls(n,'iCIMS_JobCardItem'))
- need(cards.length>0&&cards.length<=(reviewedPage?20:30)&&(!reviewedPage||pageNumber===maxPages||cards.length===20),'bounded native listing cohort count changed')
+ need(cards.length>0&&cards.length<=(maxPages===2?20:30)&&(pageNumber===declaredPageCount||cards.length===20),'bounded native listing cohort count changed')
  const rows=cards.map(card=>{
   const anchor=one(doc.nodes(n=>n.tag==='a'&&typeof n.attrs.href==='string'&&n.attrs.href.includes('/jobs/'),card),'own native role anchor'),match=rolePattern.exec(anchor.attrs.href)
   need(match,'native role URL/host/path conflict')
@@ -100,14 +110,15 @@ export function readListing(html,{requestedURL=profile.frameURL,pageNumber=1,max
  })
  need(new Set(rows.map(r=>r.nativeJobId)).size===rows.length&&new Set(rows.map(r=>r.canonicalURL)).size===rows.length,'duplicate native listing identities')
  need(doc.nodes(n=>n.tag==='a'&&rolePattern.test(n.attrs.href||'')).length===rows.length,'native role links outside own listing cards')
- if(reviewedPage){
+ {
   const roleAnchors=new Set(cards.flatMap(card=>doc.nodes(n=>n.tag==='a'&&rolePattern.test(n.attrs.href||''),card)))
   const navigation=doc.nodes(n=>n.tag==='a'&&!roleAnchors.has(n)).map(n=>({tag:n.tag,attributes:n.attrs,text:doc.text(n)}))
-  need(isDeepStrictEqual(navigation,reviewedPage.nonRoleNavigation),'native pagination or navigation anchor inventory changed')
+  const expected=reviewedPage?.nonRoleNavigation??currentProfile.listingPages[0].nonRoleNavigation.filter(n=>(n.attributes.class||'').split(/\s+/).includes('iCIMS_Logo_Link'))
+  need(isDeepStrictEqual(navigation,expected),'native pagination or navigation anchor inventory changed')
  }
- const nextURL=reviewedPage&&pageNumber<maxPages?currentProfile.listingPages.find(page=>page.pageNumber===pageNumber+1)?.requestedURL:null
- need(pageNumber===maxPages||typeof nextURL==='string','native pagination continuation missing')
- return{requestedURL,canonicalURL:reviewedPage?.canonicalURL??profile.listingCanonical,header,rows,observedNativeCount:rows.length,listingPageCount:1,pageNumber,declaredPageCount:maxPages,nextURL}
+ const nextURL=reviewedPage&&pageNumber<declaredPageCount?currentProfile.listingPages.find(page=>page.pageNumber===pageNumber+1)?.requestedURL:null
+ need(pageNumber===declaredPageCount||typeof nextURL==='string','native pagination continuation missing')
+ return{requestedURL,canonicalURL:reviewedPage?.canonicalURL??profile.listingCanonical,header,rows,observedNativeCount:rows.length,listingPageCount:1,pageNumber,declaredPageCount,nextURL}
 }
 
 const boundaries=new Set(['address','article','aside','body','br','caption','dd','details','div','dl','dt','fieldset','figcaption','figure','footer','form','h1','h2','h3','h4','h5','h6','header','hr','li','main','nav','ol','p','section','summary','table','tbody','td','th','thead','tr','ul'])

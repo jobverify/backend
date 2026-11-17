@@ -1,8 +1,8 @@
+import {runCurrentSimplifyHealthcare} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { normalizeCity } from '../../scraper-support/utils/cityNormalizer.js'
-import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -12,11 +12,8 @@ export const CAREERS_URL = 'https://simplifyhealthcare.com/careers/current-openi
 export const INDIA_ARCHIVE_URL = 'https://simplifyhealthcare.com/category/careers/current-openings/india/'
 export const WORDPRESS_POSTS_API_URL = 'https://simplifyhealthcare.com/wp-json/wp/v2/posts'
 
-const BASE_URL = 'https://simplifyhealthcare.com'
 const INDIA_DETAIL_PATH_PATTERN = /^\/careers\/current-openings\/india\/[^/?#]+\/?$/i
 const DATE_PATTERN = /\b([A-Za-z]{3,9}\s+\d{1,2},\s+\d{4})\b/
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const MONTH_INDEX = {
   jan: '01',
@@ -366,79 +363,7 @@ export const extractJobFromWordPressPostPayload = ({ url, payload }) => {
   }
 }
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'application/json,text/plain;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
-
-export const createSimplifyHealthcareScraper = ({ maxDetails = 50 } = {}) => ({
-  async run({
-    fetchText = defaultFetchText,
-    fetchJson = defaultFetchJson,
-    now = () => new Date().toISOString(),
-  } = {}) {
-    const detailQueue = []
-    const discoveredUrls = new Set()
-
-    const enqueue = (urls, currentUrl = null) => {
-      for (const candidate of urls) {
-        if (candidate === currentUrl || discoveredUrls.has(candidate)) continue
-        discoveredUrls.add(candidate)
-        detailQueue.push(candidate)
-      }
-    }
-
-    for (const listingUrl of [CAREERS_URL, INDIA_ARCHIVE_URL]) {
-      const html = await fetchText(listingUrl)
-      if (!hasOfficialCareersSignal(html)) {
-        throw new Error('Simplify Healthcare careers page no longer matches the verified official public careers surface')
-      }
-
-      enqueue(extractIndiaDetailUrls(html))
-    }
-
-    const jobs = []
-
-    while (detailQueue.length > 0 && jobs.length < maxDetails) {
-      const url = detailQueue.shift()
-      const html = await fetchText(url)
-      const extractedJob = hasOfficialJobDetailSignal(html)
-        ? extractJobFromDetailHtml({ url, html })
-        : extractJobFromWordPressPostPayload({
-            url,
-            payload: await fetchJson(buildWordPressPostApiUrl(url)),
-          })
-
-      jobs.push({
-        ...extractedJob,
-        source: SOURCE,
-        link: url,
-        scrapedAt: now(),
-      })
-
-      enqueue(extractIndiaDetailUrls(html), url)
-    }
-
-    if (jobs.length === 0) {
-      throw new Error('Simplify Healthcare no longer exposes verified public India current-opening detail pages')
-    }
-
-    return jobs
-  },
-})
+export const createSimplifyHealthcareScraper = (configuration = {}) => ({run:options=>runCurrentSimplifyHealthcare({...configuration,...options})})
 
 export const run = async (options = {}) => createSimplifyHealthcareScraper().run(options)
 

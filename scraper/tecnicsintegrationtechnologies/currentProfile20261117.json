@@ -1,0 +1,152 @@
+{
+  "source": "tecnicsintegrationtechnologies",
+  "provenance": "Exact current own public original HTTP entities, finite whole programme AST/bytes. No browser/dependency/company-scope equivalence asserted.",
+  "documents": [
+    {
+      "url": "https://tecnics.com/",
+      "bytes": 253384,
+      "sha256": "0f189f039c4d719724b4a92b8839f51f4de4738ffa6d7c18e396084162cb0031",
+      "titles": [
+        "Identity Security & Managed IAM Services | Tecnics"
+      ]
+    },
+    {
+      "url": "https://tecnics.com/company",
+      "bytes": 52471,
+      "sha256": "5c316e04e7f370f1b9494a6fb1de99702bfb3806c55543cd0da2ea9804ab5208",
+      "titles": [
+        "Company | Tecnics"
+      ]
+    },
+    {
+      "url": "https://tecnics.com/company/about",
+      "bytes": 126250,
+      "sha256": "a8ee5bd9b409fc9327dc3f94742b203fb749b574c522d0dcd1e3fe49e9cae7fd",
+      "titles": [
+        "About Tecnics | Identity Security, Governance & Automation Experts"
+      ]
+    },
+    {
+      "url": "https://tecnics.com/contact",
+      "bytes": 63027,
+      "sha256": "c376bb4cc6da0c5518bf8fa483f463934bd470fafc1bd04a56b353b44f76e7be",
+      "titles": [
+        "Talk to a Tecnics Expert | Tecnics"
+      ]
+    }
+  ],
+  "programmes": [
+    {
+      "url": "https://tecnics.com/_next/static/chunks/3jpue5p7vf7rk.js",
+      "bytes": 44839,
+      "sha256": "9d8976920e76e75517899724ef4c7f66fa88512f15824615faf5876f3ab32ed2",
+      "wholeASTSHA256": "2c1a2e48e6b966aad9ccf59d7902d30e95718e20db065e6c88972218dd2add5c",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/3jpue5p7vf7rk.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/2t71k9ojse2pb.js",
+      "bytes": 231605,
+      "sha256": "f3d3df803f9ddee8c625f2a06d92209202e0ba56d3e0d6eb3c9863ccf4b2a2f3",
+      "wholeASTSHA256": "e7d7cf4e87d2c3fe49ffc1dac96f3f14db4b24a1a8c9d577e44d64ea715bf227",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/2t71k9ojse2pb.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/3w2rrg48-xjkj.js",
+      "bytes": 159024,
+      "sha256": "4733f0b1ccfb55c35c9441c636c460cc1c5e4292fbfbf383f36064d9e84cad2e",
+      "wholeASTSHA256": "aee3bef0e8dfb5285bb45c3912bffae940e9387cf18d44a7e775bc79f7f67cea",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/3w2rrg48-xjkj.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/turbopack-0mg95eg6ifa8n.js",
+      "bytes": 10580,
+      "sha256": "df9ceff3cab82c2de0116a9107145e8a9da2366ddd6d866c390844c941560357",
+      "wholeASTSHA256": "843be169f290ca479e265357748e58faea38608a94d5b6ff0ef6cd0236ec242d",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/turbopack-0mg95eg6ifa8n.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/293de_14cwfof.js",
+      "bytes": 58093,
+      "sha256": "daa69463f0600d3d752778f5349f67fffa911ee4b49b8775cfe53285c7ab2d44",
+      "wholeASTSHA256": "e4176e55894202908aca0981cf9a23122c3237844e0c3ee6e1a0b7dccde97550",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/293de_14cwfof.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/14mrh2-p_w84d.js",
+      "bytes": 54646,
+      "sha256": "a3ac200f3ab8bfa57cf78882057741ddb5c0fbc9e2490c5d951c099b37484206",
+      "wholeASTSHA256": "5b53deffeec184f0176cb5928260a1d772ca7241175e7346838b5f3d7cbb469f",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/14mrh2-p_w84d.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/2x1haw2xt7m36.js",
+      "bytes": 975,
+      "sha256": "25d4aeac2a5f6cb719a0a50faa62e6a6ab0d95afa2d2336c330b0af71e5571c5",
+      "wholeASTSHA256": "6828b9c3f925f84be3dc0a18e359b2796947f87f12d91fdbcd412fdd76a6f753",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/2x1haw2xt7m36.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/2pxy1yul5cfk-.js",
+      "bytes": 1311,
+      "sha256": "d1dfcda081a31952df2c0793dacc5e70a8345d10fdb1e68dca26a1a4697f9075",
+      "wholeASTSHA256": "b1cd6b5c60e8883853b413df657b768519def39d816da317079066bc67c5cac9",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/2pxy1yul5cfk-.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/0e8mexzqwbam8.js",
+      "bytes": 54002,
+      "sha256": "4ee97d464bb0127e324671da2d849d25646681dfbc95351a5a54d4c709d14d5d",
+      "wholeASTSHA256": "052dd8d86740e2874564d1b94db43bcc2c3093b5e2703a1d52ce3d078fde9607",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/0e8mexzqwbam8.js",
+        "async": ""
+      }
+    },
+    {
+      "url": "https://tecnics.com/_next/static/chunks/0n7wrgf4yftkk.js",
+      "bytes": 10578,
+      "sha256": "351be07afe365fc3ff6d98ab5e32411c12aa20e3276085fc84c4becdcc75967b",
+      "wholeASTSHA256": "62f92c2169f51e2a8efe802f98c6627ff2edee767e2c133e429e966b687bcbfa",
+      "parent": "https://tecnics.com/",
+      "attrs": {
+        "src": "/_next/static/chunks/0n7wrgf4yftkk.js",
+        "id": "_R_",
+        "async": ""
+      }
+    }
+  ],
+  "redirect": null
+}

@@ -4,19 +4,19 @@ import test from 'node:test'
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 
-test('Inspire AI is registered as an official first-party careers scraper with India filtering', () => {
+test('Inspire AI is registered with current native HTML/API observations and held company scope', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'inspireai')
 
   assert.ok(provider, 'Expected Inspire AI provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Inspire AI')
   assert.equal(provider.companyCareerPage, 'https://inspireai.com/careers/')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'wordpress-current-careers-html-api-accordion-country-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'single-official-careers-accordion-page')
+  assert.equal(provider.paginationStrategy, 'declared-current-careers-page8033-whole-html-api-models-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-careers-accordion+public-apply-links+india-filter',
+    'dynamic-full-native-accordion-models+literal-role-country-only+future-intake-separated+application-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

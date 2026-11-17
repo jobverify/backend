@@ -10,20 +10,20 @@ test('retired Aditya Birla Capital is excluded from the actual catalog and runne
   assert.equal(catalog.some(row => row.source === 'adityabirlacapital'), false)
   assert.equal(scrapers.some(row => row.name === 'adityabirlacapital'), false)
   assert.throws(() => selectScrapersForRun(scrapers, { onlySources: 'adityabirlacapital', startAt: null, startAfter: null, firstN: null, dryRun: true }), /unknown|not found/i)
-  const active = scrapers.find(row => row.name === 'adityabirlagroup')
+  const active = scrapers.find(row => row.name === 'adityabirlafashion')
   assert.ok(active)
-  assert.deepEqual(selectScrapersForRun(scrapers, { onlySources: 'adityabirlagroup', startAt: null, startAfter: null, firstN: null, dryRun: true }).scrapers.map(row => row.name), ['adityabirlagroup'])
+  assert.deepEqual(selectScrapersForRun(scrapers, { onlySources: 'adityabirlafashion', startAt: null, startAfter: null, firstN: null, dryRun: true }).scrapers.map(row => row.name), ['adityabirlafashion'])
 })
 
-test('exact company coverage keeps the original Capital backlog unmatched and Group/Fashion identities separate', () => {
+test('exact company coverage keeps the original Capital backlog unmatched and Fashion identity separate', () => {
   const catalog = getScraperCatalog()
   const report = generateCompanyCoverageReport({ csvText: 'Aditya Birla Capital\n', catalog })
   assert.equal(report.matchedCount, 0)
   assert.equal(report.unmatchedCount, 1)
   assert.equal(report.unmatched[0].companyName, 'Aditya Birla Capital')
-  const peers = generateCompanyCoverageReport({ csvText: 'Aditya Birla Group\nAditya Birla Fashion\n', catalog })
+  const peers = generateCompanyCoverageReport({ csvText: 'Aditya Birla Fashion\n', catalog })
   assert.equal(peers.unmatchedCount, 0)
   assert.deepEqual(peers.matched.map(row => [row.companyName, row.source]), [
-    ['Aditya Birla Group', 'adityabirlagroup'], ['Aditya Birla Fashion', 'adityabirlafashion'],
+    ['Aditya Birla Fashion', 'adityabirlafashion'],
   ])
 })

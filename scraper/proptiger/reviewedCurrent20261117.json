@@ -1,0 +1,84 @@
+{
+  "reviewedOn": "2026-11-17",
+  "scope": "Exact declared current programmes only; native openings empty plus general intake is not company zero",
+  "documents": [
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/0g385~bosa1e3.js",
+      "sha256": "26acf13199252bfa55874df724bb24fd194356f92e0291fadc0d419831728351",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/0p0un0j-s6e3s.js",
+      "sha256": "2c93ac865dbaa100fed85fb9149a4635684ef4fc11e07dd71d4591fee009b568",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/0g57ne6vlsh8z.js",
+      "sha256": "b32810e99ae2b8fa19ab64f4a7b9a865bf060f0587323981c1289975da7b6536",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/turbopack-02lccg~zhedky.js",
+      "sha256": "6da78cb61dca02257e521e8b3da88b7e7694b69b2263a57e7b79ada0a6f2cf67",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/07jtk-k2vdz7v.js",
+      "sha256": "1c0c7d80fec9a400849d6b272eddc54631f3799f0e162eca0a397f639a6f89f0",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/13okr20bjqlrb.js",
+      "sha256": "c498d9f78ba7efd1a4ef6cc722a96484a312f6ce900e7c318dc13b81b11d79da",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/07.rcswqy.f94.js",
+      "sha256": "8c706617322d10008b21709af884a10850f8cb6f7db3eb515df192642b082402",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/14sp4guqayijy.js",
+      "sha256": "91608bfc622961aae3270b175c94df450ed63fdf3593a4516ab2ff11cf0cd48b",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/0bsys04hg~7.b.js",
+      "sha256": "32864c39462e79a304baddf937450442f850fdb5dc4d24358a2e0ac63e89edfe",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/0~xsfa46ru.-w.js",
+      "sha256": "f970278fb833b921c2563035ef248f17d6be5e9c15430055c5f36432cacb4ddb",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/16i743juuqor-.js",
+      "sha256": "5eccddaf1ac08da3343c47910f450dbd7b18ca59a8722ffc88c049121cacd56c",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/03~yq9q893hmn.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "status": 200,
+      "location": null
+    },
+    {
+      "url": "https://www.proptiger.com/_next/static/chunks/0j24a6u6ksmcd.js",
+      "sha256": "8f7807d7ecf3a24d88b7a0870db418a69ae6ef894ae62ed11697c83acb6bd0f6",
+      "status": 200,
+      "location": null
+    }
+  ]
+}

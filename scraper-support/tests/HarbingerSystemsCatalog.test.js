@@ -30,7 +30,7 @@ const buildCatalogReadyProvider = (catalogEntry) => hydrateProviderCatalogEntry(
   modulePath,
 })
 
-test('Harbinger Systems local catalog captures the verified first-party Darwinbox handoff and live India jobs surface', async () => {
+test('Harbinger local catalog retains its dated historical provider metadata', async () => {
   const { HARBINGER_SYSTEMS_CATALOG, default: defaultCatalog } = await loadCatalogModule()
   const harbinger = await loadScriptModule()
   const provider = buildCatalogReadyProvider(HARBINGER_SYSTEMS_CATALOG)

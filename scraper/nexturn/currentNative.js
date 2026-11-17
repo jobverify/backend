@@ -1,4 +1,5 @@
 import {createHash} from 'node:crypto'
+import {readFileSync} from 'node:fs'
 import {createCurrentNativeReader} from '../../scraper-support/native-sources/boundedCurrentNativeRead20261106.js'
 import {firstPartyFailure} from '../../scraper-support/native-sources/boundedFirstPartyDocuments.js'
 import {canonicalNativeRecord} from '../../scraper-support/native-sources/collectCurrentOriginalRecords20261106.js'
@@ -12,7 +13,16 @@ import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourc
 export const CURRENT_CANONICAL_ORIGIN='https://a207918b5adcafa5a3d5c8da94245572-1614464718.ap-south-1.elb.amazonaws.com'
 const HOME='https://nexturn.com/',CAREERS=HOME+'careers/'
 const canonicalOrigins=[HOME.slice(0,-1),'https://www.nexturn.com',CURRENT_CANONICAL_ORIGIN,'https://ec2-65-0-158-166.ap-south-1.compute.amazonaws.com','https://3.7.208.225','https://13.202.106.64']
-const indiaLocations=new Set(['India, Hyderabad','India, Hyderabad (Hybrid)','India, Mumbai/Gurgaon','India, Mumbai/Gurgoan','India, Mumbai (must be ready to travel every day)','India, Remote','India, Hyderabad (Hybrid/Remote)','India, Bangalore (Hybrid)','India, Hyderabad / Chennai / Trivandrum / Remote','India, Hyderabad & Bangalore (Hybrid)','India, Hyderabad & Remote','India, Bangalore/Remote','India, Gurugram (Hybrid)'])
+// Literal publisher metadata, never a fetch destination. Bind each reviewed
+// alias to its exact public role path and original WordPress identity.
+const canonicalAliases=JSON.parse(readFileSync(new URL('./reviewedCanonical20261117.json',import.meta.url),'utf8')).aliases
+export function isReviewedNexTurnCanonical(canonical,sourceURL,nativeId){
+ try{
+  const url=new URL(sourceURL),alias=canonicalAliases[url.pathname]
+  return url.origin==='https://nexturn.com'&&!url.search&&!url.hash&&!!alias&&alias.canonical===canonical&&alias.nativeId===nativeId
+ }catch{return false}
+}
+const indiaLocations=new Set(['India, Hyderabad','India, Hyderabad (Hybrid)','India, Mumbai/Gurgaon','India, Mumbai/Gurgoan','India, Mumbai (must be ready to travel every day)','India, Remote','India, Hyderabad (Hybrid/Remote)','India, Bangalore (Hybrid)','India, Hyderabad / Chennai / Trivandrum / Remote','India, Hyderabad & Bangalore (Hybrid)','India, Hyderabad & Remote','India, Bangalore/Remote','India, Gurugram (Hybrid)','India, Mumbai / Gurgaon','India, Mumbai'])
 const fail=(message,fields={})=>firstPartyFailure('nexturn',message,fields)
 const need=(ok,message)=>{if(!ok)throw fail(message,{nativeAuthorityFailure:true})}
 const same=(a,b)=>canonicalNativeRecord(a)===canonicalNativeRecord(b)
@@ -65,7 +75,8 @@ export function readNexTurnDetail(spec,html,row){
  const headings=owned.visible.nodes(n=>n.tag==='h1'&&n.attrs.class==='section-title'),bodyNodes=new Set(descendants(owned.visible.nodes(n=>n.tag==='body')[0]))
  need(headings.length===1&&bodyNodes.has(headings[0])&&owned.visible.text(headings[0])===row.title,'Original native role heading is hidden, inert or outside the owned body')
  const path=new URL(row.sourceUrl).pathname
- need(canonicalOrigins.some(origin=>canonical[0].attrs.href===origin+path),'Unreviewed native canonical identity or path')
+ const alias=canonicalAliases[path],reviewedAlias=alias&&canonical[0].attrs.href===alias.canonical
+ need(canonicalOrigins.some(origin=>canonical[0].attrs.href===origin+path)||reviewedAlias,'Unreviewed native canonical identity or path')
  need(spec.detailSignal(html,row.sourceUrl),'Current official native full-detail markers changed')
  const starts=[...html.matchAll(/<h1\b[^>]*class="section-title"[^>]*>/g)]
  need(starts.length===1,'Ambiguous native role heading')
@@ -83,6 +94,7 @@ export function readNexTurnDetail(spec,html,row){
  need(!/\b(?:this (?:job|role|position) (?:is |has been )?(?:closed|filled|expired)|applications? (?:are )?closed|no longer accepting applications)\b/i.test(criteria.sourceDescription),'Native closed role notice')
  const short=links.filter(n=>n.attrs.rel==='shortlink')
  need(short.length===1&&!short[0].inert&&owned.head.children.includes(short[0])&&/^https:\/\/nexturn\.com\/\?p=[1-9]\d*$/.test(short[0].attrs.href),'Original native WordPress role ID missing')
+ need(!reviewedAlias||isReviewedNexTurnCanonical(canonical[0].attrs.href,row.sourceUrl,new URL(short[0].attrs.href).searchParams.get('p')),'Reviewed canonical alias native identity changed')
  return {detail,criteria,nativeId:new URL(short[0].attrs.href).searchParams.get('p'),nativeCanonical:canonical[0].attrs.href}
 }
 export async function runCurrentNexTurn(spec,options={}){

@@ -1,0 +1,57 @@
+{
+  "source": "yelloskye",
+  "provenance": "Exact current own public original HTTP entities, finite whole programme AST/bytes. No browser/dependency/company-scope equivalence asserted.",
+  "documents": [
+    {
+      "url": "https://www.yelloskye.ai/",
+      "bytes": 256748,
+      "sha256": "48b6b9377071c403ea8d68c29fd9ac25a684e552a09f49da167c62c354465912",
+      "titles": [
+        "YelloSKYE | Drone Surveys, Inspection and Site Monitoring"
+      ]
+    },
+    {
+      "url": "https://www.yelloskye.ai/about",
+      "bytes": 89366,
+      "sha256": "0dcb6e7b3720e93332c73f70e6ab1ee8e4036f47d228a1048888475f134756bc",
+      "titles": [
+        "About YelloSKYE | Drone Surveys and Site Intelligence"
+      ]
+    }
+  ],
+  "programmes": [
+    {
+      "url": "https://www.yelloskye.ai/assets/index-zkuniGNG.js",
+      "bytes": 301204,
+      "sha256": "4ff8f85f50b4575499934f0b96980e53acb54c58a1ccb05297ff3eb0285044ef",
+      "wholeASTSHA256": "635a94831d461d7f0cce6805ba06f968c616b95c04d43f503711697bddf37097",
+      "parent": "https://www.yelloskye.ai/",
+      "attrs": {
+        "type": "module",
+        "crossorigin": "",
+        "src": "/assets/index-zkuniGNG.js"
+      }
+    },
+    {
+      "url": "https://www.yelloskye.ai/assets/About-CSi7betv.js",
+      "bytes": 31484,
+      "sha256": "142314b1784e0a81707a137e8a5b1e5634c77213d8ce46e3f606a7ab0c9ff8f4",
+      "wholeASTSHA256": "8be8955790cdf4b3ee9e95bd24ffd17e158eac5c0a863b4ef8046c610ed69257",
+      "parent": "https://www.yelloskye.ai/assets/index-zkuniGNG.js",
+      "attrs": null
+    },
+    {
+      "url": "https://www.yelloskye.ai/assets/Home-toscOtf5.js",
+      "bytes": 99764,
+      "sha256": "23c1ba5d876ca8122cccfe61019163f930434f6f35a108cbb0e9d5c1c8b3b2fe",
+      "wholeASTSHA256": "02080fbe7ef8044e0f12efb6736064ef5834f20ea0a0c1690524005b748a3d02",
+      "parent": "https://www.yelloskye.ai/assets/index-zkuniGNG.js",
+      "attrs": null
+    }
+  ],
+  "redirect": {
+    "url": "https://yelloskye.com/",
+    "status": 307,
+    "location": "https://www.yelloskye.ai/"
+  }
+}

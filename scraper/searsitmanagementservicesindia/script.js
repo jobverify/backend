@@ -1,7 +1,8 @@
+import {runCurrentSears} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
+
 
 import { SEARS_IT_MANAGEMENT_SERVICES_INDIA_CATALOG as PROVIDER_METADATA } from './catalog.js'
 
@@ -11,8 +12,7 @@ export { PROVIDER_METADATA }
 export const SOURCE = PROVIDER_METADATA.source
 export const CAREERS_URL = PROVIDER_METADATA.companyCareerPage
 
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
+
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -23,14 +23,7 @@ const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/\s+/g, ' ')
   .trim()
 
-const defaultFetchText = (url) => fetchTextWithRetry(url, {
-  headers: {
-    'User-Agent': USER_AGENT,
-    Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-  },
-  label: SOURCE,
-  timeoutMs: 15000,
-})
+
 
 export const hasOfficialSearsCareersSignal = (html = '') => {
   const rawHtml = String(html ?? '')
@@ -52,19 +45,7 @@ export const pageExposesStructuredJobListings = (html = '') => {
   }
 
 export const createSearsITManagementServicesIndiaScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
-    const careersHtml = await fetchText(CAREERS_URL)
-
-    if (!hasOfficialSearsCareersSignal(careersHtml)) {
-      throw new Error('Sears IT & Management Services India careers shell changed; refusing to assume no public listings')
-    }
-
-    if (pageExposesStructuredJobListings(careersHtml)) {
-      throw new Error('Sears IT & Management Services India careers page now exposes structured public listings and needs a dedicated scraper')
-    }
-
-    return []
-  },
+  async run(options={}) { return runCurrentSears(options) },
 })
 
 export const run = async (options = {}) => createSearsITManagementServicesIndiaScraper().run(options)

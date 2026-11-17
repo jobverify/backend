@@ -38,10 +38,16 @@ const declarations20261115=Object.fromEntries(Object.entries(declarations).map((
  .replace('_app-e4ddd0e6f708a095.js','_app-906b68baa5ff46c1.js')
  .replace('4yNB1FCH88tY6PbRSmFAH','6fvxwFNQJCv4SL9RqAcJL')
  .replace('apply-530b431e9be29ff9.js','apply-b96f12938a22623b.js'))]))
+// The Nov16 public deployment advertises the already reviewed Nov7 role and
+// application programs in this exact new Next build context.
+const declarations20261116=Object.fromEntries(Object.entries(declarations).map(([kind,urls])=>[kind,urls.map(url=>url
+ .replace('main-9b9f7dea66d0b54b.js','main-eb264300998e854e.js')
+ .replace('_app-e4ddd0e6f708a095.js','_app-adc50512ab52b557.js')
+ .replace('4yNB1FCH88tY6PbRSmFAH','-o1k54Bqx8mJwi93As_1h'))]))
 export function qualifyEverstageClient(document,url,body,kind){
  const sha=createHash('sha256').update(body).digest('hex')
  if(sha===legacy[kind])return '2026-10-21'
- const profiles=[{hashes:current,declarations,date:'2026-11-07'},{hashes:current20261115,declarations:declarations20261115,date:'2026-11-15'}].filter(profile=>profile.hashes[kind]===sha)
+ const profiles=[{hashes:current,declarations,date:'2026-11-07'},{hashes:current20261115,declarations:declarations20261115,date:'2026-11-15'},{hashes:current,declarations:declarations20261116,date:'2026-11-16'}].filter(profile=>profile.hashes[kind]===sha)
  if(!profiles.length)throw Error('Everstage native: Native '+kind+' executable client contract changed')
  const advertised=[]
  // Hidden/inert presentation does not remove an authored program declaration.

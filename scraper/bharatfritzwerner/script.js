@@ -163,7 +163,7 @@ const parseDepartmentAndLocation = (listHtml = '') => {
   const department = normalizeText(items.find((item) => /^Department\s*:/i.test(item))?.replace(/^Department\s*:\s*/i, ''))
   const rawLocation = normalizeText(items.find((item) => /^Location\s*:/i.test(item))?.replace(/^Location\s*:\s*/i, ''))
   const city = normalizeText(rawLocation?.split(',')[0] ?? null)
-  const location = rawLocation ? `${rawLocation}, India` : null
+  const location = rawLocation
 
   return {
     department,
@@ -278,7 +278,14 @@ export const extractJobDetail = (html, listing) => {
     department: listing.department,
     location: listing.location,
     city: listing.city,
-    country: 'India',
+    country: null,
+    sourceCountryScopeUnresolved: true,
+    sourceDetailComplete: false,
+    sourceDetailStatus: 'partial',
+    sourceDetailFailureKind: 'native-role-country-unproven',
+    sourceScopeComplete: false,
+    sourceListingComplete: false,
+    lifecycleCleanupAllowed: false,
     jobId: `${SOURCE}-${slugify(slug)}`,
     requisitionId: `${SOURCE}-${slugify(slug)}`,
     sourceUrl: listing.sourceUrl,

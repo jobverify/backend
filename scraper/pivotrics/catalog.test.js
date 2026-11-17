@@ -12,12 +12,12 @@ test('Pivotrics is registered as a verified first-party zero-public-careers sent
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Pivotrics')
   assert.equal(provider.companyCareerPage, 'https://www.pivotrics.com/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-corporate-sales-publisher-recruitment-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-missing-robots-sitemap-and-careers-routes')
+  assert.equal(provider.paginationStrategy, 'whole-current-own-corporate-sales-publisher-and-inline-programmes-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-missing-robots-sitemap-and-careers-routes+no-public-job-signals',
+    'complete-current-corporate-enquiry-publication+sales-form-and-office-not-vacancies-or-role-country+native-company-inventory-unknown',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

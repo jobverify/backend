@@ -1,3 +1,4 @@
+import { runCurrentTorrentGas } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -81,7 +82,9 @@ const defaultFetchText = (url) => fetchTextWithRetry(url, {
 })
 
 export const createTorrentGasScraper = () => ({
-  async run({ fetchText = defaultFetchText } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentTorrentGas(options)
+    const { fetchText } = options
     const careersHtml = await fetchText(CAREERS_URL)
 
     if (!hasOfficialCareersShellSignal(careersHtml)) {

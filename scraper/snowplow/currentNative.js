@@ -19,7 +19,8 @@ const reviewedNovember6Evening = JSON.parse(fs.readFileSync(new URL('./reviewedN
 const reviewedNovember9 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109.json', import.meta.url), 'utf8'))
 const reviewedNovember9Evening = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261109Evening.json', import.meta.url), 'utf8'))
 const reviewedNovember10 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261110.json', import.meta.url), 'utf8'))
-const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening, reviewedNovember10]
+const reviewedNovember16 = JSON.parse(fs.readFileSync(new URL('./reviewedNative20261116.json', import.meta.url), 'utf8'))
+const reviewedDeployments = [reviewed, reviewedCurrent, reviewedNovember6, reviewedNovember6Evening, reviewedNovember9, reviewedNovember9Evening, reviewedNovember10, reviewedNovember16]
 // The current board still declares this public alias. November 10 original
 // manual GETs proved the exact publisher redirect and the full font-only CSS
 // already reviewed in the earlier deployment. Historical unresolved captures
@@ -339,6 +340,7 @@ const createReviewedSnowplowScraper = (defaults = {}, mode = {}) => ({async run(
   const originalEngineEvidence = readInventoryEvidence(jobs), detailProofs = [], countryProofs = []
   const audit = {originalEngineEvidence, nativeInventoryCount: null, canonicalCountryCounts: {}, countryProofs, detailProofs, gaps,
     rawOpeningFeed: null, rawClosingFeed: null, rawOpeningSite: null, rawClosingSite: null, receipts, sourceScopeComplete: false}
+  if (review.rendererScopeComplete === false) noteGap('current-native-renderer-complete-scope-unverified')
   const retainedNative = url => receipts.filter(r => r.url === url).map(r => JSON.parse(r.response.body))
   const feedUrl = NATIVE_CONFIG.board + 'api/job-ad', siteUrl = NATIVE_CONFIG.board + 'api/career-site'
   audit.rawOpeningFeed = retainedNative(feedUrl)[0]

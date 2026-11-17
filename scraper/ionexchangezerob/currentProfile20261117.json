@@ -1,0 +1,89 @@
+{
+  "source": "ionexchangezerob",
+  "root": "https://www.zerobonline.com/",
+  "careers": "https://www.zerobonline.com/careers/",
+  "listing": "https://www.zerobonline.com/current-openings/",
+  "rootTitles": [
+    "Get Pure Water Filters Online | Best RO UV Purifiers - ZeroB"
+  ],
+  "careersTitles": [
+    "Make Your Career Bright with ZeroB"
+  ],
+  "listingTitles": [
+    "Current Openings - ZeroB"
+  ],
+  "details": [
+    {
+      "url": "https://www.zerobonline.com/sr-sales-executive-in-ion-exchange-i-ltd-hws-north",
+      "redirect": {
+        "status": 301,
+        "location": "https://www.zerobonline.com/sr-sales-executive-in-ion-exchange-i-ltd-hws-north/"
+      },
+      "canonical": "https://www.zerobonline.com/sr-sales-executive-in-ion-exchange-i-ltd-hws-north/",
+      "pageId": "33046"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hws-south",
+      "redirect": {
+        "status": 301,
+        "location": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hws-south/"
+      },
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hws-south/",
+      "pageId": "58332"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hws-west",
+      "redirect": {
+        "status": 301,
+        "location": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hws-west/"
+      },
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hws-west/",
+      "pageId": "58361"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-north/",
+      "redirect": null,
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-north/",
+      "pageId": "58375"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-west/",
+      "redirect": null,
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-west/",
+      "pageId": "58408"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-east",
+      "redirect": {
+        "status": 301,
+        "location": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-east/"
+      },
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-hbu-east/",
+      "pageId": "58416"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-north/",
+      "redirect": null,
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-north/",
+      "pageId": "58424"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-south/",
+      "redirect": null,
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-south/",
+      "pageId": "58433"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-east/",
+      "redirect": null,
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-east/",
+      "pageId": "58443"
+    },
+    {
+      "url": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-west/",
+      "redirect": null,
+      "canonical": "https://www.zerobonline.com/opening-for-sales-executive-frontliner-mid-senior-senior-in-ion-exchange-i-ltd-cws-west/",
+      "pageId": "58451"
+    }
+  ]
+}

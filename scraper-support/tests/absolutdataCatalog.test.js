@@ -24,12 +24,12 @@ test('Absolutdata provider contract captures the verified timeout-only first-par
   assert.equal(provider.companyName, 'Absolutdata')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyCareerPage, 'https://absolutdata.com/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-company-source-transport-unavailable')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'exact-name-domain-root-plus-common-careers-route-timeout-validation')
+  assert.equal(provider.paginationStrategy, 'current-configured-root-original-tls-validation-without-alternate-probes')
   assert.equal(
     provider.extractionStrategy,
-    'verified-exact-name-first-party-domains-time-out-plus-common-careers-routes-time-out-return-empty',
+    'current-root-transport-evidence+unqualified-recruitment-inventory-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

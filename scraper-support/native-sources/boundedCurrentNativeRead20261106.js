@@ -2,6 +2,8 @@ import {createHash} from 'node:crypto'
 import {setTimeout as delay} from 'node:timers/promises'
 import {boundedDeclaredPublicRead} from './boundedDeclaredPublicRead.js'
 import {firstPartyFailure} from './boundedFirstPartyDocuments.js'
+import {requireNativeHttpResponse} from '../shared/nativeHttpResponse.js'
+import {disposeResponseBody} from '../shared/responseBodyDisposal.js'
 
 const mimes={html:/^(?:text\/html|application\/xhtml\+xml)(?:;|$)/i,json:/^application\/json(?:;|$)/i,javascript:/^(?:(?:text|application)\/(?:x-)?javascript|text\/js)(?:;|$)/i}
 const validURL=value=>{try{const url=new URL(value);return url.href===value&&url.protocol==='https:'&&!url.username&&!url.password&&!url.hash}catch{return false}}
@@ -31,7 +33,7 @@ export function createCurrentNativeReader(options,{source,admitted,learnedURL=()
    check();const kind=permitted.get(url)
    if(!kind||receipts.length>=96||inFlight)throw fail('Unbound, concurrent or excessive native request')
    inFlight=true
-   let deadlineTimer,receipt
+   let deadlineTimer,receipt,observedHTTPError
    try{
     if(nextStart>performance.now())await delay(nextStart-performance.now(),undefined,{signal})
     check();nextStart=performance.now()+500
@@ -41,23 +43,40 @@ export function createCurrentNativeReader(options,{source,admitted,learnedURL=()
     deadlineTimer=setTimeout(()=>deadline.abort(reason),requestTimeoutMs)
     const requestCheck=()=>{check();if(performance.now()-requestStarted>=requestTimeoutMs&&!deadline.signal.aborted)deadline.abort(reason);requestSignal.throwIfAborted()}
     const acquire=async(requested,init)=>{
-     requestCheck();let response
+     requestCheck();let response,page
      if(options.fetchImpl)response=await options.fetchImpl(requested,{...init,credentials:'omit',cache:'no-store'})
      else if(options.fetchPage){
-      const page=await options.fetchPage(requested,{...init,credentials:'omit',cache:'no-store',format:kind})
-      if(init.signal.aborted){cancel(page?.body,init.signal.reason);init.signal.throwIfAborted()}
-      if(page?.bodyUnavailable===true||typeof page?.body!=='string'||Buffer.byteLength(page.body)>16*1024*1024)throw fail('Missing, unavailable or oversized original native entity')
-      if(!page.headers||!Number.isInteger(page.status)||typeof (page.finalUrl??page.url)!=='string')throw fail('Incomplete original native HTTP metadata')
-      response=new Response(page.body,{status:page.status,headers:page.headers});Object.defineProperty(response,'url',{value:page.finalUrl??page.url})
+      page=await options.fetchPage(requested,{...init,credentials:'omit',cache:'no-store',format:kind})
+      if(!page?.headers||!Number.isInteger(page.status)||typeof (page.finalUrl??page.url)!=='string')throw fail('Incomplete original native HTTP metadata')
+      response={status:page.status,url:page.finalUrl??page.url,headers:new Headers(page.headers),body:null}
      }else response=await fetch(requested,{...init,credentials:'omit',cache:'no-store'})
      try{
-      requestCheck();const status=response.status,observedURL=response.url,headers=response.headers,body=response.body;requestCheck()
+      caller?.throwIfAborted()
+      const status=response.status,observedURL=response.url,headers=response.headers
+      Object.assign(receipt,{status,finalUrl:observedURL,headers:Object.fromEntries(headers)})
+      try{
+       // Preserve observed HTTP evidence before an error entity can stall or
+       // fail. Dispose independently; caller cancellation still takes priority.
+       await requireNativeHttpResponse({status,url:observedURL,headers,body:null},requested,
+        {context:source+' current native read',signal:init.signal,callerSignal:caller??null})
+      }catch(error){
+       observedHTTPError=error
+       disposeResponseBody(response,{bestEffort:true}).catch(()=>{})
+       throw error
+      }
+      requestCheck()
+      let body=response.body
+      if(page){
+       if(page.bodyUnavailable===true||typeof page.body!=='string'||Buffer.byteLength(page.body)>16*1024*1024)throw fail('Missing, unavailable or oversized original native entity')
+       body=new Response(page.body).body
+      }
+      requestCheck()
       return {status,url:observedURL,headers,body:body===null?null:{cancel:reason=>body.cancel?.(reason),getReader(){
        requestCheck();const reader=body.getReader()
        try{requestCheck()}catch(error){cancel(reader,error);try{reader.releaseLock()}catch{}throw error}
        return {async read(){requestCheck();const value=await reader.read();requestCheck();return value},cancel:reason=>reader.cancel(reason),releaseLock:()=>reader.releaseLock()}
       }}}
-     }catch(error){cancel(response?.body,error);throw error}
+     }catch(error){if(!observedHTTPError)cancel(response?.body,error);throw error}
     }
     try{
      const response=await boundedDeclaredPublicRead(url,{request,signal:requestSignal,fetchImpl:acquire,overflowError:fail('Original native response byte budget exceeded')})
@@ -69,8 +88,8 @@ export function createCurrentNativeReader(options,{source,admitted,learnedURL=()
      if(!mimes[kind].test(response.headers['content-type']??''))throw fail('Original native '+kind+' MIME changed')
      const body=new TextDecoder('utf8',{fatal:true}).decode(bytes);requestCheck()
      return {url,status:200,headers:response.headers,body,sha256:receipt.sha256}
-    }catch(error){if(caller?.aborted)throw caller.reason;requestCheck();throw error}
-   }catch(error){if(caller?.aborted)throw caller.reason;signal.throwIfAborted();throw error}
+    }catch(error){if(caller?.aborted)throw caller.reason;if(observedHTTPError)throw observedHTTPError;requestCheck();throw error}
+   }catch(error){if(caller?.aborted)throw caller.reason;if(observedHTTPError)throw observedHTTPError;signal.throwIfAborted();throw error}
    finally{if(deadlineTimer)clearTimeout(deadlineTimer);if(receipt)receipt.completedAt=new Date().toISOString();inFlight=false}
   },
   stats:()=>({requests:receipts.length,decodedBytes,receipts:structuredClone(receipts),nativeRequestIntervalMs:500,requestTimeoutMs,sourceTimeoutMs,

@@ -11,12 +11,12 @@ test('McMenon Engineering Services is registered as a verified first-party empty
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'McMenon Engineering Services Ltd.')
   assert.equal(provider.companyCareerPage, 'https://www.mcmenon.com/careers/')
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'official-current-careers-literal-empty-claim-company-scope-held')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-vacancy-section-validation')
+  assert.equal(provider.paginationStrategy, 'active-own-home-and-careers-full-publication-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage+verified-careers-vacancy-section-explicit-empty',
+    'whole-current-careers-and-general-hr-model+literal-no-current-vacancies-claim-retained+browser-and-company-inventory-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

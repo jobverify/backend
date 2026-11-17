@@ -1,3 +1,4 @@
+import { runCurrentFalabella } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -292,6 +293,7 @@ export const createFalabellaScraper = ({
   now = () => new Date(),
 } = {}) => ({
   async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentFalabella(options)
     const fetchPage = options.fetchPage || defaultFetchPage
     const fetchText = options.fetchText || defaultFetchText
     const fetchJson = options.fetchJson || defaultFetchJson

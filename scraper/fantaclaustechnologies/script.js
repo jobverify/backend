@@ -1,3 +1,4 @@
+import {runCurrentFantaclaus,extractCurrentFantaclaus} from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -239,150 +240,10 @@ const getRoleSections = (html) => {
     .filter(Boolean)
 }
 
-export const extractPublicJobs = (html) => {
-  if (!hasOfficialCareersSignal(html)) {
-    throw new Error('Fantaclaus Technologies careers page no longer matches the verified official public surface')
-  }
+export const extractPublicJobs = html => extractCurrentFantaclaus(html).rows
 
-  const sections = getRoleSections(html)
-  const activeSections = sections.filter((section) => section.status?.toLowerCase() === 'apply here')
-  const expectedTitles = Object.keys(EXPECTED_OPENINGS)
-
-  if (activeSections.length !== expectedTitles.length) {
-    throw new Error('Fantaclaus Technologies public openings changed materially')
-  }
-
-  const seenTitles = new Set()
-
-  const jobs = activeSections.map((section) => {
-    const expectedOpening = EXPECTED_OPENINGS[section.title]
-
-    if (!expectedOpening) {
-      throw new Error(`Fantaclaus Technologies unexpected public opening "${section.title}"`)
-    }
-
-    if (seenTitles.has(section.title)) {
-      throw new Error(`Fantaclaus Technologies duplicated public opening "${section.title}"`)
-    }
-    seenTitles.add(section.title)
-
-    if (section.applyUrl !== expectedOpening.applyUrl) {
-      throw new Error(`Fantaclaus Technologies apply link drifted for "${section.title}"`)
-    }
-
-    const parsedMeta = parseMeta(section.meta)
-    if (parsedMeta.city !== expectedOpening.city) {
-      throw new Error(`Fantaclaus Technologies location drifted for "${section.title}"`)
-    }
-
-    if (parsedMeta.employmentType !== expectedOpening.employmentType) {
-      throw new Error(`Fantaclaus Technologies employment type drifted for "${section.title}"`)
-    }
-
-    if (parsedMeta.experienceRequired !== expectedOpening.experienceRequired) {
-      throw new Error(`Fantaclaus Technologies experience drifted for "${section.title}"`)
-    }
-
-    if (!section.jobDescription) {
-      throw new Error(`Fantaclaus Technologies job description missing for "${section.title}"`)
-    }
-
-    for (const snippet of expectedOpening.descriptionSnippets) {
-      if (!section.jobDescription.includes(snippet)) {
-        throw new Error(`Fantaclaus Technologies job description drifted for "${section.title}"`)
-      }
-    }
-
-    const jobId = `${SOURCE}-${slugify(section.title)}`
-    if (!jobId) {
-      throw new Error(`Fantaclaus Technologies role could not be normalized: "${section.title}"`)
-    }
-
-    return {
-      title: section.title,
-      company: COMPANY,
-      department: null,
-      location: parsedMeta.city ? `${parsedMeta.city}, India` : 'India',
-      city: parsedMeta.city,
-      country: 'India',
-      jobId,
-      requisitionId: null,
-      sourceUrl: CAREERS_URL,
-      applyUrl: section.applyUrl,
-      employmentType: parsedMeta.employmentType,
-      experienceRequired: parsedMeta.experienceRequired,
-      minimumQualification: null,
-      preferredQualification: null,
-      requiredSkills: [],
-      postingDate: null,
-      closingDate: null,
-      jobDescription: section.jobDescription,
-    }
-  })
-
-  for (const expectedTitle of expectedTitles) {
-    if (!seenTitles.has(expectedTitle)) {
-      throw new Error(`Fantaclaus Technologies missing verified opening "${expectedTitle}"`)
-    }
-  }
-
-  return jobs
-}
-
-export const createFantaclausTechnologiesScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchPage = defaultFetchPage, now: overrideNow } = {}) {
-    const legalRedirect = await fetchPage(LEGAL_HOME_URL)
-    if (legalRedirect.status !== 200 || !hasLegalRedirectSignal(legalRedirect.html)) {
-      throw new Error('Fantaclaus Technologies legal redirect no longer matches the verified first-party surface')
-    }
-
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Fantaclaus Technologies branded homepage no longer matches the verified first-party surface')
-    }
-
-    if (!hasVerifiedCareersLink(homepage.html)) {
-      throw new Error('Fantaclaus Technologies homepage no longer links to the verified careers route')
-    }
-
-    const sitemap = await fetchPage(SITEMAP_URL)
-    if (sitemap.status !== 200 || !hasOfficialSitemapSignal(sitemap.html)) {
-      throw new Error('Fantaclaus Technologies sitemap no longer advertises the verified careers surface')
-    }
-
-    for (const careersAliasUrl of CAREERS_ALIAS_URLS) {
-      const careersAlias = await fetchPage(careersAliasUrl)
-      if (!hasVerifiedCareersAlias(careersAlias)) {
-        throw new Error('Fantaclaus Technologies careers alias no longer resolves to the verified careers page')
-      }
-    }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-    if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
-      throw new Error('Fantaclaus Technologies careers page no longer matches the verified official public surface')
-    }
-
-    for (const missingRouteUrl of MISSING_ROUTE_URLS) {
-      const missingRoute = await fetchPage(missingRouteUrl)
-
-      if (!isVerifiedMissingRoute(missingRoute)) {
-        throw new Error(`Fantaclaus Technologies missing-route validation failed for ${missingRouteUrl}`)
-      }
-    }
-
-    const jobs = extractPublicJobs(careersPage.html)
-    const scrapedAt = (overrideNow || now)()
-
-    return jobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl,
-      scrapedAt,
-      companyCareerPage: CAREERS_URL,
-      companyDomain: 'inteligenai.com',
-      atsPlatform: 'official-company-careers',
-    }))
-  },
+export const createFantaclausTechnologiesScraper = ({now=()=>new Date().toISOString()}={}) => ({
+  run: options => runCurrentFantaclaus({now,...options},{legal:hasLegalRedirectSignal,home:hasOfficialHomepageSignal,careers:hasOfficialCareersSignal}),
 })
 
 export const run = async (options = {}) => createFantaclausTechnologiesScraper().run(options)

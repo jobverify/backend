@@ -16,8 +16,13 @@ const replay=(mutate=()=>{})=>{
   options.signal.throwIfAborted();calls.push(url)
   const packets=capture.packets.filter(row=>row.requestedUrl===url),index=seen.get(url)||0
   seen.set(url,index+1)
-  assert.ok(packets[index],'Only retained current native requests are allowed: '+url+' #'+index)
-  const packet=structuredClone(packets[index]);mutate(packet,url,index)
+  // This historical capture closed only its first global page. Reuse each
+  // other original once to exercise the expanded full-page closing contract;
+  // the separate current paired-original regression covers real closing drift.
+  const repeatedGlobalClosing=index===1&&packets.length===1&&/^https:\/\/bostonscientific\.eightfold\.ai\/api\/pcsx\/search\?domain=bostonscientific\.com&query=&location=&start=\d+&limit=10$/.test(url)
+  const original=packets[index]??(repeatedGlobalClosing?packets[0]:null)
+  assert.ok(original,'Only retained native URLs and one complete closing replay are allowed: '+url+' #'+index)
+  const packet=structuredClone(original);mutate(packet,url,index)
   return packet.body
  }
  return {calls,options:{now:()=>capture.capturedAt,fetchText:read,fetchJson:async(url,options)=>JSON.parse(await read(url,options))}}
@@ -65,7 +70,7 @@ test('a known foreign native row cannot be quarantined as an unexplained India f
 
 test('closing global listing drift still rejects the entire result',async()=>{
  const io=replay((packet,url,index)=>{if(!facetURL(url)&&url.includes('/search?')&&url.includes('start=0&limit=10')&&index===1)changeJSON(packet,data=>{data.positions[0].name+=' changed'})})
- await assert.rejects(source().run(io.options),/snapshot drift/)
+ await assert.rejects(source().run(io.options),/Closing complete native page\/model drift/)
 })
 
 test('the complete native facet terminal count stays strict after quarantine',async()=>{

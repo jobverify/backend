@@ -1,196 +1,53 @@
 import assert from 'node:assert/strict'
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
 import test from 'node:test'
-
-const loadMozarkModule = async () => {
-  try {
-    return await import('./script.js')
-  } catch {
-    assert.fail('Expected Mozark scraper module at ./script.js')
-  }
-}
-
-const officialHomepageHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Mozark.ai</title>
-    <meta
-      name="description"
-      content="Digital experience intelligence across user, application and network layers."
-    >
-  </head>
-  <body>
-    <main>
-      <nav>
-        <a href="/application-experience">Application Experience</a>
-        <a href="/network-experience">Network Experience</a>
-        <a href="/about-us">About Us</a>
-        <a href="/contact-us">Contact Us</a>
-      </nav>
-      <p>DIGITAL EXPERIENCE ASSURANCE</p>
-      <h1>Experience Is All</h1>
-      <p>Digital experience assurance across user, application and network layers.</p>
-      <p>Great User Experience Requires Great Apps and Great Networks. Mozark Assures That.</p>
-      <p>Ready to elevate your digital experience? Join hundreds of enterprises using Mozark AI.</p>
-    </main>
-  </body>
-</html>
-`
-
-const officialMissingSurfaceHtml = `
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>404: This page could not be found.</title>
-  </head>
-  <body>
-    <main>
-      <a href="/">Mozark.ai</a>
-      <h1>404</h1>
-      <p>This page could not be found.</p>
-    </main>
-  </body>
-</html>
-`
-
-test('Mozark scraper constants stay pinned to the verified homepage and missing public-surface endpoints', async () => {
-  const mozark = await loadMozarkModule()
-
-  assert.equal(mozark.SOURCE, 'mozark')
-  assert.equal(mozark.COMPANY, 'Mozark')
-  assert.equal(mozark.HOMEPAGE_URL, 'https://www.mozark.ai/')
-  assert.equal(mozark.SITEMAP_INDEX_URL, 'https://www.mozark.ai/sitemap.xml')
-  assert.equal(mozark.PAGES_SITEMAP_URL, 'https://www.mozark.ai/pages-sitemap.xml')
-  assert.deepEqual(mozark.NO_PUBLIC_CAREERS_ROUTE_URLS, [
-    'https://www.mozark.ai/careers',
-    'https://www.mozark.ai/careers/',
-    'https://www.mozark.ai/career',
-    'https://www.mozark.ai/career/',
-    'https://www.mozark.ai/jobs',
-    'https://www.mozark.ai/jobs/',
-    'https://www.mozark.ai/join-us',
-    'https://www.mozark.ai/openings',
-  ])
-  assert.equal(mozark.hasOfficialHomepageSignal(officialHomepageHtml), true)
-  assert.equal(mozark.hasPublicJobsSignal(officialHomepageHtml), false)
-  assert.equal(
-    mozark.isVerifiedMissingCareersRoute({
-      status: 404,
-      url: mozark.NO_PUBLIC_CAREERS_ROUTE_URLS[0],
-      html: officialMissingSurfaceHtml,
-    }),
-    true,
-  )
-  assert.equal(
-    mozark.isVerifiedMissingCareersRoute({
-      status: 404,
-      url: mozark.SITEMAP_INDEX_URL,
-      html: officialMissingSurfaceHtml,
-    }),
-    true,
-  )
-  assert.equal(
-    mozark.isVerifiedMissingCareersRoute({
-      status: 200,
-      url: mozark.NO_PUBLIC_CAREERS_ROUTE_URLS[0],
-      html: '<html><body><h1>Careers</h1><a href="/jobs/platform-engineer">Apply now</a></body></html>',
-    }),
-    false,
-  )
+import {SOURCE,COMPANY,HOMEPAGE_URL,ABOUT_URL,createMozarkScraper,run} from './script.js'
+import {PROGRAM_URL,readCurrentMozarkShell,readCurrentMozarkAbout} from './currentNative20261117.js'
+import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../../scraper-support/utils/inventoryEvidence.js'
+import {readSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('./fixtures/native-20261117.json.gz',import.meta.url))))
+const original=url=>fixture.responses.find(r=>r.url===url),body=r=>Buffer.from(r.bodyBase64,'base64').toString()
+function replay(edit=(row,text)=>text){const calls=[],counts=new Map();return {calls,fetchImpl:async(url,init)=>{const row=original(url);assert.ok(row,'Only actual own declaration/observed redirect target '+url);calls.push(url);assert.equal(init.method,'GET');assert.equal(init.redirect,'manual');assert.equal(init.credentials,'omit');const count=(counts.get(url)??0)+1;counts.set(url,count);return Object.defineProperty(new Response(edit(row,body(row),count),{status:row.status,headers:row.headers}),'url',{value:row.url})}}}
+test('Mozark current shell declares its complete own root programme and its independent About document retains exact brand and redirect-admission limits',()=>{
+ assert.equal(SOURCE,'mozark');assert.equal(COMPANY,'Mozark')
+ const shell=readCurrentMozarkShell(body(original(HOMEPAGE_URL))),about=readCurrentMozarkAbout(body(original(ABOUT_URL)))
+ assert.equal(shell.moduleDeclaration.attrs.src,'/site/assets/index-COF7qz_J.js');assert.equal(shell.nativeInventoryQualified,false);assert.equal(about.redirectReconciledInCurrentRun,false);assert.equal(about.corporateOfficesAreRoleCountries,false);assert.equal(about.genericContactOrDemoIsVacancy,false)
+ assert.equal(about.wholeOriginalHTML,body(original(ABOUT_URL)))
 })
-
-test('Mozark returns no jobs only while the verified homepage and missing public-surface endpoints stay unchanged', async () => {
-  const mozark = await loadMozarkModule()
-  const requestedUrls = []
-
-  const jobs = await mozark.createMozarkScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === mozark.HOMEPAGE_URL) {
-        return { status: 200, url, html: officialHomepageHtml }
-      }
-
-      if (url === mozark.SITEMAP_INDEX_URL || url === mozark.PAGES_SITEMAP_URL) {
-        return { status: 404, url, html: officialMissingSurfaceHtml }
-      }
-
-      if (mozark.NO_PUBLIC_CAREERS_ROUTE_URLS.includes(url)) {
-        return { status: 404, url, html: officialMissingSurfaceHtml }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    mozark.HOMEPAGE_URL,
-    mozark.SITEMAP_INDEX_URL,
-    mozark.PAGES_SITEMAP_URL,
-    ...mozark.NO_PUBLIC_CAREERS_ROUTE_URLS,
-  ])
-  assert.deepEqual(jobs, [])
+test('Mozark full current corporate/client models and explicit coverage-gap receipt preserve unknown inventory without crawling speculative career,ERP or auth routes',async()=>{
+ const {calls,fetchImpl}=replay(),jobs=await createMozarkScraper({fetchImpl}).run({maxJobs:1}),audit=jobs.nativeCollectionEvidence,inventory=readInventoryEvidence(jobs)
+ assert.deepEqual(calls,[HOMEPAGE_URL,PROGRAM_URL,ABOUT_URL,HOMEPAGE_URL,PROGRAM_URL,ABOUT_URL]);assert.equal(jobs.length,0);assert.equal(readSourceObservationEvidence(jobs,SOURCE).observedVacancyCount,0)
+ assert.equal(inventory.status,'coverage-gap');assert.equal(inventory.reportedTotal,null);assert.equal(inventory.indiaFacetCount,null);assert.equal(sourceLifecycleCleanupForbidden(jobs),true);assert.equal(audit.companyIndiaZeroProven,false);assert.equal(audit.companyIndiaTotal,null);assert.equal(audit.companyGlobalTotal,null)
+ assert.equal(audit.activeApplyVerified,false);assert.equal(audit.legacyGuessedCareerRouteRequests,0);assert.ok(audit.nativeOpening.program.body.length>400000);assert.equal(audit.nativeOpening.about.wholeNativeBody.tag,'body')
 })
-
-test('Mozark fails closed when the verified no-public-careers contract drifts', async () => {
-  const mozark = await loadMozarkModule()
-
-  await assert.rejects(
-    mozark.createMozarkScraper().run({
-      fetchPage: async (url) => {
-        if (url === mozark.HOMEPAGE_URL) {
-          return { status: 200, url, html: '<html><title>Unexpected</title></html>' }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified official homepage/i,
-  )
-
-  await assert.rejects(
-    mozark.createMozarkScraper().run({
-      fetchPage: async (url) => {
-        if (url === mozark.HOMEPAGE_URL) {
-          return { status: 200, url, html: officialHomepageHtml }
-        }
-
-        if (url === mozark.SITEMAP_INDEX_URL) {
-          return {
-            status: 200,
-            url,
-            html: '<?xml version="1.0"?><urlset><url><loc>https://www.mozark.ai/careers</loc></url></urlset>',
-          }
-        }
-
-        throw new Error(`Unexpected URL: ${url}`)
-      },
-    }),
-    /verified sitemap endpoint/i,
-  )
-
-  await assert.rejects(
-    mozark.createMozarkScraper().run({
-      fetchPage: async (url) => {
-        if (url === mozark.HOMEPAGE_URL) {
-          return { status: 200, url, html: officialHomepageHtml }
-        }
-
-        if (url === mozark.SITEMAP_INDEX_URL || url === mozark.PAGES_SITEMAP_URL) {
-          return { status: 404, url, html: officialMissingSurfaceHtml }
-        }
-
-        if (url === mozark.NO_PUBLIC_CAREERS_ROUTE_URLS[0]) {
-          return {
-            status: 200,
-            url,
-            html: '<html><body><h1>Careers</h1><a href="https://jobs.ashbyhq.com/mozark">Open positions</a></body></html>',
-          }
-        }
-
-        return { status: 404, url, html: officialMissingSurfaceHtml }
-      },
-    }),
-    /careers routes changed materially|public jobs/i,
-  )
+test('Mozark changed native root programme declarations fail before accessing undeclared assets',async()=>{
+ const {calls,fetchImpl}=replay((row,text)=>row.url===HOMEPAGE_URL?text.replace('/site/assets/index-COF7qz_J.js','https://foreign.invalid/new.js'):text)
+ await assert.rejects(run({fetchImpl}),/declaration changed/);assert.equal(calls.length,1)
+})
+test('Mozark complete reviewed programme context rejects executable changes and public role/criteria additions rather than ignoring new data',async()=>{
+ for(const addition of [';globalThis.UNREVIEWED_MOZARK=true',';const addedRoles=[{title:"New role",country:"India",criteria:"Changed requirement"}]']){
+  const {calls,fetchImpl}=replay((row,text)=>row.url===PROGRAM_URL?text+addition:text)
+  await assert.rejects(run({fetchImpl}),/Whole reviewed native root programme/);assert.equal(calls.length,2)
+ }
+ assert.equal(globalThis.UNREVIEWED_MOZARK,undefined)
+})
+test('Mozark whole current About body closing rejects passive native changes and requires its own current identity',async()=>{
+ const {fetchImpl}=replay((row,text,count)=>row.url===ABOUT_URL&&count===2?text.replace('</body>','<aside>Additional native requirement</aside></body>'):text)
+ await assert.rejects(run({fetchImpl}),/Closing.*native models changed/)
+ assert.throws(()=>readCurrentMozarkAbout(body(original(ABOUT_URL)).replace('<title>Mozark.ai</title>','<title>Other company</title>')),/identity/)
+})
+test('Mozark metadata-only callbacks are unqualified and frozen pre-abort precedes invalid limits',async()=>{
+ let calls=0;await assert.rejects(run({fetchText:async()=>{calls++}}),/Original HTTP metadata/);assert.equal(calls,0)
+ const controller=new AbortController(),reason=Object.freeze({owner:'mozark-preabort'});controller.abort(reason)
+ await assert.rejects(run({signal:controller.signal,maxJobs:0,fetchText:async()=>{calls++}}),error=>error===reason);assert.equal(calls,0)
+})
+test('Mozark fulfilled and rejected in-flight cancellation preserve exact frozen caller ownership',async()=>{
+ for(const mode of ['fulfil','reject']){const controller=new AbortController(),reason=Object.freeze({owner:'mozark-'+mode});let calls=0
+  await assert.rejects(run({signal:controller.signal,fetchImpl:async url=>{calls++;controller.abort(reason);if(mode==='reject')throw Error('transport');return Object.defineProperty(new Response('opaque'),'url',{value:url})}}),error=>error===reason);assert.equal(calls,1)
+ }
+})
+test('Mozark native202 WAF challenge stops at headers with no guessed source replacement',async()=>{
+ let calls=0,reads=0
+ await assert.rejects(run({fetchImpl:async url=>{calls++;return {status:202,url,headers:new Headers({'x-amzn-waf-action':'challenge'}),body:{getReader(){reads++;assert.fail('No challenge body read')},cancel:async()=>{}}}}}),error=>error.httpStatus===202&&error.failureKind==='blocked_or_access_denied');assert.equal(calls,1);assert.equal(reads,0)
 })

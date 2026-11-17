@@ -1,0 +1,4 @@
+import assert from'node:assert/strict'
+import test from'node:test'
+import{currentTransport}from'./currentTransport20261117.js'
+test('Sattva linked PDF retains binary originals without a lossy UTF8 conversion and rejects malformed declared media type',async()=>{const url='https://www.sattva.co.in/current-guide.pdf',body=Buffer.from([37,80,68,70,45,255,0,254]);for(const type of['application/pdf','application/pdfx']){const io=currentTransport({label:'Sattva',allowedURL:u=>u===url,requestIntervalMs:0,fetchImpl:async()=>Object.defineProperty(new Response(body,{headers:{'content-type':type}}),'url',{value:url})});try{if(type.endsWith('x'))await assert.rejects(io.read(url,'pdf'),/MIME/);else{const result=await io.read(url,'pdf');assert.equal(result.bodyBase64,body.toString('base64'));assert.equal(result.text,undefined);assert.equal(result.bodyBytes,body.length)}}finally{io.close()}}})

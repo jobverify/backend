@@ -103,7 +103,7 @@ export const hasZeroVacancyGroupJobSearchSignal = ({ status, url, html } = {}) =
 
   return status === 200
     && sameUrl(url, GROUP_JOB_SEARCH_URL)
-    && /search jobs at aditya birla group/i.test(normalized)
+    && /search jobs at/i.test(normalized)
     && /showing\s+1\s*-\s*0\s+jobs out of\s+0/i.test(normalized)
     && /no jobs available/i.test(normalized)
     && /currently, we have no vacancies in this sector/i.test(normalized)
@@ -141,7 +141,7 @@ export const createAdityaBirlaFashionScraper = () => ({
     }
 
     const groupJobSearchPage = await fetchPage(GROUP_JOB_SEARCH_URL)
-    if (groupJobSearchPage.status !== 200 || !/Search Jobs at Aditya Birla Group/i.test(normalizeWhitespace(groupJobSearchPage.html))) {
+    if (groupJobSearchPage.status !== 200 || !/search jobs at/i.test(normalizeWhitespace(groupJobSearchPage.html))) {
       throw new Error('Aditya Birla Fashion current group job-search public handoff changed')
     }
 

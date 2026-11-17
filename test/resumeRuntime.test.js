@@ -299,7 +299,7 @@ test('source typography uses printable T1 LaTeX glyph commands', () => {
     'a detached PDF diaeresis and dotless i must become one readable and extractable letter');
 });
 
-test('preserved categories retain useful links and two-page single entries have a legal closed-list break', () => {
+test('preserved categories retain useful links and long entries flow without artificial splitting', () => {
   const skills = { text: 'Alex Example\nTECHNICAL SKILLS\nLanguages: Python, SQL\nTools: Git, Docker',
     links: ['https://www.python.org/'], linkLabels: [{ url: 'https://www.python.org/', label: 'Python' }] };
   const skillsLayout = resumeSourceLayout(skills, undefined, { preserveOriginal: true });
@@ -307,11 +307,12 @@ test('preserved categories retain useful links and two-page single entries have 
   const single = { pageCount: 2, text: 'Alex Example\nEXPERIENCE\nCedar Labs Jan 2022 - Present\nDeveloper\n'
     + Array.from({ length: 20 }, (_, index) => `• Built supported component ${index + 1} with Python and SQL.`).join('\n') };
   const singleLayout = resumeSourceLayout(single, undefined, { preserveOriginal: true });
-  assert.ok(singleLayout.preservationBlocks?.length >= 2);
+  assert.equal(singleLayout.preservationBlocks?.length, 1);
   const all = singleLayout.preservationBlocks.map(block => block.latex).join('\n');
   assert.equal(all.split('Cedar Labs').length - 1, 1);
   assert.equal((all.match(/\\resumeItem\{/g) || []).length, 20);
-  const grammar = buildResumeLatexGrammar([], { exact: true, targetPages: 2 }, { layout: singleLayout });
+  const grammar = buildResumeLatexGrammar([], { exact: false, targetPages: 2 }, { layout: singleLayout });
+  assert.doesNotMatch(grammar, /page-break ::=/);
   assert.doesNotMatch(grammar, /::=\s*\n/);
 });
 

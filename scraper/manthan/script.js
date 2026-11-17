@@ -1,7 +1,6 @@
+import { runCurrentManthan } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-
-import { withRetry } from '../../scraper-support/utils/retry.js'
 
 import { MANTHAN_CATALOG } from './catalog.js'
 
@@ -15,9 +14,6 @@ export const VERIFIED_SURFACE_SUMMARY = MANTHAN_CATALOG.verifiedSurfaceSummary
 export const PROVIDER_METADATA = MANTHAN_CATALOG
 export const HOMEPAGE_URL = MANTHAN_CATALOG.officialHomepageUrl
 export const CAREERS_URL = MANTHAN_CATALOG.companyCareerPage
-
-const USER_AGENT =
-  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 
 const normalizeWhitespace = (value) => String(value ?? '')
   .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -35,41 +31,6 @@ const normalizeWhitespace = (value) => String(value ?? '')
 const normalizeText = (value) => normalizeWhitespace(value).toLowerCase()
 
 const stripTags = (value) => normalizeWhitespace(value)
-
-const createTimeoutSignal = (timeoutMs) => {
-  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
-    return undefined
-  }
-
-  if (typeof AbortSignal?.timeout === 'function') {
-    return AbortSignal.timeout(timeoutMs)
-  }
-
-  const controller = new AbortController()
-  setTimeout(() => controller.abort(), timeoutMs)
-  return controller.signal
-}
-
-const defaultFetchPage = (url) => withRetry(async () => {
-  const response = await fetch(url, {
-    headers: {
-      'User-Agent': USER_AGENT,
-      Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    },
-    redirect: 'follow',
-    signal: createTimeoutSignal(15000),
-  })
-
-  return {
-    status: response.status,
-    url: response.url,
-    html: await response.text(),
-  }
-}, {
-  attempts: 3,
-  baseDelayMs: 2000,
-  label: SOURCE,
-})
 
 const parseLocation = (value) => {
   const location = normalizeWhitespace(value)
@@ -161,30 +122,9 @@ export const extractJobCards = (html) => [...String(html ?? '').matchAll(
   })
   .filter(Boolean)
 
-export const createManthanScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const homepage = await fetchPage(HOMEPAGE_URL)
-    if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
-      throw new Error('Manthan homepage no longer matches the verified first-party surface')
-    }
-
-    const careersPage = await fetchPage(CAREERS_URL)
-    if (careersPage.status !== 200 || !hasOfficialCareersSignal(careersPage.html)) {
-      throw new Error('Manthan careers page no longer matches the verified first-party surface')
-    }
-
-    const jobs = extractJobCards(careersPage.html)
-    if (jobs.length === 0) {
-      throw new Error('Manthan careers page no longer exposes the verified concrete public openings')
-    }
-
-    return jobs.map((job) => ({
-      ...job,
-      source: SOURCE,
-      link: job.applyUrl || job.sourceUrl,
-      scrapedAt: new Date().toISOString(),
-    }))
-  },
+// Historical format parsers above are pure helpers; every runtime caller uses the current native contract.
+export const createManthanScraper = (defaults = {}) => ({
+  run: (options = {}) => runCurrentManthan({...defaults, ...options}),
 })
 
 export const run = async (options = {}) => createManthanScraper().run(options)

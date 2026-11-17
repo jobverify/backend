@@ -7,6 +7,14 @@ import {attachInventoryEvidence} from '../../scraper-support/utils/inventoryEvid
 import {attachSourceObservationEvidence} from '../../scraper-support/utils/sourceObservationEvidence.js'
 
 const profile = JSON.parse(readFileSync(new URL('./reviewedNativeData20261115.json', import.meta.url)))
+const currentInventory = JSON.parse(readFileSync(new URL('./reviewedNativeInventory20261116.json', import.meta.url)))
+// Each cohort retains every ordered page, count, row field and pagination link.
+// The November16 cohort adds one advertised, unhydrated native record; it does
+// not extend the six reviewed criteria-data roles or qualify any held scope.
+const inventoryCohorts = [
+  {listingPages: profile.listingPages, expectedNativeRecordCount: 76},
+  currentInventory,
+]
 const sha = bytes => createHash('sha256').update(bytes).digest('hex')
 const clone = value => structuredClone(value)
 const same = isDeepStrictEqual
@@ -270,16 +278,21 @@ export const createKukuFMScraper = () => ({async run(options = {}) {
       const board = await read(profile.nativeBoard.requestedURL, 'board'), boardModel = html(board.text).model
       need(same(boardModel, profile.reviewedCompleteBoardModel), 'Complete own native account/UUID/board context changed')
       for (const client of profile.wholeCriticalClients) await read(client.requestedURL, 'program')
-      const pages = []
-      let next = profile.listingPages[0].requestedURL
-      for (const page of profile.listingPages) {
+      const firstURL = profile.listingPages[0].requestedURL
+      const firstValue = json((await read(firstURL, 'json')).text)
+      const matching = inventoryCohorts.filter(cohort => same(firstValue, cohort.listingPages[0].reviewedCompleteNativePage))
+      need(matching.length === 1, 'Complete ordered native page/count/row/pagination model changed')
+      const cohort = matching[0], pages = [firstValue]
+      let next = firstValue.next
+      for (const page of cohort.listingPages.slice(1)) {
         need(next === page.requestedURL, 'Complete ordered native page route changed')
         const value = json((await read(next, 'json')).text)
         need(same(value, page.reviewedCompleteNativePage), 'Complete ordered native page/count/row/pagination model changed')
         pages.push(value); next = value.next
       }
       const rows = pages.flatMap(page => page.results)
-      need(next === null && rows.length === 76 && new Set(rows.map(row => row.id)).size === 76, 'Incomplete/duplicate current native inventory')
+      need(next === null && rows.length === cohort.expectedNativeRecordCount
+        && new Set(rows.map(row => row.id)).size === cohort.expectedNativeRecordCount, 'Incomplete/duplicate current native inventory')
       return {boardModel, pages, rows}
     }
     const opening = await discovery()
@@ -340,7 +353,7 @@ export const createKukuFMScraper = () => ({async run(options = {}) {
         sourceApplicationQualificationComplete: false, sourceScopeComplete: false, sourceListingComplete: false, lifecycleCleanupAllowed: false})
     }
     audit.nativeInventoryPairComplete = true; audit.pairedNativeDetailCount = 6; audit.pairedPublicRoleCount = 6
-    audit.unhydratedNativeRecordCount = 70; audit.returnedIndiaJobs = jobs.length
+    audit.unhydratedNativeRecordCount = opening.rows.length - profile.reviewedSelectedRoles.length; audit.returnedIndiaJobs = jobs.length
     audit.physicalRequests = audit.rawPages.length; audit.originalEntityBytes = aggregate; audit.completedAt = new Date().toISOString()
     need(jobs.length > 0, 'No paired unexpired native role; zero inventory remains unverified')
     await observe(onRecords, audit.observations); await observe(onAudit, audit); check()

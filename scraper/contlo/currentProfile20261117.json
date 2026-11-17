@@ -1,0 +1,436 @@
+{
+  "reviewedOn": "2026-11-17",
+  "corporate": [
+    {
+      "url": "https://contlo.com/",
+      "bytes": 298577,
+      "sha256": "8f65ddc150c7a39e15946026945f04225f358de5d387594418a6bf4526ddfcf4",
+      "title": "Contlo – Autonomous marketing for e-commerce"
+    },
+    {
+      "url": "https://contlo.com/careers",
+      "bytes": 79945,
+      "sha256": "f4df8c6c65f92668b20d5dab5b9bf2665f210abffe71473742997a078cb2c68f",
+      "title": "Careers | Contlo"
+    }
+  ],
+  "clients": [
+    {
+      "url": "https://contlo.com/_next/static/chunks/1ikjm8e25ocow.js",
+      "bytes": 1899,
+      "sha256": "9743db382c457c2b221a7b75723ff5fd13c41f9028f93fdbced1208b89362d49"
+    },
+    {
+      "url": "https://outrely.com/embed.js",
+      "bytes": 9008,
+      "sha256": "856bf94939ca24e2ecb33df63973ca2482c2fd3b4c20cc00052cb57cac222d9f"
+    },
+    {
+      "url": "https://contlo.outrely.com/_next/static/chunks/app/w/%5Bws%5D/apply/%5Btoken%5D/page-36e14ee7923b9f26.js",
+      "bytes": 15174,
+      "sha256": "b1dd6b2f7599d250ad471ea1b89191ad6b6bc6b44c7bd41b3180ba6009659575"
+    },
+    {
+      "url": "https://contlo.outrely.com/_next/static/chunks/2870-dd7a1a8f9d59f36b.js",
+      "bytes": 67150,
+      "sha256": "b9e27285fb59a9b2d24dd8b0498e9c7a963b9a677e8e72dc7cc9a79ce34f1480"
+    }
+  ],
+  "api": "https://outrely.com/api/embed/contlo",
+  "detail": {
+    "bodyShapeSHA256": "7a2224eabb339dfd87aca218ace177213ba4311f2d239a4cfd84dee6a946170a",
+    "programs": [
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/1255-31f47ebe9b12c7e5.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/main-app-05a5fe279f4f6e20.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/5854-747c7b525fb0ab5b.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/8918-dd2b8fa021ee73da.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/app/layout-1d4d0c52508b09a2.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/2870-dd7a1a8f9d59f36b.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/app/w/%5Bws%5D/apply/%5Btoken%5D/page-36e14ee7923b9f26.js",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {},
+        "sha256": "ee6bb81f4e9fc030a39a7c71affc4d1f2b900baa4b4c7af83361388d7c39599b"
+      },
+      {
+        "attrs": {
+          "src": "/_next/static/chunks/webpack-4304abfd6a771c04.js",
+          "id": "_R_",
+          "async": ""
+        }
+      },
+      {
+        "attrs": {},
+        "sha256": "93268a0726ec1efaa676ae5171f84267e72b7c3d215b6190794cb4069d5f58d8"
+      },
+      {
+        "attrs": {},
+        "sha256": "2dcb2e50c883929aebb7a64a7a22cfe2260d856a3c36a6926c082da19c552b7b"
+      },
+      {
+        "attrs": {},
+        "sha256": "8f1a66bb3132bd59867f5baedeb2e755bfbe69ce10d24878f5514897051fe90d"
+      },
+      {
+        "attrs": {},
+        "sha256": "3814cddd18b2095e01abb745a99e5ada90178e709c09879324c3b623f2d829ea"
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {},
+        "nativeLiteralFlightData": true
+      },
+      {
+        "attrs": {
+          "type": "module",
+          "src": "https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092",
+          "integrity": "sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==",
+          "data-cf-beacon": "{\"version\":\"2024.11.0\",\"token\":\"830d2a9df6384033bb1b9fe94853d492\",\"r\":1,\"spa\":2}",
+          "crossorigin": "anonymous"
+        }
+      }
+    ],
+    "criteriaFormats": [
+      {
+        "tag": "div",
+        "attrs": {
+          "class": "rich-text text-sm leading-relaxed text-sw-ink-2"
+        }
+      },
+      {
+        "tag": "p",
+        "attrs": {}
+      },
+      {
+        "tag": "strong",
+        "attrs": {}
+      },
+      {
+        "tag": "a",
+        "attrs": {
+          "href": "https://contlo.com/",
+          "target": "_blank",
+          "rel": "noopener noreferrer nofollow"
+        }
+      },
+      {
+        "tag": "ul",
+        "attrs": {}
+      },
+      {
+        "tag": "li",
+        "attrs": {}
+      }
+    ],
+    "schemaShape": {
+      "@context": "string",
+      "@type": "string",
+      "title": "string",
+      "description": "string",
+      "datePosted": "string",
+      "directApply": "boolean",
+      "url": "string",
+      "hiringOrganization": {
+        "@type": "string",
+        "name": "string"
+      },
+      "employmentType": "string",
+      "occupationalCategory": "string",
+      "jobLocation": {
+        "@type": "string",
+        "address": {
+          "@type": "string",
+          "addressLocality": "string",
+          "addressRegion": "string",
+          "addressCountry": "string"
+        }
+      }
+    },
+    "hydration": {
+      "bindings": [
+        {
+          "path": [
+            "18",
+            "value",
+            "c",
+            "2"
+          ],
+          "kind": "token"
+        },
+        {
+          "path": [
+            "18",
+            "value",
+            "f",
+            "0",
+            "0",
+            "1",
+            "children",
+            "1",
+            "children",
+            "1",
+            "children",
+            "1",
+            "children",
+            "0",
+            "1"
+          ],
+          "kind": "token"
+        },
+        {
+          "path": [
+            "18",
+            "value",
+            "f",
+            "0",
+            "1",
+            "2",
+            "children",
+            "2",
+            "children",
+            "2",
+            "children",
+            "2",
+            "children",
+            "0",
+            "1"
+          ],
+          "kind": "token"
+        },
+        {
+          "path": [
+            "19",
+            "value"
+          ],
+          "kind": "serializedJobPosting"
+        },
+        {
+          "path": [
+            "21",
+            "value",
+            "3",
+            "children",
+            "1",
+            "3",
+            "children"
+          ],
+          "kind": "title"
+        },
+        {
+          "path": [
+            "21",
+            "value",
+            "3",
+            "children",
+            "2",
+            "3",
+            "children",
+            "1",
+            "3",
+            "children"
+          ],
+          "kind": "department"
+        },
+        {
+          "path": [
+            "21",
+            "value",
+            "3",
+            "children",
+            "2",
+            "3",
+            "children",
+            "2",
+            "3",
+            "children"
+          ],
+          "kind": "employment"
+        },
+        {
+          "path": [
+            "21",
+            "value",
+            "3",
+            "children",
+            "3",
+            "3",
+            "children"
+          ],
+          "kind": "location"
+        },
+        {
+          "path": [
+            "22",
+            "value"
+          ],
+          "kind": "criteria"
+        },
+        {
+          "path": [
+            "23",
+            "value",
+            "3",
+            "token"
+          ],
+          "kind": "token"
+        },
+        {
+          "path": [
+            "29",
+            "value",
+            "metadata",
+            "0",
+            "3",
+            "children"
+          ],
+          "kind": "pageTitle"
+        },
+        {
+          "path": [
+            "29",
+            "value",
+            "metadata",
+            "4",
+            "3",
+            "href"
+          ],
+          "kind": "url"
+        },
+        {
+          "path": [
+            "29",
+            "value",
+            "metadata",
+            "5",
+            "3",
+            "content"
+          ],
+          "kind": "socialTitle"
+        },
+        {
+          "path": [
+            "29",
+            "value",
+            "metadata",
+            "7",
+            "3",
+            "content"
+          ],
+          "kind": "url"
+        },
+        {
+          "path": [
+            "29",
+            "value",
+            "metadata",
+            "11",
+            "3",
+            "content"
+          ],
+          "kind": "socialTitle"
+        }
+      ],
+      "formPath": [
+        "23",
+        "value",
+        "3"
+      ],
+      "wholeWireModelSHA256": "9b3de352ef70527f88926c7193079e1e84d6f29c2ab985e62adcbdee2a5a66d1"
+    }
+  },
+  "payloadKeys": [
+    "careersUrl",
+    "jobs",
+    "organization",
+    "showBranding",
+    "workspace"
+  ],
+  "rowKeys": [
+    "department",
+    "location",
+    "postedAt",
+    "salary",
+    "title",
+    "type",
+    "url"
+  ]
+}

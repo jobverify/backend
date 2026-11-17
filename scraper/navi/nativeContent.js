@@ -1,4 +1,5 @@
 import {hasSourceDescription} from '../../src/utils/jobSourceContent.js'
+import {matchesCurrentNaviBoard,currentNaviBoardProfile} from './currentBoard20261117.js'
 const requireContent=(ok,message)=>{if(!ok)throw new Error('Navi native content: '+message)}
 const decode = value => String(value ?? '').replace(/&#x([\da-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
   .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
@@ -61,6 +62,9 @@ export const extractActiveDescription = value => {
 }
 export const hasNativeBoardIdentity = html => {
  try{const tree=dom(html),titles=all(tree,n=>n.tag==='title'),metas=all(tree,n=>n.tag==='meta'&&n.attrs.property==='og:title')
- return titles.length===1&&norm(titles[0].raw)==='NAVI TECHNOLOGIES LIMITED'&&metas.length===1&&metas[0].attrs.content==='NAVI TECHNOLOGIES LIMITED - Career Page'
+ return titles.length===1&&metas.length===1&&(
+  norm(titles[0].raw)==='NAVI TECHNOLOGIES LIMITED'&&metas[0].attrs.content==='NAVI TECHNOLOGIES LIMITED - Career Page'
+  ||matchesCurrentNaviBoard(html)&&norm(titles[0].raw)===currentNaviBoardProfile.nativeEmployerLabel
+   &&metas[0].attrs.content===currentNaviBoardProfile.nativeEmployerLabel+' - Career Page')
  }catch{return false}
 }

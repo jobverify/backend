@@ -1,0 +1,346 @@
+{
+  "recordedAt": "2026-11-16T22:53:38.330Z",
+  "primary": {
+    "url": "https://genworx.ai/",
+    "bytes": 2673,
+    "sha256": "be2ed57fcfab632b4101a5463528e6f1c28bf27d6a03f545c602a185d8de90d9"
+  },
+  "client": {
+    "url": "https://genworx.ai/assets/index-DHSlVCQC.js",
+    "bytes": 679150,
+    "sha256": "bd6956809244dcb982dc856669e7827e335990f59ee0e8b5893c52d429b44b72"
+  },
+  "boardURL": "https://genworx.zohorecruit.com/jobs/Careers",
+  "nativeClient": {
+    "url": "https://static.zohocdn.com/recruit/javascript/career-website-common.e098b32b8e59c3522a0599bd2176f5cc.js",
+    "bytes": 2368408,
+    "sha256": "89fbf5332cebc02bdf1fdfc0e9936c4bba377d4d82560d047af905d29f36ba10"
+  },
+  "primaryTitle": "Genworx | Bespoke AI, proven in 72 hours",
+  "boardTitle": "Careers at Genworx | Build Enterprise AI That Delivers",
+  "nativeEmployer": "Genworx.Ai Technology Solutions Private Limited",
+  "nativeOrgId": "802719000000514523",
+  "nativePageId": "802719000000514672",
+  "boardScripts": [
+    {
+      "attrs": {},
+      "bytes": 77,
+      "skeletonSHA256": "9ca9fd935c85d2a1e5fd42d6bf83f0be088278a232d6d5d77c458ba096c1cecc",
+      "data": []
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/custom-elements-es5-adapter.cff507bc95ad1d6bf1a415cc9c8852b0.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/lyte.28de407fe7c8be3b8aa51de42ffdc728.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/I18n/en_US.d56f344ce74e5a46c1895656cf7b52bf.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/helpers/helper.d97005042885bab77ab37a16085ec731.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/I18n/crux_en_US.62dacd07dae02ba0ee093e2687f0d50a.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-elements.bb667948080011477591e6f899e24787.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-accessibility-mixin.0b6b14c0ed8276b31118db9354fe3da0.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/crux-criteria.718d010de18f22dc52fd68e90f244494.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/assets/Utils/currencyUtils.2a491e3027e57cd903eadfb4c3b850ed.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "https://accounts.zoho.com/accounts/js/tplibs/password_strength.js"
+      }
+    },
+    {
+      "attrs": {},
+      "bytes": 162,
+      "skeletonSHA256": "21d75b390eafe069af969e64b88bb7625e3cf8edc1981b08434bc90dca5b05f7",
+      "data": []
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/javascript/career-website-common.e098b32b8e59c3522a0599bd2176f5cc.js"
+      }
+    },
+    {
+      "attrs": {},
+      "bytes": 1652916,
+      "skeletonSHA256": "9379df00e3d110cbe9d481a45f70764b39f6bbdce8ec0fb3b1693c8e270d5467",
+      "data": []
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/javascript/i18n/zohocrm_cw_en_US.541e55786214f00917148e074312773e.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/addons/@zia/ziaSkillsSdk/assets/js/zia-skills-sdk.098f8a4715fefaa9ceff31883a8457e9.js"
+      }
+    },
+    {
+      "attrs": {},
+      "bytes": 35,
+      "skeletonSHA256": "3d432e36401cc9bde326d9d3db94aa66fb5d67f6879885bf9a43a7ba844874e5",
+      "data": []
+    },
+    {
+      "attrs": {
+        "language": "JavaScript",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/components/lyte-calendar.79c8ea995c4b98c6da66835d63f9bde3.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/screening-bot-models.49f9b5d5f9dbef18adb8c6e0c3c4689e.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "bytes": 40680,
+      "skeletonSHA256": "0fe72e0671ad820e8bf5f26e9ef05689b5dd90d7137769368f302d1992878586",
+      "data": []
+    },
+    {
+      "attrs": {},
+      "bytes": 824,
+      "skeletonSHA256": "db83b66ad2a482e9c835bc3c038b460f0bbb1b7ede7469abc81c54c79e2452e8",
+      "data": [
+        {
+          "name": "csrfToken",
+          "type": "Literal"
+        }
+      ]
+    }
+  ],
+  "detailScripts": [
+    {
+      "attrs": {},
+      "bytes": 77,
+      "skeletonSHA256": "9ca9fd935c85d2a1e5fd42d6bf83f0be088278a232d6d5d77c458ba096c1cecc",
+      "data": []
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/custom-elements-es5-adapter.cff507bc95ad1d6bf1a415cc9c8852b0.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/lyte.28de407fe7c8be3b8aa51de42ffdc728.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/I18n/en_US.d56f344ce74e5a46c1895656cf7b52bf.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/helpers/helper.d97005042885bab77ab37a16085ec731.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/I18n/crux_en_US.62dacd07dae02ba0ee093e2687f0d50a.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-elements.bb667948080011477591e6f899e24787.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/components/crux-accessibility-mixin.0b6b14c0ed8276b31118db9354fe3da0.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/crux-criteria.718d010de18f22dc52fd68e90f244494.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components/crux-components/assets/Utils/currencyUtils.2a491e3027e57cd903eadfb4c3b850ed.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "https://accounts.zoho.com/accounts/js/tplibs/password_strength.js"
+      }
+    },
+    {
+      "attrs": {},
+      "bytes": 162,
+      "skeletonSHA256": "21d75b390eafe069af969e64b88bb7625e3cf8edc1981b08434bc90dca5b05f7",
+      "data": []
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/javascript/career-website-common.e098b32b8e59c3522a0599bd2176f5cc.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/javascript/career-website-detailapply.f84d20800c62f5d5c6559f0ba60cf736.js"
+      }
+    },
+    {
+      "attrs": {},
+      "bytes": 1652916,
+      "skeletonSHA256": "9379df00e3d110cbe9d481a45f70764b39f6bbdce8ec0fb3b1693c8e270d5467",
+      "data": []
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/javascript/i18n/zohocrm_cw_en_US.541e55786214f00917148e074312773e.js"
+      }
+    },
+    {
+      "attrs": {
+        "crossorigin": "anonymous",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/addons/@zia/ziaSkillsSdk/assets/js/zia-skills-sdk.098f8a4715fefaa9ceff31883a8457e9.js"
+      }
+    },
+    {
+      "attrs": {},
+      "bytes": 35,
+      "skeletonSHA256": "3d432e36401cc9bde326d9d3db94aa66fb5d67f6879885bf9a43a7ba844874e5",
+      "data": []
+    },
+    {
+      "attrs": {
+        "language": "JavaScript",
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/addons/@zoho/lyte-ui-component/dist/components/lyte-calendar.79c8ea995c4b98c6da66835d63f9bde3.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript",
+        "src": "https://static.zohocdn.com/recruit/dist/bower_components_consolidated/lyte/screening-bot-models.49f9b5d5f9dbef18adb8c6e0c3c4689e.js"
+      }
+    },
+    {
+      "attrs": {
+        "type": "text/javascript"
+      },
+      "bytes": 40680,
+      "skeletonSHA256": "0fe72e0671ad820e8bf5f26e9ef05689b5dd90d7137769368f302d1992878586",
+      "data": []
+    },
+    {
+      "attrs": {},
+      "bytes": 61709,
+      "skeletonSHA256": "89311a9b9701d38665b3143e1056bdd674f2565765bb9382baf9269491d5d705",
+      "data": [
+        {
+          "name": "csrfToken",
+          "type": "Literal"
+        },
+        {
+          "name": "jobs",
+          "type": "CallExpression"
+        },
+        {
+          "name": "portalPageJson",
+          "type": "ObjectExpression"
+        },
+        {
+          "name": "moduleMeta",
+          "type": "ArrayExpression"
+        },
+        {
+          "name": "meta",
+          "type": "ObjectExpression"
+        }
+      ]
+    }
+  ],
+  "sourceScopeComplete": false,
+  "browserEquivalenceComplete": false,
+  "lifecycleCleanupAllowed": false
+}

@@ -1,0 +1,46 @@
+{
+  "source": "funplus",
+  "reviewedAt": "2026-11-16T20:25:13.557Z",
+  "cohort": "one-native-published-role-329858-observed",
+  "unknownPassiveContextComplete": false,
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false,
+  "pageModels": {
+    "https://funplus.factorialhr.com/embed/jobs": {
+      "bytes": 10692,
+      "originalSHA256": "497aeb695da8e4a65668d67c9418a34dca23ce5ad7e776d01bb453f38d52baf0",
+      "canonicalDocumentSHA256": "a13bc7c485e5825c489ecec460ccd35d23f6692eb24216b8a78957db23492301"
+    },
+    "https://funplus.factorialhr.com/embed/job_posting/senior-level-artist-329858": {
+      "bytes": 15826,
+      "originalSHA256": "71db99a7c64771159d37625a1b2dfa4c11c563f084d2309a77ea31fa59271ff3",
+      "canonicalDocumentSHA256": "31bb9671d78ab9bbea6aeb9ca1f349348fa326f164396bbb5c992cbdd7400fbe"
+    },
+    "https://funplus.factorialhr.com/embed/apply/senior-level-artist-329858": {
+      "bytes": 33197,
+      "originalSHA256": "2ff119e90079e3e56dbe5bc907e8753c000806f3d71a20bcccf4ceaab3d86ae0",
+      "canonicalDocumentSHA256": "9b1330c496f10c9665465e0ae6ef451c55f18234d6409e554a0e69a8e3c8624d"
+    }
+  },
+  "assets": {
+    "https://assets.factorialhr.com/ats/packs/js/CompanyPages/index-53d93ed5fc5f0eb357a6.js": {
+      "bytes": 246833,
+      "sha256": "19c5c029ba0b9b0bb3ac70390982ac3c131ffc1041837832171c46e4ed6621a3"
+    },
+    "https://funplus.com/wp-content/plugins/ewww-image-optimizer/includes/lazysizes.min.js?ver=892": {
+      "bytes": 17772,
+      "sha256": "41c0c822518a9514bc5b3a19ee94339d27349b10acd3b69a602a75f41c1db925"
+    }
+  },
+  "corporate": {
+    "url": "https://funplus.com/careers/",
+    "sectionSHA256": "05242a2eaedd4f768023bc181903c40dacaf4231ed26b98eb9b41e1c46152ed1",
+    "programPlanSHA256": "27848b9a05efb5841f8c08486a68179ac614cbf3e9ce7f7ddc5fec4b47755b2b",
+    "nativeBoard": "https://funplus.factorialhr.com/embed/jobs"
+  },
+  "passiveLogo": {
+    "originalURL": "https://s3.eu-central-1.amazonaws.com/assets.factorial.co/tn60hau4qmpak1hgzeny6e54gonv?response-content-disposition=inline%3B%20filename%3D%22Logo-Horizontal-Color-web.jpg%22%3B%20filename%2A%3DUTF-8%27%27Logo-Horizontal-Color-web.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3HJH4LZGCZA3XC6S%2F20261116%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-Date=20261116T200445Z&X-Amz-Expires=3900&X-Amz-SignedHeaders=host&X-Amz-Signature=c5e66d6366b697469b902f6c90d914effe51205dc27dbe2e00b284d8d852005a",
+    "reviewedSigningDay": "20261116",
+    "purpose": "exact passive OG-image S3 object; known signed-transport timestamp/signature only; all original URLs retained; image/browser context remains unverified"
+  }
+}

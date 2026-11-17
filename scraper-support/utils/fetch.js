@@ -1,5 +1,6 @@
 import { withRetry } from './retry.js'
 import { recordRetryHttpStatus } from './retryPressure.js'
+import { disposeResponseBody } from '../shared/responseBodyDisposal.js'
 
 const NON_RETRIABLE_HTTP_STATUSES = new Set([400, 401, 403, 404, 405, 406, 410, 422, 451])
 const NON_RETRIABLE_TRANSPORT_CODES = new Set([
@@ -90,10 +91,25 @@ const buildHtmlInsteadOfJsonError = (url, html) => {
   return error
 }
 
+export const isHttpAccessChallenge = response =>
+  response.headers?.get?.('cf-mitigated')?.trim().toLowerCase() === 'challenge'
+  || response.headers?.get?.('x-amzn-waf-action')?.trim().toLowerCase() === 'challenge'
+
 export const buildHttpError = (response, url) => {
   recordRetryHttpStatus(response.status)
   const error = new Error(`HTTP ${response.status} for ${url}`)
   error.status = response.status
+  error.httpStatus = response.status
+  error.requestedUrl = String(url)
+  error.responseUrl = response.url
+
+  if (isHttpAccessChallenge(response)) {
+    error.message = `Access challenge: HTTP ${response.status} for ${url}`
+    Object.assign(error, {
+      abortRetries: true, accessChallenge: true, softFailure: true, upstreamOutage: true,
+      failureKind: 'blocked_or_access_denied', lifecycleCleanupAllowed: false, sourceScopeComplete: false,
+    })
+  }
 
   if ((response.status >= 300 && response.status < 400) || NON_RETRIABLE_HTTP_STATUSES.has(response.status)) {
     error.abortRetries = true
@@ -197,6 +213,7 @@ const fetchWithRetry = async (url, {
           finish(true, error)
         }
       })
+      let observedHttpError = null
       try {
         const response = (await waitForAttempt(() => fetchImpl(url, {
           ...requestInit,
@@ -210,8 +227,13 @@ const fetchWithRetry = async (url, {
           return Reflect.apply(method, response, [])
         }
 
-        if (!response.ok) {
-          throw buildHttpError(response, url)
+        if (!response.ok || isHttpAccessChallenge(response)) {
+          observedHttpError = buildHttpError(response, url)
+          // Once HTTP denial is observed, a local cleanup deadline cannot
+          // replace it. An explicit caller cancellation still owns its reason.
+          try { await disposeResponseBody(response, { signal: attemptSignal, bestEffort: true }) } catch {}
+          if (callerSignal?.aborted) throwCallerAbort()
+          throw observedHttpError
         }
 
         if (parse === 'text') {
@@ -239,11 +261,13 @@ const fetchWithRetry = async (url, {
         checkAttemptAbort()
         return includeResponseMetadata ? { payload, status: response.status, url: response.url } : payload
       } catch (error) {
-        checkAttemptAbort()
-        if (isNonRetriableTransportError(error)) {
-          error.abortRetries = true
+        if (callerSignal?.aborted) throwCallerAbort()
+        if (!observedHttpError) checkAttemptAbort()
+        const failure = observedHttpError || error
+        if (isNonRetriableTransportError(failure)) {
+          failure.abortRetries = true
         }
-        throw error
+        throw failure
       }
     }, {
       attempts,

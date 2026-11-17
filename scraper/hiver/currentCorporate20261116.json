@@ -1,0 +1,335 @@
+{
+  "provenance": "Two independent current original public WPCloud corporate GETs. All authored visible text remains identical to prior profile; the current minified/cached publication reorders the same13background image pairs and inlines previous stylesheet carriers. All thirteen original generated UUIDs vary; each exact three/four occurrence inventory and complete controller literal remain bound. The remainder of both complete originals reconstructs exactly after those same source-derived UUID substitutions. Current source emits no Batcache header/comment/Last-Modified fields, so this exact complete alternative header/DOM context is pinned. No native Pinpoint criteria, employer, country, renderer resource or application scope is relaxed. Metadata-only partial profile. A third independent current original switches the same complete authored bytes to a Batcache-Hit representation with one125byte terminal banner. The exact two full header-name/context sets are retained. Only a complete issued banner whose age/remaining lifetime sums to300 and agrees with max-age/x-nananana may be stripped in this minified profile; no arbitrary comments, cache headers or authored content are ignored.",
+  "fixture": "fixtures/corporate-20261116.json.gz",
+  "corporate": {
+    "cacheMode": "reviewed-native-no-batcache-20261116",
+    "variableSlots": [
+      {
+        "index": 0,
+        "selector": ".ekit_menu_responsive_mobile .elementskit-submenu-indicator,.ekit_menu_responsive_tablet .elementskit-submenu-indicator",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_0",
+        "stablePair": {
+          "selector": ".ekit_menu_responsive_mobile .elementskit-submenu-indicator,.ekit_menu_responsive_tablet .elementskit-submenu-indicator",
+          "style": ".ekit_menu_responsive_mobile .elementskit-submenu-indicator::before,.ekit_menu_responsive_tablet .elementskit-submenu-indicator::before{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_0: url('https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_0",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 1,
+        "selector": ".elementor-84776 .elementor-element.elementor-element-d3ff79e:not(.elementor-motion-effects-element-type-background),.elementor-84776 .elementor-element.elementor-element-d3ff79e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/07/career-footer-bg@2x-scaled-1.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_1",
+        "stablePair": {
+          "selector": ".elementor-84776 .elementor-element.elementor-element-d3ff79e:not(.elementor-motion-effects-element-type-background),.elementor-84776 .elementor-element.elementor-element-d3ff79e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-84776 .elementor-element.elementor-element-d3ff79e:not(.elementor-motion-effects-element-type-background),.elementor-84776 .elementor-element.elementor-element-d3ff79e>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_1: url('https://hiverhq.com/wp-content/uploads/2026/07/career-footer-bg@2x-scaled-1.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_1",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/07/career-footer-bg@2x-scaled-1.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 2,
+        "selector": ".elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down-2.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_2",
+        "stablePair": {
+          "selector": ".elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+          "style": ".elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link::after{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_2: url('https://hiverhq.com/wp-content/uploads/2026/08/caret-down-2.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_2",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down-2.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 3,
+        "selector": ".darkmode .elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_3",
+        "stablePair": {
+          "selector": ".darkmode .elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link",
+          "style": ".darkmode .elementor-100024 .elementor-element.elementor-element-6c7905bc .ekit-menu-nav-link::after{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_3: url('https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_3",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/caret-down.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 4,
+        "selector": ".elementor-94204 .elementor-element.elementor-element-1f852ae4:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-1f852ae4>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/add-to-chrome@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_4",
+        "stablePair": {
+          "selector": ".elementor-94204 .elementor-element.elementor-element-1f852ae4:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-1f852ae4>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94204 .elementor-element.elementor-element-1f852ae4:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-1f852ae4>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_4: url('https://hiverhq.com/wp-content/uploads/2025/10/add-to-chrome@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_4",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/add-to-chrome@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 5,
+        "selector": ".elementor-94204 .elementor-element.elementor-element-7b4ea35a:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-7b4ea35a>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-new@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_5",
+        "stablePair": {
+          "selector": ".elementor-94204 .elementor-element.elementor-element-7b4ea35a:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-7b4ea35a>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94204 .elementor-element.elementor-element-7b4ea35a:not(.elementor-motion-effects-element-type-background),.elementor-94204 .elementor-element.elementor-element-7b4ea35a>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_5: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-new@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_5",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-new@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 6,
+        "selector": ".elementor-94191 .elementor-element.elementor-element-43e3458e:not(.elementor-motion-effects-element-type-background),.elementor-94191 .elementor-element.elementor-element-43e3458e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/fallback-bg@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_6",
+        "stablePair": {
+          "selector": ".elementor-94191 .elementor-element.elementor-element-43e3458e:not(.elementor-motion-effects-element-type-background),.elementor-94191 .elementor-element.elementor-element-43e3458e>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94191 .elementor-element.elementor-element-43e3458e:not(.elementor-motion-effects-element-type-background),.elementor-94191 .elementor-element.elementor-element-43e3458e>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_6: url('https://hiverhq.com/wp-content/uploads/2025/10/fallback-bg@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_6",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/fallback-bg@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 7,
+        "selector": ".elementor-94181 .elementor-element.elementor-element-1df27f98:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-1df27f98>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-no-border@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_7",
+        "stablePair": {
+          "selector": ".elementor-94181 .elementor-element.elementor-element-1df27f98:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-1df27f98>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94181 .elementor-element.elementor-element-1df27f98:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-1df27f98>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_7: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-no-border@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_7",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-header-no-border@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 8,
+        "selector": ".elementor-94181 .elementor-element.elementor-element-de1c6e7:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-de1c6e7>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+        "url": "https://hiverhq.com/wp-content/uploads/2026/08/signup_bg_new@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_8",
+        "stablePair": {
+          "selector": ".elementor-94181 .elementor-element.elementor-element-de1c6e7:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-de1c6e7>.elementor-motion-effects-container>.elementor-motion-effects-layer",
+          "style": ".elementor-94181 .elementor-element.elementor-element-de1c6e7:not(.elementor-motion-effects-element-type-background),.elementor-94181 .elementor-element.elementor-element-de1c6e7>.elementor-motion-effects-container>.elementor-motion-effects-layer{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_8: url('https://hiverhq.com/wp-content/uploads/2026/08/signup_bg_new@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_8",
+          "url": "https://hiverhq.com/wp-content/uploads/2026/08/signup_bg_new@2x.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 9,
+        "selector": "#elementor-popup-modal-94181",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x-scaled.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_9",
+        "stablePair": {
+          "selector": "#elementor-popup-modal-94181",
+          "style": "#elementor-popup-modal-94181{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_9: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x-scaled.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_9",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x-scaled.webp"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 10,
+        "selector": "#elementor-popup-modal-94181",
+        "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x.webp",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_10",
+        "stablePair": {
+          "selector": "#elementor-popup-modal-94181",
+          "style": "#elementor-popup-modal-94181{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_10: url('https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x.webp');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_10",
+          "url": "https://hiverhq.com/wp-content/uploads/2025/10/signup-popup-bg@2x.webp"
+        },
+        "occurrences": 3,
+        "referenceCount": 0
+      },
+      {
+        "index": 11,
+        "selector": ".demo_form_wrapper .hs_form_demo_render.demo_form select",
+        "url": "https://images.hiverhq.com/images/svg/drop1.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_11",
+        "stablePair": {
+          "selector": ".demo_form_wrapper .hs_form_demo_render.demo_form select",
+          "style": ".demo_form_wrapper .hs_form_demo_render.demo_form select{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_11: url('https://images.hiverhq.com/images/svg/drop1.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_11",
+          "url": "https://images.hiverhq.com/images/svg/drop1.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      },
+      {
+        "index": 12,
+        "selector": ".contact-us-form-inner select",
+        "url": "https://images.hiverhq.com/images/svg/drop1.svg",
+        "marker": "CURRENT_BOUND_WP_BACKGROUND_12",
+        "stablePair": {
+          "selector": ".contact-us-form-inner select",
+          "style": ".contact-us-form-inner select{--wpr-bg-CURRENT_BOUND_WP_BACKGROUND_12: url('https://images.hiverhq.com/images/svg/drop1.svg');}",
+          "hash": "CURRENT_BOUND_WP_BACKGROUND_12",
+          "url": "https://images.hiverhq.com/images/svg/drop1.svg"
+        },
+        "occurrences": 4,
+        "referenceCount": 1
+      }
+    ],
+    "cacheStyles": [],
+    "headerNameVariants": [
+      [
+        "access-control-allow-headers",
+        "access-control-allow-methods",
+        "access-control-allow-origin",
+        "alt-svc",
+        "connection",
+        "content-encoding",
+        "content-security-policy",
+        "content-type",
+        "date",
+        "host-header",
+        "link",
+        "permissions-policy",
+        "referrer-policy",
+        "server",
+        "server-timing",
+        "strict-transport-security",
+        "transfer-encoding",
+        "vary",
+        "x-ac",
+        "x-content-type-options",
+        "x-frame-options"
+      ],
+      [
+        "access-control-allow-headers",
+        "access-control-allow-methods",
+        "access-control-allow-origin",
+        "alt-svc",
+        "cache-control",
+        "connection",
+        "content-encoding",
+        "content-security-policy",
+        "content-type",
+        "date",
+        "host-header",
+        "last-modified",
+        "link",
+        "permissions-policy",
+        "referrer-policy",
+        "server",
+        "server-timing",
+        "strict-transport-security",
+        "transfer-encoding",
+        "vary",
+        "x-ac",
+        "x-content-type-options",
+        "x-frame-options",
+        "x-nananana"
+      ]
+    ],
+    "headerContextVariants": [
+      {
+        "content-type": "text/html; charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": "frame-ancestors 'self' https://app.hiverhq.com https://mail.google.com https://*.hsforms.com chrome-extension://fcinnggknmdfkilogcndkgpojpfojeem https://*.hsforms.net https://*.hs-scripts.com https://*.hs-banner.com;",
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": "<https://hiverhq.com/wp-json/>; rel=\"https://api.w.org/\", <https://hiverhq.com/wp-json/wp/v2/pages/84776>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://hiverhq.com/?p=84776>; rel=shortlink",
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), fullscreen=(self \"https://hiver.storylane.io\")",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cache-control": null,
+        "vary": "Accept-Encoding, Cookie",
+        "access-control-allow-origin": "https://hiverhq.com",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "POST, GET, OPTIONS",
+        "cross-origin-resource-policy": null,
+        "x-pinpoint-version": null,
+        "set-cookie": null
+      },
+      {
+        "content-type": "text/html; charset=UTF-8",
+        "content-disposition": null,
+        "content-security-policy": "frame-ancestors 'self' https://app.hiverhq.com https://mail.google.com https://*.hsforms.com chrome-extension://fcinnggknmdfkilogcndkgpojpfojeem https://*.hsforms.net https://*.hs-scripts.com https://*.hs-banner.com;",
+        "content-security-policy-report-only": null,
+        "refresh": null,
+        "link": "<https://hiverhq.com/wp-json/>; rel=\"https://api.w.org/\", <https://hiverhq.com/wp-json/wp/v2/pages/84776>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://hiverhq.com/?p=84776>; rel=shortlink",
+        "location": null,
+        "content-location": null,
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "permissions-policy": "camera=(), microphone=(), geolocation=(), fullscreen=(self \"https://hiver.storylane.io\")",
+        "referrer-policy": "strict-origin-when-cross-origin",
+        "cache-control": "max-age=CURRENT_BOUND_BATCACHE_REMAINING, must-revalidate",
+        "vary": "Accept-Encoding, Cookie",
+        "access-control-allow-origin": "https://hiverhq.com",
+        "access-control-allow-headers": "Content-Type",
+        "access-control-allow-methods": "POST, GET, OPTIONS",
+        "cross-origin-resource-policy": null,
+        "x-pinpoint-version": null,
+        "set-cookie": null
+      }
+    ]
+  },
+  "contextSHA256": "2efc3d2fc67a439863dd983ee2adbfadd6fb7c709902c034df75e8746adf0ea9",
+  "headerNames": [
+    "access-control-allow-headers",
+    "access-control-allow-methods",
+    "access-control-allow-origin",
+    "alt-svc",
+    "connection",
+    "content-encoding",
+    "content-security-policy",
+    "content-type",
+    "date",
+    "host-header",
+    "link",
+    "permissions-policy",
+    "referrer-policy",
+    "server",
+    "server-timing",
+    "strict-transport-security",
+    "transfer-encoding",
+    "vary",
+    "x-ac",
+    "x-content-type-options",
+    "x-frame-options"
+  ],
+  "headers": {
+    "content-type": "text/html; charset=UTF-8",
+    "content-disposition": null,
+    "content-security-policy": "frame-ancestors 'self' https://app.hiverhq.com https://mail.google.com https://*.hsforms.com chrome-extension://fcinnggknmdfkilogcndkgpojpfojeem https://*.hsforms.net https://*.hs-scripts.com https://*.hs-banner.com;",
+    "content-security-policy-report-only": null,
+    "refresh": null,
+    "link": "<https://hiverhq.com/wp-json/>; rel=\"https://api.w.org/\", <https://hiverhq.com/wp-json/wp/v2/pages/84776>; rel=\"alternate\"; title=\"JSON\"; type=\"application/json\", <https://hiverhq.com/?p=84776>; rel=shortlink",
+    "location": null,
+    "content-location": null,
+    "x-content-type-options": "nosniff",
+    "x-frame-options": "SAMEORIGIN",
+    "permissions-policy": "camera=(), microphone=(), geolocation=(), fullscreen=(self \"https://hiver.storylane.io\")",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "cache-control": null,
+    "vary": "Accept-Encoding, Cookie",
+    "access-control-allow-origin": "https://hiverhq.com",
+    "access-control-allow-headers": "Content-Type",
+    "access-control-allow-methods": "POST, GET, OPTIONS",
+    "cross-origin-resource-policy": null,
+    "x-pinpoint-version": null,
+    "set-cookie": null
+  }
+}

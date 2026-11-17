@@ -26,28 +26,28 @@ const supported = JSON.stringify({ evidence: 'Original facts retained.', support
 const compiled = { pdf: Buffer.from('%PDF-fixture'), text: source.text, links: source.links };
 
 for (const mode of ['base', 'tailored']) {
-  for (const [originalPages, firstPages, expectedPages] of [[1, 2, 1], [2, 1, 2], [3, 3, 2]]) {
-    test(`${mode}: ${originalPages}-page input is revised to exactly ${expectedPages} pages`, async () => {
+  for (const [originalPages, firstPages, expectedPages] of [[1, 2, 1], [2, 3, 2], [3, 3, 2]]) {
+    test(`${mode}: ${originalPages}-page input is revised within ${expectedPages} pages`, async () => {
       let generations = 0, compilations = 0, comparisons = 0;
       const pagePlans = [];
       const result = await processResumeDocument({ mode, source: { ...source, pageCount: originalPages }, baseLatex: latex }, {
         generate: async (prompt, options) => {
           if (options.comparison) { comparisons++; return supported; }
           pagePlans.push(options.layout.pageBreakBefore || null);
-          assert.deepEqual(options.pagination, { originalPageCount: originalPages, targetPages: expectedPages, exact: true });
+          assert.deepEqual(options.pagination, { originalPageCount: originalPages, targetPages: expectedPages, exact: originalPages === 1 });
           if (++generations === 2) {
             assert.equal(options.paginationRepair, true);
             assert.ok(prompt.includes(`currently has ${firstPages} pages`));
             assert.match(prompt, /spacing/i);
             assert.doesNotMatch(prompt, /Alex Example|Cedar Labs|documentclass/);
-            return JSON.stringify({ spacing: firstPages > expectedPages ? 'compact' : 'original', breakBefore: expectedPages === 2 ? 0 : null });
+            return JSON.stringify({ spacing: 'compact', breakBefore: null });
           }
-          return expectedPages === 2 ? latex.replace('\\section{EDUCATION}', '\\newpage\n\\section{EDUCATION}') : latex;
+          return latex;
         },
         compile: async () => ({ ...compiled, pageCount: ++compilations === 1 ? firstPages : expectedPages }),
       });
       assert.equal(generations, 2);
-      assert.deepEqual(pagePlans, expectedPages === 2 ? ['EDUCATION', null] : [null, null], 'a failed physical page count releases the estimated break for repair');
+      assert.deepEqual(pagePlans, [null, null], 'page flow must not depend on an estimated midpoint');
       assert.equal(result.pageCount, expectedPages);
       assert.equal(comparisons, 1, 'audit only the document with the required page count');
     });
@@ -68,12 +68,12 @@ for (const mode of ['base', 'tailored']) {
   });
 }
 
-test('generation receives the original page count, exact target and spacing guidance', () => {
+test('generation receives the original page count, page ceiling and spacing guidance', () => {
   for (const [inputPages, targetPages] of [[1, 1], [2, 2], [3, 2]]) {
     for (const prompt of [buildPreparationPrompt({ source: { ...source, pageCount: inputPages } }),
       buildLatexTailoringPrompt({ source: { ...source, pageCount: inputPages }, baseLatex: latex })]) {
       const payload = JSON.parse(prompt.split('\n').find(line => line.startsWith('{"originalResume":')));
-      assert.deepEqual(payload.pagination, { originalPageCount: inputPages, targetPages, exact: true });
+      assert.deepEqual(payload.pagination, { originalPageCount: inputPages, targetPages, exact: inputPages === 1 });
       assert.match(prompt, /spacing/i);
       assert.match(prompt, /10\s*pt/i);
       assert.doesNotMatch(prompt, /Use the pages needed/);
@@ -81,12 +81,12 @@ test('generation receives the original page count, exact target and spacing guid
   }
 });
 
-test('final generation instructions require a page break for two pages and preserve academic grades', () => {
+test('final generation instructions allow natural page flow and preserve academic grades', () => {
   const graded = { ...source, pageCount: 2, text: source.text + '\nCGPA: 7.49' };
   for (const prompt of [buildPreparationPrompt({ source: graded }), buildLatexTailoringPrompt({ source: graded, baseLatex: latex })]) {
     const finalRules = prompt.slice(prompt.indexOf('\nFINAL DOCUMENT REQUIREMENTS:'));
-    assert.match(finalRules, /exactly two nonempty pages/);
-    assert.match(finalRules, /exactly one \\newpage/);
+    assert.match(finalRules, /flow naturally/);
+    assert.doesNotMatch(finalRules, /exactly two nonempty pages|exactly one \\newpage/);
     assert.match(finalRules, /CGPA: 7\.49/);
     assert.match(finalRules, /unknown.*\{\}/i);
     assert.match(finalRules, /source section order/);
@@ -140,14 +140,14 @@ test('unheaded employment before an education section retains flexible paginatio
   }
 });
 
-test('balanced two-page sections plan the break while a dominant section retains internal pagination', () => {
+test('two-page sources retain natural pagination even with balanced sections', () => {
   const layout = resumeContent.resumeSourceLayout({ ...source, pageCount: 2 });
-  assert.equal(layout.pageBreakBefore, 'EDUCATION');
+  assert.equal(layout.pageBreakBefore, undefined);
   const long = { ...source, pageCount: 2, text: source.text.replace('Built Python services and automated tests.', 'Built Python services and automated tests. '.repeat(50)) };
   const longLayout = resumeContent.resumeSourceLayout(long);
   assert.equal(longLayout.pageBreakBefore, undefined);
   assert.equal(longLayout.longSection, 'EXPERIENCE');
-  assert.match(buildPreparationPrompt({ source: long }), /Split the long source section "EXPERIENCE" across both pages/);
+  assert.match(buildPreparationPrompt({ source: long }), /flow naturally/);
   assert.equal(resumeContent.resumeSourceLayout({ ...source, pageCount: 1 }).pageBreakBefore, undefined);
 });
 

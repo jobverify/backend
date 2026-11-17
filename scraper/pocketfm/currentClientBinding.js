@@ -1,4 +1,6 @@
 import { parse } from 'acorn'
+import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
 import { readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
 import { readReviewedClientProgram, hasClientDocumentBase, clientScriptDeclarations } from '../../scraper-support/utils/reviewedClientProgram.js'
 
@@ -9,6 +11,13 @@ const LOADER_SHA256 = 'ba49c2a5eb44f5d8f9ce44d7cdb7212c74b808bb36285971f15f48b66
 // the unchanged reviewed footer. The surrounding complete Next program changed.
 const LOADER_20261113_SHA256 = 'ccb6083dba2f9ccb662d52e8df6e8d11e04be3002df1deb2b127bc3783274b3f'
 const FOOTER_SHA256 = '994447fba92c4b0e2d1b4a0ce8c0480d42dbdb6a462be524ee2bc66f8f59fb49'
+// This current complete tuple has a different compiler registration/strictness
+// model. Admit only these exact original bytes; no compiler differences are
+// erased at runtime and whole-browser equivalence remains unproved.
+const CURRENT_20261117 = JSON.parse(readFileSync(new URL('./reviewedBinding20261117.json', import.meta.url), 'utf8'))
+const exactCurrentProgram = (url, body, expected) => url === expected.url
+  && Buffer.byteLength(body) === expected.bytes
+  && createHash('sha256').update(body).digest('hex') === expected.sha256
 const LEGACY_LOADER_SHA256 = '14ba844a20ed06cc9d3c5e3aeed2895e7aaf96ddae08f61b4dc2b68555d35e4a'
 const LEGACY_FOOTER_SHA256 = 'fafc2abdba1da22439c0ef7d7e4f000bd6791ae0a0303d707c220da41f4d1804'
 const LEGACY_PARENT_URL = 'https://pocketfm.com/_next/static/chunks/2y_ptw0orekjx.js'
@@ -100,12 +109,19 @@ const loaderChild = program => {
 
 export const verifyCurrentPocketClientBinding = async (html, getText) => {
   const parentURL = currentParentURL(html)
-  const parent = readReviewedClientProgram(await getText(parentURL), { normalizeChunkNames: true })
-  if (![LOADER_SHA256, LOADER_20261113_SHA256].includes(parent?.sha256)) fail('unreviewed parent program')
+  const parentBody = await getText(parentURL)
+  const parent = readReviewedClientProgram(parentBody, { normalizeChunkNames: true })
+  const current = parent?.sha256 === CURRENT_20261117.parent.programSHA256
+    && exactCurrentProgram(parentURL, parentBody, CURRENT_20261117.parent)
+  if (!current && ![LOADER_SHA256, LOADER_20261113_SHA256].includes(parent?.sha256)) fail('unreviewed parent program')
   const childURL = loaderChild(parent.program)
-  const footer = readReviewedClientProgram(await getText(childURL))
-  if (footer?.sha256 !== FOOTER_SHA256) fail('unreviewed careers footer program')
-  return { parentURL, childURL, loaderProgramSHA256: parent.sha256, footerProgramSHA256: FOOTER_SHA256 }
+  const footerBody = await getText(childURL)
+  const footer = readReviewedClientProgram(footerBody)
+  if (current ? footer?.sha256 !== CURRENT_20261117.footer.programSHA256
+    || !exactCurrentProgram(childURL, footerBody, CURRENT_20261117.footer)
+    : footer?.sha256 !== FOOTER_SHA256) fail('unreviewed careers footer program')
+  return { parentURL, childURL, loaderProgramSHA256: parent.sha256, footerProgramSHA256: footer.sha256,
+    ...(current ? {browserEquivalenceComplete:false,sourceScopeComplete:false} : {}) }
 }
 
 export const verifyLegacyPocketClientBinding = async (html, getText) => {

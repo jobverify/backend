@@ -5,6 +5,7 @@ import { createBrowserFetchSession } from '../../scraper-support/shared/browserF
 import { fetchPageWithRetry } from '../../scraper-support/utils/fetchPageWithRetry.js'
 
 import { IGT_SOLUTIONS_CATALOG } from './catalog.js'
+import { runCurrentIgt } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -133,7 +134,9 @@ export const isLegacyBoardUnavailable = (page = {}, requestedUrl = '') => {
 }
 
 export const createIgtSolutionsScraper = () => ({
-  async run({ fetchPage = defaultFetchPage, fetchBrowserPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentIgt(options)
+    const { fetchPage = defaultFetchPage, fetchBrowserPage } = options
     let browserSession = null
 
     const getBrowserSession = async () => {

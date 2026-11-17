@@ -143,7 +143,7 @@ const liveJobsHtmlWithCommentedListings = `
 </html>
 `
 
-test('Pena4 Tech Solutions validates the verified first-party jobs page and extracts India-facing openings', async () => {
+test('Pena4 Tech Solutions legacy cards preserve unknown country despite an unrelated India tab', async () => {
   const pena4 = await loadModule()
 
   assert.equal(pena4.hasOfficialJobsPageSignal(jobsHtml), true)
@@ -151,7 +151,7 @@ test('Pena4 Tech Solutions validates the verified first-party jobs page and extr
   assert.deepEqual(pena4.extractJobCards(jobsHtml), [
     {
       title: 'Quality Reviewers',
-      location: 'India',
+      location: null,
       employmentType: null,
       remoteType: null,
       sourceUrl: 'https://www.pena4.com/jobs.php',
@@ -160,7 +160,7 @@ test('Pena4 Tech Solutions validates the verified first-party jobs page and extr
     },
     {
       title: 'Inpatient Medical Coder',
-      location: 'India',
+      location: null,
       employmentType: 'Full Time or Part Time',
       remoteType: 'Remote',
       sourceUrl: 'https://www.pena4.com/jobs.php',
@@ -178,7 +178,7 @@ test('Pena4 Tech Solutions ignores commented-out legacy job cards on the live jo
   assert.deepEqual(pena4.extractJobCards(liveJobsHtmlWithCommentedListings), [
     {
       title: 'Inpatient Medical Coder',
-      location: 'India',
+      location: null,
       employmentType: 'Full Time or Part Time',
       remoteType: 'Remote',
       sourceUrl: 'https://www.pena4.com/jobs.php',
@@ -188,46 +188,15 @@ test('Pena4 Tech Solutions ignores commented-out legacy job cards on the live jo
   ])
 })
 
-test('Pena4 Tech Solutions run returns normalized jobs from the verified first-party jobs page', async () => {
+test('Pena4 Tech Solutions cannot publish Remote 1099 body-only cards as India jobs', async () => {
   const pena4 = await loadModule()
-  const jobs = await pena4.run({
+  await assert.rejects(pena4.run({
     fetchText: async (url) => {
       assert.equal(url, pena4.JOBS_URL)
       return jobsHtml
     },
     now: () => '2026-08-04T00:00:00.000Z',
-  })
-
-  assert.deepEqual(jobs, [
-    {
-      title: 'Quality Reviewers',
-      company: 'Pena4 Tech Solutions',
-      location: 'India',
-      country: 'India',
-      employmentType: null,
-      remoteType: null,
-      sourceUrl: 'https://www.pena4.com/jobs.php',
-      applyUrl: 'https://www.pena4.com/jobs.php',
-      link: 'https://www.pena4.com/jobs.php',
-      jobDescription: 'The Quality Reviewer is responsible for ensuring accuracy and integrity of ICD-10-CM/PCS coding and DRG assignment for inpatient encounters for other payers (not Medicare/Managed Medicare). This requires critical thinking, and a skill set above what is expected as a coder.',
-      source: 'pena4techsolutions',
-      scrapedAt: '2026-08-04T00:00:00.000Z',
-    },
-    {
-      title: 'Inpatient Medical Coder',
-      company: 'Pena4 Tech Solutions',
-      location: 'India',
-      country: 'India',
-      employmentType: 'Full Time or Part Time',
-      remoteType: 'Remote',
-      sourceUrl: 'https://www.pena4.com/jobs.php',
-      applyUrl: 'https://www.pena4.com/jobs.php',
-      link: 'https://www.pena4.com/jobs.php',
-      jobDescription: 'Seeking experienced Inpatient Medical Coders. Positions are 100% remote. Both full time and part time positions are available. Applicants must have 5+ years of IP PCS coding experience and an active CCS certification from AHIMA.',
-      source: 'pena4techsolutions',
-      scrapedAt: '2026-08-04T00:00:00.000Z',
-    },
-  ])
+  }), /original HTTP metadata|body-only/i)
 })
 
 test('Pena4 Tech Solutions fails closed when the verified jobs page drifts', async () => {
@@ -237,6 +206,6 @@ test('Pena4 Tech Solutions fails closed when the verified jobs page drifts', asy
     pena4.run({
       fetchText: async () => '<html><body><h1>Contact us</h1></body></html>',
     }),
-    /verified first-party jobs page/i,
+    /original HTTP metadata|body-only/i,
   )
 })

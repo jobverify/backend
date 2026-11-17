@@ -324,9 +324,10 @@ export const rewriteWhenReady = async (probe, processQueue) => probe?.ready === 
   qualityStopped: true, stopReason: 'readiness_rejected', reason: 'model_quality_unavailable',
 };
 
-export const rewriteQueueQuery = (now = new Date(), { shard = 0, shardCount = 1 } = {}) => {
+export const rewriteQueueQuery = (now = new Date(), { shard = 0, shardCount = 1, jobFilter = {} } = {}) => {
   return { status: 'active', sourceContentHash: { $type: 'string' },
   ...rewriteShardFilter(shard, shardCount),
+  ...(Object.keys(jobFilter).length ? { $and: [jobFilter] } : {}),
   $or: [
     { 'descriptionRewrite.status': 'pending', 'descriptionRewrite.attempts': { $lt: 3 } },
     { 'descriptionRewrite.status': 'failed', 'descriptionRewrite.attempts': { $lt: 3 },

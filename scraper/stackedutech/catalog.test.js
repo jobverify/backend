@@ -22,12 +22,12 @@ test('StackEdutech is registered as a verified redirect-sentinel scraper without
     'http://stackedutech.com/careers',
     'http://stackedutech.com/jobs',
   ])
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-configured-publisher-employer-identity-unverified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-redirect-plus-robots-and-missing-careers-route-validation')
+  assert.equal(provider.paginationStrategy, 'exact-independently-configured-http-root-opening-closing-no-unrelated-followups')
   assert.equal(
     provider.extractionStrategy,
-    'verified-unrelated-homepage-redirect+verified-robots-txt+verified-missing-careers-routes-return-empty',
+    'whole-current-unrelated-product-publisher-retained+no-product-country-compensation-or-schema-as-employment+target-employer-and-company-inventory-unverified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

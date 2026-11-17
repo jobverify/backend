@@ -10,6 +10,14 @@ const HOME='https://www.artizent.com/',STORY=HOME+'about/our-story',CAREERS=HOME
 const MAIN=HOME+'assets/index-Bln9X1qC.js',LIST=HOME+'assets/JobOpenings-DvlYhWC5.js',DETAIL=HOME+'assets/JobDetail-CRWMO1hX.js',DATA=HOME+'assets/jobs-Bj5fZx4-.js'
 const USER_AGENT='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36'
 const PROFILE=new Map([[MAIN,'95ab5118281c93b1ab598a35866c10807d444e076426c34ab88725315f47492f'],[LIST,'d07753bc149b028e262c6ba8b7f85b0285f5a9c480bad5848ceabb08b58334b4'],[DETAIL,'5e3706b4fb8eb12919067520f1e45f7ae6be5310b2b869500e5ea4e2728c2274']])
+// Exact current graph; native literal criteria are byte-identical. This
+// deployment grants no country, legal-employer, application or scope authority.
+const CURRENT_MAIN=HOME+'assets/index-D2dkAufN.js'
+const DEPLOYMENTS=[{main:MAIN,programs:PROFILE,data:DATA},{main:CURRENT_MAIN,data:DATA,programs:new Map([
+ [CURRENT_MAIN,'a22ff603c9f9d0dd56f303153f46d261bdc95f791547040bf7ba972e2a8a6ce9'],
+ [HOME+'assets/JobOpenings-jHC1xdB9.js','719aa7a67d134228346cb8abe2aae480f8d86dbf7fcdbf4adb9d4e3824f5c8bf'],
+ [HOME+'assets/JobDetail-CgdPOxVu.js','783ee1a6f787c0c587c55e2a78cf7ef2483ae02ccb88d8ad3c83af759c6f2f1c'],
+])}]
 const need=(ok,message)=>{if(!ok)throw Error('Nous current native: '+message)}
 const clean=x=>typeof x==='string'?x.replace(/\s+/g,' ').trim():''
 const sha=x=>createHash('sha256').update(x).digest('hex')
@@ -34,7 +42,7 @@ const roleAuthorityName=/country|address|employer|company|organization|organisat
 const semanticMarkerKeys=new Set(['name','property','itemprop','itemtype'])
 const presentationKeys=new Set(['id','class','style','hidden','inert','role','aria-hidden','aria-disabled','aria-selected','aria-expanded'])
 const hasSemanticPayload=node=>clean(retainedAuthoredText(node))||retainedNodes(node).some(child=>Object.entries(child.attrs).some(([key,value])=>!semanticMarkerKeys.has(key)&&!presentationKeys.has(key)&&clean(value)))
-function documentModel(html,url,title){
+function documentModel(html,url,title,expectedMain){
  const doc=readNativeDocument(html),visible=readVisibleNativeDocument(html,{strict:true})
  const root=one(doc.nodes(n=>n.tag==='root'),'retained document root'),nodes=retainedNodes(root),head=one(nodes.filter(n=>n.tag==='head'),'retained head')
  need(!head.inert,'Hidden or inert own head')
@@ -44,18 +52,21 @@ function documentModel(html,url,title){
  const canonicalLink=one(retainedCanonical,'retained canonical authority')
  need(head.children.includes(canonicalLink)&&!canonicalLink.inert&&same(canonicalLink.attrs,{rel:'canonical',href:url}),'Own retained canonical authority changed')
  const scripts=nodes.filter(n=>n.tag==='script')
- need(scripts.every(n=>head.children.includes(n)&&!n.inert)&&same(scripts.map(n=>({attributes:n.attrs,bodySHA256:sha(n.raw??'')})),HTML_PROGRAM_PROFILE),'Whole retained HTML program declarations changed')
+ const declarations=scripts.map(n=>({attributes:n.attrs,bodySHA256:sha(n.raw??'')}))
+ const deployment=DEPLOYMENTS.find(profile=>same(declarations,HTML_PROGRAM_PROFILE.map((row,index)=>index===2?{...row,attributes:{...row.attributes,src:new URL(profile.main).pathname}}:row)))
+ need(scripts.every(n=>head.children.includes(n)&&!n.inert)&&deployment,'Whole retained HTML program declarations changed')
+ need(!expectedMain||deployment.main===expectedMain,'Own declared main client changed between reviewed deployments')
  need(!nodes.some(n=>Object.entries(n.attrs).some(([key,value])=>/^on[a-z]/i.test(key)&&clean(value))),'Unreviewed HTML event program')
  need(!nodes.some(n=>n.tag==='meta'&&clean(n.attrs['http-equiv'])),'Unreviewed HTTP-equivalent document authority')
  need(same(activeHead(html).titles,[title]),'Own page title/brand changed')
  need(one(doc.nodes(n=>n.tag==='link'&&n.attrs.rel==='canonical'),'canonical').attrs.href===url,'Own canonical authority changed')
  need(!doc.nodes(n=>n.tag==='script'&&n.attrs.type==='application/ld+json'&&clean(n.raw)).length,'Unreviewed native structured authority/country carrier')
  const modules=doc.nodes(n=>n.tag==='script'&&n.attrs.type==='module'&&n.attrs.src)
- need(modules.length===1&&new URL(modules[0].attrs.src,url).href===MAIN,'Own declared main client changed')
+ need(modules.length===1&&new URL(modules[0].attrs.src,url).href===deployment.main,'Own declared main client changed')
  const owner=url.startsWith(OPENINGS+'/')?n=>n.tag==='main':n=>n.attrs.id==='root'
  const main=one(visible.nodes(owner),'visible own page owner'),activeMain=one(doc.nodes(owner),'active own page owner')
  const links=doc.nodes(n=>n.tag==='a'&&typeof n.attrs.href==='string').map(n=>({url:new URL(n.attrs.href,url).href,text:doc.text(n)}))
- return {doc,visible,main,activeMain,links}
+ return {doc,visible,main,activeMain,links,deployment}
 }
 function literalInventory(program){
  const tree=parse(program,{ecmaVersion:'latest',sourceType:'module'})
@@ -69,8 +80,8 @@ function literalInventory(program){
  for(const row of rows){need(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(row.slug)&&clean(row.title)&&clean(row.team)&&['Pune','Bangalore','Hyderabad'].includes(row.location)&&row.openings===1&&row.type==='Full time'&&/^\d{1,2} to \d{1,2} Years$/.test(row.experience),'Native vacancy identity/location/status/criteria changed');for(const k of ['description','skills'])need(Array.isArray(row[k])&&row[k].length>0&&row[k].length<=50&&row[k].every(s=>typeof s==='string'&&clean(s)),'Native full criteria array changed');need(row.description.join(' ').length>=100,'Missing substantive native criteria')}
  return clone(rows)
 }
-function roleModel(html,url,row){
- const d=documentModel(html,url,row.title+' | Careers | Artizent'),overview=one(d.visible.nodes(n=>n.attrs.id==='job-panel-overview'),'own overview'),headings=d.visible.nodes(n=>['h1','h2'].includes(n.tag)).map(n=>d.visible.text(n))
+function roleModel(html,url,row,expectedMain){
+ const d=documentModel(html,url,row.title+' | Careers | Artizent',expectedMain),overview=one(d.visible.nodes(n=>n.attrs.id==='job-panel-overview'),'own overview'),headings=d.visible.nodes(n=>['h1','h2'].includes(n.tag)).map(n=>d.visible.text(n))
  need(same(headings,[row.title,'Job Description','Skills and Experience Required']),'Own complete role headings changed')
  const expected=clean('Back to Open Positions '+row.title+' ( '+row.team+' ) '+row.type+' '+row.location+' '+row.experience+' 01 Opening Overview Application Job Description '+row.description.join(' ')+' Skills and Experience Required '+row.skills.join(' '))
  need(d.visible.text(d.main)===expected&&d.doc.text(d.activeMain)===expected,'Own full visible vacancy/mandatory criteria contradicted or omitted')
@@ -122,20 +133,21 @@ export async function runCurrentNous(options={}){
  }
  async function authority(){
   const home=documentModel(await read(HOME),HOME,'Artizent | The Engineering Partner for Mission Critical AI');need(home.links.some(l=>l.url===STORY&&l.text==='Our Story')&&home.links.some(l=>l.url===CAREERS&&l.text==='Careers'),'Missing current corporate reciprocal identity links')
-  const story=documentModel(await read(STORY),STORY,'Our Story | Artizent'),storyText=story.visible.text(story.main);need(storyText.includes('Previously Nous Infosystems')&&storyText.includes('After more than thirty years as Nous, we are taking a new name')&&story.links.some(l=>l.url===CAREERS&&l.text==='Join the team'),'Current affirmative rebrand/careers authority changed')
-  const career=documentModel(await read(CAREERS),CAREERS,'Careers | Artizent');need(career.links.some(l=>l.url===STORY&&l.text==='Our Story')&&career.links.some(l=>l.url===OPENINGS&&l.text==='Find your next build'),'Missing active reciprocal career/board handoff')
-  const html=await read(OPENINGS),listing=documentModel(html,OPENINGS,'Open Roles | Careers | Artizent');need(listing.links.some(l=>l.url===CAREERS&&l.text==='Back to Careers'),'Missing official board return link')
-  const programs={};for(const url of [MAIN,LIST,DETAIL]){const code=await read(url,'script');need(sha(code)===PROFILE.get(url),'Whole reviewed publisher client program changed');programs[url]={SHA256:sha(code),bytes:Buffer.byteLength(code)}}
-  const data=await read(DATA,'script'),rows=literalInventory(data),links=listing.links.filter(l=>l.url.startsWith(OPENINGS+'/'))
+  const deployment=home.deployment
+  const story=documentModel(await read(STORY),STORY,'Our Story | Artizent',deployment.main),storyText=story.visible.text(story.main);need(storyText.includes('Previously Nous Infosystems')&&storyText.includes('After more than thirty years as Nous, we are taking a new name')&&story.links.some(l=>l.url===CAREERS&&l.text==='Join the team'),'Current affirmative rebrand/careers authority changed')
+  const career=documentModel(await read(CAREERS),CAREERS,'Careers | Artizent',deployment.main);need(career.links.some(l=>l.url===STORY&&l.text==='Our Story')&&career.links.some(l=>l.url===OPENINGS&&l.text==='Find your next build'),'Missing active reciprocal career/board handoff')
+  const html=await read(OPENINGS),listing=documentModel(html,OPENINGS,'Open Roles | Careers | Artizent',deployment.main);need(listing.links.some(l=>l.url===CAREERS&&l.text==='Back to Careers'),'Missing official board return link')
+  const programs={};for(const[url,fingerprint]of deployment.programs){const code=await read(url,'script');need(sha(code)===fingerprint,'Whole reviewed publisher client program changed');programs[url]={SHA256:sha(code),bytes:Buffer.byteLength(code)}}
+  const data=await read(deployment.data,'script'),rows=literalInventory(data),links=listing.links.filter(l=>l.url.startsWith(OPENINGS+'/'))
   need(links.length===rows.length&&new Set(links.map(l=>l.url)).size===rows.length&&rows.every(r=>links.some(l=>l.url===ownRoleURL(r)&&l.text.includes(r.title)&&l.text.includes(r.location))),'Whole native literal/visible listing parity changed')
   return {rows,programs,literalProgramSHA256:sha(data),literalProgramBytes:Buffer.byteLength(data),nativeListLinks:links,rebrand:{canonicalHome:HOME,officialStory:STORY,affirmativeFormerName:'Previously Nous Infosystems',affirmativeContinuity:'After more than thirty years as Nous, we are taking a new name',currentCareer:CAREERS,currentOpenings:OPENINGS,reciprocalCurrentLinksVerified:true,legacyEndpointAttempted:false,currentLegacyRedirectCertified:false,legalEmployerCertified:false}}
  }
  async function batches(rows,operation){for(let i=0;i<rows.length;i+=4){signal.throwIfAborted();const settled=await Promise.allSettled(rows.slice(i,i+4).map(operation)),failure=settled.find(r=>r.status==='rejected');if(failure)throw failure.reason}}
  try{
   const opening=await authority();for(const row of opening.rows)observations.push({id:row.slug,nativeOpeningRecord:clone(row),url:ownRoleURL(row),country:null,postedDate:null,workplaceMode:null,nativeStatus:null,legalHiringOrganization:null,activeApplyVerified:false,qualificationIssues:['native-country-unpublished'],sourceScopeComplete:false,lifecycleCleanupAllowed:false})
-  await batches(observations,async o=>{const html=await read(o.url);o.ownOpeningHTML=html;o.ownOpeningModel=roleModel(html,o.url,o.nativeOpeningRecord)})
+  await batches(observations,async o=>{const html=await read(o.url);o.ownOpeningHTML=html;o.ownOpeningModel=roleModel(html,o.url,o.nativeOpeningRecord,Object.keys(opening.programs)[0])})
   const closing=await authority();need(same(opening,closing),'Opening/closing whole publisher identity/client/literal/listing changed')
-  await batches(observations,async o=>{const row=closing.rows.find(r=>r.slug===o.id),html=await read(o.url);o.nativeClosingRecord=clone(row);o.ownClosingHTML=html;o.ownClosingModel=roleModel(html,o.url,row);need(same(o.nativeOpeningRecord,row)&&same(o.ownOpeningModel,o.ownClosingModel),'Opening/closing full native role/criteria changed')})
+  await batches(observations,async o=>{const row=closing.rows.find(r=>r.slug===o.id),html=await read(o.url);o.nativeClosingRecord=clone(row);o.ownClosingHTML=html;o.ownClosingModel=roleModel(html,o.url,row,Object.keys(closing.programs)[0]);need(same(o.nativeOpeningRecord,row)&&same(o.ownOpeningModel,o.ownClosingModel),'Opening/closing full native role/criteria changed')})
   signal.throwIfAborted()
   // The current finite publisher profile has no country field or role-owned
   // country grammar. Every actual raw vacancy is retained; none is promoted

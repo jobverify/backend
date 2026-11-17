@@ -1,0 +1,63 @@
+{
+  "source": "indiitsolutions",
+  "documents": [
+    {
+      "url": "https://indiit.com/ai-development-app/",
+      "bytes": 325249,
+      "sha256": "e8cb375a5255851289996e0251cb030025526101aa553cf9ff6e1930a1eae238",
+      "kind": "html"
+    },
+    {
+      "url": "https://indiit.com/common/header/header.js?v=20261116a",
+      "bytes": 25195,
+      "sha256": "8ef9723b33b0744802f3c2743281cdc3f69eac6914c18edc6c9f976f100f7295",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://indiit.com/ai-development-app/assets/js/animations.js?v=c1e97078",
+      "bytes": 2975,
+      "sha256": "6393d2f87111a53f9a90dfd21c1012bbd87dc538acba56d65873673f1152c1bf",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://indiit.com/common/footer/footer.js?v=20261116a",
+      "bytes": 13999,
+      "sha256": "500ab4362a8b41f8ee1eed571831e67bd78bc9960e9cdfd6dc9857b8c3422f95",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://indiit.com/common/turnstile/turnstile.js?v=20261015a",
+      "bytes": 10490,
+      "sha256": "b9bf5126202230ea256242fd1f097c42318a13569c959fffc0af0dcc189f6bce",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://indiit.com/common/contact/contact.js?v=20261016b",
+      "bytes": 39122,
+      "sha256": "13e4396b8da8165170a27a1d39b99cffd995b95baa09cf4740bab90f6c31a1fc",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://indiit.com/ai-development-app/assets/js/mobile-scroll.js?v=20261022c",
+      "bytes": 4955,
+      "sha256": "264c695770fc8234bfe656e6c2688fade5fe445ac8dc3a3d073c6f8ebd8806d5",
+      "kind": "javascript"
+    },
+    {
+      "url": "https://indiit.com/ai-development-app/assets/js/main.js?v=20953267",
+      "bytes": 44995,
+      "sha256": "693d0cdc5b816e14363a571b88181b2db4f0d10552f44251e0c27f02c67870c1",
+      "kind": "javascript"
+    }
+  ],
+  "redirects": [
+    {
+      "url": "https://indiit.com/",
+      "status": 302,
+      "location": "https://indiit.com/ai-development-app/",
+      "sha256": "067217537723e3c2497843f2249ef47a937e702fbe1ac84bd468a82a1b5e8c13",
+      "bytes": 154
+    }
+  ],
+  "nativeBinaryCarriers": []
+}

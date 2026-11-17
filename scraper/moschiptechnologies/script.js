@@ -2,6 +2,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import MOSCHIP_TECHNOLOGIES_CATALOG from './catalog.js'
+import { runCurrentMoschip } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -123,45 +124,7 @@ export const isVerifiedMissingRoute = ({ status, html } = {}) =>
   && !pageExposesPublicJobListings(html)
 
 export const createMosChipTechnologiesScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
-    const careersPage = await fetchPage(CAREERS_URL)
-    if (
-      Number(careersPage?.status) !== 200
-      || normalizeComparableUrl(careersPage?.url) !== normalizeComparableUrl(CAREERS_URL)
-      || !hasOfficialCareersPageSignal(careersPage?.html)
-    ) {
-      throw new Error('The verified MosChip careers page changed materially')
-    }
-
-    if (normalizeComparableUrl(extractCurrentOpeningsUrl(careersPage?.html)) !== normalizeComparableUrl(CURRENT_OPENINGS_URL)) {
-      throw new Error('The verified MosChip careers handoff changed materially')
-    }
-
-    const currentOpeningsPage = await fetchPage(CURRENT_OPENINGS_URL)
-    if (
-      Number(currentOpeningsPage?.status) !== 200
-      || normalizeComparableUrl(currentOpeningsPage?.url) !== normalizeComparableUrl(CURRENT_OPENINGS_URL)
-    ) {
-      throw new Error('The verified MosChip current-openings page changed materially')
-    }
-
-    if (pageExposesPublicJobListings(currentOpeningsPage?.html)) {
-      throw new Error('MosChip current-openings page now appears to expose public job listings')
-    }
-
-    if (!hasCurrentOpeningsNoListingSignal(currentOpeningsPage?.html)) {
-      throw new Error('The verified MosChip current-openings page changed materially')
-    }
-
-    for (const routeUrl of [EMPTY_JOB_ARCHIVE_URL, ...NO_PUBLIC_CAREER_ROUTE_URLS]) {
-      const routePage = await fetchPage(routeUrl)
-      if (!isVerifiedMissingRoute(routePage)) {
-        throw new Error(`The verified empty jobs route changed for MosChip Technologies: ${routeUrl}`)
-      }
-    }
-
-    return []
-  },
+  run: runCurrentMoschip,
 })
 
 export const run = async (options = {}) => createMosChipTechnologiesScraper().run(options)

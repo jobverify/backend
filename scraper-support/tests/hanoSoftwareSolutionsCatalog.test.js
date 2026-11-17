@@ -5,19 +5,19 @@ import companyAliases from '../providers/companyAliases.json' with { type: 'json
 import { generateCompanyCoverageReport } from '../providers/companyCoverage.js'
 import { buildScrapers, getScraperCatalog } from '../providers/index.js'
 
-test('Hano Software Solutions is registered as a verified first-party zero-job scraper without aliases', () => {
+test('Hano Software Solutions is registered with current parking and unknown employer inventory without aliases', () => {
   const provider = getScraperCatalog().find((item) => item.source === 'hanosoftwaresolutions')
 
   assert.ok(provider, 'Expected Hano Software Solutions provider to be registered in customProviders.json')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Hano Software Solutions')
   assert.equal(provider.companyCareerPage, 'https://www.hanosoftwaresolutions.com/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'configured-domain-current-parking-employer-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-common-careers-routes-plus-client-bundle-validation')
+  assert.equal(provider.paginationStrategy, 'literal-current-root-lander-programme-and-complete-carrier-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-official-homepage-shell+verified-common-careers-shells+verified-client-bundle-without-jobs-return-empty',
+    'whole-current-parking-publisher+employer-and-recruitment-inventory-unqualified+company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

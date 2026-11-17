@@ -20,7 +20,7 @@ const loadInspireAiModule = async () => {
   }
 }
 
-test('Inspire AI validates the verified official careers accordion and extracts current public non-India roles', async () => {
+test('Inspire AI retains historical pure-helper non-India accordion observations', async () => {
   const inspireAi = await loadInspireAiModule()
 
   assert.equal(inspireAi.SOURCE, 'inspireai')
@@ -72,28 +72,12 @@ test('Inspire AI validates the verified official careers accordion and extracts 
   ])
 })
 
-test('Inspire AI run returns an honest zero-job result while the verified official careers page exposes no India roles', async () => {
-  const inspireAi = await loadInspireAiModule()
-  const requestedUrls = []
 
-  const jobs = await inspireAi.createInspireAiScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      return officialCareersHtml
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [inspireAi.CAREERS_URL])
-  assert.deepEqual(jobs, [])
+test('Inspire current runtime refuses body-only historical vacancy publication',async()=>{
+ const inspireAi=await loadInspireAiModule();let calls=0
+ await assert.rejects(inspireAi.run({fetchText:async()=>{calls++;return officialCareersHtml}}),/metadata|unsupported/i);assert.equal(calls,0)
 })
-
-test('Inspire AI fails closed when the verified official careers accordion changes', async () => {
-  const inspireAi = await loadInspireAiModule()
-
-  await assert.rejects(
-    inspireAi.createInspireAiScraper().run({
-      fetchText: async () => '<html><body><h1>Join us</h1></body></html>',
-    }),
-    /verified official careers surface/i,
-  )
+test('Inspire current configured publisher identity cannot be supplied by metadata-free changed HTML',async()=>{
+ const inspireAi=await loadInspireAiModule()
+ await assert.rejects(inspireAi.run({fetchText:async()=>'<h1>Join us</h1>'}),/metadata|unsupported/i)
 })

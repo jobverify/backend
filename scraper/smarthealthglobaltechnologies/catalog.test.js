@@ -12,15 +12,15 @@ test('Smart Health Global Technologies is registered as a verified legacy-bridge
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Smart Health Global Technologies')
   assert.equal(provider.companyCareerPage, 'https://shgtechnologies.com/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'current-own-legacy-bridge-and-product-corporate-publisher')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'legacy-bridge-plus-homepage-about-sitemap-and-missing-careers-routes-validation',
+    'exact-legacy-bridge-current-own-home-about-and-declared-programmes-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-legacy-bridge+verified-first-party-marketing-pages+verified-missing-careers-routes-return-empty',
+    'whole-current-corporate-product-and-form-models+no-patient-donor-or-customer-intake-as-vacancy+recruitment-inventory-and-company-scope-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

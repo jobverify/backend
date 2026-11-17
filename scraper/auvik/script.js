@@ -16,6 +16,7 @@ const config = {
   source: SOURCE, companyName: COMPANY, companyDomain: 'auvik.com', careersURL: CAREERS_URL,
   mode: 'nitro-greenhouse', boardToken: 'auviknetworks', nativeEmployerNames: ['Auvik Networks'],
   embedURL: 'https://boards.greenhouse.io/embed/job_board/js?for=auviknetworks',
+  directEmbedHeading: {id: 'h-view-our-open-roles', text: 'View our open roles'},
   dutiesPattern: /what\s+will\s+(?:I|you)\s+be\s+doing/i,
   requirementsPattern: /what\s+are\s+we\s+looking\s+for/i,
   sectionStopPattern: /are\s+there\s+bonus\s+points|about\s+auvik|compensation\s+details/i,

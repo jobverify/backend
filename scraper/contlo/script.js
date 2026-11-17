@@ -1,5 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { runCurrentContlo } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -55,6 +56,7 @@ const defaultFetchPage = async (url) => {
 
 export const createContloScraper = () => ({
   async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage && !options.fetchText) return runCurrentContlo(options)
     const fetchPage = options.fetchPage || (options.fetchText
       ? async (url) => ({
           status: 200,

@@ -190,17 +190,30 @@ export function readSorocoDetail(body,row){
  need(visible.nodes(n=>n.tag==='div'&&n.attrs.id==='career-website-main').length===1,'Native active detail mount unavailable')
  const scripts=owned.raw.nodes(n=>n.tag==='script')
  need(scripts.length===PROFILE.nativeScripts.length,'Native detail script declarations changed')
- let values
+ let values,currentDeployment=false
  for(const[index,expected]of PROFILE.nativeScripts.entries()){
   const script=scripts[index];need(same(script.attrs,expected.attrs),'Native detail script attributes changed')
   if(expected.carrier)values=carrierValue(script.raw,row)
-  else need(hash(script.raw||'')===expected.sha256,'Native inline program changed')
+  else{
+   const fingerprint=hash(script.raw||'')
+   // The Nov16 literal CDN map has the same complete declaration envelope
+   // and executable carrier plan as Nov14. Qualify only its reviewed bytes;
+   // every other inline program and script attribute retains its exact pin.
+   const currentMap=expected.sha256==='652e311ad823df25a17b6a85077d3def127f58a632f18534467dc09d449536a3'&&fingerprint==='9379df00e3d110cbe9d481a45f70764b39f6bbdce8ec0fb3b1693c8e270d5467'
+   need(fingerprint===expected.sha256||currentMap,'Native inline program changed')
+   if(currentMap)currentDeployment=true
+  }
  }
- need(same(owned.nodes.filter(n=>n.tag==='style').map(n=>({attrs:n.attrs,sha256:hash(n.raw||'')})),PROFILE.nativeStyles),'Native document CSS changed')
- need(same(owned.nodes.filter(n=>n.tag==='link').map(n=>n.attrs),PROFILE.nativeStylesheets),'Native stylesheet declarations changed')
+ // Nov16 adds only static social-icon backgrounds to the brand CSS and
+ // changes the two declared CDN stylesheet revisions. Keep the complete
+ // CSS, declaration inventory and document plan paired to that map.
+ const styles=owned.nodes.filter(n=>n.tag==='style').map(n=>({attrs:n.attrs,sha256:hash(n.raw||'')})),links=owned.nodes.filter(n=>n.tag==='link').map(n=>n.attrs)
+ need(currentDeployment?hash(canonicalNativeRecord(styles))==='086e38dd49b92b92a57e8215bf324bb15cbc7f1118fdc78130940e928984ac38':same(styles,PROFILE.nativeStyles),'Native document CSS changed')
+ need(currentDeployment?hash(canonicalNativeRecord(links))==='a61eef2a232e95ed085f527fb7f7a72651a0545a161f6b41ec8e7e971d85607a':same(links,PROFILE.nativeStylesheets),'Native stylesheet declarations changed')
  const owners=owned.nodes.filter(n=>n.attrs.id==='career-website-main')
  need(owners.length===1&&owners[0].tag==='div','Native detail owner inventory changed')
- need(same(presentationPlan(owned.root,row),PROFILE.nativeDocumentPlan),'Native document presentation changed')
+ const presentation=presentationPlan(owned.root,row)
+ need(currentDeployment?hash(canonicalNativeRecord(presentation))==='cf6e1fbb80a2504d60f9b29e06a78b65442f42400c584869dc98ffc13c53f8f2':same(presentation,PROFILE.nativeDocumentPlan),'Native document presentation changed')
  const record=values.jobs[0],expected=Object.keys(row).filter(key=>key!=='$url').concat('Zip_Code')
  need(keys(record,expected),'Native full role field schema changed')
  for(const key of expected.filter(key=>!['Job_Description','Date_Opened','Zip_Code'].includes(key)))need(record[key]===row[key],'Native listing/detail '+key+' mismatch')

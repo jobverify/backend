@@ -1,3 +1,4 @@
+import { runCurrentLGB } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -247,7 +248,9 @@ export const enrichPublicJobs = async (jobs, fetchText = defaultFetchText) => {
 }
 
 export const createLgbalakrishnanAndBrosLtdScraper = ({ now = () => new Date().toISOString() } = {}) => ({
-  async run({ fetchText = defaultFetchText, now: overrideNow } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentLGB(options)
+    const { fetchText = defaultFetchText, now: overrideNow } = options
     const homepageHtml = await fetchText(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml)) {
       throw new Error('L.G.Balakrishnan & Bros Ltd verified official homepage no longer matches the known public surface')

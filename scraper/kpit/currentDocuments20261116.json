@@ -1,0 +1,23 @@
+{
+  "provenance": "Two current original public corporate documents captured November16. After existing complete local language-control validation, every byte equals the November15 document except exactly one literal jct_ajax nonce38dd5bd910 replaced by f1b37e37d6 in each document and one Auburn Hills value prepended to the United States selector location map in the listing. All India locations, cards, labels, controls, scripts and styles remain identical. Exact current values pinned, no future nonce or map wildcard. Header context, publisher, delegation, active resources, all16cards and complete native models remain independently enforced. No whole-company completeness inferred from the foreign selector addition.",
+  "fixture": "fixtures/corporate-20261116.json.gz",
+  "documents": {
+    "https://www.kpit.com/careers-overview/": {
+      "bytes": 208246,
+      "sha256": "a0717ad988c09f523a1a6af013b00d7c98e67f4ef390a297a56671e79112b62a",
+      "normalizedSHA256": "80da2c3cb3e2563e066e38053e1655939df030c0dc4d15c7b0633fe8f503e405"
+    },
+    "https://www.kpit.com/job-listing/?country=India&location=&exp=&show_all=1": {
+      "bytes": 204200,
+      "sha256": "f3af3b3794cc99f26273df1f3ade3385abaa2490763de07af00f855fd419509d",
+      "normalizedSHA256": "e5103a28434652df3bffd5c82e3c31a99519169ca1ab31bfd7eea4bd9c00bae5"
+    }
+  },
+  "packets": {
+    "https://talentojo.kpit.com/service/jobs/83922": {
+      "bytes": 5247,
+      "sha256": "f0e8799cb355be108b743d57ac13596125676b359774c480957917d656084090"
+    }
+  },
+  "nativeMetadataReview": "Exactly job83922 updated_at changes from2026-11-06 08:48:36 UTC to2026-11-16 04:48:50 UTC. All employer, publication status, criteria, roles, application fields and countries remain identical; other15 complete models unchanged. Updated_at remains original raw metadata, never posted/first-ever date."
+}

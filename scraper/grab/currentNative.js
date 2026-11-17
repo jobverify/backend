@@ -41,7 +41,7 @@ const roleURL=(url,id)=>new RegExp('^https://www\\.grab\\.careers/en/jobs/'+id+'
 function programs(owned,kind){
  const scripts=owned.nodes.filter(n=>n.tag==='script')
  const fingerprint=sha(canonical(scripts.map(n=>({attrs:n.attrs,raw:n.attrs.id==='js-job-posting'?'REVIEWED_NATIVE_JOB_POSTING':n.raw||'',inert:!!n.inert}))))
- need(kind==='board'?fingerprint===reviewed.board.programSHA256:reviewed.detailPrograms.includes(fingerprint),'Current native program declarations require review')
+ need(kind==='board'?[reviewed.board.programSHA256,...(reviewed.board.programSHA256Variants||[])].includes(fingerprint):reviewed.detailPrograms.includes(fingerprint),'Current native program declarations require review')
  const events=owned.nodes.flatMap(n=>Object.entries(n.attrs).filter(([key])=>key.startsWith('on')).map(([attribute,value])=>({tag:n.tag,attribute,valueSHA256:sha(value),inert:!!n.inert})))
  need(canonical(events)===canonical(kind==='board'?reviewed.board.events:reviewed.detailEvents),'Current native event programs require review')
  need(!owned.nodes.some(n=>['iframe','frame','frameset','object','embed'].includes(n.tag)||Object.hasOwn(n.attrs,'srcdoc')||n.tag==='meta'&&(n.attrs['http-equiv']||'').toLowerCase()==='refresh'),'Delegated native document requires review')

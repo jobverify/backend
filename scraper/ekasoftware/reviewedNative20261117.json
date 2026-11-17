@@ -1,0 +1,29 @@
+{
+  "reviewedAt": "2026-11-17T00:04:59.494Z",
+  "nativeEmployerBrand": "Quoreka",
+  "targetCompany": "Eka Software",
+  "nativeAccountId": 54244,
+  "perRoleEkaLegalEmployerQualified": false,
+  "widgetContainerId": "freshteam-widget",
+  "programs": [
+    {
+      "url": "https://s3.amazonaws.com/files.freshteam.com/production/54244/attachments/4011385666/original/4000024365_widget.js?1762410150",
+      "kind": "loader",
+      "originalContentType": "text/plain",
+      "bytes": 1013,
+      "sha256": "bcb6ba29bca0f151c64b8bd3a0a080be988ca8f073269fea548f2e955a1c9896"
+    },
+    {
+      "url": "https://assets1.freshteam.com/assets/job_widget.js",
+      "kind": "javascript",
+      "bytes": 397597,
+      "sha256": "28890ffe00c3ef3f51cd40bcdc6bc3b00d6d680db6e19e93a8cc46ac09700980"
+    },
+    {
+      "url": "https://assets1.freshteam.com/assets/job_widget.css",
+      "kind": "css",
+      "bytes": 158680,
+      "sha256": "a021f0068507fc8226c8afce4745718992d82555037da763b4b4a1c8214b2974"
+    }
+  ]
+}

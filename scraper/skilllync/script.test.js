@@ -103,74 +103,13 @@ test('Skill-Lync sentinel stays pinned to the first-party careers page and curre
   )
 })
 
-test('run returns an empty list when Skill-Lync exposes only a current-openings shell without rendered public jobs', async () => {
-  const requestedUrls = []
-  const scraper = createSkillLyncScraper()
 
-  const jobs = await scraper.run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === CAREERS_URL) {
-        return {
-          status: 200,
-          url: CAREERS_URL,
-          html: careersHtml,
-        }
-      }
-
-      if (url === JOBS_URL) {
-        return {
-          status: 200,
-          url: JOBS_URL,
-          html: jobsShellHtml,
-        }
-      }
-
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [CAREERS_URL, JOBS_URL])
-  assert.deepEqual(jobs, [])
+test('Skill-Lync current runtime rejects historical metadata-free empty/unavailable callbacks',async()=>{
+ let calls=0;await assert.rejects(createSkillLyncScraper().run({fetchPage:async()=>{calls++;return{status:503,html:unavailableHtml}}}),/metadata|unsupported/);assert.equal(calls,0)
 })
-
-test('run returns an empty list when both official Skill-Lync pages match the verified temporary-unavailable 503 shell', async () => {
-  const requestedUrls = []
-  const scraper = createSkillLyncScraper()
-
-  const jobs = await scraper.run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      return {
-        status: 503,
-        url,
-        html: unavailableHtml,
-      }
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [CAREERS_URL, JOBS_URL])
-  assert.deepEqual(jobs, [])
+test('Skill-Lync current observed503 remains upstream HTTP and never returns company zero',async()=>{
+ let calls=0;await assert.rejects(createSkillLyncScraper().run({requestIntervalMs:0,fetchImpl:async url=>{calls++;const r=new Response(unavailableHtml,{status:503,headers:{'content-type':'text/html'}});Object.defineProperty(r,'url',{value:url});return r}}),error=>error.status===503);assert.equal(calls,1)
 })
-
-test('run returns an empty list when both official Skill-Lync pages match the verified temporary-unavailable 502 shell', async () => {
-  const requestedUrls = []
-  const scraper = createSkillLyncScraper()
-
-  const jobs = await scraper.run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      return {
-        status: 502,
-        url,
-        html: badGatewayHtml,
-      }
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [CAREERS_URL, JOBS_URL])
-  assert.deepEqual(jobs, [])
+test('Skill-Lync current transport failure remains exact without alternate-route retries',async()=>{
+ const reason=Object.freeze({owner:'skill-network'});let calls=0;await assert.rejects(createSkillLyncScraper().run({requestIntervalMs:0,fetchImpl:async()=>{calls++;throw reason}}),error=>error===reason);assert.equal(calls,1)
 })

@@ -33,7 +33,7 @@ const groupJobSearchHtml = `
 <!doctype html>
 <html lang="en">
   <body>
-    <h1>Search Jobs at Aditya Birla Group</h1>
+    <h1>Search Jobs at Fashion Careers</h1>
     <p>Showing 1<span>-</span>0 jobs out of 0</p>
     <h3>No Jobs Available</h3>
     <p>Currently, we have no vacancies in this sector. Please upload your resume for future opportunities, or discover jobs in other businesses.</p>

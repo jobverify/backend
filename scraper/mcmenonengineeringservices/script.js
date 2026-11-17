@@ -1,3 +1,4 @@
+import { runCurrentMcMenon } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -111,7 +112,9 @@ export const hasPublicJobsSignal = (html) => {
 }
 
 export const createMcMenonEngineeringServicesScraper = () => ({
-  async run({ fetchText = defaultFetchText, now = () => new Date().toISOString() } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchText) return runCurrentMcMenon(options)
+    const { fetchText = defaultFetchText, now = () => new Date().toISOString() } = options
     const homepageHtml = await fetchText(HOMEPAGE_URL)
     if (!hasOfficialHomepageSignal(homepageHtml) || !hasVerifiedCareersLink(homepageHtml)) {
       throw new Error('McMenon Engineering Services Ltd. verified official homepage no longer matches the known first-party surface')

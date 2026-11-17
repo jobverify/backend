@@ -2,6 +2,7 @@ import {parseRmkListing,parseRmkDetail} from './successFactorsRmk.js'
 import {attachInventoryEvidence} from '../utils/inventoryEvidence.js'
 import {document,norm} from './rmkNativePairHtml.js'
 import {disposeResponseBody} from './responseBodyDisposal.js'
+import {isDeepStrictEqual} from 'node:util'
 
 const requireNative=(ok,message)=>{if(!ok){const e=Error('RMK source contract: '+message);e.incompleteScope=true;throw e}}
 const one=(values,label)=>{requireNative(values.length===1,'Expected one '+label);return values[0]}
@@ -166,14 +167,14 @@ export async function runNative(config,{fetchText,signal,now=new Date().toISOStr
  const home=document(await get(config.home)),careers=document(await get(config.origin+'/'))
  requireNative(links(home,config.home).includes(config.origin+'/'),'Current corporate career handoff missing')
  requireNative(advertisesNativeSearch(careers,config),'Current advertised GET search missing or changed origin/scope')
- const search=config.origin+'/search/',rows=[],seen=new Set();let next=search,total=null,pages=0,first=null
- while(next){requireNative(++pages<=100,'Native pagination bound exceeded');const p=parseRmkListing(await get(next),config);if(total===null){total=p.total;first=p}requireNative(p.total===total&&p.start===rows.length+1,'Changed native total/range');for(const row of p.jobs){requireNative(!seen.has(row.jobId),'Duplicate native public ID');seen.add(row.jobId);rows.push(row)}next=p.nextUrl
+ const search=config.origin+'/search/',rows=[],seen=new Map();let next=search,total=null,pages=0,first=null,observedRows=0,repeatedRows=0
+ while(next){requireNative(++pages<=100,'Native pagination bound exceeded');const p=parseRmkListing(await get(next),config);if(total===null){total=p.total;first=p}requireNative(p.total===total&&p.start===observedRows+1,'Changed native total/range');observedRows+=p.jobs.length;for(const row of p.jobs){const prior=seen.get(row.jobId);if(prior){requireNative(isDeepStrictEqual(prior,row),'Conflicting duplicate native public ID');repeatedRows++}else{seen.set(row.jobId,row);rows.push(row)}}next=p.nextUrl
   if(next){const u=new URL(next);requireNative(u.origin===config.origin&&u.pathname.replace(/\/$/,'')==='/search'&&!u.hash,'Unapproved continuation');const allowed={q:'',sortColumn:'referencedate',sortDirection:'desc',startrow:String(p.end)};for(const key of new Set(u.searchParams.keys()))requireNative(u.searchParams.getAll(key).length===1&&Object.hasOwn(allowed,key)&&u.searchParams.get(key)===allowed[key],'Native pagination scope changed');requireNative(u.searchParams.get('startrow')===String(p.end),'Wrong native continuation')}
  }
- requireNative(total===rows.length,'Native inventory does not reconcile')
+ requireNative(total===observedRows,'Native inventory does not reconcile')
  const jobs=[],excluded=[],ids=new Set()
  for(const row of rows.filter(r=>r.countryCode==='IN'||r.expectedLocationCount>r.locations.length)){const job=parseNativeRole(await get(row.sourceUrl),row,config,now);if(job.excluded)excluded.push(job);else{requireNative(!ids.has(job.jobId),'Duplicate native requisition identity');ids.add(job.jobId);jobs.push(job)}}
  const closure=parseRmkListing(await get(search),config);requireNative(closure.total===total&&JSON.stringify(closure.jobs)===JSON.stringify(first.jobs),'Native inventory changed during capture')
  activeSignal.throwIfAborted()
- return attachInventoryEvidence(jobs,{status:'coverage-gap',firstParty:true,listingComplete:false,surface:search,pagesFetched:pages,reportedTotal:total,indiaFacetCount:jobs.length,verifiedAt:now,reason:'full-native-rmk-pagination-and-detail-corrob;whole-employer-and-original-publication-unknown;cleanup-forbidden;excluded-public-ids:'+excluded.map(x=>x.publicId+':'+x.reason).join(',')})
+ return attachInventoryEvidence(jobs,{status:'coverage-gap',firstParty:true,listingComplete:false,lifecycleCleanupAllowed:false,surface:search,pagesFetched:pages,reportedTotal:total,indiaFacetCount:repeatedRows?null:jobs.length,verifiedAt:now,reason:'full-native-rmk-pagination-and-detail-corrob;whole-employer-and-original-publication-unknown;cleanup-forbidden;'+(repeatedRows?'repeated-identical-native-rows:'+repeatedRows+';unique-observed-rows:'+rows.length+';inventory-coverage-unresolved;':'')+'excluded-public-ids:'+excluded.map(x=>x.publicId+':'+x.reason).join(',')})
 }

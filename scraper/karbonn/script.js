@@ -1,3 +1,4 @@
+import { runCurrentKarbonn } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -95,7 +96,9 @@ const defaultFetchPage = async (url) => {
 }
 
 export const createKarbonnScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentKarbonn(options)
+    const { fetchPage = defaultFetchPage } = options
     const homepage = await fetchPage(HOMEPAGE_URL)
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
       throw new Error('Karbonn official homepage no longer matches the verified careers-link surface')

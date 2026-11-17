@@ -1,3 +1,7 @@
+import fs from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {readInventoryEvidence,sourceLifecycleCleanupForbidden} from '../utils/inventoryEvidence.js'
+import {readSourceObservationEvidence} from '../utils/sourceObservationEvidence.js'
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
@@ -109,7 +113,7 @@ const currentCareersPageHtml = careersPageHtml
   .replaceAll('4â€“8 yrs', '4–8 yrs')
   .replaceAll('7â€“10 yrs', '7–10 yrs')
 
-test('Payoda scraper recognizes the verified official careers page and extracts the live public role cards', async () => {
+test('Payoda historical presentation helper retains its dated role-card contract', async () => {
   const payoda = await loadPayodaModule()
   assert.ok(payoda, 'Expected Payoda scraper module at ../../scraper/payoda/script.js')
 
@@ -183,7 +187,7 @@ test('Payoda scraper recognizes the verified official careers page and extracts 
   ])
 })
 
-test('Payoda scraper accepts the current View role CTA and Unicode role metadata separators', async () => {
+test('Payoda historical presentation helper retains View role and Unicode metadata parsing', async () => {
   const payoda = await loadPayodaModule()
   assert.ok(payoda, 'Expected Payoda scraper module at ../../scraper/payoda/script.js')
 
@@ -203,24 +207,34 @@ test('Payoda scraper accepts the current View role CTA and Unicode role metadata
   })
 })
 
-test('run decorates Payoda jobs with the shared runner fields from the official public careers page', async () => {
-  const payoda = await loadPayodaModule()
-  assert.ok(payoda, 'Expected Payoda scraper module at ../../scraper/payoda/script.js')
 
-  const requestedUrls = []
-  const jobs = await payoda.createPayodaScraper().run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === payoda.CAREERS_URL) return careersPageHtml
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
+function currentNativeReplay(source,change=()=>{}){
+ const captures=JSON.parse(gunzipSync(fs.readFileSync(new URL('../../scraper/'+source+'/fixtures/current-native-20261117.json.gz',import.meta.url)))),calls=[],seen=new Map()
+ return{calls,fetchImpl:async(url,init)=>{
+  const original=captures.find(row=>row.requestedUrl===url);assert.ok(original,'Unbound current native URL '+url)
+  assert.equal(init.method??'GET','GET');assert.equal(init.redirect,'manual');assert.ok(init.signal instanceof AbortSignal)
+  const nth=(seen.get(url)||0)+1;seen.set(url,nth);calls.push({url,nth})
+  const row={...structuredClone(original),body:Buffer.from(original.bodyBase64,'base64').toString()};change(row,url,nth)
+  const response=new Response(row.body,{status:row.status,headers:row.headers});Object.defineProperty(response,'url',{value:row.url});return response
+ }}
+}
 
-  assert.deepEqual(requestedUrls, ['https://www.payoda.com/careers'])
-  assert.equal(jobs.length, 6)
-  assert.equal(jobs[0].company, 'Payoda')
-  assert.equal(jobs[0].source, 'payoda')
-  assert.equal(jobs[0].country, 'India')
-  assert.equal(jobs[0].link, 'mailto:joinus@payoda.com?subject=CV%3A%20open%20application')
-  assert.equal(typeof jobs[0].scrapedAt, 'string')
+test('Payoda current runtime preserves five complete native observations without city-inferred India jobs',async()=>{
+ const source=await loadPayodaModule(),transport=currentNativeReplay('payoda')
+ const jobs=await source.createPayodaScraper().run({fetchImpl:transport.fetchImpl})
+ assert.equal(jobs.length,0);assert.equal(transport.calls.length,10)
+ const summary=readSourceObservationEvidence(jobs,'payoda');assert.equal(summary.observedVacancyCount,5);assert.equal(summary.companyIndiaTotal,null)
+ assert.equal(readInventoryEvidence(jobs).status,'coverage-gap');assert.equal(sourceLifecycleCleanupForbidden(jobs),true)
+ for(const observation of jobs.nativeCollectionEvidence.observations){
+  assert.equal(observation.nativeOpeningRecord.location,'Bengaluru · Full-time');assert.equal(observation.country,null)
+  assert.equal(observation.publicationDate,null);assert.equal(observation.applicationURL,null)
+  assert.ok(observation.nativeOpeningRecord.summary.length>30);assert.ok(observation.nativeOpeningRecord.points.length>0)
+  assert.deepEqual(observation.nativeOpeningRecord,observation.nativeClosingRecord)
+ }
+ assert.equal(jobs.nativeCollectionEvidence.companyIndiaZeroProven,false)
+})
+test('Payoda body-only historical fixtures cannot supply native transport or eligibility evidence',async()=>{
+ const source=await loadPayodaModule();let callbacks=0
+ await assert.rejects(source.run({fetchText:async()=>{callbacks++;return careersPageHtml}}),/original.*metadata|body-only/i)
+ assert.equal(callbacks,0)
 })

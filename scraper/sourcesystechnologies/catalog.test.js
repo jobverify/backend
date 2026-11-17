@@ -12,12 +12,12 @@ test('Sourcesys Technologies is registered as a verified first-party careers sen
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Sourcesys Technologies')
   assert.equal(provider.companyCareerPage, 'https://www.sourcesys.co/careers')
-  assert.equal(provider.atsPlatform, 'official-company-careers-nonlisting')
+  assert.equal(provider.atsPlatform, 'configured-domain-current-parking-employer-identity-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-page-plus-missing-routes-validation')
+  assert.equal(provider.paginationStrategy, 'whole-configured-root-and-exact-native-declared-lander-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage+verified-careers-page+verified-missing-first-party-jobs-routes-return-empty',
+    'complete-root-and-parking-publisher-models+current-employer-and-vacancy-inventory-unverified+no-third-party-parking-execution-or-company-zero',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

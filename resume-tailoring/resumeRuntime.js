@@ -10,7 +10,7 @@ import { spawn } from 'node:child_process';
 import { Agent } from 'undici';
 import { resumeFailure, safeResumeDiagnostic } from './resumeDiagnostics.js';
 import { RESUME_WORKER_BUDGET_MS } from './resumeBudget.js';
-import { PAGINATION_REPAIR_MAX_TOKENS, paginationRepairSchema } from './resumePaginationRepair.js';
+import { PAGINATION_REPAIR_MAX_TOKENS, paginationRepairSchema, applyPaginationRepair } from './resumePaginationRepair.js';
 import { buildResumeLatexGrammar, RESUME_LATEX_PREAMBLE, RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION } from '../src/utils/resumeLatexFormat.js';
 
 export const RESUME_MODEL = JSON.parse(await fs.readFile(new URL('./resume-model.json', import.meta.url), 'utf8'));
@@ -113,14 +113,21 @@ function monitorModelProgress({ fetchImpl, deadline, signal, onDiagnostic, stage
   timer.unref?.();
   return () => { clearInterval(timer); stopped.abort(); };
 }
-export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, paginationRepair = false, paginationBreakIds, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {}, onUsage = () => {} } = {}) {
+export async function generateResumeText(prompt, { fetchImpl = fetch, deadline = Date.now() + RESUME_WORKER_BUDGET_MS, signal: parentSignal, comparison = false, paginationRepair = false, paginationBreakIds, preparationPlan, allowedLinks = [], pagination, sectionTitles = [], layout, headerChoices = [], onDiagnostic = () => {}, onUsage = () => {} } = {}) {
+  if (preparationPlan && !comparison && !paginationRepair) {
+    const choice = await generateResumeText(preparationPlan.prompt, { fetchImpl, deadline, signal: parentSignal,
+      paginationRepair: true, pagination, paginationBreakIds: preparationPlan.candidates.map(candidate => candidate.id),
+      // Layout timings cannot estimate the cost of a later full-document repair.
+      onDiagnostic: event => onDiagnostic({ ...event, stage: 'generating' }) });
+    return applyPaginationRepair(preparationPlan, choice);
+  }
   // Replace only our complete trusted instruction block. The actual template
   // follows as the assistant prefix; source/repair JSON and audit evidence stay
   // intact, including any template-looking text supplied by a candidate.
   const json = comparison || paginationRepair;
   const stage = comparison ? 'comparing' : paginationRepair ? 'repairing' : 'generating';
   const messages = [{ role: 'user', content: json ? prompt : prompt.replace(RESUME_LATEX_FORMAT_INSTRUCTION, RESUME_LATEX_PREFILL_INSTRUCTION) }];
-  const maxTokens = comparison ? RESUME_MODEL.comparisonOutputTokens : paginationRepair ? PAGINATION_REPAIR_MAX_TOKENS : RESUME_MODEL.maxOutputTokens;
+  const outputLimit = comparison ? RESUME_MODEL.comparisonOutputTokens : paginationRepair ? PAGINATION_REPAIR_MAX_TOKENS : RESUME_MODEL.maxOutputTokens;
   const request = async (endpoint, body) => {
     const timeout = AbortSignal.timeout(remainingBudget(deadline, RESUME_WORKER_BUDGET_MS));
     const signal = parentSignal ? AbortSignal.any([parentSignal, timeout]) : timeout;
@@ -147,7 +154,11 @@ export async function generateResumeText(prompt, { fetchImpl = fetch, deadline =
   const tokens = await request('/tokenize', { content: fullPrompt, add_special: true, parse_special: true });
   if (!Array.isArray(tokens.tokens) || !tokens.tokens.every(Number.isInteger)) throw resumeFailure('model_protocol_invalid');
   onDiagnostic(safeResumeDiagnostic({ stage, code: 'started', inputTokens: tokens.tokens.length }));
-  if (tokens.tokens.length + maxTokens + 32 > RESUME_MODEL.contextTokens) throw resumeFailure('input_too_large', { statusCode: 422 });
+  // A maximum output allowance is not a fixed input reservation. Use the
+  // remaining context without dropping source data; keep enough room for a
+  // complete document and the full, small JSON budgets used by validation.
+  const maxTokens = Math.min(outputLimit, RESUME_MODEL.contextTokens - tokens.tokens.length - 32);
+  if (maxTokens < (json ? outputLimit : 2048)) throw resumeFailure('input_too_large', { statusCode: 422 });
   const stopProgress = monitorModelProgress({ fetchImpl, deadline, signal: parentSignal, onDiagnostic,
     stage, inputTokens: tokens.tokens.length });
   let payload;

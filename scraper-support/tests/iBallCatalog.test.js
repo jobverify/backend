@@ -46,15 +46,15 @@ test('iBall local catalog captures the verified no-public-jobs first-party surfa
     'https://iball.co.in/jobs',
     'https://iball.co.in/join-us',
   ])
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'shopify-company-general-hr-intake-inventory-unavailable')
   assert.equal(provider.countryFilter, 'India')
   assert.equal(
     provider.paginationStrategy,
-    'verified-homepage-plus-about-plus-news-center-plus-common-careers-route-validation',
+    'whole-current-corporate-models-opening-closing',
   )
   assert.equal(
     provider.extractionStrategy,
-    'verified-brand-homepage+verified-about-page+verified-news-center+verified-missing-or-non-job-careers-routes-return-empty',
+    'active-owned-general-hr-mailto+whole-shopify-context-retained+vacancy-inventory-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -96,7 +96,7 @@ test('getScraperCatalog includes iBall as a verified no-public-jobs provider', (
   assert.equal(provider.companyName, 'iBall')
   assert.equal(provider.companyCareerPage, 'https://iball.co.in/')
   assert.equal(provider.companyDomain, 'iball.co.in')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'shopify-company-general-hr-intake-inventory-unavailable')
   assert.match(provider.modulePath, /iball[\\/]script\.js$/i)
 })
 
@@ -106,6 +106,6 @@ test('buildScrapers exposes a runnable iBall scraper without changing the runner
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'iball')
-  assert.equal(scraper.provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(scraper.provider.atsPlatform, 'shopify-company-general-hr-intake-inventory-unavailable')
   assert.match(scraper.dryRunFile, /iball[\\/]jobs\.json$/i)
 })

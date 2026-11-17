@@ -1,0 +1,14 @@
+{
+  "source": "navi",
+  "reviewedAt": "2026-11-17",
+  "boardURL": "https://navi.turbohire.co/dashboardv2?orgId=3e818601-0baa-429c-b6f8-4b21903ae0e6&type=0",
+  "orgId": "3e818601-0baa-429c-b6f8-4b21903ae0e6",
+  "nativeEmployerLabel": "Navi",
+  "legalEmployer": null,
+  "bodySHA256": "ca918e3bd7ce7388612f3c032b0b1586c4948828f455ea45b7fa4ee678118af8",
+  "bytes": 3825,
+  "priorBodySHA256": "5de4b0dcb41756de3179c61e1fadcc26b6e3dc227c9468687742acd2299c168d",
+  "review": "Exactly four title/OpenGraph display labels replace NAVI TECHNOLOGIES LIMITED with Navi; every other original byte, all45 declaration nodes, organization-logo GUID and reviewed client/CSS URLs are unchanged. Native API records independently retain the same organization GUID and label Navi. No legal entity equivalence or client/application/company scope is inferred.",
+  "sourceScopeComplete": false,
+  "lifecycleCleanupAllowed": false
+}

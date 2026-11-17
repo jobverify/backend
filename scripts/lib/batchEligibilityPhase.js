@@ -26,7 +26,7 @@ const fieldsFor = result => ({ eligibleBatches: result.eligibleBatches || [], el
   eligibleBatchesProvenance: result.eligibleBatchesProvenance || null });
 
 export async function refreshJobBatchEligibility({ model = Job, now = () => new Date(), mode = 'shadow', shard = 0, shardCount = 1,
-  budgetSeconds = 18000, signal, referenceDate, extractorFactory = startBatchExtractor, onResult = () => {}, onProgress = () => {} } = {}) {
+  budgetSeconds = 18000, signal, referenceDate, jobFilter = {}, extractorFactory = startBatchExtractor, onResult = () => {}, onProgress = () => {} } = {}) {
   if (!['shadow', 'policy'].includes(mode)) throw new Error('Invalid batch eligibility mode');
   classificationShard('validate', shardCount);
   if (!Number.isSafeInteger(shard) || shard < 0 || shard >= shardCount || !Number.isFinite(budgetSeconds) || budgetSeconds < 0) throw new Error('Invalid batch phase configuration');
@@ -39,7 +39,7 @@ export async function refreshJobBatchEligibility({ model = Job, now = () => new 
   const combinedSignal = signal ? AbortSignal.any([signal, phaseSignal]) : phaseSignal;
   let extractor, extractorError;
   try {
-    for await (const job of assignedSavedJobs(model, shard, shardCount, summary, shouldStop)) {
+    for await (const job of assignedSavedJobs(model, shard, shardCount, summary, shouldStop, jobFilter)) {
       summary.assigned++;
       const input = batchEligibilityInput(job, { now: clock, mode });
       const prior = job.batchEligibility;

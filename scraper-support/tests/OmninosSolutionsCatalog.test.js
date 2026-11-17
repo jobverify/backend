@@ -17,7 +17,7 @@ const loadScriptModule = async () => {
   }
 }
 
-test('Omninos Solutions exports provider metadata for the verified current openings page', async () => {
+test('Omninos Solutions exports current unqualified publisher metadata while retaining dated observations', async () => {
   const providerModule = await loadProviderModule()
   const scriptModule = await loadScriptModule()
 
@@ -29,10 +29,10 @@ test('Omninos Solutions exports provider metadata for the verified current openi
     modulePath: '../../scraper/omninossolutions/script.js',
     homepageUrl: 'https://www.omninos.in/',
     companyCareerPage: 'https://omninos.in/current-opening.php',
-    atsPlatform: 'official-first-party-role-cards',
+    atsPlatform: 'configured-domain-comingsoon-employer-unqualified',
     countryFilter: 'India',
-    paginationStrategy: 'single-page-role-card-list',
-    extractionStrategy: 'verified-first-party-current-openings-page+same-page-role-cards',
+    paginationStrategy: 'whole-generic-publisher-opening-closing',
+    extractionStrategy: 'current-configured-domain-carrier+publisher-employer-inventory-unqualified+company-scope-held',
     parser: 'custom-script',
     normalizationProfile: 'engineering-default',
     companyDomain: 'omninos.in',

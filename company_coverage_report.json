@@ -1,8 +1,8 @@
 {
   "coverageLabel": "Catalog registration coverage",
-  "totalRows": 4559,
-  "candidateRows": 4559,
-  "matchedCount": 4559,
+  "totalRows": 4558,
+  "candidateRows": 4558,
+  "matchedCount": 4558,
   "unmatchedCount": 0,
   "matched": [
     {
@@ -1998,34 +1998,6 @@
         "zeroResultPolicy": "evidence-required",
         "dryRunFile": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\adityabirlafashion\\jobs.json",
         "sourceDirectory": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\adityabirlafashion"
-      }
-    },
-    {
-      "row": "78",
-      "companyName": "Aditya Birla Group",
-      "normalizedCompanyName": "aditya birla",
-      "source": "adityabirlagroup",
-      "provider": {
-        "atsPlatform": "official-company-careers",
-        "countryFilter": "India",
-        "paginationStrategy": "single-public-job-search-shell",
-        "extractionStrategy": "verified-official-homepage+verified-careers-homepage+verified-job-search-zero-jobs-shell+peoplestrong-register-handoff",
-        "parser": "custom-script",
-        "normalizationProfile": "engineering-default",
-        "source": "adityabirlagroup",
-        "companyName": "Aditya Birla Group",
-        "adapter": "script",
-        "modulePath": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\adityabirlagroup\\script.js",
-        "companyCareerPage": "https://careers.adityabirla.com/",
-        "companyDomain": "careers.adityabirla.com",
-        "homepageUrl": "https://www.adityabirla.com/",
-        "jobSearchUrl": "https://careers.adityabirla.com/job-search",
-        "uploadCvUrl": "https://abgcareers.peoplestrong.com/register",
-        "verifiedOn": "2026-07-14",
-        "verifiedSurfaceSummary": "Verified on July 14, 2026 that https://www.adityabirla.com/ is the public Aditya Birla Group corporate homepage, https://careers.adityabirla.com/ is the first-party careers homepage, and https://careers.adityabirla.com/job-search is the live public jobs surface. The job-search page currently shows 0 jobs with a \"No Jobs Available\" empty state and hands applicants to the official PeopleStrong resume register at https://abgcareers.peoplestrong.com/register.",
-        "zeroResultPolicy": "evidence-required",
-        "dryRunFile": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\adityabirlagroup\\jobs.json",
-        "sourceDirectory": "C:\\Users\\mohv\\GitHub\\Release-26.09.04\\jobverify-backend\\scraper\\adityabirlagroup"
       }
     },
     {

@@ -312,35 +312,35 @@ test('Bharat Fritz Werner scraper constants and helpers stay pinned to the verif
       {
         title: 'Head of Application Engineering',
         department: 'Application Engineering',
-        location: 'Thally, India',
+        location: 'Thally',
         city: 'Thally',
         sourceUrl: 'https://bfwindia.com/careers/head-of-application-engineering-1/',
       },
       {
         title: 'Head /Dept Lead',
         department: 'Manufacturing & Methods Engineering',
-        location: 'Thally, India',
+        location: 'Thally',
         city: 'Thally',
         sourceUrl: 'https://bfwindia.com/careers/head-dept/',
       },
       {
         title: 'Production Planning and Control (PPC)',
         department: 'PPC',
-        location: 'Thally, India',
+        location: 'Thally',
         city: 'Thally',
         sourceUrl: 'https://bfwindia.com/careers/production-planning-and-control/',
       },
       {
         title: 'Supply Chain Management (SCM)',
         department: 'SCM',
-        location: 'Thally, India',
+        location: 'Thally',
         city: 'Thally',
         sourceUrl: 'https://bfwindia.com/careers/supply-chain-management/',
       },
       {
         title: 'Head of Quality',
         department: 'QA & QC',
-        location: 'Thally, India',
+        location: 'Thally',
         city: 'Thally',
         sourceUrl: 'https://bfwindia.com/careers/head-of-quality/',
       },
@@ -349,12 +349,12 @@ test('Bharat Fritz Werner scraper constants and helpers stay pinned to the verif
   assert.equal(bfw.hasOfficialDetailPageSignal(headDeptDetailHtml), true)
 })
 
-test('extractJobDetail returns normalized Bharat Fritz Werner data from the verified first-party detail page', async () => {
+test('extractJobDetail retains native criteria as an observation while a bare city leaves country unresolved', async () => {
   const bfw = await loadBharatFritzWernerModule()
   const listing = {
     title: 'Head /Dept Lead',
     department: 'Manufacturing & Methods Engineering',
-    location: 'Thally, India',
+    location: 'Thally',
     city: 'Thally',
     sourceUrl: 'https://bfwindia.com/careers/head-dept/',
   }
@@ -365,9 +365,16 @@ test('extractJobDetail returns normalized Bharat Fritz Werner data from the veri
     title: 'Head / Dept Lead',
     company: 'Bharat Fritz Werner',
     department: 'Manufacturing & Methods Engineering',
-    location: 'Thally, India',
+    location: 'Thally',
     city: 'Thally',
-    country: 'India',
+    country: null,
+    sourceCountryScopeUnresolved: true,
+    sourceDetailComplete: false,
+    sourceDetailStatus: 'partial',
+    sourceDetailFailureKind: 'native-role-country-unproven',
+    sourceScopeComplete: false,
+    sourceListingComplete: false,
+    lifecycleCleanupAllowed: false,
     jobId: 'bharatfritzwerner-head-dept',
     requisitionId: 'bharatfritzwerner-head-dept',
     sourceUrl: 'https://bfwindia.com/careers/head-dept/',
@@ -401,7 +408,7 @@ test('extractJobDetail returns normalized Bharat Fritz Werner data from the veri
   })
 })
 
-test('run validates the verified first-party Bharat Fritz Werner careers flow and returns visible current openings only', async () => {
+test('run retains five native observations with country and cleanup holds when only bare Thally is authored', async () => {
   const bfw = await loadBharatFritzWernerModule()
   const requestedUrls = []
 
@@ -457,9 +464,10 @@ test('run validates the verified first-party Bharat Fritz Werner careers flow an
   const headDept = jobs.find((job) => job.jobId === 'bharatfritzwerner-head-dept')
 
   assert.equal(headDept.company, 'Bharat Fritz Werner')
-  assert.equal(headDept.location, 'Thally, India')
+  assert.equal(headDept.location, 'Thally')
   assert.equal(headDept.city, 'Thally')
-  assert.equal(headDept.country, 'India')
+  assert.equal(headDept.country, null)
+  assert.ok(jobs.every(job => job.sourceCountryScopeUnresolved && job.sourceDetailComplete === false && job.lifecycleCleanupAllowed === false))
   assert.equal(headDept.source, 'bharatfritzwerner')
   assert.equal(headDept.companyDomain, 'bfwindia.com')
   assert.equal(headDept.atsPlatform, 'official-company-careers')
@@ -467,7 +475,7 @@ test('run validates the verified first-party Bharat Fritz Werner careers flow an
   assert.equal(headDept.scrapedAt, FIXED_SCRAPED_AT)
 
   assert.equal(supplyChain.department, 'SCM')
-  assert.equal(supplyChain.location, 'Thally, India')
+  assert.equal(supplyChain.location, 'Thally')
   assert.equal(supplyChain.applyUrl, 'https://bfwindia.com/careers/supply-chain-management/#apply')
   assert.equal(supplyChain.scrapedAt, FIXED_SCRAPED_AT)
 })

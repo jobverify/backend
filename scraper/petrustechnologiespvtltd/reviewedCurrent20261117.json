@@ -1,0 +1,14 @@
+{
+  "reviewedOn": "2026-11-17",
+  "scope": "Exact complete current publisher/module variants; no complete employer hiring inventory or zero claim",
+  "documents": [
+    {
+      "url": "https://www.petrustechnologies.com/",
+      "sha256": "36340e35f84620870af325ca05701c79418da4b138afa9f78adb3c85c694d4eb"
+    },
+    {
+      "url": "https://www.petrustechnologies.com/assets/index-CPUbk7Ng.js",
+      "sha256": "80eb5c72b36ef39f68219587c75447aa87167420e158ff46912fc1f015b48a98"
+    }
+  ]
+}

@@ -24,12 +24,12 @@ test('D2C provider contract captures the verified no-public-careers first-party 
   assert.equal(provider.companyName, 'D2C')
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyCareerPage, 'https://d2c.in/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-domain-declared-marketing-publisher-with-unqualified-recruitment-inventory')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-missing-first-party-careers-routes')
+  assert.equal(provider.paginationStrategy, 'exact-current-root-301-and-publisher-opening-closing-reconciliation')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage-shell+verified-missing-first-party-careers-routes+no-public-job-signals',
+    'current-declared-publisher-handoff+whole-original-publisher-models+unknown-recruitment-inventory-hold',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

@@ -1,64 +1,9 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
-
-import {
-  CAREERS_URL,
-  VERIFIED_ROLE_URLS,
-  createNhostScraper,
-  extractCareerRoleUrls,
-  extractRoleDetail,
-  hasOfficialCareersPageSignal,
-  hasOfficialRoleDetailSignal,
-} from '../../scraper/nhost/script.js'
-
-const ROLE_URL = 'https://nhost.io/careers/senior-software-engineer-backend-operations'
-const CAREERS_HTML = `
-  <title>Careers and Open Positions | Nhost</title>
-  <h1>Build the future of application development with us</h1>
-  <h3>Remote, global, async</h3><h2>Open positions</h2>
-  <p>1 open role — find the one that fits.</p>
-  <a href="${ROLE_URL}">Senior Software Engineer, Backend & Operations</a>
-  <a href="mailto:careers@nhost.io">Contact us</a>
-`
-const ROLE_HTML = `
-  <title>Senior Software Engineer, Backend & Operations | Nhost</title>
-  <a href="/careers">All open positions</a>
-  <div>Engineering</div><h1>Senior Software Engineer, Backend & Operations</h1>
-  <div>Remote Full-time 25-30 days vacation</div>
-  <a href="mailto:careers@nhost.io?subject=Senior%20Software%20Engineer">Apply for this role</a>
-  <h2>About the role</h2><p>Build backend systems.</p>
-  <h2>What will you do?</h2><ul><li>Build cloud-native systems.</li></ul>
-  <h2>What are we looking for?</h2><ul><li>4+ years of experience with Go.</li></ul>
-  <h2>How to apply</h2><p>Email careers@nhost.io.</p>
-`
-
-test('Nhost validates the current complete first-party role inventory and detail', async () => {
-  assert.deepEqual(VERIFIED_ROLE_URLS, [ROLE_URL])
-  assert.deepEqual(extractCareerRoleUrls(CAREERS_HTML), [ROLE_URL])
-  assert.equal(hasOfficialCareersPageSignal(CAREERS_HTML), true)
-  assert.equal(hasOfficialRoleDetailSignal(ROLE_HTML, ROLE_URL), true)
-  const job = extractRoleDetail(ROLE_HTML, ROLE_URL)
-  assert.equal(job.title, 'Senior Software Engineer, Backend & Operations')
-  assert.equal(job.country, 'Global')
-  assert.equal(job.applyUrl, 'mailto:careers@nhost.io')
-  assert.equal(job.jobId, 'senior-software-engineer-backend-operations')
-
-  const requested = []
-  const jobs = await createNhostScraper().run({
-    fetchText: async (url) => {
-      requested.push(url)
-      if (url === CAREERS_URL) return CAREERS_HTML
-      if (url === ROLE_URL) return ROLE_HTML
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-  })
-  assert.deepEqual(requested, [CAREERS_URL, ROLE_URL])
-  assert.equal(jobs.length, 1)
-  assert.equal(jobs[0].sourceUrl, ROLE_URL)
-})
-
-test('Nhost rejects inventory drift and unverified role details', async () => {
-  assert.equal(hasOfficialCareersPageSignal(CAREERS_HTML.replace('1 open role', '2 open roles')), false)
-  assert.equal(hasOfficialCareersPageSignal(CAREERS_HTML.replace(ROLE_URL, 'https://nhost.io/careers/other')), false)
-  assert.equal(hasOfficialRoleDetailSignal(ROLE_HTML, 'https://nhost.io/careers/other'), false)
-})
+import {readFileSync} from 'node:fs'
+import {gunzipSync} from 'node:zlib'
+import {createNhostScraper,SOURCE,COMPANY,PROVIDER_METADATA} from '../../scraper/nhost/script.js'
+const fixture=JSON.parse(gunzipSync(readFileSync(new URL('../../scraper/nhost/fixtures/native-20261117.json.gz',import.meta.url))))
+test('Nhost factory retains complete native hidden criteria without manufacturing Global or India roles',async()=>{const calls=[],jobs=await createNhostScraper({maxJobs:1}).run({fetchPage:async url=>{calls.push(url);const r=fixture.responses.find(r=>(r.url??r.finalUrl)===url);assert.ok(r,url);return {...r,url:r.url??r.finalUrl,body:Buffer.from(r.bodyBase64,'base64').toString()}}});assert.equal(SOURCE,'nhost');assert.equal(COMPANY,'Nhost');assert.equal(PROVIDER_METADATA.source,'nhost');assert.equal(PROVIDER_METADATA.atsPlatform,'official-current-native-careers-hidden-role-model');assert.equal(calls.length,6);assert.equal(jobs.length,0);assert.equal(jobs.nativeCollectionEvidence.observedVacancyCount,0);assert.equal(jobs.nativeCollectionEvidence.nativeOpening.programme.hiddenRoleRecords.length,4);assert.equal(jobs.nativeCollectionEvidence.lifecycleCleanupAllowed,false);assert.equal(jobs.nativeCollectionEvidence.companyGlobalTotal,null)})
+test('Nhost body-only legacy callbacks cannot certify HTTP identity or active publication',async()=>{let calls=0;await assert.rejects(createNhostScraper().run({fetchText:async()=>{calls++;return 'Nhost'}}),/Original HTTP metadata/);assert.equal(calls,0)})
+test('Nhost a changed original employer final URL stays hard even when blocked',async()=>{await assert.rejects(createNhostScraper().run({fetchPage:async()=>({status:403,url:'https://another.example/',headers:{'content-type':'text/html'},body:'denied'})}),e=>e.httpStatus===403&&e.failureKind==='parser_or_contract_error'&&e.recruitmentObservations.lifecycleCleanupAllowed===false)})

@@ -1,3 +1,4 @@
+import { runCurrentSula } from './currentNative20261117.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -101,7 +102,9 @@ export const matchesVerifiedOpaqueHROneState = ({ status, url, html } = {}) => {
 }
 
 export const createSulaVineyardsScraper = () => ({
-  async run({ fetchPage = defaultFetchPage } = {}) {
+  async run(options = {}) {
+    if (options.fetchImpl || !options.fetchPage) return runCurrentSula(options)
+    const { fetchPage } = options
     const careersPage = await fetchPage(CAREERS_PAGE_URL)
 
     if (

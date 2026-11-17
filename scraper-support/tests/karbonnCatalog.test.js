@@ -26,15 +26,15 @@ test('Karbonn catalog captures the verified official subscribe-only careers surf
   assert.equal(KARBONN_CATALOG.homepageUrl, 'https://www.karbonnmobiles.com/')
   assert.equal(KARBONN_CATALOG.companyDomain, 'karbonn.in')
   assert.equal(KARBONN_CATALOG.staleCareerRouteUrl, 'https://www.karbonnmobiles.com/careers.html?view=apply')
-  assert.equal(KARBONN_CATALOG.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(KARBONN_CATALOG.atsPlatform, 'current-configured-domain-product-launch-employer-unqualified')
   assert.equal(KARBONN_CATALOG.countryFilter, 'India')
   assert.equal(
     KARBONN_CATALOG.paginationStrategy,
-    'verified-homepage-careers-link-plus-subscribe-only-careers-page-plus-stale-route-validation',
+    'literal-current-three-redirect-chain-and-product-landing-opening-closing',
   )
   assert.equal(
     KARBONN_CATALOG.extractionStrategy,
-    'verified-homepage-careers-link+verified-subscribe-only-careers-page+verified-stale-careers-route-404',
+    'whole-current-product-landing-context+legal-employer-continuity-and-recruitment-inventory-unqualified+company-scope-held',
   )
   assert.equal(KARBONN_CATALOG.parser, 'custom-script')
   assert.equal(KARBONN_CATALOG.normalizationProfile, 'engineering-default')

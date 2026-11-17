@@ -96,7 +96,9 @@ test('Filo publishes current India roles and collapses repeated IDs with the sam
     },
     now: () => '2026-10-03T00:00:00.000Z',
   })
-  assert.equal(requestedUrls.length, 4)
+  // The current reader closes every complete role model and the department
+  // listing before it returns the selected observations.
+  assert.equal(requestedUrls.length, 8)
   assert.equal(jobs.length, 2)
   assert.deepEqual(jobs.map((job) => job.country), ['India', 'India'])
   assert.deepEqual(jobs.map((job) => job.location), ['Gurgaon', 'Maharasthra'])

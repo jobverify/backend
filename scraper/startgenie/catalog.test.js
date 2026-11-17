@@ -16,12 +16,12 @@ test('StartGenie is registered as a verified first-party careers scraper without
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, COMPANY)
   assert.equal(provider.companyCareerPage, CAREERS_URL)
-  assert.equal(provider.atsPlatform, 'official-company-careers')
+  assert.equal(provider.atsPlatform, 'current-configured-root-and-declared-parking-identity-unverified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-plus-careers-page-plus-job-sitemap')
+  assert.equal(provider.paginationStrategy, 'exact-current-root-and-own-literal-parking-lander-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-first-party-homepage+verified-careers-page+verified-job-sitemap+detail-pages+same-page-apply',
+    'whole-current-root-and-declared-parking-models+no-ads-programme-execution+employer-identity-and-native-vacancy-inventory-unverified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')

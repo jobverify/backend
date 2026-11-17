@@ -80,7 +80,7 @@ const loadModule = async () => {
   }
 }
 
-test('MosChip Technologies sentinel helpers stay pinned to the verified careers page, current-openings handoff, and empty adjacent routes', async () => {
+test('MosChip retains its historical careers and adjacent-route signal helpers', async () => {
   const moschipTechnologies = await loadModule()
 
   assert.equal(moschipTechnologies.SOURCE, 'moschiptechnologies')
@@ -126,103 +126,9 @@ test('MosChip Technologies sentinel helpers stay pinned to the verified careers 
   )
 })
 
-test('MosChip Technologies returns [] only while the verified current-openings page stays a LinkedIn and resume handoff rather than a public jobs board', async () => {
-  const moschipTechnologies = await loadModule()
-  const requestedUrls = []
-
-  const jobs = await moschipTechnologies.createMosChipTechnologiesScraper().run({
-    fetchPage: async (url) => {
-      requestedUrls.push(url)
-
-      if (url === moschipTechnologies.CAREERS_URL) {
-        return { status: 200, url, html: CAREERS_PAGE_HTML }
-      }
-
-      if (url === moschipTechnologies.CURRENT_OPENINGS_URL) {
-        return { status: 200, url, html: CURRENT_OPENINGS_HTML }
-      }
-
-      if (
-        url === moschipTechnologies.EMPTY_JOB_ARCHIVE_URL
-        || moschipTechnologies.NO_PUBLIC_CAREER_ROUTE_URLS.includes(url)
-      ) {
-        return { status: 404, url, html: NOT_FOUND_HTML }
-      }
-
-      throw new Error(`Unexpected MosChip Technologies URL: ${url}`)
-    },
-  })
-
-  assert.deepEqual(requestedUrls, [
-    moschipTechnologies.CAREERS_URL,
-    moschipTechnologies.CURRENT_OPENINGS_URL,
-    moschipTechnologies.EMPTY_JOB_ARCHIVE_URL,
-    ...moschipTechnologies.NO_PUBLIC_CAREER_ROUTE_URLS,
-  ])
-  assert.deepEqual(jobs, [])
-})
-
-test('MosChip Technologies fails closed when the verified careers page, current-openings copy, or adjacent empty routes drift', async () => {
-  const moschipTechnologies = await loadModule()
-
-  await assert.rejects(
-    moschipTechnologies.createMosChipTechnologiesScraper().run({
-      fetchPage: async (url) => ({
-        status: 200,
-        url,
-        html: '<html><body>Unexpected</body></html>',
-      }),
-    }),
-    /verified MosChip careers page/i,
-  )
-
-  await assert.rejects(
-    moschipTechnologies.createMosChipTechnologiesScraper().run({
-      fetchPage: async (url) => {
-        if (url === moschipTechnologies.CAREERS_URL) {
-          return { status: 200, url, html: CAREERS_PAGE_HTML }
-        }
-
-        if (url === moschipTechnologies.CURRENT_OPENINGS_URL) {
-          return { status: 200, url, html: PUBLIC_JOBS_HTML }
-        }
-
-        return { status: 404, url, html: NOT_FOUND_HTML }
-      },
-    }),
-    /current-openings page now appears to expose public job listings|verified MosChip current-openings page/i,
-  )
-
-  await assert.rejects(
-    moschipTechnologies.createMosChipTechnologiesScraper().run({
-      fetchPage: async (url) => {
-        if (url === moschipTechnologies.CAREERS_URL) {
-          return { status: 200, url, html: CAREERS_PAGE_HTML.replace(
-            'https://moschip.com/careers/current-openings/',
-            'https://example.com/jobs',
-          ) }
-        }
-
-        throw new Error(`Unexpected MosChip Technologies URL: ${url}`)
-      },
-    }),
-    /careers handoff/i,
-  )
-
-  await assert.rejects(
-    moschipTechnologies.createMosChipTechnologiesScraper().run({
-      fetchPage: async (url) => {
-        if (url === moschipTechnologies.CAREERS_URL) {
-          return { status: 200, url, html: CAREERS_PAGE_HTML }
-        }
-
-        if (url === moschipTechnologies.CURRENT_OPENINGS_URL) {
-          return { status: 200, url, html: CURRENT_OPENINGS_HTML }
-        }
-
-        return { status: 200, url, html: PUBLIC_JOBS_HTML }
-      },
-    }),
-    /verified empty jobs route changed/i,
-  )
+// Historical parser helpers remain below their original verification date.
+// Current source-directory tests replay complete original native HTTP inputs.
+test('MosChip current acquisition requires original HTTP receipts instead of old missing-route empty proof', async () => {
+  const moschip = await loadModule()
+  await assert.rejects(moschip.createMosChipTechnologiesScraper().run({ fetchPage: async url => ({ status: 200, url, html: CAREERS_PAGE_HTML }) }), /original HTTP metadata|body-only/i)
 })

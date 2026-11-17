@@ -1,0 +1,184 @@
+{
+  "root": "https://scioms.com/",
+  "titles": [
+    "SCIO Management Solutions – Intelligent, Automated RCM Services"
+  ],
+  "careers": "https://scioms.com/careers",
+  "listing": "https://scioms.com/open-roles",
+  "applyBase": "https://scioms.com/apply-now/",
+  "careerAPI": "https://scioms.com/scio-api/carrer/get",
+  "listingAPI": "https://scioms.com/scio-api/get/open-roles",
+  "readOnlyJSONRequests": [
+    {
+      "url": "https://scioms.com/scio-api/carrer/get",
+      "body": "{}"
+    },
+    {
+      "url": "https://scioms.com/scio-api/get/open-roles",
+      "body": "{}"
+    },
+    {
+      "url": "https://scioms.com/scio-api/get/open-roles",
+      "body": "{\"limit\":1000,\"currentPage\":1,\"status\":1}"
+    }
+  ],
+  "executableDeclarations": [
+    {
+      "attrs": {
+        "src": "assets/js/jquery.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/popper.min.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/bootstrap.min.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/jquery.fancybox.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/jquery-ui.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gsap.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gsap-scroll-to-plugin.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gsap-scroll-smoother.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gsap-scroll-trigger.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/gsap-split-text.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/split-type.min.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/parallaxie.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/wow.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/bxslider.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/nice-select.min.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/knob.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/appear.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/swiper.min.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/mixitup.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "assets/js/script.js"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {},
+      "sha256": "36b0804635f9a4dd0e7ce9bb1748f8d4d5a12038dd30e8183aeb87a6f5302bde"
+    },
+    {
+      "attrs": {
+        "src": "polyfills-5CFQRCPP.js",
+        "type": "module"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "attrs": {
+        "src": "main-B4TMAJLM.js",
+        "type": "module"
+      },
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "programmes": [
+    {
+      "url": "https://scioms.com/main-B4TMAJLM.js",
+      "bytes": 384444,
+      "sha256": "2e448e2580ff180de2b1b67a1a1f31231fcc65f2cb4d7dd7b57b70872d230944",
+      "attrs": {
+        "src": "main-B4TMAJLM.js",
+        "type": "module"
+      }
+    },
+    {
+      "url": "https://scioms.com/assets/js/script.js",
+      "bytes": 47177,
+      "sha256": "ad73792b030c6511326dea26aa0198f481f50f5bd8d50892e9dc091307953304",
+      "attrs": {
+        "src": "assets/js/script.js"
+      }
+    }
+  ]
+}

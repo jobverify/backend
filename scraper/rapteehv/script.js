@@ -5,6 +5,7 @@ import { createBrowserNetworkFallback } from '../../scraper-support/shared/brows
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { fetchJsonWithRetry, fetchTextWithRetry } from '../../scraper-support/utils/fetch.js'
 import { activeHead, readNativeDocument } from '../../scraper-support/utils/activeNativeHtml.js'
+import { runCurrentRaptee } from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -135,10 +136,12 @@ const buildApplyUrl = ({ domain, jobId }) => {
   return `${normalizedDomain}applyjob/${jobId}`
 }
 
-const isIndiaLocation = (location = {}) => {
-  if (String(location.countryCode || '').toUpperCase() === 'IN') return true
-  if (/india/i.test(String(location.countryName || ''))) return true
-  return /india/i.test([location.name, location.city, location.state].filter(Boolean).join(' '))
+const nativeCountry = (location = {}) => {
+  const code = normalizeWhitespace(location.countryCode)?.toUpperCase()
+  const name = normalizeWhitespace(location.countryName)
+  if ((code === 'IN' && name && name !== 'India') || (name === 'India' && code && code !== 'IN')) return null
+  if (code === 'IN' || name === 'India') return 'India'
+  return name || null
 }
 
 const toEmploymentType = (jobType) => (jobType === 2 || jobType === '2' ? 'Full Time' : null)
@@ -151,10 +154,7 @@ const normalizePostingDate = (value) => {
   return Number.isNaN(date.getTime()) ? null : date.toISOString().slice(0, 10)
 }
 
-const selectLocation = (locations = []) => {
-  const explicitIndia = locations.find(isIndiaLocation)
-  return explicitIndia || locations[0] || null
-}
+const selectLocation = (locations = []) => locations[0] || null
 
 const mapJob = (job, { domain } = {}) => {
   const locations = Array.isArray(job?.jobLocations) ? job.jobLocations : []
@@ -166,7 +166,8 @@ const mapJob = (job, { domain } = {}) => {
 
   const city = normalizeWhitespace(location?.city) || normalizeWhitespace(location?.name)
   const state = normalizeWhitespace(location?.state)
-  const country = location ? (isIndiaLocation(location) ? 'India' : normalizeWhitespace(location.countryName)) : 'India'
+  const countries = locations.map(nativeCountry)
+  const country = countries.length && countries.every(value => value && value === countries[0]) ? countries[0] : null
   const locationLabel = [city, state, country]
     .filter((part, index, values) => part && values.indexOf(part) === index)
     .join(', ')
@@ -179,9 +180,9 @@ const mapJob = (job, { domain } = {}) => {
     title,
     company: COMPANY,
     department: normalizeWhitespace(job.departmentName),
-    location: locationLabel || country || 'India',
+    location: locationLabel || null,
     city,
-    country: country || 'India',
+    country,
     jobId,
     requisitionId: jobId,
     sourceUrl,
@@ -226,13 +227,16 @@ const defaultFetchJson = (url) => fetchJsonWithRetry(url, {
 export const createRapteeHvScraper = ({
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
 } = {}) => ({
-  async run({
+  async run(options = {}) {
+    options.signal?.throwIfAborted()
+    if (options.fetchImpl || !(options.fetchText || options.fetchJson || options.fetchBrowserText || options.fetchBrowserJson)) return runCurrentRaptee(options)
+    const {
     fetchText = defaultFetchText,
     fetchJson = defaultFetchJson,
     fetchBrowserText,
     fetchBrowserJson,
     now = () => new Date().toISOString(),
-  } = {}) {
+    } = options
     const browserFallback = createBrowserNetworkFallback({
       fetchText,
       fetchJson,

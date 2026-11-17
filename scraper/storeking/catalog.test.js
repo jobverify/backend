@@ -11,13 +11,13 @@ test('Store King is registered as a verified first-party no-public-careers senti
   assert.ok(provider)
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'StoreKing')
-  assert.equal(provider.companyCareerPage, 'https://storeking.in/contact')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.companyCareerPage, 'https://storeking.in/careers')
+  assert.equal(provider.atsPlatform, 'current-own-native-client-role-dtos-and-application-programme')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'about-contact-and-missing-careers-routes')
+  assert.equal(provider.paginationStrategy, 'own-home-declared-careers-inside-sales-and-complete-pinned-native-role-programme-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-about-page-careers-contact-handoff+verified-contact-page-job-seeker-form+missing-public-careers-routes',
+    'whole-seven-current-native-role-dtos-criteria-and-application-programme+protected-contact-raw-model-retained+role-country-browser-application-and-company-scope-held',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
@@ -44,6 +44,6 @@ test('Store King resolves through alias coverage and stays runnable through the 
   assert.ok(scraper)
   assert.equal(typeof scraper.run, 'function')
   assert.equal(scraper.provider.source, 'storeking')
-  assert.equal(scraper.provider.companyCareerPage, 'https://storeking.in/contact')
+  assert.equal(scraper.provider.companyCareerPage, 'https://storeking.in/careers')
   assert.match(scraper.dryRunFile, /storeking[\\/]jobs\.json$/i)
 })

@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { loadConfig } from '../../scraper-support/utils/loadConfig.js'
 import { FUNPLUS_CATALOG } from './catalog.js'
+import {runCurrentFunPlus} from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const config = loadConfig(currentDir)
@@ -301,10 +302,13 @@ const buildJob = (card, detail, postingDate, scrapedAt) => {
 export const createFunPlusScraper = ({
   now = () => new Date().toISOString(),
   maxJobs = Number.isInteger(config.maxJobs) ? config.maxJobs : null,
+  ...currentOptions
 } = {}) => ({
   async run({
     fetchPage = defaultFetchPage,
+    ...runOptions
   } = {}) {
+    if(fetchPage===defaultFetchPage)return runCurrentFunPlus({...currentOptions,...runOptions,now,maxJobs})
     const homepage = await fetchPage(HOMEPAGE_URL)
     if (homepage.status !== 200 || !hasOfficialHomepageSignal(homepage.html)) {
       throw new Error('FunPlus verified official homepage no longer matches the known first-party surface')

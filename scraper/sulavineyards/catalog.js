@@ -16,10 +16,10 @@ export const SULA_VINEYARDS_CATALOG = {
   officialCareersHandoffUrl:
     'https://app.hrone.cloud/career-portal?appId=MHZzWpATk5uSVkWo1EwlhxzjgIG1VZ3pIZYpNVctJxMlUQo18qUoCm-17Y6BMlv4l0Cqdw6PNgHEZKAACmWo7upw3Rwo24m2v5XmXqZ2XGYc1Q2nq54JyLnImKiiIoss&dc=sula&rqt=m8jH4bpBQbccEU8MZpSP5Q&cc=eaqzS8e-weZZc3W_dw_T1Q',
   companyDomain: 'sulavineyards.com',
-  atsPlatform: 'hrone-handoff-unverifiable',
+  atsPlatform: 'hrone-current-public-query-employer-binding-held',
   countryFilter: 'India',
-  paginationStrategy: 'official-careers-page-plus-external-hrone-handoff-no-verifiable-public-board',
-  extractionStrategy: 'verified-official-careers-page+verified-hrone-handoff+fail-closed-sentinel',
+  paginationStrategy: 'declared-current-hrone-first-page-query-opening-closing',
+  extractionStrategy: 'active-own-short-handoff+finite-reviewed-hrone-programmes+whole-portal-and-query-models+employer-binding-held+company-scope-held',
   parser: 'custom-script',
   normalizationProfile: 'engineering-default',
   verifiedOn: '2026-08-05',

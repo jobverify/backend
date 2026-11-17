@@ -43,7 +43,7 @@ const nonceOf=headers=>{
  need(count(policy,token)===1,'unbound CSP nonce occurrence');return token
 }
 const critical=['content-type','content-disposition','content-security-policy','content-security-policy-report-only','refresh','link','location','content-location','x-content-type-options','x-frame-options','permissions-policy','referrer-policy','cache-control','vary','access-control-allow-origin','access-control-allow-headers','access-control-allow-methods','cross-origin-resource-policy','x-pinpoint-version','set-cookie']
-export function currentHiverHeaders(packet){
+export function currentHiverHeaders(packet,profile){
  const headers=Object.fromEntries(Object.entries(packet.headers).map(([k,v])=>[k.toLowerCase(),v])),result=Object.fromEntries(critical.map(k=>[k,headers[k]??null])),native=new URL(packet.requestedURL).hostname==='hiverhq.pinpointhq.com'
  if(native){
   const token=nonceOf(headers);result['content-security-policy']=result['content-security-policy'].replace(token,'CURRENT_NATIVE_NONCE')
@@ -52,6 +52,11 @@ export function currentHiverHeaders(packet){
   result['set-cookie']='_pinpoint_session=CURRENT_ISSUED_ANONYMOUS_SESSION; domain=.pinpointhq.com; path=/; expires=HTTP_DATE_PLUS_SEVEN_DAYS; secure; HttpOnly; SameSite=None'
  }
  if(packet.requestedURL===HIVER_CORPORATE){
+  if(profile?.corporate.cacheMode==='reviewed-native-no-batcache-20261116'){
+   const absent=['cache-control','last-modified','x-nananana'].every(key=>headers[key]===undefined)
+   if(absent)return result
+   need(['cache-control','last-modified','x-nananana'].every(key=>typeof headers[key]==='string'),'corporate reviewed cache header model changed')
+  }
   need(/^max-age=(?:\d{1,3}), must-revalidate$/.test(headers['cache-control']??'')&&Number(headers['cache-control'].match(/\d+/)[0])<=300,'corporate cache context changed')
   result['cache-control']='max-age=CURRENT_BOUND_BATCACHE_REMAINING, must-revalidate'
  }
@@ -110,10 +115,21 @@ function corporateProjection(html,packet,profile,nodes){
  let value=html
  for(const slot of profile.corporate.variableSlots){
   const pair=pairs[slot.index];keys(pair,['selector','style','hash','url'],'corporate native background pair');need(UUID.test(pair.hash)&&pair.selector===slot.selector&&pair.url===slot.url,'corporate background identity/value binding changed')
-  need(count(html,pair.hash)===4&&count(html,'var(--wpr-bg-'+pair.hash+')')===1,'unbound corporate generated background reference')
+  const occurrences=profile.corporate.cacheMode==='reviewed-native-no-batcache-20261116'?slot.occurrences:4
+  const references=profile.corporate.cacheMode==='reviewed-native-no-batcache-20261116'?slot.referenceCount:1
+  need(count(html,pair.hash)===occurrences&&count(html,'var(--wpr-bg-'+pair.hash+')')===references,'unbound corporate generated background reference')
   const stable={...pair,hash:slot.marker,style:pair.style.replaceAll(pair.hash,slot.marker)}
   need(same(stable,slot.stablePair),'corporate background selector/style/URL changed')
   value=value.replaceAll(pair.hash,slot.marker)
+ }
+ if(profile.corporate.cacheMode==='reviewed-native-no-batcache-20261116'){
+  if(['cache-control','last-modified','x-nananana'].every(key=>packet.headers[key]===undefined))return value
+  const banners=[...value.matchAll(/<!--\n\tgenerated[\s\S]*?-->\n/g)]
+  need(banners.length===1&&value.endsWith(banners[0][0]),'corporate reviewed cache banner context changed')
+  const banner=banners[0][0],set=/^<!--\n\tgenerated in \d{1,3}\.\d{3} seconds\n\t\d{1,8} bytes batcached for 300 seconds\n-->\n$/.exec(banner),hit=/^<!--\n\tgenerated (\d{1,3}) seconds ago\n\tgenerated in \d{1,3}\.\d{3} seconds\n\tserved from batcache in \d{1,3}\.\d{3} seconds\n\texpires in (\d{1,3}) seconds\n-->\n$/.exec(banner),age=Number(packet.headers['cache-control']?.match(/^max-age=(\d+), must-revalidate$/)?.[1])
+  need(set&&age===300&&packet.headers['x-nananana']==='Batcache-Set'||hit&&age===Number(hit[2])&&Number(hit[1])+Number(hit[2])===300&&packet.headers['x-nananana']==='Batcache-Hit','corporate full cache comment/header semantics changed')
+  need(Number.isFinite(Date.parse(packet.headers['last-modified']))&&Date.parse(packet.headers['last-modified'])<=Date.parse(packet.headers.date),'corporate issued Last-Modified cache context changed')
+  return value.replace(banner,'')
  }
  const links=nodes.filter(n=>n.tag==='link'&&profile.corporate.cacheStyles.some(s=>s.id===n.attrs.id))
  need(links.length===5,'corporate cache stylesheet carrier count changed')
@@ -175,7 +191,7 @@ export function currentHiverDocument(packet,profile){
   }
   for(const r of replacements){need(count(context,r.before)===1,'native projected rich field collides with another carrier');context=context.replace(r.before,r.after)}
  }
- return{document,nodes,components,originalHTML:html,contextProjection:context,contextSHA256:currentHiverSHA(context+'\nFULL_CRITERION_AUTHORITY\n'+JSON.stringify(authority)),headerContext:currentHiverHeaders(packet),authority}
+ return{document,nodes,components,originalHTML:html,contextProjection:context,contextSHA256:currentHiverSHA(context+'\nFULL_CRITERION_AUTHORITY\n'+JSON.stringify(authority)),headerContext:currentHiverHeaders(packet,profile),authority}
 }
 export function currentHiverRowStable(row){const value=structuredClone(row);for(const field of FIELDS)value[field]='CURRENT_COMPLETE_NATIVE_'+field;return value}
 export function currentHiverPostingStable(model){return{...model,description:'CURRENT_COMPLETE_NATIVE_SCHEMA_CRITERIA'}}
@@ -211,7 +227,8 @@ function qualifyRole(row,detail,profile,clock){
 }
 export async function runCurrentHiver(options={}){
  options.signal?.throwIfAborted();need(!(options.fetchPage||options.fetchText||options.fetchJson),'original byte/HTTP metadata transport required')
- const profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url),'utf8')),timeout=options.sourceTimeoutMs??90000,interval=options.requestIntervalMs??500,maxJobs=options.maxJobs??null
+ let profile=JSON.parse(fs.readFileSync(new URL('./currentProfile20261115.json',import.meta.url),'utf8'))
+ const currentCorporate=JSON.parse(fs.readFileSync(new URL('./currentCorporate20261116.json',import.meta.url),'utf8')),timeout=options.sourceTimeoutMs??90000,interval=options.requestIntervalMs??500,maxJobs=options.maxJobs??null
  need(Number.isSafeInteger(timeout)&&timeout>0&&timeout<=90000&&Number.isSafeInteger(interval)&&interval>=0&&interval<=60000&&(interval>=500||options.fetchImpl)&&((maxJobs===null)||(Number.isSafeInteger(maxJobs)&&maxJobs>0&&maxJobs<=100)),'invalid source deadline/pacing/caller limit')
  const now=()=>{const value=typeof options.now==='function'?options.now():options.now??new Date().toISOString();const date=value instanceof Date?value:new Date(value);need(Number.isFinite(date.getTime()),'invalid source clock');return date.toISOString()},observedAt=now(),controller=new AbortController(),timer=setTimeout(()=>controller.abort(problem('source deadline exceeded')),timeout),signal=options.signal?AbortSignal.any([options.signal,controller.signal]):controller.signal
  const responses=[],last=new Map(),byteLength=Object.getOwnPropertyDescriptor(Object.getPrototypeOf(Uint8Array.prototype),'byteLength').get
@@ -225,8 +242,13 @@ export async function runCurrentHiver(options={}){
    return{status:response.status,url:response.url,headers:response.headers,body}
   }})
   const p={requestedURL:url,kind,...packet,bytes:Buffer.from(packet.bodyBase64,'base64').length,sha256:currentHiverSHA(Buffer.from(packet.bodyBase64,'base64'))};responses.push(p)
+  if(url===HIVER_CORPORATE&&reads===1){
+   const candidate={...profile,corporate:currentCorporate.corporate,contexts:{...profile.contexts,[url]:currentCorporate.contextSHA256},headerNames:{...profile.headerNames,[url]:currentCorporate.headerNames},headers:{...profile.headers,[url]:currentCorporate.headers}}
+   try{if(candidate.corporate.headerNameVariants.some(names=>same(Object.keys(p.headers).sort(),names))&&currentHiverDocument(p,candidate).contextSHA256===candidate.contexts[url])profile=candidate}catch{}
+  }
   need(p.status===200&&p.url===url,'ordinary native HTTP status/final URL changed')
-  need(same(Object.keys(p.headers).sort(),profile.headerNames[url])&&same(currentHiverHeaders(p),profile.headers[url]),'native complete header names/critical MIME/navigation/execution/cache context changed')
+  const headerNames=url===HIVER_CORPORATE&&profile.corporate.headerNameVariants||[profile.headerNames[url]],headerContexts=url===HIVER_CORPORATE&&profile.corporate.headerContextVariants||[profile.headers[url]]
+  need(headerNames.some(names=>same(Object.keys(p.headers).sort(),names))&&headerContexts.some(headers=>same(currentHiverHeaders(p,profile),headers)),'native complete header names/critical MIME/navigation/execution/cache context changed')
   if(kind==='asset')need(p.bytes===profile.assets[url].bytes&&p.sha256===profile.assets[url].sha256,'current complete native renderer/controller/style bytes changed')
   return p
  }

@@ -82,28 +82,6 @@ test('FabHotels homepage accepts the current encoded apostrophe title and ignore
   ])
 })
 
-test('FabHotels scraper returns the verified first-party roles', async () => {
-  const requestedUrls = []
-  const jobs = await createFabHotelsScraper({
-    maxJobs: 1,
-  }).run({
-    fetchText: async (url) => {
-      requestedUrls.push(url)
-      if (url === HOMEPAGE_URL) return homepageHtml
-      if (url === CAREERS_URL) return careersHtml
-      if (url === 'https://www.fabhotels.com/careers/FS-TECH-P1') return detailHtml
-      throw new Error(`Unexpected URL: ${url}`)
-    },
-    now: () => '2026-08-02T00:00:00.000Z',
-  })
-
-  assert.deepEqual(requestedUrls, [
-    HOMEPAGE_URL,
-    CAREERS_URL,
-    'https://www.fabhotels.com/careers/FS-TECH-P1',
-  ])
-  assert.equal(jobs.length, 1)
-  assert.equal(jobs[0].title, 'Frontend Engineer')
-  assert.equal(jobs[0].source, 'fabhotels')
-  assert.equal(jobs[0].scrapedAt, '2026-08-02T00:00:00.000Z')
+test('FabHotels requires original HTTP metadata before current source acquisition',async()=>{
+  await assert.rejects(createFabHotelsScraper().run({fetchText:async()=>careersHtml}),/original HTTP metadata|body-only/i)
 })

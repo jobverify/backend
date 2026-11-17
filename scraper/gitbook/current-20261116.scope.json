@@ -1,0 +1,76 @@
+{
+  "provenance": {
+    "capturedAt": "2026-11-16T17:22:26.032Z",
+    "fixture": "fixtures/current-http-20261116.json.gz",
+    "fixtureSha256": "2932a4d5983c439e7be2f47251a113b11c45f9b24534c7daa8280ba6452b56e2",
+    "corporateBodySha256": "3663e7d3d0f5b9e061b03171b4c89f55d3e322c5647cbab2fc0c1724c254c7eb",
+    "binding": "Finite exact November16 first-party SSR deployment; partial only. Opening/closing complete original employer scope and all eleven declared main/preload programs must reconcile.",
+    "review": "Current first-party career text, three employer role links, repeated responsive role cards, forms, frames and interactions inspected. New /ai-toolkit marketing navigation and its shared module add a declared preload. The full new Framer scope including changed styles and every active attribute is pinned rather than normalized or treated as renderer equivalence. All eleven complete declared module bodies are retained, syntax-parsed and independently hashed; full rendered visibility and whole-company completeness remain unverified. Ashby executable tail is byte-identical to the previous tail after exactly four occurrences of the forty-character deployment hash. Native organization, JobPosting schema, raw criteria and opening/closing detail reconciliation remain mandatory. Generic Europe/Remote countries stay unresolved and cleanup remains disabled."
+  },
+  "scopeSha256": "275d14c770ec434e3fe649f5e36d9f4db4b94d2b3221aa93fd2097aea8675493",
+  "nativeAppBootstrap": {
+    "sha256": "23c9c2e8e8defeca23a83ca79fa9db5e80af5fa79093bfac0ed16c863583d79e"
+  },
+  "corporateRoleIds": [
+    "531ab2e2-af70-4b26-805e-1b4554184fd6",
+    "5d3d7b3d-0a50-4728-a9cc-18cfd8b14adb",
+    "cfd51d34-61c7-47c6-af41-04818008fea2"
+  ],
+  "declaredPrograms": [
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/script_main.MbYth3LG.mjs",
+      "sha256": "119794d389bf674327c3533c1ad410e5395c7ddf3bccdf32fc7f5147318d1d70",
+      "bytes": 17558
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/rolldown-runtime.CNOWq4Kh.mjs",
+      "sha256": "2d8d100f1a8f491dcf0b1adcd5d5f59a48dfd1683b8123c97785039b0e72e99d",
+      "bytes": 817
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/react.BQDVJODu.mjs",
+      "sha256": "266968918640b6d01091345f7cc03f3e40e394c10a38c688714c77a3459bd1c5",
+      "bytes": 145074
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/framer.C-SL8MdJ.mjs",
+      "sha256": "9e09c089e485dd9a3a1e8fe73f7df2d9c1667b68a8f41998f5f2af2077412fe0",
+      "bytes": 443615
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/motion.BfBj0Vkg.mjs",
+      "sha256": "6ded36067afe40332797f0b7eeb608263f8a8b293067d971e1c8b23629af82d6",
+      "bytes": 155658
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/toplevel-deps.DXePGy57.mjs",
+      "sha256": "2cdc9f10704d44aee3e1a51044d7a1a357846db8a79693f3a27d3f74397b1fd4",
+      "bytes": 413281
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/1VjPohRBK3whC-mmINQUjs2HeHP3TAuQki5KCKQqfkA.DPKNOJrq.mjs",
+      "sha256": "4f93c4786a48598229552f7eb36c74b394103c44c7943bf5e530b614e395d7e2",
+      "bytes": 99724
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/shared.C_2Fe_r3.mjs",
+      "sha256": "414588cb9b3867bbe97a6bc6777aa32453869c7d9d6b70899841392820d148a3",
+      "bytes": 611773
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/XKbaJ3Bxm.joRpc-cZ.mjs",
+      "sha256": "e4db686e59ceaebded1530c46db7cdc301906ec12a4c483b1717338854c4675d",
+      "bytes": 25577
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/tVXXlDnVX.D8S6lsAf.mjs",
+      "sha256": "ea96d5d77c6b405038fdec503f45abdddd32c7750d51d527bd53e7da788a2cfa",
+      "bytes": 11726
+    },
+    {
+      "url": "https://framerusercontent.com/sites/nNji44mQfYtH9VMKskPg2/N0GdP398w.Cmay8RJy.mjs",
+      "sha256": "39910c461c665e4096bb1da7798e8c88f4c5425a58b606558e01980023056a19",
+      "bytes": 928
+    }
+  ]
+}

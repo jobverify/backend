@@ -1,0 +1,17 @@
+{
+  "root": "https://www.mcmenon.com/",
+  "rootTitles": [
+    "McMenon Engineering | Flow & Temperature Instruments UK"
+  ],
+  "careers": "https://www.mcmenon.com/careers/",
+  "careersTitles": [
+    "Careers | McMenon Engineering"
+  ],
+  "genericHR": {
+    "attrs": {
+      "href": "mailto:hradmin@mcmenon.com",
+      "class": "bg-brand hover:bg-brand-dark mt-7 inline-flex items-center gap-3 px-6 py-3.5 text-sm font-bold tracking-wide text-white uppercase transition"
+    },
+    "text": "Email your CV to hradmin@mcmenon.com"
+  }
+}

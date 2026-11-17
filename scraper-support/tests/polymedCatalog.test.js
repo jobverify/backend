@@ -25,7 +25,7 @@ const loadScriptModule = async () => {
   }
 }
 
-test('Polymed local catalog captures the careers-form and stale-job-opening no-public-jobs contract', async () => {
+test('Polymed local catalog retains dated evidence while describing current generic intake and unknown inventory', async () => {
   const { POLYMED_CATALOG } = await loadCatalogModule()
   const polymed = await loadScriptModule()
   const provider = hydrateProviderCatalogEntry(POLYMED_CATALOG)
@@ -41,12 +41,12 @@ test('Polymed local catalog captures the careers-form and stale-job-opening no-p
   assert.equal(POLYMED_CATALOG.officialJobOpeningUrl, 'https://www.polymedicure.com/job-opening/')
   assert.equal(POLYMED_CATALOG.officialCareersEmail, null)
   assert.equal(POLYMED_CATALOG.companyDomain, 'polymedicure.com')
-  assert.equal(POLYMED_CATALOG.atsPlatform, 'official-company-site-careers-form-no-public-jobs-board')
+  assert.equal(POLYMED_CATALOG.atsPlatform, 'official-company-careers-general-intake-inventory-unavailable')
   assert.equal(POLYMED_CATALOG.countryFilter, 'India')
-  assert.equal(POLYMED_CATALOG.paginationStrategy, 'official-careers-page-validation-only')
+  assert.equal(POLYMED_CATALOG.paginationStrategy, 'current-careers-form-schema-and-reviewed-programmes-opening-closing')
   assert.equal(
     POLYMED_CATALOG.extractionStrategy,
-    'verified-careers-form+stale-job-opening-page-return-empty',
+    'active-careers-identity+whole-generic-form+native-rules-conflict-retained+inventory-unavailable+company-scope-held',
   )
   assert.equal(POLYMED_CATALOG.parser, 'custom-script')
   assert.equal(POLYMED_CATALOG.normalizationProfile, 'engineering-default')

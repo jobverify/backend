@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { QUADEYE_CATALOG } from './catalog.js'
 import { hasRecognizedWorkdayCountry, explicitWorkdayCountryScope } from '../../scraper-support/myworkday/countryInventoryProof.js'
 import { attachInventoryEvidence } from '../../scraper-support/utils/inventoryEvidence.js'
+import {runCurrentQuadeye} from './currentNative20261117.js'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 
@@ -300,13 +301,17 @@ const defaultFetchJson = async (url, { signal } = {}) => {
 export const createQuadEyeScraper = ({
   maxJobs = null,
   now = () => new Date().toISOString(),
+  ...currentConfiguration
 } = {}) => ({
   async run({
     fetchText = defaultFetchText,
     fetchJson = defaultFetchJson,
     now: overrideNow,
     signal,
+    ...currentOverrides
   } = {}) {
+    if(currentConfiguration.fetchImpl||currentOverrides.fetchImpl||fetchText===defaultFetchText&&fetchJson===defaultFetchJson)
+      return runCurrentQuadeye({...currentConfiguration,...currentOverrides,signal,maxJobs,now:overrideNow||now})
     signal?.throwIfAborted()
     const careersPageHtml = await fetchText(CAREERS_PAGE_URL, { signal })
     if (!hasOfficialCareersPageSignal(careersPageHtml)) {
@@ -357,7 +362,7 @@ export const createQuadEyeScraper = ({
   },
 })
 
-export const run = async (options = {}) => createQuadEyeScraper().run(options)
+export const run = async (options = {}) => createQuadEyeScraper(options).run(options)
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { saveToDB, saveToFile } = await import('../../scraper-support/utils/saveToDB.js')

@@ -12,12 +12,12 @@ test('Petrus Technologies Pvt Ltd is registered as a verified first-party zero-j
   assert.equal(provider.adapter, 'script')
   assert.equal(provider.companyName, 'Petrus Technologies Pvt Ltd')
   assert.equal(provider.companyCareerPage, 'https://www.petrustechnologies.com/')
-  assert.equal(provider.atsPlatform, 'official-company-site-no-public-careers')
+  assert.equal(provider.atsPlatform, 'official-current-product-spa-employment-inventory-unqualified')
   assert.equal(provider.countryFilter, 'India')
-  assert.equal(provider.paginationStrategy, 'homepage-shell-plus-route-bundle-plus-about-contact-component-validation')
+  assert.equal(provider.paginationStrategy, 'exact-current-own-product-shell-and-declared-whole-route-module-opening-closing')
   assert.equal(
     provider.extractionStrategy,
-    'verified-homepage-shell+verified-route-bundle-without-careers+verified-about-and-contact-components+verified-common-careers-shell-routes-return-empty',
+    'whole-current-product-publisher-and-programme+native-hiring-role-country-criteria-application-and-company-inventory-unqualified',
   )
   assert.equal(provider.parser, 'custom-script')
   assert.equal(provider.normalizationProfile, 'engineering-default')
